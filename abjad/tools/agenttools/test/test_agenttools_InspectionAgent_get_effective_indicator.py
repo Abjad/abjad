@@ -3,17 +3,17 @@ import pytest
 from abjad import *
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_01():
+def test_agenttools_InspectionAgent_get_effective_01():
     r'''Clef defaults to none.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     for note in staff:
-        clef = inspect(note).get_effective_indicator(Clef)
+        clef = inspect(note).get_effective(Clef)
         assert clef is None
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_02():
+def test_agenttools_InspectionAgent_get_effective_02():
     r'''Clefs carry over to notes following.
     '''
 
@@ -21,11 +21,11 @@ def test_agenttools_InspectionAgent_get_effective_indicator_02():
     clef = Clef('treble')
     attach(clef, staff)
     for note in staff:
-        clef = inspect(note).get_effective_indicator(Clef)
+        clef = inspect(note).get_effective(Clef)
         assert clef == Clef('treble')
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_03():
+def test_agenttools_InspectionAgent_get_effective_03():
     r'''Clef defaults to none. Clefs carry over to notes following.
     '''
 
@@ -34,14 +34,14 @@ def test_agenttools_InspectionAgent_get_effective_indicator_03():
     attach(clef, staff[4])
     for i, note in enumerate(staff):
         if i in (0, 1, 2, 3):
-            clef = inspect(note).get_effective_indicator(Clef)
+            clef = inspect(note).get_effective(Clef)
             assert clef is None
         else:
-            clef = inspect(note).get_effective_indicator(Clef)
+            clef = inspect(note).get_effective(Clef)
             assert clef == Clef('bass')
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_04():
+def test_agenttools_InspectionAgent_get_effective_04():
     r'''Clefs carry over to notes following.
     '''
 
@@ -51,7 +51,7 @@ def test_agenttools_InspectionAgent_get_effective_indicator_04():
     clef = Clef('bass')
     attach(clef, staff[4])
     result = [
-        inspect(note).get_effective_indicator(Clef)
+        inspect(note).get_effective(Clef)
         for note in staff
         ]
     clef_names = [
@@ -62,7 +62,7 @@ def test_agenttools_InspectionAgent_get_effective_indicator_04():
     assert result == clefs
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_05():
+def test_agenttools_InspectionAgent_get_effective_05():
     r'''None cancels an explicit clef.
     '''
 
@@ -71,15 +71,15 @@ def test_agenttools_InspectionAgent_get_effective_indicator_05():
     attach(clef, staff[0])
     clef = Clef('bass')
     attach(clef, staff[4])
-    clef = inspect(staff[4]).get_effective_indicator(Clef)
+    clef = inspect(staff[4]).get_effective(Clef)
     detach(clef, staff[4])
 
     for note in staff:
-        clef = inspect(note).get_effective_indicator(Clef)
+        clef = inspect(note).get_effective(Clef)
         assert clef == Clef('treble')
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_06():
+def test_agenttools_InspectionAgent_get_effective_06():
     r'''Redudant clefs are allowed.
     '''
 
@@ -110,7 +110,7 @@ def test_agenttools_InspectionAgent_get_effective_indicator_06():
     assert inspect(staff).is_well_formed()
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_07():
+def test_agenttools_InspectionAgent_get_effective_07():
     r'''Clefs with transposition are allowed and work as expected.
     '''
 
@@ -141,22 +141,22 @@ def test_agenttools_InspectionAgent_get_effective_indicator_07():
     assert inspect(staff).is_well_formed()
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_08():
+def test_agenttools_InspectionAgent_get_effective_08():
     r'''Attaching and then detaching works as expected.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
     clef = Clef('alto')
     attach(clef, staff[0])
-    clef = inspect(staff[0]).get_effective_indicator(Clef)
+    clef = inspect(staff[0]).get_effective(Clef)
     detach(clef, staff[0])
 
     for leaf in staff:
-        clef = inspect(leaf).get_effective_indicator(Clef)
+        clef = inspect(leaf).get_effective(Clef)
         assert clef is None
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_09():
+def test_agenttools_InspectionAgent_get_effective_09():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     dynamic = Dynamic('f')
@@ -174,14 +174,14 @@ def test_agenttools_InspectionAgent_get_effective_indicator_09():
         '''
         )
 
-    assert inspect(staff).get_effective_indicator(Dynamic) is None
-    assert inspect(staff[0]).get_effective_indicator(Dynamic) is None
-    assert inspect(staff[1]).get_effective_indicator(Dynamic) is None
-    assert inspect(staff[2]).get_effective_indicator(Dynamic) == Dynamic('f')
-    assert inspect(staff[3]).get_effective_indicator(Dynamic) == Dynamic('f')
+    assert inspect(staff).get_effective(Dynamic) is None
+    assert inspect(staff[0]).get_effective(Dynamic) is None
+    assert inspect(staff[1]).get_effective(Dynamic) is None
+    assert inspect(staff[2]).get_effective(Dynamic) == Dynamic('f')
+    assert inspect(staff[3]).get_effective(Dynamic) == Dynamic('f')
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_10():
+def test_agenttools_InspectionAgent_get_effective_10():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     flute = instrumenttools.Flute()
@@ -202,19 +202,19 @@ def test_agenttools_InspectionAgent_get_effective_indicator_10():
         )
 
     flute = instrumenttools.Flute()
-    assert inspect(staff).get_effective_indicator(
+    assert inspect(staff).get_effective(
         instrumenttools.Instrument) == flute
-    assert inspect(staff[0]).get_effective_indicator(
+    assert inspect(staff[0]).get_effective(
         instrumenttools.Instrument) == flute
-    assert inspect(staff[1]).get_effective_indicator(
+    assert inspect(staff[1]).get_effective(
         instrumenttools.Instrument) == flute
-    assert inspect(staff[2]).get_effective_indicator(
+    assert inspect(staff[2]).get_effective(
         instrumenttools.Instrument) == flute
-    assert inspect(staff[3]).get_effective_indicator(
+    assert inspect(staff[3]).get_effective(
         instrumenttools.Instrument) == flute
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_11():
+def test_agenttools_InspectionAgent_get_effective_11():
     r'''Attach key signature.
     '''
 
@@ -222,7 +222,7 @@ def test_agenttools_InspectionAgent_get_effective_indicator_11():
     key_signature = KeySignature('c', 'major')
     attach(key_signature, staff)
 
-    key_signature = inspect(staff).get_effective_indicator(KeySignature)
+    key_signature = inspect(staff).get_effective(KeySignature)
     assert key_signature == KeySignature('c', 'major')
 
     assert systemtools.TestManager.compare(
@@ -241,16 +241,16 @@ def test_agenttools_InspectionAgent_get_effective_indicator_11():
     assert inspect(staff).is_well_formed()
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_12():
+def test_agenttools_InspectionAgent_get_effective_12():
     r'''There is no default key signature.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    key_signature = inspect(staff).get_effective_indicator(KeySignature)
+    key_signature = inspect(staff).get_effective(KeySignature)
     assert key_signature is None
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_13():
+def test_agenttools_InspectionAgent_get_effective_13():
     r'''Attaches tempo to staff.
     '''
 
@@ -276,13 +276,13 @@ def test_agenttools_InspectionAgent_get_effective_indicator_13():
 
     assert inspect(staff).is_well_formed()
 
-    assert inspect(staff[0]).get_effective_indicator(Tempo) == tempo_1
-    assert inspect(staff[1]).get_effective_indicator(Tempo) == tempo_1
-    assert inspect(staff[2]).get_effective_indicator(Tempo) == tempo_2
-    assert inspect(staff[3]).get_effective_indicator(Tempo) == tempo_2
+    assert inspect(staff[0]).get_effective(Tempo) == tempo_1
+    assert inspect(staff[1]).get_effective(Tempo) == tempo_1
+    assert inspect(staff[2]).get_effective(Tempo) == tempo_2
+    assert inspect(staff[3]).get_effective(Tempo) == tempo_2
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_14():
+def test_agenttools_InspectionAgent_get_effective_14():
     r'''Attaches tempo to chord in staff.
     '''
 
@@ -301,7 +301,7 @@ def test_agenttools_InspectionAgent_get_effective_indicator_14():
         )
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_15():
+def test_agenttools_InspectionAgent_get_effective_15():
 
     staff = Staff([Note("c'4")])
     tempo = Tempo(Duration(1, 8), 38)
@@ -318,7 +318,7 @@ def test_agenttools_InspectionAgent_get_effective_indicator_15():
         )
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_16():
+def test_agenttools_InspectionAgent_get_effective_16():
     r'''Detaches tempo.
     '''
 
@@ -337,18 +337,18 @@ def test_agenttools_InspectionAgent_get_effective_indicator_16():
         )
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_17():
+def test_agenttools_InspectionAgent_get_effective_17():
     r'''The default effective time signature is none.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
 
     for leaf in staff:
-        time_signature = inspect(leaf).get_effective_indicator(TimeSignature)
+        time_signature = inspect(leaf).get_effective(TimeSignature)
         assert time_signature is None
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_18():
+def test_agenttools_InspectionAgent_get_effective_18():
     r'''Forced time signature settings propagate to later leaves.
     '''
 
@@ -370,11 +370,11 @@ def test_agenttools_InspectionAgent_get_effective_indicator_18():
         )
 
     for leaf in staff:
-        time_signature = inspect(leaf).get_effective_indicator(TimeSignature)
+        time_signature = inspect(leaf).get_effective(TimeSignature)
         assert time_signature == TimeSignature((2, 8))
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_19():
+def test_agenttools_InspectionAgent_get_effective_19():
     r'''Attach then detach.
     '''
 
@@ -396,19 +396,19 @@ def test_agenttools_InspectionAgent_get_effective_indicator_19():
         )
 
     for leaf in staff:
-        time_signature = inspect(leaf).get_effective_indicator(TimeSignature)
+        time_signature = inspect(leaf).get_effective(TimeSignature)
         assert time_signature is None
 
 
-def test_agenttools_InspectionAgent_get_effective_indicator_20():
+def test_agenttools_InspectionAgent_get_effective_20():
     r'''Effective value of arbitrary object.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
     attach('color', staff[1], scope=Staff)
 
-    assert inspect(staff).get_effective_indicator(str) is None
-    assert inspect(staff[0]).get_effective_indicator(str) is None
-    assert inspect(staff[1]).get_effective_indicator(str) == 'color'
-    assert inspect(staff[2]).get_effective_indicator(str) == 'color'
-    assert inspect(staff[3]).get_effective_indicator(str) == 'color'
+    assert inspect(staff).get_effective(str) is None
+    assert inspect(staff[0]).get_effective(str) is None
+    assert inspect(staff[1]).get_effective(str) == 'color'
+    assert inspect(staff[2]).get_effective(str) == 'color'
+    assert inspect(staff[3]).get_effective(str) == 'color'

@@ -36,25 +36,25 @@ def test_indicatortools_Clef___copy___01():
         )
 
     assert inspect(staff).is_well_formed()
-    assert inspect(staff[0]).get_effective_indicator(
+    assert inspect(staff[0]).get_effective(
         Clef) == Clef('treble')
-    assert inspect(staff[1]).get_effective_indicator(
+    assert inspect(staff[1]).get_effective(
         Clef) == Clef('treble')
-    assert inspect(staff[2]).get_effective_indicator(
+    assert inspect(staff[2]).get_effective(
         Clef) == Clef('treble')
-    assert inspect(staff[3]).get_effective_indicator(
+    assert inspect(staff[3]).get_effective(
         Clef) == Clef('treble')
-    assert inspect(staff[4]).get_effective_indicator(
+    assert inspect(staff[4]).get_effective(
         Clef) == Clef('bass')
-    assert inspect(staff[5]).get_effective_indicator(
+    assert inspect(staff[5]).get_effective(
         Clef) == Clef('bass')
-    assert inspect(staff[6]).get_effective_indicator(
+    assert inspect(staff[6]).get_effective(
         Clef) == Clef('bass')
-    assert inspect(staff[7]).get_effective_indicator(
+    assert inspect(staff[7]).get_effective(
         Clef) == Clef('bass')
-    assert inspect(staff[8]).get_effective_indicator(
+    assert inspect(staff[8]).get_effective(
         Clef) == Clef('treble')
-    assert inspect(staff[9]).get_effective_indicator(
+    assert inspect(staff[9]).get_effective(
         Clef) == Clef('treble')
 
 
@@ -71,25 +71,25 @@ def test_indicatortools_Clef___copy___02():
     staff.extend(copied_notes)
 
     assert inspect(staff).is_well_formed()
-    assert inspect(staff[0]).get_effective_indicator(
+    assert inspect(staff[0]).get_effective(
         Clef) == Clef('treble')
-    assert inspect(staff[1]).get_effective_indicator(
+    assert inspect(staff[1]).get_effective(
         Clef) == Clef('treble')
-    assert inspect(staff[2]).get_effective_indicator(
+    assert inspect(staff[2]).get_effective(
         Clef) == Clef('treble')
-    assert inspect(staff[3]).get_effective_indicator(
+    assert inspect(staff[3]).get_effective(
         Clef) == Clef('treble')
-    assert inspect(staff[4]).get_effective_indicator(
+    assert inspect(staff[4]).get_effective(
         Clef) == Clef('bass')
-    assert inspect(staff[5]).get_effective_indicator(
+    assert inspect(staff[5]).get_effective(
         Clef) == Clef('bass')
-    assert inspect(staff[6]).get_effective_indicator(
+    assert inspect(staff[6]).get_effective(
         Clef) == Clef('bass')
-    assert inspect(staff[7]).get_effective_indicator(
+    assert inspect(staff[7]).get_effective(
         Clef) == Clef('bass')
-    assert inspect(staff[8]).get_effective_indicator(
+    assert inspect(staff[8]).get_effective(
         Clef) == Clef('bass')
-    assert inspect(staff[9]).get_effective_indicator(
+    assert inspect(staff[9]).get_effective(
         Clef) == Clef('bass')
 
     assert systemtools.TestManager.compare(

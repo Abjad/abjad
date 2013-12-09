@@ -214,7 +214,7 @@ class Meter(AbjadObject):
             if isinstance(arg, tuple):
                 fraction = mathtools.NonreducedFraction(arg)
             elif isinstance(arg, scoretools.Measure):
-                time_signature = arg._get_effective_indicator(
+                time_signature = arg._get_effective(
                     indicatortools.TimeSignature)
                 fraction = mathtools.NonreducedFraction(
                     time_signature.numerator, time_signature.denominator)

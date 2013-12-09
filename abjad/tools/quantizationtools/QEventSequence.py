@@ -604,7 +604,7 @@ class QEventSequence(AbjadObject):
         assert Selection._all_are_contiguous_components_in_same_logical_voice(
             leaves) and len(leaves)
         if tempo is None:
-            assert leaves[0]._get_effective_indicator(
+            assert leaves[0]._get_effective(
                 indicatortools.Tempo) is not None
         else:
             tempo = indicatortools.Tempo(tempo)
@@ -629,7 +629,7 @@ class QEventSequence(AbjadObject):
                     tempo.duration_to_milliseconds(x._get_duration())
                     for x in group)
             else:
-                duration = sum(x._get_effective_indicator(
+                duration = sum(x._get_effective(
                     indicatortools.Tempo).duration_to_milliseconds(
                     x._get_duration())
                     for x in group)

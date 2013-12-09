@@ -39,7 +39,7 @@ def notes_and_chords_are_in_range(expr):
 
     for note_or_chord in iterate(expr).by_class(
         (scoretools.Note, scoretools.Chord)):
-        instrument = note_or_chord._get_effective_indicator(
+        instrument = note_or_chord._get_effective(
             instrumenttools.Instrument)
         if note_or_chord not in instrument.pitch_range:
             return False

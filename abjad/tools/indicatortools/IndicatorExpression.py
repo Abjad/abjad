@@ -215,7 +215,7 @@ class IndicatorExpression(AbjadObject):
         if isinstance(component, spannertools.Spanner):
             return
         prototype = type(self.indicator)
-        effective = component._get_effective_indicator(prototype, unwrap=False)
+        effective = component._get_effective(prototype, unwrap=False)
         if effective is not None and \
             effective.scope is not None and \
             effective.indicator != self.indicator:

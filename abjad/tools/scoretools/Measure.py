@@ -687,7 +687,7 @@ class Measure(FixedDurationContainer):
         Returns time signature or none.
         '''
         from abjad.tools import indicatortools
-        return self._get_effective_indicator(indicatortools.TimeSignature)
+        return self._get_effective(indicatortools.TimeSignature)
 
     ### PUBLIC METHODS ###
 

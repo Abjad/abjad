@@ -49,7 +49,7 @@ We can use the inspector to see that this is the case:
 
 ::
 
-   >>> print inspect(staff).get_effective_indicator(indicatortools.TimeSignature)
+   >>> print inspect(staff).get_effective(indicatortools.TimeSignature)
    None
 
 
@@ -58,7 +58,7 @@ And:
 ::
 
    >>> for leaf in staff.select_leaves():
-   ...     print inspect(leaf).get_effective_indicator(
+   ...     print inspect(leaf).get_effective(
    ...         indicatortools.TimeSignature)
    ... 
    None
@@ -74,7 +74,7 @@ this:
 ::
 
    >>> for component in iterationtools.iterate_components_in_expr(staff):
-   ...     effective_time_signature = inspect(component).get_effective_indicator(
+   ...     effective_time_signature = inspect(component).get_effective(
    ...         indicatortools.TimeSignature)
    ...     print component, effective_time_signature
    ... 
@@ -208,7 +208,7 @@ time signature to a state of having an effective time signature:
 
 ::
 
-   >>> inspect(staff).get_effective_indicator(indicatortools.TimeSignature)
+   >>> inspect(staff).get_effective(indicatortools.TimeSignature)
    TimeSignature((3, 4))(Staff{5})
 
 
@@ -220,7 +220,7 @@ Indeed they do:
 ::
 
    >>> for leaf in staff.select_leaves():
-   ...     effective_time_signature = inspect(leaf).get_effective_indicator(
+   ...     effective_time_signature = inspect(leaf).get_effective(
    ...         indicatortools.TimeSignature)
    ...     print leaf, effective_time_signature
    ... 
@@ -297,7 +297,7 @@ And also like so:
 
 ::
 
-   >>> print inspect(staff).get_effective_indicator(indicatortools.TimeSignature)
+   >>> print inspect(staff).get_effective(indicatortools.TimeSignature)
    None
 
 
@@ -353,7 +353,7 @@ To do this we'll first detach our ``2/4`` time signature ...
 
 ::
 
-   >>> print inspect(staff).get_effective_indicator(indicatortools.TimeSignature)
+   >>> print inspect(staff).get_effective(indicatortools.TimeSignature)
    None
 
 
@@ -388,7 +388,7 @@ To do this we'll first detach our ``2/4`` time signature ...
 
 ::
 
-   >>> inspect(staff).get_effective_indicator(indicatortools.TimeSignature)
+   >>> inspect(staff).get_effective(indicatortools.TimeSignature)
    TimeSignature((2, 4))(Staff{5})
    >>> time_signature.start_component
    Staff{5}

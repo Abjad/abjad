@@ -61,7 +61,7 @@ Use the inspector to get the instrument currently in effect for a component:
 ::
 
    >>> for note in staff:
-   ...     inspect(note).get_effective_indicator(instrumenttools.Instrument)
+   ...     inspect(note).get_effective(instrumenttools.Instrument)
    ... 
    Violin()
    Violin()

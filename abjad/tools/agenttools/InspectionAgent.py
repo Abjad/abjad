@@ -160,7 +160,7 @@ class InspectionAgent(abctools.AbjadObject):
             in_seconds=in_seconds,
             )
 
-    def get_effective_indicator(
+    def get_effective(
         self,
         prototype=None,
         ):
@@ -169,7 +169,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         Returns indicator or none.
         '''
-        return self._client._get_effective_indicator(
+        return self._client._get_effective(
             prototype=prototype,
             )
 
@@ -490,7 +490,7 @@ class InspectionAgent(abctools.AbjadObject):
         Returns boolean.
         '''
         from abjad.tools import indicatortools
-        time_signature = self._client._get_effective_indicator(
+        time_signature = self._client._get_effective(
             indicatortools.TimeSignature)
         if time_signature is None:
             time_signature_duration = durationtools.Duration(4, 4)

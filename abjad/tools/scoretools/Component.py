@@ -306,7 +306,7 @@ class Component(AbjadObject):
             parentage = self._get_parentage(include_self=False)
             return parentage.prolation * self._preprolated_duration
 
-    def _get_effective_indicator(self, prototype=None, unwrap=True):
+    def _get_effective(self, prototype=None, unwrap=True):
         from abjad.tools import indicatortools
         from abjad.tools import datastructuretools
         from abjad.tools import scoretools
@@ -350,7 +350,7 @@ class Component(AbjadObject):
     def _get_effective_staff(self):
         from abjad.tools import indicatortools
         from abjad.tools import scoretools
-        staff_change = self._get_effective_indicator(
+        staff_change = self._get_effective(
             indicatortools.StaffChange)
         if staff_change is not None:
             effective_staff = staff_change.staff
@@ -597,7 +597,7 @@ class Component(AbjadObject):
         return selectiontools.VerticalMoment(self, offset)
 
     def _has_effective_indicator(self, prototype=None):
-        indicator = self._get_effective_indicator(prototype=prototype)
+        indicator = self._get_effective(prototype=prototype)
         return bool(indicator)
 
     def _has_indicator(self, prototype=None):

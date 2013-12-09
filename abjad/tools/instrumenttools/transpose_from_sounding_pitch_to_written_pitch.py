@@ -51,7 +51,7 @@ def transpose_from_sounding_pitch_to_written_pitch(expr):
     from abjad.tools import instrumenttools
     prototype = (scoretools.Note, scoretools.Chord)
     for note_or_chord in iterate(expr).by_class(prototype):
-        instrument = note_or_chord._get_effective_indicator(
+        instrument = note_or_chord._get_effective(
             instrumenttools.Instrument)
         if not instrument:
             continue

@@ -652,7 +652,7 @@ class Container(Component):
         right_music = self[i:]
         # instantiate new left and right containers
         if isinstance(self, scoretools.Measure):
-            time_signature = self._get_effective_indicator(
+            time_signature = self._get_effective(
                 indicatortools.TimeSignature)
             denominator = time_signature.denominator
             left_duration = sum([x._get_duration() for x in left_music])

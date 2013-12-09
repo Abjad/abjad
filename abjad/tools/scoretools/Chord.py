@@ -308,7 +308,7 @@ class Chord(Leaf):
         if self._has_effective_indicator(indicatortools.IsAtSoundingPitch):
             return self.written_pitches
         else:
-            instrument = self._get_effective_indicator(
+            instrument = self._get_effective(
                 instrumenttools.Instrument)
             if instrument:
                 sounding_pitch = instrument.sounding_pitch_of_written_middle_c

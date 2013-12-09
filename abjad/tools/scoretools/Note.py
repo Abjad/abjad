@@ -244,7 +244,7 @@ class Note(Leaf):
         if self._has_effective_indicator(indicatortools.IsAtSoundingPitch):
             return self.written_pitch
         else:
-            instrument = self._get_effective_indicator(
+            instrument = self._get_effective(
                 instrumenttools.Instrument)
             if instrument:
                 sounding_pitch = instrument.sounding_pitch_of_written_middle_c
@@ -264,7 +264,7 @@ class Note(Leaf):
         if self._has_effective_indicator(indicatortools.IsAtSoundingPitch):
             self.written_pitch = pitch
         else:
-            instrument = self._get_effective_indicator(
+            instrument = self._get_effective(
                 instrumenttools.Instrument)
             if instrument:
                 sounding_pitch = instrument.sounding_pitch_of_written_middle_c
