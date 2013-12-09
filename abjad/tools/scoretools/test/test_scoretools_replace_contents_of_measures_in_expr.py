@@ -8,7 +8,7 @@ def test_scoretools_replace_contents_of_measures_in_expr_01():
     Note spacer skip at end of second measure.
     '''
 
-    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips([(1, 8), (3, 16)]))
+    staff = Staff(scoretools.make_spacer_skip_measures([(1, 8), (3, 16)]))
 
     r'''
     \new Staff {
@@ -68,7 +68,7 @@ def test_scoretools_replace_contents_of_measures_in_expr_02():
     Small measures skipped.
     '''
 
-    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips([(1, 16), (3, 16), (1, 16), (3, 16)]))
+    staff = Staff(scoretools.make_spacer_skip_measures([(1, 16), (3, 16), (1, 16), (3, 16)]))
 
     r'''
     \new Staff {
@@ -161,7 +161,7 @@ def test_scoretools_replace_contents_of_measures_in_expr_04():
     r'''Raise StopIteration when not enough measures.
     '''
 
-    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
+    staff = Staff(scoretools.make_spacer_skip_measures([(1, 8), (1, 8)]))
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16"), Note("g'16"), Note("a'16")]
 
     statement = 'scoretools.replace_contents_of_measures_in_expr(staff, notes)'
@@ -172,7 +172,7 @@ def test_scoretools_replace_contents_of_measures_in_expr_05():
     r'''Populate measures even when not enough total measures.
     '''
 
-    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
+    staff = Staff(scoretools.make_spacer_skip_measures([(1, 8), (1, 8)]))
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16"), Note("g'16"), Note("a'16")]
 
@@ -211,7 +211,7 @@ def test_scoretools_replace_contents_of_measures_in_expr_06():
     leaf_lists = maker(durations)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    measures = scoretools.make_measures_with_full_measure_spacer_skips(
+    measures = scoretools.make_spacer_skip_measures(
         durations)
     staff = Staff(measures)
     measures = scoretools.replace_contents_of_measures_in_expr(staff, leaves)

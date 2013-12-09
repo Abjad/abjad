@@ -16,7 +16,7 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___01():
     leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(divisions))
+    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     scoretools.replace_contents_of_measures_in_expr(staff, leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
@@ -84,7 +84,7 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___02():
     leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(divisions))
+    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     scoretools.replace_contents_of_measures_in_expr(staff, leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
@@ -148,7 +148,7 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___03():
     leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(divisions))
+    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     scoretools.replace_contents_of_measures_in_expr(staff, leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
@@ -210,7 +210,7 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___04():
     leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(divisions))
+    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     scoretools.replace_contents_of_measures_in_expr(staff, leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
@@ -283,7 +283,7 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___05():
     leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(divisions))
+    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     scoretools.replace_contents_of_measures_in_expr(staff, leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 

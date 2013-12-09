@@ -11,7 +11,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
 
         ::
 
-            >>> staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(
+            >>> staff = Staff(scoretools.make_spacer_skip_measures(
             ...     [(1, 8), (3, 16)]))
             >>> show(staff) # doctest: +SKIP
 

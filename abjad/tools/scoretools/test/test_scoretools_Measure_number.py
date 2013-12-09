@@ -8,7 +8,7 @@ def test_scoretools_Measure_number_01():
     '''
 
     time_signature_pairs = [(3, 16), (5, 16), (5, 16)]
-    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(time_signature_pairs))
+    staff = Staff(scoretools.make_spacer_skip_measures(time_signature_pairs))
 
     assert staff[0].measure_number == 1
     assert staff[1].measure_number == 2

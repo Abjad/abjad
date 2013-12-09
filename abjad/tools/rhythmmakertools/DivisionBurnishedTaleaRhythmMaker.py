@@ -29,7 +29,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         >>> music = maker(divisions)
         >>> music = sequencetools.flatten_sequence(music)
         >>> measures = \
-        ...     scoretools.make_measures_with_full_measure_spacer_skips(
+        ...     scoretools.make_spacer_skip_measures(
         ...     divisions)
         >>> staff = scoretools.RhythmicStaff(measures)
         >>> measures = scoretools.replace_contents_of_measures_in_expr(
@@ -127,7 +127,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> music = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
             >>> measures = \
-            ...     scoretools.make_measures_with_full_measure_spacer_skips(
+            ...     scoretools.make_spacer_skip_measures(
             ...     divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
@@ -213,7 +213,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> music = maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
             >>> measures = \
-            ...     scoretools.make_measures_with_full_measure_spacer_skips(
+            ...     scoretools.make_spacer_skip_measures(
             ...     divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
@@ -255,7 +255,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> music = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
             >>> measures = \
-            ...     scoretools.make_measures_with_full_measure_spacer_skips(
+            ...     scoretools.make_spacer_skip_measures(
             ...     divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(

@@ -2,11 +2,11 @@
 from abjad import *
 
 
-def test_scoretools_make_measures_with_full_measure_spacer_skips_01():
+def test_scoretools_make_spacer_skip_measures_01():
     r'''Make list of skip-populated measures.
     '''
 
-    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16), (1, 4)]))
+    staff = Staff(scoretools.make_spacer_skip_measures([(1, 8), (5, 16), (5, 16), (1, 4)]))
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''

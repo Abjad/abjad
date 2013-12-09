@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_agenttools_IterationAgent_by_logical_voice_from_component_01():
-    r'''Iterate only notes.
+    r'''Iterates only notes.
     '''
 
     container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
@@ -61,7 +61,7 @@ def test_agenttools_IterationAgent_by_logical_voice_from_component_01():
 
 
 def test_agenttools_IterationAgent_by_logical_voice_from_component_02():
-    r'''Iterate all components.
+    r'''Iterates all components.
     '''
 
     container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])

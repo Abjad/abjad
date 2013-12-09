@@ -4,7 +4,7 @@ from abjad import *
 
 def test_agenttools_IterationAgent_by_semantic_voice_01():
 
-    measures = scoretools.make_measures_with_full_measure_spacer_skips(
+    measures = scoretools.make_spacer_skip_measures(
         [(3, 8), (5, 16), (5, 16)])
     time_signature_voice = Voice(measures)
     time_signature_voice.name = 'TimeSignatureVoice'
@@ -14,31 +14,33 @@ def test_agenttools_IterationAgent_by_semantic_voice_01():
     staff = Staff([time_signature_voice, music_voice])
     staff.is_simultaneous = True
 
-    r'''
-    \new Staff <<
-        \context Voice = "TimeSignatureVoice" {
-            {
-                \time 3/8
-                s1 * 3/8
+    assert systemtools.TestManager.compare(
+        staff,
+        r'''
+        \new Staff <<
+            \context Voice = "TimeSignatureVoice" {
+                {
+                    \time 3/8
+                    s1 * 3/8
+                }
+                {
+                    \time 5/16
+                    s1 * 5/16
+                }
+                {
+                    s1 * 5/16
+                }
             }
-            {
-                \time 5/16
-                s1 * 5/16
+            \context Voice = "MusicVoice" {
+                c'4.
+                d'4
+                e'16
+                f'4
+                g'16
             }
-            {
-                \time 5/16
-                s1 * 5/16
-            }
-        }
-        \context Voice = "MusicVoice" {
-            c'4.
-            d'4
-            e'16
-            f'4
-            g'16
-        }
-    >>
-    '''
+        >>
+        '''
+        )
 
     voices = iterate(staff).by_semantic_voice(reverse=True)
     voices = list(voices)
@@ -49,7 +51,7 @@ def test_agenttools_IterationAgent_by_semantic_voice_01():
 
 def test_agenttools_IterationAgent_by_semantic_voice_02():
 
-    measures = scoretools.make_measures_with_full_measure_spacer_skips(
+    measures = scoretools.make_spacer_skip_measures(
         [(3, 8), (5, 16), (5, 16)])
     time_signature_voice = Voice(measures)
     time_signature_voice.name = 'TimeSignatureVoice'
@@ -59,31 +61,33 @@ def test_agenttools_IterationAgent_by_semantic_voice_02():
     staff = Staff([time_signature_voice, music_voice])
     staff.is_simultaneous = True
 
-    r'''
-    \new Staff <<
-        \context Voice = "TimeSignatureVoice" {
-            {
-                \time 3/8
-                s1 * 3/8
+    assert systemtools.TestManager.compare(
+        staff,
+        r'''
+        \new Staff <<
+            \context Voice = "TimeSignatureVoice" {
+                {
+                    \time 3/8
+                    s1 * 3/8
+                }
+                {
+                    \time 5/16
+                    s1 * 5/16
+                }
+                {
+                    s1 * 5/16
+                }
             }
-            {
-                \time 5/16
-                s1 * 5/16
+            \context Voice = "MusicVoice" {
+                c'4.
+                d'4
+                e'16
+                f'4
+                g'16
             }
-            {
-                \time 5/16
-                s1 * 5/16
-            }
-        }
-        \context Voice = "MusicVoice" {
-            c'4.
-            d'4
-            e'16
-            f'4
-            g'16
-        }
-    >>
-    '''
+        >>
+        '''
+        )
 
     voices = iterate(staff).by_semantic_voice()
     voices = list(voices)

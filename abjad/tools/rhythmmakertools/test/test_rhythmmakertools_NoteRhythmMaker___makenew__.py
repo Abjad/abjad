@@ -10,7 +10,7 @@ def test_rhythmmakertools_NoteRhythmMaker___makenew___01():
     leaf_lists = new(maker, decrease_durations_monotonically=False)(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(divisions))
+    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     scoretools.replace_contents_of_measures_in_expr(staff, leaves)
 
     assert systemtools.TestManager.compare(

@@ -13,7 +13,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___01():
     music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(divisions))
+    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     scoretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''
@@ -80,7 +80,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___02():
     music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(divisions))
+    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     scoretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''

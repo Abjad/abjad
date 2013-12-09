@@ -9,7 +9,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
     music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    measures = scoretools.make_measures_with_full_measure_spacer_skips(divisions)
+    measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
     measures = scoretools.replace_contents_of_measures_in_expr(staff, music)
 
@@ -67,7 +67,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
     music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    measures = scoretools.make_measures_with_full_measure_spacer_skips(divisions)
+    measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
     measures = scoretools.replace_contents_of_measures_in_expr(staff, music)
 
