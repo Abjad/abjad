@@ -167,6 +167,13 @@ class Instrument(AbjadObject):
 
     ### PRIVATE PROPERTIES ###
 
+    @staticmethod
+    def _default_instrument_name_to_instrument_class(default_instrument_name):
+        for instrument_class in Instrument._list_instruments():
+            instrument = instrument_class()
+            if instrument.instrument_name == default_instrument_name:
+                return instrument_class
+
     # TODO: _scope_name needs to be taken from IndicatorExpression!
     #       should not be stored on instrument.
     @property

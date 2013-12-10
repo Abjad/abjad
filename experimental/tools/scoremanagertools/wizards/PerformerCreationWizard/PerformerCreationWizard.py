@@ -123,7 +123,7 @@ class PerformerCreationWizard(Wizard):
             elif isinstance(result, list):
                 for instrument_name in result:
                     instrument_class = \
-                        instrumenttools.default_instrument_name_to_instrument_class(
+                        instrumenttools.Instrument._default_instrument_name_to_instrument_class(
                         instrument_name)
                     instrument = instrument_class()
                     performer.instruments.append(instrument)

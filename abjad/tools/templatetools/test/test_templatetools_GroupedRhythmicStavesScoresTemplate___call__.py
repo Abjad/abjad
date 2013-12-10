@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_templatetools_GroupedRhythmicStavesScoreTemplate___call___01():
+def test_templatetools_GroupedRhythmicStavesScoresTemplate___call___01():
 
     template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score = template()
@@ -34,7 +34,7 @@ def test_templatetools_GroupedRhythmicStavesScoreTemplate___call___01():
         )
 
 
-def test_templatetools_GroupedRhythmicStavesScoreTemplate___call___02():
+def test_templatetools_GroupedRhythmicStavesScoresTemplate___call___02():
 
     template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=[2, 1, 2])
     score = template()
