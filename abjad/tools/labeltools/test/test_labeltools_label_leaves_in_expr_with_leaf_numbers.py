@@ -9,32 +9,6 @@ def test_labeltools_label_leaves_in_expr_with_leaf_numbers_01():
     staff = Staff("c'8 d'8 e'8 f'8")
     labeltools.label_leaves_in_expr_with_leaf_numbers(staff)
 
-    r'''
-    \new Staff {
-        c'8
-            _ \markup {
-                \small
-                    1
-                }
-        d'8
-            _ \markup {
-                \small
-                    2
-                }
-        e'8
-            _ \markup {
-                \small
-                    3
-                }
-        f'8
-            _ \markup {
-                \small
-                    4
-                }
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -62,6 +36,8 @@ def test_labeltools_label_leaves_in_expr_with_leaf_numbers_01():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()
 
 
 def test_labeltools_label_leaves_in_expr_with_leaf_numbers_02():
@@ -69,34 +45,9 @@ def test_labeltools_label_leaves_in_expr_with_leaf_numbers_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    labeltools.label_leaves_in_expr_with_leaf_numbers(staff, markup_direction=Up)
+    labeltools.label_leaves_in_expr_with_leaf_numbers(
+        staff, markup_direction=Up)
 
-    r'''
-    \new Staff {
-        c'8
-            ^ \markup {
-                \small
-                    1
-                }
-        d'8
-            ^ \markup {
-                \small
-                    2
-                }
-        e'8
-            ^ \markup {
-                \small
-                    3
-                }
-        f'8
-            ^ \markup {
-                \small
-                    4
-                }
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -124,3 +75,5 @@ def test_labeltools_label_leaves_in_expr_with_leaf_numbers_02():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()

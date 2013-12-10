@@ -11,24 +11,9 @@ def test_labeltools_color_chord_note_heads_by_numbered_pitch_class_01():
     color_map = pitchtools.NumberedPitchClassColorMap(pitches, colors)
 
     chord = Chord([12, 14, 18, 21, 23], (1, 4))
-    labeltools.color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map)
+    labeltools.color_chord_note_heads_in_expr_by_pitch_class_color_map(
+        chord, color_map)
 
-    r'''
-    <
-        \tweak #'color #red
-        c''
-        \tweak #'color #red
-        d''
-        \tweak #'color #green
-        fs''
-        \tweak #'color #green
-        a''
-        \tweak #'color #blue
-        b''
-    >4
-    '''
-
-    assert inspect(chord).is_well_formed()
     assert systemtools.TestManager.compare(
         chord,
         r'''
@@ -47,6 +32,8 @@ def test_labeltools_color_chord_note_heads_by_numbered_pitch_class_01():
         '''
         )
 
+    assert inspect(chord).is_well_formed()
+
 
 def test_labeltools_color_chord_note_heads_by_numbered_pitch_class_02():
     r'''Works on notes.
@@ -57,14 +44,9 @@ def test_labeltools_color_chord_note_heads_by_numbered_pitch_class_02():
     color_map = pitchtools.NumberedPitchClassColorMap(pitches, colors)
 
     note = Note("c'4")
-    labeltools.color_chord_note_heads_in_expr_by_pitch_class_color_map(note, color_map)
+    labeltools.color_chord_note_heads_in_expr_by_pitch_class_color_map(
+        note, color_map)
 
-    r'''
-    \once \override NoteHead #'color = #red
-    c'4
-    '''
-
-    assert inspect(note).is_well_formed()
     assert systemtools.TestManager.compare(
         note,
         r'''
@@ -72,3 +54,5 @@ def test_labeltools_color_chord_note_heads_by_numbered_pitch_class_02():
         c'4
         '''
         )
+
+    assert inspect(note).is_well_formed()

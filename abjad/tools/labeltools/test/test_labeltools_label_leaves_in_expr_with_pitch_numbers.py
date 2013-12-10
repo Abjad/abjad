@@ -10,31 +10,6 @@ def test_labeltools_label_leaves_in_expr_with_pitch_numbers_01():
     staff = Staff(leaves)
     labeltools.label_leaves_in_expr_with_pitch_numbers(staff)
 
-    r'''
-    \new Staff {
-        r4
-        c''4
-            _ \markup {
-                \small
-                    12
-                }
-        <cs'' d'' ef''>4
-            _ \markup {
-                \column
-                    {
-                        \small
-                            15
-                        \small
-                            14
-                        \small
-                            13
-                    }
-                }
-        r4
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -61,3 +36,5 @@ def test_labeltools_label_leaves_in_expr_with_pitch_numbers_01():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()

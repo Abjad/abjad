@@ -5,7 +5,8 @@ from abjad import *
 def test_labeltools_label_leaves_in_expr_with_numbered_interval_classes_01():
 
 
-    staff = Staff(scoretools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)]))
+    pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10, 6, 5]
+    staff = Staff(scoretools.make_notes(pitch_numbers, [Duration(1, 8)]))
     labeltools.label_leaves_in_expr_with_numbered_interval_classes(staff)
 
     assert systemtools.TestManager.compare(
@@ -25,3 +26,5 @@ def test_labeltools_label_leaves_in_expr_with_numbered_interval_classes_01():
         }
         """
         )
+
+    assert inspect(staff).is_well_formed()

@@ -10,7 +10,8 @@ def test_labeltools_label_logical_ties_in_expr_with_written_logical_tie_duration
     attach(tie, staff.select_leaves()[:2])
     tie = spannertools.Tie()
     attach(tie, staff.select_leaves()[2:])
-    labeltools.label_logical_ties_in_expr_with_written_logical_tie_duration(staff)
+    labeltools.label_logical_ties_in_expr_with_written_logical_tie_duration(
+        staff)
 
     assert systemtools.TestManager.compare(
         staff,

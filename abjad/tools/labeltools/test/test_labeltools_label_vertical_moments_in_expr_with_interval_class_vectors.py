@@ -13,7 +13,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_0
     clef = Clef('bass')
     attach(clef, score[2])
     score[2].append(Note(-24, (1, 2)))
-    labeltools.label_vertical_moments_in_expr_with_interval_class_vectors(score)
+    labeltools.label_vertical_moments_in_expr_with_interval_class_vectors(
+        score)
 
     assert systemtools.TestManager.compare(
         score,
@@ -59,22 +60,12 @@ def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_0
 
 def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_02():
     r'''Vertical moments with quartertones format with a two-row
-    interval-class vector. Top for 12-ET, bottom for 24-ET.'''
+    interval-class vector. Top for 12-ET, bottom for 24-ET.
+    '''
 
     chord = Chord([-2, -1.5, 9], (1, 4))
-    labeltools.label_vertical_moments_in_expr_with_interval_class_vectors(chord)
-
-    r'''
-    <bf bqf a'>4
-        _ \markup {
-            \tiny
-                \column
-                    {
-                        0100000
-                        110000
-                    }
-            }
-    '''
+    labeltools.label_vertical_moments_in_expr_with_interval_class_vectors(
+        chord)
 
     assert systemtools.TestManager.compare(
         chord,
@@ -90,3 +81,5 @@ def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_0
                 }
         '''
         )
+
+    assert inspect(chord).is_well_formed()

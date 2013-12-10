@@ -7,39 +7,6 @@ def test_labeltools_label_notes_in_expr_with_note_indices_01():
     staff = Staff("c'8 d'8 r8 r8 g'8 a'8 r8 c''8")
     labeltools.label_notes_in_expr_with_note_indices(staff)
 
-    r'''
-    \new Staff {
-        c'8
-            _ \markup {
-                \small
-                    0
-                }
-        d'8
-            _ \markup {
-                \small
-                    1
-                }
-        r8
-        r8
-        g'8
-            _ \markup {
-                \small
-                    2
-                }
-        a'8
-            _ \markup {
-                \small
-                    3
-                }
-        r8
-        c''8
-            _ \markup {
-                \small
-                    4
-                }
-    }
-    '''
-
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -75,3 +42,5 @@ def test_labeltools_label_notes_in_expr_with_note_indices_01():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()
