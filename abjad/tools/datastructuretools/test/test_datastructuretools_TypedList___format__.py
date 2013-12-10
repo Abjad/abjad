@@ -58,7 +58,7 @@ def test_datastructuretools_TypedList___format___03():
         'blah',
         ])
 
-    # FIXME: make this work agains
+    # FIXME: make this work again
 #    assert systemtools.TestManager.compare(
 #        repr(inventory),
 #        "TypedList(['foo', Flute(), 'bar', PitchRange('[A0, C8]'), 'blah'])",

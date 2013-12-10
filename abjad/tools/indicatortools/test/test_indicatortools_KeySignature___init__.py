@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_indicatortools_KeySignature___init___01():
-    r'''Initialize with pitch-class letter string and mode string.
+    r'''Initializes with pitch-class letter string and mode string.
     '''
 
     key_signature = KeySignature('g', 'major')

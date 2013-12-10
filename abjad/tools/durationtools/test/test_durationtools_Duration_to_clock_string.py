@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import pytest
-from abjad.tools import durationtools
 from abjad import *
 
 

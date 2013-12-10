@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_indicatortools_LilyPondComment___init___01():
-    r'''Initialize LilyPond comment from contents string.
+    r'''Initializes LilyPond comment from contents string.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -29,7 +29,7 @@ def test_indicatortools_LilyPondComment___init___01():
 
 
 def test_indicatortools_LilyPondComment___init___02():
-    r'''Initialize LilyPond comment from contents string and format slot.
+    r'''Initializes LilyPond comment from contents string and format slot.
     '''
 
     comment = indicatortools.LilyPondComment('comment', 'right')
@@ -37,7 +37,7 @@ def test_indicatortools_LilyPondComment___init___02():
 
 
 def test_indicatortools_LilyPondComment___init___03():
-    r'''Initialize LilyPond comment from other LilyPond comment.
+    r'''Initializes LilyPond comment from other LilyPond comment.
     '''
 
     comment_1 = indicatortools.LilyPondComment('comment')
@@ -47,7 +47,8 @@ def test_indicatortools_LilyPondComment___init___03():
 
 
 def test_indicatortools_LilyPondComment___init___04():
-    r'''Initialize LilyPond comment from other LilyPond comment and format slot.
+    r'''Initializes LilyPond comment from other LilyPond comment 
+    and format slot.
     '''
 
     comment_1 = indicatortools.LilyPondComment('comment')

@@ -26,7 +26,8 @@ def test_indicatortools_Tempo___div___03():
     tempo_indication_1 = Tempo('Langsam')
     tempo_indication_2 = Tempo(Duration(1, 4), 90)
 
-    pytest.raises(ImpreciseTempoError, "tempo_indication_1 / tempo_indication_2")
+    statement = "tempo_indication_1 / tempo_indication_2"
+    pytest.raises(ImpreciseTempoError, statement)
 
 
 def test_indicatortools_Tempo___div___04():
@@ -34,4 +35,5 @@ def test_indicatortools_Tempo___div___04():
     tempo_indication_1 = Tempo(Duration(1, 8), (90, 92))
     tempo_indication_2 = Tempo(Duration(1, 4), 90)
 
-    pytest.raises(ImpreciseTempoError, "tempo_indication_1 / tempo_indication_2")
+    statement = "tempo_indication_1 / tempo_indication_2"
+    pytest.raises(ImpreciseTempoError, statement)

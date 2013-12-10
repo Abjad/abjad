@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_indicatortools_StemTremolo___init___01():
-    r'''Initialize stem tremolo from tremolo flags.
+    r'''Initializes stem tremolo from tremolo flags.
     '''
 
     stem_tremolo = indicatortools.StemTremolo(16)
@@ -11,7 +11,7 @@ def test_indicatortools_StemTremolo___init___01():
 
 
 def test_indicatortools_StemTremolo___init___02():
-    r'''Initialize stem tremolo from other stem tremolo.
+    r'''Initializes stem tremolo from other stem tremolo.
     '''
 
     stem_tremolo_1 = indicatortools.StemTremolo(16)

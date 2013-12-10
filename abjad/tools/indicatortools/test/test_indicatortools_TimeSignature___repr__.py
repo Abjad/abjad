@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools.indicatortools import TimeSignature
 
 
 def test_indicatortools_TimeSignature___repr___01():
@@ -8,7 +7,8 @@ def test_indicatortools_TimeSignature___repr___01():
     '''
 
     time_signature_repr = TimeSignature((3, 8)).__repr__()
-    assert isinstance(time_signature_repr, str) and 0 < len(time_signature_repr)
+    assert isinstance(time_signature_repr, str) and \
+        0 < len(time_signature_repr)
 
 
 def test_indicatortools_TimeSignature___repr___02():

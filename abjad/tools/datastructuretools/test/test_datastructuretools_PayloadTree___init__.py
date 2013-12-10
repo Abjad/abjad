@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_datastructuretools_PayloadTree___init___01():
-    r'''Initialize tree from other tree.
+    r'''Initializes tree from other tree.
     '''
 
     tree_1 = datastructuretools.PayloadTree([[4, 5], [6, 7]])

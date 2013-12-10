@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_indicatortools_TimeSignature___init___01():
-    r'''Initialize time signature from integer pair.
+    r'''Initializes time signature from integer pair.
     '''
 
     time_signature = TimeSignature((9, 32))
@@ -12,7 +12,7 @@ def test_indicatortools_TimeSignature___init___01():
 
 
 def test_indicatortools_TimeSignature___init___02():
-    r'''Initialize time signature from other time signature instance.
+    r'''Initializes time signature from other time signature instance.
     '''
 
     time_signature_1 = TimeSignature((9, 32))
@@ -26,14 +26,11 @@ def test_indicatortools_TimeSignature___init___02():
 
 
 def test_indicatortools_TimeSignature___init___03():
-    r'''Initialize time signature from other time signature 
+    r'''Initializes time signature from other time signature 
     instance with partial.
     '''
 
-    time_signature_1 = TimeSignature(
-        (9, 32), 
-        partial=Duration(1, 32),
-        )
+    time_signature_1 = TimeSignature((9, 32), partial=Duration(1, 32))
     time_signature_2 = TimeSignature(time_signature_1)
 
     assert time_signature_1 == time_signature_2

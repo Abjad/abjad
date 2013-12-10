@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools.indicatortools import Articulation
 
 
 def test_indicatortools_Articulation___repr___01():

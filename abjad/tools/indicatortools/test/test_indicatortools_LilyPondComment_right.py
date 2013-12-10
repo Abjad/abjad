@@ -11,9 +11,11 @@ def test_indicatortools_LilyPondComment_right_01():
     beam = Beam()
     attach(beam, voice[:])
     override(beam).beam.thickness = 3
-    comment = indicatortools.LilyPondComment('Voice right comments here.', 'right')
+    string = 'Voice right comments here.'
+    comment = indicatortools.LilyPondComment(string, 'right')
     attach(comment, voice)
-    comment = indicatortools.LilyPondComment('More voice right comments.', 'right')
+    string = 'More voice right comments.'
+    comment = indicatortools.LilyPondComment(string, 'right')
     attach(comment, voice)
 
 
@@ -40,9 +42,11 @@ def test_indicatortools_LilyPondComment_right_02():
 
     note = Note(0, (1, 8))
     override(note).beam.thickness = 3
-    comment = indicatortools.LilyPondComment('Leaf comments right here.', 'right')
+    string = 'Leaf comments right here.'
+    comment = indicatortools.LilyPondComment(string, 'right')
     attach(comment, note)
-    comment = indicatortools.LilyPondComment('More comments right.', 'right')
+    string = 'More comments right.'
+    comment = indicatortools.LilyPondComment(string, 'right')
     attach(comment, note)
 
     assert systemtools.TestManager.compare(

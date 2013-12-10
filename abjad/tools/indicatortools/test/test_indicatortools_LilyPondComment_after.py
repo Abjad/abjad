@@ -10,9 +10,11 @@ def test_indicatortools_LilyPondComment_after_01():
     beam = Beam()
     attach(beam, voice[:])
     override(beam).beam.thickness = 3
-    comment = indicatortools.LilyPondComment('Voice after comments here.', 'after')
+    string = 'Voice after comments here.'
+    comment = indicatortools.LilyPondComment(string, 'after')
     attach(comment, voice)
-    comment = indicatortools.LilyPondComment('More voice after comments.', 'after')
+    string = 'More voice after comments.'
+    comment = indicatortools.LilyPondComment(string, 'after')
     attach(comment, voice)
 
     assert systemtools.TestManager.compare(
@@ -40,9 +42,11 @@ def test_indicatortools_LilyPondComment_after_02():
 
     note = Note(0, (1, 8))
     override(note).beam.thickness = 3
-    comment = indicatortools.LilyPondComment('Leaf comments after here.', 'after')
+    string = 'Leaf comments after here.'
+    comment = indicatortools.LilyPondComment(string, 'after')
     attach(comment, note)
-    comment = indicatortools.LilyPondComment('More comments after.', 'after')
+    string = 'More comments after.'
+    comment = indicatortools.LilyPondComment(string, 'after')
     attach(comment, note)
 
     assert systemtools.TestManager.compare(

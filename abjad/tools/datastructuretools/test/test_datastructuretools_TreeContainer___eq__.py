@@ -1,38 +1,38 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import datastructuretools
+from abjad import *
 
 
 def test_datastructuretools_TreeContainer___eq___01():
 
-    a = datastructuretools.TreeContainer([])
-    b = datastructuretools.TreeContainer([])
+    tree_container_1 = datastructuretools.TreeContainer([])
+    tree_container_2 = datastructuretools.TreeContainer([])
 
-    assert a == b
+    assert tree_container_1 == tree_container_2
 
 
 def test_datastructuretools_TreeContainer___eq___02():
 
-    a = datastructuretools.TreeContainer([
+    tree_container_1 = datastructuretools.TreeContainer([
         datastructuretools.TreeNode()
         ])
-    b = datastructuretools.TreeContainer([
+    tree_container_2 = datastructuretools.TreeContainer([
         datastructuretools.TreeNode()
         ])
 
-    assert a == b
+    assert tree_container_1 == tree_container_2
 
 
 def test_datastructuretools_TreeContainer___eq___03():
 
-    a = datastructuretools.TreeContainer([])
-    b = datastructuretools.TreeContainer([
+    tree_container_1 = datastructuretools.TreeContainer([])
+    tree_container_2 = datastructuretools.TreeContainer([
         datastructuretools.TreeNode()
         ])
-    c = datastructuretools.TreeContainer([
+    tree_container_3 = datastructuretools.TreeContainer([
         datastructuretools.TreeNode(),
         datastructuretools.TreeNode()
         ])
 
-    assert a != b
-    assert a != c
-    assert b != c
+    assert tree_container_1 != tree_container_2
+    assert tree_container_1 != tree_container_3
+    assert tree_container_2 != tree_container_3

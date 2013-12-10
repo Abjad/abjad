@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools.mathtools import Ratio
 
 
 def test_indicatortools_Tempo_list_related_tempos_01():
@@ -12,9 +11,9 @@ def test_indicatortools_Tempo_list_related_tempos_01():
         )
 
     assert pairs == [
-        (Tempo(Duration(1, 4), 26), Ratio(1, 2)), 
-        (Tempo(Duration(1, 4), 39), Ratio(3, 4)), 
-        (Tempo(Duration(1, 4), 52), Ratio(1, 1)),
+        (Tempo(Duration(1, 4), 26), mathtools.Ratio(1, 2)), 
+        (Tempo(Duration(1, 4), 39), mathtools.Ratio(3, 4)), 
+        (Tempo(Duration(1, 4), 52), mathtools.Ratio(1, 1)),
         ]
 
 
@@ -27,11 +26,11 @@ def test_indicatortools_Tempo_list_related_tempos_02():
         )
 
     assert pairs == [
-        (Tempo(Duration(1, 4), 26), Ratio(1, 2)), 
-        (Tempo(Duration(1, 4), 39), Ratio(3, 4)), 
-        (Tempo(Duration(1, 4), 52), Ratio(1, 1)), 
-        (Tempo(Duration(1, 4), 65), Ratio(5, 4)), 
-        (Tempo(Duration(1, 4), 78), Ratio(3, 2)),
-        (Tempo(Duration(1, 4), 91), Ratio(7, 4)), 
-        (Tempo(Duration(1, 4), 104), Ratio(2, 1)),
+        (Tempo(Duration(1, 4), 26), mathtools.Ratio(1, 2)), 
+        (Tempo(Duration(1, 4), 39), mathtools.Ratio(3, 4)), 
+        (Tempo(Duration(1, 4), 52), mathtools.Ratio(1, 1)), 
+        (Tempo(Duration(1, 4), 65), mathtools.Ratio(5, 4)), 
+        (Tempo(Duration(1, 4), 78), mathtools.Ratio(3, 2)),
+        (Tempo(Duration(1, 4), 91), mathtools.Ratio(7, 4)), 
+        (Tempo(Duration(1, 4), 104), mathtools.Ratio(2, 1)),
         ]

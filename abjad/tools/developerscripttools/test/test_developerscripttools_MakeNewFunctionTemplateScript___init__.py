@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import developerscripttools
+from abjad import *
 
 
 def test_developerscripttools_MakeNewFunctionTemplateScript___init___01():

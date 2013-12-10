@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import copy
+from abjad import *
 
 
 def test_indicatortools_Annotation___copy___01():

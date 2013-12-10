@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_datastructuretools_CyclicTree___init___01():
-    r'''Initialize cyclic tree from other cyclic tree.
+    r'''Initializes cyclic tree from other cyclic tree.
     '''
 
     tree_1 = datastructuretools.CyclicPayloadTree([[4, 5], [6, 7]])

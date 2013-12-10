@@ -10,6 +10,10 @@ def test_datastructuretools_TreeContainer___len___01():
     subcontainer = datastructuretools.TreeContainer([leaf_b, leaf_c])
     leaf_d = datastructuretools.TreeNode()
 
-    container = datastructuretools.TreeContainer([leaf_a, subcontainer, leaf_d])
+    container = datastructuretools.TreeContainer([
+        leaf_a, 
+        subcontainer, 
+        leaf_d,
+        ])
 
     assert len(container) == 3

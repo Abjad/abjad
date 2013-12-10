@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_indicatortools_Annotation___init___01():
-    r'''Initialize annotation with dictionary.
+    r'''Initializes annotation with dictionary.
     '''
 
     annotation = indicatortools.Annotation('special dictionary', {})
@@ -11,7 +11,7 @@ def test_indicatortools_Annotation___init___01():
 
 
 def test_indicatortools_Annotation___init___02():
-    r'''Initialize annotation with only one argument.
+    r'''Initializes annotation with only one argument.
     '''
 
     annotation = indicatortools.Annotation('foo')
@@ -19,7 +19,7 @@ def test_indicatortools_Annotation___init___02():
 
 
 def test_indicatortools_Annotation___init___03():
-    r'''Initialize annotation from other annotation.
+    r'''Initializes annotation from other annotation.
     '''
 
     annotation_1 = indicatortools.Annotation('foo', 'bar')

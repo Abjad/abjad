@@ -9,9 +9,11 @@ def test_indicatortools_LilyPondComment_opening_01():
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = Beam()
     attach(beam, voice[:])
-    comment = indicatortools.LilyPondComment('Voice opening comments here.', 'opening')
+    string = 'Voice opening comments here.'
+    comment = indicatortools.LilyPondComment(string, 'opening')
     attach(comment, voice)
-    comment = indicatortools.LilyPondComment('More voice opening comments.', 'opening')
+    string = 'More voice opening comments.'
+    comment = indicatortools.LilyPondComment(string, 'opening')
     attach(comment, voice)
 
     assert systemtools.TestManager.compare(
@@ -37,9 +39,11 @@ def test_indicatortools_LilyPondComment_opening_02():
 
     note = Note(0, (1, 8))
     override(note).beam.thickness = 3
-    comment = indicatortools.LilyPondComment('Leaf opening comments here.', 'opening')
+    string = 'Leaf opening comments here.'
+    comment = indicatortools.LilyPondComment(string, 'opening')
     attach(comment, note)
-    comment = indicatortools.LilyPondComment('More leaf opening comments.', 'opening')
+    string = 'More leaf opening comments.'
+    comment = indicatortools.LilyPondComment(string, 'opening')
     attach(comment, note)
 
     assert systemtools.TestManager.compare(

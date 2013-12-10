@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_indicatortools_Tempo___init___01():
-    r'''Initialize tempo with integer.
+    r'''Initializes tempo with integer.
     '''
 
     tempo = Tempo(Duration(3, 32), 52)
@@ -11,7 +11,7 @@ def test_indicatortools_Tempo___init___01():
 
 
 def test_indicatortools_Tempo___init___02():
-    r'''Initialize tempo with float.
+    r'''Initializes tempo with float.
     '''
 
     tempo = Tempo(Duration(3, 32), 52.5)
@@ -19,7 +19,7 @@ def test_indicatortools_Tempo___init___02():
 
 
 def test_indicatortools_Tempo___init___03():
-    r'''Initialize tempo from tempo.
+    r'''Initializes tempo from tempo.
     '''
 
     tempo = Tempo(Duration(3, 32), 52)
@@ -33,7 +33,7 @@ def test_indicatortools_Tempo___init___03():
 
 
 def test_indicatortools_Tempo___init___04():
-    r'''Initialize tempo from integer pair.
+    r'''Initializes tempo from integer pair.
     '''
 
     tempo = Tempo((3, 32), 52.5)
@@ -41,7 +41,7 @@ def test_indicatortools_Tempo___init___04():
 
 
 def test_indicatortools_Tempo___init___05():
-    r'''Initialize tempo from textual indication.
+    r'''Initializes tempo from textual indication.
     '''
 
     tempo = Tempo('Langsam')
@@ -49,7 +49,7 @@ def test_indicatortools_Tempo___init___05():
 
 
 def test_indicatortools_Tempo___init___06():
-    r'''Initialize tempo with tempo range.
+    r'''Initializes tempo with tempo range.
     '''
 
     tempo = Tempo((1, 8), (52, 57.5))
@@ -57,7 +57,7 @@ def test_indicatortools_Tempo___init___06():
 
 
 def test_indicatortools_Tempo___init___07():
-    r'''Initialize tempo from text, duration and range.
+    r'''Initializes tempo from text, duration and range.
     '''
 
     tempo = Tempo('Quick', Duration(1, 4), (120, 133))
@@ -65,7 +65,7 @@ def test_indicatortools_Tempo___init___07():
 
 
 def test_indicatortools_Tempo___init___08():
-    r'''Initialize tempo from length-2 tuple.
+    r'''Initializes tempo from length-2 tuple.
     '''
 
     tempo = Tempo((Duration(1, 4), (120, 133)))
@@ -73,7 +73,7 @@ def test_indicatortools_Tempo___init___08():
 
 
 def test_indicatortools_Tempo___init___09():
-    r'''Initialize tempo from length-3 tuple.
+    r'''Initializes tempo from length-3 tuple.
     '''
 
     tempo = Tempo(('Quick', Duration(1, 4), (120, 133)))

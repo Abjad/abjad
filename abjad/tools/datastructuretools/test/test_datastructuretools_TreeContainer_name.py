@@ -15,29 +15,32 @@ def test_datastructuretools_TreeContainer_name_01():
     bar.extend([baz, quux])
     baz.append(quux2)
 
-    '''
-    TreeContainer(
-        children=(
-            TreeContainer(
-                children=(
-                    TreeContainer(
-                        children=(
-                            TreeContainer(
-                                name='quux'
+    assert systemtools.TestManager.compare(
+        format(foo, 'lilypond'),
+        r'''
+        TreeContainer(
+            children=(
+                TreeContainer(
+                    children=(
+                        TreeContainer(
+                            children=(
+                                TreeContainer(
+                                    name='quux'
+                                    ),
                                 ),
+                            name='baz'
                             ),
-                        name='baz'
+                        TreeContainer(
+                            name='quux'
+                            ),
                         ),
-                    TreeContainer(
-                        name='quux'
-                        )
+                    name='bar'
                     ),
-                name='bar'
                 ),
-            ),
-        name='foo'
+            name='foo'
+            )
+        '''
         )
-    '''
 
     assert foo['bar'] is bar
     assert foo['baz'] is baz
