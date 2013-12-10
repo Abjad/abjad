@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
-# NOTE: all tests operate on the following expression #
-
-t = Staff(r'''
+# NOTE: all tests operate on the following expression
+staff = Staff(
+    r'''
     c'8
     cs'8
     <<
@@ -20,7 +20,8 @@ t = Staff(r'''
     >>
     fs'8
     g'8
-    ''')
+    '''
+    )
 
 
 def test_agenttools_IterationAgent_depth_first_01():
@@ -33,16 +34,16 @@ def test_agenttools_IterationAgent_depth_first_01():
 
     # LEFT-TO-RIGHT #
 
-    g = iterate(t[2]).depth_first()
+    iterator = iterate(staff[2]).depth_first()
 
-    assert g.next() is t[2]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2][0][0]
-    assert g.next() is t[2][0][1]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2][1][0]
-    assert g.next() is t[2][1][1]
-    assert pytest.raises(StopIteration, 'g.next()')
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2][0][0]
+    assert iterator.next() is staff[2][0][1]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2][1][0]
+    assert iterator.next() is staff[2][1][1]
+    assert pytest.raises(StopIteration, 'iterator.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -56,18 +57,18 @@ def test_agenttools_IterationAgent_depth_first_01():
 
     # RIGHT-TO-LEFT #
 
-    g = iterate(t[2]).depth_first(
+    iterator = iterate(staff[2]).depth_first(
         direction=Right,
         )
 
-    assert g.next() is t[2]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2][1][1]
-    assert g.next() is t[2][1][0]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2][0][1]
-    assert g.next() is t[2][0][0]
-    assert pytest.raises(StopIteration, 'g.next()')
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2][1][1]
+    assert iterator.next() is staff[2][1][0]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2][0][1]
+    assert iterator.next() is staff[2][0][0]
+    assert pytest.raises(StopIteration, 'iterator.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -87,21 +88,21 @@ def test_agenttools_IterationAgent_depth_first_02():
 
     # LEFT-TO-RIGHT #
 
-    g = iterate(t[2]).depth_first(
+    iterator = iterate(staff[2]).depth_first(
         capped=False,
         )
 
-    assert g.next() is t[2]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2][0][0]
-    assert g.next() is t[2][0][1]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2][1][0]
-    assert g.next() is t[2][1][1]
-    assert g.next() is t
-    assert g.next() is t[3]
-    assert g.next() is t[4]
-    assert pytest.raises(StopIteration, 'g.next()')
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2][0][0]
+    assert iterator.next() is staff[2][0][1]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2][1][0]
+    assert iterator.next() is staff[2][1][1]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[3]
+    assert iterator.next() is staff[4]
+    assert pytest.raises(StopIteration, 'iterator.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -113,27 +114,27 @@ def test_agenttools_IterationAgent_depth_first_02():
     f'8
     Staff{5}
     fs'8
-    g'8
+    iterator'8
     '''
 
     # RIGHT-TO-LEFT #
 
-    g = iterate(t[2]).depth_first(
+    iterator = iterate(staff[2]).depth_first(
         capped=False,
         direction=Right,
         )
 
-    assert g.next() is t[2]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2][1][1]
-    assert g.next() is t[2][1][0]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2][0][1]
-    assert g.next() is t[2][0][0]
-    assert g.next() is t
-    assert g.next() is t[1]
-    assert g.next() is t[0]
-    assert pytest.raises(StopIteration, 'g.next()')
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2][1][1]
+    assert iterator.next() is staff[2][1][0]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2][0][1]
+    assert iterator.next() is staff[2][0][0]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[1]
+    assert iterator.next() is staff[0]
+    assert pytest.raises(StopIteration, 'iterator.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -155,24 +156,24 @@ def test_agenttools_IterationAgent_depth_first_03():
 
     # LEFT-TO-RIGHT #
 
-    g = iterate(t[2]).depth_first(
+    iterator = iterate(staff[2]).depth_first(
         unique=False,
         )
 
-    assert g.next() is t[2]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2][0][0]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2][0][1]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2][1][0]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2][1][1]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2]
-    assert pytest.raises(StopIteration, 'g.next()')
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2][0][0]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2][0][1]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2][1][0]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2][1][1]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2]
+    assert pytest.raises(StopIteration, 'iterator.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -192,25 +193,25 @@ def test_agenttools_IterationAgent_depth_first_03():
 
     # RIGHT-TO-LEFT #
 
-    g = iterate(t[2]).depth_first(
+    iterator = iterate(staff[2]).depth_first(
         direction=Right,
         unique=False,
         )
 
-    assert g.next() is t[2]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2][1][1]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2][1][0]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2][0][1]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2][0][0]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2]
-    assert pytest.raises(StopIteration, 'g.next()')
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2][1][1]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2][1][0]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2][0][1]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2][0][0]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2]
+    assert pytest.raises(StopIteration, 'iterator.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -236,17 +237,17 @@ def test_agenttools_IterationAgent_depth_first_04():
 
     # LEFT-TO-RIGHT #
 
-    g = iterate(t).depth_first(
+    iterator = iterate(staff).depth_first(
         forbid='simultaneous',
         )
 
-    assert g.next() is t
-    assert g.next() is t[0]
-    assert g.next() is t[1]
-    assert g.next() is t[2]
-    assert g.next() is t[3]
-    assert g.next() is t[4]
-    assert pytest.raises(StopIteration, 'g.next()')
+    assert iterator.next() is staff
+    assert iterator.next() is staff[0]
+    assert iterator.next() is staff[1]
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff[3]
+    assert iterator.next() is staff[4]
+    assert pytest.raises(StopIteration, 'iterator.next()')
 
     r'''
     Staff{5}
@@ -254,27 +255,27 @@ def test_agenttools_IterationAgent_depth_first_04():
     cs'8
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
     fs'8
-    g'8
+    iterator'8
     '''
 
     # RIGHT-TO-LEFT #
 
-    g = iterate(t).depth_first(
+    iterator = iterate(staff).depth_first(
         direction=Right,
         forbid='simultaneous',
         )
 
-    assert g.next() is t
-    assert g.next() is t[4]
-    assert g.next() is t[3]
-    assert g.next() is t[2]
-    assert g.next() is t[1]
-    assert g.next() is t[0]
-    assert pytest.raises(StopIteration, 'g.next()')
+    assert iterator.next() is staff
+    assert iterator.next() is staff[4]
+    assert iterator.next() is staff[3]
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff[1]
+    assert iterator.next() is staff[0]
+    assert pytest.raises(StopIteration, 'iterator.next()')
 
     r'''
     Staff{5}
-    g'8
+    iterator'8
     fs'8
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
     cs'8
@@ -288,30 +289,30 @@ def test_agenttools_IterationAgent_depth_first_05():
 
     # LEFT-TO-RIGHT #
 
-    g = iterate(t[2]).depth_first(
+    iterator = iterate(staff[2]).depth_first(
         capped=False,
         unique=False,
         )
 
-    assert g.next() is t[2]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2][0][0]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2][0][1]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2][1][0]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2][1][1]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2]
-    assert g.next() is t
-    assert g.next() is t[3]
-    assert g.next() is t
-    assert g.next() is t[4]
-    assert g.next() is t
-    assert pytest.raises(StopIteration, 'g.next()')
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2][0][0]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2][0][1]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2][1][0]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2][1][1]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[3]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[4]
+    assert iterator.next() is staff
+    assert pytest.raises(StopIteration, 'iterator.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -330,37 +331,37 @@ def test_agenttools_IterationAgent_depth_first_05():
     Staff{5}
     fs'8
     Staff{5}
-    g'8
+    iterator'8
     Staff{5}
     '''
 
     # RIGHT-TO-LEFT #
  
-    g = iterate(t[2]).depth_first(
+    iterator = iterate(staff[2]).depth_first(
         capped=False,
         direction=Right,
         unique=False,
         )
 
-    assert g.next() is t[2]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2][1][1]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2][1][0]
-    assert g.next() is t[2][1]
-    assert g.next() is t[2]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2][0][1]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2][0][0]
-    assert g.next() is t[2][0]
-    assert g.next() is t[2]
-    assert g.next() is t
-    assert g.next() is t[1]
-    assert g.next() is t
-    assert g.next() is t[0]
-    assert g.next() is t
-    assert pytest.raises(StopIteration, 'g.next()')
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2][1][1]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2][1][0]
+    assert iterator.next() is staff[2][1]
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2][0][1]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2][0][0]
+    assert iterator.next() is staff[2][0]
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[1]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[0]
+    assert iterator.next() is staff
+    assert pytest.raises(StopIteration, 'iterator.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -390,35 +391,35 @@ def test_agenttools_IterationAgent_depth_first_06():
 
     # LEFT-TO-RIGHT #
 
-    g = iterate(t[2]).depth_first(
+    iterator = iterate(staff[2]).depth_first(
         capped=False,
         forbid='simultaneous',
         )
 
-    assert g.next() is t[2]
-    assert g.next() is t
-    assert g.next() is t[3]
-    assert g.next() is t[4]
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[3]
+    assert iterator.next() is staff[4]
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
     Staff{5}
     fs'8
-    g'8
+    iterator'8
     '''
 
     # RIGHT-TO-LEFT #
 
-    g = iterate(t[2]).depth_first(
+    iterator = iterate(staff[2]).depth_first(
         capped=False,
         direction=Right,
         forbid='simultaneous',
         )
 
-    assert g.next() is t[2]
-    assert g.next() is t
-    assert g.next() is t[1]
-    assert g.next() is t[0]
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[1]
+    assert iterator.next() is staff[0]
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -434,23 +435,23 @@ def test_agenttools_IterationAgent_depth_first_07():
 
     # LEFT-TO-RIGHT
 
-    g = iterate(t).depth_first(
+    iterator = iterate(staff).depth_first(
         forbid='simultaneous',
         unique=False,
         )
 
-    assert g.next() is t
-    assert g.next() is t[0]
-    assert g.next() is t
-    assert g.next() is t[1]
-    assert g.next() is t
-    assert g.next() is t[2]
-    assert g.next() is t
-    assert g.next() is t[3]
-    assert g.next() is t
-    assert g.next() is t[4]
-    assert g.next() is t
-    assert pytest.raises(StopIteration, 'g.next()')
+    assert iterator.next() is staff
+    assert iterator.next() is staff[0]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[1]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[3]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[4]
+    assert iterator.next() is staff
+    assert pytest.raises(StopIteration, 'iterator.next()')
 
     r'''
     Staff{5}
@@ -462,34 +463,34 @@ def test_agenttools_IterationAgent_depth_first_07():
     Staff{5}
     fs'8
     Staff{5}
-    g'8
+    iterator'8
     Staff{5}
     '''
 
     # RIGHT-TO-LEFT #
 
-    g = iterate(t).depth_first(
+    iterator = iterate(staff).depth_first(
         direction=Right,
         forbid='simultaneous',
         unique=False,
         )
 
-    assert g.next() is t
-    assert g.next() is t[4]
-    assert g.next() is t
-    assert g.next() is t[3]
-    assert g.next() is t
-    assert g.next() is t[2]
-    assert g.next() is t
-    assert g.next() is t[1]
-    assert g.next() is t
-    assert g.next() is t[0]
-    assert g.next() is t
-    assert pytest.raises(StopIteration, 'g.next()')
+    assert iterator.next() is staff
+    assert iterator.next() is staff[4]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[3]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[1]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[0]
+    assert iterator.next() is staff
+    assert pytest.raises(StopIteration, 'iterator.next()')
 
     r'''
     Staff{5}
-    g'8
+    iterator'8
     Staff{5}
     fs'8
     Staff{5}
@@ -508,45 +509,45 @@ def test_agenttools_IterationAgent_depth_first_08():
 
     # LEFT-TO-RIGHT #
 
-    g = iterate(t[2]).depth_first(
+    iterator = iterate(staff[2]).depth_first(
         capped=False,
         forbid='simultaneous',
         unique=False,
         )
 
-    assert g.next() is t[2]
-    assert g.next() is t
-    assert g.next() is t[3]
-    assert g.next() is t
-    assert g.next() is t[4]
-    assert g.next() is t
-    assert pytest.raises(StopIteration, 'g.next()')
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[3]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[4]
+    assert iterator.next() is staff
+    assert pytest.raises(StopIteration, 'iterator.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
     Staff{5}
     fs'8
     Staff{5}
-    g'8
+    iterator'8
     Staff{5}
     '''
 
     # RIGHT-TO-LEFT #
 
-    g = iterate(t[2]).depth_first(
+    iterator = iterate(staff[2]).depth_first(
         capped=False,
         direction=Right,
         forbid='simultaneous',
         unique=False,
         )
 
-    assert g.next() is t[2]
-    assert g.next() is t
-    assert g.next() is t[1]
-    assert g.next() is t
-    assert g.next() is t[0]
-    assert g.next() is t
-    assert pytest.raises(StopIteration, 'g.next()')
+    assert iterator.next() is staff[2]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[1]
+    assert iterator.next() is staff
+    assert iterator.next() is staff[0]
+    assert iterator.next() is staff
+    assert pytest.raises(StopIteration, 'iterator.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))

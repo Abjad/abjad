@@ -24,25 +24,25 @@ def test_agenttools_MutationAgent_respell_with_flats_02():
 
 def test_agenttools_MutationAgent_respell_with_flats_03():
 
-    staff = Staff([Note(n, (1, 8)) for n in range(12, 0, -1)])
+    staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8 af'8 a'8 bf'8 b'")
     mutate(staff).respell_with_flats()
 
     assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
-            c''8
-            b'8
-            bf'8
-            a'8
-            af'8
-            g'8
-            gf'8
-            f'8
-            e'8
-            ef'8
-            d'8
+            c'8
             df'8
+            d'8
+            ef'8
+            e'8
+            f'8
+            gf'8
+            g'8
+            af'8
+            a'8
+            bf'8
+            b'8
         }
         '''
         )

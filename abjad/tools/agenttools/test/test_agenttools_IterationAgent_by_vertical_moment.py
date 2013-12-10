@@ -235,8 +235,6 @@ def test_agenttools_IterationAgent_by_vertical_moment_04():
         '''
         )
 
-    # see above for formatted score #
-
     moment_generator = iterate(piano_staff).by_vertical_moment()
     moments = list(moment_generator)
 

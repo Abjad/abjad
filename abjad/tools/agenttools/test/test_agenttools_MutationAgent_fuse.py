@@ -7,7 +7,7 @@ def test_agenttools_MutationAgent_fuse_01():
     r'''Works with list of leaves.
     '''
 
-    notes = scoretools.make_repeated_notes(8, Duration(1, 4))
+    notes = 8 * Note("c'4")
     fused = mutate(notes).fuse()
 
     assert len(fused) == 1
@@ -27,7 +27,7 @@ def test_agenttools_MutationAgent_fuse_03():
     r'''Works with containers.
     '''
 
-    voice = Voice(Note("c'4") * 8)
+    voice = Voice(8 * Note("c'4"))
     fused = mutate(voice[:]).fuse()
     assert len(fused) == 1
     assert fused[0].written_duration == 2
@@ -40,20 +40,22 @@ def test_agenttools_MutationAgent_fuse_04():
 
     voice = Voice([Note(0, (2, 16)), Note(9, (3, 16))])
     fused = mutate(voice[:]).fuse()
+
     assert len(fused) == 2
     assert fused[0].written_duration == Duration(1, 4)
     assert fused[1].written_duration == Duration(1, 16)
-    tie_1 = inspect(fused[0]).get_spanner(spannertools.Tie)
-    tie_2 = inspect(fused[1]).get_spanner(spannertools.Tie)
+
+    tie_1 = inspect(fused[0]).get_spanner(Tie)
+    tie_2 = inspect(fused[1]).get_spanner(Tie)
+
     assert tie_1 is tie_2
     assert voice[0] is fused[0]
     assert voice[1] is fused[1]
-    assert voice[0].written_pitch.numbered_pitch == \
-        voice[1].written_pitch.numbered_pitch
+    assert voice[0].written_pitch == voice[1].written_pitch
 
 
 def test_agenttools_MutationAgent_fuse_05():
-    r'''Fuse leaves with differing LilyPond multipliers.
+    r'''Fuses leaves with differing LilyPond multipliers.
     '''
 
     staff = Staff([scoretools.Skip((1, 1)), scoretools.Skip((1, 1))])
@@ -88,15 +90,13 @@ def test_agenttools_MutationAgent_fuse_05():
 
 
 def test_agenttools_MutationAgent_fuse_06():
-    r'''Fuse two unincorporated fixed-duration tuplets with same multiplier.
+    r'''Fuses two unincorporated fixed-duration tuplets with same multiplier.
     '''
 
-    tuplet_1 = scoretools.FixedDurationTuplet(
-        Duration(2, 8), "c'8 d'8 e'8")
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     beam = Beam()
     attach(beam, tuplet_1[:])
-    tuplet_2 = scoretools.FixedDurationTuplet(
-        Duration(2, 16), "c'16 d'16 e'16")
+    tuplet_2 = scoretools.FixedDurationTuplet((2, 16), "c'16 d'16 e'16")
     slur = Slur()
     attach(slur, tuplet_2[:])
 
@@ -146,15 +146,13 @@ def test_agenttools_MutationAgent_fuse_06():
 
 
 def test_agenttools_MutationAgent_fuse_07():
-    r'''Fuse fixed-duration tuplets with same multiplier in score.
+    r'''Fuses fixed-duration tuplets with same multiplier in score.
     '''
 
-    tuplet_1 = scoretools.FixedDurationTuplet(
-        Duration(2, 8), "c'8 d'8 e'8")
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     beam = Beam()
     attach(beam, tuplet_1[:])
-    tuplet_2 = scoretools.FixedDurationTuplet(
-        Duration(2, 16), "c'16 d'16 e'16")
+    tuplet_2 = scoretools.FixedDurationTuplet((2, 16), "c'16 d'16 e'16")
     slur = Slur()
     attach(slur, tuplet_2[:])
     voice = Voice([tuplet_1, tuplet_2])
@@ -200,7 +198,7 @@ def test_agenttools_MutationAgent_fuse_07():
 
 
 def test_agenttools_MutationAgent_fuse_08():
-    r'''Fuse fixed-multiplier tuplets with same multiplier in score.
+    r'''Fuses fixed-multiplier tuplets with same multiplier in score.
     '''
 
     tuplet_1 = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
@@ -260,8 +258,8 @@ def test_agenttools_MutationAgent_fuse_09():
     '''
 
     tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplet_2 = scoretools.FixedDurationTuplet(
-        Duration(2, 8), "c'8 d'8 e'8 f'8 g'8")
+    tuplet_2 = scoretools.FixedDurationTuplet(Duration(2, 8), [])
+    tuplet_2.extend("c'8 d'8 e'8 f'8 g'8")
     tuplets = select([tuplet_1, tuplet_2], contiguous=True)
 
     assert pytest.raises(Exception, 'mutate(tuplets).fuse()')
@@ -282,10 +280,9 @@ def test_agenttools_MutationAgent_fuse_11():
     r'''Dominant spanners on contents are preserved.
     '''
 
-    voice = Voice([
-        scoretools.FixedDurationTuplet(Duration(1, 12), [Note(0, (1, 8))]),
-        scoretools.FixedDurationTuplet(Duration(1, 6), [Note("c'4")]),
-        Note("c'4")])
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1, 12), "c'8")
+    tuplet_2 = scoretools.FixedDurationTuplet(Duration(1, 6), "c'4")
+    voice = Voice([tuplet_1, tuplet_2, Note("c'4")])
     slur = Slur()
     attach(slur, voice.select_leaves())
 
@@ -324,7 +321,7 @@ def test_agenttools_MutationAgent_fuse_11():
 
 
 def test_agenttools_MutationAgent_fuse_12():
-    r'''Fuse unicorporated measures carrying
+    r'''Fuses unicorporated measures carrying
     time signatures with power-of-two denominators.
     '''
     
@@ -377,7 +374,7 @@ def test_agenttools_MutationAgent_fuse_12():
 
 
 def test_agenttools_MutationAgent_fuse_13():
-    r'''Fuse measures carrying time signatures with differing 
+    r'''Fuses measures carrying time signatures with differing 
     power-of-two denominators. Helpers selects minimum of two denominators.
     Beams are OK because they attach to leaves rather than containers.
     '''
@@ -425,7 +422,7 @@ def test_agenttools_MutationAgent_fuse_13():
 
 
 def test_agenttools_MutationAgent_fuse_14():
-    r'''Fuse measures with differing power-of-two denominators.
+    r'''Fuses measures with differing power-of-two denominators.
     Helpers selects minimum of two denominators.
     Beam attaches to container rather than leaves.
     '''
@@ -473,7 +470,7 @@ def test_agenttools_MutationAgent_fuse_14():
 
 
 def test_agenttools_MutationAgent_fuse_15():
-    r'''Fuse measures with power-of-two-denominators together with measures
+    r'''Fuses measures with power-of-two-denominators together with measures
     without power-of-two denominators.
     Helpers selects least common multiple of denominators.
     Beams are OK because they attach to leaves rather than containers.
@@ -544,7 +541,7 @@ def test_agenttools_MutationAgent_fuse_17():
 
 
 def test_agenttools_MutationAgent_fuse_18():
-    r'''Fuse three measures.
+    r'''Fuses three measures.
     '''
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 1/8 e'16 f'16 || 1/8 g'16 a'16 |")
@@ -600,9 +597,9 @@ def test_agenttools_MutationAgent_fuse_19():
     With change in number of note heads because of non-power-of-two multiplier.
     '''
 
-    staff = Staff([
-        Measure((9, 80), []),
-        Measure((2, 16), [])])
+    measure_1 = Measure((9, 80), [])
+    measure_2 = Measure((2, 16), [])
+    staff = Staff([measure_1, measure_2])
     scoretools.fill_measures_in_expr_with_time_signature_denominator_notes(
         staff)
 

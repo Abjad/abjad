@@ -28,7 +28,8 @@ def test_agenttools_MutationAgent_rewrite_meter_03():
     r'''Descends into tuplets.
     '''
 
-    source = parse('abj: | 2/4 2 ~ || 5/4 8 ~ 8 ~ 2/3 { 4 ~ 4 4 ~ } 4 ~ 4 ~ || 2/4 2 |')
+    source = parse('abj: | 2/4 2 ~ || 5/4 8 ~ 8 ~ 2/3 { 4 ~ 4 4 ~ }'
+        '4 ~ 4 ~ || 2/4 2 |')
     target = parse('abj: | 2/4 2 ~ || 5/4 4 ~ 2/3 { 2 4 ~ } 2 ~ || 2/4 2 |')
     meter = metertools.Meter(source[1])
     mutate(source[1][:]).rewrite_meter(meter)

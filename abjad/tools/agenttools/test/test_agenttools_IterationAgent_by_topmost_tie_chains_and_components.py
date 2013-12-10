@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_agenttools_IterationAgent_by_topmost_logical_ties_and_components_01():
-    r'''Iterate toplevel contents with logical ties in place of leaves.
+    r'''Iterates toplevel contents with logical ties in place of leaves.
     '''
 
     staff = Staff(r"c'8 ~ c'32 g'8 ~ g'32 a'8 ~ a'32 b'8 ~ b'32")

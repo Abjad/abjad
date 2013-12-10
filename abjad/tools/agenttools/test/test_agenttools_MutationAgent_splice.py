@@ -31,14 +31,14 @@ def test_agenttools_MutationAgent_splice_01():
 
 
 def test_agenttools_MutationAgent_splice_02():
-    r'''Splice leaf after interior leaf.
+    r'''Splices leaf after interior leaf.
     '''
 
     voice = Voice("c'8 d'8 e'8")
     beam = Beam()
     attach(beam, voice[:])
     result = mutate(voice[1]).splice(
-        [Note(2.5, (1, 8))], 
+        [Note("dqs'8")],
         grow_spanners=True,
         )
 
@@ -59,15 +59,16 @@ def test_agenttools_MutationAgent_splice_02():
 
 
 def test_agenttools_MutationAgent_splice_03():
-    r'''Splice tuplet after tuplet.
+    r'''Splices tuplet after tuplet.
     '''
 
-    voice = Voice(
-        [scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    voice = Voice([tuplet])
     beam = Beam()
     attach(beam, voice[0])
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     result = mutate(voice[-1]).splice(
-        [scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")], 
+        [tuplet],
         grow_spanners=True,
         )
 
@@ -94,14 +95,14 @@ def test_agenttools_MutationAgent_splice_03():
 
 
 def test_agenttools_MutationAgent_splice_04():
-    r'''Splice after container with underspanners.
+    r'''Splices after container with underspanners.
     '''
 
-    voice = Voice(Container(scoretools.make_repeated_notes(2)) * 2)
+    voice = Voice(Container("c'8 c'8") * 2)
     beam = Beam()
     attach(beam, voice.select_leaves())
     result = mutate(voice[0]).splice(
-        [Note(2.5, (1, 8))], 
+        [Note("dqs'8")],
         grow_spanners=True,
         )
 
@@ -127,7 +128,7 @@ def test_agenttools_MutationAgent_splice_04():
 
 
 def test_agenttools_MutationAgent_splice_05():
-    r'''Extend leaves rightwards after leaf.
+    r'''Extends leaves rightwards after leaf.
     '''
 
     voice = Voice("c'8 d'8 e'8")
@@ -158,7 +159,7 @@ def test_agenttools_MutationAgent_splice_05():
 
 
 def test_agenttools_MutationAgent_splice_06():
-    r'''Extend leaf rightwards after interior leaf.
+    r'''Extends leaf rightwards after interior leaf.
     '''
 
     voice = Voice("c'8 d'8 e'8")
@@ -166,7 +167,7 @@ def test_agenttools_MutationAgent_splice_06():
     attach(beam, voice[:])
 
     result = mutate(voice[1]).splice(
-        [Note(2.5, (1, 8))], 
+        [Note("dqs'8")],
         grow_spanners=False,
         )
 
@@ -187,7 +188,7 @@ def test_agenttools_MutationAgent_splice_06():
 
 
 def test_agenttools_MutationAgent_splice_07():
-    r'''Splice leaves left of leaf.
+    r'''Splices leaves left of leaf.
     '''
 
     voice = Voice("c'8 d'8 e'8")
@@ -219,14 +220,14 @@ def test_agenttools_MutationAgent_splice_07():
 
 
 def test_agenttools_MutationAgent_splice_08():
-    r'''Splice leaf left of interior leaf.
+    r'''Splices leaf left of interior leaf.
     '''
 
     voice = Voice("c'8 d'8 e'8")
     beam = Beam()
     attach(beam, voice[:])
     result = mutate(voice[1]).splice(
-        [Note(1.5, (1, 8))], 
+        [Note("dqf'8")],
         direction=Left, 
         grow_spanners=True,
         )
@@ -248,15 +249,16 @@ def test_agenttools_MutationAgent_splice_08():
 
 
 def test_agenttools_MutationAgent_splice_09():
-    r'''Splice tuplet left of tuplet.
+    r'''Splices tuplet left of tuplet.
     '''
 
     voice = Voice([scoretools.FixedDurationTuplet(
         Duration(2, 8), "c'8 d'8 e'8")])
     beam = Beam()
     attach(beam, voice[0])
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     result = mutate(voice[0]).splice(
-        [scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")], 
+        [tuplet],
         direction=Left,
         grow_spanners=True,
         )
@@ -284,7 +286,7 @@ def test_agenttools_MutationAgent_splice_09():
 
 
 def test_agenttools_MutationAgent_splice_10():
-    r'''Splice left of container with underspanners.
+    r'''Splices left of container with underspanners.
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
@@ -318,7 +320,7 @@ def test_agenttools_MutationAgent_splice_10():
 
 
 def test_agenttools_MutationAgent_splice_11():
-    r'''Extend leaves leftwards of leaf. Do not extend edge spanners.
+    r'''Extends leaves leftwards of leaf. Do not extend edge spanners.
     '''
 
     voice = Voice("c'8 d'8 e'8")
@@ -350,14 +352,14 @@ def test_agenttools_MutationAgent_splice_11():
 
 
 def test_agenttools_MutationAgent_splice_12():
-    r'''Extend leaf leftwards of interior leaf. Do extend interior spanners.
+    r'''Extends leaf leftwards of interior leaf. Does extend interior spanners.
     '''
 
     voice = Voice("c'8 d'8 e'8")
     beam = Beam()
     attach(beam, voice[:])
     result = mutate(voice[1]).splice(
-        [Note(1.5, (1, 8))], 
+        [Note("dqf'8")],
         direction=Left,
         grow_spanners=False,
         )

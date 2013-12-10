@@ -4,8 +4,8 @@ from abjad import *
 
 def test_agenttools_IterationAgent_by_semantic_voice_01():
 
-    measures = scoretools.make_spacer_skip_measures(
-        [(3, 8), (5, 16), (5, 16)])
+    durations = [(3, 8), (5, 16), (5, 16)]
+    measures = scoretools.make_spacer_skip_measures(durations)
     time_signature_voice = Voice(measures)
     time_signature_voice.name = 'TimeSignatureVoice'
     time_signature_voice.is_nonsemantic = True
@@ -51,8 +51,8 @@ def test_agenttools_IterationAgent_by_semantic_voice_01():
 
 def test_agenttools_IterationAgent_by_semantic_voice_02():
 
-    measures = scoretools.make_spacer_skip_measures(
-        [(3, 8), (5, 16), (5, 16)])
+    durations = [(3, 8), (5, 16), (5, 16)]
+    measures = scoretools.make_spacer_skip_measures(durations)
     time_signature_voice = Voice(measures)
     time_signature_voice.name = 'TimeSignatureVoice'
     time_signature_voice.is_nonsemantic = True

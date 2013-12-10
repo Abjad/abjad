@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_agenttools_MutationAgent_extract_01():
-    r'''Extract note.
+    r'''Extracts note.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
@@ -43,7 +43,7 @@ def test_agenttools_MutationAgent_extract_01():
 
 
 def test_agenttools_MutationAgent_extract_02():
-    r'''Extract multiple notes.
+    r'''Extracts multiple notes.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
@@ -85,7 +85,7 @@ def test_agenttools_MutationAgent_extract_02():
 
 
 def test_agenttools_MutationAgent_extract_03():
-    r'''Extract container.
+    r'''Extracts container.
     '''
 
     staff = Staff()
@@ -132,10 +132,9 @@ def test_agenttools_MutationAgent_extract_03():
 
 
 def test_agenttools_MutationAgent_extract_04():
-    r'''Extract multiple containers.
+    r'''Extracts multiple containers.
     '''
 
-    voice = Voice(Container(scoretools.make_repeated_notes(2)) * 3)
     voice = Voice()
     voice.append(Container("c'8 d'8"))
     voice.append(Container("e'8 f'8"))

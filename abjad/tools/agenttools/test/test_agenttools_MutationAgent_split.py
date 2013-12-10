@@ -4,7 +4,7 @@ from abjad import *
 
 
 def test_agenttools_MutationAgent_split_01():
-    r'''Cyclically split note in score. Don't fracture spanners.
+    r'''Cyclically splits note in score. Doesn't fracture spanners.
     '''
 
     staff = Staff()
@@ -65,7 +65,7 @@ def test_agenttools_MutationAgent_split_01():
 
 
 def test_agenttools_MutationAgent_split_02():
-    r'''Cyclically split consecutive notes in score. Don't fracture spanners.
+    r'''Cyclically splits consecutive notes in score. Doesn't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -126,7 +126,7 @@ def test_agenttools_MutationAgent_split_02():
 
 
 def test_agenttools_MutationAgent_split_03():
-    r'''Cyclically split measure in score. Don't fracture spanners.
+    r'''Cyclically splits measure in score. Doesn't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -192,8 +192,8 @@ def test_agenttools_MutationAgent_split_03():
 
 
 def test_agenttools_MutationAgent_split_04():
-    r'''Cyclically split consecutive measures in score. 
-    Don't fracture spanners.
+    r'''Cyclically splits consecutive measures in score. 
+    Doesn't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -269,7 +269,7 @@ def test_agenttools_MutationAgent_split_04():
 
 
 def test_agenttools_MutationAgent_split_05():
-    r'''Cyclically split orphan measures. Don't fracture spanners.
+    r'''Cyclically splits orphan measures. Doesn't fracture spanners.
     '''
 
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
@@ -328,7 +328,7 @@ def test_agenttools_MutationAgent_split_05():
 
 
 def test_agenttools_MutationAgent_split_06():
-    r'''Cyclically split note in score. Don't fracture spanners.
+    r'''Cyclically splits note in score. Doesn't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -389,7 +389,7 @@ def test_agenttools_MutationAgent_split_06():
 
 
 def test_agenttools_MutationAgent_split_07():
-    r'''Cyclically split consecutive notes in score. Don't fracture spanners.
+    r'''Cyclically splits consecutive notes in score. Doesn't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -451,7 +451,7 @@ def test_agenttools_MutationAgent_split_07():
 
 
 def test_agenttools_MutationAgent_split_08():
-    r'''Cyclically split measure in score. Don't fracture spanners.
+    r'''Cyclically splits measure in score. Doesn't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -518,8 +518,8 @@ def test_agenttools_MutationAgent_split_08():
 
 
 def test_agenttools_MutationAgent_split_09():
-    r'''Cyclically split consecutive measures in score. 
-    Don't fracture spanners.
+    r'''Cyclically splits consecutive measures in score. 
+    Doesn't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -595,7 +595,7 @@ def test_agenttools_MutationAgent_split_09():
 
 
 def test_agenttools_MutationAgent_split_10():
-    r'''Cyclically split note in score. Fracture spanners.
+    r'''Cyclically splits note in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -654,7 +654,7 @@ def test_agenttools_MutationAgent_split_10():
 
 
 def test_agenttools_MutationAgent_split_11():
-    r'''Cyclically split consecutive notes in score. Fracture spanners.
+    r'''Cyclically splits consecutive notes in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -715,7 +715,7 @@ def test_agenttools_MutationAgent_split_11():
 
 
 def test_agenttools_MutationAgent_split_12():
-    r'''Cyclically split measure in score. Fracture spanners.
+    r'''Cyclically splits measure in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -781,7 +781,7 @@ def test_agenttools_MutationAgent_split_12():
 
 
 def test_agenttools_MutationAgent_split_13():
-    r'''Cyclically split consecutive measures in score. Fracture spanners.
+    r'''Cyclically splits consecutive measures in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -857,7 +857,7 @@ def test_agenttools_MutationAgent_split_13():
 
 
 def test_agenttools_MutationAgent_split_14():
-    r'''Cyclically split orphan notes.
+    r'''Cyclically splits orphan notes.
     '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
@@ -892,7 +892,7 @@ def test_agenttools_MutationAgent_split_14():
 
 
 def test_agenttools_MutationAgent_split_15():
-    r'''Cyclically split orphan measures. Fracture spanners.
+    r'''Cyclically splits orphan measures. Fracture spanners.
     '''
 
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
@@ -951,7 +951,7 @@ def test_agenttools_MutationAgent_split_15():
 
 
 def test_agenttools_MutationAgent_split_16():
-    r'''Cyclically split note in score. Fracture spanners.
+    r'''Cyclically splits note in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1012,7 +1012,7 @@ def test_agenttools_MutationAgent_split_16():
 
 
 def test_agenttools_MutationAgent_split_17():
-    r'''Cyclically split consecutive notes in score. Fracture spanners.
+    r'''Cyclically splits consecutive notes in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1074,7 +1074,7 @@ def test_agenttools_MutationAgent_split_17():
 
 
 def test_agenttools_MutationAgent_split_18():
-    r'''Cyclically split measure in score. Fracture spanners.
+    r'''Cyclically splits measure in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1141,7 +1141,7 @@ def test_agenttools_MutationAgent_split_18():
 
 
 def test_agenttools_MutationAgent_split_19():
-    r'''Cyclically split consecutive measures in score. Fracture spanners.
+    r'''Cyclically splits consecutive measures in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1217,7 +1217,7 @@ def test_agenttools_MutationAgent_split_19():
 
 
 def test_agenttools_MutationAgent_split_20():
-    r'''Force split measure in score. Do not fracture spanners.
+    r'''Force splits measure in score. Do not fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1283,7 +1283,7 @@ def test_agenttools_MutationAgent_split_20():
 
 
 def test_agenttools_MutationAgent_split_21():
-    r'''Force split consecutive measures in score. Do not fracture spanners.
+    r'''Force splits consecutive measures in score. Do not fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1353,7 +1353,7 @@ def test_agenttools_MutationAgent_split_21():
 
 
 def test_agenttools_MutationAgent_split_22():
-    r'''Force split measure in score. Fracture spanners.
+    r'''Force splits measure in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1419,7 +1419,7 @@ def test_agenttools_MutationAgent_split_22():
 
 
 def test_agenttools_MutationAgent_split_23():
-    r'''Force split consecutive measures in score. Fracture spanners.
+    r'''Force splits consecutive measures in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1487,7 +1487,7 @@ def test_agenttools_MutationAgent_split_23():
 
 
 def test_agenttools_MutationAgent_split_24():
-    r'''Force split orphan note. Offsets sum to less than note duration.
+    r'''Force splits orphan note. Offsets sum to less than note duration.
     '''
 
     note = Note("c'4")
@@ -1520,7 +1520,7 @@ def test_agenttools_MutationAgent_split_24():
 
 
 def test_agenttools_MutationAgent_split_25():
-    r'''Force split note in score. Fracture spanners.
+    r'''Force splits note in score. Fracture spanners.
     '''
 
     staff = Staff("c'8 [ ]")
@@ -1558,7 +1558,7 @@ def test_agenttools_MutationAgent_split_25():
 
 
 def test_agenttools_MutationAgent_split_26():
-    r'''Split tuplet in score and do not fracture spanners.
+    r'''Splits tuplet in score and do not fracture spanners.
     '''
 
     voice = Voice()
@@ -1597,7 +1597,7 @@ def test_agenttools_MutationAgent_split_26():
 
 
 def test_agenttools_MutationAgent_split_27():
-    r'''Split in-score measure with power-of-two denominator and 
+    r'''Splits in-score measure with power-of-two denominator and 
     do not fracture spanners.
     '''
 
@@ -1640,7 +1640,7 @@ def test_agenttools_MutationAgent_split_27():
 
 
 def test_agenttools_MutationAgent_split_28():
-    r'''Split in-score measure without power-of-two denominator 
+    r'''Splits in-score measure without power-of-two denominator 
     and do not frature spanners.
     '''
 
@@ -1689,7 +1689,7 @@ def test_agenttools_MutationAgent_split_28():
 
 
 def test_agenttools_MutationAgent_split_29():
-    r'''A single container can be split in the middle.
+    r'''A single container can be splits in the middle.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
@@ -1730,7 +1730,7 @@ def test_agenttools_MutationAgent_split_29():
 
 
 def test_agenttools_MutationAgent_split_30():
-    r'''Split voice at negative index.
+    r'''Splits voice at negative index.
     '''
 
     staff = Staff([Voice("c'8 d'8 e'8 f'8")])
@@ -1872,7 +1872,7 @@ def test_agenttools_MutationAgent_split_31():
 
 
 def test_agenttools_MutationAgent_split_32():
-    r'''Split tuplet in score and do not fracture spanners.
+    r'''Splits tuplet in score and do not fracture spanners.
     '''
 
     tuplet = Tuplet((4, 5), "c'8 c'8 c'8 c'8 c'8")
@@ -1977,7 +1977,7 @@ def test_agenttools_MutationAgent_split_32():
 
 
 def test_agenttools_MutationAgent_split_33():
-    r'''Split triplet, and fracture spanners.
+    r'''Splits triplet, and fracture spanners.
     '''
 
     voice = Voice()
@@ -2058,7 +2058,7 @@ def test_agenttools_MutationAgent_split_33():
 
 
 def test_agenttools_MutationAgent_split_34():
-    r'''Split measure with power-of-two time signature denominator.
+    r'''Splits measure with power-of-two time signature denominator.
     Fracture spanners.
     '''
 
@@ -2146,7 +2146,7 @@ def test_agenttools_MutationAgent_split_34():
 
 
 def test_agenttools_MutationAgent_split_35():
-    r'''Split measure without power-of-two time signature denominator.
+    r'''Splits measure without power-of-two time signature denominator.
     Fracture spanners.
     '''
 
@@ -2248,7 +2248,7 @@ def test_agenttools_MutationAgent_split_35():
 
 
 def test_agenttools_MutationAgent_split_36():
-    r'''Split voice outside of score.
+    r'''Splits voice outside of score.
     Fracture spanners.
     '''
 
@@ -2306,7 +2306,7 @@ def test_agenttools_MutationAgent_split_36():
 
 
 def test_agenttools_MutationAgent_split_37():
-    r'''Split measure in score and fracture spanners.
+    r'''Splits measure in score and fracture spanners.
     '''
 
     staff = Staff()
@@ -2369,8 +2369,8 @@ def test_agenttools_MutationAgent_split_37():
 
 
 def test_agenttools_MutationAgent_split_38():
-    r'''Split in-score measure with power-of-two time signature denominator.
-    Fractured spanners but do not tie over split locus.
+    r'''Splits in-score measure with power-of-two time signature denominator.
+    Fractured spanners but do not tie over splits locus.
     Measure contents necessitate denominator change.
     '''
 
@@ -2419,7 +2419,7 @@ def test_agenttools_MutationAgent_split_38():
 
 
 def test_agenttools_MutationAgent_split_39():
-    r'''Split cyclic.
+    r'''Splits cyclic.
     Leave spanner attaching to container contents untouched.
     '''
 
@@ -2536,7 +2536,7 @@ def test_agenttools_MutationAgent_split_40():
 
 
 def test_agenttools_MutationAgent_split_41():
-    r'''Split cyclic.
+    r'''Splits cyclic.
     Fracture spanners attaching directly to container.
     Leave spanner attaching to container contents untouched.
     '''
@@ -2758,7 +2758,7 @@ def test_agenttools_MutationAgent_split_44():
 
 
 def test_agenttools_MutationAgent_split_45():
-    r'''Split one time.
+    r'''Splits one time.
     Fracture spanners attaching directly to container.
     Leave spanner attaching to container contents untouched.
     '''
@@ -2821,7 +2821,7 @@ def test_agenttools_MutationAgent_split_45():
 
 
 def test_agenttools_MutationAgent_split_46():
-    r'''Split one time.
+    r'''Splits one time.
     Fracture spanners attaching directly to container.
     Leave spanner attaching to container contents untouched.
     '''
@@ -2936,7 +2936,7 @@ def test_agenttools_MutationAgent_split_47():
 
 
 def test_agenttools_MutationAgent_split_48():
-    r'''Split leaf at relative offset that is both non-assignable
+    r'''Splits leaf at relative offset that is both non-assignable
     and non-power-of-two.
     '''
 
@@ -2969,9 +2969,9 @@ def test_agenttools_MutationAgent_split_48():
 # scoretools.split() doesn't work here.
 # eventually make scoretools.split() work here.
 def test_agenttools_MutationAgent_split_49():
-    r'''Split in-score measure without power-of-two time 
+    r'''Splits in-score measure without power-of-two time 
     signature denominator. Fractured spanners but do not tie 
-    over split locus. Measure contents necessitate denominator change.
+    over splits locus. Measure contents necessitate denominator change.
     '''
     pytest.skip('TODO: make this work.')
 

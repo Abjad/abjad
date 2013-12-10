@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_agenttools_IterationAgent_by_timeline_01():
-    r'''Yield component class instances in expr sorted backward
+    r'''Yields component class instances in expr sorted backward
     by score offset stop time.
     '''
 
@@ -46,7 +46,7 @@ def test_agenttools_IterationAgent_by_timeline_01():
 
 
 def test_agenttools_IterationAgent_by_timeline_02():
-    r'''Yield component class instances in expr sorted by score offset
+    r'''Yields component class instances in expr sorted by score offset
     and score index.
     '''
 
@@ -89,7 +89,7 @@ def test_agenttools_IterationAgent_by_timeline_02():
 
 
 def test_agenttools_IterationAgent_by_timeline_03():
-    r'''Yield component class instances in expr sorted by score offset
+    r'''Yields component class instances in expr sorted by score offset
     and score index.
     '''
 
@@ -132,7 +132,7 @@ def test_agenttools_IterationAgent_by_timeline_03():
 
 
 def test_agenttools_IterationAgent_by_timeline_04():
-    r'''Yield component class instances in expr sorted by score offset
+    r'''Yields component class instances in expr sorted by score offset
     and score index.
     '''
 

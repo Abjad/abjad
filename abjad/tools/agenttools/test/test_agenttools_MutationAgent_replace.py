@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_agenttools_MutationAgent_replace_01():
-    r'''Move parentage and spanners from two old notes to five new notes.
+    r'''Moves parentage and spanners from two old notes to five new notes.
     Equivalent to staff[1:3] = new_notes.
     '''
 
@@ -28,7 +28,7 @@ def test_agenttools_MutationAgent_replace_01():
         )
 
     old_notes = staff[1:3]
-    new_notes = 5 * Note(12, (1, 16))
+    new_notes = 5 * Note("c''16")
     mutate(old_notes).replace(new_notes)
 
     assert systemtools.TestManager.compare(
@@ -50,7 +50,7 @@ def test_agenttools_MutationAgent_replace_01():
 
 
 def test_agenttools_MutationAgent_replace_02():
-    r'''Move parentage and spanners from one old note to five new notes.
+    r'''Moves parentage and spanners from one old note to five new notes.
     Equivalent to staff[:1] = new_notes.
     '''
 
@@ -75,7 +75,7 @@ def test_agenttools_MutationAgent_replace_02():
         )
 
     old_notes = staff[:1]
-    new_notes = 5 * Note(12, (1, 16))
+    new_notes = 5 * Note("c''16")
     mutate(old_notes).replace(new_notes)
 
     assert systemtools.TestManager.compare(
@@ -98,7 +98,7 @@ def test_agenttools_MutationAgent_replace_02():
 
 
 def test_agenttools_MutationAgent_replace_03():
-    r'''Move parentage and spanners from two old notes to five new notes.
+    r'''Moves parentage and spanners from two old notes to five new notes.
     Equivalent to staff[:2] = new_notes.
     '''
 
@@ -123,7 +123,7 @@ def test_agenttools_MutationAgent_replace_03():
         )
 
     old_notes = staff[:2]
-    new_notes = 5 * Note(12, (1, 16))
+    new_notes = 5 * Note("c''16")
     mutate(old_notes).replace(new_notes)
 
     assert systemtools.TestManager.compare(
@@ -145,7 +145,7 @@ def test_agenttools_MutationAgent_replace_03():
 
 
 def test_agenttools_MutationAgent_replace_04():
-    r'''Move parentage and spanners from three old notes to five new notes.
+    r'''Moves parentage and spanners from three old notes to five new notes.
     "Equivalent to staff[:3] = new_notes."
     '''
 
@@ -170,7 +170,7 @@ def test_agenttools_MutationAgent_replace_04():
         )
 
     old_notes = staff[:3] 
-    new_notes = 5 * Note(12, (1, 16))
+    new_notes = 5 * Note("c''16")
     mutate(old_notes).replace(new_notes)
 
     assert systemtools.TestManager.compare(
@@ -191,7 +191,7 @@ def test_agenttools_MutationAgent_replace_04():
 
 
 def test_agenttools_MutationAgent_replace_05():
-    r'''Move parentage and spanners from four old notes to five new notes.
+    r'''Moves parentage and spanners from four old notes to five new notes.
     Equivalent to staff[:] = new_notes.
     '''
 
@@ -216,7 +216,7 @@ def test_agenttools_MutationAgent_replace_05():
         )
 
     old_notes = staff[:]
-    new_notes = 5 * Note(12, (1, 16))
+    new_notes = 5 * Note("c''16")
     mutate(old_notes).replace(new_notes)
 
     assert systemtools.TestManager.compare(
@@ -236,7 +236,7 @@ def test_agenttools_MutationAgent_replace_05():
 
 
 def test_agenttools_MutationAgent_replace_06():
-    r'''Move parentage and spanners from container to children of container.
+    r'''Moves parentage and spanners from container to children of container.
     Equivalent to staff[:1] = staff[0][:].
     '''
 

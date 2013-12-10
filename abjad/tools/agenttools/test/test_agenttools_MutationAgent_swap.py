@@ -4,7 +4,7 @@ from abjad import *
 
 
 def test_agenttools_MutationAgent_swap_01():
-    r'''Move parentage, children and spanners from multiple containers 
+    r'''Moves parentage, children and spanners from multiple containers 
     to empty tuplet.
     '''
 
@@ -58,7 +58,7 @@ def test_agenttools_MutationAgent_swap_01():
 
 
 def test_agenttools_MutationAgent_swap_02():
-    r'''Move parentage, children and spanners from container to empty voice.
+    r'''Moves parentage, children and spanners from container to empty voice.
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
@@ -116,7 +116,7 @@ def test_agenttools_MutationAgent_swap_02():
 
 
 def test_agenttools_MutationAgent_swap_03():
-    r'''Move parentage, children and spanners from container to empty tuplet.
+    r'''Moves parentage, children and spanners from container to empty tuplet.
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
@@ -234,7 +234,7 @@ def test_agenttools_MutationAgent_swap_06():
 
 
 def test_agenttools_MutationAgent_swap_07():
-    r'''Move parentage, children and spanners from one measure to another.
+    r'''Moves parentage, children and spanners from one measure to another.
     '''
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")

@@ -3,9 +3,9 @@ from abjad import *
 
 
 def test_agenttools_MutationAgent_copy_01():
-    r'''Deep copy components in 'components'.
-    Deep copy spanners that attach to any component in 'components'.
-    Fracture spanners that attach to components not in 'components'.
+    r'''Deep copies components.
+    Deep copies spanners that attach to client.
+    Fractures spanners that attach to components not in client.
     Returns Python list of copied components.
     '''
 
@@ -169,7 +169,6 @@ def test_agenttools_MutationAgent_copy_04():
     attach(trill, voice.select_leaves())
     beam = Beam()
     attach(beam, voice[0][:] + voice[1:2] + voice[2][:])
-    scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert systemtools.TestManager.compare(
         voice,
@@ -181,12 +180,10 @@ def test_agenttools_MutationAgent_copy_04():
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8
             }
             {
-                \time 2/8
                 g'8
                 a'8 ] ) \stopTrillSpan
             }
@@ -196,7 +193,6 @@ def test_agenttools_MutationAgent_copy_04():
 
     result = mutate(voice[1:2]).copy(n=3)
     new = Voice(result)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(new)
 
     assert systemtools.TestManager.compare(
         new,
@@ -208,12 +204,10 @@ def test_agenttools_MutationAgent_copy_04():
                 f'8 ] ) \stopTrillSpan
             }
             {
-                \time 2/8
                 e'8 [ ( \startTrillSpan
                 f'8 ] ) \stopTrillSpan
             }
             {
-                \time 2/8
                 e'8 [ ( \startTrillSpan
                 f'8 ] ) \stopTrillSpan
             }
@@ -231,7 +225,6 @@ def test_agenttools_MutationAgent_copy_05():
     attach(beam, voice[:2] + voice[2][:] + voice[3][:])
     slur = Slur()
     attach(slur, voice[0][:] + voice[1][:] + voice[2:])
-    scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert systemtools.TestManager.compare(
         voice,
@@ -243,17 +236,14 @@ def test_agenttools_MutationAgent_copy_05():
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }
             {
-                \time 2/8
                 b'8
                 c''8 ] )
             }
@@ -266,7 +256,6 @@ def test_agenttools_MutationAgent_copy_05():
     new_voice = new_selection[0]
     for component in iterate(new_voice).by_class():
         detach(spannertools.Spanner, component)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert systemtools.TestManager.compare(
         new_voice,
@@ -278,17 +267,14 @@ def test_agenttools_MutationAgent_copy_05():
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }
             {
-                \time 2/8
                 b'8
                 c''8
             }
@@ -306,7 +292,6 @@ def test_agenttools_MutationAgent_copy_06():
     attach(beam, voice[:2] + voice[2][:] + voice[3][:])
     slur = Slur()
     attach(slur, voice[0][:] + voice[1][:] + voice[2:])
-    scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert systemtools.TestManager.compare(
         voice,
@@ -318,17 +303,14 @@ def test_agenttools_MutationAgent_copy_06():
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }
             {
-                \time 2/8
                 b'8
                 c''8 ] )
             }
@@ -340,7 +322,6 @@ def test_agenttools_MutationAgent_copy_06():
     new_voice = Voice(result)
     for component in iterate(new_voice).by_class():
         detach(spannertools.Spanner, component)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert systemtools.TestManager.compare(
         new_voice,
@@ -352,12 +333,10 @@ def test_agenttools_MutationAgent_copy_06():
                 f'8
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }
             {
-                \time 2/8
                 b'8
                 c''8
             }
@@ -376,7 +355,6 @@ def test_agenttools_MutationAgent_copy_07():
     attach(beam, voice[:2] + voice[2][:] + voice[3][:])
     slur = Slur()
     attach(slur, voice[0][:] + voice[1][:] + voice[2:])
-    scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert systemtools.TestManager.compare(
         voice,
@@ -388,17 +366,14 @@ def test_agenttools_MutationAgent_copy_07():
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }
             {
-                \time 2/8
                 b'8
                 c''8 ] )
             }
@@ -410,7 +385,6 @@ def test_agenttools_MutationAgent_copy_07():
     new_voice = Voice(result)
     for component in iterate(new_voice).by_class():
         detach(spannertools.Spanner, component)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert systemtools.TestManager.compare(
         new_voice,
@@ -437,7 +411,6 @@ def test_agenttools_MutationAgent_copy_08():
     attach(beam, voice[:2] + voice[2][:] + voice[3][:])
     slur = Slur()
     attach(slur, voice[0][:] + voice[1][:] + voice[2:])
-    scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert systemtools.TestManager.compare(
         voice,
@@ -449,17 +422,14 @@ def test_agenttools_MutationAgent_copy_08():
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }
             {
-                \time 2/8
                 b'8
                 c''8 ] )
             }
@@ -471,7 +441,6 @@ def test_agenttools_MutationAgent_copy_08():
     new_voice = Voice(result)
     for component in iterate(new_voice).by_class():
         detach(spannertools.Spanner, component)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert systemtools.TestManager.compare(
         new_voice,
@@ -483,7 +452,6 @@ def test_agenttools_MutationAgent_copy_08():
                 a'8
             }
             {
-                \time 2/8
                 b'8
                 c''8
             }
@@ -503,7 +471,6 @@ def test_agenttools_MutationAgent_copy_09():
     attach(beam, voice[:2] + voice[2][:] + voice[3][:])
     slur = Slur()
     attach(slur, voice[0][:] + voice[1][:] + voice[2:])
-    scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert systemtools.TestManager.compare(
         voice,
@@ -515,17 +482,14 @@ def test_agenttools_MutationAgent_copy_09():
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }
             {
-                \time 2/8
                 b'8
                 c''8 ] )
             }
@@ -537,7 +501,6 @@ def test_agenttools_MutationAgent_copy_09():
     new_voice = Voice(result)
     for component in iterate(new_voice).by_class():
         detach(spannertools.Spanner, component)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert systemtools.TestManager.compare(
         new_voice,
@@ -549,27 +512,22 @@ def test_agenttools_MutationAgent_copy_09():
                 a'8
             }
             {
-                \time 2/8
                 b'8
                 c''8
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }
             {
-                \time 2/8
                 b'8
                 c''8
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }
             {
-                \time 2/8
                 b'8
                 c''8
             }
@@ -583,7 +541,7 @@ def test_agenttools_MutationAgent_copy_10():
     r'''Copies hairpin.
     '''
 
-    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     crescendo = Crescendo()
     attach(crescendo, staff[:4])
 
@@ -630,7 +588,7 @@ def test_agenttools_MutationAgent_copy_10():
 
 def test_agenttools_MutationAgent_copy_11():
     r'''Copy consecutive notes across tuplet boundary in staff.
-    Include enclosing containers.
+    Includes enclosing containers.
     '''
 
     staff = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
@@ -678,7 +636,7 @@ def test_agenttools_MutationAgent_copy_11():
 
 def test_agenttools_MutationAgent_copy_12():
     r'''Copy consecutive notes across tuplet boundary in voice and staff.
-    Include enclosing containers.
+    Includes enclosing containers.
     '''
 
     voice = Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
@@ -731,7 +689,7 @@ def test_agenttools_MutationAgent_copy_12():
 
 def test_agenttools_MutationAgent_copy_13():
     r'''Works fine on voices nested inside simultaneous context.
-    Include enclosing containers.
+    Includes enclosing containers.
     '''
 
     voice_1 = Voice("c'8 d'8 e'8 f'8")
@@ -778,7 +736,7 @@ def test_agenttools_MutationAgent_copy_13():
 
 def test_agenttools_MutationAgent_copy_14():
     r'''Copy consecutive notes in measure with power-of-two denominator.
-    Include enclosing containers.
+    Includes enclosing containers.
     '''
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
@@ -801,7 +759,7 @@ def test_agenttools_MutationAgent_copy_14():
 
 def test_agenttools_MutationAgent_copy_15():
     r'''Copy consecutive notes in staff and score.
-    Include enclosing containers.
+    Includes enclosing containers.
     '''
 
     score = Score([Staff("c'8 d'8 e'8 f'8")])
@@ -826,7 +784,7 @@ def test_agenttools_MutationAgent_copy_15():
 def test_agenttools_MutationAgent_copy_16():
     r'''Copy consecutive leaves from tuplet in measure with power-of-two 
     denominator. Measure without power-of-two denominator results.
-    Include enclosing containers.
+    Includes enclosing containers.
     '''
 
     tuplet = scoretools.FixedDurationTuplet(Duration(4, 8), [])
@@ -875,7 +833,7 @@ def test_agenttools_MutationAgent_copy_16():
 def test_agenttools_MutationAgent_copy_17():
     r'''Copy consecutive leaves from tuplet in measure and voice.
     Measure without power-of-two time signature denominator results.
-    Include enclosing containers.
+    Includes enclosing containers.
     '''
 
     tuplet = scoretools.FixedDurationTuplet(Duration(4, 8), [])
@@ -927,9 +885,8 @@ def test_agenttools_MutationAgent_copy_17():
 
 def test_agenttools_MutationAgent_copy_18():
     r'''Measures shrink when copying a partial tuplet.
-
     Note that test only works with fixed-duration tuplets.
-    Include enclosing containers.
+    Includes enclosing containers.
     '''
 
     tuplet_1 = scoretools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
@@ -984,7 +941,7 @@ def test_agenttools_MutationAgent_copy_18():
 
 def test_agenttools_MutationAgent_copy_19():
     r'''Copy consecutive leaves across measure boundary.
-    Include enclosing containers.
+    Includes enclosing containers.
     '''
 
     measure_1 = Measure((3, 8), "c'8 d'8 e'8")
@@ -1035,7 +992,7 @@ def test_agenttools_MutationAgent_copy_19():
 def test_agenttools_MutationAgent_copy_20():
     r'''Copy consecutive leaves from tuplet in staff;
     pass start and stop indices local to tuplet.
-    Include enclosing containers.
+    Includes enclosing containers.
     '''
 
     tuplet_1 = scoretools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
@@ -1082,7 +1039,7 @@ def test_agenttools_MutationAgent_copy_20():
 def test_agenttools_MutationAgent_copy_21():
     r'''Copy consecutive leaves from measure in staff;
     pass start and stop indices local to measure.
-    Include enclosing containers.
+    Includes enclosing containers.
     '''
 
     measure_1 = Measure((3, 8), "c'8 d'8 e'8")
@@ -1131,7 +1088,7 @@ def test_agenttools_MutationAgent_copy_21():
 def test_agenttools_MutationAgent_copy_22():
     r'''Copy consecutive leaves from in-staff measure without 
     power-of-two denominator. Pass start and stop indices local to measure.
-    Include enclosing containers.
+    Includes enclosing containers.
     '''
 
     measure_1 = Measure((3, 9), "c'8 d'8 e'8")

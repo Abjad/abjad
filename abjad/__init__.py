@@ -65,6 +65,7 @@ from abjad.tools.spannertools import Decrescendo
 from abjad.tools.spannertools import Glissando
 from abjad.tools.spannertools import Hairpin
 from abjad.tools.spannertools import Slur
+from abjad.tools.spannertools import Tie
 from fractions import Fraction
 
 # import some frequently used functions for direct user access

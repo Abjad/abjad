@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_agenttools_MutationAgent_scale_01():
-    r'''Scale leaves by dot-generating multiplier.
+    r'''Scales leaves by dot-generating multiplier.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
@@ -25,7 +25,7 @@ def test_agenttools_MutationAgent_scale_01():
 
 
 def test_agenttools_MutationAgent_scale_02():
-    r'''Scale leaves by tie-generating multiplier.
+    r'''Scales leaves by tie-generating multiplier.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
@@ -51,7 +51,7 @@ def test_agenttools_MutationAgent_scale_02():
 
 
 def test_agenttools_MutationAgent_scale_03():
-    r'''Scale leaves by tuplet-generating multiplier.
+    r'''Scales leaves by tuplet-generating multiplier.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
@@ -81,7 +81,7 @@ def test_agenttools_MutationAgent_scale_03():
 
 
 def test_agenttools_MutationAgent_scale_04():
-    r'''Scale leaves by tie- and tuplet-generating multiplier.
+    r'''Scales leaves by tie- and tuplet-generating multiplier.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
@@ -115,7 +115,7 @@ def test_agenttools_MutationAgent_scale_04():
 
 
 def test_agenttools_MutationAgent_scale_05():
-    r'''Scale mixed notes and tuplets.
+    r'''Scales mixed notes and tuplets.
     '''
 
     voice = Voice("c'8.")
@@ -199,7 +199,7 @@ def test_agenttools_MutationAgent_scale_06():
 
 
 def test_agenttools_MutationAgent_scale_07():
-    r'''Double measures.
+    r'''Doubles measures.
     '''
 
     voice = Voice()
@@ -246,7 +246,7 @@ def test_agenttools_MutationAgent_scale_07():
 
 
 def test_agenttools_MutationAgent_scale_08():
-    r'''Scale measures by 5/4.
+    r'''Scales measures by 5/4.
     '''
 
     voice = Voice()
