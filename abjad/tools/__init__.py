@@ -14,8 +14,7 @@ __builtins__['Infinity'] = mathtools.Infinity()
 __builtins__['NegativeInfinity'] = mathtools.NegativeInfinity()
 
 systemtools.ImportManager.import_structured_package(
-	__path__[0],
-	globals(),
+    __path__[0],
+    globals(),
     delete_systemtools=False,
-	package_root_name='abjad',
     )
