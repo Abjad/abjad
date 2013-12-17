@@ -1714,7 +1714,7 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet
-                Tuplet((2, 3), "c'8 d'8 e'8")
+                Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
 
             ::
 

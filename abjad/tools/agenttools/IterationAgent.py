@@ -1102,7 +1102,7 @@ class IterationAgent(abctools.AbjadObject):
             ...
             LogicalTie(Note("c'8"), Note("c'32"))
             LogicalTie(Note("d'8"), Note("d'32"))
-            Tuplet((2, 3), "e'8 f'8 g'8")
+            Tuplet(Multiplier(2, 3), "e'8 f'8 g'8")
             LogicalTie(Note("a'8"), Note("a'32"))
             LogicalTie(Note("b'8"), Note("b'32"))
 

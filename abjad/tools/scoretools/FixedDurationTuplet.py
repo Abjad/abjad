@@ -68,7 +68,7 @@ class FixedDurationTuplet(Tuplet):
         return (self.target_duration, )
 
     def __repr__(self):
-        '''Interpreter representation of fixd-duration tuplet.
+        '''Interpreter representation of fixed-duration tuplet.
 
         Returns string.
         '''
@@ -224,7 +224,7 @@ class FixedDurationTuplet(Tuplet):
             ::
 
                 >>> new_tuplet
-                Tuplet((2, 3), "c'8 d'8 e'8")
+                Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
 
         Returns new tuplet.
         '''
