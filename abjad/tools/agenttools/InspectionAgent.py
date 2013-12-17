@@ -287,7 +287,7 @@ class InspectionAgent(abctools.AbjadObject):
             )
 
     def get_leaf(self, n=0):
-        r'''Gets leaf `n` **in logical voice**.
+        r'''Gets leaf `n` in logical voice.
 
         ..  container:: example
 

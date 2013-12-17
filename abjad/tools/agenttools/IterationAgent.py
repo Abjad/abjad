@@ -309,7 +309,7 @@ class IterationAgent(abctools.AbjadObject):
         '''
         prototype = prototype or scoretools.Leaf
         if self._client._grace is not None:
-            for m in self._client.grace:
+            for m in self._client._grace:
                 for x in iterate(m).by_components_and_grace_containers(
                     prototype,
                     ):
@@ -317,7 +317,7 @@ class IterationAgent(abctools.AbjadObject):
             if isinstance(self._client, prototype):
                 yield self._client
         if self._client._after_grace is not None:
-            for m in self._client.after_grace:
+            for m in self._client._after_grace:
                 for x in iterate(m).by_components_and_grace_containers(
                     prototype,
                     ):

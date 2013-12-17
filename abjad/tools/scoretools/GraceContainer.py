@@ -165,32 +165,30 @@ class GraceContainer(Container):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> scoretools.GraceContainer(
-            ...     [Note("cs'16")], kind = 'grace')(staff[1])
+            >>> note = Note("cs'16")
+            >>> grace = scoretools.GraceContainer([note], kind='grace')
+            >>> grace(staff[1])
             Note("d'8")
-            >>> grace_container = staff[1].grace
-            >>> grace_container.kind
+            >>> grace.kind
             'grace'
-
-        Returns string.
 
         Sets `kind` of grace container:
 
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> scoretools.GraceContainer(
-            ...     [Note("cs'16")], kind = 'grace')(staff[1])
+            >>> note = Note("cs'16")
+            >>> grace = scoretools.GraceContainer([note], kind='grace')
+            >>> grace(staff[1])
             Note("d'8")
-            >>> grace_container = staff[1].grace
-            >>> grace_container.kind = 'acciaccatura'
-            >>> grace_container.kind
+            >>> grace.kind = 'acciaccatura'
+            >>> grace.kind
             'acciaccatura'
-
-        Sets string.
 
         Valid options include ``'after'``, ``'grace'``, 
         ``'acciaccatura'``, ``'appoggiatura'``.
+
+        Returns string.
         '''
         return self._kind
 
