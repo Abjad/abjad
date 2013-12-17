@@ -393,6 +393,38 @@ class InspectionAgent(abctools.AbjadObject):
             include_self=include_self,
             )
 
+    def get_sounding_pitch(self):
+        r'''Gets sounding pitch of client.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("d''8 e''8 f''8 g''8")
+                >>> piccolo = instrumenttools.Piccolo()
+                >>> attach(piccolo, staff)
+                >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
+                ...     staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { Piccolo }
+                    \set Staff.shortInstrumentName = \markup { Picc. }
+                    d'8
+                    e'8
+                    f'8
+                    g'8
+                }
+                >>> inspect(staff[0]).get_sounding_pitch()
+                NamedPitch("d''")
+
+        Returns named pitch.
+        '''
+        return self._client._get_sounding_pitch()
+
     def get_sounding_pitches(self):
         r"""Gets sounding pitches of client.
 

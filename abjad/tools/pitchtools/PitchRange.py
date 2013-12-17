@@ -150,7 +150,8 @@ class PitchRange(AbjadObject):
         elif isinstance(arg, pitchtools.NamedPitch):
             return self._contains_pitch(arg)
         elif isinstance(arg, scoretools.Note):
-            return self._contains_pitch(arg.sounding_pitch)
+            sounding_pitch = inspect(arg).get_sounding_pitch()
+            return self._contains_pitch(sounding_pitch)
         elif isinstance(arg, scoretools.Chord):
             sounding_pitches = inspect(arg).get_sounding_pitches()
             return all(self._contains_pitch(x) for x in sounding_pitches)

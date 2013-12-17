@@ -147,6 +147,22 @@ class Note(Leaf):
             markup(bass)
         return treble, bass
 
+    def _get_sounding_pitch(self):
+        from abjad.tools import instrumenttools
+        from abjad.tools import pitchtools
+        if self._has_effective_indicator(indicatortools.IsAtSoundingPitch):
+            return self.written_pitch
+        else:
+            instrument = self._get_effective(instrumenttools.Instrument)
+            if instrument:
+                sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            else:
+                sounding_pitch = pitchtools.NamedPitch('C4')
+            t_n = pitchtools.NamedPitch('C4') - sounding_pitch
+            sounding_pitch = pitchtools.transpose_pitch_carrier_by_interval(
+                    self.written_pitch, t_n)
+            return sounding_pitch
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -188,93 +204,6 @@ class Note(Leaf):
         else:
             note_head = NoteHead(client=self, written_pitch=arg)
             self._note_head = note_head
-
-    @property
-    def sounding_pitch(self):
-        r'''Gets and sets sounding pitch of note.
-
-        ..  container:: example
-
-            Gets sounding pitch of note:
-
-            ::
-
-                >>> staff = Staff("d''8 e''8 f''8 g''8")
-                >>> piccolo = instrumenttools.Piccolo()
-                >>> attach(piccolo, staff)
-                >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
-                ...     staff)
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print format(staff)
-                \new Staff {
-                    \set Staff.instrumentName = \markup { Piccolo }
-                    \set Staff.shortInstrumentName = \markup { Picc. }
-                    d'8
-                    e'8
-                    f'8
-                    g'8
-                }
-                >>> staff[0].sounding_pitch
-                NamedPitch("d''")
-
-        ..  container:: example
-
-            Sets sounding pitch of note:
-
-            ::
-
-                >>> staff[0].sounding_pitch = "dqs''"
-                >>> print format(staff)
-                \new Staff {
-                    \set Staff.instrumentName = \markup { Piccolo }
-                    \set Staff.shortInstrumentName = \markup { Picc. }
-                    dqs'8
-                    e'8
-                    f'8
-                    g'8
-                }
-
-        Returns named pitch.
-        '''
-        from abjad.tools import instrumenttools
-        from abjad.tools import pitchtools
-        if self._has_effective_indicator(indicatortools.IsAtSoundingPitch):
-            return self.written_pitch
-        else:
-            instrument = self._get_effective(
-                instrumenttools.Instrument)
-            if instrument:
-                sounding_pitch = instrument.sounding_pitch_of_written_middle_c
-            else:
-                sounding_pitch = pitchtools.NamedPitch('C4')
-            t_n = pitchtools.NamedPitch('C4') - sounding_pitch
-            sounding_pitch = \
-                pitchtools.transpose_pitch_carrier_by_interval(
-                    self.written_pitch, t_n)
-            return sounding_pitch
-
-    @sounding_pitch.setter
-    def sounding_pitch(self, arg):
-        from abjad.tools import instrumenttools
-        from abjad.tools import pitchtools
-        pitch = pitchtools.NamedPitch(arg)
-        if self._has_effective_indicator(indicatortools.IsAtSoundingPitch):
-            self.written_pitch = pitch
-        else:
-            instrument = self._get_effective(
-                instrumenttools.Instrument)
-            if instrument:
-                sounding_pitch = instrument.sounding_pitch_of_written_middle_c
-            else:
-                sounding_pitch = pitchtools.NamedPitch('C4')
-            t_n = pitchtools.NamedPitch('C4') - sounding_pitch
-            t_n *= -1
-            self.written_pitch = \
-                pitchtools.transpose_pitch_carrier_by_interval(
-                    pitch, t_n)
 
     @property
     def written_duration(self):
