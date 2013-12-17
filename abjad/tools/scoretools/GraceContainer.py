@@ -45,10 +45,9 @@ class GraceContainer(Container):
 
     ::
 
-        >>> after_grace_notes = [Note("e'16"), Note("f'16")]
-        >>> scoretools.GraceContainer(
-        ...     after_grace_notes, kind='after')(voice[1])
-        Note("d'8")
+        >>> notes = [Note("e'16"), Note("f'16")]
+        >>> after_grace = scoretools.GraceContainer(notes, kind='after')
+        >>> attach(after_grace, voice[1])
         >>> show(voice) # doctest: +SKIP
 
     ..  doctest::
@@ -167,8 +166,7 @@ class GraceContainer(Container):
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> note = Note("cs'16")
             >>> grace = scoretools.GraceContainer([note], kind='grace')
-            >>> grace(staff[1])
-            Note("d'8")
+            >>> attach(grace, staff[1])
             >>> grace.kind
             'grace'
 
@@ -179,8 +177,7 @@ class GraceContainer(Container):
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> note = Note("cs'16")
             >>> grace = scoretools.GraceContainer([note], kind='grace')
-            >>> grace(staff[1])
-            Note("d'8")
+            >>> attach(grace, staff[1])
             >>> grace.kind = 'acciaccatura'
             >>> grace.kind
             'acciaccatura'

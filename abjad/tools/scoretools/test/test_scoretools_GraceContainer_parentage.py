@@ -15,7 +15,8 @@ def test_scoretools_GraceContainer_parentage_02():
     '''
 
     note = Note(1, (1, 4))
-    scoretools.GraceContainer()(note)
+    grace_container = scoretools.GraceContainer()
+    attach(grace_container, note)
     grace_container = inspect(note).get_grace_containers()[0]
     assert isinstance(grace_container, scoretools.GraceContainer)
     assert grace_container._carrier is note
@@ -29,9 +30,9 @@ def test_scoretools_GraceContainer_parentage_03():
 
     note = Note(1, (1, 4))
     after_grace = scoretools.GraceContainer([Note("e'16")], kind='after')
-    after_grace(note)
+    attach(after_grace, note)
     grace = scoretools.GraceContainer([Note("e'16")], kind='grace')
-    grace(note)
+    attach(grace, note)
     assert after_grace._carrier is note
     assert grace._carrier is note
     after_grace[:] = []

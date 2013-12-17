@@ -3,8 +3,8 @@ from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 
 
 class CollapsingGraceHandler(GraceHandler):
-    r'''A GraceHandler which collapses pitch information into a single Chord,
-    rather than creating a GraceContainer.
+    r'''A GraceHandler which collapses pitch information into a single chord
+    rather than creating a grace container.
     '''
 
     ### SPECIAL METHODS ###

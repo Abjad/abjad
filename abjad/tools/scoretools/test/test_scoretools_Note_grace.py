@@ -7,14 +7,8 @@ def test_scoretools_Note_grace_01():
     '''
 
     note = Note("c'4")
-    scoretools.GraceContainer([Note(2, (1, 16))])(note)
-
-    '''
-    \grace {
-        d'16
-    }
-    c'4
-    '''
+    grace_container = scoretools.GraceContainer([Note(2, (1, 16))])
+    attach(grace_container, note)
 
     assert systemtools.TestManager.compare(
         note,
@@ -32,16 +26,8 @@ def test_scoretools_Note_grace_02():
     '''
 
     note = Note("c'4")
-    scoretools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])(note)
-
-    '''
-    \grace {
-        c'16
-        d'16
-        e'16
-    }
-    c'4
-    '''
+    grace_container = scoretools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
+    attach(grace_container, note)
 
     assert systemtools.TestManager.compare(
         note,
@@ -61,14 +47,8 @@ def test_scoretools_Note_grace_03():
     '''
 
     note = Note("c'4")
-    scoretools.GraceContainer([Note(2, (1, 16))], kind = 'appoggiatura')(note)
-
-    r'''
-    \appoggiatura {
-        d'16
-    }
-    c'4
-    '''
+    grace_container = scoretools.GraceContainer([Note(2, (1, 16))], kind='appoggiatura')
+    attach(grace_container, note)
 
     assert systemtools.TestManager.compare(
         note,
@@ -86,7 +66,7 @@ def test_scoretools_Note_grace_04():
     '''
 
     note = Note("c'4")
-    scoretools.GraceContainer([Note(2, (1, 16))], kind = 'acciaccatura')(note)
+    scoretools.GraceContainer([Note(2, (1, 16))], kind='acciaccatura')(note)
 
     r'''
     \acciaccatura {
@@ -111,7 +91,7 @@ def test_scoretools_Note_grace_05():
     '''
 
     note = Note("c'4")
-    scoretools.GraceContainer([Note(2, (1, 16))], kind = 'after')(note)
+    scoretools.GraceContainer([Note(2, (1, 16))], kind='after')(note)
 
     r'''
     \afterGrace
@@ -138,16 +118,17 @@ def test_scoretools_Note_grace_06():
     '''
 
     note = Note("c'4")
-    scoretools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))], kind = 'after')(note)
+    scoretools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))], kind='after')(note)
 
-    r'''
-    \afterGrace
-    c'4
-    {
-        c'16
-        d'16
-        e'16
-    }
-    '''
-
-    assert format(note) =="\\afterGrace\nc'4\n{\n\tc'16\n\td'16\n\te'16\n}"
+    assert systemtools.TestManager.compare(
+        note,
+        r'''
+        \afterGrace
+        c'4
+        {
+            c'16
+            d'16
+            e'16
+        }
+        '''
+        )

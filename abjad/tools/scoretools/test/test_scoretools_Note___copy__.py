@@ -51,8 +51,7 @@ def test_scoretools_Note___copy___04():
     '''
 
     note_1 = Note("c'4")
-    grace_container_1 = scoretools.GraceContainer(
-        [Note("d'32")], kind='after')
+    grace_container_1 = scoretools.GraceContainer([Note("d'32")], kind='after')
     attach(grace_container_1, note_1)
 
     assert systemtools.TestManager.compare(
