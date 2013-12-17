@@ -184,6 +184,24 @@ class Chord(Leaf):
 
         return treble, bass
 
+    def _get_sounding_pitches(self):
+        from abjad.tools import instrumenttools
+        from abjad.tools import pitchtools
+        if self._has_effective_indicator(indicatortools.IsAtSoundingPitch):
+            return self.written_pitches
+        else:
+            instrument = self._get_effective(
+                instrumenttools.Instrument)
+            if instrument:
+                sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            else:
+                sounding_pitch = pitchtools.NamedPitch('C4')
+            interval = pitchtools.NamedPitch('C4') - sounding_pitch
+            sounding_pitches = [
+                pitchtools.transpose_pitch_carrier_by_interval(
+                pitch, interval) for pitch in self.written_pitches]
+            return tuple(sounding_pitches)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -270,55 +288,6 @@ class Chord(Leaf):
         if isinstance(note_heads, str):
             note_heads = note_heads.split()
         self.note_heads.extend(note_heads)
-
-    @property
-    def sounding_pitches(self):
-        r"""Sounding pitches in chord.
-
-        ..  container:: example
-
-            ::
-
-                >>> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
-                >>> glockenspiel = instrumenttools.Glockenspiel()
-                >>> attach(glockenspiel, staff)
-                >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
-                ...     staff)
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print format(staff)
-                \new Staff {
-                    \set Staff.instrumentName = \markup { Glockenspiel }
-                    \set Staff.shortInstrumentName = \markup { Gkspl. }
-                    <c' e'>4
-                    <d' fs'>4
-                }
-
-            ::
-
-                >>> staff[0].sounding_pitches
-                (NamedPitch("c'''"), NamedPitch("e'''"))
-
-        Returns tuple.
-        """
-        from abjad.tools import instrumenttools
-        from abjad.tools import pitchtools
-        if self._has_effective_indicator(indicatortools.IsAtSoundingPitch):
-            return self.written_pitches
-        else:
-            instrument = self._get_effective(
-                instrumenttools.Instrument)
-            if instrument:
-                sounding_pitch = instrument.sounding_pitch_of_written_middle_c
-            else:
-                sounding_pitch = pitchtools.NamedPitch('C4')
-            interval = pitchtools.NamedPitch('C4') - sounding_pitch
-            sounding_pitches = [
-                pitchtools.transpose_pitch_carrier_by_interval(
-                pitch, interval) for pitch in self.written_pitches]
-            return tuple(sounding_pitches)
 
     @property
     def written_duration(self):

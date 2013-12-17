@@ -393,6 +393,39 @@ class InspectionAgent(abctools.AbjadObject):
             include_self=include_self,
             )
 
+    def get_sounding_pitches(self):
+        r"""Gets sounding pitches of client.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
+                >>> glockenspiel = instrumenttools.Glockenspiel()
+                >>> attach(glockenspiel, staff)
+                >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
+                ...     staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { Glockenspiel }
+                    \set Staff.shortInstrumentName = \markup { Gkspl. }
+                    <c' e'>4
+                    <d' fs'>4
+                }
+
+            ::
+
+                >>> inspect(staff[0]).get_sounding_pitches()
+                (NamedPitch("c'''"), NamedPitch("e'''"))
+
+        Returns tuple.
+        """
+        return self._client._get_sounding_pitches()
+
     def get_spanner(
         self,
         prototype=None,

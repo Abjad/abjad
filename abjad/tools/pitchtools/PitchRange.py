@@ -140,6 +140,7 @@ class PitchRange(AbjadObject):
         '''
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
+        from abjad.tools.agenttools.InspectionAgent import inspect
         if hasattr(arg, '_has_effective_indicator') and \
             arg._has_effective_indicator(indicatortools.IsUnpitched):
             return True
@@ -151,7 +152,8 @@ class PitchRange(AbjadObject):
         elif isinstance(arg, scoretools.Note):
             return self._contains_pitch(arg.sounding_pitch)
         elif isinstance(arg, scoretools.Chord):
-            return all(self._contains_pitch(x) for x in arg.sounding_pitches)
+            sounding_pitches = inspect(arg).get_sounding_pitches()
+            return all(self._contains_pitch(x) for x in sounding_pitches)
         elif isinstance(arg, (scoretools.Rest, scoretools.Skip)):
             return True
         elif isinstance(arg, scoretools.Container):
