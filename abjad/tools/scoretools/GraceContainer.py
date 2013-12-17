@@ -111,7 +111,7 @@ class GraceContainer(Container):
         return arg
 
     def __repr__(self):
-        r'''Interpreter representation of grace container.
+        r'''Gets interpreter representation of grace container.
 
         Returns string.
         '''

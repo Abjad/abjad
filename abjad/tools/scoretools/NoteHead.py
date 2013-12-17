@@ -119,7 +119,7 @@ class NoteHead(AbjadObject):
         return self.written_pitch < expr.written_pitch
 
     def __repr__(self):
-        r'''Interpreter representation of note-head.
+        r'''Gets interpreter representation of note-head.
 
         ::
 

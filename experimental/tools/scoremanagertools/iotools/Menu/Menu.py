@@ -47,7 +47,7 @@ class Menu(ScoreManagerObject):
         return len(self.menu_sections)
 
     def __repr__(self):
-        r'''Interpreter representation of menu.
+        r'''Gets interpreter representation of menu.
 
         Returns string.
         '''

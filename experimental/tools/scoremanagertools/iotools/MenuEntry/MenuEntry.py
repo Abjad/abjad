@@ -47,7 +47,7 @@ class MenuEntry(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Interpreter representation of menu entry.
+        r'''Gets interpreter representation of menu entry.
 
         Returns string.
         '''

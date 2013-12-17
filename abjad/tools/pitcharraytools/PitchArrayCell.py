@@ -100,7 +100,7 @@ class PitchArrayCell(AbjadObject):
         return vars(self)
 
     def __repr__(self):
-        r'''Interpreter representation of pitch array cell.
+        r'''Gets interpreter representation of pitch array cell.
 
         Returns string.
         '''

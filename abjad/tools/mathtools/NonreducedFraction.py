@@ -355,7 +355,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         return self._fraction_with_denominator(fraction, max(denominators))
 
     def __repr__(self):
-        r'''Interpreter representation of nonreduced fraction.
+        r'''Gets interpreter representation of nonreduced fraction.
 
         ::
 

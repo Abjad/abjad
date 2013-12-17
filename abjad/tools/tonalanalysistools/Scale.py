@@ -62,7 +62,7 @@ class Scale(PitchClassSegment):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Interpreter representation of scale.
+        r'''Gets interpreter representation of scale.
 
         Returns string.
         '''

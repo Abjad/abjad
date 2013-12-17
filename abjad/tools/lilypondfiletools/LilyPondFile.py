@@ -107,7 +107,7 @@ class LilyPondFile(AbjadObject, list):
         return self
 
     def __repr__(self):
-        r'''Interpreter representation of LilyPond file.
+        r'''Gets interpreter representation of LilyPond file.
 
         Returns string.
         '''

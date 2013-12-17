@@ -277,7 +277,7 @@ class PayloadTree(AbjadObject):
         return len(self._children)
 
     def __repr__(self):
-        r'''Interpreter representation of payload tree.
+        r'''Gets interpreter representation of payload tree.
 
         ::
 

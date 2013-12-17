@@ -25,7 +25,7 @@ class AttributedBlock(list, AbjadObject):
         return str(self)
 
     def __repr__(self):
-        r'''Interpreter representation of attributed block.
+        r'''Gets interpreter representation of attributed block.
 
         Returns string.
         '''

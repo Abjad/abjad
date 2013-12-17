@@ -68,7 +68,7 @@ class FixedDurationTuplet(Tuplet):
         return (self.target_duration, )
 
     def __repr__(self):
-        '''Interpreter representation of fixed-duration tuplet.
+        '''Gets interpreter representation of fixed-duration tuplet.
 
         Returns string.
         '''

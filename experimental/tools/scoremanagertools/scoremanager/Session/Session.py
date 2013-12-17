@@ -81,7 +81,7 @@ class Session(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Interpreter representation of session.
+        r'''Gets interpreter representation of session.
 
         Returns string.
         '''

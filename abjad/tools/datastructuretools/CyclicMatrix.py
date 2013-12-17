@@ -114,7 +114,7 @@ class CyclicMatrix(Matrix):
         return self.rows[i]
 
     def __repr__(self):
-        r'''Interpreter representation of cyclic matrix.
+        r'''Gets interpreter representation of cyclic matrix.
 
         Returns string.
         '''

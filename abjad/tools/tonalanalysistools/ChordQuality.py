@@ -64,7 +64,7 @@ class ChordQuality(AbjadObject):
         return not self == arg
 
     def __repr__(self):
-        r'''Interpreter representation of chord quality.
+        r'''Gets interpreter representation of chord quality.
 
         Returns string.
         '''

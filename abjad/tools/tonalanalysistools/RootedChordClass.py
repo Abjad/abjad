@@ -107,7 +107,7 @@ class RootedChordClass(PitchClassSet):
         return not self == arg
 
     def __repr__(self):
-        r'''Interpreter representation of rooted chord-class.
+        r'''Gets interpreter representation of rooted chord-class.
 
         Returns string.
         '''

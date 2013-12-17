@@ -38,7 +38,7 @@ class LilyPondVersionToken(AbjadObject):
         return str(self)
 
     def __repr__(self):
-        r'''Interpreter representation of LilyPond version token.
+        r'''Gets interpreter representation of LilyPond version token.
 
         Returns string.
         '''

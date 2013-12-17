@@ -114,7 +114,7 @@ class Tuplet(Container):
         return (self.multiplier, )
 
     def __repr__(self):
-        '''Interpreter representation of tuplet.
+        '''Gets interpreter representation of tuplet.
 
         Returns string.
         '''

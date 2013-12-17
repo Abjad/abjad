@@ -121,7 +121,7 @@ class VerticalMoment(SimultaneousSelection):
         return not self == expr
 
     def __repr__(self):
-        r'''Interpreter representation of vertical moment.
+        r'''Gets interpreter representation of vertical moment.
 
         Returns string.
         '''

@@ -97,7 +97,7 @@ class RomanNumeral(AbjadObject):
         return not self == arg
 
     def __repr__(self):
-        r'''Interpreter representation of `arg`.
+        r'''Gets interpreter representation of `arg`.
 
         Returns string.
         '''

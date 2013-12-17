@@ -46,7 +46,7 @@ class FixedDurationContainer(Container):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Interpreter representation of fixed-duration container.
+        r'''Gets interpreter representation of fixed-duration container.
 
         Returns string.
         '''

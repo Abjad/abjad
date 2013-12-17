@@ -40,7 +40,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         return len(self.prompts)
         
     def __repr__(self):
-        r'''Interpreter representation of user input getter.
+        r'''Gets interpreter representation of user input getter.
 
         Returns string.
         '''
