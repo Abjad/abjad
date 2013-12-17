@@ -66,7 +66,7 @@ def test_scoretools_Note___copy___04():
         )
 
     note_2 = copy.copy(note_1)
-    grace_container_2 = inspect(note_2).get_grace_containers()[0]
+    grace_container_2 = inspect(note_2).get_grace_container()
 
     assert systemtools.TestManager.compare(
         note_2,

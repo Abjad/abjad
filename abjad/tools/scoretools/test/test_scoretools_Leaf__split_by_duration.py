@@ -435,7 +435,7 @@ def test_scoretools_Leaf__split_by_duration_17():
     halves = note._split_by_duration(Duration(1, 8))
 
     assert not hasattr(halves[0][0], 'after_grace')
-    after_grace = inspect(halves[1][0]).get_grace_containers()[0]
+    after_grace = inspect(halves[1][0]).get_grace_container()
     assert len(after_grace) == 1
 
 
@@ -452,7 +452,7 @@ def test_scoretools_Leaf__split_by_duration_18():
     assert getattr(halves[0][0], 'after_grace', None) is None
     assert getattr(halves[0][1], 'after_grace', None) is None
     assert len(halves[1]) == 1
-    after_grace = inspect(halves[1][0]).get_grace_containers()[0]
+    after_grace = inspect(halves[1][0]).get_grace_container()
     assert len(after_grace) == 1
 
 
@@ -467,6 +467,6 @@ def test_scoretools_Leaf__split_by_duration_19():
 
     assert len(halves[0]) == 1
     assert len(halves[1]) == 1
-    grace_container = inspect(halves[0][0]).get_grace_containers()[0]
+    grace_container = inspect(halves[0][0]).get_grace_container()
     assert len(grace_container) == 1
     assert not hasattr(halves[1][0], 'grace') is None

@@ -180,6 +180,31 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         return self._client._get_effective_staff()
 
+    def get_grace_container(
+        self,
+        kind=None,
+        ):
+        r'''Gets exactly one grace container of `kind` attached to client.
+
+        Raises error when no grace container of `kind` attaches to client.
+
+        Raises error when more than one grace container of `kind` attaches
+        to client.
+
+        Returns grace container.
+        '''
+        grace_containers = self.get_grace_containers(kind=kind)
+        if not grace_containers:
+            message = 'no grace containers of {!r} attached.'
+            message = message.format(kind)
+            raise Exception(message)
+        if 1 < len(grace_containers):
+            message = 'more than one grace container of {!r} attached.'
+            message = message.format(kind)
+            raise Exception(message)
+        grace_container = grace_containers[0]
+        return grace_container
+
     def get_grace_containers(
         self,
         kind=None,

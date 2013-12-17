@@ -17,7 +17,7 @@ def test_scoretools_GraceContainer_parentage_02():
     note = Note(1, (1, 4))
     grace_container = scoretools.GraceContainer()
     attach(grace_container, note)
-    grace_container = inspect(note).get_grace_containers()[0]
+    grace_container = inspect(note).get_grace_container()
     assert isinstance(grace_container, scoretools.GraceContainer)
     assert grace_container._carrier is note
     assert grace_container._carrier is note
