@@ -152,7 +152,7 @@ class Leaf(Component):
         for grace_container in self._get_grace_containers():
             new_grace_container = \
                 grace_container._copy_with_children_and_indicators_but_without_spanners()
-            new_grace_container(new)
+            attach(new_grace_container, new)
         return new
 
     def _format_after_slot(leaf, bundle):

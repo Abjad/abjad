@@ -68,9 +68,6 @@ def test_scoretools_Note___copy___04():
     note_2 = copy.copy(note_1)
     grace_container_2 = inspect(note_2).get_grace_containers()[0]
 
-    assert note_1 is not note_2
-    assert grace_container_1 is not grace_container_2
-    assert grace_container_1.kind == grace_container_2.kind == 'after'
     assert systemtools.TestManager.compare(
         note_2,
         r'''
@@ -81,6 +78,11 @@ def test_scoretools_Note___copy___04():
         }
         '''
         )
+
+    assert note_1 is not note_2
+    assert grace_container_1 is not grace_container_2
+    assert grace_container_1.kind == grace_container_2.kind == 'after'
+
 
 
 def test_scoretools_Note___copy___05():

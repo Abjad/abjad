@@ -25,8 +25,8 @@ class GraceContainer(Container):
     ::
 
         >>> grace_notes = [Note("c'16"), Note("d'16")]
-        >>> scoretools.GraceContainer(grace_notes, kind='grace')(voice[1])
-        Note("d'8")
+        >>> grace_container = scoretools.GraceContainer(grace_notes, kind='grace')
+        >>> attach(grace_container, voice[1])
         >>> show(voice) # doctest: +SKIP
 
     ..  doctest::
@@ -91,24 +91,6 @@ class GraceContainer(Container):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, arg):
-        r'''Attaches grace container to `arg`.
-
-        Returns `arg`.
-        '''
-        from abjad.tools import scoretools
-        if not isinstance(arg, scoretools.Leaf):
-            message = 'object to which grace container attaches'
-            message += ' must be leaf: {!r}.'
-            message = message.format(arg)
-            raise TypeError(message)
-        if self.kind == 'after':
-            arg._after_grace = self
-        else:
-            arg._grace = self
-        self._carrier = arg
-        return arg
-
     def __repr__(self):
         r'''Gets interpreter representation of grace container.
 
@@ -125,8 +107,18 @@ class GraceContainer(Container):
 
     ### PRIVATE METHODS ###
 
-    def _attach(self, leaf):
-        return self(leaf)
+    def _attach(self, arg):
+        from abjad.tools import scoretools
+        if not isinstance(arg, scoretools.Leaf):
+            message = 'object to which grace container attaches'
+            message += ' must be leaf: {!r}.'
+            message = message.format(arg)
+            raise TypeError(message)
+        if self.kind == 'after':
+            arg._after_grace = self
+        else:
+            arg._grace = self
+        self._carrier = arg
 
     def _copy_with_indicators_but_without_children_or_spanners(self):
         new = Container._copy_with_indicators_but_without_children_or_spanners(self)

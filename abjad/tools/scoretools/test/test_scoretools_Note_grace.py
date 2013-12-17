@@ -66,14 +66,8 @@ def test_scoretools_Note_grace_04():
     '''
 
     note = Note("c'4")
-    scoretools.GraceContainer([Note(2, (1, 16))], kind='acciaccatura')(note)
-
-    r'''
-    \acciaccatura {
-        d'16
-    }
-    c'4
-    '''
+    grace = scoretools.GraceContainer([Note(2, (1, 16))], kind='acciaccatura')
+    attach(grace, note)
 
     assert systemtools.TestManager.compare(
         note,
@@ -91,15 +85,8 @@ def test_scoretools_Note_grace_05():
     '''
 
     note = Note("c'4")
-    scoretools.GraceContainer([Note(2, (1, 16))], kind='after')(note)
-
-    r'''
-    \afterGrace
-    c'4
-    {
-        d'16
-    }
-    '''
+    grace = scoretools.GraceContainer([Note(2, (1, 16))], kind='after')
+    attach(grace, note)
 
     assert systemtools.TestManager.compare(
         note,
@@ -118,7 +105,8 @@ def test_scoretools_Note_grace_06():
     '''
 
     note = Note("c'4")
-    scoretools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))], kind='after')(note)
+    grace = scoretools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))], kind='after')
+    attach(grace, note)
 
     assert systemtools.TestManager.compare(
         note,
