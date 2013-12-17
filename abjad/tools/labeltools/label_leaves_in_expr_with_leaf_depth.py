@@ -12,7 +12,7 @@ def label_leaves_in_expr_with_leaf_depth(expr, markup_direction=Down):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'8")
         >>> scoretools.FixedDurationTuplet(Duration(2, 8), staff[-3:])
-        FixedDurationTuplet((1, 4), "e'8 f'8 g'8")
+        FixedDurationTuplet(Duration(1, 4), "e'8 f'8 g'8")
         >>> labeltools.label_leaves_in_expr_with_leaf_depth(staff)
         >>> show(staff) # doctest: +SKIP
 

@@ -235,7 +235,7 @@ class LogicalTie(ContiguousSelection):
 
                 >>> logical_tie = inspect(staff[0]).get_logical_tie()
                 >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=True)
-                FixedDurationTuplet((3, 16), "c'8 c'16 c'16 c'16")
+                FixedDurationTuplet(Duration(3, 16), "c'8 c'16 c'16 c'16")
 
             ..  doctest::
 
@@ -291,7 +291,7 @@ class LogicalTie(ContiguousSelection):
 
                 >>> logical_tie = inspect(staff[0]).get_logical_tie()
                 >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=False)
-                FixedDurationTuplet((3, 16), "c'16 c'32 c'32 c'32")
+                FixedDurationTuplet(Duration(3, 16), "c'16 c'32 c'32 c'32")
 
             ..  doctest::
 

@@ -1724,7 +1724,7 @@ class Tuplet(Container):
             ::
 
                 >>> new_tuplet
-                FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
+                FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
 
         Returns new tuplet.
         '''
