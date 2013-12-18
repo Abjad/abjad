@@ -80,22 +80,22 @@ Abjad packaging checklist:
     Ubuntu Graphic installation is available with 
         "sudo apt-get install graphviz".
     The HTML version of the API should build with no warnings and no errors.
-    If Sphinx gives any warnings or errors, fix, commit and go back to (6.)
+    If Sphinx gives any warnings or errors, fix, commit and go back to (7.)
 
  7. Change to abjad/tools.
     Run "ajv doctest".
-    If any tests break, fix, commit and go back to (6.).
+    If any tests break, fix, commit and go back to (7.).
     Record mainline doctest test results in the packaging transcript.
 
  8. Change to the experimental directory.
     Run "ajv clean .".
     Then run "py.test".
-    If any tests break, fix, commit and go back to (6.).
+    If any tests break, fix, commit and go back to (7.).
     Record experimental py.test results in the packaging transcript.
 
  9. Stay in the experimental directory.
     Run "ajv doctest".
-    If any tests break, fix, commit and go back to (6.).
+    If any tests break, fix, commit and go back to (7.).
     Record experimental doctest test results in the packaging transcript.
 
 10. Return to the mainline.
@@ -106,7 +106,7 @@ Abjad packaging checklist:
         systemtools.IOManager.view_last_log()
         systemtools.IOManager.view_last_pdf()
     Then run 'play(Note("c4"))'.
-    If any test fails, fix, commit and go back to (6.)
+    If any test fails, fix, commit and go back to (7.)
     Record sanity check test results in the packaging transcript.
 
 11. Change to the abjad/etc/optimization directory.
@@ -128,19 +128,19 @@ Abjad packaging checklist:
 
 14. Change to experimental/docs.
     Run "make clean".
-    Run "avj api -X". If any erros occur, fix, commit and go back to (6.)
+    Run "avj api -X". If any erros occur, fix, commit and go back to (7.)
     Record experimental HTML build results in the packaging transcript.
 
 15. Change back to abjad/docs.
-    Run "ajv api -M". If any errors occur, fix, commit and go back to (6.)
+    Run "ajv api -M". If any errors occur, fix, commit and go back to (7.)
     Record mainline HTML build results in the packaging transcript.
 
 16. Run "make latex". 
-    If any errors occur, fix, commit and go back to (6.)
+    If any errors occur, fix, commit and go back to (7.)
     Record LaTeX build results in the packaging transcript.
 
 17. Run "make latexpdf". 
-    If any errors occur, fix, commit and go back to (6.)
+    If any errors occur, fix, commit and go back to (7.)
     Open the docs/build/latex/Abjad.pdf file that results.
     Click around some to make sure everything looks OK.
     Record Abjad.pdf build results in the packaging transcript.
