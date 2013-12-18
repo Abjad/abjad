@@ -1,3 +1,33 @@
+Abjad 2.14
+    Build start date: 2013-12-18
+    Build complete date:
+    MD5 hash of Abjad GitHub repository:
+    
+    Packaging environment:
+        0. workstation description: 2.9 GHz i7 MacBook Pro / OSX 10.8.5
+        1. uname -v: Darwin Kernel Version 12.5.0
+        2. git --version: git version 1.7.12.4
+        3. python --version: Python 2.7.5
+        4. pip --version: pip 1.4.1
+        5. py.test --version: This is py.test version 2.5.1
+        6. sphinx-build --version: Sphinx (sphinx-build) 1.2
+        7. lilypond --version: 2.17.97
+        8. convert --version: ImageMagick 6.8.6-3 2013-06-25 Q16
+        9. dot -V: graphviz version 2.32.0 (20130801.1934)
+
+    Test results:
+        1. mainline py.test test results: 5479 passed, 11 skipped
+        2. mainline doctest test results: 6400 tests passed in 853 modules
+        3. experimental py.test test results: 726 passed, 18 skipped
+        4. experimental doctest test results: 921 tests passed in 354 modules
+        5. sanity check test results: OK
+        6. experimental HTML build results: OK
+        7. mainline HTML build results: OK
+        8. LaTeX build results: 
+        9. Abjad.pdf build results: 
+       10. AbjadAPI.pdf build results: 
+
+
 Abjad 2.13
     Date of package: 2013-10-23
     Revision of Abjad repository: r12,468

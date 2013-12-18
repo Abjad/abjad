@@ -10,21 +10,8 @@ Abjad packaging checklist:
         Record workstation description in the packaging transcript.
         Record the output of "uname -v" in the packaging transcript.
 
-    (b) Decide whether to upgrade svn.
-        OS X svn binaries are available at 
-        http://subversion.apache.org/packages.html#osx.
-        The openCollabNet universal build maintained by Jeremy Whitlock 
-        is recomended.
-        Retrieval process:
-        1. Go to www.collab.net
-        2. Click "login" and login (or create account)
-        3. "Downloads"
-        4. "Subversion"
-        5. "CommunityBinaries" <== this is the important step
-        Note that the community version published on CollabNet
-        may not be the most recent version of Subversion.
-        Regardless of whether svn is upgraded or not, 
-        record the output of "svn --version".
+    (b) Decide whether to upgrade git.
+        Record the output of "git --version" in the packaging transcript.
 
     (c) If necessary, upgrade Python on the packaging machine.
         Python upgrade procedures are OS-dependent.
@@ -148,9 +135,9 @@ Abjad packaging checklist:
     Start the Abjad interpreter to run one final sanity check.
     Run 'show(Note("c4"))'.
     Then call:
-        iotools.IOManager.view_last_ly()
-        iotools.IOManager.view_last_log()
-        iotools.IOManager.view_last_pdf()
+        systemtools.IOManager.view_last_ly()
+        systemtools.IOManager.view_last_log()
+        systemtools.IOManager.view_last_pdf()
     Then run 'play(Note("c4"))'.
     If any test fails, fix, commit and go back to (6.)
     Record sanity check test results in the packaging transcript.
