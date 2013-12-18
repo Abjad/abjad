@@ -31,6 +31,5 @@ Working with notation
         creating_rest_delimited_slurs/index
         mapping_lists_to_rhythms/index
         overriding_lilypond_grobs/index
-        understanding_time_signatures/index
         working_with_component_parentage/index
         working_with_logical_voices/index
