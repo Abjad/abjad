@@ -29,7 +29,7 @@ class InstrumentInventory(TypedList):
         return superclass.__format__(format_specification=format_specification)
 
     def __repr__(self):
-        r'''Interpreter representation of instrument inventory.
+        r'''Gets interpreter representation of instrument inventory.
 
         ::
 

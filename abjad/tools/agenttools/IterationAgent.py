@@ -204,9 +204,9 @@ class IterationAgent(abctools.AbjadObject):
                     expr = expr._music
                 if reverse:
                     expr = reversed(expr)
-                for m in expr:
+                for component in expr:
                     for x in component_iterator(
-                        m, component_class, reverse=reverse):
+                        component, component_class, reverse=reverse):
                         yield x
 
         def subrange(iter, start=0, stop=None):
@@ -309,30 +309,30 @@ class IterationAgent(abctools.AbjadObject):
         '''
         prototype = prototype or scoretools.Leaf
         if self._client._grace is not None:
-            for m in self._client.grace:
-                for x in iterate(m).by_components_and_grace_containers(
+            for component in self._client._grace:
+                for x in iterate(component).by_components_and_grace_containers(
                     prototype,
                     ):
                     yield x
             if isinstance(self._client, prototype):
                 yield self._client
         if self._client._after_grace is not None:
-            for m in self._client.after_grace:
-                for x in iterate(m).by_components_and_grace_containers(
+            for component in self._client._after_grace:
+                for x in iterate(component).by_components_and_grace_containers(
                     prototype,
                     ):
                     yield x
         elif isinstance(self._client, prototype):
             yield self._client
         if isinstance(self._client, (list, tuple)):
-            for m in self._client:
-                for x in iterate(m).by_components_and_grace_containers(
+            for component in self._client:
+                for x in iterate(component).by_components_and_grace_containers(
                     prototype,
                     ):
                     yield x
         if hasattr(self._client, '_music'):
-            for m in self._client._music:
-                for x in iterate(m).by_components_and_grace_containers(
+            for component in self._client._music:
+                for x in iterate(component).by_components_and_grace_containers(
                     prototype,
                     ):
                     yield x
@@ -479,31 +479,31 @@ class IterationAgent(abctools.AbjadObject):
 
         if not reverse:
             if isinstance(self._client, (list, tuple)):
-                for m in self._client:
-                    for x in iterate(m).by_logical_voice(
+                for component in self._client:
+                    for x in iterate(component).by_logical_voice(
                         component_class,
                         logical_voice,
                         ):
                         yield x
             if hasattr(self._client, '_music'):
-                for m in self._client._music:
-                    for x in iterate(m).by_logical_voice(
+                for component in self._client._music:
+                    for x in iterate(component).by_logical_voice(
                         component_class,
                         logical_voice,
                         ):
                         yield x
         else:
             if isinstance(self._client, (list, tuple)):
-                for m in reversed(self._client):
-                    for x in iterate(m).by_logical_voice(
+                for component in reversed(self._client):
+                    for x in iterate(component).by_logical_voice(
                         component_class,
                         logical_voice,
                         reverse=True,
                         ):
                         yield x
             if hasattr(self._client, '_music'):
-                for m in reversed(self._client._music):
-                    for x in iterate(m).by_logical_voice(
+                for component in reversed(self._client._music):
+                    for x in iterate(component).by_logical_voice(
                         component_class,
                         logical_voice,
                         reverse=True,
@@ -1102,7 +1102,7 @@ class IterationAgent(abctools.AbjadObject):
             ...
             LogicalTie(Note("c'8"), Note("c'32"))
             LogicalTie(Note("d'8"), Note("d'32"))
-            Tuplet((2, 3), "e'8 f'8 g'8")
+            Tuplet(Multiplier(2, 3), "e'8 f'8 g'8")
             LogicalTie(Note("a'8"), Note("a'32"))
             LogicalTie(Note("b'8"), Note("b'32"))
 

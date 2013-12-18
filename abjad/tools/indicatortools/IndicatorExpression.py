@@ -68,7 +68,7 @@ class IndicatorExpression(AbjadObject):
         return False
 
     def __repr__(self):
-        '''Interpreter representation of indicator expression.
+        '''Gets interpreter representation of indicator expression.
 
         Returns string.
         '''

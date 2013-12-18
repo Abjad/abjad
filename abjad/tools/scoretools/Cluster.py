@@ -42,7 +42,7 @@ class Cluster(Container):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Interpreter representation of cluster.
+        r'''Gets interpreter representation of cluster.
 
         ::
 

@@ -16,7 +16,7 @@ def test_lilypondparsertools_LilyPondParser__functions__grace_01():
         Note("fs''16")
     ])
 
-    grace(target[2])
+    attach(grace, target[2])
 
     assert systemtools.TestManager.compare(
         target,

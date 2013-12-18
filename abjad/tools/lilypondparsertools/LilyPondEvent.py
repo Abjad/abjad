@@ -21,7 +21,7 @@ class LilyPondEvent(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Interpreter representation of LilyPond event.
+        r'''Gets interpreter representation of LilyPond event.
 
         Returns string.
         '''

@@ -173,7 +173,7 @@ class PitchArrayRow(AbjadObject):
         return not self == arg
 
     def __repr__(self):
-        r'''Interpreter representation of pitch array row.
+        r'''Gets interpreter representation of pitch array row.
 
         Returns string.
         '''

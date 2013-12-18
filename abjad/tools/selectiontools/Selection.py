@@ -108,7 +108,7 @@ class Selection(object):
         return Selection(music)
 
     def __repr__(self):
-        r'''Interpreter representation of selection.
+        r'''Gets interpreter representation of selection.
 
         Returns string.
         '''

@@ -81,7 +81,7 @@ class PitchArrayColumn(AbjadObject):
         return not self == arg
 
     def __repr__(self):
-        r'''Interpreter representation of pitch array column.
+        r'''Gets interpreter representation of pitch array column.
 
         Returns string.
         '''

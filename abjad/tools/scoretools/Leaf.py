@@ -152,7 +152,7 @@ class Leaf(Component):
         for grace_container in self._get_grace_containers():
             new_grace_container = \
                 grace_container._copy_with_children_and_indicators_but_without_spanners()
-            new_grace_container(new)
+            attach(new_grace_container, new)
         return new
 
     def _format_after_slot(leaf, bundle):
@@ -166,7 +166,7 @@ class Leaf(Component):
     def _format_after_grace_body(leaf):
         result = []
         if leaf._after_grace is not None:
-            after_grace = leaf.after_grace
+            after_grace = leaf._after_grace
             if len(after_grace):
                 result.append(format(after_grace))
         return ['after grace body', result]
@@ -174,7 +174,7 @@ class Leaf(Component):
     def _format_after_grace_opening(leaf):
         result = []
         if leaf._after_grace is not None:
-            if len(leaf.after_grace):
+            if len(leaf._after_grace):
                 result.append(r'\afterGrace')
         return ['after grace opening', result]
 
@@ -209,7 +209,7 @@ class Leaf(Component):
     def _format_grace_body(leaf):
         result = []
         if leaf._grace is not None:
-            grace = leaf.grace
+            grace = leaf._grace
             if len(grace):
                 result.append(format(grace))
         return ['grace body', result]
@@ -603,22 +603,6 @@ class Leaf(Component):
         return tuplet
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def after_grace(self):
-        r'''After grace container attaching to leaf.
-
-        Returns grace container or none.
-        '''
-        return self._after_grace
-
-    @property
-    def grace(self):
-        r'''Grace container attaching to leaf.
-
-        Returns grace container or none.
-        '''
-        return self._grace
 
     @property
     def written_duration(self):

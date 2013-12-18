@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_scoretools_Chord_sounding_pitches_01():
+def test_agenttools_InspectionAgent_get_sounding_pitches_01():
 
     staff = Staff("<c''' e'''>4 <d''' fs'''>4")
     glockenspiel = instrumenttools.Glockenspiel()
@@ -21,7 +21,8 @@ def test_scoretools_Chord_sounding_pitches_01():
         '''
         )
 
-    assert staff[0].sounding_pitches == (
+    sounding_pitches = inspect(staff[0]).get_sounding_pitches()
+    assert sounding_pitches == (
         NamedPitch("c'''"), 
         NamedPitch("e'''"),
         )

@@ -25,8 +25,8 @@ class GraceContainer(Container):
     ::
 
         >>> grace_notes = [Note("c'16"), Note("d'16")]
-        >>> scoretools.GraceContainer(grace_notes, kind='grace')(voice[1])
-        Note("d'8")
+        >>> grace_container = scoretools.GraceContainer(grace_notes, kind='grace')
+        >>> attach(grace_container, voice[1])
         >>> show(voice) # doctest: +SKIP
 
     ..  doctest::
@@ -45,10 +45,9 @@ class GraceContainer(Container):
 
     ::
 
-        >>> after_grace_notes = [Note("e'16"), Note("f'16")]
-        >>> scoretools.GraceContainer(
-        ...     after_grace_notes, kind='after')(voice[1])
-        Note("d'8")
+        >>> notes = [Note("e'16"), Note("f'16")]
+        >>> after_grace = scoretools.GraceContainer(notes, kind='after')
+        >>> attach(after_grace, voice[1])
         >>> show(voice) # doctest: +SKIP
 
     ..  doctest::
@@ -92,26 +91,8 @@ class GraceContainer(Container):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, arg):
-        r'''Attaches grace container to `arg`.
-
-        Returns `arg`.
-        '''
-        from abjad.tools import scoretools
-        if not isinstance(arg, scoretools.Leaf):
-            message = 'object to which grace container attaches'
-            message += ' must be leaf: {!r}.'
-            message = message.format(arg)
-            raise TypeError(message)
-        if self.kind == 'after':
-            arg._after_grace = self
-        else:
-            arg._grace = self
-        self._carrier = arg
-        return arg
-
     def __repr__(self):
-        r'''Interpreter representation of grace container.
+        r'''Gets interpreter representation of grace container.
 
         Returns string.
         '''
@@ -126,8 +107,18 @@ class GraceContainer(Container):
 
     ### PRIVATE METHODS ###
 
-    def _attach(self, leaf):
-        return self(leaf)
+    def _attach(self, arg):
+        from abjad.tools import scoretools
+        if not isinstance(arg, scoretools.Leaf):
+            message = 'object to which grace container attaches'
+            message += ' must be leaf: {!r}.'
+            message = message.format(arg)
+            raise TypeError(message)
+        if self.kind == 'after':
+            arg._after_grace = self
+        else:
+            arg._grace = self
+        self._carrier = arg
 
     def _copy_with_indicators_but_without_children_or_spanners(self):
         new = Container._copy_with_indicators_but_without_children_or_spanners(self)
@@ -165,32 +156,28 @@ class GraceContainer(Container):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> scoretools.GraceContainer(
-            ...     [Note("cs'16")], kind = 'grace')(staff[1])
-            Note("d'8")
-            >>> grace_container = staff[1].grace
-            >>> grace_container.kind
+            >>> note = Note("cs'16")
+            >>> grace = scoretools.GraceContainer([note], kind='grace')
+            >>> attach(grace, staff[1])
+            >>> grace.kind
             'grace'
-
-        Returns string.
 
         Sets `kind` of grace container:
 
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> scoretools.GraceContainer(
-            ...     [Note("cs'16")], kind = 'grace')(staff[1])
-            Note("d'8")
-            >>> grace_container = staff[1].grace
-            >>> grace_container.kind = 'acciaccatura'
-            >>> grace_container.kind
+            >>> note = Note("cs'16")
+            >>> grace = scoretools.GraceContainer([note], kind='grace')
+            >>> attach(grace, staff[1])
+            >>> grace.kind = 'acciaccatura'
+            >>> grace.kind
             'acciaccatura'
-
-        Sets string.
 
         Valid options include ``'after'``, ``'grace'``, 
         ``'acciaccatura'``, ``'appoggiatura'``.
+
+        Returns string.
         '''
         return self._kind
 

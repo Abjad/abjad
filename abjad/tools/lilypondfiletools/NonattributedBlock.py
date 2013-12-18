@@ -25,7 +25,7 @@ class NonattributedBlock(list, AbjadObject):
         return str(self)
 
     def __repr__(self):
-        r'''Interpreter representation of nonattributed block.
+        r'''Gets interpreter representation of nonattributed block.
 
         Returns string.
         '''

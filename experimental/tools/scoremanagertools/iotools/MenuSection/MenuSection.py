@@ -77,7 +77,7 @@ class MenuSection(AbjadObject):
         return len(self.menu_entries)
 
     def __repr__(self):
-        r'''Interpreter representation of menu section.
+        r'''Gets interpreter representation of menu section.
 
         Returns string.
         '''

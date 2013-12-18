@@ -196,7 +196,7 @@ class QTarget(AbjadObject):
                 new_leaf = scoretools.Note(leaf)
                 new_leaf.written_pitch = pitches[0]
             if grace_container:
-                grace_container(new_leaf)
+                attach(grace_container, new_leaf)
             leaf._get_parentage().parent[
                 leaf._get_parentage().parent.index(leaf)] = new_leaf
             if tempo_indications:

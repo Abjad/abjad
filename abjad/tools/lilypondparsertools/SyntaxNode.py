@@ -46,7 +46,7 @@ class SyntaxNode(AbjadObject):
         raise Exception(message)
 
     def __repr__(self):
-        r'''Interpreter representation of syntax node.
+        r'''Gets interpreter representation of syntax node.
 
         Returns string.
         '''

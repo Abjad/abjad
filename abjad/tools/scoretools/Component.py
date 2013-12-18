@@ -129,7 +129,7 @@ class Component(AbjadObject):
         return result
 
     def __repr__(self):
-        '''Interpreter representation of leaf.
+        '''Gets interpreter representation of leaf.
 
         Returns string.
         '''

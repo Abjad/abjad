@@ -95,7 +95,7 @@ class RootlessChordClass(IntervalSegment):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Interpreter representation of rootless chord-class.
+        r'''Gets interpreter representation of rootless chord-class.
 
         Returns string.
         '''

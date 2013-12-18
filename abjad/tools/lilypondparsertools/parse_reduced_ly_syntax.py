@@ -16,7 +16,7 @@ def parse_reduced_ly_syntax(string):
         Note("c'4")
         Rest('r4.')
         Note("c'8..")
-        Tuplet((5, 3), '')
+        Tuplet(Multiplier(5, 3), '')
         Note("c'4")
 
     Returns list.

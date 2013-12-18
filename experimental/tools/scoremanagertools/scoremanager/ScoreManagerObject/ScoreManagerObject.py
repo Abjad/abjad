@@ -49,7 +49,7 @@ class ScoreManagerObject(object):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Interpreter representation of score manager object.
+        r'''Gets interpreter representation of score manager object.
 
         Returns string.
         '''

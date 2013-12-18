@@ -180,6 +180,31 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         return self._client._get_effective_staff()
 
+    def get_grace_container(
+        self,
+        kind=None,
+        ):
+        r'''Gets exactly one grace container of `kind` attached to client.
+
+        Raises error when no grace container of `kind` attaches to client.
+
+        Raises error when more than one grace container of `kind` attaches
+        to client.
+
+        Returns grace container.
+        '''
+        grace_containers = self.get_grace_containers(kind=kind)
+        if not grace_containers:
+            message = 'no grace containers of {!r} attached.'
+            message = message.format(kind)
+            raise Exception(message)
+        if 1 < len(grace_containers):
+            message = 'more than one grace container of {!r} attached.'
+            message = message.format(kind)
+            raise Exception(message)
+        grace_container = grace_containers[0]
+        return grace_container
+
     def get_grace_containers(
         self,
         kind=None,
@@ -287,7 +312,7 @@ class InspectionAgent(abctools.AbjadObject):
             )
 
     def get_leaf(self, n=0):
-        r'''Gets leaf `n` **in logical voice**.
+        r'''Gets leaf `n` in logical voice.
 
         ..  container:: example
 
@@ -367,6 +392,71 @@ class InspectionAgent(abctools.AbjadObject):
         return self._client._get_parentage(
             include_self=include_self,
             )
+
+    def get_sounding_pitch(self):
+        r'''Gets sounding pitch of client.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("d''8 e''8 f''8 g''8")
+                >>> piccolo = instrumenttools.Piccolo()
+                >>> attach(piccolo, staff)
+                >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
+                ...     staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { Piccolo }
+                    \set Staff.shortInstrumentName = \markup { Picc. }
+                    d'8
+                    e'8
+                    f'8
+                    g'8
+                }
+                >>> inspect(staff[0]).get_sounding_pitch()
+                NamedPitch("d''")
+
+        Returns named pitch.
+        '''
+        return self._client._get_sounding_pitch()
+
+    def get_sounding_pitches(self):
+        r"""Gets sounding pitches of client.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
+                >>> glockenspiel = instrumenttools.Glockenspiel()
+                >>> attach(glockenspiel, staff)
+                >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
+                ...     staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { Glockenspiel }
+                    \set Staff.shortInstrumentName = \markup { Gkspl. }
+                    <c' e'>4
+                    <d' fs'>4
+                }
+
+            ::
+
+                >>> inspect(staff[0]).get_sounding_pitches()
+                (NamedPitch("c'''"), NamedPitch("e'''"))
+
+        Returns tuple.
+        """
+        return self._client._get_sounding_pitches()
 
     def get_spanner(
         self,

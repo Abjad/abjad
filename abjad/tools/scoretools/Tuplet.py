@@ -114,7 +114,7 @@ class Tuplet(Container):
         return (self.multiplier, )
 
     def __repr__(self):
-        '''Interpreter representation of tuplet.
+        '''Gets interpreter representation of tuplet.
 
         Returns string.
         '''
@@ -1714,7 +1714,7 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet
-                Tuplet((2, 3), "c'8 d'8 e'8")
+                Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
 
             ::
 
@@ -1724,7 +1724,7 @@ class Tuplet(Container):
             ::
 
                 >>> new_tuplet
-                FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
+                FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
 
         Returns new tuplet.
         '''

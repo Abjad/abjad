@@ -25,7 +25,7 @@ class LilyPondLanguageToken(AbjadObject):
 
 
     def __repr__(self):
-        r'''Interpreter representation of LilyPond language token.
+        r'''Gets interpreter representation of LilyPond language token.
 
         Returns string.
         '''

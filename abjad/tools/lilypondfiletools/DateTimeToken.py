@@ -26,7 +26,7 @@ class DateTimeToken(AbjadObject):
         return str(self)
 
     def __repr__(self):
-        r'''Interpreter representation of date / time token.
+        r'''Gets interpreter representation of date / time token.
 
         Returns string.
         '''

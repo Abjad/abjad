@@ -108,7 +108,7 @@ class Matrix(AbjadObject):
         return self.rows[i]
 
     def __repr__(self):
-        r'''Interpreter representation of matrix.
+        r'''Gets interpreter representation of matrix.
 
         ::
 

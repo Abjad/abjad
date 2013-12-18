@@ -52,7 +52,7 @@ class Context(Container):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Interpreter representation of context.
+        r'''Gets interpreter representation of context.
 
         ::
 

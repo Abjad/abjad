@@ -109,7 +109,7 @@ class Measure(FixedDurationContainer):
         return (time_signature.pair, )
 
     def __repr__(self):
-        r'''Interpreter representation of measure.
+        r'''Gets interpreter representation of measure.
 
         ::
 

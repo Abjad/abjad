@@ -25,7 +25,7 @@ class LilyPondNameManager(AbjadObject):
         return copy.deepcopy(vars(self))
 
     def __repr__(self):
-        r'''Interpreter representation of LilyPond name manager.
+        r'''Gets interpreter representation of LilyPond name manager.
 
         Returns string.
         '''
