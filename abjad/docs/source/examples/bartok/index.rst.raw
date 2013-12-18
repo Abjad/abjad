@@ -90,10 +90,10 @@ to true for each of the last two measures:
 <abjad>
 upper_voice = Voice("b2", name='upper voice')
 command = indicatortools.LilyPondCommand('voiceOne')
-command.attach(upper_voice)
+attach(command, upper_voice)
 lower_voice = Voice("b4 a4", name='lower voice')
 command = indicatortools.LilyPondCommand('voiceTwo')
-command.attach(lower_voice)
+attach(command, lower_voice)
 lower_measures[3].extend([upper_voice, lower_voice])
 lower_measures[3].is_simultaneous = True
 </abjad>
@@ -101,10 +101,10 @@ lower_measures[3].is_simultaneous = True
 <abjad>
 upper_voice = Voice("b2", name='upper voice')
 command = indicatortools.LilyPondCommand('voiceOne')
-command.attach(upper_voice)
+attach(command, upper_voice)
 lower_voice = Voice("g2", name='lower voice')
 command = indicatortools.LilyPondCommand('voiceTwo')
-command.attach(lower_voice)
+attach(command, lower_voice)
 lower_measures[4].extend([upper_voice, lower_voice])
 lower_measures[4].is_simultaneous = True
 </abjad>
@@ -123,8 +123,8 @@ Ok, let's add the details. First, notice that the bottom staff has a treble
 clef just like the top staff. Let's change that:
 
 <abjad>
-clef = indicatortools.Clef('bass')
-clef.attach(lower_staff)
+clef = Clef('bass')
+attach(clef, lower_staff)
 </abjad>
 
 Now let's add dynamics. For the top staff, we'll add them to the first
@@ -133,23 +133,23 @@ bottom staff, we'll add dynamicings to the second note of the first
 measure and the fourth note of the second measure:
 
 <abjad>
-dynamic = indicatortools.Dynamic('pp')
-dynamic.attach(upper_measures[0][0])
+dynamic = Dynamic('pp')
+attach(dynamic, upper_measures[0][0])
 </abjad>
 
 <abjad>
-dynamic = indicatortools.Dynamic('mp')
-dynamic.attach(upper_measures[1][1])
+dynamic = Dynamic('mp')
+attach(dynamic, upper_measures[1][1])
 </abjad>
 
 <abjad>
-dynamic = indicatortools.Dynamic('pp')
-dynamic.attach(lower_measures[0][1])
+dynamic = Dynamic('pp')
+attach(dynamic, lower_measures[0][1])
 </abjad>
 
 <abjad>
-dynamic = indicatortools.Dynamic('mp')
-dynamic.attach(lower_measures[1][3])
+dynamic = Dynamic('mp')
+attach(dynamic, lower_measures[1][3])
 </abjad>
 
 Let's add a double bar to the end of the piece:
@@ -175,18 +175,18 @@ lower_leaves = lower_staff.select_leaves(allow_discontiguous_leaves=True)
 </abjad>
 
 <abjad>
-beam = spannertools.Beam()
-beam.attach(upper_leaves[:4])
+beam = Beam()
+attach(beam, upper_leaves[:4])
 </abjad>
 
 <abjad>
-beam = spannertools.Beam()
-beam.attach(lower_leaves[1:5])
+beam = Beam()
+attach(beam, lower_leaves[1:5])
 </abjad>
 
 <abjad>
-beam = spannertools.Beam()
-beam.attach(lower_leaves[6:10])
+beam = Beam()
+attach(beam, lower_leaves[6:10])
 </abjad>
 
 <abjad>
@@ -196,55 +196,55 @@ show(score)
 Now some slurs:
 
 <abjad>
-slur = spannertools.Slur()
-slur.attach(upper_leaves[:5])
+slur = Slur()
+attach(slur, upper_leaves[:5])
 </abjad>
 
 <abjad>
-slur = spannertools.Slur()
-slur.attach(upper_leaves[5:])
+slur = Slur()
+attach(slur, upper_leaves[5:])
 </abjad>
 
 
 <abjad>
-slur = spannertools.Slur()
-slur.attach(lower_leaves[1:6])
+slur = Slur()
+attach(slur, lower_leaves[1:6])
 </abjad>
 
 Hairpins:
 
 <abjad>
-crescendo = spannertools.Crescendo()
-crescendo.attach(upper_leaves[-7:-2])
+crescendo = Crescendo()
+attach(crescendo, upper_leaves[-7:-2])
 </abjad>
 
 <abjad>
-decrescendo = spannertools.Decrescendo()
-decrescendo.attach(upper_leaves[-2:])
+decrescendo = Decrescendo()
+attach(decrescendo, upper_leaves[-2:])
 </abjad>
 
 A ritardando marking above the last seven notes of the upper staff:
 
 <abjad>
-markup = markuptools.Markup('ritard.')
+markup = Markup('ritard.')
 text_spanner = spannertools.TextSpanner()
-text_spanner.override.text_spanner.bound_details__left__text = markup
-text_spanner.attach(upper_leaves[-7:])
+override(text_spanner).text_spanner.bound_details__left__text = markup
+attach(text_spanner, upper_leaves[-7:])
 </abjad>
 
 And ties connecting the last two notes in each staff:
 
 <abjad>
-tie = spannertools.Tie()
-tie.attach(upper_leaves[-2:])
+tie = Tie()
+attach(tie, upper_leaves[-2:])
 </abjad>
 
 <abjad>
 note_1 = lower_staff[-2]['upper voice'][0]
 note_2 = lower_staff[-1]['upper voice'][0]
 notes = [note_1, note_2]
-tie = spannertools.Tie()
-tie.attach(notes)
+tie = Tie()
+attach(tie, notes)
 </abjad>
 
 The final result:

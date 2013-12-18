@@ -94,12 +94,13 @@ for i, descent in enumerate(descents[1:], 1):
         r'\rounded-box \bold {}'.format(i),
         Up,
         )
-    markup.attach(descent[0])
+    attach(markup, descent[0])
 </abjad>
 
 <abjad>
 staff = Staff(sequencetools.flatten_sequence(descents))
-time_signature = indicatortools.TimeSignature((6, 4))(staff)
+time_signature = TimeSignature((6, 4))
+attach(time_signature, staff)
 show(staff)
 </abjad>
 
@@ -112,12 +113,13 @@ for i, descent in enumerate(descents[1:], 1):
         r'\rounded-box \bold {}'.format(i),
         Up,
         )
-    markup.attach(descent[0])
+    attach(markup, descent[0])
 </abjad>
 
 <abjad>
 staff = Staff(sequencetools.flatten_sequence(descents))
-time_signature = indicatortools.TimeSignature((6, 4))(staff)
+time_signature = TimeSignature((6, 4))
+attach(time_signature, staff)
 show(staff)
 </abjad>
 
@@ -132,13 +134,14 @@ for i, descent in enumerate(descents[1:], 1):
         r'\rounded-box \bold {}'.format(i),
         Up,
         )
-    markup.attach(descent[0])
+    attach(markup, descent[0])
 </abjad>
 
 <abjad>
 staff = Staff(sequencetools.flatten_sequence(descents))
 shards = mutate(staff[:]).split([(3, 2)], cyclic=True)
-time_signature = indicatortools.TimeSignature((6, 4))(staff)
+time_signature = indicatortools.TimeSignature((6, 4))
+attach(time_signature, staff)
 show(staff)
 </abjad>
 

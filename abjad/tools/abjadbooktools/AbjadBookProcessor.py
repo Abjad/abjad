@@ -301,7 +301,7 @@ class AbjadBookProcessor(AbjadObject):
         #print 'RENDER LY FILES'
         for file_name in file_names:
             if self.verbose:
-                print '\tRendering {}.ly...'.format(file_name)
+                print '\tRendering {}.ly ...'.format(file_name)
             try:
                 if output_format.image_format == 'pdf':
                     command = 'lilypond {}.ly'.format(file_name)

@@ -109,6 +109,9 @@ will take care of that for us.  The complete corpus looks like this:
 ::
 
    def make_mozart_measure_corpus():
+       r'''Makes Mozart measure corpus.
+       '''
+   
        return [
            [
                {'b': 'c4 r8', 't': "e''8 c''8 g'8"},
@@ -333,10 +336,13 @@ to "build" the treble and bass components of a measure like this:
 ::
 
    def make_mozart_measure(measure_dict):
+       r'''Makes Mozart measure.
+       '''
+   
        # parse the contents of a measure definition dictionary
        # wrap the expression to be parsed inside a LilyPond { } block
-       treble = p('{{ {} }}'.format(measure_dict['t']))
-       bass = p('{{ {} }}'.format(measure_dict['b']))
+       treble = parse('{{ {} }}'.format(measure_dict['t']))
+       bass = parse('{{ {} }}'.format(measure_dict['b']))
        return treble, bass
 
 
@@ -429,6 +435,9 @@ getting the index of each element in that collection:
 ::
 
    def choose_mozart_measures():
+       r'''Chooses Mozart measures.
+       '''
+   
        measure_corpus = make_mozart_measure_corpus()
        chosen_measures = []
        for i, choices in enumerate(measure_corpus):
@@ -503,16 +512,16 @@ to place LilyPond commands like "\break" relative to any score component:
 ::
 
    >>> container = Container("c'4 d'4 e'4 f'4")
-   >>> mark = indicatortools.LilyPondCommand(
-   ...     'before-the-container', 'before')(container)
-   >>> mark = indicatortools.LilyPondCommand(
-   ...     'after-the-container', 'after')(container)
-   >>> mark = indicatortools.LilyPondCommand(
-   ...     'opening-of-the-container', 'opening')(container)
-   >>> mark = indicatortools.LilyPondCommand(
-   ...     'closing-of-the-container', 'closing')(container)
-   >>> mark = indicatortools.LilyPondCommand(
-   ...     'to-the-right-of-a-note', 'right')(container[2])
+   >>> command = indicatortools.LilyPondCommand('before-the-container', 'before')
+   >>> attach(command, container)
+   >>> command = indicatortools.LilyPondCommand('after-the-container', 'after')
+   >>> attach(command, container)
+   >>> command = indicatortools.LilyPondCommand('opening-of-the-container', 'opening')
+   >>> attach(command, container)
+   >>> command = indicatortools.LilyPondCommand('closing-of-the-container', 'closing')
+   >>> attach(command, container)
+   >>> command = indicatortools.LilyPondCommand('to-the-right-of-a-note', 'right')
+   >>> attach(command, container[2])
    >>> f(container)
    \before-the-container
    {
@@ -527,10 +536,10 @@ to place LilyPond commands like "\break" relative to any score component:
 
 
 Notice the second argument to each
-:py:class:`~abjad.tools.indicatortools.LilyPondCommand` above, like `before` and
-`closing`.  These are format slot indications, which control where the command
-is placed in the LilyPond code relative to the score element it is attached to.
-To mimic LilyPond's repeat syntax, we'll have to create two
+:py:class:`~abjad.tools.indicatortools.LilyPondCommand` above, like `before`
+and `closing`.  These are format slot indications, which control where the
+command is placed in the LilyPond code relative to the score element it is
+attached to.  To mimic LilyPond's repeat syntax, we'll have to create two
 :py:class:`~abjad.tools.indicatortools.LilyPondCommand` instances, both using
 the "before" format slot, insuring that their command is placed before their
 container's opening curly brace.
@@ -540,6 +549,8 @@ Now let's take a look at the code that puts our score together:
 ::
 
    def make_mozart_score():
+       r'''Makes Mozart score.
+       '''
    
        score_template = templatetools.TwoStaffPianoScoreTemplate()
        score = score_template()
@@ -555,15 +566,17 @@ Now let's take a look at the code that puts our score together:
            treble_volta.append(treble)
            bass_volta.append(bass)
    
-       # add marks to the volta containers
-       indicatortools.LilyPondCommand(
+       # attach indicators to the volta containers
+       command = indicatortools.LilyPondCommand(
            'repeat volta 2', 'before'
-           )(treble_volta)
-       indicatortools.LilyPondCommand(
+           )
+       attach(command, treble_volta)
+       command = indicatortools.LilyPondCommand(
            'repeat volta 2', 'before'
-           )(bass_volta)
+           )
+       attach(command, bass_volta)
    
-       # add the volta containers to our staves
+       # append the volta containers to our staves
        score['RH Voice'].append(treble_volta)
        score['LH Voice'].append(bass_volta)
    
@@ -575,15 +588,17 @@ Now let's take a look at the code that puts our score together:
            treble_alternative.append(treble)
            bass_alternative.append(bass)
    
-       # add marks to the alternative containers
-       indicatortools.LilyPondCommand(
+       # attach indicators to the alternative containers
+       command = indicatortools.LilyPondCommand(
            'alternative', 'before'
-           )(treble_alternative)
-       indicatortools.LilyPondCommand(
+           )
+       attach(command, treble_alternative)
+       command = indicatortools.LilyPondCommand(
            'alternative', 'before'
-           )(bass_alternative)
+           )
+       attach(command, bass_alternative)
    
-       # add the alternative containers to our staves
+       # append the alternative containers to our staves
        score['RH Voice'].append(treble_alternative)
        score['LH Voice'].append(bass_alternative)
    
@@ -593,23 +608,23 @@ Now let's take a look at the code that puts our score together:
            score['RH Voice'].append(treble)
            score['LH Voice'].append(bass)
    
-       # add marks
-       indicatortools.TimeSignature((3, 8))(score['RH Staff'])
-       indicatortools.BarLine('|.')(score['RH Voice'][-1])
-       indicatortools.BarLine('|.')(score['LH Voice'][-1])
+       # attach indicators
+       time_signature = indicatortools.TimeSignature((3, 8))
+       attach(time_signature, score['RH Staff'])
+       bar_line = indicatortools.BarLine('|.')
+       attach(bar_line, score['RH Voice'][-1])
+       bar_line = indicatortools.BarLine('|.')
+       attach(bar_line, score['LH Voice'][-1])
    
        # remove the old, default piano instrument attached to the piano staff
-       # and add a custom instrument mark
-       for mark in inspect(score['Piano Staff']).get_marks(
-           instrumenttools.Instrument):
-           mark.detach()
+       # and attach a custom instrument mark
+       detach(instrumenttools.Instrument, score['Piano Staff'])
    
        klavier = instrumenttools.Piano(
            instrument_name='Katzenklavier', 
            short_instrument_name='kk.',
-           scope = scoretools.PianoStaff,
            )
-       klavier.attach(score['Piano Staff'])
+       attach(klavier, score['Piano Staff'])
    
        return score
 
@@ -646,6 +661,9 @@ name, change the global staff size, paper size, staff spacing and so forth.
 ::
 
    def make_mozart_lilypond_file():
+       r'''Makes Mozart LilyPond file.
+       '''
+   
        score = make_mozart_score()
        lily = lilypondfiletools.make_basic_lilypond_file(score)
        title = markuptools.Markup(r'\bold \sans "Ein Musikalisches Wuerfelspiel"')
@@ -721,3 +739,4 @@ And now the final result:
    >>> show(lilypond_file)
 
 .. image:: images/index-3.png
+

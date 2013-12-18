@@ -209,24 +209,24 @@ to place LilyPond commands like "\break" relative to any score component:
 
 <abjad>
 container = Container("c'4 d'4 e'4 f'4")
-mark = indicatortools.LilyPondCommand(
-    'before-the-container', 'before')(container)
-mark = indicatortools.LilyPondCommand(
-    'after-the-container', 'after')(container)
-mark = indicatortools.LilyPondCommand(
-    'opening-of-the-container', 'opening')(container)
-mark = indicatortools.LilyPondCommand(
-    'closing-of-the-container', 'closing')(container)
-mark = indicatortools.LilyPondCommand(
-    'to-the-right-of-a-note', 'right')(container[2])
+command = indicatortools.LilyPondCommand('before-the-container', 'before')
+attach(command, container)
+command = indicatortools.LilyPondCommand('after-the-container', 'after')
+attach(command, container)
+command = indicatortools.LilyPondCommand('opening-of-the-container', 'opening')
+attach(command, container)
+command = indicatortools.LilyPondCommand('closing-of-the-container', 'closing')
+attach(command, container)
+command = indicatortools.LilyPondCommand('to-the-right-of-a-note', 'right')
+attach(command, container[2])
 f(container)
 </abjad>
 
 Notice the second argument to each
-:py:class:`~abjad.tools.indicatortools.LilyPondCommand` above, like `before` and
-`closing`.  These are format slot indications, which control where the command
-is placed in the LilyPond code relative to the score element it is attached to.
-To mimic LilyPond's repeat syntax, we'll have to create two
+:py:class:`~abjad.tools.indicatortools.LilyPondCommand` above, like `before`
+and `closing`.  These are format slot indications, which control where the
+command is placed in the LilyPond code relative to the score element it is
+attached to.  To mimic LilyPond's repeat syntax, we'll have to create two
 :py:class:`~abjad.tools.indicatortools.LilyPondCommand` instances, both using
 the "before" format slot, insuring that their command is placed before their
 container's opening curly brace.

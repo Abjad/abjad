@@ -50,6 +50,9 @@ divide the final `logical tie` of the resulting tuplet into yet another ratio:
        outer_tuplet_proportions,
        inner_tuplet_subdivision_count,
        ):
+       r'''Makes nested tuplet.
+       '''
+   
        outer_tuplet = Tuplet.from_duration_and_ratio(
            tuplet_duration, outer_tuplet_proportions)
        inner_tuplet_proportions = inner_tuplet_subdivision_count * [1]
@@ -129,13 +132,23 @@ subdivided:
 
 ::
 
-   def make_row_of_nested_tuplets(tuplet_duration, outer_tuplet_proportions, column_count):
+   def make_row_of_nested_tuplets(
+       tuplet_duration, 
+       outer_tuplet_proportions, 
+       column_count,
+       ):
+       r'''Makes row of nested tuplets.
+       '''
+   
        assert 0 < column_count
        row_of_nested_tuplets = []
        for n in range(column_count):
            inner_tuplet_subdivision_count = n + 1
            nested_tuplet = make_nested_tuplet(
-               tuplet_duration, outer_tuplet_proportions, inner_tuplet_subdivision_count)
+               tuplet_duration, 
+               outer_tuplet_proportions, 
+               inner_tuplet_subdivision_count,
+               )
            row_of_nested_tuplets.append(nested_tuplet)
        return row_of_nested_tuplets
 
@@ -155,6 +168,9 @@ Let's try:
 ::
 
    def make_rows_of_nested_tuplets(tuplet_duration, row_count, column_count):
+       r'''Makes rows of nested tuplets.
+       '''
+   
        assert 0 < row_count
        rows_of_nested_tuplets = []
        for n in range(row_count):
@@ -188,13 +204,16 @@ function:
 ::
 
    def make_score(tuplet_duration, row_count, column_count):
+       r'''Makes score.
+       '''
+   
        score = Score()
        rows_of_nested_tuplets = make_rows_of_nested_tuplets(
            tuplet_duration, row_count, column_count)
        for row_of_nested_tuplets in rows_of_nested_tuplets:
            staff = scoretools.RhythmicStaff(row_of_nested_tuplets)
            time_signature = indicatortools.TimeSignature((1, 4))
-           time_signature.attach(staff)
+           attach(time_signature, staff)
            score.append(staff)
        return score
 
@@ -212,16 +231,21 @@ Then we'll apply some formatting overrides to improve its overall appearance:
 ::
 
    def configure_score(score):
-       score.set.proportional_notation_duration = schemetools.SchemeMoment(1, 56)
-       score.set.tuplet_full_length = True
-       score.override.bar_line.stencil = False
-       score.override.bar_number.transparent = True
-       score.override.spacing_spanner.uniform_stretching = True
-       score.override.spacing_spanner.strict_note_spacing = True
-       score.override.time_signature.stencil = False
-       score.override.tuplet_bracket.padding = 2
-       score.override.tuplet_bracket.staff_padding = 4
-       score.override.tuplet_number.text = schemetools.Scheme('tuplet-number::calc-fraction-text')
+       r'''Configured score.
+       '''
+   
+       moment = schemetools.SchemeMoment(1, 56)
+       contextualize(score).proportional_notation_duration = moment
+       contextualize(score).tuplet_full_length = True
+       override(score).bar_line.stencil = False
+       override(score).bar_number.transparent = True
+       override(score).spacing_spanner.uniform_stretching = True
+       override(score).spacing_spanner.strict_note_spacing = True
+       override(score).time_signature.stencil = False
+       override(score).tuplet_bracket.padding = 2
+       override(score).tuplet_bracket.staff_padding = 4
+       scheme = schemetools.Scheme('tuplet-number::calc-fraction-text')
+       override(score).tuplet_number.text = scheme
 
 
 ::
@@ -246,6 +270,9 @@ Let's adjust the overall size of our output, and put everything together:
 ::
 
    def make_lilypond_file(tuplet_duration, row_count, column_count):
+       r'''Makes LilyPond file.
+       '''
+   
        score = make_score(tuplet_duration, row_count, column_count)
        configure_score(score)
        lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
@@ -256,6 +283,9 @@ Let's adjust the overall size of our output, and put everything together:
 ::
 
    def configure_lilypond_file(lilypond_file):
+       r'''Configures LilyPond file.
+       '''
+   
        lilypond_file.default_paper_size = '11x17', 'portrait'
        lilypond_file.global_staff_size = 12
        lilypond_file.layout_block.indent = 0
@@ -271,3 +301,4 @@ Let's adjust the overall size of our output, and put everything together:
    >>> show(lilypond_file)
 
 .. image:: images/index-10.png
+

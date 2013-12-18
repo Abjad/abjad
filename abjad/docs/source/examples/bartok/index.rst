@@ -98,12 +98,10 @@ to true for each of the last two measures:
 
    >>> upper_voice = Voice("b2", name='upper voice')
    >>> command = indicatortools.LilyPondCommand('voiceOne')
-   >>> command.attach(upper_voice)
-   LilyPondCommand('voiceOne')(Voice-"upper voice"{1})
+   >>> attach(command, upper_voice)
    >>> lower_voice = Voice("b4 a4", name='lower voice')
    >>> command = indicatortools.LilyPondCommand('voiceTwo')
-   >>> command.attach(lower_voice)
-   LilyPondCommand('voiceTwo')(Voice-"lower voice"{2})
+   >>> attach(command, lower_voice)
    >>> lower_measures[3].extend([upper_voice, lower_voice])
    >>> lower_measures[3].is_simultaneous = True
 
@@ -112,12 +110,10 @@ to true for each of the last two measures:
 
    >>> upper_voice = Voice("b2", name='upper voice')
    >>> command = indicatortools.LilyPondCommand('voiceOne')
-   >>> command.attach(upper_voice)
-   LilyPondCommand('voiceOne')(Voice-"upper voice"{1})
+   >>> attach(command, upper_voice)
    >>> lower_voice = Voice("g2", name='lower voice')
    >>> command = indicatortools.LilyPondCommand('voiceTwo')
-   >>> command.attach(lower_voice)
-   LilyPondCommand('voiceTwo')(Voice-"lower voice"{1})
+   >>> attach(command, lower_voice)
    >>> lower_measures[4].extend([upper_voice, lower_voice])
    >>> lower_measures[4].is_simultaneous = True
 
@@ -140,9 +136,8 @@ clef just like the top staff. Let's change that:
 
 ::
 
-   >>> clef = indicatortools.Clef('bass')
-   >>> clef.attach(lower_staff)
-   Clef('bass')(Staff{5})
+   >>> clef = Clef('bass')
+   >>> attach(clef, lower_staff)
 
 
 Now let's add dynamics. For the top staff, we'll add them to the first
@@ -152,30 +147,26 @@ measure and the fourth note of the second measure:
 
 ::
 
-   >>> dynamic = indicatortools.Dynamic('pp')
-   >>> dynamic.attach(upper_measures[0][0])
-   Dynamic('pp')(a'8)
+   >>> dynamic = Dynamic('pp')
+   >>> attach(dynamic, upper_measures[0][0])
 
 
 ::
 
-   >>> dynamic = indicatortools.Dynamic('mp')
-   >>> dynamic.attach(upper_measures[1][1])
-   Dynamic('mp')(g'8)
+   >>> dynamic = Dynamic('mp')
+   >>> attach(dynamic, upper_measures[1][1])
 
 
 ::
 
-   >>> dynamic = indicatortools.Dynamic('pp')
-   >>> dynamic.attach(lower_measures[0][1])
-   Dynamic('pp')(d'8)
+   >>> dynamic = Dynamic('pp')
+   >>> attach(dynamic, lower_measures[0][1])
 
 
 ::
 
-   >>> dynamic = indicatortools.Dynamic('mp')
-   >>> dynamic.attach(lower_measures[1][3])
-   Dynamic('mp')(c'8)
+   >>> dynamic = Dynamic('mp')
+   >>> attach(dynamic, lower_measures[1][3])
 
 
 Let's add a double bar to the end of the piece:
@@ -183,7 +174,7 @@ Let's add a double bar to the end of the piece:
 ::
 
    >>> score.add_double_bar()
-   BarLine('|.')(g2)
+   BarLine('|.')
 
 
 And see how things are coming out:
@@ -208,20 +199,20 @@ Let's set the beams as Bartók did with some crossing the bar lines:
 
 ::
 
-   >>> beam = spannertools.Beam()
-   >>> beam.attach(upper_leaves[:4])
+   >>> beam = Beam()
+   >>> attach(beam, upper_leaves[:4])
 
 
 ::
 
-   >>> beam = spannertools.Beam()
-   >>> beam.attach(lower_leaves[1:5])
+   >>> beam = Beam()
+   >>> attach(beam, lower_leaves[1:5])
 
 
 ::
 
-   >>> beam = spannertools.Beam()
-   >>> beam.attach(lower_leaves[6:10])
+   >>> beam = Beam()
+   >>> attach(beam, lower_leaves[6:10])
 
 
 ::
@@ -235,53 +226,53 @@ Now some slurs:
 
 ::
 
-   >>> slur = spannertools.Slur()
-   >>> slur.attach(upper_leaves[:5])
+   >>> slur = Slur()
+   >>> attach(slur, upper_leaves[:5])
 
 
 ::
 
-   >>> slur = spannertools.Slur()
-   >>> slur.attach(upper_leaves[5:])
+   >>> slur = Slur()
+   >>> attach(slur, upper_leaves[5:])
 
 
 
 ::
 
-   >>> slur = spannertools.Slur()
-   >>> slur.attach(lower_leaves[1:6])
+   >>> slur = Slur()
+   >>> attach(slur, lower_leaves[1:6])
 
 
 Hairpins:
 
 ::
 
-   >>> crescendo = spannertools.Crescendo()
-   >>> crescendo.attach(upper_leaves[-7:-2])
+   >>> crescendo = Crescendo()
+   >>> attach(crescendo, upper_leaves[-7:-2])
 
 
 ::
 
-   >>> decrescendo = spannertools.Decrescendo()
-   >>> decrescendo.attach(upper_leaves[-2:])
+   >>> decrescendo = Decrescendo()
+   >>> attach(decrescendo, upper_leaves[-2:])
 
 
 A ritardando marking above the last seven notes of the upper staff:
 
 ::
 
-   >>> markup = markuptools.Markup('ritard.')
+   >>> markup = Markup('ritard.')
    >>> text_spanner = spannertools.TextSpanner()
-   >>> text_spanner.override.text_spanner.bound_details__left__text = markup
-   >>> text_spanner.attach(upper_leaves[-7:])
+   >>> override(text_spanner).text_spanner.bound_details__left__text = markup
+   >>> attach(text_spanner, upper_leaves[-7:])
 
 
 And ties connecting the last two notes in each staff:
 
 ::
 
-   >>> tie = spannertools.Tie()
-   >>> tie.attach(upper_leaves[-2:])
+   >>> tie = Tie()
+   >>> attach(tie, upper_leaves[-2:])
 
 
 ::
@@ -289,8 +280,8 @@ And ties connecting the last two notes in each staff:
    >>> note_1 = lower_staff[-2]['upper voice'][0]
    >>> note_2 = lower_staff[-1]['upper voice'][0]
    >>> notes = [note_1, note_2]
-   >>> tie = spannertools.Tie()
-   >>> tie.attach(notes)
+   >>> tie = Tie()
+   >>> attach(tie, notes)
 
 
 The final result:
@@ -300,3 +291,4 @@ The final result:
    >>> show(score)
 
 .. image:: images/index-4.png
+

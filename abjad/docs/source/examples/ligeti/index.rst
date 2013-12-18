@@ -58,22 +58,22 @@ lower Voice will hold the eighth note run. First the eighth notes:
 
    >>> pitches = [1,2,3]
    >>> notes = scoretools.make_notes(pitches, [(1, 8)])
-   >>> spannertools.Beam(notes)
-   Beam(cs'8, d'8, ef'8)
-   >>> spannertools.Slur(notes)
-   Slur(cs'8, d'8, ef'8)
-   >>> indicatortools.Dynamic('f')(notes[0])
-   Dynamic('f')(cs'8)
-   >>> indicatortools.Dynamic('p')(notes[1])
-   Dynamic('p')(d'8)
+   >>> beam = Beam()
+   >>> attach(beam, notes)
+   >>> slur = Slur()
+   >>> attach(slur, notes)
+   >>> dynamic = Dynamic('f')
+   >>> attach(dynamic, notes[0])
+   >>> dynamic = Dynamic('p')
+   >>> attach(dynamic, notes[1])
 
 
 ::
 
    >>> voice_lower = Voice(notes)
    >>> voice_lower.name = 'rh_lower'
-   >>> indicatortools.LilyPondCommand('voiceTwo')(voice_lower)
-   LilyPondCommand('voiceTwo')(Voice-"rh_lower"{3})
+   >>> command = indicatortools.LilyPondCommand('voiceTwo')
+   >>> attach(command, voice_lower)
 
 
 The notes belonging to the eighth note run are first beamed and slurred. Then
@@ -88,16 +88,16 @@ Now we construct the octave:
    >>> import math
    >>> n = int(math.ceil(len(pitches) / 2.))
    >>> chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
-   >>> indicatortools.Articulation('>')(chord)
-   Articulation('>')(<cs' cs''>4)
+   >>> articulation = Articulation('>')
+   >>> attach(articulation, chord)
 
 
 ::
 
    >>> voice_higher = Voice([chord])
    >>> voice_higher.name = 'rh_higher'
-   >>> indicatortools.LilyPondCommand('voiceOne')(voice_higher)
-   LilyPondCommand('voiceOne')(Voice-"rh_higher"{1})
+   >>> command = indicatortools.LilyPondCommand('voiceOne')
+   >>> attach(command, voice_higher)
 
 
 The duration of the chord is half the duration of the running eighth notes if
@@ -134,24 +134,32 @@ will take only a list of pitches:
        '''The function constructs and returns a *Désordre cell*.
        `pitches` is a list of numbers or, more generally, pitch tokens.
        '''
+   
        notes = [scoretools.Note(pitch, (1, 8)) for pitch in pitches]
-       spannertools.Beam(notes)
-       spannertools.Slur(notes)
-       indicatortools.Dynamic('f')(notes[0])
-       indicatortools.Dynamic('p')(notes[1])
+       beam = spannertools.Beam()
+       attach(beam, notes)
+       slur = spannertools.Slur()
+       attach(slur, notes)
+       clef = indicatortools.Dynamic('f')
+       attach(clef, notes[0])
+       dynamic = indicatortools.Dynamic('p')
+       attach(dynamic, notes[1])
    
        # make the lower voice
        lower_voice = scoretools.Voice(notes)
        lower_voice.name = 'RH Lower Voice'
-       indicatortools.LilyPondCommand('voiceTwo')(lower_voice)
+       command = indicatortools.LilyPondCommand('voiceTwo')
+       attach(command, lower_voice)
        n = int(math.ceil(len(pitches) / 2.))
        chord = scoretools.Chord([pitches[0], pitches[0] + 12], (n, 8))
-       indicatortools.Articulation('>')(chord)
+       articulation = indicatortools.Articulation('>')
+       attach(articulation, chord)
    
        # make the upper voice
        upper_voice = scoretools.Voice([chord])
        upper_voice.name = 'RH Upper Voice'
-       indicatortools.LilyPondCommand('voiceOne')(upper_voice)
+       command = indicatortools.LilyPondCommand('voiceOne')
+       attach(command, upper_voice)
    
        # combine them together
        container = scoretools.Container([lower_voice, upper_voice])
@@ -159,7 +167,8 @@ will take only a list of pitches:
    
        # make all 1/8 beats breakable
        for leaf in lower_voice.select_leaves()[:-1]:
-           indicatortools.BarLine('')(leaf)
+           bar_line = indicatortools.BarLine('')
+           attach(bar_line, leaf)
    
        return container
 
@@ -178,7 +187,7 @@ We define a function to create a measure from a list of lists of numbers:
 ::
 
    def make_desordre_measure(pitches):
-       '''Constructs a measure composed of *Désordre cells*.
+       '''Makes a measure composed of *Désordre cells*.
    
        `pitches` is a list of lists of number (e.g., [[1, 2, 3], [2, 3, 4]])
    
@@ -223,6 +232,9 @@ Now we move up to the next level, the staff:
 ::
 
    def make_desordre_staff(pitches):
+       r'''Makes Désordre staff.
+       '''
+   
        staff = scoretools.Staff()
        for sequence in pitches:
            measure = make_desordre_measure(sequence)
@@ -254,21 +266,24 @@ Finally a function that will generate the whole opening section of the piece
 ::
 
    def make_desordre_score(pitches):
-       '''Returns a complete PianoStaff with Ligeti music!'''
+       '''Returns a complete piano staff with Ligeti music.
+       '''
    
        assert len(pitches) == 2
        piano_staff = scoretools.PianoStaff()
    
-       # build the music...
+       # build the music
        for hand in pitches:
            staff = make_desordre_staff(hand)
            piano_staff.append(staff)
    
-       # set clef and key signature to left hand staff...
-       indicatortools.Clef('bass')(piano_staff[1])
-       indicatortools.KeySignature('b', 'major')(piano_staff[1])
+       # set clef and key signature to left hand staff
+       clef = indicatortools.Clef('bass')
+       attach(clef, piano_staff[1])
+       key_signature = KeySignature('b', 'major')
+       attach(key_signature, piano_staff[1])
    
-       # wrap the piano staff in a score, and return
+       # wrap the piano staff in a score
        score = scoretools.Score([piano_staff])
    
        return score
