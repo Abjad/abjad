@@ -40,9 +40,22 @@ class Configuration(AbjadObject):
         config.write_empty_values = True
         config.comments.update(self._option_comments)
         config.initial_comment = self._initial_comment
-        # write back to disk
-        with open(self.configuration_file_path, 'w') as f:
-            config.write(f)
+        # write back to disk if different
+        config.filename = None  # prevent ConfigObj from automatically writing
+        with open(self.configuration_file_path, 'r') as f:
+            old_config_lines = f.read().splitlines()
+        while len(old_config_lines) and (
+            old_config_lines[0].startswith('#') or
+            not old_config_lines[0].strip()):
+            old_config_lines.pop(0)
+        new_config_lines = config.write(None)
+        while len(new_config_lines) and (
+            new_config_lines[0].startswith('#') or
+            not new_config_lines[0].strip()):
+            new_config_lines.pop(0)
+        if old_config_lines != new_config_lines:
+            with open(self.configuration_file_path, 'w') as f:
+                config.write(f)
         # turn the ConfigObj instance into a standard dict,
         # and replace its empty string values with Nones,
         # caching the result on this AbjadConfiguration instance.
