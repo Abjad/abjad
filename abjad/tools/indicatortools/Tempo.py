@@ -213,18 +213,6 @@ class Tempo(AbjadObject):
         new_tempo = type(self)(new_duration, new_units_per_minute)
         return new_tempo
 
-    def __str__(self):
-        r'''String representation of tempo.
-
-        ::
-
-            >>> str(tempo)
-            '4=84'
-
-        Returns string.
-        '''
-        return self._equation or self.textual_indication
-
     def __rmul__(self, multiplier):
         r'''Multiplies `multiplier` by tempo.
 
@@ -244,6 +232,18 @@ class Tempo(AbjadObject):
         new_duration = durationtools.Duration(self.duration)
         new_tempo = type(self)(new_duration, new_units_per_minute)
         return new_tempo
+
+    def __str__(self):
+        r'''String representation of tempo.
+
+        ::
+
+            >>> str(tempo)
+            '4=84'
+
+        Returns string.
+        '''
+        return self._equation or self.textual_indication
 
     def __sub__(self, expr):
         r'''Subtracts `expr` from tempo.

@@ -369,6 +369,13 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         return self._client._get_lineage()
 
+    def get_logical_tie(self):
+        r'''Gets logical tie that governs leaf.
+
+        Returns logical tie.
+        '''
+        return self._client._get_logical_tie()
+
     def get_markup(
         self,
         direction=None,
@@ -485,13 +492,6 @@ class InspectionAgent(abctools.AbjadObject):
         return self._client._get_spanners(
             prototype=prototype,
             )
-
-    def get_logical_tie(self):
-        r'''Gets logical tie that governs leaf.
-
-        Returns logical tie.
-        '''
-        return self._client._get_logical_tie()
 
     def get_timespan(self,
         in_seconds=False,

@@ -48,7 +48,7 @@ Abjad packaging checklist:
         find-lower-camel-case-modules (both)
         find-manual-initializers (mainline only)
         find-multifunction-modules (both)
-        find-nonalphabetized-class-attributes
+        find-nonalphabetized-class-attributes (both)
         find-private-functions-in-public-modules (both)
         find-private-modules (both)
         find-slots-inconsistencies (each separately)

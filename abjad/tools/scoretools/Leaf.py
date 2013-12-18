@@ -155,14 +155,6 @@ class Leaf(Component):
             attach(new_grace_container, new)
         return new
 
-    def _format_after_slot(leaf, bundle):
-        result = []
-        result.append(('spanners', bundle.after.spanners))
-        result.append(('indicators', bundle.after.indicators))
-        result.append(('commands', bundle.after.commands))
-        result.append(('comments', bundle.after.comments))
-        return result
-
     def _format_after_grace_body(leaf):
         result = []
         if leaf._after_grace is not None:
@@ -177,6 +169,14 @@ class Leaf(Component):
             if len(leaf._after_grace):
                 result.append(r'\afterGrace')
         return ['after grace opening', result]
+
+    def _format_after_slot(leaf, bundle):
+        result = []
+        result.append(('spanners', bundle.after.spanners))
+        result.append(('indicators', bundle.after.indicators))
+        result.append(('commands', bundle.after.commands))
+        result.append(('comments', bundle.after.comments))
+        return result
 
     def _format_before_slot(leaf, bundle):
         result = []

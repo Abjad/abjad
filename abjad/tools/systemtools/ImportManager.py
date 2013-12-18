@@ -10,15 +10,6 @@ class ImportManager(object):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _split_package_path(path):
-        outer, inner = path, None
-        while os.path.exists(os.path.join(outer, '__init__.py')):
-            outer, inner = os.path.split(outer)
-        package_path = os.path.relpath(path, outer)
-        package_path = package_path.replace(os.sep, '.')
-        return package_path
-
-    @staticmethod
     def _get_public_function_names_in_module(module_file):
         r'''Collects and returns all public functions defined in
         module_file.
@@ -65,6 +56,15 @@ class ImportManager(object):
                             class_module)
                     for public_name in public_names:
                         namespace[public_name.__name__] = public_name
+
+    @staticmethod
+    def _split_package_path(path):
+        outer, inner = path, None
+        while os.path.exists(os.path.join(outer, '__init__.py')):
+            outer, inner = os.path.split(outer)
+        package_path = os.path.relpath(path, outer)
+        package_path = package_path.replace(os.sep, '.')
+        return package_path
 
     ### PUBLIC METHODS ###
 

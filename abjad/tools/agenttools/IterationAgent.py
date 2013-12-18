@@ -410,6 +410,99 @@ class IterationAgent(abctools.AbjadObject):
                 moment_2.start_leaves):
                 yield pair
 
+    def by_logical_tie(
+        self,
+        nontrivial=False,
+        pitched=False,
+        reverse=False,
+        ):
+        r'''Iterate logical ties forward in `expr`:
+
+        ::
+
+            >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
+
+        ..  doctest::
+
+            >>> print format(staff)
+            \new Staff {
+                c'4 ~
+                \times 2/3 {
+                    c'16
+                    d'8
+                }
+                e'8
+                f'4 ~
+                f'16
+            }
+
+        ::
+
+            >>> for x in iterate(staff).by_logical_tie():
+            ...     x
+            ...
+            LogicalTie(Note("c'4"), Note("c'16"))
+            LogicalTie(Note("d'8"),)
+            LogicalTie(Note("e'8"),)
+            LogicalTie(Note("f'4"), Note("f'16"))
+
+        Iterate logical ties backward in `expr`:
+
+        ::
+
+            >>> for x in iterate(staff).by_logical_tie(reverse=True):
+            ...     x
+            ...
+            LogicalTie(Note("f'4"), Note("f'16"))
+            LogicalTie(Note("e'8"),)
+            LogicalTie(Note("d'8"),)
+            LogicalTie(Note("c'4"), Note("c'16"))
+
+        Iterate pitched logical ties in `expr`:
+
+        ::
+
+            >>> for x in iterate(staff).by_logical_tie(pitched=True):
+            ...     x
+            ...
+            LogicalTie(Note("c'4"), Note("c'16"))
+            LogicalTie(Note("d'8"),)
+            LogicalTie(Note("e'8"),)
+            LogicalTie(Note("f'4"), Note("f'16"))
+
+        Iterate nontrivial logical ties in `expr`:
+
+        ::
+
+            >>> for x in iterate(staff).by_logical_tie(nontrivial=True):
+            ...     x
+            ...
+            LogicalTie(Note("c'4"), Note("c'16"))
+            LogicalTie(Note("f'4"), Note("f'16"))
+
+        Returns generator.
+        '''
+        nontrivial = bool(nontrivial)
+        prototype = scoretools.Leaf
+        if pitched:
+            prototype = (scoretools.Chord, scoretools.Note)
+        if not reverse:
+            for leaf in self.by_class(prototype):
+                tie_spanners = leaf._get_spanners(spannertools.Tie)
+                if not tie_spanners or \
+                    tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
+                    logical_tie = leaf._get_logical_tie()
+                    if not nontrivial or not logical_tie.is_trivial:
+                        yield logical_tie
+        else:
+            for leaf in self.by_class(prototype, reverse=True):
+                tie_spanners = leaf._get_spanners(spannertools.Tie)
+                if not(tie_spanners) or \
+                    tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
+                    logical_tie = leaf._get_logical_tie()
+                    if not nontrivial or not logical_tie.is_trivial:
+                        yield logical_tie
+
     def by_logical_voice(
         self,
         component_class,
@@ -796,99 +889,6 @@ class IterationAgent(abctools.AbjadObject):
             ):
             if not voice.is_nonsemantic:
                 yield voice
-
-    def by_logical_tie(
-        self,
-        nontrivial=False,
-        pitched=False,
-        reverse=False,
-        ):
-        r'''Iterate logical ties forward in `expr`:
-
-        ::
-
-            >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
-
-        ..  doctest::
-
-            >>> print format(staff)
-            \new Staff {
-                c'4 ~
-                \times 2/3 {
-                    c'16
-                    d'8
-                }
-                e'8
-                f'4 ~
-                f'16
-            }
-
-        ::
-
-            >>> for x in iterate(staff).by_logical_tie():
-            ...     x
-            ...
-            LogicalTie(Note("c'4"), Note("c'16"))
-            LogicalTie(Note("d'8"),)
-            LogicalTie(Note("e'8"),)
-            LogicalTie(Note("f'4"), Note("f'16"))
-
-        Iterate logical ties backward in `expr`:
-
-        ::
-
-            >>> for x in iterate(staff).by_logical_tie(reverse=True):
-            ...     x
-            ...
-            LogicalTie(Note("f'4"), Note("f'16"))
-            LogicalTie(Note("e'8"),)
-            LogicalTie(Note("d'8"),)
-            LogicalTie(Note("c'4"), Note("c'16"))
-
-        Iterate pitched logical ties in `expr`:
-
-        ::
-
-            >>> for x in iterate(staff).by_logical_tie(pitched=True):
-            ...     x
-            ...
-            LogicalTie(Note("c'4"), Note("c'16"))
-            LogicalTie(Note("d'8"),)
-            LogicalTie(Note("e'8"),)
-            LogicalTie(Note("f'4"), Note("f'16"))
-
-        Iterate nontrivial logical ties in `expr`:
-
-        ::
-
-            >>> for x in iterate(staff).by_logical_tie(nontrivial=True):
-            ...     x
-            ...
-            LogicalTie(Note("c'4"), Note("c'16"))
-            LogicalTie(Note("f'4"), Note("f'16"))
-
-        Returns generator.
-        '''
-        nontrivial = bool(nontrivial)
-        prototype = scoretools.Leaf
-        if pitched:
-            prototype = (scoretools.Chord, scoretools.Note)
-        if not reverse:
-            for leaf in self.by_class(prototype):
-                tie_spanners = leaf._get_spanners(spannertools.Tie)
-                if not tie_spanners or \
-                    tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
-                    logical_tie = leaf._get_logical_tie()
-                    if not nontrivial or not logical_tie.is_trivial:
-                        yield logical_tie
-        else:
-            for leaf in self.by_class(prototype, reverse=True):
-                tie_spanners = leaf._get_spanners(spannertools.Tie)
-                if not(tie_spanners) or \
-                    tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
-                    logical_tie = leaf._get_logical_tie()
-                    if not nontrivial or not logical_tie.is_trivial:
-                        yield logical_tie
 
     def by_timeline(
         self,
