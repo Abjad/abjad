@@ -44,12 +44,10 @@ We add slur spanners inside our loop:
 ::
 
    >>> leaves = iterate(staff).by_class(scoretools.Leaf)
-   >>> for group in iterationtools.iterate_runs_in_expr(leaves, (Note, Chord)):
-   ...     spannertools.Slur(group)
+   >>> for group in iterate(leaves).by_run((Note, Chord)):
+   ...     slur = Slur()
+   ...     attach(slur, group)
    ... 
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'iterationtools' is not defined
 
 
 Here's the result:
@@ -77,14 +75,11 @@ Let's rewrite our example to prevent that from happening:
 
    >>> staff = Staff(string)
    >>> leaves = iterate(staff).by_class(scoretools.Leaf)
-   >>> classes = (Note, Chord)
-   >>> for group in iterationtools.iterate_runs_in_expr(leaves, classes):
+   >>> for group in iterate(leaves).by_run((Note, Chord)):
    ...     if 1 < len(group):
-   ...         spannertools.Slur(group)
+   ...         slur = Slur()
+   ...         attach(slur, group)
    ... 
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'iterationtools' is not defined
 
 
 And here's the corrected result:
