@@ -15,7 +15,7 @@ def _rewrite_meter(
     ):
     from abjad.tools import metertools
 
-    assert isinstance(components, selectiontools.ContiguousSelection), \
+    assert isinstance(components, selectiontools.Selection), \
         repr(components)
 
     def get_offsets_at_depth(depth):
