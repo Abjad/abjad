@@ -33,39 +33,18 @@ Abjad numbers pitches like this:
    ...         bass_staff.append(note)
    ...     pitch_number = note.written_pitch.pitch_number
    ...     markup = markuptools.Markup(str(pitch_number), Down)
-   ...     markup = markup.attach(bass_staff[-1])
+   ...     attach(markup, bass_staff[-1])
    ... 
-   Traceback (most recent call last):
-     File "<stdin>", line 13, in <module>
-   AttributeError: 'Markup' object has no attribute 'attach'
 
 
 ::
 
-   >>> score.override.beam.transparent = True
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Score' object has no attribute 'override'
-   >>> score.override.time_signature.stencil = False
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Score' object has no attribute 'override'
-   >>> score.override.flag.transparent = True
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Score' object has no attribute 'override'
-   >>> score.override.rest.transparent = True
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Score' object has no attribute 'override'
-   >>> score.override.stem.stencil = False
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Score' object has no attribute 'override'
-   >>> score.override.text_script.staff_padding = 6
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Score' object has no attribute 'override'
+   >>> override(score).beam.transparent = True
+   >>> override(score).time_signature.stencil = False
+   >>> override(score).flag.transparent = True
+   >>> override(score).rest.transparent = True
+   >>> override(score).stem.stencil = False
+   >>> override(score).text_script.staff_padding = 6
    >>> contextualize(score).proportional_notation_duration = schemetools.SchemeMoment(1, 56)
 
 
@@ -120,39 +99,18 @@ Abjad numbers diatonic pitches like this:
    ...         bass_staff.append(note)
    ...     diatonic_pitch_number = note.written_pitch.diatonic_pitch_number
    ...     markup = markuptools.Markup(str(diatonic_pitch_number), Down)
-   ...     markup = markup.attach(bass_staff[-1])
+   ...     attach(markup, bass_staff[-1])
    ... 
-   Traceback (most recent call last):
-     File "<stdin>", line 13, in <module>
-   AttributeError: 'Markup' object has no attribute 'attach'
 
 
 ::
 
-   >>> score.override.beam.transparent = True
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Score' object has no attribute 'override'
-   >>> score.override.time_signature.stencil = False
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Score' object has no attribute 'override'
-   >>> score.override.flag.transparent = True
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Score' object has no attribute 'override'
-   >>> score.override.rest.transparent = True
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Score' object has no attribute 'override'
-   >>> score.override.stem.stencil = False
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Score' object has no attribute 'override'
-   >>> score.override.text_script.staff_padding = 6
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Score' object has no attribute 'override'
+   >>> override(score).beam.transparent = True
+   >>> override(score).time_signature.stencil = False
+   >>> override(score).flag.transparent = True
+   >>> override(score).rest.transparent = True
+   >>> override(score).stem.stencil = False
+   >>> override(score).text_script.staff_padding = 6
    >>> contextualize(score).proportional_notation_duration = schemetools.SchemeMoment(1, 52)
 
 

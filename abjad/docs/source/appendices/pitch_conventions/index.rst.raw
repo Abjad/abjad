@@ -30,16 +30,16 @@ for pitch in pitches:
         bass_staff.append(note)
     pitch_number = note.written_pitch.pitch_number
     markup = markuptools.Markup(str(pitch_number), Down)
-    markup = markup.attach(bass_staff[-1])
+    attach(markup, bass_staff[-1])
 </abjad>
 
 <abjad>
-score.override.beam.transparent = True
-score.override.time_signature.stencil = False
-score.override.flag.transparent = True
-score.override.rest.transparent = True
-score.override.stem.stencil = False
-score.override.text_script.staff_padding = 6
+override(score).beam.transparent = True
+override(score).time_signature.stencil = False
+override(score).flag.transparent = True
+override(score).rest.transparent = True
+override(score).stem.stencil = False
+override(score).text_script.staff_padding = 6
 contextualize(score).proportional_notation_duration = schemetools.SchemeMoment(1, 56)
 </abjad>
 
@@ -87,16 +87,16 @@ for pitch in pitches:
         bass_staff.append(note)
     diatonic_pitch_number = note.written_pitch.diatonic_pitch_number
     markup = markuptools.Markup(str(diatonic_pitch_number), Down)
-    markup = markup.attach(bass_staff[-1])
+    attach(markup, bass_staff[-1])
 </abjad>
 
 <abjad>
-score.override.beam.transparent = True
-score.override.time_signature.stencil = False
-score.override.flag.transparent = True
-score.override.rest.transparent = True
-score.override.stem.stencil = False
-score.override.text_script.staff_padding = 6
+override(score).beam.transparent = True
+override(score).time_signature.stencil = False
+override(score).flag.transparent = True
+override(score).rest.transparent = True
+override(score).stem.stencil = False
+override(score).text_script.staff_padding = 6
 contextualize(score).proportional_notation_duration = schemetools.SchemeMoment(1, 52)
 </abjad>
 
