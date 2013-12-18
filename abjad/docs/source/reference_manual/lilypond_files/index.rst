@@ -22,9 +22,9 @@ Make a basic LilyPond file with the ``lilypondfiletools`` package:
 ::
 
    >>> f(lilypond_file)
-   % 2013-12-06 10:55
+   % 2013-12-18 15:36
    
-   \version "2.17.96"
+   \version "2.17.97"
    \language "english"
    
    \score {
@@ -83,9 +83,9 @@ Set default LilyPond global staff size and paper size like this:
 ::
 
    >>> f(lilypond_file)
-   % 2013-12-06 10:55
+   % 2013-12-18 15:36
    
-   \version "2.17.96"
+   \version "2.17.97"
    \language "english"
    
    #(set-default-paper-size "A7" 'portrait)
@@ -124,9 +124,9 @@ information:
 ::
 
    >>> f(lilypond_file)
-   % 2013-12-06 10:55
+   % 2013-12-18 15:36
    
-   \version "2.17.96"
+   \version "2.17.97"
    \language "english"
    
    #(set-default-paper-size "A7" 'portrait)
@@ -152,3 +152,4 @@ information:
    >>> show(lilypond_file)
 
 .. image:: images/index-3.png
+

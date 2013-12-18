@@ -79,7 +79,7 @@ Slice a staff to select its components:
 ::
 
    >>> staff[:]
-   SliceSelection(Tuplet((2, 3), "c'4 d'4 e'4"), Note("f'2"), Note("g'1"))
+   SliceSelection(Tuplet(Multiplier(2, 3), "c'4 d'4 e'4"), Note("f'2"), Note("g'1"))
 
 
 
@@ -329,3 +329,4 @@ You can make a staff treat its contents as simultaneous with
    >>> show(staff)
 
 .. image:: images/index-10.png
+

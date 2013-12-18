@@ -70,8 +70,8 @@ The asterisks ``*`` denote a fixed-multiplier tuplet.
 The remaining arguments show the top-level components of tuplet.
 
 
-Inspecting the LilyPond format of a tuplet
-------------------------------------------
+Formatting tuplets
+------------------
 
 Use ``format()`` to get the LilyPond format a tuplet:
 

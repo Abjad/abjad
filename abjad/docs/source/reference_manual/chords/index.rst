@@ -240,3 +240,4 @@ You can add pitches back to an empty chord at any time:
    >>> show(chord)
 
 .. image:: images/index-15.png
+

@@ -41,7 +41,7 @@ Understanding the interpreter representation of a note
 
 ``Note`` tells you the note's class.
 
-``c'`` tells you that the note's pitch is equal to ``C4``.
+``c'`` tells you that the note's pitch is equal to middle C.
 
 ``4`` tells you that the note's duration is equal to a quarter note.
 
@@ -107,3 +107,4 @@ Set the written duration of notes like this:
    >>> show(note)
 
 .. image:: images/index-6.png
+
