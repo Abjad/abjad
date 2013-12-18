@@ -39,7 +39,139 @@ Abjad packaging checklist:
         Decide whether to update Graphviz.
         Record the output of "dot -V" in the packaging transcript.
 
- 3. Author release notes:
+ 3. Run the following codebase maintenance scripts:
+        find-duplicate-module-names (mainline only)
+        find-file-names-with-forbidden-characters (both)
+        find-import-as-statements (both)
+        find-import-from-stdlib-statements (both)
+        find-lower-camel-case-definitions (both)
+        find-lower-camel-case-modules (both)
+        find-manual-initializers (mainline only)
+        find-multifunction-modules (both)
+        find-nonalphabetized-class-attributes
+        find-private-functions-in-public-modules (both)
+        find-private-modules (both)
+        find-slots-inconsistencies (each separately)
+    Also run these:
+        fix-block-comments (both)
+        fix-tests (both)
+        remove-source-file-terminal-blank-lines (both)
+    This script should eventually be ported forward:
+        find-nonalphabetized-module-headers
+    Test and commit. Alternately you may want to test after each script runs.
+    Then test and commit.
+
+ 4. Change to the abjad root directory, then to ly/ly and run `make all`.
+    This will update the parser's LilyPond environment scrape to the current
+    version of LilyPond in use in the packaging environment.
+    If any part of the scrape fails to compile, fix, commit and repeat this
+    step.
+
+ 5. Change to the abjad mainline root directory.
+    Run "ajv clean .".
+    Then run "py.test".
+    If any tests break, fix, commit and repeat this step.
+    Record mainline py.test test results in the packaging transcript.
+
+ 6. Change back to the abjad root directory and run "ajv api -M".
+    You will need Graphviz installed to build the API.
+    OS X Graphviz downloads are available at 
+        http://www.graphviz.org/Download..php.
+    Ubuntu Graphic installation is available with 
+        "sudo apt-get install graphviz".
+    The HTML version of the API should build with no warnings and no errors.
+    If Sphinx gives any warnings or errors, fix, commit and go back to (6.)
+
+ 7. Change to abjad/tools.
+    Run "ajv doctest".
+    If any tests break, fix, commit and go back to (6.).
+    Record mainline doctest test results in the packaging transcript.
+
+ 8. Change to the experimental directory.
+    Run "ajv clean .".
+    Then run "py.test".
+    If any tests break, fix, commit and go back to (6.).
+    Record experimental py.test results in the packaging transcript.
+
+ 9. Stay in the experimental directory.
+    Run "ajv doctest".
+    If any tests break, fix, commit and go back to (6.).
+    Record experimental doctest test results in the packaging transcript.
+
+10. Return to the mainline.
+    Start the Abjad interpreter to run one final sanity check.
+    Run 'show(Note("c4"))'.
+    Then call:
+        systemtools.IOManager.view_last_ly()
+        systemtools.IOManager.view_last_log()
+        systemtools.IOManager.view_last_pdf()
+    Then run 'play(Note("c4"))'.
+    If any test fails, fix, commit and go back to (6.)
+    Record sanity check test results in the packaging transcript.
+
+11. Change to the abjad/etc/optimization directory.
+    Create a v2.x optimization transcript by copying the most recent such file.
+    Record memory usage and profiling test results in the 
+    optimization transcript.
+
+12. Run "svn info".
+    Note the current revision of the working copy you are packaging.
+    Open docs/source/start_here/versions/index.rst again.
+    Check the release date indicated there.
+    Check the revision number indicated there.
+    Make sure the revision number equals current revision + 1.
+
+13. Change to abjad/docs.
+    Run 'make clean'.
+    This step is important because failing to 'make clean' before building
+    the docs can cause the doc tarball made below to be too large.
+
+14. Change to experimental/docs.
+    Run "make clean".
+    Run "avj api -X". If any erros occur, fix, commit and go back to (6.)
+    Record experimental HTML build results in the packaging transcript.
+
+15. Change back to abjad/docs.
+    Run "ajv api -M". If any errors occur, fix, commit and go back to (6.)
+    Record mainline HTML build results in the packaging transcript.
+
+16. Run "make latex". 
+    If any errors occur, fix, commit and go back to (6.)
+    Record LaTeX build results in the packaging transcript.
+
+17. Run "make latexpdf". 
+    If any errors occur, fix, commit and go back to (6.)
+    Open the docs/build/latex/Abjad.pdf file that results.
+    Click around some to make sure everything looks OK.
+    Record Abjad.pdf build results in the packaging transcript.
+    Open the docs/build/latex/AbjadAPI.pdf file that also results.
+    Click around some to make sure everything looks OK.
+    Record AbjadAPI.pdf build results in the packaging transcript.
+
+18. Copy docs/build/latex/Abjad.pdf to docs/pdf/Abjad-x-y.pdf.
+    Copy docs/build/latex/AbjadAPI.pdf to docs/pdf/AbjadAPI-x-y.pdf.
+    Do both of these with 'cp' and not with 'svn cp'.
+
+19. Add docs/pdf/Abajd-x-y.pdf to svn.
+    Add docs/pdf/AbjadAPI-x-y.pdf to svn.
+
+20. Remove docs/pdf/Abjad-x-(y-1).pdf from svn.
+    Remove docs/pdf/AbjadAPI-x-(y-1).pdf from svn.
+
+21. Commit.
+    All tests have now passed in the packaging environment.
+    All documentation has now built in the packaging environment.
+
+22. For each additional test environment, repeat the following steps:
+    [2] documenting the test environment.
+    [5], [6], [7] recording py.test, doctest and sanity check test results.
+    [12], [13], [14] recording HTML, LaTeX & PDF build results.
+
+23. Complete all addition platform testing.
+    Close and save the packaging transcript.
+    Commit.
+
+24. Author release notes:
         Open docs/source/start_here/versions/index.rst.
         Add a sentence giving the release date and repository revision number.
         Example: "Released 2009-05-21. Built from r5752."
@@ -62,146 +194,6 @@ Abjad packaging checklist:
         Open docs/source/appendices/change_log/index.rst 
         Add entries for function, method and class names changed 
         during development.
-    Commit.
-
- 4. Run the following codebase maintenance scripts on the root Abjad directory:
-        find-and-fix-manual-class-package-initializers (PORT FORWARD)
-        find-all-executables
-        find-duplicate-modules-names
-        find-import-as-statements
-        find-import-from-stdlib-statements
-        find-lower-camel-case-definitions
-        find-lower-camel-case-modules
-        find-manual-class-loads-in-initializers
-        find-misnamed-private-modules
-        find-missing-test-modules (WE'RE NOT COMMITTED TO THE OUTPUT)
-        find-multifunction-modules (WE'RE NOT COMMITTED TO THE OUTPUT)
-        find-multiline-import-statements (WE DON'T CARE ABOUT THE OUTPUT)
-        find-nonalphabetized-class-attributes
-        find-nonalphabetized-module-headers (NEEDS TO BE PORTED FORWARD)
-        find-noninstantiable-concrete-classes (NEEDS TO BE FINISHED)
-        find-private-modules (WE'RE NOT YET BOUND BY THE OUTPUT)
-        find-public-helpers-without-docstrings (NEEDS TO BE PORTED FORWARD)
-        find-slots-implementation-inconsistencies (CAN'T BE RUN ON EXP. YET)
-    Also run these:
-        fix-nonalphabetized-module-headers (NEEDS TO BE PORTED FORWARD)
-        fix-test-case-block-comments
-        fix-test-cases
-        reindent-3-spaces-as-4 (this will cause all 1500 doc pages to rebuild)
-        remove-source-file-terminal-blank-lines
-    AVOID these scripts at build time:
-        reindent-spaces-variably
-    Test and commit. Alternately you may want to test after each script runs.
-    Then test and commit.
-
- 5. Change to the abjad root directory, then to ly/ly and run `make all`.
-    This will update the parser's LilyPond environment scrape to the current
-    version of LilyPond in use in the packaging environment.
-    If any part of the scrape fails to compile, fix, commit and repeat this
-    step.
-
- 6. Change to the abjad mainline root directory.
-    Run "ajv clean .".
-    Then run "py.test".
-    If any tests break, fix, commit and repeat this step.
-    Record mainline py.test test results in the packaging transcript.
-
- 7. Change back to the abjad root directory and run "ajv api -M".
-    You will need Graphviz installed to build the API.
-    OS X Graphviz downloads are available at 
-        http://www.graphviz.org/Download..php.
-    Ubuntu Graphic installation is available with 
-        "sudo apt-get install graphviz".
-    The HTML version of the API should build with no warnings and no errors.
-    If Sphinx gives any warnings or errors, fix, commit and go back to (6.)
-
- 8. Change to abjad/tools.
-    Run "ajv doctest".
-    If any tests break, fix, commit and go back to (6.).
-    Record mainline doctest test results in the packaging transcript.
-
- 9. Change to the experimental directory.
-    Run "ajv clean .".
-    Then run "py.test".
-    If any tests break, fix, commit and go back to (6.).
-    Record experimental py.test results in the packaging transcript.
-
-10. Stay in the experimental directory.
-    Run "ajv doctest".
-    If any tests break, fix, commit and go back to (6.).
-    Record experimental doctest test results in the packaging transcript.
-
-11. Return to the mainline.
-    Start the Abjad interpreter to run one final sanity check.
-    Run 'show(Note("c4"))'.
-    Then call:
-        systemtools.IOManager.view_last_ly()
-        systemtools.IOManager.view_last_log()
-        systemtools.IOManager.view_last_pdf()
-    Then run 'play(Note("c4"))'.
-    If any test fails, fix, commit and go back to (6.)
-    Record sanity check test results in the packaging transcript.
-
-12. Change to the abjad/etc/optimization directory.
-    Create a v2.x optimization transcript by copying the most recent such file.
-    Record memory usage and profiling test results in the 
-    optimization transcript.
-
-13. Run "svn info".
-    Note the current revision of the working copy you are packaging.
-    Open docs/source/start_here/versions/index.rst again.
-    Check the release date indicated there.
-    Check the revision number indicated there.
-    Make sure the revision number equals current revision + 1.
-
-14. Change to abjad/docs.
-    Run 'make clean'.
-    This step is important because failing to 'make clean' before building
-    the docs can cause the doc tarball made below to be too large.
-
-15. Change to experimental/docs.
-    Run "make clean".
-    Run "avj api -X". If any erros occur, fix, commit and go back to (6.)
-    Record experimental HTML build results in the packaging transcript.
-
-16. Change back to abjad/docs.
-    Run "ajv api -M". If any errors occur, fix, commit and go back to (6.)
-    Record mainline HTML build results in the packaging transcript.
-
-17. Run "make latex". 
-    If any errors occur, fix, commit and go back to (6.)
-    Record LaTeX build results in the packaging transcript.
-
-18. Run "make latexpdf". 
-    If any errors occur, fix, commit and go back to (6.)
-    Open the docs/build/latex/Abjad.pdf file that results.
-    Click around some to make sure everything looks OK.
-    Record Abjad.pdf build results in the packaging transcript.
-    Open the docs/build/latex/AbjadAPI.pdf file that also results.
-    Click around some to make sure everything looks OK.
-    Record AbjadAPI.pdf build results in the packaging transcript.
-
-19. Copy docs/build/latex/Abjad.pdf to docs/pdf/Abjad-x-y.pdf.
-    Copy docs/build/latex/AbjadAPI.pdf to docs/pdf/AbjadAPI-x-y.pdf.
-    Do both of these with 'cp' and not with 'svn cp'.
-
-20. Add docs/pdf/Abajd-x-y.pdf to svn.
-    Add docs/pdf/AbjadAPI-x-y.pdf to svn.
-
-21. Remove docs/pdf/Abjad-x-(y-1).pdf from svn.
-    Remove docs/pdf/AbjadAPI-x-(y-1).pdf from svn.
-
-22. Commit.
-    All tests have now passed in the packaging environment.
-    All documentation has now built in the packaging environment.
-
-23. For each additional test environment, repeat the following steps:
-    [2] documenting the test environment.
-    [5], [6], [7] recording py.test, doctest and sanity check test results.
-    [12], [13], [14] recording HTML, LaTeX & PDF build results.
-
-24. Complete all addition platform testing.
-    Close and save the packaging transcript.
     Commit.
 
 25. Change to abjad/trunk.

@@ -152,4 +152,3 @@ information:
    >>> show(lilypond_file)
 
 .. image:: images/index-3.png
-

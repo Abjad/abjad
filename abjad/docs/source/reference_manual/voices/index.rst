@@ -300,4 +300,3 @@ based on a LilyPond voice:
        g'4
        f'4
    }
-

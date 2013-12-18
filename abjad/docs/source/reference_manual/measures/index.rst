@@ -67,4 +67,3 @@ Create a measure with a time signature and music:
    >>> show(measure)
 
 .. image:: images/index-3.png
-

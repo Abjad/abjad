@@ -224,4 +224,3 @@ You can change the properties of any instrument at initialization:
    >>> show(staff)
 
 .. image:: images/index-8.png
-
