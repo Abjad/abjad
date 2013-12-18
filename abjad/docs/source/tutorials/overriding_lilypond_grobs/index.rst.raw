@@ -40,8 +40,7 @@ show(staff)
 </abjad>
 
 <abjad>
-staff.override.staff_symbol.color = 'blue'
-staff.override
+override(staff).staff_symbol.color = 'blue'
 </abjad>
 
 <abjad>
@@ -55,9 +54,8 @@ leaf = staff[-1]
 </abjad>
 
 <abjad>
-leaf.override.note_head.color = 'red'
-leaf.override.stem.color = 'red'
-leaf.override
+override(leaf).note_head.color = 'red'
+override(leaf).stem.color = 'red'
 </abjad>
 
 <abjad>
@@ -67,9 +65,9 @@ show(staff)
 And so do Abjad spanners:
 
 <abjad>
-slur = spannertools.Slur(staff[:])
-slur.override.slur.color = 'red'
-slur.override
+slur = Slur()
+attach(slur, staff[:])
+override(slur).slur.color = 'red'
 </abjad>
 
 <abjad>
@@ -96,7 +94,7 @@ double-underscores:
 
 <abjad>
 staff = Staff()
-staff.override.staff_grouper.staff_staff_spacing__basic_distance = 7
+override(staff).staff_grouper.staff_staff_spacing__basic_distance = 7
 f(staff)
 </abjad>
 

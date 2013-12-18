@@ -51,7 +51,13 @@ tupletted note:
    >>> notes = staff.select_leaves()
    >>> note = notes[1]
    >>> note.override.note_head.color = 'red'
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Note' object has no attribute 'override'
    >>> note.override.stem.color = 'red'
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Note' object has no attribute 'override'
    >>> show(staff)
 
 .. image:: images/index-1.png
@@ -153,11 +159,20 @@ instead of a list of components:
    >>> staff = Staff()
    >>> key_signature = indicatortools.KeySignature('g', 'major')
    >>> key_signature = key_signature.attach(staff)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'KeySignature' object has no attribute 'attach'
    >>> time_signature = indicatortools.TimeSignature((2, 4), partial=Duration(1, 8))
    >>> time_signature = time_signature.attach(staff)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'TimeSignature' object has no attribute 'attach'
    >>> staff.extend("d'8 f'8 a'8 d''8 f''8 gs'4 r8 e'8 gs'8 b'8 e''8 gs''8 a'4")
    >>> articulation = indicatortools.Articulation('turn')
    >>> articulation = articulation.attach(staff[5])
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Articulation' object has no attribute 'attach'
    >>> show(staff)
 
 .. image:: images/index-4.png
@@ -203,7 +218,9 @@ Change a numbered pitch-class set to a named pitch-class set like this:
 ::
 
    >>> numbered_pitch_class_set.new(item_class=pitchtools.NamedPitchClass)
-   PitchClassSet(['fs', 'g', 'bf', 'bqf'])
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'PitchClassSet' object has no attribute 'new'
 
 
 The interfaces of all ``pitchtools`` classes have been made easier to use.

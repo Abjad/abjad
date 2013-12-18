@@ -7,7 +7,8 @@ there is a pattern to how they arranged.
 .. image:: images/index-1.png
 
 
-The pattern?  Slurs in the example span groups of notes and chords separated by rests.
+The pattern?  Slurs in the example span groups of notes and chords separated by
+rests.
 
 Abjad makes it easy to create rest-delimited slurs in a structured way.
 
@@ -46,10 +47,9 @@ We add slur spanners inside our loop:
    >>> for group in iterationtools.iterate_runs_in_expr(leaves, (Note, Chord)):
    ...     spannertools.Slur(group)
    ... 
-   Slur(c'4, d'4)
-   Slur(e'4, <fs' a' c''>8, <fs' a' c''>4)
-   Slur(g'16)
-   Slur(b'16, d''16, df'4, c'4, c'1)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'iterationtools' is not defined
 
 
 Here's the result:
@@ -82,9 +82,9 @@ Let's rewrite our example to prevent that from happening:
    ...     if 1 < len(group):
    ...         spannertools.Slur(group)
    ... 
-   Slur(c'4, d'4)
-   Slur(e'4, <fs' a' c''>8, <fs' a' c''>4)
-   Slur(b'16, d''16, df'4, c'4, c'1)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'iterationtools' is not defined
 
 
 And here's the corrected result:
@@ -94,3 +94,4 @@ And here's the corrected result:
    >>> show(staff)
 
 .. image:: images/index-4.png
+

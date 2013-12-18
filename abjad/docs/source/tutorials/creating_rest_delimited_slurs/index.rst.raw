@@ -13,14 +13,15 @@ string = r"""
     """
 staff = Staff(string)
 leaves = iterate(staff).by_class(scoretools.Leaf)
-for group in iterationtools.iterate_runs_in_expr(leaves, (Note, Chord)):
+for group in iterate(leaves).by_run((Note, Chord)):
     if 1 < len(group):
         slur = spannertools.Slur(group)
 
 show(staff)
 </abjad>
 
-The pattern?  Slurs in the example span groups of notes and chords separated by rests.
+The pattern?  Slurs in the example span groups of notes and chords separated by
+rests.
 
 Abjad makes it easy to create rest-delimited slurs in a structured way.
 

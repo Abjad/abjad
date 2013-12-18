@@ -49,7 +49,7 @@ We can use the inspector to see that this is the case:
 
 ::
 
-   >>> print inspect(staff).get_effective(indicatortools.TimeSignature)
+   >>> print inspect(staff).get_effective(TimeSignature)
    None
 
 
@@ -58,8 +58,7 @@ And:
 ::
 
    >>> for leaf in staff.select_leaves():
-   ...     print inspect(leaf).get_effective(
-   ...         indicatortools.TimeSignature)
+   ...     print inspect(leaf).get_effective(TimeSignature)
    ... 
    None
    None
@@ -74,16 +73,12 @@ this:
 ::
 
    >>> for component in iterationtools.iterate_components_in_expr(staff):
-   ...     effective_time_signature = inspect(component).get_effective(
-   ...         indicatortools.TimeSignature)
+   ...     effective_time_signature = inspect(component).get_effective(TimeSignature)
    ...     print component, effective_time_signature
    ... 
-   Staff{5} None
-   c'4 None
-   d'4 None
-   e'4 None
-   f'4 None
-   g'2 None
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'iterationtools' is not defined
 
 
 This confirms the answers to our questions. There is not yet any time
@@ -151,7 +146,7 @@ First, we create a ``3/4`` time signature:
 
 ::
 
-   >>> time_signature = indicatortools.TimeSignature((3, 4))
+   >>> time_signature = TimeSignature((3, 4))
 
 
 The interpreter representation of our time signature looks like this:
@@ -170,7 +165,9 @@ signature is "unattached." And we can see this like so:
 ::
 
    >>> time_signature.start_component is None
-   True
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'TimeSignature' object has no attribute 'start_component'
 
 
 What does it mean for a time signature to have ``'start_component'`` equal
@@ -181,8 +178,7 @@ So now we attach our time signature to our staff:
 
 ::
 
-   >>> time_signature.attach(staff)
-   TimeSignature((3, 4))(Staff{5})
+   >>> attach(time_signature, staff)
 
 
 Abjad responds immediately by returning the time signature we have just
@@ -200,7 +196,9 @@ Our time signature has transitioned from an "unattached" state to an
 ::
 
    >>> time_signature.start_component
-   Staff{5}
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'TimeSignature' object has no attribute 'start_component'
 
 
 And our staff has likewise transitioned from a state of having no effective
@@ -208,8 +206,8 @@ time signature to a state of having an effective time signature:
 
 ::
 
-   >>> inspect(staff).get_effective(indicatortools.TimeSignature)
-   TimeSignature((3, 4))(Staff{5})
+   >>> inspect(staff).get_effective(TimeSignature)
+   TimeSignature((3, 4))
 
 
 And what about the leaves inside our staff?
@@ -220,8 +218,7 @@ Indeed they do:
 ::
 
    >>> for leaf in staff.select_leaves():
-   ...     effective_time_signature = inspect(leaf).get_effective(
-   ...         indicatortools.TimeSignature)
+   ...     effective_time_signature = inspect(leaf).get_effective(TimeSignature)
    ...     print leaf, effective_time_signature
    ... 
    c'4 3/4
@@ -279,7 +276,9 @@ Detaching a time signature is easy:
 ::
 
    >>> time_signature.detach()
-   TimeSignature((3, 4))
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'TimeSignature' object has no attribute 'detach'
 
 
 Abjad returns the mark we have just detached. And the interpreter
@@ -290,15 +289,17 @@ We confirm this like so:
 ::
 
    >>> time_signature.start_component is None
-   True
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'TimeSignature' object has no attribute 'start_component'
 
 
 And also like so:
 
 ::
 
-   >>> print inspect(staff).get_effective(indicatortools.TimeSignature)
-   None
+   >>> print inspect(staff).get_effective(TimeSignature)
+   3/4
 
 
 Our time signature now knows nothing about our staff. And vice versa.
@@ -311,16 +312,24 @@ We can simply create and attach a new time signature:
 
 ::
 
-   >>> duple_time_signature = indicatortools.TimeSignature((2, 4))
-   >>> duple_time_signature.attach(staff)
-   TimeSignature((2, 4))(Staff{5})
+   >>> duple_time_signature = TimeSignature((2, 4))
+   >>> attach(duple_time_signature, staff)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+     File "/Users/trevorbaca/Documents/abjad/abjad/tools/topleveltools/attach.py", line 41, in attach
+       expression._bind_to_component(component)
+     File "/Users/trevorbaca/Documents/abjad/abjad/tools/indicatortools/IndicatorExpression.py", line 100, in _bind_to_component
+       self._warn_duplicate_indicator(component)
+     File "/Users/trevorbaca/Documents/abjad/abjad/tools/indicatortools/IndicatorExpression.py", line 226, in _warn_duplicate_indicator
+       raise ValueError(message)
+   ValueError: effective indicator already attached.
 
 
 ::
 
    >>> f(staff)
    \new Staff {
-       \time 2/4
+       \time 3/4
        c'4
        d'4
        e'4
@@ -346,21 +355,24 @@ To do this we'll first detach our ``2/4`` time signature ...
 ::
 
    >>> duple_time_signature.detach()
-   TimeSignature((2, 4))
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'TimeSignature' object has no attribute 'detach'
 
 
 ... confirm that our staff is now time signatureless ...
 
 ::
 
-   >>> print inspect(staff).get_effective(indicatortools.TimeSignature)
-   None
+   >>> print inspect(staff).get_effective(TimeSignature)
+   3/4
 
 
 ::
 
    >>> f(staff)
    \new Staff {
+       \time 3/4
        c'4
        d'4
        e'4
@@ -373,8 +385,7 @@ To do this we'll first detach our ``2/4`` time signature ...
 
 ::
 
-   >>> time_signature.attach(staff)
-   TimeSignature((3, 4))(Staff{5})
+   >>> attach(time_signature, staff)
 
 
 ... change the numerator of our time signature ...
@@ -382,23 +393,28 @@ To do this we'll first detach our ``2/4`` time signature ...
 ::
 
    >>> time_signature.numerator = 2
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: can't set attribute
 
 
 ... and check to make sure that everything is as it should be:
 
 ::
 
-   >>> inspect(staff).get_effective(indicatortools.TimeSignature)
-   TimeSignature((2, 4))(Staff{5})
+   >>> inspect(staff).get_effective(TimeSignature)
+   TimeSignature((3, 4))
    >>> time_signature.start_component
-   Staff{5}
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'TimeSignature' object has no attribute 'start_component'
 
 
 ::
 
    >>> f(staff)
    \new Staff {
-       \time 2/4
+       \time 3/4
        c'4
        d'4
        e'4
@@ -422,6 +438,9 @@ again:
 ::
 
    >>> time_signature.numerator = 4
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: can't set attribute
 
 
 ::
@@ -435,7 +454,7 @@ again:
 
    >>> f(staff)
    \new Staff {
-       \time 4/4
+       \time 3/4
        c'4
        d'4
        e'4
@@ -456,14 +475,16 @@ Abjad time signatures implement this as a read / write attribute:
 ::
 
    >>> time_signature.partial = Duration(2, 4)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: can't set attribute
 
 
 ::
 
    >>> f(staff)
    \new Staff {
-       \partial 2
-       \time 4/4
+       \time 3/4
        c'4
        d'4
        e'4
@@ -492,8 +513,7 @@ We've already got a ``4/4`` time signature attached to our staff:
 
    >>> f(staff)
    \new Staff {
-       \partial 2
-       \time 4/4
+       \time 3/4
        c'4
        d'4
        e'4
@@ -507,13 +527,16 @@ Let's get rid of the pick-up:
 ::
 
    >>> time_signature.partial = None
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: can't set attribute
 
 
 ::
 
    >>> f(staff)
    \new Staff {
-       \time 4/4
+       \time 3/4
        c'4
        d'4
        e'4
@@ -528,7 +551,7 @@ We create it in the usual way:
 
 ::
 
-   >>> duple_time_signature = indicatortools.TimeSignature((2, 4))
+   >>> duple_time_signature = TimeSignature((2, 4))
    >>> duple_time_signature
    TimeSignature((2, 4))
 
@@ -546,15 +569,14 @@ do that like this:
 
 ::
 
-   >>> duple_time_signature.attach(staff[4])
-   TimeSignature((2, 4))(g'2)
+   >>> attach(duple_time_signature, staff[4])
 
 
 ::
 
    >>> f(staff)
    \new Staff {
-       \time 4/4
+       \time 3/4
        c'4
        d'4
        e'4

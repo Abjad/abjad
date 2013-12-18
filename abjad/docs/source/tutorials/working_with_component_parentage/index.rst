@@ -30,7 +30,7 @@ Use the inspector to get the parentage of any component:
 ::
 
    >>> parentage
-   Parentage(Note("c'4"), Tuplet(2/3, [c'4, d'4, e'4]), Staff{2}, Score<<1>>)
+   Parentage(Note("c'4"), Tuplet(Multiplier(2, 3), "c'4 d'4 e'4"), Staff{2}, Score<<1>>)
 
 
 Abjad returns a special type of selection.
@@ -44,7 +44,7 @@ Use parentage to find the immediate parent of a component:
 ::
 
    >>> parentage.parent
-   Tuplet(2/3, [c'4, d'4, e'4])
+   Tuplet(Multiplier(2, 3), "c'4 d'4 e'4")
 
 
 Or the root of the score in the which the component resides:
@@ -69,3 +69,4 @@ Or the number of tuplets in which the component is nested:
 
    >>> parentage.tuplet_depth
    1
+

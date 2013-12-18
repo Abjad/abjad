@@ -45,15 +45,14 @@ in effect for either our staff or for the five notes it contains.
 We can use the inspector to see that this is the case:
 
 <abjad>
-print inspect(staff).get_effective(indicatortools.TimeSignature)
+print inspect(staff).get_effective(TimeSignature)
 </abjad>
 
 And:
 
 <abjad>
 for leaf in staff.select_leaves():
-    print inspect(leaf).get_effective(
-        indicatortools.TimeSignature)
+    print inspect(leaf).get_effective(TimeSignature)
 </abjad>
 
 And we can iterate both the staff and its leaves at one and the same time like
@@ -61,8 +60,7 @@ this:
 
 <abjad>
 for component in iterationtools.iterate_components_in_expr(staff):
-    effective_time_signature = inspect(component).get_effective(
-        indicatortools.TimeSignature)
+    effective_time_signature = inspect(component).get_effective(TimeSignature)
     print component, effective_time_signature
 </abjad>
 
@@ -119,7 +117,7 @@ what's going on.
 First, we create a ``3/4`` time signature:
 
 <abjad>
-time_signature = indicatortools.TimeSignature((3, 4))
+time_signature = TimeSignature((3, 4))
 </abjad>
 
 The interpreter representation of our time signature looks like this:
@@ -144,7 +142,7 @@ component anywhere.
 So now we attach our time signature to our staff:
 
 <abjad>
-time_signature.attach(staff)
+attach(time_signature, staff)
 </abjad>
 
 Abjad responds immediately by returning the time signature we have just
@@ -167,7 +165,7 @@ And our staff has likewise transitioned from a state of having no effective
 time signature to a state of having an effective time signature:
 
 <abjad>
-inspect(staff).get_effective(indicatortools.TimeSignature)
+inspect(staff).get_effective(TimeSignature)
 </abjad>
 
 And what about the leaves inside our staff?
@@ -177,8 +175,7 @@ Indeed they do:
 
 <abjad>
 for leaf in staff.select_leaves():
-    effective_time_signature = inspect(leaf).get_effective(
-        indicatortools.TimeSignature)
+    effective_time_signature = inspect(leaf).get_effective(TimeSignature)
     print leaf, effective_time_signature
 </abjad>
 
@@ -231,7 +228,7 @@ time_signature.start_component is None
 And also like so:
 
 <abjad>
-print inspect(staff).get_effective(indicatortools.TimeSignature)
+print inspect(staff).get_effective(TimeSignature)
 </abjad>
 
 Our time signature now knows nothing about our staff. And vice versa.
@@ -243,8 +240,8 @@ We have a couple of options.
 We can simply create and attach a new time signature:
 
 <abjad>
-duple_time_signature = indicatortools.TimeSignature((2, 4))
-duple_time_signature.attach(staff)
+duple_time_signature = TimeSignature((2, 4))
+attach(duple_time_signature, staff)
 </abjad>
 
 <abjad>
@@ -269,7 +266,7 @@ duple_time_signature.detach()
 ... confirm that our staff is now time signatureless ...
 
 <abjad>
-print inspect(staff).get_effective(indicatortools.TimeSignature)
+print inspect(staff).get_effective(TimeSignature)
 </abjad>
 
 <abjad>
@@ -279,7 +276,7 @@ f(staff)
 ... reattach our previous ``3/4`` time signature ...
 
 <abjad>
-time_signature.attach(staff)
+attach(time_signature, staff)
 </abjad>
 
 ... change the numerator of our time signature ...
@@ -291,7 +288,7 @@ time_signature.numerator = 2
 ... and check to make sure that everything is as it should be:
 
 <abjad>
-inspect(staff).get_effective(indicatortools.TimeSignature)
+inspect(staff).get_effective(TimeSignature)
 time_signature.start_component
 </abjad>
 
@@ -369,7 +366,7 @@ Now what about the ``2/4`` time signature?
 We create it in the usual way:
 
 <abjad>
-duple_time_signature = indicatortools.TimeSignature((2, 4))
+duple_time_signature = TimeSignature((2, 4))
 duple_time_signature
 </abjad>
 
@@ -385,7 +382,7 @@ that is one the ``g'2`` that comes on the downbeat of the second measure. We
 do that like this:
 
 <abjad>
-duple_time_signature.attach(staff[4])
+attach(duple_time_signature, staff[4])
 </abjad>
 
 <abjad>

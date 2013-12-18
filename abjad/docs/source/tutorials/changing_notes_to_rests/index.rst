@@ -27,11 +27,11 @@ The call to ``scoretools.make_notes()`` creates our notes:
 Iterating the notes in a staff
 ------------------------------
 
-Use ``iterationtools`` to iterate the notes in any expression:
+Use ``iterate()`` to iterate the notes in any expression:
 
 ::
 
-   >>> for note in iterationtools.iterate_notes_in_expr(staff):
+   >>> for note in iterate(staff).by_class(Note):
    ...     note
    ... 
    Note("c'8")
@@ -65,7 +65,7 @@ function to enumerate the elements in any iterable:
 
 ::
 
-   >>> generator = iterationtools.iterate_notes_in_expr(staff)
+   >>> generator = iterate(staff).by_class(Note)
    >>> for i, note in enumerate(generator):
    ...     i, note
    ... 
@@ -99,7 +99,7 @@ We can change every sixth note in a our score to a rest like this:
 
 ::
 
-   >>> generator = iterationtools.iterate_notes_in_expr(staff)
+   >>> generator = iterate(staff).by_class(Note)
    >>> for i, note in enumerate(generator):
    ...     if i % 6 == 5:
    ...         rest = Rest('r8')
@@ -135,9 +135,9 @@ Now we can change every D4 to a rest like this:
 
 ::
 
-   >>> generator = iterationtools.iterate_notes_in_expr(staff)
+   >>> generator = iterate(staff).by_class(Note)
    >>> for i, note in enumerate(generator):
-   ...     if note.sounding_pitch == "d'":
+   ...     if inspect(note).get_sounding_pitch == "d'":
    ...         rest = Rest('r8')
    ...         staff[i] = rest
    ... 
@@ -148,3 +148,4 @@ Now we can change every D4 to a rest like this:
    >>> show(staff)
 
 .. image:: images/index-4.png
+

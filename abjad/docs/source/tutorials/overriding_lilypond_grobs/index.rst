@@ -58,9 +58,7 @@ All Abjad containers have a grob-override plug-in:
 
 ::
 
-   >>> staff.override.staff_symbol.color = 'blue'
-   >>> staff.override
-   LilyPondGrobNameManager(staff_symbol__color='blue')
+   >>> override(staff).staff_symbol.color = 'blue'
 
 
 ::
@@ -79,10 +77,8 @@ All Abjad leaves have a grob-override plug-in, too:
 
 ::
 
-   >>> leaf.override.note_head.color = 'red'
-   >>> leaf.override.stem.color = 'red'
-   >>> leaf.override
-   LilyPondGrobNameManager(note_head__color='red', stem__color='red')
+   >>> override(leaf).note_head.color = 'red'
+   >>> override(leaf).stem.color = 'red'
 
 
 ::
@@ -96,10 +92,9 @@ And so do Abjad spanners:
 
 ::
 
-   >>> slur = spannertools.Slur(staff[:])
-   >>> slur.override.slur.color = 'red'
-   >>> slur.override
-   LilyPondGrobNameManager(slur__color='red')
+   >>> slur = Slur()
+   >>> attach(slur, staff[:])
+   >>> override(slur).slur.color = 'red'
 
 
 ::
@@ -130,7 +125,7 @@ double-underscores:
 ::
 
    >>> staff = Staff()
-   >>> staff.override.staff_grouper.staff_staff_spacing__basic_distance = 7
+   >>> override(staff).staff_grouper.staff_staff_spacing__basic_distance = 7
    >>> f(staff)
    \new Staff \with {
        \override StaffGrouper #'staff-staff-spacing #'basic-distance = #7

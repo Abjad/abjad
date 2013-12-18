@@ -113,14 +113,12 @@ are inivisible and generate no typographic output of their own. However, while
 independent from the typographic output, LilyPond multipliers do factor into
 calculations of duration.
 
-Abjad implements LilyPond multpliers as the settable
-``lilypond_duration_multiplier`` attribute implemented on notes, rests and
-chords.
+Abjad implements LilyPond multpliers as multiplier objects.
 
 ::
 
    >>> note = Note("c'4")
-   >>> note.lilypond_duration_multiplier = Multiplier(1, 2)
+   >>> attach(Multiplier(1, 2), note)
 
 
 ::
@@ -133,8 +131,6 @@ chords.
 
    >>> note.written_duration
    Duration(1, 4)
-   >>> note.lilypond_duration_multiplier
-   Multiplier(1, 2)
    >>> inspect(note).get_duration()
    Duration(1, 8)
 
@@ -153,7 +149,7 @@ quarter notes:
 
    >>> quarter_notes = 4 * Note("c'4")
    >>> half_note = Note("c'2")
-   >>> half_note.lilypond_duration_multiplier = Multiplier(1, 2)
+   >>> attach(Multiplier(1, 2), half_note)
    >>> half_notes = 4 * half_note
    >>> top_staff = scoretools.RhythmicStaff(quarter_notes)
    >>> bottom_staff = scoretools.RhythmicStaff(half_notes)
@@ -186,8 +182,8 @@ Consider the measure below:
 ::
 
    >>> measure = Measure((5, 16), "c16 c c c c")
-   >>> beam = spannertools.Beam()
-   >>> beam.attach([measure])
+   >>> beam = Beam()
+   >>> attach(beam, [measure])
    >>> staff = scoretools.RhythmicStaff([measure])
 
 
@@ -213,8 +209,8 @@ But now consider this measure:
 
    >>> tuplet = Tuplet((4, 5), "c16 c c c c")
    >>> measure = Measure((4, 16), [tuplet])
-   >>> beam = spannertools.Beam()
-   >>> beam.attach([measure])
+   >>> beam = Beam()
+   >>> attach(beam, [measure])
    >>> staff = scoretools.RhythmicStaff([measure])
 
 

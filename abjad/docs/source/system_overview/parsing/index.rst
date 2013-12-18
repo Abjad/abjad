@@ -282,10 +282,9 @@ such as header blocks:
 ::
 
    >>> f(result)
-   % Abjad revision 12387
-   % 2013-10-17 19:39
+   % 2013-12-18 16:08
    
-   \version "2.17.28"
+   \version "2.17.97"
    \language "english"
    
    \header {
@@ -416,7 +415,7 @@ object:
                            RhythmTreeLeaf(
                                preprolated_duration=Duration(1, 1),
                                is_pitched=True
-                               )
+                               ),
                            ),
                        preprolated_duration=Duration(2, 1)
                        ),
@@ -431,10 +430,10 @@ object:
                    RhythmTreeLeaf(
                        preprolated_duration=Duration(1, 1),
                        is_pitched=True
-                       )
+                       ),
                    ),
                preprolated_duration=Duration(1, 1)
-               )
+               ),
            ),
        preprolated_duration=Duration(3, 1)
        )
@@ -516,3 +515,4 @@ for creating Abjad documentation:
    >>> show(result)
 
 .. image:: images/index-7.png
+
