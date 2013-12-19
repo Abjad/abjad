@@ -30,6 +30,7 @@ Welcome to Abjad (|release|)
       tutorials/index
       reference_manual/index
       developer_documentation/index
+      in_conversation/index
       appendices/index
 
 .. only:: html

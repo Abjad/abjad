@@ -1,7 +1,5 @@
-Examples
-========
-
-    In conversation.
+In conversation
+===============
 
 .. toctree::
 
