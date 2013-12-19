@@ -192,23 +192,22 @@ class BuildDirectoryManager(DirectoryManager):
 
     def _trim_lilypond_file(self, file_path):
         lines = []
-        file_pointer = file(file_path, 'r')
-        found_score_block = False
-        for line in file_pointer.readlines():
-            if line.startswith(r'\score'):
-                found_score_block = True
-            if found_score_block:
-                lines.append(line)
-        file_pointer.close()
+        with open(file_path, 'r') as file_pointer:
+            found_score_block = False
+            for line in file_pointer.readlines()[:-1]:
+                if line.startswith(r'\score'):
+                    found_score_block = True
+                    continue
+                if found_score_block:
+                    lines.append(line)
         lines = ''.join(lines)
-        file_pointer = file(file_path, 'w')
-        file_pointer.write(lines)
-        file_pointer.close()
+        with open(file_path, 'w') as file_pointer:
+            file_pointer.write(lines)
 
     ### PUBLIC METHODS ###
 
     def interactively_copy_segment_lilypond_files(
-        self, 
+        self,
         pending_user_input=None,
         ):
         r'''Interactively copies segment LilyPond files from segment
