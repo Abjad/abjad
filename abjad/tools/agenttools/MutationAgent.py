@@ -515,6 +515,7 @@ class MutationAgent(abctools.AbjadObject):
         self,
         meter,
         boundary_depth=None,
+        initial_offset=None,
         maximum_dot_count=None,
         ):
         r'''Rewrite the contents of logical ties in an expression to match
@@ -1289,6 +1290,7 @@ class MutationAgent(abctools.AbjadObject):
             self._client,
             meter,
             boundary_depth=boundary_depth,
+            initial_offset=initial_offset,
             maximum_dot_count=maximum_dot_count,
             )
         return result
