@@ -4,34 +4,24 @@ Version history
 ===============
 
 
-Abjad 2.13
+Abjad 2.14
 ----------
 
-Released 2013-10-23. Built from r12,468. Implements 459 public classes and 465
-functions totaling 199,144 lines of code.
+Released 2013-12-19. Implements 429 public classes and 438 functions totaling
+163,595 lines of code.
 
 
-API refactoring
-^^^^^^^^^^^^^^^
+More classes available when you start Abjad
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-More than half the functionality of the Abjad API has migrated from functions
-to class methods. This means that the total number of functions in the API has
-decreased from 1045 in Abjad 2.12 to only 465 in Abjad 2.13. This also means
-that many classes now provide additional functionality in the form of public
-methods. Check the API entries of the Abjad classes you work with the most
-often for new features. And note that essentially all functionality
-available in Abjad 2.12 has been ported to Abjad 2.13, usually with an
-interface that is easier to use and better documented.
+Abjad has stuff:
 
-For example, the predicates previously implemented as ``pitchtools`` functions
-are now implemented as methods bound to the Abjad ``NamedPitch`` class:
+::
 
-- ``NamedPitch.is_diatonic_pitch_name()``
-- ``NamedPitch.is_diatonic_pitch_number()``
-- ``NamedPitch.is_pitch_carrier()``
-- ``NamedPitch.is_pitch_class_octave_number_string()``
-- ``NamedPitch.is_pitch_name()``
-- ``NamedPitch.is_pitch_number()``
+   >>> dir()
+   ['Articulation', 'Beam', 'Chord', 'Clef', 'Container', 'Crescendo', 'Decrescendo', 'Duration', 'Dynamic', 'Fraction', 'Glissando', 'Hairpin', 'KeySignature', 'Markup', 'Measure', 'Multiplier', 'NamedPitch', 'Note', 'Offset', 'Rest', 'Score', 'Slur', 'Staff', 'StaffGroup', 'Tempo', 'Tie', 'TimeSignature', 'Tuplet', 'Voice', '__builtins__', '__doc__', '__name__', '__package__', '__warningregistry__', 'abctools', 'abjad_configuration', 'abjadbooktools', 'agenttools', 'attach', 'contextualize', 'datastructuretools', 'detach', 'developerscripttools', 'documentationtools', 'durationtools', 'exceptiontools', 'f', 'indicatortools', 'inspect', 'instrumenttools', 'iterate', 'labeltools', 'layouttools', 'lilypondfiletools', 'lilypondnametools', 'lilypondparsertools', 'markuptools', 'mathtools', 'metertools', 'mutate', 'new', 'override', 'parse', 'persist', 'pitcharraytools', 'pitchtools', 'play', 'quantizationtools', 'rhythmmakertools', 'rhythmtreetools', 'schemetools', 'scoretools', 'select', 'selectiontools', 'sequencetools', 'show', 'sievetools', 'spannertools', 'stringtools', 'systemtools', 'templatetools', 'timespantools', 'tonalanalysistools', 'topleveltools']
+
+
 
 
 
@@ -262,14 +252,13 @@ A new ``StringOrchestraScoreTemplate`` is now available in the
 
 
 
-
-
 Older versions
 --------------
 
 ..  toctree::
     :maxdepth: 1
 
+    version_2_13
     version_2_12
     version_2_11
     version_2_10
