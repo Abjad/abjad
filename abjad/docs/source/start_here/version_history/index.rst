@@ -7,63 +7,47 @@ Version history
 Abjad 2.14
 ----------
 
-Released 2013-12-21. Implements 429 public classes and 438 functions totaling
+Released 2013-12-23. Implements 429 public classes and 438 functions totaling
 163,595 lines of code.
 
+The most important changes made in Abjad 2.14 concern the implementation of a
+set of nine interlocking system protocols, as described below.
 
-More classes available in the global namespace
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Abjad 2.14 makes more classes available to you in the global namespace:
-
-::
-
-   >>> dir()
-   ['Articulation', 'Beam', 'Chord', 'Clef', 'Container', 'Crescendo', 'Decrescendo', 'Duration', 'Dynamic', 'Fraction', 'Glissando', 'Hairpin', 'KeySignature', 'Markup', 'Measure', 'Multiplier', 'NamedPitch', 'Note', 'Offset', 'Rest', 'Score', 'Slur', 'Staff', 'StaffGroup', 'Tempo', 'Tie', 'TimeSignature', 'Tuplet', 'Voice', '__builtins__', '__doc__', '__name__', '__package__', '__warningregistry__', 'abctools', 'abjad_configuration', 'abjadbooktools', 'agenttools', 'attach', 'contextualize', 'datastructuretools', 'detach', 'developerscripttools', 'documentationtools', 'durationtools', 'exceptiontools', 'f', 'indicatortools', 'inspect', 'instrumenttools', 'iterate', 'labeltools', 'layouttools', 'lilypondfiletools', 'lilypondnametools', 'lilypondparsertools', 'markuptools', 'mathtools', 'metertools', 'mutate', 'new', 'override', 'parse', 'persist', 'pitcharraytools', 'pitchtools', 'play', 'quantizationtools', 'rhythmmakertools', 'rhythmtreetools', 'schemetools', 'scoretools', 'select', 'selectiontools', 'sequencetools', 'show', 'sievetools', 'spannertools', 'stringtools', 'systemtools', 'templatetools', 'timespantools', 'tonalanalysistools', 'topleveltools']
-
-
-``Articulation``, ``Beam``, ``Clef``, ``Crescendo``, ``Decrescendo``,
-``Dynamic``, ``Glissando``, ``Hairpin``, ``KeySignature``, ``Markup``,
-``Slur``, ``Tempo``, ``Tie`` and ``TimeSignature`` are available in the
-global namespace for the first time in Abjad 2.14.
-
-This means that you can now say ``Clef('treble')`` instead of
-``indicatortoools.Clef('treble')`` and keep the score code you write more
-compact than before.
+Abjad 2.14 also includes extensive changes to the ``instrumenttools`` package
+and a large number of new classes available in the global namespace when you
+import Abjad.
 
 
 Abjad system protocols
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Abjad 2.14 reorganizes important elements of the system's functionality
-according to a collection of protocols. In the general sense a protocol is just
-the recognized way of doing something. In the context of Python development a
-protocol refers to the collection of classes and functions that must be called
-in sequence to accomplish a task. (Experienced Python programmers will
-recognize this use of protocol from the "pickle protocol" which describes how
-to use the ``pickle`` and ``cPickle`` modules included in Python's standard
-library and from the "copy protocol" which describes how implement
-``__copy__()`` and ``__deepcopy__()`` methods on your classes to make them work
-with Python's built-in ``copy`` module.)
+according to a collection of protocols. A protocol is the recognized way of
+doing something. In the context of Python development a protocol refers to the
+collection of classes and functions that must be called in sequence to
+accomplish a task. (Experienced Python programmers will recognize this use of
+protocol from the "pickle protocol" which describes how to use the ``pickle``
+and ``cPickle`` modules included in Python's standard library and from the
+"copy protocol" which describes how implement ``__copy__()`` and
+``__deepcopy__()`` methods on your classes to make them work with Python's
+built-in ``copy`` module.)
 
 Abjad 2.13 introduced an inspection protocol (for examining the derived
 properties of score components) and a mutation protocol (for making structural
-changes to score). The user interface to these two protocols are the
-``inspect()`` and ``mutate()`` functions included in the global namespace when
-Abjad starts.
+changes to score). The user interface to these two protocols are Abjad's
+``inspect()`` and ``mutate()`` functions.
 
-Abjad 2.14 introduces a number of even newer protocols. These are the
-attachment protocol (for attaching and detaching indicators like clefs and
-articulations to score components); the iteration protocol (for stepping
-through filtered components in a score); the format protocol (for
-formatting objects as LilyPond input or as some other type of human-readable
-string); the persistence protocol (for writing objects to disk as LilyPond
-files or PDFs or something else); the typesetter protocol (for overriding the
+Abjad 2.14 introduces additional protocols. These are the attachment protocol
+(for attaching and detaching indicators like clefs and articulations to and
+from score components); the iteration protocol (for stepping through components
+in a score); the format protocol (for formatting objects as LilyPond input or
+as some other type of human-readable string); the persistence protocol (for
+writing objects to disk); the typesetter protocol (for overriding the
 attributes of LilyPond graphic objects and for making LilyPond context
-settings); the illustration protocol (for class authors to make custom classes
-viewable as music notation); and the make-new protocol (for making copies of
-immutable objects with changes made to selected attributes at copy time). To
-summarize:
+settings); the illustration protocol (to make custom classes viewable as music
+notation); and the make-new protocol (for making copies of immutable objects
+with changes made to selected attributes at copy time). To summarize, Abjad
+2.14 now implements all of the following:
 
     * attachment protcocol
     * format protocol
@@ -131,37 +115,96 @@ Use ``detach()`` to detach indicators and spanners from your score:
 .. image:: images/index-3.png
 
 
-``attach()`` and ``detach()`` functions replace the old ``attach()`` and
+The ``attach()`` and ``detach()`` functions replace the old ``attach()`` and
 ``detach()`` methods bound to indicators in older versions of Abjad. 
 
-Indicator classes are housed in the new ``indicatortools`` package:
+Abjad's indicator classes are housed in the new ``indicatortools`` package:
 
 ::
 
-    Annotation
-    Articulation
-    BarLine
-    BendAfter
-    Clef
-    Dynamic
-    IsAtSoundingPitch
-    IsUnpitched
-    KeySignature
-    LilyPondCommand
-    LilyPondComment
-    StaffChange
-    StemTremolo
-    Tempo
-    TimeSignature
+    indicatortools.Annotation
+    indicatortools.Articulation
+    indicatortools.BarLine
+    indicatortools.BendAfter
+    indicatortools.Clef
+    indicatortools.Dynamic
+    indicatortools.IsAtSoundingPitch
+    indicatortools.IsUnpitched
+    indicatortools.KeySignature
+    indicatortools.LilyPondCommand
+    indicatortools.LilyPondComment
+    indicatortools.StaffChange
+    indicatortools.StemTremolo
+    indicatortools.Tempo
+    indicatortools.TimeSignature
 
 The new ``indicatortools`` package replaces the old ``marktools`` and
 ``contexttools`` packages.
 
 
+The format protocol
+^^^^^^^^^^^^^^^^^^^
+
+Python introduced a built-in ``format()`` function in version 2.6 of the
+language. The purpose of ``format()`` is to change an object into a
+human-readable string according to some type of format specification; the usual
+way to call the function is something like ``format(x,
+'format_specification')``.  Abjad 2.14 now implements the protocol
+suggested by Python's ``format()`` function.
+
+You can use Python's ``format()`` function to get the LilyPond format of Abjad
+score components:
+
+::
+
+   >>> staff = Staff("c'4 d'4 e'4 f'4")
+   >>> print format(staff, 'lilypond')
+   \new Staff {
+       c'4
+       d'4
+       e'4
+       f'4
+   }
+
+
+And you can use ``format()`` to get the so-called storage format of other Abjad
+objects:
+
+::
+
+   >>> violin = instrumenttools.Violin()
+   >>> print format(violin, 'storage')
+   instrumenttools.Violin(
+       instrument_name='violin',
+       short_instrument_name='vn.',
+       instrument_name_markup=markuptools.Markup(
+           ('Violin',)
+           ),
+       short_instrument_name_markup=markuptools.Markup(
+           ('Vn.',)
+           ),
+       allowable_clefs=indicatortools.ClefInventory(
+           [
+               indicatortools.Clef(
+                   'treble'
+                   ),
+               ]
+           ),
+       pitch_range=pitchtools.PitchRange(
+           '[G3, G7]'
+           ),
+       sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
+       )
+
+
+These uses of ``format()`` replace the ``lilypond_format`` and
+``storage_format`` properties bound to classes in older versions of Abjad.
+
+
 The illustration protocol
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In Abjad 2.14 you can use the top-level ``show()`` function on many objects.
+In Abjad 2.14 you can call the top-level ``show()`` function on many objects.
 
 You can show a clef inventory:
 
@@ -194,14 +237,15 @@ You can show a pitch range:
 .. image:: images/index-6.png
 
 
-Classes that "know what to do" when you call ``show()`` on them can be said to
-follow the illustration protocol.
+Classes that "know what to do" when you call ``show()`` on them implement the
+illustration protocol. You can teach custom classes to follow the illustration
+protocol by implementing ``__illustrate__()`` methods against them.
 
 
 The iteration protocol
 ^^^^^^^^^^^^^^^^^^^^^^
 
-A new ``iterate()`` function is now available when you start Abjad.
+A new ``iterate()`` function is available when you start Abjad.
 
 Here's an example score:
 
@@ -314,10 +358,51 @@ Here's how to iterate notes in the score's first staff:
 The new ``iterate()`` function replaces the old ``iterationtools`` package.
 
 
+The make-new protocol
+^^^^^^^^^^^^^^^^^^^^^
+
+Many classes in Abjad 2.14 are immutable. You can not, for example, change the
+pitch range of a violin after you create it:
+
+::
+
+   >>> violin = instrumenttools.Violin()
+   >>> violin.pitch_range
+   PitchRange('[G3, G7]')
+
+
+To work with a violin with a different range you can initialize the violin
+differently:
+
+::
+
+   >>> scordatura_range = pitchtools.PitchRange('[F#3, G7]')
+   >>> scordatura_violin_1 = instrumenttools.Violin(pitch_range=scordatura_range)
+   >>> scordatura_violin_1.pitch_range
+   PitchRange('[F#3, G7]')
+
+
+Or you can make a new violin based an existing violin:
+
+::
+
+   >>> scordatura_violin_2 = new(violin, pitch_range=scordatura_range)
+   >>> scordatura_violin_2.pitch_range
+   PitchRange('[F#3, G7]')
+
+
+Abjad 2.14 introduces a ``new()`` function to work with the make-new protocol
+shown in this second example. Use ``new()`` to make a new object with new
+properties based on an old object with different properties.  The classes in
+``datastructuretools``, ``instrumenttools``, ``pitchtools``,
+``rhythmmakertools`` and ``timespantools`` implement the make-new protocol in
+Abjad 2.14.
+
+
 The persistence protocol
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-A new ``persist()`` function is now available when you start Abjad.
+A new ``persist()`` function is available when you start Abjad.
 
 ``persist()`` is a factory function that creates an instance of the new
 ``PersistenceAgent`` housed in the ``agenttools`` package.
@@ -339,10 +424,10 @@ Use ``persist(score).as_pdf()`` to write a score to disk as a PDF and use
 The typesetter protocol
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-New ``override()`` and ``contextualize()`` functions are now available when you
+New ``override()`` and ``contextualize()`` functions are available when you
 start Abjad.
 
-Here is an example score:
+Here's an example score:
 
 ::
 
@@ -359,7 +444,7 @@ Here is an example score:
 .. image:: images/index-8.png
 
 
-Use ``override()`` to override LilyPond graphic object attributes:
+Use ``override()`` to override the attributes of LilyPond graphic objects:
 
 ::
 
@@ -378,6 +463,128 @@ Use ``contextualize()`` to create LilyPond context settings:
 
 .. image:: images/index-10.png
 
+
+And use Python's built-in ``del()`` function to remove the settings you make
+with ``override()`` and ``contextualize()``:
+
+::
+
+   >>> del(override(score).staff_symbol)
+   >>> show(score)
+
+.. image:: images/index-11.png
+
+
+Abjad 2.14 components and spanners follow the typesetter protocol described
+here.
+
+The ``override()`` and ``contextualize()`` functions replace the ``override``
+and ``set`` propertiess bound to classes in previous versions of Abjad.
+
+
+Improvements to instrumenttools
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Abjad 2.14 features an extensive set of changes made the 48 instrument classes
+implemented in ``instrumenttools``:
+
+::
+
+   >>> for name in dir(instrumenttools):
+   ...     if name[0].isupper():
+   ...         command = 'instrument = instrumenttools.{}()'
+   ...         command = command.format(name)
+   ...         exec(command)
+   ...         if isinstance(instrument, instrumenttools.Instrument):
+   ...             instrument
+   ... 
+   Accordion()
+   AltoFlute()
+   AltoSaxophone()
+   AltoTrombone()
+   AltoVoice()
+   BaritoneSaxophone()
+   BaritoneVoice()
+   BassClarinet()
+   BassFlute()
+   BassSaxophone()
+   BassTrombone()
+   BassVoice()
+   Bassoon()
+   Cello()
+   ClarinetInA()
+   ClarinetInBFlat()
+   ClarinetInEFlat()
+   Contrabass()
+   ContrabassClarinet()
+   ContrabassFlute()
+   ContrabassSaxophone()
+   Contrabassoon()
+   EnglishHorn()
+   Flute()
+   FrenchHorn()
+   Glockenspiel()
+   Guitar()
+   Harp()
+   Harpsichord()
+   Instrument()
+   Marimba()
+   MezzoSopranoVoice()
+   Oboe()
+   Piano()
+   Piccolo()
+   SopraninoSaxophone()
+   SopranoSaxophone()
+   SopranoVoice()
+   TenorSaxophone()
+   TenorTrombone()
+   TenorVoice()
+   Trumpet()
+   Tuba()
+   UntunedPercussion()
+   Vibraphone()
+   Viola()
+   Violin()
+   Xylophone()
+
+
+All instrument classes now implement the following seven properties:
+
+::
+
+    Instrument.allowable_clefs
+    Instrument.instrument_name
+    Instrument.insturment_name_markup
+    Insturment.pitch_range
+    Instrument.short_instrument_name
+    Instrument.short_instrument_name_markup
+    Instrument.sounding_pitch_of_written_middle_c
+
+Set instrument properties at initialization or change them later with
+``new()``.
+
+Instrument API entries now feature illustrated examples of all properties
+listed here.
+
+
+More classes available in the global namespace
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Abjad 2.14 makes more classes available to you in the global namespace:
+
+::
+
+   >>> dir()
+   ['Articulation', 'Beam', 'Chord', 'Clef', 'Container', 'Crescendo', 'Decrescendo', 'Duration', 'Dynamic', 'Fraction', 'Glissando', 'Hairpin', 'KeySignature', 'Markup', 'Measure', 'Multiplier', 'NamedPitch', 'Note', 'Offset', 'Rest', 'Score', 'Slur', 'Staff', 'StaffGroup', 'Tempo', 'Tie', 'TimeSignature', 'Tuplet', 'Voice', '__builtins__', '__doc__', '__name__', '__package__', '__result__', '__warningregistry__', 'abctools', 'abjad_configuration', 'abjadbooktools', 'agenttools', 'articulation', 'attach', 'bass_staff', 'clef', 'clef_inventory', 'command', 'contextualize', 'datastructuretools', 'detach', 'developerscripttools', 'documentationtools', 'durationtools', 'exceptiontools', 'f', 'first_staff', 'indicatortools', 'inspect', 'instrument', 'instrumenttools', 'iterate', 'key_signature', 'labeltools', 'layouttools', 'lilypondfiletools', 'lilypondnametools', 'lilypondparsertools', 'markuptools', 'mathtools', 'metertools', 'mutate', 'name', 'new', 'note', 'override', 'parse', 'persist', 'pitch_range', 'pitcharraytools', 'pitchtools', 'play', 'quantizationtools', 'rhythmmakertools', 'rhythmtreetools', 'schemetools', 'scordatura_range', 'scordatura_violin_1', 'scordatura_violin_2', 'score', 'scoretools', 'segment', 'select', 'selectiontools', 'sequencetools', 'show', 'sievetools', 'slur', 'spannertools', 'staff', 'staff_group', 'string', 'stringtools', 'systemtools', 'templatetools', 'time_signature', 'timespantools', 'tonalanalysistools', 'topleveltools', 'treble_staff_1', 'treble_staff_2', 'violin']
+
+
+``Articulation``, ``Beam``, ``Clef``, ``Crescendo``, ``Decrescendo``,
+``Dynamic``, ``Glissando``, ``Hairpin``, ``KeySignature``, ``Markup``,
+``Slur``, ``Tempo``, ``Tie`` and ``TimeSignature`` are available in the
+global namespace for the first time in Abjad 2.14.
+
+This means that you can now say ``Clef('treble')`` instead of
+``indicatortoools.Clef('treble')`` and keep the score code you write compact.
 
 
 Older versions
