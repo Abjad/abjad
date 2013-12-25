@@ -11,11 +11,10 @@ Released 2013-12-23. Implements 429 public classes and 438 functions totaling
 163,595 lines of code.
 
 The most important changes made in Abjad 2.14 concern the implementation of a
-set of nine interlocking system protocols, as described below.
+set of nine interlocking system protocols, described below.
 
 Abjad 2.14 also includes extensive changes to the ``instrumenttools`` package
-and a large number of new classes available in the global namespace when you
-import Abjad.
+and a new classes available in the global namespace when you import Abjad.
 
 
 Abjad system protocols
@@ -140,6 +139,18 @@ Abjad's indicator classes are housed in the new ``indicatortools`` package:
 
 The new ``indicatortools`` package replaces the old ``marktools`` and
 ``contexttools`` packages.
+
+Abjad 2.14 also introduces arbitrary attachment. Any object can be attached to
+any score component, not only those classes housed in ``indicatortools``:
+
+::
+
+   >>> staff = Staff("c'4 d'4 e'4 f'4")
+   >>> indicator = {'foo': 1, 'bar': 2}
+   >>> attach(indicator, staff[0], scope=Staff)
+   >>> inspect(staff[-1]).get_effective(dict)
+   {'foo': 1, 'bar': 2}
+
 
 
 The format protocol
@@ -575,7 +586,7 @@ Abjad 2.14 makes more classes available to you in the global namespace:
 ::
 
    >>> dir()
-   ['Articulation', 'Beam', 'Chord', 'Clef', 'Container', 'Crescendo', 'Decrescendo', 'Duration', 'Dynamic', 'Fraction', 'Glissando', 'Hairpin', 'KeySignature', 'Markup', 'Measure', 'Multiplier', 'NamedPitch', 'Note', 'Offset', 'Rest', 'Score', 'Slur', 'Staff', 'StaffGroup', 'Tempo', 'Tie', 'TimeSignature', 'Tuplet', 'Voice', '__builtins__', '__doc__', '__name__', '__package__', '__result__', '__warningregistry__', 'abctools', 'abjad_configuration', 'abjadbooktools', 'agenttools', 'articulation', 'attach', 'bass_staff', 'clef', 'clef_inventory', 'command', 'contextualize', 'datastructuretools', 'detach', 'developerscripttools', 'documentationtools', 'durationtools', 'exceptiontools', 'f', 'first_staff', 'indicatortools', 'inspect', 'instrument', 'instrumenttools', 'iterate', 'key_signature', 'labeltools', 'layouttools', 'lilypondfiletools', 'lilypondnametools', 'lilypondparsertools', 'markuptools', 'mathtools', 'metertools', 'mutate', 'name', 'new', 'note', 'override', 'parse', 'persist', 'pitch_range', 'pitcharraytools', 'pitchtools', 'play', 'quantizationtools', 'rhythmmakertools', 'rhythmtreetools', 'schemetools', 'scordatura_range', 'scordatura_violin_1', 'scordatura_violin_2', 'score', 'scoretools', 'segment', 'select', 'selectiontools', 'sequencetools', 'show', 'sievetools', 'slur', 'spannertools', 'staff', 'staff_group', 'string', 'stringtools', 'systemtools', 'templatetools', 'time_signature', 'timespantools', 'tonalanalysistools', 'topleveltools', 'treble_staff_1', 'treble_staff_2', 'violin']
+   ['Articulation', 'Beam', 'Chord', 'Clef', 'Container', 'Crescendo', 'Decrescendo', 'Duration', 'Dynamic', 'Fraction', 'Glissando', 'Hairpin', 'KeySignature', 'Markup', 'Measure', 'Multiplier', 'NamedPitch', 'Note', 'Offset', 'Rest', 'Score', 'Slur', 'Staff', 'StaffGroup', 'Tempo', 'Tie', 'TimeSignature', 'Tuplet', 'Voice', '__builtins__', '__doc__', '__name__', '__package__', '__result__', 'abctools', 'abjad_configuration', 'abjadbooktools', 'agenttools', 'articulation', 'attach', 'bass_staff', 'clef', 'clef_inventory', 'command', 'contextualize', 'datastructuretools', 'detach', 'developerscripttools', 'documentationtools', 'durationtools', 'exceptiontools', 'f', 'first_staff', 'indicator', 'indicatortools', 'inspect', 'instrument', 'instrumenttools', 'iterate', 'key_signature', 'labeltools', 'layouttools', 'lilypondfiletools', 'lilypondnametools', 'lilypondparsertools', 'markuptools', 'mathtools', 'metertools', 'mutate', 'name', 'new', 'note', 'override', 'parse', 'persist', 'pitch_range', 'pitcharraytools', 'pitchtools', 'play', 'quantizationtools', 'rhythmmakertools', 'rhythmtreetools', 'schemetools', 'scordatura_range', 'scordatura_violin_1', 'scordatura_violin_2', 'score', 'scoretools', 'segment', 'select', 'selectiontools', 'sequencetools', 'show', 'sievetools', 'slur', 'spannertools', 'staff', 'staff_group', 'string', 'stringtools', 'systemtools', 'templatetools', 'time_signature', 'timespantools', 'tonalanalysistools', 'topleveltools', 'treble_staff_1', 'treble_staff_2', 'violin']
 
 
 ``Articulation``, ``Beam``, ``Clef``, ``Crescendo``, ``Decrescendo``,

@@ -128,6 +128,16 @@ Abjad's indicator classes are housed in the new ``indicatortools`` package:
 The new ``indicatortools`` package replaces the old ``marktools`` and
 ``contexttools`` packages.
 
+Abjad 2.14 also introduces arbitrary attachment. Any object can be attached to
+any score component, not only those classes housed in ``indicatortools``:
+
+<abjad>
+staff = Staff("c'4 d'4 e'4 f'4")
+indicator = {'foo': 1, 'bar': 2}
+attach(indicator, staff[0], scope=Staff)
+inspect(staff[-1]).get_effective(dict)
+</abjad>
+
 
 The format protocol
 ^^^^^^^^^^^^^^^^^^^
