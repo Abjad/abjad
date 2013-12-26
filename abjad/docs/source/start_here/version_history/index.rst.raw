@@ -14,7 +14,7 @@ The most important changes made in Abjad 2.14 concern the implementation of a
 set of nine interlocking system protocols, described below.
 
 Abjad 2.14 also includes extensive changes to the ``instrumenttools`` package
-and a new classes available in the global namespace when you import Abjad.
+and new classes available in the global namespace when you import Abjad.
 
 
 Abjad system protocols

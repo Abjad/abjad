@@ -3,7 +3,8 @@
 Changes from 2.9 to 2.10
 ------------------------
 
-Renamed the read-only ``format`` property to ``lilypond_format`` on all system objects.
+Renamed the read-only ``format`` property to ``lilypond_format`` on all system
+objects.
 
 All iteration functions are now housed in the new ``iterationtools`` package:
 
