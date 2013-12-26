@@ -7,7 +7,7 @@ Version history
 Abjad 2.14
 ----------
 
-Released 2013-12-23. Implements 429 public classes and 438 functions totaling
+Released 2013-12-26. Implements 429 public classes and 438 functions totaling
 163,595 lines of code.
 
 The most important changes made in Abjad 2.14 concern the implementation of a

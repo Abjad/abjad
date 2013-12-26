@@ -179,8 +179,7 @@ Abjad packaging checklist:
         Add a sentence detailing the output of these scripts to this chapter.
         Example: "Implements 405 public classes and 1066 functions 
         totaling 182,000 lines of code."
-        Run "svn log --revision 4083:4977 | less" (for example) 
-        and read output in chronological order.
+        Run whatever git command will present past commits. (TODO: find this)
         Read log and write release notes.
         Follow the pattern already established in the document.
         List new features and functionality.
@@ -215,36 +214,25 @@ Abjad packaging checklist:
 
 29. Click your browser's "back" button to return to the 
     "Package 'Abjad' Editing" page.
-    Then click on the "edit" link to the left of the entry for the 
-    new x.y version.
+    Then click on the "edit" link to the left of the entry for the new version.
     This will take you to the "Submitting package information" page.
 
-30. Manually restore the diacritics in "Víctor Adán" and "Trevor Bača" 
-    in the "Author" field.
-    (This is necessary because there's a bug in setup.py that fails on 
-    UNICODE metadata.
-    So UNICODE characters must be added back in by hand on this page 
-    of the PyPI website
-    rather than being more conveniently read from abjad/trunk/setup.py.)
-    ("Josiah Wolf Oberholtzer" transmits fine here and doesn't 
-    have to be tweaked.)
-
-31. Manually restore the spaces after each of the keyword phrases in
+30. Manually restore the spaces after each of the keyword phrases in
     "music composition, music notation, formalized score control, lilypond"
-    in the "Keywords" field. (Again, setup.py mangles these on upload to PyPI.)
+    in the "Keywords" field. (setup.py mangles these on upload to PyPI.)
 
-32. Click the "Add information" button at the bottom of the page to confirm.
+31. Click the "Add information" button at the bottom of the page to confirm.
     All PyPI editing and uploading is now complete.
 
-33. Click around PyPI to make sure everything looks correct.
+32. Click around PyPI to make sure everything looks correct.
     Then leave PyPI.
     
-34. Edit _version.py and increment __version_info__ to the *next* minor
+33. Edit _version.py and increment __version_info__ to the *next* minor
     number.
 
-35. Commit.
+34. Commit.
 
-36. Author release announcement and mail to abjad-user@googlegroups.com.
+35. Author release announcement and mail to abjad-user@googlegroups.com.
     Release announcement should recapitulate version history.
     
 [2011-08-21, 2011-08-30, 2011-09-12, 2011-09-22, 

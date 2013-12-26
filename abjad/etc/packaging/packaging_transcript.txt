@@ -1,7 +1,8 @@
 Abjad 2.14
     Build start date: 2013-12-18
-    Build complete date:
+    Build complete date: 2013-12-26
     MD5 hash of Abjad GitHub repository:
+        c65cb1988b4be73080292b5f2121f1416456c2f5
     
     Packaging environment:
         0. workstation description: 2.9 GHz i7 MacBook Pro / OSX 10.8.5
@@ -23,9 +24,9 @@ Abjad 2.14
         5. sanity check test results: OK
         6. experimental HTML build results: OK
         7. mainline HTML build results: OK
-        8. LaTeX build results: 
-        9. Abjad.pdf build results: 
-       10. AbjadAPI.pdf build results: 
+        8. LaTeX build results: OK
+        9. Abjad.pdf build results: Ok
+       10. AbjadAPI.pdf build results: OK
 
 
 Abjad 2.13
