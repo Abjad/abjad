@@ -3,7 +3,6 @@ from abjad import *
 
 import library
 from tools import constrainttools
-from tools import generalizedbeamtools
 from tools import handlertools
 from tools import interpolationtools
 from tools import musicexpressiontools

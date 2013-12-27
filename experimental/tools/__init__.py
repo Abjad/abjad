@@ -2,7 +2,6 @@
 from abjad import *
 
 import constrainttools
-import generalizedbeamtools
 import handlertools
 import interpolationtools
 import musicexpressiontools
