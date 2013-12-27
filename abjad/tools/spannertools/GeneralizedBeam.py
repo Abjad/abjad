@@ -6,71 +6,98 @@ from abjad.tools.spannertools.Spanner import Spanner
 class GeneralizedBeam(Spanner):
     r'''A generalized beam.
 
-    ::
+    ..  container:: example::
 
-        >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-        >>> beam = spannertools.GeneralizedBeam()
-        >>> attach(beam, staff[:])
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
+            >>> contextualize(staff).auto_beaming = False
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print format(staff)
-        \new Staff {
-            r4
-            c'8 [
-            d'16
-            e'16 ]
-            r8
-            fs'8
-            g'4
-        }
+        ::
 
-    ::
+            >>> beam = spannertools.GeneralizedBeam()
+            >>> attach(beam, staff[:])
+            >>> show(staff) # doctest: +SKIP
 
-        >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-        >>> beam = spannertools.GeneralizedBeam(
-        ...     isolated_nib_direction=Right,
-        ...     )
-        >>> attach(beam, staff[:])
-        >>> show(staff) # doctest: +SKIP
+        ..  doctest::
 
-    ..  doctest::
+            >>> print format(staff)
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
+                r4
+                c'8 [
+                d'16
+                e'16 ]
+                r8
+                fs'8
+                g'4
+            }
 
-        >>> print format(staff)
-        \new Staff {
-            r4
-            c'8 [
-            d'16
-            e'16 ]
-            r8
-            fs'8 [ ]
-            g'4
-        }
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-        >>> beam = spannertools.GeneralizedBeam(
-        ...     use_stemlets=True,
-        ...     )
-        >>> attach(beam, staff[:])
-        >>> show(staff) # doctest: +SKIP
+            >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
+            >>> contextualize(staff).auto_beaming = False
+            >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+        ::
 
-        >>> print format(staff)
-        \new Staff {
-            \override Stem.stemlet-length = 0.75
-            r4
-            c'8 [
-            d'16
-            e'16
-            r8
-            fs'8 ]
-            g'4
-            \revert Stem.stemlet-length
-        }
+            >>> beam = spannertools.GeneralizedBeam(
+            ...     isolated_nib_direction=Right,
+            ...     )
+            >>> attach(beam, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print format(staff)
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
+                r4
+                c'8 [
+                d'16
+                e'16 ]
+                r8
+                fs'8 [ ]
+                g'4
+            }
+
+    ..  container:: example::
+
+        ::
+
+            >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
+            >>> contextualize(staff).auto_beaming = False
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> beam = spannertools.GeneralizedBeam(
+            ...     use_stemlets=True,
+            ...     )
+            >>> attach(beam, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print format(staff)
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
+                \override Stem.stemlet-length = 0.75
+                r4
+                c'8 [
+                d'16
+                e'16
+                r8
+                fs'8 ]
+                g'4
+                \revert Stem.stemlet-length
+            }
 
     '''
 
