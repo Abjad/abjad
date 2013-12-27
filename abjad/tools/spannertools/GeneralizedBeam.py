@@ -219,7 +219,7 @@ class GeneralizedBeam(Spanner):
         else:
             if self.is_beamable_component(leaf) and self.use_stemlets:
                 return True
-            elif self.include_long_duration_notes:
+            elif self.include_long_duration_rests:
                 return True
         return False
 
