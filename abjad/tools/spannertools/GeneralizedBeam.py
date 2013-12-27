@@ -9,8 +9,9 @@ class GeneralizedBeam(Spanner):
     ::
 
         >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-        >>> beam = generalizedbeamtools.GeneralizedBeam()
+        >>> beam = spannertools.GeneralizedBeam()
         >>> attach(beam, staff[:])
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -28,10 +29,11 @@ class GeneralizedBeam(Spanner):
     ::
 
         >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-        >>> beam = generalizedbeamtools.GeneralizedBeam(
+        >>> beam = spannertools.GeneralizedBeam(
         ...     isolated_nib_direction=Right,
         ...     )
         >>> attach(beam, staff[:])
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -49,10 +51,11 @@ class GeneralizedBeam(Spanner):
     ::
 
         >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-        >>> beam = generalizedbeamtools.GeneralizedBeam(
+        >>> beam = spannertools.GeneralizedBeam(
         ...     use_stemlets=True,
         ...     )
         >>> attach(beam, staff[:])
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -92,7 +95,7 @@ class GeneralizedBeam(Spanner):
         use_stemlets=False,
         vertical_direction=None,
         ):
-        spannertools.Spanner.__init__(
+        Spanner.__init__(
             self,
             components=components,
             )
