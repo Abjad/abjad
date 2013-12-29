@@ -590,21 +590,3 @@ class Spanner(AbjadObject):
                 return i
         else:
             raise IndexError
-
-    def pop(self):
-        r'''Pops rightmost component off of spanner.
-
-        Returns component.
-        '''
-        component = self[-1]
-        self._sever_component(component)
-        return component
-
-    def pop_left(self):
-        r'''Pops leftmost component off of spanner.
-
-        Returns component.
-        '''
-        component = self[0]
-        self._sever_component(component)
-        return component

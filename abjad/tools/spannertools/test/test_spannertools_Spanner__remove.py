@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_spannertools_Spanner__remove_01():
@@ -52,7 +52,6 @@ def test_spannertools_Spanner__remove_02():
     Here an end element removes from spanner.
     So spanner is not left discontiguous and score checks.
     Still not composer-safe.
-    Note spanner.pop() and spanner.pop_left() are composer-safe.
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
