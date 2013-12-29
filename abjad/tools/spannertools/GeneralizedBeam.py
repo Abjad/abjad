@@ -138,22 +138,32 @@ class GeneralizedBeam(Spanner):
 
     @property
     def include_long_duration_notes(self):
+        r'''True if beam includes long duration notes, otherwise false.
+        '''
         return self._include_long_duration_notes
 
     @property
     def include_long_duration_rests(self):
+        r'''True if beam includes long duration rests, otherwise false.
+        '''
         return self._include_long_duration_rests
 
     @property
     def isolated_nib_direction(self):
+        r'''Direction of isolated nibs.
+        '''
         return self._isolated_nib_direction
 
     @property
     def use_stemlets(self):
+        r'''True if beam uses stemlets, otherwise false.
+        '''
         return self._use_stemlets
 
     @property
     def vertical_direction(self):
+        r'''Vertical direction of the beam.
+        '''
         return self._vertical_direction
 
     ### PRIVATE METHODS ###
@@ -227,6 +237,8 @@ class GeneralizedBeam(Spanner):
 
     @staticmethod
     def is_beamable_component(expr):
+        r'''True if `expr` is beamable, otherwise false.
+        '''
         from abjad.tools import scoretools
         if isinstance(expr, scoretools.Leaf):
             if 0 < expr.written_duration.flag_count:
