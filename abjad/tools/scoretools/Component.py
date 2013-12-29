@@ -199,7 +199,7 @@ class Component(AbjadObject):
     def _detach_spanners(self, prototype=None):
         spanners = self._get_spanners(prototype=prototype)
         for spanner in spanners:
-            spanner.detach()
+            spanner._sever_all_components()
         return spanners
 
     # TODO: remove scale_contents keyword

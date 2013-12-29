@@ -489,13 +489,6 @@ class Spanner(AbjadObject):
         component._spanners.add(self)
         self._components.insert(0, component)
 
-    def detach(self):
-        r'''Detaches spanner.
-
-        Returns none.
-        '''
-        self._sever_all_components()
-
     def extend(self, components):
         r'''Extends spanner with `components`.
 

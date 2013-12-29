@@ -44,7 +44,7 @@ class LogicalTie(ContiguousSelection):
                     del(parent[index])
             first = self[0]
             for spanner in first._get_spanners(spannertools.Tie):
-                spanner.detach()
+                spanner._sever_all_components()
             #detach(spannertools.Tie, first)
         elif new_written_duration.has_power_of_two_denominator:
             durations = scoretools.make_notes(0, [new_written_duration])
@@ -60,7 +60,7 @@ class LogicalTie(ContiguousSelection):
                         del(parent[index])
             elif len(self) < len(durations):
                 for spanner in self[0]._get_spanners(spannertools.Tie):
-                    spanner.detach()
+                    spanner._sever_all_components()
                 #detach(spannertools.Tie, self[0])
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
@@ -368,7 +368,7 @@ class LogicalTie(ContiguousSelection):
 
         # untie tuplet
         for spanner in tuplet._get_spanners(spannertools.Tie):
-            spanner.detach()
+            spanner._sever_all_components()
         #detach(spannertools.Tie, tuplet)
 
         # return tuplet
