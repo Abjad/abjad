@@ -127,9 +127,11 @@ class IOManager(object):
 
         Returns none.
         '''
+        if not directory:
+            directory = '.'
         if not os.path.isdir(directory):
             lines = []
-            line = 'Attention: {!} does not exist on your system.'
+            line = 'Attention: {!r} does not exist on your system.'
             line = line.format(directory)
             lines.append(line)
             lines.append('Abjad will now create it to store all output files.')
