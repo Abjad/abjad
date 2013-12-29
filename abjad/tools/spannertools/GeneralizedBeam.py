@@ -115,7 +115,6 @@ class GeneralizedBeam(Spanner):
 
     def __init__(
         self,
-        components=None,
         include_long_duration_notes=False,
         include_long_duration_rests=False,
         isolated_nib_direction=None,
@@ -124,7 +123,6 @@ class GeneralizedBeam(Spanner):
         ):
         Spanner.__init__(
             self,
-            components=components,
             )
         self._include_long_duration_notes = bool(include_long_duration_notes)
         self._include_long_duration_rests = bool(include_long_duration_rests)

@@ -60,13 +60,11 @@ class Glissando(Spanner):
 
     def __init__(
         self,
-        components=None,
         overrides=None,
         avoid_rests=False,
         ):
         Spanner.__init__(
             self,
-            components,
             overrides=overrides,
             )
         self._avoid_rests = bool(avoid_rests)

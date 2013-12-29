@@ -38,14 +38,12 @@ class OctavationSpanner(Spanner):
 
     def __init__(
         self, 
-        components=None, 
         start=1, 
         stop=0,
         overrides=None,
         ):
         Spanner.__init__(
             self, 
-            components,
             overrides=overrides,
             )
         self.start = start

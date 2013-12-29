@@ -53,7 +53,6 @@ class MeasuredComplexBeam(ComplexBeam):
 
     def __init__(
         self, 
-        components=None, 
         lone=False, 
         span=1, 
         direction=None,
@@ -61,7 +60,6 @@ class MeasuredComplexBeam(ComplexBeam):
         ):
         ComplexBeam.__init__(
             self, 
-            components=components, 
             lone=lone, 
             direction=direction,
             overrides=overrides,

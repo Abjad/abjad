@@ -20,11 +20,10 @@ class Spanner(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None, overrides=None):
+    def __init__(self, overrides=None):
         overrides = overrides or {}
         self._components = []
         self._contiguity_constraint = 'logical voice'
-        self._initialize_components(components)
         self._apply_overrides(overrides)
         self._indicators = []
         self._set = None
@@ -303,22 +302,6 @@ class Spanner(AbjadObject):
                 if leaf_number == n:
                     return leaf
         raise IndexError
-
-    def _initialize_components(self, components):
-        from abjad.tools import scoretools
-        if components:
-            raise DeprecationWarning
-        if isinstance(components, scoretools.Component):
-            components = [components]
-        elif not components:
-            components = []
-        assert not any(
-            isinstance(x, scoretools.Context)
-            for x in components), repr(components)
-        if self._contiguity_constraint == 'logical voice':
-            leaves = list(iterate(components).by_class(scoretools.Leaf))
-            assert Selection._all_are_contiguous_components_in_same_logical_voice(leaves)
-        self.extend(components)
 
     def _insert(self, i, component):
         r'''Not composer-safe.

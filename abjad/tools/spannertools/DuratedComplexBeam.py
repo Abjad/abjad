@@ -49,8 +49,8 @@ class DuratedComplexBeam(ComplexBeam):
     Returns durated complex beam spanner.
     '''
 
-    def __init__(self, 
-        components=None, 
+    def __init__(
+        self, 
         durations=None, 
         span=1, 
         lone=False, 
@@ -59,7 +59,6 @@ class DuratedComplexBeam(ComplexBeam):
         ):
         ComplexBeam.__init__(
             self, 
-            components=components, 
             direction=direction,
             overrides=overrides,
             )

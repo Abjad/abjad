@@ -43,11 +43,8 @@ class Beam(Spanner):
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None, direction=None, overrides=None):
-        Spanner.__init__(self,
-        components,
-        overrides=overrides,
-        )
+    def __init__(self, direction=None, overrides=None):
+        Spanner.__init__(self, overrides=overrides)
         self.direction = direction
 
     ### PRIVATE METHODS ###

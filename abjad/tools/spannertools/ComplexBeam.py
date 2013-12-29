@@ -51,14 +51,12 @@ class ComplexBeam(Beam):
 
     def __init__(
         self, 
-        components=None, 
         lone=False, 
         direction=None,
         overrides=None,
         ):
         Beam.__init__(
             self, 
-            components=components, 
             direction=direction,
             overrides=overrides,
             )

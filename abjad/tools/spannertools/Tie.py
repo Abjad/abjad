@@ -29,13 +29,11 @@ class Tie(Spanner):
 
     def __init__(
         self,
-        music=None,
         direction=None,
         overrides=None,
         ):
         Spanner.__init__(
             self,
-            music,
             overrides=overrides,
             )
         self.direction = direction

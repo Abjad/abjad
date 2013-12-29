@@ -29,13 +29,11 @@ class DynamicTextSpanner(Spanner):
 
     def __init__(
         self, 
-        components=None, 
         dynamic='',
         overrides=None,
         ):
         Spanner.__init__(
             self, 
-            components,
             overrides=overrides,
             )
         self.dynamic = dynamic

@@ -74,7 +74,6 @@ class Hairpin(Spanner):
 
     def __init__(
         self,
-        components=None,
         descriptor='<',
         include_rests=True,
         direction=None,
@@ -82,7 +81,6 @@ class Hairpin(Spanner):
         ):
         Spanner.__init__(
             self,
-            components=components,
             overrides=overrides,
             )
         self.direction = direction

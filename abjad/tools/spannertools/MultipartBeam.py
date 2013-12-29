@@ -37,13 +37,11 @@ class MultipartBeam(Beam):
 
     def __init__(
         self, 
-        components=None, 
         direction=None,
         overrides=None,
         ):
         Beam.__init__(
             self, 
-            components, 
             direction=direction,
             overrides=overrides,
             )

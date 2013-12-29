@@ -83,13 +83,12 @@ class Crescendo(Hairpin):
 
     def __init__(
         self, 
-        components=None, 
         include_rests=True, 
         direction=None,
         overrides=None,
         ):
         Hairpin.__init__(
-            self, components=components, 
+            self, 
             descriptor='<', 
             include_rests=include_rests,
             direction=direction,
