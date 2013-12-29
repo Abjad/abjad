@@ -308,8 +308,8 @@ class NamedPitchClass(PitchClass):
         '''
         return type(self)(self.pitch_class_number * n)
 
-    def transpose(self, n):
-        r'''Transposes named pitch-class by named interval `n`.
+    def transpose(self, expr):
+        r'''Transposes named pitch-class by named interval `expr`.
 
         ::
 
@@ -320,7 +320,7 @@ class NamedPitchClass(PitchClass):
         Returns new named pitch-class.
         '''
         from abjad.tools import pitchtools
-        named_interval = pitchtools.NamedInterval(n)
+        named_interval = pitchtools.NamedInterval(expr)
         pitch = pitchtools.NamedPitch(self, 4)
         transposed_pitch = \
             pitchtools.transpose_pitch_carrier_by_interval(

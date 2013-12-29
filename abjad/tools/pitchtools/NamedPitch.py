@@ -411,7 +411,7 @@ class NamedPitch(Pitch):
         raise NotImplementedError
 
     def multiply(self, n=1):
-        r'''Multiply pitch-class of named pitch by `n` while maintaining 
+        r'''Multiply pitch-class of named pitch by `n` while maintaining
         octave of named pitch.
 
         ::
@@ -466,9 +466,23 @@ class NamedPitch(Pitch):
     def transpose(self, expr):
         r'''Transposes named pitch by `expr`.
 
-        Not yet implemented.
+        ::
+
+            >>> NamedPitch("c'").transpose('m2')
+            NamedPitch("df'")
+
+        ::
+
+            >>> NamedPitch("c'").transpose('-M2')
+            NamedPitch('bf')
+
+        Returns new named pitch.
         '''
-        raise NotImplementedError
+        from abjad.tools import pitchtools
+        named_interval = pitchtools.NamedInterval(expr)
+        transposed_pitch = pitchtools.transpose_pitch_carrier_by_interval(
+            self, named_interval)
+        return type(self)(transposed_pitch)
 
     ### PUBLIC PROPERTIES ###
 
