@@ -2,6 +2,7 @@
 import importlib
 import inspect
 import os
+import re
 import shutil
 import subprocess
 from abjad.tools import sequencetools
@@ -13,15 +14,19 @@ class AbjadBookProcessor(AbjadObject):
     r'''Abjad book processor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    _wrap_width_pattern = re.compile('wrap_width=(\d+)')
+
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        directory=None, 
-        lines=None, 
-        output_format=None, 
+        self,
+        directory=None,
+        lines=None,
+        output_format=None,
         skip_rendering=False,
-        image_prefix='image', 
+        image_prefix='image',
         verbose=False,
         ):
         from abjad.tools import abjadbooktools
@@ -183,13 +188,19 @@ class AbjadBookProcessor(AbjadObject):
                     in_block = False
                     hide = 'hide=true' in block[0]
                     strip_prompt = 'strip_prompt=true' in block[0]
+                    wrap_width = None
+                    wrap_width_match = self._wrap_width_pattern.search(
+                        block[0])
+                    if wrap_width_match is not None:
+                        wrap_width = int(wrap_width_match.groups()[0])
                     stopping_line_number = i
                     code_block = abjadbooktools.CodeBlock(
                         block[1:],
                         starting_line_number,
                         stopping_line_number,
                         hide=hide,
-                        strip_prompt=strip_prompt
+                        strip_prompt=strip_prompt,
+                        wrap_width=wrap_width,
                         )
                     blocks.append(code_block)
                 else:

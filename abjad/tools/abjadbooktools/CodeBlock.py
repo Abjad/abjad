@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+import textwrap
 from abjad.tools import documentationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
@@ -11,23 +12,25 @@ class CodeBlock(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_ending_line_number', 
-        '_hide', 
-        '_lines', 
+        '_ending_line_number',
+        '_hide',
+        '_lines',
         '_processed_results',
-        '_starting_line_number', 
+        '_starting_line_number',
         '_strip_prompt',
+        '_wrap_width',
         )
 
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        lines=None, 
-        starting_line_number=0, 
+        self,
+        lines=None,
+        starting_line_number=0,
         ending_line_number=1,
-        hide=False, 
+        hide=False,
         strip_prompt=False,
+        wrap_width=None
         ):
         lines = lines or []
         assert starting_line_number <= ending_line_number
@@ -37,16 +40,17 @@ class CodeBlock(AbjadObject):
         self._hide = bool(hide)
         self._strip_prompt = bool(strip_prompt)
         self._processed_results = None
+        self._wrap_width = wrap_width
 
     ### SPECIAL METHODS ###
 
     def __call__(
-        self, 
-        processor, 
-        pipe, 
-        image_count=0, 
+        self,
+        processor,
+        pipe,
+        image_count=0,
         directory=None,
-        image_prefix='image', 
+        image_prefix='image',
         verbose=False,
         ):
         r'''Calls code block.
@@ -154,7 +158,7 @@ class CodeBlock(AbjadObject):
         grouped_results.append(result)
 
         if self.strip_prompt:
-            for result in [group for group in grouped_results 
+            for result in [group for group in grouped_results
                 if isinstance(group, list)]:
                 for i, line in enumerate(result):
                     if line.startswith(('>>> ', '... ')):
@@ -224,6 +228,12 @@ class CodeBlock(AbjadObject):
         '''
         return self._strip_prompt
 
+    @property
+    def wrap_width(self):
+        r'''Wrap width.
+        '''
+        return self._wrap_width
+
     ### PUBLIC METHODS ###
 
     def read(self, pipe):
@@ -239,4 +249,12 @@ class CodeBlock(AbjadObject):
             if new[-1] == '':
                 new.pop()
             result.extend(new)
+        if self.wrap_width is not None:
+            new_result = []
+            for line in result:
+                if self.wrap_width < len(line):
+                    new_result.extend(textwrap.wrap(line, self.wrap_width))
+                else:
+                    new_result.append(line)
+            return new_result
         return result
