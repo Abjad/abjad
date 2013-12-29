@@ -172,7 +172,7 @@ class Spanner(AbjadObject):
         if isinstance(components, scoretools.Component):
             self.append(components)
         elif isinstance(components, (list, tuple, selectiontools.Selection)):
-            self.extend(components)
+            self._extend(components)
         else:
             raise TypeError(components)
 
@@ -214,6 +214,22 @@ class Spanner(AbjadObject):
         self_start_offset = self.get_timespan().start_offset
         return leaf_start_offset - self_start_offset
 
+    def _extend(self, components):
+        component_input = self[-1:]
+        component_input.extend(components)
+        if self._contiguity_constraint == 'logical voice':
+            assert Selection._all_are_contiguous_components_in_same_logical_voice(
+                component_input), repr(component_input)
+        for component in components:
+            self.append(component)
+
+    def _extend_left(self, components):
+        component_input = components + self[:1]
+        assert Selection._all_are_contiguous_components_in_same_logical_voice(
+            component_input)
+        for component in reversed(components):
+            self.append_left(component)
+
     def _format_after_leaf(self, leaf):
         result = []
         if self._is_my_last_leaf(leaf):
@@ -244,7 +260,7 @@ class Spanner(AbjadObject):
 
     def _fuse_by_reference(self, spanner):
         result = self._copy(self[:])
-        result.extend(spanner.components)
+        result._extend(spanner.components)
         self._block_all_components()
         spanner._block_all_components()
         return [(self, spanner, result)]
@@ -488,30 +504,6 @@ class Spanner(AbjadObject):
             components)
         component._spanners.add(self)
         self._components.insert(0, component)
-
-    def extend(self, components):
-        r'''Extends spanner with `components`.
-
-        Returns none.
-        '''
-        component_input = self[-1:]
-        component_input.extend(components)
-        if self._contiguity_constraint == 'logical voice':
-            assert Selection._all_are_contiguous_components_in_same_logical_voice(
-                component_input), repr(component_input)
-        for component in components:
-            self.append(component)
-
-    def extend_left(self, components):
-        r'''Extends left of spanner with `components`.
-
-        Returns none.
-        '''
-        component_input = components + self[:1]
-        assert Selection._all_are_contiguous_components_in_same_logical_voice(
-            component_input)
-        for component in reversed(components):
-            self.append_left(component)
 
     def fracture(self, i, direction=None):
         r'''Fractures spanner at `direction` of component at index `i`.
