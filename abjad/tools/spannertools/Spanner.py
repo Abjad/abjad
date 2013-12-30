@@ -261,6 +261,32 @@ class Spanner(AbjadObject):
         result = []
         return result
 
+    def _fracture(self, i, direction=None):
+        r'''Fractures spanner at `direction` of component at index `i`.
+
+        Valid values for `direction` are ``Left``, ``Right`` and ``None``.
+
+        Set `direction=None` to fracture on both left and right sides.
+
+        Returns tuple of original, left and right spanners.
+        '''
+        if i < 0:
+            i = len(self) + i
+        if direction == Left:
+            return self._fracture_left(i)
+        elif direction == Right:
+            return self._fracture_right(i)
+        elif direction is None:
+            left = self._copy(self[:i])
+            right = self._copy(self[i+1:])
+            center = self._copy(self[i:i+1])
+            self._block_all_components()
+            return self, left, center, right
+        else:
+            message = 'direction {!r} must be left, right or none.'
+            message = message.format(direction)
+            raise ValueError(message)
+
     def _fracture_left(self, i):
         left = self._copy(self[:i])
         right = self._copy(self[i:])
@@ -496,38 +522,6 @@ class Spanner(AbjadObject):
         return result
 
     ### PUBLIC METHODS ###
-
-    def fracture(self, i, direction=None):
-        r'''Fractures spanner at `direction` of component at index `i`.
-
-        Valid values for `direction` are ``Left``, ``Right`` and ``None``.
-
-        Set `direction=None` to fracture on both left and right sides.
-
-        Returns tuple of original, left and right spanners.
-        '''
-        if i < 0:
-            i = len(self) + i
-        if direction == Left:
-            return self._fracture_left(i)
-        elif direction == Right:
-            return self._fracture_right(i)
-        elif direction is None:
-            left = self._copy(self[:i])
-            right = self._copy(self[i+1:])
-            center = self._copy(self[i:i+1])
-            self._block_all_components()
-            return self, left, center, right
-        else:
-            message = 'direction {!r} must be Left, Right or None.'
-            raise ValueError(message.format(direction))
-
-#    def fuse(self, spanner):
-#        r'''Fuses spanner with contiguous `spanner`.
-#
-#        Returns list of left, right and new spanners.
-#        '''
-#        return self._fuse_by_reference(spanner)
 
     def get_duration(self, in_seconds=False):
         r'''Gets duration of spanner.

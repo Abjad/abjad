@@ -474,18 +474,18 @@ class Leaf(Component):
             first_shard = result[0]
             for spanner in first_shard[-1]._get_spanners():
                 index = spanner.index(first_shard[-1])
-                spanner.fracture(index, direction=Right)
+                spanner._fracture(index, direction=Right)
             last_shard = result[-1]
             for spanner in last_shard[0]._get_spanners():
                 index = spanner.index(last_shard[0])
-                spanner.fracture(index, direction=Left)
+                spanner._fracture(index, direction=Left)
             for middle_shard in result[1:-1]:
                 for spanner in middle_shard[0]._get_spanners():
                     index = spanner.index(middle_shard[0])
-                    spanner.fracture(index, direction=Left)
+                    spanner._fracture(index, direction=Left)
                 for spanner in middle_shard[-1]._get_spanners():
                     index = spanner.index(middle_shard[-1])
-                    spanner.fracture(index, direction=Right)
+                    spanner._fracture(index, direction=Right)
         # adjust first leaf
         first_leaf = flattened_result[0]
         self._detach_grace_containers(kind='after')
@@ -550,7 +550,7 @@ class Leaf(Component):
         if fracture_spanners:
             for spanner in leaf_left_of_split._get_spanners():
                 index = spanner.index(leaf_left_of_split)
-                spanner.fracture(index, direction=Right)
+                spanner._fracture(index, direction=Right)
         # tie split notes, rests and chords as specified
         if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
             selection = selectiontools.ContiguousSelection(leaves_around_split)
