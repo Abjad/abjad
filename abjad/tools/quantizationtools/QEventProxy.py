@@ -65,7 +65,7 @@ class QEventProxy(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is a q-event proxy with offset and q-event equal
+        r'''Is true when `expr` is a q-event proxy with offset and q-event equal
         to those of this q-event proxy. Otherwise false.
 
         Returns boolean.

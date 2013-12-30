@@ -104,7 +104,7 @@ class LogicalTie(ContiguousSelection):
 
     @property
     def all_leaves_are_in_same_parent(self):
-        r'''True when all leaves in logical tie are in same parent.
+        r'''Is true when all leaves in logical tie are in same parent.
 
         Returns boolean.
         '''
@@ -122,7 +122,7 @@ class LogicalTie(ContiguousSelection):
 
     @property
     def is_pitched(self):
-        r'''True when logical tie head is a note or chord.
+        r'''Is true when logical tie head is a note or chord.
 
         Returns boolean.
         '''
@@ -132,7 +132,7 @@ class LogicalTie(ContiguousSelection):
 
     @property
     def is_trivial(self):
-        r'''True when length of logical tie is less than or equal to ``1``.
+        r'''Is true when length of logical tie is less than or equal to ``1``.
 
         Returns boolean.
         '''

@@ -134,7 +134,7 @@ class PitchRange(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, arg):
-        r'''True when pitch range contains `arg`. Otherwise false.
+        r'''Is true when pitch range contains `arg`. Otherwise false.
 
         Returns boolean.
         '''
@@ -171,7 +171,7 @@ class PitchRange(AbjadObject):
         return False
 
     def __eq__(self, arg):
-        r'''True when `arg` is a pitch range with start and stop equal to those
+        r'''Is true when `arg` is a pitch range with start and stop equal to those
         of this pitch range. Otherwise false.
 
         Returns boolean.
@@ -196,7 +196,7 @@ class PitchRange(AbjadObject):
         return str(self)
 
     def __ge__(self, arg):
-        r'''True when start pitch of pitch range is greater than or equal to
+        r'''Is true when start pitch of pitch range is greater than or equal to
         `arg`. Otherwise false.
 
         Returns boolean.
@@ -211,7 +211,7 @@ class PitchRange(AbjadObject):
             return False
 
     def __gt__(self, arg):
-        r'''True when start pitch of pitch range is greater than `arg`.
+        r'''Is true when start pitch of pitch range is greater than `arg`.
         Otherwise false.
 
         Returns boolean.
@@ -282,7 +282,7 @@ class PitchRange(AbjadObject):
         return lilypond_file
 
     def __le__(self, arg):
-        r'''True when stop pitch of pitch-range is less than or equal to `arg`.
+        r'''Is true when stop pitch of pitch-range is less than or equal to `arg`.
         Otherwise false.
 
         Returns boolean.
@@ -297,7 +297,7 @@ class PitchRange(AbjadObject):
             return False
 
     def __lt__(self, arg):
-        r'''True when stop pitch of pitch-range is less than `arg`. Otherwise
+        r'''Is true when stop pitch of pitch-range is less than `arg`. Otherwise
         false.
 
         Returns boolean.
@@ -312,7 +312,7 @@ class PitchRange(AbjadObject):
             return False
 
     def __ne__(self, arg):
-        r'''True when pitch range does not equal `arg`. Otherwise false.
+        r'''Is true when pitch range does not equal `arg`. Otherwise false.
 
         Returns boolean.
         '''
@@ -436,7 +436,7 @@ class PitchRange(AbjadObject):
 
     @classmethod
     def is_symbolic_pitch_range_string(cls, expr):
-        '''True when `expr` is a symbolic pitch range string. Otherwise false:
+        '''Is true when `expr` is a symbolic pitch range string. Otherwise false:
 
         ::
 
@@ -550,7 +550,7 @@ class PitchRange(AbjadObject):
 
     @property
     def start_pitch_is_included_in_range(self):
-        r'''True when start pitch is included in range.
+        r'''Is true when start pitch is included in range.
         Otherwise false:
 
         ::
@@ -581,7 +581,7 @@ class PitchRange(AbjadObject):
 
     @property
     def stop_pitch_is_included_in_range(self):
-        r'''True when stop pitch is included in range.
+        r'''Is true when stop pitch is included in range.
         Otherwise false:
 
         ::

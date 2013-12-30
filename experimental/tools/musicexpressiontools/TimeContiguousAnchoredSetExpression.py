@@ -43,7 +43,7 @@ class TimeContiguousAnchoredSetExpression(SetExpression, AnchoredExpression):
 
     @property
     def persist(self):
-        r'''True when set expression should persist.
+        r'''Is true when set expression should persist.
 
         Returns boolean.
         '''
@@ -59,7 +59,7 @@ class TimeContiguousAnchoredSetExpression(SetExpression, AnchoredExpression):
 
     @property
     def truncate(self):
-        r'''True when set expression should truncate.
+        r'''Is true when set expression should truncate.
 
         Returns boolean.
         '''

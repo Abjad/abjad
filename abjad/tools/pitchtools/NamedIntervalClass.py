@@ -118,7 +118,7 @@ class NamedIntervalClass(IntervalClass):
         return type(self)(abs(self._number))
 
     def __eq__(self, arg):
-        r'''True when `arg` is a named interval-class with direction number,
+        r'''Is true when `arg` is a named interval-class with direction number,
         quality string and number equal to those of this named interval-class.
         Otherwise false.
 
@@ -153,7 +153,7 @@ class NamedIntervalClass(IntervalClass):
         return self._number
 
     def __ne__(self, arg):
-        r'''True when named interval-class does not equal `arg`. Otherwise
+        r'''Is true when named interval-class does not equal `arg`. Otherwise
         false.
 
         Returns boolean.

@@ -8,7 +8,7 @@ def notes_and_chords_are_on_expected_clefs(
     expr, 
     percussion_clef_is_allowed=True,
     ):
-    r'''True when notes and chords in `expr` are on expected clefs.
+    r'''Is true when notes and chords in `expr` are on expected clefs.
 
     ::
 

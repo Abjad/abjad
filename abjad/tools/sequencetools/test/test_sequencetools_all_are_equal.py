@@ -4,7 +4,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_all_are_equal_01():
-    r'''True when all elements in sequence are equal.
+    r'''Is true when all elements in sequence are equal.
     '''
 
     assert sequencetools.all_are_equal([-1, -1, -1, -1, -1])

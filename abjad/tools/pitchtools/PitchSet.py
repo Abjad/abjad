@@ -154,7 +154,7 @@ class PitchSet(Set):
 
     @property
     def is_pitch_class_unique(self):
-        r'''True when pitch set is pitch-class-unique. Otherwise false.
+        r'''Is true when pitch set is pitch-class-unique. Otherwise false.
 
         Returns boolean.
         '''

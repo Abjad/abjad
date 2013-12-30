@@ -119,7 +119,7 @@ class NamedInterval(Interval):
         return type(self)(self.quality_string, self.number)
 
     def __eq__(self, arg):
-        r'''True when `arg` is a named interval with a quality string and
+        r'''Is true when `arg` is a named interval with a quality string and
         number equal to this named interval.
 
         ::
@@ -167,7 +167,7 @@ class NamedInterval(Interval):
         return self._number
 
     def __lt__(self, arg):
-        r'''True when `arg` is a named interval with a number greater than that
+        r'''Is true when `arg` is a named interval with a number greater than that
         of this named interval.
         
         ::
@@ -223,7 +223,7 @@ class NamedInterval(Interval):
         return result
 
     def __ne__(self, arg):
-        r'''True when `arg` does not equal this named interval. Otherwise
+        r'''Is true when `arg` does not equal this named interval. Otherwise
         false.
 
         Returns boolean.

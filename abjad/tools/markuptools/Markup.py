@@ -144,7 +144,7 @@ class Markup(AbjadObject):
             )
 
     def __eq__(self, expr):
-        r'''True when `expr` is a markup with format equal to that
+        r'''Is true when `expr` is a markup with format equal to that
         of this markup. Otherwise false.
 
         Returns boolean.

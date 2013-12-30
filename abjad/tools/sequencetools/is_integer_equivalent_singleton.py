@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def is_integer_equivalent_singleton(expr):
-    r'''True when `expr` is a singleton of integer-equivalent expressions:
+    r'''Is true when `expr` is a singleton of integer-equivalent expressions:
 
     ::
 

@@ -68,7 +68,7 @@ class NumberedIntervalClass(IntervalClass):
         return type(self)(abs(self._number))
 
     def __eq__(self, arg):
-        r'''True when `arg` is a numbered interval-class with number equal to
+        r'''Is true when `arg` is a numbered interval-class with number equal to
         that of this numbered interval-class. Otherwise false.
 
         Returns boolean.

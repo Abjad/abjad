@@ -86,7 +86,7 @@ class RootedChordClass(PitchClassSet):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        r'''True when `arg` is a rooted chord-class with root, chord quality
+        r'''Is true when `arg` is a rooted chord-class with root, chord quality
         and inversion equal to those of this rooted chord-class. Otherwise
         false.
 
@@ -100,7 +100,7 @@ class RootedChordClass(PitchClassSet):
         return False
 
     def __ne__(self, arg):
-        r'''True when rooted chord-class does not equal `arg`. Otherwise false.
+        r'''Is true when rooted chord-class does not equal `arg`. Otherwise false.
 
         Returns boolean.
         '''

@@ -78,7 +78,7 @@ class VerticalMoment(SimultaneousSelection):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is a vertical moment with the same components as
+        r'''Is true when `expr` is a vertical moment with the same components as
         this vertical moment. Otherwise false.
 
         Returns boolean.
@@ -113,7 +113,7 @@ class VerticalMoment(SimultaneousSelection):
         return len(self.components)
 
     def __ne__(self, expr):
-        r'''True when `expr` does not equal this vertical moment. Otherwise
+        r'''Is true when `expr` does not equal this vertical moment. Otherwise
         false.
 
         Returns boolean.

@@ -330,7 +330,7 @@ class Menu(ScoreManagerObject):
     @apply
     def should_clear_terminal():
         def fget(self):
-            r'''True when menu should clear terminal. Otherwise false:
+            r'''Is true when menu should clear terminal. Otherwise false:
     
             ::
 

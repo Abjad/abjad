@@ -118,7 +118,7 @@ class NamedPitch(Pitch):
         return type(self)(self)
 
     def __eq__(self, arg):
-        r'''True when `arg` is a named pitch equal to this named pitch.
+        r'''Is true when `arg` is a named pitch equal to this named pitch.
 
         ::
 
@@ -155,7 +155,7 @@ class NamedPitch(Pitch):
         return float(self.pitch_number)
 
     def __ge__(self, arg):
-        r'''True when named pitch is greater than or equal to `arg`.
+        r'''Is true when named pitch is greater than or equal to `arg`.
         Otherwise false.
 
         Returns boolean.
@@ -179,7 +179,7 @@ class NamedPitch(Pitch):
         return (self.pitch_name,)
 
     def __gt__(self, arg):
-        r'''True when named pitch is greater than `arg`. Otherwise false.
+        r'''Is true when named pitch is greater than `arg`. Otherwise false.
 
         Returns boolean.
         '''
@@ -214,7 +214,7 @@ class NamedPitch(Pitch):
         return int(self.pitch_number)
 
     def __le__(self, arg):
-        r'''True when named pitch is less than or equal to `arg`. Otherwise
+        r'''Is true when named pitch is less than or equal to `arg`. Otherwise
         false.
 
         Returns boolean.
@@ -232,7 +232,7 @@ class NamedPitch(Pitch):
         return False
 
     def __lt__(self, arg):
-        r'''True when named pitch is less than `arg`. Otherwise false.
+        r'''Is true when named pitch is less than `arg`. Otherwise false.
 
         Returns boolean.
         '''
@@ -246,7 +246,7 @@ class NamedPitch(Pitch):
         return False
 
     def __ne__(self, arg):
-        r'''True when named pitch does not equal `arg`.
+        r'''Is true when named pitch does not equal `arg`.
 
         ::
 

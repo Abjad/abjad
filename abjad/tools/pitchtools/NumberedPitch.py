@@ -61,7 +61,7 @@ class NumberedPitch(Pitch):
         return type(self)(semitones)
 
     def __eq__(self, arg):
-        r'''True when `arg` is a numbered pitch with pitch number equal to that
+        r'''Is true when `arg` is a numbered pitch with pitch number equal to that
         of this numbered pitch. Otherwise false.
 
         Returns boolean.
@@ -99,7 +99,7 @@ class NumberedPitch(Pitch):
         return self._pitch_number
 
     def __lt__(self, arg):
-        r'''True when `arg` is a numbered pitch with pitch number greater than
+        r'''Is true when `arg` is a numbered pitch with pitch number greater than
         that of this numbered pitch. Otherwise false.
 
         Returns boolean.

@@ -440,7 +440,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def elements_are_time_contiguous(self):
-        r'''True when start-positioned rhythm payload expression
+        r'''Is true when start-positioned rhythm payload expression
         elements are time-contiguous. Otherwise false:
 
         ::

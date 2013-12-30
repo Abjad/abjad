@@ -2,7 +2,7 @@
 
 
 def is_integer_n_tuple(expr, n):
-    r'''True when `expr` is an integer tuple of length `n`:
+    r'''Is true when `expr` is an integer tuple of length `n`:
 
     ::
 

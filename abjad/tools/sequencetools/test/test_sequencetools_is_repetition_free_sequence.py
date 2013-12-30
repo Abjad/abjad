@@ -14,7 +14,7 @@ def test_sequencetools_is_repetition_free_sequence_02():
 
 
 def test_sequencetools_is_repetition_free_sequence_03():
-    r'''True when expr is an empty sequence.
+    r'''Is true when expr is an empty sequence.
     '''
 
     assert sequencetools.is_repetition_free_sequence([])

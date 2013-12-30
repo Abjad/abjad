@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import iterate
 
 
 def notes_and_chords_are_in_range(expr):
-    '''True when notes and chords in `expr` are 
+    '''Is true when notes and chords in `expr` are 
     within traditional instrument ranges.
 
     ::

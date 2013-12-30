@@ -73,7 +73,7 @@ class LilyPondComment(AbjadObject):
         return new
 
     def __eq__(self, arg):
-        r'''True when `arg` is a LilyPond comment with contents string
+        r'''Is true when `arg` is a LilyPond comment with contents string
         equal to LilyPond comment. Otherwise false.
 
         Returns boolean.

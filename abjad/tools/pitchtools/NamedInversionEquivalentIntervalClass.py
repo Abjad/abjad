@@ -43,7 +43,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        r'''True when `arg` is a named inversion-equivalent interval-class with
+        r'''Is true when `arg` is a named inversion-equivalent interval-class with
         quality string and number equal to those of this named
         inversion-equivalent interval-class. Otherwise false.
 
@@ -56,7 +56,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         return False
 
     def __ne__(self, arg):
-        r'''True when named inversion-equivalent interval-class does not equal
+        r'''Is true when named inversion-equivalent interval-class does not equal
         `arg`. Otherwise false.
 
         Returns boolean.

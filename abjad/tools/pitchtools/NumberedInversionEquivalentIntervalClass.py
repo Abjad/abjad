@@ -60,7 +60,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         return type(self)(self.number)
 
     def __eq__(self, arg):
-        r'''True when `arg` is a numbered inversion-equivalent interval-class
+        r'''Is true when `arg` is a numbered inversion-equivalent interval-class
         with number equal to that of this numbered inversion-equivalent
         interval-class. Otherwise false.
 

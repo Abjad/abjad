@@ -36,7 +36,7 @@ class TypedFrozenset(TypedCollection):
         return self.__makenew__(result)
 
     def __ge__(self, expr):
-        r'''True when typed frozen set is greater than or equal to `expr`.
+        r'''Is true when typed frozen set is greater than or equal to `expr`.
         Otherwise false.
 
         Returns boolean.
@@ -45,7 +45,7 @@ class TypedFrozenset(TypedCollection):
         return self._collection.__ge__(expr._collection)
 
     def __gt__(self, expr):
-        r'''True when typed frozen set is greater than `expr`. Otherwise false.
+        r'''Is true when typed frozen set is greater than `expr`. Otherwise false.
 
         Returns boolean.
         '''
@@ -65,7 +65,7 @@ class TypedFrozenset(TypedCollection):
             ))
 
     def __le__(self, expr):
-        r'''True when typed frozen set is less than or equal to `expr`.
+        r'''Is true when typed frozen set is less than or equal to `expr`.
         Otherwise false.
 
         Returns boolean.
@@ -74,7 +74,7 @@ class TypedFrozenset(TypedCollection):
         return self._collection.__le__(expr._collection)
 
     def __lt__(self, expr):
-        r'''True when typed frozen set is less than `expr`. Otherwise false.
+        r'''Is true when typed frozen set is less than `expr`. Otherwise false.
 
         Returns boolean.
         '''
@@ -82,7 +82,7 @@ class TypedFrozenset(TypedCollection):
         return self._collection.__lt__(expr._collection)
 
     def __ne__(self, expr):
-        r'''True when typed frozen set is not equal to `expr`. Otherwise false.
+        r'''Is true when typed frozen set is not equal to `expr`. Otherwise false.
 
         Returns boolean.
         '''
@@ -144,7 +144,7 @@ class TypedFrozenset(TypedCollection):
         return self.__makenew__(result)
 
     def isdisjoint(self, expr):
-        r'''True when typed frozen set shares no elements with `expr`.
+        r'''Is true when typed frozen set shares no elements with `expr`.
         Otherwise false.
 
         Returns boolean.
@@ -153,7 +153,7 @@ class TypedFrozenset(TypedCollection):
         return self._collection.isdisjoint(expr._collection)
 
     def issubset(self, expr):
-        r'''True when typed frozen set is a subset of `expr`. Otherwise false.
+        r'''Is true when typed frozen set is a subset of `expr`. Otherwise false.
 
         Returns boolean.
         '''
@@ -161,7 +161,7 @@ class TypedFrozenset(TypedCollection):
         return self._collection.issubset(expr._collection)
 
     def issuperset(self, expr):
-        r'''True when typed frozen set is a superset of `expr`. Otherwise
+        r'''Is true when typed frozen set is a superset of `expr`. Otherwise
         false.
 
         Returns boolean.

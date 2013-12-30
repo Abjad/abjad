@@ -87,7 +87,7 @@ class PitchArrayRow(AbjadObject):
         return PitchArrayRow(new_cells)
 
     def __eq__(self, arg):
-        r'''True when `arg` is a pitch array row with contents equal to that of
+        r'''Is true when `arg` is a pitch array row with contents equal to that of
         this pitch array row. Otherwise false.
 
         Returns boolean.
@@ -166,7 +166,7 @@ class PitchArrayRow(AbjadObject):
         return self.width
 
     def __ne__(self, arg):
-        r'''True when pitch array row does not equal `arg`. Otherwise false.
+        r'''Is true when pitch array row does not equal `arg`. Otherwise false.
 
         Returns boolean.
         '''
@@ -262,7 +262,7 @@ class PitchArrayRow(AbjadObject):
 
     @property
     def is_defective(self):
-        r'''True when width of pitch array row does not equal width of parent
+        r'''Is true when width of pitch array row does not equal width of parent
         pitch array. Otherwise false.
 
         Returns boolean.
@@ -273,7 +273,7 @@ class PitchArrayRow(AbjadObject):
 
     @property
     def is_in_range(self):
-        r'''True when all pitches in pitch array row are in pitch range of
+        r'''Is true when all pitches in pitch array row are in pitch range of
         pitch array row. Otherwise false.
 
         Returns boolean.
@@ -413,7 +413,7 @@ class PitchArrayRow(AbjadObject):
             self.append(cell_token)
 
     def has_spanning_cell_over_index(self, i):
-        r'''True when pitch array row has one or more cells spanning over index
+        r'''Is true when pitch array row has one or more cells spanning over index
         `i`. Otherwise false.
 
         Returns boolean.

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 # TODO: implement subsegment containment on pitchtools Segment classes
 def contains_subsegment(pitch_class_numbers, pitch_numbers):
-    '''True when `pitch_numbers` contain `pitch_class_numbers`
+    '''Is true when `pitch_numbers` contain `pitch_class_numbers`
     as subsegment:
 
     ::

@@ -134,7 +134,7 @@ class Clef(AbjadObject):
         return type(self)(self.name)
 
     def __eq__(self, arg):
-        r'''True when clef name of `arg` equal clef name of clef.
+        r'''Is true when clef name of `arg` equal clef name of clef.
         Otherwise false.
 
         ::
@@ -179,7 +179,7 @@ class Clef(AbjadObject):
         return superclass.__format__(format_specification=format_specification)
 
     def __ne__(self, arg):
-        r'''True when clef of `arg` does not equal clef name of clef.
+        r'''Is true when clef of `arg` does not equal clef name of clef.
         Otherwise false.
 
         ::

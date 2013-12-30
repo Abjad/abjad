@@ -4,7 +4,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_is_strictly_increasing_sequence_01():
-    r'''True when the elements in l increase strictly.
+    r'''Is true when the elements in l increase strictly.
     '''
 
     l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -26,7 +26,7 @@ def test_sequencetools_is_strictly_increasing_sequence_02():
 
 
 def test_sequencetools_is_strictly_increasing_sequence_03():
-    r'''True when l is empty.
+    r'''Is true when l is empty.
     '''
 
     l = []

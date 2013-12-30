@@ -215,7 +215,7 @@ class PitchClass(AbjadObject):
 
     @staticmethod
     def is_diatonic_pitch_class_name(expr):
-        '''True when `expr` is a diatonic pitch-class name. Otherwise false.
+        '''Is true when `expr` is a diatonic pitch-class name. Otherwise false.
 
         ::
 
@@ -232,7 +232,7 @@ class PitchClass(AbjadObject):
 
     @staticmethod
     def is_diatonic_pitch_class_number(expr):
-        '''True when `expr` is a diatonic pitch-class number. Otherwise false.
+        '''Is true when `expr` is a diatonic pitch-class number. Otherwise false.
 
         ::
 
@@ -255,7 +255,7 @@ class PitchClass(AbjadObject):
 
     @staticmethod
     def is_pitch_class_name(expr):
-        '''True when `expr` is a pitch-class name. Otherwise false.
+        '''Is true when `expr` is a pitch-class name. Otherwise false.
 
         ::
 

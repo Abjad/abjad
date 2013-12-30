@@ -54,7 +54,7 @@ class Interval(AbjadObject):
         return type(self)(abs(self.number))
 
     def __eq__(self, arg):
-        r'''True when `arg` is an interval with number and direction direction
+        r'''Is true when `arg` is an interval with number and direction direction
         equal to those of this interval. Otherwise false.
 
         Returns boolean.
@@ -89,7 +89,7 @@ class Interval(AbjadObject):
         raise NotImplementedError(message)
 
     def __ne__(self, arg):
-        r'''True when interval does not equal `arg`.
+        r'''Is true when interval does not equal `arg`.
 
         Returns boolean.
         '''
@@ -140,7 +140,7 @@ class Interval(AbjadObject):
 
     @staticmethod
     def is_named_interval_abbreviation(expr):
-        '''True when `expr` is a named interval abbreviation.
+        '''Is true when `expr` is a named interval abbreviation.
         Otherwise false:
 
         ::
@@ -158,7 +158,7 @@ class Interval(AbjadObject):
 
     @staticmethod
     def is_named_interval_quality_abbreviation(expr):
-        '''True when `expr` is a named-interval quality abbreviation. Otherwise
+        '''Is true when `expr` is a named-interval quality abbreviation. Otherwise
         false:
 
         ::

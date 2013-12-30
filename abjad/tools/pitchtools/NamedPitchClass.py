@@ -127,7 +127,7 @@ class NamedPitchClass(PitchClass):
         return type(self)(self)
 
     def __eq__(self, expr):
-        r'''True when `expr` can be coerced to a named pitch-class with 
+        r'''Is true when `expr` can be coerced to a named pitch-class with 
         pitch-class name equal to that of this named pitch-class.
 
         ::

@@ -2,14 +2,14 @@
 
 
 def all_are_equal(expr):
-    '''True when `expr` is a sequence and all elements in `expr` are equal:
+    '''Is true when `expr` is a sequence and all elements in `expr` are equal:
 
     ::
 
         >>> sequencetools.all_are_equal([99, 99, 99, 99, 99, 99])
         True
 
-    True when `expr` is an empty sequence:
+    Is true when `expr` is an empty sequence:
 
     ::
 

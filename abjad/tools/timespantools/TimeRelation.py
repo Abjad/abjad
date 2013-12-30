@@ -33,7 +33,7 @@ class TimeRelation(AbjadObject):
 
     @abc.abstractmethod
     def __eq__(self, expr):
-        r'''True when `expr` is a equal-valued time relation.
+        r'''Is true when `expr` is a equal-valued time relation.
         Otherwise false.
 
         Returns boolean.
@@ -62,7 +62,7 @@ class TimeRelation(AbjadObject):
 
     @abc.abstractproperty
     def is_fully_loaded(self):
-        r'''True when both time relation terms are not none.
+        r'''Is true when both time relation terms are not none.
         Otherwise false:
 
         Returns boolean.
@@ -71,7 +71,7 @@ class TimeRelation(AbjadObject):
 
     @abc.abstractproperty
     def is_fully_unloaded(self):
-        r'''True when both time relation terms are none.
+        r'''Is true when both time relation terms are none.
         Otherwise false:
 
         Returns boolean.

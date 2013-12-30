@@ -111,7 +111,7 @@ class Segment(TypedTuple):
 
     @abc.abstractproperty
     def has_duplicates(self):
-        r'''True when segment has duplicates. Otherwise false.
+        r'''Is true when segment has duplicates. Otherwise false.
 
         Returns boolean.
         '''

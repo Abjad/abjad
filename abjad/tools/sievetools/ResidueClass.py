@@ -70,7 +70,7 @@ class ResidueClass(BaseResidueClass):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is a residue class with module and residue equal
+        r'''Is true when `expr` is a residue class with module and residue equal
         to those of this residue class. Otherwise false.
 
         Returns boolean.
@@ -82,7 +82,7 @@ class ResidueClass(BaseResidueClass):
         return False
 
     def __lt__(self, expr):
-        r'''True when `expr` is a residue class with module greater than that
+        r'''Is true when `expr` is a residue class with module greater than that
         of this residue class. Also true when `expr` is a residue class with
         modulo equal to that of this residue class and with residue greater
         than that of this residue class. Otherwise false.
@@ -95,7 +95,7 @@ class ResidueClass(BaseResidueClass):
             return self.modulo < expr.modulo
 
     def __ne__(self, expr):
-        r'''True when `expr` is not equal to this residue class. Otherwise
+        r'''Is true when `expr` is not equal to this residue class. Otherwise
         false.
 
         Return boolean.

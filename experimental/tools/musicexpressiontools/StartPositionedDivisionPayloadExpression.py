@@ -517,7 +517,7 @@ class StartPositionedDivisionPayloadExpression(
 
     @property
     def elements_are_time_contiguous(self):
-        r'''True when start-positioned division payload expression elements
+        r'''Is true when start-positioned division payload expression elements
         are time-contiguous. Otherwise false:
 
         ::

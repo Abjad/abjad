@@ -2,7 +2,7 @@
 
 
 def is_integer_pair(expr):
-    r'''True when `expr` is an integer tuple of length ``2``:
+    r'''Is true when `expr` is an integer tuple of length ``2``:
 
     ::
 

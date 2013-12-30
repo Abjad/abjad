@@ -9,7 +9,7 @@ class LilyPondNameManager(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        r'''True when `arg` is a LilyPond name manager with attribute pairs
+        r'''Is true when `arg` is a LilyPond name manager with attribute pairs
         equal to those of this LilyPond name manager. Otherwise false.
 
         Returns boolean.

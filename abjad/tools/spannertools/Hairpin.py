@@ -353,7 +353,7 @@ class Hairpin(Spanner):
 
     @staticmethod
     def is_hairpin_shape_string(arg):
-        r'''True when `arg` is a hairpin shape string. Otherwise false:
+        r'''Is true when `arg` is a hairpin shape string. Otherwise false:
 
         ::
 
@@ -366,7 +366,7 @@ class Hairpin(Spanner):
 
     @staticmethod
     def is_hairpin_token(arg):
-        r'''True when `arg` is a hairpin token. Otherwise false:
+        r'''Is true when `arg` is a hairpin token. Otherwise false:
 
         ::
 

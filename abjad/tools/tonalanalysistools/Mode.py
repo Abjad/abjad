@@ -40,7 +40,7 @@ class Mode(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        r'''True when `arg` is a mode with mode name equal to that of this
+        r'''Is true when `arg` is a mode with mode name equal to that of this
         mode. Otherwise false.
 
         Returns boolean.
@@ -57,7 +57,7 @@ class Mode(AbjadObject):
         return len(self.named_interval_segment)
 
     def __ne__(self, arg):
-        r'''True when `arg` does not equal mode. Otherwise false.
+        r'''Is true when `arg` does not equal mode. Otherwise false.
 
         Returns boolean.
         '''

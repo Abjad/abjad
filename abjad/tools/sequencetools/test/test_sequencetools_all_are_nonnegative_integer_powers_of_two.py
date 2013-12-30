@@ -4,7 +4,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_all_are_nonnegative_integer_powers_of_two_01():
-    r'''True when all elements in sequence are nonnegative integer powers of two.
+    r'''Is true when all elements in sequence are nonnegative integer powers of two.
     '''
 
     assert sequencetools.all_are_nonnegative_integer_powers_of_two([1, 2, 256, 8, 16, 16, 16])

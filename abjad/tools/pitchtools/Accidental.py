@@ -195,7 +195,7 @@ class Accidental(AbjadObject):
         return type(self)(semitones)
 
     def __eq__(self, arg):
-        r'''True when `arg` is an accidental with an abbreviation equal to that
+        r'''Is true when `arg` is an accidental with an abbreviation equal to that
         of this accidental. Otherwise false.
 
         Returns boolean.
@@ -206,7 +206,7 @@ class Accidental(AbjadObject):
         return False
 
     def __ge__(self, arg):
-        r'''True when `arg` is an accidental with semitones less than or equal
+        r'''Is true when `arg` is an accidental with semitones less than or equal
         to those of this accidental. Otherwise false.
 
         Returns boolean.
@@ -221,7 +221,7 @@ class Accidental(AbjadObject):
         return (self.abbreviation,)
 
     def __gt__(self, arg):
-        r'''True when `arg` is an accidental with semitones less than 
+        r'''Is true when `arg` is an accidental with semitones less than 
         those of this accidental. Otherwise false.
 
         Returns boolean.
@@ -229,7 +229,7 @@ class Accidental(AbjadObject):
         return self.semitones > arg.semitones
 
     def __le__(self, arg):
-        r'''True when `arg` is an accidental with semitones greater than or
+        r'''Is true when `arg` is an accidental with semitones greater than or
         equal to those of this accidental. Otherwise false.
 
         Returns boolean.
@@ -237,7 +237,7 @@ class Accidental(AbjadObject):
         return self.semitones <= arg.semitones
 
     def __lt__(self, arg):
-        r'''True when `arg` is an accidental with semitones greater than those
+        r'''Is true when `arg` is an accidental with semitones greater than those
         of this accidental. Otherwise false.
 
         Returns boolean.
@@ -245,7 +245,7 @@ class Accidental(AbjadObject):
         return self.semitones < arg.semitones
 
     def __ne__(self, arg):
-        r'''True when accidental does not equal `arg`. Otherwise false.
+        r'''Is true when accidental does not equal `arg`. Otherwise false.
 
         Returns boolean.
         '''
@@ -316,7 +316,7 @@ class Accidental(AbjadObject):
 
     @staticmethod
     def is_abbreviation(expr):
-        '''True when `expr` is an alphabetic accidental abbrevation. Otherwise
+        '''Is true when `expr` is an alphabetic accidental abbrevation. Otherwise
         false:
 
         ::
@@ -335,7 +335,7 @@ class Accidental(AbjadObject):
 
     @staticmethod
     def is_symbolic_string(expr):
-        '''True when `expr` is a symbolic accidental string. Otherwise false:
+        '''Is true when `expr` is a symbolic accidental string. Otherwise false:
 
         ::
 

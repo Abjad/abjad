@@ -28,7 +28,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when types are the same. Otherwise false.
+        r'''Is true when types are the same. Otherwise false.
 
         Returns boolean.
         '''

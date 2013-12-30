@@ -59,7 +59,7 @@ class Container(Component):
     ### SPECIAL METHODS ###
 
     def __contains__(self, expr):
-        r'''True when `expr` appears in container.
+        r'''Is true when `expr` appears in container.
         Otherwise false.
 
         Returns boolean.

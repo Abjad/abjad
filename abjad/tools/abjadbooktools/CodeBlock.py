@@ -175,7 +175,7 @@ class CodeBlock(AbjadObject):
         return image_count
 
     def __eq__(self, expr):
-        r'''True when `expr` is a code block with lines, starting line number,
+        r'''Is true when `expr` is a code block with lines, starting line number,
         ending line number, hide and strip prompt boolean equal to those of
         this code block. Otherwise false.
 
@@ -200,7 +200,7 @@ class CodeBlock(AbjadObject):
 
     @property
     def hide(self):
-        r'''True when code block should hide.
+        r'''Is true when code block should hide.
         '''
         return self._hide
 
@@ -224,7 +224,7 @@ class CodeBlock(AbjadObject):
 
     @property
     def strip_prompt(self):
-        r'''True when code block should strip prompt.
+        r'''Is true when code block should strip prompt.
         '''
         return self._strip_prompt
 

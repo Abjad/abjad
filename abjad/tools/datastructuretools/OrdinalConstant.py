@@ -95,7 +95,7 @@ class OrdinalConstant(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is an ordinal constant with dimension and value
+        r'''Is true when `expr` is an ordinal constant with dimension and value
         equal to those of this ordinal constant. Otherwise false.
 
         Returns boolean.
@@ -130,7 +130,7 @@ class OrdinalConstant(AbjadObject):
             )
 
     def __lt__(self, expr):
-        r'''True when `expr` is an ordinal with value greater than that of this
+        r'''Is true when `expr` is an ordinal with value greater than that of this
         ordinal constant. Otherwise false.
 
         Returns boolean.

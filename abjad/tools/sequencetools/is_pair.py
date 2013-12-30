@@ -2,7 +2,7 @@
 
 
 def is_pair(expr):
-    r'''True when `expr` is a tuple of length ``2``:
+    r'''Is true when `expr` is a tuple of length ``2``:
 
     ::
 

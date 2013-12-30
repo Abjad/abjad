@@ -300,7 +300,7 @@ class Octave(AbjadObject):
 
     @classmethod
     def is_octave_tick_string(cls, expr):
-        '''True when `expr` is an octave tick string. Otherwise false.
+        '''Is true when `expr` is an octave tick string. Otherwise false.
 
         ::
 

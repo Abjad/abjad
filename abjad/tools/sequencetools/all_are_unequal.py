@@ -2,14 +2,14 @@
 
 
 def all_are_unequal(expr):
-    '''True when `expr` is a sequence all elements in `expr` are unequal:
+    '''Is true when `expr` is a sequence all elements in `expr` are unequal:
 
     ::
 
         >>> sequencetools.all_are_unequal([1, 2, 3, 4, 9])
         True
 
-    True when `expr` is an empty sequence:
+    Is true when `expr` is an empty sequence:
 
     ::
 

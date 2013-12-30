@@ -83,7 +83,7 @@ class Performer(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is a performer with name and instruments equal to
+        r'''Is true when `expr` is a performer with name and instruments equal to
         those of this performer. Otherwise false.
 
         Returns boolean.
@@ -270,7 +270,7 @@ class Performer(AbjadObject):
 
     @property
     def is_doubling(self):
-        r'''True when performer is to play more than one instrument. Otherwise
+        r'''Is true when performer is to play more than one instrument. Otherwise
         false.
 
         ::

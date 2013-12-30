@@ -222,7 +222,7 @@ class MenuSection(AbjadObject):
     @apply
     def display_prepopulated_values():
         def fget(self):
-            r'''True when menu section should show prepopulated values.
+            r'''Is true when menu section should show prepopulated values.
             Otherwise false:
 
             ::
@@ -259,7 +259,7 @@ class MenuSection(AbjadObject):
     @apply
     def is_hidden():
         def fget(self):
-            r'''True when menu section is hidden. 
+            r'''Is true when menu section is hidden. 
             Otherwise false:
 
             ::
@@ -278,7 +278,7 @@ class MenuSection(AbjadObject):
     @apply
     def is_numbered():
         def fget(self):
-            r'''True when menu section is numbered. 
+            r'''Is true when menu section is numbered. 
             Otherwise false:
 
             ::
@@ -297,7 +297,7 @@ class MenuSection(AbjadObject):
     @apply
     def is_ranged():
         def fget(self):
-            r'''True when menu section is ranged. 
+            r'''Is true when menu section is ranged. 
             Otherwise false:
 
             ::

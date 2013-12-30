@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_scoretools_FixedDurationTuplet_is_trivial_01():
-    r'''True when tuplet ratio equals one.
+    r'''Is true when tuplet ratio equals one.
     '''
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8")

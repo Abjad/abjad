@@ -464,7 +464,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_complete(self):
-        r'''True when session is complete. Otherwise false:
+        r'''Is true when session is complete. Otherwise false:
 
         ::
 
@@ -477,7 +477,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_displayable(self):
-        r'''True when session is displayable. Otherwise false:
+        r'''Is true when session is displayable. Otherwise false:
 
         ::
 
@@ -490,7 +490,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_in_score(self):
-        r'''True when session is in score. Otherwise false:
+        r'''Is true when session is in score. Otherwise false:
 
         ::
 
@@ -503,7 +503,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_navigating_to_sibling_score(self):
-        r'''True when session is navigating to sibling score.
+        r'''Is true when session is navigating to sibling score.
         Otherwise false:
 
         ::
@@ -583,7 +583,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def session_once_had_user_input(self):
-        r'''True when session once had user input. Otherwise false:
+        r'''Is true when session once had user input. Otherwise false:
 
         ::
 
@@ -644,7 +644,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def user_input_is_consumed(self):
-        r'''True when session user input is consumed.
+        r'''Is true when session user input is consumed.
         Otherwise false:
 
         ::

@@ -115,7 +115,7 @@ class SortedCollection(object):
     ### SPECIAL METHODS ###
 
     def __contains__(self, item):
-        r'''True when sorted collection contains `item`. Otherwise false.
+        r'''Is true when sorted collection contains `item`. Otherwise false.
 
         Returns boolean.
         '''

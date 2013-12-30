@@ -31,7 +31,7 @@ class TreeNode(AbjadObject):
     __deepcopy__ = __copy__
 
     def __eq__(self, expr):
-        r'''True when `expr` is a tree node. Otherwise false.
+        r'''Is true when `expr` is a tree node. Otherwise false.
 
         Returns boolean.
         '''
@@ -62,7 +62,7 @@ class TreeNode(AbjadObject):
         return state
 
     def __ne__(self, expr):
-        r'''True when tree node does not equal `expr`. Otherwise false.
+        r'''Is true when tree node does not equal `expr`. Otherwise false.
 
         Returns boolean.
         '''

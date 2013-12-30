@@ -4,7 +4,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_all_are_unequal_01():
-    r'''True when the elements in input iterable are unique.
+    r'''Is true when the elements in input iterable are unique.
     '''
 
     assert sequencetools.all_are_unequal([1, 2, 3])

@@ -453,7 +453,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def has_non_power_of_two_denominator(self):
-        r'''True when measure time signature denominator
+        r'''Is true when measure time signature denominator
         is not an integer power of 2.
 
         ::
@@ -485,7 +485,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def has_power_of_two_denominator(self):
-        r'''True when measure time signature denominator
+        r'''Is true when measure time signature denominator
         is an integer power of 2.
 
         ::
@@ -535,7 +535,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_full(self):
-        r'''True when measure duration equals time signature duration.
+        r'''Is true when measure duration equals time signature duration.
 
         ::
 
@@ -555,7 +555,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_misfilled(self):
-        '''True when measure is either underfull or overfull.
+        '''Is true when measure is either underfull or overfull.
 
         ::
 
@@ -581,7 +581,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_overfull(self):
-        '''True when measure duration is greater than time signature duration.
+        '''Is true when measure duration is greater than time signature duration.
 
         ::
 
@@ -600,7 +600,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_underfull(self):
-        '''True when measure duration is less than time signature duration.
+        '''Is true when measure duration is less than time signature duration.
 
         ::
 

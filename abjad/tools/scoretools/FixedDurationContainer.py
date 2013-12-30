@@ -77,7 +77,7 @@ class FixedDurationContainer(Container):
 
     @property
     def is_full(self):
-        r'''True when preprolated duration equals target duration. Otherwise
+        r'''Is true when preprolated duration equals target duration. Otherwise
         false.
 
         Returns boolean.
@@ -86,7 +86,7 @@ class FixedDurationContainer(Container):
 
     @property
     def is_misfilled(self):
-        r'''True when preprolated duration does not equal target duration.
+        r'''Is true when preprolated duration does not equal target duration.
         Otherwise false.
 
         Returns boolean.
@@ -95,7 +95,7 @@ class FixedDurationContainer(Container):
 
     @property
     def is_overfull(self):
-        r'''True when preprolated duration is greater than target duration.
+        r'''Is true when preprolated duration is greater than target duration.
         Otherwise false.
 
         Returns boolean.
@@ -104,7 +104,7 @@ class FixedDurationContainer(Container):
 
     @property
     def is_underfull(self):
-        r'''True when preprolated duration is less than target duration.
+        r'''Is true when preprolated duration is less than target duration.
         Otherwise false.
 
         Returns boolean.

@@ -102,7 +102,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         return len(self.payload)
 
     def __lt__(self, expr):
-        r'''True when expression starts before `expr`.
+        r'''Is true when expression starts before `expr`.
 
         Also true when expression starts when `expr` starts
         but expression stops before `expr` stops.
@@ -254,7 +254,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
 
     @property
     def elements_are_time_contiguous(self):
-        r'''True when start-positioned payload expression elements 
+        r'''Is true when start-positioned payload expression elements 
         are time-contiguous.
         Otherwise false.
 

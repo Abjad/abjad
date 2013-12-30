@@ -38,7 +38,7 @@ class CyclicList(abctools.AbjadObject, list):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` has items equal to those of this cyclic list.
+        r'''Is true when `expr` has items equal to those of this cyclic list.
         Otherwise false.
 
         Returns boolean.

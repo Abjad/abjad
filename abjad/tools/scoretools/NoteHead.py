@@ -72,7 +72,7 @@ class NoteHead(AbjadObject):
         return type(self)(*self.__getnewargs__())
 
     def __eq__(self, expr):
-        r'''True when `expr` is a note-head with written pitch equal to that of
+        r'''Is true when `expr` is a note-head with written pitch equal to that of
         this note-head. Otherwise false.
 
         Returns boolean.
@@ -105,7 +105,7 @@ class NoteHead(AbjadObject):
         return args
 
     def __lt__(self, expr):
-        r'''True when `expr` is a note-head with written pitch greater than
+        r'''Is true when `expr` is a note-head with written pitch greater than
         that of this note-head. Otherwise false.
 
         Returns boolean.

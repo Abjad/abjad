@@ -68,7 +68,7 @@ class NumberedInterval(Interval):
         return type(self)(self.number)
 
     def __eq__(self, arg):
-        r'''True when `arg` is a numbered interval with number equal to that of
+        r'''Is true when `arg` is a numbered interval with number equal to that of
         this numbered interval. Otherwise false.
 
         Returns boolean.
@@ -100,7 +100,7 @@ class NumberedInterval(Interval):
         return int(self._number)
 
     def __lt__(self, arg):
-        r'''True when `arg` is a numbered interval with same direction number
+        r'''Is true when `arg` is a numbered interval with same direction number
         as this numbered interval and with number greater than that of this
         numbered interval. Otherwise false.
 

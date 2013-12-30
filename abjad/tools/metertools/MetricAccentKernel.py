@@ -68,7 +68,7 @@ class MetricAccentKernel(AbjadObject):
         return float(response)
 
     def __eq__(self, expr):
-        r'''True when `expr` is a metrical accent kernal with a kernal equal to
+        r'''Is true when `expr` is a metrical accent kernal with a kernal equal to
         that of this metrical accent kernel. Otherwise false.
 
         Returns boolean.

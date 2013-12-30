@@ -4,7 +4,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_all_are_numbers_01():
-    r'''True when all elements in sequence are numbers.
+    r'''Is true when all elements in sequence are numbers.
     '''
 
     assert sequencetools.all_are_numbers([1, 2, 5.5, Fraction(8, 3)])

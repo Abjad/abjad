@@ -3,14 +3,14 @@ import numbers
 
 
 def is_integer_equivalent_expr(expr):
-    '''True when `expr` is an integer-equivalent number.
+    '''Is true when `expr` is an integer-equivalent number.
 
     ::
 
         >>> mathtools.is_integer_equivalent_expr(12.0)
         True
 
-    True when `expr` evaluates to an integer:
+    Is true when `expr` evaluates to an integer:
 
     ::
 

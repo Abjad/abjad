@@ -94,7 +94,7 @@ class Timespan(BoundedObject):
         return timespantools.TimespanInventory([timespan])
 
     def __eq__(self, timespan):
-        r'''True when `timespan` is a timespan with equal offsets.
+        r'''Is true when `timespan` is a timespan with equal offsets.
 
         ::
 
@@ -135,7 +135,7 @@ class Timespan(BoundedObject):
         return str(self)
 
     def __ge__(self, expr):
-        r'''True when `expr` start offset is greater or equal
+        r'''Is true when `expr` start offset is greater or equal
         to timespan start offset.
 
         ::
@@ -163,7 +163,7 @@ class Timespan(BoundedObject):
         return self.start_offset >= expr.start_offset
 
     def __gt__(self, expr):
-        r'''True when `expr` start offset is greater than
+        r'''Is true when `expr` start offset is greater than
         timespan start offset.
 
         ::
@@ -191,7 +191,7 @@ class Timespan(BoundedObject):
         return self.start_offset > expr.start_offset
 
     def __le__(self, expr):
-        r'''True when `expr` start offset is less than or equal to
+        r'''Is true when `expr` start offset is less than or equal to
         timespan start offset.
 
         ::
@@ -231,7 +231,7 @@ class Timespan(BoundedObject):
         return 1
 
     def __lt__(self, expr):
-        r'''True when `expr` start offset is less than timespan start offset.
+        r'''Is true when `expr` start offset is less than timespan start offset.
 
         ::
 
@@ -293,7 +293,7 @@ class Timespan(BoundedObject):
         return result
 
     def __ne__(self, timespan):
-        r'''True when `timespan` is not a timespan with equivalent offsets.
+        r'''Is true when `timespan` is not a timespan with equivalent offsets.
 
         ::
 
@@ -858,7 +858,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_well_formed(self):
-        r'''True when timespan start offset preceeds timespan stop offset.
+        r'''Is true when timespan start offset preceeds timespan stop offset.
         Otherwise false:
 
         ::
@@ -912,7 +912,7 @@ class Timespan(BoundedObject):
     ### PUBLIC METHODS ###
 
     def contains_timespan_improperly(self, timespan):
-        r'''True when timespan contains `timespan` improperly.
+        r'''Is true when timespan contains `timespan` improperly.
         Otherwise false:
 
         ::
@@ -939,7 +939,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def curtails_timespan(self, timespan):
-        r'''True when timespan curtails `timespan`. Otherwise false:
+        r'''Is true when timespan curtails `timespan`. Otherwise false:
 
         ::
 
@@ -965,7 +965,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def delays_timespan(self, timespan):
-        r'''True when timespan delays `timespan`. Otherwise false:
+        r'''Is true when timespan delays `timespan`. Otherwise false:
 
         ::
 
@@ -1088,7 +1088,7 @@ class Timespan(BoundedObject):
             return result
 
     def happens_during_timespan(self, timespan):
-        r'''True when timespan happens during `timespan`. Otherwise false:
+        r'''Is true when timespan happens during `timespan`. Otherwise false:
 
         ::
 
@@ -1114,7 +1114,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def intersects_timespan(self, timespan):
-        r'''True when timespan intersects `timespan`. Otherwise false:
+        r'''Is true when timespan intersects `timespan`. Otherwise false:
 
         ::
 
@@ -1139,7 +1139,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def is_congruent_to_timespan(self, timespan):
-        r'''True when timespan is congruent to `timespan`. Otherwise false:
+        r'''Is true when timespan is congruent to `timespan`. Otherwise false:
 
         ::
 
@@ -1165,7 +1165,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def is_tangent_to_timespan(self, timespan):
-        r'''True when timespan is tangent to `timespan`. Otherwise false:
+        r'''Is true when timespan is tangent to `timespan`. Otherwise false:
 
         ::
 
@@ -1194,7 +1194,7 @@ class Timespan(BoundedObject):
         return False
 
     def overlaps_all_of_timespan(self, timespan):
-        r'''True when timespan overlaps all of `timespan`. Otherwise false:
+        r'''Is true when timespan overlaps all of `timespan`. Otherwise false:
 
         ::
 
@@ -1219,7 +1219,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def overlaps_only_start_of_timespan(self, timespan):
-        r'''True when timespan overlaps only start of `timespan`.
+        r'''Is true when timespan overlaps only start of `timespan`.
         Otherwise false:
 
         ::
@@ -1248,7 +1248,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def overlaps_only_stop_of_timespan(self, timespan):
-        r'''True when timespan overlaps only stop of `timespan`.
+        r'''Is true when timespan overlaps only stop of `timespan`.
         Otherwise false:
 
         ::
@@ -1277,7 +1277,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def overlaps_start_of_timespan(self, timespan):
-        r'''True when timespan overlaps start of `timespan`.
+        r'''Is true when timespan overlaps start of `timespan`.
         Otherwise false:
 
         ::
@@ -1306,7 +1306,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def overlaps_stop_of_timespan(self, timespan):
-        r'''True when timespan overlaps start of `timespan`.
+        r'''Is true when timespan overlaps start of `timespan`.
         Otherwise false:
 
         ::
@@ -1561,7 +1561,7 @@ class Timespan(BoundedObject):
             return type(self)(self.start_offset, self.stop_offset)
 
     def starts_after_offset(self, offset):
-        r'''True when timespan overlaps start of `timespan`. Otherwise false:
+        r'''Is true when timespan overlaps start of `timespan`. Otherwise false:
 
         ::
 
@@ -1582,7 +1582,7 @@ class Timespan(BoundedObject):
         return offset < self.start_offset
 
     def starts_after_timespan_starts(self, timespan):
-        r'''True when timespan starts after `timespan` starts. Otherwise false:
+        r'''Is true when timespan starts after `timespan` starts. Otherwise false:
 
         ::
 
@@ -1608,7 +1608,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def starts_after_timespan_stops(self, timespan):
-        r'''True when timespan starts after `timespan` stops. Otherwise false:
+        r'''Is true when timespan starts after `timespan` stops. Otherwise false:
 
         ::
 
@@ -1636,7 +1636,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def starts_at_offset(self, offset):
-        r'''True when timespan starts at `offset`. Otherwise false:
+        r'''Is true when timespan starts at `offset`. Otherwise false:
 
         ::
 
@@ -1657,7 +1657,7 @@ class Timespan(BoundedObject):
         return self.start_offset == offset
 
     def starts_at_or_after_offset(self, offset):
-        r'''True when timespan starts at or after `offset`. Otherwise false:
+        r'''Is true when timespan starts at or after `offset`. Otherwise false:
 
         ::
 
@@ -1678,7 +1678,7 @@ class Timespan(BoundedObject):
         return offset <= self.start_offset
 
     def starts_before_offset(self, offset):
-        r'''True when timespan starts before `offset`. Otherwise false:
+        r'''Is true when timespan starts before `offset`. Otherwise false:
 
         ::
 
@@ -1699,7 +1699,7 @@ class Timespan(BoundedObject):
         return self.start_offset < offset
 
     def starts_before_or_at_offset(self, offset):
-        r'''True when timespan starts before or at `offset`.
+        r'''Is true when timespan starts before or at `offset`.
         Otherwise false:
 
         ::
@@ -1721,7 +1721,7 @@ class Timespan(BoundedObject):
         return self.start_offset <= offset
 
     def starts_before_timespan_starts(self, timespan):
-        r'''True when timespan starts before `timespan` starts.
+        r'''Is true when timespan starts before `timespan` starts.
         Otherwise false:
 
         ::
@@ -1748,7 +1748,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def starts_before_timespan_stops(self, timespan):
-        r'''True when timespan starts before `timespan` stops. Otherwise false:
+        r'''Is true when timespan starts before `timespan` stops. Otherwise false:
 
         ::
 
@@ -1774,7 +1774,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def starts_during_timespan(self, timespan):
-        r'''True when timespan starts during `timespan`. Otherwise false:
+        r'''Is true when timespan starts during `timespan`. Otherwise false:
 
         ::
 
@@ -1800,7 +1800,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def starts_when_timespan_starts(self, timespan):
-        r'''True when timespan starts when `timespan` starts. Otherwise false:
+        r'''Is true when timespan starts when `timespan` starts. Otherwise false:
 
         ::
 
@@ -1826,7 +1826,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def starts_when_timespan_stops(self, timespan):
-        r'''True when timespan starts when `timespan` stops. Otherwise false:
+        r'''Is true when timespan starts when `timespan` stops. Otherwise false:
 
         ::
 
@@ -1852,7 +1852,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def stops_after_offset(self, offset):
-        r'''True when timespan stops after `offset`. Otherwise false:
+        r'''Is true when timespan stops after `offset`. Otherwise false:
 
         ::
 
@@ -1873,7 +1873,7 @@ class Timespan(BoundedObject):
         return offset < self.stop_offset
 
     def stops_after_timespan_starts(self, timespan):
-        r'''True when timespan stops when `timespan` starts. Otherwise false:
+        r'''Is true when timespan stops when `timespan` starts. Otherwise false:
 
         ::
 
@@ -1899,7 +1899,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def stops_after_timespan_stops(self, timespan):
-        r'''True when timespan stops when `timespan` stops. Otherwise false:
+        r'''Is true when timespan stops when `timespan` stops. Otherwise false:
 
         ::
 
@@ -1925,7 +1925,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def stops_at_offset(self, offset):
-        r'''True when timespan stops at `offset`. Otherwise false:
+        r'''Is true when timespan stops at `offset`. Otherwise false:
 
         ::
 
@@ -1946,7 +1946,7 @@ class Timespan(BoundedObject):
         return self.stop_offset == offset
 
     def stops_at_or_after_offset(self, offset):
-        r'''True when timespan stops at or after `offset`. Otherwise false:
+        r'''Is true when timespan stops at or after `offset`. Otherwise false:
 
         ::
 
@@ -1967,7 +1967,7 @@ class Timespan(BoundedObject):
         return offset <= self.stop_offset
 
     def stops_before_offset(self, offset):
-        r'''True when timespan stops before `offset`. Otherwise false:
+        r'''Is true when timespan stops before `offset`. Otherwise false:
 
         ::
 
@@ -1988,7 +1988,7 @@ class Timespan(BoundedObject):
         return self.stop_offset < offset
 
     def stops_before_or_at_offset(self, offset):
-        r'''True when timespan stops before or at `offset`. Otherwise false:
+        r'''Is true when timespan stops before or at `offset`. Otherwise false:
 
         ::
 
@@ -2009,7 +2009,7 @@ class Timespan(BoundedObject):
         return self.stop_offset <= offset
 
     def stops_before_timespan_starts(self, timespan):
-        r'''True when timespan stops before `timespan` starts.
+        r'''Is true when timespan stops before `timespan` starts.
         Otherwise false:
 
         ::
@@ -2036,7 +2036,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def stops_before_timespan_stops(self, timespan):
-        r'''True when timespan stops before `timespan` stops. Otherwise false:
+        r'''Is true when timespan stops before `timespan` stops. Otherwise false:
 
         ::
 
@@ -2062,7 +2062,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def stops_during_timespan(self, timespan):
-        r'''True when timespan stops during `timespan`. Otherwise false:
+        r'''Is true when timespan stops during `timespan`. Otherwise false:
 
         ::
 
@@ -2088,7 +2088,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def stops_when_timespan_starts(self, timespan):
-        r'''True when timespan stops when `timespan` starts. Otherwise false:
+        r'''Is true when timespan stops when `timespan` starts. Otherwise false:
 
         ::
 
@@ -2114,7 +2114,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def stops_when_timespan_stops(self, timespan):
-        r'''True when timespan stops when `timespan` stops. Otherwise false:
+        r'''Is true when timespan stops when `timespan` stops. Otherwise false:
 
         ::
 
@@ -2243,7 +2243,7 @@ class Timespan(BoundedObject):
         return result
 
     def trisects_timespan(self, timespan):
-        r'''True when timespan trisects `timespan`. Otherwise false:
+        r'''Is true when timespan trisects `timespan`. Otherwise false:
 
         ::
 

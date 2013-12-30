@@ -74,7 +74,7 @@ class Beam(Spanner):
 
     @staticmethod
     def is_beamable_component(expr):
-        '''True when `expr` is a beamable component. Otherwise false.
+        '''Is true when `expr` is a beamable component. Otherwise false.
 
         ::
 

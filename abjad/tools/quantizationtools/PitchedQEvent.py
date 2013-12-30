@@ -48,7 +48,7 @@ class PitchedQEvent(QEvent):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is a pitched q-event with offset, pitches,
+        r'''Is true when `expr` is a pitched q-event with offset, pitches,
         attachments and index equal to those of this pitched q-event. Otherwise
         false.
 

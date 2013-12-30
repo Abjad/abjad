@@ -114,7 +114,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     @property
     def fresh(self):
-        r'''True when single-context set expression results 
+        r'''Is true when single-context set expression results 
         from explicit composer input.
         Otherwise false.
 

@@ -348,7 +348,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         return result
 
     def analyze_neighbor_notes(self):
-        r'''True when `note` in selection is preceeded by a stepwise interval 
+        r'''Is true when `note` in selection is preceeded by a stepwise interval 
         in one direction and followed by a stepwise interval in 
         the other direction. Otherwise false.
 
@@ -370,7 +370,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         return result
 
     def analyze_passing_tones(self):
-        r'''True when note in selection is both preceeded and followed 
+        r'''Is true when note in selection is both preceeded and followed 
         by scalewise notes. Otherwise false.
 
         ..  container:: example
@@ -414,7 +414,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         return result
 
     def are_scalar_notes(self):
-        r'''True when notes in selection are scalar.
+        r'''Is true when notes in selection are scalar.
 
         ::
 
@@ -448,7 +448,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         return True
 
     def are_stepwise_ascending_notes(self):
-        r'''True when notes in selection are stepwise ascending.
+        r'''Is true when notes in selection are stepwise ascending.
 
         ::
 
@@ -477,7 +477,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         return True
 
     def are_stepwise_descending_notes(self):
-        r'''True when notes in selection are stepwise descending.
+        r'''Is true when notes in selection are stepwise descending.
 
         ::
 
@@ -515,7 +515,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         return True
 
     def are_stepwise_notes(self):
-        r'''True when notes in selection are stepwise.
+        r'''Is true when notes in selection are stepwise.
 
         ::
 

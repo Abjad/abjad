@@ -96,7 +96,7 @@ class LilyPondCommand(AbjadObject):
         return new
 
     def __eq__(self, arg):
-        r'''True when `arg` is a LilyPond command with a name equal to
+        r'''Is true when `arg` is a LilyPond command with a name equal to
         that of this LilyPond command. Otherwise false.
 
         Returns boolean.

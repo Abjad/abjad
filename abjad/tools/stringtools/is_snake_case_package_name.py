@@ -13,7 +13,7 @@ underscore_delimited_lowercase_package_regex = re.compile('^%s$' %
     underscore_delimited_lowercase_package_regex_body, re.VERBOSE)
 
 def is_snake_case_package_name(expr):
-    r'''True when `expr` is a string and is underscore-delimited lowercase package name:
+    r'''Is true when `expr` is a string and is underscore-delimited lowercase package name:
 
     ::
 

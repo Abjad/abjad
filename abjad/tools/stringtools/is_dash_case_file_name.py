@@ -13,7 +13,7 @@ hyphen_delimited_lowercase_file_name_regex = re.compile('^%s$' %
     hyphen_delimited_lowercase_file_name_regex_body, re.VERBOSE)
 
 def is_dash_case_file_name(expr):
-    r'''True when `expr` is a string and is hyphen-delimited lowercase file name with extension:
+    r'''Is true when `expr` is a string and is hyphen-delimited lowercase file name with extension:
 
     ::
 

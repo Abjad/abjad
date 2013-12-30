@@ -38,7 +38,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is a timespan-delimited single-context set expression
+        r'''Is true when `expr` is a timespan-delimited single-context set expression
         with same source_expression, target timespan and target context name.
         Otherwise false.
 
@@ -52,7 +52,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         return False
 
     def __lt__(self, expr):
-        r'''True when timespan-delimited single-context set expression 
+        r'''Is true when timespan-delimited single-context set expression 
         target timespan is less than `expr` target_timespan.
         Otherwise false.
 
@@ -106,7 +106,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
 
     @property
     def fresh(self):
-        r'''True when set expression was generated in response
+        r'''Is true when set expression was generated in response
         to explicit user input. Otherwise false.
 
         Returns boolean.
