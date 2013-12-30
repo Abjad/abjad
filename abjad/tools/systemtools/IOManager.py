@@ -425,6 +425,8 @@ class IOManager(object):
         from abjad import abjad_configuration
         ABJADOUTPUT = abjad_configuration['abjad_output']
         last_output_file_path = IOManager.get_last_output_file_name()
+        if last_output_file_path is None:
+            return
         without_extension, extension = os.path.splitext(last_output_file_path)
         last_ly = without_extension + '.ly'
         last_ly_full_name = os.path.join(ABJADOUTPUT, last_ly)
