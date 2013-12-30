@@ -40,22 +40,29 @@ class Configuration(AbjadObject):
         config.write_empty_values = True
         config.comments.update(self._option_comments)
         config.initial_comment = self._initial_comment
-        # write back to disk if different
-        config.filename = None  # prevent ConfigObj from automatically writing
-        with open(self.configuration_file_path, 'r') as f:
-            old_config_lines = f.read().splitlines()
-        while len(old_config_lines) and (
-            old_config_lines[0].startswith('#') or
-            not old_config_lines[0].strip()):
-            old_config_lines.pop(0)
-        new_config_lines = config.write(None)
-        while len(new_config_lines) and (
-            new_config_lines[0].startswith('#') or
-            not new_config_lines[0].strip()):
-            new_config_lines.pop(0)
-        if old_config_lines != new_config_lines:
-            with open(self.configuration_file_path, 'w') as f:
-                config.write(f)
+        # write to disk if doesn't exist
+        if not os.path.exists(self.configuration_file_path):
+            if not os.path.exists(self.configuration_directory_path):
+                os.makedirs(self.configuration_directory_path)
+            config.write()
+        # write to disk if different from current
+        else:
+            # prevent ConfigObj from automatically writing
+            config.filename = None
+            with open(self.configuration_file_path, 'r') as f:
+                old_config_lines = f.read().splitlines()
+            while len(old_config_lines) and (
+                old_config_lines[0].startswith('#') or
+                not old_config_lines[0].strip()):
+                old_config_lines.pop(0)
+            new_config_lines = config.write(None)
+            while len(new_config_lines) and (
+                new_config_lines[0].startswith('#') or
+                not new_config_lines[0].strip()):
+                new_config_lines.pop(0)
+            if old_config_lines != new_config_lines:
+                with open(self.configuration_file_path, 'w') as f:
+                    config.write(f)
         # turn the ConfigObj instance into a standard dict,
         # and replace its empty string values with Nones,
         # caching the result on this AbjadConfiguration instance.
@@ -107,7 +114,7 @@ class Configuration(AbjadObject):
     @property
     def _config_specification(self):
         specs = self._option_specification
-        return ['{} = {}'.format(key, value) 
+        return ['{} = {}'.format(key, value)
             for key, value in sorted(specs.items())]
 
     @property
@@ -159,7 +166,7 @@ class Configuration(AbjadObject):
         Returns string.
         '''
         return os.path.join(
-            self.configuration_directory_path, 
+            self.configuration_directory_path,
             self.configuration_file_name,
             )
 
