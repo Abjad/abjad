@@ -316,6 +316,12 @@ class Spanner(AbjadObject):
         spanner._block_all_components()
         return [(self, spanner, result)]
 
+    def _get_duration(self, in_seconds=False):
+        return sum(
+            component._get_duration(in_seconds=in_seconds)
+            for component in self
+            )
+
     def _get_indicators(self, prototype=None, unwrap=True):
         from abjad.tools import indicatortools
         prototype = prototype or (object,)
@@ -531,16 +537,6 @@ class Spanner(AbjadObject):
         return tuple(self._components[:])
 
     ### PUBLIC METHODS ###
-
-    def get_duration(self, in_seconds=False):
-        r'''Gets duration of spanner.
-
-        Returns duration.
-        '''
-        return sum(
-            component._get_duration(in_seconds=in_seconds)
-            for component in self
-            )
 
     def index(self, component):
         r'''Returns index of `component` in spanner.

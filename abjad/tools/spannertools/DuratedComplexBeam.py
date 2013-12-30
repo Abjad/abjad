@@ -116,7 +116,7 @@ class DuratedComplexBeam(ComplexBeam):
 
     def _fracture_left(self, i):
         self, left, right = ComplexBeam._fracture_left(self, i)
-        weights = [left.get_duration(), right.get_duration()]
+        weights = [left._get_duration(), right._get_duration()]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
             self.durations, weights, cyclic=False, overhang=False)
@@ -127,7 +127,7 @@ class DuratedComplexBeam(ComplexBeam):
 
     def _fracture_right(self, i):
         self, left, right = ComplexBeam._fracture_right(self, i)
-        weights = [left.get_duration(), right.get_duration()]
+        weights = [left._get_duration(), right._get_duration()]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
             self.durations, weights, cyclic=False, overhang=False)
