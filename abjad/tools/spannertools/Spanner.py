@@ -154,6 +154,13 @@ class Spanner(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _append_left(self, component):
+        components = [component] + self[:1]
+        assert Selection._all_are_contiguous_components_in_same_logical_voice(
+            components)
+        component._spanners.add(self)
+        self._components.insert(0, component)
+
     def _apply_overrides(self, overrides):
         exec('from abjad import *')
         for grob_attribute_string in overrides:
@@ -228,7 +235,7 @@ class Spanner(AbjadObject):
         assert Selection._all_are_contiguous_components_in_same_logical_voice(
             component_input)
         for component in reversed(components):
-            self.append_left(component)
+            self._append_left(component)
 
     def _format_after_leaf(self, leaf):
         result = []
@@ -493,17 +500,6 @@ class Spanner(AbjadObject):
                 components), repr(components)
         component._spanners.add(self)
         self._components.append(component)
-
-    def append_left(self, component):
-        r'''Appends `component` to left of spanner.
-
-        Returns none.
-        '''
-        components = [component] + self[:1]
-        assert Selection._all_are_contiguous_components_in_same_logical_voice(
-            components)
-        component._spanners.add(self)
-        self._components.insert(0, component)
 
     def fracture(self, i, direction=None):
         r'''Fractures spanner at `direction` of component at index `i`.

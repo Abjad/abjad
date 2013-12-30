@@ -79,7 +79,7 @@ class ContiguousSelection(Selection):
         elif left_tie_spanner is not None and right_tie_spanner is None:
             left_tie_spanner.append(right_leaf)
         elif left_tie_spanner is None and right_tie_spanner is not None:
-            right_tie_spanner.append_left(left_leaf)
+            right_tie_spanner._append_left(left_leaf)
         elif left_tie_spanner is None and right_tie_spanner is None:
             tie = spannertools.Tie()
             attach(tie, [left_leaf, right_leaf])

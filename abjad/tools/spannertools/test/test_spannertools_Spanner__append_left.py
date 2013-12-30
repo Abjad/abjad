@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_spannertools_Spanner_append_left_01():
+def test_spannertools_Spanner__append_left_01():
     r'''Append container to the left.
     '''
 
@@ -10,7 +10,7 @@ def test_spannertools_Spanner_append_left_01():
     beam = Beam()
     attach(beam, voice[1])
 
-    beam.append_left(voice[0])
+    beam._append_left(voice[0])
 
     assert systemtools.TestManager.compare(
         voice,
@@ -35,7 +35,7 @@ def test_spannertools_Spanner_append_left_01():
     assert inspect(voice).is_well_formed()
 
 
-def test_spannertools_Spanner_append_left_02():
+def test_spannertools_Spanner__append_left_02():
     r'''Spanner appends one leaf to the right.
     '''
 
@@ -43,7 +43,7 @@ def test_spannertools_Spanner_append_left_02():
     beam = Beam()
     attach(beam, voice[1])
 
-    beam.append_left(voice[0][-1])
+    beam._append_left(voice[0][-1])
 
     assert systemtools.TestManager.compare(
         voice,

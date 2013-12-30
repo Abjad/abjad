@@ -35,7 +35,6 @@ def test_spannertools_Spanner_insert_02():
     r'''Insert component at index zero in spanner.
     This operation does not mangle spanner.
     Operation is still not composer-safe, however.
-    Note that beam.append() and beam.append_left() are composer-safe.
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
