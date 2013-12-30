@@ -30,7 +30,9 @@ class InspectionAgent(abctools.AbjadObject):
 
     def __init__(self, client=None):
         from abjad.tools import scoretools
-        assert isinstance(client, (scoretools.Component, type(None)))
+        from abjad.tools import spannertools
+        prototype = (scoretools.Component, spannertools.Spanner, type(None))
+        assert isinstance(client, prototype), repr(client)
         self._client = client
 
     ### PUBLIC PROPERTIES ###

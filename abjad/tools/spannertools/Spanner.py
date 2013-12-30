@@ -236,7 +236,7 @@ class Spanner(AbjadObject):
 
     def _duration_offset_in_me(self, leaf):
         leaf_start_offset = leaf._get_timespan().start_offset
-        self_start_offset = self.get_timespan().start_offset
+        self_start_offset = self._get_timespan().start_offset
         return leaf_start_offset - self_start_offset
 
     def _extend(self, components):
@@ -369,6 +369,20 @@ class Spanner(AbjadObject):
                 if leaf_number == n:
                     return leaf
         raise IndexError
+
+    def _get_timespan(self, in_seconds=False):
+        if len(self):
+            start_offset = \
+                self[0]._get_timespan(in_seconds=in_seconds).start_offset
+        else:
+            start_offset = Duration(0)
+        if len(self):
+            stop_offset = \
+                self[-1]._get_timespan(in_seconds=in_seconds).stop_offset
+        else:
+            stop_offset = Duration(0)
+        return timespantools.Timespan(
+            start_offset=start_offset, stop_offset=stop_offset)
 
     def _insert(self, i, component):
         r'''Not composer-safe.
@@ -527,24 +541,6 @@ class Spanner(AbjadObject):
             component._get_duration(in_seconds=in_seconds)
             for component in self
             )
-
-    def get_timespan(self, in_seconds=False):
-        r'''Gets timespan of spanner.
-
-        Returns timespan.
-        '''
-        if len(self):
-            start_offset = \
-                self[0]._get_timespan(in_seconds=in_seconds).start_offset
-        else:
-            start_offset = Duration(0)
-        if len(self):
-            stop_offset = \
-                self[-1]._get_timespan(in_seconds=in_seconds).stop_offset
-        else:
-            stop_offset = Duration(0)
-        return timespantools.Timespan(
-            start_offset=start_offset, stop_offset=stop_offset)
 
     def index(self, component):
         r'''Returns index of `component` in spanner.
