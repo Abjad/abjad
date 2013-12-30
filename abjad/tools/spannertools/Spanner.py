@@ -13,8 +13,9 @@ Selection = selectiontools.Selection
 
 
 class Spanner(AbjadObject):
-    '''Any type of notation object that stretches horizontally
-    and encompasses some number of notes, rest, chords or other components.
+    '''Any type of object that stretches horizontally
+    and encompasses some number of score components.
+
     Examples include beams, slurs, hairpins and trills.
     '''
 
@@ -41,7 +42,7 @@ class Spanner(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, expr):
-        r'''True when spanner contains `expr`.
+        r'''Is true when spanner contains `expr`.
         Otherwise false.
 
         Returns boolean.
@@ -544,11 +545,12 @@ class Spanner(AbjadObject):
 
     @property
     def components(self):
-        r'''Components in spanner.
+        r'''Gets components in spanner.
 
-        Returns tuple.
+        Returns selection.
         '''
-        return tuple(self._components[:])
+        from abjad.tools import selectiontools
+        return selectiontools.Selection(self._components[:])
 
     ### PUBLIC METHODS ###
 
