@@ -172,7 +172,7 @@ class GeneralizedBeam(Spanner):
             result.append(r'\override Stem.stemlet-length = 0.75')
         if not self.is_beamable_component(leaf):
             return result
-        leaf_ids = [id(x) for x in self.leaves]
+        leaf_ids = [id(x) for x in self._leaves]
         previous_leaf_is_joinable = self._leaf_is_joinable(
             leaf._get_leaf(-1), leaf_ids)
         next_leaf_is_joinable = self._leaf_is_joinable(
@@ -192,7 +192,7 @@ class GeneralizedBeam(Spanner):
             direction_string = \
                 stringtools.arg_to_tridirectional_lilypond_symbol(
                     self.vertical_direction)
-        leaf_ids = [id(x) for x in self.leaves]
+        leaf_ids = [id(x) for x in self._leaves]
         previous_leaf_is_joinable = self._leaf_is_joinable(
             leaf._get_leaf(-1), leaf_ids)
         next_leaf_is_joinable = self._leaf_is_joinable(

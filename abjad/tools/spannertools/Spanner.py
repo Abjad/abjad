@@ -77,14 +77,14 @@ class Spanner(AbjadObject):
         return vars(self)
 
     def __len__(self):
-        r'''Length of spanner.
+        r'''Gets number of components in spanner.
 
         Returns nonnegative integer.
         '''
-        return self._components.__len__()
+        return len(self.components)
 
     def __lt__(self, expr):
-        r'''True when spanner is less than `expr`.
+        r'''Is true when spanner is less than `expr`. Otherwise false.
 
         Trivial comparison to allow doctests to work.
 
@@ -116,6 +116,16 @@ class Spanner(AbjadObject):
         for leaf in self.leaves:
             duration += leaf._get_duration(in_seconds=True)
         return duration
+
+    @property
+    def _leaves(self):
+        result = []
+        for component in self._components:
+            for node in iterate(component).depth_first():
+                if isinstance(node, scoretools.Leaf):
+                    result.append(node)
+        result = tuple(result)
+        return result
 
     @property
     def _preprolated_duration(self):
@@ -505,21 +515,6 @@ class Spanner(AbjadObject):
         Returns tuple.
         '''
         return tuple(self._components[:])
-
-    @property
-    def leaves(self):
-        r'''Leaves in spanner.
-
-        Returns tuple.
-        '''
-        result = []
-        for component in self._components:
-            # EXPERIMENTAL: expand to allow staff-level spanner eventually
-            for node in iterate(component).depth_first():
-                if isinstance(node, scoretools.Leaf):
-                    result.append(node)
-        result = tuple(result)
-        return result
 
     ### PUBLIC METHODS ###
 

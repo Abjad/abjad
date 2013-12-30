@@ -257,20 +257,17 @@ def test_spannertools_Beam__fracture_09():
     attach(beam, staff[:])
     original, left, right = beam._fracture(1, direction=Right)
 
-    assert len(original.components) == 3
+    assert len(original) == 3
     assert original.components[0] is staff[0]
     assert original.components[1] is staff[1]
     assert original.components[2] is staff[2]
-    assert len(original.leaves) == 12
 
-    assert len(left.components) == 2
+    assert len(left) == 2
     assert left.components[0] is staff[0]
     assert left.components[1] is staff[1]
-    assert len(left.leaves) == 8
 
-    assert len(right.components) == 1
+    assert len(right) == 1
     assert right.components[0] is staff[2]
-    assert len(right.leaves) == 4
 
     assert systemtools.TestManager.compare(
         staff,

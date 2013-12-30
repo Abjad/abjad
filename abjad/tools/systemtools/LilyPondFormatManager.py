@@ -509,7 +509,7 @@ class LilyPondFormatManager(object):
         Returns none or return string.
         '''
         result = ''
-        for leaf in spanner.leaves:
+        for leaf in spanner._leaves:
             result += str(leaf)
             string = '\tbefore: {}\n'
             string = string.format(spanner._format_before_leaf(leaf))

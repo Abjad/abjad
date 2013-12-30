@@ -148,7 +148,7 @@ class LogicalTie(ContiguousSelection):
         prototype = (spannertools.Tie,)
         try:
             tie_spanner = self[0]._get_spanner(prototype=prototype)
-            return tie_spanner.leaves
+            return tie_spanner._leaves
         except MissingSpannerError:
             assert self.is_trivial
             return (self[0], )
