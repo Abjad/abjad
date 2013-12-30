@@ -24,6 +24,12 @@ class TrillSpanner(Spanner):
         }
 
     '''
+    
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_pitch',
+        )
 
     ### INITIALIZER ###
 

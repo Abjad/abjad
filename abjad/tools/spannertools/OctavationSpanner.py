@@ -34,6 +34,13 @@ class OctavationSpanner(Spanner):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_start',
+        '_stop',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

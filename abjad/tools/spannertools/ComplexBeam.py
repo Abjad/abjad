@@ -47,6 +47,12 @@ class ComplexBeam(Beam):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_lone',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

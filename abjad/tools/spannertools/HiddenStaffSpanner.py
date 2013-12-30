@@ -27,6 +27,10 @@ class HiddenStaffSpanner(Spanner):
     Hide staff behind leaves in spanner.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
     def __init__(

@@ -41,6 +41,12 @@ class Beam(Spanner):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_direction',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, direction=None, overrides=None):

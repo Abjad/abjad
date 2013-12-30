@@ -18,6 +18,16 @@ class Spanner(AbjadObject):
     Examples include beams, slurs, hairpins and trills.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_components',
+        '_contiguity_constraint',
+        '_indicators',
+        '_override',
+        '_set',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, overrides=None):
@@ -74,7 +84,11 @@ class Spanner(AbjadObject):
     def __getstate__(self):
         r'''Gets object state.
         '''
-        return vars(self)
+        state = {}
+        for class_ in type(self).__mro__:
+            for slot in getattr(class_, '__slots__', ()):
+                state[slot] = getattr(self, slot, None)
+        return state
 
     def __len__(self):
         r'''Gets number of components in spanner.

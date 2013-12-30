@@ -79,6 +79,10 @@ class Decrescendo(Hairpin):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
     def __init__(

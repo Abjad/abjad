@@ -35,6 +35,12 @@ class StaffLinesSpanner(Spanner):
     so that the change may take place.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_lines',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

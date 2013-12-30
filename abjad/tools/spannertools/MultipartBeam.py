@@ -33,6 +33,10 @@ class MultipartBeam(Beam):
     Avoids large-duration notes.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
     def __init__(

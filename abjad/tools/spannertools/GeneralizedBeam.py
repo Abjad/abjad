@@ -107,7 +107,7 @@ class GeneralizedBeam(Spanner):
         '_include_long_duration_notes',
         '_include_long_duration_rests',
         '_isolated_nib_direction',
-        '_use_stemlets'
+        '_use_stemlets',
         '_vertical_direction',
         )
 

@@ -25,6 +25,12 @@ class Slur(Spanner):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_direction',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

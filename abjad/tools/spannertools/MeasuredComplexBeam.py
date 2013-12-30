@@ -49,6 +49,14 @@ class MeasuredComplexBeam(ComplexBeam):
     Formats top-level `span` beam between measures.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_direction',
+        '_lone',
+        '_span',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

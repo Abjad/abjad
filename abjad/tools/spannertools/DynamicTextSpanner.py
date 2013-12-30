@@ -25,6 +25,12 @@ class DynamicTextSpanner(Spanner):
     Formats `dynamic` on first leaf in spanner.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_dynamic',
+        )
+
     ### INTIALIZER ###
 
     def __init__(

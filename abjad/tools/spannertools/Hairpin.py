@@ -70,6 +70,14 @@ class Hairpin(Spanner):
         '>',
         )
 
+    __slots__ = (
+        '_direction',
+        '_include_rests',
+        '_shape',
+        '_start',
+        '_stop',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

@@ -56,6 +56,12 @@ class Glissando(Spanner):
     Formats nonlast leaves in spanner with LilyPond glissando command.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_avoid_rests',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

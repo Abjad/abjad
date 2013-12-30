@@ -27,6 +27,11 @@ class PianoPedalSpanner(Spanner):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_kind',
+        '_style',
+        )
+
     _kinds = {
         'sustain': (r'\sustainOn', r'\sustainOff'),
         'sostenuto':(r'\sostenutoOn', r'\sostenutoOff'),

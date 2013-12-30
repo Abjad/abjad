@@ -31,6 +31,10 @@ class TextScriptSpanner(Spanner):
     Overrides LilyPond TextScript grob.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
     def __init__(

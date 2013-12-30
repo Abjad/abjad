@@ -49,6 +49,16 @@ class DuratedComplexBeam(ComplexBeam):
     Returns durated complex beam spanner.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_durations',
+        '_lone',
+        '_span',
+        )
+
+    ### INITIALIZER ###
+
     def __init__(
         self, 
         durations=None, 
