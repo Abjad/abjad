@@ -288,7 +288,7 @@ class LilyPondParser(abctools.Parser):
                         if isinstance(x, spanner_class)
                         ]
                     if previous_spanners:
-                        previous_spanners[0].append(next_leaf)
+                        previous_spanners[0]._append(next_leaf)
                     else:
                         if hasattr(span_event, 'direction') and \
                             hasattr(spanner_class, 'direction'):
@@ -309,7 +309,7 @@ class LilyPondParser(abctools.Parser):
             dynamics = leaf._get_indicators(indicatortools.Dynamic)
             if dynamics and spannertools.Hairpin in all_spanners and \
                 all_spanners[spannertools.Hairpin]:
-                all_spanners[spannertools.Hairpin][0].append(leaf)
+                all_spanners[spannertools.Hairpin][0]._append(leaf)
                 all_spanners[spannertools.Hairpin].pop()
 
             # loop through directed events, handling each as necessary
@@ -337,7 +337,7 @@ class LilyPondParser(abctools.Parser):
                             all_spanners[spanner_class].append(spanner_class())
                     for _ in stopping_events:
                         if all_spanners[spanner_class]:
-                            all_spanners[spanner_class][0].append(leaf)
+                            all_spanners[spanner_class][0]._append(leaf)
                             all_spanners[spanner_class].pop()
 
                 elif spanner_class is spannertools.Hairpin:
@@ -348,11 +348,11 @@ class LilyPondParser(abctools.Parser):
                     # the pre-existant spanner is ended.
                     for _ in stopping_events:
                         if all_spanners[spanner_class]:
-                            all_spanners[spanner_class][0].append(leaf)
+                            all_spanners[spanner_class][0]._append(leaf)
                             all_spanners[spanner_class].pop()
                     if 1 == len(starting_events):
                         if all_spanners[spanner_class]:
-                            all_spanners[spanner_class][0].append(leaf)
+                            all_spanners[spanner_class][0]._append(leaf)
                             all_spanners[spanner_class].pop()
                         shape = '<'
                         event = starting_events[0]
@@ -382,7 +382,7 @@ class LilyPondParser(abctools.Parser):
                     # yhey can stop on a leaf and start on the same leaf.
                     for _ in stopping_events:
                         if all_spanners[spanner_class]:
-                            all_spanners[spanner_class][0].append(leaf)
+                            all_spanners[spanner_class][0]._append(leaf)
                             all_spanners[spanner_class].pop()
                         else:
                             message = 'can not end {}.'
@@ -414,7 +414,7 @@ class LilyPondParser(abctools.Parser):
                         if not has_starting_events:
                             for _ in stopping_events:
                                 if all_spanners[spanner_class]:
-                                    all_spanners[spanner_class][-1].append(
+                                    all_spanners[spanner_class][-1]._append(
                                         leaf)
                                     all_spanners[spanner_class].pop()
                                 else:
@@ -427,12 +427,13 @@ class LilyPondParser(abctools.Parser):
             # append leaf to all tracked spanners,
             for spanner_class, instances in all_spanners.iteritems():
                 for instance in instances:
-                    instance.append(leaf)
+                    instance._append(leaf)
 
         # check for unterminated spanners
         for spanner_class, instances in all_spanners.iteritems():
             if instances:
-                message = 'unterminated {}.'.fromat(spanner_class.__name__)
+                message = 'unterminated {}.'
+                message = message.format(spanner_class.__name__)
                 raise Exception(message)
 
     def _assign_variable(self, identifier, value):

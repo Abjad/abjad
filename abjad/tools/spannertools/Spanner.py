@@ -154,6 +154,14 @@ class Spanner(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _append(self, component):
+        if self._contiguity_constraint == 'logical voice':
+            components = self[-1:] + [component]
+            assert Selection._all_are_contiguous_components_in_same_logical_voice(
+                components), repr(components)
+        component._spanners.add(self)
+        self._components.append(component)
+
     def _append_left(self, component):
         components = [component] + self[:1]
         assert Selection._all_are_contiguous_components_in_same_logical_voice(
@@ -177,7 +185,7 @@ class Spanner(AbjadObject):
         from abjad.tools import selectiontools
         assert not self, repr(self)
         if isinstance(components, scoretools.Component):
-            self.append(components)
+            self._append(components)
         elif isinstance(components, (list, tuple, selectiontools.Selection)):
             self._extend(components)
         else:
@@ -228,7 +236,7 @@ class Spanner(AbjadObject):
             assert Selection._all_are_contiguous_components_in_same_logical_voice(
                 component_input), repr(component_input)
         for component in components:
-            self.append(component)
+            self._append(component)
 
     def _extend_left(self, components):
         component_input = components + self[:1]
@@ -488,18 +496,6 @@ class Spanner(AbjadObject):
         return result
 
     ### PUBLIC METHODS ###
-
-    def append(self, component):
-        r'''Appends `component` to spanner.
-
-        Returns none.
-        '''
-        if self._contiguity_constraint == 'logical voice':
-            components = self[-1:] + [component]
-            assert Selection._all_are_contiguous_components_in_same_logical_voice(
-                components), repr(components)
-        component._spanners.add(self)
-        self._components.append(component)
 
     def fracture(self, i, direction=None):
         r'''Fractures spanner at `direction` of component at index `i`.

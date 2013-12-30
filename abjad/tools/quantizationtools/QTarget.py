@@ -178,7 +178,7 @@ class QTarget(AbjadObject):
                 spanner = tuple(leaf_one._get_spanners(prototype))[0]
                 leaf_two = self._copy_leaf_type_and_pitches(leaf_one, leaf_two)
                 leaves[i+1] = leaf_two
-                spanner.append(leaf_two)
+                spanner._append(leaf_two)
         # notate final leaf, if necessary
         self._notate_one_leaf(leaves[-1], grace_handler)
 
