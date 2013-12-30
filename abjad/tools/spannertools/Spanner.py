@@ -522,12 +522,12 @@ class Spanner(AbjadObject):
             message = 'direction {!r} must be Left, Right or None.'
             raise ValueError(message.format(direction))
 
-    def fuse(self, spanner):
-        r'''Fuses spanner with contiguous `spanner`.
-
-        Returns list of left, right and new spanners.
-        '''
-        return self._fuse_by_reference(spanner)
+#    def fuse(self, spanner):
+#        r'''Fuses spanner with contiguous `spanner`.
+#
+#        Returns list of left, right and new spanners.
+#        '''
+#        return self._fuse_by_reference(spanner)
 
     def get_duration(self, in_seconds=False):
         r'''Gets duration of spanner.

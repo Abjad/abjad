@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_spannertools_Beam_fuse_01():
+def test_spannertools_Beam__fuse_by_reference_01():
     r'''Fuse beams.
     '''
 
@@ -11,7 +11,7 @@ def test_spannertools_Beam_fuse_01():
     attach(left_beam, staff[:2])
     right_beam = Beam()
     attach(right_beam, staff[2:4])
-    left_beam.fuse(right_beam)
+    left_beam._fuse_by_reference(right_beam)
 
     assert systemtools.TestManager.compare(
         staff,

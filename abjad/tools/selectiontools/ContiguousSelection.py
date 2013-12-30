@@ -75,7 +75,7 @@ class ContiguousSelection(Selection):
         except MissingSpannerError:
             right_tie_spanner = None
         if left_tie_spanner is not None and right_tie_spanner is not None:
-            left_tie_spanner.fuse(right_tie_spanner)
+            left_tie_spanner._fuse_by_reference(right_tie_spanner)
         elif left_tie_spanner is not None and right_tie_spanner is None:
             left_tie_spanner._append(right_leaf)
         elif left_tie_spanner is None and right_tie_spanner is not None:
