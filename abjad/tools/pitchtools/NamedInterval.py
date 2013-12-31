@@ -98,7 +98,8 @@ class NamedInterval(Interval):
         '''
         from abjad.tools import pitchtools
         if not isinstance(arg, type(self)):
-            message = 'must be named interval: {!r}.'.format(arg)
+            message = 'must be named interval: {!r}.'
+            message = message.format(arg)
             raise TypeError(message)
         dummy_pitch = pitchtools.NamedPitch(0)
         new_pitch = dummy_pitch + self + arg
@@ -211,7 +212,8 @@ class NamedInterval(Interval):
         '''
         from abjad.tools import pitchtools
         if not isinstance(arg, (int, long)):
-            message = 'must be integer: {!r}.'.format(arg)
+            message = 'must be integer: {!r}.'
+            message = message.format(arg)
             raise TypeError(message)
         dummy_pitch = pitchtools.NamedPitch(0)
         for i in range(abs(arg)):
@@ -282,7 +284,8 @@ class NamedInterval(Interval):
         '''
         from abjad.tools import pitchtools
         if not isinstance(arg, type(self)):
-            message = 'must be named interval: {!r}.'.format(arg)
+            message = 'must be named interval: {!r}.'
+            message = message.format(arg)
             raise TypeError(message)
         dummy_pitch = pitchtools.NamedPitch(0)
         new_pitch = dummy_pitch + self - arg

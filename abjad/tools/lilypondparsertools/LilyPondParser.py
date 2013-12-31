@@ -756,7 +756,8 @@ class LilyPondParser(abctools.Parser):
         }
         if name in spanners:
             return spanners[name]
-        message = 'can not associate a spanner class with {}'.format(name)
+        message = 'can not associate a spanner class with {}.'
+        message = message.format(name)
         raise Exception(message)
 
     def _test_scheme_predicate(self, predicate, value):

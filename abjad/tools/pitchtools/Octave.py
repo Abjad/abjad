@@ -58,7 +58,8 @@ class Octave(AbjadObject):
         elif isinstance(expr, str):
             match = self._octave_tick_regex.match(expr)
             if match is None:
-                message = 'can not instantiate octave: {!r}.'.format(expr)
+                message = 'can not instantiate octave: {!r}.'
+                message = message.format(expr)
                 raise Exception(message)
             group = match.group()
             if group == '':
@@ -275,7 +276,8 @@ class Octave(AbjadObject):
         '''
         from abjad.tools import pitchtools
         if not isinstance(pitch_name, str):
-            message = 'must be string: {!r}.'.format(pitch_name)
+            message = 'must be string: {!r}.'
+            message = message.format(pitch_name)
             raise TypeError(message)
         match = re.match('^([a-z]+)(\,*|\'*)$', pitch_name)
         if match is None:

@@ -201,7 +201,8 @@ class ComplexBeam(Beam):
             left = None
             right = None
         else:
-            message = 'long must be left, right or both: {!r}.'.format(lone)
+            message = 'long must be left, right or both: {!r}.'
+            message = message.format(lone)
             raise ValueError(message)
         return left, right
 

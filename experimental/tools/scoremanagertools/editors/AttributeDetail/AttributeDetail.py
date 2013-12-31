@@ -33,7 +33,8 @@ class AttributeDetail(AbjadObject):
             name, retrievable_name, _space_delimited_lowercase_name, \
                 menu_key, editor_callable, is_positional = args
         else:
-            message = 'can not parse attribute detail {!r}.'.format(args)
+            message = 'can not parse attribute detail: {!r}.'
+            message = message.format(args)
             raise ValueError(message)
         if not _space_delimited_lowercase_name and name:
             _space_delimited_lowercase_name = name.replace('_', ' ')
@@ -90,6 +91,7 @@ class AttributeDetail(AbjadObject):
             editor = self.editor_callable(
                 session=session, target=prepopulated_value, **kwargs)
         else:
-            message = 'what is {!r}?'.format(self.editor_callable)
+            message = 'what is {!r}?'
+            message = message.format(self.editor_callable)
             raise ValueError(message)
         return editor

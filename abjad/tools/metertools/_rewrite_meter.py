@@ -322,7 +322,8 @@ def _iterate_topmost_masked_logical_ties_rest_groups_and_containers_in_expr(
             yield x
 
         else:
-            message = 'unhandled component: {!r}.'.format(x)
+            message = 'unhandled component: {!r}.'
+            message = message.format(x)
             raise Exception(message)
     if current_leaf_group is not None:
         yield selectiontools.LogicalTie(current_leaf_group)

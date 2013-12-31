@@ -261,7 +261,8 @@ class FilesystemAssetManager(ScoreManagerObject):
             self._space_delimited_lowercase_name_to_asset_name(result)
         parent_directory_path = os.path.dirname(self.filesystem_path)
         new_path = os.path.join(parent_directory_path, new_asset_name)
-        message = 'new path will be {}'.format(new_path)
+        message = 'new path will be {}'
+        message = message.format(new_path)
         self.session.io_manager.display(message)
         if not self.session.io_manager.confirm():
             return
@@ -277,7 +278,8 @@ class FilesystemAssetManager(ScoreManagerObject):
         Returns none.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
-        message = '{} will be removed.'.format(self.filesystem_path)
+        message = '{} will be removed.'
+        message = message.format(self.filesystem_path)
         self.session.io_manager.display([message, ''])
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string("type 'remove' to proceed")
@@ -287,7 +289,8 @@ class FilesystemAssetManager(ScoreManagerObject):
         if not result == 'remove':
             return
         if self._remove():
-            message = '{} removed.'.format(self.filesystem_path)
+            message = '{} removed.'
+            message = message.format(self.filesystem_path)
             self.session.io_manager.proceed(message)
 
     def interactively_remove_and_backtrack_locally(self):
@@ -314,7 +317,8 @@ class FilesystemAssetManager(ScoreManagerObject):
             return
         parent_directory_path = os.path.dirname(self.filesystem_path)
         new_path = os.path.join(parent_directory_path, result)
-        message = 'new path name will be: "{}"'.format(new_path)
+        message = 'new path name will be: {!r}.'
+        message = message.format(new_path)
         self.session.io_manager.display([message, ''])
         if not self.session.io_manager.confirm():
             return

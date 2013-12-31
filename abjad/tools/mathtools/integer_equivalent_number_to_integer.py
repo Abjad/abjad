@@ -24,7 +24,8 @@ def integer_equivalent_number_to_integer(number):
     from abjad.tools import mathtools
 
     if not isinstance(number, numbers.Number):
-        message = 'input {!r} must be number.'.format(number)
+        message = 'must be number: {!r}.'
+        message = message.format(number)
         raise TypeError(message)
 
     if mathtools.is_integer_equivalent_number(number):

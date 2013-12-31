@@ -98,7 +98,8 @@ class Clef(AbjadObject):
         elif isinstance(name, type(self)):
             self._name = name.name
         else:
-            message = 'can not initialize clef from {}.'.format(name)
+            message = 'can not initialize clef: {!r}.'
+            message = message.format(name)
             raise TypeError(message)
         middle_c_position = self._calculate_middle_c_position(self._name)
         self._middle_c_position = middle_c_position

@@ -131,7 +131,8 @@ class RootedChordClass(PitchClassSet):
             elif root[-1].lower() == 'f':
                 root = root[0] + r'{} \flat'.format(adjustment)
             else:
-                message = 'unknown note name: {}'.format(root)
+                message = 'unknown note name: {}'
+                message = message.format(root)
                 raise ValueError(message)
         return root
 

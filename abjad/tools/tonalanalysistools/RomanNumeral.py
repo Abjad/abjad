@@ -63,7 +63,8 @@ class RomanNumeral(AbjadObject):
             scale_degree, quality, extent, inversion, suspension = \
                 self._initialize_by_symbolic_string('I')
         else:
-            message = 'can not initialize tonal function: {!r}.'.format(args)
+            message = 'can not initialize tonal function: {!r}.'
+            message = message.format(args)
             raise ValueError(message)
         self._scale_degree = scale_degree
         self._quality = quality

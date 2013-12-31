@@ -176,7 +176,8 @@ class AbjadBookProcessor(AbjadObject):
         for i, line in enumerate(lines):
             if line.startswith('<abjad>'):
                 if in_block:
-                    message = 'extra opening tag at line {}.'.format(i)
+                    message = 'extra opening tag at line {}.'
+                    message = message.format(i)
                     raise Exception(message)
                 else:
                     in_block = True
@@ -204,7 +205,8 @@ class AbjadBookProcessor(AbjadObject):
                         )
                     blocks.append(code_block)
                 else:
-                    message = 'extra closing tag at line {}'.format(i)
+                    message = 'extra closing tag at line {}.'
+                    message = message.format(i)
                     raise Exception(message)
 
             elif in_block:
@@ -376,6 +378,7 @@ class AbjadBookProcessor(AbjadObject):
         '''
         self._current_code_line += 1
         percentage = float(self._current_code_line) / self._total_code_lines
-        message = '[{:4.0%}] {}'.format(percentage, line)
+        message = '[{:4.0%}] {}'
+        message = message.format(percentage, line)
         if self.verbose:
             print message

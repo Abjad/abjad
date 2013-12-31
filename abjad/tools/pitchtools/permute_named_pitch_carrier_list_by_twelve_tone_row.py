@@ -19,7 +19,8 @@ def permute_named_pitch_carrier_list_by_twelve_tone_row(pitches, row):
     from abjad.tools import scoretools
 
     if not isinstance(row, pitchtools.TwelveToneRow):
-        message = 'must be twelve-tone row: {!r}.'.format(row)
+        message = 'must be twelve-tone row: {!r}.'
+        message = message.format(row)
         raise TypeError(message)
 
     result = []
@@ -34,7 +35,8 @@ def permute_named_pitch_carrier_list_by_twelve_tone_row(pitches, row):
                 if pitchtools.NumberedPitchClass(pitch.written_pitch) == pc:
                     matching_pitches.append(pitch)
             else:
-                message = 'must be pitch or note: {!r}'.format(pitch)
+                message = 'must be pitch or note: {!r}'
+                message = message.format(pitch)
                 raise TypeError(message)
         result.extend(matching_pitches)
 

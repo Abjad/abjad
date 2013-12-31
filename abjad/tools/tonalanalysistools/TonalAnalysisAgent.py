@@ -222,7 +222,8 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import tonalanalysistools
         if not isinstance(note, scoretools.Note):
-            message = 'must be note: {!r}.'.format(note)
+            message = 'must be note: {!r}.'
+            message = message.format(note)
             raise TypeError(message)
         previous_note = note._get_in_my_logical_voice(
             -1, component_class=scoretools.Note)
@@ -250,7 +251,8 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import tonalanalysistools
         if not isinstance(note, scoretools.Note):
-            message = 'must be note: {!r}'.format(note)
+            message = 'must be note: {!r}.'
+            message = message.format(note)
             raise TypeError(message)
         previous_note = note._get_in_my_logical_voice(
             -1, component_class=scoretools.Note)

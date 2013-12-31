@@ -194,7 +194,8 @@ class NamedPitchClass(PitchClass):
         Returns named inversion-equivalent interval-class.
         '''
         if not isinstance(arg, type(self)):
-            message = 'must be named pitch-class: {!r}.'.format(arg)
+            message = 'must be named pitch-class: {!r}.'
+            message = message.format(arg)
             raise TypeError(message)
         from abjad.tools import pitchtools
         pitch_1 = pitchtools.NamedPitch(self, 4)

@@ -58,7 +58,8 @@ def color_measure(measure, color='red'):
 
     # check measure type
     if not isinstance(measure, scoretools.Measure):
-        message = 'must be measure: {}'.format(measure)
+        message = 'must be measure: {}'
+        message = message.format(measure)
         raise TypeError(message)
 
     # color measure

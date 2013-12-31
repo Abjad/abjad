@@ -51,7 +51,8 @@ def divisors(n):
     '''
 
     if not isinstance(n, (int, long)):
-        message = '{!r} must be integer.'.format(n)
+        message = 'must be integer: {!r}.'
+        message = message.format(n)
         raise TypeError(message)
 
     if n == 0:

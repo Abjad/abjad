@@ -350,7 +350,8 @@ class RootlessChordClass(IntervalSegment):
         elif self.rotation == -4:
             return 'fourth inversion'
         else:
-            message = 'unknown chord position: {!r}.'.format(self)
+            message = 'unknown chord position: {!r}.'
+            message = message.format(self)
             raise ValueError(message)
 
     @property

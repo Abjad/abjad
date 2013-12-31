@@ -30,7 +30,8 @@ def graph(expr, image_format='pdf', layout='dot'):
     assert image_format in ('pdf', 'png')
     layouts =('circo', 'dot', 'fdp', 'neato', 'osage', 'sfdp', 'twopi')
     assert layout in layouts
-    message = 'Cannot find `{}` command-line tool.'.format(layout)
+    message = 'cannot find `{}` command-line tool.'
+    message = message.format(layout)
     message += ' Please download Graphviz from graphviz.org.'
     assert systemtools.IOManager.find_executable(layout), message
 

@@ -80,7 +80,8 @@ class RenameModulesScript(DeveloperScript):
                 'source', 
                 'tools',
                 )
-        message = 'bad codebase name {!r}.'.format(codebase)
+        message = 'bad codebase name: {!r}.'
+        message = message.format(codebase)
         raise Exception(message)
 
     def _codebase_name_to_codebase_tools_path(self, codebase):
@@ -91,7 +92,8 @@ class RenameModulesScript(DeveloperScript):
         elif codebase == 'experimental':
             return os.path.join(
                 abjad_configuration.abjad_experimental_directory_path, 'tools')
-        message = 'bad codebase name {!r}.'.format(codebase)
+        message = 'bad codebase name: {!r}.'
+        message = message.format(codebase)
         raise Exception(message)
 
     def _confirm_name_changes(self,
@@ -326,7 +328,8 @@ class RenameModulesScript(DeveloperScript):
             old_module_name + '.py',
             )
         if not os.path.exists(old_module_path):
-            message = 'Source does not exist: {}'.format(old_module_path)
+            message = 'source does not exist: {}'
+            message = message.format(old_module_path)
             raise SystemExit(message)
         # Handle destination path:
         new_codebase, new_tools_package_name, new_module_name = \
@@ -339,7 +342,8 @@ class RenameModulesScript(DeveloperScript):
             new_module_name + '.py',
             )
         if os.path.exists(new_module_path):
-            message = 'Destination already exists: {}'.format(old_module_path)
+            message = 'destination already exists: {}'
+            message = message.format(old_module_path)
             raise SystemExit(message)
         # Process changes:
         new_args = (

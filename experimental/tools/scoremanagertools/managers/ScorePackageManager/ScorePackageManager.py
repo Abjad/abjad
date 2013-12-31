@@ -161,7 +161,8 @@ class ScorePackageManager(PackageManager):
         elif result == 'user entered lone return':
             pass
         else:
-            message = 'unknown user input: {!r}.'.format(result)
+            message = 'unknown user input: {!r}.'
+            message = message.format(result)
             raise ValueError(message)
 
     def _handle_repository_menu_result(self, result):
@@ -213,6 +214,7 @@ class ScorePackageManager(PackageManager):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
         command_section.append(('build directory', 'u'))
+        #command_section.append(('callables', 'c'))
         command_section.append(('materials', 'm'))
         command_section.append(('score segments', 'g'))
         command_section.append(('score setup', 's'))

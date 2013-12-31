@@ -592,7 +592,8 @@ class ReducedLyParser(abctools.Parser):
         # check for unterminated spanners
         for current_class, instance in spanner_references.iteritems():
             if instance is not None:
-                message = 'unterminated {}.'.format(current_class.__name__)
+                message = 'unterminated {}.'
+                message = message.format(current_class.__name__)
                 raise Exception(message)
 
     def _cleanup(self, parsed):

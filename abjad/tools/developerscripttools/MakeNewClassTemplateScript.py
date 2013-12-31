@@ -91,7 +91,7 @@ class MakeNewClassTemplateScript(DeveloperScript):
         '''
         from abjad import abjad_configuration
         if args.name.count('.') != 1:
-            message = 'Error: {!r} not in tools_package.class_name format.'
+            message = 'not in tools_package.class_name format: {!r}.'
             message = message.format(args.name)
             raise SystemExit(message)
         root_directory_path = args.path

@@ -435,7 +435,8 @@ def _make_leaf_on_pitch(
             tie_parts=tie_rests,
             )
     else:
-        message = 'unknown pitch {!r}.'.format(pitch)
+        message = 'unknown pitch {!r}.'
+        message = message.format(pitch)
         raise ValueError(message)
 
     return leaves

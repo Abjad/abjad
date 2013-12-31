@@ -78,7 +78,7 @@ class IOManager(object):
                 ...     "Note('c4')",
                 ...     globals(),
                 ...     )
-                9746
+                9750
 
         ..  container:: example
 
@@ -608,11 +608,13 @@ class IOManager(object):
         elif isinstance(target, str):
             target_pdf = os.path.join(ABJADOUTPUT, target)
         else:
-            message = 'can not get target pdf name from {}.'.format(target)
+            message = 'can not get target pdf name from {}.'
+            message = message.format(target)
             raise ValueError(message)
         if os.stat(target_pdf):
             pdf_viewer = abjad_configuration['pdf_viewer']
             IOManager.open_file(target_pdf, pdf_viewer)
         else:
-            message = 'Target PDF {} does not exist.'.format(target_pdf)
+            message = 'target PDF {} does not exist.'
+            message = message.format(target_pdf)
             print message

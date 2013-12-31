@@ -39,7 +39,8 @@ def partition_integer_by_ratio(n, ratio):
     from abjad.tools import mathtools
 
     if not mathtools.is_integer_equivalent_number(n):
-        message = 'input {!r} is not integer-equivalent number.'.format(n)
+        message = 'is not integer-equivalent number: {!r}.'
+        message = message.format(n)
         raise TypeError(message)
 
     if not all(mathtools.is_integer_equivalent_number(part) for part in ratio):

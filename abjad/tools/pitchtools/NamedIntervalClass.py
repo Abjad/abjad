@@ -82,7 +82,8 @@ class NamedIntervalClass(IntervalClass):
             quality_string = 'perfect'
             number = 1
         else:
-            message = 'bad input: {!r}.'.format(args)
+            message = 'bad input: {!r}.'
+            message = message.format(args)
             raise TypeError(message)
         if quality_string not in \
             NamedIntervalClass._acceptable_quality_strings:
@@ -90,10 +91,12 @@ class NamedIntervalClass(IntervalClass):
             message = message.format(quality_string)
             raise ValueError(message)
         if not isinstance(number, int):
-            message = 'must be integer: {!r}.'.format(number)
+            message = 'must be integer: {!r}.'
+            message = message.format(number)
             raise TypeError(message)
         if number == 0:
-            message = 'must be nonzero: {!r}.'.format(number)
+            message = 'must be nonzero: {!r}.'
+            message = message.format(number)
             raise ValueError(number)
         sign = mathtools.sign(number)
         abs_number = abs(number)

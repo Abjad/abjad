@@ -15,10 +15,12 @@ def least_common_multiple(*integers):
 
     if len(integers) == 1:
         if not isinstance(integers[0], int):
-            message = 'must be integer: {!r}.'.format(integers[0])
+            message = 'must be integer: {!r}.'
+            message = message.format(integers[0])
             raise TypeError(message)
         if not 0 < integers[0]:
-            message = 'must be positive: {!r}.'.format(integers[0])
+            message = 'must be positive: {!r}.'
+            message = message.format(integers[0])
             raise ValueError(message)
         return integers[0]
 

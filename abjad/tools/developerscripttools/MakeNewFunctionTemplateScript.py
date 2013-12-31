@@ -83,7 +83,7 @@ class MakeNewFunctionTemplateScript(DeveloperScript):
         Returns none.
         '''
         if args.name.count('.') != 1:
-            message = 'Error: {!r} not in tools_package.function format.'
+            message = 'not in tools_package.function format: {!r}.'
             message = message.format(args.name)
             print message
             return

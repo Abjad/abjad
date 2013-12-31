@@ -107,7 +107,8 @@ class NumberedInterval(Interval):
         Returns boolean.
         '''
         if not isinstance(arg, type(self)):
-            message = 'must be numbered interval: {!r}.'.format(arg)
+            message = 'must be numbered interval: {!r}.'
+            message = message.format(arg)
             raise TypeError(message)
         if not self.direction_number == arg.direction_number:
             message = 'can only compare intervals of same direction.'
