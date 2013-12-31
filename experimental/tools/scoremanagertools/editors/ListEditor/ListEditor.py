@@ -135,7 +135,15 @@ class ListEditor(InteractiveEditor):
                 self.session.is_autoadding = False
                 return
             if self.item_class:
-                result = self.item_class(item_initialization_token)
+                if isinstance(item_initialization_token, str):
+                    exec('from abjad import *')
+                    try:
+                        expression = eval(item_initialization_token)
+                    except (NameError, SyntaxError):
+                        expression = item_initialization_token
+                else:
+                    expression = item_initialization_token
+                result = self.item_class(expression)
             else:
                 result = item_initialization_token
         else:
