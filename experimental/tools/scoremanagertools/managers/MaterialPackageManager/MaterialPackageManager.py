@@ -375,16 +375,6 @@ class MaterialPackageManager(PackageManager):
                 self.stylesheet_file_name_in_memory)
         return illustration
 
-    # TODO: port
-    @property
-    def is_changed(self):
-        self.session.io_manager.print_not_yet_implemented()
-        material_definition = \
-            self.material_definition_module_manager.import_material_definition()
-        output_material = \
-            self.output_material_module_manager.import_output_material_safely()
-        return material_definition != output_material
-
     @property
     def is_data_only(self):
         return not self.should_have_illustration

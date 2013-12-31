@@ -84,15 +84,20 @@ class MaterialPackageMaker(MaterialPackageManager):
 
     ### PUBLIC PROPERTIES ###
 
+    # TODO: change property to method
+    # TODO: make illustration work the same way as for segment PDF rendering;
+    #       use something like _interpret_in_external_process()
     @property
     def illustration(self):
+        # TODO: replace old and dangerous import_output_material_safely()
         output_material = \
             self.output_material_module_manager.import_output_material_safely()
         kwargs = {}
         kwargs['title'] = self._space_delimited_lowercase_name
         if self.session.is_in_score:
-            kwargs['subtitle'] = '({})'.format(
-                self.session.current_score_package_manager.title)
+            title = self.session.current_score_package_manager.title
+            string = '({})'.format(title)
+            kwargs['subtitle'] = string
         illustration = self.illustration_builder(output_material, **kwargs)
         return illustration
 

@@ -24,8 +24,6 @@ def test_MaterialPackageManager_read_only_attributes_01():
     assert     mpp.illustration_builder_packagesystem_path is None
     assert     mpp.illustration_ly_file_name is None
     assert     mpp.illustration_pdf_file_name is None
-    # TODO:
-    #assert not mpp.is_changed
     assert     mpp.is_data_only
     assert     mpp.is_handmade
     assert     mpp.material_definition == [1, 2, 3, 4, 5]
@@ -85,8 +83,6 @@ def test_MaterialPackageManager_read_only_attributes_02():
     assert     mpp.illustration_ly_file_manager is not None
     assert     mpp.illustration_pdf_file_name == \
         os.path.join(mpp.configuration.built_in_material_packages_directory_path, 'red_sargasso_measures', 'illustration.pdf')
-    # TODO:
-    #assert not mpp.is_changed
     assert not mpp.is_data_only
     assert not mpp.is_handmade
     assert     mpp.is_makermade
@@ -153,8 +149,6 @@ def test_MaterialPackageManager_read_only_attributes_03():
     assert     mpp.illustration_pdf_file_name == \
         os.path.join(mpp.configuration.built_in_material_packages_directory_path, 'red_notes', 'illustration.pdf')
     assert     mpp.illustration_pdf_file_manager is not None
-    # TODO:
-    #assert not mpp.is_changed
     assert not mpp.is_data_only
     assert     mpp.is_handmade
     assert not mpp.is_makermade
