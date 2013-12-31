@@ -24,7 +24,8 @@ def test_SegmentSpecification__look_up_division_set_expression_from_past_01():
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_past_02():
-    r'''From-past division set expression lookup expression with reverse callback.
+    r'''From-past division set expression lookup expression with 
+    reverse callback.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -46,7 +47,8 @@ def test_SegmentSpecification__look_up_division_set_expression_from_past_02():
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_past_03():
-    r'''From-past division set expression lookup expression with reverse callback.
+    r'''From-past division set expression lookup expression with 
+    reverse callback.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -68,7 +70,8 @@ def test_SegmentSpecification__look_up_division_set_expression_from_past_03():
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_past_04():
-    r'''From-past division set expression lookup expression with reverse callbacks.
+    r'''From-past division set expression lookup expression with 
+    reverse callbacks.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

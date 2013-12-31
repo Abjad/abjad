@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 from experimental.tools.scoremanagertools import specifiers
 from experimental import *
 

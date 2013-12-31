@@ -3,7 +3,8 @@ from experimental import *
 
 
 def test_single_segment_duo__context_cascade_01():
-    r'''Lower-level context set expression overrides higher-level context set expression.
+    r'''Lower-level context set expression overrides higher-level 
+    context set expression.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

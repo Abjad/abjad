@@ -25,7 +25,8 @@ def test_SegmentSpecification__select_rhythm_from_past_between_voices_01():
 
 
 def test_SegmentSpecification__select_rhythm_from_past_between_voices_02():
-    r'''From-past rhythm select expression between voices with reverse callback.
+    r'''From-past rhythm select expression between voices with 
+    reverse callback.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -48,7 +49,8 @@ def test_SegmentSpecification__select_rhythm_from_past_between_voices_02():
 
 
 def test_SegmentSpecification__select_rhythm_from_past_between_voices_03():
-    r'''From-past rhythm select expression between voices with reverse callback.
+    r'''From-past rhythm select expression between voices with 
+    reverse callback.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -71,7 +73,8 @@ def test_SegmentSpecification__select_rhythm_from_past_between_voices_03():
 
 
 def test_SegmentSpecification__select_rhythm_from_past_between_voices_04():
-    r'''From-past rhythm select expression between voices with reverse callbacks.
+    r'''From-past rhythm select expression between voices with 
+    reverse callbacks.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

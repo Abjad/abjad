@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
+import pytest
 from experimental import *
 from abjad.tools.instrumenttools import *
-import pytest
 
 
 def test_PerformerEditor_move_instrument_01():

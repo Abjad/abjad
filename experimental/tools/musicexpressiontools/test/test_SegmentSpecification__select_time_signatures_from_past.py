@@ -23,7 +23,8 @@ def test_SegmentSpecification__select_time_signatures_from_past_01():
 
 
 def test_SegmentSpecification__select_time_signatures_from_past_02():
-    r'''From-past time signature select expression with smaller repeat to length.
+    r'''From-past time signature select expression with smaller repeat 
+    to length.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -43,7 +44,8 @@ def test_SegmentSpecification__select_time_signatures_from_past_02():
 
 
 def test_SegmentSpecification__select_time_signatures_from_past_03():
-    r'''From-past time signature select expression with larger repeat to length.
+    r'''From-past time signature select expression with larger repeat 
+    to length.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -83,7 +85,8 @@ def test_SegmentSpecification__select_time_signatures_from_past_04():
 
 
 def test_SegmentSpecification__select_time_signatures_from_past_05():
-    r'''From-past time signature select expression with rotation and repeat to length.
+    r'''From-past time signature select expression with rotation and repeat 
+    to length.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

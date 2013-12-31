@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from experimental import *
 import pytest
+from experimental import *
 
 
 def test_Menu_allow_ascii_access_to_unicode_key_01():

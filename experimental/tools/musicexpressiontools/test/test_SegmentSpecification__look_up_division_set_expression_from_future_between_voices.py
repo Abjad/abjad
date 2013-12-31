@@ -25,7 +25,8 @@ def test_SegmentSpecification__look_up_division_set_expression_from_future_betwe
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_future_between_voices_02():
-    r'''From-future division set expression lookup expression between voices with reverse callback.
+    r'''From-future division set expression lookup expression between voices 
+    with reverse callback.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -48,7 +49,8 @@ def test_SegmentSpecification__look_up_division_set_expression_from_future_betwe
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_future_between_voices_03():
-    r'''From-future division set expression lookup expression between voices with reverse callback.
+    r'''From-future division set expression lookup expression between voices 
+    with reverse callback.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -71,7 +73,8 @@ def test_SegmentSpecification__look_up_division_set_expression_from_future_betwe
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_future_between_voices_04():
-    r'''From-future division set expression lookup expression between voices with reverse callbacks.
+    r'''From-future division set expression lookup expression between voices 
+    with reverse callbacks.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

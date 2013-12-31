@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from experimental import *
 import pytest
+from experimental import *
 
 
 def test_SegmentSpecification__select_measures_01():

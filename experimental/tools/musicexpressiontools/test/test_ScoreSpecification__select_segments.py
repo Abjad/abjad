@@ -23,9 +23,11 @@ def test_ScoreSpecification__select_segments_01():
 
 
 def test_ScoreSpecification__select_segments_02():
-    r'''Score-rooted set expression and segment-rooted set expression made at same context.
+    r'''Score-rooted set expression and segment-rooted set expression 
+    made at same context.
 
-    Score-rooted set expression occurs lexically later than segment-rooted set expression.
+    Score-rooted set expression occurs lexically later than segment-rooted 
+    set expression.
 
     Score-rooted set expression overrides segment-rooted set expression.
     '''
@@ -74,7 +76,8 @@ def test_ScoreSpecification__select_segments_04():
 
     Lexically later set expression is also made at closer context.
 
-    Set expression at closer context overrides set expression at more distant context.
+    Set expression at closer context overrides set expression at more 
+    distant context.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -98,7 +101,8 @@ def test_ScoreSpecification__select_segments_05():
 
     Lexically later set expression is also made at more distant context.
 
-    Set expression at closer context overrides set expression at more distant context.
+    Set expression at closer context overrides set expression at more 
+    distant context.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
