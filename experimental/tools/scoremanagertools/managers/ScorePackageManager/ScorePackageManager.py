@@ -214,7 +214,7 @@ class ScorePackageManager(PackageManager):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
         command_section.append(('build directory', 'u'))
-        #command_section.append(('callables', 'c'))
+        command_section.append(('makers', 'k'))
         command_section.append(('materials', 'm'))
         command_section.append(('score segments', 'g'))
         command_section.append(('score setup', 's'))
@@ -481,6 +481,9 @@ class ScorePackageManager(PackageManager):
     def manage_build_directory(self):
         self.build_directory_manager._run()
 
+    def manage_makers(self):
+        self.maker_module_wrangler._run(head=self.package_path)
+
     def manage_materials(self):
         self.material_package_wrangler._run(head=self.package_path)
 
@@ -538,6 +541,7 @@ class ScorePackageManager(PackageManager):
         'fix': interactively_fix,
         'g': manage_segments,
         'instrumentation': interactively_view_instrumentation_module,
+        'k': manage_makers,
         'm': manage_materials,
         'pdfv': interactively_view_score,
         'profile': interactively_profile,
