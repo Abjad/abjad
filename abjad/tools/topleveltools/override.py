@@ -5,8 +5,8 @@ def override(expr):
     '''
     from abjad.tools import lilypondnametools
 
-    if getattr(expr, '_override', None) is None:
-        plug_in = lilypondnametools.LilyPondGrobNameManager()
-        expr._override = plug_in
+    if getattr(expr, '_lilypond_grob_name_manager', None) is None:
+        manager = lilypondnametools.LilyPondGrobNameManager()
+        expr._lilypond_grob_name_manager = manager
 
-    return expr._override
+    return expr._lilypond_grob_name_manager

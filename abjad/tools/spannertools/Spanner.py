@@ -25,8 +25,8 @@ class Spanner(AbjadObject):
         '_components',
         '_contiguity_constraint',
         '_indicators',
-        '_override',
-        '_set',
+        '_lilypond_grob_name_manager',
+        '_lilypond_setting_name_manager',
         )
 
     ### INITIALIZER ###
@@ -37,7 +37,7 @@ class Spanner(AbjadObject):
         self._contiguity_constraint = 'logical voice'
         self._apply_overrides(overrides)
         self._indicators = []
-        self._set = None
+        self._lilypond_setting_name_manager = None
 
     ### SPECIAL METHODS ###
 
@@ -61,10 +61,10 @@ class Spanner(AbjadObject):
         Returns new spanner.
         '''
         new = type(self)(*self.__getnewargs__())
-        if getattr(self, '_override', None) is not None:
-            new._override = copy.copy(override(self))
-        if getattr(self, '_set', None) is not None:
-            new._set = copy.copy(contextualize(self))
+        if getattr(self, '_lilypond_grob_name_manager', None) is not None:
+            new._lilypond_grob_name_manager = copy.copy(override(self))
+        if getattr(self, '_lilypond_setting_name_manager', None) is not None:
+            new._lilypond_setting_name_manager = copy.copy(contextualize(self))
         self._copy_keyword_args(new)
         return new
 

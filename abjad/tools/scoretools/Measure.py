@@ -275,10 +275,10 @@ class Measure(FixedDurationContainer):
         new = type(self)(*self.__getnewargs__())
         # only the following line differs from Container
         detach(indicatortools.TimeSignature, new)
-        if getattr(self, '_override', None) is not None:
-            new._override = copy.copy(override(self))
-        if getattr(self, '_set', None) is not None:
-            new._set = copy.copy(contextualize(self))
+        if getattr(self, '_lilypond_grob_name_manager', None) is not None:
+            new._lilypond_grob_name_manager = copy.copy(override(self))
+        if getattr(self, '_lilypond_setting_name_manager', None) is not None:
+            new._lilypond_setting_name_manager = copy.copy(contextualize(self))
         for indicator in self._get_indicators():
             new_indicator = copy.copy(indicator)
             attach(new_indicator, new)

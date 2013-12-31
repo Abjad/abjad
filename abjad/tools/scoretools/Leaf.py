@@ -136,10 +136,11 @@ class Leaf(Component):
     ### PRIVATE METHODS ###
 
     def _copy_override_and_set_from_leaf(self, leaf):
-        if getattr(leaf, '_override', None) is not None:
-            self._override = copy.copy(override(leaf))
-        if getattr(leaf, '_set', None) is not None:
-            self._set = copy.copy(contextualize(leaf))
+        if getattr(leaf, '_lilypond_grob_name_manager', None) is not None:
+            self._lilypond_grob_name_manager = copy.copy(override(leaf))
+        if getattr(leaf, '_lilypond_setting_name_manager', None) is not None:
+            self._lilypond_setting_name_manager = copy.copy(
+                contextualize(leaf))
         new_indicators = []
         for indicator in leaf._indicators:
             new_indicator = copy.copy(indicator)
