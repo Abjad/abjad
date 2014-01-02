@@ -154,6 +154,46 @@ class Hairpin(Spanner):
                         result.append('\\!')
         return result
 
+    @staticmethod
+    def _is_hairpin_shape_string(arg):
+        return arg in Hairpin._hairpin_shape_strings
+
+    @staticmethod
+    def _is_hairpin_token(arg):
+        r'''Is true when `arg` is a hairpin token. Otherwise false:
+
+        ::
+
+            >>> spannertools.Hairpin._is_hairpin_token(('p', '<', 'f'))
+            True
+
+        ::
+
+            >>> spannertools.Hairpin._is_hairpin_token(('f', '<', 'p'))
+            False
+
+        Returns boolean.
+        '''
+        Dynamic = indicatortools.Dynamic
+        if isinstance(arg, tuple) and \
+            len(arg) == 3 and \
+            (not arg[0] or indicatortools.Dynamic.is_dynamic_name(arg[0])) \
+            and Hairpin._is_hairpin_shape_string(arg[1]) and \
+            (not arg[2] or indicatortools.Dynamic.is_dynamic_name(arg[2])):
+            if arg[0] and arg[2]:
+                start_ordinal = \
+                    Dynamic.dynamic_name_to_dynamic_ordinal(arg[0])
+                stop_ordinal = \
+                    Dynamic.dynamic_name_to_dynamic_ordinal(arg[2])
+                if arg[1] == '<':
+                    return start_ordinal < stop_ordinal
+                else:
+                    return stop_ordinal < start_ordinal
+            else:
+                return True
+        else:
+            return False
+
     def _parse_descriptor(self, descriptor):
         r'''Example descriptors:
 
@@ -327,7 +367,7 @@ class Hairpin(Spanner):
                 >>> hairpin.start_dynamic
                 Dynamic('p')
 
-        Returns string.
+        Returns dynamic or none.
         '''
         return self._start_dynamic
 
@@ -349,48 +389,6 @@ class Hairpin(Spanner):
                 >>> hairpin.stop_dynamic
                 Dynamic('f')
 
-        Returns string.
+        Returns dynamic or none.
         '''
         return self._stop_dynamic
-
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def _is_hairpin_shape_string(arg):
-        return arg in Hairpin._hairpin_shape_strings
-
-    @staticmethod
-    def _is_hairpin_token(arg):
-        r'''Is true when `arg` is a hairpin token. Otherwise false:
-
-        ::
-
-            >>> spannertools.Hairpin._is_hairpin_token(('p', '<', 'f'))
-            True
-
-        ::
-
-            >>> spannertools.Hairpin._is_hairpin_token(('f', '<', 'p'))
-            False
-
-        Returns boolean.
-        '''
-        Dynamic = indicatortools.Dynamic
-        if isinstance(arg, tuple) and \
-            len(arg) == 3 and \
-            (not arg[0] or indicatortools.Dynamic.is_dynamic_name(arg[0])) \
-            and Hairpin._is_hairpin_shape_string(arg[1]) and \
-            (not arg[2] or indicatortools.Dynamic.is_dynamic_name(arg[2])):
-            if arg[0] and arg[2]:
-                start_ordinal = \
-                    Dynamic.dynamic_name_to_dynamic_ordinal(arg[0])
-                stop_ordinal = \
-                    Dynamic.dynamic_name_to_dynamic_ordinal(arg[2])
-                if arg[1] == '<':
-                    return start_ordinal < stop_ordinal
-                else:
-                    return stop_ordinal < start_ordinal
-            else:
-                return True
-        else:
-            return False
