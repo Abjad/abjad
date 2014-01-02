@@ -206,6 +206,24 @@ class NumberedInterval(Interval):
         return mathtools.sign(self.number)
 
     @property
+    def direction_string(self):
+        r'''Direction string of named interval.
+
+        ::
+
+            >>> pitchtools.NumberedInterval(-14).direction_string
+            'descending'
+
+        Returns ``'ascending'``, ``'descending'`` or none.
+        '''
+        if self.direction_number == -1:
+            return 'descending'
+        elif self.direction_number == 0:
+            return None
+        elif self.direction_number == 1:
+            return 'ascending'
+
+    @property
     def number(self):
         r'''Number of numbered interval.
 

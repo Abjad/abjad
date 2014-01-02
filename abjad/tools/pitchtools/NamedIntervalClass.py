@@ -186,8 +186,8 @@ class NamedIntervalClass(IntervalClass):
     @property
     def _full_name(self):
         strings = []
-        if self.direction_word:
-            strings.append(self.direction_word)
+        if self.direction_string:
+            strings.append(self.direction_string)
         strings.extend([self._quality_string, self._interval_string])
         return ' '.join(strings)
 
@@ -261,16 +261,16 @@ class NamedIntervalClass(IntervalClass):
             return '+'
 
     @property
-    def direction_word(self):
+    def direction_string(self):
         r'''Direction word of named interval-class.
 
         Returns string.
         '''
-        if self.number < 1:
+        if self.direction_number == -1:
             return 'descending'
-        elif self.number == 1:
-            return ''
-        else:
+        elif self.direction_number == 0:
+            return None
+        elif self.direction_number == 1:
             return 'ascending'
 
     @property

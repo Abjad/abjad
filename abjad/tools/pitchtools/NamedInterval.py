@@ -40,26 +40,61 @@ class NamedInterval(Interval):
         'dim': 'diminished',
         }
 
+    _semitones_to_quality_string_and_number = {
+        0: ('perfect', 1),
+        1: ('minor', 2),
+        2: ('major', 2),
+        3: ('minor', 3),
+        4: ('major', 3),
+        5: ('perfect', 4),
+        6: ('diminished', 5),
+        7: ('perfect', 5),
+        8: ('minor', 6),
+        9: ('major', 6),
+        10: ('minor', 7),
+        11: ('major', 7),
+        }
+
     ### INITIALIZER ###
 
     def __init__(self, *args):
         from abjad.tools import pitchtools
-        if len(args) == 1 and isinstance(args[0], type(self)):
-            quality_string = args[0].quality_string
-            number = args[0].number
-        elif len(args) == 1 and isinstance(args[0], str):
-            match = \
-                pitchtools.Interval._interval_name_abbreviation_regex.match(
-                args[0])
-            if match is None:
-                message = '{!r} does not have the form of a mdi abbreviation.'
-                message = message.format(args[0])
-                raise ValueError(message)
-            direction_string, quality_abbreviation, number_string = \
-                match.groups()
-            quality_string = self._quality_abbreviation_to_quality_string[
-                quality_abbreviation]
-            number = int(direction_string + number_string)
+        if len(args) == 1:
+            if isinstance(args[0], type(self)):
+                quality_string = args[0].quality_string
+                number = args[0].number
+            elif isinstance(args[0], str):
+                match = \
+                    pitchtools.Interval._interval_name_abbreviation_regex.match(
+                        args[0])
+                if match is None:
+                    message = '{!r} does not have the form of a mdi abbreviation.'
+                    message = message.format(args[0])
+                    raise ValueError(message)
+                direction_string, quality_abbreviation, number_string = \
+                    match.groups()
+                quality_string = self._quality_abbreviation_to_quality_string[
+                    quality_abbreviation]
+                number = int(direction_string + number_string)
+            elif isinstance(args[0], pitchtools.NamedIntervalClass):
+                quality_string = args[0].quality_string
+                number = args[0].number
+            elif isinstance(args[0], (
+                int,
+                float,
+                long,
+                pitchtools.NumberedInterval,
+                pitchtools.NumberedIntervalClass,
+                )):
+                number = int(args[0])
+                octaves, semitones = divmod(int(args[0]), 12)
+                if number < 0:
+                    semitones = 12 - semitones
+                quality_string, number = \
+                    self._semitones_to_quality_string_and_number[semitones]
+                number += abs(octaves) * 7
+                if number < 0:
+                    number *= -1
         elif len(args) == 2:
             quality_string, number = args
         elif len(args) == 0:
@@ -475,6 +510,14 @@ class NamedInterval(Interval):
         Returns nonnegative number.
         '''
         return self._number
+
+    @property
+    def octaves(self):
+        r'''Number of octaves in interval.
+
+        Returns nonnegative number.
+        '''
+        return self.semitones // 12
 
     @property
     def quality_string(self):

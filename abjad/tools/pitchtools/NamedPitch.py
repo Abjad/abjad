@@ -104,6 +104,7 @@ class NamedPitch(Pitch):
         Returns new named pitch.
         '''
         from abjad.tools import pitchtools
+        interval = pitchtools.NamedInterval(interval)
         return pitchtools.transpose_pitch_carrier_by_interval(
             self, interval)
 
@@ -325,7 +326,7 @@ class NamedPitch(Pitch):
             named_pitch_class._alteration_in_semitones
         self._diatonic_pitch_class_number = \
             named_pitch_class._diatonic_pitch_class_number
-        self._octave_number = octave_number
+        self._octave_number = int(octave_number)
 
     def _initialize_by_pitch_class_name_and_octave_number(
         self, pitch_class_name, octave_number):
@@ -655,7 +656,7 @@ class NamedPitch(Pitch):
 
         Returns integer.
         '''
-        return self._octave_number
+        return int(self._octave_number)
 
     @property
     def pitch_class_name(self):

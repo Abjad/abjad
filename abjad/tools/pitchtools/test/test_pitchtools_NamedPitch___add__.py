@@ -15,4 +15,4 @@ def test_pitchtools_NamedPitch___add___02():
     pitch = NamedPitch(12)
     numbered_interval = pitchtools.NumberedInterval(1)
 
-    assert pitch + numbered_interval == NamedPitch('cs', 5)
+    assert pitch + numbered_interval == NamedPitch('df', 5)
