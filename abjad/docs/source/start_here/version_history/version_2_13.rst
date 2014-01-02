@@ -1,4 +1,4 @@
-:tocdepth: 2
+:orphan:
 
 
 Abjad 2.13
