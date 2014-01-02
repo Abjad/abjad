@@ -271,19 +271,21 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___12():
     r'''Override LilyPond DynamicText grob.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
+    staff = Staff("c'8 d'8 e'8 f'8")
     beam = Beam()
-    attach(beam, voice[:])
-    dynamic_text_spanner = spannertools.DynamicTextSpanner(dynamic='f')
-    attach(dynamic_text_spanner, voice[:])
-    override(dynamic_text_spanner).dynamic_text.thickness = 3
+    attach(beam, staff[:])
+    dynamic = Dynamic('f')
+    attach(dynamic, staff[0])
+    spanner = spannertools.Spanner()
+    override(spanner).dynamic_text.thickness = 3
+    attach(spanner, staff[:])
 
     assert systemtools.TestManager.compare(
-        voice,
+        staff,
         r'''
-        \new Voice {
+        \new Staff {
             \override DynamicText #'thickness = #3
-            c'8 [ \f
+            c'8 \f [
             d'8
             e'8
             f'8 ]
@@ -292,7 +294,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___12():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___13():
