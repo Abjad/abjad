@@ -135,7 +135,7 @@ def are_dynamic_tokens(expr):
 
 def are_hairpin_tokens(expr):
     if isinstance(expr, (tuple, list)):
-        return all(_is_hairpin_token(x) for x in expr)
+        return all(is_hairpin_token(x) for x in expr)
 
 def are_lists(expr):
     if isinstance(expr, (tuple, list)):
