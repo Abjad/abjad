@@ -335,7 +335,7 @@ Further new functionality:
     >>> time_signature.pair
     (3, 16)
 
-- Added ``is_hairpin_token()`` to ``spannertools.Hairpin`` class.
+- Added ``_is_hairpin_token()`` to ``spannertools.Hairpin`` class.
 
   Hairpin tokens are triples of the form ``(x, y, z)`` with dynamic tokens ``x``, ``y``
   and hairpin shape string ``z``. For example ``('p', '<', 'f')``.

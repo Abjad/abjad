@@ -313,12 +313,12 @@ class Hairpin(Spanner):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def is_hairpin_shape_string(arg):
+    def _is_hairpin_shape_string(arg):
         r'''Is true when `arg` is a hairpin shape string. Otherwise false:
 
         ::
 
-            >>> spannertools.Hairpin.is_hairpin_shape_string('<')
+            >>> spannertools.Hairpin._is_hairpin_shape_string('<')
             True
 
         Returns boolean.
@@ -326,17 +326,17 @@ class Hairpin(Spanner):
         return arg in Hairpin._hairpin_shape_strings
 
     @staticmethod
-    def is_hairpin_token(arg):
+    def _is_hairpin_token(arg):
         r'''Is true when `arg` is a hairpin token. Otherwise false:
 
         ::
 
-            >>> spannertools.Hairpin.is_hairpin_token(('p', '<', 'f'))
+            >>> spannertools.Hairpin._is_hairpin_token(('p', '<', 'f'))
             True
 
         ::
 
-            >>> spannertools.Hairpin.is_hairpin_token(('f', '<', 'p'))
+            >>> spannertools.Hairpin._is_hairpin_token(('f', '<', 'p'))
             False
 
         Returns boolean.
@@ -345,7 +345,7 @@ class Hairpin(Spanner):
         if isinstance(arg, tuple) and \
             len(arg) == 3 and \
             (not arg[0] or indicatortools.Dynamic.is_dynamic_name(arg[0])) and \
-            Hairpin.is_hairpin_shape_string(arg[1]) and \
+            Hairpin._is_hairpin_shape_string(arg[1]) and \
             (not arg[2] or indicatortools.Dynamic.is_dynamic_name(arg[2])):
             if arg[0] and arg[2]:
                 start_ordinal = \

@@ -56,7 +56,7 @@ def is_existing_package_name(expr):
     return configuration.packagesystem_path_exists(expr)
 
 def is_hairpin_token(expr):
-    return spannertools.Hairpin.is_hairpin_token(expr)
+    return spannertools.Hairpin._is_hairpin_token(expr)
 
 def is_integer(expr):
     return isinstance(expr, int)
@@ -135,7 +135,7 @@ def are_dynamic_tokens(expr):
 
 def are_hairpin_tokens(expr):
     if isinstance(expr, (tuple, list)):
-        return all(is_hairpin_token(x) for x in expr)
+        return all(_is_hairpin_token(x) for x in expr)
 
 def are_lists(expr):
     if isinstance(expr, (tuple, list)):

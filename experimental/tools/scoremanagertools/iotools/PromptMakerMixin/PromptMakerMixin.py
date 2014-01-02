@@ -222,7 +222,7 @@ class PromptMakerMixin(AbjadObject):
         help_template = 'value for {!r} must be hairpin menu_entry.'
         self._make_prompt(
             spaced_attribute_name, 
-            validation_function=predicates.is_hairpin_token,
+            validation_function=predicates._is_hairpin_token,
             help_template=help_template, 
             default_value=default_value,
             )
