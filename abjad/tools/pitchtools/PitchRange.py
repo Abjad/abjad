@@ -103,7 +103,13 @@ class PitchRange(AbjadObject):
             start, stop = args
             if start is None:
                 start = start
-            elif isinstance(start, (int, long, float, str)):
+            elif isinstance(start, (
+                pitchtools.Pitch,
+                int,
+                long,
+                float,
+                str,
+                )):
                 pitch = pitchtools.NamedPitch(start)
                 start = (pitch, 'inclusive')
             else:
@@ -115,7 +121,13 @@ class PitchRange(AbjadObject):
             self._start = start
             if stop is None:
                 stop = stop
-            elif isinstance(stop, (int, long, float, str)):
+            elif isinstance(stop, (
+                pitchtools.Pitch,
+                int,
+                long,
+                float,
+                str,
+                )):
                 pitch = pitchtools.NamedPitch(stop)
                 stop = (pitch, 'inclusive')
             else:
