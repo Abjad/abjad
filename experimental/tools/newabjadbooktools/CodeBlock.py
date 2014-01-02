@@ -73,7 +73,7 @@ class CodeBlock(AbjadObject):
         ...     x
         ...
         CodeOutputProxy(('>>> staff = Staff(r"\\clef bass c4 d4 e4 f4")', '>>> show(staff)'))
-        LilyPondOutputProxy('\\version "2.17.0"\n\\language "english"\n\n\\score {\n\t\\new Staff {\n\t\t\\clef "bass"\n\t\tc4\n\t\td4\n\t\te4\n\t\tf4\n\t}\n}')
+        LilyPondOutputProxy('\\version "2.18.0"\n\\language "english"\n\n\\score {\n\t\\new Staff {\n\t\t\\clef "bass"\n\t\tc4\n\t\td4\n\t\te4\n\t\tf4\n\t}\n}')
         CodeOutputProxy(('>>> print len(staff)', '4'))
 
     Code blocks also support a number of optional keyword arguments that
@@ -101,7 +101,7 @@ class CodeBlock(AbjadObject):
         >>> for x in output_proxies:
         ...     x
         ...
-        MIDIOutputProxy('\\version "2.17.0"\n\\language "english"\n\n\\score {\n\tdqf16..\n\t\\midi {}\n}')
+        MIDIOutputProxy('\\version "2.18.0"\n\\language "english"\n\n\\score {\n\tdqf16..\n\t\\midi {}\n}')
 
     Returns code block instance.
     '''
