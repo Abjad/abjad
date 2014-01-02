@@ -6,41 +6,43 @@ from abjad.tools import durationtools
 class MeasuredComplexBeam(ComplexBeam):
     r'''A measured complex beam spanner.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff()
-        >>> staff.append(Measure((2, 16), "c'16 d'16"))
-        >>> staff.append(Measure((2, 16), "e'16 f'16"))
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ::
+            >>> staff = Staff()
+            >>> staff.append(Measure((2, 16), "c'16 d'16"))
+            >>> staff.append(Measure((2, 16), "e'16 f'16"))
+            >>> show(staff) # doctest: +SKIP
 
-        >>> beam = spannertools.MeasuredComplexBeam()
-        >>> attach(beam, staff.select_leaves())
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> beam = spannertools.MeasuredComplexBeam()
+            >>> attach(beam, staff.select_leaves())
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print format(staff)
-        \new Staff {
-            {
-                \time 2/16
-                \set stemLeftBeamCount = #0
-                \set stemRightBeamCount = #2
-                c'16 [
-                \set stemLeftBeamCount = #2
-                \set stemRightBeamCount = #1
-                d'16
+        ..  doctest::
+
+            >>> print format(staff)
+            \new Staff {
+                {
+                    \time 2/16
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #2
+                    c'16 [
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #1
+                    d'16
+                }
+                {
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #2
+                    e'16
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #0
+                    f'16 ]
+                }
             }
-            {
-                \set stemLeftBeamCount = #1
-                \set stemRightBeamCount = #2
-                e'16
-                \set stemLeftBeamCount = #2
-                \set stemRightBeamCount = #0
-                f'16 ]
-            }
-        }
 
     Beams leaves in spanner explicitly.
 
@@ -72,7 +74,8 @@ class MeasuredComplexBeam(ComplexBeam):
             direction=direction,
             overrides=overrides,
             )
-        self.span = span
+        assert isinstance(span, (int, type(None)))
+        self._span = span
 
     ### PRIVATE METHODS ###
 
@@ -106,16 +109,18 @@ class MeasuredComplexBeam(ComplexBeam):
             else:
                 left, right = self._get_left_right_for_interior_leaf(leaf)
             if left is not None:
-                result.append(r'\set stemLeftBeamCount = #%s' % left)
+                string = r'\set stemLeftBeamCount = #{}'.format(left)
+                result.append(string)
             if right is not None:
-                result.append(r'\set stemRightBeamCount = #%s' % right)
+                string = r'\set stemRightBeamCount = #{}'.format(right)
+                result.append(string)
         return result
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def span(self):
-        r'''Get top-level beam count:
+        r'''Gets top-level span-beam count.
 
         ::
 
@@ -127,24 +132,6 @@ class MeasuredComplexBeam(ComplexBeam):
             >>> beam.span
             1
 
-        Set top-level beam count:
-
-        ::
-
-            >>> staff = Staff()
-            >>> staff.append(Measure((2, 16), "c'16 d'16"))
-            >>> staff.append(Measure((2, 16), "e'16 f'16"))
-            >>> beam = spannertools.MeasuredComplexBeam()
-            >>> attach(beam, staff.select_leaves())
-            >>> beam.span = 2
-            >>> beam.span
-            2
-
-        Set nonnegative integer.
+        Returns nonnegative integer or none.
         '''
         return self._span
-
-    @span.setter
-    def span(self, arg):
-        assert isinstance(arg, (int, type(None)))
-        self._span = arg

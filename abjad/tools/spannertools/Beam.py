@@ -51,19 +51,22 @@ class Beam(Spanner):
 
     def __init__(self, direction=None, overrides=None):
         Spanner.__init__(self, overrides=overrides)
-        self.direction = direction
+        direction = stringtools.arg_to_tridirectional_lilypond_symbol(
+            direction)
+        self._direction = direction
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
         #Spanner._copy_keyword_args(self, new)
-        new.direction = self.direction
+        new._direction = self.direction
 
     def _format_right_of_leaf(self, leaf):
         result = []
         if self._is_my_first_leaf(leaf):
             if self.direction is not None:
-                result.append('%s [' % self.direction)
+                string = '{} ['.format(self.direction)
+                result.append(string)
             else:
                 result.append('[')
         if self._is_my_last_leaf(leaf):
@@ -101,7 +104,6 @@ class Beam(Spanner):
         Returns boolean.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
         if isinstance(expr, (scoretools.Note, scoretools.Chord)):
             if 0 < expr.written_duration.flag_count:
                 return True
@@ -111,13 +113,8 @@ class Beam(Spanner):
 
     @property
     def direction(self):
-        r'''Gets and sets direction of beam.
+        r'''Gets direction of beam.
 
         Returns up or down.
         '''
         return self._direction
-
-    @direction.setter
-    def direction(self, arg):
-        self._direction = \
-            stringtools.arg_to_tridirectional_lilypond_symbol(arg)

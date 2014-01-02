@@ -7,46 +7,46 @@ from abjad.tools.spannertools.ComplexBeam import ComplexBeam
 class DuratedComplexBeam(ComplexBeam):
     r'''A durated complex beam spanner.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'16 d'16 e'16 f'16")
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ::
+            >>> staff = Staff("c'16 d'16 e'16 f'16")
+            >>> show(staff) # doctest: +SKIP
 
-        >>> durations = [Duration(1, 8), Duration(1, 8)]
-        >>> beam = spannertools.DuratedComplexBeam(
-        ...     durations=durations, 
-        ...     span=1,
-        ...     )
-        >>> attach(beam, staff[:])
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> durations = [Duration(1, 8), Duration(1, 8)]
+            >>> beam = spannertools.DuratedComplexBeam(
+            ...     durations=durations, 
+            ...     span=1,
+            ...     )
+            >>> attach(beam, staff[:])
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print format(staff)
-        \new Staff {
-            \set stemLeftBeamCount = #0
-            \set stemRightBeamCount = #2
-            c'16 [
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #1
-            d'16
-            \set stemLeftBeamCount = #1
-            \set stemRightBeamCount = #2
-            e'16
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #0
-            f'16 ]
-        }
+        ..  doctest::
 
-    Beam all beamable leaves in spanner explicitly.
+            >>> print format(staff)
+            \new Staff {
+                \set stemLeftBeamCount = #0
+                \set stemRightBeamCount = #2
+                c'16 [
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #1
+                d'16
+                \set stemLeftBeamCount = #1
+                \set stemRightBeamCount = #2
+                e'16
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #0
+                f'16 ]
+            }
 
-    Group leaves in spanner according to `durations`.
+    Beams all beamable leaves in spanner explicitly.
 
-    Span leaves between duration groups according to `span`.
+    Groups leaves in spanner according to `durations`.
 
-    Returns durated complex beam spanner.
+    Spans leaves between duration groups according to `span`.
     '''
 
     ### CLASS VARIABLES ###
@@ -72,9 +72,23 @@ class DuratedComplexBeam(ComplexBeam):
             direction=direction,
             overrides=overrides,
             )
-        self.durations = durations
-        self.span = span
-        self.lone = lone
+        if durations is None:
+            self._durations = None
+        elif isinstance(durations, list):
+            for i, d in enumerate(durations):
+                if isinstance(d, tuple):
+                    durations[i] = durationtools.Duration(*d)
+                else:
+                    durations[i] = durationtools.Duration(d)
+            durations = tuple(durations)
+            self._durations = durations
+        else:
+            message = 'durations must be list of durations or none.'
+            raise ValueError(message)
+        self._durations = durations
+        self._lone = lone
+        assert isinstance(span, (int, type(None)))
+        self._span = span
 
     ### PRIVATE PROPERTIES ###
 
@@ -91,8 +105,8 @@ class DuratedComplexBeam(ComplexBeam):
 
     def _copy_keyword_args(self, new):
         ComplexBeam._copy_keyword_args(self, new)
-        new.durations = self.durations[:]
-        new.span = self.span
+        new._durations = self.durations[:]
+        new._span = self.span
 
     def _format_before_leaf(self, leaf):
         result = []
@@ -129,7 +143,11 @@ class DuratedComplexBeam(ComplexBeam):
         weights = [left._get_duration(), right._get_duration()]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
-            self.durations, weights, cyclic=False, overhang=False)
+            self.durations, 
+            weights, 
+            cyclic=False, 
+            overhang=False,
+            )
         left_durations, right_durations = split_durations
         left._durations = left_durations
         right._durations = right_durations
@@ -140,7 +158,11 @@ class DuratedComplexBeam(ComplexBeam):
         weights = [left._get_duration(), right._get_duration()]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
-            self.durations, weights, cyclic=False, overhang=False)
+            self.durations, 
+            weights, 
+            cyclic=False, 
+            overhang=False,
+            )
         left_durations, right_durations = split_durations
         left._durations = left_durations
         right._durations = right_durations
@@ -148,13 +170,15 @@ class DuratedComplexBeam(ComplexBeam):
 
     def _reverse_components(self):
         ComplexBeam._reverse_components(self)
-        self._durations.reverse()
+        durations = reversed(self.durations)
+        durations = tuple(durations)
+        self._durations = durations
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def durations(self):
-        r'''Get spanner leaf group durations:
+        r'''Gets spanner leaf group durations.
 
         ::
 
@@ -165,44 +189,15 @@ class DuratedComplexBeam(ComplexBeam):
             ...     )
             >>> attach(beam, staff[:])
             >>> beam.durations
-            [Duration(1, 8), Duration(1, 8)]
+            (Duration(1, 8), Duration(1, 8))
 
-        Set spanner leaf group durations:
-
-        ::
-
-            >>> staff = Staff("c'16 d'16 e'16 f'16")
-            >>> durations = [Duration(1, 8), Duration(1, 8)]
-            >>> beam = spannertools.DuratedComplexBeam(
-            ...     durations=durations,
-            ...     )
-            >>> attach(beam, staff[:])
-            >>> beam.durations = [Duration(1, 4)]
-            >>> beam.durations
-            [Duration(1, 4)]
-
-        Set iterable.
+        Returns tuple of durations or none.
         '''
         return self._durations
 
-    @durations.setter
-    def durations(self, arg):
-        if arg is None:
-            self._durations = None
-        elif isinstance(arg, list):
-            for i, d in enumerate(arg):
-                if isinstance(d, tuple):
-                    arg[i] = durationtools.Duration(*d)
-                else:
-                    arg[i] = durationtools.Duration(d)
-            self._durations = arg
-        else:
-            message = 'durations must be list of durations or none.'
-            raise ValueError(message)
-
     @property
     def span(self):
-        r'''Get top-level beam count:
+        r'''Gets top-level span-beam count.
 
         ::
 
@@ -216,26 +211,6 @@ class DuratedComplexBeam(ComplexBeam):
             >>> beam.span
             1
 
-        Set top-level beam count:
-
-        ::
-
-            >>> staff = Staff("c'16 d'16 e'16 f'16")
-            >>> durations = [Duration(1, 8), Duration(1, 8)]
-            >>> beam = spannertools.DuratedComplexBeam(
-            ...     durations=durations, 
-            ...     span=1,
-            ...     )
-            >>> attach(beam, staff[:])
-            >>> beam.span = 2
-            >>> beam.span
-            2
-
         Set nonnegative integer.
         '''
         return self._span
-
-    @span.setter
-    def span(self, arg):
-        assert isinstance(arg, (int, type(None)))
-        self._span = arg

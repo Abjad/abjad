@@ -66,13 +66,15 @@ class ComplexBeam(Beam):
             direction=direction,
             overrides=overrides,
             )
-        self.lone = lone
+        # TODO: replace with Left and Right ordinal constants
+        assert isinstance(lone, bool) or lone in ('left', 'right', 'both')
+        self._lone = lone
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
         Beam._copy_keyword_args(self, new)
-        new.lone = self.lone
+        new._lone = self.lone
 
     def _format_before_leaf(self, leaf):
         r'''Spanner format contribution to output before leaf.
@@ -210,104 +212,110 @@ class ComplexBeam(Beam):
 
     @property
     def lone(self):
-        r'''Beam lone leaf and force beam nibs to left:
+        r'''Gets directed treatment to apply to lone nibs.
 
-        ::
+        ..  container:: example
 
-            >>> note = Note("c'16")
+            Beams lone leaf and forces nib to the left:
 
-        ::
+            ::
 
-            >>> beam = spannertools.ComplexBeam(lone='left')
-            >>> attach(beam, note)
-            >>> show(note) # doctest: +SKIP
+                >>> note = Note("c'16")
 
-        ..  doctest::
+            ::
 
-            >>> print format(note)
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #0
-            c'16 [ ]
+                >>> beam = spannertools.ComplexBeam(lone='left')
+                >>> attach(beam, note)
+                >>> show(note) # doctest: +SKIP
 
-        Beam lone leaf and force beam nibs to right:
+            ..  doctest::
 
-        ::
+                >>> print format(note)
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #0
+                c'16 [ ]
 
-            >>> note = Note("c'16")
+        ..  container:: example
 
-        ::
+            Beams lone leave and forces nib to the right:
 
-            >>> beam = spannertools.ComplexBeam(lone='right')
-            >>> attach(beam, note)
+            ::
 
-        ..  doctest::
+                >>> note = Note("c'16")
 
-            >>> print format(note)
-            \set stemLeftBeamCount = #0
-            \set stemRightBeamCount = #2
-            c'16 [ ]
+            ::
 
-        Beam lone leaf and force beam nibs to both left and right:
+                >>> beam = spannertools.ComplexBeam(lone='right')
+                >>> attach(beam, note)
 
-        ::
+            ..  doctest::
 
-            >>> note = Note("c'16")
+                >>> print format(note)
+                \set stemLeftBeamCount = #0
+                \set stemRightBeamCount = #2
+                c'16 [ ]
 
-        ::
+        ..  container:: example
 
-            >>> beam = spannertools.ComplexBeam(lone='both')
-            >>> attach(beam, note)
+            Beams lone leave and forces nibs to both left and right:
 
-        ..  doctest::
+            ::
 
-            >>> print format(note)
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #2
-            c'16 [ ]
+                >>> note = Note("c'16")
 
-        Beam lone leaf and accept LilyPond default nibs at 
-        both left and right:
+            ::
 
-        ::
+                >>> beam = spannertools.ComplexBeam(lone='both')
+                >>> attach(beam, note)
 
-            >>> note = Note("c'16")
+            ..  doctest::
 
-        ::
+                >>> print format(note)
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #2
+                c'16 [ ]
 
-            >>> beam = spannertools.ComplexBeam(lone=True)
-            >>> attach(beam, note)
+        ..  container:: example
 
-        ..  doctest::
+            Beam lone leaf and accept LilyPond default nibs at 
+            both left and right:
 
-            >>> print format(note)
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #2
-            c'16 [ ]
+            ::
 
-        Do not beam lone leaf:
+                >>> note = Note("c'16")
 
-        ::
+            ::
 
-            >>> note = Note("c'16")
+                >>> beam = spannertools.ComplexBeam(lone=True)
+                >>> attach(beam, note)
 
-        ::
+            ..  doctest::
 
-            >>> beam = spannertools.ComplexBeam(lone=False)
-            >>> attach(beam, note)
+                >>> print format(note)
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #2
+                c'16 [ ]
 
-        ..  doctest::
+        ..  container:: example
 
-            >>> print format(note)
-            c'16
+            Do not beam lone leaf:
 
-        Set to ``'left'``, ``'right'``, ``'both'``, true or false 
-        as shown above.
+            ::
 
-        Ignore this setting when spanner contains more than one leaf.
+                >>> note = Note("c'16")
+
+            ::
+
+                >>> beam = spannertools.ComplexBeam(lone=False)
+                >>> attach(beam, note)
+
+            ..  doctest::
+
+                >>> print format(note)
+                c'16
+
+        Set to ``'left'``, ``'right'``, ``'both'``, true or false.
+
+        Ignores this setting when spanner contains more than one leaf.
         '''
         return self._lone
-
-    @lone.setter
-    def lone(self, arg):
-        assert isinstance(arg, bool) or arg in ('left', 'right', 'both')
-        self._lone = arg
