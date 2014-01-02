@@ -1083,9 +1083,9 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___45():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    text_script_spanner = spannertools.TextScriptSpanner()
-    attach(text_script_spanner, staff[:])
-    override(text_script_spanner).text_script.color = 'red'
+    spanner = spannertools.Spanner()
+    attach(spanner, staff[:])
+    override(spanner).text_script.color = 'red'
 
     assert systemtools.TestManager.compare(
         staff,
