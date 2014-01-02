@@ -23,7 +23,7 @@ def test_spannertools_Hairpin_shape_string_01():
     assert hairpin.shape_string == '<'
 
 
-def test_foo_02():
+def test_spannertools_Hairpin_shape_string_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     hairpin = Hairpin(descriptor='>')

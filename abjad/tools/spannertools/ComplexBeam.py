@@ -6,44 +6,51 @@ from abjad.tools.spannertools.Beam import Beam
 class ComplexBeam(Beam):
     r'''A complex beam spanner.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'16 e'16 r16 f'16 g'2")
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> staff = Staff("c'16 e'16 r16 f'16 g'2")
+            >>> contextualize(staff).auto_beaming = False
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print format(staff)
-        \new Staff {
-            c'16
-            e'16
-            r16
-            f'16
-            g'2
-        }
+        ..  doctest::
 
-    ::
+            >>> print format(staff)
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
+                c'16
+                e'16
+                r16
+                f'16
+                g'2
+            }
 
-        >>> beam = spannertools.ComplexBeam()
-        >>> attach(beam, staff[:4])
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> beam = spannertools.ComplexBeam()
+            >>> attach(beam, staff[:4])
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print format(staff)
-        \new Staff {
-            \set stemLeftBeamCount = #0
-            \set stemRightBeamCount = #2
-            c'16 [
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #2
-            e'16 ]
-            r16
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #0
-            f'16 [ ]
-            g'2
-        }
+        ..  doctest::
+
+            >>> print format(staff)
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
+                \set stemLeftBeamCount = #0
+                \set stemRightBeamCount = #2
+                c'16 [
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #2
+                e'16 ]
+                r16
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #0
+                f'16 [ ]
+                g'2
+            }
 
     '''
 
@@ -67,7 +74,7 @@ class ComplexBeam(Beam):
             overrides=overrides,
             )
         # TODO: replace with Left and Right ordinal constants
-        assert isinstance(lone, bool) or lone in ('left', 'right', 'both')
+        assert isinstance(lone, bool) or lone in (Left, Right, 'both')
         self._lone = lone
 
     ### PRIVATE METHODS ###
@@ -81,7 +88,7 @@ class ComplexBeam(Beam):
         '''
         result = []
         result.extend(Beam._format_before_leaf(self, leaf))
-        if self.is_beamable_component(leaf):
+        if self._is_beamable_component(leaf):
             if self._is_my_only_leaf(leaf):
                 left, right = self._get_left_right_for_lone_leaf(leaf)
             elif self._is_exterior_leaf(leaf):
@@ -100,7 +107,7 @@ class ComplexBeam(Beam):
         from abjad.tools import scoretools
         result = []
         #if leaf.beam.beamable:
-        if self.is_beamable_component(leaf):
+        if self._is_beamable_component(leaf):
             previous_leaf = leaf._get_leaf(-1)
             next_leaf = leaf._get_leaf(1)
             # lone
@@ -112,7 +119,7 @@ class ComplexBeam(Beam):
                         result.append('[')
             # otherwise
             elif self._is_my_first_leaf(leaf) or not previous_leaf or \
-                not self.is_beamable_component(previous_leaf):
+                not self._is_beamable_component(previous_leaf):
                 if self.direction is not None:
                     result.append('%s [' % self.direction)
                 else:
@@ -123,7 +130,7 @@ class ComplexBeam(Beam):
                     result.append(']')
             # otherwise
             elif self._is_my_last_leaf(leaf) or not next_leaf or \
-                not self.is_beamable_component(next_leaf):
+                not self._is_beamable_component(next_leaf):
                 result.append(']')
         return result
 
@@ -163,18 +170,18 @@ class ComplexBeam(Beam):
         current_flag_count = current_written.flag_count
         next_flag_count = next_written.flag_count
         # [unbeamable leaf beamable]
-        if not self.is_beamable_component(previous_leaf) and \
-            self.is_beamable_component(next_leaf):
+        if not self._is_beamable_component(previous_leaf) and \
+            self._is_beamable_component(next_leaf):
             left = current_flag_count
             right = min(current_flag_count, next_flag_count)
         # [beamable leaf unbeamable]
-        if self.is_beamable_component(previous_leaf) and \
-            not self.is_beamable_component(next_leaf):
+        if self._is_beamable_component(previous_leaf) and \
+            not self._is_beamable_component(next_leaf):
             left = min(current_flag_count, previous_flag_count)
             right = current_flag_count
         # [unbeamable leaf unbeamable]
-        elif not self.is_beamable_component(previous_leaf) and \
-            not self.is_beamable_component(next_leaf):
+        elif not self._is_beamable_component(previous_leaf) and \
+            not self._is_beamable_component(next_leaf):
             left = current_flag_count
             right = current_flag_count
         # [beamable leaf beamable]
@@ -190,10 +197,10 @@ class ComplexBeam(Beam):
         '''
         current_flag_count = leaf.written_duration.flag_count
         left, right = None, None
-        if self.lone == 'left':
+        if self.lone == Left:
             left = current_flag_count
             right = 0
-        elif self.lone == 'right':
+        elif self.lone == Right:
             left = 0
             right = current_flag_count
         elif self.lone in ('both', True):
@@ -220,20 +227,20 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> note = Note("c'16")
-
-            ::
-
-                >>> beam = spannertools.ComplexBeam(lone='left')
-                >>> attach(beam, note)
-                >>> show(note) # doctest: +SKIP
+                >>> measure = Measure((1, 16), "c'16")
+                >>> beam = spannertools.ComplexBeam(lone=Left)
+                >>> attach(beam, measure[0])
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> print format(note)
-                \set stemLeftBeamCount = #2
-                \set stemRightBeamCount = #0
-                c'16 [ ]
+                >>> print format(measure)
+                {
+                    \time 1/16
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #0
+                    c'16 [ ]
+                }
 
         ..  container:: example
 
@@ -245,7 +252,7 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> beam = spannertools.ComplexBeam(lone='right')
+                >>> beam = spannertools.ComplexBeam(lone=Right)
                 >>> attach(beam, note)
 
             ..  doctest::
@@ -314,7 +321,7 @@ class ComplexBeam(Beam):
                 >>> print format(note)
                 c'16
 
-        Set to ``'left'``, ``'right'``, ``'both'``, true or false.
+        Set to ``Left``, ``Right``, ``'both'``, true or false.
 
         Ignores this setting when spanner contains more than one leaf.
         '''

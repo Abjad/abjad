@@ -23,7 +23,7 @@ def test_spannertools_Hairpin_stop_dynamic_string_01():
     assert hairpin.stop_dynamic_string == 'f'
 
 
-def test_foo_02():
+def test_spannertools_Hairpin_stop_dynamic_string_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     hairpin = Hairpin(descriptor='p < mf')

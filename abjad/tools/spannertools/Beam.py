@@ -85,7 +85,7 @@ class Beam(Spanner):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def is_beamable_component(expr):
+    def _is_beamable_component(expr):
         '''Is true when `expr` is a beamable component. Otherwise false.
 
         ::
@@ -98,7 +98,7 @@ class Beam(Spanner):
 
             >>> for leaf in staff.select_leaves():
             ...     beam = spannertools.Beam
-            ...     result = beam.is_beamable_component(leaf)
+            ...     result = beam._is_beamable_component(leaf)
             ...     print '{:<8}\t{}'.format(leaf, result)
             ...
             r32     False

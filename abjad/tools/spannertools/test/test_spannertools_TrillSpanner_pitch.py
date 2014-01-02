@@ -26,7 +26,7 @@ def test_spannertools_TrillSpanner_pitch_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_spannertools_TrillSpanner_pitch_03():
+def test_spannertools_TrillSpanner_pitch_02():
     r'''Works with no pitch.
     '''
 

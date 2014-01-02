@@ -89,7 +89,7 @@ class MeasuredComplexBeam(ComplexBeam):
         result = []
         left, right = None, None
         #if leaf.beam.beamable:
-        if self.is_beamable_component(leaf):
+        if self._is_beamable_component(leaf):
             if self._is_exterior_leaf(leaf):
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
             elif leaf._get_parentage(include_self=False).get_first(

@@ -58,7 +58,7 @@ class MultipartBeam(Beam):
         direction_string = ''
         if self.direction is not None:
             direction_string = '%s ' % self.direction
-        if self.is_beamable_component(leaf):
+        if self._is_beamable_component(leaf):
             if 1 < len(self._leaves):
                 previous = leaf._get_leaf(-1)
                 if id(previous) not in [id(x) for x in self._leaves]:
@@ -68,20 +68,20 @@ class MultipartBeam(Beam):
                     next = None
                 if self._is_my_first_leaf(leaf):
                     if next is not None:
-                        if self.is_beamable_component(next):
+                        if self._is_beamable_component(next):
                             result.append('%s[' % direction_string)
                 else:
                     if previous is not None:
-                        if not self.is_beamable_component(previous):
+                        if not self._is_beamable_component(previous):
                             if next is not None:
                                 result.append('%s[' % direction_string)
                 if self._is_my_last_leaf(leaf):
                     if previous is not None:
-                        if self.is_beamable_component(previous):
+                        if self._is_beamable_component(previous):
                             result.append(']')
                 else:
                     next = leaf._get_leaf(1)
                     if next is not None and \
-                        not self.is_beamable_component(next):
+                        not self._is_beamable_component(next):
                         result.append(']')
         return result

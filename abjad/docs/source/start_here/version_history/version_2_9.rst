@@ -426,7 +426,7 @@ Added a new ``beamtools`` package.
 
   ::
 
-    beamtools.is_beamable_component
+    beamtools._is_beamable_component
     beamtools.apply_beam_spanner_to_measure
     beamtools.attach_beam_spanners_to_measures_in_expr
     beamtools.apply_complex_beam_spanner_to_measure
@@ -434,7 +434,7 @@ Added a new ``beamtools`` package.
     beamtools.attach_durated_complex_beam_spanner_to_measures
     beamtools.beam_bottommost_tuplets_in_expr
     beamtools.get_beam_spanner_attached_to_component
-    beamtools.is_beamable_component
+    beamtools._is_beamable_component
     beamtools.is_component_with_beam_spanner_attached
 
   Note that the following two functions have been removed::

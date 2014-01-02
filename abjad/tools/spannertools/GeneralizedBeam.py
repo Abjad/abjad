@@ -170,7 +170,7 @@ class GeneralizedBeam(Spanner):
         result = []
         if self.use_stemlets and self._is_my_first_leaf(leaf):
             result.append(r'\override Stem.stemlet-length = 0.75')
-        if not self.is_beamable_component(leaf):
+        if not self._is_beamable_component(leaf):
             return result
         leaf_ids = [id(x) for x in self._leaves]
         previous_leaf_is_joinable = self._leaf_is_joinable(
@@ -181,7 +181,7 @@ class GeneralizedBeam(Spanner):
 
     def _format_right_of_leaf(self, leaf):
         result = []
-        if not self.is_beamable_component(leaf):
+        if not self._is_beamable_component(leaf):
             return result
         elif not self.use_stemlets and (
             not hasattr(leaf, 'written_pitch') and
@@ -212,7 +212,7 @@ class GeneralizedBeam(Spanner):
         result = []
         if self.use_stemlets and self._is_my_last_leaf(leaf):
             result.append(r'\revert Stem.stemlet-length')
-        if not self.is_beamable_component(leaf):
+        if not self._is_beamable_component(leaf):
             return result
         return result
 
@@ -220,12 +220,12 @@ class GeneralizedBeam(Spanner):
         if id(leaf) not in leaf_ids:
             return False
         if hasattr(leaf, 'written_pitch') or hasattr(leaf, 'written_pitches'):
-            if self.is_beamable_component(leaf):
+            if self._is_beamable_component(leaf):
                 return True
             elif self.include_long_duration_notes:
                 return True
         else:
-            if self.is_beamable_component(leaf) and self.use_stemlets:
+            if self._is_beamable_component(leaf) and self.use_stemlets:
                 return True
             elif self.include_long_duration_rests:
                 return True
@@ -234,7 +234,7 @@ class GeneralizedBeam(Spanner):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def is_beamable_component(expr):
+    def _is_beamable_component(expr):
         r'''True if `expr` is beamable, otherwise false.
         '''
         from abjad.tools import scoretools
