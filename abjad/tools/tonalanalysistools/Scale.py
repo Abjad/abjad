@@ -59,15 +59,6 @@ class Scale(PitchClassSegment):
             )
         self._key_signature = key_signature
 
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        r'''Gets interpreter representation of scale.
-
-        Returns string.
-        '''
-        return '{}({})'.format(self._capital_name, self._format_string)
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -75,6 +66,22 @@ class Scale(PitchClassSegment):
         letter = str(self.key_signature.tonic).title()
         mode = self.key_signature.mode.mode_name.title()
         return '{}{}'.format(letter, mode)
+
+    @property
+    def _repr_specification(self):
+        return self._storage_format_specification
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                str(self.key_signature.tonic),
+                self.key_signature.mode.mode_name,
+                )
+            )
 
     ### PRIVATE METHODS ###
 
