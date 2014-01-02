@@ -83,8 +83,8 @@ class Hairpin(Spanner):
     def __init__(
         self,
         descriptor='<',
-        include_rests=True,
         direction=None,
+        include_rests=True,
         overrides=None,
         ):
         Spanner.__init__(

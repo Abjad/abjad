@@ -45,9 +45,9 @@ class OctavationSpanner(Spanner):
 
     def __init__(
         self, 
+        overrides=None,
         start=1, 
         stop=0,
-        overrides=None,
         ):
         Spanner.__init__(
             self, 

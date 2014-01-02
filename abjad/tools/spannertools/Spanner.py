@@ -31,7 +31,10 @@ class Spanner(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, overrides=None):
+    def __init__(
+        self, 
+        overrides=None,
+        ):
         overrides = overrides or {}
         self._components = []
         self._contiguity_constraint = 'logical voice'

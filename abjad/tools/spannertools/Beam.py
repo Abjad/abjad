@@ -58,8 +58,15 @@ class Beam(Spanner):
 
     ### INITIALIZER ###
 
-    def __init__(self, direction=None, overrides=None):
-        Spanner.__init__(self, overrides=overrides)
+    def __init__(
+        self, 
+        direction=None, 
+        overrides=None,
+        ):
+        Spanner.__init__(
+            self, 
+            overrides=overrides,
+            )
         direction = stringtools.arg_to_tridirectional_lilypond_symbol(
             direction)
         self._direction = direction

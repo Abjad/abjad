@@ -49,19 +49,21 @@ class PianoPedalSpanner(Spanner):
     def __init__(
         self, 
         kind='sustain',
-        style='mixed',
         overrides=None,
+        style='mixed',
         ):
         Spanner.__init__(
             self, 
             overrides=overrides,
             )
         if not kind in self._kinds.keys():
-            message = 'kind must be in {!r}.'.format(self._kinds.keys())
+            message = 'kind must be in {!r}.'
+            message = message.format(self._kinds.keys())
             raise ValueError(message)
         self._kind = kind
         if not style in self._styles:
-            message = 'style must be in {!r}.'.format(self._styles)
+            message = 'style must be in {!r}.'
+            message = message.format(self._styles)
             raise ValueError(message)
         self._style = style
 
@@ -74,7 +76,8 @@ class PianoPedalSpanner(Spanner):
     def _format_before_leaf(self, leaf):
         result = []
         if self._is_my_first_leaf(leaf):
-            string = r"\set Staff.pedalSustainStyle = #'{}".format(self.style)
+            string = r"\set Staff.pedalSustainStyle = #'{}"
+            string = string.format(self.style)
             result.append(string)
         return result
 

@@ -64,8 +64,8 @@ class ComplexBeam(Beam):
 
     def __init__(
         self, 
-        lone_nib_direction=False, 
         direction=None,
+        lone_nib_direction=False, 
         overrides=None,
         ):
         Beam.__init__(

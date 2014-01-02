@@ -35,8 +35,8 @@ class TrillSpanner(Spanner):
 
     def __init__(
         self, 
-        pitch=None,
         overrides=None,
+        pitch=None,
         ):
         Spanner.__init__(
             self, 

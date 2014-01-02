@@ -66,8 +66,8 @@ class Glissando(Spanner):
 
     def __init__(
         self,
-        overrides=None,
         avoid_rests=False,
+        overrides=None,
         ):
         Spanner.__init__(
             self,
