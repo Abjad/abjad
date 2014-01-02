@@ -6,38 +6,47 @@ from abjad.tools.spannertools.Spanner import Spanner
 class Beam(Spanner):
     r'''A beam.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8 g'2")
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> staff = Staff("c'8 d'8 e'8 f'8 g'2")
+            >>> contextualize(staff).auto_beaming = False
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print format(staff)
-        \new Staff {
-            c'8
-            d'8
-            e'8
-            f'8
-            g'2
-        }
+        ..  doctest::
 
-    ::
+            >>> print format(staff)
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
+                c'8
+                d'8
+                e'8
+                f'8
+                g'2
+            }
 
-        >>> beam = spannertools.Beam()
-        >>> attach(beam, staff[:4])
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> beam = Beam()
+            >>> attach(beam, staff[:2])
+            >>> beam = Beam()
+            >>> attach(beam, staff[2:4])
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print format(staff)
-        \new Staff {
-            c'8 [
-            d'8
-            e'8
-            f'8 ]
-            g'2
-        }
+        ..  doctest::
+
+            >>> print format(staff)
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
+                c'8 [
+                d'8 ]
+                e'8 [
+                f'8 ]
+                g'2
+            }
 
     '''
 

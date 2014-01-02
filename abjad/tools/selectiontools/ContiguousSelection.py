@@ -280,7 +280,7 @@ class ContiguousSelection(Selection):
         for component in start_components:
             for spanner in component._get_spanners():
                 if set(spanner[:]) & stop_components != set([]):
-                    index = spanner.index(component)
+                    index = spanner._index(component)
                     receipt.add((spanner, index))
         return receipt
 

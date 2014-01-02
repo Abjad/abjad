@@ -405,6 +405,14 @@ class Spanner(AbjadObject):
         return timespantools.Timespan(
             start_offset=start_offset, stop_offset=stop_offset)
 
+    def _index(self, component):
+#        for i, x in enumerate(self._components):
+#            if x is component:
+#                return i
+#        else:
+#            raise IndexError
+        return self._components.index(component)
+
     def _insert(self, i, component):
         r'''Not composer-safe.
         '''
@@ -545,22 +553,9 @@ class Spanner(AbjadObject):
 
     @property
     def components(self):
-        r'''Gets components in spanner.
+        r'''Selects components in spanner.
 
         Returns selection.
         '''
         from abjad.tools import selectiontools
         return selectiontools.Selection(self._components[:])
-
-    ### PUBLIC METHODS ###
-
-    def index(self, component):
-        r'''Returns index of `component` in spanner.
-
-        Returns nonnegative integer.
-        '''
-        for i, x in enumerate(self._components):
-            if x is component:
-                return i
-        else:
-            raise IndexError

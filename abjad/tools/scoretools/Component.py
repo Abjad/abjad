@@ -740,7 +740,7 @@ class Component(AbjadObject):
                             insert_component = component
                             break
                     if insert_component is not None:
-                        insert_index = spanner.index(insert_component)
+                        insert_index = spanner._index(insert_component)
                     else:
                         insert_index = len(spanner)
                     for component in reversed(components):
@@ -765,7 +765,7 @@ class Component(AbjadObject):
                 for spanner, x in receipt:
                     for component in spanner:
                         if component._get_timespan().start_offset == offset:
-                            index = spanner.index(component)
+                            index = spanner._index(component)
                             break
                     else:
                         message = 'no component in spanner at offset.'
