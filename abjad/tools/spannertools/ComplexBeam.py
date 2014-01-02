@@ -73,8 +73,7 @@ class ComplexBeam(Beam):
             direction=direction,
             overrides=overrides,
             )
-        # TODO: replace with Left and Right ordinal constants
-        assert isinstance(lone, bool) or lone in (Left, Right, 'both')
+        assert lone in (Left, Right, True, False)
         self._lone = lone
 
     ### PRIVATE METHODS ###
@@ -203,14 +202,14 @@ class ComplexBeam(Beam):
         elif self.lone == Right:
             left = 0
             right = current_flag_count
-        elif self.lone in ('both', True):
+        elif self.lone is True:
             left = current_flag_count
             right = current_flag_count
-        elif self.lone in ('neither', False):
+        elif self.lone is False:
             left = None
             right = None
         else:
-            message = 'long must be left, right or both: {!r}.'
+            message = 'long must be left, right, true or false: {!r}.'
             message = message.format(lone)
             raise ValueError(message)
         return left, right
@@ -265,29 +264,7 @@ class ComplexBeam(Beam):
 
         ..  container:: example
 
-            Beams lone leaf and forces nibs to both left and right:
-
-            ::
-
-                >>> measure = Measure((1, 16), "c'16")
-                >>> beam = spannertools.ComplexBeam(lone='both')
-                >>> attach(beam, measure)
-                >>> show(measure) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print format(measure)
-                {
-                    \time 1/16
-                    \set stemLeftBeamCount = #2
-                    \set stemRightBeamCount = #2
-                    c'16 [ ]
-                }
-
-        ..  container:: example
-
-            Beams lone leaf and accepts LilyPond default nibs at 
-            both left and right:
+            Beams lone leaf and forces nibs both left and right:
 
             ::
 
@@ -325,7 +302,7 @@ class ComplexBeam(Beam):
                     c'16
                 }
 
-        Set to ``Left``, ``Right``, ``'both'``, true or false.
+        Set to left, right, true or false.
 
         Ignores this setting when spanner contains more than one leaf.
         '''
