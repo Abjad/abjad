@@ -388,3 +388,32 @@ class Scale(PitchClassSegment):
         pitch_class = self[scale_index]
         pitch_class = pitch_class.apply_accidental(scale_degree.accidental)
         return pitch_class
+
+    def voice_scale_degrees_in_open_position(self, scale_degrees):
+        r'''Voice `scale_degrees` in open position:
+
+        ::
+
+            >>> scale = tonalanalysistools.Scale('c', 'major')
+            >>> scale_degrees = [1, 3, ('flat', 5), 7, ('sharp', 9)]
+            >>> pitches = scale.voice_scale_degrees_in_open_position(
+            ...     scale_degrees)
+            >>> pitches
+            PitchSegment(["c'", "e'", "gf'", "b'", "ds''"])
+
+        Return pitch segment.
+        '''
+        from abjad.tools import pitchtools
+        from abjad.tools import tonalanalysistools
+        scale_degrees = [tonalanalysistools.ScaleDegree(x)
+            for x in scale_degrees]
+        pitch_classes = [self.scale_degree_to_named_pitch_class(x)
+            for x in scale_degrees]
+        pitches = [pitchtools.NamedPitch(pitch_classes[0])]
+        for pitch_class in pitch_classes[1:]:
+            pitch = pitchtools.NamedPitch(pitch_class)
+            while pitch < pitches[-1]:
+                pitch += 12
+            pitches.append(pitch)
+        pitches = pitchtools.PitchSegment(pitches)
+        return pitches
