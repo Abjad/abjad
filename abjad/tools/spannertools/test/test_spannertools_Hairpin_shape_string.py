@@ -8,7 +8,6 @@ def test_spannertools_Hairpin_shape_string_01():
     hairpin = Hairpin(descriptor='<')
     attach(hairpin, staff[:])
 
-    assert hairpin.shape_string == '<'
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -21,18 +20,15 @@ def test_spannertools_Hairpin_shape_string_01():
         '''
         )
 
-    hairpin.shape_string = '>'
+    assert hairpin.shape_string == '<'
 
-    r'''
-    \new Staff {
-        c'8 \>
-        d'8
-        e'8
-        f'8 \!
-    }
-    '''
 
-    assert hairpin.shape_string == '>'
+def test_foo_02():
+
+    staff = Staff("c'8 d'8 e'8 f'8")
+    hairpin = Hairpin(descriptor='>')
+    attach(hairpin, staff[:])
+
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -44,3 +40,5 @@ def test_spannertools_Hairpin_shape_string_01():
         }
         '''
         )
+
+    assert hairpin.shape_string == '>'

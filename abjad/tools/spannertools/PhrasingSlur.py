@@ -42,20 +42,21 @@ class PhrasingSlur(Spanner):
             self,
             overrides=overrides,
             )
-        self.direction = direction
+        direction = stringtools.arg_to_tridirectional_lilypond_symbol(
+            direction)
+        self._direction = direction
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
-        new.direction = self.direction
+        new._direction = self.direction
 
     def _format_right_of_leaf(self, leaf):
         result = []
         if self._is_my_first_leaf(leaf):
             if self.direction is not None:
-                result.append(r'{} \('.format(
-                    stringtools.arg_to_tridirectional_lilypond_symbol(
-                        self.direction)))
+                string = r'{} \('.format(self.direction)
+                result.append(string)
             else:
                 result.append(r'\(')
         if self._is_my_last_leaf(leaf):
@@ -66,13 +67,8 @@ class PhrasingSlur(Spanner):
 
     @property
     def direction(self):
-        r'''Gets and sets direction of phrasing slur.
+        r'''Gets direction of phrasing slur.
 
         Returns up or down.
         '''
         return self._direction
-
-    @direction.setter
-    def direction(self, arg):
-        self._direction = \
-            stringtools.arg_to_tridirectional_lilypond_symbol(arg)

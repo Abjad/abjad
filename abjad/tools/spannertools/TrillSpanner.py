@@ -35,18 +35,23 @@ class TrillSpanner(Spanner):
 
     def __init__(
         self, 
+        pitch=None,
         overrides=None,
         ):
         Spanner.__init__(
             self, 
             overrides=overrides,
             )
-        self._pitch = None
+        if pitch is None:
+            self._pitch = pitch
+        else:
+            pitch = pitchtools.NamedPitch(pitch)
+            self._pitch = pitch
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
-        new.written_pitch = self.written_pitch
+        new._pitch = self.pitch
 
     def _format_before_leaf(self, leaf):
         result = []
@@ -69,18 +74,21 @@ class TrillSpanner(Spanner):
 
     @property
     def pitch(self):
-        r'''Gets and sets optional pitch of trill spanner.
+        r'''Gets optional pitch of trill spanner.
+
+        ..  container:: example
 
             ::
 
-                >>> t = Staff("c'8 d'8 e'8 f'8")
-                >>> trill = spannertools.TrillSpanner()
-                >>> attach(trill, t[:2])
-                >>> trill.pitch = NamedPitch('cs', 4)
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> pitch = NamedPitch('C#4')
+                >>> trill = spannertools.TrillSpanner(pitch=pitch)
+                >>> attach(trill, staff[:2])
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> print format(t)
+                >>> print format(staff)
                 \new Staff {
                     \pitchedTrill c'8 \startTrillSpan cs'
                     d'8 \stopTrillSpan
@@ -92,22 +100,12 @@ class TrillSpanner(Spanner):
         '''
         return self._pitch
 
-    @pitch.setter
-    def pitch(self, expr):
-        if expr is None:
-            self._pitch = expr
-        else:
-            pitch = pitchtools.NamedPitch(expr)
-            self._pitch = pitch
-
     @property
     def written_pitch(self):
-        r'''Gets and sets written pitch of trill spanner.
+        r'''Gets written pitch of trill spanner.
 
-        Returns pitch.
+        Defined equal to `pitch`.
+
+        Returns named pitch.
         '''
         return self.pitch
-
-    @written_pitch.setter
-    def written_pitch(self, arg):
-        self.pitch = arg

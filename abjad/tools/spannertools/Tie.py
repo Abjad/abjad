@@ -42,20 +42,21 @@ class Tie(Spanner):
             self,
             overrides=overrides,
             )
-        self.direction = direction
+        direction = stringtools.arg_to_tridirectional_lilypond_symbol(
+            direction)
+        self._direction = direction
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
-        new.direction = self.direction
+        new._direction = self.direction
 
     def _format_right_of_leaf(self, leaf):
         result = []
         if not self._is_my_last_leaf(leaf):
             if self.direction is not None:
-                result.append('{} ~'.format(
-                    stringtools.arg_to_tridirectional_lilypond_symbol(
-                    self.direction)))
+                string = '{} ~'.format(self.direction)
+                result.append(string)
             else:
                 result.append('~')
         return result
@@ -64,13 +65,8 @@ class Tie(Spanner):
 
     @property
     def direction(self):
-        r'''Gets and sets direction of tie.
+        r'''Gets direction of tie.
 
         Returns up, down or none.
         '''
         return self._direction
-
-    @direction.setter
-    def direction(self, arg):
-        self._direction = \
-            stringtools.arg_to_tridirectional_lilypond_symbol(arg)

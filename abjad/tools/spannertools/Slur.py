@@ -42,21 +42,22 @@ class Slur(Spanner):
             self,
             overrides=overrides,
             )
-        self.direction = direction
+        direction = stringtools.arg_to_tridirectional_lilypond_symbol(
+            direction)
+        self._direction = direction
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
-        new.direction = self.direction
+        new._direction = self.direction
 
     def _format_right_of_leaf(self, leaf):
         result = []
         if self._is_my_first_leaf(leaf):
             direction = self.direction
             if direction is not None:
-                result.append('{} ('.format(
-                    stringtools.arg_to_tridirectional_lilypond_symbol(
-                        direction)))
+                string = '{} ('.format(self.direction)
+                result.append(string)
             else:
                 result.append('(')
         if self._is_my_last_leaf(leaf):
@@ -67,13 +68,8 @@ class Slur(Spanner):
 
     @property
     def direction(self):
-        r'''Gets and sets direction of slur.
+        r'''Gets direction of slur.
 
         Returns up, down or none.
         '''
         return self._direction
-
-    @direction.setter
-    def direction(self, arg):
-        self._direction = \
-            stringtools.arg_to_tridirectional_lilypond_symbol(arg)

@@ -53,93 +53,76 @@ class OctavationSpanner(Spanner):
             self, 
             overrides=overrides,
             )
-        self.start = start
-        self.stop = stop
+        assert isinstance(start, (int, type(None)))
+        self._start = start
+        assert isinstance(stop, (int, type(None)))
+        self._stop = stop
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
-        new.start = self.start
-        new.stop = self.stop
+        new._start = self.start
+        new._stop = self.stop
 
     def _format_after_leaf(self, leaf):
         result = []
         result.extend(Spanner._format_after_leaf(self, leaf))
         if self._is_my_last_leaf(leaf):
-            result.append(r'\ottava #%s' % self.stop)
+            string = r'\ottava #{}'.format(self.stop)
+            result.append(string)
         return result
 
     def _format_before_leaf(self, leaf):
         result = []
         result.extend(Spanner._format_before_leaf(self, leaf))
         if self._is_my_first_leaf(leaf):
-            result.append(r'\ottava #%s' % self.start)
+            string = r'\ottava #{}'.format(self.start)
+            result.append(string)
         return result
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def start(self):
-        r'''Get octavation start:
+        r'''Gets octavation start.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.OctavationSpanner(start=1)
-            >>> attach(spanner, staff[:])
-            >>> spanner.start
-            1
+            ::
 
-        Set octavation start:
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = spannertools.OctavationSpanner(start=1)
+                >>> attach(spanner, staff[:])
+                >>> show(staff) # doctest: +SKIP
 
-        ::
+            ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.OctavationSpanner(start=1)
-            >>> attach(spanner, staff[:])
-            >>> spanner.start
-            1
+                >>> spanner.start
+                1
 
-        Set integer.
+        Returns integer or none.
         '''
         return self._start
 
-    @start.setter
-    def start(self, arg):
-        assert isinstance(arg, (int, type(None)))
-        self._start = arg
-
     @property
     def stop(self):
-        r'''Get octavation stop:
+        r'''Gets octavation stop.
 
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.OctavationSpanner(start=2, stop=1)
             >>> attach(spanner, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
             >>> spanner.stop
             1
 
-        Set octavation stop:
-
-        ::
-
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.OctavationSpanner(start=2, stop=1)
-            >>> attach(spanner, staff[:])
-            >>> spanner.stop = 0
-            >>> spanner.stop
-            0
-
-        Set integer.
+        Returns integer or none.
         '''
         return self._stop
-
-    @stop.setter
-    def stop(self, arg):
-        assert isinstance(arg, (int, type(None)))
-        self._stop = arg
 
     ### PUBLIC METHODS ###
 
@@ -190,8 +173,10 @@ class OctavationSpanner(Spanner):
         max_numbered_diatonic_pitch = max_pitch.diatonic_pitch_number
         if ottava_breakpoint is not None:
             if ottava_breakpoint <= max_numbered_diatonic_pitch:
-                self.start = 1
+                # TODO: do not adjust in place
+                #       create & attach new spanner instead
+                self._start = 1
                 if quindecisima_breakpoint is not None:
                     if quindecisima_breakpoint <= \
                         max_numbered_diatonic_pitch:
-                        self.start = 2
+                        self._start = 2

@@ -42,7 +42,8 @@ class DynamicTextSpanner(Spanner):
             self, 
             overrides=overrides,
             )
-        self.dynamic = dynamic
+        assert isinstance(dynamic, str)
+        self._dynamic = dynamic
 
     ### PRIVATE METHODS ###
 
@@ -52,39 +53,30 @@ class DynamicTextSpanner(Spanner):
     def _format_right_of_leaf(self, leaf):
         result = []
         if self._is_my_first_leaf(leaf):
-            result.append(r'\{}'.format(self.dynamic))
+            string = r'\{}'.format(self.dynamic)
+            result.append(string)
         return result
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def dynamic(self):
-        r'''Get dynamic string:
+        r'''Gets dynamic string.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.DynamicTextSpanner(dynamic='f')
-            >>> attach(spanner, staff[:])
-            >>> spanner.dynamic
-            'f'
+            ::
 
-        Set dynamic string:
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = spannertools.DynamicTextSpanner(dynamic='f')
+                >>> attach(spanner, staff[:])
+                >>> show(staff) # doctest: +SKIP
 
-        ::
+            ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.DynamicTextSpanner(dynamic='f')
-            >>> attach(spanner, staff[:])
-            >>> spanner.dynamic = 'p'
-            >>> spanner.dynamic
-            'p'
+                >>> spanner.dynamic
+                'f'
 
-        Set string.
+        Returns string.
         '''
         return self._dynamic
-
-    @dynamic.setter
-    def dynamic(self, arg):
-        assert isinstance(arg, str)
-        self._dynamic = arg

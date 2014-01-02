@@ -73,9 +73,9 @@ class Hairpin(Spanner):
     __slots__ = (
         '_direction',
         '_include_rests',
-        '_shape',
-        '_start',
-        '_stop',
+        '_shape_string',
+        '_start_dynamic_string',
+        '_stop_dynamic_string',
         )
 
     ### INITIALIZER ###
@@ -91,23 +91,26 @@ class Hairpin(Spanner):
             self,
             overrides=overrides,
             )
-        self.direction = direction
-        self.include_rests = include_rests
+        direction = stringtools.arg_to_tridirectional_lilypond_symbol(
+            direction)
+        self._direction = direction
+        self._include_rests = include_rests
         start_dynamic_string, shape_string, stop_dynamic_string = \
             self._parse_descriptor(descriptor)
-        self.shape_string = shape_string
-        self.start_dynamic_string = start_dynamic_string
-        self.stop_dynamic_string = stop_dynamic_string
+        assert shape_string in ('<', '>')
+        self._shape_string = shape_string
+        self._start_dynamic_string = start_dynamic_string
+        self._stop_dynamic_string = stop_dynamic_string
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
         #Spanner._copy_keyword_args(self, new)
-        new.direction = self.direction
-        new.include_rests = self.include_rests
-        new.shape_string = self.shape_string
-        new.start_dynamic_string = self.start_dynamic_string
-        new.stop_dynamic_string = self.stop_dynamic_string
+        new._direction = self.direction
+        new._include_rests = self.include_rests
+        new._shape_string = self.shape_string
+        new._start_dynamic_string = self.start_dynamic_string
+        new._stop_dynamic_string = self.stop_dynamic_string
 
     def _format_right_of_leaf(self, leaf):
         result = []
@@ -149,14 +152,24 @@ class Hairpin(Spanner):
                             result.append('\\!')
         else:
             if self._is_my_first(leaf, (scoretools.Chord, scoretools.Note)):
-                result.append('%s\\%s' % (direction_string, self.shape_string))
+                string = '{}\\{}'.format(
+                    direction_string, 
+                    self.shape_string,
+                    )
+                result.append(string)
                 if self.start_dynamic_string:
-                    result.append('%s\\%s' % (
-                        direction_string, self.start_dynamic_string))
+                    string = '{}\\{}'.format(
+                        direction_string, 
+                        self.start_dynamic_string,
+                        )
+                    result.append(string)
             if self._is_my_last(leaf, (scoretools.Chord, scoretools.Note)):
                 if self.stop_dynamic_string:
-                    result.append('%s\\%s' % (
-                        direction_string, self.stop_dynamic_string))
+                    string = '{}\\{}'.format(
+                        direction_string, 
+                        self.stop_dynamic_string,
+                        )
+                    result.append(string)
                 else:
                     effective_dynamic = leaf._get_effective(
                         indicatortools.Dynamic)
@@ -201,153 +214,101 @@ class Hairpin(Spanner):
 
     @property
     def direction(self):
-        r'''Gets and sets direction of hairpin.
+        r'''Gets direction of hairpin.
 
         Returns up or down.
         '''
         return self._direction
 
-    @direction.setter
-    def direction(self, arg):
-        self._direction = \
-            stringtools.arg_to_tridirectional_lilypond_symbol(arg)
-
     @property
     def include_rests(self):
-        r'''Gets and sets boolean setting to include rests in hairpin.
+        r'''Gets boolean setting to include rests in hairpin.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> hairpin = spannertools.Hairpin(
-            ...     descriptor='p < f',
-            ...     include_rests=True,
-            ...     )
-            >>> attach(hairpin, staff[:])
-            >>> hairpin.include_rests
-            True
+            ::
 
-        Sets include-rests setting:
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> hairpin = spannertools.Hairpin(
+                ...     descriptor='p < f',
+                ...     include_rests=True,
+                ...     )
+                >>> attach(hairpin, staff[:])
+                >>> show(staff) # doctest: +SKIP
 
-        ::
+            ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> hairpin = spannertools.Hairpin(
-            ...     descriptor='p < f',
-            ...     include_rests=True,
-            ...     )
-            >>> attach(hairpin, staff[:])
-            >>> hairpin.include_rests = False
-            >>> hairpin.include_rests
-            False
+                >>> hairpin.include_rests
+                True
 
         Returns boolean.
         '''
         return self._include_rests
 
-    @include_rests.setter
-    def include_rests(self, arg):
-        self._include_rests = arg
-
     @property
     def shape_string(self):
-        r'''Gets and sets hairpin shape string.
+        r'''Gets hairpin shape string.
 
-        Gets hairpin shape string:
+        ..  container:: example
 
-        ::
+            ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-            >>> attach(hairpin, staff[:])
-            >>> hairpin.shape_string
-            '<'
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+                >>> attach(hairpin, staff[:])
+                >>> show(staff) # doctest: +SKIP
 
-        Sets hairpin shape string:
+            ::
 
-        ::
-
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-            >>> attach(hairpin, staff[:])
-            >>> hairpin.shape_string = '>'
-            >>> hairpin.shape_string
-            '>'
+                >>> hairpin.shape_string
+                '<'
 
         Returns string.
         '''
-        return self._shape
-
-    @shape_string.setter
-    def shape_string(self, arg):
-        assert arg in ('<', '>')
-        self._shape = arg
+        return self._shape_string
 
     @property
     def start_dynamic_string(self):
-        r'''Gets and sets start dynamic string of hairpin.
+        r'''Gets start dynamic string of hairpin.
 
-        Gets start dynamic string of hairpin:
+        ..  container:: example
 
-        ::
+            ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-            >>> attach(hairpin, staff[:])
-            >>> hairpin.start_dynamic_string
-            'p'
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+                >>> attach(hairpin, staff[:])
+                >>> show(staff) # doctest: +SKIP
 
-        Sets start dynamic string of hairpin:
+            ::
 
-        ::
-
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-            >>> attach(hairpin, staff[:])
-            >>> hairpin.start_dynamic_string = 'mf'
-            >>> hairpin.start_dynamic_string
-            'mf'
+                >>> hairpin.start_dynamic_string
+                'p'
 
         Returns string.
         '''
-        return self._start
-
-    @start_dynamic_string.setter
-    def start_dynamic_string(self, arg):
-        self._start = arg
+        return self._start_dynamic_string
 
     @property
     def stop_dynamic_string(self):
-        r'''Gets and sets stop dynamic string of hairpin.
+        r'''Gets stop dynamic string of hairpin.
 
-        Gets stop dynamic string of hairpin:
+        ..  container:: example
 
-        ::
+            ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-            >>> attach(hairpin, staff[:])
-            >>> hairpin.stop_dynamic_string
-            'f'
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+                >>> attach(hairpin, staff[:])
 
-        Sets stop dynamic string of hairpin:
+            ::
 
-        ::
-
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-            >>> attach(hairpin, staff[:])
-            >>> hairpin.stop_dynamic_string = 'mf'
-            >>> hairpin.stop_dynamic_string
-            'mf'
+                >>> hairpin.stop_dynamic_string
+                'f'
 
         Returns string.
         '''
-        return self._stop
-
-    @stop_dynamic_string.setter
-    def stop_dynamic_string(self, arg):
-        self._stop = arg
+        return self._stop_dynamic_string
 
     ### PUBLIC METHODS ###
 

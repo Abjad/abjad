@@ -73,7 +73,8 @@ class Glissando(Spanner):
             self,
             overrides=overrides,
             )
-        self._avoid_rests = bool(avoid_rests)
+        avoid_rests = bool(avoid_rests)
+        self._avoid_rests = avoid_rests
 
     ### PRIVATE METHODS ###
 
@@ -84,49 +85,34 @@ class Glissando(Spanner):
         result = []
         if self.avoid_rests:
             if not isinstance(leaf, (scoretools.Chord, scoretools.Note)):
-                result.append(
-                    r"\once \override NoteColumn #'glissando-skip = ##t")
-                result.append(r"\once \override Rest #'transparent = ##t")
+                string = r"\once \override NoteColumn #'glissando-skip = ##t"
+                result.append(string)
+                string = r"\once \override Rest #'transparent = ##t"
+                result.append(string)
         return result
 
     def _format_right_of_leaf(self, leaf):
         r'''Spanner contribution to right of leaf.
         '''
         result = []
-        if not self._is_my_last_leaf(leaf) and \
-            isinstance(leaf, (scoretools.Chord, scoretools.Note)):
-            result.append(r'\glissando')
+        if not self._is_my_last_leaf(leaf):
+            if isinstance(leaf, (scoretools.Chord, scoretools.Note)):
+                result.append(r'\glissando')
         return result
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def avoid_rests(self):
-        r'''Gets and sets rest avoidance.
+        r'''Gets rest avoidance.
 
         ..  container:: example
-
-            Gets property:
 
             ::
 
                 >>> glissando.avoid_rests
                 True
 
-        ..  container:: example
-
-            Sets property:
-
-            ::
-
-                >>> glissando.avoid_rests = False
-                >>> glissando.avoid_rests
-                False
-
         Returns boolean.
         '''
         return self._avoid_rests
-
-    @avoid_rests.setter
-    def avoid_rests(self, expr):
-        self._avoid_rests = bool(expr)

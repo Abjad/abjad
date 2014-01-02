@@ -52,21 +52,32 @@ class StaffLinesSpanner(Spanner):
             self, 
             overrides=overrides,
             )
-        self.lines = lines
+        if isinstance(lines, int) and 0 < lines:
+            self._lines = lines
+        elif isinstance(lines, (tuple, list)) \
+            and all(isinstance(x, (int, float)) for x in lines):
+            self._lines = tuple(lines)
+        else:
+            messsage = 'must be integer or a sequence of integers: {!r}.'
+            message = message.format(lines)
+            raise ValueError(message)
+        self._lines = lines
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
-        new.lines = self.lines
+        new._lines = self.lines
 
     def _format_after_leaf(self, leaf):
         result = []
         if self._is_my_last_leaf(leaf):
             result.append(r'\stopStaff')
             if isinstance(self.lines, int):
-                result.append(r"\revert Staff.StaffSymbol #'line-count")
+                string = r"\revert Staff.StaffSymbol #'line-count"
+                result.append(string)
             else:
-                result.append(r"\revert Staff.StaffSymbol #'line-positions")
+                string = r"\revert Staff.StaffSymbol #'line-positions"
+                result.append(string)
             result.append(r'\startStaff')
         return result
 
@@ -75,13 +86,13 @@ class StaffLinesSpanner(Spanner):
         if self._is_my_first_leaf(leaf):
             result.append(r'\stopStaff')
             if isinstance(self.lines, int):
-                result.append(
-                    r"\override Staff.StaffSymbol #'line-count = #%s" % \
-                    self.lines)
+                string = r"\override Staff.StaffSymbol #'line-count = #{}"
+                string = string.format(self.lines)
+                result.append(string)
             else:
-                result.append(
-                    r"\override Staff.StaffSymbol #'line-positions = %s" % \
-                    format(schemetools.SchemeVector(*self.lines)))
+                string = r"\override Staff.StaffSymbol #'line-positions = {}"
+                string = string.format(schemetools.SchemeVector(*self.lines))
+                result.append(string)
             result.append(r'\startStaff')
         return result
 
@@ -89,38 +100,20 @@ class StaffLinesSpanner(Spanner):
 
     @property
     def lines(self):
-        r'''Get staff lines spanner line count:
+        r'''Gets staff lines spanner line count.
 
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.StaffLinesSpanner(lines=1)
             >>> attach(spanner, staff[:2])
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
             >>> spanner.lines
             1
 
-        Set staff lines spanner line count:
-
-        ::
-
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.StaffLinesSpanner(lines=1)
-            >>> attach(spanner, staff[:2])
-            >>> spanner.lines = 2
-            >>> spanner.lines
-            2
-
-        Set integer.
+        Returns nonnegative integer.
         '''
         return self._lines
-
-    @lines.setter
-    def lines(self, arg):
-        if isinstance(arg, int) and 0 < arg:
-            self._lines = arg
-        elif isinstance(arg, (tuple, list)) \
-            and all(isinstance(x, (int, float)) for x in arg):
-            self._lines = tuple(arg)
-        else:
-            messsage = 'must be int or a sequence of ints: {!r}.'.format(arg)
-            raise ValueError(message)

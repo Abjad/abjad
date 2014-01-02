@@ -38,24 +38,32 @@ class PianoPedalSpanner(Spanner):
         'corda': (r'\unaCorda', r'\treCorde'),
         }
 
-    _styles = [
+    _styles = (
         'text',
         'bracket',
         'mixed',
-        ]
+        )
 
     ### INITIALIZER ###
 
     def __init__(
         self, 
+        kind='sustain',
+        style='mixed',
         overrides=None,
         ):
         Spanner.__init__(
             self, 
             overrides=overrides,
             )
-        self.kind = 'sustain'
-        self.style = 'mixed'
+        if not kind in self._kinds.keys():
+            message = 'kind must be in {!r}.'.format(self._kinds.keys())
+            raise ValueError(message)
+        self._kind = kind
+        if not style in self._styles:
+            message = 'style must be in {!r}.'.format(self._styles)
+            raise ValueError(message)
+        self._style = style
 
     ### PRIVATE METHODS ###
 
@@ -66,7 +74,8 @@ class PianoPedalSpanner(Spanner):
     def _format_before_leaf(self, leaf):
         result = []
         if self._is_my_first_leaf(leaf):
-            result.append(r"\set Staff.pedalSustainStyle = #'%s" % self.style)
+            string = r"\set Staff.pedalSustainStyle = #'{}".format(self.style)
+            result.append(string)
         return result
 
     def _format_right_of_leaf(self, leaf):
@@ -81,66 +90,48 @@ class PianoPedalSpanner(Spanner):
 
     @property
     def kind(self):
-        r'''Get piano pedal spanner kind:
+        r'''Gets piano pedal spanner kind.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.PianoPedalSpanner()
-            >>> attach(spanner, staff[:])
-            >>> spanner.kind
-            'sustain'
+            ::
 
-        Set piano pedal spanner kind:
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = spannertools.PianoPedalSpanner()
+                >>> attach(spanner, staff[:])
+                >>> show(staff) # doctest: +SKIP
 
-        ::
+            ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.PianoPedalSpanner()
-            >>> attach(spanner, staff[:])
-            >>> spanner.kind = 'sostenuto'
-            >>> spanner.kind
-            'sostenuto'
+                >>> spanner.kind
+                'sustain'
 
-        Acceptable values ``'sustain'``, ``'sostenuto'``, ``'corda'``.
+        Set to ``'sustain'``, ``'sostenuto'`` or ``'corda'``.
+
+        Returns string.
         '''
         return self._kind
 
-    @kind.setter
-    def kind(self, arg):
-        if not arg in self._kinds.keys():
-            raise ValueError("Type must be in %s" % self._kinds.keys())
-        self._kind = arg
-
     @property
     def style(self):
-        r'''Get piano pedal spanner style:
+        r'''Gets piano pedal spanner style.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.PianoPedalSpanner()
-            >>> attach(spanner, staff[:])
-            >>> spanner.style
-            'mixed'
+            ::
 
-        Set piano pedal spanner style:
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = spannertools.PianoPedalSpanner()
+                >>> attach(spanner, staff[:])
+                >>> show(staff) # doctest: +SKIP
 
-        ::
+            ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.PianoPedalSpanner()
-            >>> attach(spanner, staff[:])
-            >>> spanner.style = 'bracket'
-            >>> spanner.style
-            'bracket'
+                >>> spanner.style
+                'mixed'
 
-        Acceptable values ``'mixed'``, ``'bracket'``, ``'text'``.
+        Set to ``'mixed'``, ``'bracket'`` or ``'text'``.
+
+        Returns string.
         '''
         return self._style
-
-    @style.setter
-    def style(self, arg):
-        if not arg in self._styles:
-            raise ValueError("Style must be in %s" % self._styles)
-        self._style = arg

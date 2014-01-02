@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_spannertools_StaffLinesSpanner_format_01():
-    r'''StaffLinesSpanner with int argument overrides StaffSymbol's line-count property.
+    r'''StaffLinesSpanner with int argument overrides StaffSymbol's 
+    line-count property.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
@@ -69,13 +70,10 @@ def test_spannertools_StaffLinesSpanner_format_02():
 
 
 def test_spannertools_StaffLinesSpanner_format_03():
-    r'''StaffLinesSpanner's lines property can be changed.
-    '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    spanner = spannertools.StaffLinesSpanner(lines=1)
+    spanner = spannertools.StaffLinesSpanner(lines=[-1.5, 0, 1.5])
     attach(spanner, staff[1:3])
-    spanner.lines = [-1.5, 0, 1.5]
 
     assert systemtools.TestManager.compare(
         staff,
