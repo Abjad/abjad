@@ -63,7 +63,7 @@ class DuratedComplexBeam(ComplexBeam):
         self, 
         durations=None, 
         span=1, 
-        lone=False, 
+        lone_nib_direction=False, 
         direction=None,
         overrides=None,
         ):
@@ -71,6 +71,7 @@ class DuratedComplexBeam(ComplexBeam):
             self, 
             direction=direction,
             overrides=overrides,
+            lone_nib_direction=lone_nib_direction,
             )
         if durations is None:
             self._durations = None
@@ -86,7 +87,6 @@ class DuratedComplexBeam(ComplexBeam):
             message = 'durations must be list of durations or none.'
             raise ValueError(message)
         self._durations = durations
-        self._lone = lone
         assert isinstance(span, (int, type(None)))
         self._span = span
 

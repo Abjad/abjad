@@ -63,15 +63,15 @@ class MeasuredComplexBeam(ComplexBeam):
 
     def __init__(
         self, 
-        lone=False, 
+        lone_nib_direction=False, 
         span=1, 
         direction=None,
         overrides=None,
         ):
         ComplexBeam.__init__(
             self, 
-            lone=lone, 
             direction=direction,
+            lone_nib_direction=lone_nib_direction, 
             overrides=overrides,
             )
         assert isinstance(span, (int, type(None)))
