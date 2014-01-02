@@ -28,52 +28,52 @@ class ScaleDegree(AbjadObject):
         )
 
     _numeral_to_number_name = {
-        1: 'one', 
-        2: 'two', 
-        3: 'three', 
-        4: 'four', 
-        5: 'five', 
+        1: 'one',
+        2: 'two',
+        3: 'three',
+        4: 'four',
+        5: 'five',
         6: 'six',
-        7: 'seven', 
-        8: 'eight', 
-        9: 'nine', 
-        10: 'ten', 
+        7: 'seven',
+        8: 'eight',
+        9: 'nine',
+        10: 'ten',
         11: 'eleven',
-        12: 'twelve', 
-        13: 'thirteen', 
-        14: 'fourteen', 
+        12: 'twelve',
+        13: 'thirteen',
+        14: 'fourteen',
         15: 'fifteen',
-    }
+        }
 
     _roman_numeral_string_to_scale_degree_number = {
-        'I': 1,  
-        'II': 2, 
+        'I': 1,
+        'II': 2,
         'III': 3,
-        'IV': 4, 
-        'V': 5,  
-        'VI': 6, 
+        'IV': 4,
+        'V': 5,
+        'VI': 6,
         'VII': 7,
-    }
+        }
 
     _scale_degree_number_to_roman_numeral_string = {
-        1: 'I',  
-        2: 'II', 
+        1: 'I',
+        2: 'II',
         3: 'III',
-        4: 'IV', 
-        5: 'V',  
-        6: 'VI', 
+        4: 'IV',
+        5: 'V',
+        6: 'VI',
         7: 'VII',
-    }
+        }
 
     _scale_degree_number_to_scale_degree_name = {
-        1: 'tonic', 
-        2: 'superdominant', 
+        1: 'tonic',
+        2: 'superdominant',
         3: 'mediant',
-        4: 'subdominant', 
-        5: 'dominant', 
-        6: 'submediant', 
+        4: 'subdominant',
+        5: 'dominant',
+        6: 'submediant',
         7: 'leading tone',
-    }
+        }
 
     _symbolic_string_regex = re.compile(r'([#|b]*)([i|I|v|V|\d]+)')
 
@@ -159,7 +159,7 @@ class ScaleDegree(AbjadObject):
 
     @property
     def _acceptable_numbers(self):
-        return (1, 2, 3, 4, 5, 6, 7)
+        return tuple(range(1, 16))
 
     @property
     def _compact_format_string(self):

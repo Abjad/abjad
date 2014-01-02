@@ -367,11 +367,24 @@ class Scale(PitchClassSegment):
     def scale_degree_to_named_pitch_class(self, *args):
         r'''Changes scale degree to named pitch-class.
 
+        ::
+
+            >>> scale = tonalanalysistools.Scale('c', 'major')
+            >>> scale_degree = tonalanalysistools.ScaleDegree('flat', 5)
+            >>> scale.scale_degree_to_named_pitch_class(scale_degree)
+            NamedPitchClass('gf')
+
+        ::
+
+            >>> scale_degree = tonalanalysistools.ScaleDegree('flat', 9)
+            >>> scale.scale_degree_to_named_pitch_class(scale_degree)
+            NamedPitchClass('df')
+
         Returns named pitch-class.
         '''
         from abjad.tools import tonalanalysistools
         scale_degree = tonalanalysistools.ScaleDegree(*args)
-        scale_index = scale_degree.number - 1
+        scale_index = (scale_degree.number - 1) % 7
         pitch_class = self[scale_index]
         pitch_class = pitch_class.apply_accidental(scale_degree.accidental)
         return pitch_class
