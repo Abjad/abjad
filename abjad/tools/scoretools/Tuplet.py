@@ -394,7 +394,7 @@ class Tuplet(Container):
 
     @property
     def is_augmentation(self):
-        r'''True when tuplet multiplier is greater than ``1``.
+        r'''Is true when tuplet multiplier is greater than ``1``.
         Otherwise false.
 
         ..  container:: example
@@ -448,7 +448,7 @@ class Tuplet(Container):
 
     @property
     def is_diminution(self):
-        r'''True when tuplet multiplier is less than ``1``.
+        r'''Is true when tuplet multiplier is less than ``1``.
         Otherwise false.
 
         ..  container:: example
@@ -590,7 +590,7 @@ class Tuplet(Container):
 
     @property
     def is_trivial(self):
-        r'''True when tuplet multiplier is equal to ``1``.
+        r'''Is true when tuplet multiplier is equal to ``1``.
         Otherwise false:
 
         ::

@@ -264,7 +264,7 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def is_first_in_row(self):
-        r'''True when pitch array cell is first in row. Otherwise false.
+        r'''Is true when pitch array cell is first in row. Otherwise false.
 
         Returns boolean.
         '''
@@ -275,7 +275,7 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def is_last_in_row(self):
-        r'''True when pitch array cell is last in row. Otherwise false.
+        r'''Is true when pitch array cell is last in row. Otherwise false.
 
         Returns boolean.
         '''
@@ -423,7 +423,7 @@ class PitchArrayCell(AbjadObject):
     ### PUBLIC METHODS ###
 
     def matches_cell(self, arg):
-        r'''True when pitch array cell matches `arg`. Otherwise false.
+        r'''Is true when pitch array cell matches `arg`. Otherwise false.
 
         Returns boolean.
         '''

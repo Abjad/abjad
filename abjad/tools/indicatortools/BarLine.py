@@ -57,7 +57,7 @@ class BarLine(AbjadObject):
         return type(self)(self.abbreviation)
 
     def __eq__(self, arg):
-        r'''True when `arg` is a bar line with an abbreviation equal
+        r'''Is true when `arg` is a bar line with an abbreviation equal
         to that of this bar line. Otherwise false.
 
         Returns boolean.

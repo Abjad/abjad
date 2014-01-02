@@ -50,7 +50,7 @@ class TimespanScopedSingleContextDivisionSetExpression(
 
     @property
     def truncate(self):
-        r'''True when timespan-delimited single-context division set expression
+        r'''Is true when timespan-delimited single-context division set expression
         should truncate at segment boundaries.
         Otherwise false.
 

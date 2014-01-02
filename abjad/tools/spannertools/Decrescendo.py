@@ -79,18 +79,20 @@ class Decrescendo(Hairpin):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
     def __init__(
         self, 
-        components=None, 
         include_rests=True, 
         direction=None,
         overrides=None,
         ):
         Hairpin.__init__(
             self, 
-            components=components, 
             descriptor='>', 
             include_rests=include_rests,
             direction=direction,

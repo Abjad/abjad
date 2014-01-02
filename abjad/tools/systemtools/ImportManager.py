@@ -114,7 +114,8 @@ class ImportManager(object):
                         submod = '.'.join((package_path, element))
                         namespace[element] = __import__(submod, fromlist=['*'])
             else:
-                message = 'neither a directory or file: {!r}'.format(element)
+                message = 'neither a directory or file: {!r}'
+                message = message.format(element)
                 raise ImportError(message)
         ImportManager._import_contents_of_public_packages_in_path_into_namespace(
             path, namespace)

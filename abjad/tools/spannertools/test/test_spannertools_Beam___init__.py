@@ -49,9 +49,8 @@ def test_spannertools_Beam___init___03():
         '''
         )
 
-    assert len(beam.components) == 1
+    assert len(beam) == 1
     assert isinstance(beam.components[0], Container)
-    assert len(beam.leaves) == 0
 
 
 def test_spannertools_Beam___init___04():
@@ -78,9 +77,8 @@ def test_spannertools_Beam___init___04():
         '''
         )
 
-    assert len(beam.components) == 1
+    assert len(beam) == 1
     assert isinstance(beam.components[0], Container)
-    assert len(beam.leaves) == 8
 
 
 def test_spannertools_Beam___init___05():
@@ -111,10 +109,9 @@ def test_spannertools_Beam___init___05():
         '''
         )
 
-    assert len(beam.components) == 2
+    assert len(beam) == 2
     assert type(beam.components[0]) is Container
     assert type(beam.components[1]) is Container
-    assert len(beam.leaves) == 8
 
 
 def test_spannertools_Beam___init___06():
@@ -141,11 +138,10 @@ def test_spannertools_Beam___init___06():
         '''
         )
 
-    assert len(beam.components) == 3
+    assert len(beam) == 3
     assert type(beam.components[0]) is Container
     assert type(beam.components[1]) is Note
     assert type(staff[2]) is Note
-    assert len(beam.leaves) == 6
 
 
 def test_spannertools_Beam___init___07():
@@ -172,9 +168,8 @@ def test_spannertools_Beam___init___07():
         '''
         )
 
-    assert len(beam.components) == 6
+    assert len(beam) == 6
     assert all(type(x) is Note for x in beam.components)
-    assert len(beam.leaves) == 6
 
 
 def test_spannertools_Beam___init___08():
@@ -199,9 +194,8 @@ def test_spannertools_Beam___init___08():
         '''
         )
 
-    assert len(beam.components) == 3
+    assert len(beam) == 3
     assert all(type(x) is Container for x in beam.components)
-    assert len(beam.leaves) == 0
 
 
 def test_spannertools_Beam___init___09():
@@ -231,10 +225,9 @@ def test_spannertools_Beam___init___09():
         '''
         )
 
-    assert len(beam.components) == 3
+    assert len(beam) == 3
     for x in beam.components:
         assert isinstance(x, Container)
-    assert len(beam.leaves) == 4
 
 
 def test_spannertools_Beam___init___10():
@@ -269,32 +262,22 @@ def test_spannertools_Beam___init___10():
         '''
         )
 
-    assert len(beam.components) == 2
-    assert len(beam.leaves) == 8
+    assert len(beam) == 2
 
     detach(beam, voice)
     beam = Beam()
     attach(beam, [voice[0], voice[1]])
-    assert len(beam.components) == 2
-    assert len(beam.leaves) == 8
+    assert len(beam) == 2
 
     detach(beam, voice)
     beam = Beam()
     attach(beam, [voice[0][0], voice[1][0]])
-    assert len(beam.components) == 2
-    assert len(beam.leaves) == 8
+    assert len(beam) == 2
 
     detach(beam, voice)
     beam = Beam()
     attach(beam, [voice[0], voice[1][0]])
-    assert len(beam.components) == 2
-    assert len(beam.leaves) == 8
-
-    detach(beam, voice)
-    beam = Beam()
-    attach(beam, [voice[0][0], voice[1]])
-    assert len(beam.components) == 2
-    assert len(beam.leaves) == 8
+    assert len(beam) == 2
 
 
 def test_spannertools_Beam___init___11():
@@ -309,20 +292,17 @@ def test_spannertools_Beam___init___11():
 
     beam = Beam()
     attach(beam, [voice[0], voice[1]])
-    assert len(beam.components) == 2
-    assert len(beam.leaves) == 8
+    assert len(beam) == 2
     detach(beam, voice[0])
 
     beam = Beam()
     attach(beam, [voice[0][0], voice[1]])
-    assert len(beam.components) == 2
-    assert len(beam.leaves) == 8
+    assert len(beam) == 2
     detach(beam, voice[0][0])
 
     beam = Beam()
     attach(beam, [voice[0][0][0], voice[1]])
-    assert len(beam.components) == 2
-    assert len(beam.leaves) == 8
+    assert len(beam) == 2
     detach(beam, voice[0][0][0])
 
 
@@ -351,8 +331,7 @@ def test_spannertools_Beam___init___12():
         '''
         )
 
-    assert len(beam.components) == 3
-    assert len(beam.leaves) == 5
+    assert len(beam) == 3
     detach(beam, voice[0])
 
 def test_spannertools_Beam___init___13():
@@ -382,8 +361,7 @@ def test_spannertools_Beam___init___13():
         '''
         )
 
-    assert len(beam.components) == 3
-    assert len(beam.leaves) == 7
+    assert len(beam) == 3
     detach(beam, voice[0])
 
 
@@ -410,14 +388,12 @@ def test_spannertools_Beam___init___14():
 
     beam = Beam()
     attach(beam, tuplet)
-    assert len(beam.components) == 1
-    assert len(beam.leaves) == 5
+    assert len(beam) == 1
     detach(beam, tuplet)
 
     beam = Beam()
     attach(beam, tuplet[:])
-    assert len(beam.components) == 3
-    assert len(beam.leaves) == 5
+    assert len(beam) == 3
 
 
 def test_spannertools_Beam___init___15():
@@ -488,8 +464,7 @@ def test_spannertools_Beam___init___16():
         '''
         )
 
-    assert len(beam.components) == 8
-    assert len(beam.leaves) == 8
+    assert len(beam) == 8
 
 
 def test_spannertools_Beam___init___17():
@@ -566,8 +541,7 @@ def test_spannertools_Beam___init___17():
         '''
         )
 
-    assert len(beam.components) == 8
-    assert len(beam.leaves) == 8
+    assert len(beam) == 8
 
 
 def test_spannertools_Beam___init___18():
@@ -633,8 +607,7 @@ def test_spannertools_Beam___init___18():
         '''
         )
 
-    assert len(beam.components) == 8
-    assert len(beam.leaves) == 8
+    assert len(beam) == 8
 
 
 def test_spannertools_Beam___init___19():
@@ -646,9 +619,8 @@ def test_spannertools_Beam___init___19():
     beam = Beam()
     attach(beam, container)
 
-    assert len(beam.components) == 1
+    assert len(beam) == 1
     assert beam.components[0] is container
-    assert len(beam.leaves) == 0
     assert systemtools.TestManager.compare(
         container,
         r'''
@@ -704,7 +676,7 @@ def test_spannertools_Beam___init___20():
         '''
         )
 
-    assert len(beam.components) == 4
+    assert len(beam) == 4
 
 
 def test_spannertools_Beam___init___21():
@@ -837,8 +809,7 @@ def test_spannertools_Beam___init___22():
         '''
         )
 
-    assert len(beam.components) == 12
-    assert len(beam.leaves) == 12
+    assert len(beam) == 12
 
 
 def test_spannertools_Beam___init___23():

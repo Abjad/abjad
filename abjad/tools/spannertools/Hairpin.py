@@ -70,11 +70,18 @@ class Hairpin(Spanner):
         '>',
         )
 
+    __slots__ = (
+        '_direction',
+        '_include_rests',
+        '_shape',
+        '_start',
+        '_stop',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
         self,
-        components=None,
         descriptor='<',
         include_rests=True,
         direction=None,
@@ -82,7 +89,6 @@ class Hairpin(Spanner):
         ):
         Spanner.__init__(
             self,
-            components=components,
             overrides=overrides,
             )
         self.direction = direction
@@ -347,7 +353,7 @@ class Hairpin(Spanner):
 
     @staticmethod
     def is_hairpin_shape_string(arg):
-        r'''True when `arg` is a hairpin shape string. Otherwise false:
+        r'''Is true when `arg` is a hairpin shape string. Otherwise false:
 
         ::
 
@@ -360,7 +366,7 @@ class Hairpin(Spanner):
 
     @staticmethod
     def is_hairpin_token(arg):
-        r'''True when `arg` is a hairpin token. Otherwise false:
+        r'''Is true when `arg` is a hairpin token. Otherwise false:
 
         ::
 

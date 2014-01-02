@@ -49,11 +49,13 @@ def greatest_multiple_less_equal(m, n):
     '''
 
     if not isinstance(m, numbers.Number):
-        message = '{!r} must be number.'.format(m)
+        message = 'must be number: {!r}.'
+        message = message.format(m)
         raise TypeError(message)
 
     if not isinstance(n, numbers.Number):
-        message = '{!r} must be number.'.format(n)
+        message = 'must be number: {!r}.'
+        message = message.format(n)
         raise TypeError(message)
 
     return m * int(math.floor(n / float(m)))

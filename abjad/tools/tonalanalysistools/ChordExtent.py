@@ -46,7 +46,7 @@ class ChordExtent(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        r'''True when `arg` is a chord extent with number equal to that of this
+        r'''Is true when `arg` is a chord extent with number equal to that of this
         chord extent. Otherwise false.
 
         Returns boolean.
@@ -57,7 +57,7 @@ class ChordExtent(AbjadObject):
         return False
 
     def __ne__(self, arg):
-        r'''True when chord extent does not equal `arg`. Otherwise false.
+        r'''Is true when chord extent does not equal `arg`. Otherwise false.
 
         Returns boolean.
         '''

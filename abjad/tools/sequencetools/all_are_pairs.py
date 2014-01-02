@@ -2,14 +2,14 @@
 
 
 def all_are_pairs(expr):
-    r'''True when `expr` is a sequence whose members are all sequences of length 2:
+    r'''Is true when `expr` is a sequence whose members are all sequences of length 2:
 
     ::
 
         >>> sequencetools.all_are_pairs([(1, 2), (3, 4), (5, 6), (7, 8)])
         True
 
-    True when `expr` is an empty sequence:
+    Is true when `expr` is an empty sequence:
 
     ::
 

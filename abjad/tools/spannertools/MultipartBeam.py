@@ -33,17 +33,19 @@ class MultipartBeam(Beam):
     Avoids large-duration notes.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
     def __init__(
         self, 
-        components=None, 
         direction=None,
         overrides=None,
         ):
         Beam.__init__(
             self, 
-            components, 
             direction=direction,
             overrides=overrides,
             )
@@ -57,12 +59,12 @@ class MultipartBeam(Beam):
         if self.direction is not None:
             direction_string = '%s ' % self.direction
         if self.is_beamable_component(leaf):
-            if 1 < len(self.leaves):
+            if 1 < len(self._leaves):
                 previous = leaf._get_leaf(-1)
-                if id(previous) not in [id(x) for x in self.leaves]:
+                if id(previous) not in [id(x) for x in self._leaves]:
                     previous = None
                 next = leaf._get_leaf(1)
-                if id(next) not in [id(x) for x in self.leaves]:
+                if id(next) not in [id(x) for x in self._leaves]:
                     next = None
                 if self._is_my_first_leaf(leaf):
                     if next is not None:

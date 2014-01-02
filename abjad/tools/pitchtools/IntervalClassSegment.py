@@ -89,7 +89,7 @@ class IntervalClassSegment(Segment):
 
     @property
     def is_tertian(self):
-        r'''True when all diatonic interval-classes in segment are tertian.
+        r'''Is true when all diatonic interval-classes in segment are tertian.
         Otherwise false:
 
         ::

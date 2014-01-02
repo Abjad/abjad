@@ -148,7 +148,7 @@ class PersistenceAgent(abctools.AbjadObject):
         Returns none.
         '''
         from abjad.tools import systemtools
-        assert '_storage_format' in dir(self._client)
+        assert '_storage_format_specification' in dir(self._client)
         result = ['# -*- encoding: utf-8 -*-']
         storage_pieces = format(self._client, 'storage').splitlines()
         pattern = re.compile(r'\b[a-z]+tools\b')

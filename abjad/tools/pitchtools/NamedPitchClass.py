@@ -127,7 +127,7 @@ class NamedPitchClass(PitchClass):
         return type(self)(self)
 
     def __eq__(self, expr):
-        r'''True when `expr` can be coerced to a named pitch-class with 
+        r'''Is true when `expr` can be coerced to a named pitch-class with 
         pitch-class name equal to that of this named pitch-class.
 
         ::
@@ -194,7 +194,8 @@ class NamedPitchClass(PitchClass):
         Returns named inversion-equivalent interval-class.
         '''
         if not isinstance(arg, type(self)):
-            message = 'must be named pitch-class: {!r}.'.format(arg)
+            message = 'must be named pitch-class: {!r}.'
+            message = message.format(arg)
             raise TypeError(message)
         from abjad.tools import pitchtools
         pitch_1 = pitchtools.NamedPitch(self, 4)
@@ -308,8 +309,8 @@ class NamedPitchClass(PitchClass):
         '''
         return type(self)(self.pitch_class_number * n)
 
-    def transpose(self, n):
-        r'''Transposes named pitch-class by named interval `n`.
+    def transpose(self, expr):
+        r'''Transposes named pitch-class by named interval `expr`.
 
         ::
 
@@ -320,7 +321,7 @@ class NamedPitchClass(PitchClass):
         Returns new named pitch-class.
         '''
         from abjad.tools import pitchtools
-        named_interval = pitchtools.NamedInterval(n)
+        named_interval = pitchtools.NamedInterval(expr)
         pitch = pitchtools.NamedPitch(self, 4)
         transposed_pitch = \
             pitchtools.transpose_pitch_carrier_by_interval(

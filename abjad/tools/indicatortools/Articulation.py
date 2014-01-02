@@ -114,7 +114,7 @@ class Articulation(AbjadObject):
         return type(self)(self.name, self.direction)
 
     def __eq__(self, expr):
-        r'''True when `expr` is an articulation with name and direction 
+        r'''Is true when `expr` is an articulation with name and direction 
         equal to that of this articulation. Otherwise false.
 
         Returns boolean.

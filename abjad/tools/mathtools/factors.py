@@ -34,7 +34,8 @@ def factors(n):
     from abjad.tools import mathtools
 
     if not mathtools.is_positive_integer(n):
-        message = '{!r} must be positive integer.'.format(n)
+        message = 'must be positive integer: {!r}.'
+        message = message.format(n)
         raise TypeError(message)
 
     d = 2

@@ -44,7 +44,7 @@ class LogicalTie(ContiguousSelection):
                     del(parent[index])
             first = self[0]
             for spanner in first._get_spanners(spannertools.Tie):
-                spanner.detach()
+                spanner._sever_all_components()
             #detach(spannertools.Tie, first)
         elif new_written_duration.has_power_of_two_denominator:
             durations = scoretools.make_notes(0, [new_written_duration])
@@ -60,7 +60,7 @@ class LogicalTie(ContiguousSelection):
                         del(parent[index])
             elif len(self) < len(durations):
                 for spanner in self[0]._get_spanners(spannertools.Tie):
-                    spanner.detach()
+                    spanner._sever_all_components()
                 #detach(spannertools.Tie, self[0])
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
@@ -104,7 +104,7 @@ class LogicalTie(ContiguousSelection):
 
     @property
     def all_leaves_are_in_same_parent(self):
-        r'''True when all leaves in logical tie are in same parent.
+        r'''Is true when all leaves in logical tie are in same parent.
 
         Returns boolean.
         '''
@@ -122,7 +122,7 @@ class LogicalTie(ContiguousSelection):
 
     @property
     def is_pitched(self):
-        r'''True when logical tie head is a note or chord.
+        r'''Is true when logical tie head is a note or chord.
 
         Returns boolean.
         '''
@@ -132,7 +132,7 @@ class LogicalTie(ContiguousSelection):
 
     @property
     def is_trivial(self):
-        r'''True when length of logical tie is less than or equal to ``1``.
+        r'''Is true when length of logical tie is less than or equal to ``1``.
 
         Returns boolean.
         '''
@@ -148,7 +148,7 @@ class LogicalTie(ContiguousSelection):
         prototype = (spannertools.Tie,)
         try:
             tie_spanner = self[0]._get_spanner(prototype=prototype)
-            return tie_spanner.leaves
+            return tie_spanner._leaves
         except MissingSpannerError:
             assert self.is_trivial
             return (self[0], )
@@ -368,7 +368,7 @@ class LogicalTie(ContiguousSelection):
 
         # untie tuplet
         for spanner in tuplet._get_spanners(spannertools.Tie):
-            spanner.detach()
+            spanner._sever_all_components()
         #detach(spannertools.Tie, tuplet)
 
         # return tuplet

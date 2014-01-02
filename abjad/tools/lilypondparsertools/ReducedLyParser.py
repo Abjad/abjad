@@ -544,7 +544,7 @@ class ReducedLyParser(abctools.Parser):
                         if isinstance(x, spannertools.Tie)
                         ]
                     if previous_tie:
-                        previous_tie[0].append(next_leaf)
+                        previous_tie[0]._append(next_leaf)
                     else:
                         tie = spannertools.Tie()
                         attach(tie, (leaf, next_leaf))
@@ -561,7 +561,7 @@ class ReducedLyParser(abctools.Parser):
                             spanner_references[current_class] = current_class()
                     for _ in stopping:
                         if spanner_references[current_class] is not None:
-                            spanner_references[current_class].append(leaf)
+                            spanner_references[current_class]._append(leaf)
                             spanner_references[current_class] = None
 
                 elif current_class is spannertools.Slur:
@@ -570,7 +570,7 @@ class ReducedLyParser(abctools.Parser):
                     # but they can stop on a leaf and start on the same leaf.
                     for _ in stopping:
                         if spanner_references[current_class] is not None:
-                            spanner_references[current_class].append(leaf)
+                            spanner_references[current_class]._append(leaf)
                             spanner_references[current_class] = None
                         else:
                             message = 'can not end: {}.'
@@ -587,12 +587,13 @@ class ReducedLyParser(abctools.Parser):
             # append leaf to all tracked spanners,
             for current_class, instance in spanner_references.iteritems():
                 if instance is not None:
-                    instance.append(leaf)
+                    instance._append(leaf)
 
         # check for unterminated spanners
         for current_class, instance in spanner_references.iteritems():
             if instance is not None:
-                message = 'unterminated {}.'.format(current_class.__name__)
+                message = 'unterminated {}.'
+                message = message.format(current_class.__name__)
                 raise Exception(message)
 
     def _cleanup(self, parsed):

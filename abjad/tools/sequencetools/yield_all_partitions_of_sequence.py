@@ -26,7 +26,8 @@ def yield_all_partitions_of_sequence(sequence):
 
     # TODO: remove type restriction 
     if not isinstance(sequence, list):
-        message = '{!r} must be list.'.format(sequence)
+        message = '{!r} must be list.'
+        message = message.format(sequence)
         raise TypeError(message)
 
     partitions = []

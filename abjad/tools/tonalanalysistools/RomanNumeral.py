@@ -63,7 +63,8 @@ class RomanNumeral(AbjadObject):
             scale_degree, quality, extent, inversion, suspension = \
                 self._initialize_by_symbolic_string('I')
         else:
-            message = 'can not initialize tonal function: {!r}.'.format(args)
+            message = 'can not initialize tonal function: {!r}.'
+            message = message.format(args)
             raise ValueError(message)
         self._scale_degree = scale_degree
         self._quality = quality
@@ -74,7 +75,7 @@ class RomanNumeral(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        r'''True when `arg` is a roman numeral with scale degree, quality,
+        r'''Is true when `arg` is a roman numeral with scale degree, quality,
         extent, inversion and suspension equal to those of this roman numeral.
         Otherwise false.
 
@@ -90,7 +91,7 @@ class RomanNumeral(AbjadObject):
         return False
 
     def __ne__(self, arg):
-        r'''True when roman numeral does not equal `arg`. Otherwise false.
+        r'''Is true when roman numeral does not equal `arg`. Otherwise false.
 
         Returns boolean.
         '''

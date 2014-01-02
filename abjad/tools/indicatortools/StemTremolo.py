@@ -75,7 +75,7 @@ class StemTremolo(AbjadObject):
         return new
 
     def __eq__(self, expr):
-        r'''True when `expr` is a stem tremolo with equal tremolo flags.
+        r'''Is true when `expr` is a stem tremolo with equal tremolo flags.
         Otherwise false:
 
         ::

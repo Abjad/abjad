@@ -101,7 +101,7 @@ class ScaleDegree(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        r'''True when `arg` is a scale degree with number and accidental equal
+        r'''Is true when `arg` is a scale degree with number and accidental equal
         to those of this scale degree.
 
         ::
@@ -125,7 +125,7 @@ class ScaleDegree(AbjadObject):
         return False
 
     def __ne__(self, arg):
-        r'''True when `arg` does not equal scale degree. Otherwise false.
+        r'''Is true when `arg` does not equal scale degree. Otherwise false.
 
         Returns boolean.
         '''

@@ -192,7 +192,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         return self._fraction_with_denominator(fraction, max(denominators))
 
     def __eq__(self, expr):
-        r'''True when `expr` equals nonreduced fraction.
+        r'''Is true when `expr` equals nonreduced fraction.
 
         ::
 
@@ -223,7 +223,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         return str(self)
 
     def __ge__(self, expr):
-        r'''True when nonreduced fraction is greater than or equal to `expr`.
+        r'''Is true when nonreduced fraction is greater than or equal to `expr`.
 
         ::
 
@@ -235,7 +235,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         return self.reduce() >= expr
 
     def __gt__(self, expr):
-        r'''True when nonreduced fraction is greater than `expr`.
+        r'''Is true when nonreduced fraction is greater than `expr`.
 
         ::
 
@@ -247,7 +247,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         return self.reduce() > expr
 
     def __le__(self, expr):
-        r'''True when nonreduced fraction is less than or equal to `expr`.
+        r'''Is true when nonreduced fraction is less than or equal to `expr`.
 
         ::
 
@@ -259,7 +259,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         return self.reduce() <= expr
 
     def __lt__(self, expr):
-        r'''True when nonreduced fraction is less than `expr`.
+        r'''Is true when nonreduced fraction is less than `expr`.
 
         ::
 
@@ -288,7 +288,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         return self._fraction_with_denominator(fraction, max(denominators))
 
     def __ne__(self, expr):
-        r'''True when `expr` does not equal nonreduced fraction.
+        r'''Is true when `expr` does not equal nonreduced fraction.
 
         ::
 

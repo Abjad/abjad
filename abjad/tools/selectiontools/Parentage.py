@@ -136,7 +136,7 @@ class Parentage(SimultaneousSelection):
 
     @property
     def is_orphan(self):
-        r'''True when component has no parent.
+        r'''Is true when component has no parent.
         Otherwise false.
 
         Returns boolean.

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import scoretools
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
@@ -11,6 +11,7 @@ def _rewrite_meter(
     components,
     meter,
     boundary_depth=None,
+    initial_offset=None,
     maximum_dot_count=None,
     ):
     from abjad.tools import metertools
@@ -50,7 +51,7 @@ def _rewrite_meter(
         #print '\tTESTING BOUNDARY CROSSINGS'
         if boundary_depth is None:
             return False
-        if not any(logical_tie_start_offset < x < logical_tie_stop_offset 
+        if not any(logical_tie_start_offset < x < logical_tie_stop_offset
             for x in boundary_offsets):
             return False
         if logical_tie_start_offset in boundary_offsets and \
@@ -99,7 +100,7 @@ def _rewrite_meter(
                     recurse(logical_tie, depth=depth)
             else:
                 #print ''
-                recurse(logical_tie, depth=depth+1)
+                recurse(logical_tie, depth=depth + 1)
 
         elif is_boundary_crossing_logical_tie(
             logical_tie_start_offset,
@@ -138,18 +139,23 @@ def _rewrite_meter(
         metertools.Meter):
         meter = \
             metertools.Meter(meter)
-    assert sum([x._preprolated_duration for x in components]) == \
-        meter.preprolated_duration
+    #assert sum([x._preprolated_duration for x in components]) == \
+    #    meter.preprolated_duration
     if boundary_depth is not None:
         boundary_depth = int(boundary_depth)
     if maximum_dot_count is not None:
         maximum_dot_count = int(maximum_dot_count)
         assert 0 <= maximum_dot_count
 
+    if initial_offset is None:
+        initial_offset = durationtools.Offset(0)
+    initial_offset = durationtools.Offset(initial_offset)
+
     # Build offset inventory, adjusted for initial offset and prolation.
     first_offset = components[0]._get_timespan().start_offset
+    first_offset -= initial_offset
     prolation = components[0]._get_parentage(include_self=False).prolation
-    offset_inventory= []
+    offset_inventory = []
     for offsets in meter.depthwise_offset_inventory:
         offsets = [(x * prolation) + first_offset for x in offsets]
         offset_inventory.append(tuple(offsets))
@@ -182,7 +188,7 @@ def _rewrite_meter(
                 boundary_depth=sub_boundary_depth,
                 maximum_dot_count=maximum_dot_count,
                 )
-   
+
 
 def _iterate_topmost_masked_logical_ties_rest_groups_and_containers_in_expr(
     expr):
@@ -279,10 +285,7 @@ def _iterate_topmost_masked_logical_ties_rest_groups_and_containers_in_expr(
     Returns generator.
     '''
     from abjad.tools import scoretools
-    from abjad.tools import scoretools
-    from abjad.tools import scoretools
     from abjad.tools import selectiontools
-    from abjad.tools import scoretools
     from abjad.tools import spannertools
 
     last_tie_spanner = None
@@ -319,7 +322,8 @@ def _iterate_topmost_masked_logical_ties_rest_groups_and_containers_in_expr(
             yield x
 
         else:
-            message = 'unhandled component: {!r}.'.format(x)
+            message = 'unhandled component: {!r}.'
+            message = message.format(x)
             raise Exception(message)
     if current_leaf_group is not None:
         yield selectiontools.LogicalTie(current_leaf_group)

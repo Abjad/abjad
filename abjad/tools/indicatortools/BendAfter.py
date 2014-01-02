@@ -50,7 +50,7 @@ class BendAfter(AbjadObject):
         return new
 
     def __eq__(self, expr):
-        r'''True when `expr` is a bend after with bend amount equal to bend
+        r'''Is true when `expr` is a bend after with bend amount equal to bend
         after. Otherwise false.
 
         Returns boolean.

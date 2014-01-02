@@ -141,7 +141,7 @@ class Dynamic(AbjadObject):
         return type(self)(self._name)
 
     def __eq__(self, arg):
-        r'''True when `arg` is a dynamic with a name equal to the name of this
+        r'''Is true when `arg` is a dynamic with a name equal to the name of this
         dynamic. Otherwise false.
 
         Returns boolean.
@@ -224,7 +224,7 @@ class Dynamic(AbjadObject):
 
     @staticmethod
     def is_dynamic_name(arg):
-        r'''True when `arg` is dynamic name. Otherwise false.
+        r'''Is true when `arg` is dynamic name. Otherwise false.
 
         ::
 

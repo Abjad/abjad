@@ -40,7 +40,8 @@ def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True
     assert isinstance(overhang, bool)
 
     if not _check_sum_slices_at_specification(pairs):
-        message = 'must be list of nonoverlapping pairs: {!r}'.format(pairs)
+        message = 'must be list of nonoverlapping pairs: {!r}'
+        message = message.format(pairs)
         raise ValueError(message)
 
     start_indices = set([pair[0] for pair in pairs])

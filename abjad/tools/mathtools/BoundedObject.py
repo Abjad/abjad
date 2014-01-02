@@ -16,7 +16,7 @@ class BoundedObject(AbjadObject):
 
     @property
     def is_closed(self):
-        r'''True when left closed and right closed. Otherwise false.
+        r'''Is true when left closed and right closed. Otherwise false.
 
         Returns boolean.
         '''
@@ -24,7 +24,7 @@ class BoundedObject(AbjadObject):
 
     @property
     def is_half_closed(self):
-        r'''True when left closed xor right closed.
+        r'''Is true when left closed xor right closed.
 
         Returns boolean.
         '''
@@ -32,7 +32,7 @@ class BoundedObject(AbjadObject):
 
     @property
     def is_half_open(self):
-        r'''True when left and right open are not the same. Otherwise false.
+        r'''Is true when left and right open are not the same. Otherwise false.
 
         Return boolean.
         '''
@@ -40,7 +40,7 @@ class BoundedObject(AbjadObject):
 
     @property
     def is_left_closed(self):
-        r'''True when left closed. Otherwise false.
+        r'''Is true when left closed. Otherwise false.
 
         Returns boolean.
         '''
@@ -53,7 +53,7 @@ class BoundedObject(AbjadObject):
 
     @property
     def is_left_open(self):
-        r'''True when left open. Otherwise false.
+        r'''Is true when left open. Otherwise false.
 
         Returns boolean.
         '''
@@ -66,7 +66,7 @@ class BoundedObject(AbjadObject):
 
     @property
     def is_open(self):
-        r'''True when left or right open. Otherwise false.
+        r'''Is true when left or right open. Otherwise false.
 
         Returns boolean.
         '''
@@ -74,7 +74,7 @@ class BoundedObject(AbjadObject):
 
     @property
     def is_right_closed(self):
-        r'''True when right closed. Otherwise false.
+        r'''Is true when right closed. Otherwise false.
 
         Returns boolean.
         '''
@@ -87,7 +87,7 @@ class BoundedObject(AbjadObject):
 
     @property
     def is_right_open(self):
-        r'''True when right open. Otherwise false.
+        r'''Is true when right open. Otherwise false.
 
         Returns boolean.
         '''

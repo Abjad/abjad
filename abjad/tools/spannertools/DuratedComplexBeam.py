@@ -49,8 +49,18 @@ class DuratedComplexBeam(ComplexBeam):
     Returns durated complex beam spanner.
     '''
 
-    def __init__(self, 
-        components=None, 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_durations',
+        '_lone',
+        '_span',
+        )
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self, 
         durations=None, 
         span=1, 
         lone=False, 
@@ -59,7 +69,6 @@ class DuratedComplexBeam(ComplexBeam):
         ):
         ComplexBeam.__init__(
             self, 
-            components=components, 
             direction=direction,
             overrides=overrides,
             )
@@ -117,7 +126,7 @@ class DuratedComplexBeam(ComplexBeam):
 
     def _fracture_left(self, i):
         self, left, right = ComplexBeam._fracture_left(self, i)
-        weights = [left.get_duration(), right.get_duration()]
+        weights = [left._get_duration(), right._get_duration()]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
             self.durations, weights, cyclic=False, overhang=False)
@@ -128,7 +137,7 @@ class DuratedComplexBeam(ComplexBeam):
 
     def _fracture_right(self, i):
         self, left, right = ComplexBeam._fracture_right(self, i)
-        weights = [left.get_duration(), right.get_duration()]
+        weights = [left._get_duration(), right._get_duration()]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
             self.durations, weights, cyclic=False, overhang=False)

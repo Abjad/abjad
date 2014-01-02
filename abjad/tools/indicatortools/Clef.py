@@ -98,7 +98,8 @@ class Clef(AbjadObject):
         elif isinstance(name, type(self)):
             self._name = name.name
         else:
-            message = 'can not initialize clef from {}.'.format(name)
+            message = 'can not initialize clef: {!r}.'
+            message = message.format(name)
             raise TypeError(message)
         middle_c_position = self._calculate_middle_c_position(self._name)
         self._middle_c_position = middle_c_position
@@ -134,7 +135,7 @@ class Clef(AbjadObject):
         return type(self)(self.name)
 
     def __eq__(self, arg):
-        r'''True when clef name of `arg` equal clef name of clef.
+        r'''Is true when clef name of `arg` equal clef name of clef.
         Otherwise false.
 
         ::
@@ -179,7 +180,7 @@ class Clef(AbjadObject):
         return superclass.__format__(format_specification=format_specification)
 
     def __ne__(self, arg):
-        r'''True when clef of `arg` does not equal clef name of clef.
+        r'''Is true when clef of `arg` does not equal clef name of clef.
         Otherwise false.
 
         ::

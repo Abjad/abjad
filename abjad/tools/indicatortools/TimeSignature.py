@@ -108,7 +108,7 @@ class TimeSignature(AbjadObject):
             )
 
     def __eq__(self, arg):
-        r'''True when `arg` is a time signature with numerator and denominator
+        r'''Is true when `arg` is a time signature with numerator and denominator
         equal to this time signature. Also true when `arg` is a tuple with
         first and second elements equal to numerator and denominator of this
         time signature. Otherwise false.
@@ -143,7 +143,7 @@ class TimeSignature(AbjadObject):
         return str(self)
 
     def __ge__(self, arg):
-        r'''True when duration of time signature is greater than or equal to
+        r'''Is true when duration of time signature is greater than or equal to
         duration of `arg`. Otherwise false.
 
         Returns boolean.
@@ -154,7 +154,7 @@ class TimeSignature(AbjadObject):
             raise TypeError
 
     def __gt__(self, arg):
-        r'''True when duration of time signature is greater than duration of 
+        r'''Is true when duration of time signature is greater than duration of 
         `arg`. Otherwise false.
 
         Returns boolean.
@@ -165,7 +165,7 @@ class TimeSignature(AbjadObject):
             raise TypeError
 
     def __le__(self, arg):
-        r'''True when duration of time signature is less than duration of
+        r'''Is true when duration of time signature is less than duration of
         `arg`. Otherwise false.
 
         Returns boolean.
@@ -176,7 +176,7 @@ class TimeSignature(AbjadObject):
             raise TypeError
 
     def __lt__(self, arg):
-        r'''True when duration of time signature is less than duration of
+        r'''Is true when duration of time signature is less than duration of
         `arg`. Otherwise false.
 
         Returns booelan.
@@ -258,7 +258,7 @@ class TimeSignature(AbjadObject):
 
     @property
     def has_non_power_of_two_denominator(self):
-        r'''True when time signature has non-power-of-two denominator.
+        r'''Is true when time signature has non-power-of-two denominator.
 
         ::
 

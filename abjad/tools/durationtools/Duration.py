@@ -223,7 +223,7 @@ class Duration(AbjadObject, fractions.Fraction):
         return truncated, residue
 
     def __eq__(self, arg):
-        r'''True when duration equals `arg`.
+        r'''Is true when duration equals `arg`.
         Otherwise false.
 
         Returns boolean.
@@ -244,7 +244,7 @@ class Duration(AbjadObject, fractions.Fraction):
         return str(self)
 
     def __ge__(self, arg):
-        r'''True when duration is greater than or equal to `arg`.
+        r'''Is true when duration is greater than or equal to `arg`.
         Otherwise false.
 
         Returns boolean.
@@ -252,7 +252,7 @@ class Duration(AbjadObject, fractions.Fraction):
         return fractions.Fraction.__ge__(self, arg)
 
     def __gt__(self, arg):
-        r'''True when duration is greater than `arg`.
+        r'''Is true when duration is greater than `arg`.
         Otherwise false.
 
         Returns boolean.
@@ -260,7 +260,7 @@ class Duration(AbjadObject, fractions.Fraction):
         return fractions.Fraction.__gt__(self, arg)
 
     def __le__(self, arg):
-        r'''True when duration is less than or equal to `arg`.
+        r'''Is true when duration is less than or equal to `arg`.
         Otherwise false.
 
         Returns boolean.
@@ -268,7 +268,7 @@ class Duration(AbjadObject, fractions.Fraction):
         return fractions.Fraction.__le__(self, arg)
 
     def __lt__(self, arg):
-        r'''True when duration is less than `arg`.
+        r'''Is true when duration is less than `arg`.
         Otherwise false.
 
         Returns boolean.
@@ -313,7 +313,7 @@ class Duration(AbjadObject, fractions.Fraction):
         return result
 
     def __ne__(self, arg):
-        r'''True when duration does not equal `arg`.
+        r'''Is true when duration does not equal `arg`.
         Otherwise false.
 
         Returns boolean.
@@ -733,7 +733,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @property
     def has_power_of_two_denominator(self):
-        r'''True when duration is an integer power of ``2``.
+        r'''Is true when duration is an integer power of ``2``.
         Otherwise false:
 
         ::
@@ -802,7 +802,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @property
     def is_assignable(self):
-        r'''True when duration is assignable. Otherwise false:
+        r'''Is true when duration is assignable. Otherwise false:
 
         ::
 
@@ -977,7 +977,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @staticmethod
     def is_token(expr):
-        '''True when `expr` correctly initializes a duration.
+        '''Is true when `expr` correctly initializes a duration.
         Otherwise false:
 
         ::

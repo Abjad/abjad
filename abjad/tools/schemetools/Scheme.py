@@ -82,7 +82,7 @@ class Scheme(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is a scheme object with a value equal to that of
+        r'''Is true when `expr` is a scheme object with a value equal to that of
         this scheme object. Otherwise false.
 
         Returns boolean.
@@ -222,7 +222,7 @@ class Scheme(AbjadObject):
 
     @property
     def force_quotes(self):
-        r'''True when quotes should be forced in output. Otherwise false.
+        r'''Is true when quotes should be forced in output. Otherwise false.
 
         Returns boolean.
         '''

@@ -43,7 +43,7 @@ class NonreducedRatio(AbjadObject, tuple):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is a nonreduced ratio with numerator and
+        r'''Is true when `expr` is a nonreduced ratio with numerator and
         denominator equal to those of this nonreduced ratio. Otherwise false.
 
         Returns boolean.

@@ -1,5 +1,6 @@
-from experimental import *
+# -*- encoding: utf-8 -*-
 import pytest
+from experimental import *
 
 
 pytest.skip('FIXME')
@@ -26,7 +27,8 @@ def test_SegmentSpecification__look_up_division_set_expression_from_past_between
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_past_between_voices_02():
-    '''From-past division set expression lookup expression between voices with reverse callback.
+    '''From-past division set expression lookup expression between voices 
+    with reverse callback.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -49,7 +51,8 @@ def test_SegmentSpecification__look_up_division_set_expression_from_past_between
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_past_between_voices_03():
-    '''From-past division set expression lookup expression between voices with reverse callback.
+    '''From-past division set expression lookup expression between voices 
+    with reverse callback.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -72,7 +75,8 @@ def test_SegmentSpecification__look_up_division_set_expression_from_past_between
 
 
 def test_SegmentSpecification__look_up_division_set_expression_from_past_between_voices_04():
-    '''From-past division set expression lookup expression between voices with reverse callbacks.
+    '''From-past division set expression lookup expression between voices 
+    with reverse callbacks.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

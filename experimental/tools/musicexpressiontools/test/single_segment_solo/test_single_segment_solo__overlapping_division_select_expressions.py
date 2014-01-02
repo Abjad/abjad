@@ -3,8 +3,8 @@ from experimental import *
 
 
 def test_single_segment_solo__overlapping_division_select_expressions_01():
-    r'''Second division set expression overwrites first division set expression.
-    Settings stop and start at same time.
+    r'''Second division set expression overwrites first division set 
+    expression. Settings stop and start at same time.
     '''
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

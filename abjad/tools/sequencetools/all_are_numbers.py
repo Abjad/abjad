@@ -3,14 +3,14 @@ import numbers
 
 
 def all_are_numbers(expr):
-    '''True when `expr` is a sequence and all elements in `expr` are numbers:
+    '''Is true when `expr` is a sequence and all elements in `expr` are numbers:
 
     ::
 
         >>> sequencetools.all_are_numbers([1, 2, 3.0, Fraction(13, 8)])
         True
 
-    True when `expr` is an empty sequence:
+    Is true when `expr` is an empty sequence:
 
     ::
 

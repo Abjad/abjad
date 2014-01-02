@@ -147,7 +147,7 @@ class Tempo(AbjadObject):
         raise TypeError(message)
 
     def __eq__(self, expr):
-        r'''True when `expr` is a tempo with duration, textual indication
+        r'''Is true when `expr` is a tempo with duration, textual indication
         and units-per-minute all equal to this tempo. Otherwise false.
 
         Returns boolean.
@@ -185,7 +185,7 @@ class Tempo(AbjadObject):
         return str(self)
 
     def __lt__(self, arg):
-        r'''True when `arg` is a tempo with quarters per minute greater than
+        r'''Is true when `arg` is a tempo with quarters per minute greater than
         that of this tempo. Otherwise false.
 
         Returns boolean.
@@ -463,7 +463,7 @@ class Tempo(AbjadObject):
         return durationtools.Duration(duration * whole_note_duration)
 
     def is_tempo_token(self, expr):
-        r'''True when `expr` can initialize tempo.
+        r'''Is true when `expr` can initialize tempo.
 
         ::
 

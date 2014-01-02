@@ -41,13 +41,16 @@ class Beam(Spanner):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_direction',
+        )
+
     ### INITIALIZER ###
 
-    def __init__(self, components=None, direction=None, overrides=None):
-        Spanner.__init__(self,
-        components,
-        overrides=overrides,
-        )
+    def __init__(self, direction=None, overrides=None):
+        Spanner.__init__(self, overrides=overrides)
         self.direction = direction
 
     ### PRIVATE METHODS ###
@@ -71,7 +74,7 @@ class Beam(Spanner):
 
     @staticmethod
     def is_beamable_component(expr):
-        '''True when `expr` is a beamable component. Otherwise false.
+        '''Is true when `expr` is a beamable component. Otherwise false.
 
         ::
 

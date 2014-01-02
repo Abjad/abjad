@@ -5,7 +5,7 @@ import re
 lowercamelcase_regex = re.compile('^([a-z,0-9]+([A-Z,0-9]+[a-z,0-9]*)*)?$')
 
 def is_lower_camel_case_string(expr):
-    r'''True when `expr` is a string and is lowercamelcase:
+    r'''Is true when `expr` is a string and is lowercamelcase:
 
     ::
 

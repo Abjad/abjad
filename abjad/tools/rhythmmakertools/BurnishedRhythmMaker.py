@@ -211,9 +211,10 @@ class BurnishedRhythmMaker(RhythmMaker):
                 # TODO: make top-level detach() work here
                 for spanner in component._get_spanners(
                     prototype=prototype):
-                    spanner.detach()
+                    spanner._sever_all_components()
                 #detach(prototype, component)
-            tie_spanner.extend(part)
+            # TODO: remove usae of Spanner._extend()
+            tie_spanner._extend(part)
 
     def _burnish_division_part(self, division_part, token):
         assert len(division_part) == len(token)

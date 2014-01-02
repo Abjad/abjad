@@ -125,7 +125,14 @@ class FileManager(FilesystemAssetManager):
 
         Returns none.
         '''
-        command = 'lily {}'.format(self.filesystem_path)
+        if systemtools.IOManager.find_executable('lily'):
+            executable = 'lily'
+        elif systemtools.IOManager.find_executable('lilypond'):
+            executable = 'lilypond'
+        else:
+            message = 'Cannot find LilyPond executable.'
+            raise ValueError(message)
+        command = '{} {}'.format(executable, self.filesystem_path)
         systemtools.IOManager.spawn_subprocess(command)
         self.session.io_manager.proceed('', is_interactive=prompt)
 

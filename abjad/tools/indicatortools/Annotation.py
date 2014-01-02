@@ -64,7 +64,7 @@ class Annotation(AbjadObject):
         return type(self)(self.name, self.value)
 
     def __eq__(self, arg):
-        r'''True when arg is an annotation with name and value
+        r'''Is true when arg is an annotation with name and value
         equal to those of this annotation. Otherwise false.
 
         Returns boolean.

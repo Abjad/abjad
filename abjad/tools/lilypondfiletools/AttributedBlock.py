@@ -126,7 +126,7 @@ class AttributedBlock(list, AbjadObject):
 
     @property
     def is_formatted_when_empty(self):
-        r'''True when attributed block is formatted when empty. Otherwise
+        r'''Is true when attributed block is formatted when empty. Otherwise
         false.
 
         Returns boolean.

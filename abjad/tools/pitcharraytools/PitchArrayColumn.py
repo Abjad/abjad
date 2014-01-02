@@ -49,7 +49,7 @@ class PitchArrayColumn(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        r'''True when `arg` is a pitch array column with pitch array cells
+        r'''Is true when `arg` is a pitch array column with pitch array cells
         equal to those of this pitch array column. Otherwise false.
 
         Returns boolean.
@@ -74,7 +74,7 @@ class PitchArrayColumn(AbjadObject):
         return vars(self)
 
     def __ne__(self, arg):
-        r'''True when pitch array column does not equal `arg`. Otherwise false.
+        r'''Is true when pitch array column does not equal `arg`. Otherwise false.
 
         Returns boolean.
         '''
@@ -232,7 +232,7 @@ class PitchArrayColumn(AbjadObject):
 
     @property
     def has_voice_crossing(self):
-        r'''True when pitch array column has voice crossing. Otherwise false.
+        r'''Is true when pitch array column has voice crossing. Otherwise false.
 
         Returns boolean.
         '''
@@ -247,7 +247,7 @@ class PitchArrayColumn(AbjadObject):
 
     @property
     def is_defective(self):
-        r'''True when pitch array column depth does not equal depth of parent
+        r'''Is true when pitch array column depth does not equal depth of parent
         array. Otherwise false.
 
         Returns boolean.

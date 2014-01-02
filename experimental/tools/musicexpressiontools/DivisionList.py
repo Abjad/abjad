@@ -360,7 +360,7 @@ class DivisionList(BoundedObject):
 
     @property
     def is_left_closed(self):
-        r'''True when first division in division is left closed.
+        r'''Is true when first division in division is left closed.
 
         ::
 
@@ -373,7 +373,7 @@ class DivisionList(BoundedObject):
 
     @property
     def is_left_open(self):
-        r'''True when first division in division is left open.
+        r'''Is true when first division in division is left open.
 
         ::
 
@@ -386,7 +386,7 @@ class DivisionList(BoundedObject):
 
     @property
     def is_right_closed(self):
-        r'''True when first division in division is right closed.
+        r'''Is true when first division in division is right closed.
 
         ::
 
@@ -399,7 +399,7 @@ class DivisionList(BoundedObject):
 
     @property
     def is_right_open(self):
-        r'''True when first division in division is right open.
+        r'''Is true when first division in division is right open.
 
         ::
 
@@ -412,7 +412,7 @@ class DivisionList(BoundedObject):
 
     @property
     def is_well_formed(self):
-        r'''True when division list is well-formed.
+        r'''Is true when division list is well-formed.
         Otherwise false.
 
         ::

@@ -2,7 +2,7 @@
 
 
 def is_assignable_integer(expr):
-    r'''True when `expr` is equivalent to an integer and
+    r'''Is true when `expr` is equivalent to an integer and
     can be written without recourse to ties.
 
     ::

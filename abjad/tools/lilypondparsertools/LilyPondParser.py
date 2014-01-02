@@ -67,10 +67,10 @@ class LilyPondParser(abctools.Parser):
     - All pitchnames, and octave ticks
     - Simple markup (i.e. ``c'4 ^ "hello!"``)
     - Most articulations
-    - Most spanners, including beams, slurs, phrasing slurs, ties, and glissandi
+    - Most spanners, incl. beams, slurs, phrasing slurs, ties, and glissandi
     - Most context types via ``\new`` and ``\context``,
       as well as context ids (i.e. ``\new Staff = "foo" { }``)
-    - Variable assignment (i.e. ``global = { \time 3/4 } \new Staff { \global }``)
+    - Variable assigns (ie ``global = { \time 3/4 } \new Staff { \global }``)
     - Many music functions:
         - ``\acciaccatura``
         - ``\appoggiatura``
@@ -92,10 +92,11 @@ class LilyPondParser(abctools.Parser):
         - ``\transpose``
         - ``\voiceOne``, ``\voiceTwo``, ``\voiceThree``, ``\voiceFour``
 
-    LilyPondParser currently **DOES NOT** understand many other aspects of LilyPond syntax:
+    LilyPondParser currently **DOES NOT** understand many other aspects 
+    of LilyPond syntax:
 
     - ``\markup``
-    - ``\book``, ``\bookpart``, ``\header``, ``\layout``, ``\midi`` and ``\paper``
+    - ``\book``, ``\bookpart``, ``\header``, ``\layout``, ``\midi``, ``\paper``
     - ``\repeat`` and ``\alternative``
     - Lyrics
     - ``\chordmode``, ``\drummode`` or ``\figuremode``
@@ -103,8 +104,6 @@ class LilyPondParser(abctools.Parser):
       ``\revert``, ``\set``, ``\unset``, and ``\once``
     - Music functions which generate or extensively mutate musical structures
     - Embedded Scheme statements (anything beginning with ``#``)
-
-    Returns LilyPondParser instance.
     '''
 
     ### INITIALIZER ###
@@ -250,7 +249,8 @@ class LilyPondParser(abctools.Parser):
     def _apply_spanners(self, music):
         # get local reference to methods
         _get_span_events = self._get_span_events
-        _span_event_name_to_spanner_class = self._span_event_name_to_spanner_class
+        _span_event_name_to_spanner_class = \
+            self._span_event_name_to_spanner_class
 
         # dictionary of spanner classes and instances
         all_spanners = { }
@@ -260,14 +260,16 @@ class LilyPondParser(abctools.Parser):
         first_leaf = None
         if leaves:
             first_leaf = leaves[0]
-        for leaf, next_leaf in sequencetools.iterate_sequence_pairwise_wrapped(leaves):
+        for leaf, next_leaf in \
+            sequencetools.iterate_sequence_pairwise_wrapped(leaves):
 
             span_events = _get_span_events(leaf)
             directed_events = { }
 
             # sort span events into directed and undirected groups
             for span_event in span_events:
-                spanner_class = _span_event_name_to_spanner_class(span_event.name)
+                spanner_class = _span_event_name_to_spanner_class(
+                    span_event.name)
 
                 # group directed span events by their Abjad spanner class
                 if hasattr(span_event, 'span_direction'):
@@ -279,13 +281,14 @@ class LilyPondParser(abctools.Parser):
                         all_spanners[spanner_class] = []
 
                 # or apply undirected event immediately (i.e. ties, glisses)
-                elif next_leaf is not first_leaf: # so long as we are not wrapping yet
+                # so long as we are not wrapping yet
+                elif next_leaf is not first_leaf:
                     previous_spanners = [
                         x for x in leaf._get_spanners() 
                         if isinstance(x, spanner_class)
                         ]
                     if previous_spanners:
-                        previous_spanners[0].append(next_leaf)
+                        previous_spanners[0]._append(next_leaf)
                     else:
                         if hasattr(span_event, 'direction') and \
                             hasattr(spanner_class, 'direction'):
@@ -306,7 +309,7 @@ class LilyPondParser(abctools.Parser):
             dynamics = leaf._get_indicators(indicatortools.Dynamic)
             if dynamics and spannertools.Hairpin in all_spanners and \
                 all_spanners[spannertools.Hairpin]:
-                all_spanners[spannertools.Hairpin][0].append(leaf)
+                all_spanners[spannertools.Hairpin][0]._append(leaf)
                 all_spanners[spannertools.Hairpin].pop()
 
             # loop through directed events, handling each as necessary
@@ -334,7 +337,7 @@ class LilyPondParser(abctools.Parser):
                             all_spanners[spanner_class].append(spanner_class())
                     for _ in stopping_events:
                         if all_spanners[spanner_class]:
-                            all_spanners[spanner_class][0].append(leaf)
+                            all_spanners[spanner_class][0]._append(leaf)
                             all_spanners[spanner_class].pop()
 
                 elif spanner_class is spannertools.Hairpin:
@@ -345,11 +348,11 @@ class LilyPondParser(abctools.Parser):
                     # the pre-existant spanner is ended.
                     for _ in stopping_events:
                         if all_spanners[spanner_class]:
-                            all_spanners[spanner_class][0].append(leaf)
+                            all_spanners[spanner_class][0]._append(leaf)
                             all_spanners[spanner_class].pop()
                     if 1 == len(starting_events):
                         if all_spanners[spanner_class]:
-                            all_spanners[spanner_class][0].append(leaf)
+                            all_spanners[spanner_class][0]._append(leaf)
                             all_spanners[spanner_class].pop()
                         shape = '<'
                         event = starting_events[0]
@@ -357,13 +360,12 @@ class LilyPondParser(abctools.Parser):
                             shape = '>'
                         if hasattr(event, 'direction'):
                             spanner = spanner_class(
-                                [], 
-                                shape, 
+                                descriptor=shape, 
                                 direction=event.direction,
                                 )
                             all_spanners[spanner_class].append(spanner)
                         else:
-                            spanner = spanner_class([], shape)
+                            spanner = spanner_class(descriptor=shape)
                             all_spanners[spanner_class].append(spanner)
                     elif 1 < len(starting_events):
                         message = 'simultaneous dynamic span events.'
@@ -380,7 +382,7 @@ class LilyPondParser(abctools.Parser):
                     # yhey can stop on a leaf and start on the same leaf.
                     for _ in stopping_events:
                         if all_spanners[spanner_class]:
-                            all_spanners[spanner_class][0].append(leaf)
+                            all_spanners[spanner_class][0]._append(leaf)
                             all_spanners[spanner_class].pop()
                         else:
                             message = 'can not end {}.'
@@ -388,10 +390,13 @@ class LilyPondParser(abctools.Parser):
                             raise Exception(message)
                     for event in starting_events:
                         if not all_spanners[spanner_class]:
-                            if hasattr(event, 'direction') and hasattr(spanner_class, 'direction'):
-                                all_spanners[spanner_class].append(spanner_class(direction=event.direction))
+                            if hasattr(event, 'direction') and \
+                                hasattr(spanner_class, 'direction'):
+                                all_spanners[spanner_class].append(
+                                    spanner_class(direction=event.direction))
                             else:
-                                all_spanners[spanner_class].append(spanner_class())
+                                all_spanners[spanner_class].append(
+                                    spanner_class())
                         else:
                             message = 'already have {}.'
                             message = message.format(spanner_class.__name__)
@@ -409,7 +414,8 @@ class LilyPondParser(abctools.Parser):
                         if not has_starting_events:
                             for _ in stopping_events:
                                 if all_spanners[spanner_class]:
-                                    all_spanners[spanner_class][-1].append(leaf)
+                                    all_spanners[spanner_class][-1]._append(
+                                        leaf)
                                     all_spanners[spanner_class].pop()
                                 else:
                                     message = 'do not have that many brackets.'
@@ -421,12 +427,13 @@ class LilyPondParser(abctools.Parser):
             # append leaf to all tracked spanners,
             for spanner_class, instances in all_spanners.iteritems():
                 for instance in instances:
-                    instance.append(leaf)
+                    instance._append(leaf)
 
         # check for unterminated spanners
         for spanner_class, instances in all_spanners.iteritems():
             if instances:
-                message = 'unterminated {}.'.fromat(spanner_class.__name__)
+                message = 'unterminated {}.'
+                message = message.format(spanner_class.__name__)
                 raise Exception(message)
 
     def _assign_variable(self, identifier, value):
@@ -501,7 +508,7 @@ class LilyPondParser(abctools.Parser):
         return context
 
     def _construct_sequential_music(self, music):
-        # indicator sorting could be rewritten into a single list, using tuplets,
+        # indicator sorting could be rewritten into a single list using tuplets
         # with t[0] being 'forward' or 'backward' and t[1] being the indicator
         # as this better preserves attachment order. Not clear if we need it.
         container = scoretools.Container()
@@ -571,7 +578,8 @@ class LilyPondParser(abctools.Parser):
         # with voice separators
         else:
             for group in groups:
-                container.append(Voice(self._construct_sequential_music(group)[:]))
+                container.append(
+                    Voice(self._construct_sequential_music(group)[:]))
 
         return container
 
@@ -700,15 +708,18 @@ class LilyPondParser(abctools.Parser):
         self._scope_stack = [{}]
         self._chord_pitch_orders = {}
         self._lexer.push_state('notes')
-        self._default_duration = lilypondparsertools.LilyPondDuration(durationtools.Duration(1, 4), None)
+        self._default_duration = lilypondparsertools.LilyPondDuration(
+            durationtools.Duration(1, 4), None)
         self._last_chord = None
-        # self._last_chord = scoretools.Chord(['c', 'g', "c'"], (1, 4)) # LilyPond's default!
+        # LilyPond's default!
+        # self._last_chord = scoretools.Chord(['c', 'g', "c'"], (1, 4))
         self._pitch_names = self._language_pitch_names[self.default_language]
         self._repeated_chords = {}
 
     def _resolve_event_identifier(self, identifier):
         from abjad.tools import lilypondparsertools
-        lookup = self._current_module[identifier] # without any leading slash
+        # without any leading slash
+        lookup = self._current_module[identifier]
         name = lookup['name']
         if name == 'ArticulationEvent':
             return indicatortools.Articulation(lookup['articulation-type'])
@@ -745,7 +756,8 @@ class LilyPondParser(abctools.Parser):
         }
         if name in spanners:
             return spanners[name]
-        message = 'can not associate a spanner class with {}'.format(name)
+        message = 'can not associate a spanner class with {}.'
+        message = message.format(name)
         raise Exception(message)
 
     def _test_scheme_predicate(self, predicate, value):
@@ -1033,7 +1045,7 @@ class LilyPondParser(abctools.Parser):
 
     @staticmethod
     def list_known_languages():
-        r'''List all note-input languages recognized by ``LilyPondParser``:
+        r'''Lists all note-input languages recognized by LilyPond parser.
 
         ::
 
@@ -1277,15 +1289,14 @@ class LilyPondParser(abctools.Parser):
             >>> parser(string)
             Markup((MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz']),))
 
-        `signature` should be a sequence of zero or more type-predicate names, as
-        understood by LilyPond.  Consult LilyPond's documentation for a complete
-        list of all understood type-predicates.
+        `signature` should be a sequence of zero or more type-predicate names,
+        as understood by LilyPond.  Consult LilyPond's documentation for a
+        complete list of all understood type-predicates.
 
         Returns none.
         '''
 
         from abjad.ly.markup_functions import markup_functions
-
         assert isinstance(name, str)
         assert all(not x.isspace() for x in name)
         assert isinstance(signature, (list, tuple))
@@ -1293,5 +1304,4 @@ class LilyPondParser(abctools.Parser):
             assert isinstance(predicate, str)
             assert all(not x.isspace() for x in predicate)
             assert predicate.endswith('?')
-
         markup_functions[name] = tuple(signature)

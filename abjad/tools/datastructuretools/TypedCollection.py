@@ -28,7 +28,7 @@ class TypedCollection(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, token):
-        r'''True when typed collection container `token`.
+        r'''Is true when typed collection container `token`.
         Otherwise false.
 
         Returns boolean.
@@ -40,7 +40,7 @@ class TypedCollection(AbjadObject):
         return self._collection.__contains__(item)
 
     def __eq__(self, expr):
-        r'''True when `expr` is a typed collection with items that compare
+        r'''Is true when `expr` is a typed collection with items that compare
         equal to those of this typed collection. Otherwise false.
 
         Returns boolean.
@@ -107,7 +107,7 @@ class TypedCollection(AbjadObject):
             )
 
     def __ne__(self, expr):
-        r'''True when `expr` is not a typed collection with items equal to this
+        r'''Is true when `expr` is not a typed collection with items equal to this
         typed collection. Otherwise false.
 
         Returns boolean.

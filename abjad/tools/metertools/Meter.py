@@ -249,7 +249,7 @@ class Meter(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is a meter with an rtm format equal to that of
+        r'''Is true when `expr` is a meter with an rtm format equal to that of
         this meter. Otherwise false.
 
         Returns boolean.

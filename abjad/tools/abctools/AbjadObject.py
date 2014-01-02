@@ -26,7 +26,7 @@ class AbjadObject(object):
         return id(self) == id(expr)
 
     def __format__(self, format_specification=''):
-        r'''Formats object.
+        r'''Formats Abjad object.
 
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.

@@ -2,7 +2,7 @@
 
 
 def is_integer_singleton(expr):
-    r'''True when `expr` is an integer tuple of of length ``1``:
+    r'''Is true when `expr` is an integer tuple of of length ``1``:
 
     ::
 

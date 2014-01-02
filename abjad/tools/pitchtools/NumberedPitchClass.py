@@ -118,7 +118,7 @@ class NumberedPitchClass(PitchClass):
         return type(self)(self)
 
     def __eq__(self, arg):
-        r'''True when `arg` is a numbered pitch-class with pitch-class number
+        r'''Is true when `arg` is a numbered pitch-class with pitch-class number
         equal to that of this numbered pitch-class.
 
         ::

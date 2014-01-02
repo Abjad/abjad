@@ -269,7 +269,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     @property
     def is_digraph(self):
-        r'''True when Graphviz graph is a digraph. Otherwise false.
+        r'''Is true when Graphviz graph is a digraph. Otherwise false.
 
         Returns boolean.
         '''

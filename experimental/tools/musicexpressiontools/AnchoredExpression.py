@@ -106,7 +106,7 @@ class AnchoredExpression(Expression):
 
     @property
     def is_score_rooted(self):
-        r'''True when anchored expression is score-rooted.
+        r'''Is true when anchored expression is score-rooted.
         Otherwise false.
 
         Returns boolean.
@@ -115,7 +115,7 @@ class AnchoredExpression(Expression):
 
     @property
     def is_segment_rooted(self):
-        r'''True when anchored expression is segment-rooted.
+        r'''Is true when anchored expression is segment-rooted.
         Otherwise false.
 
         Returns boolean.

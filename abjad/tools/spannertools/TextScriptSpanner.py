@@ -28,19 +28,21 @@ class TextScriptSpanner(Spanner):
             \revert TextScript #'color
         }
 
-    Override LilyPond TextScript grob.
+    Overrides LilyPond TextScript grob.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
 
     ### INITIALIZER ###
 
     def __init__(
         self, 
-        components=None,
         overrides=None,
         ):
         Spanner.__init__(
             self, 
-            components,
             overrides=overrides,
             )
 

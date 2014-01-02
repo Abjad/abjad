@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def all_are_integer_equivalent_numbers(expr):
-    '''True when `expr` is a sequence and all elements in `expr` are integer-equivalent numbers:
+    '''Is true when `expr` is a sequence and all elements in `expr` are integer-equivalent numbers:
 
     ::
 

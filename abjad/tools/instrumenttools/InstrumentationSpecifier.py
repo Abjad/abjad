@@ -120,7 +120,7 @@ class InstrumentationSpecifier(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is an instrumentation specifier with performers
+        r'''Is true when `expr` is an instrumentation specifier with performers
         equal to those of instrumentation specifier. Otherwise false.
 
         Returns boolean.

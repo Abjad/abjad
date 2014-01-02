@@ -98,7 +98,8 @@ class NamedInterval(Interval):
         '''
         from abjad.tools import pitchtools
         if not isinstance(arg, type(self)):
-            message = 'must be named interval: {!r}.'.format(arg)
+            message = 'must be named interval: {!r}.'
+            message = message.format(arg)
             raise TypeError(message)
         dummy_pitch = pitchtools.NamedPitch(0)
         new_pitch = dummy_pitch + self + arg
@@ -119,7 +120,7 @@ class NamedInterval(Interval):
         return type(self)(self.quality_string, self.number)
 
     def __eq__(self, arg):
-        r'''True when `arg` is a named interval with a quality string and
+        r'''Is true when `arg` is a named interval with a quality string and
         number equal to this named interval.
 
         ::
@@ -167,7 +168,7 @@ class NamedInterval(Interval):
         return self._number
 
     def __lt__(self, arg):
-        r'''True when `arg` is a named interval with a number greater than that
+        r'''Is true when `arg` is a named interval with a number greater than that
         of this named interval.
         
         ::
@@ -211,7 +212,8 @@ class NamedInterval(Interval):
         '''
         from abjad.tools import pitchtools
         if not isinstance(arg, (int, long)):
-            message = 'must be integer: {!r}.'.format(arg)
+            message = 'must be integer: {!r}.'
+            message = message.format(arg)
             raise TypeError(message)
         dummy_pitch = pitchtools.NamedPitch(0)
         for i in range(abs(arg)):
@@ -223,7 +225,7 @@ class NamedInterval(Interval):
         return result
 
     def __ne__(self, arg):
-        r'''True when `arg` does not equal this named interval. Otherwise
+        r'''Is true when `arg` does not equal this named interval. Otherwise
         false.
 
         Returns boolean.
@@ -282,7 +284,8 @@ class NamedInterval(Interval):
         '''
         from abjad.tools import pitchtools
         if not isinstance(arg, type(self)):
-            message = 'must be named interval: {!r}.'.format(arg)
+            message = 'must be named interval: {!r}.'
+            message = message.format(arg)
             raise TypeError(message)
         dummy_pitch = pitchtools.NamedPitch(0)
         new_pitch = dummy_pitch + self - arg

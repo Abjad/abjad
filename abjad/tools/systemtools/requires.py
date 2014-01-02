@@ -56,13 +56,16 @@ def requires(*tests):
                     tuple_repr = [x.__name__ for x in test]
                     tuple_repr = ', '.join(tuple_repr)
                     tuple_repr = '({})'.format(tuple_repr)
-                    error_message = 'isinstance({!r}, {}) does not return true.'.format(arg, tuple_repr)
+                    error_message = 'isinstance({!r}, {}) does not return true.'
+                    error_message = error_message.format(arg, tuple_repr)
                     assert isinstance(arg, test), error_message
                 elif isinstance(test, types.TypeType):
-                    error_message = 'isinstance({!r}, {}) does not return true.'.format(arg, test.__name__)
+                    error_message = 'isinstance({!r}, {}) does not return true.'
+                    error_message = error_message.format(arg, test.__name__)
                     assert isinstance(arg, test), error_message
                 else:
-                    error_message = '{}({!r}) does not return true.'.format(test.__name__, arg)
+                    error_message = '{}({!r}) does not return true.'
+                    error_message = error_message.format(test.__name__, arg)
                     assert test(arg), error_message
             return func(*args)
         # point Sphinx to correct docstring

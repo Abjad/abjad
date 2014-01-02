@@ -78,7 +78,7 @@ class GraphvizEdge(GraphvizObject):
 
     @property
     def is_directed(self):
-        r'''True when Graphviz edge is directed. Otherwise false.
+        r'''Is true when Graphviz edge is directed. Otherwise false.
         
         Returns boolean.
         '''

@@ -33,21 +33,23 @@ class StaffLinesSpanner(Spanner):
     or the line-positions property of the StaffSymbol grob,
     as well as automatically stopping and restarting the staff
     so that the change may take place.
-
-    Returns staff lines spanner.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_lines',
+        )
 
     ### INITIALIZER ###
 
     def __init__(
         self, 
-        components=None, 
         lines=5,
         overrides=None,
         ):
         Spanner.__init__(
             self, 
-            components,
             overrides=overrides,
             )
         self.lines = lines

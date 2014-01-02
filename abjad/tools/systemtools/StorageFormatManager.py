@@ -379,7 +379,7 @@ class StorageFormatManager(object):
 
     @staticmethod
     def is_instance(object_):
-        r'''True when `object_` is instance. Otherwise false.
+        r'''Is true when `object_` is instance. Otherwise false.
 
         Returns boolean.
         '''

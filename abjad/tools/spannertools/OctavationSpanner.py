@@ -34,18 +34,23 @@ class OctavationSpanner(Spanner):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_start',
+        '_stop',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
         self, 
-        components=None, 
         start=1, 
         stop=0,
         overrides=None,
         ):
         Spanner.__init__(
             self, 
-            components,
             overrides=overrides,
             )
         self.start = start

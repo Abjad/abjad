@@ -25,17 +25,21 @@ class Slur(Spanner):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_direction',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
         self,
-        components=None,
         direction=None,
         overrides=None,
         ):
         Spanner.__init__(
             self,
-            components,
             overrides=overrides,
             )
         self.direction = direction

@@ -55,7 +55,7 @@ class QGridLeaf(RhythmTreeNode):
         return type(self)(*self.__getnewargs__())
 
     def __eq__(self, expr):
-        r'''True when `expr` is a q-grid leaf with preprolated duration,
+        r'''Is true when `expr` is a q-grid leaf with preprolated duration,
         q-event proxies and divisibility flag equal to those of this q-grid
         leaf. Otherwise false.
 

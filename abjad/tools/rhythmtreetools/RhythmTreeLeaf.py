@@ -72,7 +72,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
         return scoretools.make_rests(total_duration)
 
     def __eq__(self, expr):
-        r'''True when `expr` is a rhythm tree leaf with preprolated duration
+        r'''Is true when `expr` is a rhythm tree leaf with preprolated duration
         and pitch boolean equal to those of this rhythm tree leaf. Otherwise
         false.
 

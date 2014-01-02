@@ -164,7 +164,7 @@ class Pitch(AbjadObject):
 
     @staticmethod
     def is_diatonic_pitch_name(expr):
-        '''True when `expr` is a diatonic pitch name. Otherwise false.
+        '''Is true when `expr` is a diatonic pitch name. Otherwise false.
 
         ::
 
@@ -181,7 +181,7 @@ class Pitch(AbjadObject):
 
     @staticmethod
     def is_diatonic_pitch_number(expr):
-        '''True when `expr` is a diatonic pitch number. Otherwise false.
+        '''Is true when `expr` is a diatonic pitch number. Otherwise false.
 
         ::
 
@@ -196,7 +196,7 @@ class Pitch(AbjadObject):
 
     @staticmethod
     def is_pitch_carrier(expr):
-        '''True when `expr` is an Abjad pitch, note, note-head of chord
+        '''Is true when `expr` is an Abjad pitch, note, note-head of chord
         instance. Otherwise false.
 
         ::
@@ -221,7 +221,7 @@ class Pitch(AbjadObject):
 
     @staticmethod
     def is_pitch_class_octave_number_string(expr):
-        '''True when `expr` is a pitch-class / octave number string. Otherwise 
+        '''Is true when `expr` is a pitch-class / octave number string. Otherwise 
         false:
 
         ::
@@ -260,7 +260,7 @@ class Pitch(AbjadObject):
 
     @staticmethod
     def is_pitch_number(expr):
-        '''True when `expr` is a pitch number. Otherwise false.
+        '''Is true when `expr` is a pitch number. Otherwise false.
 
         ::
 

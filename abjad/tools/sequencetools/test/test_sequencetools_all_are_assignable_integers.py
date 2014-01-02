@@ -4,7 +4,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_all_are_assignable_integers_01():
-    r'''True when all elements in sequence are all notehead assignable.
+    r'''Is true when all elements in sequence are all notehead assignable.
     '''
 
     assert sequencetools.all_are_assignable_integers([1, 2, 3, 4, 6, 7, 8, 12, 14, 15, 16])

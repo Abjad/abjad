@@ -12,25 +12,25 @@ Use Python's ``dir()`` built-in to get a sense of the answer:
 
 ::
 
-    >>> dir()
-    ['abjad_configuration', 'Chord', 'Container', 'Duration', 'Fraction',
-    'Measure', 'Note', 'Rest', 'Score', 'Staff', 'Tuplet', 'Voice',
-    '__builtins__', '__doc__', '__name__', '__package__',
-    '__warningregistry__', 'abctools', 'abjadbooktools', 'beamtools',
-    'scoretools', 'scoretools', 'configurationtools', 'scoretools',
-    'indicatortools', 'datastructuretools', 'decoratortools',
-    'developerscripttools', 'documentationtools', 'durationtools',
-    'exceptiontools', 'f', 'formattools', 'gracetools', 'systemtools',
-    'instrumenttools', 'introspectiontools', 'systemtools', 'iterationtools',
-    'labeltools', 'layouttools', 'scoretools', 'lilypondfiletools',
-    'lilypondparsertools', 'lilypondnametools', 'indicatortools', 'markuptools',
-    'mathtools', 'scoretools', 'scoretools', 'systemtools', 'p',
-    'pitcharraytools', 'pitchtools', 'play', 'scoretools', 'rhythmtreetools',
-    'schemetools', 'templatetools', 'scoretools', 'sequencetools', 'show',
-    'sievetools', 'scoretools', 'spannertools', 'scoretools', 'stringtools',
-    'tempotools', 'tietools', 'timeintervaltools', 'metertools',
-    'rhythmmakertools', 'tonalanalysistools', 'scoretools',
-    'verticalitytools', 'scoretools', 'wellformednesstools', 'z']
+   >>> dir()
+   ['Articulation', 'Beam', 'Chord', 'Clef', 'Container', 'Crescendo',
+   'Decrescendo', 'Duration', 'Dynamic', 'Fraction', 'Glissando', 'Hairpin',
+   'KeySignature', 'Markup', 'Measure', 'Multiplier', 'NamedPitch', 'Note',
+   'Offset', 'Rest', 'Score', 'Slur', 'Staff', 'StaffGroup', 'Tempo', 'Tie',
+   'TimeSignature', 'Tuplet', 'Voice', '__builtins__', '__doc__', '__name__',
+   '__package__', 'abctools', 'abjad_configuration', 'abjadbooktools',
+   'agenttools', 'attach', 'contextualize', 'datastructuretools', 'detach',
+   'developerscripttools', 'documentationtools', 'durationtools',
+   'exceptiontools', 'f', 'indicatortools', 'inspect', 'instrumenttools',
+   'iterate', 'labeltools', 'layouttools', 'lilypondfiletools',
+   'lilypondnametools', 'lilypondparsertools', 'markuptools', 'mathtools',
+   'metertools', 'mutate', 'new', 'override', 'parse', 'persist',
+   'pitcharraytools', 'pitchtools', 'play', 'quantizationtools',
+   'rhythmmakertools', 'rhythmtreetools', 'schemetools', 'scoretools', 'select',
+   'selectiontools', 'sequencetools', 'show', 'sievetools', 'spannertools',
+   'stringtools', 'systemtools', 'templatetools', 'timespantools',
+   'tonalanalysistools', 'topleveltools']
+
 
 Calling ``from abjad import *`` causes Python to load hundreds or thousands of
 lines of Abjad's code into the global namespace for you to use.  Abjad's code
@@ -46,18 +46,20 @@ Use ``dir()`` to take a look at the contents of the ``systemtools`` package:
 
 ::
 
-    >>> dir(systemtools)
-    ['__builtins__', '__doc__', '__file__', '__name__', '__package__',
-    '__path__', '_documentation_section', 'clear_terminal', 'f',
-    'get_last_output_file_name', 'get_next_output_file_name', 'systemtools',
-    'log', 'ly', 'p', 'pdf', 'play', 'profile_expr', 'redo', 'save_last_ly_as',
-    'save_last_pdf_as', 'show', 'spawn_subprocess', 'write_expr_to_ly',
-    'write_expr_to_pdf', 'z']
+   >>> dir(systemtools)
+   ['AbjadConfiguration', 'BenchmarkScoreMaker', 'Configuration', 'IOManager',
+   'ImportManager', 'LilyPondFormatBundle', 'LilyPondFormatManager',
+   'RedirectedStreams', 'StorageFormatManager', 'StorageFormatSpecification',
+   'TestManager', 'Timer', 'UpdateManager', 'WellformednessManager',
+   '__builtins__', '__doc__', '__file__', '__name__', '__package__', '__path__',
+   '_documentation_section', 'requires']
+
 
 The ``systemtools`` package implements I/O functions that help you work with the
 files you create in Abjad.
 
-Use ``systemtools.ly()`` to see the last LilyPond input file created in Abjad:
+Use ``systemtools.view_last_ly()`` to see the last LilyPond input file created
+in Abjad:
 
 ::
 
@@ -95,7 +97,8 @@ above.  Abjad then called LilyPond on that ``.ly`` file to create a PDF.
 
 (Quit your text editor in the usual way to return to the Python interpreter.)
 
-Now use ``systemtools.log()`` to see the output LilyPond created as it ran:
+Now use ``systemtools.view_last_log()`` to see the output LilyPond created as
+it ran:
 
 ::
 

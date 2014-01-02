@@ -81,7 +81,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> attach(time_signature, staff)
                 >>> staff.append(Tuplet((3, 2), "c'4 e'4"))
                 >>> staff.append(Tuplet((3, 2), "d'4 f'4"))
-                >>> hairpin = spannertools.Hairpin([], 'p < f')
+                >>> hairpin = spannertools.Hairpin('p < f')
                 >>> attach(hairpin, staff.select_leaves())
                 >>> show(staff) # doctest: +SKIP
 
@@ -130,7 +130,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> attach(time_signature, staff)
                 >>> staff.append(Tuplet((3, 2), "c'4 e'4"))
                 >>> staff.append(Tuplet((3, 2), "d'4 f'4"))
-                >>> hairpin = spannertools.Hairpin([], 'p < f')
+                >>> hairpin = spannertools.Hairpin('p < f')
                 >>> attach(hairpin, staff.select_leaves())
                 >>> show(staff) # doctest: +SKIP
 
@@ -343,7 +343,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> tuplet_1 = Tuplet((2, 3), "c'4 d'4 e'4")
                 >>> tuplet_2 = Tuplet((2, 3), "d'4 e'4 f'4")
                 >>> staff = Staff([tuplet_1, tuplet_2])
-                >>> hairpin = spannertools.Hairpin([], 'p < f')
+                >>> hairpin = spannertools.Hairpin('p < f')
                 >>> attach(hairpin, staff[:])
                 >>> slur = spannertools.Slur()
                 >>> attach(slur, staff.select_leaves())
@@ -515,6 +515,7 @@ class MutationAgent(abctools.AbjadObject):
         self,
         meter,
         boundary_depth=None,
+        initial_offset=None,
         maximum_dot_count=None,
         ):
         r'''Rewrite the contents of logical ties in an expression to match
@@ -1289,6 +1290,7 @@ class MutationAgent(abctools.AbjadObject):
             self._client,
             meter,
             boundary_depth=boundary_depth,
+            initial_offset=initial_offset,
             maximum_dot_count=maximum_dot_count,
             )
         return result
@@ -2212,7 +2214,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff.append(Measure((3, 4), "c'4 d'4 e'4"))
                 >>> staff.append(Measure((3, 4), "d'4 e'4 f'4"))
                 >>> leaves = staff.select_leaves()
-                >>> hairpin = spannertools.Hairpin([], 'p < f')
+                >>> hairpin = spannertools.Hairpin('p < f')
                 >>> attach(hairpin, leaves)
                 >>> measures = staff[:]
                 >>> slur = spannertools.Slur()

@@ -211,7 +211,7 @@ class TimespanInventory(TypedList):
 
     @property
     def all_are_contiguous(self):
-        r'''True when all timespans are time-contiguous:
+        r'''Is true when all timespans are time-contiguous:
 
         ::
 
@@ -225,7 +225,7 @@ class TimespanInventory(TypedList):
             >>> timespan_inventory_2.all_are_contiguous
             False
 
-        True when empty:
+        Is true when empty:
 
         ::
 
@@ -246,7 +246,7 @@ class TimespanInventory(TypedList):
 
     @property
     def all_are_nonoverlapping(self):
-        r'''True when all timespans are non-overlapping:
+        r'''Is true when all timespans are non-overlapping:
 
         ::
 
@@ -260,7 +260,7 @@ class TimespanInventory(TypedList):
             >>> timespan_inventory_2.all_are_nonoverlapping
             False
 
-        True when empty:
+        Is true when empty:
 
         ::
 
@@ -282,7 +282,7 @@ class TimespanInventory(TypedList):
 
     @property
     def all_are_well_formed(self):
-        r'''True when all timespans are well-formed:
+        r'''Is true when all timespans are well-formed:
 
         ::
 
@@ -362,7 +362,7 @@ class TimespanInventory(TypedList):
 
     @property
     def is_sorted(self):
-        r'''True when timespans are in time order:
+        r'''Is true when timespans are in time order:
 
         ::
 
@@ -1571,7 +1571,7 @@ class TimespanInventory(TypedList):
         return type(self)(result)
 
     def has_timespan_that_satisfies_time_relation(self, time_relation):
-        r'''True when timespan inventory has timespan that
+        r'''Is true when timespan inventory has timespan that
         satisfies `time_relation`:
 
         ::

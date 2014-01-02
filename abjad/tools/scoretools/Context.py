@@ -308,7 +308,7 @@ class Context(Container):
 
     @property
     def is_semantic(self):
-        r'''True when context is semantic. Otherwise false.
+        r'''Is true when context is semantic. Otherwise false.
 
         Returns boolean.
         '''

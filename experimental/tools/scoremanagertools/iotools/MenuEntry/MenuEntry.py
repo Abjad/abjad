@@ -158,7 +158,7 @@ class MenuEntry(AbjadObject):
     ### PUBLIC METHODS ###
 
     def matches(self, user_input):
-        r'''True when menu entry matches `user_input` string.
+        r'''Is true when menu entry matches `user_input` string.
 
         ::
 

@@ -39,7 +39,7 @@ class CyclicTuple(abctools.AbjadObject, tuple):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is a tuple with items equal to those of this
+        r'''Is true when `expr` is a tuple with items equal to those of this
         cyclic tuple. Otherwise false.
 
         Returns boolean.

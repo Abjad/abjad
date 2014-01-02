@@ -45,7 +45,7 @@ class SchemeMoment(Scheme):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        r'''True when `arg` is a scheme moment with the same value as that of
+        r'''Is true when `arg` is a scheme moment with the same value as that of
         this scheme moment.
 
         ::
@@ -73,7 +73,7 @@ class SchemeMoment(Scheme):
         return (self._value,)
 
     def __lt__(self, arg):
-        r'''True when `arg` is a scheme moment with value greater than that of
+        r'''Is true when `arg` is a scheme moment with value greater than that of
         this scheme moment.
 
         ::

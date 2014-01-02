@@ -22,7 +22,8 @@ def repeat_sequence_n_times(sequence, n):
     '''
 
     if not mathtools.is_nonnegative_integer(n):
-        message = 'must be nonnegative integer: {!r}.'.format(n)
+        message = 'must be nonnegative integer: {!r}.'
+        message = message.format(n)
         raise ValueError(message)
 
     result = []

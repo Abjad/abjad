@@ -30,7 +30,9 @@ class InspectionAgent(abctools.AbjadObject):
 
     def __init__(self, client=None):
         from abjad.tools import scoretools
-        assert isinstance(client, (scoretools.Component, type(None)))
+        from abjad.tools import spannertools
+        prototype = (scoretools.Component, spannertools.Spanner, type(None))
+        assert isinstance(client, prototype), repr(client)
         self._client = client
 
     ### PUBLIC PROPERTIES ###
@@ -529,7 +531,7 @@ class InspectionAgent(abctools.AbjadObject):
             )
 
     def has_effective_indicator(self, prototype=None):
-        r'''True when indicator that matches `prototype` is
+        r'''Is true when indicator that matches `prototype` is
         in effect for client. Otherwise false.
 
         Returns boolean.
@@ -537,7 +539,7 @@ class InspectionAgent(abctools.AbjadObject):
         return self._client._has_effective_indicator(prototype=prototype)
 
     def has_indicator(self, prototype=None):
-        r'''True when client has one or more
+        r'''Is true when client has one or more
         indicators that match `prototype`. Otherwise false.
 
         Returns boolean.
@@ -545,7 +547,7 @@ class InspectionAgent(abctools.AbjadObject):
         return self._client._has_indicator(prototype=prototype)
 
     def is_bar_line_crossing(self):
-        r'''True when client crosses bar line.
+        r'''Is true when client crosses bar line.
         Otherwise false.
 
         ..  container:: example
@@ -600,7 +602,7 @@ class InspectionAgent(abctools.AbjadObject):
         self,
         allow_empty_containers=True,
         ):
-        r'''True when client is well-formed.
+        r'''Is true when client is well-formed.
         Otherwise false.
 
         Returns false.

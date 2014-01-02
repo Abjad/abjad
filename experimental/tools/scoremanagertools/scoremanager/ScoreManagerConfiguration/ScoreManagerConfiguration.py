@@ -441,7 +441,7 @@ class ScoreManagerConfiguration(Configuration):
         return result
 
     def packagesystem_path_exists(self, packagesystem_path):
-        r'''True whens `packagesystem_path` exists. Otherwise false.
+        r'''Is true whens `packagesystem_path` exists. Otherwise false.
 
         ::
 

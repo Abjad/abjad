@@ -42,7 +42,7 @@ def list_named_pitches_in_expr(expr):
         elif hasattr(expr, 'pitches'):
             result.extend(expr.pitches)
         elif isinstance(expr, spannertools.Spanner):
-            for leaf in expr.leaves:
+            for leaf in expr._leaves:
                 if hasattr(leaf, 'written_pitch') and \
                     not isinstance(leaf, scoretools.Rest):
                     result.append(leaf.written_pitch)

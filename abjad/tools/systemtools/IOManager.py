@@ -78,7 +78,7 @@ class IOManager(object):
                 ...     "Note('c4')",
                 ...     globals(),
                 ...     )
-                9746
+                9750
 
         ..  container:: example
 
@@ -127,9 +127,11 @@ class IOManager(object):
 
         Returns none.
         '''
+        if not directory:
+            directory = '.'
         if not os.path.isdir(directory):
             lines = []
-            line = 'Attention: {!} does not exist on your system.'
+            line = 'Attention: {!r} does not exist on your system.'
             line = line.format(directory)
             lines.append(line)
             lines.append('Abjad will now create it to store all output files.')
@@ -423,6 +425,8 @@ class IOManager(object):
         from abjad import abjad_configuration
         ABJADOUTPUT = abjad_configuration['abjad_output']
         last_output_file_path = IOManager.get_last_output_file_name()
+        if last_output_file_path is None:
+            return
         without_extension, extension = os.path.splitext(last_output_file_path)
         last_ly = without_extension + '.ly'
         last_ly_full_name = os.path.join(ABJADOUTPUT, last_ly)
@@ -604,11 +608,13 @@ class IOManager(object):
         elif isinstance(target, str):
             target_pdf = os.path.join(ABJADOUTPUT, target)
         else:
-            message = 'can not get target pdf name from {}.'.format(target)
+            message = 'can not get target pdf name from {}.'
+            message = message.format(target)
             raise ValueError(message)
         if os.stat(target_pdf):
             pdf_viewer = abjad_configuration['pdf_viewer']
             IOManager.open_file(target_pdf, pdf_viewer)
         else:
-            message = 'Target PDF {} does not exist.'.format(target_pdf)
+            message = 'target PDF {} does not exist.'
+            message = message.format(target_pdf)
             print message

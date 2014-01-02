@@ -13,26 +13,36 @@ Selection = selectiontools.Selection
 
 
 class Spanner(AbjadObject):
-    '''Any type of notation object that stretches horizontally
-    and encompasses some number of notes, rest, chords or other components.
+    '''Any type of object that stretches horizontally
+    and encompasses some number of score components.
+
     Examples include beams, slurs, hairpins and trills.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_components',
+        '_contiguity_constraint',
+        '_indicators',
+        '_lilypond_grob_name_manager',
+        '_lilypond_setting_name_manager',
+        )
+
     ### INITIALIZER ###
 
-    def __init__(self, components=None, overrides=None):
+    def __init__(self, overrides=None):
         overrides = overrides or {}
         self._components = []
         self._contiguity_constraint = 'logical voice'
-        self._initialize_components(components)
         self._apply_overrides(overrides)
         self._indicators = []
-        self._set = None
+        self._lilypond_setting_name_manager = None
 
     ### SPECIAL METHODS ###
 
     def __contains__(self, expr):
-        r'''True when spanner contains `expr`.
+        r'''Is true when spanner contains `expr`.
         Otherwise false.
 
         Returns boolean.
@@ -51,10 +61,10 @@ class Spanner(AbjadObject):
         Returns new spanner.
         '''
         new = type(self)(*self.__getnewargs__())
-        if getattr(self, '_override', None) is not None:
-            new._override = copy.copy(override(self))
-        if getattr(self, '_set', None) is not None:
-            new._set = copy.copy(contextualize(self))
+        if getattr(self, '_lilypond_grob_name_manager', None) is not None:
+            new._lilypond_grob_name_manager = copy.copy(override(self))
+        if getattr(self, '_lilypond_setting_name_manager', None) is not None:
+            new._lilypond_setting_name_manager = copy.copy(contextualize(self))
         self._copy_keyword_args(new)
         return new
 
@@ -75,17 +85,21 @@ class Spanner(AbjadObject):
     def __getstate__(self):
         r'''Gets object state.
         '''
-        return vars(self)
+        state = {}
+        for class_ in type(self).__mro__:
+            for slot in getattr(class_, '__slots__', ()):
+                state[slot] = getattr(self, slot, None)
+        return state
 
     def __len__(self):
-        r'''Length of spanner.
+        r'''Gets number of components in spanner.
 
         Returns nonnegative integer.
         '''
-        return self._components.__len__()
+        return len(self.components)
 
     def __lt__(self, expr):
-        r'''True when spanner is less than `expr`.
+        r'''Is true when spanner is less than `expr`. Otherwise false.
 
         Trivial comparison to allow doctests to work.
 
@@ -117,6 +131,16 @@ class Spanner(AbjadObject):
         for leaf in self.leaves:
             duration += leaf._get_duration(in_seconds=True)
         return duration
+
+    @property
+    def _leaves(self):
+        result = []
+        for component in self._components:
+            for node in iterate(component).depth_first():
+                if isinstance(node, scoretools.Leaf):
+                    result.append(node)
+        result = tuple(result)
+        return result
 
     @property
     def _preprolated_duration(self):
@@ -155,6 +179,21 @@ class Spanner(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _append(self, component):
+        if self._contiguity_constraint == 'logical voice':
+            components = self[-1:] + [component]
+            assert Selection._all_are_contiguous_components_in_same_logical_voice(
+                components), repr(components)
+        component._spanners.add(self)
+        self._components.append(component)
+
+    def _append_left(self, component):
+        components = [component] + self[:1]
+        assert Selection._all_are_contiguous_components_in_same_logical_voice(
+            components)
+        component._spanners.add(self)
+        self._components.insert(0, component)
+
     def _apply_overrides(self, overrides):
         exec('from abjad import *')
         for grob_attribute_string in overrides:
@@ -171,9 +210,9 @@ class Spanner(AbjadObject):
         from abjad.tools import selectiontools
         assert not self, repr(self)
         if isinstance(components, scoretools.Component):
-            self.append(components)
+            self._append(components)
         elif isinstance(components, (list, tuple, selectiontools.Selection)):
-            self.extend(components)
+            self._extend(components)
         else:
             raise TypeError(components)
 
@@ -212,8 +251,24 @@ class Spanner(AbjadObject):
 
     def _duration_offset_in_me(self, leaf):
         leaf_start_offset = leaf._get_timespan().start_offset
-        self_start_offset = self.get_timespan().start_offset
+        self_start_offset = self._get_timespan().start_offset
         return leaf_start_offset - self_start_offset
+
+    def _extend(self, components):
+        component_input = self[-1:]
+        component_input.extend(components)
+        if self._contiguity_constraint == 'logical voice':
+            assert Selection._all_are_contiguous_components_in_same_logical_voice(
+                component_input), repr(component_input)
+        for component in components:
+            self._append(component)
+
+    def _extend_left(self, components):
+        component_input = components + self[:1]
+        assert Selection._all_are_contiguous_components_in_same_logical_voice(
+            component_input)
+        for component in reversed(components):
+            self._append_left(component)
 
     def _format_after_leaf(self, leaf):
         result = []
@@ -231,6 +286,32 @@ class Spanner(AbjadObject):
         result = []
         return result
 
+    def _fracture(self, i, direction=None):
+        r'''Fractures spanner at `direction` of component at index `i`.
+
+        Valid values for `direction` are ``Left``, ``Right`` and ``None``.
+
+        Set `direction=None` to fracture on both left and right sides.
+
+        Returns tuple of original, left and right spanners.
+        '''
+        if i < 0:
+            i = len(self) + i
+        if direction == Left:
+            return self._fracture_left(i)
+        elif direction == Right:
+            return self._fracture_right(i)
+        elif direction is None:
+            left = self._copy(self[:i])
+            right = self._copy(self[i+1:])
+            center = self._copy(self[i:i+1])
+            self._block_all_components()
+            return self, left, center, right
+        else:
+            message = 'direction {!r} must be left, right or none.'
+            message = message.format(direction)
+            raise ValueError(message)
+
     def _fracture_left(self, i):
         left = self._copy(self[:i])
         right = self._copy(self[i:])
@@ -245,10 +326,16 @@ class Spanner(AbjadObject):
 
     def _fuse_by_reference(self, spanner):
         result = self._copy(self[:])
-        result.extend(spanner.components)
+        result._extend(spanner.components)
         self._block_all_components()
         spanner._block_all_components()
         return [(self, spanner, result)]
+
+    def _get_duration(self, in_seconds=False):
+        return sum(
+            component._get_duration(in_seconds=in_seconds)
+            for component in self
+            )
 
     def _get_indicators(self, prototype=None, unwrap=True):
         from abjad.tools import indicatortools
@@ -304,21 +391,19 @@ class Spanner(AbjadObject):
                     return leaf
         raise IndexError
 
-    def _initialize_components(self, components):
-        from abjad.tools import scoretools
-        if components:
-            raise DeprecationWarning
-        if isinstance(components, scoretools.Component):
-            components = [components]
-        elif not components:
-            components = []
-        assert not any(
-            isinstance(x, scoretools.Context)
-            for x in components), repr(components)
-        if self._contiguity_constraint == 'logical voice':
-            leaves = list(iterate(components).by_class(scoretools.Leaf))
-            assert Selection._all_are_contiguous_components_in_same_logical_voice(leaves)
-        self.extend(components)
+    def _get_timespan(self, in_seconds=False):
+        if len(self):
+            start_offset = \
+                self[0]._get_timespan(in_seconds=in_seconds).start_offset
+        else:
+            start_offset = Duration(0)
+        if len(self):
+            stop_offset = \
+                self[-1]._get_timespan(in_seconds=in_seconds).stop_offset
+        else:
+            stop_offset = Duration(0)
+        return timespantools.Timespan(
+            start_offset=start_offset, stop_offset=stop_offset)
 
     def _insert(self, i, component):
         r'''Not composer-safe.
@@ -460,142 +545,14 @@ class Spanner(AbjadObject):
 
     @property
     def components(self):
-        r'''Components in spanner.
+        r'''Gets components in spanner.
 
-        Returns tuple.
+        Returns selection.
         '''
-        return tuple(self._components[:])
-
-    @property
-    def leaves(self):
-        r'''Leaves in spanner.
-
-        Returns tuple.
-        '''
-        result = []
-        for component in self._components:
-            # EXPERIMENTAL: expand to allow staff-level spanner eventually
-            for node in iterate(component).depth_first():
-                if isinstance(node, scoretools.Leaf):
-                    result.append(node)
-        result = tuple(result)
-        return result
+        from abjad.tools import selectiontools
+        return selectiontools.Selection(self._components[:])
 
     ### PUBLIC METHODS ###
-
-    def append(self, component):
-        r'''Appends `component` to spanner.
-
-        Returns none.
-        '''
-        if self._contiguity_constraint == 'logical voice':
-            components = self[-1:] + [component]
-            assert Selection._all_are_contiguous_components_in_same_logical_voice(
-                components), repr(components)
-        component._spanners.add(self)
-        self._components.append(component)
-
-    def append_left(self, component):
-        r'''Appends `component` to left of spanner.
-
-        Returns none.
-        '''
-        components = [component] + self[:1]
-        assert Selection._all_are_contiguous_components_in_same_logical_voice(
-            components)
-        component._spanners.add(self)
-        self._components.insert(0, component)
-
-    def detach(self):
-        r'''Detaches spanner.
-
-        Returns none.
-        '''
-        self._sever_all_components()
-
-    def extend(self, components):
-        r'''Extends spanner with `components`.
-
-        Returns none.
-        '''
-        component_input = self[-1:]
-        component_input.extend(components)
-        if self._contiguity_constraint == 'logical voice':
-            assert Selection._all_are_contiguous_components_in_same_logical_voice(
-                component_input), repr(component_input)
-        for component in components:
-            self.append(component)
-
-    def extend_left(self, components):
-        r'''Extends left of spanner with `components`.
-
-        Returns none.
-        '''
-        component_input = components + self[:1]
-        assert Selection._all_are_contiguous_components_in_same_logical_voice(
-            component_input)
-        for component in reversed(components):
-            self.append_left(component)
-
-    def fracture(self, i, direction=None):
-        r'''Fractures spanner at `direction` of component at index `i`.
-
-        Valid values for `direction` are ``Left``, ``Right`` and ``None``.
-
-        Set `direction=None` to fracture on both left and right sides.
-
-        Returns tuple of original, left and right spanners.
-        '''
-        if i < 0:
-            i = len(self) + i
-        if direction == Left:
-            return self._fracture_left(i)
-        elif direction == Right:
-            return self._fracture_right(i)
-        elif direction is None:
-            left = self._copy(self[:i])
-            right = self._copy(self[i+1:])
-            center = self._copy(self[i:i+1])
-            self._block_all_components()
-            return self, left, center, right
-        else:
-            message = 'direction {!r} must be Left, Right or None.'
-            raise ValueError(message.format(direction))
-
-    def fuse(self, spanner):
-        r'''Fuses spanner with contiguous `spanner`.
-
-        Returns list of left, right and new spanners.
-        '''
-        return self._fuse_by_reference(spanner)
-
-    def get_duration(self, in_seconds=False):
-        r'''Gets duration of spanner.
-
-        Returns duration.
-        '''
-        return sum(
-            component._get_duration(in_seconds=in_seconds)
-            for component in self
-            )
-
-    def get_timespan(self, in_seconds=False):
-        r'''Gets timespan of spanner.
-
-        Returns timespan.
-        '''
-        if len(self):
-            start_offset = \
-                self[0]._get_timespan(in_seconds=in_seconds).start_offset
-        else:
-            start_offset = Duration(0)
-        if len(self):
-            stop_offset = \
-                self[-1]._get_timespan(in_seconds=in_seconds).stop_offset
-        else:
-            stop_offset = Duration(0)
-        return timespantools.Timespan(
-            start_offset=start_offset, stop_offset=stop_offset)
 
     def index(self, component):
         r'''Returns index of `component` in spanner.
@@ -607,21 +564,3 @@ class Spanner(AbjadObject):
                 return i
         else:
             raise IndexError
-
-    def pop(self):
-        r'''Pops rightmost component off of spanner.
-
-        Returns component.
-        '''
-        component = self[-1]
-        self._sever_component(component)
-        return component
-
-    def pop_left(self):
-        r'''Pops leftmost component off of spanner.
-
-        Returns component.
-        '''
-        component = self[0]
-        self._sever_component(component)
-        return component

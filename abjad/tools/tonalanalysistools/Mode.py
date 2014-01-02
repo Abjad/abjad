@@ -31,7 +31,8 @@ class Mode(AbjadObject):
         elif isinstance(arg, Mode):
             mode_name = arg.mode_name
         else:
-            message = 'must be mode or mode name: {!r}.'.format(arg)
+            message = 'must be mode or mode name: {!r}.'
+            message = message.format(arg)
             raise TypeError(message)
         mdi_segment = self._initialize_with_mode_name(mode_name)
         self._named_interval_segment = mdi_segment
@@ -40,7 +41,7 @@ class Mode(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        r'''True when `arg` is a mode with mode name equal to that of this
+        r'''Is true when `arg` is a mode with mode name equal to that of this
         mode. Otherwise false.
 
         Returns boolean.
@@ -57,7 +58,7 @@ class Mode(AbjadObject):
         return len(self.named_interval_segment)
 
     def __ne__(self, arg):
-        r'''True when `arg` does not equal mode. Otherwise false.
+        r'''Is true when `arg` does not equal mode. Otherwise false.
 
         Returns boolean.
         '''
@@ -109,7 +110,8 @@ class Mode(AbjadObject):
         elif mode_name == 'harmonic minor':
             mdi_segment.extend([M2, m2, M2, M2, m2, A2, m2])
         else:
-            message = 'unknown mode name: {!r}.'.format(mode_name)
+            message = 'unknown mode name: {!r}.'
+            message = message.format(mode_name)
             raise ValueError(message)
         return pitchtools.IntervalSegment(
             tokens=mdi_segment,

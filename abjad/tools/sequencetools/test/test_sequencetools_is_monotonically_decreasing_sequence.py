@@ -4,7 +4,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_is_monotonically_decreasing_sequence_01():
-    r'''True when the elements in expr decrease monotonically.
+    r'''Is true when the elements in expr decrease monotonically.
     '''
 
     expr = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
@@ -26,7 +26,7 @@ def test_sequencetools_is_monotonically_decreasing_sequence_02():
 
 
 def test_sequencetools_is_monotonically_decreasing_sequence_03():
-    r'''True when expr is empty.
+    r'''Is true when expr is empty.
     '''
 
     expr = []

@@ -25,17 +25,21 @@ class Tie(Spanner):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_direction',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
         self,
-        music=None,
         direction=None,
         overrides=None,
         ):
         Spanner.__init__(
             self,
-            music,
             overrides=overrides,
             )
         self.direction = direction

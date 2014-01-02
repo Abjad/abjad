@@ -120,3 +120,21 @@
     Create the packge. Then [mde] to edit the material definition module.
     The last line in file reads like this:
         /Users/trevorbaca/Documents/scores/temporary/materials/foo = None
+
+36. Move score/instrumentation.py module to score/materials packages.
+
+37. Make tempo inventory editor (score > materials > tempo inventory) display
+    custom identifier of tempo inventory when custom identifier has been
+    defined.
+
+38. Change ...
+        from abjad.tools import indicatortools
+        from abjad.tools import durationtools
+    ... to just ...
+        from abjad import *
+    ... at the end of material output modules.
+
+39. Include two blank lines after headers in material output modules.
+
+40. Make material package illustration work again.
+    (score > materials > tempo inventory > pdfm) is the command sequence.

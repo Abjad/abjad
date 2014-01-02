@@ -131,7 +131,7 @@ class PayloadTree(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, expr):
-        r'''True when payload tree contains `expr`.
+        r'''Is true when payload tree contains `expr`.
 
         ::
 
@@ -153,7 +153,7 @@ class PayloadTree(AbjadObject):
         return expr in self._children
 
     def __eq__(self, expr):
-        r'''True when `expr` is the same type as tree
+        r'''Is true when `expr` is the same type as tree
         and when the payload of all subtrees are equal.
 
         ::
@@ -754,7 +754,8 @@ class PayloadTree(AbjadObject):
                     if node.is_at_level(level):
                         result.append(node)
         else:
-            message = 'not enough nodes at level {}.'.format(level)
+            message = 'not enough nodes at level {}.'
+            message = message.format(level)
             raise ValueError(message)
 
     def _initialize_children_list(self):
@@ -1075,11 +1076,12 @@ class PayloadTree(AbjadObject):
         for i, current_node in enumerate(self):
             if current_node is node:
                 return i
-        message = '{!r} is not in tree.'.format(node)
+        message = 'not in tree: {!r}.'
+        message = message.format(node)
         raise ValueError(message)
 
     def is_at_level(self, level):
-        r'''True when node is at `level` in containing tree.
+        r'''Is true when node is at `level` in containing tree.
 
         ::
 

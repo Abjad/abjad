@@ -387,7 +387,7 @@ class ClassDocumenter(Documenter):
 
     @property
     def is_abstract(self):
-        r'''True when class is abstract. Otherwise false.
+        r'''Is true when class is abstract. Otherwise false.
 
         Returns boolean.
         '''

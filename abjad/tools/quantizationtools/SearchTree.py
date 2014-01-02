@@ -53,7 +53,7 @@ class SearchTree(AbjadObject):
         return new_q_grids
 
     def __eq__(self, expr):
-        r'''True when `expr` is a search tree with definition equal to that of
+        r'''Is true when `expr` is a search tree with definition equal to that of
         this search tree. Otherwise false.
 
         Returns boolean.

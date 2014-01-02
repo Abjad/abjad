@@ -231,7 +231,7 @@ class Sieve(BaseResidueClass):
     # that is, self.get_congruent_bases(0, 0) raises an exception;
     # so we work around this with self.get_congruent_bases(-1, 1) instead.
     def is_congruent_base(self, integer):
-        r'''True when `integer` is congruent to base in sieve.
+        r'''Is true when `integer` is congruent to base in sieve.
         Otherwise false.
 
             ::

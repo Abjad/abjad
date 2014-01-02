@@ -43,7 +43,7 @@ class Infinity(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is also infinity. Otherwise false.
+        r'''Is true when `expr` is also infinity. Otherwise false.
 
         Returns boolean.
         '''
@@ -66,7 +66,7 @@ class Infinity(AbjadObject):
         return self._value > expr
 
     def __le__(self, expr):
-        r'''True when `expr` is infinite. Otherwise false.
+        r'''Is true when `expr` is infinite. Otherwise false.
 
         Returns boolean.
         '''

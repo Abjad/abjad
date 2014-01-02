@@ -128,7 +128,7 @@ class PitchClassSet(Set):
         return type(self)([pc.invert() for pc in self])
 
     def is_transposed_subset(self, pcset):
-        r'''True when pitch-class set is transposed subset of `pcset`.
+        r'''Is true when pitch-class set is transposed subset of `pcset`.
         Otherwise false:
 
         ::
@@ -153,7 +153,7 @@ class PitchClassSet(Set):
         return False
 
     def is_transposed_superset(self, pcset):
-        r'''True when pitch-class set is transposed superset of `pcset`.
+        r'''Is true when pitch-class set is transposed superset of `pcset`.
         Otherwise false:
 
         ::

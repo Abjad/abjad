@@ -33,11 +33,11 @@ class Component(AbjadObject):
         '_indicators',
         '_indicators_are_current',
         '_is_forbidden_to_update',
+        '_lilypond_grob_name_manager',
+        '_lilypond_setting_name_manager',
         '_offsets_are_current',
         '_offsets_in_seconds_are_current',
-        '_override',
         '_parent',
-        '_set',
         '_spanners',
         '_start_offset',
         '_start_offset_in_seconds',
@@ -60,9 +60,9 @@ class Component(AbjadObject):
         self._is_forbidden_to_update = False
         self._offsets_are_current = False
         self._offsets_in_seconds_are_current = False
-        self._override = None
+        self._lilypond_grob_name_manager = None
         self._parent = None
-        self._set = None
+        self._lilypond_setting_name_manager = None
         self._spanners = set()
         self._start_offset = None
         self._start_offset_in_seconds = None
@@ -180,10 +180,10 @@ class Component(AbjadObject):
 
     def _copy_with_indicators_but_without_children_or_spanners(self):
         new = type(self)(*self.__getnewargs__())
-        if getattr(self, '_override', None) is not None:
-            new._override = copy.copy(override(self))
-        if getattr(self, '_set', None) is not None:
-            new._set = copy.copy(contextualize(self))
+        if getattr(self, '_lilypond_grob_name_manager', None) is not None:
+            new._lilypond_grob_name_manager = copy.copy(override(self))
+        if getattr(self, '_lilypond_setting_name_manager', None) is not None:
+            new._lilypond_setting_name_manager = copy.copy(contextualize(self))
         for indicator in self._get_indicators():
             new_indicator = copy.copy(indicator)
             attach(new_indicator, new)
@@ -199,7 +199,7 @@ class Component(AbjadObject):
     def _detach_spanners(self, prototype=None):
         spanners = self._get_spanners(prototype=prototype)
         for spanner in spanners:
-            spanner.detach()
+            spanner._sever_all_components()
         return spanners
 
     # TODO: remove scale_contents keyword

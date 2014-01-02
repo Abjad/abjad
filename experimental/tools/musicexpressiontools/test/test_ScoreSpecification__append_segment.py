@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import *
-from experimental import *
 import pytest
+from experimental import *
 
 
 def test_ScoreSpecification__append_segment_01():

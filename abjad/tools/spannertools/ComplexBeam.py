@@ -47,18 +47,22 @@ class ComplexBeam(Beam):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_lone',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
         self, 
-        components=None, 
         lone=False, 
         direction=None,
         overrides=None,
         ):
         Beam.__init__(
             self, 
-            components=components, 
             direction=direction,
             overrides=overrides,
             )
@@ -197,7 +201,8 @@ class ComplexBeam(Beam):
             left = None
             right = None
         else:
-            message = 'long must be left, right or both: {!r}.'.format(lone)
+            message = 'long must be left, right or both: {!r}.'
+            message = message.format(lone)
             raise ValueError(message)
         return left, right
 

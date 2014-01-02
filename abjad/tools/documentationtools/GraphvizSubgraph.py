@@ -69,7 +69,7 @@ class GraphvizSubgraph(GraphvizGraph):
 
     @property
     def is_cluster(self):
-        r'''True when Graphviz subgraph is a cluster. Otherwise false.
+        r'''Is true when Graphviz subgraph is a cluster. Otherwise false.
 
         Returns boolean.
         '''

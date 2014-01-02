@@ -10,7 +10,7 @@ class RhythmRegionExpression(RegionExpression):
     ### PUBLIC METHODS ###
 
     def prolongs_expr(self, expr):
-        r'''True when `expr` is a rhythm region expression
+        r'''Is true when `expr` is a rhythm region expression
         and `expr` source_expression equals rhythm region 
         expression source_expression.
         Otherwise false.

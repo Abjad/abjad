@@ -44,7 +44,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
             for container in iterate(rhythm_containers).by_class():
                 spanners = container._get_spanners()
                 for spanner in spanners:
-                    spanner.detach()
+                    spanner._sever_all_components()
             durations = [x._get_duration() for x in rhythm_containers]
             beam = spannertools.DuratedComplexBeam(
                 durations=durations,
@@ -55,7 +55,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
             for container in iterate(rhythm_containers).by_class():
                 spanners = container._get_spanners()
                 for spanner in spanners:
-                    spanner.detach()
+                    spanner._sever_all_components()
             for rhythm_container in rhythm_containers:
                 beam = spannertools.DuratedComplexBeam(
                     durations=[rhythm_container._get_duration()],

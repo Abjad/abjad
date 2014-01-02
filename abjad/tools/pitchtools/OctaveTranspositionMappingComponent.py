@@ -60,7 +60,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is a an octave transposition mapping component
+        r'''Is true when `expr` is a an octave transposition mapping component
         with source pitch range and target octave start pitch equal to those of
         this octave transposition mapping component. Otherwise false.
 
@@ -86,7 +86,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         return str(self)
 
     def __ne__(self, expr):
-        r'''True when octave transposition mapping component does not equal 
+        r'''Is true when octave transposition mapping component does not equal 
         `expr`. Otherwise false.
 
         Returns boolean.

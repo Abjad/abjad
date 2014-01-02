@@ -4,7 +4,7 @@ import pytest
 
 
 def test_scoretools_Container_is_simultaneous_01():
-    r'''True when container encloses contents in LilyPond << >> brackets,
+    r'''Is true when container encloses contents in LilyPond << >> brackets,
     otherwise False.
     '''
 
@@ -23,7 +23,7 @@ def test_scoretools_Container_is_simultaneous_01():
 
 
 def test_scoretools_Container_is_simultaneous_02():
-    r'''True when container encloses contents in LilyPond << >> brackets,
+    r'''Is true when container encloses contents in LilyPond << >> brackets,
     otherwise False.
     '''
 

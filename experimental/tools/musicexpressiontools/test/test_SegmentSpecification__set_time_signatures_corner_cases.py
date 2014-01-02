@@ -3,7 +3,8 @@ from experimental import *
 
 
 def test_SegmentSpecification__set_time_signatures_corner_cases_01():
-    r'''Multiple time signature set expressions are allowed for a single segment.
+    r'''Multiple time signature set expressions are allowed for a 
+    single segment.
 
     Interpreter ignores all but the last.
     '''

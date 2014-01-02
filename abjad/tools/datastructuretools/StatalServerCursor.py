@@ -71,7 +71,7 @@ class StatalServerCursor(AbjadObject):
         r'''Statal server cursor reverse.
 
         False when cursor reads from left to right.
-        True when cursor reads from right to left.
+        Is true when cursor reads from right to left.
 
         Returns boolean.
         '''

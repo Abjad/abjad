@@ -32,7 +32,8 @@ class SyntaxNode(AbjadObject):
         '''
         if isinstance(self.value, (list, tuple)):
             return self.value[item]
-        message = 'can not get: {!r}.'.format(item)
+        message = 'can not get: {!r}.'
+        message = message.format(item)
         raise Exception(message)
 
     def __len__(self):

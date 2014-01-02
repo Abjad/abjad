@@ -15,9 +15,17 @@ def test_custom_contexts_01():
         ### SPECIAL METHODS ###
 
         def __call__(self):
-            custom_voice = scoretools.Voice(context_name='CustomVoice', name='Custom Voice')
-            custom_staff = scoretools.Staff(context_name='CustomStaff', name='Custom Staff')
-            custom_score = scoretools.Score(name='Custom Score')
+            custom_voice = scoretools.Voice(
+                context_name='CustomVoice', 
+                name='Custom Voice',
+                )
+            custom_staff = scoretools.Staff(
+                context_name='CustomStaff', 
+                name='Custom Staff',
+                )
+            custom_score = scoretools.Score(
+                name='Custom Score',
+                )
             custom_staff.append(custom_voice)
             custom_score.append(custom_staff)
             return custom_score

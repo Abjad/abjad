@@ -1,4 +1,4 @@
-System Overview
+System overview
 ===============
 
 .. toctree::

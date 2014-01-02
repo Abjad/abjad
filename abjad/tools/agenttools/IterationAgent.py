@@ -1134,7 +1134,8 @@ class IterationAgent(abctools.AbjadObject):
                 elif isinstance(component, scoretools.Container):
                     yield component
         else:
-            message = 'input must be iterable: {!r}.'.format(self._client)
+            message = 'input must be iterable: {!r}.'
+            message = message.format(self._client)
             raise ValueError(message)
 
     def by_vertical_moment(

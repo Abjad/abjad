@@ -64,13 +64,14 @@ class ResidueClass(BaseResidueClass):
         elif len(args) == 0:
             self._initialize_by_modulo_and_residue(1, 0)
         else:
-            message = 'can not intialize residue class: {!r}.'.format(args)
+            message = 'can not intialize residue class: {!r}.'
+            message = message.format(args)
             raise ValueError(message)
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is a residue class with module and residue equal
+        r'''Is true when `expr` is a residue class with module and residue equal
         to those of this residue class. Otherwise false.
 
         Returns boolean.
@@ -82,7 +83,7 @@ class ResidueClass(BaseResidueClass):
         return False
 
     def __lt__(self, expr):
-        r'''True when `expr` is a residue class with module greater than that
+        r'''Is true when `expr` is a residue class with module greater than that
         of this residue class. Also true when `expr` is a residue class with
         modulo equal to that of this residue class and with residue greater
         than that of this residue class. Otherwise false.
@@ -95,7 +96,7 @@ class ResidueClass(BaseResidueClass):
             return self.modulo < expr.modulo
 
     def __ne__(self, expr):
-        r'''True when `expr` is not equal to this residue class. Otherwise
+        r'''Is true when `expr` is not equal to this residue class. Otherwise
         false.
 
         Return boolean.
@@ -120,7 +121,8 @@ class ResidueClass(BaseResidueClass):
 
     def _initialize_by_modulo_and_residue(self, modulo, residue):
         if not 0 < modulo:
-            message = 'modulo must be positive: {!r}.'.format(modulo)
+            message = 'modulo must be positive: {!r}.'
+            message = message.format(modulo)
             raise ValueError(message)
         if not 0 <= residue < modulo:
             message = 'abs(residue) must be < modulo.'
@@ -130,7 +132,8 @@ class ResidueClass(BaseResidueClass):
 
     def _initialize_by_rc_instance(self, rc):
         if not isinstance(rc, ResidueClass):
-            message = 'must be residue class: {!r}.'.format(rc)
+            message = 'must be residue class: {!r}.'
+            message = message.format(rc)
             raise TypeError(message)
         self._modulo = rc.modulo
         self._residue = rc.residue

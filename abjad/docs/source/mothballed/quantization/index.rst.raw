@@ -17,9 +17,15 @@ quantizer = quantizationtools.Quantizer()
 </abjad>
 
 <abjad>
-original_staff = Staff("abj: | 4/4 c'16 d' e' f' g' a' b' c'' ~ c'' b' a' g' f' e' d' c' |")
-tempo = indicatortools.Tempo((1, 4), 60)(original_staff[0])
-q_event_sequence = quantizationtools.QEventSequence.from_tempo_scaled_leaves(original_staff.leaves, tempo)
+input_string = "abj: | 4/4 c'16 d' e' f' g' a' b' c'' ~ "
+input_string += "c'' b' a' g' f' e' d' c' |"
+original_staff = Staff(input_string)
+tempo = indicatortools.Tempo((1, 4), 60)
+attach(tempo, original_staff[0])
+q_event_sequence = quantizationtools.QEventSequence.from_tempo_scaled_leaves(
+    original_staff.select_leaves(),
+    tempo,
+    )
 </abjad>
 
 <abjad>

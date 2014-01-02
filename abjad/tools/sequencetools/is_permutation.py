@@ -2,7 +2,7 @@
 
 
 def is_permutation(expr, length=None):
-    '''True when `expr` is a permutation:
+    '''Is true when `expr` is a permutation:
 
     ::
 
@@ -16,7 +16,7 @@ def is_permutation(expr, length=None):
         >>> sequencetools.is_permutation([1, 1, 5, 3, 2, 1])
         False
 
-    True when `expr` is a permutation of first `length` nonnegative integers:
+    Is true when `expr` is a permutation of first `length` nonnegative integers:
 
     ::
 

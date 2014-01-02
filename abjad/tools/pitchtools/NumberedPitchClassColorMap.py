@@ -86,7 +86,7 @@ class NumberedPitchClassColorMap(AbjadObject):
 
     @property
     def is_twelve_tone_complete(self):
-        r'''True when color map contains all 12-ET pitch-classes.
+        r'''Is true when color map contains all 12-ET pitch-classes.
 
         ::
 
@@ -100,7 +100,7 @@ class NumberedPitchClassColorMap(AbjadObject):
 
     @property
     def is_twenty_four_tone_complete(self):
-        r'''True when color map contains all 24-ET pitch-classes.
+        r'''Is true when color map contains all 24-ET pitch-classes.
 
         ::
 

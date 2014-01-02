@@ -82,7 +82,8 @@ class NamedIntervalClass(IntervalClass):
             quality_string = 'perfect'
             number = 1
         else:
-            message = 'bad input: {!r}.'.format(args)
+            message = 'bad input: {!r}.'
+            message = message.format(args)
             raise TypeError(message)
         if quality_string not in \
             NamedIntervalClass._acceptable_quality_strings:
@@ -90,10 +91,12 @@ class NamedIntervalClass(IntervalClass):
             message = message.format(quality_string)
             raise ValueError(message)
         if not isinstance(number, int):
-            message = 'must be integer: {!r}.'.format(number)
+            message = 'must be integer: {!r}.'
+            message = message.format(number)
             raise TypeError(message)
         if number == 0:
-            message = 'must be nonzero: {!r}.'.format(number)
+            message = 'must be nonzero: {!r}.'
+            message = message.format(number)
             raise ValueError(number)
         sign = mathtools.sign(number)
         abs_number = abs(number)
@@ -118,7 +121,7 @@ class NamedIntervalClass(IntervalClass):
         return type(self)(abs(self._number))
 
     def __eq__(self, arg):
-        r'''True when `arg` is a named interval-class with direction number,
+        r'''Is true when `arg` is a named interval-class with direction number,
         quality string and number equal to those of this named interval-class.
         Otherwise false.
 
@@ -153,7 +156,7 @@ class NamedIntervalClass(IntervalClass):
         return self._number
 
     def __ne__(self, arg):
-        r'''True when named interval-class does not equal `arg`. Otherwise
+        r'''Is true when named interval-class does not equal `arg`. Otherwise
         false.
 
         Returns boolean.

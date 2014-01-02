@@ -45,16 +45,20 @@ class TextSpanner(Spanner):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_dynamic_text',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
         self, 
-        components=None, 
         overrides=None,
         ):
         Spanner.__init__(
             self, 
-            components, 
             overrides=overrides,
             )
 

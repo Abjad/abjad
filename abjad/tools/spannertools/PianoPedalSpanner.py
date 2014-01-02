@@ -27,6 +27,11 @@ class PianoPedalSpanner(Spanner):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_kind',
+        '_style',
+        )
+
     _kinds = {
         'sustain': (r'\sustainOn', r'\sustainOff'),
         'sostenuto':(r'\sostenutoOn', r'\sostenutoOff'),
@@ -43,12 +48,10 @@ class PianoPedalSpanner(Spanner):
 
     def __init__(
         self, 
-        components=None,
         overrides=None,
         ):
         Spanner.__init__(
             self, 
-            components,
             overrides=overrides,
             )
         self.kind = 'sustain'

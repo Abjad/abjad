@@ -3,7 +3,7 @@ import fractions
 
 
 def is_nonnegative_integer_power_of_two(expr):
-    r'''True when `expr` is a nonnegative integer power of ``2``.
+    r'''Is true when `expr` is a nonnegative integer power of ``2``.
 
     ::
 

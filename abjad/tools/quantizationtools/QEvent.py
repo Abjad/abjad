@@ -45,7 +45,7 @@ class QEvent(AbjadObject):
         return state
 
     def __lt__(self, expr):
-        r'''True when `epxr` is a q-event with offset greater than that of this
+        r'''Is true when `epxr` is a q-event with offset greater than that of this
         q-event. Otherwise false.
 
         Returns boolean.

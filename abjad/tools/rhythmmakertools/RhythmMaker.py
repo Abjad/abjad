@@ -41,7 +41,7 @@ class RhythmMaker(AbjadObject):
         return duration_pairs, seeds
 
     def __eq__(self, expr):
-        r'''True when `expr` is same type
+        r'''Is true when `expr` is same type
         with the equal public nonhelper properties.
         Otherwise false.
 

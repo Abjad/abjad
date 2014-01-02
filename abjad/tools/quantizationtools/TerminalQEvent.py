@@ -28,7 +28,7 @@ class TerminalQEvent(QEvent):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is a terminal q-event with offset equal to that of
+        r'''Is true when `expr` is a terminal q-event with offset equal to that of
         this terminal q-event. Otherwise false.
 
         Returns boolean.

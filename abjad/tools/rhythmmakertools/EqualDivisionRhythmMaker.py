@@ -144,7 +144,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
     @property
     def is_diminution(self):
-        r'''True when output tuplets should be diminuted.
+        r'''Is true when output tuplets should be diminuted.
 
         False when output tuplets should be augmented:
 

@@ -14,6 +14,7 @@ def test_ScorePackageManager_01():
     ['Red Example Score (2013)',
       '',
       '     build directory (u)',
+      '     makers (k)',
       '     materials (m)',
       '     score segments (g)',
       '     score setup (s)',

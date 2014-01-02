@@ -29,7 +29,7 @@ class SegmentIdentifierExpression(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when mandatory and keyword arguments compare equal.
+        r'''Is true when mandatory and keyword arguments compare equal.
         Otherwise false.
 
         Returns boolean.

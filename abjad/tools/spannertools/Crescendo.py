@@ -79,17 +79,24 @@ class Crescendo(Hairpin):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_direction',
+        '_include_rests',
+        '_shape',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
         self, 
-        components=None, 
         include_rests=True, 
         direction=None,
         overrides=None,
         ):
         Hairpin.__init__(
-            self, components=components, 
+            self, 
             descriptor='<', 
             include_rests=include_rests,
             direction=direction,

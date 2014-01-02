@@ -5,7 +5,6 @@ Appendices
 
     ..  toctree::
         :maxdepth: 1
-        :numbered:
 
         pitch_conventions/index
         bibliography/index
@@ -15,7 +14,6 @@ Appendices
 
     ..  toctree::
         :maxdepth: 1
-        :numbered:
 
         pitch_conventions/index
         bibliography/index

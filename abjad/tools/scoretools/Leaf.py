@@ -136,10 +136,11 @@ class Leaf(Component):
     ### PRIVATE METHODS ###
 
     def _copy_override_and_set_from_leaf(self, leaf):
-        if getattr(leaf, '_override', None) is not None:
-            self._override = copy.copy(override(leaf))
-        if getattr(leaf, '_set', None) is not None:
-            self._set = copy.copy(contextualize(leaf))
+        if getattr(leaf, '_lilypond_grob_name_manager', None) is not None:
+            self._lilypond_grob_name_manager = copy.copy(override(leaf))
+        if getattr(leaf, '_lilypond_setting_name_manager', None) is not None:
+            self._lilypond_setting_name_manager = copy.copy(
+                contextualize(leaf))
         new_indicators = []
         for indicator in leaf._indicators:
             new_indicator = copy.copy(indicator)
@@ -323,7 +324,7 @@ class Leaf(Component):
             tie_spanners = component._get_spanners(prototype)
             if len(tie_spanners) == 1:
                 tie_spanner = tie_spanners.pop()
-                return selectiontools.LogicalTie(music=tie_spanner.leaves)
+                return selectiontools.LogicalTie(music=tie_spanner._leaves)
             elif 1 < len(tie_spanners):
                 message = 'multiple tie spanners found.'
                 raise ExtraSpannerError(message)
@@ -459,7 +460,7 @@ class Leaf(Component):
             for component in selection:
                 # TODO: make top-level detach() work here
                 for spanner in component._get_spanners(prototype):
-                    spanner.detach()
+                    spanner._sever_all_components()
                 #detach(prototype, component)
         # replace leaf with flattened result
         selection = selectiontools.SliceSelection(self)
@@ -474,18 +475,18 @@ class Leaf(Component):
             first_shard = result[0]
             for spanner in first_shard[-1]._get_spanners():
                 index = spanner.index(first_shard[-1])
-                spanner.fracture(index, direction=Right)
+                spanner._fracture(index, direction=Right)
             last_shard = result[-1]
             for spanner in last_shard[0]._get_spanners():
                 index = spanner.index(last_shard[0])
-                spanner.fracture(index, direction=Left)
+                spanner._fracture(index, direction=Left)
             for middle_shard in result[1:-1]:
                 for spanner in middle_shard[0]._get_spanners():
                     index = spanner.index(middle_shard[0])
-                    spanner.fracture(index, direction=Left)
+                    spanner._fracture(index, direction=Left)
                 for spanner in middle_shard[-1]._get_spanners():
                     index = spanner.index(middle_shard[-1])
-                    spanner.fracture(index, direction=Right)
+                    spanner._fracture(index, direction=Right)
         # adjust first leaf
         first_leaf = flattened_result[0]
         self._detach_grace_containers(kind='after')
@@ -550,7 +551,7 @@ class Leaf(Component):
         if fracture_spanners:
             for spanner in leaf_left_of_split._get_spanners():
                 index = spanner.index(leaf_left_of_split)
-                spanner.fracture(index, direction=Right)
+                spanner._fracture(index, direction=Right)
         # tie split notes, rests and chords as specified
         if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
             selection = selectiontools.ContiguousSelection(leaves_around_split)

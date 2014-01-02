@@ -75,11 +75,11 @@ class ContiguousSelection(Selection):
         except MissingSpannerError:
             right_tie_spanner = None
         if left_tie_spanner is not None and right_tie_spanner is not None:
-            left_tie_spanner.fuse(right_tie_spanner)
+            left_tie_spanner._fuse_by_reference(right_tie_spanner)
         elif left_tie_spanner is not None and right_tie_spanner is None:
-            left_tie_spanner.append(right_leaf)
+            left_tie_spanner._append(right_leaf)
         elif left_tie_spanner is None and right_tie_spanner is not None:
-            right_tie_spanner.append_left(left_leaf)
+            right_tie_spanner._append_left(left_leaf)
         elif left_tie_spanner is None and right_tie_spanner is None:
             tie = spannertools.Tie()
             attach(tie, [left_leaf, right_leaf])
@@ -516,7 +516,7 @@ class ContiguousSelection(Selection):
             try:
                 new_covered_spanners = reversed_schema[component_index]
                 for new_covered_spanner in new_covered_spanners:
-                    new_covered_spanner.append(new_component)
+                    new_covered_spanner._append(new_component)
             except KeyError:
                 pass
         # repeat as specified by input
