@@ -229,7 +229,7 @@ class ComplexBeam(Beam):
 
                 >>> measure = Measure((1, 16), "c'16")
                 >>> beam = spannertools.ComplexBeam(lone=Left)
-                >>> attach(beam, measure[0])
+                >>> attach(beam, measure)
                 >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
@@ -244,82 +244,86 @@ class ComplexBeam(Beam):
 
         ..  container:: example
 
-            Beams lone leave and forces nib to the right:
+            Beams lone leaf and forces nib to the right:
 
             ::
 
-                >>> note = Note("c'16")
-
-            ::
-
+                >>> measure = Measure((1, 16), "c'16")
                 >>> beam = spannertools.ComplexBeam(lone=Right)
-                >>> attach(beam, note)
+                >>> attach(beam, measure)
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> print format(note)
-                \set stemLeftBeamCount = #0
-                \set stemRightBeamCount = #2
-                c'16 [ ]
+                >>> print format(measure)
+                {
+                    \time 1/16
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #2
+                    c'16 [ ]
+                }
 
         ..  container:: example
 
-            Beams lone leave and forces nibs to both left and right:
+            Beams lone leaf and forces nibs to both left and right:
 
             ::
 
-                >>> note = Note("c'16")
-
-            ::
-
+                >>> measure = Measure((1, 16), "c'16")
                 >>> beam = spannertools.ComplexBeam(lone='both')
-                >>> attach(beam, note)
+                >>> attach(beam, measure)
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> print format(note)
-                \set stemLeftBeamCount = #2
-                \set stemRightBeamCount = #2
-                c'16 [ ]
+                >>> print format(measure)
+                {
+                    \time 1/16
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #2
+                    c'16 [ ]
+                }
 
         ..  container:: example
 
-            Beam lone leaf and accept LilyPond default nibs at 
+            Beams lone leaf and accepts LilyPond default nibs at 
             both left and right:
 
             ::
 
-                >>> note = Note("c'16")
-
-            ::
-
+                >>> measure = Measure((1, 16), "c'16")
                 >>> beam = spannertools.ComplexBeam(lone=True)
-                >>> attach(beam, note)
+                >>> attach(beam, measure)
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> print format(note)
-                \set stemLeftBeamCount = #2
-                \set stemRightBeamCount = #2
-                c'16 [ ]
+                >>> print format(measure)
+                {
+                    \time 1/16
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #2
+                    c'16 [ ]
+                }
 
         ..  container:: example
 
-            Do not beam lone leaf:
+            Does not beam lone leaf:
 
             ::
 
-                >>> note = Note("c'16")
-
-            ::
-
+                >>> measure = Measure((1, 16), "c'16")
                 >>> beam = spannertools.ComplexBeam(lone=False)
-                >>> attach(beam, note)
+                >>> attach(beam, measure)
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> print format(note)
-                c'16
+                >>> print format(measure)
+                {
+                    \time 1/16
+                    c'16
+                }
 
         Set to ``Left``, ``Right``, ``'both'``, true or false.
 
