@@ -48,7 +48,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
             durations = [x._get_duration() for x in rhythm_containers]
             beam = spannertools.DuratedComplexBeam(
                 durations=durations,
-                span=1,
+                span_beam_count=1,
                 )
             attach(beam, rhythm_containers)
         elif beam_each_cell:
@@ -59,7 +59,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
             for rhythm_container in rhythm_containers:
                 beam = spannertools.DuratedComplexBeam(
                     durations=[rhythm_container._get_duration()],
-                    span=1,
+                    span_beam_count=1,
                     )
                 attach(beam, rhythm_container)
 

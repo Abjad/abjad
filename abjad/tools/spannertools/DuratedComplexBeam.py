@@ -5,13 +5,14 @@ from abjad.tools.spannertools.ComplexBeam import ComplexBeam
 
 
 class DuratedComplexBeam(ComplexBeam):
-    r'''A durated complex beam spanner.
+    r'''A durated complex beam.
 
     ..  container:: example
 
         ::
 
             >>> staff = Staff("c'16 d'16 e'16 f'16")
+            >>> contextualize(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ::
@@ -19,7 +20,7 @@ class DuratedComplexBeam(ComplexBeam):
             >>> durations = [Duration(1, 8), Duration(1, 8)]
             >>> beam = spannertools.DuratedComplexBeam(
             ...     durations=durations, 
-            ...     span=1,
+            ...     span_beam_count=1,
             ...     )
             >>> attach(beam, staff[:])
             >>> show(staff) # doctest: +SKIP
@@ -27,7 +28,9 @@ class DuratedComplexBeam(ComplexBeam):
         ..  doctest::
 
             >>> print format(staff)
-            \new Staff {
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
                 \set stemLeftBeamCount = #0
                 \set stemRightBeamCount = #2
                 c'16 [
@@ -46,7 +49,7 @@ class DuratedComplexBeam(ComplexBeam):
 
     Groups leaves in spanner according to `durations`.
 
-    Spans leaves between duration groups according to `span`.
+    Spans leaves between duration groups according to `span_beam_count`.
     '''
 
     ### CLASS VARIABLES ###
@@ -65,7 +68,7 @@ class DuratedComplexBeam(ComplexBeam):
         durations=None, 
         lone_nib_direction=False, 
         overrides=None,
-        span=1, 
+        span_beam_count=1, 
         ):
         ComplexBeam.__init__(
             self, 
@@ -87,8 +90,8 @@ class DuratedComplexBeam(ComplexBeam):
             message = 'durations must be list of durations or none.'
             raise ValueError(message)
         self._durations = durations
-        assert isinstance(span, (int, type(None)))
-        self._span = span
+        assert isinstance(span_beam_count, (int, type(None)))
+        self._span = span_beam_count
 
     ### PRIVATE PROPERTIES ###
 
@@ -106,7 +109,7 @@ class DuratedComplexBeam(ComplexBeam):
     def _copy_keyword_args(self, new):
         ComplexBeam._copy_keyword_args(self, new)
         new._durations = self.durations[:]
-        new._span = self.span
+        new._span = self.span_beam_count
 
     def _format_before_leaf(self, leaf):
         result = []
@@ -114,22 +117,22 @@ class DuratedComplexBeam(ComplexBeam):
         if self._is_beamable_component(leaf):
             if self._is_exterior_leaf(leaf):
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
-            # just right of span gap
+            # just right of span_beam_count gap
             elif self._duration_offset_in_me(leaf) in self._span_points and \
                 not (self._duration_offset_in_me(leaf) + leaf._get_duration() in \
                 self._span_points):
-                assert isinstance(self.span, int)
-                left = self.span
+                assert isinstance(self.span_beam_count, int)
+                left = self.span_beam_count
                 #right = leaf._get_duration()._flags
                 right = leaf.written_duration.flag_count
-            # just left of span gap
+            # just left of span_beam_count gap
             elif self._duration_offset_in_me(leaf) + leaf._get_duration() in \
                 self._span_points and \
                 not self._duration_offset_in_me(leaf) in self._span_points:
-                assert isinstance(self.span, int)
+                assert isinstance(self.span_beam_count, int)
                 #left = leaf._get_duration()._flags
                 left = leaf.written_duration.flag_count
-                right = self.span
+                right = self.span_beam_count
             else:
                 left, right = self._get_left_right_for_interior_leaf(leaf)
             if left is not None:
@@ -196,8 +199,8 @@ class DuratedComplexBeam(ComplexBeam):
         return self._durations
 
     @property
-    def span(self):
-        r'''Gets top-level span-beam count.
+    def span_beam_count(self):
+        r'''Gets top-level span_beam_count-beam count.
 
         ::
 
@@ -205,10 +208,10 @@ class DuratedComplexBeam(ComplexBeam):
             >>> durations = [Duration(1, 8), Duration(1, 8)]
             >>> beam = spannertools.DuratedComplexBeam(
             ...     durations=durations, 
-            ...     span=1,
+            ...     span_beam_count=1,
             ...     )
             >>> attach(beam, staff[:])
-            >>> beam.span
+            >>> beam.span_beam_count
             1
 
         Set nonnegative integer.
