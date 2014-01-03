@@ -6,23 +6,28 @@ from abjad.tools.spannertools.Spanner import Spanner
 class TrillSpanner(Spanner):
     r'''A trill spanner.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> trill = spannertools.TrillSpanner()
-        >>> attach(trill, staff[:])
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> trill = spannertools.TrillSpanner()
+            >>> attach(trill, staff[:])
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print format(staff)
-        \new Staff {
-            c'8 \startTrillSpan
-            d'8
-            e'8
-            f'8 \stopTrillSpan
-        }
+        ..  doctest::
 
+            >>> print format(staff)
+            \new Staff {
+                c'8 \startTrillSpan
+                d'8
+                e'8
+                f'8 \stopTrillSpan
+            }
+
+    Formats LilyPond ``\startTrillSpan`` on first leaf in spanner.
+
+    Formats LilyPond ``\stopTrillSpan`` on last leaf in spanner.
     '''
     
     ### CLASS VARIABLES ###
@@ -96,7 +101,14 @@ class TrillSpanner(Spanner):
                     f'8
                 }
 
-        Returns pitch or none.
+            ::
+
+                >>> trill.pitch
+                NamedPitch("cs'")
+
+        Formats LilyPond ``\pitchedTrill`` command on first leaf in spanner.
+
+        Returns named pitch or none.
         '''
         return self._pitch
 
@@ -104,8 +116,33 @@ class TrillSpanner(Spanner):
     def written_pitch(self):
         r'''Gets written pitch of trill spanner.
 
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> pitch = NamedPitch('C#4')
+                >>> trill = spannertools.TrillSpanner(pitch=pitch)
+                >>> attach(trill, staff[:2])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(staff)
+                \new Staff {
+                    \pitchedTrill c'8 \startTrillSpan cs'
+                    d'8 \stopTrillSpan
+                    e'8
+                    f'8
+                }
+
+            ::
+
+                >>> trill.written_pitch
+                NamedPitch("cs'")
+
         Defined equal to `pitch`.
 
-        Returns named pitch.
+        Returns named pitch or none.
         '''
         return self.pitch
