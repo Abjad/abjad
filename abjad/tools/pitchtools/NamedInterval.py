@@ -15,6 +15,12 @@ class NamedInterval(Interval):
         >>> interval
         NamedInterval('+M9')
 
+    ::
+
+        >>> interval = pitchtools.NamedInterval(-4)
+        >>> interval
+        NamedInterval('-M3')
+
     '''
 
     ### CLASS VARIABLES ##
@@ -87,13 +93,12 @@ class NamedInterval(Interval):
                 pitchtools.NumberedIntervalClass,
                 )):
                 number = int(args[0])
-                octaves, semitones = divmod(int(args[0]), 12)
-                if number < 0:
-                    semitones = 12 - semitones
+                sign = mathtools.sign(number)
+                octaves, semitones = divmod(abs(number), 12)
                 quality_string, number = \
                     self._semitones_to_quality_string_and_number[semitones]
                 number += abs(octaves) * 7
-                if number < 0:
+                if sign == -1:
                     number *= -1
         elif len(args) == 2:
             quality_string, number = args
@@ -114,6 +119,7 @@ class NamedInterval(Interval):
 
         ::
 
+            >>> interval = pitchtools.NamedInterval('+M9')
             >>> abs(interval)
             NamedInterval('+M9')
 
