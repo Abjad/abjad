@@ -6,6 +6,7 @@ from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import persist
 
 
@@ -13,7 +14,7 @@ class EvenRunRhythmMaker(RhythmMaker):
     r'''Even run rhythm-maker.
 
     ..  container:: example
-    
+
         **Example 1.** Make even run of notes each equal in duration to ``1/d``
         with ``d`` equal to the denominator of each division on which
         the rhythm-maker is called:
@@ -40,8 +41,8 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     ..  container:: example
 
-        **Example 2.** Make even run of notes each equal in duration to 
-        ``1/(2**d)`` with ``d`` equal to the denominator of each division 
+        **Example 2.** Make even run of notes each equal in duration to
+        ``1/(2**d)`` with ``d`` equal to the denominator of each division
         on which the rhythm-maker is called:
 
         ::
@@ -103,7 +104,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             ),
 
         )
-        
+
     ### INITIALIZER ###
 
     def __init__(
@@ -201,16 +202,24 @@ class EvenRunRhythmMaker(RhythmMaker):
         lists = maker(divisions)
         music = sequencetools.flatten_sequence(lists)
         measures = scoretools.make_spacer_skip_measures(divisions)
+        time_signature_context = scoretools.Context(
+            measures,
+            context_name='TimeSignatureContext',
+            name='TimeSignatureContext',
+            )
+        measures = scoretools.make_spacer_skip_measures(divisions)
         staff = scoretools.RhythmicStaff(measures)
         measures = scoretools.replace_contents_of_measures_in_expr(
             staff, music)
         score = scoretools.Score()
+        score.append(time_signature_context)
         score.append(staff)
         return score
 
     @staticmethod
     def _gallery_input_to_lilypond_file():
         from abjad.tools import lilypondfiletools
+        from abjad.tools import markuptools
         scores = []
         for gallery_input_block in EvenRunRhythmMaker._gallery_input:
             score = EvenRunRhythmMaker._gallery_input_block_to_score(
@@ -221,6 +230,12 @@ class EvenRunRhythmMaker(RhythmMaker):
             score_block = lilypondfiletools.ScoreBlock()
             score_block.append(score)
             lilypond_file.append(score_block)
+        lilypond_file.default_paper_size = ('letter', 'landscape')
+        lilypond_file.global_staff_size = 11
+        lilypond_file.use_relative_includes = True
+        lilypond_file.file_initial_user_includes.append(
+            os.path.join('..', '..', '..', 'stylesheets', 'gallery-layout.ly'))
+        lilypond_file.paper_block.tagline = markuptools.Markup('')
         return lilypond_file
 
     def _make_container(self, division):
