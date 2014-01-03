@@ -351,7 +351,7 @@ class TimeSignature(AbjadObject):
         self, 
         contents_multiplier=durationtools.Multiplier(1),
         ):
-        r'''Creates new time signature equivalent to current
+        r'''Makes new time signature equivalent to current
         time signature with power-of-two denominator.
 
             >>> time_signature = TimeSignature((3, 12))

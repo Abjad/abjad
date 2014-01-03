@@ -294,8 +294,8 @@ class PitchRange(AbjadObject):
         return lilypond_file
 
     def __le__(self, arg):
-        r'''Is true when stop pitch of pitch-range is less than or equal to `arg`.
-        Otherwise false.
+        r'''Is true when stop pitch of pitch-range is less than or equal 
+        to `arg`. Otherwise false.
 
         Returns boolean.
         '''
@@ -309,8 +309,8 @@ class PitchRange(AbjadObject):
             return False
 
     def __lt__(self, arg):
-        r'''Is true when stop pitch of pitch-range is less than `arg`. Otherwise
-        false.
+        r'''Is true when stop pitch of pitch-range is less than `arg`. 
+        Otherwise false.
 
         Returns boolean.
         '''
@@ -423,7 +423,10 @@ class PitchRange(AbjadObject):
                 else:
                     return self.start_pitch < pitch < self.stop_pitch
 
-    def _initialize_by_symbolic_pitch_range_string(self, symbolic_pitch_range_string):
+    def _initialize_by_symbolic_pitch_range_string(
+        self, 
+        symbolic_pitch_range_string,
+        ):
         from abjad.tools import pitchtools
         match = self._symbolic_pitch_range_string_regex.match(
             symbolic_pitch_range_string)
@@ -448,7 +451,8 @@ class PitchRange(AbjadObject):
 
     @classmethod
     def is_symbolic_pitch_range_string(cls, expr):
-        '''Is true when `expr` is a symbolic pitch range string. Otherwise false:
+        '''Is true when `expr` is a symbolic pitch range string. 
+        Otherwise false:
 
         ::
 

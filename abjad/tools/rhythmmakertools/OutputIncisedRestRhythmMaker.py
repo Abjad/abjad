@@ -70,7 +70,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
         return superclass.__format__(format_specification=format_specification)
 
     def __makenew__(self, *args, **kwargs):
-        r'''Creates new output-incised rest rhythm-maker with `kwargs`.
+        r'''Makes new output-incised rest rhythm-maker with `kwargs`.
 
         ::
 

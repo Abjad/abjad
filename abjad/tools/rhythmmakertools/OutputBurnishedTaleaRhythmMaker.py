@@ -76,7 +76,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         return superclass.__format__(format_specification=format_specification)
 
     def __makenew__(self, *args, **kwargs):
-        r'''Creates new output-burnished talea rhythm-maker with `kwargs`.
+        r'''Makes new output-burnished talea rhythm-maker with `kwargs`.
 
         ::
 

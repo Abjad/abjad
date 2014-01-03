@@ -75,7 +75,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         return superclass.__format__(format_specification=format_specification)
 
     def __makenew__(self, *args, **kwargs):
-        r'''Creates new rhythm-maker with `kwargs`.
+        r'''Makes new rhythm-maker with `kwargs`.
 
         ::
 

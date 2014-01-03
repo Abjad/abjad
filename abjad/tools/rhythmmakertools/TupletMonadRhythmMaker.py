@@ -73,7 +73,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
         return superclass.__format__(format_specification=format_specification)
 
     def __makenew__(self, *args, **kwargs):
-        r'''Creates new tuplet monad rhythm-maker with `kwargs`.
+        r'''Makes new tuplet monad rhythm-maker with `kwargs`.
 
         ::
 
