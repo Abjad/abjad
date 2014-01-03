@@ -67,7 +67,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Abjad'
-copyright = u'2008 - 2012, Trevor Bača, Josiah Wolf Oberholtzer, Víctor Adán'
+copyright = u'2008 - 2014, Trevor Bača, Josiah Wolf Oberholtzer, Víctor Adán'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -227,10 +227,20 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'Abjad.tex', u'Abjad Documentation',
-   u'Trevor Bača, Josiah Wolf Oberholtzer, Víctor Adán', 'manual'),
-  ('api/index', 'AbjadAPI.tex', u'Abjad API',
-   u'Trevor Bača, Josiah Wolf Oberholtzer, Víctor Adán', 'manual'),
+  (
+  'index', 
+  'Abjad.tex', 
+  u'Abjad Documentation',
+  u'Trevor Bača, Josiah Wolf Oberholtzer, Víctor Adán', 
+  'manual',
+  ),
+  (
+  'api/index', 
+  'AbjadAPI.tex', 
+  u'Abjad API',
+  u'Trevor Bača, Josiah Wolf Oberholtzer, Víctor Adán',
+  'manual',
+  ),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -259,8 +269,13 @@ latex_domain_indices = False
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'abjad', u'Abjad Documentation',
-     [u'2008 - 2012, Víctor Adán, Trevor Ba  , Josiah Wolf Oberholtzer'], 1)
+    (
+    'index', 
+    'abjad', 
+    u'Abjad Documentation',
+    [u'2008 - 2014, Víctor Adán, Trevor Bača, Josiah Wolf Oberholtzer'],
+    1,
+    )
 ]
 
 # If true, show URL addresses after external links.
@@ -273,9 +288,15 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'Abjad', u'Abjad Documentation',
-   u'2008 - 2012, Víctor Adán, Trevor Ba  , Josiah Wolf Oberholtzer', 'Abjad', 'One line description of project.',
-   'Miscellaneous'),
+    (
+    'index', 
+    'Abjad', 
+    u'Abjad Documentation',
+    u'2008 - 2014, Víctor Adán, Trevor Bača, Josiah Wolf Oberholtzer', 
+    'Abjad', 
+    'One line description of project.',
+    'Miscellaneous',
+    ),
 ]
 
 # Documents to append as an appendix to all manuals.
@@ -294,11 +315,13 @@ todo_include_todos = True
 autodoc_member_order = 'groupwise'
 
 # For sphinx.ext.intersphinx
-intersphinx_mapping = {'python': ('http://docs.python.org/2.7', None)}
+intersphinx_mapping = {
+    'python': ('http://docs.python.org/2.7', None),
+    }
 
 # inheritance_diagrams
 inheritance_graph_attrs = {
     'fontsize': 11,
     'rankdir': 'TB',
-    'ratio': 'compress'
+    'ratio': 'compress',
 }
