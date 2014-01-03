@@ -66,14 +66,14 @@ class DuratedComplexBeam(ComplexBeam):
         self, 
         direction=None,
         durations=None, 
-        lone_nib_direction=False, 
+        isolated_nib_direction=False, 
         overrides=None,
         span_beam_count=1, 
         ):
         ComplexBeam.__init__(
             self, 
             direction=direction,
-            lone_nib_direction=lone_nib_direction,
+            isolated_nib_direction=isolated_nib_direction,
             overrides=overrides,
             )
         if durations is None:

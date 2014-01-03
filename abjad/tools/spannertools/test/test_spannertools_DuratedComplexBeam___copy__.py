@@ -24,5 +24,5 @@ def test_spannertools_DuratedComplexBeam___copy___01():
     assert format(staff) == format(new_staff)
     assert new_beam.durations == beam.durations
     assert new_beam.span_beam_count == beam.span_beam_count
-    assert new_beam.lone_nib_direction == beam.lone_nib_direction
+    assert new_beam.isolated_nib_direction == beam.isolated_nib_direction
     assert new_beam.direction == beam.direction

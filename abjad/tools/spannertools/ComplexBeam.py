@@ -57,7 +57,7 @@ class ComplexBeam(Beam):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_lone_nib_direction',
+        '_isolated_nib_direction',
         )
 
     ### INITIALIZER ###
@@ -65,7 +65,7 @@ class ComplexBeam(Beam):
     def __init__(
         self, 
         direction=None,
-        lone_nib_direction=False, 
+        isolated_nib_direction=False, 
         overrides=None,
         ):
         Beam.__init__(
@@ -73,14 +73,14 @@ class ComplexBeam(Beam):
             direction=direction,
             overrides=overrides,
             )
-        assert lone_nib_direction in (Left, Right, True, False)
-        self._lone_nib_direction = lone_nib_direction
+        assert isolated_nib_direction in (Left, Right, True, False)
+        self._isolated_nib_direction = isolated_nib_direction
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
         Beam._copy_keyword_args(self, new)
-        new._lone_nib_direction = self.lone_nib_direction
+        new._isolated_nib_direction = self.isolated_nib_direction
 
     def _format_before_leaf(self, leaf):
         r'''Spanner format contribution to output before leaf.
@@ -109,9 +109,9 @@ class ComplexBeam(Beam):
         if self._is_beamable_component(leaf):
             previous_leaf = leaf._get_leaf(-1)
             next_leaf = leaf._get_leaf(1)
-            # lone_nib_direction
+            # isolated_nib_direction
             if self._is_my_only_leaf(leaf):
-                if self.lone_nib_direction:
+                if self.isolated_nib_direction:
                     if self.direction is not None:
                         result.append('%s [' % self.direction)
                     else:
@@ -123,9 +123,9 @@ class ComplexBeam(Beam):
                     result.append('%s [' % self.direction)
                 else:
                     result.append('[')
-            # lone_nib_direction
+            # isolated_nib_direction
             if self._is_my_only_leaf(leaf):
-                if self.lone_nib_direction:
+                if self.isolated_nib_direction:
                     result.append(']')
             # otherwise
             elif self._is_my_last_leaf(leaf) or not next_leaf or \
@@ -137,7 +137,7 @@ class ComplexBeam(Beam):
         r'''Get left and right flag counts for exterior leaf in spanner.
         '''
         from abjad.tools import scoretools
-        # lone_nib_direction
+        # isolated_nib_direction
         if self._is_my_only_leaf(leaf):
             left, right = self._get_left_right_for_lone_leaf(leaf)
         # first
@@ -196,28 +196,28 @@ class ComplexBeam(Beam):
         '''
         current_flag_count = leaf.written_duration.flag_count
         left, right = None, None
-        if self.lone_nib_direction == Left:
+        if self.isolated_nib_direction == Left:
             left = current_flag_count
             right = 0
-        elif self.lone_nib_direction == Right:
+        elif self.isolated_nib_direction == Right:
             left = 0
             right = current_flag_count
-        elif self.lone_nib_direction is True:
+        elif self.isolated_nib_direction is True:
             left = current_flag_count
             right = current_flag_count
-        elif self.lone_nib_direction is False:
+        elif self.isolated_nib_direction is False:
             left = None
             right = None
         else:
             message = 'long must be left, right, true or false: {!r}.'
-            message = message.format(lone_nib_direction)
+            message = message.format(isolated_nib_direction)
             raise ValueError(message)
         return left, right
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def lone_nib_direction(self):
+    def isolated_nib_direction(self):
         r'''Gets directed treatment to apply to lone nibs.
 
         ..  container:: example
@@ -227,7 +227,7 @@ class ComplexBeam(Beam):
             ::
 
                 >>> measure = Measure((1, 16), "c'16")
-                >>> beam = spannertools.ComplexBeam(lone_nib_direction=Left)
+                >>> beam = spannertools.ComplexBeam(isolated_nib_direction=Left)
                 >>> attach(beam, measure)
                 >>> show(measure) # doctest: +SKIP
 
@@ -248,7 +248,7 @@ class ComplexBeam(Beam):
             ::
 
                 >>> measure = Measure((1, 16), "c'16")
-                >>> beam = spannertools.ComplexBeam(lone_nib_direction=Right)
+                >>> beam = spannertools.ComplexBeam(isolated_nib_direction=Right)
                 >>> attach(beam, measure)
                 >>> show(measure) # doctest: +SKIP
 
@@ -269,7 +269,7 @@ class ComplexBeam(Beam):
             ::
 
                 >>> measure = Measure((1, 16), "c'16")
-                >>> beam = spannertools.ComplexBeam(lone_nib_direction=True)
+                >>> beam = spannertools.ComplexBeam(isolated_nib_direction=True)
                 >>> attach(beam, measure)
                 >>> show(measure) # doctest: +SKIP
 
@@ -285,12 +285,12 @@ class ComplexBeam(Beam):
 
         ..  container:: example
 
-            Does not beam lone_nib_direction leaf:
+            Does not beam isolated_nib_direction leaf:
 
             ::
 
                 >>> measure = Measure((1, 16), "c'16")
-                >>> beam = spannertools.ComplexBeam(lone_nib_direction=False)
+                >>> beam = spannertools.ComplexBeam(isolated_nib_direction=False)
                 >>> attach(beam, measure)
                 >>> show(measure) # doctest: +SKIP
 
@@ -306,4 +306,4 @@ class ComplexBeam(Beam):
 
         Ignores this setting when spanner contains more than one leaf.
         '''
-        return self._lone_nib_direction
+        return self._isolated_nib_direction
