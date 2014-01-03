@@ -235,7 +235,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                 r'\italic {{ No. {} }}'.format(i + 1))
             score_block.append(header_block)
             lilypond_file.append(score_block)
-        lilypond_file.default_paper_size = ('letter', 'landscape')
+        lilypond_file.default_paper_size = ('letter', 'portrait')
         lilypond_file.global_staff_size = 11
         lilypond_file.use_relative_includes = True
         lilypond_file.file_initial_user_includes.append(
