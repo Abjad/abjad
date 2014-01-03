@@ -42,7 +42,7 @@ class PitchClassSegment(Segment):
     def _named_item_class(self):
         from abjad.tools import pitchtools
         return pitchtools.NamedPitchClass
-    
+
     @property
     def _numbered_item_class(self):
         from abjad.tools import pitchtools
@@ -99,7 +99,7 @@ class PitchClassSegment(Segment):
             >>> selection = select((staff_1, staff_2))
             >>> pitchtools.PitchClassSegment.from_selection(selection)
             PitchClassSegment(['c', 'd', 'fs', 'a', 'b', 'c', 'g'])
-        
+
         Returns pitch-class segment.
         '''
         from abjad.tools import pitchtools
@@ -128,7 +128,7 @@ class PitchClassSegment(Segment):
 
     def is_equivalent_under_transposition(self, expr):
         r'''True if equivalent under transposition to `expr`. Otherwise False.
-        
+
         Returns boolean.
         '''
         from abjad.tools import pitchtools
@@ -280,6 +280,86 @@ class PitchClassSegment(Segment):
         '''
         tokens = (pitch_class.transpose(expr) for pitch_class in self)
         return self.__makenew__(tokens=tokens)
+
+    def voice_horizontally(self, initial_octave=4):
+        r'''Voices pitch-class segment as pitch segment, with each pitch as
+        close in distance to the previous pitch as possible.
+
+        ::
+
+            >>> pitch_classes = pitchtools.PitchClassSegment(
+            ...     "c b d e f g e b a c")
+            >>> pitch_segment = pitch_classes.voice_horizontally()
+            >>> show(pitch_segment) # doctest: +SKIP
+
+        Returns pitch segment.
+        '''
+        from abjad.tools import pitchtools
+        initial_octave = pitchtools.Octave(initial_octave)
+        pitches = []
+        if self:
+            pitch_class = pitchtools.NamedPitchClass(self[0])
+            pitch = pitchtools.NamedPitch(pitch_class, initial_octave)
+            pitches.append(pitch)
+            for pitch_class in self[1:]:
+                pitch_class = pitchtools.NamedPitchClass(pitch_class)
+                pitch = pitchtools.NamedPitch(pitch_class, initial_octave)
+                semitones = abs((pitch - pitches[-1]).semitones)
+                while 6 < semitones:
+                    if pitch < pitches[-1]:
+                        pitch += 12
+                    else:
+                        pitch -= 12
+                    semitones = abs((pitch - pitches[-1]).semitones)
+                pitches.append(pitch)
+        if self.item_class is pitchtools.NamedPitchClass:
+            item_class = pitchtools.NamedPitch
+        else:
+            item_class = pitchtools.NumberedPitch
+        return pitchtools.PitchSegment(
+            tokens=pitches,
+            item_class=item_class,
+            )
+
+    def voice_vertically(self, initial_octave=4):
+        r'''Voices pitch-class segment as pitch segment, with each pitch always
+        higher than the previous.
+
+        ::
+
+            >>> scale_degree_numbers = [1, 3, 5, 7, 9, 11, 13]
+            >>> scale = tonalanalysistools.Scale('c', 'minor')
+            >>> pitch_classes = pitchtools.PitchClassSegment((
+            ...     scale.scale_degree_to_named_pitch_class(x)
+            ...     for x in scale_degree_numbers))
+            >>> pitch_segment = pitch_classes.voice_vertically()
+            >>> pitch_segment
+            PitchSegment(["c'", "ef'", "g'", "bf'", "d''", "f''", "af''"])
+            >>> show(pitch_segment) # doctest: +SKIP
+
+        Returns pitch segment.
+        '''
+        from abjad.tools import pitchtools
+        initial_octave = pitchtools.Octave(initial_octave)
+        pitches = []
+        if self:
+            pitch_class = pitchtools.NamedPitchClass(self[0])
+            pitch = pitchtools.NamedPitch(pitch_class, initial_octave)
+            pitches.append(pitch)
+            for pitch_class in self[1:]:
+                pitch_class = pitchtools.NamedPitchClass(pitch_class)
+                pitch = pitchtools.NamedPitch(pitch_class, initial_octave)
+                while pitch < pitches[-1]:
+                    pitch += 12
+                pitches.append(pitch)
+        if self.item_class is pitchtools.NamedPitchClass:
+            item_class = pitchtools.NamedPitch
+        else:
+            item_class = pitchtools.NumberedPitch
+        return pitchtools.PitchSegment(
+            tokens=pitches,
+            item_class=item_class,
+            )
 
     ### PUBLIC PROPERTIES ###
 
