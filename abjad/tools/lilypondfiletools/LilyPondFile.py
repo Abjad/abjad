@@ -87,6 +87,7 @@ class LilyPondFile(AbjadObject, list):
         self._file_initial_user_includes = []
         self.default_paper_size = None
         self.global_staff_size = None
+        self.use_relative_includes = False
 
     ### SPECIAL METHODS ###
 
@@ -124,6 +125,8 @@ class LilyPondFile(AbjadObject, list):
         result.extend(self._formatted_file_initial_system_comments)
         result.extend(self._formatted_file_initial_user_comments)
         result.extend(self._formatted_file_initial_system_includes)
+        if self.use_relative_includes:
+            result.append("#(ly:set-option 'relative-includes #t)")
         result.extend(self._formatted_file_initial_user_includes)
         result.extend(self._formatted_file_initial_scheme_settings)
         result.extend(self._formatted_blocks)
@@ -211,7 +214,7 @@ class LilyPondFile(AbjadObject, list):
     @property
     def _lilypond_format(self):
         return '\n\n'.join(self._format_pieces)
-        
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -220,20 +223,17 @@ class LilyPondFile(AbjadObject, list):
         '''
         return self._default_paper_size
 
-
     @default_paper_size.setter
     def default_paper_size(self, args):
         # #(set-default-paper-size "11x17" 'landscape)
         assert args is None or len(args) == 2
         self._default_paper_size = args
 
-
     @property
     def file_initial_system_comments(self):
         r'''List of file-initial system comments.
         '''
         return self._file_initial_system_comments
-
 
     @file_initial_system_comments.setter
     def file_initial_system_comments(self, arg):
@@ -242,13 +242,11 @@ class LilyPondFile(AbjadObject, list):
         else:
             raise TypeError
 
-
     @property
     def file_initial_system_includes(self):
         r'''List of file-initial system include commands.
         '''
         return self._file_initial_system_includes
-
 
     @file_initial_system_includes.setter
     def file_initial_system_includes(self, arg):
@@ -257,13 +255,11 @@ class LilyPondFile(AbjadObject, list):
         else:
             raise TypeError
 
-
     @property
     def file_initial_user_comments(self):
         r'''List of file-initial user comments.
         '''
         return self._file_initial_user_comments
-
 
     @file_initial_user_comments.setter
     def file_initial_user_comments(self, arg):
@@ -272,13 +268,11 @@ class LilyPondFile(AbjadObject, list):
         else:
             raise TypeError
 
-
     @property
     def file_initial_user_includes(self):
         r'''List of file-initial user include commands.
         '''
         return self._file_initial_user_includes
-
 
     @file_initial_user_includes.setter
     def file_initial_user_includes(self, arg):
@@ -287,15 +281,23 @@ class LilyPondFile(AbjadObject, list):
         else:
             raise TypeError
 
-
     @property
     def global_staff_size(self):
         r'''LilyPond global staff size.
         '''
         return self._global_staff_size
 
-
     @global_staff_size.setter
     def global_staff_size(self, arg):
         assert isinstance(arg, (int, float, long, type(None)))
         self._global_staff_size = arg
+
+    @property
+    def use_relative_includes(self):
+        r'''Use relative \include paths.
+        '''
+        return self._use_relative_includes
+
+    @use_relative_includes.setter
+    def use_relative_includes(self, arg):
+        self._use_relative_includes = bool(arg)
