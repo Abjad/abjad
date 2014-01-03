@@ -5,6 +5,19 @@
     ragged-last = ##t
     ragged-right = ##t
     \context {
+        \Voice
+        \consists Horizontal_bracket_engraver
+        \remove Forbid_line_break_engraver
+    }
+    \context {
+        \Staff
+        \remove Time_signature_engraver
+    }
+    \context {
+        \RhythmicStaff
+        \remove Time_signature_engraver
+    }
+    \context {
         \type Engraver_group
         \name TimeSignatureContext
         \consists Time_signature_engraver
