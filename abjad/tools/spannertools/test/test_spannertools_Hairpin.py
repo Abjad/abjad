@@ -143,7 +143,7 @@ def test_spannertools_Hairpin_06():
     '''
 
     staff = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
-    crescendo = Crescendo()
+    crescendo = Crescendo(include_rests=True)
     attach(crescendo, staff[:])
 
     assert systemtools.TestManager.compare(

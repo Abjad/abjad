@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.spannertools.ComplexBeam import ComplexBeam
 from abjad.tools import durationtools
+from abjad.tools import scoretools
+from abjad.tools.spannertools.ComplexBeam import ComplexBeam
 
 
 class MeasuredComplexBeam(ComplexBeam):
-    r'''A measured complex beam spanner.
+    r'''A measured complex beam.
 
     ..  container:: example
 
@@ -13,6 +14,7 @@ class MeasuredComplexBeam(ComplexBeam):
             >>> staff = Staff()
             >>> staff.append(Measure((2, 16), "c'16 d'16"))
             >>> staff.append(Measure((2, 16), "e'16 f'16"))
+            >>> contextualize(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ::
@@ -24,7 +26,9 @@ class MeasuredComplexBeam(ComplexBeam):
         ..  doctest::
 
             >>> print format(staff)
-            \new Staff {
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
                 {
                     \time 2/16
                     \set stemLeftBeamCount = #0
@@ -48,15 +52,13 @@ class MeasuredComplexBeam(ComplexBeam):
 
     Groups leaves by measures.
 
-    Formats top-level `span` beam between measures.
+    Formats top-level `span_beam_count` beam between measures.
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_direction',
-        '_lone',
-        '_span',
+        '_span_beam_count',
         )
 
     ### INITIALIZER ###
@@ -64,28 +66,26 @@ class MeasuredComplexBeam(ComplexBeam):
     def __init__(
         self, 
         direction=None,
-        lone_nib_direction=False, 
+        isolated_nib_direction=False, 
         overrides=None,
-        span=1, 
+        span_beam_count=1, 
         ):
         ComplexBeam.__init__(
             self, 
             direction=direction,
-            lone_nib_direction=lone_nib_direction, 
+            isolated_nib_direction=isolated_nib_direction, 
             overrides=overrides,
             )
-        assert isinstance(span, (int, type(None)))
-        self._span = span
+        assert isinstance(span_beam_count, (int, type(None)))
+        self._span_beam_count = span_beam_count
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
         ComplexBeam._copy_keyword_args(self, new)
-        new.span = self.span
+        new.span_beam_count = self.span_beam_count
 
     def _format_before_leaf(self, leaf):
-        from abjad.tools import scoretools
-        from abjad.tools import scoretools
         result = []
         left, right = None, None
         #if leaf.beam.beamable:
@@ -98,14 +98,14 @@ class MeasuredComplexBeam(ComplexBeam):
                     scoretools.Measure)
                 # leaf at beginning of measure
                 if measure._is_one_of_my_first_leaves(leaf):
-                    assert isinstance(self.span, int)
-                    left = self.span
+                    assert isinstance(self.span_beam_count, int)
+                    left = self.span_beam_count
                     right = leaf.written_duration.flag_count
                 # leaf at end of measure
                 elif measure._is_one_of_my_last_leaves(leaf):
-                    assert isinstance(self.span, int)
+                    assert isinstance(self.span_beam_count, int)
                     left = leaf.written_duration.flag_count
-                    right = self.span
+                    right = self.span_beam_count
             else:
                 left, right = self._get_left_right_for_interior_leaf(leaf)
             if left is not None:
@@ -119,19 +119,45 @@ class MeasuredComplexBeam(ComplexBeam):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def span(self):
-        r'''Gets top-level span-beam count.
+    def span_beam_count(self):
+        r'''Gets number of span beams between adjacent measures.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff()
-            >>> staff.append(Measure((2, 16), "c'16 d'16"))
-            >>> staff.append(Measure((2, 16), "e'16 f'16"))
-            >>> beam = spannertools.MeasuredComplexBeam()
-            >>> attach(beam, staff.select_leaves())
-            >>> beam.span
-            1
+            Use one span beam between measures:
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 32), "c'32 d'32"))
+                >>> staff.append(Measure((2, 32), "e'32 f'32"))
+                >>> beam = spannertools.MeasuredComplexBeam(span_beam_count=1)
+                >>> attach(beam, staff.select_leaves())
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> beam.span_beam_count
+                1
+
+        ..  container:: example
+
+            Use two span beams between measures:
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 32), "c'32 d'32"))
+                >>> staff.append(Measure((2, 32), "e'32 f'32"))
+                >>> beam = spannertools.MeasuredComplexBeam(span_beam_count=2)
+                >>> attach(beam, staff.select_leaves())
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> beam.span_beam_count
+                2
 
         Returns nonnegative integer or none.
         '''
-        return self._span
+        return self._span_beam_count

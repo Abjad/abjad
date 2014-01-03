@@ -4,25 +4,28 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class Tie(Spanner):
-    r'''A tie.
+    r'''A collection of consecutive ties.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff(scoretools.make_repeated_notes(4))
-        >>> tie = spannertools.Tie()
-        >>> attach(tie, staff[:])
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> staff = Staff("c'8 c'8 c'8 c'8")
+            >>> tie = Tie()
+            >>> attach(tie, staff[:])
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print format(staff)
-        \new Staff {
-            c'8 ~
-            c'8 ~
-            c'8 ~
-            c'8
-        }
+        ..  doctest::
 
+            >>> print format(staff)
+            \new Staff {
+                c'8 ~
+                c'8 ~
+                c'8 ~
+                c'8
+            }
+
+    Formats LilyPond ``~`` command on nonlast leaves in spanner.
     '''
 
     ### CLASS VARIABLES ###
@@ -65,7 +68,85 @@ class Tie(Spanner):
 
     @property
     def direction(self):
-        r'''Gets direction of tie.
+        r'''Gets direction of ties in spanner.
+
+        ..  container:: example
+
+            Forces ties up:
+
+            ::
+
+                >>> staff = Staff("c'8 c'8 c'8 c'8")
+                >>> tie = Tie(direction=Up)
+                >>> attach(tie, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(staff)
+                \new Staff {
+                    c'8 ^ ~
+                    c'8 ^ ~
+                    c'8 ^ ~
+                    c'8
+                }
+
+            ::
+
+                >>> tie.direction
+                '^'
+
+        ..  container:: example
+
+            Forces ties down:
+
+            ::
+
+                >>> staff = Staff("c'8 c'8 c'8 c'8")
+                >>> tie = Tie(direction=Down)
+                >>> attach(tie, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(staff)
+                \new Staff {
+                    c'8 _ ~
+                    c'8 _ ~
+                    c'8 _ ~
+                    c'8
+                }
+
+            ::
+
+                >>> tie.direction
+                '_'
+
+        ..  container:: example
+
+            Positions ties according to LilyPond defaults:
+
+            ::
+
+                >>> staff = Staff("c'8 c'8 c'8 c'8")
+                >>> tie = Tie(direction=None)
+                >>> attach(tie, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(staff)
+                \new Staff {
+                    c'8 ~
+                    c'8 ~
+                    c'8 ~
+                    c'8
+                }
+
+            ::
+
+                >>> tie.direction is None
+                True
 
         Returns up, down or none.
         '''

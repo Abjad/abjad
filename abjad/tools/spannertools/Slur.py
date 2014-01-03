@@ -6,23 +6,28 @@ from abjad.tools.spannertools.Spanner import Spanner
 class Slur(Spanner):
     r'''A slur.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> slur = spannertools.Slur()
-        >>> attach(slur, staff[:])
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> slur = spannertools.Slur()
+            >>> attach(slur, staff[:])
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print format(staff)
-        \new Staff {
-            c'8 (
-            d'8
-            e'8
-            f'8 )
-        }
+        ..  doctest::
 
+            >>> print format(staff)
+            \new Staff {
+                c'8 (
+                d'8
+                e'8
+                f'8 )
+            }
+            
+    Formats LilyPond ``(`` command on first leaf in spanner.
+
+    Formats LilyPond ``)`` command on last leaf in spanner.
     '''
 
     ### CLASS VARIABLES ###
@@ -69,6 +74,69 @@ class Slur(Spanner):
     @property
     def direction(self):
         r'''Gets direction of slur.
+
+        ..  container:: example
+
+            Forces slur above staff:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> slur = spannertools.Slur(direction=Up)
+                >>> attach(slur, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(staff)
+                \new Staff {
+                    c'8 ^ (
+                    d'8
+                    e'8
+                    f'8 )
+                    }
+
+        ..  container:: example
+
+            Forces slur below staff:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> slur = spannertools.Slur(direction=Down)
+                >>> attach(slur, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(staff)
+                \new Staff {
+                    c'8 _ (
+                    d'8
+                    e'8
+                    f'8 )
+                }
+
+        ..  container:: example
+
+            Positions slur according to LilyPond defaults:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> slur = spannertools.Slur(direction=None)
+                >>> attach(slur, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(staff)
+                \new Staff {
+                    c'8 (
+                    d'8
+                    e'8
+                    f'8 )
+                }
 
         Returns up, down or none.
         '''

@@ -6,33 +6,40 @@ from abjad.tools.spannertools.Spanner import Spanner
 class StaffLinesSpanner(Spanner):
     r'''A staff lines spanner.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> spanner = spannertools.StaffLinesSpanner(lines=1)
-        >>> attach(spanner, staff[:2])
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.StaffLinesSpanner(lines=1)
+            >>> attach(spanner, staff[1:3])
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print format(staff)
-        \new Staff {
-            \stopStaff
-            \override Staff.StaffSymbol #'line-count = #1
-            \startStaff
-            c'8
-            d'8
-            \stopStaff
-            \revert Staff.StaffSymbol #'line-count
-            \startStaff
-            e'8
-            f'8
-        }
+        ..  doctest::
 
-    Staff lines spanner handles changing either the line-count
-    or the line-positions property of the StaffSymbol grob,
-    as well as automatically stopping and restarting the staff
-    so that the change may take place.
+            >>> print format(staff)
+            \new Staff {
+                c'8
+                \stopStaff
+                \override Staff.StaffSymbol #'line-count = #1
+                \startStaff
+                d'8
+                e'8
+                \stopStaff
+                \revert Staff.StaffSymbol #'line-count
+                \startStaff
+                f'8
+            }
+
+    Stops and restarts staff on first leaf in spanner.
+
+    Overrides ``line-count`` attribute of LilyPond ``Staff.StaffSymbol`` grob
+    on first leaf in spanner.
+
+    Stops and restarts staff on last leaf in spanner.
+
+    Reverts ``line-count`` attribute of LilyPond ``Staff.StaffSymbol`` grob on
+    last leaf in spanner.
     '''
 
     ### CLASS VARIABLES ###
@@ -100,13 +107,13 @@ class StaffLinesSpanner(Spanner):
 
     @property
     def lines(self):
-        r'''Gets staff lines spanner line count.
+        r'''Gets line of staff lines spanner.
 
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.StaffLinesSpanner(lines=1)
-            >>> attach(spanner, staff[:2])
+            >>> attach(spanner, staff[1:3])
             >>> show(staff) # doctest: +SKIP
 
         ::

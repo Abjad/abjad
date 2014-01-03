@@ -7,21 +7,22 @@ from abjad.tools.topleveltools import override
 
 def make_solid_text_spanner_with_nib(
     left_text, 
-    components=None,
     direction=Up,
     ):
-    r'''Span `components` with solid line text spanner.
-    Configure with `left_text` and nib at right.
+    r'''Makes solid text spanner with nib at right.
 
     ..  container:: example
 
-        **Example 1.** Spanner above with downward-pointing nib:
+        Solid text spanner forced above staff:
 
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.make_solid_text_spanner_with_nib(
-            ...     'foo', staff[:], direction=Up)
+            ...     'foo', 
+            ...     direction=Up,
+            ...     )
+            >>> attach(spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -45,11 +46,14 @@ def make_solid_text_spanner_with_nib(
 
     ..  container:: example
 
-        **Example 2.** Spanner below with upward-pointing nib:
+        Solid text spanner forced below staff:
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.make_solid_text_spanner_with_nib(
-            ...     'foo', staff[:], direction=Down)
+            ...     'foo', 
+            ...     direction=Down,
+            ...     )
+            >>> attach(spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -70,13 +74,12 @@ def make_solid_text_spanner_with_nib(
                 \revert TextSpanner #'direction
             }
 
-    Returns spanner.
+    Returns text spanner.
     '''
     from abjad.tools import spannertools
     assert direction in (Up, Down)
 
     text_spanner = spannertools.TextSpanner()
-    attach(text_spanner, components)
     left_text = markuptools.Markup(left_text)
     override(text_spanner).text_spanner.bound_details__left__text = left_text
     if direction is Up:

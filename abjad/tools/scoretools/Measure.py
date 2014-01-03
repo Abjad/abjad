@@ -57,19 +57,6 @@ class Measure(FixedDurationContainer):
 
     ### SPECIAL METHODS ###
 
-    # TODO: remove in favor of scoretools.fuse_measures()
-    def __add__(self, arg):
-        r'''Adds two measures together in-score or outside-of-score.
-
-        Interface to ``scoretools.fuse_measures()``.
-        '''
-        assert isinstance(arg, type(self))
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        measures = selectiontools.SliceSelection([self, arg])
-        new = scoretools.fuse_measures(measures)
-        return new
-
     def __delitem__(self, i):
         r'''Deletes `i` from measure.
 

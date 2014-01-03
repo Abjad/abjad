@@ -7,37 +7,39 @@ from abjad.tools.topleveltools import override
 def make_colored_text_spanner_with_nibs():
     r'''Makes colored text spanner with nibs.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> spanner = spannertools.make_colored_text_spanner_with_nibs()
-        >>> attach(spanner, staff[:])
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.make_colored_text_spanner_with_nibs()
+            >>> attach(spanner, staff[:])
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print format(staff)
-        \new Staff {
-            \override TextSpanner #'bound-details #'left #'text = \markup {
-                \draw-line #'(0 . -1) }
-            \override TextSpanner #'bound-details #'left-broken #'text = ##f
-            \override TextSpanner #'bound-details #'right #'text = \markup {
-                \draw-line #'(0 . -1) }
-            \override TextSpanner #'bound-details #'right-broken #'text = ##f
-            \override TextSpanner #'color = #red
-            \override TextSpanner #'dash-fraction = #1
-            \override TextSpanner #'staff-padding = #2
-            \override TextSpanner #'thickness = #1.5
-            c'8 \startTextSpan
-            d'8
-            e'8
-            f'8 \stopTextSpan
-            \revert TextSpanner #'bound-details
-            \revert TextSpanner #'color
-            \revert TextSpanner #'dash-fraction
-            \revert TextSpanner #'staff-padding
-            \revert TextSpanner #'thickness
-        }
+        ..  doctest::
+
+            >>> print format(staff)
+            \new Staff {
+                \override TextSpanner #'bound-details #'left #'text = \markup {
+                    \draw-line #'(0 . -1) }
+                \override TextSpanner #'bound-details #'left-broken #'text = ##f
+                \override TextSpanner #'bound-details #'right #'text = \markup {
+                    \draw-line #'(0 . -1) }
+                \override TextSpanner #'bound-details #'right-broken #'text = ##f
+                \override TextSpanner #'color = #red
+                \override TextSpanner #'dash-fraction = #1
+                \override TextSpanner #'staff-padding = #2
+                \override TextSpanner #'thickness = #1.5
+                c'8 \startTextSpan
+                d'8
+                e'8
+                f'8 \stopTextSpan
+                \revert TextSpanner #'bound-details
+                \revert TextSpanner #'color
+                \revert TextSpanner #'dash-fraction
+                \revert TextSpanner #'staff-padding
+                \revert TextSpanner #'thickness
+            }
 
     Renders 1.5-unit thick solid red spanner.
 
