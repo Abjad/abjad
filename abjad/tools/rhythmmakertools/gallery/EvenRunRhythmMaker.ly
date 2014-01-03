@@ -1,4 +1,4 @@
-% 2014-01-03 12:53
+% 2014-01-03 15:56
 
 \version "2.18.0"
 \language "english"
@@ -105,6 +105,15 @@
 			}
 		}
 	>>
+	\header {
+		piece = \markup {
+			\italic
+				{
+					No.
+					1
+				}
+			}
+	}
 }
 
 \score {
@@ -221,6 +230,15 @@
 			}
 		}
 	>>
+	\header {
+		piece = \markup {
+			\italic
+				{
+					No.
+					2
+				}
+			}
+	}
 }
 
 \score {
@@ -383,4 +401,13 @@
 			}
 		}
 	>>
+	\header {
+		piece = \markup {
+			\italic
+				{
+					No.
+					3
+				}
+			}
+	}
 }

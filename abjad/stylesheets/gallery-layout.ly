@@ -1,3 +1,7 @@
+\paper {
+    markup-system-spacing #'basic-distance = #8
+}
+
 \layout {
     \accidentalStyle forget
     indent = #0

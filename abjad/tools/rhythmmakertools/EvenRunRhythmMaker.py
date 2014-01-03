@@ -225,10 +225,15 @@ class EvenRunRhythmMaker(RhythmMaker):
             score = EvenRunRhythmMaker._gallery_input_block_to_score(
                 gallery_input_block)
             scores.append(score)
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(scores[0])
-        for score in scores[1:]:
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+        lilypond_file.remove(lilypond_file.score_block)
+        for i, score in enumerate(scores):
             score_block = lilypondfiletools.ScoreBlock()
             score_block.append(score)
+            header_block = lilypondfiletools.HeaderBlock()
+            header_block.piece = markuptools.Markup(
+                r'\italic {{ No. {} }}'.format(i + 1))
+            score_block.append(header_block)
             lilypond_file.append(score_block)
         lilypond_file.default_paper_size = ('letter', 'landscape')
         lilypond_file.global_staff_size = 11
