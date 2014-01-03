@@ -87,7 +87,7 @@ class PersistenceAgent(abctools.AbjadObject):
             file_handle.write(lilypond_format)
         return ly_file_path, abjad_formatting_time
 
-    def as_midi(self, midi_file_path=None):
+    def as_midi(self, midi_file_path=None, include_ly=True):
         r'''Persists client as MIDI file.
 
         Autogenerates file path when `midi_file_path` is none.
@@ -117,7 +117,8 @@ class PersistenceAgent(abctools.AbjadObject):
             ly_file_path = '{}.ly'.format(without_extension)
         else:
             ly_file_path = None
-        result = type(self)(illustration).as_ly(ly_file_path)
+        if include_ly:
+            result = type(self)(illustration).as_ly(ly_file_path)
         ly_file_path, abjad_formatting_time = result
         timer = systemtools.Timer()
         with timer:
@@ -178,7 +179,7 @@ class PersistenceAgent(abctools.AbjadObject):
         with open(module_file_path, 'w') as f:
             f.write(result)
 
-    def as_pdf(self, pdf_file_path=None):
+    def as_pdf(self, pdf_file_path=None, include_ly=True):
         r'''Persists client as PDF.
 
         Autogenerates file path when `pdf_file_path` is none.
@@ -204,7 +205,8 @@ class PersistenceAgent(abctools.AbjadObject):
         else:
             ly_file_path = None
         # format and write the lilypond file
-        ly_file_path, abjad_formatting_time = self.as_ly(ly_file_path)
+        if include_ly:
+            ly_file_path, abjad_formatting_time = self.as_ly(ly_file_path)
         without_extension = os.path.splitext(ly_file_path)[0]
         pdf_file_path = '{}.pdf'.format(without_extension)
         # render the pdf
