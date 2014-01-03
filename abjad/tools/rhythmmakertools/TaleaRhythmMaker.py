@@ -125,7 +125,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
     ### PUBLIC METHODS ###
 
     def __makenew__(self, *args, **kwargs):
-        r'''Creates new talea rhythm-maker with `kwargs`.
+        r'''Makes new talea rhythm-maker with `kwargs`.
 
         ::
 

@@ -75,7 +75,7 @@ class SkipRhythmMaker(RhythmMaker):
         return superclass.__format__(format_specification=format_specification)
 
     def __makenew__(self, *args, **kwargs):
-        r'''Creates new skip rhythm-maker with `kwargs`.
+        r'''Makes new skip rhythm-maker with `kwargs`.
 
         ::
 

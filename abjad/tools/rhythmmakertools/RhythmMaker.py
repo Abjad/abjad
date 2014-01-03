@@ -168,7 +168,7 @@ class RhythmMaker(AbjadObject):
     ### PUBLIC METHODS ###
 
     def __makenew__(self, *args, **kwargs):
-        r'''Creates new rhythm-maker with `kwargs`.
+        r'''Makes new rhythm-maker with `kwargs`.
 
         ::
 
