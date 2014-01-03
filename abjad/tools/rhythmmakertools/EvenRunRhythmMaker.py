@@ -266,7 +266,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         class_name = EvenRunRhythmMaker.__name__
         file_name = '{}.pdf'.format(class_name)
         file_path = os.path.join(directory_path, 'gallery', file_name)
-        persist(lilypond_file).as_pdf(file_path)
+        persist(lilypond_file).as_pdf(file_path, remove_ly=True)
 
     ### PUBLIC PROPERTIES ###
 
