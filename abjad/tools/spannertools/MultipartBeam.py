@@ -1,32 +1,38 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import scoretools
 from abjad.tools.spannertools.Beam import Beam
 
 
 class MultipartBeam(Beam):
-    r'''A multipart beam spanner.
+    r'''A multipart beam.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'8 d'8 e'4 f'8 g'8 r4")
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ::
+            >>> staff = Staff("c'8 d'8 e'4 f'8 g'8 r4")
+            >>> contextualize(staff).auto_beaming = False
+            >>> show(staff) # doctest: +SKIP
 
-        >>> beam = spannertools.MultipartBeam()
-        >>> attach(beam, staff[:])
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> beam = spannertools.MultipartBeam()
+            >>> attach(beam, staff[:])
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print format(staff)
-        \new Staff {
-            c'8 [
-            d'8 ]
-            e'4
-            f'8 [
-            g'8 ]
-            r4
-        }
+        ..  doctest::
+
+            >>> print format(staff)
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
+                c'8 [
+                d'8 ]
+                e'4
+                f'8 [
+                g'8 ]
+                r4
+            }
 
     Avoids rests.
 
@@ -35,53 +41,42 @@ class MultipartBeam(Beam):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self, 
-        direction=None,
-        overrides=None,
-        ):
-        Beam.__init__(
-            self, 
-            direction=direction,
-            overrides=overrides,
-            )
+    __slots__ = (
+        )
 
     ### PRIVATE METHODS ###
 
     def _format_right_of_leaf(self, leaf):
-        from abjad.tools import scoretools
         result = []
         direction_string = ''
         if self.direction is not None:
-            direction_string = '%s ' % self.direction
+            direction_string = '{} '.format(self.direction)
         if self._is_beamable_component(leaf):
             if 1 < len(self._leaves):
-                previous = leaf._get_leaf(-1)
-                if id(previous) not in [id(x) for x in self._leaves]:
-                    previous = None
-                next = leaf._get_leaf(1)
-                if id(next) not in [id(x) for x in self._leaves]:
-                    next = None
+                previous_leaf = leaf._get_leaf(-1)
+                if id(previous_leaf) not in [id(x) for x in self._leaves]:
+                    previous_leaf = None
+                next_leaf = leaf._get_leaf(1)
+                if id(next_leaf) not in [id(x) for x in self._leaves]:
+                    next_leaf = None
                 if self._is_my_first_leaf(leaf):
-                    if next is not None:
-                        if self._is_beamable_component(next):
-                            result.append('%s[' % direction_string)
+                    if next_leaf is not None:
+                        if self._is_beamable_component(next_leaf):
+                            string = '{}['.format(direction_string)
+                            result.append(string)
                 else:
-                    if previous is not None:
-                        if not self._is_beamable_component(previous):
-                            if next is not None:
-                                result.append('%s[' % direction_string)
+                    if previous_leaf is not None:
+                        if not self._is_beamable_component(previous_leaf):
+                            if next_leaf is not None:
+                                string = '{}['.format(direction_string)
+                                result.append(string)
                 if self._is_my_last_leaf(leaf):
-                    if previous is not None:
-                        if self._is_beamable_component(previous):
+                    if previous_leaf is not None:
+                        if self._is_beamable_component(previous_leaf):
                             result.append(']')
                 else:
-                    next = leaf._get_leaf(1)
-                    if next is not None and \
-                        not self._is_beamable_component(next):
-                        result.append(']')
+                    next_leaf = leaf._get_leaf(1)
+                    if next_leaf is not None:
+                        if not self._is_beamable_component(next_leaf):
+                            result.append(']')
         return result
