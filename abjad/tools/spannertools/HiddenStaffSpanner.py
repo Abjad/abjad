@@ -5,31 +5,36 @@ from abjad.tools.spannertools.Spanner import Spanner
 class HiddenStaffSpanner(Spanner):
     r'''A hidden staff spanner.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> spanner = spannertools.HiddenStaffSpanner()
-        >>> attach(spanner, staff[:2])
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.HiddenStaffSpanner()
+            >>> attach(spanner, staff[1:3])
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print format(staff)
-        \new Staff {
-            \stopStaff
-            c'8
-            d'8
-            \startStaff
-            e'8
-            f'8
-        }
+        ..  doctest::
 
-    Hide staff behind leaves in spanner.
+            >>> print format(staff)
+            \new Staff {
+                c'8
+                \stopStaff
+                d'8
+                e'8
+                \startStaff
+                f'8
+            }
+
+    Formats LilyPond ``\stopStaff`` before first leaf in spanner.
+
+    Formats LilyPond ``\startStaff`` command after last leaf in spanner.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 

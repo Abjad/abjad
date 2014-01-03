@@ -57,7 +57,7 @@ class ComplexBeam(Beam):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_lone',
+        '_lone_nib_direction',
         )
 
     ### INITIALIZER ###
@@ -74,13 +74,13 @@ class ComplexBeam(Beam):
             overrides=overrides,
             )
         assert lone_nib_direction in (Left, Right, True, False)
-        self._lone = lone_nib_direction
+        self._lone_nib_direction = lone_nib_direction
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
         Beam._copy_keyword_args(self, new)
-        new._lone = self.lone_nib_direction
+        new._lone_nib_direction = self.lone_nib_direction
 
     def _format_before_leaf(self, leaf):
         r'''Spanner format contribution to output before leaf.
@@ -218,11 +218,11 @@ class ComplexBeam(Beam):
 
     @property
     def lone_nib_direction(self):
-        r'''Gets directed treatment to apply to lone_nib_direction nibs.
+        r'''Gets directed treatment to apply to lone nibs.
 
         ..  container:: example
 
-            Beams lone_nib_direction leaf and forces nib to the left:
+            Beams lone leaf and forces nib to the left:
 
             ::
 
@@ -243,7 +243,7 @@ class ComplexBeam(Beam):
 
         ..  container:: example
 
-            Beams lone_nib_direction leaf and forces nib to the right:
+            Beams lone leaf and forces nib to the right:
 
             ::
 
@@ -264,7 +264,7 @@ class ComplexBeam(Beam):
 
         ..  container:: example
 
-            Beams lone_nib_direction leaf and forces nibs both left and right:
+            Beams lone leaf and forces nibs both left and right:
 
             ::
 
@@ -306,4 +306,4 @@ class ComplexBeam(Beam):
 
         Ignores this setting when spanner contains more than one leaf.
         '''
-        return self._lone
+        return self._lone_nib_direction
