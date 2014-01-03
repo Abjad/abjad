@@ -1,0 +1,61 @@
+\layout {
+    \accidentalStyle forget
+    indent = #0
+    ragged-bottom = ##t
+    ragged-last = ##t
+    ragged-right = ##t
+    \context {
+        \type Engraver_group
+        \name TimeSignatureContext
+        \consists Time_signature_engraver
+        \consists Axis_group_engraver
+        \override TimeSignature.X-extent = #'(0 . 0)
+        \override TimeSignature.X-offset = #ly:self-alignment-interface::x-aligned-on-self
+        \override TimeSignature.Y-extent = #'(0 . 0)
+        \override TimeSignature.break-align-symbol = ##f
+        \override TimeSignature.break-visibility = #end-of-line-invisible
+        \override TimeSignature.font-size = #3
+        \override TimeSignature.self-alignment-X = #CENTER
+        \override VerticalAxisGroup.default-staff-staff-spacing = #'(
+            (basic-distance . 0)
+            (minimum-distance . 10)
+            (padding . 0)
+            (stretchability . 0))
+    }
+    \context {
+        \Score
+        \accepts TimeSignatureContext
+        \override BarLine.hair-thickness = #0.5
+        \override BarNumber.stencil = ##f
+        \override Beam.breakable = ##t
+        \override DynamicLineSpanner.Y-extent = #'(-1.5 . 1.5)
+        \override Glissando.breakable = ##t
+        \override MetronomeMark.extra-offset = #'(3 . -3)
+        \override MetronomeMark.font-size = #3
+        \override NoteCollision.merge-differently-dotted = ##t
+        \override NoteColumn.ignore-collision = ##t
+        \override SpacingSpanner.strict-grace-spacing = ##t
+        \override SpacingSpanner.strict-note-spacing = ##t
+        \override SpacingSpanner.uniform-stretching = ##t
+        \override StaffGrouper.staffgroup-staff-spacing = #'(
+            (basic-distance . 10.5)
+            (minimum-distance . 10)
+            (padding . 1)
+            (stretchability . 9))
+        \override Stem.direction = #down
+        \override StemTremolo.beam-width = #1.5
+        \override StemTremolo.flag-count = #4
+        \override StemTremolo.slope = #0.5
+        \override StemTremolo.Y-offset = #-4
+        \override TextScript.Y-extent = #'(-1.5 . 1.5)
+        \override TupletBracket.breakable = ##t
+        \override TupletBracket.direction = #down
+        \override TupletBracket.full-length-to-extent = ##f
+        \override TupletBracket.padding = #0.75
+        \override TupletNumber.font-size = #1
+        \override TupletNumber.text = #tuplet-number::calc-fraction-text
+        autoBeaming = ##f
+        proportionalNotationDuration = #(ly:make-moment 1 64)
+        tupletFullLength = ##t
+    }
+}
