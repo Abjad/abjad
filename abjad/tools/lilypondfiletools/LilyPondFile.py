@@ -1,10 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.lilypondfiletools.DateTimeToken import DateTimeToken
-from abjad.tools.lilypondfiletools.LilyPondLanguageToken \
-    import LilyPondLanguageToken
-from abjad.tools.lilypondfiletools.LilyPondVersionToken \
-    import LilyPondVersionToken
 
 
 class LilyPondFile(AbjadObject, list):
@@ -14,28 +9,27 @@ class LilyPondFile(AbjadObject, list):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
-        >>> lilypond_file.file_initial_user_comments.append(
-        ...     'File construct as an example.')
-        >>> lilypond_file.file_initial_user_comments.append(
-        ...     'Parts shown here for positioning.')
-        >>> lilypond_file.file_initial_user_includes.append(
-        ...     'external-settings-file-1.ly')
-        >>> lilypond_file.file_initial_user_includes.append(
-        ...     'external-settings-file-2.ly')
-        >>> lilypond_file.default_paper_size = 'letter', 'portrait'
+        >>> comment = 'File construct as an example.'
+        >>> lilypond_file.file_initial_user_comments.append(comment)
+        >>> comment = 'Parts shown here for positioning.'
+        >>> lilypond_file.file_initial_user_comments.append(comment)
+        >>> file_name = 'external-settings-file-1.ly'
+        >>> lilypond_file.file_initial_user_includes.append(file_name)
+        >>> file_name = 'external-settings-file-2.ly'
+        >>> lilypond_file.file_initial_user_includes.append(file_name)
+        >>> lilypond_file.default_paper_size = 'a5', 'portrait'
         >>> lilypond_file.global_staff_size = 16
-        >>> lilypond_file.header_block.composer = \
-        ...     markuptools.Markup('Josquin')
-        >>> lilypond_file.header_block.title = \
-        ...     markuptools.Markup('Missa sexti tonus')
+        >>> lilypond_file.header_block.composer = Markup('Josquin')
+        >>> lilypond_file.header_block.title = Markup('Missa sexti tonus')
         >>> lilypond_file.layout_block.indent = 0
         >>> lilypond_file.layout_block.left_margin = 15
-        >>> lilypond_file.paper_block.oddFooterMarkup = \
-        ...     markuptools.Markup('The odd-page footer')
-        >>> lilypond_file.paper_block.evenFooterMarkup = \
-        ...     markuptools.Markup('The even-page footer')
+        >>> string = 'The odd-page footer'
+        >>> lilypond_file.paper_block.oddFooterMarkup = Markup(string)
+        >>> string = 'The even-page footer'
+        >>> lilypond_file.paper_block.evenFooterMarkup = Markup(string)
+        >>> show(lilypond_file) # doctest: +SKIP
 
-    ..  doctest::
+    ::
 
         >>> print format(lilypond_file)
         % ...
@@ -49,7 +43,7 @@ class LilyPondFile(AbjadObject, list):
         \include "external-settings-file-1.ly"
         \include "external-settings-file-2.ly"
 
-        #(set-default-paper-size "letter" 'portrait)
+        #(set-default-paper-size "a5" 'portrait)
         #(set-global-staff-size 16)
 
         \header {
@@ -77,13 +71,17 @@ class LilyPondFile(AbjadObject, list):
     '''
 
     def __init__(self):
+        from abjad.tools import lilypondfiletools
         list.__init__(self)
         self._file_initial_system_comments = []
-        self._file_initial_system_comments.append(DateTimeToken())
+        token = lilypondfiletools.DateTimeToken()
+        self._file_initial_system_comments.append(token)
         self._file_initial_user_comments = []
         self._file_initial_system_includes = []
-        self._file_initial_system_includes.append(LilyPondVersionToken())
-        self._file_initial_system_includes.append(LilyPondLanguageToken())
+        token = lilypondfiletools.LilyPondVersionToken()
+        self._file_initial_system_includes.append(token)
+        token = lilypondfiletools.LilyPondLanguageToken()
+        self._file_initial_system_includes.append(token)
         self._file_initial_user_includes = []
         self.default_paper_size = None
         self.global_staff_size = None
@@ -113,9 +111,9 @@ class LilyPondFile(AbjadObject, list):
         Returns string.
         '''
         if hasattr(self, 'score_block') and 1 <= len(self.score_block):
-            return '%s(%s)' % (type(self).__name__, self.score_block[0])
+            return '{}({!s})'.format(type(self).__name__, self.score_block[0])
         else:
-            return '%s()' % type(self).__name__
+            return '{}()'.format(type(self).__name__)
 
     ### PRIVATE PROPERTIES ###
 
@@ -126,7 +124,8 @@ class LilyPondFile(AbjadObject, list):
         result.extend(self._formatted_file_initial_user_comments)
         result.extend(self._formatted_file_initial_system_includes)
         if self.use_relative_includes:
-            result.append("#(ly:set-option 'relative-includes #t)")
+            string = "#(ly:set-option 'relative-includes #t)"
+            result.append(string)
         result.extend(self._formatted_file_initial_user_includes)
         result.extend(self._formatted_file_initial_scheme_settings)
         result.extend(self._formatted_blocks)
@@ -150,11 +149,14 @@ class LilyPondFile(AbjadObject, list):
         default_paper_size = self.default_paper_size
         if default_paper_size is not None:
             dimension, orientation = default_paper_size
-            result.append("#(set-default-paper-size \"%s\" '%s)" % (
-                dimension, orientation))
+            string = "#(set-default-paper-size \"{}\" '{})"
+            string = string.format(dimension, orientation)
+            result.append(string)
         global_staff_size = self.global_staff_size
         if global_staff_size is not None:
-            result.append('#(set-global-staff-size %s)' % global_staff_size)
+            string = '#(set-global-staff-size {})'
+            string = string.format(global_staff_size)
+            result.append(string)
         if result:
             result = ['\n'.join(result)]
         return result
@@ -162,13 +164,16 @@ class LilyPondFile(AbjadObject, list):
     @property
     def _formatted_file_initial_system_comments(self):
         result = []
-        for x in self.file_initial_system_comments:
-            if '_lilypond_format' in dir(x) and not isinstance(x, str):
-                lilypond_format = format(x)
+        for comment in self.file_initial_system_comments:
+            if '_lilypond_format' in dir(comment) and \
+                not isinstance(comment, str):
+                lilypond_format = format(comment)
                 if lilypond_format:
-                    result.append('%% %s' % format(x))
+                    string = '% {}'.format(comment)
+                    result.append(string)
             else:
-                result.append('%% %s' % str(x))
+                string = '% {!s}'.format(comment)
+                result.append(string)
         if result:
             result = ['\n'.join(result)]
         return result
@@ -178,7 +183,8 @@ class LilyPondFile(AbjadObject, list):
         result = []
         for file_initial_include in self.file_initial_system_includes:
             if isinstance(file_initial_include, str):
-                result.append(r'\include "%s"' % file_initial_include)
+                string = r'\include "{}"'.format(file_initial_include)
+                result.append(string)
             else:
                 result.append(format(file_initial_include))
         if result:
@@ -188,13 +194,16 @@ class LilyPondFile(AbjadObject, list):
     @property
     def _formatted_file_initial_user_comments(self):
         result = []
-        for x in self.file_initial_user_comments:
-            if '_lilypond_format' in dir(x) and not isinstance(x, str):
-                lilypond_format = format(x)
+        for comment in self.file_initial_user_comments:
+            if '_lilypond_format' in dir(comment) and \
+                not isinstance(comment, str):
+                lilypond_format = format(comment)
                 if lilypond_format:
-                    result.append('%% %s' % format(x))
+                    string = '% {}'.format(comment)
+                    result.append(string)
             else:
-                result.append('%% %s' % str(x))
+                string = '% {!s}'.format(comment)
+                result.append(string)
         if result:
             result = ['\n'.join(result)]
         return result
@@ -204,7 +213,8 @@ class LilyPondFile(AbjadObject, list):
         result = []
         for file_initial_include in self.file_initial_user_includes:
             if isinstance(file_initial_include, str):
-                result.append(r'\include "%s"' % file_initial_include)
+                string = r'\include "{}"'.format(file_initial_include)
+                result.append(string)
             else:
                 result.append(format(file_initial_include))
         if result:
@@ -219,7 +229,9 @@ class LilyPondFile(AbjadObject, list):
 
     @property
     def default_paper_size(self):
-        r'''LilyPond default paper size.
+        r'''Gets default paper size of LilyPond file.
+
+        Returns pair or none.
         '''
         return self._default_paper_size
 
@@ -231,7 +243,9 @@ class LilyPondFile(AbjadObject, list):
 
     @property
     def file_initial_system_comments(self):
-        r'''List of file-initial system comments.
+        r'''Gets file-initial system comments of LilyPond file.
+
+        Returns list.
         '''
         return self._file_initial_system_comments
 
@@ -244,7 +258,9 @@ class LilyPondFile(AbjadObject, list):
 
     @property
     def file_initial_system_includes(self):
-        r'''List of file-initial system include commands.
+        r'''Gets file-initial system include commands of LilyPond file.
+
+        Returns list.
         '''
         return self._file_initial_system_includes
 
@@ -257,7 +273,9 @@ class LilyPondFile(AbjadObject, list):
 
     @property
     def file_initial_user_comments(self):
-        r'''List of file-initial user comments.
+        r'''Gets file-initial user comments of Lilypond file.
+
+        Returns list.
         '''
         return self._file_initial_user_comments
 
@@ -270,7 +288,9 @@ class LilyPondFile(AbjadObject, list):
 
     @property
     def file_initial_user_includes(self):
-        r'''List of file-initial user include commands.
+        r'''Gets file-initial user include commands of LilyPond file.
+
+        Returns list.
         '''
         return self._file_initial_user_includes
 
@@ -283,7 +303,9 @@ class LilyPondFile(AbjadObject, list):
 
     @property
     def global_staff_size(self):
-        r'''LilyPond global staff size.
+        r'''Gets global staff size of LilyPond file.
+
+        Returns number.
         '''
         return self._global_staff_size
 
@@ -294,7 +316,9 @@ class LilyPondFile(AbjadObject, list):
 
     @property
     def use_relative_includes(self):
-        r'''Use relative \include paths.
+        r'''Gets boolean flag to use relative include paths.
+
+        Returns boolean. 
         '''
         return self._use_relative_includes
 
