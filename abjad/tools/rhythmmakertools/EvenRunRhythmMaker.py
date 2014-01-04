@@ -241,15 +241,19 @@ class EvenRunRhythmMaker(RhythmMaker):
             score_block = lilypondfiletools.ScoreBlock()
             score_block.append(score)
             header_block = lilypondfiletools.HeaderBlock()
-            header_block.piece = markuptools.Markup(
-                r'\italic {{ No. {} }}'.format(i + 1))
+            string = r'\italic {{ No. {} }}'.format(i + 1)
+            header_block.piece = markuptools.Markup(string)
             score_block.append(header_block)
             lilypond_file.append(score_block)
         lilypond_file.default_paper_size = ('letter', 'portrait')
         lilypond_file.global_staff_size = 10
         lilypond_file.use_relative_includes = True
-        lilypond_file.file_initial_user_includes.append(
-            os.path.join('..', '..', '..', 'stylesheets', 'gallery-layout.ly'))
+        stylesheet_path = os.path.join(
+            '..', '..', '..', 
+            'stylesheets', 
+            'gallery-layout.ly',
+            )
+        lilypond_file.file_initial_user_includes.append(stylesheet_path)
         lilypond_file.paper_block.tagline = markuptools.Markup('')
         return lilypond_file
 

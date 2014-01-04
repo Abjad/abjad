@@ -5,31 +5,39 @@ from abjad.tools.abctools import AbjadObject
 class LilyPondVersionToken(AbjadObject):
     r'''LilyPond version token.
     
-    ::
+    ..  container:: example
 
-        >>> lilypondfiletools.LilyPondVersionToken()
-        LilyPondVersionToken(\version "...")
+        Retrieves version from install environment:
 
-    A specific version can also be specified:
+        ::
 
-    ..  doctest::
+            >>> lilypondfiletools.LilyPondVersionToken(version=None) # doctest +SKIP
+            LilyPondVersionToken(\version "2.18.0")
 
-        >>> print format(lilypondfiletools.LilyPondVersionToken('2.16.0'))
-        \version "2.16.0"
+    ..  container:: example
 
-    Returns LilyPond version token.
+        Sets version explicitly:
+
+        ::
+
+            >>> lilypondfiletools.LilyPondVersionToken(version='2.19.0')
+            LilyPondVersionToken(\version "2.19.0")
+
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, version=None):
+        from abjad import abjad_configuration
         assert isinstance(version, (str, type(None)))
+        if version is None:
+            version = abjad_configuration.get_lilypond_version_string()
         self._version = version
 
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats LiliPond version token.
+        r'''Formats LilyPond version token.
 
         Return string.
         '''
@@ -56,9 +64,14 @@ class LilyPondVersionToken(AbjadObject):
     def version(self):
         r'''Version of LilyPond version token.
 
+        ..  container:: example
+
+            ::
+
+                >>> token = lilypondfiletools.LilyPondVersionToken()
+                >>> token.version # doctest: +SKIP
+                '2.18.0'
+
         Returns string.
         '''
-        from abjad import abjad_configuration
-        if self._version is None:
-            return abjad_configuration.get_lilypond_version_string()
         return self._version

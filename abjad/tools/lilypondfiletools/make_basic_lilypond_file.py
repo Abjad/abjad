@@ -3,22 +3,25 @@ from abjad.tools import scoretools
 
 
 def make_basic_lilypond_file(music=None):
-    r'''Make basic LilyPond file with `music`:
+    r'''Makes basic LilyPond file with `music`.
 
     ::
 
         >>> score = Score([Staff("c'8 d'8 e'8 f'8")])
         >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
-        >>> lilypond_file.header_block.composer = markuptools.Markup('Josquin')
+        >>> lilypond_file.header_block.title = Markup('Missa sexti tonus')
+        >>> lilypond_file.header_block.composer = Markup('Josquin')
         >>> lilypond_file.layout_block.indent = 0
         >>> lilypond_file.paper_block.top_margin = 15
         >>> lilypond_file.paper_block.left_margin = 15
+        >>> show(lilypond_file) # doctest: +SKIP
 
     ..  doctest::
 
         >>> print format(lilypond_file) # doctest: +SKIP
         \header {
             composer = \markup { Josquin }
+            title = \markup { Missa sexti tonus }
         }
 
         \layout {
@@ -39,7 +42,7 @@ def make_basic_lilypond_file(music=None):
             }
         >>
 
-    Equip LilyPond file with header, layout and paper blocks.
+    Equips LilyPond file with header, layout and paper blocks.
 
     Returns LilyPond file.
     '''
