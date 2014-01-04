@@ -237,14 +237,14 @@ class EvenRunRhythmMaker(RhythmMaker):
         lilypond_file.remove(lilypond_file.score_block)
         for i, score in enumerate(scores):
             #title_markup = markuptools.Markup('TITLE MARKUP')
-            #lilypond_file.append(title_markup)
+            #lilypond_file.items.append(title_markup)
             score_block = lilypondfiletools.ScoreBlock()
             score_block.append(score)
             header_block = lilypondfiletools.HeaderBlock()
             string = r'\italic {{ No. {} }}'.format(i + 1)
             header_block.piece = markuptools.Markup(string)
             score_block.append(header_block)
-            lilypond_file.append(score_block)
+            lilypond_file.items.append(score_block)
         lilypond_file.default_paper_size = ('letter', 'portrait')
         lilypond_file.global_staff_size = 10
         lilypond_file.use_relative_includes = True

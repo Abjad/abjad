@@ -185,7 +185,7 @@ class Markup(AbjadObject):
         from abjad.tools import markuptools
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
         lilypond_file.header_block.tagline = markuptools.Markup('""')
-        lilypond_file.append(self)
+        lilypond_file.items.append(self)
         return lilypond_file
 
     def __str__(self):

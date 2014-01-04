@@ -625,7 +625,7 @@ class Container(Component):
                 user_input = '{{ {} }}'.format(user_input)
             parsed = lilypondparsertools.LilyPondParser()(user_input)
             if isinstance(parsed, lilypondfiletools.LilyPondFile):
-                parsed = Container(parsed[:])
+                parsed = Container(parsed.items[:])
             assert isinstance(parsed, Container)
         return parsed
 

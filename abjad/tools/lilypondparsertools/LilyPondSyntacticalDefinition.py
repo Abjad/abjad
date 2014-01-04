@@ -62,9 +62,9 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_start_symbol__lilypond(self, p):
         'start_symbol : lilypond'
         if 1 < len(p[1]):
-            lily = lilypondfiletools.LilyPondFile()
-            lily.extend(p[1])
-            p[0] = lily
+            lilypond_file = lilypondfiletools.LilyPondFile()
+            lilypond_file.items.extend(p[1])
+            p[0] = lilypond_file
         elif 1 == len(p[1]):
             p[0] = p[1][0]
         else:

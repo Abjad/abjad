@@ -40,9 +40,16 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
     ### INITIALIZER ###
 
     def __init__(self, payload=None, start_offset=None, voice_name=None):
+        from abjad.tools import lilypondfiletools
+        if isinstance(payload, lilypondfiletools.LilyPondFile):
+            payload = payload.items[:]
         payload = scoretools.Container(music=payload)
-        StartPositionedPayloadExpression.__init__(self,
-            payload=payload, start_offset=start_offset, voice_name=voice_name)
+        StartPositionedPayloadExpression.__init__(
+            self,
+            payload=payload, 
+            start_offset=start_offset, 
+            voice_name=voice_name,
+            )
 
     ### SPECIAL METHODS ###
 

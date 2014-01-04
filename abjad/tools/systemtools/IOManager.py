@@ -257,7 +257,7 @@ class IOManager(object):
             # NOTE: don't quite understand the logic here.
             # why append a score_block and then set the score_block attribute
             # to the same thing?
-            lilypond_file.append(score_block)
+            lilypond_file.items.append(score_block)
             #lilypond_file.score = score_block
             lilypond_file.score_block = score_block
             lilypond_file._is_temporary = True

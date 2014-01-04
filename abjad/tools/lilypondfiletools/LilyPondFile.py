@@ -2,7 +2,7 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class LilyPondFile(AbjadObject, list):
+class LilyPondFile(AbjadObject):
     r'''A LilyPond input file.
 
     ::
@@ -72,7 +72,7 @@ class LilyPondFile(AbjadObject, list):
 
     def __init__(self):
         from abjad.tools import lilypondfiletools
-        list.__init__(self)
+        self._items = []
         self._file_initial_system_comments = []
         token = lilypondfiletools.DateTimeToken()
         self._file_initial_system_comments.append(token)
@@ -134,7 +134,7 @@ class LilyPondFile(AbjadObject, list):
     @property
     def _formatted_blocks(self):
         result = []
-        for x in self:
+        for x in self.items:
             if '_lilypond_format' in dir(x) and not isinstance(x, str):
                 lilypond_format = format(x)
                 if lilypond_format:
@@ -313,6 +313,14 @@ class LilyPondFile(AbjadObject, list):
     def global_staff_size(self, arg):
         assert isinstance(arg, (int, float, long, type(None)))
         self._global_staff_size = arg
+
+    @property
+    def items(self):
+        r'''Gets items in LilyPond file.
+
+        Returns list.
+        '''
+        return self._items
 
     @property
     def use_relative_includes(self):
