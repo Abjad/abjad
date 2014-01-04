@@ -226,6 +226,13 @@ class EvenRunRhythmMaker(RhythmMaker):
             score = EvenRunRhythmMaker._gallery_input_block_to_score(
                 gallery_input_block)
             scores.append(score)
+#        for score in scores:
+#            if not inspect(score).is_well_formed():
+#                message = 'score is not well-formed: {!r}.'
+#                message = message.format(score)
+#                message += '\n'
+#                message += inspect(score).tabulate_well_formedness_violations()
+#                raise Exception(message)
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
         lilypond_file.remove(lilypond_file.score_block)
         for i, score in enumerate(scores):

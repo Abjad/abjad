@@ -47,13 +47,14 @@ class WellformednessManager(AbjadObject):
         total = 0
         for leaf in iterate(self.expr).by_class(scoretools.Leaf):
             total += 1
-            if leaf._has_spanner(spannertools.Beam):
-                beam = leaf._get_spanner(spannertools.Beam)
-                if not isinstance(beam,
-                    spannertools.DuratedComplexBeam):
+            parentage = leaf._get_parentage(include_self=True)
+            beams = parentage._get_spanners(spannertools.Beam)
+            for beam in beams:
+                if not isinstance(beam, spannertools.DuratedComplexBeam):
                     flag_count = leaf.written_duration.flag_count
                     if flag_count < 1:
                         violators.append(leaf)
+                        break
         return violators, total
 
     def check_discontiguous_spanners(self):
