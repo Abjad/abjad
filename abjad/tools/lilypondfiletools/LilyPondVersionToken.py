@@ -3,41 +3,42 @@ from abjad.tools.abctools import AbjadObject
 
 
 class LilyPondVersionToken(AbjadObject):
-    r'''LilyPond version token.
+    r'''A LilyPond version token.
     
     ..  container:: example
 
-        Retrieves version from install environment:
-
         ::
 
-            >>> lilypondfiletools.LilyPondVersionToken(version=None) # doctest +SKIP
-            LilyPondVersionToken(\version "2.18.0")
-
-    ..  container:: example
-
-        Sets version explicitly:
-
-        ::
-
-            >>> lilypondfiletools.LilyPondVersionToken(version='2.19.0')
-            LilyPondVersionToken(\version "2.19.0")
+            >>> lilypondfiletools.LilyPondVersionToken() # doctest: +SKIP
+            LilyPondVersionToken('2.18.0')
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_version_string',
+        )
+
     ### INITIALIZER ###
 
-    def __init__(self, version=None):
+    def __init__(self, version_string=None):
         from abjad import abjad_configuration
-        assert isinstance(version, (str, type(None)))
-        if version is None:
-            version = abjad_configuration.get_lilypond_version_string()
-        self._version = version
+        assert isinstance(version_string, (str, type(None)))
+        if version_string is None:
+            version_string = abjad_configuration.get_lilypond_version_string()
+        self._version_string = version_string
 
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
         r'''Formats LilyPond version token.
+
+        ..  container:: example
+
+            >>> token = lilypondfiletools.LilyPondVersionToken()
+            >>> print format(token) # doctest: +SKIP
+            \version "2.18.0"
 
         Return string.
         '''
@@ -46,32 +47,54 @@ class LilyPondVersionToken(AbjadObject):
         return str(self)
 
     def __repr__(self):
-        r'''Gets interpreter representation of LilyPond version token.
+        r'''Gets interpreter representation of LilyPond version_string token.
+
+        ..  container:: example
+
+            >>> token = lilypondfiletools.LilyPondVersionToken()
+            >>> token # doctest: +SKIP
+            LilyPondVersionToken('2.18.0')
 
         Returns string.
         '''
-        return '{}({})'.format(type(self).__name__, format(self))
+        return '{}({!r})'.format(type(self).__name__, self.version_string)
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _lilypond_format(self):
-        return r'\version "{}"'.format(self.version)
+        return r'\version "{}"'.format(self.version_string)
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def version(self):
-        r'''Version of LilyPond version token.
+    def version_string(self):
+        r'''Gets version string of LilyPond version token.
 
         ..  container:: example
 
+            Gets version string from install environment:
+
             ::
 
-                >>> token = lilypondfiletools.LilyPondVersionToken()
-                >>> token.version # doctest: +SKIP
+                >>> token = lilypondfiletools.LilyPondVersionToken(
+                ...     version_string=None,
+                ...     )
+                >>> token.version_string # doctest: +SKIP
                 '2.18.0'
+
+        ..  container:: example
+
+            Gets version string from explicit input:
+
+            ::
+
+                >>> token = lilypondfiletools.LilyPondVersionToken(
+                ...     version_string='2.19.0',
+                ...     )
+                >>> token.version_string
+                '2.19.0'
 
         Returns string.
         '''
-        return self._version
+        return self._version_string
