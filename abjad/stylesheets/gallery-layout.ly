@@ -1,5 +1,6 @@
 \paper {
     markup-system-spacing #'basic-distance = 8
+    score-markup-spacing #'basic-distance = 30
 }
 
 \layout {
