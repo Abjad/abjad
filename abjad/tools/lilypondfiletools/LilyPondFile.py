@@ -23,21 +23,16 @@ class LilyPondFile(AbjadObject):
         >>> lilypond_file.header_block.title = Markup('Missa sexti tonus')
         >>> lilypond_file.layout_block.indent = 0
         >>> lilypond_file.layout_block.left_margin = 15
-        >>> string = 'The odd-page footer'
-        >>> lilypond_file.paper_block.oddFooterMarkup = Markup(string)
-        >>> string = 'The even-page footer'
-        >>> lilypond_file.paper_block.evenFooterMarkup = Markup(string)
-        >>> show(lilypond_file) # doctest: +SKIP
 
     ::
 
-        >>> print format(lilypond_file)
-        % ...
+        >>> print format(lilypond_file) # doctest: +SKIP
+        % 2004-01-14 17:29
 
         % File construct as an example.
         % Parts shown here for positioning.
 
-        \version "2..."
+        \version "2.18.0"
         \include "english.ly"
 
         \include "external-settings-file-1.ly"
@@ -57,8 +52,6 @@ class LilyPondFile(AbjadObject):
         }
 
         \paper {
-            evenFooterMarkup = \markup { The even-page footer }
-            oddFooterMarkup = \markup { The odd-page footer }
         }
 
         \new Staff {
@@ -67,6 +60,10 @@ class LilyPondFile(AbjadObject):
             e'8
             f'8
         }
+
+    ::
+
+        >>> show(lilypond_file) # doctest: +SKIP
 
     '''
 
@@ -108,12 +105,19 @@ class LilyPondFile(AbjadObject):
     def __repr__(self):
         r'''Gets interpreter representation of LilyPond file.
 
+        ..  container:: example
+
+            ::
+
+                >>> lilypond_file
+                LilyPondFile(4)
+
         Returns string.
         '''
-        if hasattr(self, 'score_block') and 1 <= len(self.score_block):
-            return '{}({!s})'.format(type(self).__name__, self.score_block[0])
-        else:
-            return '{}()'.format(type(self).__name__)
+        item_count = len(self.items)
+        if item_count:
+            return '{}({})'.format(type(self).__name__, item_count)
+        return '{}()'.format(type(self).__name__)
 
     ### PRIVATE PROPERTIES ###
 
@@ -231,19 +235,33 @@ class LilyPondFile(AbjadObject):
     def default_paper_size(self):
         r'''Gets default paper size of LilyPond file.
 
+        ..  container:: example
+
+            ::
+
+                >>> lilypond_file.default_paper_size
+                ('a5', 'portrait')
+
         Returns pair or none.
         '''
         return self._default_paper_size
 
     @default_paper_size.setter
     def default_paper_size(self, args):
-        # #(set-default-paper-size "11x17" 'landscape)
         assert args is None or len(args) == 2
         self._default_paper_size = args
 
     @property
     def file_initial_system_comments(self):
         r'''Gets file-initial system comments of LilyPond file.
+
+        ..  container:: example
+
+            ::
+
+                >>> for x in lilypond_file.file_initial_system_comments: # doctest: +SKIP
+                ...     x
+                DateTimeToken('2014-01-04 17:16')
 
         Returns list.
         '''
@@ -260,6 +278,15 @@ class LilyPondFile(AbjadObject):
     def file_initial_system_includes(self):
         r'''Gets file-initial system include commands of LilyPond file.
 
+        ..  container:: example
+
+            ::
+
+                >>> for x in lilypond_file.file_initial_system_includes:
+                ...     x
+                LilyPondVersionToken('2.18.0')
+                LilyPondLanguageToken('english')
+
         Returns list.
         '''
         return self._file_initial_system_includes
@@ -274,6 +301,15 @@ class LilyPondFile(AbjadObject):
     @property
     def file_initial_user_comments(self):
         r'''Gets file-initial user comments of Lilypond file.
+
+        ..  container:: example
+
+            ::
+
+                >>> for x in lilypond_file.file_initial_user_comments:
+                ...     x
+                'File construct as an example.'
+                'Parts shown here for positioning.'
 
         Returns list.
         '''
@@ -290,6 +326,15 @@ class LilyPondFile(AbjadObject):
     def file_initial_user_includes(self):
         r'''Gets file-initial user include commands of LilyPond file.
 
+        ..  container:: example
+
+            ::
+
+                >>> for x in lilypond_file.file_initial_user_includes:
+                ...     x
+                'external-settings-file-1.ly'
+                'external-settings-file-2.ly'
+
         Returns list.
         '''
         return self._file_initial_user_includes
@@ -305,6 +350,13 @@ class LilyPondFile(AbjadObject):
     def global_staff_size(self):
         r'''Gets global staff size of LilyPond file.
 
+        ..  container:: example
+
+            ::
+
+                >>> lilypond_file.global_staff_size
+                16
+
         Returns number.
         '''
         return self._global_staff_size
@@ -318,6 +370,17 @@ class LilyPondFile(AbjadObject):
     def items(self):
         r'''Gets items in LilyPond file.
 
+        ..  container:: example
+
+            ::
+
+                >>> for item in lilypond_file.items:
+                ...     item
+                HeaderBlock(2)
+                LayoutBlock(2)
+                PaperBlock()
+                ScoreBlock(1)
+
         Returns list.
         '''
         return self._items
@@ -325,6 +388,13 @@ class LilyPondFile(AbjadObject):
     @property
     def use_relative_includes(self):
         r'''Gets boolean flag to use relative include paths.
+
+        ..  container:: example
+
+            ::
+
+                >>> lilypond_file.use_relative_includes
+                False
 
         Returns boolean. 
         '''
