@@ -4,20 +4,27 @@ from abjad.tools.abctools import AbjadObject
 
 
 class DateTimeToken(AbjadObject):
-    '''Date / time token.
+    '''A date / time token.
 
-    ::
+    ..  container:: example
 
-        >>> lilypondfiletools.DateTimeToken()
-        DateTimeToken(...)
+        >>> lilypondfiletools.DateTimeToken() # doctest: +SKIP
+        DateTimeToken('2014-01-04 14:42')
 
-    Returns date / time token.
     '''
 
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Gets format.
+        r'''Formats date / time token.
+
+        ..  container:: example
+
+            ::
+
+                >>> token = lilypondfiletools.DateTimeToken()
+                >>> print format(token) # doctest: +SKIP
+                2014-01-04 14:42
 
         Returns string.
         '''
@@ -28,9 +35,16 @@ class DateTimeToken(AbjadObject):
     def __repr__(self):
         r'''Gets interpreter representation of date / time token.
 
+        ..  container:: example
+
+            ::
+
+                >>> lilypondfiletools.DateTimeToken() # doctest: +SKIP
+                DateTimeToken('2014-01-04 14:42')
+
         Returns string.
         '''
-        return '{}({})'.format(type(self).__name__, self._lilypond_format)
+        return '{}({!r})'.format(type(self).__name__, self._lilypond_format)
 
     ### PRIVATE PROPERTIES ###
 

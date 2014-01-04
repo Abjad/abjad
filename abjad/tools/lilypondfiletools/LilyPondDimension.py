@@ -1,19 +1,17 @@
 # -*- encoding: utf-8 -*-
+import numbers
 from abjad.tools import abctools
 
 
 class LilyPondDimension(abctools.AbjadObject):
-    r'''A LilyPond page dimension.
+    r'''A LilyPond dimension.
 
-    ::
+    ..  container:: example
 
-        >>> dimension = lilypondfiletools.LilyPondDimension(2, 'in')
+        >>> lilypondfiletools.LilyPondDimension(2, 'in')
+        LilyPondDimension(value=2, unit='in')
 
-    ..  doctest::
-
-        >>> print format(dimension)
-        2.0\in
-
+    Use for LilyPond file ``\paper`` block attributes.
     '''
 
     ### CLASS VARIABLES ###
@@ -26,15 +24,23 @@ class LilyPondDimension(abctools.AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, value=0, unit='cm'):
-        assert 0 <= value
-        assert unit in ('cm', 'in', 'mm')
-        self._value = float(value)
+        assert isinstance(value, numbers.Number) and 0 <= value 
+        assert unit in ('cm', 'in', 'mm', 'pt')
+        self._value = value
         self._unit = unit
 
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
         r'''Formats LilyPond dimension.
+
+        ..  container:: example
+
+            ::
+
+                >>> dimension = lilypondfiletools.LilyPondDimension(2, 'in')
+                >>> print format(dimension)
+                2\in
 
         Returns string.
         '''
@@ -56,16 +62,32 @@ class LilyPondDimension(abctools.AbjadObject):
 
     @property
     def unit(self):
-        r'''Unit of LilyPond dimension.
+        r'''Gets unit of LilyPond dimension.
 
-        Returns string.
+        ..  container:: example
+
+            ::
+
+                >>> dimension = lilypondfiletools.LilyPondDimension(2, 'in')
+                >>> dimension.unit
+                'in'
+
+        Returns ``'cm'``, ``'in'``, ``'mm'`` or ``'pt'``.
         '''
         return self._unit
 
     @property
     def value(self):
-        r'''Value of LilyPond dimension.
+        r'''Gets value of LilyPond dimension.
 
-        Returns float.
+        ..  container:: example
+
+            ::
+
+                >>> dimension = lilypondfiletools.LilyPondDimension(2, 'in')
+                >>> dimension.value
+                2
+
+        Returns number.
         '''
         return self._value
