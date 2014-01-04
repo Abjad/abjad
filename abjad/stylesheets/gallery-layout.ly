@@ -21,7 +21,8 @@
         \RhythmicStaff
         \remove Time_signature_engraver
         \override BarLine.bar-extent = #'(-2 . 4)
-        \override Stem.length = 20
+        \override Beam.positions = #'(4 . 4)
+        \override Stem.length = 8
     }
     \context {
         \type Engraver_group

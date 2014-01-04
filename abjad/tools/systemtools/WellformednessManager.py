@@ -45,12 +45,16 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import iterate
         violators = []
         total = 0
+        smart_beams = (
+            spannertools.DuratedComplexBeam,
+            spannertools.MultipartBeam,
+            )
         for leaf in iterate(self.expr).by_class(scoretools.Leaf):
             total += 1
             parentage = leaf._get_parentage(include_self=True)
             beams = parentage._get_spanners(spannertools.Beam)
             for beam in beams:
-                if not isinstance(beam, spannertools.DuratedComplexBeam):
+                if not isinstance(beam, smart_beams):
                     flag_count = leaf.written_duration.flag_count
                     if flag_count < 1:
                         violators.append(leaf)
