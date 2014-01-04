@@ -1,5 +1,5 @@
 \paper {
-    markup-system-spacing #'basic-distance = #8
+    markup-system-spacing #'basic-distance = 8
 }
 
 \layout {
@@ -20,6 +20,8 @@
     \context {
         \RhythmicStaff
         \remove Time_signature_engraver
+        \override BarLine.bar-extent = #'(-2 . 4)
+        \override Stem.length = 20
     }
     \context {
         \type Engraver_group
@@ -31,18 +33,19 @@
         \override TimeSignature.Y-extent = #'(0 . 0)
         \override TimeSignature.break-align-symbol = ##f
         \override TimeSignature.break-visibility = #end-of-line-invisible
-        \override TimeSignature.font-size = 3
-        \override TimeSignature.self-alignment-X = #CENTER
+        \override TimeSignature.font-size = 2
+        \override TimeSignature.self-alignment-X = #center
         \override VerticalAxisGroup.default-staff-staff-spacing = #'(
             (basic-distance . 0)
-            (minimum-distance . 10)
+            (minimum-distance . 9)
             (padding . 0)
-            (stretchability . 0))
+            (stretchability . 0)
+            )
     }
     \context {
         \Score
         \accepts TimeSignatureContext
-        \override BarLine.hair-thickness = 2.5
+        \override BarLine.hair-thickness = 0.5
         \override BarNumber.stencil = ##f
         \override Beam.breakable = ##t
         \override DynamicLineSpanner.Y-extent = #'(-1.5 . 1.5)
@@ -54,11 +57,13 @@
         \override SpacingSpanner.strict-grace-spacing = ##t
         \override SpacingSpanner.strict-note-spacing = ##t
         \override SpacingSpanner.uniform-stretching = ##t
+        \override SpanBarStub.color = #green
         \override StaffGrouper.staffgroup-staff-spacing = #'(
             (basic-distance . 10.5)
             (minimum-distance . 10)
             (padding . 1)
-            (stretchability . 9))
+            (stretchability . 9)
+            )
         \override Stem.direction = #up
         \override StemTremolo.beam-width = 1.5
         \override StemTremolo.flag-count = 4

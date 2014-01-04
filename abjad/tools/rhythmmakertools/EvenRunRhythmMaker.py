@@ -4,6 +4,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
+from abjad.tools.agenttools.InspectionAgent import inspect
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import mutate
@@ -228,6 +229,8 @@ class EvenRunRhythmMaker(RhythmMaker):
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
         lilypond_file.remove(lilypond_file.score_block)
         for i, score in enumerate(scores):
+            #title_markup = markuptools.Markup('TITLE MARKUP')
+            #lilypond_file.append(title_markup)
             score_block = lilypondfiletools.ScoreBlock()
             score_block.append(score)
             header_block = lilypondfiletools.HeaderBlock()
@@ -236,7 +239,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             score_block.append(header_block)
             lilypond_file.append(score_block)
         lilypond_file.default_paper_size = ('letter', 'portrait')
-        lilypond_file.global_staff_size = 11
+        lilypond_file.global_staff_size = 10
         lilypond_file.use_relative_includes = True
         lilypond_file.file_initial_user_includes.append(
             os.path.join('..', '..', '..', 'stylesheets', 'gallery-layout.ly'))
