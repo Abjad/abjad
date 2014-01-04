@@ -32,42 +32,42 @@ class StringOrchestraScoreTemplate(AbjadObject):
         >>> print format(score)        
         \context Score = "String Orchestra Score" <<
             \context StaffGroup = "Violin Staff Group" <<
-                \context Staff = "Violin 1 Voice" {
+                \context Staff = "Violin 1 Staff" {
                     \clef "treble"
                     \set Staff.instrumentName = \markup { Violin 1 }
                     \set Staff.shortInstrumentName = \markup { Vln. 1 }
                     \context Voice = "Violin 1 Voice" {
                     }
                 }
-                \context Staff = "Violin 2 Voice" {
+                \context Staff = "Violin 2 Staff" {
                     \clef "treble"
                     \set Staff.instrumentName = \markup { Violin 2 }
                     \set Staff.shortInstrumentName = \markup { Vln. 2 }
                     \context Voice = "Violin 2 Voice" {
                     }
                 }
-                \context Staff = "Violin 3 Voice" {
+                \context Staff = "Violin 3 Staff" {
                     \clef "treble"
                     \set Staff.instrumentName = \markup { Violin 3 }
                     \set Staff.shortInstrumentName = \markup { Vln. 3 }
                     \context Voice = "Violin 3 Voice" {
                     }
                 }
-                \context Staff = "Violin 4 Voice" {
+                \context Staff = "Violin 4 Staff" {
                     \clef "treble"
                     \set Staff.instrumentName = \markup { Violin 4 }
                     \set Staff.shortInstrumentName = \markup { Vln. 4 }
                     \context Voice = "Violin 4 Voice" {
                     }
                 }
-                \context Staff = "Violin 5 Voice" {
+                \context Staff = "Violin 5 Staff" {
                     \clef "treble"
                     \set Staff.instrumentName = \markup { Violin 5 }
                     \set Staff.shortInstrumentName = \markup { Vln. 5 }
                     \context Voice = "Violin 5 Voice" {
                     }
                 }
-                \context Staff = "Violin 6 Voice" {
+                \context Staff = "Violin 6 Staff" {
                     \clef "treble"
                     \set Staff.instrumentName = \markup { Violin 6 }
                     \set Staff.shortInstrumentName = \markup { Vln. 6 }
@@ -76,28 +76,28 @@ class StringOrchestraScoreTemplate(AbjadObject):
                 }
             >>
             \context StaffGroup = "Viola Staff Group" <<
-                \context Staff = "Viola 1 Voice" {
+                \context Staff = "Viola 1 Staff" {
                     \clef "alto"
                     \set Staff.instrumentName = \markup { Viola 1 }
                     \set Staff.shortInstrumentName = \markup { Vla. 1 }
                     \context Voice = "Viola 1 Voice" {
                     }
                 }
-                \context Staff = "Viola 2 Voice" {
+                \context Staff = "Viola 2 Staff" {
                     \clef "alto"
                     \set Staff.instrumentName = \markup { Viola 2 }
                     \set Staff.shortInstrumentName = \markup { Vla. 2 }
                     \context Voice = "Viola 2 Voice" {
                     }
                 }
-                \context Staff = "Viola 3 Voice" {
+                \context Staff = "Viola 3 Staff" {
                     \clef "alto"
                     \set Staff.instrumentName = \markup { Viola 3 }
                     \set Staff.shortInstrumentName = \markup { Vla. 3 }
                     \context Voice = "Viola 3 Voice" {
                     }
                 }
-                \context Staff = "Viola 4 Voice" {
+                \context Staff = "Viola 4 Staff" {
                     \clef "alto"
                     \set Staff.instrumentName = \markup { Viola 4 }
                     \set Staff.shortInstrumentName = \markup { Vla. 4 }
@@ -106,21 +106,21 @@ class StringOrchestraScoreTemplate(AbjadObject):
                 }
             >>
             \context StaffGroup = "Cello Staff Group" <<
-                \context Staff = "Cello 1 Voice" {
+                \context Staff = "Cello 1 Staff" {
                     \clef "bass"
                     \set Staff.instrumentName = \markup { Cello 1 }
                     \set Staff.shortInstrumentName = \markup { Vc. 1 }
                     \context Voice = "Cello 1 Voice" {
                     }
                 }
-                \context Staff = "Cello 2 Voice" {
+                \context Staff = "Cello 2 Staff" {
                     \clef "bass"
                     \set Staff.instrumentName = \markup { Cello 2 }
                     \set Staff.shortInstrumentName = \markup { Vc. 2 }
                     \context Voice = "Cello 2 Voice" {
                     }
                 }
-                \context Staff = "Cello 3 Voice" {
+                \context Staff = "Cello 3 Staff" {
                     \clef "bass"
                     \set Staff.instrumentName = \markup { Cello 3 }
                     \set Staff.shortInstrumentName = \markup { Vc. 3 }
@@ -129,14 +129,14 @@ class StringOrchestraScoreTemplate(AbjadObject):
                 }
             >>
             \context StaffGroup = "Contrabass Staff Group" <<
-                \context Staff = "Contrabass 1 Voice" {
+                \context Staff = "Contrabass 1 Staff" {
                     \clef "bass_8"
                     \set Staff.instrumentName = \markup { Contrabass 1 }
                     \set Staff.shortInstrumentName = \markup { Cb. 1 }
                     \context Voice = "Contrabass 1 Voice" {
                     }
                 }
-                \context Staff = "Contrabass 2 Voice" {
+                \context Staff = "Contrabass 2 Staff" {
                     \clef "bass_8"
                     \set Staff.instrumentName = \markup { Contrabass 2 }
                     \set Staff.shortInstrumentName = \markup { Cb. 2 }
@@ -188,7 +188,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                     name='Violin {} Voice'.format(i),
                     )
                 violin_staff = scoretools.Staff(
-                    [violin_voice], name='Violin {} Voice'.format(i))
+                    [violin_voice], name='Violin {} Staff'.format(i))
                 clef = indicatortools.Clef('treble')
                 attach(clef, violin_staff)
                 violin = instrumenttools.Violin(
@@ -208,7 +208,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                     name='Viola {} Voice'.format(i),
                     )
                 viola_staff = scoretools.Staff(
-                    [viola_voice], name='Viola {} Voice'.format(i))
+                    [viola_voice], name='Viola {} Staff'.format(i))
                 clef = indicatortools.Clef('alto')
                 attach(clef, viola_staff)
                 viola = instrumenttools.Viola(
@@ -228,7 +228,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                     name='Cello {} Voice'.format(i),
                     )
                 cello_staff = scoretools.Staff(
-                    [cello_voice], name='Cello {} Voice'.format(i))
+                    [cello_voice], name='Cello {} Staff'.format(i))
                 clef = indicatortools.Clef('bass')
                 attach(clef, cello_staff)
                 cello = instrumenttools.Cello(
@@ -248,7 +248,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                     name='Contrabass {} Voice'.format(i),
                     )
                 contrabass_staff = scoretools.Staff(
-                    [contrabass_voice], name='Contrabass {} Voice'.format(i))
+                    [contrabass_voice], name='Contrabass {} Staff'.format(i))
                 clef = indicatortools.Clef('bass_8')
                 attach(clef, contrabass_staff)
                 contrabass = instrumenttools.Contrabass(
