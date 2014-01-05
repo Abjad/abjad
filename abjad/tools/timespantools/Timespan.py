@@ -3,6 +3,7 @@ import copy
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
+from abjad.tools.topleveltools import new
 from abjad.tools.mathtools.BoundedObject import BoundedObject
 
 
@@ -419,7 +420,10 @@ class Timespan(BoundedObject):
             return result
         new_start_offset = min(self.start_offset, expr.start_offset)
         new_stop_offset = max(self.stop_offset, expr.stop_offset)
-        timespan = type(self)(new_start_offset, new_stop_offset)
+        timespan = new(self,
+            start_offset=new_start_offset,
+            stop_offset=new_stop_offset,
+            )
         return timespantools.TimespanInventory([timespan])
 
     def __sub__(self, expr):
@@ -1554,11 +1558,20 @@ class Timespan(BoundedObject):
         '''
         offset = durationtools.Offset(offset)
         if self.start_offset < offset < self.stop_offset:
-            left = type(self)(self.start_offset, offset)
-            right = type(self)(offset, self.stop_offset)
+            left = new(self,
+                start_offset=self.start_offset,
+                stop_offset=offset,
+                )
+            #left = type(self)(self.start_offset, offset)
+            right = new(self,
+                start_offset=offset,
+                stop_offset=self.stop_offset,
+                )
+            #right = type(self)(offset, self.stop_offset)
             return left, right
         else:
-            return type(self)(self.start_offset, self.stop_offset)
+            return new(self)
+            #return type(self)(self.start_offset, self.stop_offset)
 
     def starts_after_offset(self, offset):
         r'''Is true when timespan overlaps start of `timespan`. Otherwise false:
