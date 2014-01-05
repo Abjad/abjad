@@ -267,13 +267,6 @@ class LilyPondFile(AbjadObject):
         '''
         return self._file_initial_system_comments
 
-    @file_initial_system_comments.setter
-    def file_initial_system_comments(self, arg):
-        if isinstance(arg, list):
-            self._file_initial_system_comments = arg
-        else:
-            raise TypeError
-
     @property
     def file_initial_system_includes(self):
         r'''Gets file-initial system include commands of LilyPond file.
@@ -290,13 +283,6 @@ class LilyPondFile(AbjadObject):
         Returns list.
         '''
         return self._file_initial_system_includes
-
-    @file_initial_system_includes.setter
-    def file_initial_system_includes(self, arg):
-        if isinstance(arg, list):
-            self._file_initial_system_includes = arg
-        else:
-            raise TypeError
 
     @property
     def file_initial_user_comments(self):
@@ -315,13 +301,6 @@ class LilyPondFile(AbjadObject):
         '''
         return self._file_initial_user_comments
 
-    @file_initial_user_comments.setter
-    def file_initial_user_comments(self, arg):
-        if isinstance(arg, list):
-            self._file_initial_user_comments = arg
-        else:
-            raise TypeError
-
     @property
     def file_initial_user_includes(self):
         r'''Gets file-initial user include commands of LilyPond file.
@@ -338,13 +317,6 @@ class LilyPondFile(AbjadObject):
         Returns list.
         '''
         return self._file_initial_user_includes
-
-    @file_initial_user_includes.setter
-    def file_initial_user_includes(self, arg):
-        if isinstance(arg, list):
-            self._file_initial_user_includes = arg
-        else:
-            raise TypeError
 
     @property
     def global_staff_size(self):

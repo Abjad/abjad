@@ -12,8 +12,8 @@ def test_lilypondfiletools_LilyPondFile_01():
     lilypond_file.items.append(score)
     lilypond_file.default_paper_size = '11x17', 'landscape'
     lilypond_file.global_staff_size = 14
-    lilypond_file.file_initial_system_comments = []
-    lilypond_file.file_initial_system_includes = []
+    lilypond_file.file_initial_system_comments[:] = []
+    lilypond_file.file_initial_system_includes[:] = []
 
     assert systemtools.TestManager.compare(
         lilypond_file,
