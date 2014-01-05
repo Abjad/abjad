@@ -65,5 +65,5 @@ def make_basic_lilypond_file(music=None):
     lilypond_file.paper_block = paper_block
     lilypond_file.score_block = score_block
     if music is not None:
-        score_block.append(music)
+        score_block.items.append(music)
     return lilypond_file

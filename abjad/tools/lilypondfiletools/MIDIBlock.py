@@ -13,13 +13,13 @@ class MIDIBlock(AttributedBlock):
 
     ::
 
-        >>> lilypond_file.score_block.append(lilypondfiletools.MIDIBlock())
+        >>> lilypond_file.score_block.items.append(lilypondfiletools.MIDIBlock())
 
     ::
 
         >>> layout_block = lilypondfiletools.LayoutBlock()
         >>> layout_block.is_formatted_when_empty = True
-        >>> lilypond_file.score_block.append(layout_block)
+        >>> lilypond_file.score_block.items.append(layout_block)
 
     ..  doctest::
 

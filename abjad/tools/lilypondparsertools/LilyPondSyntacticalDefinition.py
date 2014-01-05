@@ -2934,7 +2934,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_score_block__SCORE__Chr123__score_body__Chr125(self, p):
         "score_block : SCORE '{' score_body '}'"
         score_block = lilypondfiletools.ScoreBlock()
-        score_block.extend(p[3])
+        score_block.items.extend(p[3])
         p[0] = score_block
 
 

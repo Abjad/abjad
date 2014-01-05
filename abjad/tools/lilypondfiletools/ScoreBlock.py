@@ -17,7 +17,7 @@ class ScoreBlock(NonattributedBlock):
 
     ::
 
-        >>> score_block.append(Staff([]))
+        >>> score_block.items.append(Staff([]))
         >>> print format(score_block)
         \score {
             \new Staff {
@@ -50,19 +50,19 @@ class ScoreBlock(NonattributedBlock):
         from abjad.tools import markuptools
         from abjad.tools import scoretools
         result = []
-        if not len(self):
+        if not len(self.items):
             if self._is_formatted_when_empty:
                 result.append(r'%s {}' % self._escaped_name)
         else:
             result.append(r'%s {' % self._escaped_name)
-            if len(self) == 1 and \
-                isinstance(self[0], (scoretools.Leaf, markuptools.Markup)):
+            if len(self.items) == 1 and \
+                isinstance(self.items[0], (scoretools.Leaf, markuptools.Markup)):
                 result.append('\t{')
                 result.extend(
-                    ['\t\t' + piece for piece in self[0]._format_pieces])
+                    ['\t\t' + piece for piece in self.items[0]._format_pieces])
                 result.append('\t}')
             else:
-                for x in self:
+                for x in self.items:
                     if isinstance(x, str):
                         result.append('\t%s' % x)
                     elif hasattr(x, '_get_format_pieces'):

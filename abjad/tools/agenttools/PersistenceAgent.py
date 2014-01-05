@@ -110,7 +110,7 @@ class PersistenceAgent(abctools.AbjadObject):
         assert '__illustrate__' in dir(self._client)
         illustration = self._client.__illustrate__()
         assert hasattr(illustration, 'score_block')
-        illustration.score_block.append(lilypondfiletools.MIDIBlock())
+        illustration.score_block.items.append(lilypondfiletools.MIDIBlock())
         if midi_file_path is not None:
             midi_file_path = os.path.expanduser(midi_file_path)
             without_extension = os.path.splitext(midi_file_path)[0]

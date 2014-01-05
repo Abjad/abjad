@@ -158,7 +158,7 @@ class LilyPondParser(abctools.Parser):
                 if isinstance(x, scoretools.Container):
                     self._apply_spanners(x)
                 elif isinstance(x, lilypondfiletools.ScoreBlock):
-                    for y in x:
+                    for y in x.items:
                         self._apply_spanners(y)
         return result
 

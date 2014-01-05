@@ -3,15 +3,15 @@ import abc
 from abjad.tools.abctools import AbjadObject
 
 
-class NonattributedBlock(list, AbjadObject):
+#class NonattributedBlock(list, AbjadObject):
+class NonattributedBlock(AbjadObject):
     r'''Abjad model of LilyPond input file block with no attributes.
     '''
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
     def __init__(self):
-        pass
+        self._items = []
 
     ### SPECIAL METHODS ###
 
@@ -29,22 +29,22 @@ class NonattributedBlock(list, AbjadObject):
 
         Returns string.
         '''
-        if not len(self):
+        if not len(self.items):
             return '{}()'.format(type(self).__name__)
         else:
-            return '{}({})'.format(type(self).__name__, len(self))
+            return '{}({})'.format(type(self).__name__, len(self.items))
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _format_pieces(self):
         result = []
-        if not len(self):
+        if not len(self.items):
             if self._is_formatted_when_empty:
                 result.append(r'%s {}' % self._escaped_name)
         else:
             result.append(r'%s {' % self._escaped_name)
-            for x in self:
+            for x in self.items:
                 if hasattr(x, '_format_pieces'):
                     result.extend(['\t' + piece for piece in x._format_pieces])
                 elif isinstance(x, str):
@@ -73,3 +73,11 @@ class NonattributedBlock(list, AbjadObject):
             self._is_formatted_when_empty = arg
         else:
             raise TypeError
+
+    @property
+    def items(self):
+        r'''Gets items in nonattributed block.
+
+        Returns list.
+        '''
+        return self._items

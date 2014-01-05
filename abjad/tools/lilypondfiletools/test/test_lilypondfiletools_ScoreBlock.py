@@ -13,9 +13,9 @@ def test_lilypondfiletools_ScoreBlock_01():
     layout_block.is_formatted_when_empty = True
     midi_block = lilypondfiletools.MIDIBlock()
 
-    score_block.append(score)
-    score_block.append(layout_block)
-    score_block.append(midi_block)
+    score_block.items.append(score)
+    score_block.items.append(layout_block)
+    score_block.items.append(midi_block)
 
     assert systemtools.TestManager.compare(
         score_block,
