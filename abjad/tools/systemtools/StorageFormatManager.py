@@ -203,6 +203,36 @@ class StorageFormatManager(object):
         return tuple(result)
 
     @staticmethod
+    def get_hash_values(object_):
+        r'''Gets hash values for `object_`.
+
+        The hash values are a tuple of the type of `object_`, the values of its
+        positional arguments, and the values of its keyword arguments, both
+        sorted by argument name.
+
+        Return tuple.
+        '''
+        def make_hashable(value):
+            if isinstance(value, dict):
+                value = tuple(value.items())
+            elif isinstance(value, list):
+                value = tuple(value)
+            elif isinstance(value, (set, frozenset)):
+                value = tuple(value)
+            return value
+        values = []
+        values.append(type(object_))
+        positional_argument_dictionary = \
+            StorageFormatManager.get_positional_argument_dictionary(object_)
+        keyword_argument_dictionary = \
+            StorageFormatManager.get_keyword_argument_dictionary(object_)
+        for key, value in sorted(positional_argument_dictionary.items()):
+            values.append(make_hashable(value))
+        for key, value in sorted(keyword_argument_dictionary.items()):
+            values.append(make_hashable(value))
+        return tuple(values)
+
+    @staticmethod
     def get_indentation_strings(is_indented):
         r'''Gets indentation strings.
         '''
