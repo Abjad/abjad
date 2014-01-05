@@ -2275,3 +2275,74 @@ class MutationAgent(abctools.AbjadObject):
         donors._give_music_to_empty_container(container)
         donors._give_dominant_spanners([container])
         donors._give_position_in_parent_to_container(container)
+
+    def transpose(self, expr):
+        r'''Transposes notes and chords in mutation client by `expr`.
+
+        ::
+
+            >>> staff = Staff()
+            >>> staff.append(Measure((4, 4), "c'4 d'4 e'4 r4"))
+            >>> staff.append(Measure((3, 4), "d'4 e'4 <f' a' c''>4"))
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+                >>> print format(staff)
+                \new Staff {
+                    {
+                        \time 4/4
+                        c'4
+                        d'4
+                        e'4
+                        r4
+                    }
+                    {
+                        \time 3/4
+                        d'4
+                        e'4
+                        <f' a' c''>4
+                    }
+                }
+
+        ::
+
+            >>> mutate(staff).transpose("+m3")
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print format(staff)
+            \new Staff {
+                {
+                    \time 4/4
+                    ef'4
+                    f'4
+                    g'4
+                    r4
+                }
+                {
+                    \time 3/4
+                    f'4
+                    g'4
+                    <af' c'' ef''>4
+                }
+            }
+
+        Returns none.
+        '''
+        from abjad.tools import pitchtools
+        from abjad.tools import scoretools
+        named_interval = pitchtools.NamedInterval(expr)
+        for x in iterate(self._client).by_class(
+            (scoretools.Note, scoretools.Chord)):
+            if isinstance(x, scoretools.Note):
+                old_written_pitch = x.note_head.written_pitch
+                new_written_pitch = old_written_pitch.transpose(named_interval)
+                x.note_head.written_pitch = new_written_pitch
+            else:
+                for note_head in x.note_heads:
+                    old_written_pitch = note_head.written_pitch
+                    new_written_pitch = old_written_pitch.transpose(
+                        named_interval)
+                    note_head.written_pitch = new_written_pitch
