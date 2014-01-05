@@ -3,14 +3,14 @@ import abc
 from abjad.tools.abctools import AbjadObject
 
 
-class AttributedBlock(list, AbjadObject):
+class AttributedBlock(AbjadObject):
     '''Abjad model of LilyPond input file block with attributes.
     '''
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
     def __init__(self):
+        self._items = []
         self._is_formatted_when_empty = False
 
     ### SPECIAL METHODS ###
@@ -72,7 +72,7 @@ class AttributedBlock(list, AbjadObject):
         from abjad.tools import markuptools
         from abjad.tools import schemetools
         result = []
-        for value in self:
+        for value in self.items:
             acceptable_types = (
                 schemetools.Scheme, 
                 indicatortools.LilyPondCommand,
@@ -139,3 +139,11 @@ class AttributedBlock(list, AbjadObject):
             self._is_formatted_when_empty = arg
         else:
             raise TypeError
+
+    @property
+    def items(self):
+        r'''Gets items in attributed block.
+
+        Returns list.
+        '''
+        return self._items

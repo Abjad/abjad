@@ -41,7 +41,7 @@ def test_lilypondfiletools_PaperBlock_02():
 def test_lilypondfiletools_PaperBlock_03():
 
     paper_block = lilypondfiletools.PaperBlock()
-    paper_block.append(schemetools.Scheme([
+    paper_block.items.append(schemetools.Scheme([
         'define', 'fonts', [
             'make-pango-font-tree',
             schemetools.Scheme('Baskerville', force_quotes=True),

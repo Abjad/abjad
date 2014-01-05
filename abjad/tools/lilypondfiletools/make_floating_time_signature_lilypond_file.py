@@ -25,13 +25,13 @@ def make_floating_time_signature_lilypond_file(music=None):
     lilypond_file.global_staff_size = 12
 
     lilypond_file.paper_block.left_margin = 20
-    lilypond_file.paper_block.system_system_spacing = \
-        layouttools.make_spacing_vector(0, 0, 12, 0)
+    vector = layouttools.make_spacing_vector(0, 0, 12, 0)
+    lilypond_file.paper_block.system_system_spacing = vector
 
     lilypond_file.layout_block.indent = 0
     lilypond_file.layout_block.ragged_right = True
-    lilypond_file.layout_block.append(
-        indicatortools.LilyPondCommand('accidentalStyle forget'))
+    command = indicatortools.LilyPondCommand('accidentalStyle forget')
+    lilypond_file.layout_block.items.append(command)
 
     time_signature_context_block = \
         lilypondfiletools.make_time_signature_context_block(
@@ -51,14 +51,14 @@ def make_floating_time_signature_lilypond_file(music=None):
     override(context_block).spacing_spanner.uniform_stretching = True
     override(context_block).tuplet_bracket.bracket_visibility = True
     override(context_block).tuplet_bracket.padding = 2
-    override(context_block).tuplet_bracket.springs_and_rods = \
-        schemetools.Scheme('ly:spanner::set-spacing-rods')
+    scheme = schemetools.Scheme('ly:spanner::set-spacing-rods')
+    override(context_block).tuplet_bracket.springs_and_rods = scheme
     override(context_block).tuplet_bracket.minimum_length = 3
-    override(context_block).tuplet_number.text = \
-        schemetools.Scheme('tuplet-number::calc-fraction-text')
+    scheme = schemetools.Scheme('tuplet-number::calc-fraction-text')
+    override(context_block).tuplet_number.text = scheme
     contextualize(context_block).autoBeaming = False
-    contextualize(context_block).proportionalNotationDuration = \
-        schemetools.SchemeMoment((1, 32))
+    moment = schemetools.SchemeMoment((1, 32))
+    contextualize(context_block).proportionalNotationDuration = moment
     contextualize(context_block).tupletFullLength = True
 
     # provided as a stub position for user customization

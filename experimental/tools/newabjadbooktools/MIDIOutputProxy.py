@@ -28,14 +28,15 @@ class MIDIOutputProxy(AssetOutputProxy):
             self._payload = payload
         else:
             payload = copy.deepcopy(payload)
-            lilypond_file = systemtools.IOManager.insert_expr_into_lilypond_file(payload)
+            manager = systemtools.IOManager
+            lilypond_file = manager.insert_expr_into_lilypond_file(payload)
             lilypond_file.file_initial_system_comments[:] = []
-            lilypond_version_token = lilypondfiletools.LilyPondVersionToken(
+            token = lilypondfiletools.LilyPondVersionToken(
                 abjad_configuration.get_lilypond_minimum_version_string(),
                 )
-            lilypond_file.file_initial_system_includes[0] = \
-                lilypond_version_token
-            lilypond_file.score_block.append(lilypondfiletools.MIDIBlock())
+            lilypond_file.file_initial_system_includes[0] = token
+            midi_block = lilypondfiletools.MIDIBlock()
+            lilypond_file.score_block.items.append(midi_block)
             lilypond_format = format(lilypond_file)
             self._payload = lilypond_format
              

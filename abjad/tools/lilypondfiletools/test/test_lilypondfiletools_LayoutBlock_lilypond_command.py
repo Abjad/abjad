@@ -7,7 +7,8 @@ def test_lilypondfiletools_LayoutBlock_lilypond_command_01():
     staff = Staff("fs'2 fs'2 gs'2 gs'2")
     score = Score([staff])
     lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
-    lilypond_file.layout_block.append(indicatortools.LilyPondCommand('accidentalStyle forget'))
+    command = indicatortools.LilyPondCommand('accidentalStyle forget')
+    lilypond_file.layout_block.items.append(command)
 
     assert systemtools.TestManager.compare(
         lilypond_file.layout_block,
