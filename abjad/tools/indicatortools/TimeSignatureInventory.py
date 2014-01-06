@@ -40,6 +40,25 @@ class TimeSignatureInventory(TypedList):
 
     __slots__ = ()
 
+    ### SPECIAL METHODS ###
+
+    def __illustrate__(self, format_specification=''):
+        r'''Formats time signature inventory.
+
+        ::
+
+            >>> show(inventory) # doctest: +SKIP
+
+        Returns LilyPond file.
+        '''
+        from abjad.tools import lilypondfiletools
+        from abjad.tools import scoretools
+        measures = scoretools.make_spacer_skip_measures(self)
+        staff = scoretools.RhythmicStaff(measures)
+        score = scoretools.Score([staff])
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+        return lilypond_file
+
     ### PRIVATE PROPERTIES ###
 
     @property
