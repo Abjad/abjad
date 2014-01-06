@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.lilypondfiletools.NonattributedBlock \
-	import NonattributedBlock
+from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
 
 
-class BookBlock(NonattributedBlock):
+class BookBlock(AttributedBlock):
     r'''Abjad model of LilyPond input file book block:
 
     ::
@@ -20,9 +19,8 @@ class BookBlock(NonattributedBlock):
         >>> print format(book_block)
         \book {}
 
-    Returns book block.
     '''
 
     def __init__(self):
-        NonattributedBlock.__init__(self)
+        AttributedBlock.__init__(self)
         self._escaped_name = r'\book'
