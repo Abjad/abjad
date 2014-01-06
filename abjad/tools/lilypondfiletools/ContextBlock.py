@@ -6,48 +6,41 @@ from abjad.tools.topleveltools import contextualize
 
 
 class ContextBlock(Block):
-    r'''A LilyPond input file context block.
+    r'''A LilyPond file context block.
 
-    ::
+    ..  container:: example
 
-        >>> context_block = lilypondfiletools.ContextBlock()
+        ::
 
-    ::
+            >>> block = lilypondfiletools.ContextBlock()
+            >>> block.source_context_name = 'Score'
+            >>> override(block).bar_number.transparent = True
+            >>> scheme = schemetools.Scheme('end-of-line-invisible')
+            >>> override(block).time_signature.break_visibility = scheme
+            >>> moment = schemetools.SchemeMoment((1, 45))
+            >>> contextualize(block).proportionalNotationDuration = moment
 
-        >>> context_block
-        ContextBlock()
+        ::
 
-    ::
-
-        >>> context_block.context_name = 'Score'
-        >>> override(context_block).bar_number.transparent = True
-        >>> scheme = schemetools.Scheme('end-of-line-invisible')
-        >>> override(context_block).time_signature.break_visibility = scheme
-        >>> moment = schemetools.SchemeMoment((1, 45))
-        >>> contextualize(context_block).proportionalNotationDuration = moment
-
-    ..  doctest::
-
-        >>> print format(context_block)
-        \context {
-            \Score
-            \override BarNumber #'transparent = ##t
-            \override TimeSignature #'break-visibility = #end-of-line-invisible
-            proportionalNotationDuration = #(ly:make-moment 1 45)
-        }
+            >>> print format(block)
+            \context {
+                \Score
+                \override BarNumber #'transparent = ##t
+                \override TimeSignature #'break-visibility = #end-of-line-invisible
+                proportionalNotationDuration = #(ly:make-moment 1 45)
+            }
 
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, context_name=None):
+    def __init__(self, source_context_name=None):
         Block.__init__(self, name='context')
         self._accepts = []
         self._engraver_consists = []
         self._engraver_removals = []
-        #self._escaped_name = r'\context'
         self.alias = None
-        self.context_name = context_name
+        self.source_context_name = source_context_name
         self.name = None
         self.type = None
 
@@ -57,28 +50,38 @@ class ContextBlock(Block):
     def _format_pieces(self):
         from abjad.tools import systemtools
         result = []
-        result.append('%s {' % self._escaped_name)
+        string = '{} {{'.format(self._escaped_name)
+        result.append(string)
         manager = systemtools.LilyPondFormatManager
         # CAUTION: source context name must come before type to allow 
         # context redefinition.
-        # TODO: rename self.context_name to self.source_context_name
-        if self.context_name is not None:
-            result.append('\t' + r'\%s' % self.context_name)
+        # TODO: rename self.source_context_name to self.source_source_context_name
+        if self.source_context_name is not None:
+            string = '\t' + r'\{}'.format(self.source_context_name)
+            result.append(string)
         if self.name is not None:
-            result.append('\t' + r'\name %s' % self.name)
+            string = '\t' + r'\name {}'.format(self.name)
+            result.append(string)
         if self.type is not None:
-            result.append('\t' + r'\type %s' % self.type)
+            string = '\t' + r'\type {}'.format(self.type)
+            result.append(string)
         if self.alias is not None:
-            result.append('\t' + r'\alias %s' % self.alias)
-        for string in self.engraver_removals:
-            result.append('\t' + r'\remove %s' % string)
-        # CAUTION: LilyPond consist statements are order-significant!
-        for string in self.engraver_consists:
-            result.append('\t' + r'\consists %s' % string)
-        for string in self.accepts:
-            result.append('\t' + r'\accepts %s' % string)
-        for string in override(self)._list_format_contributions('override'):
-            result.append('\t' + string)
+            string = '\t' + r'\alias {}'.format(self.alias)
+            result.append(string)
+        for statement in self.engraver_removals:
+            string = '\t' + r'\remove {}'.format(statement)
+            result.append(string)
+        # CAUTION: LilyPond consist-statements are order-significant!
+        for statement in self.engraver_consists:
+            string = '\t' + r'\consists {}'.format(statement)
+            result.append(string)
+        for statement in self.accepts:
+            string = '\t' + r'\accepts {}'.format(statement)
+            result.append(string)
+        overrides = override(self)._list_format_contributions('override')
+        for statement in overrides:
+            string = '\t' + statement
+            result.append(string)
         setting_contributions = []
         for key, value in contextualize(self)._get_attribute_tuples():
             setting_contribution = \
@@ -86,7 +89,8 @@ class ContextBlock(Block):
                     key, value)
             setting_contributions.append(setting_contribution)
         for setting_contribution in sorted(setting_contributions):
-            result.append('\t' + setting_contribution)
+            string = '\t' + setting_contribution
+            result.append(string)
         result.append('}')
         return result
 
@@ -94,9 +98,14 @@ class ContextBlock(Block):
 
     @property
     def accepts(self):
-        r'''Context accepts commands.
+        r'''Gets LilyPond ``\accepts`` commands in context block.
 
-        Returns sets.
+        ..  container:: example
+
+            >>> block.accepts
+            []
+
+        Returns list.
         '''
         return self._accepts
 
@@ -104,7 +113,12 @@ class ContextBlock(Block):
     def engraver_consists(self):
         r'''Engraver consists commands.
 
-        Returns set.
+        ..  container:: example
+
+            >>> block.engraver_consists
+            []
+
+        Returns list.
         '''
         return self._engraver_consists
 
@@ -112,7 +126,12 @@ class ContextBlock(Block):
     def engraver_removals(self):
         r'''Engraver removal commands.
 
-        Returns set.
+        ..  container:: example
+
+            >>> block.engraver_removals
+            []
+
+        Returns list.
         '''
         return self._engraver_removals
 
@@ -121,6 +140,11 @@ class ContextBlock(Block):
     @property
     def alias(self):
         r'''Gets and sets alias of context block.
+
+        ..  container:: example
+
+            >>> block.alias is None
+            True
 
         Returns string or none.
         '''
@@ -132,21 +156,13 @@ class ContextBlock(Block):
         self._alias = alias
 
     @property
-    def context_name(self):
-        r'''Gets and sets context name of context block.
-
-        Returns string or none.
-        '''
-        return self._context_name
-
-    @context_name.setter
-    def context_name(self, context_name):
-        assert isinstance(context_name, (str, type(None)))
-        self._context_name = context_name
-
-    @property
     def name(self):
         r'''Gets and sets name of context block.
+
+        ..  container:: example
+
+            >>> block.name is None
+            True
 
         Returns string or none.
         '''
@@ -158,8 +174,31 @@ class ContextBlock(Block):
         self._name = name
 
     @property
+    def source_context_name(self):
+        r'''Gets and sets context name of context block.
+
+        ..  container:: example
+
+            >>> block.source_context_name
+            'Score'
+
+        Returns string or none.
+        '''
+        return self._source_context_name
+
+    @source_context_name.setter
+    def source_context_name(self, source_context_name):
+        assert isinstance(source_context_name, (str, type(None)))
+        self._source_context_name = source_context_name
+
+    @property
     def type(self):
         r'''Gets and sets LilyPond type of context block.
+
+        ..  container:: example
+
+            >>> block.type is None
+            True
 
         Returns string or none.
         '''

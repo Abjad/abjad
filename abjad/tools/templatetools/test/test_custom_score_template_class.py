@@ -27,15 +27,6 @@ def test_custom_score_template_class_01():
     named_context_score_template = NamedContextScoreTemplate()
     score = named_context_score_template()
 
-    r'''
-    \context Score = "Green Score" <<
-        \context Staff = "Red Staff" {
-            \context Voice = "Blue Voice" {
-            }
-        }
-    >>
-    '''
-
     assert systemtools.TestManager.compare(
         score,
         r'''
@@ -75,15 +66,6 @@ def test_custom_score_template_class_02():
     custom_context_score_template = CustomContextScoreTemplate()
     score = custom_context_score_template()
 
-    r'''
-    \new Score <<
-        \new CustomStaff {
-            \new CustomVoice {
-            }
-        }
-    >>
-    '''
-
     assert systemtools.TestManager.compare(
         score,
         r'''
@@ -104,7 +86,7 @@ def test_custom_score_template_class_02():
 
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.context_name = 'Voice'
+    context_block.source_context_name = 'Voice'
     context_block.type = 'Engraver_group'
     context_block.name = 'CustomVoice'
     context_block.alias = 'Voice'
@@ -113,7 +95,7 @@ def test_custom_score_template_class_02():
 
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.context_name = 'Staff'
+    context_block.source_context_name = 'Staff'
     context_block.type = 'Engraver_group'
     context_block.name = 'CustomStaff'
     context_block.alias = 'Staff'
@@ -122,7 +104,7 @@ def test_custom_score_template_class_02():
 
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.context_name = 'Score'
+    context_block.source_context_name = 'Score'
     context_block.accepts.append('CustomStaff')
 
     assert systemtools.TestManager.compare(
