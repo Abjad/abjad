@@ -348,9 +348,9 @@ class LilyPondFile(AbjadObject):
 
                 >>> for item in lilypond_file.items:
                 ...     item
-                HeaderBlock(2)
-                LayoutBlock(2)
-                PaperBlock()
+                Block(name='header')
+                LayoutBlock()
+                Block(name='paper')
                 ScoreBlock()
 
         Returns list.

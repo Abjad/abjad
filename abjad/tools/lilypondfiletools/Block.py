@@ -27,19 +27,6 @@ class Block(AbjadObject):
             return self._lilypond_format
         return str(self)
 
-    def __repr__(self):
-        r'''Gets interpreter representation of block.
-
-        Returns string.
-        '''
-        if not len(self._user_attributes):
-            return '{}()'.format(type(self).__name__)
-        else:
-            return '{}({})'.format(
-                type(self).__name__, 
-                len(self._user_attributes),
-                )
-
     ### PRIVATE PROPERTIES ###
 
     @property

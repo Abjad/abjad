@@ -34,7 +34,7 @@ class MIDIOutputProxy(AssetOutputProxy):
                 abjad_configuration.get_lilypond_minimum_version_string(),
                 )
             lilypond_file.file_initial_system_includes[0] = token
-            midi_block = lilypondfiletools.MIDIBlock()
+            midi_block = lilypondfiletools.Block(name='midi')
             lilypond_file.score_block.items.append(midi_block)
             lilypond_format = format(lilypond_file)
             self._payload = lilypond_format

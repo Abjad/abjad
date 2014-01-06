@@ -1899,7 +1899,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_lilypond_header_body__Empty(self, p):
         'lilypond_header_body : '
         self.client._push_variable_scope()
-        p[0] = lilypondfiletools.HeaderBlock()
+        p[0] = lilypondfiletools.Block(name='header')
 
 
     def p_lilypond_header_body__lilypond_header_body__assignment(self, p):
@@ -2625,13 +2625,13 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_output_def_head__MIDI(self, p):
         'output_def_head : MIDI'
-        p[0] = lilypondfiletools.MIDIBlock()
+        p[0] = lilypondfiletools.Block(name='midi')
         self.client._push_variable_scope()
 
 
     def p_output_def_head__PAPER(self, p):
         'output_def_head : PAPER'
-        p[0] = lilypondfiletools.PaperBlock()
+        p[0] = lilypondfiletools.Block(name='paper')
         self.client._push_variable_scope()
 
 

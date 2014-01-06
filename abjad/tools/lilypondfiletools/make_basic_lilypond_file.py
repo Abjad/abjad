@@ -50,9 +50,9 @@ def make_basic_lilypond_file(music=None):
     if isinstance(music, lilypondfiletools.LilyPondFile):
         return music
     lilypond_file = lilypondfiletools.LilyPondFile()
-    header_block = lilypondfiletools.HeaderBlock()
+    header_block = lilypondfiletools.Block(name='header')
     layout_block = lilypondfiletools.LayoutBlock()
-    paper_block = lilypondfiletools.PaperBlock()
+    paper_block = lilypondfiletools.Block(name='paper')
     score_block = lilypondfiletools.ScoreBlock()
     lilypond_file.items.extend([
         header_block,
