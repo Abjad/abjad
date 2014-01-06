@@ -8,16 +8,15 @@ from experimental.tools.newabjadbooktools.AssetOutputProxy \
 
 
 class MIDIOutputProxy(AssetOutputProxy):
-    r'''Output proxy for LilyPond MIDI files"
+    r'''Output proxy for LilyPond MIDI files.
 
     ::
 
         >>> payload = Staff("c'4 d'4 e'4 f'4")
         >>> output_proxy = newabjadbooktools.MIDIOutputProxy(payload)
         >>> print output_proxy
-        MIDIOutputProxy('\\version "2.19.0"\n\\language "english"\n\n\\score {\n\t\\new Staff {\n\t\tc\'4\n\t\td\'4\n\t\te\'4\n\t\tf\'4\n\t}\n\t\\midi {}\n}')
+        MIDIOutputProxy('\\version "2.19.0"\n\\language "english"\n\n\\header {}\n\n\\layout {}\n\n\\paper {}\n\n\\score {\n\t\\new Staff {\n\t\tc\'4\n\t\td\'4\n\t\te\'4\n\t\tf\'4\n\t}\n\t\\midi {}\n}')
 
-    Returns output_proxy.
     '''
 
     ### INITIALIZER ###

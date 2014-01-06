@@ -18,7 +18,6 @@ class MIDIBlock(AttributedBlock):
     ::
 
         >>> layout_block = lilypondfiletools.LayoutBlock()
-        >>> layout_block.is_formatted_when_empty = True
         >>> lilypond_file.score_block.items.append(layout_block)
 
     ..  doctest::
@@ -50,4 +49,3 @@ class MIDIBlock(AttributedBlock):
     def __init__(self):
         AttributedBlock.__init__(self)
         self._escaped_name = r'\midi'
-        self.is_formatted_when_empty = True

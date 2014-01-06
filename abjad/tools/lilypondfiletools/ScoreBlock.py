@@ -24,16 +24,6 @@ class ScoreBlock(NonattributedBlock):
             }
         }
 
-    ScoreBlocks does not format when empty, as this generates a
-    parser error in LilyPond:
-
-    ::
-
-        >>> score_block = lilypondfiletools.ScoreBlock()
-        >>> format(score_block) == ''
-        True
-
-    Returns score block.
     '''
 
     ### INITIALIZER ###
@@ -41,7 +31,6 @@ class ScoreBlock(NonattributedBlock):
     def __init__(self):
         NonattributedBlock.__init__(self)
         self._escaped_name = r'\score'
-        self._is_formatted_when_empty = False
 
     ### PRIVATE PROPERTIES ###
 
@@ -51,8 +40,7 @@ class ScoreBlock(NonattributedBlock):
         from abjad.tools import scoretools
         result = []
         if not len(self.items):
-            if self._is_formatted_when_empty:
-                result.append(r'%s {}' % self._escaped_name)
+            result.append(r'%s {}' % self._escaped_name)
         else:
             result.append(r'%s {' % self._escaped_name)
             if len(self.items) == 1 and \

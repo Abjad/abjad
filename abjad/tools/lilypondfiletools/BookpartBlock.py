@@ -26,4 +26,3 @@ class BookpartBlock(NonattributedBlock):
     def __init__(self):
         NonattributedBlock.__init__(self)
         self._escaped_name = r'\bookpart'
-        self._is_formatted_when_empty = True

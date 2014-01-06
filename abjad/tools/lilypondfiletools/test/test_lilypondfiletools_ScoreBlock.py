@@ -3,14 +3,13 @@ from abjad import *
 
 
 def test_lilypondfiletools_ScoreBlock_01():
-    r'''Midi block is formatted when empty by default.
+    r'''MIDI block is formatted when empty by default.
     Layout block must be explicitly set to format when empty.
     '''
 
     score = Score([Staff("c'8 d'8 e'8 f'8")])
     score_block = lilypondfiletools.ScoreBlock()
     layout_block = lilypondfiletools.LayoutBlock()
-    layout_block.is_formatted_when_empty = True
     midi_block = lilypondfiletools.MIDIBlock()
 
     score_block.items.append(score)
@@ -34,11 +33,3 @@ def test_lilypondfiletools_ScoreBlock_01():
         }
         '''
         )
-
-
-def test_lilypondfiletools_ScoreBlock_02():
-    r'''ScoreBlock does not format when empty by default.
-    '''
-
-    score_block = lilypondfiletools.ScoreBlock()
-    assert format(score_block) == ''

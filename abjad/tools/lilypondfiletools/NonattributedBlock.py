@@ -3,7 +3,6 @@ import abc
 from abjad.tools.abctools import AbjadObject
 
 
-#class NonattributedBlock(list, AbjadObject):
 class NonattributedBlock(AbjadObject):
     r'''Abjad model of LilyPond input file block with no attributes.
     '''
@@ -40,8 +39,7 @@ class NonattributedBlock(AbjadObject):
     def _format_pieces(self):
         result = []
         if not len(self.items):
-            if self._is_formatted_when_empty:
-                result.append(r'%s {}' % self._escaped_name)
+            result.append(r'%s {}' % self._escaped_name)
         else:
             result.append(r'%s {' % self._escaped_name)
             for x in self.items:
@@ -57,22 +55,6 @@ class NonattributedBlock(AbjadObject):
         return '\n'.join(self._format_pieces)
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def is_formatted_when_empty(self):
-        r'''Is true when nonattributed block is formatted when empty. Otherwise
-        false.
-
-        Returns boolean.
-        '''
-        return self._is_formatted_when_empty
-
-    @is_formatted_when_empty.setter
-    def is_formatted_when_empty(self, arg):
-        if isinstance(arg, bool):
-            self._is_formatted_when_empty = arg
-        else:
-            raise TypeError
 
     @property
     def items(self):

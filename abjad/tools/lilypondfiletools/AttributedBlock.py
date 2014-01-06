@@ -11,7 +11,6 @@ class AttributedBlock(AbjadObject):
 
     def __init__(self):
         self._items = []
-        self._is_formatted_when_empty = False
 
     ### SPECIAL METHODS ###
 
@@ -45,11 +44,8 @@ class AttributedBlock(AbjadObject):
         if not self._formatted_user_attributes and \
             not getattr(self, 'contexts', None) \
             and not getattr(self, 'context_blocks', None):
-            if self.is_formatted_when_empty:
-                result.append('%s {}' % self._escaped_name)
-                return result
-            else:
-                return result
+            result.append('%s {}' % self._escaped_name)
+            return result
         result.append('%s {' % self._escaped_name)
         if getattr(self, 'contexts', None):
             specs = self._formatted_context_specifications
@@ -123,22 +119,6 @@ class AttributedBlock(AbjadObject):
         return user_attributes
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def is_formatted_when_empty(self):
-        r'''Is true when attributed block is formatted when empty. Otherwise
-        false.
-
-        Returns boolean.
-        '''
-        return self._is_formatted_when_empty
-
-    @is_formatted_when_empty.setter
-    def is_formatted_when_empty(self, arg):
-        if isinstance(arg, bool):
-            self._is_formatted_when_empty = arg
-        else:
-            raise TypeError
 
     @property
     def items(self):
