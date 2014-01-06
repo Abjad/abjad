@@ -63,8 +63,8 @@ class Block(AbjadObject):
 
     @property
     def _formatted_user_attributes(self):
-        from abjad.tools import lilypondfiletools
         from abjad.tools import indicatortools
+        from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
         from abjad.tools import schemetools
         result = []
