@@ -3,6 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
+from abjad.tools.agenttools.InspectionAgent import inspect
 from abjad.tools.topleveltools import mutate
 Selection = selectiontools.Selection
 
@@ -139,6 +140,7 @@ def _rewrite_meter(
         metertools.Meter):
         meter = \
             metertools.Meter(meter)
+
     #assert sum([x._preprolated_duration for x in components]) == \
     #    meter.preprolated_duration
     if boundary_depth is not None:
@@ -150,6 +152,12 @@ def _rewrite_meter(
     if initial_offset is None:
         initial_offset = durationtools.Offset(0)
     initial_offset = durationtools.Offset(initial_offset)
+
+
+    first_start_offset = inspect(components[0]).get_timespan().start_offset
+    last_start_offset = inspect(components[-1]).get_timespan().start_offset
+    difference = last_start_offset - first_start_offset + initial_offset
+    assert difference < meter.implied_time_signature.duration
 
     # Build offset inventory, adjusted for initial offset and prolation.
     first_offset = components[0]._get_timespan().start_offset
