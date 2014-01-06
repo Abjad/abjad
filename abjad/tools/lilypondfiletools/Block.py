@@ -9,13 +9,17 @@ class Block(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self):
+    def __init__(self, name=None):
+        assert isinstance(name, str), repr(name)
+        self._name = name
+        escaped_name = r'\{}'.format(name)
+        self._escaped_name = escaped_name
         self._items = []
 
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats attributed block.
+        r'''Formats block.
 
         Returns string.
         '''
@@ -24,7 +28,7 @@ class Block(AbjadObject):
         return str(self)
 
     def __repr__(self):
-        r'''Gets interpreter representation of attributed block.
+        r'''Gets interpreter representation of block.
 
         Returns string.
         '''
@@ -122,8 +126,16 @@ class Block(AbjadObject):
 
     @property
     def items(self):
-        r'''Gets items in attributed block.
+        r'''Gets items in block.
 
         Returns list.
         '''
         return self._items
+
+    @property
+    def name(self):
+        r'''Gets name of block.
+
+        Returns string.
+        '''
+        return self._name

@@ -31,5 +31,5 @@ class HeaderBlock(Block):
     '''
 
     def __init__(self):
-        Block.__init__(self)
-        self._escaped_name = r'\header'
+        Block.__init__(self, name='header')
+        #self._escaped_name = r'\header'

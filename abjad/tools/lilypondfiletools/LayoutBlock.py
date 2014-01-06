@@ -34,8 +34,8 @@ class LayoutBlock(Block):
     ### INITIALIZER ###
 
     def __init__(self):
-        Block.__init__(self)
-        self._escaped_name = r'\layout'
+        Block.__init__(self, name='layout')
+        #self._escaped_name = r'\layout'
         self._context_blocks = []
         self._contexts = []
 

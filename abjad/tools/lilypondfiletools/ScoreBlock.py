@@ -28,8 +28,8 @@ class ScoreBlock(Block):
     ### INITIALIZER ###
 
     def __init__(self):
-        Block.__init__(self)
-        self._escaped_name = r'\score'
+        Block.__init__(self, name='score')
+        #self._escaped_name = r'\score'
 
     ### PRIVATE PROPERTIES ###
 

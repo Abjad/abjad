@@ -22,5 +22,5 @@ class BookBlock(Block):
     '''
 
     def __init__(self):
-        Block.__init__(self)
-        self._escaped_name = r'\book'
+        Block.__init__(self, name='book')
+        #self._escaped_name = r'\book'

@@ -41,11 +41,11 @@ class ContextBlock(Block):
     ### INITIALIZER ###
 
     def __init__(self, context_name=None):
-        Block.__init__(self)
+        Block.__init__(self, name='context')
         self._accepts = []
         self._engraver_consists = []
         self._engraver_removals = []
-        self._escaped_name = r'\context'
+        #self._escaped_name = r'\context'
         self.alias = None
         self.context_name = context_name
         self.name = None

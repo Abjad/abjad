@@ -32,5 +32,5 @@ class PaperBlock(Block):
     ### INITIALIZER ###
 
     def __init__(self):
-        Block.__init__(self)
-        self._escaped_name = r'\paper'
+        Block.__init__(self, name='paper')
+        #self._escaped_name = r'\paper'

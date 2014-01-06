@@ -47,5 +47,5 @@ class MIDIBlock(Block):
     '''
 
     def __init__(self):
-        Block.__init__(self)
-        self._escaped_name = r'\midi'
+        Block.__init__(self, name='midi')
+        #self._escaped_name = r'\midi'
