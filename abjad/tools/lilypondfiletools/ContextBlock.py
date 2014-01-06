@@ -13,21 +13,35 @@ class ContextBlock(Block):
         ::
 
             >>> block = lilypondfiletools.ContextBlock()
-            >>> block.source_context_name = 'Score'
-            >>> override(block).bar_number.transparent = True
-            >>> scheme = schemetools.Scheme('end-of-line-invisible')
-            >>> override(block).time_signature.break_visibility = scheme
-            >>> moment = schemetools.SchemeMoment((1, 45))
-            >>> contextualize(block).proportionalNotationDuration = moment
+            >>> block.source_context_name = 'Staff'
+            >>> block.name = 'FluteStaff'
+            >>> block.type = 'Engraver_group'
+            >>> block.alias = 'Staff'
+            >>> block.engraver_removals.append('Forbid_line_break_engraver')
+            >>> block.engraver_consists.append('Horizontal_bracket_engraver')
+            >>> block.accepts.append('FluteUpperVoice')
+            >>> block.accepts.append('FluteLowerVoice')
+            >>> override(block).beam.positions = (-4, -4)
+            >>> override(block).stem.stem_end_position = -6
+            >>> contextualize(block).auto_beaming = False
+            >>> contextualize(block).tuplet_full_length = True
 
         ::
 
             >>> print format(block)
             \context {
-                \Score
-                \override BarNumber #'transparent = ##t
-                \override TimeSignature #'break-visibility = #end-of-line-invisible
-                proportionalNotationDuration = #(ly:make-moment 1 45)
+                \Staff
+                \name FluteStaff
+                \type Engraver_group
+                \alias Staff
+                \remove Forbid_line_break_engraver
+                \consists Horizontal_bracket_engraver
+                \accepts FluteUpperVoice
+                \accepts FluteLowerVoice
+                \override Beam #'positions = #'(-4 . -4)
+                \override Stem #'stem-end-position = #-6
+                autoBeaming = ##f
+                tupletFullLength = ##t
             }
 
     '''
@@ -55,7 +69,6 @@ class ContextBlock(Block):
         manager = systemtools.LilyPondFormatManager
         # CAUTION: source context name must come before type to allow 
         # context redefinition.
-        # TODO: rename self.source_context_name to self.source_source_context_name
         if self.source_context_name is not None:
             string = '\t' + r'\{}'.format(self.source_context_name)
             result.append(string)
@@ -71,7 +84,7 @@ class ContextBlock(Block):
         for statement in self.engraver_removals:
             string = '\t' + r'\remove {}'.format(statement)
             result.append(string)
-        # CAUTION: LilyPond consist-statements are order-significant!
+        # CAUTION: LilyPond \consists statements are order-significant!
         for statement in self.engraver_consists:
             string = '\t' + r'\consists {}'.format(statement)
             result.append(string)
@@ -98,12 +111,12 @@ class ContextBlock(Block):
 
     @property
     def accepts(self):
-        r'''Gets LilyPond ``\accepts`` commands in context block.
+        r'''Gets arguments of LilyPond ``\accepts`` commands.
 
         ..  container:: example
 
             >>> block.accepts
-            []
+            ['FluteUpperVoice', 'FluteLowerVoice']
 
         Returns list.
         '''
@@ -111,12 +124,12 @@ class ContextBlock(Block):
 
     @property
     def engraver_consists(self):
-        r'''Engraver consists commands.
+        r'''Gets arguments of LilyPond ``\consists`` commands.
 
         ..  container:: example
 
             >>> block.engraver_consists
-            []
+            ['Horizontal_bracket_engraver']
 
         Returns list.
         '''
@@ -124,12 +137,12 @@ class ContextBlock(Block):
 
     @property
     def engraver_removals(self):
-        r'''Engraver removal commands.
+        r'''Gets arguments of LilyPond ``\remove`` commands.
 
         ..  container:: example
 
             >>> block.engraver_removals
-            []
+            ['Forbid_line_break_engraver']
 
         Returns list.
         '''
@@ -139,12 +152,12 @@ class ContextBlock(Block):
 
     @property
     def alias(self):
-        r'''Gets and sets alias of context block.
+        r'''Gets and sets argument of LilyPond ``\alias`` command.
 
         ..  container:: example
 
-            >>> block.alias is None
-            True
+            >>> block.alias
+            'Staff'
 
         Returns string or none.
         '''
@@ -154,15 +167,28 @@ class ContextBlock(Block):
     def alias(self, alias):
         assert isinstance(alias, (str, type(None)))
         self._alias = alias
+    
+    @property
+    def items(self):
+        r'''Gets items in context block.
+
+        ::
+
+            >>> block.items
+            []
+
+        Returns list.
+        '''
+        return self._items
 
     @property
     def name(self):
-        r'''Gets and sets name of context block.
+        r'''Gets and sets argument of LilyPond ``\name`` command.
 
         ..  container:: example
 
-            >>> block.name is None
-            True
+            >>> block.name
+            'FluteStaff'
 
         Returns string or none.
         '''
@@ -175,12 +201,12 @@ class ContextBlock(Block):
 
     @property
     def source_context_name(self):
-        r'''Gets and sets context name of context block.
+        r'''Gets and sets source context name.
 
         ..  container:: example
 
             >>> block.source_context_name
-            'Score'
+            'Staff'
 
         Returns string or none.
         '''
@@ -193,12 +219,12 @@ class ContextBlock(Block):
 
     @property
     def type(self):
-        r'''Gets and sets LilyPond type of context block.
+        r'''Gets and sets argument of LilyPond ``\type`` command.
 
         ..  container:: example
 
-            >>> block.type is None
-            True
+            >>> block.type
+            'Engraver_group'
 
         Returns string or none.
         '''
