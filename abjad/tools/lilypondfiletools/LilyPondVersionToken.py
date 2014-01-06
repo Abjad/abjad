@@ -10,7 +10,7 @@ class LilyPondVersionToken(AbjadObject):
         ::
 
             >>> lilypondfiletools.LilyPondVersionToken() # doctest: +SKIP
-            LilyPondVersionToken('2.18.0')
+            LilyPondVersionToken('2.19.0')
 
     '''
 
@@ -38,7 +38,7 @@ class LilyPondVersionToken(AbjadObject):
 
             >>> token = lilypondfiletools.LilyPondVersionToken()
             >>> print format(token) # doctest: +SKIP
-            \version "2.18.0"
+            \version "2.19.0"
 
         Return string.
         '''
@@ -53,7 +53,7 @@ class LilyPondVersionToken(AbjadObject):
 
             >>> token = lilypondfiletools.LilyPondVersionToken()
             >>> token # doctest: +SKIP
-            LilyPondVersionToken('2.18.0')
+            LilyPondVersionToken('2.19.0')
 
         Returns string.
         '''
@@ -81,7 +81,7 @@ class LilyPondVersionToken(AbjadObject):
                 ...     version_string=None,
                 ...     )
                 >>> token.version_string # doctest: +SKIP
-                '2.18.0'
+                '2.19.0'
 
         ..  container:: example
 
