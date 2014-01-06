@@ -351,7 +351,7 @@ class LilyPondFile(AbjadObject):
                 HeaderBlock(2)
                 LayoutBlock(2)
                 PaperBlock()
-                ScoreBlock(1)
+                ScoreBlock()
 
         Returns list.
         '''
