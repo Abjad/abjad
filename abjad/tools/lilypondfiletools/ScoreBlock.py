@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
+from abjad.tools.lilypondfiletools.Block import Block
 
 
-class ScoreBlock(AttributedBlock):
+class ScoreBlock(Block):
     r'''Abjad model of LilyPond input file score block:
 
     ::
@@ -28,7 +28,7 @@ class ScoreBlock(AttributedBlock):
     ### INITIALIZER ###
 
     def __init__(self):
-        AttributedBlock.__init__(self)
+        Block.__init__(self)
         self._escaped_name = r'\score'
 
     ### PRIVATE PROPERTIES ###

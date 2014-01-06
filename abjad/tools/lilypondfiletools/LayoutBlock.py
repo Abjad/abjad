@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.topleveltools import override
-from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
+from abjad.tools.lilypondfiletools.Block import Block
 
 
-class LayoutBlock(AttributedBlock):
+class LayoutBlock(Block):
     r'''Abjad model of LilyPond input file layout block:
 
     ::
@@ -34,7 +34,7 @@ class LayoutBlock(AttributedBlock):
     ### INITIALIZER ###
 
     def __init__(self):
-        AttributedBlock.__init__(self)
+        Block.__init__(self)
         self._escaped_name = r'\layout'
         self._context_blocks = []
         self._contexts = []

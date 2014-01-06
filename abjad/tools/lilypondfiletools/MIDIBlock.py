@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
+from abjad.tools.lilypondfiletools.Block import Block
 
 
-class MIDIBlock(AttributedBlock):
+class MIDIBlock(Block):
     r'''Abjad model of LilyPond input file MIDI block:
 
     ::
@@ -47,5 +47,5 @@ class MIDIBlock(AttributedBlock):
     '''
 
     def __init__(self):
-        AttributedBlock.__init__(self)
+        Block.__init__(self)
         self._escaped_name = r'\midi'

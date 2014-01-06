@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 import types
-from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
+from abjad.tools.lilypondfiletools.Block import Block
 
 
-class PaperBlock(AttributedBlock):
+class PaperBlock(Block):
     r'''A LilyPond input file paper block:
 
     ::
@@ -33,7 +33,7 @@ class PaperBlock(AttributedBlock):
     ### INITIALIZER ###
 
     def __init__(self):
-        AttributedBlock.__init__(self)
+        Block.__init__(self)
         self._escaped_name = r'\paper'
         self.minimal_page_breaking = None
 
@@ -44,7 +44,7 @@ class PaperBlock(AttributedBlock):
         result = []
         if self.minimal_page_breaking:
             result.append('#(define page-breaking ly:minimal-breaking)')
-        result.extend(AttributedBlock._formatted_user_attributes.fget(self))
+        result.extend(Block._formatted_user_attributes.fget(self))
         return result
 
     ### PUBLIC PROPERTIES ###

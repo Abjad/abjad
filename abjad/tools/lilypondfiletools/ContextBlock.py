@@ -2,10 +2,10 @@
 from abjad.tools import lilypondnametools
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import contextualize
-from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
+from abjad.tools.lilypondfiletools.Block import Block
 
 
-class ContextBlock(AttributedBlock):
+class ContextBlock(Block):
     r'''A LilyPond input file context block.
 
     ::
@@ -41,7 +41,7 @@ class ContextBlock(AttributedBlock):
     ### INITIALIZER ###
 
     def __init__(self, context_name=None):
-        AttributedBlock.__init__(self)
+        Block.__init__(self)
         self._accepts = []
         self._engraver_consists = []
         self._engraver_removals = []
