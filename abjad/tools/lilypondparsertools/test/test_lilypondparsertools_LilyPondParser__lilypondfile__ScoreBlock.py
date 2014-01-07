@@ -6,7 +6,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_lilypondparsertools_LilyPondParser__lilypondfile__ScoreBlock_01():
 
-    target = lilypondfiletools.ScoreBlock()
+    target = lilypondfiletools.Block(name='score')
     target.items.append(Score())
     parser = LilyPondParser()
     result = parser(format(target))

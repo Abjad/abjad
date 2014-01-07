@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_lilypondfiletools_LilyPondVersionToken_format_01():
+def test_lilypondfiletools_LilyPondVersionToken___format___01():
 
     lilypond_version_token = lilypondfiletools.LilyPondVersionToken()
     assert isinstance(format(lilypond_version_token), str)

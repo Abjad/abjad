@@ -238,7 +238,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         for i, score in enumerate(scores):
             #title_markup = markuptools.Markup('TITLE MARKUP')
             #lilypond_file.items.append(title_markup)
-            score_block = lilypondfiletools.ScoreBlock()
+            score_block = lilypondfiletools.Block(name='score')
             score_block.items.append(score)
             header_block = lilypondfiletools.Block(name='header')
             string = r'\italic {{ No. {} }}'.format(i + 1)

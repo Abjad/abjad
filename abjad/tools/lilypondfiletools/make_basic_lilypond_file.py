@@ -33,14 +33,16 @@ def make_basic_lilypond_file(music=None):
             top-margin = #15
         }
 
-        \new Score <<
-            \new Staff {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-        >>
+        \score {
+            \new Score <<
+                \new Staff {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+            >>
+        }
 
     Equips LilyPond file with header, layout and paper blocks.
 
@@ -53,7 +55,7 @@ def make_basic_lilypond_file(music=None):
     header_block = lilypondfiletools.Block(name='header')
     layout_block = lilypondfiletools.LayoutBlock()
     paper_block = lilypondfiletools.Block(name='paper')
-    score_block = lilypondfiletools.ScoreBlock()
+    score_block = lilypondfiletools.Block(name='score')
     lilypond_file.items.extend([
         header_block,
         layout_block,

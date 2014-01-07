@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_scoretools_Staff_consists_commands_01():
+def test_scoretools_Staff_engraver_consists_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     staff.consists_commands.append('Horizontal_bracket_engraver')

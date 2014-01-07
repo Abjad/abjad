@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_lilypondfiletools_DateTimeToken_format_01():
+def test_lilypondfiletools_DateTimeToken___format___01():
 
     date_time_token = lilypondfiletools.DateTimeToken()
     assert isinstance(date_time_token._lilypond_format, str)

@@ -252,7 +252,7 @@ class IOManager(object):
             lilypond_file._is_temporary = True
         else:
             lilypond_file = lilypondfiletools.make_basic_lilypond_file()
-            score_block = lilypondfiletools.ScoreBlock()
+            score_block = lilypondfiletools.Block(name='score')
             score_block.items.append(expr)
             # NOTE: don't quite understand the logic here.
             # why append a score_block and then set the score_block attribute

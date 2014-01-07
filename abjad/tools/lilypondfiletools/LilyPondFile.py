@@ -353,7 +353,7 @@ class LilyPondFile(AbjadObject):
                 Block(name='header')
                 LayoutBlock()
                 Block(name='paper')
-                ScoreBlock()
+                Block(name='score')
 
         Returns list.
         '''
