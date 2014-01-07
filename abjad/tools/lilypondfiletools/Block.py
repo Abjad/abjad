@@ -48,15 +48,43 @@ class Block(AbjadObject):
 
     @property
     def _format_pieces(self):
+        from abjad.tools import markuptools
+        from abjad.tools import scoretools
         result = []
         if not self._get_formatted_user_attributes() and \
-            not getattr(self, 'contexts', None) \
-            and not getattr(self, 'context_blocks', None):
+            not getattr(self, 'contexts', None) and \
+            not getattr(self, 'context_blocks', None) and \
+            not len(self.items):
             string = '{} {{}}'.format(self._escaped_name)
             result.append(string)
             return result
         string = '{} {{'.format(self._escaped_name)
         result.append(string)
+
+        prototype = (scoretools.Leaf, markuptools.Markup)
+        if len(self.items) == 1 and isinstance(self.items[0], prototype):
+            result.append('\t{')
+            pieces = self.items[0]._format_pieces
+            pieces = ['\t\t' + item for item in pieces]
+            result.extend(pieces)
+            result.append('\t}')
+            return result
+
+        for item in self.items:
+            if isinstance(item, str):
+                string = '\t{}'.format(item)
+                result.append(string)
+            elif hasattr(item, '_get_format_pieces'):
+                pieces = item._get_format_pieces()
+                pieces = ['\t' + item for item in pieces]
+                result.extend(pieces)
+            elif hasattr(item, '_format_pieces'):
+                pieces = item._format_pieces
+                pieces = ['\t' + item for item in pieces]
+                result.extend(pieces)
+            else:
+                pass
+
         if getattr(self, 'contexts', None):
             specs = self._formatted_context_specifications
             result.extend(['\t' + x for x in specs])

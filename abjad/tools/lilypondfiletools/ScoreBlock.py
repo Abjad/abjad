@@ -29,36 +29,34 @@ class ScoreBlock(Block):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _format_pieces(self):
-        from abjad.tools import markuptools
-        from abjad.tools import scoretools
-        result = []
-        if not len(self.items):
-            string = r'{} {{}}'.format(self._escaped_name)
-            result.append(string)
-        else:
-            string = r'{} {{'.format(self._escaped_name)
-            result.append(string)
-            prototype = (scoretools.Leaf, markuptools.Markup)
-            if len(self.items) == 1 and isinstance(self.items[0], prototype):
-                result.append('\t{')
-                pieces = self.items[0]._format_pieces
-                pieces = ['\t\t' + item for item in pieces]
-                result.extend(pieces)
-                result.append('\t}')
-            else:
-                for item in self.items:
-                    if isinstance(item, str):
-                        string = '\t{}'.format(item)
-                        result.append(string)
-                    elif hasattr(item, '_get_format_pieces'):
-                        pieces = item._get_format_pieces()
-                        pieces = ['\t' + item for item in pieces]
-                        result.extend(pieces)
-                    else:
-                        pieces = item._format_pieces
-                        pieces = ['\t' + item for item in pieces]
-                        result.extend(pieces)
-            result.append('}')
-        return result
+#    @property
+#    def _format_pieces(self):
+#        result = []
+#        if not len(self.items):
+#            string = r'{} {{}}'.format(self._escaped_name)
+#            result.append(string)
+#        else:
+#            string = r'{} {{'.format(self._escaped_name)
+#            result.append(string)
+#            prototype = (scoretools.Leaf, markuptools.Markup)
+#            if len(self.items) == 1 and isinstance(self.items[0], prototype):
+#                result.append('\t{')
+#                pieces = self.items[0]._format_pieces
+#                pieces = ['\t\t' + item for item in pieces]
+#                result.extend(pieces)
+#                result.append('\t}')
+#            else:
+#                for item in self.items:
+#                    if isinstance(item, str):
+#                        string = '\t{}'.format(item)
+#                        result.append(string)
+#                    elif hasattr(item, '_get_format_pieces'):
+#                        pieces = item._get_format_pieces()
+#                        pieces = ['\t' + item for item in pieces]
+#                        result.extend(pieces)
+#                    else:
+#                        pieces = item._format_pieces
+#                        pieces = ['\t' + item for item in pieces]
+#                        result.extend(pieces)
+#            result.append('}')
+#        return result
