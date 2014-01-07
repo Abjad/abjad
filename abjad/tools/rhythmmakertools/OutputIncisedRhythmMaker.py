@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import mathtools
 from abjad.tools.rhythmmakertools.IncisedRhythmMaker import IncisedRhythmMaker
 
 
@@ -26,7 +27,10 @@ class OutputIncisedRhythmMaker(IncisedRhythmMaker):
             suffix_talea_index:suffix_talea_index+suffix_length]
         if len(duration_pairs) == 1:
             prolation_addendum = prolation_addenda[0]
-            numerator = duration_pairs[0][0]
+            if isinstance(duration_pairs[0], mathtools.NonreducedFraction):
+                numerator = duration_pairs[0].numerator
+            else:
+                numerator = duration_pairs[0][0]
             numerator += (prolation_addendum % numerator)
             numeric_map_part = self._make_numeric_map_part(
                 numerator, prefix, suffix)

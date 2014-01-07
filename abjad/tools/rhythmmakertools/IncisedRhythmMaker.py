@@ -78,19 +78,19 @@ class IncisedRhythmMaker(RhythmMaker):
         secondary_divisions_helper = \
             self._none_to_trivial_helper(secondary_divisions_helper)
         assert sequencetools.all_are_integer_equivalent_numbers(
-            prefix_talea)
+            prefix_talea), prefix_talea
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-            prefix_lengths)
+            prefix_lengths), prefix_lengths
         assert sequencetools.all_are_integer_equivalent_numbers(
-            suffix_talea)
+            suffix_talea), suffix_talea
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-            suffix_lengths)
+            suffix_lengths), suffix_lengths
         assert mathtools.is_positive_integer_equivalent_number(
-            talea_denominator)
+            talea_denominator), talea_denominator
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-            prolation_addenda)
+            prolation_addenda), prolation_addenda
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-            secondary_divisions)
+            secondary_divisions), secondary_divisions
         assert isinstance(
             prefix_talea_helper, (types.FunctionType, types.MethodType))
         assert isinstance(
