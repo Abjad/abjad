@@ -60,7 +60,6 @@ class Block(AbjadObject):
             return result
         string = '{} {{'.format(self._escaped_name)
         result.append(string)
-
         prototype = (scoretools.Leaf, markuptools.Markup)
         if len(self.items) == 1 and isinstance(self.items[0], prototype):
             result.append('\t{')
@@ -69,7 +68,6 @@ class Block(AbjadObject):
             result.extend(pieces)
             result.append('\t}')
             return result
-
         for item in self.items:
             if isinstance(item, str):
                 string = '\t{}'.format(item)
@@ -84,10 +82,6 @@ class Block(AbjadObject):
                 result.extend(pieces)
             else:
                 pass
-
-        if getattr(self, 'contexts', None):
-            specs = self._formatted_context_specifications
-            result.extend(['\t' + x for x in specs])
         formatted_attributes = self._get_formatted_user_attributes()
         formatted_attributes = ['\t' + x for x in formatted_attributes]
         result.extend(formatted_attributes)

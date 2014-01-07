@@ -29,7 +29,6 @@ class LayoutBlock(Block):
     def __init__(self):
         Block.__init__(self, name='layout')
         self._context_blocks = []
-        self._contexts = []
 
     ### PRIVATE PROPERTIES ###
 
@@ -38,16 +37,6 @@ class LayoutBlock(Block):
         result = []
         for context_block in self.context_blocks:
             result.extend(context_block._format_pieces)
-        return result
-
-    @property
-    def _formatted_context_specifications(self):
-        result = []
-        for context_specification in self.contexts:
-            result.append(r'\context {')
-            for x in context_specification:
-                result.append('\t' + str(x))
-            result.append('}')
         return result
 
     ### PUBLIC PROPERTIES ###
@@ -83,9 +72,3 @@ class LayoutBlock(Block):
         Returns list.
         '''
         return self._context_blocks
-
-    @property
-    def contexts(self):
-        r'''DEPRECATED. USE CONTEXT_BLOCKS INSTEAD.
-        '''
-        return self._contexts
