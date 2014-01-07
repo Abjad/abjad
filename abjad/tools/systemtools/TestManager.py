@@ -32,13 +32,13 @@ class TestManager(object):
                 topleveltools.override(staff
                     ).vertical_axis_group.staff_staff_spacing = spacing_vector
         # provide more space between staves with pitched notes
-        for staff in topleveltools.iterate(lilypond_file.score_block[0]
-            ).by_class(scoretools.Staff):
+        for staff in topleveltools.iterate(
+            lilypond_file.score_block[0]).by_class(scoretools.Staff):
             if not isinstance(staff, scoretools.RhythmicStaff):
-                for context_block in lilypond_file.layout_block.context_blocks:
-                    if context_block.context_name == 'StaffGroup':
-                        #staff_group_context_block = context_block
-                        break
+                for item in lilypond_file.layout_block.items:
+                    if isinstance(item, lilypondfiletools.ContextBlock):
+                        if item.context_name == 'StaffGroup':
+                            break
                 else:
                     message = 'no staff group context block found.'
                     raise Exception(message)

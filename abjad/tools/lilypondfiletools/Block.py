@@ -48,6 +48,7 @@ class Block(AbjadObject):
 
     @property
     def _format_pieces(self):
+        from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
         from abjad.tools import scoretools
         result = []
@@ -69,7 +70,9 @@ class Block(AbjadObject):
             result.append('\t}')
             return result
         for item in self.items:
-            if isinstance(item, str):
+            if isinstance(item, lilypondfiletools.ContextBlock):
+                pass
+            elif isinstance(item, str):
                 string = '\t{}'.format(item)
                 result.append(string)
             elif hasattr(item, '_get_format_pieces'):

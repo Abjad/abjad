@@ -28,47 +28,17 @@ class LayoutBlock(Block):
 
     def __init__(self):
         Block.__init__(self, name='layout')
-        self._context_blocks = []
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _formatted_context_blocks(self):
+        from abjad.tools import lilypondfiletools
         result = []
-        for context_block in self.context_blocks:
+        context_blocks = []
+        for item in self.items:
+            if isinstance(item, lilypondfiletools.ContextBlock):
+                context_blocks.append(item)
+        for context_block in context_blocks:
             result.extend(context_block._format_pieces)
         return result
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def context_blocks(self):
-        r'''Gets context blocks in ``\layout`` block.
-
-        ..  container:: example
-
-            ::
-
-                >>> block = lilypondfiletools.ContextBlock(
-                ...     source_context_name='Score',
-                ...     )
-                >>> override(block).bar_number.transparent = True
-                >>> scheme = schemetools.Scheme('end-of-line-invisible')
-                >>> override(block).time_signature.break_visibility = scheme
-                >>> layout_block = lilypondfiletools.LayoutBlock()
-                >>> layout_block.context_blocks.append(block)
-
-            ::
-
-                >>> print format(layout_block)
-                \layout {
-                    \context {
-                        \Score
-                        \override BarNumber #'transparent = ##t
-                        \override TimeSignature #'break-visibility = #end-of-line-invisible
-                    }
-                }
-
-        Returns list.
-        '''
-        return self._context_blocks

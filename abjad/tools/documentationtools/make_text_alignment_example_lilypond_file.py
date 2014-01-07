@@ -71,7 +71,7 @@ def make_text_alignment_example_lilypond_file(music=None):
     context_block = lilypondfiletools.ContextBlock(
         source_context_name='Score',
         )
-    lilypond_file.layout_block.context_blocks.append(context_block)
+    lilypond_file.layout_block.items.append(context_block)
 
     context_block.remove_commands.append('Bar_number_engraver')
     context_block.remove_commands.append('Default_bar_line_engraver')

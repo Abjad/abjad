@@ -90,7 +90,7 @@ def make_reference_manual_lilypond_file(music=None):
     moment = schemetools.SchemeMoment((1, 32))
     set_(context_block).proportionalNotationDuration = moment
     set_(context_block).tupletFullLength = True
-    lilypond_file.layout_block.context_blocks.append(context_block)
+    lilypond_file.layout_block.items.append(context_block)
 
     # etc
     lilypond_file.file_initial_system_comments[:] = []
