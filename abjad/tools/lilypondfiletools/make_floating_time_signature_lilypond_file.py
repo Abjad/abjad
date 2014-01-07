@@ -172,8 +172,7 @@ def make_floating_time_signature_lilypond_file(music=None):
     command = indicatortools.LilyPondCommand('accidentalStyle forget')
     lilypond_file.layout_block.items.append(command)
 
-    block = lilypondfiletools.make_time_signature_context_block(
-        font_size=1, padding=6)
+    block = _make_time_signature_context_block(font_size=1, padding=6)
     lilypond_file.layout_block.items.append(block)
 
     context_block = lilypondfiletools.ContextBlock(
@@ -218,3 +217,39 @@ def make_floating_time_signature_lilypond_file(music=None):
     context_block.remove_commands.append('Time_signature_engraver')
 
     return lilypond_file
+
+
+def _make_time_signature_context_block(
+    font_size=3, 
+    minimum_distance=12, 
+    padding=4,
+    ):
+    from abjad.tools import layouttools
+    from abjad.tools import lilypondfiletools
+    assert isinstance(font_size, (int, float))
+    assert isinstance(padding, (int, float))
+    context_block = lilypondfiletools.ContextBlock(
+        type_='Engraver_group', 
+        name='TimeSignatureContext',
+        )
+    context_block.consists_commands.append('Axis_group_engraver')
+    context_block.consists_commands.append('Time_signature_engraver')
+    override(context_block).time_signature.X_extent = (0, 0)
+    override(context_block).time_signature.X_offset = schemetools.Scheme(
+        'ly:self-alignment-interface::x-aligned-on-self')
+    override(context_block).time_signature.Y_extent = (0, 0)
+    override(context_block).time_signature.break_align_symbol = False
+    override(context_block).time_signature.break_visibility = \
+        schemetools.Scheme('end-of-line-invisible')
+    override(context_block).time_signature.font_size = font_size
+    override(context_block).time_signature.self_alignment_X = \
+        schemetools.Scheme('center')
+    spacing_vector = layouttools.make_spacing_vector(
+        0, 
+        minimum_distance, 
+        padding, 
+        0,
+        )
+    override(context_block).vertical_axis_group.default_staff_staff_spacing = \
+        spacing_vector
+    return context_block

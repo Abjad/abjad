@@ -2,9 +2,12 @@
 from abjad import *
 
 
-def test_lilypondfiletools_make_time_signature_context_block_01():
+def test_lilypondfiletools_make_floating_time_signature_lilypond_file_01():
 
-    context_block = lilypondfiletools.make_time_signature_context_block()
+    staff = Staff("c'8 d'8 e'8 f'8")
+    lilypond_file = \
+        lilypondfiletools.make_floating_time_signature_lilypond_file(staff)
+    context_block = lilypond_file.layout_block.items[1]
 
     assert systemtools.TestManager.compare(
         context_block,
@@ -19,9 +22,9 @@ def test_lilypondfiletools_make_time_signature_context_block_01():
             \override TimeSignature #'Y-extent = #'(0 . 0)
             \override TimeSignature #'break-align-symbol = ##f
             \override TimeSignature #'break-visibility = #end-of-line-invisible
-            \override TimeSignature #'font-size = #3
+            \override TimeSignature #'font-size = #1
             \override TimeSignature #'self-alignment-X = #center
-            \override VerticalAxisGroup #'default-staff-staff-spacing = #'((basic-distance . 0) (minimum-distance . 12) (padding . 4) (stretchability . 0))
+            \override VerticalAxisGroup #'default-staff-staff-spacing = #'((basic-distance . 0) (minimum-distance . 12) (padding . 6) (stretchability . 0))
         }
         '''
         )
