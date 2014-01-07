@@ -10,28 +10,29 @@ def make_time_signature_context_block(
     ):
     r'''Makes time signature context block.
 
-    ::
+    ..  container:: example
 
-        >>> context_block = lilypondfiletools.make_time_signature_context_block()
+        ::
 
-    ..  doctest::
+            >>> context_block = lilypondfiletools.make_time_signature_context_block()
 
-        >>> print format(context_block) # doctest: +SKIP
-        \context {
-            \type Engraver_group
-            \name TimeSignatureContext
-            \consists Axis_group_engraver
-            \consists Time_signature_engraver
-            \override TimeSignature #'X-extent = #'(0 . 0)
-            \override TimeSignature #'X-offset = #ly:self-alignment-interface::x-aligned-on-self
-            \override TimeSignature #'Y-extent = #'(0 . 0)
-            \override TimeSignature #'break-align-symbol = ##f
-            \override TimeSignature #'break-visibility = #end-of-line-invisible
-            \override TimeSignature #'font-size = #3
-            \override TimeSignature #'self-alignment-X = #center
-            \override VerticalAxisGroup #'default-staff-staff-spacing = #'(
-                (basic-distance . 0) (minimum-distance . 0) (padding . 4) (stretchability . 0))
-        }
+        ::
+
+            >>> print format(context_block)
+            \context {
+                \name TimeSignatureContext
+                \type Engraver_group
+                \consists Axis_group_engraver
+                \consists Time_signature_engraver
+                \override TimeSignature #'X-extent = #'(0 . 0)
+                \override TimeSignature #'X-offset = #ly:self-alignment-interface::x-aligned-on-self
+                \override TimeSignature #'Y-extent = #'(0 . 0)
+                \override TimeSignature #'break-align-symbol = ##f
+                \override TimeSignature #'break-visibility = #end-of-line-invisible
+                \override TimeSignature #'font-size = #3
+                \override TimeSignature #'self-alignment-X = #center
+                \override VerticalAxisGroup #'default-staff-staff-spacing = #'((basic-distance . 0) (minimum-distance . 12) (padding . 4) (stretchability . 0))
+            }
 
     Returns context block.
     '''
