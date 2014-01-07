@@ -5,6 +5,7 @@ import math
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools.datastructuretools.TypedList import TypedList
+from abjad.tools.topleveltools import new
 
 
 class TimespanInventory(TypedList):
@@ -487,6 +488,156 @@ class TimespanInventory(TypedList):
         return timespantools.Timespan(self.start_offset, self.stop_offset)
 
     ### PUBLIC METHODS ###
+
+    def clip_timespan_durations(self, minimum=None, maximum=None, anchor=Left):
+        r'''Clip durations of timespans.
+
+        ..  container:: example
+
+            **Example 1:**
+
+            ::
+
+                >>> timespan_inventory = timespantools.TimespanInventory([
+                ...     timespantools.Timespan(0, 1),
+                ...     timespantools.Timespan(0, 10),
+                ...     ])
+                >>> result = timespan_inventory.clip_timespan_durations(
+                ...     minimum=5,
+                ...     )
+                >>> print format(result)
+                timespantools.TimespanInventory(
+                    [
+                        timespantools.Timespan(
+                            start_offset=durationtools.Offset(0, 1),
+                            stop_offset=durationtools.Offset(5, 1),
+                            ),
+                        timespantools.Timespan(
+                            start_offset=durationtools.Offset(0, 1),
+                            stop_offset=durationtools.Offset(10, 1),
+                            ),
+                        ]
+                    )
+
+        ..  container:: example
+
+            **Example 2:**
+
+            ::
+
+                >>> timespan_inventory = timespantools.TimespanInventory([
+                ...     timespantools.Timespan(0, 1),
+                ...     timespantools.Timespan(0, 10),
+                ...     ])
+                >>> result = timespan_inventory.clip_timespan_durations(
+                ...     maximum=5,
+                ...     )
+                >>> print format(result)
+                timespantools.TimespanInventory(
+                    [
+                        timespantools.Timespan(
+                            start_offset=durationtools.Offset(0, 1),
+                            stop_offset=durationtools.Offset(1, 1),
+                            ),
+                        timespantools.Timespan(
+                            start_offset=durationtools.Offset(0, 1),
+                            stop_offset=durationtools.Offset(5, 1),
+                            ),
+                        ]
+                    )
+
+        ..  container:: example
+
+            **Example 3:**
+
+            ::
+
+                >>> timespan_inventory = timespantools.TimespanInventory([
+                ...     timespantools.Timespan(0, 1),
+                ...     timespantools.Timespan(0, 10),
+                ...     ])
+                >>> result = timespan_inventory.clip_timespan_durations(
+                ...     minimum=3,
+                ...     maximum=7,
+                ...     )
+                >>> print format(result)
+                timespantools.TimespanInventory(
+                    [
+                        timespantools.Timespan(
+                            start_offset=durationtools.Offset(0, 1),
+                            stop_offset=durationtools.Offset(3, 1),
+                            ),
+                        timespantools.Timespan(
+                            start_offset=durationtools.Offset(0, 1),
+                            stop_offset=durationtools.Offset(7, 1),
+                            ),
+                        ]
+                    )
+
+        ..  container:: example
+
+            **Example 4:**
+
+            ::
+
+                >>> timespan_inventory = timespantools.TimespanInventory([
+                ...     timespantools.Timespan(0, 1),
+                ...     timespantools.Timespan(0, 10),
+                ...     ])
+                >>> result = timespan_inventory.clip_timespan_durations(
+                ...     minimum=3,
+                ...     maximum=7,
+                ...     anchor=Right,
+                ...     )
+                >>> print format(result)
+                timespantools.TimespanInventory(
+                    [
+                        timespantools.Timespan(
+                            start_offset=durationtools.Offset(-2, 1),
+                            stop_offset=durationtools.Offset(1, 1),
+                            ),
+                        timespantools.Timespan(
+                            start_offset=durationtools.Offset(3, 1),
+                            stop_offset=durationtools.Offset(10, 1),
+                            ),
+                        ]
+                    )
+
+        Emit new inventory.
+        '''
+        assert anchor in (Left, Right)
+        if minimum is not None:
+            minimum = durationtools.Duration(minimum)
+        if maximum is not None:
+            maximum = durationtools.Duration(maximum)
+        if minimum is not None and maximum is not None:
+            assert minimum <= maximum
+        timespan_inventory = type(self)()
+        for timespan in self:
+            if minimum is not None and timespan.duration < minimum:
+                if anchor is Left:
+                    new_timespan = timespan.set_duration(minimum)
+                else:
+                    new_start_offset = timespan.stop_offset - minimum
+                    new_timespan = new(
+                        timespan,
+                        start_offset=new_start_offset,
+                        stop_offset=timespan.stop_offset,
+                        )
+            elif maximum is not None and maximum < timespan.duration:
+                if anchor is Left:
+                    new_timespan = timespan.set_duration(maximum)
+                else:
+                    new_start_offset = timespan.stop_offset - maximum
+                    new_timespan = new(
+                        timespan,
+                        start_offset=new_start_offset,
+                        stop_offset=timespan.stop_offset,
+                        )
+            else:
+                new_timespan = timespan
+            timespan_inventory.append(new_timespan)
+        return timespan_inventory
 
     def compute_logical_and(self):
         r'''Compute logical AND of timespans.

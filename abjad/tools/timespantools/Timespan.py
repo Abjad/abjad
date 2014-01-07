@@ -2252,7 +2252,11 @@ class Timespan(BoundedObject):
             durationtools.Duration(stop_offset_translation)
         new_start_offset = self.start_offset + start_offset_translation
         new_stop_offset = self.stop_offset + stop_offset_translation
-        result = type(self)(new_start_offset, new_stop_offset)
+        result = new(
+            self,
+            start_offset=new_start_offset,
+            stop_offset=new_stop_offset,
+            )
         return result
 
     def trisects_timespan(self, timespan):
