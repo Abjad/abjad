@@ -43,8 +43,8 @@ def make_floating_time_signature_lilypond_file(music=None):
     lilypond_file.layout_block.context_blocks.append(context_block)
     lilypond_file.score = context_block
     context_block.context_name = 'Score'
-    context_block.accepts.append('TimeSignatureContext')
-    context_block.engraver_removals.append('Bar_number_engraver')
+    context_block.accepts_commands.append('TimeSignatureContext')
+    context_block.remove_commands.append('Bar_number_engraver')
     override(context_block).beam.breakable = True
     override(context_block).spacing_spanner.strict_grace_spacing = True
     override(context_block).spacing_spanner.strict_note_spacing = True
@@ -69,11 +69,11 @@ def make_floating_time_signature_lilypond_file(music=None):
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
     context_block.context_name = 'Staff'
-    context_block.engraver_removals.append('Time_signature_engraver')
+    context_block.remove_commands.append('Time_signature_engraver')
 
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
     context_block.context_name = 'RhythmicStaff'
-    context_block.engraver_removals.append('Time_signature_engraver')
+    context_block.remove_commands.append('Time_signature_engraver')
 
     return lilypond_file

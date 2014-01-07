@@ -101,14 +101,14 @@ def test_custom_score_template_class_02():
         alias='Staff',
         )
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.accepts.append('CustomVoice')
+    context_block.accepts_commands.append('CustomVoice')
     override(context_block).staff_symbol.color = 'red'
 
     context_block = lilypondfiletools.ContextBlock(
         source_context_name='Score',
         )
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.accepts.append('CustomStaff')
+    context_block.accepts_commands.append('CustomStaff')
 
     assert systemtools.TestManager.compare(
         lilypond_file.layout_block,

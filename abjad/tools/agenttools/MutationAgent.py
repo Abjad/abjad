@@ -958,9 +958,9 @@ class MutationAgent(abctools.AbjadObject):
                 ...     'Time_signature_engraver',
                 ...     'Default_bar_line_engraver',
                 ...     ]
-                >>> score.engraver_removals.extend(engravers)
-                >>> score[0].engraver_consists.extend(engravers)
-                >>> score[1].engraver_consists.extend(engravers)
+                >>> score.remove_commands.extend(engravers)
+                >>> score[0].consists_commands.extend(engravers)
+                >>> score[1].consists_commands.extend(engravers)
 
             ..  doctest::
 

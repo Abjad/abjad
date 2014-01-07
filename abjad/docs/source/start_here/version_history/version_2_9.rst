@@ -696,8 +696,8 @@ Further new functionality:
 
 - Extended ``lilypondfiletools.ContextBlock`` with the following attributes::
 
-    ContextBlock.engraver_consists
-    ContextBlock.engraver_removals
+    ContextBlock.consists_commands
+    ContextBlock.remove_commands
     ContextBlock.context_name
     ContextBlock.name
     ContextBlock.type

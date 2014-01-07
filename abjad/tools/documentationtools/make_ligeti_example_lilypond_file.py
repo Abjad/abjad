@@ -24,9 +24,9 @@ def make_ligeti_example_lilypond_file(music=None):
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
     context_block.context_name = 'Score'
-    context_block.engraver_removals.append('Bar_number_engraver')
-    context_block.engraver_removals.append('Default_bar_line_engraver')
-    context_block.engraver_removals.append('Timing_translator')
+    context_block.remove_commands.append('Bar_number_engraver')
+    context_block.remove_commands.append('Default_bar_line_engraver')
+    context_block.remove_commands.append('Timing_translator')
     override(context_block).beam.breakable = True
     override(context_block).glissando.breakable = True
     override(context_block).note_column.ignore_collision = True
@@ -50,8 +50,8 @@ def make_ligeti_example_lilypond_file(music=None):
     context_block.context_name = 'Staff'
     # LilyPond CAUTION: Timing_translator must appear 
     #                   before Default_bar_line_engraver!
-    context_block.engraver_consists.append('Timing_translator')
-    context_block.engraver_consists.append('Default_bar_line_engraver')
+    context_block.consists_commands.append('Timing_translator')
+    context_block.consists_commands.append('Default_bar_line_engraver')
     override(context_block).time_signature.style = \
         schemetools.Scheme("'numbered")
 
@@ -60,8 +60,8 @@ def make_ligeti_example_lilypond_file(music=None):
     context_block.context_name = 'RhythmicStaff'
     # LilyPond CAUTION: Timing_translator must appear 
     #                   before Default_bar_line_engraver!
-    context_block.engraver_consists.append('Timing_translator')
-    context_block.engraver_consists.append('Default_bar_line_engraver')
+    context_block.consists_commands.append('Timing_translator')
+    context_block.consists_commands.append('Default_bar_line_engraver')
     override(context_block).time_signature.style = \
         schemetools.Scheme("'numbered")
     override(context_block).vertical_axis_group.minimum_Y_extent = (-2, 4)
@@ -69,6 +69,6 @@ def make_ligeti_example_lilypond_file(music=None):
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
     context_block.context_name = 'Voice'
-    context_block.engraver_removals.append('Forbid_line_break_engraver')
+    context_block.remove_commands.append('Forbid_line_break_engraver')
 
     return lilypond_file

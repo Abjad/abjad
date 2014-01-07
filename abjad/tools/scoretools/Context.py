@@ -32,8 +32,8 @@ class Context(Container):
 
     __slots__ = (
         '_context_name',
-        '_engraver_consists',
-        '_engraver_removals',
+        '_consists_commands',
+        '_remove_commands',
         '_is_nonsemantic',
         '_name',
         )
@@ -43,8 +43,8 @@ class Context(Container):
     def __init__(self, music=None, context_name='Context', name=None):
         Container.__init__(self, music=music)
         self.context_name = context_name
-        self._engraver_consists = []
-        self._engraver_removals = []
+        self._consists_commands = []
+        self._remove_commands = []
         self._name = None
         self.name = name
         self.is_nonsemantic = False
@@ -99,8 +99,8 @@ class Context(Container):
 
     def _copy_with_indicators_but_without_children_or_spanners(self):
         new = Container._copy_with_indicators_but_without_children_or_spanners(self)
-        new._engraver_consists = copy.copy(self.engraver_consists)
-        new._engraver_removals = copy.copy(self.engraver_removals)
+        new._consists_commands = copy.copy(self.consists_commands)
+        new._remove_commands = copy.copy(self.remove_commands)
         new.name = copy.copy(self.name)
         new.is_nonsemantic = copy.copy(self.is_nonsemantic)
         return new
@@ -113,16 +113,16 @@ class Context(Container):
         result.append(('comments', bundle.closing.comments))
         return context._format_slot_contributions_with_indent(result)
 
-    def _format_engraver_consists(self):
+    def _format_consists_commands(self):
         result = []
-        for engraver in self.engraver_consists:
+        for engraver in self.consists_commands:
             string = r'\consists {}'.format(engraver)
             result.append(string)
         return result
 
-    def _format_engraver_removals(self):
+    def _format_remove_commands(self):
         result = []
-        for engraver in self.engraver_removals:
+        for engraver in self.remove_commands:
             string = r'\remove {}'.format(engraver)
             result.append(string)
         return result
@@ -142,22 +142,22 @@ class Context(Container):
             brackets_open = ['<<']
         else:
             brackets_open = ['{']
-        engraver_removals = context._format_engraver_removals()
-        engraver_consists = context._format_engraver_consists()
+        remove_commands = context._format_remove_commands()
+        consists_commands = context._format_consists_commands()
         overrides = bundle.grob_overrides
         settings = bundle.context_settings
-        if engraver_removals or engraver_consists or overrides or settings:
+        if remove_commands or consists_commands or overrides or settings:
             contributions = [context._format_invocation() + r' \with {']
             contributions = tuple(contributions)
             identifier_pair = ('context_brackets', 'open')
             result.append((identifier_pair, contributions))
-            contributions = ['\t' + x for x in engraver_removals]
+            contributions = ['\t' + x for x in remove_commands]
             contributions = tuple(contributions)
-            identifier_pair = ('engraver removals', 'engraver_removals')
+            identifier_pair = ('engraver removals', 'remove_commands')
             result.append((identifier_pair, contributions))
-            contributions = ['\t' + x for x in engraver_consists]
+            contributions = ['\t' + x for x in consists_commands]
             contributions = tuple(contributions)
-            identifier_pair = ('engraver consists', 'engraver_consists')
+            identifier_pair = ('engraver consists', 'consists_commands')
             result.append((identifier_pair, contributions))
             contributions = ['\t' + x for x in overrides]
             contributions = tuple(contributions)
@@ -203,7 +203,7 @@ class Context(Container):
         self._context_name = arg
 
     @property
-    def engraver_consists(self):
+    def consists_commands(self):
         r'''Unordered set of LilyPond engravers to include 
         in context definition.
 
@@ -212,7 +212,7 @@ class Context(Container):
         ::
 
             >>> staff = Staff([])
-            >>> staff.engraver_consists.append('Horizontal_bracket_engraver')
+            >>> staff.consists_commands.append('Horizontal_bracket_engraver')
             >>> print format(staff)
             \new Staff \with {
                 \consists Horizontal_bracket_engraver
@@ -220,10 +220,10 @@ class Context(Container):
             }
 
         '''
-        return self._engraver_consists
+        return self._consists_commands
 
     @property
-    def engraver_removals(self):
+    def remove_commands(self):
         r'''Unordered set of LilyPond engravers to remove from context.
 
         Manage with add, update, other standard set commands:
@@ -231,7 +231,7 @@ class Context(Container):
         ::
 
             >>> staff = Staff([])
-            >>> staff.engraver_removals.append('Time_signature_engraver')
+            >>> staff.remove_commands.append('Time_signature_engraver')
             >>> print format(staff)
             \new Staff \with {
                 \remove Time_signature_engraver
@@ -239,7 +239,7 @@ class Context(Container):
             }
 
         '''
-        return self._engraver_removals
+        return self._remove_commands
 
     @property
     def is_nonsemantic(self):

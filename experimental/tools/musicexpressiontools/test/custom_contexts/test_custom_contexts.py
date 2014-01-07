@@ -55,14 +55,14 @@ def test_custom_contexts_01():
         alias='Staff',
         )
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.accepts.append('CustomVoice')
+    context_block.accepts_commands.append('CustomVoice')
     override(context_block).staff_symbol.color = 'red'
 
     context_block = lilypondfiletools.ContextBlock(
         source_context_name='Score',
         )
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.accepts.append('CustomStaff')
+    context_block.accepts_commands.append('CustomStaff')
 
     current_function_name = systemtools.TestManager.get_current_function_name()
     systemtools.TestManager.write_test_output(lilypond_file, __file__, current_function_name)

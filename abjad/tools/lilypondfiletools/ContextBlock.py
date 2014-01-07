@@ -18,10 +18,10 @@ class ContextBlock(Block):
             ...     type_='Engraver_group',
             ...     alias='Staff',
             ...     )
-            >>> block.engraver_removals.append('Forbid_line_break_engraver')
-            >>> block.engraver_consists.append('Horizontal_bracket_engraver')
-            >>> block.accepts.append('FluteUpperVoice')
-            >>> block.accepts.append('FluteLowerVoice')
+            >>> block.remove_commands.append('Forbid_line_break_engraver')
+            >>> block.consists_commands.append('Horizontal_bracket_engraver')
+            >>> block.accepts_commands.append('FluteUpperVoice')
+            >>> block.accepts_commands.append('FluteLowerVoice')
             >>> override(block).beam.positions = (-4, -4)
             >>> override(block).stem.stem_end_position = -6
             >>> set_(block).auto_beaming = False
@@ -37,8 +37,8 @@ class ContextBlock(Block):
                 \alias Staff
                 \remove Forbid_line_break_engraver
                 \consists Horizontal_bracket_engraver
-                \accepts FluteUpperVoice
-                \accepts FluteLowerVoice
+                \accepts_commands FluteUpperVoice
+                \accepts_commands FluteLowerVoice
                 \override Beam #'positions = #'(-4 . -4)
                 \override Stem #'stem-end-position = #-6
                 autoBeaming = ##f
@@ -61,9 +61,9 @@ class ContextBlock(Block):
         self._name = name
         self._type_ = type_
         self._alias = alias
-        self._accepts = []
-        self._engraver_consists = []
-        self._engraver_removals = []
+        self._accepts_commands = []
+        self._consists_commands = []
+        self._remove_commands = []
 
     ### PRIVATE PROPERTIES ###
 
@@ -88,14 +88,14 @@ class ContextBlock(Block):
         if self.alias is not None:
             string = '\t' + r'\alias {}'.format(self.alias)
             result.append(string)
-        for statement in self.engraver_removals:
+        for statement in self.remove_commands:
             string = '\t' + r'\remove {}'.format(statement)
             result.append(string)
         # CAUTION: LilyPond \consists statements are order-significant!
-        for statement in self.engraver_consists:
+        for statement in self.consists_commands:
             string = '\t' + r'\consists {}'.format(statement)
             result.append(string)
-        for statement in self.accepts:
+        for statement in self.accepts_commands:
             string = '\t' + r'\accepts {}'.format(statement)
             result.append(string)
         overrides = override(self)._list_format_contributions('override')
@@ -117,43 +117,43 @@ class ContextBlock(Block):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def accepts(self):
+    def accepts_commands(self):
         r'''Gets arguments of LilyPond ``\accepts`` commands.
 
         ..  container:: example
 
-            >>> block.accepts
+            >>> block.accepts_commands
             ['FluteUpperVoice', 'FluteLowerVoice']
 
         Returns list.
         '''
-        return self._accepts
+        return self._accepts_commands
 
     @property
-    def engraver_consists(self):
+    def consists_commands(self):
         r'''Gets arguments of LilyPond ``\consists`` commands.
 
         ..  container:: example
 
-            >>> block.engraver_consists
+            >>> block.consists_commands
             ['Horizontal_bracket_engraver']
 
         Returns list.
         '''
-        return self._engraver_consists
+        return self._consists_commands
 
     @property
-    def engraver_removals(self):
+    def remove_commands(self):
         r'''Gets arguments of LilyPond ``\remove`` commands.
 
         ..  container:: example
 
-            >>> block.engraver_removals
+            >>> block.remove_commands
             ['Forbid_line_break_engraver']
 
         Returns list.
         '''
-        return self._engraver_removals
+        return self._remove_commands
 
     ### PUBLIC PROPERTIES ###
 
