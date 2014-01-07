@@ -363,7 +363,7 @@ Use ``persist(score).as_pdf()`` to write a score to disk as a PDF and use
 The typesetter protocol
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-New ``override()`` and ``contextualize()`` functions are available when you
+New ``override()`` and ``set_()`` functions are available when you
 start Abjad.
 
 Here's an example score:
@@ -387,15 +387,15 @@ override(score).staff_symbol.color = 'blue'
 show(score)
 </abjad>
 
-Use ``contextualize()`` to create LilyPond context settings:
+Use ``set_()`` to create LilyPond context settings:
 
 <abjad>
-contextualize(score).auto_beaming = False
+set_(score).auto_beaming = False
 show(score)
 </abjad>
 
 And use Python's built-in ``del()`` function to remove the settings you make
-with ``override()`` and ``contextualize()``:
+with ``override()`` and ``set_()``:
 
 <abjad>
 del(override(score).staff_symbol)
@@ -405,7 +405,7 @@ show(score)
 Abjad 2.14 components and spanners follow the typesetter protocol described
 here.
 
-The ``override()`` and ``contextualize()`` functions replace the ``override``
+The ``override()`` and ``set_()`` functions replace the ``override``
 and ``set`` propertiess bound to classes in previous versions of Abjad.
 
 

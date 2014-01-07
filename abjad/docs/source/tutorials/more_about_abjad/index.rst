@@ -19,7 +19,7 @@ Use Python's ``dir()`` built-in to get a sense of the answer:
    'Offset', 'Rest', 'Score', 'Slur', 'Staff', 'StaffGroup', 'Tempo', 'Tie',
    'TimeSignature', 'Tuplet', 'Voice', '__builtins__', '__doc__', '__name__',
    '__package__', 'abctools', 'abjad_configuration', 'abjadbooktools',
-   'agenttools', 'attach', 'contextualize', 'datastructuretools', 'detach',
+   'agenttools', 'attach', 'set_', 'datastructuretools', 'detach',
    'developerscripttools', 'documentationtools', 'durationtools',
    'exceptiontools', 'f', 'indicatortools', 'inspect', 'instrumenttools',
    'iterate', 'labeltools', 'layouttools', 'lilypondfiletools',

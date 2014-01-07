@@ -10,7 +10,7 @@ def test_scoretools_Staff___copy___01():
 
     staff_1 = Staff("c'8 d'8 e'8 f'8")
     override(staff_1).note_head.color = 'red'
-    contextualize(staff_1).tuplet_full_length = True
+    set_(staff_1).tuplet_full_length = True
 
 
     staff_2 = copy.copy(staff_1)

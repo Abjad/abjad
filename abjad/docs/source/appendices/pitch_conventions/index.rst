@@ -47,7 +47,7 @@ Abjad numbers pitches like this:
    >>> override(score).rest.transparent = True
    >>> override(score).stem.stencil = False
    >>> override(score).text_script.staff_padding = 6
-   >>> contextualize(score).proportional_notation_duration = schemetools.SchemeMoment(1, 56)
+   >>> set_(score).proportional_notation_duration = schemetools.SchemeMoment(1, 56)
 
 
 ::
@@ -113,7 +113,7 @@ Abjad numbers diatonic pitches like this:
    >>> override(score).rest.transparent = True
    >>> override(score).stem.stencil = False
    >>> override(score).text_script.staff_padding = 6
-   >>> contextualize(score).proportional_notation_duration = schemetools.SchemeMoment(1, 52)
+   >>> set_(score).proportional_notation_duration = schemetools.SchemeMoment(1, 52)
 
 
 ::

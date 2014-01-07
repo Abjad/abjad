@@ -15,7 +15,7 @@ Cleaned up many packages in the API such that they now contain only classes and
 no functions.
 
 Added top-level ``attach()``, ``detach()``, ``override()``,
-``contextualize()``, ``graph()``, ``iterate()``, ``new()`` and ``persist()``
+``set_()``, ``graph()``, ``iterate()``, ``new()`` and ``persist()``
 functions.
 
 Replaced ``marktools`` and ``contexttools`` packages with ``indicatortools``

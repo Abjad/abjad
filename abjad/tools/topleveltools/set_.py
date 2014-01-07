@@ -1,4 +1,4 @@
-def contextualize(expr):
+def set_(expr):
     r'''Applies LilyPond context setting to `expr`.
 
     Returns LilyPond context setting manager.

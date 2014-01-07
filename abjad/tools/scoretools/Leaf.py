@@ -6,7 +6,7 @@ from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import contextualize
+from abjad.tools.topleveltools import set_
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
@@ -140,7 +140,7 @@ class Leaf(Component):
             self._lilypond_grob_name_manager = copy.copy(override(leaf))
         if getattr(leaf, '_lilypond_setting_name_manager', None) is not None:
             self._lilypond_setting_name_manager = copy.copy(
-                contextualize(leaf))
+                set_(leaf))
         new_indicators = []
         for indicator in leaf._indicators:
             new_indicator = copy.copy(indicator)

@@ -37,7 +37,7 @@ def test_scoretools_Rest___copy___03():
     rest_1 = Rest((1, 4))
     override(rest_1).staff.note_head.color = 'red'
     override(rest_1).accidental.color = 'red'
-    contextualize(rest_1).tuplet_full_length = True
+    set_(rest_1).tuplet_full_length = True
     rest_2 = copy.copy(rest_1)
 
     assert isinstance(rest_1, Rest)

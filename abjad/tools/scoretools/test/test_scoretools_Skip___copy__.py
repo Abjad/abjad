@@ -37,7 +37,7 @@ def test_scoretools_Skip___copy___03():
     skip_1 = scoretools.Skip((1, 4))
     override(skip_1).staff.note_head.color = 'red'
     override(skip_1).accidental.color = 'red'
-    contextualize(skip_1).tuplet_full_length = True
+    set_(skip_1).tuplet_full_length = True
     skip_2 = copy.copy(skip_1)
 
     assert isinstance(skip_1, scoretools.Skip)

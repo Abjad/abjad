@@ -11,7 +11,7 @@ class ComplexBeam(Beam):
         ::
 
             >>> staff = Staff("c'16 e'16 r16 f'16 g'2")
-            >>> contextualize(staff).auto_beaming = False
+            >>> set_(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::

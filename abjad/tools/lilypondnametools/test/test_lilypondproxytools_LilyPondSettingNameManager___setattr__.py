@@ -3,11 +3,11 @@ from abjad import *
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___01():
-    r'''Define LilyPond autoBeaming context contextualize.
+    r'''Define LilyPond autoBeaming context set_.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contextualize(staff).auto_beaming = True
+    set_(staff).auto_beaming = True
 
     assert systemtools.TestManager.compare(
         staff,
@@ -27,12 +27,12 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___01():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___02():
-    r'''Remove LilyPond autoBeaming context contextualize.
+    r'''Remove LilyPond autoBeaming context set_.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contextualize(staff).auto_beaming = True
-    del(contextualize(staff).auto_beaming)
+    set_(staff).auto_beaming = True
+    del(set_(staff).auto_beaming)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -50,11 +50,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___02():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___03():
-    r'''Define LilyPond currentBarNumber context contextualize.
+    r'''Define LilyPond currentBarNumber context set_.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contextualize(staff[0]).score.current_bar_number = 12
+    set_(staff[0]).score.current_bar_number = 12
 
     assert systemtools.TestManager.compare(
         staff,
@@ -73,13 +73,13 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___03():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___04():
-    r'''Define LilyPond currentBarNumber context contextualize.
+    r'''Define LilyPond currentBarNumber context set_.
     '''
 
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    contextualize(staff[0]).score.current_bar_number = 12
+    set_(staff[0]).score.current_bar_number = 12
 
     assert systemtools.TestManager.compare(
         staff,
@@ -103,11 +103,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___04():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___05():
-    r'''Define LilyPond fontSize context contextualize.
+    r'''Define LilyPond fontSize context set_.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contextualize(staff).font_size = -3
+    set_(staff).font_size = -3
 
     assert systemtools.TestManager.compare(
         staff,
@@ -127,11 +127,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___05():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___06():
-    r'''Define LilyPond instrumentName context contextualize.
+    r'''Define LilyPond instrumentName context set_.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contextualize(staff).instrument_name = 'Violini I'
+    set_(staff).instrument_name = 'Violini I'
 
     assert systemtools.TestManager.compare(
         staff,
@@ -151,11 +151,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___06():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___07():
-    r'''Define LilyPond instrumentName context contextualize.
+    r'''Define LilyPond instrumentName context set_.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contextualize(staff).instrument_name = markuptools.Markup(r'\circle { V }')
+    set_(staff).instrument_name = markuptools.Markup(r'\circle { V }')
 
     assert systemtools.TestManager.compare(
         staff,
@@ -180,12 +180,12 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___07():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___08():
-    r'''Define LilyPond proportionalNotationDuration context contextualize.
+    r'''Define LilyPond proportionalNotationDuration context set_.
     '''
 
     score = Score([Staff("c'8 d'8 e'8 f'8")])
     moment = schemetools.SchemeMoment(Fraction(1, 56))
-    contextualize(score).proportional_notation_duration = moment
+    set_(score).proportional_notation_duration = moment
 
     assert systemtools.TestManager.compare(
         score,
@@ -207,11 +207,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___08():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___09():
-    r'''Define LilyPond shortInstrumentName context contextualize.
+    r'''Define LilyPond shortInstrumentName context set_.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contextualize(staff).short_instrument_name = 'Vni. I'
+    set_(staff).short_instrument_name = 'Vni. I'
 
     assert systemtools.TestManager.compare(
         staff,
@@ -231,11 +231,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___09():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___10():
-    r'''Define LilyPond shortInstrumentName context contextualize.
+    r'''Define LilyPond shortInstrumentName context set_.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contextualize(staff).short_instrument_name = markuptools.Markup(
+    set_(staff).short_instrument_name = markuptools.Markup(
         r'\circle { V }')
 
     assert systemtools.TestManager.compare(
@@ -261,11 +261,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___10():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___11():
-    r'''Define LilyPond suggestAccidentals context contextualize.
+    r'''Define LilyPond suggestAccidentals context set_.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contextualize(staff).suggest_accidentals = True
+    set_(staff).suggest_accidentals = True
 
     assert systemtools.TestManager.compare(
         staff,
@@ -285,11 +285,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___11():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___12():
-    r'''Define LilyPond suggestAccidentals context contextualize.
+    r'''Define LilyPond suggestAccidentals context set_.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contextualize(staff[1]).suggest_accidentals = True
+    set_(staff[1]).suggest_accidentals = True
 
     assert systemtools.TestManager.compare(
         staff,
@@ -308,11 +308,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___12():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():
-    r'''Define LilyPond tupletFullLength context contextualize.
+    r'''Define LilyPond tupletFullLength context set_.
     '''
 
     staff = Staff([])
-    contextualize(staff).tuplet_full_length = True
+    set_(staff).tuplet_full_length = True
 
     assert systemtools.TestManager.compare(
         staff,
@@ -326,7 +326,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():
 
     assert inspect(staff).is_well_formed()
 
-    contextualize(staff).tuplet_full_length = False
+    set_(staff).tuplet_full_length = False
 
     assert systemtools.TestManager.compare(
         staff,
@@ -340,7 +340,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():
 
     assert inspect(staff).is_well_formed()
 
-    del(contextualize(staff).tuplet_full_length)
+    del(set_(staff).tuplet_full_length)
 
     assert systemtools.TestManager.compare(
         staff,

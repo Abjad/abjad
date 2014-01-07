@@ -12,7 +12,7 @@ class DuratedComplexBeam(ComplexBeam):
         ::
 
             >>> staff = Staff("c'16 d'16 e'16 f'16")
-            >>> contextualize(staff).auto_beaming = False
+            >>> set_(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ::

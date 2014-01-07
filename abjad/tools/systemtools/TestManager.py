@@ -209,7 +209,7 @@ class TestManager(object):
                 vspace_after=4,
                 )
         moment = schemetools.SchemeMoment((1, 48))
-        topleveltools.contextualize(lilypond_file.score
+        topleveltools.set_(lilypond_file.score
             ).proportionalNotationDuration = moment
         parent_directory_name = os.path.dirname(full_file_name)
         if render_pdf:

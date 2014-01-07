@@ -14,7 +14,7 @@ class MeasuredComplexBeam(ComplexBeam):
             >>> staff = Staff()
             >>> staff.append(Measure((2, 16), "c'16 d'16"))
             >>> staff.append(Measure((2, 16), "e'16 f'16"))
-            >>> contextualize(staff).auto_beaming = False
+            >>> set_(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ::

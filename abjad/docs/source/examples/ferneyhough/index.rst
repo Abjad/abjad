@@ -235,8 +235,8 @@ Then we'll apply some formatting overrides to improve its overall appearance:
        '''
    
        moment = schemetools.SchemeMoment(1, 56)
-       contextualize(score).proportional_notation_duration = moment
-       contextualize(score).tuplet_full_length = True
+       set_(score).proportional_notation_duration = moment
+       set_(score).tuplet_full_length = True
        override(score).bar_line.stencil = False
        override(score).bar_number.transparent = True
        override(score).spacing_spanner.uniform_stretching = True

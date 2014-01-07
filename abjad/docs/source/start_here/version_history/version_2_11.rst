@@ -479,7 +479,7 @@ and time signatures:
 
 Here we quantize using settings specified by a ``BeatwiseQSchema``.  This keeps
 the output of the quantizer flattened and produces neither measures nor
-explicit time signatures.  The default beatwise contextualize of ``quarter=60``
+explicit time signatures.  The default beatwise setting of ``quarter=60``
 persists until the third beatspan:
 
 ::

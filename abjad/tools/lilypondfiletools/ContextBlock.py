@@ -2,7 +2,7 @@
 from abjad.tools import lilypondnametools
 from abjad.tools.lilypondfiletools.Block import Block
 from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import contextualize
+from abjad.tools.topleveltools import set_
 
 
 class ContextBlock(Block):
@@ -23,8 +23,8 @@ class ContextBlock(Block):
             >>> block.accepts.append('FluteLowerVoice')
             >>> override(block).beam.positions = (-4, -4)
             >>> override(block).stem.stem_end_position = -6
-            >>> contextualize(block).auto_beaming = False
-            >>> contextualize(block).tuplet_full_length = True
+            >>> set_(block).auto_beaming = False
+            >>> set_(block).tuplet_full_length = True
 
         ::
 
@@ -96,7 +96,7 @@ class ContextBlock(Block):
             string = '\t' + statement
             result.append(string)
         setting_contributions = []
-        for key, value in contextualize(self)._get_attribute_tuples():
+        for key, value in set_(self)._get_attribute_tuples():
             setting_contribution = \
                 manager.format_lilypond_context_setting_in_with_block(
                     key, value)

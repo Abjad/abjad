@@ -100,7 +100,9 @@ class SpacingIndication(AbjadObject):
 
     @property
     def normalized_spacing_duration(self):
-        r'''Proportional notation duration at 60 MM.
+        r'''Proportional notation duration normalized to 60 MM.
+
+        Returns duration.
         '''
         indication = self.tempo_indication
         duration = self.proportional_notation_duration
@@ -110,12 +112,16 @@ class SpacingIndication(AbjadObject):
 
     @property
     def proportional_notation_duration(self):
-        r'''LilyPond proportional notation duration context contextualize.
+        r'''LilyPond proportional notation duration of spacing indication.
+
+        Returns duration.
         '''
         return self._proportional_notation_duration
 
     @property
     def tempo_indication(self):
-        r'''Abjad tempo indication object.
+        r'''Tempo of spacing indication.
+
+        Returns tempo.
         '''
         return self._tempo_indication

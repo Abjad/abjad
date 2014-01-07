@@ -37,7 +37,7 @@ def test_scoretools_Note___copy___03():
     note_1 = Note(12, (1, 4))
     override(note_1).staff.note_head.color = 'red'
     override(note_1).accidental.color = 'red'
-    contextualize(note_1).tuplet_full_length = True
+    set_(note_1).tuplet_full_length = True
     note_2 = copy.copy(note_1)
 
     assert isinstance(note_1, Note)

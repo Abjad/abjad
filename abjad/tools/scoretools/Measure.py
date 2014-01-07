@@ -4,7 +4,7 @@ from abjad.tools import indicatortools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import contextualize
+from abjad.tools.topleveltools import set_
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
@@ -265,7 +265,7 @@ class Measure(FixedDurationContainer):
         if getattr(self, '_lilypond_grob_name_manager', None) is not None:
             new._lilypond_grob_name_manager = copy.copy(override(self))
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
-            new._lilypond_setting_name_manager = copy.copy(contextualize(self))
+            new._lilypond_setting_name_manager = copy.copy(set_(self))
         for indicator in self._get_indicators():
             new_indicator = copy.copy(indicator)
             attach(new_indicator, new)

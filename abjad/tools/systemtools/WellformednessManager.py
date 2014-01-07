@@ -204,14 +204,14 @@ class WellformednessManager(AbjadObject):
         '''
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import iterate
-        from abjad.tools.topleveltools import contextualize
+        from abjad.tools.topleveltools import set_
         violators = []
         total = 0
         for leaf in iterate(self.expr).by_class(scoretools.Leaf):
             total += 1
             flags = leaf.written_duration.flag_count
-            left = getattr(contextualize(leaf), 'stem_left_beam_count', None)
-            right = getattr(contextualize(leaf), 'stem_right_beam_count', None)
+            left = getattr(set_(leaf), 'stem_left_beam_count', None)
+            right = getattr(set_(leaf), 'stem_right_beam_count', None)
             if left is not None:
                 if flags < left or \
                     (left < flags and right not in (flags, None)):

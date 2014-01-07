@@ -7,7 +7,7 @@ moment = schemetools.SchemeMoment((1, 48))
 lilypond_file = maker(score)
 systemtools.TestManager.apply_additional_layout(lilypond_file)
 lilypond_file.header_block.title = markup
-contextualize(lilypond_file.score).proportionalNotationDuration = moment
+set_(lilypond_file.score).proportionalNotationDuration = moment
 show(lilypond_file)
 
 

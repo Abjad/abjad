@@ -2,7 +2,7 @@
 from abjad.tools import lilypondfiletools
 from abjad.tools import schemetools
 from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import contextualize
+from abjad.tools.topleveltools import set_
 
 
 def make_ligeti_example_lilypond_file(music=None):
@@ -40,10 +40,10 @@ def make_ligeti_example_lilypond_file(music=None):
         schemetools.Scheme('ly:spanner::set-spacing-rods')
     override(context_block).tuplet_number.text = \
         schemetools.Scheme('tuplet-number::calc-fraction-text')
-    contextualize(context_block).autoBeaming = False
+    set_(context_block).autoBeaming = False
     moment = schemetools.SchemeMoment((1, 12))
-    contextualize(context_block).proportionalNotationDuration = moment
-    contextualize(context_block).tupletFullLength = True
+    set_(context_block).proportionalNotationDuration = moment
+    set_(context_block).tupletFullLength = True
 
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)

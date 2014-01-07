@@ -34,7 +34,7 @@ def test_scoretools_Chord___copy___03():
     chord_1 = Chord("<ef' cs'' f''>4")
     override(chord_1).staff.note_head.color = 'red'
     override(chord_1).accidental.color = 'red'
-    contextualize(chord_1).tuplet_full_length = True
+    set_(chord_1).tuplet_full_length = True
     chord_2 = copy.copy(chord_1)
 
     assert isinstance(chord_1, Chord)

@@ -11,7 +11,7 @@ class Beam(Spanner):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8 g'2")
-            >>> contextualize(staff).auto_beaming = False
+            >>> set_(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::

@@ -10,4 +10,4 @@ def configure_score(score):
     override(score).vertical_axis_group.staff_staff_spacing = spacing_vector
     override(score).staff_grouper.staff_staff_spacing = spacing_vector
     override(score).staff_symbol.thickness = 0.5
-    contextualize(score).mark_formatter = schemetools.Scheme('format-mark-box-numbers')
+    set_(score).mark_formatter = schemetools.Scheme('format-mark-box-numbers')

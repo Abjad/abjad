@@ -435,7 +435,7 @@ Use ``persist(score).as_pdf()`` to write a score to disk as a PDF and use
 The typesetter protocol
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-New ``override()`` and ``contextualize()`` functions are available when you
+New ``override()`` and ``set_()`` functions are available when you
 start Abjad.
 
 Here's an example score:
@@ -465,18 +465,18 @@ Use ``override()`` to override the attributes of LilyPond graphic objects:
 .. image:: images/index-9.png
 
 
-Use ``contextualize()`` to create LilyPond context settings:
+Use ``set_()`` to create LilyPond context settings:
 
 ::
 
-   >>> contextualize(score).auto_beaming = False
+   >>> set_(score).auto_beaming = False
    >>> show(score)
 
 .. image:: images/index-10.png
 
 
 And use Python's built-in ``del()`` function to remove the settings you make
-with ``override()`` and ``contextualize()``:
+with ``override()`` and ``set_()``:
 
 ::
 
@@ -489,7 +489,7 @@ with ``override()`` and ``contextualize()``:
 Abjad 2.14 components and spanners follow the typesetter protocol described
 here.
 
-The ``override()`` and ``contextualize()`` functions replace the ``override``
+The ``override()`` and ``set_()`` functions replace the ``override``
 and ``set`` propertiess bound to classes in previous versions of Abjad.
 
 
@@ -586,7 +586,7 @@ Abjad 2.14 makes more classes available to you in the global namespace:
 ::
 
    >>> dir()
-   ['Articulation', 'Beam', 'Chord', 'Clef', 'Container', 'Crescendo', 'Decrescendo', 'Duration', 'Dynamic', 'Fraction', 'Glissando', 'Hairpin', 'KeySignature', 'Markup', 'Measure', 'Multiplier', 'NamedPitch', 'Note', 'Offset', 'Rest', 'Score', 'Slur', 'Staff', 'StaffGroup', 'Tempo', 'Tie', 'TimeSignature', 'Tuplet', 'Voice', '__builtins__', '__doc__', '__name__', '__package__', '__result__', '__warningregistry__', 'abctools', 'abjad_configuration', 'abjadbooktools', 'agenttools', 'articulation', 'attach', 'bass_staff', 'clef', 'clef_inventory', 'command', 'contextualize', 'datastructuretools', 'detach', 'developerscripttools', 'documentationtools', 'durationtools', 'exceptiontools', 'f', 'first_staff', 'indicator', 'indicatortools', 'inspect', 'instrument', 'instrumenttools', 'iterate', 'key_signature', 'labeltools', 'layouttools', 'lilypondfiletools', 'lilypondnametools', 'lilypondparsertools', 'markuptools', 'mathtools', 'metertools', 'mutate', 'name', 'new', 'note', 'override', 'parse', 'persist', 'pitch_range', 'pitcharraytools', 'pitchtools', 'play', 'quantizationtools', 'rhythmmakertools', 'rhythmtreetools', 'schemetools', 'scordatura_range', 'scordatura_violin_1', 'scordatura_violin_2', 'score', 'scoretools', 'segment', 'select', 'selectiontools', 'sequencetools', 'show', 'sievetools', 'slur', 'spannertools', 'staff', 'staff_group', 'string', 'stringtools', 'systemtools', 'templatetools', 'time_signature', 'timespantools', 'tonalanalysistools', 'topleveltools', 'treble_staff_1', 'treble_staff_2', 'violin']
+   ['Articulation', 'Beam', 'Chord', 'Clef', 'Container', 'Crescendo', 'Decrescendo', 'Duration', 'Dynamic', 'Fraction', 'Glissando', 'Hairpin', 'KeySignature', 'Markup', 'Measure', 'Multiplier', 'NamedPitch', 'Note', 'Offset', 'Rest', 'Score', 'Slur', 'Staff', 'StaffGroup', 'Tempo', 'Tie', 'TimeSignature', 'Tuplet', 'Voice', '__builtins__', '__doc__', '__name__', '__package__', '__result__', '__warningregistry__', 'abctools', 'abjad_configuration', 'abjadbooktools', 'agenttools', 'articulation', 'attach', 'bass_staff', 'clef', 'clef_inventory', 'command', 'set_', 'datastructuretools', 'detach', 'developerscripttools', 'documentationtools', 'durationtools', 'exceptiontools', 'f', 'first_staff', 'indicator', 'indicatortools', 'inspect', 'instrument', 'instrumenttools', 'iterate', 'key_signature', 'labeltools', 'layouttools', 'lilypondfiletools', 'lilypondnametools', 'lilypondparsertools', 'markuptools', 'mathtools', 'metertools', 'mutate', 'name', 'new', 'note', 'override', 'parse', 'persist', 'pitch_range', 'pitcharraytools', 'pitchtools', 'play', 'quantizationtools', 'rhythmmakertools', 'rhythmtreetools', 'schemetools', 'scordatura_range', 'scordatura_violin_1', 'scordatura_violin_2', 'score', 'scoretools', 'segment', 'select', 'selectiontools', 'sequencetools', 'show', 'sievetools', 'slur', 'spannertools', 'staff', 'staff_group', 'string', 'stringtools', 'systemtools', 'templatetools', 'time_signature', 'timespantools', 'tonalanalysistools', 'topleveltools', 'treble_staff_1', 'treble_staff_2', 'violin']
 
 
 ``Articulation``, ``Beam``, ``Clef``, ``Crescendo``, ``Decrescendo``,

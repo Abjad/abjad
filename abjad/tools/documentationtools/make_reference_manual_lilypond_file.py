@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import markuptools
 from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import contextualize
+from abjad.tools.topleveltools import set_
 
 
 def make_reference_manual_lilypond_file(music=None):
@@ -86,9 +86,9 @@ def make_reference_manual_lilypond_file(music=None):
     override(context_block).tuplet_bracket.minimum_length = 3
     override(context_block).tuplet_number.text = \
         schemetools.Scheme('tuplet-number::calc-fraction-text')
-    contextualize(context_block).proportionalNotationDuration = \
+    set_(context_block).proportionalNotationDuration = \
         schemetools.SchemeMoment((1, 32))
-    contextualize(context_block).tupletFullLength = True
+    set_(context_block).tupletFullLength = True
     lilypond_file.layout_block.context_blocks.append(context_block)
 
     # etc

@@ -6,7 +6,7 @@ from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.topleveltools import contextualize
+from abjad.tools.topleveltools import set_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
 Selection = selectiontools.Selection
@@ -67,7 +67,7 @@ class Spanner(AbjadObject):
         if getattr(self, '_lilypond_grob_name_manager', None) is not None:
             new._lilypond_grob_name_manager = copy.copy(override(self))
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
-            new._lilypond_setting_name_manager = copy.copy(contextualize(self))
+            new._lilypond_setting_name_manager = copy.copy(set_(self))
         self._copy_keyword_args(new)
         return new
 
