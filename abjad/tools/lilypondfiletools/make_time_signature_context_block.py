@@ -41,11 +41,12 @@ def make_time_signature_context_block(
     assert isinstance(font_size, (int, float))
     assert isinstance(padding, (int, float))
 
-    context_block = lilypondfiletools.ContextBlock()
-    context_block.type_ = 'Engraver_group'
+    context_block = lilypondfiletools.ContextBlock(
+        type_='Engraver_group', 
+        name='TimeSignatureContext',
+        )
     context_block.engraver_consists.append('Axis_group_engraver')
     context_block.engraver_consists.append('Time_signature_engraver')
-    context_block.name = 'TimeSignatureContext'
     override(context_block).time_signature.X_extent = (0, 0)
     override(context_block).time_signature.X_offset = schemetools.Scheme(
         'ly:self-alignment-interface::x-aligned-on-self')

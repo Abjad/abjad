@@ -12,11 +12,12 @@ class ContextBlock(Block):
 
         ::
 
-            >>> block = lilypondfiletools.ContextBlock()
-            >>> block.source_context_name = 'Staff'
-            >>> block.name = 'FluteStaff'
-            >>> block.type_ = 'Engraver_group'
-            >>> block.alias = 'Staff'
+            >>> block = lilypondfiletools.ContextBlock(
+            ...     source_context_name='Staff',
+            ...     name='FluteStaff',
+            ...     type_='Engraver_group',
+            ...     alias='Staff',
+            ...     )
             >>> block.engraver_removals.append('Forbid_line_break_engraver')
             >>> block.engraver_consists.append('Horizontal_bracket_engraver')
             >>> block.accepts.append('FluteUpperVoice')
@@ -48,15 +49,21 @@ class ContextBlock(Block):
 
     ### INITIALIZER ###
 
-    def __init__(self, source_context_name=None):
+    def __init__(
+        self, 
+        source_context_name=None,
+        name=None,
+        type_=None,
+        alias=None,
+        ):
         Block.__init__(self, name='context')
+        self._source_context_name = source_context_name
+        self._name = name
+        self._type_ = type_
+        self._alias = alias
         self._accepts = []
         self._engraver_consists = []
         self._engraver_removals = []
-        self.alias = None
-        self.source_context_name = source_context_name
-        self.name = None
-        self.type_ = None
 
     ### PRIVATE PROPERTIES ###
 
@@ -163,11 +170,6 @@ class ContextBlock(Block):
         '''
         return self._alias
 
-    @alias.setter
-    def alias(self, alias):
-        assert isinstance(alias, (str, type(None)))
-        self._alias = alias
-    
     @property
     def items(self):
         r'''Gets items in context block.
@@ -194,11 +196,6 @@ class ContextBlock(Block):
         '''
         return self._name
 
-    @name.setter
-    def name(self, name):
-        assert isinstance(name, (str, type(None)))
-        self._name = name
-
     @property
     def source_context_name(self):
         r'''Gets and sets source context name.
@@ -212,11 +209,6 @@ class ContextBlock(Block):
         '''
         return self._source_context_name
 
-    @source_context_name.setter
-    def source_context_name(self, source_context_name):
-        assert isinstance(source_context_name, (str, type(None)))
-        self._source_context_name = source_context_name
-
     @property
     def type_(self):
         r'''Gets and sets argument of LilyPond ``\type`` command.
@@ -229,8 +221,3 @@ class ContextBlock(Block):
         Returns string or none.
         '''
         return self._type_
-
-    @type_.setter
-    def type_(self, expr):
-        assert isinstance(expr, (str, type(None)))
-        self._type_ = expr

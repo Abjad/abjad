@@ -37,28 +37,31 @@ def test_custom_contexts_01():
     score = score_specification.interpret()
     lilypond_file = lilypondfiletools.make_floating_time_signature_lilypond_file(score)
 
-    context_block = lilypondfiletools.ContextBlock()
+    context_block = lilypondfiletools.ContextBlock(
+        source_context_name='Voice',
+        type_='Engraver_group',
+        name='CustomVoice',
+        alias='Voice',
+        )
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.context_name = 'Voice'
-    context_block.type = 'Engraver_group'
-    context_block.name = 'CustomVoice'
-    context_block.alias = 'Voice'
     override(context_block).beam.color = 'green'
     override(context_block).note_head.color = 'green'
     override(context_block).stem.color = 'green'
 
-    context_block = lilypondfiletools.ContextBlock()
+    context_block = lilypondfiletools.ContextBlock(
+        source_context_name='Staff',
+        type_='Engraver_group',
+        name='CustomStaff',
+        alias='Staff',
+        )
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.context_name = 'Staff'
-    context_block.type = 'Engraver_group'
-    context_block.name = 'CustomStaff'
-    context_block.alias = 'Staff'
     context_block.accepts.append('CustomVoice')
     override(context_block).staff_symbol.color = 'red'
 
-    context_block = lilypondfiletools.ContextBlock()
+    context_block = lilypondfiletools.ContextBlock(
+        source_context_name='Score',
+        )
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.context_name = 'Score'
     context_block.accepts.append('CustomStaff')
 
     current_function_name = systemtools.TestManager.get_current_function_name()
