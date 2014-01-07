@@ -66,7 +66,7 @@ def test_lilypondfiletools_LilyPondFile___format___02():
 
     score = Score([Staff("c'8 d'8 e'8 f'8")])
     score_block = lilypondfiletools.Block(name='score')
-    layout_block = lilypondfiletools.LayoutBlock()
+    layout_block = lilypondfiletools.Block(name='layout')
     midi_block = lilypondfiletools.Block(name='midi')
 
     score_block.items.append(score)

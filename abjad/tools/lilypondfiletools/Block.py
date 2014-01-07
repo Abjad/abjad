@@ -48,6 +48,7 @@ class Block(AbjadObject):
 
     @property
     def _format_pieces(self):
+        from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
         from abjad.tools import scoretools
         result = []
@@ -60,7 +61,6 @@ class Block(AbjadObject):
             return result
         string = '{} {{'.format(self._escaped_name)
         result.append(string)
-
         prototype = (scoretools.Leaf, markuptools.Markup)
         if len(self.items) == 1 and isinstance(self.items[0], prototype):
             result.append('\t{')
@@ -69,9 +69,10 @@ class Block(AbjadObject):
             result.extend(pieces)
             result.append('\t}')
             return result
-
         for item in self.items:
-            if isinstance(item, str):
+            if isinstance(item, lilypondfiletools.ContextBlock):
+                pass
+            elif isinstance(item, str):
                 string = '\t{}'.format(item)
                 result.append(string)
             elif hasattr(item, '_get_format_pieces'):
@@ -84,10 +85,6 @@ class Block(AbjadObject):
                 result.extend(pieces)
             else:
                 pass
-
-        if getattr(self, 'contexts', None):
-            specs = self._formatted_context_specifications
-            result.extend(['\t' + x for x in specs])
         formatted_attributes = self._get_formatted_user_attributes()
         formatted_attributes = ['\t' + x for x in formatted_attributes]
         result.extend(formatted_attributes)
@@ -96,6 +93,18 @@ class Block(AbjadObject):
         formatted_context_blocks = ['\t' + x for x in formatted_context_blocks]
         result.extend(formatted_context_blocks)
         result.append('}')
+        return result
+
+    @property
+    def _formatted_context_blocks(self):
+        from abjad.tools import lilypondfiletools
+        result = []
+        context_blocks = []
+        for item in self.items:
+            if isinstance(item, lilypondfiletools.ContextBlock):
+                context_blocks.append(item)
+        for context_block in context_blocks:
+            result.extend(context_block._format_pieces)
         return result
 
     @property

@@ -2619,7 +2619,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_output_def_head__LAYOUT(self, p):
         'output_def_head : LAYOUT'
-        p[0] = lilypondfiletools.LayoutBlock()
+        p[0] = lilypondfiletools.Block(name='layout')
         self.client._push_variable_scope()
 
 

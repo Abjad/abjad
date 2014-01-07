@@ -8,9 +8,150 @@ from abjad.tools.topleveltools import set_
 def make_floating_time_signature_lilypond_file(music=None):
     r'''Makes floating time signature LilyPond file.
 
-    Makes a LilyPond file.
+    ..  container:: example
 
-    Applies many layout settings.
+        ::
+
+            >>> score = Score()
+            >>> time_signature_context = scoretools.Context(
+            ...     context_name='TimeSignatureContext',
+            ...     )
+            >>> time_signatures = [(2, 8), (3, 8), (4, 8)]
+            >>> measures = scoretools.make_spacer_skip_measures(time_signatures)
+            >>> time_signature_context.extend(measures)
+            >>> score.append(time_signature_context)
+            >>> staff = Staff()
+            >>> staff.append(Measure((2, 8), "c'8 ( d'8 )"))
+            >>> staff.append(Measure((3, 8), "e'8 ( f'8  g'8 )"))
+            >>> staff.append(Measure((4, 8), "fs'4 ( e'8 d'8 )"))
+            >>> score.append(staff)
+            >>> lilypond_file = \
+            ...     lilypondfiletools.make_floating_time_signature_lilypond_file(
+            ...     score
+            ...     )
+            
+        ::
+
+            >>> print format(lilypond_file) # doctest: +SKIP
+            % 2014-01-07 18:22
+
+            \version "2.19.0"
+            \language "english"
+
+            #(set-default-paper-size "letter" 'portrait)
+            #(set-global-staff-size 12)
+
+            \header {}
+
+            \layout {
+                \accidentalStyle forget
+                indent = #0
+                ragged-right = ##t
+                \context {
+                    \name TimeSignatureContext
+                    \type Engraver_group
+                    \consists Axis_group_engraver
+                    \consists Time_signature_engraver
+                    \override TimeSignature #'X-extent = #'(0 . 0)
+                    \override TimeSignature #'X-offset = #ly:self-alignment-interface::x-aligned-on-self
+                    \override TimeSignature #'Y-extent = #'(0 . 0)
+                    \override TimeSignature #'break-align-symbol = ##f
+                    \override TimeSignature #'break-visibility = #end-of-line-invisible
+                    \override TimeSignature #'font-size = #1
+                    \override TimeSignature #'self-alignment-X = #center
+                    \override VerticalAxisGroup #'default-staff-staff-spacing = #'((basic-distance . 0) (minimum-distance . 12) (padding . 6) (stretchability . 0))
+                }
+                \context {
+                    \Score
+                    \remove Bar_number_engraver
+                    \accepts TimeSignatureContext
+                    \override Beam #'breakable = ##t
+                    \override SpacingSpanner #'strict-grace-spacing = ##t
+                    \override SpacingSpanner #'strict-note-spacing = ##t
+                    \override SpacingSpanner #'uniform-stretching = ##t
+                    \override TupletBracket #'bracket-visibility = ##t
+                    \override TupletBracket #'minimum-length = #3
+                    \override TupletBracket #'padding = #2
+                    \override TupletBracket #'springs-and-rods = #ly:spanner::set-spacing-rods
+                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                    autoBeaming = ##f
+                    proportionalNotationDuration = #(ly:make-moment 1 32)
+                    tupletFullLength = ##t
+                }
+                \context {
+                    \StaffGroup
+                }
+                \context {
+                    \Staff
+                    \remove Time_signature_engraver
+                }
+                \context {
+                    \RhythmicStaff
+                    \remove Time_signature_engraver
+                }
+            }
+
+            \paper {
+                left-margin = #20
+                system-system-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 12) (stretchability . 0))
+            }
+
+            \score {
+                \new Score <<
+                    \new TimeSignatureContext {
+                        {
+                            \time 2/8
+                            s1 * 1/4
+                        }
+                        {
+                            \time 3/8
+                            s1 * 3/8
+                        }
+                        {
+                            \time 4/8
+                            s1 * 1/2
+                        }
+                    }
+                    \new Staff {
+                        {
+                            \time 2/8
+                            c'8 (
+                            d'8 )
+                        }
+                        {
+                            \time 3/8
+                            e'8 (
+                            f'8
+                            g'8 )
+                        }
+                        {
+                            \time 4/8
+                            fs'4 (
+                            e'8
+                            d'8 )
+                        }
+                    }
+                >>
+            }
+
+        ::
+
+            >>> show(lilypond_file) # doctest: +SKIP
+
+    Makes LilyPond file.
+
+    Wraps `music` in LilyPond ``\score`` block.
+
+    Adds LilyPond ``\header``, ``\layout``, ``\paper`` and ``\score`` blocks to
+    LilyPond file.
+
+    Defines layout settings for custom ``\TimeSignatureContext``.
+
+    (Note that you must create and populate an Abjad context with name
+    equal to ``'TimeSignatureContext'`` in order for ``\TimeSignatureContext``
+    layout settings to apply.)
+
+    Applies many file, layout and paper settings.
 
     Returns LilyPond file.
     '''
@@ -31,16 +172,14 @@ def make_floating_time_signature_lilypond_file(music=None):
     command = indicatortools.LilyPondCommand('accidentalStyle forget')
     lilypond_file.layout_block.items.append(command)
 
-    time_signature_context_block = \
-        lilypondfiletools.make_time_signature_context_block(
+    block = lilypondfiletools.make_time_signature_context_block(
         font_size=1, padding=6)
-    lilypond_file.layout_block.context_blocks.append(
-        time_signature_context_block)
+    lilypond_file.layout_block.items.append(block)
 
     context_block = lilypondfiletools.ContextBlock(
         source_context_name='Score',
         )
-    lilypond_file.layout_block.context_blocks.append(context_block)
+    lilypond_file.layout_block.items.append(context_block)
     context_block.accepts_commands.append('TimeSignatureContext')
     context_block.remove_commands.append('Bar_number_engraver')
     override(context_block).beam.breakable = True
@@ -63,19 +202,19 @@ def make_floating_time_signature_lilypond_file(music=None):
     context_block = lilypondfiletools.ContextBlock(
         source_context_name='StaffGroup',
         )
-    lilypond_file.layout_block.context_blocks.append(context_block)
+    lilypond_file.layout_block.items.append(context_block)
 
     context_block = lilypondfiletools.ContextBlock(
         source_context_name='Staff',
         )
         
-    lilypond_file.layout_block.context_blocks.append(context_block)
+    lilypond_file.layout_block.items.append(context_block)
     context_block.remove_commands.append('Time_signature_engraver')
 
     context_block = lilypondfiletools.ContextBlock(
         source_context_name='RhythmicStaff',
         )
-    lilypond_file.layout_block.context_blocks.append(context_block)
+    lilypond_file.layout_block.items.append(context_block)
     context_block.remove_commands.append('Time_signature_engraver')
 
     return lilypond_file
