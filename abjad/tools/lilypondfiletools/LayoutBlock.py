@@ -4,38 +4,30 @@ from abjad.tools.lilypondfiletools.Block import Block
 
 
 class LayoutBlock(Block):
-    r'''Abjad model of LilyPond input file layout block:
+    r'''A LilyPond file ``\layout`` block.
 
-    ::
+    ..  container:: example
 
-        >>> layout_block = lilypondfiletools.LayoutBlock()
+        ::
 
-    ::
+            >>> layout_block = lilypondfiletools.LayoutBlock()
+            >>> layout_block.indent = 0
+            >>> layout_block.ragged_right = True
 
-        >>> layout_block
-        LayoutBlock()
+        ::
 
-    ::
+            >>> print format(layout_block)
+            \layout {
+                indent = #0
+                ragged-right = ##t
+            }
 
-        >>> layout_block.indent = 0
-        >>> layout_block.ragged_right = True
-
-    ..  doctest::
-
-        >>> print format(layout_block)
-        \layout {
-            indent = #0
-            ragged-right = ##t
-        }
-
-    Returns layout block.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self):
         Block.__init__(self, name='layout')
-        #self._escaped_name = r'\layout'
         self._context_blocks = []
         self._contexts = []
 
@@ -62,34 +54,31 @@ class LayoutBlock(Block):
 
     @property
     def context_blocks(self):
-        r'''List of context blocks:
+        r'''Gets context blocks in ``\layout`` block.
 
-        ::
+        ..  container:: example
 
-            >>> layout_block = lilypondfiletools.LayoutBlock()
+            ::
 
-        ::
+                >>> block = lilypondfiletools.ContextBlock(
+                ...     source_context_name='Score',
+                ...     )
+                >>> override(block).bar_number.transparent = True
+                >>> scheme = schemetools.Scheme('end-of-line-invisible')
+                >>> override(block).time_signature.break_visibility = scheme
+                >>> layout_block = lilypondfiletools.LayoutBlock()
+                >>> layout_block.context_blocks.append(block)
 
-            >>> context_block = lilypondfiletools.ContextBlock('Score')
-            >>> override(context_block).bar_number.transparent = True
+            ::
 
-        ::
-
-            >>> scheme_expr = schemetools.Scheme('end-of-line-invisible')
-            >>> override(context_block).time_signature.break_visibility = \
-            ...     scheme_expr
-            >>> layout_block.context_blocks.append(context_block)
-
-        ..  doctest::
-
-            >>> print format(layout_block)
-            \layout {
-                \context {
-                    \Score
-                    \override BarNumber #'transparent = ##t
-                    \override TimeSignature #'break-visibility = #end-of-line-invisible
+                >>> print format(layout_block)
+                \layout {
+                    \context {
+                        \Score
+                        \override BarNumber #'transparent = ##t
+                        \override TimeSignature #'break-visibility = #end-of-line-invisible
+                    }
                 }
-            }
 
         Returns list.
         '''

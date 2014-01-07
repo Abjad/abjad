@@ -4,7 +4,24 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Block(AbjadObject):
-    '''Abjad model of LilyPond input file block with attributes.
+    '''A LilyPond file block.
+
+    ..  container:: example
+
+        ::
+
+            >>> block = lilypondfiletools.Block(name='paper')
+            >>> block.left_margin = lilypondfiletools.LilyPondDimension(2, 'cm')
+            >>> block.right_margin = lilypondfiletools.LilyPondDimension(2, 'cm')
+
+        ::
+
+            >>> print format(block)
+            \paper {
+                left-margin = 2\cm
+                right-margin = 2\cm
+            }
+
     '''
 
     ### INITIALIZER ###
@@ -32,28 +49,41 @@ class Block(AbjadObject):
     @property
     def _format_pieces(self):
         result = []
-        if not self._formatted_user_attributes and \
+        if not self._get_formatted_user_attributes() and \
             not getattr(self, 'contexts', None) \
             and not getattr(self, 'context_blocks', None):
-            result.append('%s {}' % self._escaped_name)
+            string = '{} {{}}'.format(self._escaped_name)
+            result.append(string)
             return result
-        result.append('%s {' % self._escaped_name)
+        string = '{} {{'.format(self._escaped_name)
+        result.append(string)
         if getattr(self, 'contexts', None):
             specs = self._formatted_context_specifications
             result.extend(['\t' + x for x in specs])
-        formatted_attributes = self._formatted_user_attributes
+        formatted_attributes = self._get_formatted_user_attributes()
         formatted_attributes = ['\t' + x for x in formatted_attributes]
         result.extend(formatted_attributes)
         formatted_context_blocks = getattr(
             self, '_formatted_context_blocks', [])
-        formatted_context_blocks = [
-            '\t' + line for line in formatted_context_blocks]
+        formatted_context_blocks = ['\t' + x for x in formatted_context_blocks]
         result.extend(formatted_context_blocks)
         result.append('}')
         return result
 
     @property
-    def _formatted_user_attributes(self):
+    def _lilypond_format(self):
+        return '\n'.join(self._format_pieces)
+
+    @property
+    def _user_attributes(self):
+        all_attributes = vars(self).keys()
+        user_attributes = [x for x in all_attributes if not x.startswith('_')]
+        user_attributes.sort()
+        return user_attributes
+
+    ### PRIVATE METHODS ###
+
+    def _get_formatted_user_attributes(self):
         from abjad.tools import indicatortools
         from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
@@ -73,7 +103,8 @@ class Block(AbjadObject):
                 for i, k in enumerate(formatted_key):
                     formatted_key[i] = k.replace('_', '-')
                     if 0 < i:
-                        formatted_key[i] = "#'%s" % formatted_key[i]
+                        string = "#'{}".format(formatted_key[i])
+                        formatted_key[i] = string
                 formatted_key = ' '.join(formatted_key)
                 # format value
                 accetable_types = (
@@ -98,22 +129,18 @@ class Block(AbjadObject):
                 result.extend(formatted_value[1:])
         return result
 
-    @property
-    def _lilypond_format(self):
-        return '\n'.join(self._format_pieces)
-
-    @property
-    def _user_attributes(self):
-        all_attributes = vars(self).keys()
-        user_attributes = [x for x in all_attributes if not x.startswith('_')]
-        user_attributes.sort()
-        return user_attributes
-
     ### PUBLIC PROPERTIES ###
 
     @property
     def items(self):
         r'''Gets items in block.
+
+        ..  container:: example
+
+            ::
+
+                >>> block.items
+                []
 
         Returns list.
         '''
@@ -122,6 +149,13 @@ class Block(AbjadObject):
     @property
     def name(self):
         r'''Gets name of block.
+
+        ..  container:: example
+
+            ::
+
+                >>> block.name
+                'paper'
 
         Returns string.
         '''

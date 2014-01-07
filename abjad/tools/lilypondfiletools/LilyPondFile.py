@@ -5,65 +5,67 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class LilyPondFile(AbjadObject):
     r'''A LilyPond input file.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
-        >>> comment = 'File construct as an example.'
-        >>> lilypond_file.file_initial_user_comments.append(comment)
-        >>> comment = 'Parts shown here for positioning.'
-        >>> lilypond_file.file_initial_user_comments.append(comment)
-        >>> file_name = 'external-settings-file-1.ly'
-        >>> lilypond_file.file_initial_user_includes.append(file_name)
-        >>> file_name = 'external-settings-file-2.ly'
-        >>> lilypond_file.file_initial_user_includes.append(file_name)
-        >>> lilypond_file.default_paper_size = 'a5', 'portrait'
-        >>> lilypond_file.global_staff_size = 16
-        >>> lilypond_file.header_block.composer = Markup('Josquin')
-        >>> lilypond_file.header_block.title = Markup('Missa sexti tonus')
-        >>> lilypond_file.layout_block.indent = 0
-        >>> lilypond_file.layout_block.left_margin = 15
+        ::
 
-    ::
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
+            >>> comment = 'File construct as an example.'
+            >>> lilypond_file.file_initial_user_comments.append(comment)
+            >>> comment = 'Parts shown here for positioning.'
+            >>> lilypond_file.file_initial_user_comments.append(comment)
+            >>> file_name = 'external-settings-file-1.ly'
+            >>> lilypond_file.file_initial_user_includes.append(file_name)
+            >>> file_name = 'external-settings-file-2.ly'
+            >>> lilypond_file.file_initial_user_includes.append(file_name)
+            >>> lilypond_file.default_paper_size = 'a5', 'portrait'
+            >>> lilypond_file.global_staff_size = 16
+            >>> lilypond_file.header_block.composer = Markup('Josquin')
+            >>> lilypond_file.header_block.title = Markup('Missa sexti tonus')
+            >>> lilypond_file.layout_block.indent = 0
+            >>> lilypond_file.layout_block.left_margin = 15
 
-        >>> print format(lilypond_file) # doctest: +SKIP
-        % 2004-01-14 17:29
+        ::
 
-        % File construct as an example.
-        % Parts shown here for positioning.
+            >>> print format(lilypond_file) # doctest: +SKIP
+            % 2004-01-14 17:29
 
-        \version "2.19.0"
-        \include "english.ly"
+            % File construct as an example.
+            % Parts shown here for positioning.
 
-        \include "external-settings-file-1.ly"
-        \include "external-settings-file-2.ly"
+            \version "2.19.0"
+            \include "english.ly"
 
-        #(set-default-paper-size "a5" 'portrait)
-        #(set-global-staff-size 16)
+            \include "external-settings-file-1.ly"
+            \include "external-settings-file-2.ly"
 
-        \header {
-            composer = \markup { Josquin }
-            title = \markup { Missa sexti tonus }
-        }
+            #(set-default-paper-size "a5" 'portrait)
+            #(set-global-staff-size 16)
 
-        \layout {
-            indent = #0
-            left-margin = #15
-        }
+            \header {
+                composer = \markup { Josquin }
+                title = \markup { Missa sexti tonus }
+            }
 
-        \paper {
-        }
+            \layout {
+                indent = #0
+                left-margin = #15
+            }
 
-        \new Staff {
-            c'8
-            d'8
-            e'8
-            f'8
-        }
+            \paper {
+            }
 
-    ::
+            \new Staff {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
 
-        >>> show(lilypond_file) # doctest: +SKIP
+        ::
+
+            >>> show(lilypond_file) # doctest: +SKIP
 
     '''
 

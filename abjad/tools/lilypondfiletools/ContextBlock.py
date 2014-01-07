@@ -37,8 +37,8 @@ class ContextBlock(Block):
                 \alias Staff
                 \remove Forbid_line_break_engraver
                 \consists Horizontal_bracket_engraver
-                \accepts_commands FluteUpperVoice
-                \accepts_commands FluteLowerVoice
+                \accepts FluteUpperVoice
+                \accepts FluteLowerVoice
                 \override Beam #'positions = #'(-4 . -4)
                 \override Stem #'stem-end-position = #-6
                 autoBeaming = ##f
@@ -130,34 +130,6 @@ class ContextBlock(Block):
         return self._accepts_commands
 
     @property
-    def consists_commands(self):
-        r'''Gets arguments of LilyPond ``\consists`` commands.
-
-        ..  container:: example
-
-            >>> block.consists_commands
-            ['Horizontal_bracket_engraver']
-
-        Returns list.
-        '''
-        return self._consists_commands
-
-    @property
-    def remove_commands(self):
-        r'''Gets arguments of LilyPond ``\remove`` commands.
-
-        ..  container:: example
-
-            >>> block.remove_commands
-            ['Forbid_line_break_engraver']
-
-        Returns list.
-        '''
-        return self._remove_commands
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
     def alias(self):
         r'''Gets and sets argument of LilyPond ``\alias`` command.
 
@@ -169,6 +141,19 @@ class ContextBlock(Block):
         Returns string or none.
         '''
         return self._alias
+
+    @property
+    def consists_commands(self):
+        r'''Gets arguments of LilyPond ``\consists`` commands.
+
+        ..  container:: example
+
+            >>> block.consists_commands
+            ['Horizontal_bracket_engraver']
+
+        Returns list.
+        '''
+        return self._consists_commands
 
     @property
     def items(self):
@@ -195,6 +180,19 @@ class ContextBlock(Block):
         Returns string or none.
         '''
         return self._name
+
+    @property
+    def remove_commands(self):
+        r'''Gets arguments of LilyPond ``\remove`` commands.
+
+        ..  container:: example
+
+            >>> block.remove_commands
+            ['Forbid_line_break_engraver']
+
+        Returns list.
+        '''
+        return self._remove_commands
 
     @property
     def source_context_name(self):
