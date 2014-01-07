@@ -107,9 +107,9 @@ class StemTremolo(AbjadObject):
 
         Returns boolean.
         '''
-        assert isinstance(expr, type(self))
-        if self.tremolo_flags == expr.tremolo_flags:
-            return True
+        if isinstance(expr, type(self)):
+            if self.tremolo_flags == expr.tremolo_flags:
+                return True
         return False
 
     def __format__(self, format_specification=''):
