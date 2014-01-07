@@ -42,7 +42,7 @@ def make_time_signature_context_block(
     assert isinstance(padding, (int, float))
 
     context_block = lilypondfiletools.ContextBlock()
-    context_block.type = 'Engraver_group'
+    context_block.type_ = 'Engraver_group'
     context_block.engraver_consists.append('Axis_group_engraver')
     context_block.engraver_consists.append('Time_signature_engraver')
     context_block.name = 'TimeSignatureContext'

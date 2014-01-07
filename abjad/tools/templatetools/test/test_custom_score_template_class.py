@@ -87,7 +87,7 @@ def test_custom_score_template_class_02():
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
     context_block.source_context_name = 'Voice'
-    context_block.type = 'Engraver_group'
+    context_block.type_ = 'Engraver_group'
     context_block.name = 'CustomVoice'
     context_block.alias = 'Voice'
     override(context_block).note_head.color = 'green'
@@ -96,7 +96,7 @@ def test_custom_score_template_class_02():
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
     context_block.source_context_name = 'Staff'
-    context_block.type = 'Engraver_group'
+    context_block.type_ = 'Engraver_group'
     context_block.name = 'CustomStaff'
     context_block.alias = 'Staff'
     context_block.accepts.append('CustomVoice')

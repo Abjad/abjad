@@ -15,7 +15,7 @@ class ContextBlock(Block):
             >>> block = lilypondfiletools.ContextBlock()
             >>> block.source_context_name = 'Staff'
             >>> block.name = 'FluteStaff'
-            >>> block.type = 'Engraver_group'
+            >>> block.type_ = 'Engraver_group'
             >>> block.alias = 'Staff'
             >>> block.engraver_removals.append('Forbid_line_break_engraver')
             >>> block.engraver_consists.append('Horizontal_bracket_engraver')
@@ -56,7 +56,7 @@ class ContextBlock(Block):
         self.alias = None
         self.source_context_name = source_context_name
         self.name = None
-        self.type = None
+        self.type_ = None
 
     ### PRIVATE PROPERTIES ###
 
@@ -67,7 +67,7 @@ class ContextBlock(Block):
         string = '{} {{'.format(self._escaped_name)
         result.append(string)
         manager = systemtools.LilyPondFormatManager
-        # CAUTION: source context name must come before type to allow 
+        # CAUTION: source context name must come before type_ to allow 
         # context redefinition.
         if self.source_context_name is not None:
             string = '\t' + r'\{}'.format(self.source_context_name)
@@ -75,8 +75,8 @@ class ContextBlock(Block):
         if self.name is not None:
             string = '\t' + r'\name {}'.format(self.name)
             result.append(string)
-        if self.type is not None:
-            string = '\t' + r'\type {}'.format(self.type)
+        if self.type_ is not None:
+            string = '\t' + r'\type {}'.format(self.type_)
             result.append(string)
         if self.alias is not None:
             string = '\t' + r'\alias {}'.format(self.alias)
@@ -218,19 +218,19 @@ class ContextBlock(Block):
         self._source_context_name = source_context_name
 
     @property
-    def type(self):
+    def type_(self):
         r'''Gets and sets argument of LilyPond ``\type`` command.
 
         ..  container:: example
 
-            >>> block.type
+            >>> block.type_
             'Engraver_group'
 
         Returns string or none.
         '''
-        return self._type
+        return self._type_
 
-    @type.setter
-    def type(self, expr):
+    @type_.setter
+    def type_(self, expr):
         assert isinstance(expr, (str, type(None)))
-        self._type = expr
+        self._type_ = expr
