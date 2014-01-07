@@ -234,7 +234,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                 message += inspect(score).tabulate_well_formedness_violations()
                 raise Exception(message)
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
-        lilypond_file.remove(lilypond_file.score_block)
+        lilypond_file.items.remove(lilypond_file.score_block)
         for i, score in enumerate(scores):
             #title_markup = markuptools.Markup('TITLE MARKUP')
             #lilypond_file.items.append(title_markup)
