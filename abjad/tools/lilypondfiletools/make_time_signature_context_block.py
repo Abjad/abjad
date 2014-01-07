@@ -8,7 +8,7 @@ def make_time_signature_context_block(
     minimum_distance=12, 
     padding=4,
     ):
-    r'''Make time signature context block:
+    r'''Makes time signature context block.
 
     ::
 

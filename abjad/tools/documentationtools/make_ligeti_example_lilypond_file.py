@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import set_
 
 
 def make_ligeti_example_lilypond_file(music=None):
-    r'''Make Ligeti example LilyPond file.
+    r'''Makes Ligeti example LilyPond file.
 
     Returns LilyPond file.
     '''
@@ -21,9 +21,10 @@ def make_ligeti_example_lilypond_file(music=None):
     lilypond_file.layout_block.merge_differently_dotted = True
     lilypond_file.layout_block.merge_differently_headed = True
 
-    context_block = lilypondfiletools.ContextBlock()
+    context_block = lilypondfiletools.ContextBlock(
+        source_context_name='Score',
+        )
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.context_name = 'Score'
     context_block.remove_commands.append('Bar_number_engraver')
     context_block.remove_commands.append('Default_bar_line_engraver')
     context_block.remove_commands.append('Timing_translator')
@@ -36,39 +37,42 @@ def make_ligeti_example_lilypond_file(music=None):
     override(context_block).tuplet_bracket.bracket_visibility = True
     override(context_block).tuplet_bracket.minimum_length = 3
     override(context_block).tuplet_bracket.padding = 2
-    override(context_block).tuplet_bracket.springs_and_rods = \
-        schemetools.Scheme('ly:spanner::set-spacing-rods')
-    override(context_block).tuplet_number.text = \
-        schemetools.Scheme('tuplet-number::calc-fraction-text')
+    scheme = schemetools.Scheme('ly:spanner::set-spacing-rods')
+    override(context_block).tuplet_bracket.springs_and_rods = scheme
+    scheme = schemetools.Scheme('tuplet-number::calc-fraction-text')
+    override(context_block).tuplet_number.text = scheme
     set_(context_block).autoBeaming = False
     moment = schemetools.SchemeMoment((1, 12))
     set_(context_block).proportionalNotationDuration = moment
     set_(context_block).tupletFullLength = True
 
-    context_block = lilypondfiletools.ContextBlock()
+    context_block = lilypondfiletools.ContextBlock(
+        source_context_name='Staff',
+        )
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.context_name = 'Staff'
     # LilyPond CAUTION: Timing_translator must appear 
     #                   before Default_bar_line_engraver!
     context_block.consists_commands.append('Timing_translator')
     context_block.consists_commands.append('Default_bar_line_engraver')
-    override(context_block).time_signature.style = \
-        schemetools.Scheme("'numbered")
+    scheme = schemetools.Scheme("'numbered")
+    override(context_block).time_signature.style = scheme
 
-    context_block = lilypondfiletools.ContextBlock()
+    context_block = lilypondfiletools.ContextBlock(
+        source_context_name='RhythmicStaff',
+        )
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.context_name = 'RhythmicStaff'
     # LilyPond CAUTION: Timing_translator must appear 
     #                   before Default_bar_line_engraver!
     context_block.consists_commands.append('Timing_translator')
     context_block.consists_commands.append('Default_bar_line_engraver')
-    override(context_block).time_signature.style = \
-        schemetools.Scheme("'numbered")
+    scheme = schemetools.Scheme("'numbered")
+    override(context_block).time_signature.style = scheme
     override(context_block).vertical_axis_group.minimum_Y_extent = (-2, 4)
 
-    context_block = lilypondfiletools.ContextBlock()
+    context_block = lilypondfiletools.ContextBlock(
+        source_context_name='Voice',
+        )
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.context_name = 'Voice'
     context_block.remove_commands.append('Forbid_line_break_engraver')
 
     return lilypond_file

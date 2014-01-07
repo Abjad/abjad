@@ -3,7 +3,7 @@ from abjad.tools import scoretools
 
 
 def make_basic_lilypond_file(music=None):
-    r'''Makes basic LilyPond file with `music`.
+    r'''Makes basic LilyPond file.
 
     ::
 

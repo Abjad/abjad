@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class LilyPondVersionToken(AbjadObject):
-    r'''A LilyPond version token.
+    r'''A LilyPond file ``\version`` token.
     
     ..  container:: example
 

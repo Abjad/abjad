@@ -4,7 +4,7 @@ from abjad.tools import abctools
 
 
 class LilyPondDimension(abctools.AbjadObject):
-    r'''A LilyPond dimension.
+    r'''A LilyPond file ``\paper`` block dimension.
 
     ..  container:: example
 

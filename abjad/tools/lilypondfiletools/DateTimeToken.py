@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class DateTimeToken(AbjadObject):
-    '''A date / time token.
+    '''A LilyPond file date / time token.
 
     ..  container:: example
 

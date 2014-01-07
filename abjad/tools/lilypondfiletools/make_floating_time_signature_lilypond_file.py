@@ -6,15 +6,13 @@ from abjad.tools.topleveltools import set_
 
 
 def make_floating_time_signature_lilypond_file(music=None):
-    r'''Make floating time signature LilyPond file from `music`.
+    r'''Makes floating time signature LilyPond file.
 
-    Function creates a basic LilyPond file.
+    Makes a LilyPond file.
 
-    Function then applies many layout settings.
+    Applies many layout settings.
 
-    View source here for the complete inventory of settings applied.
-
-    Returns LilyPond file object.
+    Returns LilyPond file.
     '''
     from abjad.tools import layouttools
     from abjad.tools import lilypondfiletools
@@ -39,10 +37,10 @@ def make_floating_time_signature_lilypond_file(music=None):
     lilypond_file.layout_block.context_blocks.append(
         time_signature_context_block)
 
-    context_block = lilypondfiletools.ContextBlock()
+    context_block = lilypondfiletools.ContextBlock(
+        source_context_name='Score',
+        )
     lilypond_file.layout_block.context_blocks.append(context_block)
-    lilypond_file.score = context_block
-    context_block.context_name = 'Score'
     context_block.accepts_commands.append('TimeSignatureContext')
     context_block.remove_commands.append('Bar_number_engraver')
     override(context_block).beam.breakable = True
@@ -62,18 +60,22 @@ def make_floating_time_signature_lilypond_file(music=None):
     set_(context_block).tupletFullLength = True
 
     # provided as a stub position for user customization
-    context_block = lilypondfiletools.ContextBlock()
+    context_block = lilypondfiletools.ContextBlock(
+        source_context_name='StaffGroup',
+        )
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.context_name = 'StaffGroup'
 
-    context_block = lilypondfiletools.ContextBlock()
+    context_block = lilypondfiletools.ContextBlock(
+        source_context_name='Staff',
+        )
+        
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.context_name = 'Staff'
     context_block.remove_commands.append('Time_signature_engraver')
 
-    context_block = lilypondfiletools.ContextBlock()
+    context_block = lilypondfiletools.ContextBlock(
+        source_context_name='RhythmicStaff',
+        )
     lilypond_file.layout_block.context_blocks.append(context_block)
-    context_block.context_name = 'RhythmicStaff'
     context_block.remove_commands.append('Time_signature_engraver')
 
     return lilypond_file

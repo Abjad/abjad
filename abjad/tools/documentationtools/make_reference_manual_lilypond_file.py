@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import set_
 
 
 def make_reference_manual_lilypond_file(music=None):
-    r'''Make reference manual LilyPond file.
+    r'''Makes reference manual LilyPond file.
 
         >>> score = Score([Staff('c d e f')])
         >>> lilypond_file = \
@@ -73,21 +73,22 @@ def make_reference_manual_lilypond_file(music=None):
         lilypondfiletools.LilyPondDimension(1, 'in')
 
     # score context
-    context_block = lilypondfiletools.ContextBlock()
-    context_block.context_name = 'Score'
+    context_block = lilypondfiletools.ContextBlock(
+        source_context_name='Score',
+        )
     context_block.remove_commands.append('Bar_number_engraver')
     override(context_block).spacing_spanner.strict_grace_spacing = True
     override(context_block).spacing_spanner.strict_note_spacing = True
     override(context_block).spacing_spanner.uniform_stretching = True
     override(context_block).tuplet_bracket.bracket_visibility = True
     override(context_block).tuplet_bracket.padding = 2
-    override(context_block).tuplet_bracket.springs_and_rods = \
-        schemetools.Scheme('ly:spanner::set-spacing-rods')
+    scheme = schemetools.Scheme('ly:spanner::set-spacing-rods')
+    override(context_block).tuplet_bracket.springs_and_rods = scheme
     override(context_block).tuplet_bracket.minimum_length = 3
-    override(context_block).tuplet_number.text = \
-        schemetools.Scheme('tuplet-number::calc-fraction-text')
-    set_(context_block).proportionalNotationDuration = \
-        schemetools.SchemeMoment((1, 32))
+    scheme = schemetools.Scheme('tuplet-number::calc-fraction-text')
+    override(context_block).tuplet_number.text = scheme
+    moment = schemetools.SchemeMoment((1, 32))
+    set_(context_block).proportionalNotationDuration = moment
     set_(context_block).tupletFullLength = True
     lilypond_file.layout_block.context_blocks.append(context_block)
 

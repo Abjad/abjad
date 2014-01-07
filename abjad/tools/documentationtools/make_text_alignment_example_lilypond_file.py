@@ -4,7 +4,7 @@ from abjad.tools.topleveltools import set_
 
 
 def make_text_alignment_example_lilypond_file(music=None):
-    r'''Make text-alignment example LilyPond file with `music`.
+    r'''Makes text-alignment example LilyPond file.
 
         >>> score = Score([Staff('c d e f')])
         >>> lilypond_file = documentationtools.make_text_alignment_example_lilypond_file(score)
@@ -68,20 +68,21 @@ def make_text_alignment_example_lilypond_file(music=None):
     lilypond_file.layout_block.indent = 0
     lilypond_file.layout_block.ragged_right = True
 
-    context_block = lilypondfiletools.ContextBlock()
+    context_block = lilypondfiletools.ContextBlock(
+        source_context_name='Score',
+        )
     lilypond_file.layout_block.context_blocks.append(context_block)
 
     context_block.remove_commands.append('Bar_number_engraver')
     context_block.remove_commands.append('Default_bar_line_engraver')
-    context_block.context_name = 'Score'
     override(context_block).clef.transparent = True
     override(context_block).spacing_spanner.strict_grace_spacing = True
     override(context_block).spacing_spanner.strict_note_spacing = True
     override(context_block).spacing_spanner.uniform_stretching = True
     override(context_block).text_script.staff_padding = 4
     override(context_block).time_signature.transparent = True
-    set_(context_block).proportionalNotationDuration = \
-        schemetools.SchemeMoment((1, 32))
+    moment = schemetools.SchemeMoment((1, 32))
+    set_(context_block).proportionalNotationDuration = moment
 
     lilypond_file.paper_block.bottom_margin = 10
     lilypond_file.paper_block.left_margin = 10

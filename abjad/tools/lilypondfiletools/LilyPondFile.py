@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class LilyPondFile(AbjadObject):
-    r'''A LilyPond input file.
+    r'''A LilyPond file.
 
     ..  container:: example
 

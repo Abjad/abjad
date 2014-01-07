@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import set_
 
 
 class ContextBlock(Block):
-    r'''A LilyPond file context block.
+    r'''A LilyPond file ``\context`` block.
 
     ..  container:: example
 

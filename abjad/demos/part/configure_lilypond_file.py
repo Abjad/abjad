@@ -8,8 +8,9 @@ def configure_lilypond_file(lilypond_file):
 
     lilypond_file.global_staff_size = 8
 
-    context_block = lilypondfiletools.ContextBlock()
-    context_block.context_name = r'Staff \RemoveEmptyStaves'
+    context_block = lilypondfiletools.ContextBlock(
+        source_context_name=r'Staff \RemoveEmptyStaves',
+        )
     override(context_block).vertical_axis_group.remove_first = True
     lilypond_file.layout_block.context_blocks.append(context_block)
 
