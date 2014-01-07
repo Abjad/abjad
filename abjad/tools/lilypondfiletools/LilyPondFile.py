@@ -351,7 +351,7 @@ class LilyPondFile(AbjadObject):
                 >>> for item in lilypond_file.items:
                 ...     item
                 Block(name='header')
-                LayoutBlock()
+                Block(name='layout')
                 Block(name='paper')
                 Block(name='score')
 

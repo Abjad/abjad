@@ -53,7 +53,7 @@ def make_basic_lilypond_file(music=None):
         return music
     lilypond_file = lilypondfiletools.LilyPondFile()
     header_block = lilypondfiletools.Block(name='header')
-    layout_block = lilypondfiletools.LayoutBlock()
+    layout_block = lilypondfiletools.Block(name='layout')
     paper_block = lilypondfiletools.Block(name='paper')
     score_block = lilypondfiletools.Block(name='score')
     lilypond_file.items.extend([

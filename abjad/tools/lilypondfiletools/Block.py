@@ -96,6 +96,18 @@ class Block(AbjadObject):
         return result
 
     @property
+    def _formatted_context_blocks(self):
+        from abjad.tools import lilypondfiletools
+        result = []
+        context_blocks = []
+        for item in self.items:
+            if isinstance(item, lilypondfiletools.ContextBlock):
+                context_blocks.append(item)
+        for context_block in context_blocks:
+            result.extend(context_block._format_pieces)
+        return result
+
+    @property
     def _lilypond_format(self):
         return '\n'.join(self._format_pieces)
 
