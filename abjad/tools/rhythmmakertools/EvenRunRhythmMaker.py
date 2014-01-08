@@ -1,9 +1,11 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad.tools import durationtools
+from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
+from abjad.tools import systemtools
 from abjad.tools.agenttools.InspectionAgent import inspect
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
@@ -77,33 +79,41 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     _default_positional_input_arguments = ()
 
+    _human_readable_class_name = 'even-run rhythm-maker'
+
     ### GALLERY INPUT ###
 
-    _gallery_input = (
-        ({
-            'denominator_multiplier_exponent': 0,
-            'beam_each_cell': True,
-            'beam_cells_together': False,
-            },
-            [(4, 8), (3, 4), (2, 4), (1, 16), (1, 16), (7, 8), (5, 16)],
+    _gallery_input_blocks = (
+        systemtools.GalleryInputBlock(
+            input_={
+                'denominator_multiplier_exponent': 0,
+                'beam_each_cell': True,
+                'beam_cells_together': False,
+                },
+            divisions=[
+                (4, 8), (3, 4), (2, 4), (1, 16), (1, 16), (7, 8), (5, 16),
+                ],
             ),
-
-        ({
-            'denominator_multiplier_exponent': 1,
-            'beam_each_cell': True,
-            'beam_cells_together': False,
-            },
-            [(4, 8), (3, 4), (2, 4), (1, 16), (1, 16), (7, 8), (5, 16)],
+        systemtools.GalleryInputBlock(
+            input_={
+                'denominator_multiplier_exponent': 1,
+                'beam_each_cell': True,
+                'beam_cells_together': False,
+                },
+            divisions=[
+                (4, 8), (3, 4), (2, 4), (1, 16), (1, 16), (7, 8), (5, 16),
+                ],
             ),
-
-        ({
-            'denominator_multiplier_exponent': 2,
-            'beam_each_cell': True,
-            'beam_cells_together': False,
-            },
-            [(4, 8), (3, 4), (2, 4), (1, 16), (1, 16), (7, 8), (5, 16)],
+        systemtools.GalleryInputBlock(
+            input_={
+                'denominator_multiplier_exponent': 2,
+                'beam_each_cell': True,
+                'beam_cells_together': False,
+                },
+            divisions=[
+                (4, 8), (3, 4), (2, 4), (1, 16), (1, 16), (7, 8), (5, 16),
+                ],
             ),
-
         )
 
     ### INITIALIZER ###
@@ -194,21 +204,18 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _gallery_input_block_to_score(gallery_input_block):
+    def _gallery_input_block_to_score(self, block):
         from abjad.tools import sequencetools
-        input_dictionary = gallery_input_block[0]
-        divisions = gallery_input_block[1]
-        maker = EvenRunRhythmMaker(**input_dictionary)
-        lists = maker(divisions)
+        maker = type(self)(**block.input_)
+        lists = maker(block.divisions)
         music = sequencetools.flatten_sequence(lists)
-        measures = scoretools.make_spacer_skip_measures(divisions)
+        measures = scoretools.make_spacer_skip_measures(block.divisions)
         time_signature_context = scoretools.Context(
             measures,
             context_name='TimeSignatureContext',
             name='TimeSignatureContext',
             )
-        measures = scoretools.make_spacer_skip_measures(divisions)
+        measures = scoretools.make_spacer_skip_measures(block.divisions)
         staff = scoretools.RhythmicStaff(measures)
         measures = scoretools.replace_contents_of_measures_in_expr(
             staff, music)
@@ -217,34 +224,44 @@ class EvenRunRhythmMaker(RhythmMaker):
         score.append(staff)
         return score
 
-    @staticmethod
-    def _gallery_input_to_lilypond_file():
+    def _make_gallery_title(self):
+        string = self._human_readable_class_name 
+        string = stringtools.capitalize_string_start(string)
+        markup = markuptools.Markup(string)
+        return markup
+
+    def _gallery_input_to_lilypond_file(self):
         from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+        lilypond_file.items.remove(lilypond_file.score_block)
+        markups = []
         scores = []
-        for gallery_input_block in EvenRunRhythmMaker._gallery_input:
-            score = EvenRunRhythmMaker._gallery_input_block_to_score(
-                gallery_input_block)
-            scores.append(score)
-        for score in scores:
+        for block in self._gallery_input_blocks:
+            score = self._gallery_input_block_to_score(block)
             if not inspect(score).is_well_formed():
                 message = 'score is not well-formed: {!r}.'
                 message = message.format(score)
                 message += '\n'
                 message += inspect(score).tabulate_well_formedness_violations()
                 raise Exception(message)
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file()
-        lilypond_file.items.remove(lilypond_file.score_block)
-        for i, score in enumerate(scores):
-            #title_markup = markuptools.Markup('TITLE MARKUP')
-            #lilypond_file.items.append(title_markup)
-            score_block = lilypondfiletools.Block(name='score')
-            score_block.items.append(score)
-            header_block = lilypondfiletools.Block(name='header')
-            string = r'\italic {{ No. {} }}'.format(i + 1)
-            header_block.piece = markuptools.Markup(string)
-            score_block.items.append(header_block)
-            lilypond_file.items.append(score_block)
+            scores.append(score)
+            markup = block._to_markup(type(self))
+            markups.append(markup)
+
+#        for i, score in enumerate(scores):
+#            score_block = lilypondfiletools.Block(name='score')
+#            score_block.items.append(score)
+#            header_block = lilypondfiletools.Block(name='header')
+#            string = r'\italic {{ No. {} }}'.format(i + 1)
+#            header_block.piece = markuptools.Markup(string)
+#            score_block.items.append(header_block)
+#            lilypond_file.items.append(score_block)
+
+        for markup, score in zip(markups, scores):
+            lilypond_file.items.append(markup)
+            lilypond_file.items.append(score)
+
         lilypond_file.default_paper_size = ('letter', 'portrait')
         lilypond_file.global_staff_size = 10
         lilypond_file.use_relative_includes = True
@@ -272,12 +289,11 @@ class EvenRunRhythmMaker(RhythmMaker):
             attach(beam, container)
         return container
 
-    @staticmethod
-    def _write_gallery_to_disk():
-        lilypond_file = EvenRunRhythmMaker._gallery_input_to_lilypond_file()
+    def _write_gallery_to_disk(self):
+        lilypond_file = self._gallery_input_to_lilypond_file()
         file_path = __file__
         directory_path = os.path.dirname(file_path)
-        class_name = EvenRunRhythmMaker.__name__
+        class_name = type(self).__name__
         file_name = '{}.pdf'.format(class_name)
         file_path = os.path.join(directory_path, 'gallery', file_name)
         persist(lilypond_file).as_pdf(file_path, remove_ly=True)

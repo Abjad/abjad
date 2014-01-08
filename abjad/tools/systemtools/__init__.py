@@ -2,6 +2,7 @@
 from AbjadConfiguration import AbjadConfiguration
 from BenchmarkScoreMaker import BenchmarkScoreMaker
 from Configuration import Configuration
+from GalleryInputBlock import GalleryInputBlock
 from IOManager import IOManager
 from ImportManager import ImportManager
 from LilyPondFormatBundle import LilyPondFormatBundle

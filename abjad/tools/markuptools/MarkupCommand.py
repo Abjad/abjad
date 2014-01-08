@@ -85,8 +85,8 @@ class MarkupCommand(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a markup command with command and args equal to
-        those of this markup command. Otherwise false.
+        r'''Is true when `expr` is a markup command with command and 
+        args equal to those of this markup command. Otherwise false.
 
         Returns boolean.
         '''
@@ -112,7 +112,7 @@ class MarkupCommand(AbjadObject):
         return str(self)
 
     def __str__(self):
-        r'''String representation of markup command.
+        r'''Gets string representation of markup command.
 
         Returns string.
         '''
