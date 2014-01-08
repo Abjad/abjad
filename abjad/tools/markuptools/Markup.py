@@ -1,80 +1,79 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import abctools
 from abjad.tools import schemetools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Markup(AbjadObject):
-    r'''Abjad model of LilyPond markup.
+    r'''A LilyPond markup.
 
-    Initializes from string:
+    ..  container:: example
 
-    ::
+        Initializes from string:
 
-        >>> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+        ::
 
-    ::
+            >>> string = r'\bold { "This is markup text." }'
+            >>> markup = Markup(string)
+            >>> show(markup) # doctest: +SKIP
 
-        >>> markup
-        Markup((MarkupCommand('bold', ['This is markup text.']),))
+        ..  doctest::
 
-    ..  doctest::
+            >>> print format(markup)
+            \markup { \bold { "This is markup text." } }
 
-        >>> print format(markup)
-        \markup { \bold { "This is markup text." } }
+    ..  container:: example
 
-    ::
+        Initializes from other markup:
 
-        >>> show(markup) # doctest: +SKIP
+        ::
 
-    Initializes any markup from existing markup:
+            >>> markup_1 = Markup('foo', direction=Up)
+            >>> markup_2 = Markup(markup_1, direction=Down)
+            >>> show(markup_2) # doctest: +SKIP
 
-    ::
+        ..  doctest::
 
-        >>> markup_1 = markuptools.Markup('foo', direction=Up)
-        >>> markup_2 = markuptools.Markup(markup_1, direction=Down)
+            >>> print format(markup_1)
+            ^ \markup { foo }
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> print format(markup_1)
-        ^ \markup { foo }
+            >>> print format(markup_2)
+            _ \markup { foo }
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> print format(markup_2) # doctest: +SKIP
-        _ \markup { foo }
+        Attaches markup to score components:
 
-    Attach markup to score components by calling them on the component:
+        ::
 
-    ::
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> string = r'\italic { "This is also markup text." }'
+            >>> markup = Markup(string, direction=Up)
+            >>> attach(markup, staff[0])
+            >>> show(staff) # doctest: +SKIP
 
-        >>> note = Note("c'4")
+        ..  doctest::
 
-    ::
-
-        >>> markup = markuptools.Markup(
-        ...     r'\italic { "This is also markup text." }', direction=Up)
-
-    ::
-
-        >>> attach(markup, note)
-
-    ..  doctest::
-
-        >>> print format(note)
-        c'4 ^ \markup { \italic { "This is also markup text." } }
-
-    ::
-
-        >>> show(note) # doctest: +SKIP
+            >>> print format(staff)
+            \new Staff {
+                c'8
+                    ^ \markup {
+                        \italic
+                            {
+                                "This is also markup text."
+                            }
+                        }
+                d'8
+                e'8
+                f'8
+            }
 
     Set `direction` to ``Up``, ``Down``, ``'neutral'``,
     ``'^'``, ``'_'``, ``'-'`` or None.
 
     Markup objects are immutable.
-
-    Returns markup instance.
     '''
 
     ### CLASS VARIABLES ###
@@ -135,6 +134,16 @@ class Markup(AbjadObject):
     def __copy__(self, *args):
         r'''Copies markup.
 
+        ..  container:: example
+
+            ::
+
+                >>> import copy
+                >>> string = r'\bold { allegro ma non troppo }'
+                >>> markup = Markup(string)
+                >>> new_markup = copy.copy(markup)
+                >>> show(new_markup) # doctest: +SKIP
+
         Returns new markup.
         '''
         return type(self)(
@@ -156,6 +165,23 @@ class Markup(AbjadObject):
 
     def __format__(self, format_specification=''):
         r'''Formats markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> string = r'\bold { allegro ma non troppo }'
+                >>> markup = Markup(string)
+                >>> print format(markup)
+                \markup {
+                    \bold
+                        {
+                            allegro
+                            ma
+                            non
+                            troppo
+                        }
+                    }
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
         Interprets `''` equal to `'lilypond'`.
@@ -179,6 +205,14 @@ class Markup(AbjadObject):
     def __illustrate__(self):
         r'''Illustrates markup.
 
+        ..  container:: example
+
+            ::
+
+                >>> string = r'\bold { allegro ma non troppo }'
+                >>> markup = Markup(string)
+                >>> show(markup) # doctest: +SKIP
+
         Returns LilyPond file.
         '''
         from abjad.tools import lilypondfiletools
@@ -189,7 +223,24 @@ class Markup(AbjadObject):
         return lilypond_file
 
     def __str__(self):
-        r'''String representation of markup.
+        r'''Gets string representation of markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> string = r'\bold { allegro ma non troppo }'
+                >>> markup = Markup(string)
+                >>> print str(markup)
+                \markup {
+                    \bold
+                        {
+                            allegro
+                            ma
+                            non
+                            troppo
+                        }
+                    }
 
         Returns string.
         '''
@@ -214,50 +265,6 @@ class Markup(AbjadObject):
                 self.contents,
                 ),
             )
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def contents(self):
-        r'''Tuple of contents of markup.
-
-        ::
-
-            >>> markup = \
-            ...     markuptools.Markup(r'\bold { "This is markup text." }')
-            >>> markup.contents
-            (MarkupCommand('bold', ['This is markup text.']),)
-
-        Returns string
-        '''
-        return self._contents
-
-    @property
-    def direction(self):
-        r'''Direction of markup.
-
-        Returns ordinal constant.
-        '''
-        return self._direction
-
-    @property
-    def markup_name(self):
-        r'''Name of markup.
-
-        ::
-
-            >>> markup = markuptools.Markup(
-            ...     r'\bold { allegro ma non troppo }',
-            ...     markup_name='non troppo')
-
-        ::
-
-            >>> markup.markup_name
-            'non troppo'
-
-        Returns string or none.
-        '''
-        return self._markup_name
 
     ### PRIVATE METHODS ###
 
@@ -292,3 +299,68 @@ class Markup(AbjadObject):
                     content._get_format_pieces()])
         pieces.append('{}}}'.format(indent))
         return pieces
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def contents(self):
+        r'''Gets contents of markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> string = r'\bold { "This is markup text." }'
+                >>> markup = Markup(string)
+                >>> show(markup) # doctest: +SKIP
+
+            ::
+
+                >>> markup.contents
+                (MarkupCommand('bold', ['This is markup text.']),)
+
+        Returns tuple.
+        '''
+        return self._contents
+
+    @property
+    def direction(self):
+        r'''Gets direction of markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> string = r'\bold { "This is markup text." }'
+                >>> markup = Markup(string, direction=Up)
+                >>> show(markup) # doctest: +SKIP
+
+            ::
+
+                >>> markup.direction
+                Up
+
+        Returns up, down, center or none.
+        '''
+        return self._direction
+
+    @property
+    def markup_name(self):
+        r'''Gets markup name of markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> string = r'\bold { allegro ma non troppo }'
+                >>> markup = Markup(string, markup_name='non troppo')
+                >>> show(markup) # doctest: +SKIP
+
+            ::
+
+                >>> markup.markup_name
+                'non troppo'
+
+        Returns string or none.
+        '''
+        return self._markup_name
