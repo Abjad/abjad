@@ -183,9 +183,8 @@ class RhythmMaker(AbjadObject):
 
         ::
 
-            >>> staff = Staff(
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions))
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
+            >>> staff = Staff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)
 

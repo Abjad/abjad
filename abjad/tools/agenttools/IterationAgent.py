@@ -829,8 +829,8 @@ class IterationAgent(abctools.AbjadObject):
 
         ::
 
-            >>> measures = scoretools.make_spacer_skip_measures(
-            ...     [(3, 8), (5, 16), (5, 16)])
+            >>> pairs = [(3, 8), (5, 16), (5, 16)]
+            >>> measures = scoretools.make_spacer_skip_measures(pairs)
             >>> time_signature_voice = Voice(measures)
             >>> time_signature_voice.name = 'TimeSignatuerVoice'
             >>> time_signature_voice.is_nonsemantic = True

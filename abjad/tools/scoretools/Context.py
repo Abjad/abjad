@@ -247,9 +247,8 @@ class Context(Container):
 
         ::
 
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     [(1, 8), (5, 16), (5, 16)])
+            >>> pairs = [(1, 8), (5, 16), (5, 16)]
+            >>> measures = scoretools.make_spacer_skip_measures(pairs)
             >>> voice = Voice(measures)
             >>> voice.name = 'HiddenTimeSignatureVoice'
 

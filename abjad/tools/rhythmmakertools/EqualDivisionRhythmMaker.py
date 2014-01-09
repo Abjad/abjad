@@ -22,9 +22,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         >>> divisions = [(1, 2), (3, 8), (5, 16)]
         >>> tuplet_lists = maker(divisions)
         >>> music = sequencetools.flatten_sequence(tuplet_lists)
-        >>> measures = \
-        ...     scoretools.make_spacer_skip_measures(
-        ...     divisions)
+        >>> measures = scoretools.make_spacer_skip_measures(divisions)
         >>> staff = scoretools.RhythmicStaff(measures)
         >>> measures = scoretools.replace_contents_of_measures_in_expr(
         ...     staff, music)
@@ -111,9 +109,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             >>> divisions = [(1, 2), (3, 8), (5, 16)]
             >>> tuplet_lists = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(tuplet_lists)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)
@@ -194,9 +190,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             >>> divisions = [(1, 2), (3, 8), (5, 16)]
             >>> tuplet_lists = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(tuplet_lists)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)

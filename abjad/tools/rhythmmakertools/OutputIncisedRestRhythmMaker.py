@@ -8,7 +8,7 @@ from abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker \
 
 
 class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
-    r'''Output-incised rest rhythm-maker:
+    r'''Output-incised rest rhythm-maker.
 
     ::
 
@@ -17,7 +17,8 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
         ...     prefix_lengths=[2],
         ...     suffix_talea=[3],
         ...     suffix_lengths=[4],
-        ...     talea_denominator=32)
+        ...     talea_denominator=32,
+        ...     )
 
     Configuration at initialization and then call on arbitrary divisions:
 
@@ -26,9 +27,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
         >>> divisions = [(5, 8), (5, 8), (5, 8)]
         >>> leaf_lists = maker(divisions)
         >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = \
-        ...     scoretools.make_spacer_skip_measures(
-        ...     divisions)
+        >>> measures = scoretools.make_spacer_skip_measures(divisions)
         >>> staff = scoretools.RhythmicStaff(measures)
         >>> measures = scoretools.replace_contents_of_measures_in_expr(
         ...     staff, leaves)
@@ -98,9 +97,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
             >>> divisions = [(5, 8), (5, 8), (5, 8)]
             >>> leaf_lists = new_maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)
@@ -152,9 +149,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
             >>> divisions = [(5, 8), (5, 8), (5, 8)]
             >>> leaf_lists = reversed_maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)

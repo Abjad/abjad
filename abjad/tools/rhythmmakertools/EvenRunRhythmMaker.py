@@ -56,9 +56,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> divisions = [(4, 8), (3, 4), (2, 4)]
             >>> lists = maker(divisions)
             >>> music = sequencetools.flatten_sequence(lists)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)
@@ -186,9 +184,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> divisions = [(4, 8), (3, 4), (2, 4)]
             >>> lists = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(lists)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)
@@ -337,9 +333,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> divisions = [(4, 8), (3, 4), (2, 4)]
             >>> lists = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(lists)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)

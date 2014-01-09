@@ -13,28 +13,6 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
     staff = Staff(measures)
     measures = scoretools.replace_contents_of_measures_in_expr(staff, music)
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'4 ~
-        }
-        {
-            c'16
-            c'8. ~
-        }
-        {
-            c'8
-            c'8 ~
-        }
-        {
-            c'8.
-            c'16
-        }
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -59,6 +37,8 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
 
@@ -71,35 +51,6 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
     staff = Staff(measures)
     measures = scoretools.replace_contents_of_measures_in_expr(staff, music)
 
-    r'''
-    \new Staff {
-        {
-            \time 3/16
-            c'8. ~
-        }
-        {
-            \time 5/8
-            c'8
-            c'4 ~
-            c'16
-            c'8. ~
-        }
-        {
-            \time 4/8
-            c'8
-            c'4 ~
-            c'16
-            c'16 ~
-        }
-        {
-            \time 7/16
-            c'4
-            c'8.
-        }
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -130,3 +81,5 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()

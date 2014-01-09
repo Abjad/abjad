@@ -25,9 +25,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
             >>> divisions = 4 * [(5, 16)]
             >>> leaf_lists = maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)
@@ -73,16 +71,15 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
             ...     suffix_talea=[-1],
             ...     suffix_lengths=[1],
             ...     talea_denominator=16,
-            ...     body_ratio=(1, 1))
+            ...     body_ratio=(1, 1),
+            ...     )
 
         ::
 
             >>> divisions = 4 * [(5, 16)]
             >>> leaf_lists = maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)
@@ -201,9 +198,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
             >>> divisions = [(5, 16), (5, 16), (5, 16), (5, 16)]
             >>> leaf_lists = new_maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)
@@ -257,9 +252,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
             >>> divisions = [(5, 16), (5, 16), (5, 16), (5, 16)]
             >>> leaf_lists = maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)
@@ -297,9 +290,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
             >>> divisions = [(5, 16), (5, 16), (5, 16), (5, 16)]
             >>> leaf_lists = reversed_maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)

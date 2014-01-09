@@ -16,8 +16,8 @@ def make_floating_time_signature_lilypond_file(music=None):
             >>> time_signature_context = scoretools.Context(
             ...     context_name='TimeSignatureContext',
             ...     )
-            >>> time_signatures = [(2, 8), (3, 8), (4, 8)]
-            >>> measures = scoretools.make_spacer_skip_measures(time_signatures)
+            >>> durations = [(2, 8), (3, 8), (4, 8)]
+            >>> measures = scoretools.make_spacer_skip_measures(durations)
             >>> time_signature_context.extend(measures)
             >>> score.append(time_signature_context)
             >>> staff = Staff()

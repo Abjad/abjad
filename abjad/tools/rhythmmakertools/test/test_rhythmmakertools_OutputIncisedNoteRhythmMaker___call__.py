@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import sequencetools
-from abjad.tools import rhythmmakertools
 
 
 def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___01():
@@ -10,39 +8,21 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___01():
     suffix_talea, suffix_lengths = [-3], [4]
     talea_denominator = 32
     maker = rhythmmakertools.OutputIncisedNoteRhythmMaker(
-        prefix_talea, prefix_lengths, suffix_talea, suffix_lengths, talea_denominator)
+        prefix_talea, 
+        prefix_lengths, 
+        suffix_talea, 
+        suffix_lengths, 
+        talea_denominator,
+        )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
+    measures = scoretools.make_spacer_skip_measures(divisions)
+    staff = Staff(measures)
     scoretools.replace_contents_of_measures_in_expr(staff, leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
-
-    r'''
-    \new Staff {
-        {
-            \time 5/8
-            r4
-            r4
-            c'8
-        }
-        {
-            \time 5/8
-            c'2 ~
-            c'8
-        }
-        {
-            \time 5/8
-            c'4
-            r16.
-            r16.
-            r16.
-            r16.
-        }
-    }
-    '''
 
     assert systemtools.TestManager.compare(
         staff,
@@ -78,37 +58,21 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___02():
     suffix_talea, suffix_lengths = [-1], [2]
     talea_denominator = 4
     maker = rhythmmakertools.OutputIncisedNoteRhythmMaker(
-        prefix_talea, prefix_lengths, suffix_talea, suffix_lengths, talea_denominator)
+        prefix_talea, 
+        prefix_lengths, 
+        suffix_talea, 
+        suffix_lengths, 
+        talea_denominator,
+        )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
+    measures = scoretools.make_spacer_skip_measures(divisions)
+    staff = Staff(measures)
     scoretools.replace_contents_of_measures_in_expr(staff, leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
-
-    r'''
-    \new Staff {
-        {
-            \time 5/8
-            r4
-            r4
-            r8
-        }
-        {
-            \time 5/8
-            c'2 ~
-            c'8
-        }
-        {
-            \time 5/8
-            c'8
-            r4
-            r4
-        }
-    }
-    '''
 
     assert systemtools.TestManager.compare(
         staff,
@@ -142,35 +106,21 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___03():
     suffix_talea, suffix_lengths = [], [0]
     talea_denominator = 4
     maker = rhythmmakertools.OutputIncisedNoteRhythmMaker(
-        prefix_talea, prefix_lengths, suffix_talea, suffix_lengths, talea_denominator)
+        prefix_talea, 
+        prefix_lengths, 
+        suffix_talea, 
+        suffix_lengths, 
+        talea_denominator,
+        )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
+    measures = scoretools.make_spacer_skip_measures(divisions)
+    staff = Staff(measures)
     scoretools.replace_contents_of_measures_in_expr(staff, leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
-
-    r'''
-    \new Staff {
-        {
-            \time 5/8
-            c'2 ~
-            c'8
-        }
-        {
-            \time 5/8
-            c'2 ~
-            c'8
-        }
-        {
-            \time 5/8
-            c'2 ~
-            c'8
-        }
-    }
-    '''
 
     assert systemtools.TestManager.compare(
         staff,
@@ -203,41 +153,22 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___04():
     talea_denominator = 8
     prolation_addenda = [1, 0, 3]
     maker = rhythmmakertools.OutputIncisedNoteRhythmMaker(
-        prefix_talea, prefix_lengths, suffix_talea, suffix_lengths, talea_denominator,
-        prolation_addenda = prolation_addenda)
+        prefix_talea, 
+        prefix_lengths, 
+        suffix_talea, 
+        suffix_lengths, 
+        talea_denominator,
+        prolation_addenda=prolation_addenda,
+        )
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
+    measures = scoretools.make_spacer_skip_measures(divisions)
+    staff = Staff(measures)
     scoretools.replace_contents_of_measures_in_expr(staff, leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
-
-    r'''
-    \new Staff {
-        {
-            \time 4/8
-            \times 4/5 {
-                r8
-                c'2
-            }
-        }
-        {
-            \time 4/8
-            {
-                c'2
-            }
-        }
-        {
-            \time 4/8
-            \times 4/7 {
-                c'2.
-                r8
-            }
-        }
-    }
-    '''
 
     assert systemtools.TestManager.compare(
         staff,
@@ -283,42 +214,10 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___05():
     leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
+    measures = scoretools.make_spacer_skip_measures(divisions)
+    staff = Staff(measures)
     scoretools.replace_contents_of_measures_in_expr(staff, leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
-
-    r'''
-    \new Staff {
-        {
-            \time 4/8
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 3/4 {
-                r8
-                c'4.
-            }
-            {
-                c'8
-            }
-        }
-        {
-            \time 4/8
-            {
-                c'2
-            }
-        }
-        {
-            \time 4/8
-            {
-                c'8
-            }
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 3/5 {
-                c'2
-                r8
-            }
-        }
-    }
-    '''
 
     assert systemtools.TestManager.compare(
         staff,

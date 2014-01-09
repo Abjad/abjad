@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import sequencetools
 
 
 def test_scoretools_Measure_number_01():
@@ -8,7 +7,8 @@ def test_scoretools_Measure_number_01():
     '''
 
     time_signature_pairs = [(3, 16), (5, 16), (5, 16)]
-    staff = Staff(scoretools.make_spacer_skip_measures(time_signature_pairs))
+    measures = scoretools.make_spacer_skip_measures(time_signature_pairs)
+    staff = Staff(measures)
 
     assert staff[0].measure_number == 1
     assert staff[1].measure_number == 2

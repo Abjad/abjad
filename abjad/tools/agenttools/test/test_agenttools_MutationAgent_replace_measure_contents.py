@@ -8,7 +8,8 @@ def test_agenttools_MutationAgent_replace_measure_contents_01():
     Note spacer skip at end of second measure.
     '''
 
-    staff = Staff(scoretools.make_spacer_skip_measures([(1, 8), (3, 16)]))
+    measures = scoretools.make_spacer_skip_measures([(1, 8), (3, 16)])
+    staff = Staff(measures)
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16")]
     mutate(staff).replace_measure_contents(notes)
 
@@ -89,7 +90,8 @@ def test_agenttools_MutationAgent_replace_measure_contents_04():
     r'''Raise StopIteration when not enough measures.
     '''
 
-    staff = Staff(scoretools.make_spacer_skip_measures([(1, 8), (1, 8)]))
+    measures = scoretools.make_spacer_skip_measures([(1, 8), (1, 8)])
+    staff = Staff(measures)
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), 
         Note("f'16"), Note("g'16"), Note("a'16")]
     statement = 'mutate(staff).replace_measure_contents(notes)'
@@ -100,7 +102,8 @@ def test_agenttools_MutationAgent_replace_measure_contents_05():
     r'''Populate measures even when not enough total measures.
     '''
 
-    staff = Staff(scoretools.make_spacer_skip_measures([(1, 8), (1, 8)]))
+    measures = scoretools.make_spacer_skip_measures([(1, 8), (1, 8)])
+    staff = Staff(measures)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), 
         Note("f'16"), Note("g'16"), Note("a'16")]

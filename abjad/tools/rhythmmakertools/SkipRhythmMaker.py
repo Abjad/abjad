@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
+import fractions
 from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
-import fractions
 
 
 class SkipRhythmMaker(RhythmMaker):
-    r'''Skip rhythm-maker:
+    r'''Skip rhythm-maker.
 
     ::
 
@@ -19,9 +19,7 @@ class SkipRhythmMaker(RhythmMaker):
         >>> divisions = [(1, 4), (3, 16), (5, 8)]
         >>> leaf_lists = maker(divisions)
         >>> music = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = \
-        ...     scoretools.make_spacer_skip_measures(
-        ...     divisions)
+        >>> measures = scoretools.make_spacer_skip_measures(divisions)
         >>> staff = scoretools.RhythmicStaff(measures)
         >>> measures = scoretools.replace_contents_of_measures_in_expr(
         ...     staff, music)
@@ -91,9 +89,7 @@ class SkipRhythmMaker(RhythmMaker):
             >>> divisions = [(1, 4), (3, 16), (5, 8)]
             >>> leaf_lists = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)
@@ -125,9 +121,7 @@ class SkipRhythmMaker(RhythmMaker):
             >>> divisions = [(1, 4), (3, 16), (5, 8)]
             >>> leaf_lists = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)

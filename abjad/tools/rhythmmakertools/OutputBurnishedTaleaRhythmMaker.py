@@ -20,7 +20,8 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         ...     left_lengths=[1],
         ...     right_lengths=[1],
         ...     secondary_divisions=[9],
-        ...     beam_each_cell=True)
+        ...     beam_each_cell=True,
+        ...     )
 
     Configure at initialization and then call on any list of divisions:
 
@@ -29,9 +30,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         >>> divisions = [(3, 8), (4, 8)]
         >>> music = maker(divisions)
         >>> music = sequencetools.flatten_sequence(music)
-        >>> measures = \
-        ...     scoretools.make_spacer_skip_measures(
-        ...     divisions)
+        >>> measures = scoretools.make_spacer_skip_measures(divisions)
         >>> staff = scoretools.RhythmicStaff(measures)
         >>> measures = scoretools.replace_contents_of_measures_in_expr(
         ...     staff, music)
@@ -107,9 +106,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> divisions = [(3, 8), (4, 8)]
             >>> music = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)
@@ -230,9 +227,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> divisions = [(3, 8), (4, 8)]
             >>> music = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)

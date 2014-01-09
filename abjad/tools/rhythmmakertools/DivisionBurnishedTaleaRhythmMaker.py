@@ -122,9 +122,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> divisions = [(5, 8), (5, 8)]
             >>> music = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)
@@ -208,9 +206,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> divisions = [(5, 8), (5, 8)]
             >>> music = maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)
@@ -250,9 +246,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> divisions = [(5, 8), (5, 8)]
             >>> music = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)
