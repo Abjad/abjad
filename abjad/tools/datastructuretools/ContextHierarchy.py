@@ -94,7 +94,10 @@ class ContextHierarchy(AbjadObject):
 
         Returns `value` or none.
         '''
+        from abjad.tools import scoretools
         from abjad.tools.agenttools.InspectionAgent import inspect
+        if isinstance(context_name, scoretools.Context):
+            context_name = context_name.name
         assert context_name in self._context_names, context_name
         if context_name == self._score.name:
             context_settings = self._context_settings[context_name]
@@ -112,8 +115,21 @@ class ContextHierarchy(AbjadObject):
     def set(self, context_name, key, value):
         r'''Sets `key` to `value` for `context_name`.
 
+        ::
+
+            >>> context_hierarchy.set(
+            ...     'String Orchestra Score', 'flavor', 'cherry')
+
+        `context_name` may also be a Context:
+
+            >>> context_hierarchy.set(
+            ...     score, 'element', 'carbon')
+
         Returns none.
         '''
+        from abjad.tools import scoretools
+        if isinstance(context_name, scoretools.Context):
+            context_name = context_name.name
         assert context_name in self._context_names, context_name
         context_settings = self._context_settings[context_name]
         context_settings[key] = value
