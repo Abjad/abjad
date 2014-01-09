@@ -26,6 +26,7 @@ class GalleryInputBlock(AbjadObject):
         from abjad.tools import schemetools
         instance = class_(**self.input_)
         string = format(instance, 'storage')
+        string = string.replace('rhythmmakertools.', '')
         lines = string.split('\n')
         column = markuptools.MarkupCommand('column', lines)
         pair = schemetools.SchemePair('font-name', 'Courier')

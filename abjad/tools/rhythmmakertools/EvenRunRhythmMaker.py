@@ -5,6 +5,7 @@ from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
+from abjad.tools import stringtools
 from abjad.tools import systemtools
 from abjad.tools.agenttools.InspectionAgent import inspect
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
@@ -31,9 +32,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> divisions = [(4, 8), (3, 4), (2, 4)]
             >>> lists = maker(divisions)
             >>> music = sequencetools.flatten_sequence(lists)
-            >>> measures = \
-            ...     scoretools.make_spacer_skip_measures(
-            ...     divisions)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)
@@ -224,7 +223,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         score.append(staff)
         return score
 
-    def _make_gallery_title(self):
+    def _make_gallery_title_markup(self):
         string = self._human_readable_class_name 
         string = stringtools.capitalize_string_start(string)
         markup = markuptools.Markup(string)
@@ -235,6 +234,8 @@ class EvenRunRhythmMaker(RhythmMaker):
         from abjad.tools import markuptools
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
         lilypond_file.items.remove(lilypond_file.score_block)
+        title_markup = self._make_gallery_title_markup()
+        lilypond_file.header_block.title = title_markup
         markups = []
         scores = []
         for block in self._gallery_input_blocks:

@@ -6,38 +6,34 @@ from abjad.tools.rhythmmakertools.BurnishedRhythmMaker \
 
 
 class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
-    r'''Division-burnished talea rhythm-maker:
+    r'''Division-burnished talea rhythm-maker.
 
-    ::
+    ..  container:: example
 
-        >>> maker = rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
-        ...     talea=[1, 1, 2, 4],
-        ...     talea_denominator=16,
-        ...     prolation_addenda=[0, 3],
-        ...     lefts=[-1],
-        ...     middles=[0],
-        ...     rights=[-1],
-        ...     left_lengths=[1],
-        ...     right_lengths=[1],
-        ...     secondary_divisions=[14])
+        ::
 
-    Configure at instantiation and then call on any sequence of divisions:
+            >>> maker = rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
+            ...     talea=[1, 1, 2, 4],
+            ...     talea_denominator=16,
+            ...     prolation_addenda=[0, 3],
+            ...     lefts=[-1],
+            ...     middles=[0],
+            ...     rights=[-1],
+            ...     left_lengths=[1],
+            ...     right_lengths=[1],
+            ...     secondary_divisions=[14],
+            ...     )
 
-    ::
+        ::
 
-        >>> divisions = [(5, 8), (5, 8)]
-        >>> music = maker(divisions)
-        >>> music = sequencetools.flatten_sequence(music)
-        >>> measures = \
-        ...     scoretools.make_spacer_skip_measures(
-        ...     divisions)
-        >>> staff = scoretools.RhythmicStaff(measures)
-        >>> measures = scoretools.replace_contents_of_measures_in_expr(
-        ...     staff, music)
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
+            >>> divisions = [(5, 8), (5, 8)]
+            >>> music = maker(divisions)
+            >>> music = sequencetools.flatten_sequence(music)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
+            >>> staff = scoretools.RhythmicStaff(measures)
+            >>> measures = scoretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
+            >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''
