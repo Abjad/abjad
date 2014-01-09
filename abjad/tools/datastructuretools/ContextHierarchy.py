@@ -64,7 +64,7 @@ class ContextHierarchy(AbjadObject):
         if self._score is not None:
             for context in \
                 iterate(self._score).by_class(scoretools.Context):
-                assert context.context_name is not None, context.name_name
+                assert context.name is not None, context.name
                 context_names.append(context.name)
         self._context_names = tuple(sorted(context_names))
         context_settings = {}
@@ -77,16 +77,36 @@ class ContextHierarchy(AbjadObject):
     def get(self, context_name, key):
         r'''Gets `key` for `context_name`.
 
+        ::
+
+            >>> context_hierarchy.get('Violin 1 Voice', 'color')
+            'blue'
+
+        ::
+
+            >>> context_hierarchy.get('String Orchestra Score', 'color')
+            'red'
+
+        ::
+
+            >>> context_hierarchy.get('Violin 1 Voice', 'fake') is None
+            True
+
         Returns `value` or none.
         '''
         from abjad.tools.agenttools.InspectionAgent import inspect
         assert context_name in self._context_names, context_name
-        parentage = inspect(self._score[context_name]).get_parentage()
-        for context in parentage:
-            context_name = context.name
+        if context_name == self._score.name:
             context_settings = self._context_settings[context_name]
             if key in context_settings:
                 return context_settings[key]
+        else:
+            parentage = inspect(self._score[context_name]).get_parentage()
+            for context in parentage:
+                context_name = context.name
+                context_settings = self._context_settings[context_name]
+                if key in context_settings:
+                    return context_settings[key]
         return None
 
     def set(self, context_name, key, value):
