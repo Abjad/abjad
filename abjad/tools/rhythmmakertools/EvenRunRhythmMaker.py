@@ -31,27 +31,13 @@ class EvenRunRhythmMaker(RhythmMaker):
         ::
 
             >>> divisions = [(4, 8), (3, 4), (2, 4)]
-            >>> lists = maker(divisions)
-            >>> music = sequencetools.flatten_sequence(lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(music)
-
-        ::
-
-            >>> score = Score()
-            >>> time_signature_context = scoretools.Context(
-            ...    context_name='TimeSignatureContext',
-            ...    )
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> time_signature_context.extend(measures)
-            >>> score.append(time_signature_context)
-            >>> score.append(staff)
-            >>> lilypond_file = \
-            ...    lilypondfiletools.make_floating_time_signature_lilypond_file(
-            ...    score
-            ...    )
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_example_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
             >>> show(lilypond_file) # doctest: +SKIP
+
 
     ..  container:: example
 
@@ -66,26 +52,11 @@ class EvenRunRhythmMaker(RhythmMaker):
         ::
 
             >>> divisions = [(4, 8), (3, 4), (2, 4)]
-            >>> lists = maker(divisions)
-            >>> music = sequencetools.flatten_sequence(lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(music)
-
-        ::
-
-            >>> score = Score()
-            >>> time_signature_context = scoretools.Context(
-            ...    context_name='TimeSignatureContext',
-            ...    )
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> time_signature_context.extend(measures)
-            >>> score.append(time_signature_context)
-            >>> score.append(staff)
-            >>> lilypond_file = \
-            ...    lilypondfiletools.make_floating_time_signature_lilypond_file(
-            ...    score
-            ...    )
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_example_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
     Even-run rhythm-maker doesn't yet work with non-power-of-two divisions.
@@ -217,12 +188,12 @@ class EvenRunRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 4), (2, 4)]
-                >>> lists = new_maker(divisions)
-                >>> music = sequencetools.flatten_sequence(lists)
-                >>> measures = scoretools.make_spacer_skip_measures(divisions)
-                >>> staff = scoretools.RhythmicStaff(measures)
-                >>> measures = mutate(staff).replace_measure_contents(music)
-                >>> show(staff) # doctest: +SKIP
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_example_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns new even-run rhythm-maker.
         '''
@@ -354,12 +325,12 @@ class EvenRunRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 4), (2, 4)]
-                >>> lists = reversed_maker(divisions)
-                >>> music = sequencetools.flatten_sequence(lists)
-                >>> measures = scoretools.make_spacer_skip_measures(divisions)
-                >>> staff = scoretools.RhythmicStaff(measures)
-                >>> measures = mutate(staff).replace_measure_contents(music)
-                >>> show(staff) # doctest: +SKIP
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_example_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Defined equal to copy of even-run rhythm-maker.
 
