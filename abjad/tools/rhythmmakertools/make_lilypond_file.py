@@ -6,8 +6,8 @@ from abjad.tools import sequencetools
 from abjad.tools.topleveltools import mutate
 
 
-def make_example_lilypond_file(music, divisions):
-    r'''Makes example LilyPond file.
+def make_lilypond_file(music, divisions):
+    r'''Makes LilyPond file.
 
     ..  container::
 
@@ -16,7 +16,7 @@ def make_example_lilypond_file(music, divisions):
             >>> maker = rhythmmakertools.EvenRunRhythmMaker(1)
             >>> divisions = [(3, 4), (4, 8), (1, 4)]
             >>> music = maker(divisions)
-            >>> lilypond_file = rhythmmakertools.make_example_lilypond_file(
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
             ...     music,
             ...     divisions,
             ...     )

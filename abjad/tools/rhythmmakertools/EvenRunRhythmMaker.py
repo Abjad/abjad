@@ -32,7 +32,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             >>> divisions = [(4, 8), (3, 4), (2, 4)]
             >>> music = maker(divisions)
-            >>> lilypond_file = rhythmmakertools.make_example_lilypond_file(
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
             ...     music,
             ...     divisions,
             ...     )
@@ -53,7 +53,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             >>> divisions = [(4, 8), (3, 4), (2, 4)]
             >>> music = maker(divisions)
-            >>> lilypond_file = rhythmmakertools.make_example_lilypond_file(
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
             ...     music,
             ...     divisions,
             ...     )
@@ -189,7 +189,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 4), (2, 4)]
                 >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_example_lilypond_file(
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
                 ...     )
@@ -326,7 +326,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 4), (2, 4)]
                 >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_example_lilypond_file(
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
                 ...     )
