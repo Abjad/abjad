@@ -4,40 +4,40 @@ from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import iterate
 
 
-class ContextHierarchy(AbjadObject):
-    r'''A context hierarchy.
+class ContextMap(AbjadObject):
+    r'''A context map.
 
     ::
 
         >>> template = templatetools.StringOrchestraScoreTemplate()
         >>> score = template()
-        >>> context_hierarchy = datastructuretools.ContextHierarchy(score)
+        >>> context_map = datastructuretools.ContextMap(score)
 
     ::
 
-        >>> context_hierarchy['String Orchestra Score']['color'] = 'red'
-        >>> context_hierarchy['Violin Staff Group']['color'] = 'blue'
-        >>> context_hierarchy['Contrabass Staff Group']['color'] = 'green'
-        >>> context_hierarchy['Contrabass 1 Voice']['color'] = 'yellow'
+        >>> context_map['String Orchestra Score']['color'] = 'red'
+        >>> context_map['Violin Staff Group']['color'] = 'blue'
+        >>> context_map['Contrabass Staff Group']['color'] = 'green'
+        >>> context_map['Contrabass 1 Voice']['color'] = 'yellow'
 
     ::
 
-        >>> context_hierarchy['Violin 1 Voice']['color']
+        >>> context_map['Violin 1 Voice']['color']
         'blue'
 
     ::
 
-        >>> context_hierarchy['Viola 3 Voice']['color']
+        >>> context_map['Viola 3 Voice']['color']
         'red'
 
     ::
 
-        >>> context_hierarchy['Contrabass 1 Voice']['color']
+        >>> context_map['Contrabass 1 Voice']['color']
         'yellow'
 
     ::
 
-        >>> context_hierarchy['Contrabass 2 Voice']['color']
+        >>> context_map['Contrabass 2 Voice']['color']
         'green'
 
     '''
@@ -61,7 +61,7 @@ class ContextHierarchy(AbjadObject):
             return
         for context in iterate(self._score).by_class(scoretools.Context):
             assert context.name is not None, context.name
-            component = datastructuretools.ContextHierarchyComponent(
+            component = datastructuretools.ContextMapComponent(
                 self,
                 context.name,
                 )
@@ -70,9 +70,9 @@ class ContextHierarchy(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __getitem__(self, context_name):
-        r'''Gets context hierarchy component for `context_name`.
+        r'''Gets context map component for `context_name`.
 
-        Returns context hierarchy component.
+        Returns context map component.
         '''
         from abjad.tools import scoretools
         if isinstance(context_name, scoretools.Context):
