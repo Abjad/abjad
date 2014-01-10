@@ -1,15 +1,13 @@
 # -*- encoding: utf-8 -*-
 import math
-from abjad.tools import scoretools
 from abjad.tools import durationtools
-from abjad.tools import scoretools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
 class EqualDivisionRhythmMaker(RhythmMaker):
-    r'''Equal division rhythm-maker:
+    r'''Equal division rhythm-maker.
 
     ::
 
@@ -24,8 +22,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         >>> music = sequencetools.flatten_sequence(tuplet_lists)
         >>> measures = scoretools.make_spacer_skip_measures(divisions)
         >>> staff = scoretools.RhythmicStaff(measures)
-        >>> measures = scoretools.replace_contents_of_measures_in_expr(
-        ...     staff, music)
+        >>> measures = mutate(staff).replace_measure_contents(music)
 
     ::
 
@@ -111,8 +108,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             >>> music = sequencetools.flatten_sequence(tuplet_lists)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
 
         ::
 
@@ -192,8 +188,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             >>> music = sequencetools.flatten_sequence(tuplet_lists)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
 
         ::
 

@@ -3,7 +3,6 @@ import abc
 import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -185,8 +184,7 @@ class RhythmMaker(AbjadObject):
 
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = Staff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, leaves)
+            >>> measures = mutate(staff).replace_measure_contents(leaves)
 
         ..  doctest::
 

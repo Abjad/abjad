@@ -34,8 +34,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> music = sequencetools.flatten_sequence(lists)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
 
         ::
 
@@ -58,8 +57,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> music = sequencetools.flatten_sequence(lists)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
 
         ::
 
@@ -186,8 +184,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> music = sequencetools.flatten_sequence(lists)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
 
         ::
 
@@ -212,8 +209,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             )
         measures = scoretools.make_spacer_skip_measures(block.divisions)
         staff = scoretools.RhythmicStaff(measures)
-        measures = scoretools.replace_contents_of_measures_in_expr(
-            staff, music)
+        measures = mutate(staff).replace_measure_contents(music)
         score = scoretools.Score()
         score.append(time_signature_context)
         score.append(staff)
@@ -335,8 +331,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> music = sequencetools.flatten_sequence(lists)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
 
         ::
 

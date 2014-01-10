@@ -21,7 +21,7 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___01():
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
@@ -71,7 +71,7 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___02():
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
@@ -119,7 +119,7 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___03():
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
@@ -167,7 +167,7 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___04():
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
@@ -207,8 +207,14 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___05():
     prolation_addenda =    [1, 0, 0, 0, 2]
     secondary_divisions = [3, 1, 4, 1, 3]
     maker = rhythmmakertools.OutputIncisedNoteRhythmMaker(
-        prefix_talea, prefix_lengths, suffix_talea, suffix_lengths, talea_denominator,
-        prolation_addenda = prolation_addenda, secondary_divisions = secondary_divisions)
+        prefix_talea, 
+        prefix_lengths, 
+        suffix_talea, 
+        suffix_lengths, 
+        talea_denominator,
+        prolation_addenda=prolation_addenda, 
+        secondary_divisions=secondary_divisions,
+        )
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
@@ -216,7 +222,7 @@ def test_rhythmmakertools_OutputIncisedNoteRhythmMaker___call___05():
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(

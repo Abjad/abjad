@@ -24,8 +24,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             >>> music = sequencetools.flatten_sequence(music)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = Staff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
 
         ::
 
@@ -47,8 +46,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             >>> music = sequencetools.flatten_sequence(music)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = Staff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
 
         ::
 
@@ -147,8 +145,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             >>> music = sequencetools.flatten_sequence(music)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = Staff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
 
         ::
 
@@ -186,8 +183,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             >>> music = sequencetools.flatten_sequence(music)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = Staff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
 
         ::
 

@@ -23,7 +23,7 @@ def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___01():
 
     music = sequencetools.flatten_sequence(music)
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
-    scoretools.replace_contents_of_measures_in_expr(staff, music)
+    mutate(staff).replace_measure_contents(music)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -76,7 +76,7 @@ def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___02():
 
     music = sequencetools.flatten_sequence(music)
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
-    scoretools.replace_contents_of_measures_in_expr(staff, music)
+    mutate(staff).replace_measure_contents(music)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -129,7 +129,7 @@ def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___03():
 
     music = sequencetools.flatten_sequence(music)
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
-    scoretools.replace_contents_of_measures_in_expr(staff, music)
+    mutate(staff).replace_measure_contents(music)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -187,7 +187,7 @@ def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___04():
 
     music = sequencetools.flatten_sequence(music)
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
-    scoretools.replace_contents_of_measures_in_expr(staff, music)
+    mutate(staff).replace_measure_contents(music)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -244,37 +244,7 @@ def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___05():
 
     music = sequencetools.flatten_sequence(music)
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
-    scoretools.replace_contents_of_measures_in_expr(staff, music)
-
-    r'''
-    \new Staff {
-        {
-            \time 5/16
-            {
-                r32
-                c'32
-                c'16
-                c'8
-                c'32
-                r32
-            }
-        }
-        {
-            \time 6/16
-            \times 4/7 {
-                r16
-                c'8
-                r32
-            }
-            {
-                r32
-                c'16
-                c'8
-                r32
-            }
-        }
-    }
-    '''
+    mutate(staff).replace_measure_contents(music)
 
     assert systemtools.TestManager.compare(
         staff,

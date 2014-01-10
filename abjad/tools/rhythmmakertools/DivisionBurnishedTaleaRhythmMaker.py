@@ -31,8 +31,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> music = sequencetools.flatten_sequence(music)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
             >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
@@ -124,8 +123,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> music = sequencetools.flatten_sequence(music)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
 
         ::
 
@@ -208,8 +206,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> music = sequencetools.flatten_sequence(music)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
 
         ::
 
@@ -248,8 +245,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> music = sequencetools.flatten_sequence(music)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
 
         ::
 

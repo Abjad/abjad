@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools import scoretools
 from abjad.tools import mathtools
+from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker \
 	import OutputIncisedRhythmMaker
@@ -29,8 +29,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
         >>> leaves = sequencetools.flatten_sequence(leaf_lists)
         >>> measures = scoretools.make_spacer_skip_measures(divisions)
         >>> staff = scoretools.RhythmicStaff(measures)
-        >>> measures = scoretools.replace_contents_of_measures_in_expr(
-        ...     staff, leaves)
+        >>> measures = mutate(staff).replace_measure_contents(leaves)
 
     ::
 
@@ -99,8 +98,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, leaves)
+            >>> measures = mutate(staff).replace_measure_contents(leaves)
 
         ::
 
@@ -151,8 +149,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, leaves)
+            >>> measures = mutate(staff).replace_measure_contents(leaves)
 
         ::
 

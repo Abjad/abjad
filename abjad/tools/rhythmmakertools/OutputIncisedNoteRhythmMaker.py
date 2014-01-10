@@ -24,8 +24,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
         >>> leaves = sequencetools.flatten_sequence(leaf_lists)
         >>> measures = scoretools.make_spacer_skip_measures(divisions)
         >>> staff = scoretools.RhythmicStaff(measures)
-        >>> measures = scoretools.replace_contents_of_measures_in_expr(
-        ...     staff, leaves)
+        >>> measures = mutate(staff).replace_measure_contents(leaves)
 
     ::
 
@@ -92,8 +91,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, leaves)
+            >>> measures = mutate(staff).replace_measure_contents(leaves)
 
         ::
 
@@ -144,8 +142,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, leaves)
+            >>> measures = mutate(staff).replace_measure_contents(leaves)
 
         ::
 

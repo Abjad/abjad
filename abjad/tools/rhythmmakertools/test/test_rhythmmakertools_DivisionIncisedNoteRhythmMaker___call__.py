@@ -21,7 +21,7 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___01():
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
@@ -73,7 +73,7 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___02():
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
@@ -125,7 +125,7 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___03():
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
@@ -178,7 +178,7 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___04():
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
@@ -227,7 +227,7 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___05():
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
@@ -282,7 +282,7 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___06():
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(

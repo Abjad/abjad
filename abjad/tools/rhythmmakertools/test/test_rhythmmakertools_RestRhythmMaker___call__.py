@@ -12,7 +12,7 @@ def test_rhythmmakertools_RestRhythmMaker___call___01():
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
 
     assert systemtools.TestManager.compare(
         staff,

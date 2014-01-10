@@ -21,7 +21,7 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_01():
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
@@ -71,7 +71,7 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_02():
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
@@ -119,7 +119,7 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_03():
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
@@ -167,7 +167,7 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_04():
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
@@ -222,7 +222,7 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_05():
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
+    mutate(staff).replace_measure_contents(leaves)
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(

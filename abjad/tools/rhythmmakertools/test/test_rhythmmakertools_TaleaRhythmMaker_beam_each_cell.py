@@ -20,7 +20,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_beam_each_cell_01():
     music = sequencetools.flatten_sequence(music)
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, music)
+    mutate(staff).replace_measure_contents(music)
     score = Score([staff])
     set_(score).autoBeaming = False
 

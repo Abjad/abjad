@@ -48,7 +48,7 @@ class RhythmMakerMaterialPackageMaker(MaterialPackageMaker):
         measures = scoretools.make_spacer_skip_measures(
             meter_tokens)
         staff = scoretools.RhythmicStaff(measures)
-        scoretools.replace_contents_of_measures_in_expr(staff, music)
+        mutate(staff).replace_measure_contents(music)
         score = Score([staff])
         illustration = lilypondfiletools.make_basic_lilypond_file(score)
         score_manager_configuration = \

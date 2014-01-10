@@ -21,8 +21,7 @@ class SkipRhythmMaker(RhythmMaker):
         >>> music = sequencetools.flatten_sequence(leaf_lists)
         >>> measures = scoretools.make_spacer_skip_measures(divisions)
         >>> staff = scoretools.RhythmicStaff(measures)
-        >>> measures = scoretools.replace_contents_of_measures_in_expr(
-        ...     staff, music)
+        >>> measures = mutate(staff).replace_measure_contents(music)
 
     ::
 
@@ -91,8 +90,7 @@ class SkipRhythmMaker(RhythmMaker):
             >>> music = sequencetools.flatten_sequence(leaf_lists)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
 
         ::
 
@@ -123,8 +121,7 @@ class SkipRhythmMaker(RhythmMaker):
             >>> music = sequencetools.flatten_sequence(leaf_lists)
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
+            >>> measures = mutate(staff).replace_measure_contents(music)
 
         ::
 

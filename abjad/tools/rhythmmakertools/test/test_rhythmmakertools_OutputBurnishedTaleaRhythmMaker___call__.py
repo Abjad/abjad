@@ -24,7 +24,7 @@ def test_rhythmmakertools_OutputBurnishedTaleaRhythmMaker___call___01():
     music = sequencetools.flatten_sequence(music)
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, music)
+    mutate(staff).replace_measure_contents(music)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -75,7 +75,7 @@ def test_rhythmmakertools_OutputBurnishedTaleaRhythmMaker___call___02():
     music = sequencetools.flatten_sequence(music)
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, music)
+    mutate(staff).replace_measure_contents(music)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -127,7 +127,7 @@ def test_rhythmmakertools_OutputBurnishedTaleaRhythmMaker___call___03():
     music = sequencetools.flatten_sequence(music)
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, music)
+    mutate(staff).replace_measure_contents(music)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -183,7 +183,7 @@ def test_rhythmmakertools_OutputBurnishedTaleaRhythmMaker___call___04():
     music = sequencetools.flatten_sequence(music)
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    scoretools.replace_contents_of_measures_in_expr(staff, music)
+    mutate(staff).replace_measure_contents(music)
 
     assert systemtools.TestManager.compare(
         staff,

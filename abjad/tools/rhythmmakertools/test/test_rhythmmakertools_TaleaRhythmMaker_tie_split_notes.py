@@ -11,7 +11,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
     music = sequencetools.flatten_sequence(music)
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    measures = scoretools.replace_contents_of_measures_in_expr(staff, music)
+    measures = mutate(staff).replace_measure_contents(music)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -49,7 +49,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
     music = sequencetools.flatten_sequence(music)
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    measures = scoretools.replace_contents_of_measures_in_expr(staff, music)
+    measures = mutate(staff).replace_measure_contents(music)
 
     assert systemtools.TestManager.compare(
         staff,
