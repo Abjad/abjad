@@ -4,6 +4,7 @@ from abjad.tools import durationtools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
+from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
@@ -19,7 +20,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     ..  container:: example
 
-        **Example 1.** Make even run of notes each equal in duration to ``1/d``
+        Makes even run of notes each equal in duration to ``1/d``
         with ``d`` equal to the denominator of each division on which
         the rhythm-maker is called:
 
@@ -38,11 +39,23 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> show(staff) # doctest: +SKIP
+            >>> score = Score()
+            >>> time_signature_context = scoretools.Context(
+            ...    context_name='TimeSignatureContext',
+            ...    )
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
+            >>> time_signature_context.extend(measures)
+            >>> score.append(time_signature_context)
+            >>> score.append(staff)
+            >>> lilypond_file = \
+            ...    lilypondfiletools.make_floating_time_signature_lilypond_file(
+            ...    score
+            ...    )
+            >>> show(lilypond_file) # doctest: +SKIP
 
     ..  container:: example
 
-        **Example 2.** Make even run of notes each equal in duration to
+        Makes even run of notes each equal in duration to
         ``1/(2**d)`` with ``d`` equal to the denominator of each division
         on which the rhythm-maker is called:
 
@@ -61,18 +74,24 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> show(staff) # doctest: +SKIP
-
-    Output a list of lists of depth-``2`` note-bearing containers.
+            >>> score = Score()
+            >>> time_signature_context = scoretools.Context(
+            ...    context_name='TimeSignatureContext',
+            ...    )
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
+            >>> time_signature_context.extend(measures)
+            >>> score.append(time_signature_context)
+            >>> score.append(staff)
+            >>> lilypond_file = \
+            ...    lilypondfiletools.make_floating_time_signature_lilypond_file(
+            ...    score
+            ...    )
+            >>> show(lilypond_file) # doctest: +SKIP
 
     Even-run rhythm-maker doesn't yet work with non-power-of-two divisions.
-
-    Usage follows the two-step instantiate-then-call pattern shown here.
     '''
 
     ### CLASS VARIABLES ###
-
-    _default_positional_input_arguments = ()
 
     _human_readable_class_name = 'even-run rhythm-maker'
 
@@ -134,27 +153,43 @@ class EvenRunRhythmMaker(RhythmMaker):
     def __call__(self, divisions, seeds=None):
         r'''Calls even-run rhythm-maker on `divisions`.
 
-        Returns list of container lists.
+        ..  container:: example
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 4), (2, 4)]
+                >>> result = maker(divisions)
+                >>> for selection in result:
+                ...     selection
+                Selection({c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16},)
+                Selection({c'8, c'8, c'8, c'8, c'8, c'8},)
+                Selection({c'8, c'8, c'8, c'8},)
+
+        Returns a list of selections. Each selection holds a single container
+        filled with notes.
         '''
         result = []
         for division in divisions:
             container = self._make_container(division)
-            result.append([container])
+            selection = selectiontools.Selection(container)
+            result.append(selection)
         return result
 
     def __format__(self, format_specification=''):
         r'''Formats even run rhythm-maker.
 
+        ..  container:: example
+
+            ::
+
+                >>> print format(maker)
+                rhythmmakertools.EvenRunRhythmMaker(
+                    denominator_multiplier_exponent=1,
+                    beam_each_cell=True,
+                    beam_cells_together=False,
+                    )
+
         Set `format_specification` to `''` or `'storage'`.
-
-        ::
-
-            >>> print format(maker)
-            rhythmmakertools.EvenRunRhythmMaker(
-                denominator_multiplier_exponent=1,
-                beam_each_cell=True,
-                beam_cells_together=False,
-                )
 
         Returns string.
         '''
@@ -164,31 +199,30 @@ class EvenRunRhythmMaker(RhythmMaker):
     def __makenew__(self, *args, **kwargs):
         r'''Makes new even-run rhythm-maker with `kwargs`.
 
-        ::
+        ..  container:: example
 
-            >>> new_maker = new(maker, denominator_multiplier_exponent=0)
+            ::
 
-        ::
+                >>> new_maker = new(maker, denominator_multiplier_exponent=0)
 
-            >>> print format(new_maker)
-            rhythmmakertools.EvenRunRhythmMaker(
-                denominator_multiplier_exponent=0,
-                beam_each_cell=True,
-                beam_cells_together=False,
-                )
+            ::
 
-        ::
+                >>> print format(new_maker)
+                rhythmmakertools.EvenRunRhythmMaker(
+                    denominator_multiplier_exponent=0,
+                    beam_each_cell=True,
+                    beam_cells_together=False,
+                    )
 
-            >>> divisions = [(4, 8), (3, 4), (2, 4)]
-            >>> lists = new_maker(divisions)
-            >>> music = sequencetools.flatten_sequence(lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(music)
+            ::
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
+                >>> divisions = [(4, 8), (3, 4), (2, 4)]
+                >>> lists = new_maker(divisions)
+                >>> music = sequencetools.flatten_sequence(lists)
+                >>> measures = scoretools.make_spacer_skip_measures(divisions)
+                >>> staff = scoretools.RhythmicStaff(measures)
+                >>> measures = mutate(staff).replace_measure_contents(music)
+                >>> show(staff) # doctest: +SKIP
 
         Returns new even-run rhythm-maker.
         '''
@@ -241,20 +275,9 @@ class EvenRunRhythmMaker(RhythmMaker):
             scores.append(score)
             markup = block._to_markup(type(self))
             markups.append(markup)
-
-#        for i, score in enumerate(scores):
-#            score_block = lilypondfiletools.Block(name='score')
-#            score_block.items.append(score)
-#            header_block = lilypondfiletools.Block(name='header')
-#            string = r'\italic {{ No. {} }}'.format(i + 1)
-#            header_block.piece = markuptools.Markup(string)
-#            score_block.items.append(header_block)
-#            lilypond_file.items.append(score_block)
-
         for markup, score in zip(markups, scores):
             lilypond_file.items.append(markup)
             lilypond_file.items.append(score)
-
         lilypond_file.default_paper_size = ('letter', 'portrait')
         lilypond_file.global_staff_size = 10
         lilypond_file.use_relative_includes = True
@@ -295,12 +318,14 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     @property
     def denominator_multiplier_exponent(self):
-        r'''Denominator multiplier exponent provided at initialization.
+        r'''Gets denominator multiplier exponent of even-run rhythm-maker.
 
-        ::
+        ..  container:: example
 
-            >>> maker.denominator_multiplier_exponent
-            1
+            ::
+
+                >>> maker.denominator_multiplier_exponent
+                1
 
         Returns nonnegative integer.
         '''
@@ -309,33 +334,32 @@ class EvenRunRhythmMaker(RhythmMaker):
     ### PUBLIC METHODS ###
 
     def reverse(self):
-        r'''Reverses even-run rhythm-maker:
+        r'''Reverses even-run rhythm-maker.
 
-        ::
+        ..  container:: example
+        
+            ::
 
-            >>> reversed_maker = maker.reverse()
+                >>> reversed_maker = maker.reverse()
 
-        ::
+            ::
 
-            >>> print format(reversed_maker)
-            rhythmmakertools.EvenRunRhythmMaker(
-                denominator_multiplier_exponent=1,
-                beam_each_cell=True,
-                beam_cells_together=False,
-                )
+                >>> print format(reversed_maker)
+                rhythmmakertools.EvenRunRhythmMaker(
+                    denominator_multiplier_exponent=1,
+                    beam_each_cell=True,
+                    beam_cells_together=False,
+                    )
 
-        ::
+            ::
 
-            >>> divisions = [(4, 8), (3, 4), (2, 4)]
-            >>> lists = reversed_maker(divisions)
-            >>> music = sequencetools.flatten_sequence(lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(music)
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
+                >>> divisions = [(4, 8), (3, 4), (2, 4)]
+                >>> lists = reversed_maker(divisions)
+                >>> music = sequencetools.flatten_sequence(lists)
+                >>> measures = scoretools.make_spacer_skip_measures(divisions)
+                >>> staff = scoretools.RhythmicStaff(measures)
+                >>> measures = mutate(staff).replace_measure_contents(music)
+                >>> show(staff) # doctest: +SKIP
 
         Defined equal to copy of even-run rhythm-maker.
 
