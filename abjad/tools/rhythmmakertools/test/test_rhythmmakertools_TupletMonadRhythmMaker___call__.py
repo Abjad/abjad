@@ -11,23 +11,6 @@ def test_rhythmmakertools_TupletMonadRhythmMaker___call___01():
     tuplets = sequencetools.flatten_sequence(tuplet_lists)
     staff = Staff(tuplets)
 
-    r'''
-    \new Staff {
-        \times 4/5 {
-            c'4
-        }
-        {
-            c'4
-        }
-        \times 2/3 {
-            c'4
-        }
-        \times 8/9 {
-            c'2..
-        }
-    }
-    '''
-
     assert systemtools.TestManager.compare(
         staff,
         r'''

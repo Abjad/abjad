@@ -6,11 +6,10 @@ def test_rhythmmakertools_TaleaRhythmMaker_beam_each_cell_01():
     r'''Beam each cell with a multipart beam spanner.
     '''
 
-    talea, talea_denominator, prolation_addenda = [1, 1, 1, -1, 2, 2], 32, [3, 4]
     maker = rhythmmakertools.TaleaRhythmMaker(
-        talea, 
-        talea_denominator, 
-        prolation_addenda, 
+        talea=[1, 1, 1, -1, 2, 2], 
+        talea_denominator=32, 
+        prolation_addenda=[3, 4], 
         beam_each_cell=True,
         )
 

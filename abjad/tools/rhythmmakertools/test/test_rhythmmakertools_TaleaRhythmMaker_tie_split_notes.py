@@ -4,7 +4,12 @@ from abjad import *
 
 def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
 
-    maker = rhythmmakertools.TaleaRhythmMaker([5], 16, tie_split_notes=True)
+    maker = rhythmmakertools.TaleaRhythmMaker(
+        talea=[5], 
+        talea_denominator=16, 
+        tie_split_notes=True,
+        )
+
     divisions = [(2, 8), (2, 8), (2, 8), (2, 8)]
     music = maker(divisions)
 
@@ -42,7 +47,12 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
 
 def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
 
-    maker = rhythmmakertools.TaleaRhythmMaker([5], 16, tie_split_notes=True)
+    maker = rhythmmakertools.TaleaRhythmMaker(
+        talea=[5], 
+        talea_denominator=16, 
+        tie_split_notes=True,
+        )
+
     divisions = [(3, 16), (5, 8), (4, 8), (7, 16)]
     music = maker(divisions)
 

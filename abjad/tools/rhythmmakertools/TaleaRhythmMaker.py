@@ -15,7 +15,8 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             >>> maker = rhythmmakertools.TaleaRhythmMaker(
             ...     talea=[-1, 4, -2, 3],
             ...     talea_denominator=16,
-            ...     prolation_addenda=[3, 4])
+            ...     prolation_addenda=[3, 4],
+            ...     )
 
         ::
 
@@ -25,9 +26,6 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = Staff(measures)
             >>> measures = mutate(staff).replace_measure_contents(music)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
@@ -37,7 +35,8 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             >>> maker = rhythmmakertools.TaleaRhythmMaker(
             ...     talea=[5],
             ...     talea_denominator=16,
-            ...     tie_split_notes=True)
+            ...     tie_split_notes=True,
+            ...     )
 
         ::
 
@@ -47,9 +46,6 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = Staff(measures)
             >>> measures = mutate(staff).replace_measure_contents(music)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.

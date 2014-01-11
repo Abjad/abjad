@@ -2,18 +2,14 @@
 from abjad import *
 
 
-# TODO: change all calls to explicit keyword calls
 def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___01():
 
-    prefix_talea, prefix_lengths = [8], [0, 1]
-    suffix_talea, suffix_lengths = [1], [1]
-    talea_denominator = 32
     maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
-        prefix_talea, 
-        prefix_lengths, 
-        suffix_talea, 
-        suffix_lengths, 
-        talea_denominator,
+        prefix_talea=[8], 
+        prefix_lengths=[0, 1], 
+        suffix_talea=[1], 
+        suffix_lengths=[1], 
+        talea_denominator=32,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
@@ -56,14 +52,15 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___01():
         )
 
 
-# TODO: change all calls to explicit keyword calls
 def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___02():
 
-    prefix_talea, prefix_lengths = [8], [1, 2, 3, 4]
-    suffix_talea, suffix_lengths = [1], [1]
-    talea_denominator = 32
     maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
-        prefix_talea, prefix_lengths, suffix_talea, suffix_lengths, talea_denominator)
+        prefix_talea=[8], 
+        prefix_lengths=[1, 2, 3, 4], 
+        suffix_talea=[1], 
+        suffix_lengths=[1], 
+        talea_denominator=32,
+        )
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
@@ -105,18 +102,14 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___02():
         )
 
 
-# TODO: change all calls to explicit keyword calls
 def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___03():
 
-    prefix_talea, prefix_lengths = [1], [1]
-    suffix_talea, suffix_lengths = [8], [1, 2, 3]
-    talea_denominator = 32
     maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
-        prefix_talea, 
-        prefix_lengths, 
-        suffix_talea, 
-        suffix_lengths, 
-        talea_denominator,
+        prefix_talea=[1], 
+        prefix_lengths=[1], 
+        suffix_talea=[8], 
+        suffix_lengths=[1, 2, 3], 
+        talea_denominator=32,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
@@ -155,18 +148,14 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___03():
         )
 
 
-# TODO: change all calls to explicit keyword calls
 def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___04():
 
-    prefix_talea, prefix_lengths = [], [0]
-    suffix_talea, suffix_lengths = [], [0]
-    talea_denominator = 8
     maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
-        prefix_talea, 
-        prefix_lengths, 
-        suffix_talea, 
-        suffix_lengths, 
-        talea_denominator,
+        prefix_talea=[], 
+        prefix_lengths=[0], 
+        suffix_talea=[], 
+        suffix_lengths=[0], 
+        talea_denominator=8,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
@@ -199,16 +188,16 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___04():
         )
 
 
-# TODO: change all calls to explicit keyword calls
 def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___05():
 
-    prefix_talea, prefix_lengths = [1], [1]
-    suffix_talea, suffix_lengths = [1], [1]
-    talea_denominator = 8
-    prolation_addenda = [1, 0, 3]
     maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
-        prefix_talea, prefix_lengths, suffix_talea, suffix_lengths, talea_denominator,
-        prolation_addenda = prolation_addenda)
+        prefix_talea=[1], 
+        prefix_lengths=[1], 
+        suffix_talea=[1], 
+        suffix_lengths=[1], 
+        talea_denominator=8,
+        prolation_addenda=[1, 0, 3],
+        )
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
@@ -252,9 +241,6 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___05():
 
 def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___06():
 
-    prefix_talea, prefix_lengths = [1], [1]
-    suffix_talea, suffix_lengths = [], [0]
-    talea_denominator, prolation_addenda, secondary_divisions = 32, [2, 0], [20]
     maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
         prefix_talea=[1],
         prefix_lengths=[1],
@@ -262,7 +248,8 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___06():
         suffix_lengths=[0],
         talea_denominator=32,
         prolation_addenda=[2, 0],
-        secondary_divisions=[20])
+        secondary_divisions=[20],
+        )
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)

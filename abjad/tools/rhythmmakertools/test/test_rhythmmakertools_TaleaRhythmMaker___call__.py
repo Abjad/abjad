@@ -4,11 +4,10 @@ from abjad import *
 
 def test_rhythmmakertools_TaleaRhythmMaker___call___01():
 
-    talea, talea_denominator, prolation_addenda = [-1, 4, -2, 3], 16, [3, 4]
     maker = rhythmmakertools.TaleaRhythmMaker(
-        talea, 
-        talea_denominator, 
-        prolation_addenda,
+        talea=[-1, 4, -2, 3], 
+        talea_denominator=16, 
+        prolation_addenda=[3, 4],
         )
 
     divisions = [(2, 8), (5, 8)]
@@ -50,13 +49,11 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___01():
 
 def test_rhythmmakertools_TaleaRhythmMaker___call___02():
 
-    talea, talea_denominator, prolation_addenda = [-1, 4, -2, 3], 16, [3, 4]
-    secondary_divisions = [6]
     maker = rhythmmakertools.TaleaRhythmMaker(
-        talea, 
-        talea_denominator, 
-        prolation_addenda, 
-        secondary_divisions,
+        talea=[-1, 4, -2, 3], 
+        talea_denominator=16, 
+        prolation_addenda=[3, 4], 
+        secondary_divisions=[6],
         )
 
     divisions = [(2, 8), (5, 8)]
