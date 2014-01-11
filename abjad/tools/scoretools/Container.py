@@ -40,10 +40,6 @@ class Container(Component):
         '_simultaneous',
         )
 
-    _default_positional_input_arguments = (
-        [],
-        )
-
     _storage_format_attribute_mapping = {
         'music': '_music',
         }
@@ -51,6 +47,7 @@ class Container(Component):
     ### INITIALIZER ###
 
     def __init__(self, music=None):
+        music = music or []
         Component.__init__(self)
         self._named_children = {}
         self._simultaneous = False

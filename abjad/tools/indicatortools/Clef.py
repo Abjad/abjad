@@ -9,7 +9,7 @@ class Clef(AbjadObject):
 
         >>> clef = Clef('treble')
         >>> clef
-        Clef('treble')
+        Clef(name='treble')
 
     ::
 
@@ -82,15 +82,11 @@ class Clef(AbjadObject):
         'tab': 0
         }
 
-    _default_positional_input_arguments = (
-        repr('alto'),
-        )
-
     _format_slot = 'opening'
 
     ### INITIALIZER ###
 
-    def __init__(self, name):
+    def __init__(self, name='treble'):
         from abjad.tools import scoretools
         self._default_scope = scoretools.Staff
         if isinstance(name, str):
@@ -118,7 +114,7 @@ class Clef(AbjadObject):
         ::
 
             >>> clef_1, clef_2
-            (Clef('alto'), Clef('alto'))
+            (Clef(name='alto'), Clef(name='alto'))
 
         ::
 
@@ -171,7 +167,7 @@ class Clef(AbjadObject):
             >>> clef = Clef('treble')
             >>> print format(clef)
             indicatortools.Clef(
-                'treble'
+                name='treble',
                 )
 
         Returns string.
@@ -248,21 +244,21 @@ class Clef(AbjadObject):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _repr_specification(self):
-        return self._storage_format_specification.__makenew__(
-            is_indented=False,
-            )
+#    @property
+#    def _repr_specification(self):
+#        return self._storage_format_specification.__makenew__(
+#            is_indented=False,
+#            )
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(
-                self.name,
-                ),
-            )
+#    @property
+#    def _storage_format_specification(self):
+#        from abjad.tools import systemtools
+#        return systemtools.StorageFormatSpecification(
+#            self,
+#            positional_argument_values=(
+#                self.name,
+#                ),
+#            )
 
     ### PUBLIC PROPERTIES ###
 

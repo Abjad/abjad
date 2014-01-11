@@ -13,7 +13,7 @@ class BassVoice(Instrument):
         >>> staff = Staff("c4 d4 e4 fs4")
         >>> bass = instrumenttools.BassVoice()
         >>> attach(bass, staff)
-        >>> clef = Clef('bass')
+        >>> clef = Clef(name='bass')
         >>> attach(clef, staff)
         >>> show(staff) # doctest: +SKIP
 
@@ -76,7 +76,7 @@ class BassVoice(Instrument):
             ::
 
                 >>> bass.allowable_clefs
-                ClefInventory([Clef('bass')])
+                ClefInventory([Clef(name='bass')])
 
             ::
 

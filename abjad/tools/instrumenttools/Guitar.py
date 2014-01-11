@@ -73,7 +73,7 @@ class Guitar(Instrument):
             ::
 
                 >>> guitar.allowable_clefs
-                ClefInventory([Clef('treble')])
+                ClefInventory([Clef(name='treble')])
 
             ::
 

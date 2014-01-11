@@ -205,7 +205,7 @@ class RootedChordClass(PitchClassSet):
         ::
 
             >>> chord_class.extent
-            ChordExtent(7)
+            ChordExtent(number=7)
 
         Returns chord extent.
         '''

@@ -11,7 +11,7 @@ class BassTrombone(Instrument):
     ::
 
         >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = Clef('bass')
+        >>> clef = Clef(name='bass')
         >>> attach(clef, staff)
         >>> bass_trombone = instrumenttools.BassTrombone()
         >>> attach(bass_trombone, staff)
@@ -75,7 +75,7 @@ class BassTrombone(Instrument):
             ::
 
                 >>> bass_trombone.allowable_clefs
-                ClefInventory([Clef('bass')])
+                ClefInventory([Clef(name='bass')])
 
             ::
 

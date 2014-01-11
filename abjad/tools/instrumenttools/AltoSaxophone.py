@@ -90,7 +90,7 @@ class AltoSaxophone(Instrument):
                     allowable_clefs=indicatortools.ClefInventory(
                         [
                             indicatortools.Clef(
-                                'treble'
+                                name='treble',
                                 ),
                             ]
                         ),
@@ -116,7 +116,7 @@ class AltoSaxophone(Instrument):
             ::
 
                 >>> alto_saxophone.allowable_clefs
-                ClefInventory([Clef('treble')])
+                ClefInventory([Clef(name='treble')])
 
             ::
 

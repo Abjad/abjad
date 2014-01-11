@@ -75,7 +75,7 @@ class SopranoVoice(Instrument):
             ::
 
                 >>> soprano.allowable_clefs
-                ClefInventory([Clef('treble')])
+                ClefInventory([Clef(name='treble')])
 
             ::
 

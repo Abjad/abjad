@@ -19,20 +19,16 @@ class Mode(AbjadObject):
         '_mode_name',
         )
 
-    _default_positional_input_arguments = (
-        repr('dorian'),
-        )
-
     ### INITIALIZER ###
 
-    def __init__(self, arg):
-        if isinstance(arg, str):
-            mode_name = arg
-        elif isinstance(arg, Mode):
-            mode_name = arg.mode_name
+    def __init__(self, mode_name='dorian'):
+        if isinstance(mode_name, str):
+            mode_name = mode_name
+        elif isinstance(mode_name, Mode):
+            mode_name = mode_name.mode_name
         else:
             message = 'must be mode or mode name: {!r}.'
-            message = message.format(arg)
+            message = message.format(mode_name)
             raise TypeError(message)
         mdi_segment = self._initialize_with_mode_name(mode_name)
         self._named_interval_segment = mdi_segment

@@ -39,18 +39,17 @@ class SpacingIndication(AbjadObject):
     Spacing indications are immutable.
     '''
 
-    ### CLASS VARIABLES ###
-
-    _default_positional_input_arguments = (
-        ((1, 8), 44),
-        (1, 68),
-        )
-
     ### INITIALIZER ###
 
     def __init__(self, *args):
         from abjad.tools import indicatortools
-        if len(args) == 1 and isinstance(args[0], type(self)):
+        if len(args) == 0:
+            tempo = indicatortools.Tempo()
+            proportional_notation_duration = (1, 68)
+            self._tempo_indicator = tempo
+            self._proportional_notation_duration = \
+                proportional_notation_duration
+        elif len(args) == 1 and isinstance(args[0], type(self)):
             self._tempo_indication = args[0].tempo_indication
             self._proportional_notation_duration = \
                 args[0].proportional_notation_duration

@@ -21,10 +21,10 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                             allowable_clefs=indicatortools.ClefInventory(
                                 [
                                     indicatortools.Clef(
-                                        'bass'
+                                        name='bass',
                                         ),
                                     indicatortools.Clef(
-                                        'treble'
+                                        name='treble',
                                         ),
                                     ]
                                 ),
@@ -52,10 +52,10 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                             allowable_clefs=indicatortools.ClefInventory(
                                 [
                                     indicatortools.Clef(
-                                        'tenor'
+                                        name='tenor',
                                         ),
                                     indicatortools.Clef(
-                                        'bass'
+                                        name='bass',
                                         ),
                                     ]
                                 ),
@@ -83,7 +83,7 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                             allowable_clefs=indicatortools.ClefInventory(
                                 [
                                     indicatortools.Clef(
-                                        'treble'
+                                        name='treble',
                                         ),
                                     ]
                                 ),
@@ -111,13 +111,13 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                             allowable_clefs=indicatortools.ClefInventory(
                                 [
                                     indicatortools.Clef(
-                                        'bass'
+                                        name='bass',
                                         ),
                                     indicatortools.Clef(
-                                        'tenor'
+                                        name='tenor',
                                         ),
                                     indicatortools.Clef(
-                                        'treble'
+                                        name='treble',
                                         ),
                                     ]
                                 ),
@@ -145,10 +145,10 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                             allowable_clefs=indicatortools.ClefInventory(
                                 [
                                     indicatortools.Clef(
-                                        'treble'
+                                        name='treble',
                                         ),
                                     indicatortools.Clef(
-                                        'bass'
+                                        name='bass',
                                         ),
                                     ]
                                 ),

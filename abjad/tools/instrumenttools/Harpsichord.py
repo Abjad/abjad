@@ -15,7 +15,7 @@ class Harpsichord(Instrument):
         >>> piano_staff = scoretools.PianoStaff([upper_staff, lower_staff])
         >>> harpsichord = instrumenttools.Harpsichord()
         >>> attach(harpsichord, piano_staff)
-        >>> attach(Clef('bass'), lower_staff)
+        >>> attach(Clef(name='bass'), lower_staff)
         >>> show(piano_staff) # doctest: +SKIP
 
     ..  doctest::
@@ -86,7 +86,7 @@ class Harpsichord(Instrument):
             ::
 
                 >>> harpsichord.allowable_clefs
-                ClefInventory([Clef('treble'), Clef('bass')])
+                ClefInventory([Clef(name='treble'), Clef(name='bass')])
 
             ::
 

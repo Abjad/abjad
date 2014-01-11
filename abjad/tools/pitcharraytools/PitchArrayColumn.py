@@ -32,18 +32,13 @@ class PitchArrayColumn(AbjadObject):
 
     '''
 
-    ### CLASS VARIABLES ###
-
-    _default_positional_input_arguments = (
-        [],
-        )
-
     ### INITIALIZER ###
 
     def __init__(self, cells):
         self._cells = []
         self._column_index = None
         self._parent_array = None
+        cells = cells or []
         self.extend(cells)
 
     ### SPECIAL METHODS ###

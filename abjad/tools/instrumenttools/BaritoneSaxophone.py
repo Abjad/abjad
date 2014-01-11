@@ -74,7 +74,7 @@ class BaritoneSaxophone(Instrument):
             ::
 
                 >>> baritone_saxophone.allowable_clefs
-                ClefInventory([Clef('treble')])
+                ClefInventory([Clef(name='treble')])
 
             ::
 

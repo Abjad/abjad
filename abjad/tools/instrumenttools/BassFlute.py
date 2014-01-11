@@ -73,7 +73,7 @@ class BassFlute(Instrument):
             ::
 
                 >>> bass_flute.allowable_clefs
-                ClefInventory([Clef('treble')])
+                ClefInventory([Clef(name='treble')])
 
             ::
 

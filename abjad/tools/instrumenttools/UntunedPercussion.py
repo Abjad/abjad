@@ -115,7 +115,7 @@ class UntunedPercussion(Instrument):
             ::
 
                 >>> untuned_percussion.allowable_clefs
-                ClefInventory([Clef('percussion')])
+                ClefInventory([Clef(name='percussion')])
 
             ::
 

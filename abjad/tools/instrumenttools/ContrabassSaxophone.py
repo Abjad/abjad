@@ -74,7 +74,7 @@ class ContrabassSaxophone(Instrument):
             ::
 
                 >>> contrabass_saxophone.allowable_clefs
-                ClefInventory([Clef('treble')])
+                ClefInventory([Clef(name='treble')])
 
             ::
 

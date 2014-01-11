@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 # TODO: renamed to suggest_clef_for_named_pitches_in_expr
 def suggest_clef_for_named_pitches(pitches):
     '''Suggest clef for named `pitches`:
@@ -7,7 +9,7 @@ def suggest_clef_for_named_pitches(pitches):
 
         >>> staff = Staff(scoretools.make_notes(range(-12, -6), [(1, 4)]))
         >>> pitchtools.suggest_clef_for_named_pitches(staff)
-        Clef('bass')
+        Clef(name='bass')
 
     Suggest clef based on minimal number of ledger lines.
 

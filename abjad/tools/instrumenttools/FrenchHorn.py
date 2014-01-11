@@ -75,7 +75,7 @@ class FrenchHorn(Instrument):
             ::
 
                 >>> french_horn.allowable_clefs
-                ClefInventory([Clef('bass'), Clef('treble')])
+                ClefInventory([Clef(name='bass'), Clef(name='treble')])
 
             ::
 

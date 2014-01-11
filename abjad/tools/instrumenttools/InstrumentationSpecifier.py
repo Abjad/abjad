@@ -44,7 +44,7 @@ class InstrumentationSpecifier(AbjadObject):
                                     allowable_clefs=indicatortools.ClefInventory(
                                         [
                                             indicatortools.Clef(
-                                                'treble'
+                                                name='treble',
                                                 ),
                                             ]
                                         ),
@@ -65,7 +65,7 @@ class InstrumentationSpecifier(AbjadObject):
                                     allowable_clefs=indicatortools.ClefInventory(
                                         [
                                             indicatortools.Clef(
-                                                'treble'
+                                                name='treble',
                                                 ),
                                             ]
                                         ),
@@ -93,7 +93,7 @@ class InstrumentationSpecifier(AbjadObject):
                                     allowable_clefs=indicatortools.ClefInventory(
                                         [
                                             indicatortools.Clef(
-                                                'treble'
+                                                name='treble',
                                                 ),
                                             ]
                                         ),
@@ -229,7 +229,7 @@ class InstrumentationSpecifier(AbjadObject):
                                     allowable_clefs=indicatortools.ClefInventory(
                                         [
                                             indicatortools.Clef(
-                                                'treble'
+                                                name='treble',
                                                 ),
                                             ]
                                         ),
@@ -250,7 +250,7 @@ class InstrumentationSpecifier(AbjadObject):
                                     allowable_clefs=indicatortools.ClefInventory(
                                         [
                                             indicatortools.Clef(
-                                                'treble'
+                                                name='treble',
                                                 ),
                                             ]
                                         ),
@@ -278,7 +278,7 @@ class InstrumentationSpecifier(AbjadObject):
                                     allowable_clefs=indicatortools.ClefInventory(
                                         [
                                             indicatortools.Clef(
-                                                'treble'
+                                                name='treble',
                                                 ),
                                             ]
                                         ),

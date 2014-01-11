@@ -41,20 +41,16 @@ class Dynamic(AbjadObject):
         ::
 
             >>> dynamic_1
-            Dynamic('f')
+            Dynamic(name='f')
 
         ::
 
             >>> dynamic_2
-            Dynamic('f')
+            Dynamic(name='f')
 
     '''
 
     ### CLASS VARIABLES ###
-
-    _default_positional_input_arguments = (
-        repr('f'),
-        )
 
     _format_slot = 'right'
 
@@ -124,7 +120,7 @@ class Dynamic(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, name):
+    def __init__(self, name='f'):
         from abjad.tools import scoretools
         if isinstance(name, type(self)):
             name = name.name

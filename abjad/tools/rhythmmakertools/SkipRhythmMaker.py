@@ -8,29 +8,26 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class SkipRhythmMaker(RhythmMaker):
     r'''Skip rhythm-maker.
 
-    ::
+    ..  container:: example
 
-        >>> maker = rhythmmakertools.SkipRhythmMaker()
+        Makes skips equal to the duration of input divisions.
 
-    Initialize and then call on arbitrary divisions:
+        ::
 
-    ::
+            >>> maker = rhythmmakertools.SkipRhythmMaker()
 
-        >>> divisions = [(1, 4), (3, 16), (5, 8)]
-        >>> leaf_lists = maker(divisions)
-        >>> music = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = scoretools.make_spacer_skip_measures(divisions)
-        >>> staff = scoretools.RhythmicStaff(measures)
-        >>> measures = mutate(staff).replace_measure_contents(music)
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    Usage follows the two-step instantiate-then-call pattern shown here.
+            >>> divisions = [(1, 4), (3, 16), (5, 8)]
+            >>> leaf_lists = maker(divisions)
+            >>> music = sequencetools.flatten_sequence(leaf_lists)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
+            >>> staff = scoretools.RhythmicStaff(measures)
+            >>> measures = mutate(staff).replace_measure_contents(music)
+            >>> show(staff) # doctest: +SKIP
+
+    Usage follows the two-step configure-then-call pattern shown here.
     '''
-
-    ### CLASS VARIABLES ###
-
-    _default_positional_input_arguments = (
-        )
 
     ### INITIALIZER ###
 

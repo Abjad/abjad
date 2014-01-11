@@ -11,7 +11,7 @@ class Viola(Instrument):
     ::
 
         >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = Clef('alto')
+        >>> clef = Clef(name='alto')
         >>> attach(clef, staff)
         >>> viola = instrumenttools.Viola()
         >>> attach(viola, staff)
@@ -77,7 +77,7 @@ class Viola(Instrument):
             ::
 
                 >>> viola.allowable_clefs
-                ClefInventory([Clef('alto'), Clef('treble')])
+                ClefInventory([Clef(name='alto'), Clef(name='treble')])
 
             ::
 

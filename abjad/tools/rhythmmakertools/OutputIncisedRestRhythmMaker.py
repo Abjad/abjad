@@ -32,7 +32,7 @@ class OutputIncisedRestRhythmMaker(IncisedRhythmMaker):
         >>> measures = mutate(staff).replace_measure_contents(leaves)
         >>> show(staff) # doctest: +SKIP
 
-    Usage follows the two-step instantiate-then-call pattern shown here.
+    Usage follows the two-step configure-then-call pattern shown here.
     '''
 
     ### CLASS VARIABLES ###

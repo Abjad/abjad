@@ -129,19 +129,19 @@ class TypedList(TypedCollection):
             datastructuretools.TypedList(
                 [
                     indicatortools.Dynamic(
-                        'ppp'
+                        name='ppp',
                         ),
                     indicatortools.Dynamic(
-                        'p'
+                        name='p',
                         ),
                     indicatortools.Dynamic(
-                        'mp'
+                        name='mp',
                         ),
                     indicatortools.Dynamic(
-                        'mf'
+                        name='mf',
                         ),
                     indicatortools.Dynamic(
-                        'fff'
+                        name='fff',
                         ),
                     ],
                 item_class=indicatortools.Dynamic,

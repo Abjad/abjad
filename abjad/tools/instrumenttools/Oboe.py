@@ -75,7 +75,7 @@ class Oboe(Instrument):
             ::
 
                 >>> oboe.allowable_clefs
-                ClefInventory([Clef('treble')])
+                ClefInventory([Clef(name='treble')])
 
             ::
 

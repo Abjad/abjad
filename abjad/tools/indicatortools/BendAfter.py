@@ -19,22 +19,12 @@ class BendAfter(AbjadObject):
 
     '''
 
-    ### CLASS VARIABLES ###
-
-    _default_positional_input_arguments = (-4, )
-
     ### INITIALIZER ###
 
-    def __init__(self, *args):
+    def __init__(self, bend_amount=-4):
         self._format_slot = 'right'
-        if len(args) == 1 and isinstance(args[0], type(self)):
-            bend_amount = args[0].bend_amount
-        elif len(args) == 1 and not isinstance(args[0], type(self)):
-            bend_amount = args[0]
-        else:
-            message = 'can not initialize bend after from {!r}.'
-            message = message.format(args)
-            raise ValueError(message)
+        if isinstance(bend_amount, type(self)):
+            bend_amount = bend_amount.bend_amount
         bend_amount = float(bend_amount)
         self._bend_amount = bend_amount
 

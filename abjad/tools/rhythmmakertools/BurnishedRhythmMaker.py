@@ -31,18 +31,12 @@ class BurnishedRhythmMaker(RhythmMaker):
     output cells they produce and leave interior output cells unchanged.
     '''
 
-    ### CLASS VARIABLES ###
-
-    _default_positional_input_arguments = (
-        [-1, 4, -2, 3], 
-        16,
-        )
-
     ### INITIALIZER ###
 
-    def __init__(self, 
-        talea=None, 
-        talea_denominator=None, 
+    def __init__(
+        self, 
+        talea=(-1, 4, -2, 3),
+        talea_denominator=16,
         prolation_addenda=None,
         lefts=None, 
         middles=None, 

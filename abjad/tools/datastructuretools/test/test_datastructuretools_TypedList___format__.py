@@ -58,46 +58,40 @@ def test_datastructuretools_TypedList___format___03():
         'blah',
         ])
 
-    # FIXME: make this work again
-#    assert systemtools.TestManager.compare(
-#        repr(inventory),
-#        "TypedList(['foo', Flute(), 'bar', PitchRange('[A0, C8]'), 'blah'])",
-#        )
-
     assert systemtools.TestManager.compare(
         format(inventory),
         r'''
-    datastructuretools.TypedList(
-        [
-            'foo',
-            instrumenttools.Flute(
-                instrument_name='flute',
-                short_instrument_name='fl.',
-                instrument_name_markup=markuptools.Markup(
-                    ('Flute',)
+        datastructuretools.TypedList(
+            [
+                'foo',
+                instrumenttools.Flute(
+                    instrument_name='flute',
+                    short_instrument_name='fl.',
+                    instrument_name_markup=markuptools.Markup(
+                        ('Flute',)
+                        ),
+                    short_instrument_name_markup=markuptools.Markup(
+                        ('Fl.',)
+                        ),
+                    allowable_clefs=indicatortools.ClefInventory(
+                        [
+                            indicatortools.Clef(
+                                name='treble',
+                                ),
+                            ]
+                        ),
+                    pitch_range=pitchtools.PitchRange(
+                        '[C4, D7]'
+                        ),
+                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
                     ),
-                short_instrument_name_markup=markuptools.Markup(
-                    ('Fl.',)
+                'bar',
+                pitchtools.PitchRange(
+                    '[A0, C8]'
                     ),
-                allowable_clefs=indicatortools.ClefInventory(
-                    [
-                        indicatortools.Clef(
-                            'treble'
-                            ),
-                        ]
-                    ),
-                pitch_range=pitchtools.PitchRange(
-                    '[C4, D7]'
-                    ),
-                sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
-                ),
-            'bar',
-            pitchtools.PitchRange(
-                '[A0, C8]'
-                ),
-            'blah',
-            ]
-        )
+                'blah',
+                ]
+            )
         '''
         )
 
@@ -133,7 +127,7 @@ def test_datastructuretools_TypedList___format___04():
                     allowable_clefs=indicatortools.ClefInventory(
                         [
                             indicatortools.Clef(
-                                'treble'
+                                name='treble',
                                 ),
                             ]
                         ),

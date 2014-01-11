@@ -85,17 +85,14 @@ class Markup(AbjadObject):
         '_markup_name',
         )
 
-    _default_positional_input_arguments = (
-        repr(r'\bold { "This is markup text." }'),
-        )
-
     ### INITIALIZER ###
 
     def __init__(self, argument, direction=None, markup_name=None):
         from abjad.tools import lilypondparsertools
         from abjad.tools import markuptools
         if not argument:
-            contents = None
+            #contents = None
+            contents = 'This is markup text.'
         # WARNING: running the LilyPondParser here on a regular basis
         #          by setting (for example) argument='' in the intializer
         #          slows performance of the entire system by up to 25%!

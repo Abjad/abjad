@@ -18,14 +18,12 @@ class MultimeasureRest(Leaf):
     __slots__ = (
         )
 
-    _default_positional_input_arguments = (
-        (1, 4),
-        )
-
     ### INITIALIZER ###
 
     def __init__(self, *args):
         from abjad.tools import scoretools
+        if len(args) == 0:
+            args = ((1, 4),)
         rest = scoretools.Rest(*args)
         Leaf.__init__(
             self, 

@@ -32,7 +32,7 @@ class Performer(AbjadObject):
                         allowable_clefs=indicatortools.ClefInventory(
                             [
                                 indicatortools.Clef(
-                                    'treble'
+                                    name='treble',
                                     ),
                                 ]
                             ),
@@ -53,7 +53,7 @@ class Performer(AbjadObject):
                         allowable_clefs=indicatortools.ClefInventory(
                             [
                                 indicatortools.Clef(
-                                    'treble'
+                                    name='treble',
                                     ),
                                 ]
                             ),

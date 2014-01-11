@@ -44,18 +44,13 @@ class PitchArrayRow(AbjadObject):
 
     '''
 
-    ### CLASS VARIABLES ###
-
-    _default_positional_input_arguments = (
-        [],
-        )
-
     ### INITIALIZER ###
 
-    def __init__(self, cells):
+    def __init__(self, cells=None):
         self._parent_array = None
         self._pitch_range = pitchtools.PitchRange(None, None)
         self._cells = []
+        cells = cells or []
         self.extend(cells)
 
     ### SPECIAL METHODS ###

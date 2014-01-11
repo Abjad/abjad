@@ -365,7 +365,7 @@ class Hairpin(Spanner):
             ::
 
                 >>> hairpin.start_dynamic
-                Dynamic('p')
+                Dynamic(name='p')
 
         Returns dynamic or none.
         '''
@@ -387,7 +387,7 @@ class Hairpin(Spanner):
             ::
 
                 >>> hairpin.stop_dynamic
-                Dynamic('f')
+                Dynamic(name='f')
 
         Returns dynamic or none.
         '''

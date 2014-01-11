@@ -85,13 +85,8 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-    Usage follows the two-step instantiate-then-call pattern shown here.
+    Usage follows the two-step configure-then-call pattern shown here.
     '''
-
-    ### CLASS VARIABLES ###
-
-    _default_positional_input_arguments = (
-        )
 
     ### INITIALIZER ###
 

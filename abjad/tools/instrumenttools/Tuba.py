@@ -11,7 +11,7 @@ class Tuba(Instrument):
     ::
 
         >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = Clef('bass')
+        >>> clef = Clef(name='bass')
         >>> attach(clef, staff)
         >>> tuba = instrumenttools.Tuba()
         >>> attach(tuba, staff)
@@ -76,7 +76,7 @@ class Tuba(Instrument):
             ::
 
                 >>> tuba.allowable_clefs
-                ClefInventory([Clef('bass')])
+                ClefInventory([Clef(name='bass')])
 
             ::
 

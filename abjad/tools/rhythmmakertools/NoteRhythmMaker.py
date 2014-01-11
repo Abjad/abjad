@@ -4,11 +4,12 @@ from abjad.tools.rhythmmakertools.DivisionIncisedNoteRhythmMaker \
 
 
 class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
-    r'''Note rhythm-maker:
+    r'''Note rhythm-maker.
 
     ..  container:: example
 
-        **Example 1:**
+        Makes notes equal to the duration of input divisions. Adds ties where
+        necessary:
 
         ::
 
@@ -22,6 +23,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = Staff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -38,18 +40,16 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
                 }
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
     ..  container:: example
     
-        **Example 2.** Forbid half notes:
+        Forbids notes with written duration greater than or equal to ``1/2``
+        of a whole note:
 
         ::
 
             >>> maker = rhythmmakertools.NoteRhythmMaker(
-            ...     forbidden_written_duration=Duration(1, 2))
+            ...     forbidden_written_duration=Duration(1, 2),
+            ...     )
 
         ::
 
@@ -59,6 +59,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = Staff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -76,17 +77,8 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
                 }
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-    Usage follows the two-step instantiate-then-call pattern shown here.
+    Usage follows the two-step configure-then-call pattern shown here.
     '''
-
-    ### CLASS VARIABLES ###
-
-    _default_positional_input_arguments = (
-        )
 
     ### INITIALIZER ###
 

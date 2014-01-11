@@ -75,7 +75,7 @@ class ClarinetInA(Instrument):
             ::
 
                 >>> clarinet.allowable_clefs
-                ClefInventory([Clef('treble')])
+                ClefInventory([Clef(name='treble')])
 
             ::
 

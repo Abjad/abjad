@@ -27,16 +27,11 @@ class KeySignature(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = (
-        repr('c'),
-        repr('major'),
-        )
-
     _format_slot = 'opening'
 
     ### INITIALIZER ###
 
-    def __init__(self, tonic, mode):
+    def __init__(self, tonic='c', mode='major'):
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
         from abjad.tools import tonalanalysistools
@@ -87,18 +82,6 @@ class KeySignature(AbjadObject):
     def _lilypond_format(self):
         return r'\key {!s} \{!s}'.format(self.tonic, self.mode)
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=(
-                str(self.tonic),
-                str(self.mode),
-                ),
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -108,7 +91,7 @@ class KeySignature(AbjadObject):
         ::
 
             >>> key_signature.mode
-            Mode('major')
+            Mode(mode_name='major')
 
         Returns mode.
         '''

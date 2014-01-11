@@ -43,10 +43,6 @@ class TimeSignature(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = (
-        (4, 8),
-        )
-
     _format_slot = 'opening'
 
     ### INITIALIZER ###
@@ -56,7 +52,10 @@ class TimeSignature(AbjadObject):
         self._default_scope = scoretools.Staff
         partial, suppress = None, None
         # initialize numerator and denominator from *args
-        if len(args) == 1 and isinstance(args[0], type(self)):
+        if len(args) == 0:
+            numerator = 4
+            denominator = 4
+        elif len(args) == 1 and isinstance(args[0], type(self)):
             time_signature = args[0]
             numerator = time_signature.numerator
             denominator = time_signature.denominator

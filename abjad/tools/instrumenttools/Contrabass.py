@@ -11,7 +11,7 @@ class Contrabass(Instrument):
     ::
 
         >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = Clef('bass')
+        >>> clef = Clef(name='bass')
         >>> attach(clef, staff)
         >>> contrabass = instrumenttools.Contrabass()
         >>> attach(contrabass, staff)
@@ -78,7 +78,7 @@ class Contrabass(Instrument):
             ::
 
                 >>> contrabass.allowable_clefs
-                ClefInventory([Clef('bass'), Clef('treble')])
+                ClefInventory([Clef(name='bass'), Clef(name='treble')])
 
             ::
 

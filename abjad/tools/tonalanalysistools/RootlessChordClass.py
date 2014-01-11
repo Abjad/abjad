@@ -37,10 +37,6 @@ class RootlessChordClass(IntervalSegment):
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = (
-        repr('major'),
-        )
-
     _segment_to_quality_and_extent = {
         '<+m3, +m3>': ('diminished', 5),
         '<+m3, +M3>': ('minor', 5),

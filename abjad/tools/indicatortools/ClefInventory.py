@@ -15,7 +15,7 @@ class ClefInventory(TypedList):
     ::
 
         >>> inventory
-        ClefInventory([Clef('treble'), Clef('bass')])
+        ClefInventory([Clef(name='treble'), Clef(name='bass')])
 
     ::
 

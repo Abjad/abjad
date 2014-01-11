@@ -89,7 +89,7 @@ class AltoFlute(Instrument):
                     allowable_clefs=indicatortools.ClefInventory(
                         [
                             indicatortools.Clef(
-                                'treble'
+                                name='treble',
                                 ),
                             ]
                         ),
@@ -115,7 +115,7 @@ class AltoFlute(Instrument):
             ::
 
                 >>> alto_flute.allowable_clefs
-                ClefInventory([Clef('treble')])
+                ClefInventory([Clef(name='treble')])
 
             ::
 

@@ -21,25 +21,15 @@ class IncisedRhythmMaker(RhythmMaker):
     and the end of the last output cell.
     '''
 
-    ### CLASS VARIABLES ###
-
-    _default_positional_input_arguments = (
-        [8],
-        [1, 2, 3, 4],
-        [1],
-        [1],
-        32,
-        )
-
     ### INITIALIZER ###
 
     def __init__(
         self,
-        prefix_talea=None,
-        prefix_lengths=None,
-        suffix_talea=None,
-        suffix_lengths=None,
-        talea_denominator=None,
+        prefix_talea=(8,),
+        prefix_lengths=(1, 2, 3, 4),
+        suffix_talea=(1,),
+        suffix_lengths=(1,),
+        talea_denominator=32,
         body_ratio=None,
         prolation_addenda=None,
         secondary_divisions=None,

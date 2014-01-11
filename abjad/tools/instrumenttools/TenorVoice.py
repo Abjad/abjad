@@ -75,7 +75,7 @@ class TenorVoice(Instrument):
             ::
 
                 >>> tenor.allowable_clefs
-                ClefInventory([Clef('treble')])
+                ClefInventory([Clef(name='treble')])
 
             ::
 

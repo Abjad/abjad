@@ -27,10 +27,10 @@ def test_InstrumentSpecifierEditor_run_01():
                 allowable_clefs=indicatortools.ClefInventory(
                     [
                         indicatortools.Clef(
-                            'bass'
+                            name='bass',
                             ),
                         indicatortools.Clef(
-                            'treble'
+                            name='treble',
                             ),
                         ]
                     ),
@@ -68,7 +68,7 @@ def test_InstrumentSpecifierEditor_run_02():
                 allowable_clefs=indicatortools.ClefInventory(
                     [
                         indicatortools.Clef(
-                            'percussion'
+                            name='percussion',
                             ),
                         ]
                     ),

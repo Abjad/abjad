@@ -3,8 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class ChordExtent(AbjadObject):
-    '''A chord extent, such as triad, seventh chord, ninth chord,
-    etc.
+    '''A chord extent, such as triad, seventh chord, ninth chord, etc.
 
     Value object that can not be changed after instantiation.
     '''
@@ -21,10 +20,6 @@ class ChordExtent(AbjadObject):
         9,
         )
 
-    _default_positional_input_arguments = (
-        7,
-        )
-
     _extent_number_to_extent_name = {
         5: 'triad',
         7: 'seventh',
@@ -33,21 +28,21 @@ class ChordExtent(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, arg):
-        if isinstance(arg, (int, long)):
-            if arg not in self._acceptable_number:
+    def __init__(self, number=5):
+        if isinstance(number, (int, long)):
+            if number not in self._acceptable_number:
                 message = 'can not initialize extent: {}.'
-                raise ValueError(message.format(arg))
-            number = arg
-        elif isinstance(arg, type(self)):
-            number = arg.number
+                raise ValueError(message.format(number))
+            number = number
+        elif isinstance(number, type(self)):
+            number = number.number
         self._number = number
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        r'''Is true when `arg` is a chord extent with number equal to that of this
-        chord extent. Otherwise false.
+        r'''Is true when `arg` is a chord extent with number equal to that of 
+        this chord extent. Otherwise false.
 
         Returns boolean.
         '''
@@ -62,18 +57,6 @@ class ChordExtent(AbjadObject):
         Returns boolean.
         '''
         return not self == arg
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(
-                self.number,
-                )
-            )
 
     ### PUBLIC PROPERTIES ###
 

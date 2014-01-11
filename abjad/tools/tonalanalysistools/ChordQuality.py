@@ -24,10 +24,6 @@ class ChordQuality(AbjadObject):
         'minor',
         )
 
-    _default_positional_input_arguments = (
-        repr('dominant'),
-        )
-
     _uppercase_quality_strings = (
         'augmented',
         'dominant',
@@ -36,7 +32,7 @@ class ChordQuality(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, quality_string):
+    def __init__(self, quality_string='major'):
         if quality_string not in self._acceptable_quality_strings:
             message = 'can not initialize chord quality: {!r}.'
             message = message.format(quality_string)

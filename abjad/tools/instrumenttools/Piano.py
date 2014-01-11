@@ -15,7 +15,7 @@ class Piano(Instrument):
         >>> piano_staff.append(Staff("c'2 b2"))
         >>> piano = instrumenttools.Piano()
         >>> attach(piano, piano_staff)
-        >>> attach(Clef('bass'), piano_staff[1])
+        >>> attach(Clef(name='bass'), piano_staff[1])
         >>> show(piano_staff) # doctest: +SKIP
 
     ..  doctest::
@@ -86,7 +86,7 @@ class Piano(Instrument):
             ::
 
                 >>> piano.allowable_clefs
-                ClefInventory([Clef('treble'), Clef('bass')])
+                ClefInventory([Clef(name='treble'), Clef(name='bass')])
 
             ::
 

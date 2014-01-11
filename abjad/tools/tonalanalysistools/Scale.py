@@ -1,12 +1,9 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools import scoretools
-from abjad.tools import indicatortools
 from abjad.tools import durationtools
-from abjad.tools import scoretools
+from abjad.tools import indicatortools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
-from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import scoretools
@@ -27,11 +24,6 @@ class Scale(PitchClassSegment):
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = (
-        repr('c'),
-        repr('major',)
-        )
-
     __slots__ = (
         '_key_signature',
         )
@@ -39,7 +31,9 @@ class Scale(PitchClassSegment):
     ### INITIALIZER ###
 
     def __init__(self, *args):
-        if len(args) == 1 and isinstance(
+        if len(args) == 0:
+            key_signature = indicatortools.KeySignature('c', 'major')       
+        elif len(args) == 1 and isinstance(
             args[0], indicatortools.KeySignature):
             key_signature = args[0]
         elif len(args) == 1 and isinstance(args[0], Scale):

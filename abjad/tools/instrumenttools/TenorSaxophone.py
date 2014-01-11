@@ -74,7 +74,7 @@ class TenorSaxophone(Instrument):
             ::
 
                 >>> tenor_saxophone.allowable_clefs
-                ClefInventory([Clef('treble')])
+                ClefInventory([Clef(name='treble')])
 
             ::
 

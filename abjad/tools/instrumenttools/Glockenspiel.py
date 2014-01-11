@@ -71,7 +71,7 @@ class Glockenspiel(Instrument):
             ::
 
                 >>> glockenspiel.allowable_clefs
-                ClefInventory([Clef('treble')])
+                ClefInventory([Clef(name='treble')])
 
             ::
 

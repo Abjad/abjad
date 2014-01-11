@@ -13,7 +13,7 @@ def notes_and_chords_are_on_expected_clefs(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = Clef('treble')
+        >>> clef = Clef(name='treble')
         >>> attach(clef, staff)
         >>> violin = instrumenttools.Violin()
         >>> attach(violin, staff)
@@ -28,7 +28,7 @@ def notes_and_chords_are_on_expected_clefs(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = Clef('alto')
+        >>> clef = Clef(name='alto')
         >>> attach(clef, staff)
         >>> violin = instrumenttools.Violin()
         >>> attach(violin, staff)
@@ -43,7 +43,7 @@ def notes_and_chords_are_on_expected_clefs(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = Clef('percussion')
+        >>> clef = Clef(name='percussion')
         >>> attach(clef, staff)
         >>> violin = instrumenttools.Violin()
         >>> attach(violin, staff)
@@ -87,7 +87,7 @@ def notes_and_chords_are_on_expected_clefs(
         clef = note_or_chord._get_effective(indicatortools.Clef)
         if not clef:
             return False
-        if clef == indicatortools.Clef('percussion'):
+        if clef == indicatortools.Clef(name='percussion'):
             if percussion_clef_is_allowed:
                 return True
             else:

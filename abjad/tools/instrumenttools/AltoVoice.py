@@ -75,7 +75,7 @@ class AltoVoice(Instrument):
             ::
 
                 >>> alto.allowable_clefs
-                ClefInventory([Clef('treble')])
+                ClefInventory([Clef(name='treble')])
 
             ::
 
