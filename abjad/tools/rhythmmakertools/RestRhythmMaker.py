@@ -148,9 +148,6 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new rest rhythm-maker.
@@ -182,9 +179,6 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new rest rhythm-maker.

@@ -124,9 +124,6 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(music)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new division-burnished talea rhythm-maker.
@@ -207,9 +204,6 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(music)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Reversed output:
@@ -246,9 +240,6 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(music)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new division-burnished talea rhythm-maker.

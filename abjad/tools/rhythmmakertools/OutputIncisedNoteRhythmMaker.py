@@ -25,9 +25,6 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
         >>> measures = scoretools.make_spacer_skip_measures(divisions)
         >>> staff = scoretools.RhythmicStaff(measures)
         >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-    ::
-
         >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
@@ -92,9 +89,6 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new output-incised note rhythm-maker.
@@ -143,9 +137,6 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new output-incised note rhythm-maker.

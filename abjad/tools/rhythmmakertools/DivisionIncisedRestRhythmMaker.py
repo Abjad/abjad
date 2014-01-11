@@ -13,7 +13,8 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
         ...     prefix_lengths=[1, 2, 3, 4],
         ...     suffix_talea=[1],
         ...     suffix_lengths=[1],
-        ...     talea_denominator=32)
+        ...     talea_denominator=32,
+        ...     )
 
     Configure at instantiation and then call on any sequence of divisions:
 
@@ -25,9 +26,6 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
         >>> measures = scoretools.make_spacer_skip_measures(divisions)
         >>> staff = Staff(measures)
         >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-    ::
-
         >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
@@ -111,9 +109,6 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = Staff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new division-incised rest rhythm-maker.
@@ -179,9 +174,6 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = Staff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new division-incised rest rhythm-maker.

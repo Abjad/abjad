@@ -16,7 +16,8 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
             ...     prefix_lengths=[0, 1],
             ...     suffix_talea=[-1],
             ...     suffix_lengths=[1],
-            ...     talea_denominator=16)
+            ...     talea_denominator=16,
+            ...     )
 
         Configure at instantiation and then call on any sequence of divisions:
 
@@ -199,9 +200,6 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new division-incised note rhythm-maker.
@@ -252,9 +250,6 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Reversed output:
@@ -289,9 +284,6 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns division-incised note rhythm-maker.

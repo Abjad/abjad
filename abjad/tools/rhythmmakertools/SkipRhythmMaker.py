@@ -22,9 +22,6 @@ class SkipRhythmMaker(RhythmMaker):
         >>> measures = scoretools.make_spacer_skip_measures(divisions)
         >>> staff = scoretools.RhythmicStaff(measures)
         >>> measures = mutate(staff).replace_measure_contents(music)
-
-    ::
-
         >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
@@ -91,9 +88,6 @@ class SkipRhythmMaker(RhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(music)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new skip rhythm-maker.
@@ -122,9 +116,6 @@ class SkipRhythmMaker(RhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(music)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new skip rhythm-maker.

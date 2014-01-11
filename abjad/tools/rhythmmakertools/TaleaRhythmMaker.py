@@ -142,9 +142,6 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = Staff(measures)
             >>> measures = mutate(staff).replace_measure_contents(music)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new talea rhythm-maker.
@@ -180,9 +177,6 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = Staff(measures)
             >>> measures = mutate(staff).replace_measure_contents(music)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new talea rhythm-maker.

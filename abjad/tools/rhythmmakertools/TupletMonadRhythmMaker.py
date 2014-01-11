@@ -21,9 +21,6 @@ class TupletMonadRhythmMaker(RhythmMaker):
         >>> tuplet_lists = maker(divisions)
         >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
         >>> staff = scoretools.RhythmicStaff(tuplets)
-
-    ::
-
         >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
@@ -93,9 +90,6 @@ class TupletMonadRhythmMaker(RhythmMaker):
             >>> tuplet_lists = new_maker(divisions)
             >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
             >>> staff = scoretools.RhythmicStaff(tuplets)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new tuplet monad rhythm-maker.
@@ -140,9 +134,6 @@ class TupletMonadRhythmMaker(RhythmMaker):
             >>> tuplet_lists = reversed_maker(divisions)
             >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
             >>> staff = scoretools.RhythmicStaff(tuplets)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new tuplet monad rhythm-maker.

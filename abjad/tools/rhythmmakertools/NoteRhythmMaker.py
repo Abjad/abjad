@@ -153,9 +153,6 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = Staff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new note rhythm-maker.
@@ -189,9 +186,6 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = Staff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         Returns new note rhythm-maker.
