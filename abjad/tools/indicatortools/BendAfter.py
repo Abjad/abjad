@@ -19,10 +19,18 @@ class BendAfter(AbjadObject):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_bend_amount',
+        )
+
+
+    _format_slot = 'right'
+
     ### INITIALIZER ###
 
     def __init__(self, bend_amount=-4):
-        self._format_slot = 'right'
         if isinstance(bend_amount, type(self)):
             bend_amount = bend_amount.bend_amount
         bend_amount = float(bend_amount)
