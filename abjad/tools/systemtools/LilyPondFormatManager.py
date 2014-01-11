@@ -168,8 +168,11 @@ class LilyPondFormatManager(object):
                 ):
                 format_slot_subsection = 'articulations'
             elif isinstance(
-                nonscoped_expression.indicator,
-                indicatortools.BendAfter,
+                nonscoped_expression.indicator, (
+                    indicatortools.BendAfter,
+                    indicatortools.Arpeggio,
+                    indicatortools.LaissezVibrer,
+                    )
                 ):
                 format_slot_subsection = 'articulations'
             elif isinstance(
