@@ -22,7 +22,6 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___01():
 
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(leaves)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -35,20 +34,17 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___01():
                 r32
             }
             {
-                \time 5/8
                 r4
                 c'4 ~
                 c'16.
                 r32
             }
             {
-                \time 5/8
                 c'2 ~
                 c'16.
                 r32
             }
             {
-                \time 5/8
                 r4
                 c'4 ~
                 c'16.
@@ -74,7 +70,6 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___02():
 
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(leaves)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -88,20 +83,17 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___02():
                 r32
             }
             {
-                \time 5/8
                 r4
                 r4
                 c'16.
                 r32
             }
             {
-                \time 5/8
                 r4
                 r4
                 r8
             }
             {
-                \time 5/8
                 r4
                 r4
                 r8
@@ -126,7 +118,6 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___03():
 
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(leaves)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -140,14 +131,12 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___03():
                 r4
             }
             {
-                \time 5/8
                 r32
                 c'16.
                 r4
                 r4
             }
             {
-                \time 5/8
                 r32
                 r4
                 r4
@@ -179,7 +168,6 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___04():
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -191,12 +179,10 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___04():
                 c'8
             }
             {
-                \time 5/8
                 c'2 ~
                 c'8
             }
             {
-                \time 5/8
                 c'2 ~
                 c'8
             }
@@ -228,7 +214,6 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___05():
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -243,7 +228,6 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___05():
                 }
             }
             {
-                \time 4/8
                 {
                     r8
                     c'4
@@ -251,7 +235,6 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___05():
                 }
             }
             {
-                \time 4/8
                 \times 4/7 {
                     r8
                     c'2 ~

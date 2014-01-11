@@ -15,27 +15,27 @@ def test_spannertools_HiddenStaffSpanner___init___02():
     '''
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8
-            d'8
+    assert systemtools.TestManager.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8
+                d'8
+            }
+            {
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8
+            }
         }
-        {
-            \time 2/8
-            e'8
-            f'8
-        }
-        {
-            \time 2/8
-            g'8
-            a'8
-        }
-    }
-    '''
+        '''
+        )
 
     spanner = spannertools.HiddenStaffSpanner()
     attach(spanner, staff[1])
@@ -50,14 +50,12 @@ def test_spannertools_HiddenStaffSpanner___init___02():
                 d'8
             }
             {
-                \time 2/8
                 \stopStaff
                 e'8
                 f'8
                 \startStaff
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }

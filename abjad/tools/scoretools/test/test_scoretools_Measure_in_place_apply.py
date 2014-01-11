@@ -132,30 +132,7 @@ def test_scoretools_Measure_in_place_apply_04():
     Measure((1, 1), staff[1:2])
     Measure((1, 1), staff[2:3])
     Measure((1, 1), staff[3:])
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
-    r'''
-    \new Staff {
-        {
-            \time 1/1
-            c'1
-        }
-        {
-            \time 1/1
-            cs'1
-        }
-        {
-            \time 1/1
-            d'1
-        }
-        {
-            \time 1/1
-            ef'1
-        }
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -165,17 +142,16 @@ def test_scoretools_Measure_in_place_apply_04():
                 c'1
             }
             {
-                \time 1/1
                 cs'1
             }
             {
-                \time 1/1
                 d'1
             }
             {
-                \time 1/1
                 ef'1
             }
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()

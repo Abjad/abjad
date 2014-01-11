@@ -104,7 +104,6 @@ def test_agenttools_MutationAgent_replace_measure_contents_05():
 
     measures = scoretools.make_spacer_skip_measures([(1, 8), (1, 8)])
     staff = Staff(measures)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), 
         Note("f'16"), Note("g'16"), Note("a'16")]
 
@@ -123,7 +122,6 @@ def test_agenttools_MutationAgent_replace_measure_contents_05():
                 d'16
             }
             {
-                \time 1/8
                 e'16
                 f'16
             }

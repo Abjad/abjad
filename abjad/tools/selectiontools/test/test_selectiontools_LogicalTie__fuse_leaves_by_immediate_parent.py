@@ -9,23 +9,6 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_01():
     staff = Staff(Measure((2, 8), scoretools.make_repeated_notes(2)) * 2)
     tie = spannertools.Tie()
     attach(tie, staff.select_leaves())
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
-
-    # comparison function breaks here for unknown reason
-    r'''
-    \new Staff {
-    {
-            \time 2/8
-            c'8 ~
-            c'8 ~
-    }
-    {
-            \time 2/8
-            c'8 ~
-            c'8
-    }
-    }
-    '''
 
     logical_tie = inspect(staff.select_leaves()[1]).get_logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
@@ -39,7 +22,6 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_01():
                 c'4 ~
             }
             {
-                \time 2/8
                 c'4
             }
         }
@@ -58,15 +40,17 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
     tie = spannertools.Tie()
     attach(tie, staff.select_leaves())
 
-    # comparison function breaks here for unknown reason
-    r'''
-    \new Staff {
+    assert systemtools.TestManager.compare(
+        staff,
+        r'''
+        \new Staff {
             c'8 ~
             c'8 ~
             c'8 ~
             c'8
-    }
-    '''
+        }
+        '''
+        )
 
     logical_tie = inspect(staff.select_leaves()[1]).get_logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()

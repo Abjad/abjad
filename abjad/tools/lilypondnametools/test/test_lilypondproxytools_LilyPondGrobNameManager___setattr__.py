@@ -846,7 +846,6 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___36():
     override(beam).score.spacing_spanner.strict_grace_spacing = True
     override(beam).score.spacing_spanner.strict_note_spacing = True
     override(beam).score.spacing_spanner.uniform_stretching = True
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -861,7 +860,6 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___36():
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8 ]
                 \revert Score.SpacingSpanner #'strict-grace-spacing
