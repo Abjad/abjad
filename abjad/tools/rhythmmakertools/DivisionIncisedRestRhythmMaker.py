@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker \
-	import DivisionIncisedRhythmMaker
+from abjad.tools.rhythmmakertools.IncisedRhythmMaker import IncisedRhythmMaker
 
 
-class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
+class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
     r'''Division-incised rest rhythm-maker:
 
     ::
@@ -113,7 +112,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
 
         Returns new division-incised rest rhythm-maker.
         '''
-        return DivisionIncisedRhythmMaker.__makenew__(self, *args, **kwargs)
+        return IncisedRhythmMaker.__makenew__(self, *args, **kwargs)
 
     ### PRIVATE METHODS ###
 
@@ -178,4 +177,4 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
 
         Returns new division-incised rest rhythm-maker.
         '''
-        return DivisionIncisedRhythmMaker.reverse(self)
+        return IncisedRhythmMaker.reverse(self)
