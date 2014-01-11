@@ -85,17 +85,17 @@ EXAMPLES
 
     ### PRIVATE METHODS ###
 
-    def _collect_filenames(self, args):
-        filenames = []
+    def _collect_file_names(self, args):
+        file_names = []
         if os.path.isdir(args.path):
             for root, dirs, files in os.walk(args.path):
                 for file in files:
                     path = os.path.join(root, file)
                     if self._is_valid_path(path):
-                        filenames.append(path)
+                        file_names.append(path)
         else:
-            filenames.append(args.path)
-        return filenames
+            file_names.append(args.path)
+        return file_names
 
     def _is_valid_path(self, path):
         if not os.path.exists(path):
@@ -109,16 +109,16 @@ EXAMPLES
             return True
         return False
 
-    def _process_filename(self, args, filename):
+    def _process_file_name(self, args, file_name):
         from abjad.tools import abjadbooktools
-        input_filename = filename
-        print 'Processing {!r} ...'.format(os.path.relpath(input_filename))
+        input_file_name = file_name
+        print 'Processing {!r} ...'.format(os.path.relpath(input_file_name))
         try:
-            directory = os.path.dirname(input_filename)
-            output_filename = input_filename.rpartition('.raw')[0]
-            file_extension = output_filename.rpartition('.')[-1]
-            image_prefix = os.path.basename(output_filename).rpartition('.')[0]
-            with open(input_filename, 'r') as f:
+            directory = os.path.dirname(input_file_name)
+            output_file_name = input_file_name.rpartition('.raw')[0]
+            file_extension = output_file_name.rpartition('.')[-1]
+            image_prefix = os.path.basename(output_file_name).rpartition('.')[0]
+            with open(input_file_name, 'r') as f:
                 lines = f.read().split('\n')
             output_format = self.output_formats[file_extension]()
             abjad_book_processor = abjadbooktools.AbjadBookProcessor(
@@ -127,8 +127,8 @@ EXAMPLES
                 verbose=args.verbose)
             processed_lines = abjad_book_processor(verbose=args.verbose)
             print 'Writing output to {!r} ...'.format(
-                os.path.relpath(output_filename))
-            with open(output_filename, 'w') as f:
+                os.path.relpath(output_file_name))
+            with open(output_file_name, 'w') as f:
                 f.write(processed_lines)
             print '... Done!'
         except:
@@ -184,8 +184,8 @@ EXAMPLES
         Returns none.
         '''
         from abjad.tools import developerscripttools
-        for filename in self._collect_filenames(args):
-            self._process_filename(args, filename)
+        for file_name in self._collect_file_names(args):
+            self._process_file_name(args, file_name)
         flags = []
         if args.mainline:
             flags.append('-M')

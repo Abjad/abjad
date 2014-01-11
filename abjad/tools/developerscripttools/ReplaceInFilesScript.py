@@ -172,8 +172,16 @@ class ReplaceInFilesScript(DirectoryScript):
 
         return changed_lines, changed_items
 
-    def _process_line(self, 
-        line, line_number, filename, search, replacement, force, verbose):
+    def _process_line(
+        self, 
+        line, 
+        line_number, 
+        file_name, 
+        search, 
+        replacement, 
+        force, 
+        verbose,
+        ):
         index, changes = 0, 0
         index, length = search(line, index)
 
@@ -188,13 +196,13 @@ class ReplaceInFilesScript(DirectoryScript):
                 should_replace = True
                 if verbose:
                     print ''
-                    print '{}: {}'.format(filename, line_number)
+                    print '{}: {}'.format(file_name, line_number)
                     print '-{}'.format(line)
                     print '+{}'.format(replaced_line)
 
             else:
                 print ''
-                print '{}: {}'.format(filename, line_number)
+                print '{}: {}'.format(file_name, line_number)
                 print ''
                 print '{}'.format(line)
                 print '{}'.format(carats)

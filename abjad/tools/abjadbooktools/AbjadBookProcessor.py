@@ -239,7 +239,7 @@ class AbjadBookProcessor(AbjadObject):
         return tuple(blocks)
 
     def _extract_ly_file_names(self, code_blocks):
-        #print 'EXTRACT LY FILENAMES'
+        #print 'EXTRACT LY file_nameS'
         file_names = []
         for code_block in code_blocks:
             for result in code_block.processed_results:
@@ -261,8 +261,8 @@ class AbjadBookProcessor(AbjadObject):
                x.startswith(self.image_prefix))]
 
         image_dict = {}
-        for image_filename in image_file_names:
-            suffix = os.path.splitext(image_filename.partition('-')[2])[0]
+        for image_file_name in image_file_names:
+            suffix = os.path.splitext(image_file_name.partition('-')[2])[0]
             index, part, page = suffix.partition('-')
             index = int(index)
             if page:
@@ -271,7 +271,7 @@ class AbjadBookProcessor(AbjadObject):
                 page = 0
             if index not in image_dict:
                 image_dict[index] = {}
-            image_dict[index][page] = image_filename
+            image_dict[index][page] = image_file_name
 
         interleaved = []
         interleaved.append(

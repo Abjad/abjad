@@ -15,10 +15,10 @@ def play(expr):
 
     This input creates and opens a one-note MIDI file.
 
-    Abjad outputs MIDI files of the format ``filename.mid``
+    Abjad outputs MIDI files of the format ``file_name.mid``
     under Windows.
 
-    Abjad outputs MIDI files of the format ``filename.midi``
+    Abjad outputs MIDI files of the format ``file_name.midi``
     under other operating systems.
 
     Returns none.
@@ -27,7 +27,7 @@ def play(expr):
     from abjad.tools import systemtools
     from abjad.tools import topleveltools
     assert '__illustrate__' in dir(expr)
-    midi_filepath, abjad_formatting_time, lilypond_rendering_time = \
+    midi_file_path, abjad_formatting_time, lilypond_rendering_time = \
         topleveltools.persist(expr).as_midi()
     midi_player = abjad_configuration['midi_player']
-    systemtools.IOManager.open_file(midi_filepath, midi_player)
+    systemtools.IOManager.open_file(midi_file_path, midi_player)

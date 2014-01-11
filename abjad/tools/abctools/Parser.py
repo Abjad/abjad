@@ -35,10 +35,10 @@ class Parser(AbjadObject):
 
         if self.debug:
             logging.basicConfig(
-                level = logging.DEBUG,
-                filename = self.logger_path,
-                filemode = 'w',
-                format = '%(filename)10s:%(lineno)8d:%(message)s'
+                level=logging.DEBUG,
+                filename=self.logger_path,
+                filemode='w',
+                format='%(filename)10s:%(lineno)8d:%(message)s'
                 )
             self._logger = logging.getLogger()
         else:

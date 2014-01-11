@@ -73,22 +73,22 @@ class CountToolsScript(DirectoryScript):
         crawler = documentationtools.ModuleCrawler(args.path,
             visit_private_modules=True)
         for module in crawler:
-            module_filename = module.__file__
-            if module_filename.endswith('.pyc'):
-                module_filename = module_filename[:-1]
-            with open(module_filename, 'r') as f:
+            module_file_name = module.__file__
+            if module_file_name.endswith('.pyc'):
+                module_file_name = module_file_name[:-1]
+            with open(module_file_name, 'r') as f:
                 lines = f.readlines()
                 for line in lines:
                     if line.startswith('def '):
                         name = line.split()[1].partition('(')[0]
-                        payload = (name, os.path.relpath(module_filename))
+                        payload = (name, os.path.relpath(module_file_name))
                         if name.startswith('_'):
                             private_functions.append(payload)
                         else:
                             public_functions.append(payload)
                     elif line.startswith('class '):
                         name = line.split()[1].partition('(')[0]
-                        payload = (name, os.path.relpath(module_filename))
+                        payload = (name, os.path.relpath(module_file_name))
                         if name.startswith('_'):
                             private_classes.append(payload)
                         else:
@@ -99,14 +99,14 @@ class CountToolsScript(DirectoryScript):
         print 'PRIVATE FUNCTIONS: {}'.format(len(private_functions))
         if args.verbose:
             for x in private_functions:
-                name, filename = x
-                print '\t{}:'.format(filename)
+                name, file_name = x
+                print '\t{}:'.format(file_name)
                 print '\t\t{}'.format(name)
         print 'PRIVATE CLASSES:   {}'.format(len(private_classes))
         if args.verbose:
             for x in private_classes:
-                name, filename = x
-                print '\t{}:'.format(filename)
+                name, file_name = x
+                print '\t{}:'.format(file_name)
                 print '\t\t{}'.format(name)
 
     def setup_argument_parser(self, parser):

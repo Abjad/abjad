@@ -100,20 +100,20 @@ class CountLinewidthsScript(DirectoryScript):
             for obj in documentationtools.FunctionCrawler(args.path)():
                 module_path = obj.__module__
                 module_obj = importlib.import_module(module_path)
-                module_filename = module_obj.__file__
-                if module_filename.endswith('.pyc'):
-                    module_filename = module_filename[:-1]
-                with open(module_filename, 'r') as f:
+                module_file_name = module_obj.__file__
+                if module_file_name.endswith('.pyc'):
+                    module_file_name = module_file_name[:-1]
+                with open(module_file_name, 'r') as f:
                     lines = f.read().split('\n')
                     modules[obj.__module__] = \
                         max([len(line) for line in lines])
             for obj in documentationtools.ClassCrawler(args.path)():
                 module_path = obj.__module__
                 module_obj = importlib.import_module(module_path)
-                module_filename = module_obj.__file__
-                if module_filename.endswith('.pyc'):
-                    module_filename = module_filename[:-1]
-                with open(module_filename, 'r') as f:
+                module_file_name = module_obj.__file__
+                if module_file_name.endswith('.pyc'):
+                    module_file_name = module_file_name[:-1]
+                with open(module_file_name, 'r') as f:
                     lines = f.read().split('\n')
                     modules[obj.__module__] = \
                         max([len(line) for line in lines])
