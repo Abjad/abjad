@@ -3,11 +3,11 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
-from abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker \
-	import OutputIncisedRhythmMaker
+from abjad.tools.rhythmmakertools.IncisedRhythmMaker \
+	import IncisedRhythmMaker
 
 
-class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
+class OutputIncisedRestRhythmMaker(IncisedRhythmMaker):
     r'''Output-incised rest rhythm-maker.
 
     ::
@@ -34,6 +34,10 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
 
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''
+
+    ### CLASS VARIABLES ###
+
+    _is_output_incised = True
 
     ### SPECIAL METHODS ###
 
@@ -100,7 +104,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
 
         Returns new output-incised rest rhythm-maker.
         '''
-        return OutputIncisedRhythmMaker.__makenew__(self, *args, **kwargs)
+        return IncisedRhythmMaker.__makenew__(self, *args, **kwargs)
 
     ### PRIVATE METHODS ###
 
@@ -148,4 +152,4 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
 
         Returns new output-incised rest rhythm-maker.
         '''
-        return OutputIncisedRhythmMaker.reverse(self)
+        return IncisedRhythmMaker.reverse(self)

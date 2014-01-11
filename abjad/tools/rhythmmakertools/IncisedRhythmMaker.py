@@ -153,14 +153,25 @@ class IncisedRhythmMaker(RhythmMaker):
         prolation_addenda, secondary_divisions = result[-2:]
         secondary_duration_pairs = self._make_secondary_duration_pairs(
             duration_pairs, secondary_divisions)
-        numeric_map = self._make_numeric_map(
-            secondary_duration_pairs,
-            prefix_talea,
-            prefix_lengths,
-            suffix_talea,
-            suffix_lengths,
-            prolation_addenda,
-            )
+        if getattr(self, '_is_division_incised', False):
+            numeric_map = self._make_division_incised_numeric_map(
+                secondary_duration_pairs,
+                prefix_talea,
+                prefix_lengths,
+                suffix_talea,
+                suffix_lengths,
+                prolation_addenda,
+                )
+        else:
+            assert getattr(self, '_is_output_incised', False)
+            numeric_map = self._make_output_incised_numeric_map(
+                secondary_duration_pairs,
+                prefix_talea,
+                prefix_lengths,
+                suffix_talea,
+                suffix_lengths,
+                prolation_addenda,
+                )
         leaf_lists = self._numeric_map_and_talea_denominator_to_leaf_lists(
             numeric_map, lcd)
         if not self.prolation_addenda:
@@ -178,9 +189,15 @@ class IncisedRhythmMaker(RhythmMaker):
     def _make_middle_of_numeric_map_part(self, middle):
         pass
 
-    def _make_numeric_map(self, duration_pairs=None,
-        prefix_talea=None, prefix_lengths=None,
-        suffix_talea=None, suffix_lengths=None, prolation_addenda=None):
+    def _make_division_incised_numeric_map(
+        self, 
+        duration_pairs=None,
+        prefix_talea=None, 
+        prefix_lengths=None,
+        suffix_talea=None, 
+        suffix_lengths=None, 
+        prolation_addenda=None,
+        ):
         numeric_map, prefix_talea_index, suffix_talea_index = [], 0, 0
         for pair_index, duration_pair in enumerate(duration_pairs):
             prefix_length, suffix_length = \
@@ -227,6 +244,65 @@ class IncisedRhythmMaker(RhythmMaker):
                 suffix, weights, cyclic=False, overhang=False)[0]
         numeric_map_part = prefix + middle + suffix
         return numeric_map_part
+
+    def _make_output_incised_numeric_map(
+        self,
+        duration_pairs,
+        prefix_talea,
+        prefix_lengths,
+        suffix_talea,
+        suffix_lengths,
+        prolation_addenda,
+        ):
+        numeric_map, prefix_talea_index, suffix_talea_index = [], 0, 0
+        prefix_length, suffix_length = prefix_lengths[0], suffix_lengths[0]
+        prefix = prefix_talea[
+            prefix_talea_index:prefix_talea_index+prefix_length]
+        suffix = suffix_talea[
+            suffix_talea_index:suffix_talea_index+suffix_length]
+        if len(duration_pairs) == 1:
+            prolation_addendum = prolation_addenda[0]
+            if isinstance(duration_pairs[0], mathtools.NonreducedFraction):
+                numerator = duration_pairs[0].numerator
+            else:
+                numerator = duration_pairs[0][0]
+            numerator += (prolation_addendum % numerator)
+            numeric_map_part = self._make_numeric_map_part(
+                numerator, prefix, suffix)
+            numeric_map.append(numeric_map_part)
+        else:
+            prolation_addendum = prolation_addenda[0]
+            if isinstance(duration_pairs[0], tuple):
+                numerator = duration_pairs[0][0]
+            else:
+                numerator = duration_pairs[0].numerator
+            numerator += (prolation_addendum % numerator)
+            numeric_map_part = self._make_numeric_map_part(
+                numerator, prefix, ())
+            numeric_map.append(numeric_map_part)
+            for i, duration_pair in enumerate(duration_pairs[1:-1]):
+                prolation_addendum = prolation_addenda[i+1]
+                if isinstance(duration_pair, tuple):
+                    numerator = duration_pair[0]
+                else:
+                    numerator = duration_pair.numerator
+                numerator += (prolation_addendum % numerator)
+                numeric_map_part = self._make_numeric_map_part(
+                    numerator, (), ())
+                numeric_map.append(numeric_map_part)
+            try:
+                prolation_addendum = prolation_addenda[i+2]
+            except UnboundLocalError:
+                prolation_addendum = prolation_addenda[1+2]
+            if isinstance(duration_pairs[-1], tuple):
+                numerator = duration_pairs[-1][0]
+            else:
+                numerator = duration_pairs[-1].numerator
+            numerator += (prolation_addendum % numerator)
+            numeric_map_part = self._make_numeric_map_part(
+                numerator, (), suffix)
+            numeric_map.append(numeric_map_part)
+        return numeric_map
 
     def _numeric_map_and_talea_denominator_to_leaf_lists(
         self, numeric_map, lcd):

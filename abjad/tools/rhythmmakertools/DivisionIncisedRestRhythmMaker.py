@@ -30,6 +30,10 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''
 
+    ### CLASS VARIABLES ###
+
+    _is_division_incised = True
+
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):

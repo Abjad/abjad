@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker \
-	import OutputIncisedRhythmMaker
+from abjad.tools.rhythmmakertools.IncisedRhythmMaker \
+	import IncisedRhythmMaker
 
 
-class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
+class OutputIncisedNoteRhythmMaker(IncisedRhythmMaker):
     r'''Output-incised note rhythm-maker:
 
     ::
@@ -29,6 +29,10 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
 
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''
+
+    ### CLASS VARIABLES ###
+
+    _is_output_incised = True
 
     def __format__(self, format_specification=''):
         r'''Formats output-incised note rhythm-maker.
@@ -93,7 +97,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
 
         Returns new output-incised note rhythm-maker.
         '''
-        return OutputIncisedRhythmMaker.__makenew__(self, *args, **kwargs)
+        return IncisedRhythmMaker.__makenew__(self, *args, **kwargs)
 
     ### PRIVATE METHODS ###
 
@@ -141,4 +145,4 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
 
         Returns new output-incised note rhythm-maker.
         '''
-        return OutputIncisedRhythmMaker.reverse(self)
+        return IncisedRhythmMaker.reverse(self)
