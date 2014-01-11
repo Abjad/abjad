@@ -67,18 +67,6 @@ class Mode(AbjadObject):
         '''
         return self.mode_name
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(
-                self.mode_name,
-                )
-            )
-
     ### PRIVATE METHODS ###
 
     def _initialize_with_mode_name(self, mode_name):
