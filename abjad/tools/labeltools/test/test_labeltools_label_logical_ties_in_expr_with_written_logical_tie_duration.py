@@ -4,7 +4,7 @@ from abjad import *
 
 def test_labeltools_label_logical_ties_in_expr_with_written_logical_tie_duration_01():
 
-    staff = Staff(scoretools.make_repeated_notes(4))
+    staff = Staff("c'8 c'8 c'8 c'8")
     scoretools.FixedDurationTuplet(Duration(2, 8), staff[:3])
     tie = spannertools.Tie()
     attach(tie, staff.select_leaves()[:2])

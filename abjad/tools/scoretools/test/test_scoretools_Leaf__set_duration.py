@@ -44,7 +44,7 @@ def test_scoretools_Leaf__set_duration_02():
     Duplicate ties are not created.
     '''
 
-    voice = Voice(scoretools.make_repeated_notes(4))
+    voice = Voice("c'8 c'8 c'8 c'8")
     tie = spannertools.Tie()
     attach(tie, voice[:2])
     beam = Beam()

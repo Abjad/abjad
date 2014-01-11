@@ -4,7 +4,7 @@ from abjad import *
 
 def test_spannertools_TextSpanner_position_01():
 
-    staff = Staff(scoretools.make_repeated_notes(4))
+    staff = Staff("c'8 c'8 c'8 c'8")
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, staff[:])
 
@@ -23,7 +23,7 @@ def test_spannertools_TextSpanner_position_01():
 
 def test_spannertools_TextSpanner_position_02():
 
-    staff = Staff(scoretools.make_repeated_notes(4))
+    staff = Staff("c'8 c'8 c'8 c'8")
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, staff[:])
     command = indicatortools.LilyPondCommand('textSpannerNeutral')
@@ -45,7 +45,7 @@ def test_spannertools_TextSpanner_position_02():
 
 def test_spannertools_TextSpanner_position_03():
 
-    staff = Staff(scoretools.make_repeated_notes(4))
+    staff = Staff("c'8 c'8 c'8 c'8")
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, staff[:])
     command = indicatortools.LilyPondCommand('textSpannerUp')
@@ -67,7 +67,7 @@ def test_spannertools_TextSpanner_position_03():
 
 def test_spannertools_TextSpanner_position_04():
 
-    staff = Staff(scoretools.make_repeated_notes(4))
+    staff = Staff("c'8 c'8 c'8 c'8")
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, staff[:])
     command = indicatortools.LilyPondCommand('textSpannerDown')
@@ -91,7 +91,7 @@ def test_spannertools_TextSpanner_position_05():
     r'''TextSpanner attaching to container formats correctly.
     '''
 
-    container = Container(scoretools.make_repeated_notes(4))
+    container = Container("c'8 c'8 c'8 c'8")
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, container)
 

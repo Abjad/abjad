@@ -379,7 +379,7 @@ def test_selectiontools_Parentage_logical_voice_11():
     signatures, even when the staves have the same name.
     '''
 
-    container = Container(Staff(scoretools.make_repeated_notes(2)) * 2)
+    container = Container(2 * Staff("c'8 c'8"))
     container[0].name = container[1].name = 'staff'
 
     assert systemtools.TestManager.compare(

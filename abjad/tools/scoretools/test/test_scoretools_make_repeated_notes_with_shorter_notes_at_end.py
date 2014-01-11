@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_01():
@@ -9,16 +9,6 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_01():
 
     voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(1, 4)))
 
-    r'''
-    \new Voice {
-        c'16
-        c'16
-        c'16
-        c'16
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert systemtools.TestManager.compare(
         voice,
         r'''
@@ -31,6 +21,8 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_01():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_02():
     r'''Make train of 1/16th notes equal to 9/32 total duration.
@@ -38,17 +30,6 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_02():
 
     voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(9, 32)))
 
-    r'''
-    \new Voice {
-        c'16
-        c'16
-        c'16
-        c'16
-        c'32
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert systemtools.TestManager.compare(
         voice,
         r'''
@@ -62,6 +43,8 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_02():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_03():
     r'''Make train of 1/16th notes equal to only 1/128 total duration.
@@ -69,13 +52,6 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_03():
 
     voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(1, 128)))
 
-    r'''
-    \new Voice {
-        c'128
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert systemtools.TestManager.compare(
         voice,
         r'''
@@ -85,6 +61,8 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_03():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_04():
     r'''Make train of 1/16th notes equal to 4/10 total duration.
@@ -92,21 +70,6 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_04():
 
     voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(4, 10)))
 
-    r'''
-    \new Voice {
-        c'16
-        c'16
-        c'16
-        c'16
-        c'16
-        c'16
-        \times 4/5 {
-            c'32
-        }
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert systemtools.TestManager.compare(
         voice,
         r'''
@@ -124,6 +87,8 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_04():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_05():
     r'''Make train of written 1/16th notes within measure of 5/18.
@@ -132,20 +97,6 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_05():
     measure = Measure((5, 18), scoretools.make_repeated_notes_with_shorter_notes_at_end(
         0, Duration(1, 16), Duration(5, 18), prolation = Duration(16, 18)))
 
-    r'''
-    {
-        \time 5/18
-        \scaleDurations #'(8 . 9) {
-            c'16
-            c'16
-            c'16
-            c'16
-            c'16
-        }
-    }
-    '''
-
-    assert inspect(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''
@@ -161,3 +112,5 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_05():
         }
         '''
         )
+
+    assert inspect(measure).is_well_formed()

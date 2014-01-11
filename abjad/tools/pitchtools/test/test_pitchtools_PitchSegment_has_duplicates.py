@@ -30,7 +30,7 @@ def test_pitchtools_PitchSegment_has_duplicates_03():
     r'''Works with containers.
     '''
 
-    staff = Staff(scoretools.make_repeated_notes(4))
+    staff = Staff("c'8 c'8 c'8 c'8")
     assert pitchtools.PitchSegment.from_selection(staff).has_duplicates
 
     staff = Staff("c'8 d'8 e'8 f'8")

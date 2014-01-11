@@ -219,7 +219,7 @@ def test_scoretools_Container_insert_07():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    staff = Staff(scoretools.make_repeated_notes(8))
+    staff = Staff("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
     note = voice[0]
     staff.insert(1, voice[0])
 
@@ -445,17 +445,6 @@ def test_scoretools_Container_insert_14():
     attach(beam, staff[:])
     staff.insert(-1000, Rest('r4'), fracture_spanners=True)
 
-    r'''
-    \new Staff {
-        r4
-        c'8 [
-        cs'8
-        d'8
-        ef'8 ]
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -469,6 +458,8 @@ def test_scoretools_Container_insert_14():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_scoretools_Container_insert_15():
     r'''Inserting a note from one container into another container
@@ -476,7 +467,7 @@ def test_scoretools_Container_insert_15():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    staff = Staff(scoretools.make_repeated_notes(8))
+    staff = Staff("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
     note = voice[0]
     staff.insert(1, voice[0], fracture_spanners=True)
 

@@ -6,7 +6,7 @@ def test_agenttools_IterationAgent_by_logical_tie_01():
     r'''Yields successive logical ties.
     '''
 
-    staff = Staff(scoretools.make_repeated_notes(4))
+    staff = Staff("c'8 c'8 c'8 c'8")
     tie = Tie()
     attach(tie, staff[:2])
     tie = Tie()
@@ -34,7 +34,7 @@ def test_agenttools_IterationAgent_by_logical_tie_02():
     r'''Yields successive logical ties.
     '''
 
-    staff = Staff(scoretools.make_repeated_notes(4))
+    staff = Staff("c'8 c'8 c'8 c'8")
 
     logical_ties = list(iterate(staff).by_logical_tie(reverse=True))
 
@@ -48,7 +48,7 @@ def test_agenttools_IterationAgent_by_logical_tie_03():
     r'''Yields successive logical ties.
     '''
 
-    staff = Staff(scoretools.make_repeated_notes(4))
+    staff = Staff("c'8 c'8 c'8 c'8")
     tie = Tie()
     attach(tie, staff[:2])
     tie = Tie()

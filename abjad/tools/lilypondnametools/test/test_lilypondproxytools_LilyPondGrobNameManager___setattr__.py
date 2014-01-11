@@ -1048,7 +1048,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___44():
     r'''Override LilyPond SystemStartBar grob.
     '''
 
-    score = Score([scoretools.StaffGroup([Staff(scoretools.make_repeated_notes(8))])])
+    score = Score([scoretools.StaffGroup([Staff("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")])])
     override(score).system_start_bar.collapse_height = 0
     override(score).system_start_bar.color = 'red'
 
@@ -1106,7 +1106,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___46():
     r'''Override LilyPond TextSpanner grob.
     '''
 
-    staff = Staff(scoretools.make_repeated_notes(4))
+    staff = Staff("c'8 c'8 c'8 c'8")
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, staff[:])
     override(text_spanner).text_spanner.font_shape = 'italic'

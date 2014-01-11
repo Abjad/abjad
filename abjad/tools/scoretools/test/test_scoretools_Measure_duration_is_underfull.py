@@ -4,7 +4,7 @@ from abjad import *
 
 def test_scoretools_Measure_duration_is_underfull_01():
 
-    measure = Measure((3, 8), scoretools.make_repeated_notes(3))
+    measure = Measure((3, 8), "c'8 c'8 c'8")
     assert not measure.is_underfull
 
     detach(TimeSignature, measure)

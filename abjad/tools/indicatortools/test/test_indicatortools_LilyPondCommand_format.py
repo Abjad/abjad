@@ -136,7 +136,7 @@ def test_indicatortools_LilyPondCommand_format_09():
     r'''Voice number can be set on leaves.
     '''
 
-    voice = Voice(scoretools.make_repeated_notes(4))
+    voice = Voice("c'8 c'8 c'8 c'8")
     command = indicatortools.LilyPondCommand('voiceOne')
     attach(command, voice[0])
 
@@ -159,7 +159,7 @@ def test_indicatortools_LilyPondCommand_format_10():
     Anyhing else will throw a ValueError exception.
     '''
 
-    voice = Voice(scoretools.make_repeated_notes(4))
+    voice = Voice("c'8 c'8 c'8 c'8")
     command = indicatortools.LilyPondCommand('voiceOne')
     attach(command, voice[0])
     assert systemtools.TestManager.compare(
@@ -242,7 +242,7 @@ def test_indicatortools_LilyPondCommand_format_11():
     leaves contained in it.
     '''
 
-    voice = Voice(scoretools.make_repeated_notes(4))
+    voice = Voice("c'8 c'8 c'8 c'8")
     command = indicatortools.LilyPondCommand('voiceOne')
     attach(command, voice)
     command = indicatortools.LilyPondCommand('voiceTwo')

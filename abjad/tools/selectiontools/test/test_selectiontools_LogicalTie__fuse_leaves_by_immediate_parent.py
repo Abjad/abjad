@@ -6,7 +6,7 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_01():
     r'''Fuse leaves in logical tie with same immediate parent.
     '''
 
-    staff = Staff(Measure((2, 8), scoretools.make_repeated_notes(2)) * 2)
+    staff = Staff(2 * Measure((2, 8), "c'8 c'8"))
     tie = spannertools.Tie()
     attach(tie, staff.select_leaves())
 
@@ -36,7 +36,7 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
     r'''Fuse leaves in logical tie with same immediate parent.
     '''
 
-    staff = Staff(scoretools.make_repeated_notes(4))
+    staff = Staff("c'8 c'8 c'8 c'8")
     tie = spannertools.Tie()
     attach(tie, staff.select_leaves())
 

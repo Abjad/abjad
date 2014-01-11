@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import sequencetools
 
 
 def test_scoretools_make_repeated_notes_from_time_signatures_01():
@@ -12,16 +11,6 @@ def test_scoretools_make_repeated_notes_from_time_signatures_01():
 
     notes = sequencetools.flatten_sequence(notes)
     staff = Staff(notes)
-
-    r'''
-    \new Staff {
-        d''8
-        d''8
-        d''32
-        d''32
-        d''32
-    }
-    '''
 
     assert systemtools.TestManager.compare(
         staff,

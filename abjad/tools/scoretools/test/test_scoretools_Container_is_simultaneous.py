@@ -87,7 +87,7 @@ def test_scoretools_Container_is_simultaneous_05():
     It can not take leaves.
     '''
 
-    container = Container(scoretools.make_repeated_notes(4))
+    container = Container("c'8 c'8 c'8 c'8")
     pytest.raises(AssertionError, 'container.is_simultaneous = True')
 
 
@@ -96,5 +96,5 @@ def test_scoretools_Container_is_simultaneous_06():
     It can not take Containers.
     '''
 
-    container = Container(Container(scoretools.make_repeated_notes(4)) * 2)
+    container = Container(2 * Container("c'8 c'8 c'8 c'8"))
     pytest.raises(AssertionError, 'container.is_simultaneous = True')

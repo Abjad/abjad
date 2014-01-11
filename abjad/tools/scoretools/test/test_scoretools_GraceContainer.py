@@ -48,7 +48,7 @@ def test_scoretools_GraceContainer_03():
     r'''Grace formats correctly as grace.
     '''
 
-    gracecontainer = scoretools.GraceContainer(scoretools.make_repeated_notes(3))
+    gracecontainer = scoretools.GraceContainer("c'8 c'8 c'8")
     gracecontainer.kind = 'grace'
     assert systemtools.TestManager.compare(
         gracecontainer,

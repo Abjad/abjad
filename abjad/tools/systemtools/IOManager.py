@@ -302,7 +302,7 @@ class IOManager(object):
 
         ::
 
-            >>> expr = 'Staff(scoretools.make_repeated_notes(8))'
+            >>> expr = 'Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
             >>> IOManager.profile_expr(expr) # doctest: +SKIP
             Tue Apr  5 20:32:40 2011    _tmp_abj_profile
 
@@ -313,7 +313,6 @@ class IOManager(object):
 
             ncalls  tottime  percall  cumtime  percall filename:lineno(function)
                     1    0.000    0.000    0.006    0.006 <string>:1(<module>)
-                    1    0.000    0.000    0.003    0.003 make_repeated_notes.py:5(
                     1    0.001    0.001    0.003    0.003 make_notes.py:12(make_not
                     1    0.000    0.000    0.003    0.003 Staff.py:21(__init__)
                     1    0.000    0.000    0.003    0.003 Context.py:11(__init__)
