@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools import *
+from abjad import *
 
 
 def test_datastructuretools_OrdinalConstant___copy___01():

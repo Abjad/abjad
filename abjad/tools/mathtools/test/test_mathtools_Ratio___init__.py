@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import pytest
-from abjad.tools import *
+from abjad import *
 
 
 def test_mathtools_Ratio___init___01():

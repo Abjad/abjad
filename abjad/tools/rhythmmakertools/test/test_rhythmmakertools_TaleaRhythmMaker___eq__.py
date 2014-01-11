@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import *
+from abjad import *
 
 
 def test_rhythmmakertools_TaleaRhythmMaker___eq___01():

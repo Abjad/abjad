@@ -2,7 +2,7 @@
 import inspect
 import pytest
 import abjad
-from abjad.tools import *
+from abjad import *
 pytest.skip()
 
 

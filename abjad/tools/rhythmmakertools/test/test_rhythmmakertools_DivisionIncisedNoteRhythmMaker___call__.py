@@ -283,7 +283,6 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___06():
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -298,7 +297,6 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___06():
                 }
             }
             {
-                \time 4/8
                 {
                     r32
                     c'16.
@@ -311,7 +309,6 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___06():
                 }
             }
             {
-                \time 4/8
                 {
                     r32
                     c'8..

@@ -2,7 +2,7 @@
 import os
 import pytest
 import shutil
-from abjad.tools import *
+from abjad import *
 
 
 @pytest.skip('Test runs slowly.')

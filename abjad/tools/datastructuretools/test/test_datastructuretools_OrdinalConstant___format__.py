@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import *
+from abjad import *
 
 
 def test_datastructuretools_OrdinalConstant___format___01():

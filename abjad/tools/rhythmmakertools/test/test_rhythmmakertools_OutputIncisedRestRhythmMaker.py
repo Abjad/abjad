@@ -22,7 +22,6 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_01():
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -35,12 +34,10 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_01():
                 r8
             }
             {
-                \time 5/8
                 r2
                 r8
             }
             {
-                \time 5/8
                 r4
                 c'16.
                 c'16.
@@ -72,7 +69,6 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_02():
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -85,12 +81,10 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_02():
                 c'8
             }
             {
-                \time 5/8
                 r2
                 r8
             }
             {
-                \time 5/8
                 r8
                 c'4
                 c'4
@@ -120,7 +114,6 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_03():
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -132,12 +125,10 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_03():
                 r8
             }
             {
-                \time 5/8
                 r2
                 r8
             }
             {
-                \time 5/8
                 r2
                 r8
             }
@@ -168,7 +159,6 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_04():
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -182,13 +172,11 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_04():
                 }
             }
             {
-                \time 4/8
                 {
                     r2
                 }
             }
             {
-                \time 4/8
                 \times 4/7 {
                     r2.
                     c'8
@@ -223,7 +211,6 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_05():
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
-    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -241,13 +228,11 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_05():
                 }
             }
             {
-                \time 4/8
                 {
                     r2
                 }
             }
             {
-                \time 4/8
                 {
                     r8
                 }

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import *
+from abjad import *
 
 
 def test_sequencetools_partition_sequence_by_backgrounded_weights_01():
