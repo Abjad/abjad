@@ -3,30 +3,48 @@ import math
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
+from abjad.tools import selectiontools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
 class EqualDivisionRhythmMaker(RhythmMaker):
     r'''Equal division rhythm-maker.
 
-    ::
+    ..  container:: example
 
-        >>> maker = rhythmmakertools.EqualDivisionRhythmMaker(leaf_count=4)
+        Makes tuplets with ``4`` equal duration notes each.
 
-    Configure at initialization and then call on any series of divisions:
+        ::
 
-    ::
+            >>> maker = rhythmmakertools.EqualDivisionRhythmMaker(leaf_count=4)
 
-        >>> divisions = [(1, 2), (3, 8), (5, 16)]
-        >>> tuplet_lists = maker(divisions)
-        >>> music = sequencetools.flatten_sequence(tuplet_lists)
-        >>> measures = scoretools.make_spacer_skip_measures(divisions)
-        >>> staff = scoretools.RhythmicStaff(measures)
-        >>> measures = mutate(staff).replace_measure_contents(music)
+        ::
 
-    ::
+            >>> divisions = [(1, 2), (3, 8), (5, 16)]
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
 
-        >>> show(staff) # doctest: +SKIP
+    ..  container:: example
+
+        Makes tuplets with ``5`` equal duration notes each.
+
+        ::
+
+            >>> maker = rhythmmakertools.EqualDivisionRhythmMaker(leaf_count=5)
+
+        ::
+
+            >>> divisions = [(1, 2), (3, 8), (5, 16)]
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''
@@ -41,7 +59,8 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         beam_cells_together=False,
         ):
         assert mathtools.is_integer_equivalent_expr(leaf_count)
-        RhythmMaker.__init__(self,
+        RhythmMaker.__init__(
+            self,
             beam_each_cell=beam_each_cell,
             beam_cells_together=beam_cells_together
             )
@@ -54,12 +73,26 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     def __call__(self, divisions, seeds=None):
         r'''Calls equal-division rhythm-maker on `divisions`.
 
-        Returns list of tuplet lists.
+        ..  container:: example
+
+            ::
+
+                >>> divisions = [(1, 2), (3, 8), (5, 16)]
+                >>> music = maker(divisions)
+                >>> for selection in music:
+                ...     selection
+                Selection(FixedDurationTuplet(Duration(1, 2), "c'8 c'8 c'8 c'8 c'8"),)
+                Selection(FixedDurationTuplet(Duration(3, 8), "c'8 c'8 c'8 c'8 c'8"),)
+                Selection(FixedDurationTuplet(Duration(5, 16), "c'16 c'16 c'16 c'16 c'16"),)
+
+        Returns list of selections. Each selection contains exactly one
+        fixed-duration tuplet.
         '''
         result = []
         for division in divisions:
             tuplet = self._make_tuplet(division)
-            result.append([tuplet])
+            selection = selectiontools.Selection(tuplet)
+            result.append(selection)
         return result
 
     ### SPECIAL METHODS ###
@@ -67,17 +100,19 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     def __format__(self, format_specification=''):
         r'''Formats equal division rhythm-maker.
 
+        ..  container:: example
+
+            ::
+
+                >>> print format(maker)
+                rhythmmakertools.EqualDivisionRhythmMaker(
+                    leaf_count=5,
+                    is_diminution=True,
+                    beam_each_cell=True,
+                    beam_cells_together=False,
+                    )
+
         Set `format_specification` to `''` or `'storage'`.
-
-        ::
-
-            >>> print format(maker)
-            rhythmmakertools.EqualDivisionRhythmMaker(
-                leaf_count=4,
-                is_diminution=True,
-                beam_each_cell=True,
-                beam_cells_together=False,
-                )
 
         Returns string.
         '''
@@ -87,32 +122,31 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     def __makenew__(self, *args, **kwargs):
         r'''Makes new equal-division rhythm-maker with `kwargs`.
 
-        ::
+        ..  container:: example
 
-            >>> new_maker = new(maker, is_diminution=False)
+            ::
 
-        ::
+                >>> new_maker = new(maker, is_diminution=False)
 
-            >>> print format(new_maker)
-            rhythmmakertools.EqualDivisionRhythmMaker(
-                leaf_count=4,
-                is_diminution=False,
-                beam_each_cell=True,
-                beam_cells_together=False,
-                )
+            ::
 
-        ::
+                >>> print format(new_maker)
+                rhythmmakertools.EqualDivisionRhythmMaker(
+                    leaf_count=5,
+                    is_diminution=False,
+                    beam_each_cell=True,
+                    beam_cells_together=False,
+                    )
 
-            >>> divisions = [(1, 2), (3, 8), (5, 16)]
-            >>> tuplet_lists = new_maker(divisions)
-            >>> music = sequencetools.flatten_sequence(tuplet_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(music)
+            ::
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
+                >>> divisions = [(1, 2), (3, 8), (5, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns new equal-division rhythm-maker.
         '''
@@ -137,13 +171,14 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     @property
     def is_diminution(self):
         r'''Is true when output tuplets should be diminuted.
+        False when output tuplets should be augmented.
 
-        False when output tuplets should be augmented:
+        ..  container:: example
 
-        ::
+            ::
 
-            >>> maker.is_diminution
-            True
+                >>> maker.is_diminution
+                True
 
         Returns boolean.
         '''
@@ -151,12 +186,14 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
     @property
     def leaf_count(self):
-        r'''Number of leaves per division:
+        r'''Gets number of leaves per division.
 
-        ::
+        ..  container:: example
 
-            >>> maker.leaf_count
-            4
+            ::
+
+                >>> maker.leaf_count
+                5
 
         Returns positive integer.
         '''
@@ -167,32 +204,31 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     def reverse(self):
         r'''Reverses equal-division rhythm-maker.
 
-        ::
+        ..  container:: example
 
-            >>> reversed_maker = maker.reverse()
+            ::
 
-        ::
+                >>> reversed_maker = maker.reverse()
 
-            >>> print format(reversed_maker)
-            rhythmmakertools.EqualDivisionRhythmMaker(
-                leaf_count=4,
-                is_diminution=True,
-                beam_each_cell=True,
-                beam_cells_together=False,
-                )
+            ::
 
-        ::
+                >>> print format(reversed_maker)
+                rhythmmakertools.EqualDivisionRhythmMaker(
+                    leaf_count=5,
+                    is_diminution=True,
+                    beam_each_cell=True,
+                    beam_cells_together=False,
+                    )
 
-            >>> divisions = [(1, 2), (3, 8), (5, 16)]
-            >>> tuplet_lists = reversed_maker(divisions)
-            >>> music = sequencetools.flatten_sequence(tuplet_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(music)
+            ::
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
+                >>> divisions = [(1, 2), (3, 8), (5, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Defined equal to copy of maker.
 

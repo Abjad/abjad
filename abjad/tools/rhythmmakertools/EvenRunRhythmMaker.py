@@ -38,7 +38,6 @@ class EvenRunRhythmMaker(RhythmMaker):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-
     ..  container:: example
 
         Makes even run of notes each equal in duration to
