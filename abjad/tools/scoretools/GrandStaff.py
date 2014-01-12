@@ -42,7 +42,12 @@ class GrandStaff(StaffGroup):
 
     ### INITIALIZER ###
 
-    def __init__(self, music, context_name='GrandStaff', name=None):
+    def __init__(
+        self, 
+        music=None, 
+        context_name='GrandStaff', 
+        name=None,
+        ):
         StaffGroup.__init__(
             self, 
             music=music, 

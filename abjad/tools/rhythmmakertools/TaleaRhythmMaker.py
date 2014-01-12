@@ -55,8 +55,8 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
 
     def __init__(
         self,
-        talea=None,
-        talea_denominator=None,
+        talea=(-1, 4, -2, 3),
+        talea_denominator=16,
         prolation_addenda=None,
         secondary_divisions=None,
         talea_helper=None,

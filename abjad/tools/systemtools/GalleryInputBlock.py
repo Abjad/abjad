@@ -16,6 +16,7 @@ class GalleryInputBlock(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, input_=None, divisions=None):
+        divisions = divisions or ()
         self._input_ = input_
         self._divisions = tuple(divisions)
 

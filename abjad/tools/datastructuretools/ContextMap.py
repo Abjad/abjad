@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import iterate
 
@@ -51,9 +50,13 @@ class ContextMap(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, score):
+    def __init__(self, score=None):
         from abjad.tools import datastructuretools
         from abjad.tools import scoretools
+        from abjad.tools import templatetools
+        if score is None:
+            template = templatetools.StringOrchestraScoreTemplate()
+            score = template()
         assert isinstance(score, scoretools.Score), repr(score)
         self._score = score
         self._components = {}

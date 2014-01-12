@@ -47,10 +47,7 @@ class Tempo(AbjadObject):
     def __init__(self, *args, **kwargs):
         from abjad.tools import scoretools
         self._default_scope = scoretools.Score
-        if len(args) == 0:
-            duration = durationtools.Duration(1, 4)
-            units_per_minute = 60
-        elif len(args) == 1 and isinstance(args[0], type(self)):
+        if len(args) == 1 and isinstance(args[0], type(self)):
             tempo_indication = args[0]
             duration = durationtools.Duration(tempo_indication.duration)
             textual_indication = tempo_indication.textual_indication
@@ -73,6 +70,10 @@ class Tempo(AbjadObject):
             else:
                 textual_indication = None
                 duration, units_per_minute = args
+        elif len(args) == 0:
+            duration = durationtools.Duration(1, 4)
+            units_per_minute = 60
+            textual_indication = None
         else:
             message = 'can not initialize tempo indication.'
             raise ValueError(message)

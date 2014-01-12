@@ -91,12 +91,11 @@ class Markup(AbjadObject):
         from abjad.tools import lilypondparsertools
         from abjad.tools import markuptools
         if not argument:
-            #contents = None
-            contents = 'This is markup text.'
+            argment = 'This is markup text.'
         # WARNING: running the LilyPondParser here on a regular basis
         #          by setting (for example) argument='' in the intializer
         #          slows performance of the entire system by up to 25%!
-        elif isinstance(argument, str):
+        if isinstance(argument, str):
             to_parse = r'\markup {{ {} }}'.format(argument)
             parsed = lilypondparsertools.LilyPondParser()(to_parse)
             if all(isinstance(x, str) for x in parsed.contents):

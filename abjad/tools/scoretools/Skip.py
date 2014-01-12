@@ -29,26 +29,30 @@ class Skip(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, arg):
+    def __init__(self, *args):
         from abjad.tools import lilypondparsertools
-        if isinstance(arg, str):
-            input = '{{ {} }}'.format(arg)
+        input_leaf = None
+        written_duration = None
+        if len(args) == 1 and isinstance(args[0], str):
+            input = '{{ {} }}'.format(args[0])
             parsed = lilypondparsertools.LilyPondParser()(input)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
-            arg = parsed[0]
-        if isinstance(arg, Leaf):
-            written_duration = arg.written_duration
-        elif not isinstance(arg, str):
-            written_duration = arg
+            input_leaf = parsed[0]
+            written_duration = input_leaf.written_duration
+        elif len(args) == 1 and isinstance(args[0], Leaf):
+            written_duration = args[0].written_duration
+            input_leaf = args[0]
+        elif len(args) == 1 and not isinstance(args[0], str):
+            written_duration = args[0]
         elif len(args) == 0:
             written_duration = durationtools.Duration(1, 4)
         else:
             message = 'can not initialize skip from {!r}.'
-            message = message.format(arg)
+            message = message.format(args)
             raise ValueError(message)
         Leaf.__init__(self, written_duration)
-        if isinstance(arg, Leaf):
-            self._copy_override_and_set_from_leaf(arg)
+        if input_leaf is not None:
+            self._copy_override_and_set_from_leaf(input_leaf)
 
     ### PRIVATE PROPERTIES ###
 

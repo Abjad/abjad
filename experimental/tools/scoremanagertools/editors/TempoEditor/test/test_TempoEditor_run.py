@@ -6,7 +6,7 @@ def test_TempoEditor_run_01():
 
     editor = scoremanagertools.editors.TempoEditor()
     editor._run(pending_user_input='q')
-    assert editor.target is None
+    assert editor.target == Tempo()
 
 
 def test_TempoEditor_run_02():

@@ -26,7 +26,7 @@ class Block(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, name=None):
+    def __init__(self, name='score'):
         assert isinstance(name, str), repr(name)
         self._name = name
         escaped_name = r'\{}'.format(name)

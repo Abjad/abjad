@@ -10,7 +10,7 @@ class Documenter(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, object_, prefix='abjad.tools.'):
+    def __init__(self, object_=None, prefix='abjad.tools.'):
         assert isinstance(prefix, (str, type(None)))
         self._object_ = object_
         self._prefix = prefix

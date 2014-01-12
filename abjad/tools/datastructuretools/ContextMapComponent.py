@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -19,8 +18,7 @@ class ContextMapComponent(AbjadObject):
 
     def __init__(self, context_map, context_name):
         from abjad.tools import datastructuretools
-        assert isinstance(context_map,
-            datastructuretools.ContextMap)
+        assert isinstance(context_map, datastructuretools.ContextMap)
         assert isinstance(context_name, str) and context_name
         self._client = context_map
         self._context_name = context_name
