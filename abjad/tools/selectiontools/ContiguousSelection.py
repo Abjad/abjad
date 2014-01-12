@@ -84,6 +84,191 @@ class ContiguousSelection(Selection):
             tie = spannertools.Tie()
             attach(tie, [left_leaf, right_leaf])
 
+    def _copy(self, n=1, include_enclosing_containers=False):
+        r'''Copies components in selection and fractures crossing spanners.
+
+        Components in selection must be logical-voice-contiguous.
+
+        The steps this function takes are as follows:
+
+            * Deep copy `components`.
+
+            * Deep copy spanners that attach to any component in `components`.
+
+            * Fracture spanners that attach to components not in `components`.
+
+            * Returns Python list of copied components.
+
+        ..  container:: example
+
+            **Example 1.** Copy components one time:
+
+            ::
+
+                >>> staff = Staff(r"c'8 ( d'8 e'8 f'8 )")
+                >>> staff.append(r"g'8 a'8 b'8 c''8")
+                >>> time_signature = TimeSignature((2, 4))
+                >>> attach(time_signature, staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(staff)
+                \new Staff {
+                    \time 2/4
+                    c'8 (
+                    d'8
+                    e'8
+                    f'8 )
+                    g'8
+                    a'8
+                    b'8
+                    c''8
+                }
+
+            ::
+
+                >>> selection = staff.select_leaves()[2:4]
+                >>> result = selection._copy()
+                >>> new_staff = Staff(result)
+                >>> show(new_staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(new_staff)
+                \new Staff {
+                    e'8 (
+                    f'8 )
+                }
+
+            ::
+
+                >>> staff.select_leaves()[2] is new_staff.select_leaves()[0]
+                False
+
+        ..  container:: example
+
+            **Example 2.** Copy components multiple times:
+
+            Copy `components` a total of `n` times:
+
+            ::
+
+                >>> selection = staff.select_leaves()[2:4]
+                >>> result = selection._copy(n=4)
+                >>> new_staff = Staff(result)
+                >>> show(new_staff) # doctest: +SKIP
+
+            ::
+
+                >>> print format(new_staff)
+                \new Staff {
+                    e'8 (
+                    f'8 )
+                    e'8 (
+                    f'8 )
+                    e'8 (
+                    f'8 )
+                    e'8 (
+                    f'8 )
+                }
+
+        ..  container:: example
+
+            **Example 3.** Copy leaves and include enclosing conatiners:
+
+                >>> voice = Voice(r"\times 2/3 { c'4 d'4 e'4 }")
+                >>> voice.append(r"\times 2/3 { f'4 e'4 d'4 }")
+                >>> staff = Staff([voice])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(staff)
+                \new Staff {
+                    \new Voice {
+                        \times 2/3 {
+                            c'4
+                            d'4
+                            e'4
+                        }
+                        \times 2/3 {
+                            f'4
+                            e'4
+                            d'4
+                        }
+                    }
+                }
+
+            ::
+
+                >>> leaves = staff.select_leaves(1, 5)
+                >>> new_staff = leaves._copy(include_enclosing_containers=True)
+                >>> show(new_staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(new_staff)
+                \new Staff {
+                    \new Voice {
+                        \times 2/3 {
+                            d'4
+                            e'4
+                        }
+                        \times 2/3 {
+                            f'4
+                            e'4
+                        }
+                    }
+                }
+
+        Returns contiguous selection.
+        '''
+        from abjad.tools import scoretools
+        from abjad.tools import spannertools
+        # check input
+        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        # return empty list when nothing to copy
+        if n < 1:
+            return []
+        new_components = [
+            component._copy_with_children_and_indicators_but_without_spanners()
+            for component in self
+            ]
+        if include_enclosing_containers:
+            return self._copy_and_include_enclosing_containers()
+        new_components = type(self)(new_components)
+        # make schema of spanners contained by components
+        schema = self._make_spanner_schema()
+        # copy spanners covered by components
+        for covered_spanner, component_indices in schema.items():
+            new_covered_spanner = copy.copy(covered_spanner)
+            del(schema[covered_spanner])
+            schema[new_covered_spanner] = component_indices
+        # reverse schema
+        reversed_schema = {}
+        for new_covered_spanner, component_indices in schema.items():
+            for component_index in component_indices:
+                try:
+                    reversed_schema[component_index].append(
+                        new_covered_spanner)
+                except KeyError:
+                    reversed_schema[component_index] = [new_covered_spanner]
+        # iterate components and add new components to new spanners
+        for component_index, new_component in enumerate(
+            iterate(new_components).by_class()):
+            try:
+                new_covered_spanners = reversed_schema[component_index]
+                for new_covered_spanner in new_covered_spanners:
+                    new_covered_spanner._append(new_component)
+            except KeyError:
+                pass
+        # repeat as specified by input
+        for i in range(n - 1):
+            new_components += self._copy()
+        # return new components
+        return new_components
+
     def _copy_and_include_enclosing_containers(self):
         from abjad.tools import scoretools
         # get governor
@@ -339,191 +524,6 @@ class ContiguousSelection(Selection):
                     component._spanners.discard(crossing_spanner)
 
     ### PUBLIC METHODS ###
-
-    def _copy(self, n=1, include_enclosing_containers=False):
-        r'''Copies components in selection and fractures crossing spanners.
-
-        Components in selection must be logical-voice-contiguous.
-
-        The steps this function takes are as follows:
-
-            * Deep copy `components`.
-
-            * Deep copy spanners that attach to any component in `components`.
-
-            * Fracture spanners that attach to components not in `components`.
-
-            * Returns Python list of copied components.
-
-        ..  container:: example
-
-            **Example 1.** Copy components one time:
-
-            ::
-
-                >>> staff = Staff(r"c'8 ( d'8 e'8 f'8 )")
-                >>> staff.append(r"g'8 a'8 b'8 c''8")
-                >>> time_signature = TimeSignature((2, 4))
-                >>> attach(time_signature, staff)
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print format(staff)
-                \new Staff {
-                    \time 2/4
-                    c'8 (
-                    d'8
-                    e'8
-                    f'8 )
-                    g'8
-                    a'8
-                    b'8
-                    c''8
-                }
-
-            ::
-
-                >>> selection = staff.select_leaves()[2:4]
-                >>> result = selection._copy()
-                >>> new_staff = Staff(result)
-                >>> show(new_staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print format(new_staff)
-                \new Staff {
-                    e'8 (
-                    f'8 )
-                }
-
-            ::
-
-                >>> staff.select_leaves()[2] is new_staff.select_leaves()[0]
-                False
-
-        ..  container:: example
-
-            **Example 2.** Copy components multiple times:
-
-            Copy `components` a total of `n` times:
-
-            ::
-
-                >>> selection = staff.select_leaves()[2:4]
-                >>> result = selection._copy(n=4)
-                >>> new_staff = Staff(result)
-                >>> show(new_staff) # doctest: +SKIP
-
-            ::
-
-                >>> print format(new_staff)
-                \new Staff {
-                    e'8 (
-                    f'8 )
-                    e'8 (
-                    f'8 )
-                    e'8 (
-                    f'8 )
-                    e'8 (
-                    f'8 )
-                }
-
-        ..  container:: example
-
-            **Example 3.** Copy leaves and include enclosing conatiners:
-
-                >>> voice = Voice(r"\times 2/3 { c'4 d'4 e'4 }")
-                >>> voice.append(r"\times 2/3 { f'4 e'4 d'4 }")
-                >>> staff = Staff([voice])
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print format(staff)
-                \new Staff {
-                    \new Voice {
-                        \times 2/3 {
-                            c'4
-                            d'4
-                            e'4
-                        }
-                        \times 2/3 {
-                            f'4
-                            e'4
-                            d'4
-                        }
-                    }
-                }
-
-            ::
-
-                >>> leaves = staff.select_leaves(1, 5)
-                >>> new_staff = leaves._copy(include_enclosing_containers=True)
-                >>> show(new_staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print format(new_staff)
-                \new Staff {
-                    \new Voice {
-                        \times 2/3 {
-                            d'4
-                            e'4
-                        }
-                        \times 2/3 {
-                            f'4
-                            e'4
-                        }
-                    }
-                }
-
-        Returns contiguous selection.
-        '''
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
-        # check input
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
-        # return empty list when nothing to copy
-        if n < 1:
-            return []
-        new_components = [
-            component._copy_with_children_and_indicators_but_without_spanners()
-            for component in self
-            ]
-        if include_enclosing_containers:
-            return self._copy_and_include_enclosing_containers()
-        new_components = type(self)(new_components)
-        # make schema of spanners contained by components
-        schema = self._make_spanner_schema()
-        # copy spanners covered by components
-        for covered_spanner, component_indices in schema.items():
-            new_covered_spanner = copy.copy(covered_spanner)
-            del(schema[covered_spanner])
-            schema[new_covered_spanner] = component_indices
-        # reverse schema
-        reversed_schema = {}
-        for new_covered_spanner, component_indices in schema.items():
-            for component_index in component_indices:
-                try:
-                    reversed_schema[component_index].append(
-                        new_covered_spanner)
-                except KeyError:
-                    reversed_schema[component_index] = [new_covered_spanner]
-        # iterate components and add new components to new spanners
-        for component_index, new_component in enumerate(
-            iterate(new_components).by_class()):
-            try:
-                new_covered_spanners = reversed_schema[component_index]
-                for new_covered_spanner in new_covered_spanners:
-                    new_covered_spanner._append(new_component)
-            except KeyError:
-                pass
-        # repeat as specified by input
-        for i in range(n - 1):
-            new_components += self._copy()
-        # return new components
-        return new_components
 
     def get_timespan(self, in_seconds=False):
         r'''Gets timespan of contiguous selection.

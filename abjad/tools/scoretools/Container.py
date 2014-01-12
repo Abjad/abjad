@@ -231,7 +231,8 @@ class Container(Component):
         return new
 
     def _copy_with_indicators_but_without_children_or_spanners(self):
-        new = Component._copy_with_indicators_but_without_children_or_spanners(self)
+        new = Component._copy_with_indicators_but_without_children_or_spanners(
+            self)
         new.is_simultaneous = self.is_simultaneous
         return new
 

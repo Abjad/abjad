@@ -49,10 +49,8 @@ class FixedDurationTuplet(Tuplet):
 
     def __init__(
         self, 
-        #duration=durationtools.Duration(1, 4), 
-        #music="c'8 c'8 c'8",
-        duration=None,
-        music=None,
+        duration=durationtools.Duration(1, 4), 
+        music="c'8 c'8 c'8",
         ):
         dummy_multiplier = durationtools.Multiplier(1)
         Tuplet.__init__(self, dummy_multiplier, music)
@@ -66,7 +64,9 @@ class FixedDurationTuplet(Tuplet):
 
         Returns tuple.
         '''
-        return (self.target_duration, )
+        duration = self.target_duration
+        empty_components = ()
+        return (duration, empty_components)
 
     def __repr__(self):
         '''Gets interpreter representation of fixed-duration tuplet.
