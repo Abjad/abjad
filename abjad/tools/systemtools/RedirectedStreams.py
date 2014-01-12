@@ -18,7 +18,7 @@ class RedirectedStreams(ContextManager):
         >>> print result
         hello, world!
 
-    Returns context manager.
+    Redirected streams context manager is immutable.
     '''
 
     ### INITIALIZER ###
@@ -46,3 +46,17 @@ class RedirectedStreams(ContextManager):
         self._stdout.flush(); self._stderr.flush()
         sys.stdout = self.old_stdout
         sys.stderr = self.old_stderr
+
+    def __repr__(self):
+        r'''Gets interpreter representation of context manager.
+
+        ..  container:: example
+
+            ::
+
+                >>> context_manager = systemtools.RedirectedStreams()
+                >>> context_manager
+
+        Returns string.
+        '''
+        return '<{}()>'.format(type(self).__name__)

@@ -77,8 +77,7 @@ class ScaleDegree(AbjadObject):
 
     def __init__(self, *args):
         if len(args) == 0:
-            accidental = None
-            number = 1
+            accidental, number = self._initialize_by_number(1)
         elif len(args) == 1 and isinstance(args[0], type(self)):
             accidental, number = self._initialize_by_scale_degree(*args)
         elif len(args) == 1 and args[0] in self._acceptable_numbers:
