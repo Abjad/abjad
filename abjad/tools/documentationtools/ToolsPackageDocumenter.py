@@ -16,9 +16,7 @@ class ToolsPackageDocumenter(Documenter):
         ignored_directory_names=(),
         prefix='abjad.tools.',
         ):
-        if object_ is None:
-            return
-        assert isinstance(object_, types.ModuleType)
+        assert isinstance(object_, (types.ModuleType, type(None)))
         Documenter.__init__(self, object_, prefix=prefix)
         self._ignored_directory_names = ignored_directory_names
         self._examine_tools_package()
@@ -86,6 +84,8 @@ class ToolsPackageDocumenter(Documenter):
 
     def _examine_tools_package(self):
         from abjad.tools import documentationtools
+        if self.object is None:
+            return
         code_root = self.object_.__path__[0]
         root_package_name = self.prefix.split('.')[0]
         crawler = documentationtools.ModuleCrawler(

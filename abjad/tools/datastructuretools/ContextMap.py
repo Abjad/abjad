@@ -81,3 +81,20 @@ class ContextMap(AbjadObject):
         if isinstance(context_name, scoretools.Context):
             context_name = context_name.name
         return self._components[context_name]
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def score(self):
+        r'''Score on which context map is based.
+        
+        ..  container:: example
+
+            ::
+
+                >>> context_map.score
+                Score-"String Orchestra Score"<<4>>
+
+        Returns score or none.
+        '''
+        return self._score
