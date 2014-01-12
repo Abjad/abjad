@@ -1,8 +1,3 @@
-\paper {
-    markup-system-spacing #'basic-distance = 8
-    score-markup-spacing #'basic-distance = 30
-}
-
 \layout {
     \accidentalStyle forget
     indent = 0
@@ -83,3 +78,9 @@
         tupletFullLength = ##t
     }
 }
+
+\paper {
+    markup-system-spacing #'basic-distance = 8
+    score-markup-spacing #'basic-distance = 30
+}
+
