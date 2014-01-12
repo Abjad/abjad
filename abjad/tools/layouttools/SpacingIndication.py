@@ -39,17 +39,18 @@ class SpacingIndication(AbjadObject):
     Spacing indications are immutable.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_proportional_notation_duration',
+        '_tempo_indication',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, *args):
         from abjad.tools import indicatortools
-        if len(args) == 0:
-            tempo = indicatortools.Tempo()
-            proportional_notation_duration = (1, 68)
-            self._tempo_indicator = tempo
-            self._proportional_notation_duration = \
-                proportional_notation_duration
-        elif len(args) == 1 and isinstance(args[0], type(self)):
+        if len(args) == 1 and isinstance(args[0], type(self)):
             self._tempo_indication = args[0].tempo_indication
             self._proportional_notation_duration = \
                 args[0].proportional_notation_duration
@@ -57,6 +58,12 @@ class SpacingIndication(AbjadObject):
             tempo_indication = indicatortools.Tempo(args[0])
             proportional_notation_duration = durationtools.Duration(args[1])
             self._tempo_indication = tempo_indication
+            self._proportional_notation_duration = \
+                proportional_notation_duration
+        elif len(args) == 0:
+            tempo = indicatortools.Tempo()
+            proportional_notation_duration = (1, 68)
+            self._tempo_indication = tempo
             self._proportional_notation_duration = \
                 proportional_notation_duration
         else:

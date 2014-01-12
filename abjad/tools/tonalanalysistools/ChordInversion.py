@@ -50,7 +50,8 @@ class ChordInversion(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, arg=0):
+    def __init__(self, number=0):
+        arg = number
         if isinstance(arg, (int, long)):
             number = arg
         elif isinstance(arg, str):
@@ -63,8 +64,8 @@ class ChordInversion(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        r'''Is true when `arg` is a chord inversion with number equal to that of
-        this chord inversion. Otherwise false.
+        r'''Is true when `arg` is a chord inversion with number equal to that 
+        of this chord inversion. Otherwise false.
 
         Returns boolean.
         '''
@@ -79,18 +80,6 @@ class ChordInversion(AbjadObject):
         Returns boolean.
         '''
         return not self == arg
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(
-                self.name,
-                )
-            )
 
     ### PUBLIC PROPERTIES ###
 

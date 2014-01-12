@@ -56,6 +56,7 @@ class RedirectedStreams(ContextManager):
 
                 >>> context_manager = systemtools.RedirectedStreams()
                 >>> context_manager
+                <RedirectedStreams()>
 
         Returns string.
         '''

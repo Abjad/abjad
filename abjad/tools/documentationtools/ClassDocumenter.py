@@ -270,20 +270,6 @@ class ClassDocumenter(Documenter):
             ))
         return document.rest_format
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = (
-            self.object_
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
-            )
-
     ### PRIVATE METHODS ###
 
     def _attribute_is_inherited(self, attr):
