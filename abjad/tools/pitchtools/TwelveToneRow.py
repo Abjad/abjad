@@ -22,14 +22,17 @@ class TwelveToneRow(PitchClassSegment):
     '''
 
     ### CLASS VARIABLES ###
-
-    _default_positional_input_arguments = (
-        [0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8],
+        
+    __slots__ = (
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, custom_identifier=None):
+    def __init__(
+        self, 
+        tokens=(0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8), 
+        custom_identifier=None,
+        ):
         from abjad.tools import pitchtools
         assert tokens is not None
         PitchClassSegment.__init__(

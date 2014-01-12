@@ -45,14 +45,15 @@ class FixedDurationTuplet(Tuplet):
         '_target_duration',
         )
 
-    _default_positional_input_arguments = (
-        (1, 4),
-        repr("c'8 d'8 e'8"),
-        )
-
     ### INITIALIZER ###
 
-    def __init__(self, duration, music=None):
+    def __init__(
+        self, 
+        #duration=durationtools.Duration(1, 4), 
+        #music="c'8 c'8 c'8",
+        duration=None,
+        music=None,
+        ):
         dummy_multiplier = durationtools.Multiplier(1)
         Tuplet.__init__(self, dummy_multiplier, music)
         self._signifier = '@'

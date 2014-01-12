@@ -33,15 +33,28 @@ class PitchSegment(Segment):
 
         >>> show(named_pitch_segment) # doctest: +SKIP
 
+    Pitch segments are immutable.
     '''
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = (
-        [-2, -1.5, 6, 7, -1.5, 7],
+    __slots__ = (
         )
 
-    __slots__ = ()
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        tokens=(-2, -1.5, 6, 7, -1.5, 7),
+        item_class=None,
+        custom_identifier=None,
+        ):
+        Segment.__init__(
+            self,
+            tokens=tokens,
+            item_class=item_class,
+            custom_identifier=custom_identifier,
+            )
 
     ### SPECIAL METHODS ###
 

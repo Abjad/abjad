@@ -2,7 +2,6 @@
 import inspect
 import pytest
 import abjad
-from abjad import demos
 from abjad.tools import documentationtools
 pytest.skip()
 
@@ -16,7 +15,7 @@ def test_storage_format_01(class_):
     if '_storage_format_specification' in dir(class_) and \
         not inspect.isabstract(class_):
         environment = abjad.__dict__.copy()
-        environment.update(demos.__dict__)
+        environment.update(abjad.demos.__dict__)
         if hasattr(class_, '_default_positional_input_arguments'):
             args = class_._default_positional_input_arguments
             instance_one = class_(*args)

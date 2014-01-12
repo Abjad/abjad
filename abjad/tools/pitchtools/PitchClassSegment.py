@@ -25,16 +25,28 @@ class PitchClassSegment(Segment):
         >>> named_pitch_class_segment
         PitchClassSegment(['c', 'ef', 'bqs', 'd'])
 
-    Returns pitch-class segment.
+    Pitch-class segments are immutable.
     '''
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = (
-        [-2, -1.5, 6, 7, -1.5, 7],
+    __slots__ = (
         )
 
-    __slots__ = ()
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        tokens=(-2, -1.5, 6, 7, -1.5, 7),
+        item_class=None,
+        custom_identifier=None,
+        ):
+        Segment.__init__(
+            self,
+            tokens=tokens,
+            item_class=item_class,
+            custom_identifier=custom_identifier,
+            )
 
     ### PRIVATE PROPERTIES ###
 

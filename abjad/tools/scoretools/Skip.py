@@ -27,10 +27,6 @@ class Skip(Leaf):
     __slots__ = (
         )
 
-    _default_positional_input_arguments = (
-        repr('s4'),
-        )
-
     ### INITIALIZER ###
 
     def __init__(self, arg):
@@ -44,6 +40,8 @@ class Skip(Leaf):
             written_duration = arg.written_duration
         elif not isinstance(arg, str):
             written_duration = arg
+        elif len(args) == 0:
+            written_duration = durationtools.Duration(1, 4)
         else:
             message = 'can not initialize skip from {!r}.'
             message = message.format(arg)
