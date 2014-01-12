@@ -8,15 +8,10 @@ pytest.skip()
 classes = documentationtools.list_all_abjad_classes()
 @pytest.mark.parametrize('class_', classes)
 def test___repr___01(class_):
-    r'''All classes have an interpreter representation.
+    r'''All concrete classes have an interpreter representation.
     '''
 
-    if inspect.isabstract(class_):
-        return
-    if hasattr(class_, '_default_positional_input_arguments'):
-        args = class_._default_positional_input_arguments
-        instance = class_(*args)
-    else:
+    if not inspect.isabstract(class_):
         instance = class_()
-    string = repr(instance)
-    assert string is not None
+        string = repr(instance)
+        assert string is not None

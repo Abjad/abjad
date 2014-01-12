@@ -16,11 +16,7 @@ def test_storage_format_01(class_):
         not inspect.isabstract(class_):
         environment = abjad.__dict__.copy()
         environment.update(abjad.demos.__dict__)
-        if hasattr(class_, '_default_positional_input_arguments'):
-            args = class_._default_positional_input_arguments
-            instance_one = class_(*args)
-        else:
-            instance_one = class_()
+        instance_one = class_()
         instance_one_format = format(instance_one, 'storage')
         instance_two = eval(instance_one_format, environment)
         instance_two_format = format(instance_two, 'storage')
