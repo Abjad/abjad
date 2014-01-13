@@ -56,7 +56,6 @@ class BurnishedRhythmMaker(RhythmMaker):
         beam_cells_together=False,
         decrease_durations_monotonically=True, 
         tie_split_notes=False, 
-        tie_rests=False,
         ):
         RhythmMaker.__init__(self,
             beam_each_cell=beam_each_cell,
@@ -111,7 +110,6 @@ class BurnishedRhythmMaker(RhythmMaker):
             (types.FunctionType, types.MethodType))
         assert isinstance(decrease_durations_monotonically, bool)
         assert isinstance(tie_split_notes, bool)
-        assert isinstance(tie_rests, bool)
         self.talea = talea
         self.talea_denominator = talea_denominator
         self.prolation_addenda = prolation_addenda
@@ -133,7 +131,6 @@ class BurnishedRhythmMaker(RhythmMaker):
         self.decrease_durations_monotonically = \
             decrease_durations_monotonically
         self.tie_split_notes = tie_split_notes
-        self.tie_rests = tie_rests
 
     ### SPECIAL METHODS ###
 
@@ -233,9 +230,11 @@ class BurnishedRhythmMaker(RhythmMaker):
         leaf_lists = []
         for map_division in numeric_map:
             leaf_list = scoretools.make_leaves_from_talea(
-                map_division, talea_denominator,
-                decrease_durations_monotonically=self.decrease_durations_monotonically,
-                tie_rests=self.tie_rests)
+                map_division, 
+                talea_denominator,
+                decrease_durations_monotonically= \
+                    self.decrease_durations_monotonically,
+                )
             leaf_lists.append(leaf_list)
         return leaf_lists
 

@@ -40,7 +40,6 @@ class IncisedRhythmMaker(RhythmMaker):
         prolation_addenda_helper=None,
         secondary_divisions_helper=None,
         decrease_durations_monotonically=True,
-        tie_rests=False,
         forbidden_written_duration=None,
         beam_each_cell=False,
         beam_cells_together=False,
@@ -93,10 +92,7 @@ class IncisedRhythmMaker(RhythmMaker):
             prolation_addenda_helper, (types.FunctionType, types.MethodType))
         assert isinstance(
             secondary_divisions_helper, (types.FunctionType, types.MethodType))
-        assert isinstance(
-            decrease_durations_monotonically, bool)
-        assert isinstance(
-            tie_rests, bool)
+        assert isinstance(decrease_durations_monotonically, bool)
         self.prefix_talea = prefix_talea
         self.prefix_lengths = prefix_lengths
         self.suffix_talea = suffix_talea
@@ -121,7 +117,6 @@ class IncisedRhythmMaker(RhythmMaker):
             self._none_to_trivial_helper(secondary_divisions_helper)
         self.decrease_durations_monotonically = \
             decrease_durations_monotonically
-        self.tie_rests = tie_rests
 
     ### SPECIAL METHODS ###
 
@@ -303,7 +298,6 @@ class IncisedRhythmMaker(RhythmMaker):
                 lcd,
                 forbidden_written_duration=self.forbidden_written_duration,
                 decrease_durations_monotonically=self.decrease_durations_monotonically,
-                tie_rests=self.tie_rests,
                 )
             leaf_lists.append(leaf_list)
         return leaf_lists

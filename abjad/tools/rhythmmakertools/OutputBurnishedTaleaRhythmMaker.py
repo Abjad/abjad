@@ -62,7 +62,6 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
                 beam_cells_together=False,
                 decrease_durations_monotonically=True,
                 tie_split_notes=False,
-                tie_rests=False,
                 )
 
         Returns string.
@@ -94,7 +93,6 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
                 beam_cells_together=False,
                 decrease_durations_monotonically=True,
                 tie_split_notes=False,
-                tie_rests=False,
                 )
 
         ::
@@ -211,7 +209,6 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
                 beam_cells_together=False,
                 decrease_durations_monotonically=False,
                 tie_split_notes=False,
-                tie_rests=False,
                 )
 
         ::

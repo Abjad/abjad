@@ -58,7 +58,6 @@ class OutputIncisedRestRhythmMaker(IncisedRhythmMaker):
                 prolation_addenda=[],
                 secondary_divisions=[],
                 decrease_durations_monotonically=True,
-                tie_rests=False,
                 beam_each_cell=False,
                 beam_cells_together=False,
                 )
@@ -87,7 +86,6 @@ class OutputIncisedRestRhythmMaker(IncisedRhythmMaker):
                 prolation_addenda=[],
                 secondary_divisions=[],
                 decrease_durations_monotonically=True,
-                tie_rests=False,
                 beam_each_cell=False,
                 beam_cells_together=False,
                 )
@@ -117,7 +115,7 @@ class OutputIncisedRestRhythmMaker(IncisedRhythmMaker):
     ### PUBLIC METHODS ###
 
     def reverse(self):
-        r'''Reverses output-incised rest rhythm-maker:
+        r'''Reverses output-incised rest rhythm-maker.
 
         ::
 
@@ -135,7 +133,6 @@ class OutputIncisedRestRhythmMaker(IncisedRhythmMaker):
                 prolation_addenda=[],
                 secondary_divisions=[],
                 decrease_durations_monotonically=False,
-                tie_rests=False,
                 beam_each_cell=False,
                 beam_cells_together=False,
                 )

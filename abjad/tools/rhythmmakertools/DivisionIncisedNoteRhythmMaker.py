@@ -142,7 +142,6 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
                 prolation_addenda=[],
                 secondary_divisions=[],
                 decrease_durations_monotonically=True,
-                tie_rests=False,
                 beam_each_cell=False,
                 beam_cells_together=False,
                 )
@@ -168,7 +167,6 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
                 prolation_addenda=[],
                 secondary_divisions=[],
                 decrease_durations_monotonically=True,
-                tie_rests=False,
                 beam_each_cell=False,
                 beam_cells_together=False,
                 )
@@ -190,7 +188,6 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
                 prolation_addenda=[],
                 secondary_divisions=[],
                 decrease_durations_monotonically=True,
-                tie_rests=False,
                 beam_each_cell=False,
                 beam_cells_together=False,
                 )
@@ -240,7 +237,6 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
                 prolation_addenda=[],
                 secondary_divisions=[],
                 decrease_durations_monotonically=True,
-                tie_rests=False,
                 beam_each_cell=False,
                 beam_cells_together=False,
                 )
@@ -274,7 +270,6 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
                 prolation_addenda=[],
                 secondary_divisions=[],
                 decrease_durations_monotonically=False,
-                tie_rests=False,
                 beam_each_cell=False,
                 beam_cells_together=False,
                 )
