@@ -86,12 +86,10 @@ class NoteRhythmMaker(RhythmMaker):
         self,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
-        tie_rests=False,
         ):
         self._decrease_durations_monotonically = \
             decrease_durations_monotonically
         self._forbidden_written_duration = forbidden_written_duration
-        self._tie_rests = tie_rests
 
     ### SPECIAL METHODS ###
 
@@ -107,7 +105,6 @@ class NoteRhythmMaker(RhythmMaker):
                 durations=[division],
                 decrease_durations_monotonically=\
                     self.decrease_durations_monotonically,
-                tie_rests=self.tie_rests,
                 forbidden_written_duration=self.forbidden_written_duration,
                 )
             result.append(notes)
@@ -124,7 +121,6 @@ class NoteRhythmMaker(RhythmMaker):
             rhythmmakertools.NoteRhythmMaker(
                 decrease_durations_monotonically=True,
                 forbidden_written_duration=durationtools.Duration(1, 2),
-                tie_rests=False,
                 )
 
         Returns string.
@@ -145,7 +141,6 @@ class NoteRhythmMaker(RhythmMaker):
             rhythmmakertools.NoteRhythmMaker(
                 decrease_durations_monotonically=False,
                 forbidden_written_duration=durationtools.Duration(1, 2),
-                tie_rests=False,
                 )
 
         ::
@@ -180,14 +175,6 @@ class NoteRhythmMaker(RhythmMaker):
         '''
         return self._forbidden_written_duration
 
-    @property
-    def tie_rests(self):
-        r'''Gets tie rests flag.
-
-        Returns boolean.
-        '''
-        return self._tie_rests
-
     ### PUBLIC METHODS ###
 
     def reverse(self):
@@ -203,7 +190,6 @@ class NoteRhythmMaker(RhythmMaker):
             rhythmmakertools.NoteRhythmMaker(
                 decrease_durations_monotonically=False,
                 forbidden_written_duration=durationtools.Duration(1, 2),
-                tie_rests=False,
                 )
 
         ::
@@ -223,6 +209,5 @@ class NoteRhythmMaker(RhythmMaker):
         new = type(self)(
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=self.forbidden_written_duration,
-            tie_rests=self.tie_rests,
             )
         return new
