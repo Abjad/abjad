@@ -13,15 +13,15 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedTaleaRhythmMaker):
         ::
 
             >>> maker = rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
-            ...     talea=[1, 1, 2, 4],
+            ...     talea=(1, 1, 2, 4),
             ...     talea_denominator=16,
-            ...     prolation_addenda=[0, 3],
-            ...     lefts=[-1],
-            ...     middles=[0],
-            ...     rights=[-1],
-            ...     left_lengths=[1],
-            ...     right_lengths=[1],
-            ...     secondary_divisions=[14],
+            ...     prolation_addenda=(0, 3),
+            ...     lefts=(-1,),
+            ...     middles=(0,),
+            ...     rights=(-1,),
+            ...     left_lengths=(1,),
+            ...     right_lengths=(1,),
+            ...     secondary_divisions=(14,),
             ...     )
 
         ::
@@ -52,15 +52,15 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedTaleaRhythmMaker):
 
             >>> print format(maker)
             rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
-                talea=[1, 1, 2, 4],
+                talea=(1, 1, 2, 4),
                 talea_denominator=16,
-                prolation_addenda=[0, 3],
-                lefts=[-1],
-                middles=[0],
-                rights=[-1],
-                left_lengths=[1],
-                right_lengths=[1],
-                secondary_divisions=[14],
+                prolation_addenda=(0, 3),
+                lefts=(-1,),
+                middles=(0,),
+                rights=(-1,),
+                left_lengths=(1,),
+                right_lengths=(1,),
+                secondary_divisions=(14,),
                 beam_each_cell=False,
                 beam_cells_together=False,
                 decrease_durations_monotonically=True,
@@ -79,15 +79,15 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedTaleaRhythmMaker):
 
             >>> print format(maker)
             rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
-                talea=[1, 1, 2, 4],
+                talea=(1, 1, 2, 4),
                 talea_denominator=16,
-                prolation_addenda=[0, 3],
-                lefts=[-1],
-                middles=[0],
-                rights=[-1],
-                left_lengths=[1],
-                right_lengths=[1],
-                secondary_divisions=[14],
+                prolation_addenda=(0, 3),
+                lefts=(-1,),
+                middles=(0,),
+                rights=(-1,),
+                left_lengths=(1,),
+                right_lengths=(1,),
+                secondary_divisions=(14,),
                 beam_each_cell=False,
                 beam_cells_together=False,
                 decrease_durations_monotonically=True,
@@ -96,21 +96,21 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedTaleaRhythmMaker):
 
         ::
 
-            >>> new_maker = new(maker, talea=[1, 1, 2])
+            >>> new_maker = new(maker, talea=(1, 1, 2))
 
         ::
 
             >>> print format(new_maker)
             rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
-                talea=[1, 1, 2],
+                talea=(1, 1, 2),
                 talea_denominator=16,
-                prolation_addenda=[0, 3],
-                lefts=[-1],
-                middles=[0],
-                rights=[-1],
-                left_lengths=[1],
-                right_lengths=[1],
-                secondary_divisions=[14],
+                prolation_addenda=(0, 3),
+                lefts=(-1,),
+                middles=(0,),
+                rights=(-1,),
+                left_lengths=(1,),
+                right_lengths=(1,),
+                secondary_divisions=(14,),
                 beam_each_cell=False,
                 beam_cells_together=False,
                 decrease_durations_monotonically=True,
@@ -142,15 +142,15 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedTaleaRhythmMaker):
 
             >>> print format(maker)
             rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
-                talea=[1, 1, 2, 4],
+                talea=(1, 1, 2, 4),
                 talea_denominator=16,
-                prolation_addenda=[0, 3],
-                lefts=[-1],
-                middles=[0],
-                rights=[-1],
-                left_lengths=[1],
-                right_lengths=[1],
-                secondary_divisions=[14],
+                prolation_addenda=(0, 3),
+                lefts=(-1,),
+                middles=(0,),
+                rights=(-1,),
+                left_lengths=(1,),
+                right_lengths=(1,),
+                secondary_divisions=(14,),
                 beam_each_cell=False,
                 beam_cells_together=False,
                 decrease_durations_monotonically=True,
@@ -177,15 +177,15 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedTaleaRhythmMaker):
 
             >>> print format(reversed_maker)
             rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
-                talea=[4, 2, 1, 1],
+                talea=(4, 2, 1, 1),
                 talea_denominator=16,
-                prolation_addenda=[3, 0],
-                lefts=[-1],
-                middles=[0],
-                rights=[-1],
-                left_lengths=[1],
-                right_lengths=[1],
-                secondary_divisions=[14],
+                prolation_addenda=(3, 0),
+                lefts=(-1,),
+                middles=(0,),
+                rights=(-1,),
+                left_lengths=(1,),
+                right_lengths=(1,),
+                secondary_divisions=(14,),
                 beam_each_cell=False,
                 beam_cells_together=False,
                 decrease_durations_monotonically=False,

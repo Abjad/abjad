@@ -13,9 +13,9 @@ class TaleaRhythmMaker(BurnishedTaleaRhythmMaker):
         ::
 
             >>> maker = rhythmmakertools.TaleaRhythmMaker(
-            ...     talea=[-1, 4, -2, 3],
+            ...     talea=(-1, 4, -2, 3),
             ...     talea_denominator=16,
-            ...     prolation_addenda=[3, 4],
+            ...     prolation_addenda=(3, 4),
             ...     )
 
         ::
@@ -33,7 +33,7 @@ class TaleaRhythmMaker(BurnishedTaleaRhythmMaker):
         **Example 2.** Tie split notes.
 
             >>> maker = rhythmmakertools.TaleaRhythmMaker(
-            ...     talea=[5],
+            ...     talea=(5,),
             ...     talea_denominator=16,
             ...     tie_split_notes=True,
             ...     )
@@ -66,8 +66,10 @@ class TaleaRhythmMaker(BurnishedTaleaRhythmMaker):
         beam_cells_together=False,
         tie_split_notes=False,
         ):
-        lefts, middles, rights = [0], [0], [0]
-        left_lengths, right_lengths = [0], [0]
+        #message = 'deprecated: use BurnishedTaleaRhythmMaker instead.'
+        #raise Exception(message)
+        lefts, middles, rights = (0,), (0,), (0,)
+        left_lengths, right_lengths = (0,), (0,)
         BurnishedTaleaRhythmMaker.__init__(
             self,
             talea,
@@ -96,10 +98,10 @@ class TaleaRhythmMaker(BurnishedTaleaRhythmMaker):
 
             >>> print format(maker)
             rhythmmakertools.TaleaRhythmMaker(
-                talea=[5],
+                talea=(5,),
                 talea_denominator=16,
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 beam_each_cell=False,
                 beam_cells_together=False,
                 tie_split_notes=True,
@@ -123,10 +125,10 @@ class TaleaRhythmMaker(BurnishedTaleaRhythmMaker):
 
             >>> print format(new_maker)
             rhythmmakertools.TaleaRhythmMaker(
-                talea=[5],
+                talea=(5,),
                 talea_denominator=16,
                 prolation_addenda=[1],
-                secondary_divisions=[],
+                secondary_divisions=(),
                 beam_each_cell=False,
                 beam_cells_together=False,
                 tie_split_notes=True,
@@ -157,10 +159,10 @@ class TaleaRhythmMaker(BurnishedTaleaRhythmMaker):
 
             >>> print format(reversed_maker)
             rhythmmakertools.TaleaRhythmMaker(
-                talea=[5],
+                talea=(5,),
                 talea_denominator=16,
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 beam_each_cell=False,
                 beam_cells_together=False,
                 tie_split_notes=True,
@@ -178,4 +180,20 @@ class TaleaRhythmMaker(BurnishedTaleaRhythmMaker):
 
         Returns new talea rhythm-maker.
         '''
-        return BurnishedTaleaRhythmMaker.reverse(self)
+        talea = tuple(reversed(self.talea))
+        prolation_addenda = tuple(reversed(self.prolation_addenda))
+        secondary_divisions = tuple(reversed(self.secondary_divisions))
+        new = type(self)(
+            talea=talea,
+            talea_denominator=self.talea_denominator,
+            prolation_addenda=prolation_addenda,
+            secondary_divisions=secondary_divisions,
+            talea_helper=self.talea_helper, 
+            prolation_addenda_helper=self.prolation_addenda_helper,
+            secondary_divisions_helper=self.secondary_divisions_helper,
+            beam_each_cell=self.beam_each_cell, 
+            beam_cells_together=self.beam_cells_together,
+            tie_split_notes=self.tie_split_notes, 
+            )
+        return new
+            

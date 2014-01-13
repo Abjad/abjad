@@ -95,31 +95,25 @@ class BurnishedTaleaRhythmMaker(RhythmMaker):
             right_lengths)
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             secondary_divisions)
-        assert isinstance(talea_helper, 
-            (types.FunctionType, types.MethodType))
-        assert isinstance(prolation_addenda_helper, 
-            (types.FunctionType, types.MethodType))
-        assert isinstance(lefts_helper, 
-            (types.FunctionType, types.MethodType))
-        assert isinstance(middles_helper, 
-            (types.FunctionType, types.MethodType))
-        assert isinstance(rights_helper, 
-            (types.FunctionType, types.MethodType))
-        assert isinstance(left_lengths_helper, 
-            (types.FunctionType, types.MethodType))
-        assert isinstance(right_lengths_helper, 
-            (types.FunctionType, types.MethodType))
+        prototype = (types.FunctionType, types.MethodType)
+        assert isinstance(talea_helper, prototype)
+        assert isinstance(prolation_addenda_helper, prototype)
+        assert isinstance(lefts_helper, prototype)
+        assert isinstance(middles_helper, prototype)
+        assert isinstance(rights_helper, prototype)
+        assert isinstance(left_lengths_helper, prototype)
+        assert isinstance(right_lengths_helper, prototype)
         assert isinstance(decrease_durations_monotonically, bool)
         assert isinstance(tie_split_notes, bool)
-        self.talea = talea
+        self.talea = tuple(talea)
         self.talea_denominator = talea_denominator
-        self.prolation_addenda = prolation_addenda
-        self.lefts = lefts
-        self.middles = middles
-        self.rights = rights
-        self.left_lengths = left_lengths
-        self.right_lengths = right_lengths
-        self.secondary_divisions = secondary_divisions
+        self.prolation_addenda = tuple(prolation_addenda)
+        self.lefts = tuple(lefts)
+        self.middles = tuple(middles)
+        self.rights = tuple(rights)
+        self.left_lengths = tuple(left_lengths)
+        self.right_lengths = tuple(right_lengths)
+        self.secondary_divisions = tuple(secondary_divisions)
         self.talea_helper = talea_helper
         self.prolation_addenda_helper = prolation_addenda_helper
         self.lefts_helper = lefts_helper
@@ -144,9 +138,9 @@ class BurnishedTaleaRhythmMaker(RhythmMaker):
         octuplet = self._prepare_input(seeds)
         talea, prolation_addenda = octuplet[:2]
         secondary_divisions = octuplet[-1]
-        talee = (talea, prolation_addenda, secondary_divisions)
-        result = self._scale_talee(
-            duration_pairs, self.talea_denominator, talee)
+        taleas = (talea, prolation_addenda, secondary_divisions)
+        result = self._scale_taleas(
+            duration_pairs, self.talea_denominator, taleas)
         duration_pairs, lcd, talea, prolation_addenda, secondary_divisions = \
             result
         secondary_duration_pairs = self._make_secondary_duration_pairs(
@@ -440,15 +434,37 @@ class BurnishedTaleaRhythmMaker(RhythmMaker):
 
         Returns newly constructed rhythm-maker.
         '''
-        new = copy.deepcopy(self)
-        new.talea.reverse()
-        new.prolation_addenda.reverse()
-        new.lefts.reverse()
-        new.middles.reverse()
-        new.rights.reverse()
-        new.left_lengths.reverse()
-        new.right_lengths.reverse()
-        new.secondary_divisions.reverse()
-        if new.decrease_durations_monotonically:
-            new.decrease_durations_monotonically = False
+        talea = tuple(reversed(self.talea))
+        prolation_addenda = tuple(reversed(self.prolation_addenda))
+        lefts = tuple(reversed(self.lefts))
+        middles = tuple(reversed(self.middles))
+        rights = tuple(reversed(self.rights))
+        left_lengths = tuple(reversed(self.left_lengths))
+        right_lengths = tuple(reversed(self.right_lengths))
+        secondary_divisions = tuple(reversed(self.secondary_divisions))
+        decrease_durations_monotonically = \
+            not self.decrease_durations_monotonically
+        new = type(self)(
+            talea=talea,
+            talea_denominator=self.talea_denominator,
+            prolation_addenda=prolation_addenda,
+            lefts=lefts,
+            middles=middles,
+            rights=rights,
+            left_lengths=left_lengths,
+            right_lengths=right_lengths,
+            secondary_divisions=secondary_divisions,
+            talea_helper=self.talea_helper, 
+            prolation_addenda_helper=self.prolation_addenda_helper,
+            lefts_helper=self.lefts_helper, 
+            middles_helper=self.middles_helper, 
+            rights_helper=self.rights_helper,
+            left_lengths_helper=self.left_lengths_helper, 
+            right_lengths_helper=self.right_lengths_helper, 
+            secondary_divisions_helper=self.secondary_divisions_helper,
+            beam_each_cell=self.beam_each_cell, 
+            beam_cells_together=self.beam_cells_together,
+            decrease_durations_monotonically=decrease_durations_monotonically, 
+            tie_split_notes=self.tie_split_notes, 
+            )
         return new

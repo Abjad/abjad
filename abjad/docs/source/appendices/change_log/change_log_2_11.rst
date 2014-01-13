@@ -222,7 +222,7 @@ Removed ``pitchtools.named_pitch_tokens_to_named_pitches()``.
 Just instantiate pitches instead.
 
 Removed the term ``signal`` from the ``rhythmmakertools`` package.
-Use ``talea`` instead. The plural of ``talea`` is ``talee``.
+Use ``talea`` instead. The plural of ``talea`` is ``taleas``.
 
 Moved ``scoretools.component_to_tuplet_depth()``.
 The function is now bound to parentage as the ``Component.parentage.tuplet_depth`` property.
