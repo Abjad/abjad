@@ -121,8 +121,14 @@ class RhythmMaker(AbjadObject):
         return tuplets
 
     def _none_to_new_list(self, expr):
+#        if expr is None:
+#            return ()
+        return expr
+
+    def _none_to_tuple(self, expr):
         if expr is None:
-            return ()
+            expr = ()
+        assert isinstance(expr, tuple), expr
         return expr
 
     def _none_to_trivial_helper(self, expr):

@@ -223,8 +223,6 @@ class ScoreSpecification(Specification):
                             payload=rhythmmakertools.TaleaRhythmMaker(
                                 talea=(1,),
                                 talea_denominator=16,
-                                prolation_addenda=(),
-                                secondary_divisions=(),
                                 beam_each_cell=False,
                                 beam_cells_together=True,
                                 tie_split_notes=False,
@@ -303,8 +301,6 @@ class ScoreSpecification(Specification):
                         source_expression=rhythmmakertools.TaleaRhythmMaker(
                             talea=(1,),
                             talea_denominator=16,
-                            prolation_addenda=(),
-                            secondary_divisions=(),
                             beam_each_cell=False,
                             beam_cells_together=True,
                             tie_split_notes=False,
@@ -350,8 +346,6 @@ class ScoreSpecification(Specification):
                         source_expression=rhythmmakertools.TaleaRhythmMaker(
                             talea=(1,),
                             talea_denominator=16,
-                            prolation_addenda=(),
-                            secondary_divisions=(),
                             beam_each_cell=False,
                             beam_cells_together=True,
                             tie_split_notes=False,

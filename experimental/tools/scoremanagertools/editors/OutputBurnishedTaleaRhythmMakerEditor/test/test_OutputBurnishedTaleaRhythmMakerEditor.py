@@ -19,7 +19,6 @@ def test_OutputBurnishedTaleaRhythmMakerEditor_01():
         rights=(0,),
         left_lengths=(1,),
         right_lengths=(1,),
-        secondary_divisions=(),
         )
 
     assert editor.target == maker

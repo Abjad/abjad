@@ -29,8 +29,6 @@ class RhythmMakerExpression(PayloadExpression):
                 payload=rhythmmakertools.TaleaRhythmMaker(
                     talea=(3, 1),
                     talea_denominator=32,
-                    prolation_addenda=(),
-                    secondary_divisions=(),
                     beam_each_cell=False,
                     beam_cells_together=True,
                     tie_split_notes=False,
@@ -48,8 +46,6 @@ class RhythmMakerExpression(PayloadExpression):
                 payload=rhythmmakertools.TaleaRhythmMaker(
                     talea=(1, 3),
                     talea_denominator=32,
-                    prolation_addenda=(),
-                    secondary_divisions=(),
                     beam_each_cell=False,
                     beam_cells_together=True,
                     tie_split_notes=False,

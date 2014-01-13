@@ -70,7 +70,6 @@ class BurnishedTaleaRhythmMaker(RhythmMaker):
         left_lengths = self._none_to_new_list(left_lengths)
         right_lengths = self._none_to_new_list(right_lengths)
         secondary_divisions = self._none_to_new_list(secondary_divisions)
-
         assert isinstance(talea, (tuple, type(None)))
         assert isinstance(lefts, (tuple, type(None)))
         assert isinstance(middles, (tuple, type(None)))
@@ -79,7 +78,6 @@ class BurnishedTaleaRhythmMaker(RhythmMaker):
         assert isinstance(right_lengths, (tuple, type(None)))
         assert isinstance(secondary_divisions, (tuple, type(None))), repr(
             secondary_divisions)
-
         talea_helper = self._none_to_trivial_helper(talea_helper)
         prolation_addenda_helper = self._none_to_trivial_helper(
             prolation_addenda_helper)
@@ -95,16 +93,20 @@ class BurnishedTaleaRhythmMaker(RhythmMaker):
         assert sequencetools.all_are_integer_equivalent_numbers(talea)
         assert mathtools.is_positive_integer_equivalent_number(
             talea_denominator)
-        assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(
+        assert prolation_addenda is None or \
+            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             prolation_addenda)
-        assert all(x in (-1, 0, 1) for x in lefts)
-        assert all(x in (-1, 0, 1) for x in middles)
-        assert all(x in (-1, 0, 1) for x in rights)
-        assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(
+        assert lefts is None or all(x in (-1, 0, 1) for x in lefts)
+        assert middles is None or all(x in (-1, 0, 1) for x in middles)
+        assert rights is None or all(x in (-1, 0, 1) for x in rights)
+        assert left_lengths is None or \
+            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             left_lengths)
-        assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(
+        assert right_lengths is None or \
+            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             right_lengths)
-        assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(
+        assert secondary_divisions is None or \
+            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             secondary_divisions)
         prototype = (types.FunctionType, types.MethodType)
         assert isinstance(talea_helper, prototype)
@@ -118,13 +120,13 @@ class BurnishedTaleaRhythmMaker(RhythmMaker):
         assert isinstance(tie_split_notes, bool)
         self.talea = tuple(talea)
         self.talea_denominator = talea_denominator
-        self.prolation_addenda = tuple(prolation_addenda)
-        self.lefts = tuple(lefts)
-        self.middles = tuple(middles)
-        self.rights = tuple(rights)
-        self.left_lengths = tuple(left_lengths)
-        self.right_lengths = tuple(right_lengths)
-        self.secondary_divisions = tuple(secondary_divisions)
+        self.prolation_addenda = prolation_addenda
+        self.lefts = lefts
+        self.middles = middles
+        self.rights = rights
+        self.left_lengths = left_lengths
+        self.right_lengths = right_lengths
+        self.secondary_divisions = secondary_divisions
         self.talea_helper = talea_helper
         self.prolation_addenda_helper = prolation_addenda_helper
         self.lefts_helper = lefts_helper
@@ -396,11 +398,16 @@ class BurnishedTaleaRhythmMaker(RhythmMaker):
         return prolated_duration_pairs
 
     def _prepare_input(self, seeds):
-        talea = datastructuretools.CyclicTuple(self.talea_helper(self.talea, seeds))
+        talea = datastructuretools.CyclicTuple(
+            self.talea_helper(self.talea, seeds),
+            )
+        prolation_addenda = self.prolation_addenda or ()
         prolation_addenda = \
-            self.prolation_addenda_helper(self.prolation_addenda, seeds)
+            self.prolation_addenda_helper(prolation_addenda, seeds)
         prolation_addenda = datastructuretools.CyclicTuple(prolation_addenda)
-        lefts = datastructuretools.CyclicTuple(self.lefts_helper(self.lefts, seeds))
+        lefts = datastructuretools.CyclicTuple(
+            self.lefts_helper(self.lefts, seeds),
+            )
         middles = datastructuretools.CyclicTuple(
             self.middles_helper(self.middles, seeds))
         rights = datastructuretools.CyclicTuple(
@@ -409,8 +416,9 @@ class BurnishedTaleaRhythmMaker(RhythmMaker):
             self.left_lengths_helper(self.left_lengths, seeds))
         right_lengths = datastructuretools.CyclicTuple(
             self.right_lengths_helper(self.right_lengths, seeds))
+        secondary_divisions = self.secondary_divisions or ()
         secondary_divisions = self.secondary_divisions_helper(
-            self.secondary_divisions, seeds)
+            secondary_divisions, seeds)
         secondary_divisions = datastructuretools.CyclicTuple(
             secondary_divisions)
         return (
