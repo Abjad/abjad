@@ -29,6 +29,7 @@ class BurnishedRhythmMaker(RhythmMaker):
 
     'Output-burnishing' rhythm-makers burnish only the first and last
     output cells they produce and leave interior output cells unchanged.
+
     '''
 
     ### INITIALIZER ###
@@ -222,9 +223,8 @@ class BurnishedRhythmMaker(RhythmMaker):
         new_division_part = type(division_part)(new_division_part)
         return new_division_part
 
-    @abc.abstractmethod
     def _burnish_division_parts(self, divisions, quintuplet):
-        pass
+        return divisions
 
     def _make_leaf_lists(self, numeric_map, talea_denominator):
         leaf_lists = []
