@@ -14,7 +14,7 @@ check-in:
     SignalAffixedNoteFilledTokens ==> DivisionIncisedNoteRhythmMaker
     SignalAffixedRestFilledTokens ==> DivisionIncisedRestRhythmMaker
 
-    _PartForcedObjectWithPatternedTokens ==> BurnishedTaleaRhythmMaker
+    _PartForcedObjectWithPatternedTokens ==> TaleaRhythmMaker
     _RhythmicKaleid ==> RhythmMaker
     _SignalAffixedChunkWithFilledTokens ==> OutputIncisedRhythmMaker
     _SignalAffixedFilledTokens ==> DivisionIncisedRhythmMaker

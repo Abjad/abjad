@@ -10,7 +10,7 @@ def test_BurnishedTaleaRhythmMakerEditor_01():
         is_autoadvancing=True,
         )
 
-    maker = rhythmmakertools.BurnishedTaleaRhythmMaker(
+    maker = rhythmmakertools.TaleaRhythmMaker(
         talea=(-1, 2, -3, 4), 
         talea_denominator=16,
         prolation_addenda=(2, 3),

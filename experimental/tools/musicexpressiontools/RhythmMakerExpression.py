@@ -26,7 +26,7 @@ class RhythmMakerExpression(PayloadExpression):
             ...     musicexpressiontools.RhythmMakerExpression(rhythm_maker)
             >>> print format(payload_expression)
             musicexpressiontools.RhythmMakerExpression(
-                payload=rhythmmakertools.BurnishedTaleaRhythmMaker(
+                payload=rhythmmakertools.TaleaRhythmMaker(
                     talea=(3, 1),
                     talea_denominator=32,
                     beam_each_cell=False,
@@ -44,7 +44,7 @@ class RhythmMakerExpression(PayloadExpression):
 
             >>> print format(result)
             musicexpressiontools.RhythmMakerExpression(
-                payload=rhythmmakertools.BurnishedTaleaRhythmMaker(
+                payload=rhythmmakertools.TaleaRhythmMaker(
                     talea=(1, 3),
                     talea_denominator=32,
                     beam_each_cell=False,

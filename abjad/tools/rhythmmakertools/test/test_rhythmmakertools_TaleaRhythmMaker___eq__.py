@@ -2,16 +2,16 @@
 from abjad import *
 
 
-def test_rhythmmakertools_BurnishedTaleaRhythmMaker___eq___01():
+def test_rhythmmakertools_TaleaRhythmMaker___eq___01():
 
-    maker_1 = rhythmmakertools.BurnishedTaleaRhythmMaker(
+    maker_1 = rhythmmakertools.TaleaRhythmMaker(
         talea=(-1, 2, -3, 4), 
         talea_denominator=16,
         prolation_addenda=(2, 3),
         secondary_divisions=(6,),
         )
 
-    maker_2 = rhythmmakertools.BurnishedTaleaRhythmMaker(
+    maker_2 = rhythmmakertools.TaleaRhythmMaker(
         talea=(-1, 2, -3, 4), 
         talea_denominator=16,
         prolation_addenda=(2, 3),

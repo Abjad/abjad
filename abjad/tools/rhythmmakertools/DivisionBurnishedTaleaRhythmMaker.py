@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools.rhythmmakertools.BurnishedTaleaRhythmMaker \
-	import BurnishedTaleaRhythmMaker
+from abjad.tools.rhythmmakertools.TaleaRhythmMaker \
+	import TaleaRhythmMaker
 
 
-class DivisionBurnishedTaleaRhythmMaker(BurnishedTaleaRhythmMaker):
+class DivisionBurnishedTaleaRhythmMaker(TaleaRhythmMaker):
     r'''Division-burnished talea rhythm-maker.
 
     ..  container:: example
@@ -129,7 +129,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedTaleaRhythmMaker):
 
         Returns new division-burnished talea rhythm-maker.
         '''
-        return BurnishedTaleaRhythmMaker.__makenew__(self, *args, **kwargs)
+        return TaleaRhythmMaker.__makenew__(self, *args, **kwargs)
 
     ### PUBLIC METHODS ###
 
@@ -204,4 +204,4 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedTaleaRhythmMaker):
 
         Returns new division-burnished talea rhythm-maker.
         '''
-        return BurnishedTaleaRhythmMaker.reverse(self)
+        return TaleaRhythmMaker.reverse(self)

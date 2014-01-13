@@ -220,7 +220,7 @@ class ScoreSpecification(Specification):
                     musicexpressiontools.MultipleContextSetExpression(
                         attribute='rhythm',
                         source_expression=musicexpressiontools.RhythmMakerExpression(
-                            payload=rhythmmakertools.BurnishedTaleaRhythmMaker(
+                            payload=rhythmmakertools.TaleaRhythmMaker(
                                 talea=(1,),
                                 talea_denominator=16,
                                 beam_each_cell=False,
@@ -299,7 +299,7 @@ class ScoreSpecification(Specification):
             timespantools.TimespanInventory(
                 [
                     musicexpressiontools.RhythmMakerRhythmRegionExpression(
-                        source_expression=rhythmmakertools.BurnishedTaleaRhythmMaker(
+                        source_expression=rhythmmakertools.TaleaRhythmMaker(
                             talea=(1,),
                             talea_denominator=16,
                             beam_each_cell=False,
@@ -345,7 +345,7 @@ class ScoreSpecification(Specification):
                         voice_name='Voice 1',
                         ),
                     musicexpressiontools.RhythmMakerRhythmRegionExpression(
-                        source_expression=rhythmmakertools.BurnishedTaleaRhythmMaker(
+                        source_expression=rhythmmakertools.TaleaRhythmMaker(
                             talea=(1,),
                             talea_denominator=16,
                             beam_each_cell=False,

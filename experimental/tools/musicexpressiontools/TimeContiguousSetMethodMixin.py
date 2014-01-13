@@ -122,7 +122,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
             musicexpressiontools.MultipleContextSetExpression(
                 attribute='rhythm',
                 source_expression=musicexpressiontools.RhythmMakerExpression(
-                    payload=rhythmmakertools.BurnishedTaleaRhythmMaker(
+                    payload=rhythmmakertools.TaleaRhythmMaker(
                         talea=(1,),
                         talea_denominator=16,
                         beam_each_cell=False,

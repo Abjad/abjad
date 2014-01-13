@@ -2,9 +2,9 @@
 from abjad import *
 
 
-def test_rhythmmakertools_BurnishedTaleaRhythmMaker_tie_split_notes_01():
+def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
 
-    maker = rhythmmakertools.BurnishedTaleaRhythmMaker(
+    maker = rhythmmakertools.TaleaRhythmMaker(
         talea=(5,), 
         talea_denominator=16, 
         tie_split_notes=True,
@@ -45,9 +45,9 @@ def test_rhythmmakertools_BurnishedTaleaRhythmMaker_tie_split_notes_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_rhythmmakertools_BurnishedTaleaRhythmMaker_tie_split_notes_02():
+def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
 
-    maker = rhythmmakertools.BurnishedTaleaRhythmMaker(
+    maker = rhythmmakertools.TaleaRhythmMaker(
         talea=(5,), 
         talea_denominator=16, 
         tie_split_notes=True,

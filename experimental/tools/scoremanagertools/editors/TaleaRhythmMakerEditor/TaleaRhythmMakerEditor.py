@@ -7,12 +7,12 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
 from experimental.tools.scoremanagertools import getters
 
 
-class BurnishedTaleaRhythmMakerEditor(RhythmMakerEditor):
+class TaleaRhythmMakerEditor(RhythmMakerEditor):
 
     ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(
-        rhythmmakertools.BurnishedTaleaRhythmMaker,
+        rhythmmakertools.TaleaRhythmMaker,
         ('talea', None, 'ta', getters.get_nonzero_integers, True),
         ('talea_denominator', None, 'de', 
             getters.get_positive_integer_power_of_two, True),
