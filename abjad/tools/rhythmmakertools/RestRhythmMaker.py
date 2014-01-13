@@ -1,20 +1,18 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.rhythmmakertools.DivisionIncisedRestRhythmMaker \
-	import DivisionIncisedRestRhythmMaker
+from abjad.tools import scoretools
+from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
-class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
+class RestRhythmMaker(RhythmMaker):
     r'''Rest rhythm-maker.
 
     ..  container:: example
 
-        **Example 1:**
+        Makes rests equal to the duration of input divisions.
 
         ::
 
             >>> maker = rhythmmakertools.RestRhythmMaker()
-
-        Initialize and then call on arbitrary divisions:
 
         ::
 
@@ -24,6 +22,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -40,19 +39,16 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
                 }
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
     ..  container:: example
 
-        **Example 2.** Forbid written durations greater than or equal to a half 
-        note:
+        Forbids rests with written duration greater than or equal to ``1/4`` of
+        a whole note:
 
         ::
 
             >>> maker = rhythmmakertools.RestRhythmMaker(
-            ...     forbidden_written_duration=Duration(1, 4))
+            ...     forbidden_written_duration=Duration(1, 4),
+            ...     )
 
         ::
 
@@ -62,6 +58,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -81,28 +78,38 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
                 }
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
     Usage follows the two-step configure-then-call pattern shown here.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, forbidden_written_duration=None):
-        DivisionIncisedRestRhythmMaker.__init__(
-            self, [],
-            [0],
-            [],
-            [0],
-            1,
-            decrease_durations_monotonically=True,
-            forbidden_written_duration=forbidden_written_duration,
-            tie_rests=False,
-            )
+    def __init__(
+        self, 
+        decrease_durations_monotonically=True,
+        forbidden_written_duration=None,
+        ):
+        self._decrease_durations_monotonically = \
+            decrease_durations_monotonically
+        self._forbidden_written_duration = forbidden_written_duration
 
     ### SPECIAL METHODS ###
+
+    def __call__(self, divisions, seeds=None):
+        r'''Calls rest rhythm-maker on `divisions`.
+
+        Returns list of selections.
+        '''
+        result = []
+        for division in divisions:
+            rests = scoretools.make_leaves(
+                pitches=None, 
+                durations=[division],
+                decrease_durations_monotonically=\
+                    self.decrease_durations_monotonically,
+                forbidden_written_duration=self.forbidden_written_duration,
+                )
+            result.append(rests)
+        return result
 
     def __format__(self, format_specification=''):
         r'''Formats rest rhythm-maker.
@@ -113,6 +120,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
             >>> print format(maker)
             rhythmmakertools.RestRhythmMaker(
+                decrease_durations_monotonically=True,
                 forbidden_written_duration=durationtools.Duration(1, 4),
                 )
 
@@ -132,6 +140,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
             >>> print format(new_maker)
             rhythmmakertools.RestRhythmMaker(
+                decrease_durations_monotonically=True,
                 forbidden_written_duration=durationtools.Duration(1, 4),
                 )
 
@@ -147,8 +156,25 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
         Returns new rest rhythm-maker.
         '''
-        return DivisionIncisedRestRhythmMaker.__makenew__(
-            self, *args, **kwargs)
+        return RhythmMaker.__makenew__(self, *args, **kwargs)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def decrease_durations_monotonically(self):
+        r'''Gets decrease durations monotonically flag.
+
+        Returns boolean.
+        '''
+        return self._decrease_durations_monotonically
+
+    @property
+    def forbidden_written_duration(self):
+        r'''Gets forbidden written duration.
+
+        Returns duration or none.
+        '''
+        return self._forbidden_written_duration
 
     ### PUBLIC METHODS ###
 
@@ -163,6 +189,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
             >>> print format(reversed_maker)
             rhythmmakertools.RestRhythmMaker(
+                decrease_durations_monotonically=True,
                 forbidden_written_duration=durationtools.Duration(1, 4),
                 )
 
@@ -178,4 +205,4 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
         Returns new rest rhythm-maker.
         '''
-        return DivisionIncisedRestRhythmMaker.reverse(self)
+        return RhythmMaker.reverse(self)
