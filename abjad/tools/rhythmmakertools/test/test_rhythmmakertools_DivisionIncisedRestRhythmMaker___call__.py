@@ -5,10 +5,10 @@ from abjad import *
 def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___01():
 
     maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
-        prefix_talea=[8], 
-        prefix_lengths=[0, 1], 
-        suffix_talea=[1], 
-        suffix_lengths=[1], 
+        prefix_talea=(8,), 
+        prefix_lengths=(0, 1), 
+        suffix_talea=(1,), 
+        suffix_lengths=(1,), 
         talea_denominator=32,
         )
 
@@ -55,10 +55,10 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___01():
 def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___02():
 
     maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
-        prefix_talea=[8], 
-        prefix_lengths=[1, 2, 3, 4], 
-        suffix_talea=[1], 
-        suffix_lengths=[1], 
+        prefix_talea=(8,), 
+        prefix_lengths=(1, 2, 3, 4), 
+        suffix_talea=(1,), 
+        suffix_lengths=(1,), 
         talea_denominator=32,
         )
 
@@ -105,10 +105,10 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___02():
 def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___03():
 
     maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
-        prefix_talea=[1], 
-        prefix_lengths=[1], 
-        suffix_talea=[8], 
-        suffix_lengths=[1, 2, 3], 
+        prefix_talea=(1,), 
+        prefix_lengths=(1,), 
+        suffix_talea=(8,), 
+        suffix_lengths=(1, 2, 3), 
         talea_denominator=32,
         )
 
@@ -151,10 +151,10 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___03():
 def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___04():
 
     maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
-        prefix_talea=[], 
-        prefix_lengths=[0], 
-        suffix_talea=[], 
-        suffix_lengths=[0], 
+        prefix_talea=(), 
+        prefix_lengths=(0,), 
+        suffix_talea=(), 
+        suffix_lengths=(0,), 
         talea_denominator=8,
         )
 
@@ -191,12 +191,12 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___04():
 def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___05():
 
     maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
-        prefix_talea=[1], 
-        prefix_lengths=[1], 
-        suffix_talea=[1], 
-        suffix_lengths=[1], 
+        prefix_talea=(1,), 
+        prefix_lengths=(1,), 
+        suffix_talea=(1,), 
+        suffix_lengths=(1,), 
         talea_denominator=8,
-        prolation_addenda=[1, 0, 3],
+        prolation_addenda=(1, 0, 3),
         )
 
     divisions = [(4, 8), (4, 8), (4, 8)]
@@ -242,13 +242,13 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___05():
 def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___06():
 
     maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
-        prefix_talea=[1],
-        prefix_lengths=[1],
-        suffix_talea=[],
-        suffix_lengths=[0],
+        prefix_talea=(1,),
+        prefix_lengths=(1,),
+        suffix_talea=(),
+        suffix_lengths=(0,),
         talea_denominator=32,
-        prolation_addenda=[2, 0],
-        secondary_divisions=[20],
+        prolation_addenda=(2, 0),
+        secondary_divisions=(20,),
         )
 
     divisions = [(4, 8), (4, 8), (4, 8)]

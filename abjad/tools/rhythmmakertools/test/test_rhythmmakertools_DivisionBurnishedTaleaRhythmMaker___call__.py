@@ -5,14 +5,14 @@ from abjad import *
 def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___01():
 
     maker = rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
-        talea=[1, 1, 2, 4], 
+        talea=(1, 1, 2, 4), 
         talea_denominator=32, 
-        prolation_addenda=[0],
-        lefts=[-1], 
-        middles=[0], 
-        rights=[-1], 
-        left_lengths=[2], 
-        right_lengths=[1],
+        prolation_addenda=(0,),
+        lefts=(-1,), 
+        middles=(0,), 
+        rights=(-1,), 
+        left_lengths=(2,), 
+        right_lengths=(1,),
         )
 
     divisions = [(5, 16), (6, 16)]
@@ -56,14 +56,14 @@ def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___01():
 def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___02():
 
     maker = rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
-        talea=[1, 1, 2, 4], 
+        talea=(1, 1, 2, 4), 
         talea_denominator=32, 
-        prolation_addenda=[0],
-        lefts=[0], 
-        middles=[-1], 
-        rights=[0], 
-        left_lengths=[2], 
-        right_lengths=[1],
+        prolation_addenda=(0,),
+        lefts=(0,), 
+        middles=(-1,), 
+        rights=(0,), 
+        left_lengths=(2,), 
+        right_lengths=(1,),
         )
 
     divisions = [(5, 16), (6, 16)]
@@ -107,14 +107,14 @@ def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___02():
 def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___03():
 
     maker = rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
-        talea=[1, 1, 2, 4], 
+        talea=(1, 1, 2, 4,), 
         talea_denominator=32, 
-        prolation_addenda=[3],
-        lefts=[0], 
-        middles=[-1], 
-        rights=[0], 
-        left_lengths=[2], 
-        right_lengths=[1],
+        prolation_addenda=(3,),
+        lefts=(0,), 
+        middles=(-1,), 
+        rights=(0,), 
+        left_lengths=(2,), 
+        right_lengths=(1,),
         )
 
     divisions = [(5, 16), (6, 16)]
@@ -163,14 +163,14 @@ def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___03():
 def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___04():
 
     maker = rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
-        talea=[1, 1, 2, 4], 
+        talea=(1, 1, 2, 4), 
         talea_denominator=32, 
-        prolation_addenda=[0, 3],
-        lefts=[-1], 
-        middles=[0], 
-        rights=[-1], 
-        left_lengths=[1], 
-        right_lengths=[1],
+        prolation_addenda=(0, 3),
+        lefts=(-1,), 
+        middles=(0,), 
+        rights=(-1,), 
+        left_lengths=(1,), 
+        right_lengths=(1,),
         )
 
     divisions = [(5, 16), (6, 16)]
@@ -215,15 +215,15 @@ def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___04():
 def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___05():
 
     maker = rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
-        talea=[1, 1, 2, 4], 
+        talea=(1, 1, 2, 4), 
         talea_denominator=32, 
-        prolation_addenda=[0, 3],
-        lefts=[-1], 
-        middles=[0], 
-        rights=[-1], 
-        left_lengths=[1], 
-        right_lengths=[1], 
-        secondary_divisions=[14],
+        prolation_addenda=(0, 3),
+        lefts=(-1,), 
+        middles=(0,), 
+        rights=(-1,), 
+        left_lengths=(1,), 
+        right_lengths=(1,), 
+        secondary_divisions=(14,),
         )
 
     divisions = [(5, 16), (6, 16)]

@@ -80,18 +80,18 @@ class IncisedRhythmMaker(RhythmMaker):
             prolation_addenda), prolation_addenda
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             secondary_divisions), secondary_divisions
-        assert isinstance(
-            prefix_talea_helper, (types.FunctionType, types.MethodType))
-        assert isinstance(
-            prefix_lengths_helper, (types.FunctionType, types.MethodType))
-        assert isinstance(
-            suffix_talea_helper, (types.FunctionType, types.MethodType))
-        assert isinstance(
-            suffix_lengths_helper, (types.FunctionType, types.MethodType))
-        assert isinstance(
-            prolation_addenda_helper, (types.FunctionType, types.MethodType))
-        assert isinstance(
-            secondary_divisions_helper, (types.FunctionType, types.MethodType))
+        assert isinstance(prefix_talea, (tuple, type(None)))
+        assert isinstance(prefix_lengths, (tuple, type(None)))
+        assert isinstance(suffix_talea, (tuple, type(None)))
+        assert isinstance(suffix_lengths, (tuple, type(None)))
+        assert isinstance(prolation_addenda, (tuple, type(None)))
+        prototype = (types.FunctionType, types.MethodType)
+        assert isinstance(prefix_talea_helper, prototype)
+        assert isinstance(prefix_lengths_helper, prototype)
+        assert isinstance(suffix_talea_helper, prototype)
+        assert isinstance(suffix_lengths_helper, prototype)
+        assert isinstance(prolation_addenda_helper, prototype)
+        assert isinstance(secondary_divisions_helper, prototype)
         assert isinstance(decrease_durations_monotonically, bool)
         self.prefix_talea = prefix_talea
         self.prefix_lengths = prefix_lengths
@@ -340,13 +340,25 @@ class IncisedRhythmMaker(RhythmMaker):
 
         Returns newly constructed rhythm-maker.
         '''
-        new = copy.deepcopy(self)
-        new.prefix_talea.reverse()
-        new.prefix_lengths.reverse()
-        new.suffix_talea.reverse()
-        new.suffix_lengths.reverse()
-        new.prolation_addenda.reverse()
-        new.secondary_divisions.reverse()
-        if new.decrease_durations_monotonically:
-            new.decrease_durations_monotonically = False
+        prefix_talea = tuple(reversed(self.prefix_talea))
+        prefix_lengths = tuple(reversed(self.prefix_lengths))
+        suffix_talea = tuple(reversed(self.suffix_talea))
+        suffix_lengths = tuple(reversed(self.suffix_lengths))
+        talea_denominator = self.talea_denominator
+        body_ratio = self.body_ratio
+        prolation_addenda = tuple(reversed(self.prolation_addenda))
+        secondary_divisions = tuple(reversed(self.secondary_divisions))
+        decrease_durations_monotonically = \
+            not self.decrease_durations_monotonically
+        new = type(self)(
+            prefix_talea=prefix_talea,
+            prefix_lengths=prefix_lengths,
+            suffix_talea=suffix_talea,
+            suffix_lengths=suffix_lengths,
+            talea_denominator=talea_denominator,
+            body_ratio=body_ratio,
+            prolation_addenda=prolation_addenda,
+            secondary_divisions=secondary_divisions,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            )
         return new

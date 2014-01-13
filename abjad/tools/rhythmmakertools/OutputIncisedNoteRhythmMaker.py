@@ -9,11 +9,12 @@ class OutputIncisedNoteRhythmMaker(IncisedRhythmMaker):
     ::
 
         >>> maker = rhythmmakertools.OutputIncisedNoteRhythmMaker(
-        ...     prefix_talea=[-8, -7],
-        ...     prefix_lengths=[2],
-        ...     suffix_talea=[-3],
-        ...     suffix_lengths=[4],
-        ...     talea_denominator=32)
+        ...     prefix_talea=(-8, -7),
+        ...     prefix_lengths=(2,),
+        ...     suffix_talea=(-3,),
+        ...     suffix_lengths=(4,),
+        ...     talea_denominator=32,
+        ...     )
 
     Configure at initialization and then call on arbitrary divisions:
 
@@ -43,13 +44,13 @@ class OutputIncisedNoteRhythmMaker(IncisedRhythmMaker):
 
             >>> print format(maker)
             rhythmmakertools.OutputIncisedNoteRhythmMaker(
-                prefix_talea=[-8, -7],
-                prefix_lengths=[2],
-                suffix_talea=[-3],
-                suffix_lengths=[4],
+                prefix_talea=(-8, -7),
+                prefix_lengths=(2,),
+                suffix_talea=(-3,),
+                suffix_lengths=(4,),
                 talea_denominator=32,
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
@@ -65,19 +66,19 @@ class OutputIncisedNoteRhythmMaker(IncisedRhythmMaker):
 
         ::
 
-            >>> new_maker = new(maker, prefix_talea=[-7])
+            >>> new_maker = new(maker, prefix_talea=(-7,))
 
         ::
 
             >>> print format(new_maker)
             rhythmmakertools.OutputIncisedNoteRhythmMaker(
-                prefix_talea=[-7],
-                prefix_lengths=[2],
-                suffix_talea=[-3],
-                suffix_lengths=[4],
+                prefix_talea=(-7,),
+                prefix_lengths=(2,),
+                suffix_talea=(-3,),
+                suffix_lengths=(4,),
                 talea_denominator=32,
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
@@ -101,7 +102,7 @@ class OutputIncisedNoteRhythmMaker(IncisedRhythmMaker):
 
     def _make_middle_of_numeric_map_part(self, middle):
         if 0 < middle:
-            return (middle, )
+            return (middle,)
         else:
             return ()
 
@@ -118,13 +119,13 @@ class OutputIncisedNoteRhythmMaker(IncisedRhythmMaker):
 
             >>> print format(reversed_maker)
             rhythmmakertools.OutputIncisedNoteRhythmMaker(
-                prefix_talea=[-7, -8],
-                prefix_lengths=[2],
-                suffix_talea=[-3],
-                suffix_lengths=[4],
+                prefix_talea=(-7, -8),
+                prefix_lengths=(2,),
+                suffix_talea=(-3,),
+                suffix_lengths=(4,),
                 talea_denominator=32,
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=False,
                 beam_each_cell=False,
                 beam_cells_together=False,

@@ -3,15 +3,15 @@ from abjad.tools.rhythmmakertools.IncisedRhythmMaker import IncisedRhythmMaker
 
 
 class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
-    r'''Division-incised rest rhythm-maker:
+    r'''Division-incised rest rhythm-maker.
 
     ::
 
         >>> maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
-        ...     prefix_talea=[1],
-        ...     prefix_lengths=[1, 2, 3, 4],
-        ...     suffix_talea=[1],
-        ...     suffix_lengths=[1],
+        ...     prefix_talea=(1,),
+        ...     prefix_lengths=(1, 2, 3, 4),
+        ...     suffix_talea=(1,),
+        ...     suffix_lengths=(1,),
         ...     talea_denominator=32,
         ...     )
 
@@ -45,13 +45,13 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
 
             >>> print format(maker)
             rhythmmakertools.DivisionIncisedRestRhythmMaker(
-                prefix_talea=[1],
-                prefix_lengths=[1, 2, 3, 4],
-                suffix_talea=[1],
-                suffix_lengths=[1],
+                prefix_talea=(1,),
+                prefix_lengths=(1, 2, 3, 4),
+                suffix_talea=(1,),
+                suffix_lengths=(1,),
                 talea_denominator=32,
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
@@ -69,13 +69,13 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
 
             >>> print format(maker)
             rhythmmakertools.DivisionIncisedRestRhythmMaker(
-                prefix_talea=[1],
-                prefix_lengths=[1, 2, 3, 4],
-                suffix_talea=[1],
-                suffix_lengths=[1],
+                prefix_talea=(1,),
+                prefix_lengths=(1, 2, 3, 4),
+                suffix_talea=(1,),
+                suffix_lengths=(1,),
                 talea_denominator=32,
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
@@ -83,19 +83,19 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
 
         ::
 
-            >>> new_maker = new(maker, suffix_lengths=[0])
+            >>> new_maker = new(maker, suffix_lengths=(0,))
 
         ::
 
             >>> print format(new_maker)
             rhythmmakertools.DivisionIncisedRestRhythmMaker(
-                prefix_talea=[1],
-                prefix_lengths=[1, 2, 3, 4],
-                suffix_talea=[1],
-                suffix_lengths=[0],
+                prefix_talea=(1,),
+                prefix_lengths=(1, 2, 3, 4),
+                suffix_talea=(1,),
+                suffix_lengths=(0,),
                 talea_denominator=32,
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
@@ -119,7 +119,7 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
 
     def _make_middle_of_numeric_map_part(self, middle):
         if 0 < middle:
-            return (-abs(middle), )
+            return (-abs(middle),)
         else:
             return ()
 
@@ -132,13 +132,13 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
 
             >>> print format(maker)
             rhythmmakertools.DivisionIncisedRestRhythmMaker(
-                prefix_talea=[1],
-                prefix_lengths=[1, 2, 3, 4],
-                suffix_talea=[1],
-                suffix_lengths=[1],
+                prefix_talea=(1,),
+                prefix_lengths=(1, 2, 3, 4),
+                suffix_talea=(1,),
+                suffix_lengths=(1,),
                 talea_denominator=32,
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
@@ -152,13 +152,13 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
 
             >>> print format(reversed_maker)
             rhythmmakertools.DivisionIncisedRestRhythmMaker(
-                prefix_talea=[1],
-                prefix_lengths=[4, 3, 2, 1],
-                suffix_talea=[1],
-                suffix_lengths=[1],
+                prefix_talea=(1,),
+                prefix_lengths=(4, 3, 2, 1),
+                suffix_talea=(1,),
+                suffix_lengths=(1,),
                 talea_denominator=32,
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=False,
                 beam_each_cell=False,
                 beam_cells_together=False,

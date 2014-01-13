@@ -13,10 +13,10 @@ class OutputIncisedRestRhythmMaker(IncisedRhythmMaker):
     ::
 
         >>> maker = rhythmmakertools.OutputIncisedRestRhythmMaker(
-        ...     prefix_talea=[7, 8],
-        ...     prefix_lengths=[2],
-        ...     suffix_talea=[3],
-        ...     suffix_lengths=[4],
+        ...     prefix_talea=(7, 8),
+        ...     prefix_lengths=(2,),
+        ...     suffix_talea=(3,),
+        ...     suffix_lengths=(4,),
         ...     talea_denominator=32,
         ...     )
 
@@ -50,13 +50,13 @@ class OutputIncisedRestRhythmMaker(IncisedRhythmMaker):
 
             >>> print format(maker)
             rhythmmakertools.OutputIncisedRestRhythmMaker(
-                prefix_talea=[7, 8],
-                prefix_lengths=[2],
-                suffix_talea=[3],
-                suffix_lengths=[4],
+                prefix_talea=(7, 8),
+                prefix_lengths=(2,),
+                suffix_talea=(3,),
+                suffix_lengths=(4,),
                 talea_denominator=32,
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
@@ -72,19 +72,19 @@ class OutputIncisedRestRhythmMaker(IncisedRhythmMaker):
 
         ::
 
-            >>> new_maker = new(maker, prefix_talea=[7])
+            >>> new_maker = new(maker, prefix_talea=(7,))
 
         ::
 
             >>> print format(new_maker)
             rhythmmakertools.OutputIncisedRestRhythmMaker(
-                prefix_talea=[7],
-                prefix_lengths=[2],
-                suffix_talea=[3],
-                suffix_lengths=[4],
+                prefix_talea=(7,),
+                prefix_lengths=(2,),
+                suffix_talea=(3,),
+                suffix_lengths=(4,),
                 talea_denominator=32,
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
@@ -125,13 +125,13 @@ class OutputIncisedRestRhythmMaker(IncisedRhythmMaker):
 
             >>> print format(reversed_maker)
             rhythmmakertools.OutputIncisedRestRhythmMaker(
-                prefix_talea=[8, 7],
-                prefix_lengths=[2],
-                suffix_talea=[3],
-                suffix_lengths=[4],
+                prefix_talea=(8, 7),
+                prefix_lengths=(2,),
+                suffix_talea=(3,),
+                suffix_lengths=(4,),
                 talea_denominator=32,
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=False,
                 beam_each_cell=False,
                 beam_cells_together=False,

@@ -58,7 +58,8 @@ class BurnishedTaleaRhythmMaker(RhythmMaker):
         decrease_durations_monotonically=True, 
         tie_split_notes=False, 
         ):
-        RhythmMaker.__init__(self,
+        RhythmMaker.__init__(
+            self,
             beam_each_cell=beam_each_cell,
             beam_cells_together=beam_cells_together,
             )
@@ -69,6 +70,16 @@ class BurnishedTaleaRhythmMaker(RhythmMaker):
         left_lengths = self._none_to_new_list(left_lengths)
         right_lengths = self._none_to_new_list(right_lengths)
         secondary_divisions = self._none_to_new_list(secondary_divisions)
+
+        assert isinstance(talea, (tuple, type(None)))
+        assert isinstance(lefts, (tuple, type(None)))
+        assert isinstance(middles, (tuple, type(None)))
+        assert isinstance(rights, (tuple, type(None)))
+        assert isinstance(left_lengths, (tuple, type(None)))
+        assert isinstance(right_lengths, (tuple, type(None)))
+        assert isinstance(secondary_divisions, (tuple, type(None))), repr(
+            secondary_divisions)
+
         talea_helper = self._none_to_trivial_helper(talea_helper)
         prolation_addenda_helper = self._none_to_trivial_helper(
             prolation_addenda_helper)

@@ -122,7 +122,7 @@ class RhythmMaker(AbjadObject):
 
     def _none_to_new_list(self, expr):
         if expr is None:
-            return []
+            return ()
         return expr
 
     def _none_to_trivial_helper(self, expr):

@@ -11,10 +11,10 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
         **Example 1.** Basic usage:
 
             >>> maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-            ...     prefix_talea=[-1],
-            ...     prefix_lengths=[0, 1],
-            ...     suffix_talea=[-1],
-            ...     suffix_lengths=[1],
+            ...     prefix_talea=(-1,),
+            ...     prefix_lengths=(0, 1),
+            ...     suffix_talea=(-1,),
+            ...     suffix_lengths=(1,),
             ...     talea_denominator=16,
             ...     )
 
@@ -28,6 +28,7 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -54,10 +55,6 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
                 }
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
     ..  container:: example
     
         **Example 2.** Set `body_ratio` to divide middle part proportionally:
@@ -65,10 +62,10 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
         ::
 
             >>> maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-            ...     prefix_talea=[-1],
-            ...     prefix_lengths=[0, 1],
-            ...     suffix_talea=[-1],
-            ...     suffix_lengths=[1],
+            ...     prefix_talea=(-1,),
+            ...     prefix_lengths=(0, 1),
+            ...     suffix_talea=(-1,),
+            ...     suffix_lengths=(1,),
             ...     talea_denominator=16,
             ...     body_ratio=(1, 1),
             ...     )
@@ -81,6 +78,7 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
             >>> measures = scoretools.make_spacer_skip_measures(divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = mutate(staff).replace_measure_contents(leaves)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -110,10 +108,6 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
                     r16
                 }
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''
@@ -133,14 +127,14 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
 
             >>> print format(maker)
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-                prefix_talea=[-1],
-                prefix_lengths=[0, 1],
-                suffix_talea=[-1],
-                suffix_lengths=[1],
+                prefix_talea=(-1,),
+                prefix_lengths=(0, 1),
+                suffix_talea=(-1,),
+                suffix_lengths=(1,),
                 talea_denominator=16,
                 body_ratio=mathtools.Ratio(1, 1),
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
@@ -158,14 +152,14 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
 
             >>> print format(maker)
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-                prefix_talea=[-1],
-                prefix_lengths=[0, 1],
-                suffix_talea=[-1],
-                suffix_lengths=[1],
+                prefix_talea=(-1,),
+                prefix_lengths=(0, 1),
+                suffix_talea=(-1,),
+                suffix_lengths=(1,),
                 talea_denominator=16,
                 body_ratio=mathtools.Ratio(1, 1),
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
@@ -173,20 +167,20 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
 
         ::
 
-            >>> new_maker = new(maker, prefix_lengths=[1])
+            >>> new_maker = new(maker, prefix_lengths=(1,))
 
         ::
 
             >>> print format(new_maker)
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-                prefix_talea=[-1],
-                prefix_lengths=[1],
-                suffix_talea=[-1],
-                suffix_lengths=[1],
+                prefix_talea=(-1,),
+                prefix_lengths=(1,),
+                suffix_talea=(-1,),
+                suffix_lengths=(1,),
                 talea_denominator=16,
                 body_ratio=mathtools.Ratio(1, 1),
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
@@ -215,7 +209,7 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
                     middle, self.body_ratio)
                 return tuple(shards)
             else:
-                return (middle, )
+                return (middle,)
         else:
             return ()
 
@@ -228,14 +222,14 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
 
             >>> print format(maker)
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-                prefix_talea=[-1],
-                prefix_lengths=[0, 1],
-                suffix_talea=[-1],
-                suffix_lengths=[1],
+                prefix_talea=(-1,),
+                prefix_lengths=(0, 1),
+                suffix_talea=(-1,),
+                suffix_lengths=(1,),
                 talea_denominator=16,
                 body_ratio=mathtools.Ratio(1, 1),
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
@@ -261,14 +255,14 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
 
             >>> print format(reversed_maker)
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-                prefix_talea=[-1],
-                prefix_lengths=[1, 0],
-                suffix_talea=[-1],
-                suffix_lengths=[1],
+                prefix_talea=(-1,),
+                prefix_lengths=(1, 0),
+                suffix_talea=(-1,),
+                suffix_lengths=(1,),
                 talea_denominator=16,
                 body_ratio=mathtools.Ratio(1, 1),
-                prolation_addenda=[],
-                secondary_divisions=[],
+                prolation_addenda=(),
+                secondary_divisions=(),
                 decrease_durations_monotonically=False,
                 beam_each_cell=False,
                 beam_cells_together=False,

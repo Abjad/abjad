@@ -11,7 +11,7 @@ def test_DivisionBurnishedTaleaRhythmMakerEditor_01():
         )
 
     maker = rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
-        talea=[1, 1, 2, 4],
+        talea=(1, 1, 2, 4),
         talea_denominator=32,
         prolation_addenda=(0,),
         lefts=(-1,),
