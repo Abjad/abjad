@@ -2,9 +2,9 @@
 from experimental import *
 
 
-def test_BurnishedTaleaRhythmMakerEditor_01():
+def test_TaleaRhythmMakerEditor_01():
 
-    editor = scoremanagertools.editors.BurnishedTaleaRhythmMakerEditor()
+    editor = scoremanagertools.editors.TaleaRhythmMakerEditor()
     editor._run(pending_user_input=
         '2 16 (2, 3) (6,) (-1, 2, -3, 4) q', 
         is_autoadvancing=True,

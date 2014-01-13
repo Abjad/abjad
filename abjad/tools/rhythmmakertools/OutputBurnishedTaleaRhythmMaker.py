@@ -40,7 +40,7 @@ class OutputBurnishedTaleaRhythmMaker(TaleaRhythmMaker):
 
     ### CLASS VARIABLES ###
 
-    _burnish_first_and_last_divisions = True
+    _burnish_output = True
 
     ### SPECIAL METHODS ###
 
@@ -66,6 +66,8 @@ class OutputBurnishedTaleaRhythmMaker(TaleaRhythmMaker):
                 beam_cells_together=False,
                 decrease_durations_monotonically=True,
                 tie_split_notes=False,
+                burnish_divisions=False,
+                burnish_output=False,
                 )
 
         Returns string.
@@ -97,6 +99,8 @@ class OutputBurnishedTaleaRhythmMaker(TaleaRhythmMaker):
                 beam_cells_together=False,
                 decrease_durations_monotonically=True,
                 tie_split_notes=False,
+                burnish_divisions=False,
+                burnish_output=False,
                 )
 
         ::
@@ -139,6 +143,8 @@ class OutputBurnishedTaleaRhythmMaker(TaleaRhythmMaker):
                 beam_cells_together=False,
                 decrease_durations_monotonically=False,
                 tie_split_notes=False,
+                burnish_divisions=False,
+                burnish_output=False,
                 )
 
         ::

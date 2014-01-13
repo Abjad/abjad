@@ -143,6 +143,8 @@ class SegmentSpecification(Specification):
                                 beam_cells_together=True,
                                 decrease_durations_monotonically=True,
                                 tie_split_notes=False,
+                                burnish_divisions=False,
+                                burnish_output=False,
                                 ),
                             ),
                         target_timespan='red',

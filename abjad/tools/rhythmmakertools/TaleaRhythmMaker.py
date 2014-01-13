@@ -57,12 +57,18 @@ class TaleaRhythmMaker(RhythmMaker):
         beam_cells_together=False,
         decrease_durations_monotonically=True, 
         tie_split_notes=False, 
+        burnish_divisions=False,
+        burnish_output=False,
         ):
         RhythmMaker.__init__(
             self,
             beam_each_cell=beam_each_cell,
             beam_cells_together=beam_cells_together,
             )
+        assert isinstance(burnish_divisions, bool)
+        assert isinstance(burnish_output, bool)
+        self.burnish_divisions = burnish_divisions
+        self.burnish_output = burnish_output
         prolation_addenda = self._none_to_new_list(prolation_addenda)
         lefts = self._none_to_new_list(lefts)
         middles = self._none_to_new_list(middles)
@@ -266,9 +272,9 @@ class TaleaRhythmMaker(RhythmMaker):
         return burnished_divisions
 
     def _burnish_division_parts(self, divisions, quintuplet):
-        if getattr(self, '_burnish_all_divisions', False):
+        if self.burnish_divisions or getattr(self, '_burnish_divisions', False):
             return self._burnish_all_division_parts(divisions, quintuplet)
-        elif getattr(self, '_burnish_first_and_last_divisions', False):
+        elif self.burnish_output or getattr(self, '_burnish_output', False):
             return self._burnish_first_and_last_division_parts(
                 divisions, quintuplet)
         else:
@@ -506,5 +512,7 @@ class TaleaRhythmMaker(RhythmMaker):
             beam_cells_together=self.beam_cells_together,
             decrease_durations_monotonically=decrease_durations_monotonically, 
             tie_split_notes=self.tie_split_notes, 
+            burnish_divisions=self.burnish_divisions,
+            burnish_output=self.burnish_output,
             )
         return new
