@@ -8,7 +8,6 @@ from abjad.tools import markuptools
 
 # TODO: eventually make these work
 _classes_to_skip = (
-    markuptools.Markup,
     )
 
 classes = documentationtools.list_all_abjad_classes()
