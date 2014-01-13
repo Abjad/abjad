@@ -1288,7 +1288,7 @@ class LilyPondParser(abctools.Parser):
             >>> parser = lilypondparsertools.LilyPondParser()
             >>> string = r"\markup { \my-custom-markup-function { foo bar baz } }"
             >>> parser(string)
-            Markup((MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz']),))
+            Markup(contents=(MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz']),))
 
         `signature` should be a sequence of zero or more type-predicate names,
         as understood by LilyPond.  Consult LilyPond's documentation for a

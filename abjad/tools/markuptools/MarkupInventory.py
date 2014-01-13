@@ -13,7 +13,7 @@ class MarkupInventory(TypedList):
     ::
 
         >>> inventory
-        MarkupInventory([Markup(('foo',)), Markup(('bar',))])
+        MarkupInventory([Markup(contents=('foo',)), Markup(contents=('bar',))])
 
     Markup inventories implement the list interface and are mutable.
     '''

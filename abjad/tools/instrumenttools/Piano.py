@@ -120,7 +120,7 @@ class Piano(Instrument):
             ::
 
                 >>> piano.instrument_name_markup
-                Markup(('Piano',))
+                Markup(contents=('Piano',))
 
             ::
 
@@ -173,7 +173,7 @@ class Piano(Instrument):
             ::
 
                 >>> piano.short_instrument_name_markup
-                Markup(('Pf.',))
+                Markup(contents=('Pf.',))
 
             ::
 

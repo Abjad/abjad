@@ -123,7 +123,7 @@ class Score(Context):
 
             >>> print format(markup, 'storage')
             markuptools.Markup(
-                (
+                contents=(
                     markuptools.MarkupCommand(
                         'italic',
                         markuptools.MarkupCommand(

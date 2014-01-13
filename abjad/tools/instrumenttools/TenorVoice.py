@@ -109,7 +109,7 @@ class TenorVoice(Instrument):
             ::
 
                 >>> tenor.instrument_name_markup
-                Markup(('Tenor',))
+                Markup(contents=('Tenor',))
 
             ::
 
@@ -162,7 +162,7 @@ class TenorVoice(Instrument):
             ::
 
                 >>> tenor.short_instrument_name_markup
-                Markup(('Ten.',))
+                Markup(contents=('Ten.',))
 
             ::
 

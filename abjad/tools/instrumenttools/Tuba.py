@@ -110,7 +110,7 @@ class Tuba(Instrument):
             ::
 
                 >>> tuba.instrument_name_markup
-                Markup(('Tuba',))
+                Markup(contents=('Tuba',))
 
             ::
 
@@ -163,7 +163,7 @@ class Tuba(Instrument):
             ::
 
                 >>> tuba.short_instrument_name_markup
-                Markup(('Tb.',))
+                Markup(contents=('Tb.',))
 
             ::
 

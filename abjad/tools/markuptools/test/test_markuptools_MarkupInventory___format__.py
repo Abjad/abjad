@@ -12,10 +12,10 @@ def test_markuptools_MarkupInventory___format___01():
         markuptools.MarkupInventory(
             [
                 markuptools.Markup(
-                    ('foo',)
+                    contents=('foo',),
                     ),
                 markuptools.Markup(
-                    ('bar',)
+                    contents=('bar',),
                     ),
                 ]
             )

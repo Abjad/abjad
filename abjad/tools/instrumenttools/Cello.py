@@ -111,7 +111,7 @@ class Cello(Instrument):
             ::
 
                 >>> cello.instrument_name_markup
-                Markup(('Cello',))
+                Markup(contents=('Cello',))
 
             ::
 
@@ -164,7 +164,7 @@ class Cello(Instrument):
             ::
 
                 >>> cello.short_instrument_name_markup
-                Markup(('Vc.',))
+                Markup(contents=('Vc.',))
 
             ::
 

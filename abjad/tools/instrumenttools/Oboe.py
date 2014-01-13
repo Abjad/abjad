@@ -109,7 +109,7 @@ class Oboe(Instrument):
             ::
 
                 >>> oboe.instrument_name_markup
-                Markup(('Oboe',))
+                Markup(contents=('Oboe',))
 
             ::
 
@@ -162,7 +162,7 @@ class Oboe(Instrument):
             ::
 
                 >>> oboe.short_instrument_name_markup
-                Markup(('Ob.',))
+                Markup(contents=('Ob.',))
 
             ::
 

@@ -109,7 +109,7 @@ class ClarinetInEFlat(Instrument):
             ::
 
                 >>> clarinet.instrument_name_markup
-                Markup(('Clarinet in E-flat',))
+                Markup(contents=('Clarinet in E-flat',))
 
             ::
 
@@ -162,7 +162,7 @@ class ClarinetInEFlat(Instrument):
             ::
 
                 >>> clarinet.short_instrument_name_markup
-                Markup(('Cl. E-flat',))
+                Markup(contents=('Cl. E-flat',))
 
             ::
 

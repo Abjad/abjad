@@ -21,7 +21,7 @@ class PitchRange(AbjadObject):
             '[C3, C7]',
             pitch_range_name='four-octave range',
             pitch_range_name_markup=markuptools.Markup(
-                ('four-octave range',)
+                contents=('four-octave range',),
                 ),
             )
 
@@ -536,7 +536,7 @@ class PitchRange(AbjadObject):
         ::
 
             >>> pitch_range.pitch_range_name_markup
-            Markup(('four-octave range',))
+            Markup(contents=('four-octave range',))
 
         Default to `pitch_range_name` when `pitch_range_name_markup`
         not set explicitly.

@@ -107,7 +107,7 @@ class Piccolo(Instrument):
             ::
 
                 >>> piccolo.instrument_name_markup
-                Markup(('Piccolo',))
+                Markup(contents=('Piccolo',))
 
             ::
 
@@ -160,7 +160,7 @@ class Piccolo(Instrument):
             ::
 
                 >>> piccolo.short_instrument_name_markup
-                Markup(('Picc.',))
+                Markup(contents=('Picc.',))
 
             ::
 

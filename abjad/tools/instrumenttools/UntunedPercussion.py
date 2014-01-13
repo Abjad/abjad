@@ -149,7 +149,7 @@ class UntunedPercussion(Instrument):
             ::
 
                 >>> untuned_percussion.instrument_name_markup
-                Markup(('Untuned percussion',))
+                Markup(contents=('Untuned percussion',))
 
             ::
 
@@ -202,7 +202,7 @@ class UntunedPercussion(Instrument):
             ::
 
                 >>> untuned_percussion.short_instrument_name_markup
-                Markup(('Perc.',))
+                Markup(contents=('Perc.',))
 
             ::
 

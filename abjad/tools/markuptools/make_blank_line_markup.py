@@ -11,7 +11,7 @@ def make_blank_line_markup():
     ::
 
         >>> markup
-        Markup((MarkupCommand('fill-line', [' ']),))
+        Markup(contents=(MarkupCommand('fill-line', [' ']),))
 
     ..  doctest::
 

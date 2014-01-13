@@ -9,7 +9,6 @@ from abjad.tools import markuptools
 
 # TODO: make these classes empty-initializable
 _classes_to_ignore = (
-    markuptools.Markup,
     )
 
 classes = documentationtools.list_all_abjad_classes()

@@ -106,7 +106,7 @@ class Xylophone(Instrument):
             ::
 
                 >>> xylophone.instrument_name_markup
-                Markup(('Xylophone',))
+                Markup(contents=('Xylophone',))
 
             ::
 
@@ -159,7 +159,7 @@ class Xylophone(Instrument):
             ::
 
                 >>> xylophone.short_instrument_name_markup
-                Markup(('Xyl.',))
+                Markup(contents=('Xyl.',))
 
             ::
 

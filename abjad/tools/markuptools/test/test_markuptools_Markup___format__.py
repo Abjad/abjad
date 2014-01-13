@@ -10,12 +10,12 @@ def test_markuptools_Markup___format___01():
         format(markup, 'storage'),
         r'''
         markuptools.Markup(
-            (
+            contents=(
                 markuptools.MarkupCommand(
                     'bold',
                     ['foo']
                     ),
-                )
+                ),
             )
         '''
         )
@@ -32,7 +32,7 @@ def test_markuptools_Markup___format___02():
         format(markup, 'storage'),
         r'''
         markuptools.Markup(
-            (
+            contents=(
                 markuptools.MarkupCommand(
                     'bold',
                     ['allegro', 'ma', 'non', 'troppo']

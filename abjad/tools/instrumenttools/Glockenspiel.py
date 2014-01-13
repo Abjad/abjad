@@ -105,7 +105,7 @@ class Glockenspiel(Instrument):
             ::
 
                 >>> glockenspiel.instrument_name_markup
-                Markup(('Glockenspiel',))
+                Markup(contents=('Glockenspiel',))
 
             ::
 
@@ -158,7 +158,7 @@ class Glockenspiel(Instrument):
             ::
 
                 >>> glockenspiel.short_instrument_name_markup
-                Markup(('Gkspl.',))
+                Markup(contents=('Gkspl.',))
 
             ::
 

@@ -78,7 +78,7 @@ class WoodwindFingering(AbjadObject):
 
     ::
 
-        >>> markup = markuptools.Markup(fingering_command, direction=Down)
+        >>> markup = markuptools.Markup(contents=fingering_command, direction=Down)
         >>> chord = Chord("<ds' fs''>4")
         >>> attach(markup, chord)
         >>> show(chord) # doctest: +SKIP
@@ -127,7 +127,7 @@ class WoodwindFingering(AbjadObject):
         >>> not_graphical = markuptools.MarkupCommand(
         ...     'override',
         ...     schemetools.SchemePair('graphical', False))
-        >>> markup = markuptools.Markup(
+        >>> markup = markuptools.Markup(contents=
         ...     [not_graphical, diagram], direction=Down)
         >>> attach(markup, chord)
         >>> show(chord) # doctest: +SKIP
@@ -163,7 +163,7 @@ class WoodwindFingering(AbjadObject):
         ...     'override', schemetools.SchemePair('size', .5))
         >>> thickness = markuptools.MarkupCommand(
         ...     'override', schemetools.SchemePair('thickness', .4))
-        >>> markup = markuptools.Markup(
+        >>> markup = markuptools.Markup(contents=
         ...     [not_graphical, size, thickness, diagram], direction=Down)
         >>> attach(markup, chord)
         >>> show(chord) # doctest: +SKIP

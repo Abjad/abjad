@@ -82,10 +82,10 @@ class AltoSaxophone(Instrument):
                     instrument_name='alto saxophone',
                     short_instrument_name='alt. sax.',
                     instrument_name_markup=markuptools.Markup(
-                        ('Alto saxophone',)
+                        contents=('Alto saxophone',),
                         ),
                     short_instrument_name_markup=markuptools.Markup(
-                        ('Alt. sax.',)
+                        contents=('Alt. sax.',),
                         ),
                     allowable_clefs=indicatortools.ClefInventory(
                         [
@@ -150,7 +150,7 @@ class AltoSaxophone(Instrument):
             ::
 
                 >>> alto_saxophone.instrument_name_markup
-                Markup(('Alto saxophone',))
+                Markup(contents=('Alto saxophone',))
 
             ::
 
@@ -203,7 +203,7 @@ class AltoSaxophone(Instrument):
             ::
 
                 >>> alto_saxophone.short_instrument_name_markup
-                Markup(('Alt. sax.',))
+                Markup(contents=('Alt. sax.',))
 
             ::
 
