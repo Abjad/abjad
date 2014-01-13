@@ -2,11 +2,11 @@
 from abjad import *
 
 
-def test_rhythmmakertools_TaleaRhythmMaker_beam_each_cell_01():
+def test_rhythmmakertools_BurnishedTaleaRhythmMaker_beam_each_cell_01():
     r'''Beam each cell with a multipart beam spanner.
     '''
 
-    maker = rhythmmakertools.TaleaRhythmMaker(
+    maker = rhythmmakertools.BurnishedTaleaRhythmMaker(
         talea=(1, 1, 1, -1, 2, 2), 
         talea_denominator=32, 
         prolation_addenda=(3, 4), 

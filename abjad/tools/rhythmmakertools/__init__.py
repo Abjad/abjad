@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-r'''Module: rhythmmakertools.
-
-The following name changes were made when migrating into Abjad for initial check-in:
+r'''The following name changes were made when migrating into Abjad for initial 
+check-in:
 
     NoteFilledTokens ==> NoteRhythmMaker
     RestFilledTokens ==> RestRhythmMaker
@@ -21,7 +20,8 @@ The following name changes were made when migrating into Abjad for initial check
     _SignalAffixedFilledTokens ==> DivisionIncisedRhythmMaker
     _SignalAffixedObjectWithFilledTokens ==> IncisedRhythmMaker
 
-These name changes no longer matter when using the public version of the package.
+These name changes no longer matter when using the public version of the 
+package.
 '''
 from abjad.tools import systemtools
 
