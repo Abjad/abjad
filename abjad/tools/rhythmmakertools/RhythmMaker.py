@@ -10,6 +10,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class RhythmMaker(AbjadObject):
     '''Rhythm-maker abstract base class.
+
     '''
 
     ### INITIALIZER ###

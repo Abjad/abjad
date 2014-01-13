@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.rhythmmakertools.DivisionIncisedNoteRhythmMaker \
-    import DivisionIncisedNoteRhythmMaker
+from abjad.tools import scoretools
+from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
-class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
+class NoteRhythmMaker(RhythmMaker):
     r'''Note rhythm-maker.
 
     ..  container:: example
@@ -88,19 +88,30 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
         forbidden_written_duration=None,
         tie_rests=False,
         ):
-        DivisionIncisedNoteRhythmMaker.__init__(
-            self,
-            [],
-            [0],
-            [],
-            [0],
-            1,
-            decrease_durations_monotonically=decrease_durations_monotonically,
-            forbidden_written_duration=forbidden_written_duration,
-            tie_rests=tie_rests,
-            )
+        self._decrease_durations_monotonically = \
+            decrease_durations_monotonically
+        self._forbidden_written_duration = forbidden_written_duration
+        self._tie_rests = tie_rests
 
     ### SPECIAL METHODS ###
+
+    def __call__(self, divisions, seeds=None):
+        r'''Calls note rhythm-maker on `divisions`.
+
+        Returns list of selections.
+        '''
+        result = []
+        for division in divisions:
+            notes = scoretools.make_leaves(
+                pitches=0, 
+                durations=[division],
+                decrease_durations_monotonically=\
+                    self.decrease_durations_monotonically,
+                tie_rests=self.tie_rests,
+                forbidden_written_duration=self.forbidden_written_duration,
+                )
+            result.append(notes)
+        return result
 
     def __format__(self, format_specification=''):
         r'''Formats note rhythm-maker.
@@ -149,8 +160,33 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
         Returns new note rhythm-maker.
         '''
-        return DivisionIncisedNoteRhythmMaker.__makenew__(
-            self, *args, **kwargs)
+        return RhythmMaker.__makenew__(self, *args, **kwargs)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def decrease_durations_monotonically(self):
+        r'''Gets decrease durations monotonically flag.
+
+        Returns boolean.
+        '''
+        return self._decrease_durations_monotonically
+
+    @property
+    def forbidden_written_duration(self):
+        r'''Gets forbidden written duration.
+
+        Returns duration or none.
+        '''
+        return self._forbidden_written_duration
+
+    @property
+    def tie_rests(self):
+        r'''Gets tie rests flag.
+
+        Returns boolean.
+        '''
+        return self._tie_rests
 
     ### PUBLIC METHODS ###
 
@@ -182,4 +218,11 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
         Returns new note rhythm-maker.
         '''
-        return DivisionIncisedNoteRhythmMaker.reverse(self)
+        decrease_durations_monotonically = \
+            not self.decrease_durations_monotonically
+        new = type(self)(
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            forbidden_written_duration=self.forbidden_written_duration,
+            tie_rests=self.tie_rests,
+            )
+        return new
