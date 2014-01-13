@@ -16,7 +16,7 @@ from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 
 
-class BurnishedRhythmMaker(RhythmMaker):
+class BurnishedTaleaRhythmMaker(RhythmMaker):
     '''Abstract base class for rhythm-makers that burnish some or
     all of the output cells they produce.
 
@@ -178,7 +178,7 @@ class BurnishedRhythmMaker(RhythmMaker):
 
         Returns string.
         '''
-        superclass = super(BurnishedRhythmMaker, self)
+        superclass = super(BurnishedTaleaRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
     ### PRIVATE METHODS ###

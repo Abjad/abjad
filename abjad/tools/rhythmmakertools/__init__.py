@@ -15,7 +15,7 @@ The following name changes were made when migrating into Abjad for initial check
     SignalAffixedNoteFilledTokens ==> DivisionIncisedNoteRhythmMaker
     SignalAffixedRestFilledTokens ==> DivisionIncisedRestRhythmMaker
 
-    _PartForcedObjectWithPatternedTokens ==> BurnishedRhythmMaker
+    _PartForcedObjectWithPatternedTokens ==> BurnishedTaleaRhythmMaker
     _RhythmicKaleid ==> RhythmMaker
     _SignalAffixedChunkWithFilledTokens ==> OutputIncisedRhythmMaker
     _SignalAffixedFilledTokens ==> DivisionIncisedRhythmMaker

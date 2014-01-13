@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.rhythmmakertools.BurnishedRhythmMaker import \
-    BurnishedRhythmMaker
+from abjad.tools.rhythmmakertools.BurnishedTaleaRhythmMaker import \
+    BurnishedTaleaRhythmMaker
 
 
-class TaleaRhythmMaker(BurnishedRhythmMaker):
+class TaleaRhythmMaker(BurnishedTaleaRhythmMaker):
     r'''Talea rhythm-maker.
 
     ..  container:: example
@@ -68,7 +68,7 @@ class TaleaRhythmMaker(BurnishedRhythmMaker):
         ):
         lefts, middles, rights = [0], [0], [0]
         left_lengths, right_lengths = [0], [0]
-        BurnishedRhythmMaker.__init__(
+        BurnishedTaleaRhythmMaker.__init__(
             self,
             talea,
             talea_denominator,
@@ -144,7 +144,7 @@ class TaleaRhythmMaker(BurnishedRhythmMaker):
 
         Returns new talea rhythm-maker.
         '''
-        return BurnishedRhythmMaker.__makenew__(self, *args, **kwargs)
+        return BurnishedTaleaRhythmMaker.__makenew__(self, *args, **kwargs)
 
     def reverse(self):
         r'''Reverses talea rhythm-maker.
@@ -178,4 +178,4 @@ class TaleaRhythmMaker(BurnishedRhythmMaker):
 
         Returns new talea rhythm-maker.
         '''
-        return BurnishedRhythmMaker.reverse(self)
+        return BurnishedTaleaRhythmMaker.reverse(self)
