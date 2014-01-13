@@ -10,7 +10,7 @@ def test_RhythmMakerMaterialPackageMaker_01():
     try:
         score_manager._run(pending_user_input=
             'materials maker rhythm testrhythmmaker default '
-            'testrhythmmaker omi talearhythmmaker '
+            'testrhythmmaker omi burnishedtalearhythmmaker '
             '(-1, 2, -3, 4) 16 (2, 3) (6,) b default '
             'q '
             )
@@ -21,7 +21,7 @@ def test_RhythmMakerMaterialPackageMaker_01():
             '__metadata__.py',
             'output_material.py',
             ]
-        maker = rhythmmakertools.TaleaRhythmMaker(
+        maker = rhythmmakertools.BurnishedTaleaRhythmMaker(
             talea=(-1, 2, -3, 4),
             talea_denominator=16,
             prolation_addenda=(2, 3),
