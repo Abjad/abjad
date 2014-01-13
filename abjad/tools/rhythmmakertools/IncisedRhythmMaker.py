@@ -130,10 +130,10 @@ class IncisedRhythmMaker(RhythmMaker):
         prefix_talea, prefix_lengths, suffix_talea, suffix_lengths = \
             result[:-2]
         prolation_addenda, secondary_divisions = result[-2:]
-        talee = (
+        taleas = (
             prefix_talea, suffix_talea, prolation_addenda, secondary_divisions)
-        result = self._scale_talee(
-            duration_pairs, self.talea_denominator, talee)
+        result = self._scale_taleas(
+            duration_pairs, self.talea_denominator, taleas)
         duration_pairs, lcd, prefix_talea, suffix_talea = result[:-2]
         prolation_addenda, secondary_divisions = result[-2:]
         secondary_duration_pairs = self._make_secondary_duration_pairs(

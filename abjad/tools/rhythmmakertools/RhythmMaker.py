@@ -10,7 +10,6 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class RhythmMaker(AbjadObject):
     '''Rhythm-maker abstract base class.
-
     '''
 
     ### INITIALIZER ###
@@ -131,7 +130,7 @@ class RhythmMaker(AbjadObject):
             return self._trivial_helper
         return expr
 
-    def _scale_talee(self, duration_pairs, talea_denominator, talee):
+    def _scale_taleas(self, duration_pairs, talea_denominator, taleas):
         dummy_duration_pair = (1, talea_denominator)
         duration_pairs.append(dummy_duration_pair)
         Duration = durationtools.Duration
@@ -141,12 +140,12 @@ class RhythmMaker(AbjadObject):
         dummy_duration_pair = duration_pairs.pop()
         lcd = dummy_duration_pair.denominator
         multiplier = lcd / talea_denominator
-        scaled_talee = []
-        for talea in talee:
+        scaled_taleas = []
+        for talea in taleas:
             talea = datastructuretools.CyclicTuple([multiplier * x for x in talea])
-            scaled_talee.append(talea)
+            scaled_taleas.append(talea)
         result = [duration_pairs, lcd]
-        result.extend(scaled_talee)
+        result.extend(scaled_taleas)
         return tuple(result)
 
     def _sequence_to_ellipsized_string(self, sequence):
