@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools.rhythmmakertools.BurnishedRhythmMaker \
-	import BurnishedRhythmMaker
+from abjad.tools.rhythmmakertools.BurnishedTaleaRhythmMaker \
+	import BurnishedTaleaRhythmMaker
 
 
-class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
+class OutputBurnishedTaleaRhythmMaker(BurnishedTaleaRhythmMaker):
     r'''Output-burnished talea rhythm-maker:
 
     ::
@@ -37,6 +37,10 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''
+
+    ### CLASS VARIABLES ###
+
+    _burnish_first_and_last_divisions = True
 
     ### SPECIAL METHODS ###
 
@@ -107,81 +111,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
         Returns new output-burnished talea rhythm-maker.
         '''
-        return BurnishedRhythmMaker.__makenew__(self, *args, **kwargs)
-
-    ### PRIVATE METHODS ###
-
-    def _burnish_division_parts(self, divisions, quintuplet):
-        lefts, middles, rights, left_lengths, right_lengths = quintuplet
-        burnished_divisions = []
-        left_length = left_lengths[0]
-        left = lefts[:left_length]
-        right_length = right_lengths[0]
-        right = rights[:right_length]
-        if len(divisions) == 1:
-            available_left_length = len(divisions[0])
-            left_length = min([left_length, available_left_length])
-            available_right_length = len(divisions[0]) - left_length
-            right_length = min([right_length, available_right_length])
-            middle_length = len(divisions[0]) - left_length - right_length
-            left = left[:left_length]
-            middle = middle_length * [middles[0]]
-            right = right[:right_length]
-            left_part, middle_part, right_part = \
-                sequencetools.partition_sequence_by_counts(
-                divisions[0],
-                [left_length, middle_length, right_length], 
-                cyclic=False,
-                overhang=False)
-            left_part = self._burnish_division_part(left_part, left)
-            middle_part = self._burnish_division_part(middle_part, middle)
-            right_part = self._burnish_division_part(right_part, right)
-            burnished_division = left_part + middle_part + right_part
-            burnished_divisions.append(burnished_division)
-        else:
-            ## first division
-            available_left_length = len(divisions[0])
-            left_length = min([left_length, available_left_length])
-            middle_length = len(divisions[0]) - left_length
-            left = left[:left_length]
-            middle = middle_length * [middles[0]]
-            left_part, middle_part = \
-                sequencetools.partition_sequence_by_counts(
-                divisions[0], 
-                [left_length, middle_length],
-                cyclic=False,
-                overhang=False)
-            left_part = self._burnish_division_part(left_part, left)
-            middle_part = self._burnish_division_part(middle_part, middle)
-            burnished_division = left_part + middle_part
-            burnished_divisions.append(burnished_division)
-            ## middle divisions
-            for division in divisions[1:-1]:
-                middle_part = division
-                middle = len(division) * [middles[0]]
-                middle_part = self._burnish_division_part(middle_part, middle)
-                burnished_division = middle_part
-                burnished_divisions.append(burnished_division)
-            ## last division:
-            available_right_length = len(divisions[-1])
-            right_length = min([right_length, available_right_length])
-            middle_length = len(divisions[-1]) - right_length
-            right = right[:right_length]
-            middle = middle_length * [middles[0]]
-            middle_part, right_part = \
-                sequencetools.partition_sequence_by_counts(
-                divisions[-1], 
-                [middle_length, right_length], 
-                cyclic=False,
-                overhang=False)
-            middle_part = self._burnish_division_part(middle_part, middle)
-            right_part = self._burnish_division_part(right_part, right)
-            burnished_division = middle_part + right_part
-            burnished_divisions.append(burnished_division)
-        unburnished_weights = [mathtools.weight(x) for x in divisions]
-        burnished_weights = [mathtools.weight(x) for x in burnished_divisions]
-        assert burnished_weights == unburnished_weights
-        return burnished_divisions
+        return BurnishedTaleaRhythmMaker.__makenew__(self, *args, **kwargs)
 
     ### PUBLIC METHODS ###
 
@@ -223,4 +153,4 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
         Returns new output-burnished talea rhythm-maker.
         '''
-        return BurnishedRhythmMaker.reverse(self)
+        return BurnishedTaleaRhythmMaker.reverse(self)

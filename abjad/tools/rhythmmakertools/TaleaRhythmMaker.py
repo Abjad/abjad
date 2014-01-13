@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.rhythmmakertools.BurnishedRhythmMaker import \
-    BurnishedRhythmMaker
+from abjad.tools.rhythmmakertools.BurnishedTaleaRhythmMaker import \
+    BurnishedTaleaRhythmMaker
 
 
-class TaleaRhythmMaker(BurnishedRhythmMaker):
+class TaleaRhythmMaker(BurnishedTaleaRhythmMaker):
     r'''Talea rhythm-maker.
 
     ..  container:: example
@@ -68,7 +68,7 @@ class TaleaRhythmMaker(BurnishedRhythmMaker):
         ):
         lefts, middles, rights = [0], [0], [0]
         left_lengths, right_lengths = [0], [0]
-        BurnishedRhythmMaker.__init__(
+        BurnishedTaleaRhythmMaker.__init__(
             self,
             talea,
             talea_denominator,
@@ -86,47 +86,6 @@ class TaleaRhythmMaker(BurnishedRhythmMaker):
             beam_cells_together=beam_cells_together,
             tie_split_notes=tie_split_notes,
             )
-
-    ### SPECIAL METHODS ###
-
-#    def __call__(self, divisions, seeds=None):
-#        r'''Calls burnished rhythm-maker on `divisions`.
-#
-#        Returns either list of tuplets or else list of note-lists.
-#        '''
-#        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
-#        octuplet = self._prepare_input(seeds)
-#        talea, prolation_addenda = octuplet[:2]
-#        secondary_divisions = octuplet[-1]
-#        talee = (talea, prolation_addenda, secondary_divisions)
-#        result = self._scale_talee(
-#            duration_pairs, 
-#            self.talea_denominator, 
-#            talee,
-#            )
-#        duration_pairs, lcd, talea, prolation_addenda, secondary_divisions = \
-#            result
-#        secondary_duration_pairs = self._make_secondary_duration_pairs(
-#            duration_pairs, secondary_divisions)
-#        septuplet = (talea, prolation_addenda) + octuplet[2:-1]
-#        numeric_map = self._make_numeric_map(
-#            secondary_duration_pairs, septuplet)
-#        leaf_lists = self._make_leaf_lists(numeric_map, lcd)
-#        if not prolation_addenda:
-#            result = leaf_lists
-#        else:
-#            tuplets = self._make_tuplets(secondary_duration_pairs, leaf_lists)
-#            result = tuplets
-#        if self.beam_each_cell:
-#            for cell in result:
-#                beam = spannertools.MultipartBeam()
-#                attach(beam, cell)
-#        if self.tie_split_notes:
-#            self._add_ties(result)
-#        assert isinstance(result, list), repr(result)
-#        assert all(isinstance(x, selectiontools.Selection) for x in result) or \
-#            all(isinstance(x, scoretools.Tuplet) for x in result)
-#        return result
 
     def __format__(self, format_specification=''):
         r'''Formats talea rhythm-maker.
@@ -185,7 +144,7 @@ class TaleaRhythmMaker(BurnishedRhythmMaker):
 
         Returns new talea rhythm-maker.
         '''
-        return BurnishedRhythmMaker.__makenew__(self, *args, **kwargs)
+        return BurnishedTaleaRhythmMaker.__makenew__(self, *args, **kwargs)
 
     def reverse(self):
         r'''Reverses talea rhythm-maker.
@@ -219,4 +178,4 @@ class TaleaRhythmMaker(BurnishedRhythmMaker):
 
         Returns new talea rhythm-maker.
         '''
-        return BurnishedRhythmMaker.reverse(self)
+        return BurnishedTaleaRhythmMaker.reverse(self)
