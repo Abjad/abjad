@@ -533,8 +533,15 @@ class ContiguousSelection(Selection):
         from abjad.tools import timespantools
         if in_seconds:
             raise NotImplementedError
-        start_offset = min(x._get_timespan().start_offset for x in self)
-        stop_offset = max(x._get_timespan().stop_offset for x in self)
+        timespan = self[0]._get_timespan()
+        start_offset = timespan.start_offset
+        stop_offset = timespan.stop_offset
+        for x in self[1:]:
+            timespan = x._get_timespan()
+            if timespan.start_offset < start_offset:
+                start_offset = timespan.start_offset
+            if stop_offset < timespan.stop_offset:
+                stop_offset = timespan.stop_offset
         return timespantools.Timespan(start_offset, stop_offset)
 
     def group_by(self, predicate):
