@@ -69,6 +69,7 @@ class TaleaRhythmMaker(RhythmMaker):
         assert isinstance(burnish_output, bool)
         self.burnish_divisions = burnish_divisions
         self.burnish_output = burnish_output
+        talea = self._none_to_new_list(talea)
         prolation_addenda = self._none_to_new_list(prolation_addenda)
         lefts = self._none_to_new_list(lefts)
         middles = self._none_to_new_list(middles)

@@ -50,6 +50,10 @@ class IncisedRhythmMaker(RhythmMaker):
             beam_each_cell=beam_each_cell,
             beam_cells_together=beam_cells_together,
             )
+        prefix_talea = self._none_to_new_list(prefix_talea)
+        prefix_lengths = self._none_to_new_list(prefix_lengths)
+        suffix_talea = self._none_to_new_list(suffix_talea)
+        suffix_lengths = self._none_to_new_list(suffix_lengths)
         prolation_addenda = \
             self._none_to_new_list(prolation_addenda)
         secondary_divisions = \
