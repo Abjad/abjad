@@ -110,7 +110,7 @@ class TenorTrombone(Instrument):
             ::
 
                 >>> tenor_trombone.instrument_name_markup
-                Markup(('Tenor trombone',))
+                Markup(contents=('Tenor trombone',))
 
             ::
 
@@ -163,7 +163,7 @@ class TenorTrombone(Instrument):
             ::
 
                 >>> tenor_trombone.short_instrument_name_markup
-                Markup(('Ten. trb.',))
+                Markup(contents=('Ten. trb.',))
 
             ::
 

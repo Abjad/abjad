@@ -120,7 +120,7 @@ class Harpsichord(Instrument):
             ::
 
                 >>> harpsichord.instrument_name_markup
-                Markup(('Harpsichord',))
+                Markup(contents=('Harpsichord',))
 
             ::
 
@@ -173,7 +173,7 @@ class Harpsichord(Instrument):
             ::
 
                 >>> harpsichord.short_instrument_name_markup
-                Markup(('Hpschd.',))
+                Markup(contents=('Hpschd.',))
 
             ::
 

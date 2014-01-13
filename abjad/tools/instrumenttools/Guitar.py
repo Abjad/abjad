@@ -107,7 +107,7 @@ class Guitar(Instrument):
             ::
 
                 >>> guitar.instrument_name_markup
-                Markup(('Guitar',))
+                Markup(contents=('Guitar',))
 
             ::
 
@@ -160,7 +160,7 @@ class Guitar(Instrument):
             ::
 
                 >>> guitar.short_instrument_name_markup
-                Markup(('Gt.',))
+                Markup(contents=('Gt.',))
 
             ::
 

@@ -107,7 +107,7 @@ class Violin(Instrument):
             ::
 
                 >>> violin.instrument_name_markup
-                Markup(('Violin',))
+                Markup(contents=('Violin',))
 
             ::
 
@@ -160,7 +160,7 @@ class Violin(Instrument):
             ::
 
                 >>> violin.short_instrument_name_markup
-                Markup(('Vn.',))
+                Markup(contents=('Vn.',))
 
             ::
 

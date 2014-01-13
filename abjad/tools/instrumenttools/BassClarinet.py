@@ -110,7 +110,7 @@ class BassClarinet(Instrument):
             ::
 
                 >>> bass_clarinet.instrument_name_markup
-                Markup(('Bass clarinet',))
+                Markup(contents=('Bass clarinet',))
 
             ::
 
@@ -163,7 +163,7 @@ class BassClarinet(Instrument):
             ::
 
                 >>> bass_clarinet.short_instrument_name_markup
-                Markup(('Bass cl.',))
+                Markup(contents=('Bass cl.',))
 
             ::
 

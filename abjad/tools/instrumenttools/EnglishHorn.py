@@ -108,7 +108,7 @@ class EnglishHorn(Instrument):
             ::
 
                 >>> english_horn.instrument_name_markup
-                Markup(('English horn',))
+                Markup(contents=('English horn',))
 
             ::
 
@@ -161,7 +161,7 @@ class EnglishHorn(Instrument):
             ::
 
                 >>> english_horn.short_instrument_name_markup
-                Markup(('Eng. hn.',))
+                Markup(contents=('Eng. hn.',))
 
             ::
 

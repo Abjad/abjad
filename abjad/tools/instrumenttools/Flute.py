@@ -108,7 +108,7 @@ class Flute(Instrument):
             ::
 
                 >>> flute.instrument_name_markup
-                Markup(('Flute',))
+                Markup(contents=('Flute',))
 
             ::
 
@@ -161,7 +161,7 @@ class Flute(Instrument):
             ::
 
                 >>> flute.short_instrument_name_markup
-                Markup(('Fl.',))
+                Markup(contents=('Fl.',))
 
             ::
 

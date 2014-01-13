@@ -107,7 +107,7 @@ class ContrabassFlute(Instrument):
             ::
 
                 >>> contrabass_flute.instrument_name_markup
-                Markup(('Contrabass flute',))
+                Markup(contents=('Contrabass flute',))
 
             ::
 
@@ -160,7 +160,7 @@ class ContrabassFlute(Instrument):
             ::
 
                 >>> contrabass_flute.short_instrument_name_markup
-                Markup(('Cbass. fl.',))
+                Markup(contents=('Cbass. fl.',))
 
             ::
 

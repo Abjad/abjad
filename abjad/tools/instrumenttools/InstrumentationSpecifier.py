@@ -36,10 +36,10 @@ class InstrumentationSpecifier(AbjadObject):
                                     instrument_name='flute',
                                     short_instrument_name='fl.',
                                     instrument_name_markup=markuptools.Markup(
-                                        ('Flute',)
+                                        contents=('Flute',),
                                         ),
                                     short_instrument_name_markup=markuptools.Markup(
-                                        ('Fl.',)
+                                        contents=('Fl.',),
                                         ),
                                     allowable_clefs=indicatortools.ClefInventory(
                                         [
@@ -57,10 +57,10 @@ class InstrumentationSpecifier(AbjadObject):
                                     instrument_name='alto flute',
                                     short_instrument_name='alt. fl.',
                                     instrument_name_markup=markuptools.Markup(
-                                        ('Alto flute',)
+                                        contents=('Alto flute',),
                                         ),
                                     short_instrument_name_markup=markuptools.Markup(
-                                        ('Alt. fl.',)
+                                        contents=('Alt. fl.',),
                                         ),
                                     allowable_clefs=indicatortools.ClefInventory(
                                         [
@@ -85,10 +85,10 @@ class InstrumentationSpecifier(AbjadObject):
                                     instrument_name='guitar',
                                     short_instrument_name='gt.',
                                     instrument_name_markup=markuptools.Markup(
-                                        ('Guitar',)
+                                        contents=('Guitar',),
                                         ),
                                     short_instrument_name_markup=markuptools.Markup(
-                                        ('Gt.',)
+                                        contents=('Gt.',),
                                         ),
                                     allowable_clefs=indicatortools.ClefInventory(
                                         [
@@ -221,10 +221,10 @@ class InstrumentationSpecifier(AbjadObject):
                                     instrument_name='flute',
                                     short_instrument_name='fl.',
                                     instrument_name_markup=markuptools.Markup(
-                                        ('Flute',)
+                                        contents=('Flute',),
                                         ),
                                     short_instrument_name_markup=markuptools.Markup(
-                                        ('Fl.',)
+                                        contents=('Fl.',),
                                         ),
                                     allowable_clefs=indicatortools.ClefInventory(
                                         [
@@ -242,10 +242,10 @@ class InstrumentationSpecifier(AbjadObject):
                                     instrument_name='alto flute',
                                     short_instrument_name='alt. fl.',
                                     instrument_name_markup=markuptools.Markup(
-                                        ('Alto flute',)
+                                        contents=('Alto flute',),
                                         ),
                                     short_instrument_name_markup=markuptools.Markup(
-                                        ('Alt. fl.',)
+                                        contents=('Alt. fl.',),
                                         ),
                                     allowable_clefs=indicatortools.ClefInventory(
                                         [
@@ -270,10 +270,10 @@ class InstrumentationSpecifier(AbjadObject):
                                     instrument_name='guitar',
                                     short_instrument_name='gt.',
                                     instrument_name_markup=markuptools.Markup(
-                                        ('Guitar',)
+                                        contents=('Guitar',),
                                         ),
                                     short_instrument_name_markup=markuptools.Markup(
-                                        ('Gt.',)
+                                        contents=('Gt.',),
                                         ),
                                     allowable_clefs=indicatortools.ClefInventory(
                                         [

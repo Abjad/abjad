@@ -223,11 +223,11 @@ class Instrument(AbjadObject):
     def _initialize_default_name_markups(self):
         string = self.instrument_name
         string = stringtools.capitalize_string_start(string)
-        markup = markuptools.Markup(string)
+        markup = markuptools.Markup(contents=string)
         self._instrument_name_markup = markup
         string = self.short_instrument_name
         string = stringtools.capitalize_string_start(string)
-        markup = markuptools.Markup(string)
+        markup = markuptools.Markup(contents=string)
         self._short_instrument_name_markup = markup
 
     @classmethod
@@ -336,7 +336,7 @@ class Instrument(AbjadObject):
         if self._instrument_name_markup is None:
             self._initialize_default_name_markups()
         if not isinstance(self._instrument_name_markup, markuptools.Markup):
-            markup = markuptools.Markup(self._instrument_name_markup)
+            markup = markuptools.Markup(contents=self._instrument_name_markup)
             self._instrument_name_markup = markup
         return self._instrument_name_markup
 
@@ -371,7 +371,7 @@ class Instrument(AbjadObject):
             self._initialize_default_name_markups()
         if not isinstance(
             self._short_instrument_name_markup, markuptools.Markup):
-            markup = markuptools.Markup(self._short_instrument_name_markup)
+            markup = markuptools.Markup(contents=self._short_instrument_name_markup)
             self._short_instrument_name_markup = markup
         return self._short_instrument_name_markup
 
