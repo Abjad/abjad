@@ -2,7 +2,7 @@ from abjad import *
 __all__ = []
 
 
-dotted_eighths = rhythmmakertools.TaleaRhythmMaker(
+dotted_eighths = rhythmmakertools.BurnishedTaleaRhythmMaker(
     talea=(3, 1), 
     talea_denominator=16, 
     beam_cells_together=True,
@@ -11,7 +11,7 @@ dotted_eighths.name = 'dotted_eighths'
 __all__.append(dotted_eighths.name)
 
 
-dotted_sixteenths = rhythmmakertools.TaleaRhythmMaker(
+dotted_sixteenths = rhythmmakertools.BurnishedTaleaRhythmMaker(
     talea=(3, 1), 
     talea_denominator=32, 
     beam_cells_together=True,
@@ -20,7 +20,7 @@ dotted_sixteenths.name = 'dotted_sixteenths'
 __all__.append(dotted_sixteenths.name)
 
 
-dotted_thirty_seconds = rhythmmakertools.TaleaRhythmMaker(
+dotted_thirty_seconds = rhythmmakertools.BurnishedTaleaRhythmMaker(
     talea=(3, 1), 
     talea_denominator=64, 
     beam_cells_together=True,
@@ -29,7 +29,7 @@ dotted_thirty_seconds.name = 'dotted_thirty_seconds'
 __all__.append(dotted_thirty_seconds.name)
 
 
-eighths = rhythmmakertools.TaleaRhythmMaker(
+eighths = rhythmmakertools.BurnishedTaleaRhythmMaker(
     talea=(1,), 
     talea_denominator=8, 
     beam_cells_together=True,
@@ -52,7 +52,7 @@ even_runs.name = 'even_runs'
 __all__.append(even_runs.name)
 
 
-halves = rhythmmakertools.TaleaRhythmMaker(
+halves = rhythmmakertools.BurnishedTaleaRhythmMaker(
     talea=(1,), 
     talea_denominator=2, 
     beam_cells_together=False,
@@ -66,7 +66,7 @@ note_tokens.name = 'note_tokens'
 __all__.append(note_tokens.name)
 
 
-quarters = rhythmmakertools.TaleaRhythmMaker(
+quarters = rhythmmakertools.BurnishedTaleaRhythmMaker(
     talea=(1,), 
     talea_denominator=4, 
     beam_cells_together=False,
@@ -80,7 +80,7 @@ rest_tokens.name = 'rest_tokens'
 __all__.append(rest_tokens.name)
 
 
-sixteenths = rhythmmakertools.TaleaRhythmMaker(
+sixteenths = rhythmmakertools.BurnishedTaleaRhythmMaker(
     talea=(1,), 
     talea_denominator=16, 
     beam_cells_together=True,
@@ -89,7 +89,7 @@ sixteenths.name = 'sixteenths'
 __all__.append(sixteenths.name)
 
 
-sixty_fourths = rhythmmakertools.TaleaRhythmMaker(
+sixty_fourths = rhythmmakertools.BurnishedTaleaRhythmMaker(
     talea=(1,), 
     talea_denominator=64, 
     beam_cells_together=True,
@@ -103,7 +103,7 @@ skip_tokens.name = 'skip_tokens'
 __all__.append(skip_tokens.name)
 
 
-thirty_seconds = rhythmmakertools.TaleaRhythmMaker(
+thirty_seconds = rhythmmakertools.BurnishedTaleaRhythmMaker(
     talea=(1,), 
     talea_denominator=32,
     beam_cells_together=True,

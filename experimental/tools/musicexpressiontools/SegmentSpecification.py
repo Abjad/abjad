@@ -136,11 +136,12 @@ class SegmentSpecification(Specification):
                         ),
                     musicexpressiontools.SingleContextRhythmSetExpression(
                         source_expression=musicexpressiontools.RhythmMakerExpression(
-                            payload=rhythmmakertools.TaleaRhythmMaker(
+                            payload=rhythmmakertools.BurnishedTaleaRhythmMaker(
                                 talea=(1,),
                                 talea_denominator=16,
                                 beam_each_cell=False,
                                 beam_cells_together=True,
+                                decrease_durations_monotonically=True,
                                 tie_split_notes=False,
                                 ),
                             ),

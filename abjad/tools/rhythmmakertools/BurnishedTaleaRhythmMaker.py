@@ -404,17 +404,25 @@ class BurnishedTaleaRhythmMaker(RhythmMaker):
         prolation_addenda = \
             self.prolation_addenda_helper(prolation_addenda, seeds)
         prolation_addenda = datastructuretools.CyclicTuple(prolation_addenda)
+        lefts = self.lefts or ()
         lefts = datastructuretools.CyclicTuple(
-            self.lefts_helper(self.lefts, seeds),
+            self.lefts_helper(lefts, seeds),
             )
+        middles = self.middles or ()
         middles = datastructuretools.CyclicTuple(
-            self.middles_helper(self.middles, seeds))
+            self.middles_helper(middles, seeds))
+        rights = self.rights or ()
         rights = datastructuretools.CyclicTuple(
-            self.rights_helper(self.rights, seeds))
+            self.rights_helper(rights, seeds),
+            )
+        left_lengths = self.left_lengths or ()
         left_lengths = datastructuretools.CyclicTuple(
-            self.left_lengths_helper(self.left_lengths, seeds))
+            self.left_lengths_helper(left_lengths, seeds),
+            )
+        right_lengths = self.right_lengths or ()
         right_lengths = datastructuretools.CyclicTuple(
-            self.right_lengths_helper(self.right_lengths, seeds))
+            self.right_lengths_helper(right_lengths, seeds),
+            )
         secondary_divisions = self.secondary_divisions or ()
         secondary_divisions = self.secondary_divisions_helper(
             secondary_divisions, seeds)
@@ -453,13 +461,27 @@ class BurnishedTaleaRhythmMaker(RhythmMaker):
         Returns newly constructed rhythm-maker.
         '''
         talea = tuple(reversed(self.talea))
-        prolation_addenda = tuple(reversed(self.prolation_addenda))
-        lefts = tuple(reversed(self.lefts))
-        middles = tuple(reversed(self.middles))
-        rights = tuple(reversed(self.rights))
-        left_lengths = tuple(reversed(self.left_lengths))
-        right_lengths = tuple(reversed(self.right_lengths))
-        secondary_divisions = tuple(reversed(self.secondary_divisions))
+        prolation_addenda = self.prolation_addenda
+        if prolation_addenda is not None:
+            prolation_addenda = tuple(reversed(prolation_addenda))
+        lefts = self.lefts
+        if lefts is not None:
+            lefts = tuple(reversed(lefts))
+        middles = self.middles
+        if middles is not None:
+            middles = tuple(reversed(middles))
+        rights = self.rights
+        if rights is not None:
+            rights = tuple(reversed(rights))
+        left_lengths = self.left_lengths
+        if left_lengths is not None:
+            left_lengths = tuple(reversed(left_lengths))
+        right_lengths = self.right_lengths
+        if right_lengths is not None:
+            right_lengths = tuple(reversed(right_lengths))
+        secondary_divisions = self.secondary_divisions
+        if secondary_divisions is not None:
+            secondary_divisions = tuple(reversed(secondary_divisions))
         decrease_durations_monotonically = \
             not self.decrease_durations_monotonically
         new = type(self)(
