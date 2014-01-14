@@ -17,27 +17,12 @@ class RestRhythmMaker(RhythmMaker):
         ::
 
             >>> divisions = [(5, 16), (3, 8)]
-            >>> leaf_lists = maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print format(staff)
-            \new RhythmicStaff {
-                {
-                    \time 5/16
-                    r4
-                    r16
-                }
-                {
-                    \time 3/8
-                    r4.
-                }
-            }
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
 
     ..  container:: example
 
@@ -53,30 +38,12 @@ class RestRhythmMaker(RhythmMaker):
         ::
 
             >>> divisions = [(5, 16), (3, 8)]
-            >>> leaf_lists = maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print format(staff)
-            \new RhythmicStaff {
-                {
-                    \time 5/16
-                    r8
-                    r8
-                    r16
-                }
-                {
-                    \time 3/8
-                    r8
-                    r8
-                    r8
-                }
-            }
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''
@@ -116,13 +83,15 @@ class RestRhythmMaker(RhythmMaker):
 
         Set `format_specification` to `''` or `'storage'`.
 
-        ::
+        ..  container:: example
 
-            >>> print format(maker)
-            rhythmmakertools.RestRhythmMaker(
-                decrease_durations_monotonically=True,
-                forbidden_written_duration=durationtools.Duration(1, 4),
-                )
+            ::
+
+                >>> print format(maker)
+                rhythmmakertools.RestRhythmMaker(
+                    decrease_durations_monotonically=True,
+                    forbidden_written_duration=durationtools.Duration(1, 4),
+                    )
 
         Returns string.
         '''
@@ -132,27 +101,29 @@ class RestRhythmMaker(RhythmMaker):
     def __makenew__(self, *args, **kwargs):
         r'''Makes new rest rhythm-maker with `kwargs`.
 
-        ::
+        ..  container:: example
 
-            >>> new_maker = new(maker)
+            ::
 
-        ::
+                >>> new_maker = new(maker)
 
-            >>> print format(new_maker)
-            rhythmmakertools.RestRhythmMaker(
-                decrease_durations_monotonically=True,
-                forbidden_written_duration=durationtools.Duration(1, 4),
-                )
+            ::
 
-        ::
+                >>> print format(new_maker)
+                rhythmmakertools.RestRhythmMaker(
+                    decrease_durations_monotonically=True,
+                    forbidden_written_duration=durationtools.Duration(1, 4),
+                    )
 
-            >>> divisions = [(5, 16), (3, 8)]
-            >>> leaf_lists = new_maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-            >>> show(staff) # doctest: +SKIP
+            ::
+
+                >>> divisions = [(5, 16), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns new rest rhythm-maker.
         '''
@@ -181,27 +152,29 @@ class RestRhythmMaker(RhythmMaker):
     def reverse(self):
         r'''Reverses rest rhythm-maker.
 
-        ::
+        ..  container:: example
 
-            >>> reversed_maker = maker.reverse()
+            ::
 
-        ::
+                >>> reversed_maker = maker.reverse()
 
-            >>> print format(reversed_maker)
-            rhythmmakertools.RestRhythmMaker(
-                decrease_durations_monotonically=True,
-                forbidden_written_duration=durationtools.Duration(1, 4),
-                )
+            ::
 
-        ::
+                >>> print format(reversed_maker)
+                rhythmmakertools.RestRhythmMaker(
+                    decrease_durations_monotonically=True,
+                    forbidden_written_duration=durationtools.Duration(1, 4),
+                    )
 
-            >>> divisions = [(5, 16), (3, 8)]
-            >>> leaf_lists = reversed_maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-            >>> show(staff) # doctest: +SKIP
+            ::
+
+                >>> divisions = [(5, 16), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns new rest rhythm-maker.
         '''

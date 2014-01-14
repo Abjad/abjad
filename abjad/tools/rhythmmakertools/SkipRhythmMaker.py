@@ -19,12 +19,12 @@ class SkipRhythmMaker(RhythmMaker):
         ::
 
             >>> divisions = [(1, 4), (3, 16), (5, 8)]
-            >>> leaf_lists = maker(divisions)
-            >>> music = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(music)
-            >>> show(staff) # doctest: +SKIP
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''
@@ -55,10 +55,12 @@ class SkipRhythmMaker(RhythmMaker):
 
         Set `format_specification` to `''` or `'storage'`.
 
-        ::
+        ..  container:: example
 
-            >>> print format(maker)
-            rhythmmakertools.SkipRhythmMaker()
+            ::
+
+                >>> print format(maker)
+                rhythmmakertools.SkipRhythmMaker()
 
         Returns string.
         '''
@@ -68,24 +70,26 @@ class SkipRhythmMaker(RhythmMaker):
     def __makenew__(self, *args, **kwargs):
         r'''Makes new skip rhythm-maker with `kwargs`.
 
-        ::
+        ..  container:: example
 
-            >>> new_maker = new(maker)
+            ::
 
-        ::
+                >>> new_maker = new(maker)
 
-            >>> print format(new_maker)
-            rhythmmakertools.SkipRhythmMaker()
+            ::
 
-        ::
+                >>> print format(new_maker)
+                rhythmmakertools.SkipRhythmMaker()
 
-            >>> divisions = [(1, 4), (3, 16), (5, 8)]
-            >>> leaf_lists = new_maker(divisions)
-            >>> music = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(music)
-            >>> show(staff) # doctest: +SKIP
+            ::
+
+                >>> divisions = [(1, 4), (3, 16), (5, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns new skip rhythm-maker.
         '''
@@ -96,24 +100,26 @@ class SkipRhythmMaker(RhythmMaker):
     def reverse(self):
         r'''Reverses skip rhythm-maker.
 
-        ::
+        ..  container:: example
 
-            >>> reversed_maker = maker.reverse()
+            ::
 
-        ::
+                >>> reversed_maker = maker.reverse()
 
-            >>> print format(reversed_maker)
-            rhythmmakertools.SkipRhythmMaker()
+            ::
 
-        ::
+                >>> print format(reversed_maker)
+                rhythmmakertools.SkipRhythmMaker()
 
-            >>> divisions = [(1, 4), (3, 16), (5, 8)]
-            >>> leaf_lists = reversed_maker(divisions)
-            >>> music = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(music)
-            >>> show(staff) # doctest: +SKIP
+            ::
+
+                >>> divisions = [(1, 4), (3, 16), (5, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns new skip rhythm-maker.
         '''

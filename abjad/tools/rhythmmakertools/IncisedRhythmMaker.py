@@ -10,9 +10,8 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
 class IncisedRhythmMaker(RhythmMaker):
-    r'''Abstract base class for rhythm-makers that incise some or
-    all of the output cells they produce.
-
+    r'''Incised rhythm-maker.
+    
     Rhythm makers can incise the edge of every output cell.
 
     Or rhythm-makers can incise only the start of the first output cell
@@ -37,37 +36,12 @@ class IncisedRhythmMaker(RhythmMaker):
         ::
 
             >>> divisions = 4 * [(5, 16)]
-            >>> leaf_lists = maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print format(staff)
-            \new RhythmicStaff {
-                {
-                    \time 5/16
-                    c'4
-                    r16
-                }
-                {
-                    r16
-                    c'8.
-                    r16
-                }
-                {
-                    c'4
-                    r16
-                }
-                {
-                    r16
-                    c'8.
-                    r16
-                }
-            }
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
 
     '''
 
@@ -466,41 +440,12 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = 4 * [(5, 16)]
-                >>> leaf_lists = maker(divisions)
-                >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-                >>> measures = scoretools.make_spacer_skip_measures(divisions)
-                >>> staff = scoretools.RhythmicStaff(measures)
-                >>> measures = mutate(staff).replace_measure_contents(leaves)
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print format(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 5/16
-                        c'8
-                        c'8
-                        r16
-                    }
-                    {
-                        r16
-                        c'16.
-                        c'16.
-                        r16
-                    }
-                    {
-                        c'8
-                        c'8
-                        r16
-                    }
-                    {
-                        r16
-                        c'16.
-                        c'16.
-                        r16
-                    }
-                }
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns ratio.
         '''
@@ -542,17 +487,15 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     incise_output=True,
                 ...     )
 
-            Configure at initialization and then call on arbitrary divisions:
-
             ::
 
                 >>> divisions = [(5, 8), (5, 8), (5, 8)]
-                >>> leaf_lists = maker(divisions)
-                >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-                >>> measures = scoretools.make_spacer_skip_measures(divisions)
-                >>> staff = scoretools.RhythmicStaff(measures)
-                >>> measures = mutate(staff).replace_measure_contents(leaves)
-                >>> show(staff) # doctest: +SKIP
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         ..  container:: example
 
@@ -573,12 +516,12 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (5, 8), (5, 8)]
-                >>> leaf_lists = maker(divisions)
-                >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-                >>> measures = scoretools.make_spacer_skip_measures(divisions)
-                >>> staff = scoretools.RhythmicStaff(measures)
-                >>> measures = mutate(staff).replace_measure_contents(leaves)
-                >>> show(staff) # doctest: +SKIP
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns boolean.
         '''

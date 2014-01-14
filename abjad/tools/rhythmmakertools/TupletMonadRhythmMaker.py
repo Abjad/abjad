@@ -18,18 +18,25 @@ class TupletMonadRhythmMaker(RhythmMaker):
         ::
 
             >>> divisions = [(2, 5), (2, 5), (1, 4), (1, 5), (3, 4)]
-            >>> tuplet_lists = maker(divisions)
-            >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
-            >>> staff = scoretools.RhythmicStaff(tuplets)
-            >>> show(staff) # doctest: +SKIP
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, beam_each_cell=False, beam_cells_together=False):
-        RhythmMaker.__init__(self,
+    def __init__(
+        self, 
+        beam_each_cell=False, 
+        beam_cells_together=False,
+        ):
+        RhythmMaker.__init__(
+            self,
             beam_each_cell=beam_each_cell,
             beam_cells_together=beam_cells_together
             )
@@ -52,13 +59,15 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
         Set `format_specification` to `''` or `'storage'`.
 
-        ::
+        ..  container:: example
 
-            >>> print format(maker)
-            rhythmmakertools.TupletMonadRhythmMaker(
-                beam_each_cell=False,
-                beam_cells_together=False,
-                )
+            ::
+
+                >>> print format(maker)
+                rhythmmakertools.TupletMonadRhythmMaker(
+                    beam_each_cell=False,
+                    beam_cells_together=False,
+                    )
 
         Returns string.
         '''
@@ -68,25 +77,29 @@ class TupletMonadRhythmMaker(RhythmMaker):
     def __makenew__(self, *args, **kwargs):
         r'''Makes new tuplet monad rhythm-maker with `kwargs`.
 
-        ::
+        ..  container:: example
 
-            >>> new_maker = new(maker)
+            ::
 
-        ::
+                >>> new_maker = new(maker)
 
-            >>> print format(new_maker)
-            rhythmmakertools.TupletMonadRhythmMaker(
-                beam_each_cell=False,
-                beam_cells_together=False,
-                )
+            ::
 
-        ::
+                >>> print format(new_maker)
+                rhythmmakertools.TupletMonadRhythmMaker(
+                    beam_each_cell=False,
+                    beam_cells_together=False,
+                    )
 
-            >>> divisions = [(2, 5), (2, 5), (1, 4), (1, 5), (3, 4)]
-            >>> tuplet_lists = new_maker(divisions)
-            >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
-            >>> staff = scoretools.RhythmicStaff(tuplets)
-            >>> show(staff) # doctest: +SKIP
+            ::
+
+                >>> divisions = [(2, 5), (2, 5), (1, 4), (1, 5), (3, 4)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns new tuplet monad rhythm-maker.
         '''
@@ -112,25 +125,29 @@ class TupletMonadRhythmMaker(RhythmMaker):
     def reverse(self):
         r'''Reverses tuplet monad rhythm-maker.
 
-        ::
+        ..  container:: example
 
-            >>> reversed_maker = maker.reverse()
+            ::
 
-        ::
+                >>> reversed_maker = maker.reverse()
 
-            >>> print format(reversed_maker)
-            rhythmmakertools.TupletMonadRhythmMaker(
-                beam_each_cell=False,
-                beam_cells_together=False,
-                )
+            ::
 
-        ::
+                >>> print format(reversed_maker)
+                rhythmmakertools.TupletMonadRhythmMaker(
+                    beam_each_cell=False,
+                    beam_cells_together=False,
+                    )
 
-            >>> divisions = [(2, 5), (2, 5), (1, 4), (1, 5), (3, 4)]
-            >>> tuplet_lists = reversed_maker(divisions)
-            >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
-            >>> staff = scoretools.RhythmicStaff(tuplets)
-            >>> show(staff) # doctest: +SKIP
+            ::
+
+                >>> divisions = [(2, 5), (2, 5), (1, 4), (1, 5), (3, 4)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns new tuplet monad rhythm-maker.
         '''

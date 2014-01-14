@@ -78,7 +78,7 @@ class RhythmMaker(AbjadObject):
         return str(self)
 
     def __getstate__(self):
-        r'''Gets object state.
+        r'''Gets state of rhythm-maker.
         '''
         return vars(self)
 
@@ -148,7 +148,8 @@ class RhythmMaker(AbjadObject):
         multiplier = lcd / talea_denominator
         scaled_taleas = []
         for talea in taleas:
-            talea = datastructuretools.CyclicTuple([multiplier * x for x in talea])
+            talea = datastructuretools.CyclicTuple(
+                [multiplier * x for x in talea])
             scaled_taleas.append(talea)
         result = [duration_pairs, lcd]
         result.extend(scaled_taleas)
@@ -175,38 +176,6 @@ class RhythmMaker(AbjadObject):
     def __makenew__(self, *args, **kwargs):
         r'''Makes new rhythm-maker with `kwargs`.
 
-        ::
-
-            >>> maker = rhythmmakertools.NoteRhythmMaker()
-
-        ::
-
-            >>> divisions = [(5, 16), (3, 8)]
-            >>> new_maker = new(maker, decrease_durations_monotonically=False)
-            >>> leaf_lists = new_maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-
-        ::
-
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = Staff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-        ..  doctest::
-
-            >>> print format(staff)
-            \new Staff {
-                {
-                    \time 5/16
-                    c'16 ~
-                    c'4
-                }
-                {
-                    \time 3/8
-                    c'4.
-                }
-            }
-
         Returns new rhythm-maker.
         '''
         new_maker = copy.deepcopy(self)
@@ -219,8 +188,6 @@ class RhythmMaker(AbjadObject):
 
     def reverse(self):
         r'''Reverses rhythm-maker.
-
-        .. note:: method is provisional.
 
         Defined equal to exact copy of rhythm-maker.
 

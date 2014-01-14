@@ -18,27 +18,12 @@ class NoteRhythmMaker(RhythmMaker):
         ::
 
             >>> divisions = [(5, 8), (3, 8)]
-            >>> leaf_lists = maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = Staff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print format(staff)
-            \new Staff {
-                {
-                    \time 5/8
-                    c'2 ~
-                    c'8
-                }
-                {
-                    \time 3/8
-                    c'4.
-                }
-            }
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
 
     ..  container:: example
     
@@ -54,28 +39,12 @@ class NoteRhythmMaker(RhythmMaker):
         ::
 
             >>> divisions = [(5, 8), (3, 8)]
-            >>> leaf_lists = maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = Staff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print format(staff)
-            \new Staff {
-                {
-                    \time 5/8
-                    c'4 ~
-                    c'4 ~
-                    c'8
-                }
-                {
-                    \time 3/8
-                    c'4.
-                }
-            }
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''
@@ -115,13 +84,15 @@ class NoteRhythmMaker(RhythmMaker):
 
         Set `format_specification` to `''` or `'storage'`.
 
-        ::
+        ..  container:: example
 
-            >>> print format(maker)
-            rhythmmakertools.NoteRhythmMaker(
-                decrease_durations_monotonically=True,
-                forbidden_written_duration=durationtools.Duration(1, 2),
-                )
+            ::
+
+                >>> print format(maker)
+                rhythmmakertools.NoteRhythmMaker(
+                    decrease_durations_monotonically=True,
+                    forbidden_written_duration=durationtools.Duration(1, 2),
+                    )
 
         Returns string.
         '''
@@ -131,27 +102,29 @@ class NoteRhythmMaker(RhythmMaker):
     def __makenew__(self, *args, **kwargs):
         r'''Makes new note rhythm-maker.
 
-        ::
+        ..  container:: example
 
-            >>> new_maker = new(maker, decrease_durations_monotonically=False)
+            ::
 
-        ::
+                >>> new_maker = new(maker, decrease_durations_monotonically=False)
 
-            >>> print format(new_maker)
-            rhythmmakertools.NoteRhythmMaker(
-                decrease_durations_monotonically=False,
-                forbidden_written_duration=durationtools.Duration(1, 2),
-                )
+            ::
 
-        ::
+                >>> print format(new_maker)
+                rhythmmakertools.NoteRhythmMaker(
+                    decrease_durations_monotonically=False,
+                    forbidden_written_duration=durationtools.Duration(1, 2),
+                    )
 
-            >>> divisions = [(5, 8), (3, 8)]
-            >>> leaf_lists = new_maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = Staff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-            >>> show(staff) # doctest: +SKIP
+            ::
+
+                >>> divisions = [(5, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns new note rhythm-maker.
         '''
@@ -180,27 +153,29 @@ class NoteRhythmMaker(RhythmMaker):
     def reverse(self):
         r'''Reverses note rhythm-maker.
 
-        ::
+        ..  container:: example
 
-            >>> reversed_maker = maker.reverse()
+            ::
 
-        ::
+                >>> reversed_maker = maker.reverse()
 
-            >>> print format(reversed_maker)
-            rhythmmakertools.NoteRhythmMaker(
-                decrease_durations_monotonically=False,
-                forbidden_written_duration=durationtools.Duration(1, 2),
-                )
+            ::
 
-        ::
+                >>> print format(reversed_maker)
+                rhythmmakertools.NoteRhythmMaker(
+                    decrease_durations_monotonically=False,
+                    forbidden_written_duration=durationtools.Duration(1, 2),
+                    )
 
-            >>> divisions = [(5, 8), (3, 8)]
-            >>> leaf_lists = reversed_maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = Staff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-            >>> show(staff) # doctest: +SKIP
+            ::
+
+                >>> divisions = [(5, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns new note rhythm-maker.
         '''
