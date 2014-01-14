@@ -28,6 +28,37 @@ class TaleaRhythmMaker(RhythmMaker):
 
     'Output-burnishing' rhythm-makers burnish only the first and last
     output cells they produce and leave interior output cells unchanged.
+
+    ..  container:: example
+
+        Burnishes output: 
+
+        ::
+
+            >>> maker = rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=(1, 2, 3),
+            ...     talea_denominator=16,
+            ...     prolation_addenda=(0, 2),
+            ...     lefts=(-1,),
+            ...     middles=(0,),
+            ...     rights=(-1,),
+            ...     left_lengths=(1,),
+            ...     right_lengths=(1,),
+            ...     secondary_divisions=(9,),
+            ...     beam_each_cell=True,
+            ...     burnish_output=True,
+            ...     )
+
+        ::
+
+            >>> divisions = [(3, 8), (4, 8)]
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
     '''
 
     ### INITIALIZER ###
@@ -187,10 +218,77 @@ class TaleaRhythmMaker(RhythmMaker):
 
         Set `format_specification` to `''` or `'storage'`.
 
+        ..  container:: example
+
+            ::
+
+                >>> print format(maker)
+                rhythmmakertools.TaleaRhythmMaker(
+                    talea=(1, 2, 3),
+                    talea_denominator=16,
+                    prolation_addenda=(0, 2),
+                    lefts=(-1,),
+                    middles=(0,),
+                    rights=(-1,),
+                    left_lengths=(1,),
+                    right_lengths=(1,),
+                    secondary_divisions=(9,),
+                    beam_each_cell=True,
+                    beam_cells_together=False,
+                    decrease_durations_monotonically=True,
+                    tie_split_notes=False,
+                    burnish_divisions=False,
+                    burnish_output=True,
+                    )
+
         Returns string.
         '''
         superclass = super(TaleaRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
+
+    def __makenew__(self, *args, **kwargs):
+        r'''Makes new talea rhythm-maker with `kwargs`.
+
+        ..  container:: example
+
+            ::
+
+                >>> new_maker = new(maker, secondary_divisions=(10,))
+
+            ::
+
+                >>> print format(new_maker)
+                rhythmmakertools.TaleaRhythmMaker(
+                    talea=(1, 2, 3),
+                    talea_denominator=16,
+                    prolation_addenda=(0, 2),
+                    lefts=(-1,),
+                    middles=(0,),
+                    rights=(-1,),
+                    left_lengths=(1,),
+                    right_lengths=(1,),
+                    secondary_divisions=(10,),
+                    beam_each_cell=True,
+                    beam_cells_together=False,
+                    decrease_durations_monotonically=True,
+                    tie_split_notes=False,
+                    burnish_divisions=False,
+                    burnish_output=True,
+                    )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8)]
+                >>> music = new_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+        Returns new talea rhythm-maker.
+        '''
+        return RhythmMaker.__makenew__(self, *args, **kwargs)
 
     ### PRIVATE METHODS ###
 
@@ -447,23 +545,46 @@ class TaleaRhythmMaker(RhythmMaker):
     ### PUBLIC METHODS ###
 
     def reverse(self):
-        r'''Reverses burnished rhythm-maker.
+        r'''Reverses talea rhythm-maker.
 
-        Defined equal to a copy of rhythm-maker with all the following
-        lists reversed:
+        ..  container:: example
 
-        ::
+            ::
 
-            new.talea
-            new.prolation_addenda
-            new.lefts
-            new.middles
-            new.rights
-            new.left_lengths
-            new.right_lengths
-            new.secondary_divisions
+                >>> reversed_maker = maker.reverse()
 
-        Returns newly constructed rhythm-maker.
+            ::
+
+                >>> print format(reversed_maker)
+                rhythmmakertools.TaleaRhythmMaker(
+                    talea=(3, 2, 1),
+                    talea_denominator=16,
+                    prolation_addenda=(2, 0),
+                    lefts=(-1,),
+                    middles=(0,),
+                    rights=(-1,),
+                    left_lengths=(1,),
+                    right_lengths=(1,),
+                    secondary_divisions=(9,),
+                    beam_each_cell=True,
+                    beam_cells_together=False,
+                    decrease_durations_monotonically=False,
+                    tie_split_notes=False,
+                    burnish_divisions=False,
+                    burnish_output=True,
+                    )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8)]
+                >>> music = reversed_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+        Returns new talea rhythm-maker.
         '''
         talea = tuple(reversed(self.talea))
         prolation_addenda = self.prolation_addenda
