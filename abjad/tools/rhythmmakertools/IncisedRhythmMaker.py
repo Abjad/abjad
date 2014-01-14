@@ -554,6 +554,32 @@ class IncisedRhythmMaker(RhythmMaker):
                 >>> measures = mutate(staff).replace_measure_contents(leaves)
                 >>> show(staff) # doctest: +SKIP
 
+        ..  container:: example
+
+            Output-incised rests:
+
+            ::
+
+                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                ...     prefix_talea=(7, 8),
+                ...     prefix_lengths=(2,),
+                ...     suffix_talea=(3,),
+                ...     suffix_lengths=(4,),
+                ...     talea_denominator=32,
+                ...     fill_with_notes=False,
+                ...     incise_output=True,
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (5, 8), (5, 8)]
+                >>> leaf_lists = maker(divisions)
+                >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+                >>> measures = scoretools.make_spacer_skip_measures(divisions)
+                >>> staff = scoretools.RhythmicStaff(measures)
+                >>> measures = mutate(staff).replace_measure_contents(leaves)
+                >>> show(staff) # doctest: +SKIP
+
         Returns boolean.
         '''
         return self._incise_output
