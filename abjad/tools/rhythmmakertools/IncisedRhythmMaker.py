@@ -179,9 +179,24 @@ class IncisedRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    @abc.abstractmethod
     def _make_middle_of_numeric_map_part(self, middle):
-        pass
+        if getattr(self, '_fill_class', None) is scoretools.Note:
+            if 0 < middle:
+                if self.body_ratio is not None:
+                    shards = mathtools.divide_number_by_ratio(
+                        middle, self.body_ratio)
+                    return tuple(shards)
+                else:
+                    return (middle,)
+            else:
+                return ()
+        elif getattr(self, '_fill_class', None) is scoretools.Rest:
+            if 0 < middle:
+                return (-abs(middle),)
+            else:
+                return ()
+        else:
+            raise Exception
 
     def _make_division_incised_numeric_map(
         self, 

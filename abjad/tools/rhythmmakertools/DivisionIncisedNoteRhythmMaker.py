@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
+from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.IncisedRhythmMaker import IncisedRhythmMaker
 
 
@@ -8,7 +9,9 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
 
     ..  container:: example
 
-        **Example 1.** Basic usage:
+        Basic usage:
+
+        ::
 
             >>> maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker(
             ...     prefix_talea=(-1,),
@@ -57,7 +60,7 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
 
     ..  container:: example
     
-        **Example 2.** Set `body_ratio` to divide middle part proportionally:
+        Sets `body_ratio` to divide middle part proportionally:
 
         ::
 
@@ -113,6 +116,8 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
     '''
 
     ### CLASS VARIABLES ###
+
+    _fill_class = scoretools.Note
 
     _is_division_incised = True
 
@@ -193,19 +198,6 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
         Returns new division-incised note rhythm-maker.
         '''
         return IncisedRhythmMaker.__makenew__(self, *args, **kwargs)
-
-    ### PRIVATE METHODS ###
-
-    def _make_middle_of_numeric_map_part(self, middle):
-        if 0 < middle:
-            if self.body_ratio is not None:
-                shards = mathtools.divide_number_by_ratio(
-                    middle, self.body_ratio)
-                return tuple(shards)
-            else:
-                return (middle,)
-        else:
-            return ()
 
     ### PUBLIC METHODS ###
 

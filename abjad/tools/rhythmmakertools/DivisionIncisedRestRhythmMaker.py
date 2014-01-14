@@ -1,36 +1,41 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.IncisedRhythmMaker import IncisedRhythmMaker
 
 
 class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
     r'''Division-incised rest rhythm-maker.
 
-    ::
+    ..  container:: example
 
-        >>> maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
-        ...     prefix_talea=(1,),
-        ...     prefix_lengths=(1, 2, 3, 4),
-        ...     suffix_talea=(1,),
-        ...     suffix_lengths=(1,),
-        ...     talea_denominator=32,
-        ...     )
+        Basic usage:
 
-    Configure at instantiation and then call on any sequence of divisions:
+        ::
 
-    ::
+            >>> maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
+            ...     prefix_talea=(1,),
+            ...     prefix_lengths=(1, 2, 3, 4),
+            ...     suffix_talea=(1,),
+            ...     suffix_lengths=(1,),
+            ...     talea_denominator=32,
+            ...     )
 
-        >>> divisions = [(5, 16), (5, 16), (5, 16), (5, 16)]
-        >>> leaf_lists = maker(divisions)
-        >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = scoretools.make_spacer_skip_measures(divisions)
-        >>> staff = Staff(measures)
-        >>> measures = mutate(staff).replace_measure_contents(leaves)
-        >>> show(staff) # doctest: +SKIP
+        ::
+
+            >>> divisions = [(5, 16), (5, 16), (5, 16), (5, 16)]
+            >>> leaf_lists = maker(divisions)
+            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
+            >>> staff = Staff(measures)
+            >>> measures = mutate(staff).replace_measure_contents(leaves)
+            >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''
 
     ### CLASS VARIABLES ###
+
+    _fill_class = scoretools.Rest
 
     _is_division_incised = True
 
@@ -108,14 +113,6 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
         Returns new division-incised rest rhythm-maker.
         '''
         return IncisedRhythmMaker.__makenew__(self, *args, **kwargs)
-
-    ### PRIVATE METHODS ###
-
-    def _make_middle_of_numeric_map_part(self, middle):
-        if 0 < middle:
-            return (-abs(middle),)
-        else:
-            return ()
 
     ### PUBLIC METHODS ###
 
