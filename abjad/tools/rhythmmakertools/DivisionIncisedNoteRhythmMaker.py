@@ -4,7 +4,7 @@ from abjad.tools.rhythmmakertools.IncisedRhythmMaker import IncisedRhythmMaker
 
 
 class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
-    r'''Division-incised note rhythm-maker:
+    r'''Division-incised note rhythm-maker.
 
     ..  container:: example
 

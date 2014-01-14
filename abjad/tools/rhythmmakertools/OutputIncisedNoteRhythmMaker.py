@@ -4,7 +4,7 @@ from abjad.tools.rhythmmakertools.IncisedRhythmMaker \
 
 
 class OutputIncisedNoteRhythmMaker(IncisedRhythmMaker):
-    r'''Output-incised note rhythm-maker:
+    r'''Output-incised note rhythm-maker.
 
     ::
 

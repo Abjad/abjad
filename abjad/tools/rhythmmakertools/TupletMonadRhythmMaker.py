@@ -7,21 +7,21 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
 class TupletMonadRhythmMaker(RhythmMaker):
-    r'''Tuplet monad rhythm-maker:
+    r'''Tuplet monad rhythm-maker.
 
-    ::
+    ..  container:: example
 
-        >>> maker = rhythmmakertools.TupletMonadRhythmMaker()
+        ::
 
-    Initialize and then call on arbitrary divisions:
+            >>> maker = rhythmmakertools.TupletMonadRhythmMaker()
 
-    ::
+        ::
 
-        >>> divisions = [(2, 5), (2, 5), (1, 4), (1, 5), (3, 4)]
-        >>> tuplet_lists = maker(divisions)
-        >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
-        >>> staff = scoretools.RhythmicStaff(tuplets)
-        >>> show(staff) # doctest: +SKIP
+            >>> divisions = [(2, 5), (2, 5), (1, 4), (1, 5), (3, 4)]
+            >>> tuplet_lists = maker(divisions)
+            >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
+            >>> staff = scoretools.RhythmicStaff(tuplets)
+            >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''

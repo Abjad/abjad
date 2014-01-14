@@ -17,9 +17,8 @@ from abjad.tools.topleveltools import iterate
 
 
 class TaleaRhythmMaker(RhythmMaker):
-    '''Abstract base class for rhythm-makers that burnish some or
-    all of the output cells they produce.
-
+    '''Talea rhythm-maker.
+    
     'Burnishing' means to forcibly cast the first or last
     (or both first and last) elements of a output cell to be
     either a note or rest.
@@ -29,7 +28,6 @@ class TaleaRhythmMaker(RhythmMaker):
 
     'Output-burnishing' rhythm-makers burnish only the first and last
     output cells they produce and leave interior output cells unchanged.
-
     '''
 
     ### INITIALIZER ###

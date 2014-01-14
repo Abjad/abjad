@@ -6,7 +6,7 @@ from abjad.tools.rhythmmakertools.TaleaRhythmMaker \
 
 
 class OutputBurnishedTaleaRhythmMaker(TaleaRhythmMaker):
-    r'''Output-burnished talea rhythm-maker:
+    r'''Output-burnished talea rhythm-maker.
 
     ::
 
