@@ -4,12 +4,14 @@ from abjad import *
 
 def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___01():
 
-    maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
+    maker = rhythmmakertools.IncisedRhythmMaker(
         prefix_talea=(8,), 
         prefix_lengths=(0, 1), 
         suffix_talea=(1,), 
         suffix_lengths=(1,), 
         talea_denominator=32,
+        fill_with_notes=False,
+        incise_divisions=True,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
@@ -54,12 +56,14 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___01():
 
 def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___02():
 
-    maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
+    maker = rhythmmakertools.IncisedRhythmMaker(
         prefix_talea=(8,), 
         prefix_lengths=(1, 2, 3, 4), 
         suffix_talea=(1,), 
         suffix_lengths=(1,), 
         talea_denominator=32,
+        fill_with_notes=False,
+        incise_divisions=True,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
@@ -104,12 +108,14 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___02():
 
 def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___03():
 
-    maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
+    maker = rhythmmakertools.IncisedRhythmMaker(
         prefix_talea=(1,), 
         prefix_lengths=(1,), 
         suffix_talea=(8,), 
         suffix_lengths=(1, 2, 3), 
         talea_denominator=32,
+        fill_with_notes=False,
+        incise_divisions=True,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
@@ -156,6 +162,8 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___04():
         suffix_talea=(), 
         suffix_lengths=(0,), 
         talea_denominator=8,
+        fill_with_notes=False,
+        incise_divisions=True,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
@@ -197,6 +205,8 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___05():
         suffix_lengths=(1,), 
         talea_denominator=8,
         prolation_addenda=(1, 0, 3),
+        fill_with_notes=False,
+        incise_divisions=True,
         )
 
     divisions = [(4, 8), (4, 8), (4, 8)]
@@ -249,6 +259,8 @@ def test_rhythmmakertools_DivisionIncisedRestRhythmMaker___call___06():
         talea_denominator=32,
         prolation_addenda=(2, 0),
         secondary_divisions=(20,),
+        fill_with_notes=False,
+        incise_divisions=True,
         )
 
     divisions = [(4, 8), (4, 8), (4, 8)]

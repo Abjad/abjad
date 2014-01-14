@@ -12,12 +12,14 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
 
         ::
 
-            >>> maker = rhythmmakertools.DivisionIncisedRestRhythmMaker(
+            >>> maker = rhythmmakertools.IncisedRhythmMaker(
             ...     prefix_talea=(1,),
             ...     prefix_lengths=(1, 2, 3, 4),
             ...     suffix_talea=(1,),
             ...     suffix_lengths=(1,),
             ...     talea_denominator=32,
+            ...     fill_with_notes=False,
+            ...     incise_divisions=True,
             ...     )
 
         ::
@@ -49,7 +51,7 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
         ::
 
             >>> print format(maker)
-            rhythmmakertools.DivisionIncisedRestRhythmMaker(
+            rhythmmakertools.IncisedRhythmMaker(
                 prefix_talea=(1,),
                 prefix_lengths=(1, 2, 3, 4),
                 suffix_talea=(1,),
@@ -58,11 +60,14 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
+                fill_with_notes=False,
+                incise_divisions=True,
+                incise_output=False,
                 )
 
         Returns string.
         '''
-        superclass = super(DivisionIncisedRestRhythmMaker, self)
+        superclass = super(IncisedRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
     def __makenew__(self, *args, **kwargs):
@@ -71,7 +76,7 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
         ::
 
             >>> print format(maker)
-            rhythmmakertools.DivisionIncisedRestRhythmMaker(
+            rhythmmakertools.IncisedRhythmMaker(
                 prefix_talea=(1,),
                 prefix_lengths=(1, 2, 3, 4),
                 suffix_talea=(1,),
@@ -80,6 +85,9 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
+                fill_with_notes=False,
+                incise_divisions=True,
+                incise_output=False,
                 )
 
         ::
@@ -89,7 +97,7 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
         ::
 
             >>> print format(new_maker)
-            rhythmmakertools.DivisionIncisedRestRhythmMaker(
+            rhythmmakertools.IncisedRhythmMaker(
                 prefix_talea=(1,),
                 prefix_lengths=(1, 2, 3, 4),
                 suffix_talea=(1,),
@@ -98,6 +106,9 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
+                fill_with_notes=False,
+                incise_divisions=True,
+                incise_output=False,
                 )
 
         ::
@@ -122,7 +133,7 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
         ::
 
             >>> print format(maker)
-            rhythmmakertools.DivisionIncisedRestRhythmMaker(
+            rhythmmakertools.IncisedRhythmMaker(
                 prefix_talea=(1,),
                 prefix_lengths=(1, 2, 3, 4),
                 suffix_talea=(1,),
@@ -131,6 +142,9 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
+                fill_with_notes=False,
+                incise_divisions=True,
+                incise_output=False,
                 )
 
         ::
@@ -140,7 +154,7 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
         ::
 
             >>> print format(reversed_maker)
-            rhythmmakertools.DivisionIncisedRestRhythmMaker(
+            rhythmmakertools.IncisedRhythmMaker(
                 prefix_talea=(1,),
                 prefix_lengths=(4, 3, 2, 1),
                 suffix_talea=(1,),
@@ -149,6 +163,9 @@ class DivisionIncisedRestRhythmMaker(IncisedRhythmMaker):
                 decrease_durations_monotonically=False,
                 beam_each_cell=False,
                 beam_cells_together=False,
+                fill_with_notes=False,
+                incise_divisions=True,
+                incise_output=False,
                 )
 
         ::

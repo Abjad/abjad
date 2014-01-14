@@ -13,12 +13,14 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
 
         ::
 
-            >>> maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker(
+            >>> maker = rhythmmakertools.IncisedRhythmMaker(
             ...     prefix_talea=(-1,),
             ...     prefix_lengths=(0, 1),
             ...     suffix_talea=(-1,),
             ...     suffix_lengths=(1,),
             ...     talea_denominator=16,
+            ...     fill_with_notes=True,
+            ...     incise_divisions=True,
             ...     )
 
         Configure at instantiation and then call on any sequence of divisions:
@@ -71,6 +73,8 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
             ...     suffix_lengths=(1,),
             ...     talea_denominator=16,
             ...     body_ratio=(1, 1),
+            ...     fill_with_notes=True,
+            ...     incise_divisions=True,
             ...     )
 
         ::
@@ -141,6 +145,9 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
+                fill_with_notes=True,
+                incise_divisions=True,
+                incise_output=False,
                 )
 
         Returns string.
@@ -164,6 +171,9 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
+                fill_with_notes=True,
+                incise_divisions=True,
+                incise_output=False,
                 )
 
         ::
@@ -183,6 +193,9 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
+                fill_with_notes=True,
+                incise_divisions=True,
+                incise_output=False,
                 )
 
         ::
@@ -217,6 +230,9 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
                 decrease_durations_monotonically=True,
                 beam_each_cell=False,
                 beam_cells_together=False,
+                fill_with_notes=True,
+                incise_divisions=True,
+                incise_output=False,
                 )
 
         ::
@@ -248,6 +264,9 @@ class DivisionIncisedNoteRhythmMaker(IncisedRhythmMaker):
                 decrease_durations_monotonically=False,
                 beam_each_cell=False,
                 beam_cells_together=False,
+                fill_with_notes=True,
+                incise_divisions=True,
+                incise_output=False,
                 )
 
         ::

@@ -1,10 +1,8 @@
 # -*- encoding: utf-8 -*-
-import abc
 import copy
 import types
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import scoretools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import scoretools
@@ -43,6 +41,9 @@ class IncisedRhythmMaker(RhythmMaker):
         forbidden_written_duration=None,
         beam_each_cell=False,
         beam_cells_together=False,
+        fill_with_notes=True,
+        incise_divisions=False,
+        incise_output=False,
         ):
         RhythmMaker.__init__(
             self,
@@ -126,6 +127,12 @@ class IncisedRhythmMaker(RhythmMaker):
             self._none_to_trivial_helper(secondary_divisions_helper)
         self.decrease_durations_monotonically = \
             decrease_durations_monotonically
+        assert isinstance(fill_with_notes, bool)
+        self._fill_with_notes = fill_with_notes
+        assert isinstance(incise_divisions, bool)
+        self._incise_divisions = incise_divisions
+        assert isinstance(incise_output, bool)
+        self._incise_output = incise_output
 
     ### SPECIAL METHODS ###
 
@@ -147,7 +154,7 @@ class IncisedRhythmMaker(RhythmMaker):
         prolation_addenda, secondary_divisions = result[-2:]
         secondary_duration_pairs = self._make_secondary_duration_pairs(
             duration_pairs, secondary_divisions)
-        if getattr(self, '_is_division_incised', False):
+        if self.incise_divisions:
             numeric_map = self._make_division_incised_numeric_map(
                 secondary_duration_pairs,
                 prefix_talea,
@@ -157,7 +164,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 prolation_addenda,
                 )
         else:
-            assert getattr(self, '_is_output_incised', False)
+            assert self.incise_output
             numeric_map = self._make_output_incised_numeric_map(
                 secondary_duration_pairs,
                 prefix_talea,
@@ -180,23 +187,39 @@ class IncisedRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_middle_of_numeric_map_part(self, middle):
-        if getattr(self, '_fill_class', None) is scoretools.Note:
-            if 0 < middle:
-                if self.body_ratio is not None:
-                    shards = mathtools.divide_number_by_ratio(
-                        middle, self.body_ratio)
-                    return tuple(shards)
+        if self.fill_with_notes:
+            if self.incise_divisions:
+                if 0 < middle:
+                    if self.body_ratio is not None:
+                        shards = mathtools.divide_number_by_ratio(
+                            middle, self.body_ratio)
+                        return tuple(shards)
+                    else:
+                        return (middle,)
                 else:
+                    return ()
+            elif self.incise_output:
+                if 0 < middle:
                     return (middle,)
+                else:
+                    return ()
             else:
-                return ()
-        elif getattr(self, '_fill_class', None) is scoretools.Rest:
-            if 0 < middle:
-                return (-abs(middle),)
-            else:
-                return ()
+                message = 'must incise divisions or output.'
+                raise Exception(message)
         else:
-            raise Exception
+            if self.incise_divisions:
+                if 0 < middle:
+                    return (-abs(middle),)
+                else:
+                    return ()
+            elif self.incise_output:
+                if 0 < middle:
+                    return (-abs(middle), )
+                else:
+                    return ()
+            else:
+                message = 'must incise divisions or output.'
+                raise Exception(message)
 
     def _make_division_incised_numeric_map(
         self, 
@@ -365,6 +388,32 @@ class IncisedRhythmMaker(RhythmMaker):
             secondary_divisions,
             )
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def fill_with_notes(self):
+        r'''Gets fill with notes boolean.
+
+        Returns boolean.
+        '''
+        return self._fill_with_notes
+
+    @property
+    def incise_divisions(self):
+        r'''Gets incise divisions boolean.
+
+        Returns boolean.
+        '''
+        return self._incise_divisions
+
+    @property
+    def incise_output(self):
+        r'''Gets incise output boolean.
+
+        Returns boolean.
+        '''
+        return self._incise_output
+
     ### PUBLIC METHODS ###
 
     def reverse(self):
@@ -394,6 +443,9 @@ class IncisedRhythmMaker(RhythmMaker):
             secondary_divisions = tuple(reversed(secondary_divisions))
         decrease_durations_monotonically = \
             not self.decrease_durations_monotonically
+        fill_with_notes = self.fill_with_notes
+        incise_divisions = self.incise_divisions
+        incise_output = self.incise_output
         new = type(self)(
             prefix_talea=prefix_talea,
             prefix_lengths=prefix_lengths,
@@ -404,5 +456,8 @@ class IncisedRhythmMaker(RhythmMaker):
             prolation_addenda=prolation_addenda,
             secondary_divisions=secondary_divisions,
             decrease_durations_monotonically=decrease_durations_monotonically,
+            fill_with_notes=fill_with_notes,
+            incise_divisions=incise_divisions,
+            incise_output=incise_output,
             )
         return new
