@@ -526,6 +526,34 @@ class IncisedRhythmMaker(RhythmMaker):
     def incise_output(self):
         r'''Gets incise output boolean.
 
+        ..  container:: example
+
+            Output-incised notes:
+
+            ::
+
+                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                ...     prefix_talea=(-8, -7),
+                ...     prefix_lengths=(2,),
+                ...     suffix_talea=(-3,),
+                ...     suffix_lengths=(4,),
+                ...     talea_denominator=32,
+                ...     fill_with_notes=True,
+                ...     incise_output=True,
+                ...     )
+
+            Configure at initialization and then call on arbitrary divisions:
+
+            ::
+
+                >>> divisions = [(5, 8), (5, 8), (5, 8)]
+                >>> leaf_lists = maker(divisions)
+                >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+                >>> measures = scoretools.make_spacer_skip_measures(divisions)
+                >>> staff = scoretools.RhythmicStaff(measures)
+                >>> measures = mutate(staff).replace_measure_contents(leaves)
+                >>> show(staff) # doctest: +SKIP
+
         Returns boolean.
         '''
         return self._incise_output
