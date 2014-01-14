@@ -10,13 +10,65 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
 class IncisedRhythmMaker(RhythmMaker):
-    '''Abstract base class for rhythm-makers that incise some or
+    r'''Abstract base class for rhythm-makers that incise some or
     all of the output cells they produce.
 
     Rhythm makers can incise the edge of every output cell.
 
     Or rhythm-makers can incise only the start of the first output cell
     and the end of the last output cell.
+
+    ..  container:: example
+
+        Division-incised notes:
+
+        ::
+
+            >>> maker = rhythmmakertools.IncisedRhythmMaker(
+            ...     prefix_talea=(-1,),
+            ...     prefix_lengths=(0, 1),
+            ...     suffix_talea=(-1,),
+            ...     suffix_lengths=(1,),
+            ...     talea_denominator=16,
+            ...     fill_with_notes=True,
+            ...     incise_divisions=True,
+            ...     )
+
+        ::
+
+            >>> divisions = 4 * [(5, 16)]
+            >>> leaf_lists = maker(divisions)
+            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+            >>> measures = scoretools.make_spacer_skip_measures(divisions)
+            >>> staff = scoretools.RhythmicStaff(measures)
+            >>> measures = mutate(staff).replace_measure_contents(leaves)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print format(staff)
+            \new RhythmicStaff {
+                {
+                    \time 5/16
+                    c'4
+                    r16
+                }
+                {
+                    r16
+                    c'8.
+                    r16
+                }
+                {
+                    c'4
+                    r16
+                }
+                {
+                    r16
+                    c'8.
+                    r16
+                }
+            }
+
     '''
 
     ### INITIALIZER ###
@@ -111,7 +163,7 @@ class IncisedRhythmMaker(RhythmMaker):
         self.talea_denominator = talea_denominator
         if body_ratio is not None:
             body_ratio = mathtools.Ratio(body_ratio)
-        self.body_ratio = body_ratio
+        self._body_ratio = body_ratio
         self.secondary_divisions = secondary_divisions
         self.prefix_talea_helper = \
             self._none_to_trivial_helper(prefix_talea_helper)
@@ -389,6 +441,70 @@ class IncisedRhythmMaker(RhythmMaker):
             )
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def body_ratio(self):
+        r'''Gets body ratio of rhythm-maker.
+
+        ..  container:: example
+
+            Sets `body_ratio` to divide middle part proportionally:
+
+            ::
+
+                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                ...     prefix_talea=(-1,),
+                ...     prefix_lengths=(0, 1),
+                ...     suffix_talea=(-1,),
+                ...     suffix_lengths=(1,),
+                ...     talea_denominator=16,
+                ...     body_ratio=(1, 1),
+                ...     fill_with_notes=True,
+                ...     incise_divisions=True,
+                ...     )
+
+            ::
+
+                >>> divisions = 4 * [(5, 16)]
+                >>> leaf_lists = maker(divisions)
+                >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+                >>> measures = scoretools.make_spacer_skip_measures(divisions)
+                >>> staff = scoretools.RhythmicStaff(measures)
+                >>> measures = mutate(staff).replace_measure_contents(leaves)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/16
+                        c'8
+                        c'8
+                        r16
+                    }
+                    {
+                        r16
+                        c'16.
+                        c'16.
+                        r16
+                    }
+                    {
+                        c'8
+                        c'8
+                        r16
+                    }
+                    {
+                        r16
+                        c'16.
+                        c'16.
+                        r16
+                    }
+                }
+
+        Returns ratio.
+        '''
+        return self._body_ratio
 
     @property
     def fill_with_notes(self):

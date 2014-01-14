@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___01():
+def test_rhythmmakertools_IncisedRhythmMaker___call___01():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         prefix_talea=(-8,), 
@@ -53,7 +53,7 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___01():
         )
 
 
-def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___02():
+def test_rhythmmakertools_IncisedRhythmMaker___call___02():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         prefix_talea=(-8,), 
@@ -104,7 +104,7 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___02():
         )
 
 
-def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___03():
+def test_rhythmmakertools_IncisedRhythmMaker___call___03():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         prefix_talea=(-1,), 
@@ -151,9 +151,9 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___03():
         )
 
 
-def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___04():
+def test_rhythmmakertools_IncisedRhythmMaker___call___04():
 
-    maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker(
+    maker = rhythmmakertools.IncisedRhythmMaker(
         prefix_talea=(), 
         prefix_lengths=(0,), 
         suffix_talea=(), 
@@ -193,9 +193,9 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___04():
         )
 
 
-def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___05():
+def test_rhythmmakertools_IncisedRhythmMaker___call___05():
 
-    maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker(
+    maker = rhythmmakertools.IncisedRhythmMaker(
         prefix_talea=(-1,), 
         prefix_lengths=(1,), 
         suffix_talea=(-1,), 
@@ -246,9 +246,9 @@ def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___05():
         )
 
 
-def test_rhythmmakertools_DivisionIncisedNoteRhythmMaker___call___06():
+def test_rhythmmakertools_IncisedRhythmMaker___call___06():
 
-    maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker(
+    maker = rhythmmakertools.IncisedRhythmMaker(
         prefix_talea=(-1,),
         prefix_lengths=(1,),
         suffix_talea=(),
