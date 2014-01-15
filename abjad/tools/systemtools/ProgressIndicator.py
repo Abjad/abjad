@@ -44,6 +44,10 @@ class ProgressIndicator(ContextManager):
     ### PUBLIC METHODS ###
 
     def advance(self):
+        r'''Advances the progress indicator's progress count.  Overwrites
+        the current terminal line with the progress indicators message and new
+        count.
+        '''
         self._progress += 1
         sys.stdout.flush()
         print '\r',
