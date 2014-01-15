@@ -61,6 +61,37 @@ class TaleaRhythmMaker(RhythmMaker):
 
     '''
 
+    '''Example helpers:
+
+    # used in a piece with four voices:
+    # voice 1 starts reading talea at beginning of talea;
+    # voice 2 starts reading talea at second event of talea;
+    # voice 3 starts reading talea at third event of talea;
+    # voice 4 starts reading talea at fourth event of talea.
+    def helper(talea, seeds):
+        assert len(seeds) == 2
+        if not talea:
+            return talea
+        voice_index, measure_index = seeds
+        talea = sequencetools.rotate_sequence(talea, -voice_index)
+        return talea
+
+    # used in a piece with four voices:
+    # voice 1 starts reading talea at beginning of talea;
+    # voice 2 starts reading talea 1/4 of way through talea;
+    # voice 3 starts reading talea 2/4 of way through talea;
+    # voice 4 starts reading talea 3/4 of way through talea.
+    def quarter_rotation_helper(talea, seeds):
+        assert len(seeds) == 2
+        if not talea:
+            return talea
+        voice_index, measure_index = seeds
+        index_of_rotation = -voice_index * (len(talea) // 4)
+        index_of_rotation += -4 * measure_index
+        talea = sequencetools.rotate_sequence(talea, index_of_rotation)
+        return talea
+    '''
+
     ### INITIALIZER ###
 
     def __init__(
