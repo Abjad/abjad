@@ -17,6 +17,7 @@ class IncisedRhythmMaker(RhythmMaker):
     Or rhythm-makers can incise only the start of the first output cell
     and the end of the last output cell.
 
+
     ..  container:: example
 
         Division-incised notes:
@@ -52,11 +53,6 @@ class IncisedRhythmMaker(RhythmMaker):
 
     def __init__(
         self,
-#        prefix_talea=(8,),
-#        prefix_lengths=(1, 2, 3, 4),
-#        suffix_talea=(1,),
-#        suffix_lengths=(1,),
-#        talea_denominator=32,
         incision_specifier=None,
         body_ratio=None,
         prolation_addenda=None,
@@ -80,12 +76,6 @@ class IncisedRhythmMaker(RhythmMaker):
         incision_specifier = incision_specifier or \
             rhythmmakertools.IncisionSpecifier()
         self._incision_specifier = incision_specifier
-
-#        prefix_talea = self._none_to_new_list(prefix_talea)
-#        prefix_lengths = self._none_to_new_list(prefix_lengths)
-#        suffix_talea = self._none_to_new_list(suffix_talea)
-#        suffix_lengths = self._none_to_new_list(suffix_lengths)
-
         prolation_addenda = \
             self._none_to_new_list(prolation_addenda)
         secondary_divisions = \
@@ -97,49 +87,18 @@ class IncisedRhythmMaker(RhythmMaker):
                 function = helper_functions.get(name)
                 assert callable(function)
         self._helper_functions = helper_functions
-
-#        assert prefix_talea is None or \
-#            sequencetools.all_are_integer_equivalent_numbers(
-#            prefix_talea), prefix_talea
-#        assert prefix_lengths is None or \
-#            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-#            prefix_lengths), prefix_lengths
-#        assert suffix_talea is None or \
-#            sequencetools.all_are_integer_equivalent_numbers(
-#            suffix_talea), suffix_talea
-#        assert suffix_lengths is None or \
-#            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-#            suffix_lengths), suffix_lengths
-#        assert mathtools.is_positive_integer_equivalent_number(
-#            talea_denominator), talea_denominator
-
         assert prolation_addenda is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             prolation_addenda), prolation_addenda
         assert secondary_divisions is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             secondary_divisions), secondary_divisions
-
-#        assert isinstance(prefix_talea, (tuple, type(None)))
-#        assert isinstance(prefix_lengths, (tuple, type(None)))
-#        assert isinstance(suffix_talea, (tuple, type(None)))
-#        assert isinstance(suffix_lengths, (tuple, type(None)))
-#        assert isinstance(prolation_addenda, (tuple, type(None)))
-
         assert isinstance(decrease_durations_monotonically, bool)
-
-#        self.prefix_talea = prefix_talea
-#        self.prefix_lengths = prefix_lengths
-#        self.suffix_talea = suffix_talea
-#        self.suffix_lengths = suffix_lengths
-#        self.talea_denominator = talea_denominator
-
         self.prolation_addenda = prolation_addenda
         if body_ratio is not None:
             body_ratio = mathtools.Ratio(body_ratio)
         self._body_ratio = body_ratio
         self.secondary_divisions = secondary_divisions
-
         self.decrease_durations_monotonically = \
             decrease_durations_monotonically
         assert isinstance(fill_with_notes, bool)
@@ -568,22 +527,6 @@ class IncisedRhythmMaker(RhythmMaker):
 
         Returns newly constructed rhythm-maker.
         '''
-
-#        prefix_talea = self.prefix_talea
-#        if prefix_talea is not None:
-#            prefix_talea = tuple(reversed(prefix_talea))
-#        prefix_lengths = self.prefix_lengths
-#        if prefix_lengths is not None:
-#            prefix_lengths = tuple(reversed(prefix_lengths))
-#        suffix_talea = self.suffix_talea
-#        if suffix_talea is not None:
-#            suffix_talea = tuple(reversed(suffix_talea))
-#        suffix_lengths = self.suffix_lengths
-#        if suffix_lengths is not None:
-#            suffix_lengths = tuple(reversed(suffix_lengths))
-#        talea_denominator = self.talea_denominator
-        incision_specifier = self.incision_specifier.reverse()
-
         body_ratio = self.body_ratio
         prolation_addenda = self.prolation_addenda
         if prolation_addenda is not None:
@@ -598,11 +541,6 @@ class IncisedRhythmMaker(RhythmMaker):
         incise_output = self.incise_output
         helper_functions = self.helper_functions
         new = type(self)(
-#            prefix_talea=prefix_talea,
-#            prefix_lengths=prefix_lengths,
-#            suffix_talea=suffix_talea,
-#            suffix_lengths=suffix_lengths,
-#            talea_denominator=talea_denominator,
             incision_specifier=incision_specifier,
             body_ratio=body_ratio,
             prolation_addenda=prolation_addenda,
