@@ -336,12 +336,15 @@ def test_schematic_example_X_08():
     first_measure.timespan.set_rhythm(library.even_runs(2), contexts=['Voice 3'])
     middle_measure.timespan.set_rhythm(library.even_runs(0), contexts=['Voice 3'])
     last_measure.timespan.set_rhythm(library.even_runs(1), contexts=['Voice 3'])
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
+        prefix_talea=[-1], 
+        prefix_lengths=[1], 
+        suffix_talea=[-1], 
+        suffix_lengths=[1], 
+        talea_denominator=32,
+        )
     maker = rhythmmakertools.IncisedRhythmMaker(
-        [-1], 
-        [1], 
-        [-1], 
-        [1], 
-        32,
+        incision_specifier=incision_specifier,
         fill_with_notes=True,
         incise_divisions=True,
         )

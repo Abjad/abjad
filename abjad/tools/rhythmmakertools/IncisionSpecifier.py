@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import mathtools
+from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -72,7 +74,7 @@ class IncisionSpecifier(AbjadObject):
 
         Returns tuple or none.
         '''
-        return self._suffix_lenghts
+        return self._suffix_lengths
 
     @property
     def suffix_talea(self):
@@ -80,7 +82,7 @@ class IncisionSpecifier(AbjadObject):
 
         Returns tuple or none.
         '''
-        return self._suffix_lenghts
+        return self._suffix_talea
 
     @property
     def talea_denominator(self):
@@ -89,3 +91,32 @@ class IncisionSpecifier(AbjadObject):
         Returns positive integer-equivalent number.
         '''
         return self._talea_denominator
+
+    ### PUBLIC METHODS ###
+
+    def reverse(self):
+        r'''Reverses incision specifier.
+
+        Returns new incision specifier.
+        '''
+        prefix_talea = self.prefix_talea
+        if prefix_talea is not None:
+            prefix_talea = tuple(reversed(prefix_talea))
+        prefix_lengths = self.prefix_lengths
+        if prefix_lengths is not None:
+            prefix_lengths = tuple(reversed(prefix_lengths))
+        suffix_talea = self.suffix_talea
+        if suffix_talea is not None:
+            suffix_talea = tuple(reversed(suffix_talea))
+        suffix_lengths = self.suffix_lengths
+        if suffix_lengths is not None:
+            suffix_lengths = tuple(reversed(suffix_lengths))
+        talea_denominator = self.talea_denominator
+        new = type(self)(
+            prefix_talea=prefix_talea,
+            prefix_lengths=prefix_lengths,
+            suffix_talea=suffix_talea,
+            suffix_lengths=suffix_lengths,
+            talea_denominator=talea_denominator,
+            )
+        return new

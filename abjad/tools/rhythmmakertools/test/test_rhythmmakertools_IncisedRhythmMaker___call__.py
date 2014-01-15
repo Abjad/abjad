@@ -6,12 +6,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___01():
     r'''Division-incised notes.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(-8,), 
         prefix_lengths=(0, 1), 
         suffix_talea=(-1,), 
         suffix_lengths=(1,), 
         talea_denominator=32,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         fill_with_notes=True,
         incise_divisions=True,
         )
@@ -59,12 +63,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___02():
     r'''Division-incised notes.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(-8,), 
         prefix_lengths=(1, 2, 3, 4), 
         suffix_talea=(-1,), 
         suffix_lengths=(1,), 
         talea_denominator=32,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         fill_with_notes=True,
         incise_divisions=True,
         )
@@ -112,12 +120,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___03():
     r'''Division-incised notes.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(-1,), 
         prefix_lengths=(1,), 
         suffix_talea=(-8,), 
         suffix_lengths=(1, 2, 3), 
         talea_denominator=32,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         fill_with_notes=True,
         incise_divisions=True,
         )
@@ -161,12 +173,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___04():
     r'''Division-incised notes.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(), 
         prefix_lengths=(0,), 
         suffix_talea=(), 
         suffix_lengths=(0,), 
         talea_denominator=8,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         fill_with_notes=True,
         incise_divisions=True,
         )
@@ -205,12 +221,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___05():
     r'''Division-incised notes.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(-1,), 
         prefix_lengths=(1,), 
         suffix_talea=(-1,), 
         suffix_lengths=(1,), 
         talea_denominator=8,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         prolation_addenda=(1, 0, 3),
         fill_with_notes=True,
         incise_divisions=True,
@@ -260,12 +280,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
     r'''Division-incised notes.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(-1,),
         prefix_lengths=(1,),
         suffix_talea=(),
         suffix_lengths=(0,),
         talea_denominator=32,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         prolation_addenda=(2, 0),
         secondary_divisions=(20,),
         fill_with_notes=True,
@@ -324,12 +348,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___07():
     r'''Division-incised rests.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(8,), 
         prefix_lengths=(0, 1), 
         suffix_talea=(1,), 
         suffix_lengths=(1,), 
         talea_denominator=32,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         fill_with_notes=False,
         incise_divisions=True,
         )
@@ -378,12 +406,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___08():
     r'''Division-incised rests.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(8,), 
         prefix_lengths=(1, 2, 3, 4), 
         suffix_talea=(1,), 
         suffix_lengths=(1,), 
         talea_denominator=32,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         fill_with_notes=False,
         incise_divisions=True,
         )
@@ -432,12 +464,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___09():
     r'''Division-incised rests.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(1,), 
         prefix_lengths=(1,), 
         suffix_talea=(8,), 
         suffix_lengths=(1, 2, 3), 
         talea_denominator=32,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         fill_with_notes=False,
         incise_divisions=True,
         )
@@ -482,12 +518,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___10():
     r'''Division-incised rests.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(), 
         prefix_lengths=(0,), 
         suffix_talea=(), 
         suffix_lengths=(0,), 
         talea_denominator=8,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         fill_with_notes=False,
         incise_divisions=True,
         )
@@ -526,12 +566,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___11():
     r'''Division-incised rests.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(1,), 
         prefix_lengths=(1,), 
         suffix_talea=(1,), 
         suffix_lengths=(1,), 
         talea_denominator=8,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         prolation_addenda=(1, 0, 3),
         fill_with_notes=False,
         incise_divisions=True,
@@ -581,12 +625,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___12():
     r'''Division-incised rests.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(1,),
         prefix_lengths=(1,),
         suffix_talea=(),
         suffix_lengths=(0,),
         talea_denominator=32,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         prolation_addenda=(2, 0),
         secondary_divisions=(20,),
         fill_with_notes=False,
@@ -645,12 +693,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___13():
     r'''Output-incised notes.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(-8,), 
         prefix_lengths=(2,), 
         suffix_talea=(-3,), 
         suffix_lengths=(4,), 
         talea_denominator=32,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         fill_with_notes=True,
         incise_output=True,
         )
@@ -693,12 +745,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___14():
     r'''Output-incised notes.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(-1,), 
         prefix_lengths=(20,), 
         suffix_talea=(-1,), 
         suffix_lengths=(2,), 
         talea_denominator=4,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         fill_with_notes=True,
         incise_output=True,
         )
@@ -739,12 +795,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___15():
     r'''Output-incised notes.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(), 
         prefix_lengths=(0,), 
         suffix_talea=(), 
         suffix_lengths=(0,), 
         talea_denominator=4,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         fill_with_notes=True,
         incise_output=True,
         )
@@ -783,12 +843,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___16():
     r'''Output-incised notes.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(-1,), 
         prefix_lengths=(1,), 
         suffix_talea=(-1,), 
         suffix_lengths=(1,), 
         talea_denominator=8,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         prolation_addenda=(1, 0, 3),
         fill_with_notes=True,
         incise_output=True,
@@ -833,12 +897,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___17():
     r'''Output-incised notes.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(-1,), 
         prefix_lengths=(1,), 
         suffix_talea=(-1,), 
         suffix_lengths=(1,), 
         talea_denominator=8,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         prolation_addenda=(1, 0, 0, 0, 2), 
         secondary_divisions=(3, 1, 4, 1, 3),
         fill_with_notes=True,
@@ -892,12 +960,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___18():
     r'''Output-incised rests.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(8,), 
         prefix_lengths=(2,), 
         suffix_talea=(3,), 
         suffix_lengths=(4,), 
         talea_denominator=32,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         fill_with_notes=False,
         incise_output=True,
         )
@@ -940,12 +1012,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___19():
     r'''Output-incised rests.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(1,), 
         prefix_lengths=(20,), 
         suffix_talea=(1,), 
         suffix_lengths=(2,), 
         talea_denominator=4,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         fill_with_notes=False,
         incise_output=True,
         )
@@ -986,12 +1062,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___20():
     r'''Output-incised rests.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(), 
         prefix_lengths=(0,), 
         suffix_talea=(), 
         suffix_lengths=(0,), 
         talea_denominator=4,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         fill_with_notes=False,
         incise_output=True,
         )
@@ -1030,12 +1110,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___21():
     r'''Output-incised rests.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(1,), 
         prefix_lengths=(1,), 
         suffix_talea=(1,), 
         suffix_lengths=(1,), 
         talea_denominator=8,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         prolation_addenda=(1, 0, 3),
         fill_with_notes=False,
         incise_output=True,
@@ -1080,12 +1164,16 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___22():
     r'''Output-incised rests.
     '''
 
-    maker = rhythmmakertools.IncisedRhythmMaker(
+    incision_specifier = rhythmmakertools.IncisionSpecifier(
         prefix_talea=(1,), 
         prefix_lengths=(1,), 
         suffix_talea=(1,), 
         suffix_lengths=(1,), 
         talea_denominator=8,
+        )
+
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
         prolation_addenda=(1, 0, 0, 0, 2), 
         secondary_divisions=(3, 1, 4, 1, 3),
         fill_with_notes=False,
