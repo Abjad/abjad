@@ -105,14 +105,7 @@ class TaleaRhythmMaker(RhythmMaker):
         left_lengths=None, 
         right_lengths=None,
         secondary_divisions=None,
-        talea_helper=None, 
-        prolation_addenda_helper=None,
-        lefts_helper=None, 
-        middles_helper=None, 
-        rights_helper=None,
-        left_lengths_helper=None, 
-        right_lengths_helper=None, 
-        secondary_divisions_helper=None,
+        helper_functions=None,
         beam_each_cell=False, 
         beam_cells_together=False,
         decrease_durations_monotonically=True, 
@@ -125,11 +118,26 @@ class TaleaRhythmMaker(RhythmMaker):
             beam_each_cell=beam_each_cell,
             beam_cells_together=beam_cells_together,
             )
+        prototype = (tuple, type(None))
+        talea = self._none_to_new_list(talea)
+        assert isinstance(talea, prototype)
+        assert sequencetools.all_are_integer_equivalent_numbers(talea)
+        self._talea = talea
+
+        helper_functions = helper_functions or {}
+        talea_helper = helper_functions.get('talea')
+        prolation_addenda_helper = helper_functions.get('prolation_addenda')
+        lefts_helper = helper_functions.get('lefts')
+        middles_helper = helper_functions.get('middles')
+        rights_helper = helper_functions.get('rights')
+        left_lengths_helper = helper_functions.get('left_lengths')
+        right_lengths_helper = helper_functions.get('right_lengths')
+        secondary_divisions_helper = helper_functions.get('secondary_divisions')
+
         assert isinstance(burnish_divisions, bool)
         assert isinstance(burnish_output, bool)
         self.burnish_divisions = burnish_divisions
         self.burnish_output = burnish_output
-        talea = self._none_to_new_list(talea)
         prolation_addenda = self._none_to_new_list(prolation_addenda)
         lefts = self._none_to_new_list(lefts)
         middles = self._none_to_new_list(middles)
@@ -137,14 +145,12 @@ class TaleaRhythmMaker(RhythmMaker):
         left_lengths = self._none_to_new_list(left_lengths)
         right_lengths = self._none_to_new_list(right_lengths)
         secondary_divisions = self._none_to_new_list(secondary_divisions)
-        assert isinstance(talea, (tuple, type(None)))
-        assert isinstance(lefts, (tuple, type(None)))
-        assert isinstance(middles, (tuple, type(None)))
-        assert isinstance(rights, (tuple, type(None)))
-        assert isinstance(left_lengths, (tuple, type(None)))
-        assert isinstance(right_lengths, (tuple, type(None)))
-        assert isinstance(secondary_divisions, (tuple, type(None))), repr(
-            secondary_divisions)
+        assert isinstance(lefts, prototype)
+        assert isinstance(middles, prototype)
+        assert isinstance(rights, prototype)
+        assert isinstance(left_lengths, prototype)
+        assert isinstance(right_lengths, prototype)
+        assert isinstance(secondary_divisions, prototype)
         talea_helper = self._none_to_trivial_helper(talea_helper)
         prolation_addenda_helper = self._none_to_trivial_helper(
             prolation_addenda_helper)
@@ -157,7 +163,6 @@ class TaleaRhythmMaker(RhythmMaker):
             right_lengths_helper)
         secondary_divisions_helper = self._none_to_trivial_helper(
             secondary_divisions_helper)
-        assert sequencetools.all_are_integer_equivalent_numbers(talea)
         assert mathtools.is_positive_integer_equivalent_number(
             talea_denominator)
         assert prolation_addenda is None or \
@@ -184,7 +189,6 @@ class TaleaRhythmMaker(RhythmMaker):
         assert callable(right_lengths_helper)
         assert isinstance(decrease_durations_monotonically, bool)
         assert isinstance(tie_split_notes, bool)
-        self.talea = tuple(talea)
         self.talea_denominator = talea_denominator
         self.prolation_addenda = prolation_addenda
         self.lefts = lefts
@@ -193,13 +197,11 @@ class TaleaRhythmMaker(RhythmMaker):
         self.left_lengths = left_lengths
         self.right_lengths = right_lengths
         self.secondary_divisions = secondary_divisions
-        self.talea_helper = talea_helper
-        self.prolation_addenda_helper = prolation_addenda_helper
-        self.lefts_helper = lefts_helper
-        self.middles_helper = middles_helper
-        self.rights_helper = rights_helper
-        self.left_lengths_helper = left_lengths_helper
-        self.right_lengths_helper = right_lengths_helper
+
+        if helper_functions == {}:
+            helper_functions = None
+        self._helper_functions = helper_functions
+
         self.secondary_divisions_helper = secondary_divisions_helper
         #self.beam_each_cell = beam_each_cell
         self.decrease_durations_monotonically = \
@@ -531,37 +533,60 @@ class TaleaRhythmMaker(RhythmMaker):
         return prolated_duration_pairs
 
     def _prepare_input(self, seeds):
-        talea = datastructuretools.CyclicTuple(
-            self.talea_helper(self.talea, seeds),
-            )
+        helper_functions = self.helper_functions or {}
+        talea = self.talea or ()
+        talea_helper = helper_functions.get('talea')
+        if talea_helper is not None:
+            talea = talea_helper(talea, seeds)
+        talea = datastructuretools.CyclicTuple(talea)
+
         prolation_addenda = self.prolation_addenda or ()
-        prolation_addenda = \
-            self.prolation_addenda_helper(prolation_addenda, seeds)
+        prolation_addenda_helper = helper_functions.get(
+            'prolation_addenda')
+        if prolation_addenda_helper is not None:
+            prolation_addenda = prolation_addenda_helper(
+                prolation_addenda, seeds)
         prolation_addenda = datastructuretools.CyclicTuple(prolation_addenda)
+
         lefts = self.lefts or ()
-        lefts = datastructuretools.CyclicTuple(
-            self.lefts_helper(lefts, seeds),
-            )
+        lefts_helper = helper_functions.get('lefts')
+        if lefts_helper is not None:
+            lefts = lefts_helper(lefts, seeds)
+        lefts = datastructuretools.CyclicTuple(lefts)
+
         middles = self.middles or ()
-        middles = datastructuretools.CyclicTuple(
-            self.middles_helper(middles, seeds))
+        middles_helper = helper_functions.get('middles')
+        if middles_helper is not None:
+            middles = middles_helper(middles, seeds)
+        middles = datastructuretools.CyclicTuple(middles)
+
         rights = self.rights or ()
-        rights = datastructuretools.CyclicTuple(
-            self.rights_helper(rights, seeds),
-            )
+        rights_helper = helper_functions.get('rights')
+        if rights_helper is not None:
+            rights = rights_helper(rights)
+        rights = datastructuretools.CyclicTuple(rights)
+
         left_lengths = self.left_lengths or ()
-        left_lengths = datastructuretools.CyclicTuple(
-            self.left_lengths_helper(left_lengths, seeds),
-            )
+        left_lengths_helper = helper_functions.get('left_lengths')
+        if left_lengths_helper is not None:
+            left_lengths = left_lengths_helper(left_lengths)
+        left_lengths = datastructuretools.CyclicTuple(left_lengths)
+
         right_lengths = self.right_lengths or ()
-        right_lengths = datastructuretools.CyclicTuple(
-            self.right_lengths_helper(right_lengths, seeds),
-            )
+        right_lengths_helper = helper_functions.get('right_lengths')
+        if right_lengths_helper is not None:
+            right_lengths = right_lengths_helper(right_lengths)
+        right_lengths = datastructuretools.CyclicTuple(right_lengths)
+
         secondary_divisions = self.secondary_divisions or ()
-        secondary_divisions = self.secondary_divisions_helper(
-            secondary_divisions, seeds)
+        secondary_divisions_helper = helper_functions.get(
+            'secondary_divisions')
+        if secondary_divisions_helper is not None:
+            secondary_divisions = secondary_divisions_helper(
+                secondary_divisions)
         secondary_divisions = datastructuretools.CyclicTuple(
             secondary_divisions)
+
         return (
             talea,
             prolation_addenda,
@@ -572,6 +597,24 @@ class TaleaRhythmMaker(RhythmMaker):
             right_lengths, 
             secondary_divisions,
             )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def helper_functions(self):
+        r'''Gets helper functions of talea rhythm-maker.
+
+        Returns dictionary or none.
+        '''
+        return self._helper_functions
+
+    @property
+    def talea(self):
+        r'''Gets talea of talea rhythm-maker.
+
+        Returns tuple.
+        '''
+        return self._talea
 
     ### PUBLIC METHODS ###
 
@@ -651,14 +694,7 @@ class TaleaRhythmMaker(RhythmMaker):
             left_lengths=left_lengths,
             right_lengths=right_lengths,
             secondary_divisions=secondary_divisions,
-            talea_helper=self.talea_helper, 
-            prolation_addenda_helper=self.prolation_addenda_helper,
-            lefts_helper=self.lefts_helper, 
-            middles_helper=self.middles_helper, 
-            rights_helper=self.rights_helper,
-            left_lengths_helper=self.left_lengths_helper, 
-            right_lengths_helper=self.right_lengths_helper, 
-            secondary_divisions_helper=self.secondary_divisions_helper,
+            helper_functions = self.helper_functions,
             beam_each_cell=self.beam_each_cell, 
             beam_cells_together=self.beam_cells_together,
             decrease_durations_monotonically=decrease_durations_monotonically, 
