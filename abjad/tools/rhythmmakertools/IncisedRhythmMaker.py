@@ -57,12 +57,6 @@ class IncisedRhythmMaker(RhythmMaker):
         body_ratio=None,
         prolation_addenda=None,
         secondary_divisions=None,
-#        prefix_talea_helper=None,
-#        prefix_lengths_helper=None,
-#        suffix_talea_helper=None,
-#        suffix_lengths_helper=None,
-#        prolation_addenda_helper=None,
-#        secondary_divisions_helper=None,
         helper_functions=None,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
@@ -86,19 +80,6 @@ class IncisedRhythmMaker(RhythmMaker):
             self._none_to_new_list(prolation_addenda)
         secondary_divisions = \
             self._none_to_new_list(secondary_divisions)
-
-#        prefix_talea_helper = \
-#            self._none_to_trivial_helper(prefix_talea_helper)
-#        prefix_lengths_helper = \
-#            self._none_to_trivial_helper(prefix_lengths_helper)
-#        suffix_talea_helper = \
-#            self._none_to_trivial_helper(suffix_talea_helper)
-#        suffix_lengths_helper = \
-#            self._none_to_trivial_helper(suffix_lengths_helper)
-#        prolation_addenda_helper = \
-#            self._none_to_trivial_helper(prolation_addenda_helper)
-#        secondary_divisions_helper = \
-#            self._none_to_trivial_helper(secondary_divisions_helper)
 
         if helper_functions is not None:
             assert isinstance(helper_functions, dict)
@@ -133,13 +114,6 @@ class IncisedRhythmMaker(RhythmMaker):
         assert isinstance(suffix_lengths, (tuple, type(None)))
         assert isinstance(prolation_addenda, (tuple, type(None)))
 
-#        assert callable(prefix_talea_helper)
-#        assert callable(prefix_lengths_helper)
-#        assert callable(suffix_talea_helper)
-#        assert callable(suffix_lengths_helper)
-#        assert callable(prolation_addenda_helper)
-#        assert callable(secondary_divisions_helper)
-
         assert isinstance(decrease_durations_monotonically, bool)
         self.prefix_talea = prefix_talea
         self.prefix_lengths = prefix_lengths
@@ -151,19 +125,6 @@ class IncisedRhythmMaker(RhythmMaker):
             body_ratio = mathtools.Ratio(body_ratio)
         self._body_ratio = body_ratio
         self.secondary_divisions = secondary_divisions
-
-#        self.prefix_talea_helper = \
-#            self._none_to_trivial_helper(prefix_talea_helper)
-#        self.prefix_lengths_helper = \
-#            self._none_to_trivial_helper(prefix_lengths_helper)
-#        self.suffix_talea_helper = \
-#            self._none_to_trivial_helper(suffix_talea_helper)
-#        self.suffix_lengths_helper = \
-#            self._none_to_trivial_helper(suffix_lengths_helper)
-#        self.prolation_addenda_helper = \
-#            self._none_to_trivial_helper(prolation_addenda_helper)
-#        self.secondary_divisions_helper = \
-#            self._none_to_trivial_helper(secondary_divisions_helper)
 
         self.decrease_durations_monotonically = \
             decrease_durations_monotonically
@@ -393,32 +354,32 @@ class IncisedRhythmMaker(RhythmMaker):
         helper_functions = self.helper_functions or {}
         prefix_talea = self.prefix_talea or ()
         helper = helper_functions.get('prefix_talea')
-        if helper is not None:
-            prefix_talea = helper(prefix_talea, seeds)
+        helper = self._none_to_trivial_helper(helper)
+        prefix_talea = helper(prefix_talea, seeds)
         prefix_talea = datastructuretools.CyclicTuple(prefix_talea)
 
         prefix_lengths = self.prefix_lengths or ()
         helper = helper_functions.get('prefix_lengths')
-        if helper is not None:
-            prefix_lengths = helper(prefix_lengths, seeds)
+        helper = self._none_to_trivial_helper(helper)
+        prefix_lengths = helper(prefix_lengths, seeds)
         prefix_lengths = datastructuretools.CyclicTuple(prefix_lengths)
 
         suffix_talea = self.suffix_talea or ()
         helper = helper_functions.get('suffix_talea')
-        if helper is not None:
-            suffix_talea = helper(suffix_lengths, seeds)
+        helper = self._none_to_trivial_helper(helper)
+        suffix_talea = helper(suffix_talea, seeds)
         suffix_talea = datastructuretools.CyclicTuple(suffix_talea)
 
         suffix_lengths = self.suffix_lengths or ()
         helper = helper_functions.get('suffix_lengths')
-        if helper is not None:
-            suffix_lengths = helper(suffix_lengths, seeds)
+        helper = self._none_to_trivial_helper(helper)
+        suffix_lengths = helper(suffix_lengths, seeds)
         suffix_lengths = datastructuretools.CyclicTuple(suffix_lengths)
 
         prolation_addenda = self.prolation_addenda or ()
         helper = helper_functions.get('prolation_addenda')
-        if helper is not None:
-            prolation_addenda = helper(prolation_addenda, seeds)
+        helper = self._none_to_trivial_helper(helper)
+        prolation_addenda = helper(prolation_addenda, seeds)
         if prolation_addenda:
             prolation_addenda = datastructuretools.CyclicTuple(
                 prolation_addenda)
@@ -427,8 +388,8 @@ class IncisedRhythmMaker(RhythmMaker):
 
         secondary_divisions = self.secondary_divisions or ()
         helper = helper_functions.get('secondary_divisions')
-        if helper is not None:
-            secondary_divisions = helper(secondary_divisions, seeds)
+        helper = self._none_to_trivial_helper(helper)
+        secondary_divisions = helper(secondary_divisions, seeds)
         secondary_divisions = datastructuretools.CyclicTuple(
             secondary_divisions)
 
