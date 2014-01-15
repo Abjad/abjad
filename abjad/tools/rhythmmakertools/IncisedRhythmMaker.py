@@ -24,7 +24,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> incision_specifier = rhythmmakertools.IncisionSpecifier(
+            >>> incise_specifier = rhythmmakertools.InciseSpecifier(
             ...     prefix_talea=(-1,),
             ...     prefix_lengths=(0, 1),
             ...     suffix_talea=(-1,),
@@ -32,7 +32,7 @@ class IncisedRhythmMaker(RhythmMaker):
             ...     talea_denominator=16,
             ...     )
             >>> maker = rhythmmakertools.IncisedRhythmMaker(
-            ...     incision_specifier=incision_specifier,
+            ...     incise_specifier=incise_specifier,
             ...     fill_with_notes=True,
             ...     incise_divisions=True,
             ...     )
@@ -53,7 +53,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     def __init__(
         self,
-        incision_specifier=None,
+        incise_specifier=None,
         body_ratio=None,
         prolation_addenda=None,
         secondary_divisions=None,
@@ -73,9 +73,9 @@ class IncisedRhythmMaker(RhythmMaker):
             beam_each_cell=beam_each_cell,
             beam_cells_together=beam_cells_together,
             )
-        incision_specifier = incision_specifier or \
-            rhythmmakertools.IncisionSpecifier()
-        self._incision_specifier = incision_specifier
+        incise_specifier = incise_specifier or \
+            rhythmmakertools.InciseSpecifier()
+        self._incise_specifier = incise_specifier
         prolation_addenda = \
             self._to_tuple(prolation_addenda)
         secondary_divisions = \
@@ -128,7 +128,7 @@ class IncisedRhythmMaker(RhythmMaker):
             )
         result = self._scale_taleas(
             duration_pairs, 
-            self.incision_specifier.talea_denominator, 
+            self.incise_specifier.talea_denominator, 
             taleas,
             )
         duration_pairs, lcd, prefix_talea, suffix_talea = result[:-2]
@@ -332,25 +332,25 @@ class IncisedRhythmMaker(RhythmMaker):
 
     def _prepare_input(self, seeds):
         helper_functions = self.helper_functions or {}
-        prefix_talea = self.incision_specifier.prefix_talea or ()
+        prefix_talea = self.incise_specifier.prefix_talea or ()
         helper = helper_functions.get('prefix_talea')
         helper = self._none_to_trivial_helper(helper)
         prefix_talea = helper(prefix_talea, seeds)
         prefix_talea = datastructuretools.CyclicTuple(prefix_talea)
 
-        prefix_lengths = self.incision_specifier.prefix_lengths or ()
+        prefix_lengths = self.incise_specifier.prefix_lengths or ()
         helper = helper_functions.get('prefix_lengths')
         helper = self._none_to_trivial_helper(helper)
         prefix_lengths = helper(prefix_lengths, seeds)
         prefix_lengths = datastructuretools.CyclicTuple(prefix_lengths)
 
-        suffix_talea = self.incision_specifier.suffix_talea or ()
+        suffix_talea = self.incise_specifier.suffix_talea or ()
         helper = helper_functions.get('suffix_talea')
         helper = self._none_to_trivial_helper(helper)
         suffix_talea = helper(suffix_talea, seeds)
         suffix_talea = datastructuretools.CyclicTuple(suffix_talea)
 
-        suffix_lengths = self.incision_specifier.suffix_lengths or ()
+        suffix_lengths = self.incise_specifier.suffix_lengths or ()
         helper = helper_functions.get('suffix_lengths')
         helper = self._none_to_trivial_helper(helper)
         suffix_lengths = helper(suffix_lengths, seeds)
@@ -394,7 +394,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> incision_specifier = rhythmmakertools.IncisionSpecifier(
+                >>> incise_specifier = rhythmmakertools.InciseSpecifier(
                 ...     prefix_talea=(-1,),
                 ...     prefix_lengths=(0, 1),
                 ...     suffix_talea=(-1,),
@@ -402,7 +402,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     talea_denominator=16,
                 ...     )
                 >>> maker = rhythmmakertools.IncisedRhythmMaker(
-                ...     incision_specifier=incision_specifier,
+                ...     incise_specifier=incise_specifier,
                 ...     body_ratio=(1, 1),
                 ...     fill_with_notes=True,
                 ...     incise_divisions=True,
@@ -456,7 +456,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> incision_specifier = rhythmmakertools.IncisionSpecifier(
+                >>> incise_specifier = rhythmmakertools.InciseSpecifier(
                 ...     prefix_talea=(-8, -7),
                 ...     prefix_lengths=(2,),
                 ...     suffix_talea=(-3,),
@@ -464,7 +464,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     talea_denominator=32,
                 ...     )
                 >>> maker = rhythmmakertools.IncisedRhythmMaker(
-                ...     incision_specifier=incision_specifier,
+                ...     incise_specifier=incise_specifier,
                 ...     fill_with_notes=True,
                 ...     incise_output=True,
                 ...     )
@@ -485,7 +485,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> incision_specifier = rhythmmakertools.IncisionSpecifier(
+                >>> incise_specifier = rhythmmakertools.InciseSpecifier(
                 ...     prefix_talea=(7, 8),
                 ...     prefix_lengths=(2,),
                 ...     suffix_talea=(3,),
@@ -493,7 +493,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     talea_denominator=32,
                 ...     )
                 >>> maker = rhythmmakertools.IncisedRhythmMaker(
-                ...     incision_specifier=incision_specifier,
+                ...     incise_specifier=incise_specifier,
                 ...     fill_with_notes=False,
                 ...     incise_output=True,
                 ...     )
@@ -513,12 +513,12 @@ class IncisedRhythmMaker(RhythmMaker):
         return self._incise_output
 
     @property
-    def incision_specifier(self):
+    def incise_specifier(self):
         r'''Gets incision specifier or incised rhythm-maker.
 
         Returns incision specifier.
         '''
-        return self._incision_specifier
+        return self._incise_specifier
 
     ### PUBLIC METHODS ###
 
@@ -541,7 +541,7 @@ class IncisedRhythmMaker(RhythmMaker):
         incise_output = self.incise_output
         helper_functions = self.helper_functions
         new = type(self)(
-            incision_specifier=incision_specifier,
+            incise_specifier=incise_specifier,
             body_ratio=body_ratio,
             prolation_addenda=prolation_addenda,
             secondary_divisions=secondary_divisions,

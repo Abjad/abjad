@@ -336,7 +336,7 @@ def test_schematic_example_X_08():
     first_measure.timespan.set_rhythm(library.even_runs(2), contexts=['Voice 3'])
     middle_measure.timespan.set_rhythm(library.even_runs(0), contexts=['Voice 3'])
     last_measure.timespan.set_rhythm(library.even_runs(1), contexts=['Voice 3'])
-    incision_specifier = rhythmmakertools.IncisionSpecifier(
+    incision_specifier = rhythmmakertools.InciseSpecifier(
         prefix_talea=[-1], 
         prefix_lengths=[1], 
         suffix_talea=[-1], 

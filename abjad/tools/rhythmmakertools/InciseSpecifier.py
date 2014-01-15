@@ -4,7 +4,7 @@ from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 
 
-class IncisionSpecifier(AbjadObject):
+class InciseSpecifier(AbjadObject):
     r'''Incision specifier.
     '''
 
