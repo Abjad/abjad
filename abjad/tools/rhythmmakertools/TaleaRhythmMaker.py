@@ -119,7 +119,7 @@ class TaleaRhythmMaker(RhythmMaker):
             beam_cells_together=beam_cells_together,
             )
         prototype = (tuple, type(None))
-        talea = self._none_to_new_list(talea)
+        talea = self._to_tuple(talea)
         assert isinstance(talea, prototype)
         assert sequencetools.all_are_integer_equivalent_numbers(talea)
         self._talea = talea
@@ -138,19 +138,21 @@ class TaleaRhythmMaker(RhythmMaker):
         assert isinstance(burnish_output, bool)
         self.burnish_divisions = burnish_divisions
         self.burnish_output = burnish_output
-        prolation_addenda = self._none_to_new_list(prolation_addenda)
-        lefts = self._none_to_new_list(lefts)
-        middles = self._none_to_new_list(middles)
-        rights = self._none_to_new_list(rights)
-        left_lengths = self._none_to_new_list(left_lengths)
-        right_lengths = self._none_to_new_list(right_lengths)
-        secondary_divisions = self._none_to_new_list(secondary_divisions)
+        prolation_addenda = self._to_tuple(prolation_addenda)
+
+        lefts = self._to_tuple(lefts)
+        middles = self._to_tuple(middles)
+        rights = self._to_tuple(rights)
+        left_lengths = self._to_tuple(left_lengths)
+        right_lengths = self._to_tuple(right_lengths)
         assert isinstance(lefts, prototype)
         assert isinstance(middles, prototype)
         assert isinstance(rights, prototype)
         assert isinstance(left_lengths, prototype)
         assert isinstance(right_lengths, prototype)
         assert isinstance(secondary_divisions, prototype)
+
+        secondary_divisions = self._to_tuple(secondary_divisions)
         talea_helper = self._none_to_trivial_helper(talea_helper)
         prolation_addenda_helper = self._none_to_trivial_helper(
             prolation_addenda_helper)

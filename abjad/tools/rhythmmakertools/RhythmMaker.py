@@ -36,7 +36,7 @@ class RhythmMaker(AbjadObject):
         Returns duration pairs and seed list.
         '''
         duration_pairs = [durationtools.Duration(x).pair for x in divisions]
-        seeds = self._none_to_new_list(seeds)
+        seeds = self._to_tuple(seeds)
         return duration_pairs, seeds
 
     def __eq__(self, expr):
@@ -120,7 +120,7 @@ class RhythmMaker(AbjadObject):
             tuplets.append(tuplet)
         return tuplets
 
-    def _none_to_new_list(self, expr):
+    def _to_tuple(self, expr):
         if isinstance(expr, list):
             expr = tuple(expr)
         return expr

@@ -77,9 +77,9 @@ class IncisedRhythmMaker(RhythmMaker):
             rhythmmakertools.IncisionSpecifier()
         self._incision_specifier = incision_specifier
         prolation_addenda = \
-            self._none_to_new_list(prolation_addenda)
+            self._to_tuple(prolation_addenda)
         secondary_divisions = \
-            self._none_to_new_list(secondary_divisions)
+            self._to_tuple(secondary_divisions)
 
         if helper_functions is not None:
             assert isinstance(helper_functions, dict)
