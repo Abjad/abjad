@@ -105,15 +105,19 @@ class EvenRunRhythmMaker(RhythmMaker):
     def __init__(
         self,
         denominator_multiplier_exponent=0,
-        beam_each_cell=True,
         beam_cells_together=False,
+        beam_each_cell=True,
+        decrease_durations_monotonically=True,
+        forbidden_written_duration=None,
         ):
         assert mathtools.is_nonnegative_integer(
             denominator_multiplier_exponent)
         RhythmMaker.__init__(
             self,
+            beam_cells_together=beam_cells_together,
             beam_each_cell=beam_each_cell,
-            beam_cells_together=beam_cells_together
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            forbidden_written_duration=forbidden_written_duration,
             )
         self._denominator_multiplier_exponent = \
             denominator_multiplier_exponent
@@ -155,8 +159,9 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> print format(maker)
                 rhythmmakertools.EvenRunRhythmMaker(
                     denominator_multiplier_exponent=1,
-                    beam_each_cell=True,
                     beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=True,
                     )
 
         Set `format_specification` to `''` or `'storage'`.
@@ -180,8 +185,9 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> print format(new_maker)
                 rhythmmakertools.EvenRunRhythmMaker(
                     denominator_multiplier_exponent=0,
-                    beam_each_cell=True,
                     beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=True,
                     )
 
             ::
@@ -317,8 +323,9 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> print format(reversed_maker)
                 rhythmmakertools.EvenRunRhythmMaker(
                     denominator_multiplier_exponent=1,
-                    beam_each_cell=True,
                     beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=False,
                     )
 
             ::
@@ -335,4 +342,16 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         Returns new even-run rhythm-maker.
         '''
-        return RhythmMaker.reverse(self)
+        decrease_durations_monotonically = \
+            not self.decrease_durations_monotonically
+        arguments = {
+            'denominator_multiplier_exponent': 
+                self.denominator_multiplier_exponent,
+            'beam_cells_together': self.beam_cells_together,
+            'beam_each_cell': self.beam_each_cell,
+            'decrease_durations_monotonically': 
+                decrease_durations_monotonically,
+            'forbidden_written_duration': self.forbidden_written_duration,
+            }
+        new = type(self)(**arguments)
+        return new

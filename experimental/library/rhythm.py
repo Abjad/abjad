@@ -61,7 +61,10 @@ halves.name = 'halves'
 __all__.append(halves.name)
 
 
-note_tokens = rhythmmakertools.NoteRhythmMaker()
+note_tokens = rhythmmakertools.NoteRhythmMaker(
+    beam_cells_together=False,
+    beam_each_cell=False,
+    )
 note_tokens.name = 'note_tokens'
 __all__.append(note_tokens.name)
 

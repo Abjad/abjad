@@ -94,6 +94,20 @@ class TaleaRhythmMaker(RhythmMaker):
         return talea
     '''
 
+    ### CLASS VARIABLES ###
+
+#    __slots__ = (
+#        '_talea',
+#        '_talea_denominator',
+#        '_prolation_addenda',
+#        '_burnish_specifier',
+#        '_secondary_divisions',
+#        '_helper_functions',
+#        '_tie_split_notes',
+#        '_burnish_divisions',
+#        '_burnish_output',
+#        )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -116,6 +130,7 @@ class TaleaRhythmMaker(RhythmMaker):
             self,
             beam_each_cell=beam_each_cell,
             beam_cells_together=beam_cells_together,
+            decrease_durations_monotonically=decrease_durations_monotonically,
             )
         prototype = (tuple, type(None))
         talea = self._to_tuple(talea)
@@ -133,8 +148,8 @@ class TaleaRhythmMaker(RhythmMaker):
         secondary_divisions_helper = helper_functions.get('secondary_divisions')
         assert isinstance(burnish_divisions, bool)
         assert isinstance(burnish_output, bool)
-        self.burnish_divisions = burnish_divisions
-        self.burnish_output = burnish_output
+        self._burnish_divisions = burnish_divisions
+        self._burnish_output = burnish_output
         prolation_addenda = self._to_tuple(prolation_addenda)
         burnish_specifier = burnish_specifier or \
             rhythmmakertools.BurnishSpecifier()
@@ -170,17 +185,13 @@ class TaleaRhythmMaker(RhythmMaker):
         assert callable(right_lengths_helper)
         assert isinstance(decrease_durations_monotonically, bool)
         assert isinstance(tie_split_notes, bool)
-        self.talea_denominator = talea_denominator
-        self.prolation_addenda = prolation_addenda
-        self.secondary_divisions = secondary_divisions
+        self._talea_denominator = talea_denominator
+        self._prolation_addenda = prolation_addenda
+        self._secondary_divisions = secondary_divisions
         if helper_functions == {}:
             helper_functions = None
         self._helper_functions = helper_functions
-        self.secondary_divisions_helper = secondary_divisions_helper
-        #self.beam_each_cell = beam_each_cell
-        self.decrease_durations_monotonically = \
-            decrease_durations_monotonically
-        self.tie_split_notes = tie_split_notes
+        self._tie_split_notes = tie_split_notes
 
     ### SPECIAL METHODS ###
 
@@ -299,7 +310,25 @@ class TaleaRhythmMaker(RhythmMaker):
 
         Returns new talea rhythm-maker.
         '''
-        return RhythmMaker.__makenew__(self, *args, **kwargs)
+        assert not args
+        arguments = {
+            'talea': self.talea,
+            'talea_denominator': self.talea_denominator,
+            'prolation_addenda': self.prolation_addenda,
+            'burnish_specifier': copy.deepcopy(self.burnish_specifier),
+            'secondary_divisions': self.secondary_divisions,
+            'helper_functions': self.helper_functions,
+            'beam_each_cell': self.beam_each_cell,
+            'beam_cells_together': self.beam_cells_together,
+            'decrease_durations_monotonically':
+                self.decrease_durations_monotonically, 
+            'tie_split_notes': self.tie_split_notes,
+            'burnish_divisions': self.burnish_divisions,
+            'burnish_output': self.burnish_output,
+            }
+        arguments.update(kwargs)
+        new = type(self)(**arguments)
+        return new
 
     ### PRIVATE METHODS ###
 
@@ -579,6 +608,22 @@ class TaleaRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def burnish_divisions(self):
+        r'''Gets burnish divisions boolean.
+
+        Returns boolean.
+        '''
+        return self._burnish_divisions
+
+    @property
+    def burnish_output(self):
+        r'''Gets burnish output boolean.
+
+        Returns boolean.
+        '''
+        return self._burnish_output
+
+    @property
     def burnish_specifier(self):
         r'''Gets burnish specifier of talea rhythm-maker.
 
@@ -595,12 +640,44 @@ class TaleaRhythmMaker(RhythmMaker):
         return self._helper_functions
 
     @property
+    def prolation_addenda(self):
+        r'''Gets prolation addenda of talea rhythm-maker.
+
+        Returns tuple or none.
+        '''
+        return self._prolation_addenda
+
+    @property
+    def secondary_divisions(self):
+        r'''Gets secondary divisions of talea rhythm-maker.
+
+        Returns tuple or none.
+        '''
+        return self._secondary_divisions
+
+    @property
     def talea(self):
         r'''Gets talea of talea rhythm-maker.
 
         Returns tuple.
         '''
         return self._talea
+
+    @property
+    def talea_denominator(self):
+        r'''Gets talea denominator of talea rhythm-maker.
+
+        Returns positive integer.
+        '''
+        return self._talea_denominator
+
+    @property
+    def tie_split_notes(self):
+        r'''Gets tie split notes boolean.
+
+        Returns boolean.
+        '''
+        return self._tie_split_notes
 
     ### PUBLIC METHODS ###
 
@@ -664,7 +741,7 @@ class TaleaRhythmMaker(RhythmMaker):
             prolation_addenda=prolation_addenda,
             burnish_specifier=burnish_specifier,
             secondary_divisions=secondary_divisions,
-            helper_functions = self.helper_functions,
+            helper_functions=self.helper_functions,
             beam_each_cell=self.beam_each_cell, 
             beam_cells_together=self.beam_cells_together,
             decrease_durations_monotonically=decrease_durations_monotonically, 

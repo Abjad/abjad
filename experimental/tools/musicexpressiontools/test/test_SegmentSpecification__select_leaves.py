@@ -81,8 +81,8 @@ def test_SegmentSpecification__select_leaves_04():
     maker = rhythmmakertools.TaleaRhythmMaker(
         talea=(1, 2, 3), 
         talea_denominator=32,
+        beam_cells_together=True,
         )
-    maker.beam_cells_together = True
     red_segment.set_rhythm(maker, contexts=['Voice 1'])
     first_division = red_segment.select_divisions('Voice 1')[:1]
     red_rhythm_cell = first_division.timespan.select_leaves('Voice 1')

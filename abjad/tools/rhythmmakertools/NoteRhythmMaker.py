@@ -49,17 +49,6 @@ class NoteRhythmMaker(RhythmMaker):
     Usage follows the two-step configure-then-call pattern shown here.
     '''
 
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        decrease_durations_monotonically=True,
-        forbidden_written_duration=None,
-        ):
-        self._decrease_durations_monotonically = \
-            decrease_durations_monotonically
-        self._forbidden_written_duration = forbidden_written_duration
-
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
@@ -90,6 +79,8 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> print format(maker)
                 rhythmmakertools.NoteRhythmMaker(
+                    beam_cells_together=False,
+                    beam_each_cell=True,
                     decrease_durations_monotonically=True,
                     forbidden_written_duration=durationtools.Duration(1, 2),
                     )
@@ -112,6 +103,8 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> print format(new_maker)
                 rhythmmakertools.NoteRhythmMaker(
+                    beam_cells_together=False,
+                    beam_each_cell=True,
                     decrease_durations_monotonically=False,
                     forbidden_written_duration=durationtools.Duration(1, 2),
                     )
@@ -130,24 +123,6 @@ class NoteRhythmMaker(RhythmMaker):
         '''
         return RhythmMaker.__makenew__(self, *args, **kwargs)
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def decrease_durations_monotonically(self):
-        r'''Gets decrease durations monotonically flag.
-
-        Returns boolean.
-        '''
-        return self._decrease_durations_monotonically
-
-    @property
-    def forbidden_written_duration(self):
-        r'''Gets forbidden written duration.
-
-        Returns duration or none.
-        '''
-        return self._forbidden_written_duration
-
     ### PUBLIC METHODS ###
 
     def reverse(self):
@@ -163,6 +138,8 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> print format(reversed_maker)
                 rhythmmakertools.NoteRhythmMaker(
+                    beam_cells_together=False,
+                    beam_each_cell=True,
                     decrease_durations_monotonically=False,
                     forbidden_written_duration=durationtools.Duration(1, 2),
                     )
@@ -182,6 +159,8 @@ class NoteRhythmMaker(RhythmMaker):
         decrease_durations_monotonically = \
             not self.decrease_durations_monotonically
         new = type(self)(
+            beam_cells_together=self.beam_cells_together,
+            beam_each_cell=self.beam_each_cell,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=self.forbidden_written_duration,
             )
