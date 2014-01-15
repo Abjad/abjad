@@ -4,15 +4,19 @@ from abjad import *
 
 def test_rhythmmakertools_TaleaRhythmMaker_burnish_output_01():
 
-    maker = rhythmmakertools.TaleaRhythmMaker(
-        talea=(1,), 
-        talea_denominator=16, 
-        prolation_addenda=(2,),
+    burnish_specifier = rhythmmakertools.BurnishSpecifier(
         lefts=(0,), 
         middles=(-1,), 
         rights=(0,), 
         left_lengths=(1,), 
         right_lengths=(1,),
+        )
+
+    maker = rhythmmakertools.TaleaRhythmMaker(
+        talea=(1,), 
+        talea_denominator=16, 
+        burnish_specifier=burnish_specifier,
+        prolation_addenda=(2,),
         burnish_output=True,
         )
 
@@ -60,15 +64,19 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_output_01():
 
 def test_rhythmmakertools_TaleaRhythmMaker_burnish_output_02():
 
-    maker = rhythmmakertools.TaleaRhythmMaker(
-        talea=(1,), 
-        talea_denominator=4, 
-        prolation_addenda=(2,),
+    burnish_specifier = rhythmmakertools.BurnishSpecifier(
         lefts=(-1,), 
         middles=(0,), 
         rights=(-1,), 
         left_lengths=(1,), 
         right_lengths=(1,),
+        )
+
+    maker = rhythmmakertools.TaleaRhythmMaker(
+        talea=(1,), 
+        talea_denominator=4, 
+        burnish_specifier=burnish_specifier,
+        prolation_addenda=(2,),
         burnish_output=True,
         )
 
@@ -108,15 +116,19 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_output_02():
 
 def test_rhythmmakertools_TaleaRhythmMaker_burnish_output_03():
 
-    maker = rhythmmakertools.TaleaRhythmMaker(
-        talea=(1, 2, 3), 
-        talea_denominator=16, 
-        prolation_addenda=(0, 2),
+    burnish_specifier = rhythmmakertools.BurnishSpecifier(
         lefts=(-1,), 
         middles=(0,), 
         rights=(-1,), 
         left_lengths=(1,), 
         right_lengths=(1,), 
+        )
+
+    maker = rhythmmakertools.TaleaRhythmMaker(
+        talea=(1, 2, 3), 
+        talea_denominator=16, 
+        burnish_specifier=burnish_specifier,
+        prolation_addenda=(0, 2),
         secondary_divisions=(9,),
         burnish_output=True,
         )
@@ -163,15 +175,19 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_output_03():
 
 def test_rhythmmakertools_TaleaRhythmMaker_burnish_output_04():
 
-    maker = rhythmmakertools.TaleaRhythmMaker(
-        talea=(1,), 
-        talea_denominator=8, 
-        prolation_addenda=(),
+    burnish_specifier = rhythmmakertools.BurnishSpecifier(
         lefts=(-1,), 
         middles=(0,), 
         rights=(-1,),
         left_lengths=(1,), 
         right_lengths=(2,),
+        )
+
+    maker = rhythmmakertools.TaleaRhythmMaker(
+        talea=(1,), 
+        talea_denominator=8, 
+        burnish_specifier=burnish_specifier,
+        prolation_addenda=(),
         burnish_output=True,
         )
 

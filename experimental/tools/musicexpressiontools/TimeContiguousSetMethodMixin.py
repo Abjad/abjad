@@ -125,6 +125,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
                     payload=rhythmmakertools.TaleaRhythmMaker(
                         talea=(1,),
                         talea_denominator=16,
+                        burnish_specifier=rhythmmakertools.BurnishSpecifier(),
                         beam_each_cell=False,
                         beam_cells_together=True,
                         decrease_durations_monotonically=True,

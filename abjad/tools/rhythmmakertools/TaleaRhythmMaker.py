@@ -4,12 +4,11 @@ import copy
 import types
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import scoretools
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
-from abjad.tools import selectiontools
-from abjad.tools import spannertools
 from abjad.tools import scoretools
+from abjad.tools import selectiontools
+from abjad.tools import sequencetools
+from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
@@ -35,15 +34,18 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> maker = rhythmmakertools.TaleaRhythmMaker(
-            ...     talea=(1, 2, 3),
-            ...     talea_denominator=16,
-            ...     prolation_addenda=(0, 2),
+            >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
             ...     lefts=(-1,),
             ...     middles=(0,),
             ...     rights=(-1,),
             ...     left_lengths=(1,),
             ...     right_lengths=(1,),
+            ...     )
+            >>> maker = rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=(1, 2, 3),
+            ...     talea_denominator=16,
+            ...     burnish_specifier=burnish_specifier,
+            ...     prolation_addenda=(0, 2),
             ...     secondary_divisions=(9,),
             ...     beam_each_cell=True,
             ...     burnish_output=True,
@@ -99,11 +101,7 @@ class TaleaRhythmMaker(RhythmMaker):
         talea=(-1, 4, -2, 3),
         talea_denominator=16,
         prolation_addenda=None,
-        lefts=None, 
-        middles=None, 
-        rights=None, 
-        left_lengths=None, 
-        right_lengths=None,
+        burnish_specifier=None,
         secondary_divisions=None,
         helper_functions=None,
         beam_each_cell=False, 
@@ -113,6 +111,7 @@ class TaleaRhythmMaker(RhythmMaker):
         burnish_divisions=False,
         burnish_output=False,
         ):
+        from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
             beam_each_cell=beam_each_cell,
@@ -123,7 +122,6 @@ class TaleaRhythmMaker(RhythmMaker):
         assert isinstance(talea, prototype)
         assert sequencetools.all_are_integer_equivalent_numbers(talea)
         self._talea = talea
-
         helper_functions = helper_functions or {}
         talea_helper = helper_functions.get('talea')
         prolation_addenda_helper = helper_functions.get('prolation_addenda')
@@ -133,25 +131,15 @@ class TaleaRhythmMaker(RhythmMaker):
         left_lengths_helper = helper_functions.get('left_lengths')
         right_lengths_helper = helper_functions.get('right_lengths')
         secondary_divisions_helper = helper_functions.get('secondary_divisions')
-
         assert isinstance(burnish_divisions, bool)
         assert isinstance(burnish_output, bool)
         self.burnish_divisions = burnish_divisions
         self.burnish_output = burnish_output
         prolation_addenda = self._to_tuple(prolation_addenda)
-
-        lefts = self._to_tuple(lefts)
-        middles = self._to_tuple(middles)
-        rights = self._to_tuple(rights)
-        left_lengths = self._to_tuple(left_lengths)
-        right_lengths = self._to_tuple(right_lengths)
-        assert isinstance(lefts, prototype)
-        assert isinstance(middles, prototype)
-        assert isinstance(rights, prototype)
-        assert isinstance(left_lengths, prototype)
-        assert isinstance(right_lengths, prototype)
-        assert isinstance(secondary_divisions, prototype)
-
+        burnish_specifier = burnish_specifier or \
+            rhythmmakertools.BurnishSpecifier()
+        assert isinstance(burnish_specifier, rhythmmakertools.BurnishSpecifier)
+        self._burnish_specifier = burnish_specifier
         secondary_divisions = self._to_tuple(secondary_divisions)
         talea_helper = self._none_to_trivial_helper(talea_helper)
         prolation_addenda_helper = self._none_to_trivial_helper(
@@ -170,15 +158,6 @@ class TaleaRhythmMaker(RhythmMaker):
         assert prolation_addenda is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             prolation_addenda)
-        assert lefts is None or all(x in (-1, 0, 1) for x in lefts)
-        assert middles is None or all(x in (-1, 0, 1) for x in middles)
-        assert rights is None or all(x in (-1, 0, 1) for x in rights)
-        assert left_lengths is None or \
-            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-            left_lengths)
-        assert right_lengths is None or \
-            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-            right_lengths)
         assert secondary_divisions is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             secondary_divisions)
@@ -193,17 +172,10 @@ class TaleaRhythmMaker(RhythmMaker):
         assert isinstance(tie_split_notes, bool)
         self.talea_denominator = talea_denominator
         self.prolation_addenda = prolation_addenda
-        self.lefts = lefts
-        self.middles = middles
-        self.rights = rights
-        self.left_lengths = left_lengths
-        self.right_lengths = right_lengths
         self.secondary_divisions = secondary_divisions
-
         if helper_functions == {}:
             helper_functions = None
         self._helper_functions = helper_functions
-
         self.secondary_divisions_helper = secondary_divisions_helper
         #self.beam_each_cell = beam_each_cell
         self.decrease_durations_monotonically = \
@@ -213,7 +185,7 @@ class TaleaRhythmMaker(RhythmMaker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
-        r'''Calls burnished rhythm-maker on `divisions`.
+        r'''Calls talea rhythm-maker on `divisions`.
 
         Returns either list of tuplets or else list of note-lists.
         '''
@@ -249,7 +221,7 @@ class TaleaRhythmMaker(RhythmMaker):
         return result
 
     def __format__(self, format_specification=''):
-        r'''Formats burnished rhythm-maker.
+        r'''Formats talea rhythm-maker.
 
         Set `format_specification` to `''` or `'storage'`.
 
@@ -262,11 +234,13 @@ class TaleaRhythmMaker(RhythmMaker):
                     talea=(1, 2, 3),
                     talea_denominator=16,
                     prolation_addenda=(0, 2),
-                    lefts=(-1,),
-                    middles=(0,),
-                    rights=(-1,),
-                    left_lengths=(1,),
-                    right_lengths=(1,),
+                    burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                        lefts=(-1,),
+                        middles=(0,),
+                        rights=(-1,),
+                        left_lengths=(1,),
+                        right_lengths=(1,),
+                        ),
                     secondary_divisions=(9,),
                     beam_each_cell=True,
                     beam_cells_together=False,
@@ -297,11 +271,13 @@ class TaleaRhythmMaker(RhythmMaker):
                     talea=(1, 2, 3),
                     talea_denominator=16,
                     prolation_addenda=(0, 2),
-                    lefts=(-1,),
-                    middles=(0,),
-                    rights=(-1,),
-                    left_lengths=(1,),
-                    right_lengths=(1,),
+                    burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                        lefts=(-1,),
+                        middles=(0,),
+                        rights=(-1,),
+                        left_lengths=(1,),
+                        right_lengths=(1,),
+                        ),
                     secondary_divisions=(10,),
                     beam_each_cell=True,
                     beam_cells_together=False,
@@ -440,7 +416,7 @@ class TaleaRhythmMaker(RhythmMaker):
             burnished_division = left_part + middle_part + right_part
             burnished_divisions.append(burnished_division)
         else:
-            ## first division
+            # first division
             available_left_length = len(divisions[0])
             left_length = min([left_length, available_left_length])
             middle_length = len(divisions[0]) - left_length
@@ -456,14 +432,14 @@ class TaleaRhythmMaker(RhythmMaker):
             middle_part = self._burnish_division_part(middle_part, middle)
             burnished_division = left_part + middle_part
             burnished_divisions.append(burnished_division)
-            ## middle divisions
+            # middle divisions
             for division in divisions[1:-1]:
                 middle_part = division
                 middle = len(division) * [middles[0]]
                 middle_part = self._burnish_division_part(middle_part, middle)
                 burnished_division = middle_part
                 burnished_divisions.append(burnished_division)
-            ## last division:
+            # last division:
             available_right_length = len(divisions[-1])
             right_length = min([right_length, available_right_length])
             middle_length = len(divisions[-1]) - right_length
@@ -550,31 +526,31 @@ class TaleaRhythmMaker(RhythmMaker):
                 prolation_addenda, seeds)
         prolation_addenda = datastructuretools.CyclicTuple(prolation_addenda)
 
-        lefts = self.lefts or ()
+        lefts = self.burnish_specifier.lefts or ()
         lefts_helper = helper_functions.get('lefts')
         if lefts_helper is not None:
             lefts = lefts_helper(lefts, seeds)
         lefts = datastructuretools.CyclicTuple(lefts)
 
-        middles = self.middles or ()
+        middles = self.burnish_specifier.middles or ()
         middles_helper = helper_functions.get('middles')
         if middles_helper is not None:
             middles = middles_helper(middles, seeds)
         middles = datastructuretools.CyclicTuple(middles)
 
-        rights = self.rights or ()
+        rights = self.burnish_specifier.rights or ()
         rights_helper = helper_functions.get('rights')
         if rights_helper is not None:
             rights = rights_helper(rights)
         rights = datastructuretools.CyclicTuple(rights)
 
-        left_lengths = self.left_lengths or ()
+        left_lengths = self.burnish_specifier.left_lengths or ()
         left_lengths_helper = helper_functions.get('left_lengths')
         if left_lengths_helper is not None:
             left_lengths = left_lengths_helper(left_lengths)
         left_lengths = datastructuretools.CyclicTuple(left_lengths)
 
-        right_lengths = self.right_lengths or ()
+        right_lengths = self.burnish_specifier.right_lengths or ()
         right_lengths_helper = helper_functions.get('right_lengths')
         if right_lengths_helper is not None:
             right_lengths = right_lengths_helper(right_lengths)
@@ -601,6 +577,14 @@ class TaleaRhythmMaker(RhythmMaker):
             )
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def burnish_specifier(self):
+        r'''Gets burnish specifier of talea rhythm-maker.
+
+        Returns burnish specifier.
+        '''
+        return self._burnish_specifier
 
     @property
     def helper_functions(self):
@@ -636,11 +620,13 @@ class TaleaRhythmMaker(RhythmMaker):
                     talea=(3, 2, 1),
                     talea_denominator=16,
                     prolation_addenda=(2, 0),
-                    lefts=(-1,),
-                    middles=(0,),
-                    rights=(-1,),
-                    left_lengths=(1,),
-                    right_lengths=(1,),
+                    burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                        lefts=(-1,),
+                        middles=(0,),
+                        rights=(-1,),
+                        left_lengths=(1,),
+                        right_lengths=(1,),
+                        ),
                     secondary_divisions=(9,),
                     beam_each_cell=True,
                     beam_cells_together=False,
@@ -666,21 +652,7 @@ class TaleaRhythmMaker(RhythmMaker):
         prolation_addenda = self.prolation_addenda
         if prolation_addenda is not None:
             prolation_addenda = tuple(reversed(prolation_addenda))
-        lefts = self.lefts
-        if lefts is not None:
-            lefts = tuple(reversed(lefts))
-        middles = self.middles
-        if middles is not None:
-            middles = tuple(reversed(middles))
-        rights = self.rights
-        if rights is not None:
-            rights = tuple(reversed(rights))
-        left_lengths = self.left_lengths
-        if left_lengths is not None:
-            left_lengths = tuple(reversed(left_lengths))
-        right_lengths = self.right_lengths
-        if right_lengths is not None:
-            right_lengths = tuple(reversed(right_lengths))
+        burnish_specifier = self.burnish_specifier.reverse()
         secondary_divisions = self.secondary_divisions
         if secondary_divisions is not None:
             secondary_divisions = tuple(reversed(secondary_divisions))
@@ -690,11 +662,7 @@ class TaleaRhythmMaker(RhythmMaker):
             talea=talea,
             talea_denominator=self.talea_denominator,
             prolation_addenda=prolation_addenda,
-            lefts=lefts,
-            middles=middles,
-            rights=rights,
-            left_lengths=left_lengths,
-            right_lengths=right_lengths,
+            burnish_specifier=burnish_specifier,
             secondary_divisions=secondary_divisions,
             helper_functions = self.helper_functions,
             beam_each_cell=self.beam_each_cell, 

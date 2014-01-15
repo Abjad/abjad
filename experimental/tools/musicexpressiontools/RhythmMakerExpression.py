@@ -29,6 +29,7 @@ class RhythmMakerExpression(PayloadExpression):
                 payload=rhythmmakertools.TaleaRhythmMaker(
                     talea=(3, 1),
                     talea_denominator=32,
+                    burnish_specifier=rhythmmakertools.BurnishSpecifier(),
                     beam_each_cell=False,
                     beam_cells_together=True,
                     decrease_durations_monotonically=True,
@@ -49,6 +50,7 @@ class RhythmMakerExpression(PayloadExpression):
                 payload=rhythmmakertools.TaleaRhythmMaker(
                     talea=(1, 3),
                     talea_denominator=32,
+                    burnish_specifier=rhythmmakertools.BurnishSpecifier(),
                     beam_each_cell=False,
                     beam_cells_together=True,
                     decrease_durations_monotonically=False,
