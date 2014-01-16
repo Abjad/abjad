@@ -221,14 +221,20 @@ class Instrument(AbjadObject):
             return self._performer_names[:]
 
     def _initialize_default_name_markups(self):
-        string = self.instrument_name
-        string = stringtools.capitalize_string_start(string)
-        markup = markuptools.Markup(contents=string)
-        self._instrument_name_markup = markup
-        string = self.short_instrument_name
-        string = stringtools.capitalize_string_start(string)
-        markup = markuptools.Markup(contents=string)
-        self._short_instrument_name_markup = markup
+        if self.instrument_name:
+            string = self.instrument_name
+            string = stringtools.capitalize_string_start(string)
+            markup = markuptools.Markup(contents=string)
+            self._instrument_name_markup = markup
+        else:
+            self._instrument_name_markup = None
+        if self.short_instrument_name:
+            string = self.short_instrument_name
+            string = stringtools.capitalize_string_start(string)
+            markup = markuptools.Markup(contents=string)
+            self._short_instrument_name_markup = markup
+        else:
+            self._short_instrument_name_markup = None
 
     @classmethod
     def _list_instrument_names(cls):
@@ -338,7 +344,8 @@ class Instrument(AbjadObject):
         if not isinstance(self._instrument_name_markup, markuptools.Markup):
             markup = markuptools.Markup(contents=self._instrument_name_markup)
             self._instrument_name_markup = markup
-        return self._instrument_name_markup
+        if self._instrument_name_markup.contents != ('',):
+            return self._instrument_name_markup
 
     @property
     def pitch_range(self):
@@ -366,9 +373,11 @@ class Instrument(AbjadObject):
             self._initialize_default_name_markups()
         if not isinstance(
             self._short_instrument_name_markup, markuptools.Markup):
-            markup = markuptools.Markup(contents=self._short_instrument_name_markup)
+            markup = markuptools.Markup(
+                contents=self._short_instrument_name_markup)
             self._short_instrument_name_markup = markup
-        return self._short_instrument_name_markup
+        if self._short_instrument_name_markup.contents != ('',):
+            return self._short_instrument_name_markup
 
     @property
     def sounding_pitch_of_written_middle_c(self):
