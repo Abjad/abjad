@@ -100,6 +100,21 @@ class FixedDurationTuplet(Tuplet):
                 self._signifier,
                 )
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = (
+            self.target_duration,
+            self[:]
+            )
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=positional_argument_values,
+            keyword_argument_names=(),
+            )
+
     ### PRIVATE METHODS ###
 
     def _scale(self, multiplier):
