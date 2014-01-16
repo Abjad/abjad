@@ -123,12 +123,16 @@ class Selection(object):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        if self._music:
+            positional_argument_values = (
+                self._music,
+                )
+        else:
+            positional_argument_values = ()
         return systemtools.StorageFormatSpecification(
             self,
             keyword_argument_names=(),
-            positional_argument_values=(
-                self._music,
-                ),
+            positional_argument_values=positional_argument_values,
             )
 
     ### PRIVATE METHODS ###
