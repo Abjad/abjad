@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
 import copy
-import types
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
 from abjad.tools import scoretools
+from abjad.tools import sequencetools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
@@ -49,6 +48,11 @@ class IncisedRhythmMaker(RhythmMaker):
 
     '''
 
+#    ### CLASS VARIABLES ###
+#
+#    __slots__ = (
+#        )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -69,9 +73,10 @@ class IncisedRhythmMaker(RhythmMaker):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
-            forbidden_written_duration=forbidden_written_duration,
-            beam_each_cell=beam_each_cell,
             beam_cells_together=beam_cells_together,
+            beam_each_cell=beam_each_cell,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            forbidden_written_duration=forbidden_written_duration,
             )
         incise_specifier = incise_specifier or \
             rhythmmakertools.InciseSpecifier()
@@ -93,14 +98,11 @@ class IncisedRhythmMaker(RhythmMaker):
         assert secondary_divisions is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             secondary_divisions), secondary_divisions
-        assert isinstance(decrease_durations_monotonically, bool)
-        self.prolation_addenda = prolation_addenda
+        self._prolation_addenda = prolation_addenda
         if body_ratio is not None:
             body_ratio = mathtools.Ratio(body_ratio)
         self._body_ratio = body_ratio
-        self.secondary_divisions = secondary_divisions
-        self.decrease_durations_monotonically = \
-            decrease_durations_monotonically
+        self._secondary_divisions = secondary_divisions
         assert isinstance(fill_with_notes, bool)
         self._fill_with_notes = fill_with_notes
         assert isinstance(incise_divisions, bool)
@@ -519,6 +521,22 @@ class IncisedRhythmMaker(RhythmMaker):
         Returns incision specifier.
         '''
         return self._incise_specifier
+
+    @property
+    def prolation_addenda(self):
+        r'''Gets prolation addenda of incised rhythm-maker.
+
+        Returns tuple or none.
+        '''
+        return self._prolation_addenda
+
+    @property
+    def secondary_divisions(self):
+        r'''Gets secondary divisions of incised rhythm-maker.
+
+        Returns tuple or none.
+        '''
+        return self._secondary_divisions
 
     ### PUBLIC METHODS ###
 

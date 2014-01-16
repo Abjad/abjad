@@ -29,11 +29,6 @@ class SkipRhythmMaker(RhythmMaker):
     Usage follows the two-step configure-then-call pattern shown here.
     '''
 
-    ### INITIALIZER ###
-
-    def __init__(self):
-        pass
-
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
@@ -60,7 +55,11 @@ class SkipRhythmMaker(RhythmMaker):
             ::
 
                 >>> print format(maker)
-                rhythmmakertools.SkipRhythmMaker()
+                rhythmmakertools.SkipRhythmMaker(
+                    beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=True,
+                    )
 
         Returns string.
         '''
@@ -79,7 +78,11 @@ class SkipRhythmMaker(RhythmMaker):
             ::
 
                 >>> print format(new_maker)
-                rhythmmakertools.SkipRhythmMaker()
+                rhythmmakertools.SkipRhythmMaker(
+                    beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=True,
+                    )
 
             ::
 
@@ -109,7 +112,11 @@ class SkipRhythmMaker(RhythmMaker):
             ::
 
                 >>> print format(reversed_maker)
-                rhythmmakertools.SkipRhythmMaker()
+                rhythmmakertools.SkipRhythmMaker(
+                    beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=True,
+                    )
 
             ::
 

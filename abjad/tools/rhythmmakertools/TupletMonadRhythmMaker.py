@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import fractions
-from abjad.tools import scoretools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
@@ -28,18 +27,10 @@ class TupletMonadRhythmMaker(RhythmMaker):
     Usage follows the two-step configure-then-call pattern shown here.
     '''
 
-    ### INITIALIZER ###
-
-    def __init__(
-        self, 
-        beam_each_cell=False, 
-        beam_cells_together=False,
-        ):
-        RhythmMaker.__init__(
-            self,
-            beam_each_cell=beam_each_cell,
-            beam_cells_together=beam_cells_together
-            )
+#    ### CLASS VARIABLES ###
+#
+#    __slots__ = (
+#        )
 
     ### SPECIAL METHODS ###
 
@@ -65,8 +56,9 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
                 >>> print format(maker)
                 rhythmmakertools.TupletMonadRhythmMaker(
-                    beam_each_cell=False,
                     beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=True,
                     )
 
         Returns string.
@@ -87,8 +79,9 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
                 >>> print format(new_maker)
                 rhythmmakertools.TupletMonadRhythmMaker(
-                    beam_each_cell=False,
                     beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=True,
                     )
 
             ::
@@ -135,8 +128,9 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
                 >>> print format(reversed_maker)
                 rhythmmakertools.TupletMonadRhythmMaker(
-                    beam_each_cell=False,
                     beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=True,
                     )
 
             ::

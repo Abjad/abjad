@@ -3,8 +3,8 @@ import abc
 import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import sequencetools
 from abjad.tools import scoretools
+from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -12,21 +12,34 @@ class RhythmMaker(AbjadObject):
     '''Rhythm-maker abstract base class.
     '''
 
+    ### CLASS VARIABLES ###
+
+#    __slots__ = (
+#        '_beam_cells_together',
+#        '_beam_each_cell',
+#        '_decrease_durations_monotonically',
+#        '_forbidden_written_duration',
+#        'name',
+#        )
+
     ### INITIALIZER ###
 
-    @abc.abstractmethod
     def __init__(
         self,
-        forbidden_written_duration=None,
-        beam_each_cell=True,
         beam_cells_together=False,
+        beam_each_cell=True,
+        decrease_durations_monotonically=True,
+        forbidden_written_duration=None,
         ):
-        self.forbidden_written_duration = forbidden_written_duration
-        self.beam_each_cell = beam_each_cell
-        self.beam_cells_together = beam_cells_together
+        self._beam_each_cell = beam_each_cell
+        self._beam_cells_together = beam_cells_together
+        self._decrease_durations_monotonically = \
+            decrease_durations_monotonically
+        self._forbidden_written_duration = forbidden_written_duration
 
     ### SPECIAL METHODS ###
 
+    @abc.abstractmethod
     def __call__(self, divisions, seeds=None):
         r'''Casts `divisions` into duration pairs.
         Reduces numerator and denominator relative to each other.
@@ -79,7 +92,14 @@ class RhythmMaker(AbjadObject):
 
     def __getstate__(self):
         r'''Gets state of rhythm-maker.
+
+        Returns dictionary.
         '''
+#        state = {}
+#        for class_ in type(self).__mro__:
+#            for slot in getattr(class_, '__slots__', ()):
+#                state[slot] = getattr(self, slot, None)
+#        return state
         return vars(self)
 
     ### PRIVATE METHODS ###
@@ -171,6 +191,42 @@ class RhythmMaker(AbjadObject):
             return sequencetools.rotate_sequence(talea, seeds)
         return talea
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def beam_cells_together(self):
+        r'''Is true when rhythm-maker should beam cells together. Otherwise
+        false.
+
+        Returns boolean.
+        '''
+        return self._beam_cells_together
+
+    @property
+    def beam_each_cell(self):
+        r'''Is true when rhythm-maker should beam each cell. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._beam_each_cell
+
+    @property
+    def decrease_durations_monotonically(self):
+        r'''Is true when rhythm-maker should decrease durations monotonically.
+        Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._decrease_durations_monotonically
+
+    @property
+    def forbidden_written_duration(self):
+        r'''Gets forbidden written duration of rhythm-maker.
+
+        Returns duration or none.
+        '''
+        return self._forbidden_written_duration
+
     ### PUBLIC METHODS ###
 
     def __makenew__(self, *args, **kwargs):
@@ -178,13 +234,17 @@ class RhythmMaker(AbjadObject):
 
         Returns new rhythm-maker.
         '''
-        new_maker = copy.deepcopy(self)
-        for key, value in kwargs.iteritems():
-            try:
-                setattr(new_maker, key, value)
-            except AttributeError:
-                setattr(new_maker, '_' + key, value)
-        return new_maker
+        assert not args
+        arguments = {
+            'beam_cells_together': self.beam_cells_together,
+            'beam_each_cell': self.beam_each_cell,
+            'decrease_durations_monotonically':
+                self.decrease_durations_monotonically,
+            'forbidden_written_duration': self.forbidden_written_duration,
+            }
+        arguments.update(kwargs)
+        new = type(self)(**arguments)
+        return new
 
     def reverse(self):
         r'''Reverses rhythm-maker.
@@ -197,5 +257,12 @@ class RhythmMaker(AbjadObject):
 
         Returns newly constructed rhythm-maker.
         '''
-        new = copy.deepcopy(self)
+        arguments = {
+            'beam_cells_together': self.beam_cells_together,
+            'beam_each_cell': self.beam_each_cell,
+            'decrease_durations_monotonically':
+                self.decrease_durations_monotonically,
+            'forbidden_written_duration': self.forbidden_written_duration,
+            }
+        new = type(self)(**arguments)
         return new

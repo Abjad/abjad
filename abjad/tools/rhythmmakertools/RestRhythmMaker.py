@@ -51,13 +51,19 @@ class RestRhythmMaker(RhythmMaker):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
+        beam_each_cell=False,
+        beam_cells_together=False,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
         ):
-        self._decrease_durations_monotonically = \
-            decrease_durations_monotonically
-        self._forbidden_written_duration = forbidden_written_duration
+        RhythmMaker.__init__(
+            self,
+            beam_each_cell=beam_each_cell,
+            beam_cells_together=beam_cells_together,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            forbidden_written_duration=forbidden_written_duration,
+            )
 
     ### SPECIAL METHODS ###
 
@@ -89,6 +95,8 @@ class RestRhythmMaker(RhythmMaker):
 
                 >>> print format(maker)
                 rhythmmakertools.RestRhythmMaker(
+                    beam_each_cell=False,
+                    beam_cells_together=False,
                     decrease_durations_monotonically=True,
                     forbidden_written_duration=durationtools.Duration(1, 4),
                     )
@@ -111,6 +119,8 @@ class RestRhythmMaker(RhythmMaker):
 
                 >>> print format(new_maker)
                 rhythmmakertools.RestRhythmMaker(
+                    beam_each_cell=False,
+                    beam_cells_together=False,
                     decrease_durations_monotonically=True,
                     forbidden_written_duration=durationtools.Duration(1, 4),
                     )
@@ -162,6 +172,8 @@ class RestRhythmMaker(RhythmMaker):
 
                 >>> print format(reversed_maker)
                 rhythmmakertools.RestRhythmMaker(
+                    beam_each_cell=False,
+                    beam_cells_together=False,
                     decrease_durations_monotonically=True,
                     forbidden_written_duration=durationtools.Duration(1, 4),
                     )

@@ -79,14 +79,16 @@ class Spanner(AbjadObject):
         return self._components.__getitem__(expr)
 
     def __getnewargs__(self):
-        r'''Gets new arguments.
+        r'''Gets new arguments of spanner.
 
         Returns empty tuple.
         '''
         return ()
 
     def __getstate__(self):
-        r'''Gets object state.
+        r'''Gets state of spanner.
+
+        Returns dictionary.
         '''
         state = {}
         for class_ in type(self).__mro__:
