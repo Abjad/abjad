@@ -61,7 +61,7 @@ class RootedChordClass(PitchClassSet):
         13: 'thirteenth',
         }
 
-    ### CONSTRUCTOR ###
+    ### INITIALIZER ###
 
     def __init__(self, root=None, *args):
         from abjad.tools import tonalanalysistools
