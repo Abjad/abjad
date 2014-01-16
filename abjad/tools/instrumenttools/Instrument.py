@@ -346,8 +346,6 @@ class Instrument(AbjadObject):
 
         Returns pitch range.
         '''
-        if self._pitch_range is None:
-            return self._default_pitch_range
         return self._pitch_range
 
     @property
@@ -356,10 +354,7 @@ class Instrument(AbjadObject):
 
         Returns string.
         '''
-        if self._short_instrument_name is None:
-            return self._default_short_instrument_name
-        else:
-            return self._short_instrument_name
+        return self._short_instrument_name
 
     @property
     def short_instrument_name_markup(self):
