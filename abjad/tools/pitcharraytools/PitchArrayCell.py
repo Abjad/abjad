@@ -85,10 +85,10 @@ class PitchArrayCell(AbjadObject):
 
     ### INTIALIZER ###
 
-    def __init__(self, cell_token=None):
+    def __init__(self, token=None):
         self._parent_row = None
         self._pitches = []
-        pitches, width = self._parse_cell_token(cell_token)
+        pitches, width = self._parse_cell_token(token)
         self._pitches.extend(pitches)
         self._width = width
 
