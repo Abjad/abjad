@@ -60,12 +60,13 @@ class VerticalMoment(SimultaneousSelection):
 
     ### INITIALIZER ###
 
-    def __init__(self, expr=None, offset=None):
-        if expr is None:
+    def __init__(self, music=None, offset=None):
+        self._music = music
+        if music is None:
             self._offset = offset
             self._components = ()
             return
-        governors, components = self._from_expr_and_offset(expr, offset)
+        governors, components = self._from_expr_and_offset(music, offset)
         offset = durationtools.Offset(offset)
         assert isinstance(governors, tuple)
         assert isinstance(components, tuple)
@@ -207,6 +208,11 @@ class VerticalMoment(SimultaneousSelection):
                     result.extend(VerticalMoment._recurse(child, offset))
         return result
 
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(self)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -264,6 +270,14 @@ class VerticalMoment(SimultaneousSelection):
                 result.append(component)
         result = tuple(result)
         return result
+
+    @property
+    def music(self):
+        r'''Gets music of vertical moment.
+
+        Returns component or selection.
+        '''
+        return self._music
 
     @property
     def next_vertical_moment(self):
