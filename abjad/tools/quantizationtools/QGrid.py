@@ -56,13 +56,13 @@ class QGrid(AbjadObject):
         ...     print format(q_event_proxy, 'storage')
         ...
         quantizationtools.QEventProxy(
-            q_event=quantizationtools.PitchedQEvent(
+            quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(250, 1),
                 pitches=(
                     pitchtools.NamedPitch("c'"),
                     ),
                 ),
-            offset=durationtools.Offset(1, 4),
+            durationtools.Offset(1, 4)
             )
 
     ::
@@ -71,13 +71,13 @@ class QGrid(AbjadObject):
         ...     print format(q_event_proxy, 'storage')
         ...
         quantizationtools.QEventProxy(
-            q_event=quantizationtools.PitchedQEvent(
+            quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(750, 1),
                 pitches=(
                     pitchtools.NamedPitch("cs'"),
                     ),
                 ),
-            offset=durationtools.Offset(3, 4),
+            durationtools.Offset(3, 4)
             )
 
     Used internally by the ``Quantizer``.

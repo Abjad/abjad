@@ -184,30 +184,30 @@ class QuantizationJob(AbjadObject):
             ...     print format(q_event_proxy, 'storage')
             ...
             quantizationtools.QEventProxy(
-                q_event=quantizationtools.PitchedQEvent(
+                quantizationtools.PitchedQEvent(
                     offset=durationtools.Offset(250, 1),
                     pitches=(
                         pitchtools.NamedPitch("c'"),
                         pitchtools.NamedPitch("cs'"),
                         ),
                     ),
-                offset=durationtools.Offset(1, 4),
+                durationtools.Offset(1, 4)
                 )
             quantizationtools.QEventProxy(
-                q_event=quantizationtools.SilentQEvent(
+                quantizationtools.SilentQEvent(
                     offset=durationtools.Offset(500, 1),
                     ),
-                offset=durationtools.Offset(1, 2),
+                durationtools.Offset(1, 2)
                 )
             quantizationtools.QEventProxy(
-                q_event=quantizationtools.PitchedQEvent(
+                quantizationtools.PitchedQEvent(
                     offset=durationtools.Offset(750, 1),
                     pitches=(
                         pitchtools.NamedPitch("ef'"),
                         pitchtools.NamedPitch("g'"),
                         ),
                     ),
-                offset=durationtools.Offset(3, 4),
+                durationtools.Offset(3, 4)
                 )
 
         Returns tuple.

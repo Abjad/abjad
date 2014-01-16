@@ -14,7 +14,7 @@ class QEventProxy(AbjadObject):
         >>> proxy = quantizationtools.QEventProxy(q_event, 0.5)
         >>> print format(proxy, 'storage')
         quantizationtools.QEventProxy(
-            q_event=quantizationtools.PitchedQEvent(
+            quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(130, 1),
                 pitches=(
                     pitchtools.NamedPitch("c'"),
@@ -22,7 +22,7 @@ class QEventProxy(AbjadObject):
                     pitchtools.NamedPitch("e'"),
                     ),
                 ),
-            offset=durationtools.Offset(1, 2),
+            durationtools.Offset(1, 2)
             )
 
     Not composer-safe.
@@ -65,8 +65,8 @@ class QEventProxy(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a q-event proxy with offset and q-event equal
-        to those of this q-event proxy. Otherwise false.
+        r'''Is true when `expr` is a q-event proxy with offset and q-event 
+        equal to those of this q-event proxy. Otherwise false.
 
         Returns boolean.
         '''
@@ -122,9 +122,16 @@ class QEventProxy(AbjadObject):
             'q_event',
             'offset',
             )
+        positional_argument_values = []
+        if self.q_event:
+            positional_argument_values.append(self.q_event)
+        if self.offset:
+            positional_argument_values.append(self.offset)
+        positional_argument_values = tuple(positional_argument_values)
         return systemtools.StorageFormatSpecification(
             self,
-            keyword_argument_names=keyword_argument_names,
+            #keyword_argument_names=keyword_argument_names,
+            positional_argument_values=positional_argument_values,
             )
 
     ### PUBLIC PROPERTIES ###
