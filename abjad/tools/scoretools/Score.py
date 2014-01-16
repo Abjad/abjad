@@ -53,8 +53,8 @@ class Score(Context):
 
     ### PUBLIC METHODS ###
 
-    def add_double_bar(self):
-        r'''Add double bar to end of score.
+    def add_final_bar_line(self, abbreviation='|.'):
+        r'''Add final bar line to end of score.
 
 
             >>> staff = Staff("c'4 d'4 e'4 f'4")
@@ -78,7 +78,7 @@ class Score(Context):
 
         ::
 
-            >>> score.add_double_bar()
+            >>> score.add_final_bar_line()
             BarLine('|.')
 
         ..  doctest::
@@ -104,7 +104,7 @@ class Score(Context):
         from abjad.tools import indicatortools
         selection = select(self)
         last_leaf = selection._get_component(scoretools.Leaf, -1)
-        double_bar = indicatortools.BarLine('|.')
+        double_bar = indicatortools.BarLine(abbreviation)
         attach(double_bar, last_leaf)
         return double_bar
 

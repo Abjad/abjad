@@ -173,7 +173,7 @@ Let's add a double bar to the end of the piece:
 
 ::
 
-   >>> score.add_double_bar()
+   >>> score.add_final_bar_line()
    BarLine('|.')
 
 
