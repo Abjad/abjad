@@ -9,7 +9,7 @@ class ProgressIndicator(ContextManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, message='Current progress'):
+    def __init__(self, message=''):
         self._message = message
         self._progress = 0
 
@@ -40,6 +40,16 @@ class ProgressIndicator(ContextManager):
         Returns string.
         '''
         return '<{}()>'.format(type(self).__name__)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def message(self):
+        r'''Gets message of progress indicator.
+
+        Returns string.
+        '''
+        return self._message
 
     ### PUBLIC METHODS ###
 
