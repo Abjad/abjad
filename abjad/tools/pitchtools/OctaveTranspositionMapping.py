@@ -25,25 +25,10 @@ class OctaveTranspositionMapping(TypedList):
     are mutable.
     '''
 
-#    ### CLASS VARIABLES ###
-#
-#    __slots__ = (
-#        )
+    ### CLASS VARIABLES ###
 
-    def __init__(
-        self,
-        tokens=None,
-        item_class=None,
-        keep_sorted=None,
-        custom_identifier=None,
-        ):
-        TypedList.__init__(
-            self,
-            tokens=tokens,
-            item_class=item_class,
-            keep_sorted=keep_sorted,
-            custom_identifier=custom_identifier,
-            )
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 
