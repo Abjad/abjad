@@ -2,11 +2,11 @@
 from abjad import *
 
 
-def test_scoretools_Score_add_double_bar_01():
+def test_scoretools_Score_add_final_bar_line_01():
 
     staff = Staff("c'4 d'4 e'4 f'4")
     score = Score([staff])
-    score.add_double_bar()
+    score.add_final_bar_line()
 
     r'''
     \new Score <<
