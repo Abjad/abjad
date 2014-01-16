@@ -2,14 +2,11 @@
 import collections
 import itertools
 import numbers
-from abjad.tools import scoretools
-from abjad.tools import indicatortools
 from abjad.tools import durationtools
+from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools import sequencetools
-from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -189,13 +186,15 @@ class QEventSequence(AbjadObject):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
-        positional_argument_values = (
-            self.sequence,
-            )
+        positional_argument_values = ()
+        if self.sequence:
+            positional_argument_values = (
+                self.sequence,
+                )
         return systemtools.StorageFormatSpecification(
             self,
-            keyword_argument_names=(),
             positional_argument_values=positional_argument_values,
+            keyword_argument_names=(),
             )
 
     ### PUBLIC PROPERTIES ###

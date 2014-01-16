@@ -180,7 +180,7 @@ class RomanNumeral(AbjadObject):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(
             self,
-            storage_format_pieces=(
+            positional_argument_values=(
                 self._format_string,
                 ),
             )
