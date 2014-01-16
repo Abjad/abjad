@@ -64,3 +64,17 @@ class RedirectedStreams(ContextManager):
         Returns string.
         '''
         return '<{}()>'.format(type(self).__name__)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def stderr(self):
+        r'''Gets stderr of context manager.
+        '''
+        return self._stderr
+
+    @property
+    def stdout(self):
+        r'''Gets stdout of context manager.
+        '''
+        return self._stdout
