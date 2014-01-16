@@ -17,7 +17,6 @@ class Documenter(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    @property
     def __format__(self, format_specification=''):
         r'''Formats documenter.
 
@@ -51,16 +50,6 @@ class Documenter(AbjadObject):
             if part != unique[-1]:
                 unique.append(part)
         return '.'.join(unique)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(self.object_,),
-            )
 
     ### PUBLIC METHODS ###
 

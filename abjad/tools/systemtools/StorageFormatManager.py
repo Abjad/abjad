@@ -362,7 +362,8 @@ class StorageFormatManager(object):
             specification,
             as_storage_format=True,
             )
-        return ''.join(pieces)
+        result = ''.join(pieces)
+        return result
 
     @staticmethod
     def get_tools_package_name(object_):
