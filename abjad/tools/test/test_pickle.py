@@ -11,7 +11,6 @@ from abjad.tools import rhythmtreetools
 from abjad.tools import selectiontools
 from abjad.tools import systemtools
 from abjad.tools import tonalanalysistools
-pytest.skip()
 
 
 _classes_to_fix = (
