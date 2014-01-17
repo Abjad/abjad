@@ -273,7 +273,7 @@ The most common use of LilyPond ``<< >>`` is to group a relatively smaller
 number of note lists together polyphonically.
 
 
-Understanding sequential and simultneous containers
+Understanding sequential and simultaneous containers
 ---------------------------------------------------
 
 Abjad implements LilyPond ``{ }`` and ``<< >>`` in the container 
