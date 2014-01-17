@@ -108,7 +108,8 @@ class DuratedComplexBeam(ComplexBeam):
 
     def _copy_keyword_args(self, new):
         ComplexBeam._copy_keyword_args(self, new)
-        new._durations = self.durations[:]
+        if self.durations is not None:
+            new._durations = self.durations[:]
         new._span = self.span_beam_count
 
     def _format_before_leaf(self, leaf):

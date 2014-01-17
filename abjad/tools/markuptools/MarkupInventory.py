@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.markuptools.Markup import Markup
 from abjad.tools.datastructuretools.TypedList import TypedList
+from abjad.tools.markuptools.Markup import Markup
 
 
 class MarkupInventory(TypedList):
@@ -17,6 +17,11 @@ class MarkupInventory(TypedList):
 
     Markup inventories implement the list interface and are mutable.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
 
     ### PRIVATE PROPERTIES ###
 

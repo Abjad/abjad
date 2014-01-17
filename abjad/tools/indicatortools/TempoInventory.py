@@ -23,6 +23,11 @@ class TempoInventory(TypedList):
     Tempo inventories implement list interface and are mutable.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### PRIVATE PROPERTIES ###
 
     @property

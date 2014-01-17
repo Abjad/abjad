@@ -2,7 +2,6 @@
 import copy
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
-from abjad.tools import scoretools
 from abjad.tools.quantizationtools.QTarget import QTarget
 from abjad.tools.topleveltools import attach
 
@@ -14,6 +13,11 @@ class BeatwiseQTarget(QTarget):
 
     Used internally by ``Quantizer``.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
 
     ### PUBLIC PROPERTIES ###
 

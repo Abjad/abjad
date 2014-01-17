@@ -106,6 +106,25 @@ class LilyPondParser(abctools.Parser):
     - Embedded Scheme statements (anything beginning with ``#``)
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_chord_pitch_orders',
+        '_current_module',
+        '_default_duration',
+        '_default_language',
+        '_guile',
+        '_language_pitch_names',
+        '_last_chord',
+        '_lexdef',
+        '_markup_functions',
+        '_markup_list_functions',
+        '_pitch_names',
+        '_repeated_chords',
+        '_scope_stack',
+        '_syndef',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, default_language='english', debug=False):

@@ -56,6 +56,11 @@ class RhythmTreeParser(Parser):
     Returns `RhythmTreeParser` instance.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### PUBLIC PROPERTIES ###
 
     @property

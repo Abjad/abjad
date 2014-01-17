@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
 import bisect
-from abjad.tools import scoretools
-from abjad.tools import indicatortools
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
