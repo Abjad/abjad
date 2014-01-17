@@ -8,4 +8,7 @@ class PerformerInventory(TypedList):
     Performer inventories implement the list interface and are mutable.
     '''
 
-    pass
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )

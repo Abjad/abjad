@@ -70,9 +70,7 @@ class StemTremolo(AbjadObject):
 
         Returns new stem tremolo.
         '''
-        new = type(self)(self.tremolo_flags)
-        new._format_slot = self._format_slot
-        return new
+        return type(self)(self.tremolo_flags)
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a stem tremolo with equal tremolo flags.

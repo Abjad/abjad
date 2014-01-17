@@ -17,6 +17,29 @@ class SchemeParser(abctools.Parser):
     It is intended to be used only in conjunction with `LilyPondParser`.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        'cursor',
+        'cursor_end',
+        'expression_depth',
+        'result',
+        'string_accumulator',
+        )
+
+    ### INITIALIZER ###
+
+    def __init__(self, debug=False):
+        self.cursor = None
+        self.cursor_end = None
+        self.expression_depth = None
+        self.result = None
+        self.string_accumulator = None
+        abctools.Parser.__init__(
+            self,
+            debug=debug,
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property

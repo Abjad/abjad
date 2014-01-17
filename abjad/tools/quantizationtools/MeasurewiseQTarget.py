@@ -15,6 +15,11 @@ class MeasurewiseQTarget(QTarget):
     Used internally by ``Quantizer``.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### PUBLIC PROPERTIES ###
 
     @property

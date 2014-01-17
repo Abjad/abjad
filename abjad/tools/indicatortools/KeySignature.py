@@ -49,8 +49,8 @@ class KeySignature(AbjadObject):
         Returns new key signature.
         '''
         return type(self)(
-            self._tonic, 
-            self._mode,
+            self.tonic, 
+            self.mode,
             )
 
     def __eq__(self, arg):
