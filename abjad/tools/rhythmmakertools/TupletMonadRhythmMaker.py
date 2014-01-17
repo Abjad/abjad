@@ -39,9 +39,10 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
         Returns list of tuplets.
         '''
+        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
         result = []
-        for division in divisions:
-            monad = self._make_monad(division)
+        for duration_pair in duration_pairs:
+            monad = self._make_monad(duration_pair)
             result.append([monad])
         return result
 

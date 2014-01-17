@@ -36,10 +36,11 @@ class SkipRhythmMaker(RhythmMaker):
 
         Returns list of skips.
         '''
+        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
         result = []
-        for division in divisions:
+        for duration_pair in duration_pairs:
             written_duration = durationtools.Duration(1)
-            multiplied_duration = division
+            multiplied_duration = duration_pair
             skip = scoretools.make_skips_with_multiplied_durations(
                 written_duration, [multiplied_duration])
             result.append(skip)

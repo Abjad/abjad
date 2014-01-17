@@ -92,9 +92,10 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         Returns list of selections. Each selection contains exactly one
         fixed-duration tuplet.
         '''
+        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
         result = []
-        for division in divisions:
-            tuplet = self._make_tuplet(division)
+        for duration_pair in duration_pairs:
+            tuplet = self._make_tuplet(duration_pair)
             selection = selectiontools.Selection(tuplet)
             result.append(selection)
         return result

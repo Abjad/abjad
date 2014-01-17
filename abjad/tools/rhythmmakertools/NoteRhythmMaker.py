@@ -26,7 +26,7 @@ class NoteRhythmMaker(RhythmMaker):
             >>> show(lilypond_file) # doctest: +SKIP
 
     ..  container:: example
-    
+
         Forbids notes with written duration greater than or equal to ``1/2``
         of a whole note:
 
@@ -56,11 +56,12 @@ class NoteRhythmMaker(RhythmMaker):
 
         Returns list of selections.
         '''
+        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
         result = []
-        for division in divisions:
+        for duration_pair in duration_pairs:
             notes = scoretools.make_leaves(
-                pitches=0, 
-                durations=[division],
+                pitches=0,
+                durations=[duration_pair],
                 decrease_durations_monotonically=\
                     self.decrease_durations_monotonically,
                 forbidden_written_duration=self.forbidden_written_duration,

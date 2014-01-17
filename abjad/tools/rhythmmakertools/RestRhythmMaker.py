@@ -72,11 +72,12 @@ class RestRhythmMaker(RhythmMaker):
 
         Returns list of selections.
         '''
+        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
         result = []
-        for division in divisions:
+        for duration_pair in duration_pairs:
             rests = scoretools.make_leaves(
                 pitches=None, 
-                durations=[division],
+                durations=[duration_pair],
                 decrease_durations_monotonically=\
                     self.decrease_durations_monotonically,
                 forbidden_written_duration=self.forbidden_written_duration,

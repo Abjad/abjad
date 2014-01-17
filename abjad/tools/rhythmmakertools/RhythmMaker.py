@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 import abc
-import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
+from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -48,7 +48,8 @@ class RhythmMaker(AbjadObject):
 
         Returns duration pairs and seed list.
         '''
-        duration_pairs = [durationtools.Duration(x).pair for x in divisions]
+        duration_pairs = [mathtools.NonreducedFraction(x).pair 
+            for x in divisions]
         seeds = self._to_tuple(seeds)
         return duration_pairs, seeds
 
