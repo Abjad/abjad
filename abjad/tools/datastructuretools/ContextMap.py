@@ -9,8 +9,7 @@ class ContextMap(AbjadObject):
     ::
 
         >>> template = templatetools.StringOrchestraScoreTemplate()
-        >>> score = template()
-        >>> context_map = datastructuretools.ContextMap(score)
+        >>> context_map = datastructuretools.ContextMap(template)
 
     ::
 
@@ -140,22 +139,22 @@ class ContextMap(AbjadObject):
     __slots__ = (
         '_components',
         '_score',
+        '_score_template',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, score=None):
+    def __init__(self, score_template=None):
         from abjad.tools import datastructuretools
         from abjad.tools import scoretools
         from abjad.tools import templatetools
-        if score is None:
-            template = templatetools.StringOrchestraScoreTemplate()
-            score = template()
+        if score_template is None:
+            score_template = templatetools.StringOrchestraScoreTemplate()
+        score = score_template()
         assert isinstance(score, scoretools.Score), repr(score)
         self._score = score
+        self._score_template = score_template
         self._components = {}
-        if self._score is None:
-            return
         for context in iterate(self._score).by_class(scoretools.Context):
             assert context.name is not None, context.name
             component = self.ContextMapComponent(
@@ -179,16 +178,21 @@ class ContextMap(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def score(self):
-        r'''Score on which context map is based.
+    def score_template(self):
+        r'''Score template on which context map is based.
         
         ..  container:: example
 
             ::
 
-                >>> context_map.score
-                Score-"String Orchestra Score"<<4>>
+                >>> print format(context_map.score_template)
+                templatetools.StringOrchestraScoreTemplate(
+                    violin_count=6,
+                    viola_count=4,
+                    cello_count=3,
+                    contrabass_count=2,
+                    )
 
-        Returns score or none.
+        Returns score template or none.
         '''
-        return self._score
+        return self._score_template
