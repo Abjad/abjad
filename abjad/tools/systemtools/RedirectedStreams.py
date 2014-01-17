@@ -65,6 +65,18 @@ class RedirectedStreams(ContextManager):
         '''
         return '<{}()>'.format(type(self).__name__)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(),
+            keyword_argument_names=(),
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property

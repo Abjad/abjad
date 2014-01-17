@@ -2,6 +2,7 @@
 import inspect
 import pytest
 import abjad
+from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
 from abjad.tools import tonalanalysistools
 
@@ -22,6 +23,7 @@ def test___format___01(class_):
 
 # TODO: make these work eventually
 _classes_to_temporarily_skip = (
+    datastructuretools.ContextMap,
     tonalanalysistools.RootedChordClass,
     )
 
