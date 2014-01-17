@@ -498,6 +498,14 @@ class ReducedLyParser(abctools.Parser):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def debug(self):
+        r'''Gets debug boolean of reduced ly parser.
+
+        Returns boolean.
+        '''
+        return self._debug
+
+    @property
     def lexer_rules_object(self):
         r'''Lexer rules object of reduced ly parser.
         '''

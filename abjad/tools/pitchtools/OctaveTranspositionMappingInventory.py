@@ -54,6 +54,11 @@ class OctaveTranspositionMappingInventory(TypedList):
     and are mutable.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### PRIVATE PROPERTIES ###
 
     @property

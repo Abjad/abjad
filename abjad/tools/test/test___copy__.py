@@ -4,6 +4,7 @@ import inspect
 import pytest
 import abjad
 from abjad.tools import documentationtools
+from abjad.tools import scoretools
 pytest.skip()
 
 
@@ -19,5 +20,7 @@ def test___copy___01(class_):
             instance_two = copy.copy(instance_one)
             instance_one_format = format(instance_one, 'storage')
             instance_two_format = format(instance_two, 'storage')
-            assert instance_one_format == instance_two_format
+            if not issubclass(class_, scoretools.Container):
+                assert instance_one_format == instance_two_format
+            # TODO: eventually this second asset should also pass
             #assert instance_one == instance_two
