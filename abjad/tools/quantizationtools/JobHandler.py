@@ -21,4 +21,4 @@ class JobHandler(AbjadObject):
     def __call__(self, jobs):
         r'''Calls job handler.
         '''
-        raise NotImplemented
+        raise NotImplementedError

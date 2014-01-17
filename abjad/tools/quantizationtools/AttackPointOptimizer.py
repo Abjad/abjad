@@ -25,4 +25,4 @@ class AttackPointOptimizer(AbjadObject):
     def __call__(self, expr):
         r'''Calls attack-point optimizer.
         '''
-        raise NotImplemented
+        raise NotImplementedError

@@ -133,7 +133,7 @@ class QSchema(AbjadObject):
     def item_class(self):
         r'''The schema's item class.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     def items(self):
@@ -151,13 +151,13 @@ class QSchema(AbjadObject):
     def target_class(self):
         r'''The schema's target class.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @abc.abstractproperty
     def target_item_class(self):
         r'''The schema's target class' item class.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     def tempo(self):

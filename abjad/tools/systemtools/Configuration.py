@@ -123,7 +123,7 @@ class Configuration(AbjadObject):
 
     @abc.abstractproperty
     def _initial_comment(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     def _option_comments(self):
@@ -133,7 +133,7 @@ class Configuration(AbjadObject):
 
     @abc.abstractproperty
     def _option_definitions(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     def _option_specification(self):
@@ -149,7 +149,7 @@ class Configuration(AbjadObject):
 
         Returns string.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @abc.abstractproperty
     def configuration_file_name(self):
@@ -157,7 +157,7 @@ class Configuration(AbjadObject):
 
         Returns string.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     def configuration_file_path(self):

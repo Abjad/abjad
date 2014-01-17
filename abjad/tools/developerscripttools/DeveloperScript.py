@@ -111,7 +111,7 @@ class DeveloperScript(abctools.AbjadObject):
     def long_description(self):
         r'''The long description, printed after arguments explanations.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     def program_name(self):
@@ -134,13 +134,13 @@ class DeveloperScript(abctools.AbjadObject):
 
         Also used as a summary in other contexts.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @abc.abstractproperty
     def version(self):
         r'''Version number of developer script.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     ### PUBLIC METHODS ###
 

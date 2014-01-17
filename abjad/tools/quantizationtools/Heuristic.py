@@ -37,4 +37,4 @@ class Heuristic(AbjadObject):
 
     @abc.abstractmethod
     def _process(self, q_target_beats):
-        raise NotImplemented
+        raise NotImplementedError

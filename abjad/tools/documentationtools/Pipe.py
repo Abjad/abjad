@@ -6,7 +6,7 @@ from abjad.tools import abctools
 
 
 class Pipe(abctools.AbjadObject, subprocess.Popen):
-    r'''A two-way, non-blocking pipe for interprocess communication:
+    r'''A two-way, non-blocking pipe for interprocess communication.
 
     ::
 
@@ -14,16 +14,7 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
         >>> pipe.writeline('my_list = [1, 2, 3]') # doctest: +SKIP
         >>> pipe.writeline('print my_list')       # doctest: +SKIP
 
-    Return `Pipe` instance.
     '''
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = (
-        '_arguments', 
-        '_executable', 
-        '_timeout',
-        )
 
     ### INITIALIZER ###
 
@@ -34,10 +25,13 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
         argv = [executable]
         if arguments != None:
             argv = argv + list(arguments)
-        subprocess.Popen.__init__(self, argv,
+        subprocess.Popen.__init__(
+            self, 
+            argv,
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT)
+            stderr=subprocess.STDOUT,
+            )
 
     ### PUBLIC PROPERTIES ###
 
