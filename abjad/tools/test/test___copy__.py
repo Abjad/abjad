@@ -5,7 +5,6 @@ import pytest
 import abjad
 from abjad.tools import documentationtools
 from abjad.tools import scoretools
-#pytest.skip()
 
 
 classes = documentationtools.list_all_abjad_classes()

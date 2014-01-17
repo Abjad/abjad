@@ -41,7 +41,6 @@ class LilyPondCommand(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_format_leaf_children',
         '_format_slot',
         '_name',
         )

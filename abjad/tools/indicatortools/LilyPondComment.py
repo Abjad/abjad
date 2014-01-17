@@ -29,7 +29,6 @@ class LilyPondComment(AbjadObject):
 
     __slots__ = (
         '_contents_string',
-        '_format_leaf_children',
         '_format_slot',
         )
 
