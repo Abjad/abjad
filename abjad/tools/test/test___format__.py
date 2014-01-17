@@ -42,5 +42,5 @@ def test___format___02(class_):
         assert isinstance(instance_one_format, str)
         assert instance_one_format != ''
         instance_two = eval(instance_one_format, environment)
-#        instance_two_format = format(instance_two, 'storage')
-#        assert instance_one_format == instance_two_format
+        instance_two_format = format(instance_two, 'storage')
+        assert instance_one_format == instance_two_format
