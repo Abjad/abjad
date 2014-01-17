@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import iterate
 
@@ -17,6 +18,32 @@ class ContextMap(AbjadObject):
         >>> context_map['Violin Staff Group']['color'] = 'blue'
         >>> context_map['Contrabass Staff Group']['color'] = 'green'
         >>> context_map['Contrabass 1 Voice']['color'] = 'yellow'
+
+    ::
+
+        >>> print format(context_map)
+        datastructuretools.ContextMap(
+            score_template=templatetools.StringOrchestraScoreTemplate(
+                violin_count=6,
+                viola_count=4,
+                cello_count=3,
+                contrabass_count=2,
+                ),
+            settings={
+                'Contrabass 1 Voice': {
+                    'color': 'yellow',
+                    },
+                'Contrabass Staff Group': {
+                    'color': 'green',
+                    },
+                'String Orchestra Score': {
+                    'color': 'red',
+                    },
+                'Violin Staff Group': {
+                    'color': 'blue',
+                    },
+                },
+            )
 
     ::
 
@@ -127,6 +154,7 @@ class ContextMap(AbjadObject):
 
             Returns value of `key`.
             '''
+            assert isinstance(key, str)
             return self._as_chain_map().__getitem__(key)
 
         def __setitem__(self, key, value):
@@ -134,6 +162,7 @@ class ContextMap(AbjadObject):
 
             Returns none.
             '''
+            assert isinstance(key, str)
             self._context_settings[key] = value
 
     __slots__ = (
@@ -144,8 +173,7 @@ class ContextMap(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, score_template=None):
-        from abjad.tools import datastructuretools
+    def __init__(self, score_template=None, settings=None):
         from abjad.tools import scoretools
         from abjad.tools import templatetools
         if score_template is None:
@@ -162,6 +190,11 @@ class ContextMap(AbjadObject):
                 context.name,
                 )
             self._components[context.name] = component
+        assert isinstance(settings, (dict, type(None)))
+        if isinstance(settings, dict):
+            for context_name, context_settings in settings.iteritems():
+                for key, value in context_settings.iteritems():
+                    self[context_name][key] = value
 
     ### SPECIAL METHODS ###
 
@@ -196,3 +229,23 @@ class ContextMap(AbjadObject):
         Returns score template or none.
         '''
         return self._score_template
+
+    @property
+    def settings(self):
+        r'''All settings for context map.
+
+        Returns ordered dict or none.
+        '''
+        settings = collections.OrderedDict()
+        for context_name in sorted(self._components):
+            component = self._components[context_name]
+            if not len(component):
+                continue
+            context_settings = collections.OrderedDict()
+            for key in sorted(component._context_settings):
+                context_settings[key] = component._context_settings[key]
+            if context_settings:
+                settings[context_name] = context_settings
+        if not settings:
+            return None
+        return settings
