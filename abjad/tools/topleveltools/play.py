@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import pytest
-pytest.skip('TODO: unskip me before building 2.15')
 
 
 def play(expr):
