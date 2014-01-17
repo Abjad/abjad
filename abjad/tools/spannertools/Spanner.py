@@ -249,7 +249,7 @@ class Spanner(AbjadObject):
         return result
 
     def _copy_keyword_args(self, new):
-        raise NotImplemented
+        raise NotImplementedError
 
     def _detach(self):
         self._sever_all_components()

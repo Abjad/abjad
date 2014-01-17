@@ -118,7 +118,7 @@ class QTarget(AbjadObject):
     def beats(self):
         r'''Beats of q-target.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     def duration_in_ms(self):
@@ -133,7 +133,7 @@ class QTarget(AbjadObject):
     def item_class(self):
         r'''Item class of q-target.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     def items(self):
@@ -162,7 +162,7 @@ class QTarget(AbjadObject):
     @abc.abstractmethod
     def _notate(
         self, grace_handler, attack_point_optimizer, attach_tempos):
-        raise NotImplemented
+        raise NotImplementedError
 
     def _notate_leaves_pairwise(self, voice, grace_handler):
         # check first against second, notating first, tying as necessry

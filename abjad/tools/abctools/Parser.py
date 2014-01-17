@@ -101,7 +101,7 @@ class Parser(AbjadObject):
     def lexer_rules_object(self):
         r'''The object containing the parser's lexical rule definitions.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     def logger(self):
@@ -132,7 +132,7 @@ class Parser(AbjadObject):
     def parser_rules_object(self):
         r'''The object containing the parser's syntactical rule definitions.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     def pickle_path(self):

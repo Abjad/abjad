@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import indicatortools
 from abjad.tools import durationtools
+from abjad.tools import indicatortools
 from abjad.tools.quantizationtools.QSchema import QSchema
 
 

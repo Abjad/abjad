@@ -124,7 +124,7 @@ class SearchTree(AbjadObject):
 
     @abc.abstractmethod
     def _find_leaf_subdivisions(self, leaf):
-        raise NotImplemented
+        raise NotImplementedError
 
     def _generate_all_subdivision_commands(self, q_grid):
         indices, subdivisions = \
@@ -138,7 +138,7 @@ class SearchTree(AbjadObject):
 
     @abc.abstractmethod
     def _is_valid_definition(self, definition):
-        raise NotImplemented
+        raise NotImplementedError
 
     ### PUBLIC PROPERTIES ###
 
@@ -148,7 +148,7 @@ class SearchTree(AbjadObject):
 
         Returns dictionary.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     def definition(self):

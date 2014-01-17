@@ -24,4 +24,4 @@ class Music(AbjadObject):
     def construct(self):
         r'''Please document.
         '''
-        raise NotImplemented
+        raise NotImplementedError

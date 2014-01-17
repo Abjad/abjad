@@ -87,7 +87,7 @@ class ReSTDirective(TreeContainer):
     def directive(self):
         r'''Gets and sets directive of ReST directive.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     def node_class(self):

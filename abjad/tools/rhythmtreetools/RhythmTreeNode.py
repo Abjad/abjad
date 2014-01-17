@@ -28,7 +28,7 @@ class RhythmTreeNode(TreeNode):
     def __call__(self, pulse_duration):
         r'''Calls rhythm tree node on `pulse_duration`.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     ### PRIVATE METHODS ###
 
@@ -60,7 +60,7 @@ class RhythmTreeNode(TreeNode):
 
     @abc.abstractproperty
     def _pretty_rtm_format_pieces(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     def _state_flag_names(self):
@@ -107,7 +107,7 @@ class RhythmTreeNode(TreeNode):
     def graphviz_graph(self):
         r'''Graphviz graph of rhythm tree node.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     def parentage_ratios(self):
@@ -254,7 +254,7 @@ class RhythmTreeNode(TreeNode):
 
         Returns string.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @property
     def start_offset(self):

@@ -16,7 +16,7 @@ class ContextManager(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     ### SPECIAL METHODS ###
 
@@ -24,10 +24,10 @@ class ContextManager(AbjadObject):
     def __enter__(self):
         r'''Enters context manager.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     @abc.abstractmethod
     def __exit__(self, exc_type, exc_value, traceback):
         r'''Exits context manager.
         '''
-        raise NotImplemented
+        raise NotImplementedError
