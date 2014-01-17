@@ -46,9 +46,6 @@ class Glissando(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _copy_keyword_args(self, new):
-        pass
-
     def _format_right_of_leaf(self, leaf):
         result = []
         if not self._is_my_last_leaf(leaf):

@@ -8,10 +8,9 @@ def test_spannertools_Spanner__is_my_first_leaf_01():
     '''
 
     class MockSpanner(spannertools.Spanner):
+
         def __init__(self, components=None):
             spannertools.Spanner.__init__(self, components)
-        def _copy_keyword_args(self, new):
-            pass
 
     container = Container("c'8 cs'8 d'8 ef'8")
     spanner = MockSpanner()
@@ -44,10 +43,9 @@ def test_spannertools_Spanner__is_my_first_leaf_02():
     '''
 
     class MockSpanner(spannertools.Spanner):
+
         def __init__(self, components=None):
             spannertools.Spanner.__init__(self, components)
-        def _copy_keyword_args(self, new):
-            pass
 
     container = Container(
         r'''

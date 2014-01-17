@@ -132,11 +132,19 @@ class ReducedLyParser(abctools.Parser):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_default_duration',
+        '_toplevel_component_count',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, debug=False):
-        abctools.Parser.__init__(self, debug=debug)
         self._default_duration = durationtools.Duration((1, 4))
+        self._toplevel_component_count = None
+        abctools.Parser.__init__(self, debug=debug)
 
     ### LEX SETUP ###
 

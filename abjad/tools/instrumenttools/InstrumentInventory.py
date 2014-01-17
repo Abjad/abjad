@@ -15,6 +15,11 @@ class InstrumentInventory(TypedList):
     Instrument inventories implement list interface and are mutable.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
