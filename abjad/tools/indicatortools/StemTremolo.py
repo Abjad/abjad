@@ -23,14 +23,14 @@ class StemTremolo(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_format_slot', 
         '_tremolo_flags',
         )
+
+    _format_slot = 'right'
 
     ### INITIALIZER ###
 
     def __init__(self, *args):
-        self._format_slot = 'right'
         if len(args) == 1 and isinstance(args[0], type(self)):
             tremolo_flags = args[0].tremolo_flags
         elif len(args) == 1 and not isinstance(args[0], type(self)):
