@@ -274,7 +274,7 @@ number of note lists together polyphonically.
 
 
 Understanding sequential and simultaneous containers
----------------------------------------------------
+----------------------------------------------------
 
 Abjad implements LilyPond ``{ }`` and ``<< >>`` in the container 
 ``is_simultaneous`` attribute.
