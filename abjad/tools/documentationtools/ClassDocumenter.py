@@ -147,7 +147,6 @@ class ClassDocumenter(Documenter):
             object_ = type(None)
         assert isinstance(object_, type)
         Documenter.__init__(self, object_, prefix)
-
         class_methods = []
         data = []
         inherited_attributes = []
@@ -156,7 +155,6 @@ class ClassDocumenter(Documenter):
         readwrite_properties = []
         special_methods = []
         static_methods = []
-
         attrs = inspect.classify_class_attrs(self.object_)
         for attr in attrs:
             if attr.defining_class is object:
@@ -189,7 +187,6 @@ class ClassDocumenter(Documenter):
             elif attr.kind == 'data' and not attr.name.startswith('_') \
                 and attr.name not in getattr(self.object_, '__slots__', ()):
                 data.append(attr)
-
         self._class_methods = tuple(sorted(class_methods))
         self._data = tuple(sorted(data))
         self._inherited_attributes = tuple(sorted(inherited_attributes))

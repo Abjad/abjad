@@ -32,7 +32,6 @@ classes = documentationtools.list_all_abjad_classes()
 def test___format___02(class_):
     r'''All storage-formattable classes have evaluable storage format.
     '''
-    pytest.skip()
 
     if '_storage_format_specification' in dir(class_) and \
         not inspect.isabstract(class_) and \

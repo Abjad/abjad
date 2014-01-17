@@ -28,8 +28,11 @@ class DateTimeToken(AbjadObject):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
             return self._lilypond_format
+        elif format_specification == 'storage':
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
     def __repr__(self):

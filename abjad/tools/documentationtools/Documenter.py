@@ -39,6 +39,26 @@ class Documenter(AbjadObject):
         prefix = prefix or self.prefix
         return type(self)(object_=object_, prefix=prefix)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        keyword_argument_names = (
+            'prefix',
+            )
+        if self.object_ is type(None):
+            positional_argument_values = ()
+        else:
+            positional_argument_values = (
+                self.object_,
+                )
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=positional_argument_values,
+            keyword_argument_names=keyword_argument_names,
+            )
+
     ### PRIVATE METHODS ###
 
     def _shrink_module_name(self, module):
