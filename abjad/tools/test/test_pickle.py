@@ -14,7 +14,6 @@ from abjad.tools import tonalanalysistools
 
 
 _classes_to_fix = (
-    datastructuretools.ContextMap,
     documentationtools.ClassDocumenter,
     documentationtools.InheritanceGraph,
     documentationtools.Pipe,
