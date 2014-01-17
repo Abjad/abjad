@@ -8,8 +8,6 @@ from abjad.tools import lilypondparsertools
 from abjad.tools import quantizationtools
 from abjad.tools import rhythmtreetools
 from abjad.tools import scoretools
-pytest.skip()
-
 
 
 # TODO: make these work
