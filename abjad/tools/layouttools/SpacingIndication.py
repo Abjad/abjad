@@ -62,7 +62,7 @@ class SpacingIndication(AbjadObject):
                 proportional_notation_duration
         elif len(args) == 0:
             tempo = indicatortools.Tempo()
-            proportional_notation_duration = (1, 68)
+            proportional_notation_duration = durationtools.Duration(1, 68)
             self._tempo_indication = tempo
             self._proportional_notation_duration = \
                 proportional_notation_duration
