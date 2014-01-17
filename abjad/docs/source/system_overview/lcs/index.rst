@@ -13,7 +13,7 @@ free floating *connectors* or Spanners.
 .. image:: images/container-spanner.png
 
 There can be any number of Spanners, they may overlap, and they may
-connect to different levels of the tree hierarchy. The spanner
+connect to different levels of the tree hierarchy. The spanners
 attach to the elements of the tree, so a tree structure must exist for
 spanners to be made manifest.
 
