@@ -63,6 +63,10 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_denominator_multiplier_exponent',
+        )
+
     _human_readable_class_name = 'even-run rhythm-maker'
 
     ### GALLERY INPUT ###

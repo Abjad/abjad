@@ -27,10 +27,10 @@ class TupletMonadRhythmMaker(RhythmMaker):
     Usage follows the two-step configure-then-call pattern shown here.
     '''
 
-#    ### CLASS VARIABLES ###
-#
-#    __slots__ = (
-#        )
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 

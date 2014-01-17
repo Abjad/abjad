@@ -96,17 +96,17 @@ class TaleaRhythmMaker(RhythmMaker):
 
     ### CLASS VARIABLES ###
 
-#    __slots__ = (
-#        '_talea',
-#        '_talea_denominator',
-#        '_prolation_addenda',
-#        '_burnish_specifier',
-#        '_secondary_divisions',
-#        '_helper_functions',
-#        '_tie_split_notes',
-#        '_burnish_divisions',
-#        '_burnish_output',
-#        )
+    __slots__ = (
+        '_talea',
+        '_talea_denominator',
+        '_prolation_addenda',
+        '_burnish_specifier',
+        '_secondary_divisions',
+        '_helper_functions',
+        '_tie_split_notes',
+        '_burnish_divisions',
+        '_burnish_output',
+        )
 
     ### INITIALIZER ###
 
