@@ -39,7 +39,9 @@ class AbjadObject(object):
         return str(self)
 
     def __getstate__(self):
-        r'''Gets object state.
+        r'''Gets state of Abjad object.
+
+        Returns dictionary.
         '''
         if hasattr(self, '__dict__'):
             return vars(self)

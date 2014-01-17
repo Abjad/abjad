@@ -8,6 +8,11 @@ class SimultaneousSelection(Selection):
     Simultaneously selections implement no duration properties.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### PUBLIC METHODS ###
 
     def get_vertical_moment_at(self, offset):
