@@ -5,7 +5,7 @@ Tuplets
 Making a tuplet from a LilyPond input string
 --------------------------------------------
 
-You can tuplets from a LilyPond input string:
+You can create tuplets from a LilyPond input string:
 
 ::
 
