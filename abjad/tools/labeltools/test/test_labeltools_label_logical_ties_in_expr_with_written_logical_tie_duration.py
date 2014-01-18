@@ -35,4 +35,4 @@ def test_labeltools_label_logical_ties_in_expr_with_written_logical_tie_duration
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

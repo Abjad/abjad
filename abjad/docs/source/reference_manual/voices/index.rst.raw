@@ -93,7 +93,7 @@ Inspecting voice duration
 Use the inspector to get the duration of a voice:
 
 <abjad>
-inspect(voice).get_duration()
+inspect_(voice).get_duration()
 </abjad>
 
 

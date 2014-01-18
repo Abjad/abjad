@@ -45,7 +45,7 @@ def test_scoretools_Chord___format___03():
         '''
         )
 
-    assert inspect(chord).is_well_formed()
+    assert inspect_(chord).is_well_formed()
 
 
 def test_scoretools_Chord___format___04():

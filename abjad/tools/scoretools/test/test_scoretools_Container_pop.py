@@ -40,11 +40,11 @@ def test_scoretools_Container_pop_01():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
     "Result is now d'8 [ ]"
 
-    assert inspect(result).is_well_formed()
+    assert inspect_(result).is_well_formed()
     assert format(result) == "d'8 [ ]"
 
 
@@ -86,7 +86,7 @@ def test_scoretools_Container_pop_02():
         }
         '''
         )
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
     assert systemtools.TestManager.compare(
         sequential,
@@ -98,4 +98,4 @@ def test_scoretools_Container_pop_02():
         '''
         )
 
-    assert inspect(sequential).is_well_formed()
+    assert inspect_(sequential).is_well_formed()

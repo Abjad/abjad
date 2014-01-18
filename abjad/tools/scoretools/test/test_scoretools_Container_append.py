@@ -26,7 +26,7 @@ def test_scoretools_Container_append_01():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container_append_02():
@@ -50,7 +50,7 @@ def test_scoretools_Container_append_02():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
+    assert inspect_(tuplet).is_well_formed()
 
 
 def test_scoretools_Container_append_03():
@@ -118,7 +118,7 @@ def test_scoretools_Container_append_04():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
     "Container u is now ..."
 
@@ -133,7 +133,7 @@ def test_scoretools_Container_append_04():
         '''
         )
 
-    assert inspect(u).is_well_formed()
+    assert inspect_(u).is_well_formed()
 
 
 def test_scoretools_Container_append_05():
@@ -171,7 +171,7 @@ def test_scoretools_Container_append_05():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container_append_06():

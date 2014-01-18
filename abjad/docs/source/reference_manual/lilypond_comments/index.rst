@@ -139,7 +139,7 @@ Use the inspector to get the LilyPond comments attached to any component:
 
 ::
 
-   >>> inspect(note).get_indicators(indicatortools.LilyPondComment)
+   >>> inspect_(note).get_indicators(indicatortools.LilyPondComment)
    (LilyPondComment('This is a LilyPond comment before a note.', 'before'),)
 
 

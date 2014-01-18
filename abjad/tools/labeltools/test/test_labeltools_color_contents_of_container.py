@@ -47,4 +47,4 @@ def test_labeltools_color_contents_of_container_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

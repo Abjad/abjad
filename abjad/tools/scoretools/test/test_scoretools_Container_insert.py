@@ -27,7 +27,7 @@ def test_scoretools_Container_insert_01():
     }
     '''
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
     assert systemtools.TestManager.compare(
         voice,
         r'''
@@ -61,7 +61,7 @@ def test_scoretools_Container_insert_02():
     }
     '''
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
     assert systemtools.TestManager.compare(
         voice,
         r'''
@@ -96,7 +96,7 @@ def test_scoretools_Container_insert_03():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -130,7 +130,7 @@ def test_scoretools_Container_insert_04():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -164,7 +164,7 @@ def test_scoretools_Container_insert_05():
     }
     '''
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
     assert systemtools.TestManager.compare(
         voice,
         r'''
@@ -198,7 +198,7 @@ def test_scoretools_Container_insert_06():
     }
     '''
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
     assert systemtools.TestManager.compare(
         voice,
         r'''
@@ -223,8 +223,8 @@ def test_scoretools_Container_insert_07():
     note = voice[0]
     staff.insert(1, voice[0])
 
-    assert inspect(voice).is_well_formed()
-    assert inspect(staff).is_well_formed()
+    assert inspect_(voice).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert not note in voice
     assert note._parent is staff
 
@@ -246,7 +246,7 @@ def test_scoretools_Container_insert_08():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -285,7 +285,7 @@ def test_scoretools_Container_insert_09():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -319,7 +319,7 @@ def test_scoretools_Container_insert_10():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -353,7 +353,7 @@ def test_scoretools_Container_insert_11():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -387,7 +387,7 @@ def test_scoretools_Container_insert_12():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -421,7 +421,7 @@ def test_scoretools_Container_insert_13():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -458,7 +458,7 @@ def test_scoretools_Container_insert_14():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container_insert_15():
@@ -471,7 +471,7 @@ def test_scoretools_Container_insert_15():
     note = voice[0]
     staff.insert(1, voice[0], fracture_spanners=True)
 
-    assert inspect(voice).is_well_formed()
-    assert inspect(staff).is_well_formed()
+    assert inspect_(voice).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert not note in voice
     assert note._parent is staff

@@ -109,7 +109,7 @@ Inspecting duration
 Use the inspector to get the duration of a score:
 
 <abjad>
-inspect(score).get_duration()
+inspect_(score).get_duration()
 </abjad>
 
 

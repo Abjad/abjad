@@ -39,7 +39,7 @@ def test_scoretools_Container___setitem___integer_01():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___integer_02():
@@ -82,7 +82,7 @@ def test_scoretools_Container___setitem___integer_02():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___integer_03():
@@ -127,7 +127,7 @@ def test_scoretools_Container___setitem___integer_03():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___integer_04():
@@ -172,7 +172,7 @@ def test_scoretools_Container___setitem___integer_04():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___integer_05():
@@ -220,7 +220,7 @@ def test_scoretools_Container___setitem___integer_05():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___integer_06():
@@ -264,7 +264,7 @@ def test_scoretools_Container___setitem___integer_06():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___integer_07():
@@ -314,7 +314,7 @@ def test_scoretools_Container___setitem___integer_07():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___integer_08():
@@ -361,7 +361,7 @@ def test_scoretools_Container___setitem___integer_08():
     }
     '''
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
     assert systemtools.TestManager.compare(
         voice,
@@ -386,7 +386,7 @@ def test_scoretools_Container___setitem___integer_08():
         '''
         )
 
-    assert inspect(u).is_well_formed()
+    assert inspect_(u).is_well_formed()
 
 
 def test_scoretools_Container___setitem___integer_09():
@@ -453,11 +453,11 @@ def test_scoretools_Container___setitem___integer_09():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
     "Voice u is now ..."
 
-    assert inspect(u).is_well_formed()
+    assert inspect_(u).is_well_formed()
     assert systemtools.TestManager.compare(
         u,
         r'''

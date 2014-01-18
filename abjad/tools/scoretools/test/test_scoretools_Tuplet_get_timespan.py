@@ -27,11 +27,11 @@ def test_scoretools_Tuplet_get_timespan_01():
         '''
         )
 
-    assert inspect(staff).get_timespan(in_seconds=True) == \
+    assert inspect_(staff).get_timespan(in_seconds=True) == \
         timespantools.Timespan(0, 4)
-    assert inspect(staff[0]).get_timespan(in_seconds=True) == \
+    assert inspect_(staff[0]).get_timespan(in_seconds=True) == \
         timespantools.Timespan(0, 1)
-    assert inspect(staff[1]).get_timespan(in_seconds=True) == \
+    assert inspect_(staff[1]).get_timespan(in_seconds=True) == \
         timespantools.Timespan(1, 2)
-    assert inspect(staff[-1]).get_timespan(in_seconds=True) == \
+    assert inspect_(staff[-1]).get_timespan(in_seconds=True) == \
         timespantools.Timespan(2, 4)

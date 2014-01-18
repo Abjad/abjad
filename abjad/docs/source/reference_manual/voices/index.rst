@@ -118,7 +118,7 @@ Use the inspector to get the duration of a voice:
 
 ::
 
-   >>> inspect(voice).get_duration()
+   >>> inspect_(voice).get_duration()
    Duration(2, 1)
 
 

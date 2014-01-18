@@ -7,7 +7,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_01():
 
     music = parse("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
-    durations = [inspect(x).get_duration() for x in expr.payload[:]]
+    durations = [inspect_(x).get_duration() for x in expr.payload[:]]
     beam = spannertools.DuratedComplexBeam(
         durations=durations, 
         span_beam_count=1,
@@ -24,7 +24,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_02():
 
     music = parse("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
-    durations = [inspect(x).get_duration() for x in expr.payload[:]]
+    durations = [inspect_(x).get_duration() for x in expr.payload[:]]
     beam = spannertools.DuratedComplexBeam(
         durations=durations, 
         span_beam_count=1,
@@ -42,7 +42,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_03():
 
     music = parse("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
-    durations = [inspect(x).get_duration() for x in expr.payload[:]]
+    durations = [inspect_(x).get_duration() for x in expr.payload[:]]
     beam = spannertools.DuratedComplexBeam(
         durations=durations, 
         span_beam_count=1,
@@ -61,7 +61,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_04():
 
     music = parse("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
-    durations = [inspect(x).get_duration() for x in expr.payload[:]]
+    durations = [inspect_(x).get_duration() for x in expr.payload[:]]
     beam = spannertools.DuratedComplexBeam(
         durations=durations, 
         span_beam_count=1,
@@ -80,7 +80,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_05():
 
     music = parse("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
-    durations = [inspect(x).get_duration() for x in expr.payload[:]]
+    durations = [inspect_(x).get_duration() for x in expr.payload[:]]
     beam = spannertools.DuratedComplexBeam(durations=durations, span_beam_count=1)
     attach(beam, expr.payload[:])
 
@@ -96,7 +96,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_06():
 
     music = parse("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
-    durations = [inspect(x).get_duration() for x in expr.payload[:]]
+    durations = [inspect_(x).get_duration() for x in expr.payload[:]]
     beam = spannertools.DuratedComplexBeam(
         durations=durations, 
         span_beam_count=1,
@@ -116,7 +116,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_07():
 
     music = parse("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
-    durations = [inspect(x).get_duration() for x in expr.payload[:]]
+    durations = [inspect_(x).get_duration() for x in expr.payload[:]]
     beam = spannertools.DuratedComplexBeam(
         durations=durations, 
         span_beam_count=1,
@@ -135,7 +135,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_08():
 
     music = parse("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
-    durations = [inspect(x).get_duration() for x in expr.payload[:]]
+    durations = [inspect_(x).get_duration() for x in expr.payload[:]]
     beam = spannertools.DuratedComplexBeam(
         durations=durations, 
         span_beam_count=1,
@@ -154,7 +154,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_09():
 
     music = parse("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
-    durations = [inspect(x).get_duration() for x in expr.payload[:]]
+    durations = [inspect_(x).get_duration() for x in expr.payload[:]]
     beam = spannertools.DuratedComplexBeam(
         durations=durations, 
         span_beam_count=1,
@@ -173,7 +173,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_10():
 
     music = parse("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
-    durations = [inspect(x).get_duration() for x in expr.payload[:]]
+    durations = [inspect_(x).get_duration() for x in expr.payload[:]]
     beam = spannertools.DuratedComplexBeam(
         durations=durations, 
         span_beam_count=1,
@@ -193,7 +193,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_11():
 
     music = parse("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
-    durations = [inspect(x).get_duration() for x in expr.payload[:]]
+    durations = [inspect_(x).get_duration() for x in expr.payload[:]]
     beam = spannertools.DuratedComplexBeam(
         durations=durations, 
         span_beam_count=1,
@@ -213,7 +213,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_12():
 
     music = parse("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
-    durations = [inspect(x).get_duration() for x in expr.payload[:]]
+    durations = [inspect_(x).get_duration() for x in expr.payload[:]]
     beam = spannertools.DuratedComplexBeam(
         durations=durations, 
         span_beam_count=1,
@@ -233,7 +233,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_13():
 
     music = parse("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
-    durations = [inspect(x).get_duration() for x in expr.payload[:]]
+    durations = [inspect_(x).get_duration() for x in expr.payload[:]]
     beam = spannertools.DuratedComplexBeam(
         durations=durations, 
         span_beam_count=1,
@@ -253,7 +253,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_14():
 
     music = parse("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
-    durations = [inspect(x).get_duration() for x in expr.payload[:]]
+    durations = [inspect_(x).get_duration() for x in expr.payload[:]]
     beam = spannertools.DuratedComplexBeam(
         durations=durations, 
         span_beam_count=1,

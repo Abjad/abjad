@@ -63,7 +63,7 @@ def test_spannertools_HiddenStaffSpanner___init___02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_spannertools_HiddenStaffSpanner___init___03():
@@ -83,4 +83,4 @@ def test_spannertools_HiddenStaffSpanner___init___03():
         '''
         )
 
-    assert inspect(note).is_well_formed()
+    assert inspect_(note).is_well_formed()

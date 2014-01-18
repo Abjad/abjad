@@ -42,9 +42,9 @@ def test_agenttools_InspectionAgent_get_duration_01():
         '''
         )
 
-    assert inspect(beam).get_duration(in_seconds=True) == Duration(100, 21)
-    assert inspect(crescendo).get_duration(in_seconds=True) == Duration(40, 21)
-    assert inspect(decrescendo).get_duration(in_seconds=True) == \
+    assert inspect_(beam).get_duration(in_seconds=True) == Duration(100, 21)
+    assert inspect_(crescendo).get_duration(in_seconds=True) == Duration(40, 21)
+    assert inspect_(decrescendo).get_duration(in_seconds=True) == \
         Duration(20, 7)
 
 
@@ -81,9 +81,9 @@ def test_agenttools_InspectionAgent_get_duration_02():
         '''
         )
 
-    assert inspect(beam).get_duration() == Duration(5, 12)
-    assert inspect(crescendo).get_duration() == Duration(2, 12)
-    assert inspect(decrescendo).get_duration() == Duration(2, 8)
+    assert inspect_(beam).get_duration() == Duration(5, 12)
+    assert inspect_(crescendo).get_duration() == Duration(2, 12)
+    assert inspect_(decrescendo).get_duration() == Duration(2, 8)
 
 
 def test_agenttools_InspectionAgent_get_duration_03():
@@ -114,7 +114,7 @@ def test_agenttools_InspectionAgent_get_duration_03():
         '''
         )
 
-    assert inspect(score).get_duration(in_seconds=True) == Duration(400, 133)
+    assert inspect_(score).get_duration(in_seconds=True) == Duration(400, 133)
 
 
 def test_agenttools_InspectionAgent_get_duration_04():
@@ -123,7 +123,7 @@ def test_agenttools_InspectionAgent_get_duration_04():
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
-    statement = 'inspect(container).get_duration(in_seconds=True)'
+    statement = 'inspect_(container).get_duration(in_seconds=True)'
     assert pytest.raises(Exception, statement)
 
 
@@ -152,10 +152,10 @@ def test_agenttools_InspectionAgent_get_duration_05():
         '''
         )
 
-    assert inspect(staff[0]).get_duration(in_seconds=True) == Duration(15, 19)
-    assert inspect(staff[1]).get_duration(in_seconds=True) == Duration(15, 19)
-    assert inspect(staff[2]).get_duration(in_seconds=True) == Duration(5, 7)
-    assert inspect(staff[3]).get_duration(in_seconds=True) == Duration(5, 7)
+    assert inspect_(staff[0]).get_duration(in_seconds=True) == Duration(15, 19)
+    assert inspect_(staff[1]).get_duration(in_seconds=True) == Duration(15, 19)
+    assert inspect_(staff[2]).get_duration(in_seconds=True) == Duration(5, 7)
+    assert inspect_(staff[3]).get_duration(in_seconds=True) == Duration(5, 7)
 
 
 def test_agenttools_InspectionAgent_get_duration_06():
@@ -163,5 +163,5 @@ def test_agenttools_InspectionAgent_get_duration_06():
     '''
 
     note = Note("c'4")
-    statement = 'inspect(note).get_duration(in_seconds=True)'
+    statement = 'inspect_(note).get_duration(in_seconds=True)'
     assert pytest.raises(Exception, statement)

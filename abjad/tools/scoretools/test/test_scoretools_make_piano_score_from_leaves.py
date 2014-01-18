@@ -36,7 +36,7 @@ def test_scoretools_make_piano_score_from_leaves_01():
     >>
     """
 
-    assert inspect(score).is_well_formed()
+    assert inspect_(score).is_well_formed()
     assert systemtools.TestManager.compare(
         score,
         r"""

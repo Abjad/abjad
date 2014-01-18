@@ -21,7 +21,7 @@ class LogicalTie(ContiguousSelection):
 
         ::
 
-            >>> inspect(staff[2]).get_logical_tie()
+            >>> inspect_(staff[2]).get_logical_tie()
             LogicalTie(Note("e'4"), Note("e'4"))
 
     '''
@@ -233,7 +233,7 @@ class LogicalTie(ContiguousSelection):
 
             ::
 
-                >>> logical_tie = inspect(staff[0]).get_logical_tie()
+                >>> logical_tie = inspect_(staff[0]).get_logical_tie()
                 >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=True)
                 FixedDurationTuplet(Duration(3, 16), "c'8 c'16 c'16 c'16")
 
@@ -289,7 +289,7 @@ class LogicalTie(ContiguousSelection):
 
             ::
 
-                >>> logical_tie = inspect(staff[0]).get_logical_tie()
+                >>> logical_tie = inspect_(staff[0]).get_logical_tie()
                 >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=False)
                 FixedDurationTuplet(Duration(3, 16), "c'16 c'32 c'32 c'32")
 

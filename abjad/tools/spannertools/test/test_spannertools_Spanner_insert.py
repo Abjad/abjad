@@ -28,7 +28,7 @@ def test_spannertools_Spanner_insert_01():
 
     beam._insert(1, voice.select_leaves()[-1])
 
-    assert not inspect(voice).is_well_formed()
+    assert not inspect_(voice).is_well_formed()
 
 
 def test_spannertools_Spanner_insert_02():

@@ -42,7 +42,7 @@ Use the inspector to get all the annotations attached to a component:
 
 ::
 
-   >>> annotations = inspect(note).get_indicators(indicatortools.Annotation)
+   >>> annotations = inspect_(note).get_indicators(indicatortools.Annotation)
    >>> for annotation in annotations: annotation
    ... 
    Annotation('is inner voice', True)
@@ -93,6 +93,6 @@ Use the inspector to the get the value of an annotation in a single call:
 
 ::
 
-   >>> inspect(note).get_annotation('is phrase-initial')
+   >>> inspect_(note).get_annotation('is phrase-initial')
    False
 

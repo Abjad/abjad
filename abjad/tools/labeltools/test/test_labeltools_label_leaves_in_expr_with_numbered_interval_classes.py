@@ -27,4 +27,4 @@ def test_labeltools_label_leaves_in_expr_with_numbered_interval_classes_01():
         """
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

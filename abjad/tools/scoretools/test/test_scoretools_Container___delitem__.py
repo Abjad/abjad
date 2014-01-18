@@ -51,7 +51,7 @@ def test_scoretools_Container___delitem___01():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
     "Deleted component is now ..."
 
@@ -65,7 +65,7 @@ def test_scoretools_Container___delitem___01():
         '''
         )
 
-    assert inspect(old).is_well_formed()
+    assert inspect_(old).is_well_formed()
 
 
 def test_scoretools_Container___delitem___02():
@@ -90,7 +90,7 @@ def test_scoretools_Container___delitem___02():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container___delitem___03():
@@ -113,7 +113,7 @@ def test_scoretools_Container___delitem___03():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container___delitem___04():
@@ -136,7 +136,7 @@ def test_scoretools_Container___delitem___04():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container___delitem___05():
@@ -159,7 +159,7 @@ def test_scoretools_Container___delitem___05():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container___delitem___06():
@@ -180,7 +180,7 @@ def test_scoretools_Container___delitem___06():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container___delitem___07():
@@ -203,7 +203,7 @@ def test_scoretools_Container___delitem___07():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
+    assert inspect_(tuplet).is_well_formed()
 
 
 def test_scoretools_Container___delitem___08():
@@ -246,5 +246,5 @@ def test_scoretools_Container___delitem___08():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
-    assert inspect(leaf).is_well_formed()
+    assert inspect_(voice).is_well_formed()
+    assert inspect_(leaf).is_well_formed()

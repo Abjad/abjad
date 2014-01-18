@@ -60,7 +60,7 @@ Use the inspector the get the duration of a container:
 
 ::
 
-   >>> inspect(container).get_duration()
+   >>> inspect_(container).get_duration()
    Duration(7, 8)
 
 

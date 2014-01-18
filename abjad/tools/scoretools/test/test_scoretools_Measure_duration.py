@@ -23,7 +23,7 @@ def test_scoretools_Measure_duration_01():
 
     assert measure._contents_duration == Duration(3, 8)
     assert measure._preprolated_duration == Duration(3, 8)
-    assert inspect(measure).get_duration() == Duration(3, 8)
+    assert inspect_(measure).get_duration() == Duration(3, 8)
 
 
 def test_scoretools_Measure_duration_02():
@@ -49,7 +49,7 @@ def test_scoretools_Measure_duration_02():
 
     assert measure._contents_duration == Duration(3, 8)
     assert measure._preprolated_duration == Duration(3, 10)
-    assert inspect(measure).get_duration() == Duration(3, 10)
+    assert inspect_(measure).get_duration() == Duration(3, 10)
 
 
 def test_scoretools_Measure_duration_03():
@@ -63,7 +63,7 @@ def test_scoretools_Measure_duration_03():
 
     assert measure._contents_duration == Duration(4, 8)
     assert measure._preprolated_duration == Duration(4, 8)
-    assert inspect(measure).get_duration() == Duration(4, 8)
+    assert inspect_(measure).get_duration() == Duration(4, 8)
 
 
 def test_scoretools_Measure_duration_04():
@@ -77,4 +77,4 @@ def test_scoretools_Measure_duration_04():
 
     assert measure._contents_duration == Duration(4, 8)
     assert measure._preprolated_duration == Duration(4, 10)
-    assert inspect(measure).get_duration() == Duration(4, 10)
+    assert inspect_(measure).get_duration() == Duration(4, 10)

@@ -41,5 +41,5 @@ def test_scoretools_Voice___delitem___01():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
-    assert inspect(container).is_well_formed()
+    assert inspect_(voice).is_well_formed()
+    assert inspect_(container).is_well_formed()

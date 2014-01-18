@@ -10,7 +10,7 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_01():
     tie = spannertools.Tie()
     attach(tie, staff.select_leaves())
 
-    logical_tie = inspect(staff.select_leaves()[1]).get_logical_tie()
+    logical_tie = inspect_(staff.select_leaves()[1]).get_logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
 
     assert systemtools.TestManager.compare(
@@ -29,7 +29,7 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_01():
         )
 
     assert len(result) == 2
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
@@ -52,7 +52,7 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
         '''
         )
 
-    logical_tie = inspect(staff.select_leaves()[1]).get_logical_tie()
+    logical_tie = inspect_(staff.select_leaves()[1]).get_logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
 
     assert systemtools.TestManager.compare(
@@ -64,7 +64,7 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert len(result) == 1
 
 
@@ -73,7 +73,7 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_03():
     '''
 
     note = Note("c'4")
-    logical_tie = inspect(note).get_logical_tie()
+    logical_tie = inspect_(note).get_logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
     assert len(result) == 1
-    assert inspect(note).is_well_formed()
+    assert inspect_(note).is_well_formed()

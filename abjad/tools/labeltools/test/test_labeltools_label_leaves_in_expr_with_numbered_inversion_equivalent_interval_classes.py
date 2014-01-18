@@ -26,4 +26,4 @@ def test_labeltools_label_leaves_in_expr_with_numbered_inversion_equivalent_inte
         """
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

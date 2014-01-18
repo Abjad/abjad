@@ -49,7 +49,7 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_01():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_move_measure_prolation_to_full_measure_tuplet_02():
@@ -106,4 +106,4 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_02():
         '''
         )
         
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()

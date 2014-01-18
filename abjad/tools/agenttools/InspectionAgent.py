@@ -15,7 +15,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         ::
 
-            >>> inspect(staff)
+            >>> inspect_(staff)
             InspectionAgent(client={c'4, e'4, d'4, f'4})
 
     '''
@@ -97,7 +97,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> inspect(staff).get_badly_formed_components()
+                >>> inspect_(staff).get_badly_formed_components()
                 [Note("d'4")]
 
             (Beamed quarter notes are not well formed.)
@@ -251,7 +251,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> inspect(staff[1]).get_grace_containers()
+                >>> inspect_(staff[1]).get_grace_containers()
                 (GraceContainer(cs'16), GraceContainer(ds'16))
 
         ..  container:: example
@@ -260,7 +260,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> inspect(staff[1]).get_grace_containers(kind='grace')
+                >>> inspect_(staff[1]).get_grace_containers(kind='grace')
                 (GraceContainer(cs'16),)
 
         ..  container:: example
@@ -269,7 +269,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> inspect(staff[1]).get_grace_containers(kind='after')
+                >>> inspect_(staff[1]).get_grace_containers(kind='after')
                 (GraceContainer(ds'16),)
 
         Set `kind` to ``'grace'``, ``'after'`` or none.
@@ -346,7 +346,7 @@ class InspectionAgent(abctools.AbjadObject):
             ::
 
                 >>> for n in range(8):
-                ...     print n, inspect(staff[0][0]).get_leaf(n)
+                ...     print n, inspect_(staff[0][0]).get_leaf(n)
                 ...
                 0 c'8
                 1 d'8
@@ -427,7 +427,7 @@ class InspectionAgent(abctools.AbjadObject):
                     f'8
                     g'8
                 }
-                >>> inspect(staff[0]).get_sounding_pitch()
+                >>> inspect_(staff[0]).get_sounding_pitch()
                 NamedPitch("d''")
 
         Returns named pitch.
@@ -460,7 +460,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> inspect(staff[0]).get_sounding_pitches()
+                >>> inspect_(staff[0]).get_sounding_pitches()
                 (NamedPitch("c'''"), NamedPitch("e'''"))
 
         Returns tuple.
@@ -572,7 +572,7 @@ class InspectionAgent(abctools.AbjadObject):
             ::
 
                 >>> for note in staff:
-                ...     result = inspect(note).is_bar_line_crossing()
+                ...     result = inspect_(note).is_bar_line_crossing()
                 ...     print note, result
                 ...
                 c'4 False
@@ -647,7 +647,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> report = inspect(container).report_modifications()
+                >>> report = inspect_(container).report_modifications()
 
             ::
 
@@ -708,7 +708,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> result = inspect(staff).tabulate_well_formedness_violations()
+                >>> result = inspect_(staff).tabulate_well_formedness_violations()
 
             ::
 

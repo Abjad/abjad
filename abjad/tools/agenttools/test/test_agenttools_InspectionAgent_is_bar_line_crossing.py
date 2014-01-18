@@ -24,10 +24,10 @@ def test_agenttools_InspectionAgent_is_bar_line_crossing_01():
         '''
         )
 
-    assert not inspect(staff[0]).is_bar_line_crossing()
-    assert not inspect(staff[1]).is_bar_line_crossing()
-    assert inspect(staff[2]).is_bar_line_crossing()
-    assert not inspect(staff[3]).is_bar_line_crossing()
+    assert not inspect_(staff[0]).is_bar_line_crossing()
+    assert not inspect_(staff[1]).is_bar_line_crossing()
+    assert inspect_(staff[2]).is_bar_line_crossing()
+    assert not inspect_(staff[3]).is_bar_line_crossing()
 
 
 def test_agenttools_InspectionAgent_is_bar_line_crossing_02():
@@ -36,6 +36,6 @@ def test_agenttools_InspectionAgent_is_bar_line_crossing_02():
 
     staff = Staff("c'2 d'1 e'2")
 
-    assert not inspect(staff[0]).is_bar_line_crossing()
-    assert inspect(staff[1]).is_bar_line_crossing()
-    assert not inspect(staff[2]).is_bar_line_crossing()
+    assert not inspect_(staff[0]).is_bar_line_crossing()
+    assert inspect_(staff[1]).is_bar_line_crossing()
+    assert not inspect_(staff[2]).is_bar_line_crossing()

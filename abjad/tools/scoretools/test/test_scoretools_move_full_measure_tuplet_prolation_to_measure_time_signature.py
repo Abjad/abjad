@@ -25,7 +25,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature_02():
@@ -55,7 +55,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature_03():
@@ -86,7 +86,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature_04():
@@ -122,7 +122,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature_05():
@@ -171,7 +171,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature_06():
@@ -209,7 +209,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     }
     '''
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''

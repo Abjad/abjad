@@ -26,7 +26,7 @@ def test_indicatortools_LilyPondCommand___init___01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_indicatortools_LilyPondCommand___init___02():
@@ -52,7 +52,7 @@ def test_indicatortools_LilyPondCommand___init___02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_indicatortools_LilyPondCommand___init___03():

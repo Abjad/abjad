@@ -51,7 +51,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_01():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_02():
@@ -112,7 +112,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_02():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_03():
@@ -184,7 +184,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_03():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_04():
@@ -256,7 +256,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_04():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_05():
@@ -326,7 +326,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_05():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_06():
@@ -387,7 +387,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_06():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_07():
@@ -440,7 +440,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_07():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_08():
@@ -464,7 +464,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_08():
         '''
         )
 
-    assert inspect(container).is_well_formed()
+    assert inspect_(container).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_09():
@@ -488,7 +488,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_09():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_10():
@@ -512,7 +512,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_10():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_11():
@@ -556,7 +556,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_11():
         '''
         )
 
-    assert inspect(container).is_well_formed()
+    assert inspect_(container).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_12():
@@ -600,7 +600,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_12():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_13():
@@ -644,7 +644,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_13():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_14():
@@ -692,7 +692,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_14():
         '''
         )
 
-    assert inspect(container).is_well_formed()
+    assert inspect_(container).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_15():
@@ -740,7 +740,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_15():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_16():
@@ -788,7 +788,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_16():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_17():
@@ -825,7 +825,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_17():
         '''
         )
 
-    assert inspect(tuplet[0]).get_duration() == Duration(1, 6)
+    assert inspect_(tuplet[0]).get_duration() == Duration(1, 6)
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_18():
@@ -866,7 +866,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_18():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
+    assert inspect_(tuplet).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_19():
@@ -913,7 +913,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_19():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
+    assert inspect_(tuplet).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_20():
@@ -950,7 +950,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_20():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
+    assert inspect_(tuplet).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_21():
@@ -986,7 +986,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_21():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
+    assert inspect_(tuplet).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_22():
@@ -1028,7 +1028,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_22():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
+    assert inspect_(tuplet).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_23():
@@ -1069,4 +1069,4 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_23():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
+    assert inspect_(tuplet).is_well_formed()

@@ -39,7 +39,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_01():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_02():
@@ -81,7 +81,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_02():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_03():
@@ -121,7 +121,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_03():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_04():
@@ -163,4 +163,4 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_04():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()

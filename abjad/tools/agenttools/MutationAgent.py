@@ -1461,7 +1461,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> logical_tie = inspect(staff[0]).get_logical_tie()
+                >>> logical_tie = inspect_(staff[0]).get_logical_tie()
                 >>> logical_tie = mutate(logical_tie).scale(Multiplier(3, 2))
                 >>> show(staff) # doctest: +SKIP
 
@@ -1557,7 +1557,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> logical_tie = inspect(staff[0]).get_logical_tie()
+                >>> logical_tie = inspect_(staff[0]).get_logical_tie()
                 >>> logical_tie = mutate(logical_tie).scale(Multiplier(5, 4))
                 >>> show(staff) # doctest: +SKIP
 
@@ -1654,7 +1654,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> logical_tie = inspect(staff[0]).get_logical_tie()
+                >>> logical_tie = inspect_(staff[0]).get_logical_tie()
                 >>> logical_tie = mutate(logical_tie).scale(Multiplier(4, 3))
                 >>> show(staff) # doctest: +SKIP
 

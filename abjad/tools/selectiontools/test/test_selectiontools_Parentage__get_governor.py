@@ -28,10 +28,10 @@ def test_selectiontools_Parentage__get_governor_01( ):
     }
     '''
 
-    assert inspect(voice.select_leaves(allow_discontiguous_leaves=True)[0]).get_parentage()._get_governor() is voice[0][0]
-    assert inspect(voice.select_leaves(allow_discontiguous_leaves=True)[1]).get_parentage()._get_governor() is voice[0][0]
-    assert inspect(voice.select_leaves(allow_discontiguous_leaves=True)[2]).get_parentage()._get_governor() is voice[0][1]
-    assert inspect(voice.select_leaves(allow_discontiguous_leaves=True)[3]).get_parentage()._get_governor() is voice[0][1]
+    assert inspect_(voice.select_leaves(allow_discontiguous_leaves=True)[0]).get_parentage()._get_governor() is voice[0][0]
+    assert inspect_(voice.select_leaves(allow_discontiguous_leaves=True)[1]).get_parentage()._get_governor() is voice[0][0]
+    assert inspect_(voice.select_leaves(allow_discontiguous_leaves=True)[2]).get_parentage()._get_governor() is voice[0][1]
+    assert inspect_(voice.select_leaves(allow_discontiguous_leaves=True)[3]).get_parentage()._get_governor() is voice[0][1]
 
 
 def test_selectiontools_Parentage__get_governor_02( ):
@@ -39,7 +39,7 @@ def test_selectiontools_Parentage__get_governor_02( ):
     '''
 
     note = Note(0, (1, 8))
-    assert inspect(note).get_parentage()._get_governor() is None
+    assert inspect_(note).get_parentage()._get_governor() is None
 
 
 def test_selectiontools_Parentage__get_governor_03( ):
@@ -62,10 +62,10 @@ def test_selectiontools_Parentage__get_governor_03( ):
     }
     '''
 
-    assert inspect(staff.select_leaves(allow_discontiguous_leaves=True)[0]).get_parentage()._get_governor() is staff
-    assert inspect(staff.select_leaves(allow_discontiguous_leaves=True)[1]).get_parentage()._get_governor() is staff
-    assert inspect(staff.select_leaves(allow_discontiguous_leaves=True)[2]).get_parentage()._get_governor() is staff
-    assert inspect(staff.select_leaves(allow_discontiguous_leaves=True)[3]).get_parentage()._get_governor() is staff
+    assert inspect_(staff.select_leaves(allow_discontiguous_leaves=True)[0]).get_parentage()._get_governor() is staff
+    assert inspect_(staff.select_leaves(allow_discontiguous_leaves=True)[1]).get_parentage()._get_governor() is staff
+    assert inspect_(staff.select_leaves(allow_discontiguous_leaves=True)[2]).get_parentage()._get_governor() is staff
+    assert inspect_(staff.select_leaves(allow_discontiguous_leaves=True)[3]).get_parentage()._get_governor() is staff
 
 
 def test_selectiontools_Parentage__get_governor_04( ):
@@ -89,6 +89,6 @@ def test_selectiontools_Parentage__get_governor_04( ):
     }
     '''
 
-    assert inspect(staff[0][0]).get_parentage()._get_governor() is staff
-    assert inspect(staff[0]).get_parentage()._get_governor() is staff
-    assert inspect(staff).get_parentage()._get_governor() is staff
+    assert inspect_(staff[0][0]).get_parentage()._get_governor() is staff
+    assert inspect_(staff[0]).get_parentage()._get_governor() is staff
+    assert inspect_(staff).get_parentage()._get_governor() is staff

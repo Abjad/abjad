@@ -74,7 +74,7 @@ Use the inspector to get the LilyPond commands attached to a leaf:
 
 ::
 
-   >>> inspect(staff[-2]).get_indicators(indicatortools.LilyPondCommand)
+   >>> inspect_(staff[-2]).get_indicators(indicatortools.LilyPondCommand)
    (LilyPondCommand('bar "||"', 'after'),)
 
 

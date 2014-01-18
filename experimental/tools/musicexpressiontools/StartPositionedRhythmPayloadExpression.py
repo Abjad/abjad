@@ -8,9 +8,9 @@ from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
-from abjad.tools.agenttools import inspect
 from experimental.tools.musicexpressiontools.StartPositionedPayloadExpression \
     import StartPositionedPayloadExpression
 
@@ -426,8 +426,8 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             )
         shards = [shard[0] for shard in shards]
         for shard in shards:
-            if not inspect(shard).is_well_formed():
-                inspect(shard).tabulate_well_formedness_violations_in_expr()
+            if not inspect_(shard).is_well_formed():
+                inspect_(shard).tabulate_well_formedness_violations_in_expr()
         return shards
 
     ### PUBLIC PROPERTIES ###
@@ -932,7 +932,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             payload = scoretools.Container()
             payload.extend(right_half)
             payload.extend(left_half)
-            assert inspect(payload).is_well_formed()
+            assert inspect_(payload).is_well_formed()
             self._payload = payload
         else:
             result = mutate(self.payload[:]).split(
@@ -965,7 +965,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             for spanner in self.payload._get_descendants().get_spanners():
                 spanner._components.sort(
                     lambda x, y: cmp(x._get_parentage().score_index, y._get_parentage().score_index))
-            assert inspect(self.payload).is_well_formed()
+            assert inspect_(self.payload).is_well_formed()
         return self
 
     def translate(self, translation):

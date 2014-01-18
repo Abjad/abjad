@@ -26,7 +26,7 @@ def test_agenttools_InspectionAgent_get_indicators_01():
         '''
         )
 
-    indicators = inspect(staff[0]).get_indicators(
+    indicators = inspect_(staff[0]).get_indicators(
         indicatortools.LilyPondCommand)
     assert command_1 in indicators
     assert command_2 in indicators
@@ -57,7 +57,7 @@ def test_agenttools_InspectionAgent_get_indicators_02():
         '''
         )
 
-    items = inspect(staff[0]).get_indicators()
+    items = inspect_(staff[0]).get_indicators()
     assert comment in items
     assert command in items
     assert len(items) == 2
@@ -84,7 +84,7 @@ def test_agenttools_InspectionAgent_get_indicators_03():
         '''
         )
 
-    indicators = inspect(staff[0]).get_indicators()
+    indicators = inspect_(staff[0]).get_indicators()
     assert dynamic == indicators[0]
     assert len(indicators) == 1
 
@@ -110,7 +110,7 @@ def test_agenttools_InspectionAgent_get_indicators_04():
         '''
         )
 
-    dynamics = inspect(staff[0]).get_indicators(Dynamic)
+    dynamics = inspect_(staff[0]).get_indicators(Dynamic)
     assert dynamic == dynamics[0]
     assert len(dynamics) == 1
 
@@ -135,7 +135,7 @@ def test_agenttools_InspectionAgent_get_indicators_05():
         '''
         )
 
-    annotations = inspect(staff[0]).get_indicators(indicatortools.Annotation)
+    annotations = inspect_(staff[0]).get_indicators(indicatortools.Annotation)
     assert annotations == (annotation_1, annotation_2)
 
 
@@ -161,7 +161,7 @@ def test_agenttools_InspectionAgent_get_indicators_06():
         '''
         )
 
-    indicators = inspect(staff[0]).get_indicators(
+    indicators = inspect_(staff[0]).get_indicators(
         indicatortools.LilyPondComment)
     assert comment_1 in indicators
     assert comment_2 in indicators
@@ -173,6 +173,6 @@ def test_agenttools_InspectionAgent_get_indicators_07():
     note = Note("c'4")
     stem_tremolo = indicatortools.StemTremolo(16)
     attach(stem_tremolo, note)
-    stem_tremolos = inspect(note).get_indicators(indicatortools.StemTremolo)
+    stem_tremolos = inspect_(note).get_indicators(indicatortools.StemTremolo)
 
     assert stem_tremolos[0] is stem_tremolo

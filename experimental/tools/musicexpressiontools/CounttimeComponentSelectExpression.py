@@ -3,8 +3,7 @@ import copy
 from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import timespantools
-from abjad.tools import timespantools
-from abjad.tools.agenttools import inspect
+from abjad.tools.topleveltools import inspect_
 from experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetMethodMixin \
     import CounttimeComponentSelectExpressionSetMethodMixin
 from experimental.tools.musicexpressiontools.SelectExpression \
@@ -176,7 +175,7 @@ class CounttimeComponentSelectExpression(
             start_offset=anchor_timespan.start_offset)
         for rhythm_payload_expression in rhythm_payload_expressions:
             expression.payload.extend(rhythm_payload_expression.payload)
-        assert inspect(expression.payload).is_well_formed()
+        assert inspect_(expression.payload).is_well_formed()
         # TODO: eventually make this be able to work
         #callback_cache = self.score_specification.interpreter.callback_cache
         #expression = expression.get_elements_that_satisfy_time_relation(

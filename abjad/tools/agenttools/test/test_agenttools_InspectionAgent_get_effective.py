@@ -9,7 +9,7 @@ def test_agenttools_InspectionAgent_get_effective_01():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     for note in staff:
-        clef = inspect(note).get_effective(Clef)
+        clef = inspect_(note).get_effective(Clef)
         assert clef is None
 
 
@@ -21,7 +21,7 @@ def test_agenttools_InspectionAgent_get_effective_02():
     clef = Clef('treble')
     attach(clef, staff)
     for note in staff:
-        clef = inspect(note).get_effective(Clef)
+        clef = inspect_(note).get_effective(Clef)
         assert clef == Clef('treble')
 
 
@@ -34,10 +34,10 @@ def test_agenttools_InspectionAgent_get_effective_03():
     attach(clef, staff[4])
     for i, note in enumerate(staff):
         if i in (0, 1, 2, 3):
-            clef = inspect(note).get_effective(Clef)
+            clef = inspect_(note).get_effective(Clef)
             assert clef is None
         else:
-            clef = inspect(note).get_effective(Clef)
+            clef = inspect_(note).get_effective(Clef)
             assert clef == Clef('bass')
 
 
@@ -51,7 +51,7 @@ def test_agenttools_InspectionAgent_get_effective_04():
     clef = Clef('bass')
     attach(clef, staff[4])
     result = [
-        inspect(note).get_effective(Clef)
+        inspect_(note).get_effective(Clef)
         for note in staff
         ]
     clef_names = [
@@ -71,11 +71,11 @@ def test_agenttools_InspectionAgent_get_effective_05():
     attach(clef, staff[0])
     clef = Clef('bass')
     attach(clef, staff[4])
-    clef = inspect(staff[4]).get_effective(Clef)
+    clef = inspect_(staff[4]).get_effective(Clef)
     detach(clef, staff[4])
 
     for note in staff:
-        clef = inspect(note).get_effective(Clef)
+        clef = inspect_(note).get_effective(Clef)
         assert clef == Clef('treble')
 
 
@@ -107,7 +107,7 @@ def test_agenttools_InspectionAgent_get_effective_06():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_agenttools_InspectionAgent_get_effective_07():
@@ -138,7 +138,7 @@ def test_agenttools_InspectionAgent_get_effective_07():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_agenttools_InspectionAgent_get_effective_08():
@@ -148,11 +148,11 @@ def test_agenttools_InspectionAgent_get_effective_08():
     staff = Staff("c'8 d'8 e'8 f'8")
     clef = Clef('alto')
     attach(clef, staff[0])
-    clef = inspect(staff[0]).get_effective(Clef)
+    clef = inspect_(staff[0]).get_effective(Clef)
     detach(clef, staff[0])
 
     for leaf in staff:
-        clef = inspect(leaf).get_effective(Clef)
+        clef = inspect_(leaf).get_effective(Clef)
         assert clef is None
 
 
@@ -174,11 +174,11 @@ def test_agenttools_InspectionAgent_get_effective_09():
         '''
         )
 
-    assert inspect(staff).get_effective(Dynamic) is None
-    assert inspect(staff[0]).get_effective(Dynamic) is None
-    assert inspect(staff[1]).get_effective(Dynamic) is None
-    assert inspect(staff[2]).get_effective(Dynamic) == Dynamic('f')
-    assert inspect(staff[3]).get_effective(Dynamic) == Dynamic('f')
+    assert inspect_(staff).get_effective(Dynamic) is None
+    assert inspect_(staff[0]).get_effective(Dynamic) is None
+    assert inspect_(staff[1]).get_effective(Dynamic) is None
+    assert inspect_(staff[2]).get_effective(Dynamic) == Dynamic('f')
+    assert inspect_(staff[3]).get_effective(Dynamic) == Dynamic('f')
 
 
 def test_agenttools_InspectionAgent_get_effective_10():
@@ -202,11 +202,11 @@ def test_agenttools_InspectionAgent_get_effective_10():
         )
 
     flute = instrumenttools.Flute()
-    assert inspect(staff).get_effective(instrumenttools.Instrument) == flute
-    assert inspect(staff[0]).get_effective(instrumenttools.Instrument) == flute
-    assert inspect(staff[1]).get_effective(instrumenttools.Instrument) == flute
-    assert inspect(staff[2]).get_effective(instrumenttools.Instrument) == flute
-    assert inspect(staff[3]).get_effective(instrumenttools.Instrument) == flute
+    assert inspect_(staff).get_effective(instrumenttools.Instrument) == flute
+    assert inspect_(staff[0]).get_effective(instrumenttools.Instrument) == flute
+    assert inspect_(staff[1]).get_effective(instrumenttools.Instrument) == flute
+    assert inspect_(staff[2]).get_effective(instrumenttools.Instrument) == flute
+    assert inspect_(staff[3]).get_effective(instrumenttools.Instrument) == flute
 
 
 def test_agenttools_InspectionAgent_get_effective_11():
@@ -217,7 +217,7 @@ def test_agenttools_InspectionAgent_get_effective_11():
     key_signature = KeySignature('c', 'major')
     attach(key_signature, staff)
 
-    key_signature = inspect(staff).get_effective(KeySignature)
+    key_signature = inspect_(staff).get_effective(KeySignature)
     assert key_signature == KeySignature('c', 'major')
 
     assert systemtools.TestManager.compare(
@@ -233,7 +233,7 @@ def test_agenttools_InspectionAgent_get_effective_11():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_agenttools_InspectionAgent_get_effective_12():
@@ -241,7 +241,7 @@ def test_agenttools_InspectionAgent_get_effective_12():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    key_signature = inspect(staff).get_effective(KeySignature)
+    key_signature = inspect_(staff).get_effective(KeySignature)
     assert key_signature is None
 
 
@@ -269,12 +269,12 @@ def test_agenttools_InspectionAgent_get_effective_13():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
-    assert inspect(staff[0]).get_effective(Tempo) == tempo_1
-    assert inspect(staff[1]).get_effective(Tempo) == tempo_1
-    assert inspect(staff[2]).get_effective(Tempo) == tempo_2
-    assert inspect(staff[3]).get_effective(Tempo) == tempo_2
+    assert inspect_(staff[0]).get_effective(Tempo) == tempo_1
+    assert inspect_(staff[1]).get_effective(Tempo) == tempo_1
+    assert inspect_(staff[2]).get_effective(Tempo) == tempo_2
+    assert inspect_(staff[3]).get_effective(Tempo) == tempo_2
 
 
 def test_agenttools_InspectionAgent_get_effective_14():
@@ -339,7 +339,7 @@ def test_agenttools_InspectionAgent_get_effective_17():
     staff = Staff("c'8 d'8 e'8 f'8")
 
     for leaf in staff:
-        time_signature = inspect(leaf).get_effective(TimeSignature)
+        time_signature = inspect_(leaf).get_effective(TimeSignature)
         assert time_signature is None
 
 
@@ -365,7 +365,7 @@ def test_agenttools_InspectionAgent_get_effective_18():
         )
 
     for leaf in staff:
-        time_signature = inspect(leaf).get_effective(TimeSignature)
+        time_signature = inspect_(leaf).get_effective(TimeSignature)
         assert time_signature == TimeSignature((2, 8))
 
 
@@ -391,7 +391,7 @@ def test_agenttools_InspectionAgent_get_effective_19():
         )
 
     for leaf in staff:
-        time_signature = inspect(leaf).get_effective(TimeSignature)
+        time_signature = inspect_(leaf).get_effective(TimeSignature)
         assert time_signature is None
 
 
@@ -402,8 +402,8 @@ def test_agenttools_InspectionAgent_get_effective_20():
     staff = Staff("c'8 d'8 e'8 f'8")
     attach('color', staff[1], scope=Staff)
 
-    assert inspect(staff).get_effective(str) is None
-    assert inspect(staff[0]).get_effective(str) is None
-    assert inspect(staff[1]).get_effective(str) == 'color'
-    assert inspect(staff[2]).get_effective(str) == 'color'
-    assert inspect(staff[3]).get_effective(str) == 'color'
+    assert inspect_(staff).get_effective(str) is None
+    assert inspect_(staff[0]).get_effective(str) is None
+    assert inspect_(staff[1]).get_effective(str) == 'color'
+    assert inspect_(staff[2]).get_effective(str) == 'color'
+    assert inspect_(staff[3]).get_effective(str) == 'color'

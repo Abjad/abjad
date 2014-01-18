@@ -92,7 +92,7 @@ Inspecting duration
 Use the inspector to get the duration of a staff:
 
 <abjad>
-inspect(staff).get_duration()
+inspect_(staff).get_duration()
 </abjad>
 
 

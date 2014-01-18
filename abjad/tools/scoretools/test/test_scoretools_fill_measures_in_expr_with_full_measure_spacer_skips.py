@@ -18,7 +18,7 @@ def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_01():
     }
     '''
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''
@@ -95,7 +95,7 @@ def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
@@ -162,4 +162,4 @@ def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

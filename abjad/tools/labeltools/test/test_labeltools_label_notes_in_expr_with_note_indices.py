@@ -43,4 +43,4 @@ def test_labeltools_label_notes_in_expr_with_note_indices_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

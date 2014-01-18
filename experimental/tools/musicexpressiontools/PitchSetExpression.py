@@ -3,7 +3,7 @@ from abjad.tools import datastructuretools
 from abjad.tools import instrumenttools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
-from abjad.tools.agenttools.InspectionAgent import inspect
+from abjad.tools.topleveltools import inspect_
 from experimental.tools.musicexpressiontools.LeafSetExpression \
     import LeafSetExpression
 
@@ -90,4 +90,4 @@ class PitchSetExpression(LeafSetExpression):
             written_pitch = pitchtools.transpose_pitch_carrier_by_interval(
                     sounding_pitch, t_n)
             leaf.written_pitch = written_pitch
-            assert inspect(leaf).get_sounding_pitch() == sounding_pitch
+            assert inspect_(leaf).get_sounding_pitch() == sounding_pitch

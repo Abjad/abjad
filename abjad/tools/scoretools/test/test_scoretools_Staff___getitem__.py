@@ -9,7 +9,7 @@ def test_scoretools_Staff___getitem___01():
             scoretools.Skip((1, 4)),
             scoretools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert isinstance(staff[0], Note)
     assert isinstance(staff[1], Rest)
     assert isinstance(staff[2], Chord)
@@ -29,10 +29,10 @@ def test_scoretools_Staff___getitem___02():
             scoretools.Skip((1, 4)),
             scoretools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     slice = staff[0:0]
     assert len(slice) == 0
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Staff___getitem___03():
@@ -42,13 +42,13 @@ def test_scoretools_Staff___getitem___03():
             scoretools.Skip((1, 4)),
             scoretools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     slice = staff[0:1]
     assert len(slice) == 1
     assert isinstance(slice[0], Note)
     for x in staff:
         assert x._parent == staff
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Staff___getitem___04():
@@ -58,13 +58,13 @@ def test_scoretools_Staff___getitem___04():
             scoretools.Skip((1, 4)),
             scoretools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     slice = staff[-1:]
     assert len(slice) == 1
     assert isinstance(slice[0], scoretools.FixedDurationTuplet)
     for x in slice:
         assert x._parent == staff
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Staff___getitem___05():
@@ -74,7 +74,7 @@ def test_scoretools_Staff___getitem___05():
             scoretools.Skip((1, 4)),
             scoretools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     slice = staff[1:-1]
     assert len(slice) == 3
     assert isinstance(slice[0], Rest)
@@ -82,7 +82,7 @@ def test_scoretools_Staff___getitem___05():
     assert isinstance(slice[2], scoretools.Skip)
     for x in slice:
         assert x._parent == staff
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Staff___getitem___06():
@@ -92,7 +92,7 @@ def test_scoretools_Staff___getitem___06():
             scoretools.Skip((1, 4)),
             scoretools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     slice = staff[2:]
     assert len(slice) == 3
     assert isinstance(slice[0], Chord)
@@ -100,7 +100,7 @@ def test_scoretools_Staff___getitem___06():
     assert isinstance(slice[2], scoretools.FixedDurationTuplet)
     for x in slice:
         assert x._parent == staff
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Staff___getitem___07():
@@ -110,7 +110,7 @@ def test_scoretools_Staff___getitem___07():
             scoretools.Skip((1, 4)),
             scoretools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     slice = staff[:-2]
     assert len(slice) == 3
     assert isinstance(slice[0], Note)
@@ -118,7 +118,7 @@ def test_scoretools_Staff___getitem___07():
     assert isinstance(slice[2], Chord)
     for x in slice:
         assert x._parent == staff
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Staff___getitem___08():
@@ -128,7 +128,7 @@ def test_scoretools_Staff___getitem___08():
             scoretools.Skip((1, 4)),
             scoretools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     slice = staff[:]
     assert len(slice) == 5
     assert isinstance(slice, (list, selectiontools.SliceSelection))
@@ -139,4 +139,4 @@ def test_scoretools_Staff___getitem___08():
     assert isinstance(slice[4], scoretools.FixedDurationTuplet)
     for x in slice:
         assert x._parent == staff
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

@@ -62,7 +62,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
         '''
         )
 
-    assert not inspect(voice).is_well_formed()
+    assert not inspect_(voice).is_well_formed()
 
     "Slur is contiguous but recipient participates in discont. cresc."
 
@@ -77,7 +77,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
         '''
         )
 
-    assert not inspect(recipient).is_well_formed()
+    assert not inspect_(recipient).is_well_formed()
 
 
 def test_selectiontools_ContiguousSelection__give_dominant_spanners_02():
@@ -138,5 +138,5 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_02():
 
     "Both voice and recipient container carry discontiguous spanners."
 
-    assert not inspect(voice).is_well_formed()
-    assert not inspect(recipient).is_well_formed()
+    assert not inspect_(voice).is_well_formed()
+    assert not inspect_(recipient).is_well_formed()

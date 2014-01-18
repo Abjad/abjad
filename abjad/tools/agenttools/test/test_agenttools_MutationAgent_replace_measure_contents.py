@@ -32,7 +32,7 @@ def test_agenttools_MutationAgent_replace_measure_contents_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_measure_contents_02():
@@ -72,7 +72,7 @@ def test_agenttools_MutationAgent_replace_measure_contents_02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_measure_contents_03():
@@ -129,7 +129,7 @@ def test_agenttools_MutationAgent_replace_measure_contents_05():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_measure_contents_06():
@@ -161,4 +161,4 @@ def test_agenttools_MutationAgent_replace_measure_contents_06():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

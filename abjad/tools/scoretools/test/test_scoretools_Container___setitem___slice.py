@@ -23,7 +23,7 @@ def test_scoretools_Container___setitem___slice_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___slice_02():
@@ -49,7 +49,7 @@ def test_scoretools_Container___setitem___slice_02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___slice_03():
@@ -97,7 +97,7 @@ def test_scoretools_Container___setitem___slice_03():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___slice_04():
@@ -121,7 +121,7 @@ def test_scoretools_Container___setitem___slice_04():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___slice_05():
@@ -148,7 +148,7 @@ def test_scoretools_Container___setitem___slice_05():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___slice_06():
@@ -192,7 +192,7 @@ def test_scoretools_Container___setitem___slice_06():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert len(sequential) == 0
 
 
@@ -238,7 +238,7 @@ def test_scoretools_Container___setitem___slice_07():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___slice_08():
@@ -328,7 +328,7 @@ def test_scoretools_Container___setitem___slice_09():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___slice_10():
@@ -390,7 +390,7 @@ def test_scoretools_Container___setitem___slice_10():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___slice_11():
@@ -428,7 +428,7 @@ def test_scoretools_Container___setitem___slice_11():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___slice_12():
@@ -453,7 +453,7 @@ def test_scoretools_Container___setitem___slice_12():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___slice_13():

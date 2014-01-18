@@ -31,7 +31,7 @@ def test_scoretools_append_spacer_skip_to_underfull_measure_01():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_append_spacer_skip_to_underfull_measure_02():
@@ -60,4 +60,4 @@ def test_scoretools_append_spacer_skip_to_underfull_measure_02():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()

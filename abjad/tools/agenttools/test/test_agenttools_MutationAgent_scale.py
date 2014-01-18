@@ -21,7 +21,7 @@ def test_agenttools_MutationAgent_scale_01():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_scale_02():
@@ -47,7 +47,7 @@ def test_agenttools_MutationAgent_scale_02():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_scale_03():
@@ -77,7 +77,7 @@ def test_agenttools_MutationAgent_scale_03():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_scale_04():
@@ -111,7 +111,7 @@ def test_agenttools_MutationAgent_scale_04():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_scale_05():
@@ -155,7 +155,7 @@ def test_agenttools_MutationAgent_scale_05():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_scale_06():
@@ -195,7 +195,7 @@ def test_agenttools_MutationAgent_scale_06():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_scale_07():
@@ -242,7 +242,7 @@ def test_agenttools_MutationAgent_scale_07():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_scale_08():
@@ -293,4 +293,4 @@ def test_agenttools_MutationAgent_scale_08():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()

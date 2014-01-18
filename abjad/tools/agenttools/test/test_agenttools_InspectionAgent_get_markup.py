@@ -31,7 +31,7 @@ def test_agenttools_InspectionAgent_get_markup_01():
         '''
         )
 
-    markup = inspect(staff[0]).get_markup()
+    markup = inspect_(staff[0]).get_markup()
     assert len(markup) == 2
     assert markup_1 in markup
     assert markup_2 in markup
@@ -44,7 +44,7 @@ def test_agenttools_InspectionAgent_get_markup_02():
     attach(up_markup, chord)
     down_markup = markuptools.Markup('DOWN', Down)
     attach(down_markup, chord)
-    found_markup = inspect(chord).get_markup(direction=Down)
+    found_markup = inspect_(chord).get_markup(direction=Down)
     assert found_markup == (down_markup,) 
 
 
@@ -55,5 +55,5 @@ def test_agenttools_InspectionAgent_get_markup_03():
     attach(up_markup, chord)
     down_markup = markuptools.Markup('DOWN', Down)
     attach(down_markup, chord)
-    found_markup = inspect(chord).get_markup(direction=Up)
+    found_markup = inspect_(chord).get_markup(direction=Up)
     assert found_markup == (up_markup,)

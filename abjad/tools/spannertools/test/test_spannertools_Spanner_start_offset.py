@@ -24,5 +24,5 @@ def test_spannertools_Spanner_start_offset_01():
         '''
         )
 
-    assert inspect(beam).get_timespan().start_offset == Duration(1, 8)
-    assert inspect(glissando).get_timespan().start_offset == Duration(0)
+    assert inspect_(beam).get_timespan().start_offset == Duration(1, 8)
+    assert inspect_(glissando).get_timespan().start_offset == Duration(0)

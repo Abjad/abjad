@@ -49,7 +49,7 @@ Inspecting duration
 Use the inspector the get the duration of a container:
 
 <abjad>
-inspect(container).get_duration()
+inspect_(container).get_duration()
 </abjad>
 
 

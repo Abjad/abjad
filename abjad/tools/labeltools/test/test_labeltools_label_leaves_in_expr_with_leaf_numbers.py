@@ -37,7 +37,7 @@ def test_labeltools_label_leaves_in_expr_with_leaf_numbers_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_labeltools_label_leaves_in_expr_with_leaf_numbers_02():
@@ -76,4 +76,4 @@ def test_labeltools_label_leaves_in_expr_with_leaf_numbers_02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

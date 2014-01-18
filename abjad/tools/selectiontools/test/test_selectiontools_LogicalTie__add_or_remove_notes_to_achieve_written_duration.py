@@ -7,7 +7,7 @@ def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_durat
     '''
 
     staff = Staff("c'8 [ ]")
-    logical_tie = inspect(staff[0]).get_logical_tie()
+    logical_tie = inspect_(staff[0]).get_logical_tie()
     logical_tie._add_or_remove_notes_to_achieve_written_duration(Duration(5, 32))
 
     r'''
@@ -17,7 +17,7 @@ def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_durat
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -34,7 +34,7 @@ def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_durat
     '''
 
     staff = Staff("c'8 [ ~ c'32 ]")
-    logical_tie = inspect(staff[0]).get_logical_tie()
+    logical_tie = inspect_(staff[0]).get_logical_tie()
     logical_tie._add_or_remove_notes_to_achieve_written_duration(Duration(1, 8))
 
     r'''
@@ -43,7 +43,7 @@ def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_durat
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''

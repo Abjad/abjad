@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools.agenttools.InspectionAgent import inspect
+from abjad.tools.topleveltools import inspect_
 from experimental.tools.musicexpressiontools.LeafSetExpression \
     import LeafSetExpression
 
@@ -18,7 +18,7 @@ class PitchClassTransformSetExpression(LeafSetExpression):
         for leaf in self._iterate_selected_leaves_in_score(score):
             assert isinstance(leaf, (scoretools.Note, scoretools.Chord))
             if isinstance(leaf, scoretools.Note):
-                sounding_pitch = inspect(leaf).get_sounding_pitch()
+                sounding_pitch = inspect_(leaf).get_sounding_pitch()
                 sounding_pitch_number = abs(sounding_pitch)
                 transformed_pitch_class = \
                     pitch_class_transform_expression(sounding_pitch_number)
@@ -28,7 +28,7 @@ class PitchClassTransformSetExpression(LeafSetExpression):
             elif isinstance(leaf, scoretools.Chord):
                 transformed_pitch_classes = []
                 for sounding_pitch_number in leaf.sounding_pitches:
-                    sounding_pitch = inspect(leaf).get_sounding_pitch()
+                    sounding_pitch = inspect_(leaf).get_sounding_pitch()
                     sounding_pitch_number = abs(sounding_pitch)
                     transformed_pitch_class = \
                         pitch_class_transform_expression(sounding_pitch_number)

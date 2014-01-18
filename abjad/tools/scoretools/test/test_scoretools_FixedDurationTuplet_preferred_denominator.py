@@ -22,4 +22,4 @@ def test_scoretools_FixedDurationTuplet_preferred_denominator_01():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
+    assert inspect_(tuplet).is_well_formed()

@@ -117,7 +117,7 @@ Use the inspector to get the duration of a staff:
 
 ::
 
-   >>> inspect(staff).get_duration()
+   >>> inspect_(staff).get_duration()
    Duration(2, 1)
 
 

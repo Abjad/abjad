@@ -44,7 +44,7 @@ def test_spannertools_Beam_detach_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_spannertools_Beam_detach_02():
@@ -89,4 +89,4 @@ def test_spannertools_Beam_detach_02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

@@ -73,8 +73,8 @@ def test_scoretools_Chord___init___08():
     assert format(skip) == 's8'
     assert format(chord) == '<>8'
 
-    assert inspect(skip).is_well_formed()
-    assert inspect(chord).is_well_formed()
+    assert inspect_(skip).is_well_formed()
+    assert inspect_(chord).is_well_formed()
 
 
 def test_scoretools_Chord___init___09():
@@ -85,8 +85,8 @@ def test_scoretools_Chord___init___09():
     chord = Chord(tuplet[0])
 
     assert format(chord) == '<>8'
-    assert inspect(chord).get_parentage().parent is None
-    assert inspect(chord).is_well_formed()
+    assert inspect_(chord).get_parentage().parent is None
+    assert inspect_(chord).is_well_formed()
 
 
 def test_scoretools_Chord___init___10():
@@ -97,8 +97,8 @@ def test_scoretools_Chord___init___10():
     chord = Chord(tuplet[0])
 
     assert format(chord) == '<>8'
-    assert inspect(chord).get_parentage().parent is None
-    assert inspect(chord).is_well_formed()
+    assert inspect_(chord).get_parentage().parent is None
+    assert inspect_(chord).is_well_formed()
 
 
 
@@ -110,8 +110,8 @@ def test_scoretools_Chord___init___11():
     chord = Chord(staff[1])
 
     assert format(chord) == '<>8'
-    assert inspect(chord).get_parentage().parent is None
-    assert inspect(chord).is_well_formed()
+    assert inspect_(chord).get_parentage().parent is None
+    assert inspect_(chord).is_well_formed()
 
 
 def test_scoretools_Chord___init___12():
@@ -123,8 +123,8 @@ def test_scoretools_Chord___init___12():
 
     assert format(rest) == 'r8'
     assert format(chord) == '<>8'
-    assert inspect(rest).is_well_formed()
-    assert inspect(chord).is_well_formed()
+    assert inspect_(rest).is_well_formed()
+    assert inspect_(chord).is_well_formed()
 
 
 def test_scoretools_Chord___init___13():
@@ -135,8 +135,8 @@ def test_scoretools_Chord___init___13():
     chord = Chord(tuplet[1])
 
     assert format(chord) == '<>8'
-    assert inspect(chord).is_well_formed()
-    assert inspect(chord).get_parentage().parent is None
+    assert inspect_(chord).is_well_formed()
+    assert inspect_(chord).get_parentage().parent is None
 
 
 def test_scoretools_Chord___init___14():
@@ -148,8 +148,8 @@ def test_scoretools_Chord___init___14():
     
     assert format(note) == "d'8"
     assert format(chord) == "<d'>8"
-    assert inspect(note).is_well_formed()
-    assert inspect(chord).is_well_formed()
+    assert inspect_(note).is_well_formed()
+    assert inspect_(chord).is_well_formed()
 
 
 def test_scoretools_Chord___init___15():
@@ -160,8 +160,8 @@ def test_scoretools_Chord___init___15():
     chord = Chord(tuplet[1])
 
     assert format(chord) == "<c'>8"
-    assert inspect(chord).is_well_formed()
-    assert inspect(chord).get_parentage().parent is None
+    assert inspect_(chord).is_well_formed()
+    assert inspect_(chord).get_parentage().parent is None
 
 
 def test_scoretools_Chord___init___16():
@@ -172,8 +172,8 @@ def test_scoretools_Chord___init___16():
     chord = Chord(staff[1])
 
     assert format(chord) == "<d'>8"
-    assert inspect(chord).is_well_formed()
-    assert inspect(chord).get_parentage().parent is None
+    assert inspect_(chord).is_well_formed()
+    assert inspect_(chord).get_parentage().parent is None
 
 
 def test_scoretools_Chord___init___17():

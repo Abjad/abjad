@@ -25,5 +25,5 @@ def test_lilypondparsertools_LilyPondParser__indicators__BarLine_01():
     parser = LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
-    items = inspect(result[2]).get_indicators()
+    items = inspect_(result[2]).get_indicators()
     assert 1 == len(items) and isinstance(items[0], indicatortools.BarLine)

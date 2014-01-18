@@ -34,7 +34,7 @@ def test_scoretools_Tuplet__fix_01():
         )
 
     assert tuplet.multiplier.is_proper_tuplet_multiplier
-    assert inspect(tuplet).is_well_formed()
+    assert inspect_(tuplet).is_well_formed()
 
 
 def test_scoretools_Tuplet__fix_02():
@@ -71,7 +71,7 @@ def test_scoretools_Tuplet__fix_02():
         )
 
     assert tuplet.multiplier.is_proper_tuplet_multiplier
-    assert inspect(tuplet).is_well_formed()
+    assert inspect_(tuplet).is_well_formed()
 
 
 def test_scoretools_Tuplet__fix_03():
@@ -108,4 +108,4 @@ def test_scoretools_Tuplet__fix_03():
         )
 
     assert tuplet.multiplier.is_proper_tuplet_multiplier
-    assert inspect(tuplet).is_well_formed()
+    assert inspect_(tuplet).is_well_formed()

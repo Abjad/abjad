@@ -21,7 +21,7 @@ def test_agenttools_InspectionAgent_get_sounding_pitches_01():
         '''
         )
 
-    sounding_pitches = inspect(staff[0]).get_sounding_pitches()
+    sounding_pitches = inspect_(staff[0]).get_sounding_pitches()
     assert sounding_pitches == (
         NamedPitch("c'''"), 
         NamedPitch("e'''"),

@@ -88,7 +88,7 @@ def test_spannertools_Slur___init___02():
         '''
         )
 
-    assert inspect(container).is_well_formed()
+    assert inspect_(container).is_well_formed()
 
 
 def test_spannertools_Slur___init___03():
@@ -144,4 +144,4 @@ def test_spannertools_Slur___init___03():
         '''
         )
 
-    assert inspect(container).is_well_formed()
+    assert inspect_(container).is_well_formed()

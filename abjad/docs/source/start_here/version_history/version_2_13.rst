@@ -32,14 +32,14 @@ are now implemented as methods bound to the Abjad ``NamedPitch`` class:
 
 
 
-Introducing ``inspect()``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Introducing ``inspect_()``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A new ``inspect()`` function is now available when you start Abjad.
-``inspect()`` is a factory function that returns an instance of the new
+A new ``inspect_()`` function is now available when you start Abjad.
+``inspect_()`` is a factory function that returns an instance of the new
 ``InspectionAgent`` ("the inspector") when called on any score
 component. Use the inspector to examine component attributes determined by
-score structure.  Here's how to use ``inspect()`` to get the duration of a
+score structure.  Here's how to use ``inspect_()`` to get the duration of a
 tupletted note:
 
 ::
@@ -68,7 +68,7 @@ tupletted note:
 
 ::
 
-   >>> inspect(note).get_duration()
+   >>> inspect_(note).get_duration()
    Duration(1, 5)
 
 

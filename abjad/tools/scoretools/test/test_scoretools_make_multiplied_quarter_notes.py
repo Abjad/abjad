@@ -20,4 +20,4 @@ def test_scoretools_make_multiplied_quarter_notes_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

@@ -554,7 +554,7 @@ class IterationAgent(abctools.AbjadObject):
         ::
 
             >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
-            >>> signature = inspect(leaf).get_parentage().logical_voice
+            >>> signature = inspect_(leaf).get_parentage().logical_voice
             >>> for x in iterate(staff).by_logical_voice(Note, signature):
             ...     x
             ...

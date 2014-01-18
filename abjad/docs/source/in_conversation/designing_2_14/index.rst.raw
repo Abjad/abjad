@@ -27,7 +27,7 @@ from thinking ``iterationtools.iterate_notes_in_expr(voice)`` to
 ``iterate(voice).iterate_by_class(Note)``. Which is a cleaner way of getting to
 the core iteration functionality anyway.
 
-Trevor: Same with ``mutate()`` and ``inspect()``. Just those two functions
+Trevor: Same with ``mutate()`` and ``inspect_()``. Just those two functions
 offer up a tremendous amount of functionality.
 
 Josiah: We should highlight ``InspectionAgent``, ``IterationAgent``,

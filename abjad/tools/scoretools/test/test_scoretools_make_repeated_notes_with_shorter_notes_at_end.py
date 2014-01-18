@@ -21,7 +21,7 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_01():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_02():
@@ -43,7 +43,7 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_02():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_03():
@@ -61,7 +61,7 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_03():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_04():
@@ -87,7 +87,7 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_04():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_05():
@@ -113,4 +113,4 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_05():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
