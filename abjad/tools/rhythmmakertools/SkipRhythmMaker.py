@@ -121,7 +121,7 @@ class SkipRhythmMaker(RhythmMaker):
                 rhythmmakertools.SkipRhythmMaker(
                     beam_cells_together=False,
                     beam_each_cell=True,
-                    decrease_durations_monotonically=True,
+                    decrease_durations_monotonically=False,
                     )
 
             ::

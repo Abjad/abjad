@@ -216,6 +216,15 @@ class BurnishSpecifier(AbjadObject):
             format_specification=format_specification,
             )
 
+    # TODO: implement makenew
+    def __makenew__(self, **kwargs):
+        r'''Makes new burnish specifier with optional `kwargs`.
+
+        Returns new burnish specifier.
+        '''
+        message = 'need to implement BurnishSpecifier.__makenew__().'
+        raise NotImplementedError(message)
+
     def __ne__(self, expr):
         r'''Is true when `expr` does not equal burnish specifier.
 

@@ -162,12 +162,4 @@ class NoteRhythmMaker(RhythmMaker):
 
         Returns new note rhythm-maker.
         '''
-        decrease_durations_monotonically = \
-            not self.decrease_durations_monotonically
-        new = type(self)(
-            beam_cells_together=self.beam_cells_together,
-            beam_each_cell=self.beam_each_cell,
-            decrease_durations_monotonically=decrease_durations_monotonically,
-            forbidden_written_duration=self.forbidden_written_duration,
-            )
-        return new
+        return RhythmMaker.reverse(self)

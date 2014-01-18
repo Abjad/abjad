@@ -7,6 +7,7 @@ from abjad.tools import spannertools
 from abjad.tools import systemtools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import new
 
 
 class EvenRunRhythmMaker(RhythmMaker):
@@ -201,7 +202,19 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         Returns new even-run rhythm-maker.
         '''
-        return RhythmMaker.__makenew__(self, *args, **kwargs)
+        assert not args
+        arguments = {
+            'beam_cells_together': self.beam_cells_together,
+            'beam_each_cell': self.beam_each_cell,
+            'decrease_durations_monotonically':
+                self.decrease_durations_monotonically,
+            'denominator_multiplier_exponent':
+                self.denominator_multiplier_exponent,
+            'forbidden_written_duration': self.forbidden_written_duration,
+            }
+        arguments.update(kwargs)
+        new = type(self)(**arguments)
+        return new
 
     ### PRIVATE METHODS ###
 
@@ -274,14 +287,19 @@ class EvenRunRhythmMaker(RhythmMaker):
         '''
         decrease_durations_monotonically = \
             not self.decrease_durations_monotonically
-        arguments = {
-            'denominator_multiplier_exponent': 
-                self.denominator_multiplier_exponent,
-            'beam_cells_together': self.beam_cells_together,
-            'beam_each_cell': self.beam_each_cell,
-            'decrease_durations_monotonically': 
-                decrease_durations_monotonically,
-            'forbidden_written_duration': self.forbidden_written_duration,
-            }
-        new = type(self)(**arguments)
-        return new
+#        arguments = {
+#            'denominator_multiplier_exponent': 
+#                self.denominator_multiplier_exponent,
+#            'beam_cells_together': self.beam_cells_together,
+#            'beam_each_cell': self.beam_each_cell,
+#            'decrease_durations_monotonically': 
+#                decrease_durations_monotonically,
+#            'forbidden_written_duration': self.forbidden_written_duration,
+#            }
+#        new = type(self)(**arguments)
+#        return new
+        maker = new(
+            self,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            )
+        return maker

@@ -13,6 +13,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import mutate
+from abjad.tools.topleveltools import new
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import persist
 
@@ -117,6 +118,23 @@ class RhythmMaker(AbjadObject):
             for slot in getattr(class_, '__slots__', ()):
                 state[slot] = getattr(self, slot, None)
         return state
+
+    def __makenew__(self, *args, **kwargs):
+        r'''Makes new rhythm-maker with optional `kwargs`.
+
+        Returns new rhythm-maker.
+        '''
+        assert not args
+        arguments = {
+            'beam_cells_together': self.beam_cells_together,
+            'beam_each_cell': self.beam_each_cell,
+            'decrease_durations_monotonically':
+                self.decrease_durations_monotonically,
+            'forbidden_written_duration': self.forbidden_written_duration,
+            }
+        arguments.update(kwargs)
+        maker = type(self)(**arguments)
+        return maker
 
     ### PRIVATE METHODS ###
 
@@ -348,40 +366,17 @@ class RhythmMaker(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def __makenew__(self, *args, **kwargs):
-        r'''Makes new rhythm-maker with `kwargs`.
-
-        Returns new rhythm-maker.
-        '''
-        assert not args
-        arguments = {
-            'beam_cells_together': self.beam_cells_together,
-            'beam_each_cell': self.beam_each_cell,
-            'decrease_durations_monotonically':
-                self.decrease_durations_monotonically,
-            'forbidden_written_duration': self.forbidden_written_duration,
-            }
-        arguments.update(kwargs)
-        new = type(self)(**arguments)
-        return new
-
     def reverse(self):
         r'''Reverses rhythm-maker.
 
-        Defined equal to exact copy of rhythm-maker.
+        Concrete rhythm-makers should override this method.
 
-        This is the fallback for child classes.
-
-        Directed rhythm-maker child classes should override this method.
-
-        Returns newly constructed rhythm-maker.
+        Returns new rhythm-maker.
         '''
-        arguments = {
-            'beam_cells_together': self.beam_cells_together,
-            'beam_each_cell': self.beam_each_cell,
-            'decrease_durations_monotonically':
-                self.decrease_durations_monotonically,
-            'forbidden_written_duration': self.forbidden_written_duration,
-            }
-        new = type(self)(**arguments)
-        return new
+        decrease_durations_monotonically = \
+            not self.decrease_durations_monotonically
+        maker = new(
+            self,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            )
+        return maker

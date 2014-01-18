@@ -13,6 +13,7 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import new
 
 
 class TaleaRhythmMaker(RhythmMaker):
@@ -327,8 +328,8 @@ class TaleaRhythmMaker(RhythmMaker):
             'burnish_output': self.burnish_output,
             }
         arguments.update(kwargs)
-        new = type(self)(**arguments)
-        return new
+        maker = type(self)(**arguments)
+        return maker
 
     ### PRIVATE METHODS ###
 
@@ -735,18 +736,12 @@ class TaleaRhythmMaker(RhythmMaker):
             secondary_divisions = tuple(reversed(secondary_divisions))
         decrease_durations_monotonically = \
             not self.decrease_durations_monotonically
-        new = type(self)(
+        maker = new(
+            self,
             talea=talea,
-            talea_denominator=self.talea_denominator,
             prolation_addenda=prolation_addenda,
             burnish_specifier=burnish_specifier,
             secondary_divisions=secondary_divisions,
-            helper_functions=self.helper_functions,
-            beam_each_cell=self.beam_each_cell, 
-            beam_cells_together=self.beam_cells_together,
             decrease_durations_monotonically=decrease_durations_monotonically, 
-            tie_split_notes=self.tie_split_notes, 
-            burnish_divisions=self.burnish_divisions,
-            burnish_output=self.burnish_output,
             )
-        return new
+        return maker

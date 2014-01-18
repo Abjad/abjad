@@ -175,6 +175,31 @@ class IncisedRhythmMaker(RhythmMaker):
             result), repr(result)
         return result
 
+    def __makenew__(self, *args, **kwargs):
+        r'''Makes new incised rhythm-maker with optional `kwargs`.
+
+        Returns new incised rhythm-maker.
+        '''
+        assert not args
+        arguments = {
+            'beam_cells_together': self.beam_cells_together,
+            'beam_each_cell': self.beam_each_cell,
+            'forbidden_written_duration': self.forbidden_written_duration,
+            'incise_specifier': self.incise_specifier,
+            'body_ratio': self.body_ratio,
+            'prolation_addenda': self.prolation_addenda,
+            'secondary_divisions': self.secondary_divisions,
+            'helper_functions': self.helper_functions,
+            'decrease_durations_monotonically':
+                self.decrease_durations_monotonically,
+            'fill_with_notes': self.fill_with_notes,
+            'incise_divisions': self.incise_divisions,
+            'incise_output': self.incise_output,
+            }
+        arguments.update(kwargs)
+        maker = type(self)(**arguments)
+        return maker
+
     ### PRIVATE METHODS ###
 
     def _make_middle_of_numeric_map_part(self, middle):
@@ -553,7 +578,6 @@ class IncisedRhythmMaker(RhythmMaker):
 
         Returns newly constructed rhythm-maker.
         '''
-        body_ratio = self.body_ratio
         prolation_addenda = self.prolation_addenda
         if prolation_addenda is not None:
             prolation_addenda = tuple(reversed(prolation_addenda))
@@ -562,19 +586,10 @@ class IncisedRhythmMaker(RhythmMaker):
             secondary_divisions = tuple(reversed(secondary_divisions))
         decrease_durations_monotonically = \
             not self.decrease_durations_monotonically
-        fill_with_notes = self.fill_with_notes
-        incise_divisions = self.incise_divisions
-        incise_output = self.incise_output
-        helper_functions = self.helper_functions
-        new = type(self)(
-            incise_specifier=incise_specifier,
-            body_ratio=body_ratio,
+        maker = new(
+            self,
+            decrease_durations_monotonically=decrease_durations_monotonically,
             prolation_addenda=prolation_addenda,
             secondary_divisions=secondary_divisions,
-            helper_functions=helper_functions,
-            decrease_durations_monotonically=decrease_durations_monotonically,
-            fill_with_notes=fill_with_notes,
-            incise_divisions=incise_divisions,
-            incise_output=incise_output,
             )
-        return new
+        return maker

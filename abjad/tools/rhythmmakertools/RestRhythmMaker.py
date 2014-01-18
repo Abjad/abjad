@@ -180,7 +180,7 @@ class RestRhythmMaker(RhythmMaker):
                 rhythmmakertools.RestRhythmMaker(
                     beam_each_cell=False,
                     beam_cells_together=False,
-                    decrease_durations_monotonically=True,
+                    decrease_durations_monotonically=False,
                     forbidden_written_duration=durationtools.Duration(1, 4),
                     )
 

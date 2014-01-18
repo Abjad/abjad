@@ -5,6 +5,7 @@ from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+from abjad.tools.topleveltools import new
 
 
 class EqualDivisionRhythmMaker(RhythmMaker):
@@ -263,14 +264,8 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         '''
         decrease_durations_monotonically = \
             not self.decrease_durations_monotonically
-        arguments = {
-            'beam_cells_together': self.beam_cells_together,
-            'beam_each_cell': self.beam_each_cell,
-            'decrease_durations_monotonically': 
-                decrease_durations_monotonically,
-            'forbidden_written_duration': self.forbidden_written_duration,
-            'is_diminution': self.is_diminution,
-            'leaf_count': self.leaf_count,
-            }
-        new = type(self)(**arguments)
-        return new
+        maker = new(
+            self,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            )
+        return maker

@@ -2,6 +2,7 @@
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.topleveltools import new
 
 
 class InciseSpecifier(AbjadObject):
@@ -51,6 +52,25 @@ class InciseSpecifier(AbjadObject):
         assert mathtools.is_positive_integer_equivalent_number(
             talea_denominator), talea_denominator
         self._talea_denominator = talea_denominator
+
+    ### SPECIAL METHODS ##
+
+    def __makenew__(self, *args, **kwargs):
+        r'''Makes new incise specifier with optional `kwargs`.
+
+        Returns new incise specifier.
+        '''
+        assert not args
+        arguments = {
+            'prefix_talea': self.prefix_talea,
+            'prefix_lengths': self.prefix_lengths,
+            'suffix_talea': self.suffix_talea,
+            'suffix_lengths': self.suffix_lengths,
+            'talea_denominator': self.talea_denominator,
+            }
+        arguments.update(kwargs)
+        specifier = type(self)(**arguments)
+        return specifier
 
     ### PRIVATE METHODS ###
 
@@ -121,12 +141,11 @@ class InciseSpecifier(AbjadObject):
         suffix_lengths = self.suffix_lengths
         if suffix_lengths is not None:
             suffix_lengths = tuple(reversed(suffix_lengths))
-        talea_denominator = self.talea_denominator
-        new = type(self)(
+        maker = new(
+            self,
             prefix_talea=prefix_talea,
             prefix_lengths=prefix_lengths,
             suffix_talea=suffix_talea,
             suffix_lengths=suffix_lengths,
-            talea_denominator=talea_denominator,
             )
-        return new
+        return maker
