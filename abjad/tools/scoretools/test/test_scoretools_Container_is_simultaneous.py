@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_scoretools_Container_is_simultaneous_01():
@@ -8,17 +8,16 @@ def test_scoretools_Container_is_simultaneous_01():
     otherwise False.
     '''
 
-    assert not Container([]).is_simultaneous
-    assert not scoretools.FixedDurationTuplet(Duration(2, 8), []).is_simultaneous
-    assert not Tuplet(Multiplier(2, 3), []).is_simultaneous
-    assert scoretools.GrandStaff([]).is_simultaneous
+    assert not Container().is_simultaneous
+    assert not scoretools.FixedDurationTuplet().is_simultaneous
+    assert not Tuplet().is_simultaneous
     assert not scoretools.make_rhythmic_sketch_staff([]).is_simultaneous
-    assert not Measure((4, 8), []).is_simultaneous
-    assert Score([]).is_simultaneous
-    assert not Container([]).is_simultaneous
-    assert not Staff([]).is_simultaneous
-    assert scoretools.StaffGroup([]).is_simultaneous
-    assert not Voice([]).is_simultaneous
+    assert not Measure().is_simultaneous
+    assert Score().is_simultaneous
+    assert not Container().is_simultaneous
+    assert not Staff().is_simultaneous
+    assert scoretools.StaffGroup().is_simultaneous
+    assert not Voice().is_simultaneous
 
 
 def test_scoretools_Container_is_simultaneous_02():
@@ -65,21 +64,6 @@ def test_scoretools_Container_is_simultaneous_04():
         '''
         )
 
-    r'''
-    <<
-        \new Voice {
-            c'8
-            cs'8
-        }
-        \new Voice {
-            d'8
-            ef'8
-        }
-    >>
-    '''
-
-
-# simultaneous Errors #
 
 def test_scoretools_Container_is_simultaneous_05():
     r'''simultaneous containers must contain only Contexts.

@@ -279,7 +279,7 @@ def test_agenttools_InspectionAgent_get_timespan_24():
     voice_1.name = voice_1b.name = 'voiceOne'
     staff_1 = Staff([voice_1, voice_1b])
     staff_2 = Staff([voice_2, voice_2b])
-    gs = scoretools.GrandStaff([staff_1, staff_2])
+    gs = StaffGroup([staff_1, staff_2])
     assert inspect_(voice_1).get_timespan().start_offset == 0
     assert inspect_(voice_2).get_timespan().start_offset == 0
     assert inspect_(voice_1b).get_timespan().start_offset == Offset(4, 8)

@@ -12,7 +12,8 @@ class GrandStaff(StaffGroup):
 
     ::
 
-        >>> grand_staff = scoretools.GrandStaff([staff_1, staff_2])
+        >>> grand_staff = StaffGroup([staff_1, staff_2])
+        >>> grand_staff.context_name = 'GrandStaff'
 
     ..  doctest::
 
