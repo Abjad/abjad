@@ -4,7 +4,8 @@ from abjad import *
 
 def test_selectiontools_VerticalMoment_notes_01():
 
-    score = Score(r'''
+    score = Score(
+        r'''
         \new Staff {
             \times 4/3 {
                 d''8
@@ -25,12 +26,14 @@ def test_selectiontools_VerticalMoment_notes_01():
                 c'8
             }
         >>
-        ''')
-    piano_staff = score[1]
+        '''
+        )
+
+    staff_group = score[1]
 
     vertical_moment = inspect_(score).get_vertical_moment_at(Offset(1, 8))
 
     "(Note(d'', 8), Note(a', 4), Note(e', 8))"
 
     assert vertical_moment.notes == (
-        score[0][0][0], piano_staff[0][0], piano_staff[1][1])
+        score[0][0][0], staff_group[0][0], staff_group[1][1])

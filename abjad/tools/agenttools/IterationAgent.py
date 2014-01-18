@@ -1154,11 +1154,11 @@ class IterationAgent(abctools.AbjadObject):
 
         ::
 
-            >>> piano_staff = StaffGroup([])
-            >>> piano_staff.context_name = 'PianoStaff'
-            >>> piano_staff.append(Staff("a'4 g'4"))
-            >>> piano_staff.append(Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
-            >>> score.append(piano_staff)
+            >>> staff_group = StaffGroup([])
+            >>> staff_group.context_name = 'PianoStaff'
+            >>> staff_group.append(Staff("a'4 g'4"))
+            >>> staff_group.append(Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
+            >>> score.append(staff_group)
 
         ..  doctest::
 
@@ -1201,7 +1201,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ::
 
-            >>> for x in iterate(piano_staff).by_vertical_moment():
+            >>> for x in iterate(staff_group).by_vertical_moment():
             ...     x.leaves
             ...
             (Note("a'4"), Note("f'8"))
@@ -1227,8 +1227,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ::
 
-            >>> for x in iterate(piano_staff).by_vertical_moment(
-            ...     reverse=True):
+            >>> for x in iterate(staff_group).by_vertical_moment(reverse=True):
             ...     x.leaves
             ...
             (Note("g'4"), Note("c'8"))

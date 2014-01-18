@@ -84,17 +84,17 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
         attach(clef, lh_staff)
 
         # make piano staff
-        piano_staff = scoretools.StaffGroup(
+        staff_group = scoretools.StaffGroup(
             [rh_staff, lh_staff], 
             context_name='PianoStaff',
             name='Piano Staff',
             )
         piano = instrumenttools.Piano()
-        attach(piano, piano_staff)
+        attach(piano, staff_group)
 
         # make two-staf piano score
         two_staff_piano_score = scoretools.Score(
-            [piano_staff], 
+            [staff_group], 
             name='Two-Staff Piano Score',
             )
 

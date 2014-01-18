@@ -12,16 +12,16 @@ class Harpsichord(Instrument):
 
         >>> upper_staff = Staff("c'4 d'4 e'4 f'4")
         >>> lower_staff = Staff("c'2 b2")
-        >>> piano_staff = StaffGroup([upper_staff, lower_staff])
-        >>> piano_staff.context_name = 'PianoStaff'
+        >>> staff_group = StaffGroup([upper_staff, lower_staff])
+        >>> staff_group.context_name = 'PianoStaff'
         >>> harpsichord = instrumenttools.Harpsichord()
-        >>> attach(harpsichord, piano_staff)
+        >>> attach(harpsichord, staff_group)
         >>> attach(Clef(name='bass'), lower_staff)
-        >>> show(piano_staff) # doctest: +SKIP
+        >>> show(staff_group) # doctest: +SKIP
 
     ..  doctest::
 
-        >>> print format(piano_staff)
+        >>> print format(staff_group)
         \new PianoStaff <<
             \set PianoStaff.instrumentName = \markup { Harpsichord }
             \set PianoStaff.shortInstrumentName = \markup { Hpschd. }

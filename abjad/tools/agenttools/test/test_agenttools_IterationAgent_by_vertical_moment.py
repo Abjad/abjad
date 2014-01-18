@@ -7,11 +7,11 @@ def test_agenttools_IterationAgent_by_vertical_moment_01():
     score = Score([])
     staff_1 = Staff([Tuplet((4, 3), "d''8 c''8 b'8")])
     score.append(staff_1)
-    piano_staff = StaffGroup(context_name='PianoStaff')
-    piano_staff.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
+    staff_group = StaffGroup(context_name='PianoStaff')
+    staff_group.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
     clef = Clef('bass')
-    attach(clef, piano_staff[1])
-    score.append(piano_staff)
+    attach(clef, staff_group[1])
+    score.append(staff_group)
 
     assert systemtools.TestManager.compare(
         score,
@@ -55,8 +55,8 @@ def test_agenttools_IterationAgent_by_vertical_moment_01():
     '''
 
     tuplet = score[0][0].select_leaves()
-    treble = piano_staff[0].select_leaves()
-    bass = piano_staff[1].select_leaves()
+    treble = staff_group[0].select_leaves()
+    bass = staff_group[1].select_leaves()
 
     assert moments[0].leaves == (tuplet[2], treble[1], bass[3])
     assert moments[1].leaves == (tuplet[2], treble[1], bass[2])
@@ -71,11 +71,11 @@ def test_agenttools_IterationAgent_by_vertical_moment_02():
     score = Score([])
     staff_1 = Staff([Tuplet((4, 3), "d''8 c''8 b'8")])
     score.append(staff_1)
-    piano_staff = StaffGroup(context_name='PianoStaff')
-    piano_staff.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
+    staff_group = StaffGroup(context_name='PianoStaff')
+    staff_group.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
     clef = Clef('bass')
-    attach(clef, piano_staff[1])
-    score.append(piano_staff)
+    attach(clef, staff_group[1])
+    score.append(staff_group)
 
     assert systemtools.TestManager.compare(
         score,
@@ -108,7 +108,7 @@ def test_agenttools_IterationAgent_by_vertical_moment_02():
 
     # see above for formatted score #
 
-    moment_generator = iterate(piano_staff).by_vertical_moment(reverse=True)
+    moment_generator = iterate(staff_group).by_vertical_moment(reverse=True)
     moments = list(moment_generator)
 
     r'''
@@ -118,8 +118,8 @@ def test_agenttools_IterationAgent_by_vertical_moment_02():
     (Note(a', 4), Note(f', 8))
     '''
 
-    treble = piano_staff[0].select_leaves()
-    bass = piano_staff[1].select_leaves()
+    treble = staff_group[0].select_leaves()
+    bass = staff_group[1].select_leaves()
 
     assert moments[0].leaves == (treble[1], bass[3])
     assert moments[1].leaves == (treble[1], bass[2])
@@ -132,11 +132,11 @@ def test_agenttools_IterationAgent_by_vertical_moment_03():
     score = Score([])
     staff_1 = Staff([Tuplet((4, 3), "d''8 c''8 b'8")])
     score.append(staff_1)
-    piano_staff = StaffGroup(context_name='PianoStaff')
-    piano_staff.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
+    staff_group = StaffGroup(context_name='PianoStaff')
+    staff_group.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
     clef = Clef('bass')
-    attach(clef, piano_staff[1])
-    score.append(piano_staff)
+    attach(clef, staff_group[1])
+    score.append(staff_group)
 
     assert systemtools.TestManager.compare(
         score,
@@ -180,8 +180,8 @@ def test_agenttools_IterationAgent_by_vertical_moment_03():
     '''
 
     tuplet = score[0][0].select_leaves()
-    treble = piano_staff[0].select_leaves()
-    bass = piano_staff[1].select_leaves()
+    treble = staff_group[0].select_leaves()
+    bass = staff_group[1].select_leaves()
 
     assert set(moments[0].leaves) == set((tuplet[0], treble[0], bass[0]))
     assert set(moments[1].leaves) == set((tuplet[0], treble[0], bass[1]))
@@ -196,11 +196,11 @@ def test_agenttools_IterationAgent_by_vertical_moment_04():
     score = Score([])
     staff_1 = Staff([Tuplet((4, 3), "d''8 c''8 b'8")])
     score.append(staff_1)
-    piano_staff = StaffGroup(context_name='PianoStaff')
-    piano_staff.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
+    staff_group = StaffGroup(context_name='PianoStaff')
+    staff_group.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
     clef = Clef('bass')
-    attach(clef, piano_staff[1])
-    score.append(piano_staff)
+    attach(clef, staff_group[1])
+    score.append(staff_group)
 
     assert systemtools.TestManager.compare(
         score,
@@ -231,7 +231,7 @@ def test_agenttools_IterationAgent_by_vertical_moment_04():
         '''
         )
 
-    moment_generator = iterate(piano_staff).by_vertical_moment()
+    moment_generator = iterate(staff_group).by_vertical_moment()
     moments = list(moment_generator)
 
     r'''
@@ -241,8 +241,8 @@ def test_agenttools_IterationAgent_by_vertical_moment_04():
     (Note(g', 4), Note(c', 8))
     '''
 
-    treble = piano_staff[0].select_leaves()
-    bass = piano_staff[1].select_leaves()
+    treble = staff_group[0].select_leaves()
+    bass = staff_group[1].select_leaves()
 
     assert set(moments[0].leaves) == set((treble[0], bass[0]))
     assert set(moments[1].leaves) == set((treble[0], bass[1]))

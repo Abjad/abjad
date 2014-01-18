@@ -4,7 +4,8 @@ from abjad import *
 
 def test_selectiontools_VerticalMoment___eq___01():
 
-    score = Score(r'''
+    score = Score(
+        r'''
         \new Staff {
             \times 4/3 {
                 d''8
@@ -25,13 +26,15 @@ def test_selectiontools_VerticalMoment___eq___01():
                 c'8
             }
         >>
-        ''')
-    piano_staff = score[1]
+        '''
+        )
 
-    vertical_moment_1 = inspect_(piano_staff).get_vertical_moment_at(Offset(1, 8))
+    staff_group = score[1]
+
+    vertical_moment_1 = inspect_(staff_group).get_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
 
-    vertical_moment_2 = inspect_(piano_staff).get_vertical_moment_at(Offset(1, 8))
+    vertical_moment_2 = inspect_(staff_group).get_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
 
     assert vertical_moment_1 == vertical_moment_2
@@ -43,7 +46,7 @@ def test_selectiontools_VerticalMoment___eq___02():
     score = Score([])
     score.append(Staff([scoretools.FixedDurationTuplet(
         Duration(4, 8), "d''8 c''8 b'8")]))
-    piano_staff = StaffGroup(r'''
+    staff_group = StaffGroup(r'''
         \new Staff {
             a'4
             g'4
@@ -57,8 +60,8 @@ def test_selectiontools_VerticalMoment___eq___02():
         }
         '''
         )
-    piano_staff.context_name = 'PianoStaff'
-    score.append(piano_staff)
+    staff_group.context_name = 'PianoStaff'
+    score.append(staff_group)
 
     assert systemtools.TestManager.compare(
         score,
@@ -90,11 +93,11 @@ def test_selectiontools_VerticalMoment___eq___02():
         )
 
     vertical_moment_1 = inspect_(
-        piano_staff).get_vertical_moment_at(Offset(1, 8))
+        staff_group).get_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
 
     vertical_moment_2 = inspect_(
-        piano_staff[0]).get_vertical_moment_at(Offset(1, 8))
+        staff_group[0]).get_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(Staff{2}, a'4, Staff{4}, e'8)"
 
     assert not vertical_moment_1 == vertical_moment_2

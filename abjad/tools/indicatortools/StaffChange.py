@@ -7,20 +7,20 @@ class StaffChange(AbjadObject):
 
     ::
 
-        >>> piano_staff = StaffGroup()
-        >>> piano_staff.context_name = 'PianoStaff'
+        >>> staff_group = StaffGroup()
+        >>> staff_group.context_name = 'PianoStaff'
         >>> rh_staff = Staff("c'8 d'8 e'8 f'8")
         >>> rh_staff.name = 'RHStaff'
         >>> lh_staff = Staff("s2")
         >>> lh_staff.name = 'LHStaff'
-        >>> piano_staff.extend([rh_staff, lh_staff])
+        >>> staff_group.extend([rh_staff, lh_staff])
         >>> staff_change = indicatortools.StaffChange(lh_staff)
         >>> attach(staff_change, rh_staff[2])
-        >>> show(piano_staff) # doctest: +SKIP
+        >>> show(staff_group) # doctest: +SKIP
 
     ..  doctest::
 
-        >>> print format(piano_staff)
+        >>> print format(staff_group)
         \new PianoStaff <<
             \context Staff = "RHStaff" {
                 c'8

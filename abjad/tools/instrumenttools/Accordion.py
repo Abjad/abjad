@@ -10,18 +10,18 @@ class Accordion(Instrument):
 
     ::
 
-        >>> piano_staff = StaffGroup()
-        >>> piano_staff.context_name = 'PianoStaff'
-        >>> piano_staff.append(Staff("c'4 d'4 e'4 f'4"))
-        >>> piano_staff.append(Staff("c'2 b2"))
+        >>> staff_group = StaffGroup()
+        >>> staff_group.context_name = 'PianoStaff'
+        >>> staff_group.append(Staff("c'4 d'4 e'4 f'4"))
+        >>> staff_group.append(Staff("c'2 b2"))
         >>> accordion = instrumenttools.Accordion()
-        >>> attach(accordion, piano_staff)
-        >>> attach(Clef(name='bass'), piano_staff[1])
-        >>> show(piano_staff) # doctest: +SKIP
+        >>> attach(accordion, staff_group)
+        >>> attach(Clef(name='bass'), staff_group[1])
+        >>> show(staff_group) # doctest: +SKIP
 
     ..  doctest::
 
-        >>> print format(piano_staff)
+        >>> print format(staff_group)
         \new PianoStaff <<
             \set PianoStaff.instrumentName = \markup { Accordion }
             \set PianoStaff.shortInstrumentName = \markup { Acc. }
