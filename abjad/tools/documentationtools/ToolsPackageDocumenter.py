@@ -84,7 +84,7 @@ class ToolsPackageDocumenter(Documenter):
 
     def _examine_tools_package(self):
         from abjad.tools import documentationtools
-        if self.object is None:
+        if self.object_ is None:
             return
         code_root = self.object_.__path__[0]
         root_package_name = self.prefix.split('.')[0]
