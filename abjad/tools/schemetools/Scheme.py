@@ -82,8 +82,8 @@ class Scheme(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a scheme object with a value equal to that of
-        this scheme object. Otherwise false.
+        r'''Is true when `expr` is a scheme object with a value equal to that 
+        of this scheme object. Otherwise false.
 
         Returns boolean.
         '''
@@ -166,7 +166,7 @@ class Scheme(AbjadObject):
 
     @classmethod
     def format_scheme_value(cls, value, force_quotes=False):
-        r'''Format `value` as Scheme would:
+        r'''Formats `value` as Scheme would.
 
         ::
 
