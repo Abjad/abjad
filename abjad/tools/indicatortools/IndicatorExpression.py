@@ -31,7 +31,7 @@ class IndicatorExpression(AbjadObject):
             if isinstance(scope, types.TypeType):
                 assert issubclass(scope, scoretools.Component)
             else:
-                assert isinstance(scope, scoretools.Component)
+                assert isinstance(scope, (scoretools.Component, str))
         self._indicator = indicator
         self._component = component
         self._scope = scope
@@ -123,7 +123,7 @@ class IndicatorExpression(AbjadObject):
         elif isinstance(scope, str):
             scope_name = scope
             for component in self.component._get_parentage():
-                if component.name == scope_name:
+                if component.context_name == scope_name:
                     return component
         else:
             message = 'target context {!r} must be'

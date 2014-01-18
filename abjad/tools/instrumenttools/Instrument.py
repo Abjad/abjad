@@ -201,6 +201,8 @@ class Instrument(AbjadObject):
     def _scope_name(self):
         if isinstance(self._default_scope, type):
             return self._default_scope.__name__
+        elif isinstance(self._default_scope, str):
+            return self._default_scope
         else:
             return type(self._default_scope).__name__
 
