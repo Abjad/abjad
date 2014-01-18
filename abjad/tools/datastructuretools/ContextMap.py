@@ -112,12 +112,53 @@ class ContextMap(AbjadObject):
             context_name = context_name.name
         return self._components[context_name]
 
+    ### PUBLIC METHODS ###
+
+    def copy(self):
+        r'''Copy context map.
+
+        ::
+
+            >>> copied_context_map = context_map.copy()
+            >>> print format(copied_context_map)
+            datastructuretools.ContextMap(
+                score_template=templatetools.StringOrchestraScoreTemplate(
+                    violin_count=6,
+                    viola_count=4,
+                    cello_count=3,
+                    contrabass_count=2,
+                    ),
+                settings={
+                    'Contrabass 1 Voice': {
+                        'color': 'yellow',
+                        },
+                    'Contrabass Staff Group': {
+                        'color': 'green',
+                        },
+                    'String Orchestra Score': {
+                        'color': 'red',
+                        },
+                    'Violin Staff Group': {
+                        'color': 'blue',
+                        },
+                    },
+                )
+
+        '''
+        score_template = self.score_template
+        settings = self.settings
+        copied = type(self)(
+            score_template=score_template,
+            settings=settings,
+            )
+        return copied
+
     ### PUBLIC PROPERTIES ###
 
     @property
     def score_template(self):
         r'''Score template on which context map is based.
-        
+
         ..  container:: example
 
             ::
