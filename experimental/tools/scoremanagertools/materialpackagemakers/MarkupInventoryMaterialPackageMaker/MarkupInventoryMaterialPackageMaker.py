@@ -34,7 +34,8 @@ class MarkupInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
             markup_copy(note)
             indicatortools.LilyPondCommand('break')(note)
             notes.append(note)
-        staff = scoretools.RhythmicStaff(notes)
+        staff = scoretools.Staff(notes)
+        staff.context_name = 'RhythmicStaff'
         score = Score([staff])
         illustration = lilypondfiletools.make_basic_lilypond_file(score)
         illustration.layout_block.indent = 0
