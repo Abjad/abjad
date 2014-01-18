@@ -48,10 +48,18 @@ class IncisedRhythmMaker(RhythmMaker):
 
     '''
 
-#    ### CLASS VARIABLES ###
-#
-#    __slots__ = (
-#        )
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_body_ratio',
+        '_fill_with_notes',
+        '_helper_functions',
+        '_incise_output',
+        '_incise_divisions',
+        '_incise_specifier',
+        '_prolation_addenda',
+        '_secondary_divisions',
+        )
 
     ### INITIALIZER ###
 

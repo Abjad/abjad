@@ -8,6 +8,16 @@ class InciseSpecifier(AbjadObject):
     r'''Incision specifier.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_prefix_talea',
+        '_prefix_lengths',
+        '_suffix_talea',
+        '_suffix_lengths',
+        '_talea_denominator',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

@@ -49,6 +49,13 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     Usage follows the two-step configure-then-call pattern shown here.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_is_diminution',
+        '_leaf_count',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

@@ -14,13 +14,13 @@ class RhythmMaker(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-#    __slots__ = (
-#        '_beam_cells_together',
-#        '_beam_each_cell',
-#        '_decrease_durations_monotonically',
-#        '_forbidden_written_duration',
-#        'name',
-#        )
+    __slots__ = (
+        '_beam_cells_together',
+        '_beam_each_cell',
+        '_decrease_durations_monotonically',
+        '_forbidden_written_duration',
+        '_name',
+        )
 
     ### INITIALIZER ###
 
@@ -36,6 +36,7 @@ class RhythmMaker(AbjadObject):
         self._decrease_durations_monotonically = \
             decrease_durations_monotonically
         self._forbidden_written_duration = forbidden_written_duration
+        self._name = None
 
     ### SPECIAL METHODS ###
 
@@ -96,12 +97,13 @@ class RhythmMaker(AbjadObject):
 
         Returns dictionary.
         '''
-#        state = {}
-#        for class_ in type(self).__mro__:
-#            for slot in getattr(class_, '__slots__', ()):
-#                state[slot] = getattr(self, slot, None)
-#        return state
-        return vars(self)
+        if hasattr(self, '__dict__'):
+            return vars(self)
+        state = {}
+        for class_ in type(self).__mro__:
+            for slot in getattr(class_, '__slots__', ()):
+                state[slot] = getattr(self, slot, None)
+        return state
 
     ### PRIVATE METHODS ###
 
@@ -227,6 +229,19 @@ class RhythmMaker(AbjadObject):
         Returns duration or none.
         '''
         return self._forbidden_written_duration
+
+    @property
+    def name(self):
+        r'''Gets name of rhythm-maker.
+
+        Returns string or none.
+        '''
+        return self._name
+
+    @name.setter
+    def name(self, arg):
+        assert isinstance(arg, (str, type(None)))
+        self._name = arg
 
     ### PUBLIC METHODS ###
 
