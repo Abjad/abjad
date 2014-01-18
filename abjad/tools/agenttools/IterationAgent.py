@@ -1154,7 +1154,8 @@ class IterationAgent(abctools.AbjadObject):
 
         ::
 
-            >>> piano_staff = scoretools.PianoStaff([])
+            >>> piano_staff = StaffGroup([])
+            >>> piano_staff.context_name = 'PianoStaff'
             >>> piano_staff.append(Staff("a'4 g'4"))
             >>> piano_staff.append(Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
             >>> score.append(piano_staff)

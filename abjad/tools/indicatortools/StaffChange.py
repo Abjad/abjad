@@ -7,7 +7,8 @@ class StaffChange(AbjadObject):
 
     ::
 
-        >>> piano_staff = scoretools.PianoStaff([])
+        >>> piano_staff = StaffGroup()
+        >>> piano_staff.context_name = 'PianoStaff'
         >>> rh_staff = Staff("c'8 d'8 e'8 f'8")
         >>> rh_staff.name = 'RHStaff'
         >>> lh_staff = Staff("s2")

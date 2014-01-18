@@ -12,7 +12,8 @@ class Harpsichord(Instrument):
 
         >>> upper_staff = Staff("c'4 d'4 e'4 f'4")
         >>> lower_staff = Staff("c'2 b2")
-        >>> piano_staff = scoretools.PianoStaff([upper_staff, lower_staff])
+        >>> piano_staff = StaffGroup([upper_staff, lower_staff])
+        >>> piano_staff.context_name = 'PianoStaff'
         >>> harpsichord = instrumenttools.Harpsichord()
         >>> attach(harpsichord, piano_staff)
         >>> attach(Clef(name='bass'), lower_staff)
@@ -68,7 +69,7 @@ class Harpsichord(Instrument):
             sounding_pitch_of_written_middle_c=\
                 sounding_pitch_of_written_middle_c,
             )
-        self._default_scope = scoretools.PianoStaff
+        self._default_scope = 'PianoStaff'
         self._performer_names.extend([
             'keyboardist',
             'harpsichordist'

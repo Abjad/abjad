@@ -41,7 +41,8 @@ def make_empty_piano_score():
     attach(clef, bass_staff)
 
     # make piano staff and score
-    piano_staff = scoretools.PianoStaff([treble_staff, bass_staff])
+    piano_staff = scoretools.StaffGroup([treble_staff, bass_staff])
+    piano_staff.context_name = 'PianoStaff'
     score = scoretools.Score([])
     score.append(piano_staff)
 

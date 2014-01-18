@@ -75,7 +75,7 @@ class ContextSpeccedMusic(Music):
         return {
             'ChoirStaff': scoretools.StaffGroup,
             'GrandStaff': scoretools.StaffGroup,
-            'PianoStaff': scoretools.PianoStaff,
+            'PianoStaff': scoretools.StaffGroup,
             'Score': scoretools.Score,
             'Staff': scoretools.Staff,
             'StaffGroup': scoretools.StaffGroup,

@@ -5,10 +5,11 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_lilypondparsertools_LilyPondParser__contexts__PianoStaff_01():
 
-    target = scoretools.PianoStaff([
+    target = StaffGroup([
         Staff(scoretools.make_notes([0, 2, 4, 5, 7], (1, 8))),
         Staff(scoretools.make_notes([0, 2, 4, 5, 7], (1, 8)))
     ])
+    target.context_name = 'PianoStaff'
 
     assert systemtools.TestManager.compare(
         target,

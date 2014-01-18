@@ -12,7 +12,8 @@ class PianoStaff(StaffGroup):
 
     ::
 
-        >>> piano_staff = scoretools.PianoStaff([staff_1, staff_2])
+        >>> piano_staff = StaffGroup([staff_1, staff_2])
+        >>> piano_staff.context_name = 'PianoStaff'
 
     ..  doctest::
 

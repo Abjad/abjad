@@ -10,7 +10,8 @@ class Accordion(Instrument):
 
     ::
 
-        >>> piano_staff = scoretools.PianoStaff()
+        >>> piano_staff = StaffGroup()
+        >>> piano_staff.context_name = 'PianoStaff'
         >>> piano_staff.append(Staff("c'4 d'4 e'4 f'4"))
         >>> piano_staff.append(Staff("c'2 b2"))
         >>> accordion = instrumenttools.Accordion()
@@ -67,7 +68,7 @@ class Accordion(Instrument):
             sounding_pitch_of_written_middle_c=\
                 sounding_pitch_of_written_middle_c,
             )
-        self._default_scope = scoretools.PianoStaff
+        self._default_scope = 'PianoStaff'
         self._performer_names.extend([
             'keyboardist',
             'accordionist',

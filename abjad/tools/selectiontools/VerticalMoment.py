@@ -10,7 +10,8 @@ class VerticalMoment(SimultaneousSelection):
     ::
 
         >>> score = Score([])
-        >>> piano_staff = scoretools.PianoStaff([])
+        >>> piano_staff = StaffGroup()
+        >>> piano_staff.context_name = 'PianoStaff'
         >>> piano_staff.append(Staff("c'4 e'4 d'4 f'4"))
         >>> piano_staff.append(Staff(r"""\clef "bass" g2 f2"""))
         >>> score.append(piano_staff)
