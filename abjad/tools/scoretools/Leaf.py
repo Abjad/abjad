@@ -144,7 +144,7 @@ class Leaf(Component):
             self._lilypond_setting_name_manager = copy.copy(
                 set_(leaf))
         new_indicators = []
-        for indicator in leaf._indicators:
+        for indicator in leaf._indicator_expressions:
             new_indicator = copy.copy(indicator)
             new_indicators.append(new_indicator)
         for new_indicator in new_indicators:

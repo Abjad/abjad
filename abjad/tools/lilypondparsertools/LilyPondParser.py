@@ -525,7 +525,7 @@ class LilyPondParser(abctools.Parser):
             component = music.pop(0)
             context.append(component)
 
-        indicators = music._indicators
+        indicators = music._indicator_expressions
         for indicator in indicators:
             attach(indicator, context)
 

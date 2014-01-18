@@ -119,7 +119,7 @@ class Hairpin(Spanner):
                         indicatortools.Dynamic)
                     if effective_dynamic is None:
                         result.append('\\!')
-                    elif effective_dynamic not in leaf._indicators:
+                    elif effective_dynamic not in leaf._indicator_expressions:
                         found_match = False
                         for indicator in \
                             leaf._get_indicators(indicatortools.Dynamic):

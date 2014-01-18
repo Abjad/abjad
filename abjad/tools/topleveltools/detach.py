@@ -21,11 +21,11 @@ def detach(prototype, component_expression):
         elif issubclass(prototype, scoretools.GraceContainer):
             grace_containers = inspector.get_grace_containers(prototype)
         else:
-            assert hasattr(component_expression, '_indicators')
+            assert hasattr(component_expression, '_indicator_expressions')
             result = []
-            for x in component_expression._indicators[:]:
+            for x in component_expression._indicator_expressions[:]:
                 if isinstance(x, prototype):
-                    component_expression._indicators.remove(x)
+                    component_expression._indicator_expressions.remove(x)
                     result.append(x)
                 # indicator is a expression
                 elif hasattr(x, 'indicator') and \
@@ -40,11 +40,11 @@ def detach(prototype, component_expression):
         elif isinstance(prototype, scoretools.GraceContainer):
             grace_containers = inspector.get_grace_containers(prototype)
         else:
-            assert hasattr(component_expression, '_indicators')
+            assert hasattr(component_expression, '_indicator_expressions')
             result = []
-            for x in component_expression._indicators[:]:
+            for x in component_expression._indicator_expressions[:]:
                 if x == prototype:
-                    component_expression._indicators.remove(x)
+                    component_expression._indicator_expressions.remove(x)
                     result.append(x)
                 # indicator is a expression
                 elif hasattr(x, 'indicator') and x.indicator == prototype:

@@ -30,7 +30,7 @@ class Component(AbjadObject):
         '_after_grace',
         '_dependent_expressions',
         '_grace',
-        '_indicators',
+        '_indicator_expressions',
         '_indicators_are_current',
         '_is_forbidden_to_update',
         '_lilypond_grob_name_manager',
@@ -55,7 +55,7 @@ class Component(AbjadObject):
         self._after_grace = None
         self._dependent_expressions = []
         self._grace = None
-        self._indicators = []
+        self._indicator_expressions = []
         self._indicators_are_current = False
         self._is_forbidden_to_update = False
         self._offsets_are_current = False
@@ -328,7 +328,7 @@ class Component(AbjadObject):
             )
         for parent in self._get_parentage(include_self=True):
             expressions = parent._dependent_expressions[:]
-            for expression in parent._indicators:
+            for expression in parent._indicator_expressions:
                 if expression.scope is None:
                     expressions.append(expression)
             for expression in expressions:
@@ -457,7 +457,7 @@ class Component(AbjadObject):
         prototype_objects = tuple(prototype_objects)
         prototype_classes = tuple(prototype_classes)
         matching_indicators = []
-        for indicator in self._indicators:
+        for indicator in self._indicator_expressions:
             if isinstance(indicator, prototype_classes):
                 matching_indicators.append(indicator)
             elif any(indicator == x for x in prototype_objects):

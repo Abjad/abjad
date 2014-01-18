@@ -24,7 +24,7 @@ class Spanner(AbjadObject):
     __slots__ = (
         '_components',
         '_contiguity_constraint',
-        '_indicators',
+        '_indicator_expressions',
         '_lilypond_grob_name_manager',
         '_lilypond_setting_name_manager',
         )
@@ -39,7 +39,7 @@ class Spanner(AbjadObject):
         self._components = []
         self._contiguity_constraint = 'logical voice'
         self._apply_overrides(overrides)
-        self._indicators = []
+        self._indicator_expressions = []
         self._lilypond_setting_name_manager = None
 
     ### SPECIAL METHODS ###
@@ -356,7 +356,7 @@ class Spanner(AbjadObject):
         prototype_objects = tuple(prototype_objects)
         prototype_classes = tuple(prototype_classes)
         matching_indicators = []
-        for indicator in self._indicators:
+        for indicator in self._indicator_expressions:
             if isinstance(indicator, prototype_classes):
                 matching_indicators.append(indicator)
             elif any(indicator == x for x in prototype_objects):

@@ -103,7 +103,7 @@ class IndicatorExpression(AbjadObject):
         self._update_effective_context()
         if isinstance(self.indicator, indicatortools.Tempo):
             self._component._update_later(offsets_in_seconds=True)
-        component._indicators.append(self)
+        component._indicator_expressions.append(self)
 
     def _detach(self):
         self._unbind_component()
@@ -187,7 +187,7 @@ class IndicatorExpression(AbjadObject):
         component = self.component
         if component is not None:
             try:
-                component._indicators.remove(self)
+                component._indicator_expressions.remove(self)
             except ValueError:
                 pass
         self._component = None
