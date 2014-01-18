@@ -24,7 +24,7 @@ def test_scoretools_Note_sounding_pitch_01():
         '''
         )
 
-    assert inspect(staff[0]).get_sounding_pitch() == "d''"
-    assert inspect(staff[1]).get_sounding_pitch() == "e''"
-    assert inspect(staff[2]).get_sounding_pitch() == "f''"
-    assert inspect(staff[3]).get_sounding_pitch() == "g''"
+    assert inspect_(staff[0]).get_sounding_pitch() == "d''"
+    assert inspect_(staff[1]).get_sounding_pitch() == "e''"
+    assert inspect_(staff[2]).get_sounding_pitch() == "f''"
+    assert inspect_(staff[3]).get_sounding_pitch() == "g''"

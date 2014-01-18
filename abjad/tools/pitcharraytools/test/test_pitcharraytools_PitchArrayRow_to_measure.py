@@ -25,7 +25,7 @@ def test_pitcharraytools_PitchArrayRow_to_measure_01():
     }
     '''
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''

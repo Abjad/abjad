@@ -28,7 +28,7 @@ def test_selectiontools_VerticalMoment_previous_vertical_moment_01():
         ''')
 
     last_leaf = score.select_leaves(allow_discontiguous_leaves=True)[-1]
-    vertical_moment = inspect(last_leaf).get_vertical_moment()
+    vertical_moment = inspect_(last_leaf).get_vertical_moment()
     assert vertical_moment.offset == Offset(3, 8)
 
     vertical_moment = vertical_moment.previous_vertical_moment

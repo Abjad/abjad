@@ -74,7 +74,7 @@ class Beam(Spanner):
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
-        #Spanner._copy_keyword_args(self, new)
+        Spanner._copy_keyword_args(self, new)
         new._direction = self.direction
 
     def _format_right_of_leaf(self, leaf):

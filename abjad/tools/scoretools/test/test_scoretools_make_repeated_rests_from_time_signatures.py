@@ -36,4 +36,4 @@ def test_scoretools_make_repeated_rests_from_time_signatures_01():
         }
         '''
         )
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

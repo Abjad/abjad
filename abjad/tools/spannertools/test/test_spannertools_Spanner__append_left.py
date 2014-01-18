@@ -32,7 +32,7 @@ def test_spannertools_Spanner__append_left_01():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_spannertools_Spanner__append_left_02():
@@ -65,4 +65,4 @@ def test_spannertools_Spanner__append_left_02():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()

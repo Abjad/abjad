@@ -60,4 +60,4 @@ def test_scoretools_Measure_number_03():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

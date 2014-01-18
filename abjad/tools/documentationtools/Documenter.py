@@ -17,7 +17,6 @@ class Documenter(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    @property
     def __format__(self, format_specification=''):
         r'''Formats documenter.
 
@@ -40,6 +39,26 @@ class Documenter(AbjadObject):
         prefix = prefix or self.prefix
         return type(self)(object_=object_, prefix=prefix)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        keyword_argument_names = (
+            'prefix',
+            )
+        if self.object_ is type(None):
+            positional_argument_values = ()
+        else:
+            positional_argument_values = (
+                self.object_,
+                )
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=positional_argument_values,
+            keyword_argument_names=keyword_argument_names,
+            )
+
     ### PRIVATE METHODS ###
 
     def _shrink_module_name(self, module):
@@ -51,16 +70,6 @@ class Documenter(AbjadObject):
             if part != unique[-1]:
                 unique.append(part)
         return '.'.join(unique)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(self.object_,),
-            )
 
     ### PUBLIC METHODS ###
 

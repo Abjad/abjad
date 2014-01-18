@@ -23,7 +23,7 @@ def test_labeltools_label_leaves_in_expr_with_numbered_intervals_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_labeltools_label_leaves_in_expr_with_numbered_intervals_02():
@@ -50,7 +50,7 @@ def test_labeltools_label_leaves_in_expr_with_numbered_intervals_02():
         """
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_labeltools_label_leaves_in_expr_with_numbered_intervals_03():
@@ -79,4 +79,4 @@ def test_labeltools_label_leaves_in_expr_with_numbered_intervals_03():
         """
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

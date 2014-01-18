@@ -106,6 +106,25 @@ class LilyPondParser(abctools.Parser):
     - Embedded Scheme statements (anything beginning with ``#``)
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_chord_pitch_orders',
+        '_current_module',
+        '_default_duration',
+        '_default_language',
+        '_guile',
+        '_language_pitch_names',
+        '_last_chord',
+        '_lexdef',
+        '_markup_functions',
+        '_markup_list_functions',
+        '_pitch_names',
+        '_repeated_chords',
+        '_scope_stack',
+        '_syndef',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, default_language='english', debug=False):
@@ -1288,7 +1307,7 @@ class LilyPondParser(abctools.Parser):
             >>> parser = lilypondparsertools.LilyPondParser()
             >>> string = r"\markup { \my-custom-markup-function { foo bar baz } }"
             >>> parser(string)
-            Markup((MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz']),))
+            Markup(contents=(MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz']),))
 
         `signature` should be a sequence of zero or more type-predicate names,
         as understood by LilyPond.  Consult LilyPond's documentation for a

@@ -83,10 +83,10 @@ class AltoTrombone(Instrument):
                     instrument_name='alto trombone',
                     short_instrument_name='alt. trb.',
                     instrument_name_markup=markuptools.Markup(
-                        ('Alto trombone',)
+                        contents=('Alto trombone',),
                         ),
                     short_instrument_name_markup=markuptools.Markup(
-                        ('Alt. trb.',)
+                        contents=('Alt. trb.',),
                         ),
                     allowable_clefs=indicatortools.ClefInventory(
                         [
@@ -154,7 +154,7 @@ class AltoTrombone(Instrument):
             ::
 
                 >>> alto_trombone.instrument_name_markup
-                Markup(('Alto trombone',))
+                Markup(contents=('Alto trombone',))
 
             ::
 
@@ -207,7 +207,7 @@ class AltoTrombone(Instrument):
             ::
 
                 >>> alto_trombone.short_instrument_name_markup
-                Markup(('Alt. trb.',))
+                Markup(contents=('Alt. trb.',))
 
             ::
 

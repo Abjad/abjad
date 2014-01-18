@@ -24,7 +24,7 @@ Use the inspector to get the parentage of any component:
 ::
 
    >>> note = score.select_leaves()[0]
-   >>> parentage = inspect(note).get_parentage()
+   >>> parentage = inspect_(note).get_parentage()
 
 
 ::

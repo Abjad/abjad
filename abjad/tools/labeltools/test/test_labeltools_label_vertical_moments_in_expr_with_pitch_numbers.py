@@ -74,4 +74,4 @@ def test_labeltools_label_vertical_moments_in_expr_with_pitch_numbers_01():
         '''
         )
 
-    assert inspect(score).is_well_formed()
+    assert inspect_(score).is_well_formed()

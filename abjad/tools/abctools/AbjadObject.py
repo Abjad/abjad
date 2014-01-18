@@ -4,16 +4,15 @@ import types
 
 
 class AbjadObject(object):
-    '''Abstract base class from which all custom classes should inherit.
-
-    Abjad objects compare equal only with equal object IDs.
+    '''Abstract base class from which many custom classes inherit.
     '''
 
     ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 
@@ -39,7 +38,9 @@ class AbjadObject(object):
         return str(self)
 
     def __getstate__(self):
-        r'''Gets object state.
+        r'''Gets state of Abjad object.
+
+        Returns dictionary.
         '''
         if hasattr(self, '__dict__'):
             return vars(self)
@@ -66,7 +67,9 @@ class AbjadObject(object):
         return systemtools.StorageFormatManager.get_repr_format(self)
 
     def __setstate__(self, state):
-        r'''Sets object state.
+        r'''Sets state of Abjad object.
+
+        Returns none.
         '''
         for key, value in state.iteritems():
             setattr(self, key, value)

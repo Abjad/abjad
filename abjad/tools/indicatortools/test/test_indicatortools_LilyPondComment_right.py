@@ -33,7 +33,7 @@ def test_indicatortools_LilyPondComment_right_01():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_indicatortools_LilyPondComment_right_02():
@@ -57,4 +57,4 @@ def test_indicatortools_LilyPondComment_right_02():
         '''
         )
 
-    assert inspect(note).is_well_formed()
+    assert inspect_(note).is_well_formed()

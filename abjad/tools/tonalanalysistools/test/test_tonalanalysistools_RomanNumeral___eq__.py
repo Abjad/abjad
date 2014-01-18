@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import tonalanalysistools
 
 
 def test_tonalanalysistools_RomanNumeral___eq___01():

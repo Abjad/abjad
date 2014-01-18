@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
-from abjad.tools.agenttools.InspectionAgent import inspect
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import mutate
 Selection = selectiontools.Selection
 
@@ -65,15 +65,17 @@ def _rewrite_meter(
         #print 'DEPTH:', depth
 
         logical_tie_duration = logical_tie._preprolated_duration
-        logical_tie_start_offset = logical_tie.get_timespan().start_offset
-        logical_tie_stop_offset = logical_tie.get_timespan().stop_offset
+        logical_tie_timespan = logical_tie.get_timespan()
+        logical_tie_start_offset = logical_tie_timespan.start_offset
+        logical_tie_stop_offset = logical_tie_timespan.stop_offset
         logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
         logical_tie_stops_in_offsets = logical_tie_stop_offset in offsets
 
         if not is_acceptable_logical_tie(
             logical_tie_duration,
             logical_tie_starts_in_offsets,
-            logical_tie_stops_in_offsets):
+            logical_tie_stops_in_offsets,
+            ):
 
             #print 'UNACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset
             #print '\t', ' '.join([str(x) for x in offsets])
@@ -153,9 +155,8 @@ def _rewrite_meter(
         initial_offset = durationtools.Offset(0)
     initial_offset = durationtools.Offset(initial_offset)
 
-
-    first_start_offset = inspect(components[0]).get_timespan().start_offset
-    last_start_offset = inspect(components[-1]).get_timespan().start_offset
+    first_start_offset = inspect_(components[0]).get_timespan().start_offset
+    last_start_offset = inspect_(components[-1]).get_timespan().start_offset
     difference = last_start_offset - first_start_offset + initial_offset
     assert difference < meter.implied_time_signature.duration
 

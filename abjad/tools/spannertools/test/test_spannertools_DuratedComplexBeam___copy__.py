@@ -9,7 +9,7 @@ def test_spannertools_DuratedComplexBeam___copy___01():
         Container("f'32 g'32 a'32"),
         Container("b'32 c'32")
         ])
-    durations = [inspect(x).get_duration() for x in staff]
+    durations = [inspect_(x).get_duration() for x in staff]
 
     beam = spannertools.DuratedComplexBeam(
         durations=durations, 
@@ -19,7 +19,7 @@ def test_spannertools_DuratedComplexBeam___copy___01():
     attach(beam, staff[:])
 
     new_staff = mutate(staff).copy()
-    new_beam = inspect(new_staff[0]).get_spanner(Beam)
+    new_beam = inspect_(new_staff[0]).get_spanner(Beam)
 
     assert format(staff) == format(new_staff)
     assert new_beam.durations == beam.durations

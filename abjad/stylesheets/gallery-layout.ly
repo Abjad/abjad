@@ -1,8 +1,3 @@
-\paper {
-    markup-system-spacing #'basic-distance = 8
-    score-markup-spacing #'basic-distance = 30
-}
-
 \layout {
     \accidentalStyle forget
     indent = 0
@@ -39,7 +34,7 @@
         \override TimeSignature.self-alignment-X = #center
         \override VerticalAxisGroup.default-staff-staff-spacing = #'(
             (basic-distance . 0)
-            (minimum-distance . 9)
+            (minimum-distance . 12)
             (padding . 0)
             (stretchability . 0)
             )
@@ -83,3 +78,17 @@
         tupletFullLength = ##t
     }
 }
+
+\paper {
+    evenFooterMarkup = \markup {}
+    evenHeaderMarkup = \markup {}
+    left-margin = 12
+    markup-markup-spacing #'basic-distance = 20
+    markup-system-spacing #'basic-distance = 22
+    oddFooterMarkup = \markup {}
+    oddHeaderMarkup = \markup {}
+    score-markup-spacing #'minimum-distance = 20
+    score-system-spacing #'minimum-distance = 28
+    top-markup-spacing #'minimum-distance = 8
+}
+

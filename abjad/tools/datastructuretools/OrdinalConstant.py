@@ -115,7 +115,13 @@ class OrdinalConstant(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            if self._representation:
+                return systemtools.StorageFormatManager.get_storage_format(
+                    self)
+            else:
+                result = 'datastructuretools.{}()'
+                result = result.format(type(self).__name__)
+                return result
         return str(self)
 
     def __getnewargs__(self):
@@ -130,13 +136,24 @@ class OrdinalConstant(AbjadObject):
             )
 
     def __lt__(self, expr):
-        r'''Is true when `expr` is an ordinal with value greater than that of this
-        ordinal constant. Otherwise false.
+        r'''Is true when `expr` is an ordinal with value greater than that of 
+        this ordinal constant. Otherwise false.
 
         Returns boolean.
         '''
         self._check_comparator(expr)
         return self._value < expr._value
+
+    def __repr__(self):
+        r'''Gets interpreter representation of ordinal constant.
+
+        Returns string.
+        '''
+        if self._representation:
+            return AbjadObject.__repr__(self)
+        string = 'datastructuretools.{}()'
+        string = string.format(type(self).__name__)
+        return string
 
     ### PRIVATE PROPERTIES ###
 

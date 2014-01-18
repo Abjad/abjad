@@ -1,12 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class PitchArrayInventory(TypedList):
-    r'''Ordered collection of pitch arrays:
+    r'''Ordered collection of pitch arrays.
 
         >>> array_1 = pitcharraytools.PitchArray([
         ...   [1, (2, 1), ([-2, -1.5], 2)],
@@ -35,8 +33,15 @@ class PitchArrayInventory(TypedList):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
+    ### PUBLIC METHODS ###
+
     def to_score(self):
-        r'''Make score from pitch arrays in inventory:
+        r'''Makes score from pitch arrays in inventory.
 
         ::
 

@@ -29,4 +29,4 @@ def test_labeltools_color_measure_01():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()

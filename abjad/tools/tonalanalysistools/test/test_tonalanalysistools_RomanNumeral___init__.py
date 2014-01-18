@@ -8,4 +8,4 @@ def test_tonalanalysistools_RomanNumeral___init___01():
 
     roman_numeral = tonalanalysistools.RomanNumeral()
 
-    assert format(roman_numeral) == 'IMajorTriadInRootPosition'
+    assert repr(roman_numeral) == 'IMajorTriadInRootPosition'

@@ -154,4 +154,4 @@ def test_scoretools_Measure_in_place_apply_04():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

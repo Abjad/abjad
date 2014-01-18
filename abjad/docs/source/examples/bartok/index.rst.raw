@@ -155,7 +155,7 @@ attach(dynamic, lower_measures[1][3])
 Let's add a double bar to the end of the piece:
 
 <abjad>
-score.add_double_bar()
+score.add_final_bar_line()
 </abjad>
 
 And see how things are coming out:

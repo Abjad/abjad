@@ -439,6 +439,17 @@ class AbjadConfiguration(Configuration):
             ))
 
     @property
+    def abjad_stylesheets_directory_path(self):
+        r'''Abjad stylesheets directory path.
+
+        Returns string.
+        '''
+        return os.path.abspath(os.path.join(
+            self.abjad_directory_path,
+            'stylesheets',
+            ))
+
+    @property
     def configuration_directory_path(self):
         r'''Configuration directory path.
 

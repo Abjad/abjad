@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.rhythmmakertools.DivisionIncisedNoteRhythmMaker \
-    import DivisionIncisedNoteRhythmMaker
+from abjad.tools import scoretools
+from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
-class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
+class NoteRhythmMaker(RhythmMaker):
     r'''Note rhythm-maker.
 
     ..  container:: example
@@ -18,30 +18,15 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
         ::
 
             >>> divisions = [(5, 8), (3, 8)]
-            >>> leaf_lists = maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = Staff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print format(staff)
-            \new Staff {
-                {
-                    \time 5/8
-                    c'2 ~
-                    c'8
-                }
-                {
-                    \time 3/8
-                    c'4.
-                }
-            }
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
 
     ..  container:: example
-    
+
         Forbids notes with written duration greater than or equal to ``1/2``
         of a whole note:
 
@@ -54,67 +39,57 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
         ::
 
             >>> divisions = [(5, 8), (3, 8)]
-            >>> leaf_lists = maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = Staff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print format(staff)
-            \new Staff {
-                {
-                    \time 5/8
-                    c'4 ~
-                    c'4 ~
-                    c'8
-                }
-                {
-                    \time 3/8
-                    c'4.
-                }
-            }
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''
 
-    ### INITIALIZER ###
+    ### CLASS VARIABLES ###
 
-    def __init__(
-        self,
-        decrease_durations_monotonically=True,
-        forbidden_written_duration=None,
-        tie_rests=False,
-        ):
-        DivisionIncisedNoteRhythmMaker.__init__(
-            self,
-            [],
-            [0],
-            [],
-            [0],
-            1,
-            decrease_durations_monotonically=decrease_durations_monotonically,
-            forbidden_written_duration=forbidden_written_duration,
-            tie_rests=tie_rests,
-            )
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
+
+    def __call__(self, divisions, seeds=None):
+        r'''Calls note rhythm-maker on `divisions`.
+
+        Returns list of selections.
+        '''
+        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
+        result = []
+        for duration_pair in duration_pairs:
+            notes = scoretools.make_leaves(
+                pitches=0,
+                durations=[duration_pair],
+                decrease_durations_monotonically=\
+                    self.decrease_durations_monotonically,
+                forbidden_written_duration=self.forbidden_written_duration,
+                )
+            result.append(notes)
+        return result
 
     def __format__(self, format_specification=''):
         r'''Formats note rhythm-maker.
 
         Set `format_specification` to `''` or `'storage'`.
 
-        ::
+        ..  container:: example
 
-            >>> print format(maker)
-            rhythmmakertools.NoteRhythmMaker(
-                decrease_durations_monotonically=True,
-                forbidden_written_duration=durationtools.Duration(1, 2),
-                tie_rests=False,
-                )
+            ::
+
+                >>> print format(maker)
+                rhythmmakertools.NoteRhythmMaker(
+                    beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=True,
+                    forbidden_written_duration=durationtools.Duration(1, 2),
+                    )
 
         Returns string.
         '''
@@ -124,62 +99,67 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
     def __makenew__(self, *args, **kwargs):
         r'''Makes new note rhythm-maker.
 
-        ::
+        ..  container:: example
 
-            >>> new_maker = new(maker, decrease_durations_monotonically=False)
+            ::
 
-        ::
+                >>> new_maker = new(maker, decrease_durations_monotonically=False)
 
-            >>> print format(new_maker)
-            rhythmmakertools.NoteRhythmMaker(
-                decrease_durations_monotonically=False,
-                forbidden_written_duration=durationtools.Duration(1, 2),
-                tie_rests=False,
-                )
+            ::
 
-        ::
+                >>> print format(new_maker)
+                rhythmmakertools.NoteRhythmMaker(
+                    beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=False,
+                    forbidden_written_duration=durationtools.Duration(1, 2),
+                    )
 
-            >>> divisions = [(5, 8), (3, 8)]
-            >>> leaf_lists = new_maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = Staff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-            >>> show(staff) # doctest: +SKIP
+            ::
+
+                >>> divisions = [(5, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns new note rhythm-maker.
         '''
-        return DivisionIncisedNoteRhythmMaker.__makenew__(
-            self, *args, **kwargs)
+        return RhythmMaker.__makenew__(self, *args, **kwargs)
 
     ### PUBLIC METHODS ###
 
     def reverse(self):
         r'''Reverses note rhythm-maker.
 
-        ::
+        ..  container:: example
 
-            >>> reversed_maker = maker.reverse()
+            ::
 
-        ::
+                >>> reversed_maker = maker.reverse()
 
-            >>> print format(reversed_maker)
-            rhythmmakertools.NoteRhythmMaker(
-                decrease_durations_monotonically=False,
-                forbidden_written_duration=durationtools.Duration(1, 2),
-                tie_rests=False,
-                )
+            ::
 
-        ::
+                >>> print format(reversed_maker)
+                rhythmmakertools.NoteRhythmMaker(
+                    beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=False,
+                    forbidden_written_duration=durationtools.Duration(1, 2),
+                    )
 
-            >>> divisions = [(5, 8), (3, 8)]
-            >>> leaf_lists = reversed_maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = Staff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-            >>> show(staff) # doctest: +SKIP
+            ::
+
+                >>> divisions = [(5, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns new note rhythm-maker.
         '''
-        return DivisionIncisedNoteRhythmMaker.reverse(self)
+        return RhythmMaker.reverse(self)

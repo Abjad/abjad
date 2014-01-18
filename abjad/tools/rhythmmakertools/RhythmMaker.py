@@ -1,48 +1,77 @@
 # -*- encoding: utf-8 -*-
 import abc
-import copy
+import os
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import sequencetools
+from abjad.tools import indicatortools
+from abjad.tools import markuptools
+from abjad.tools import mathtools
 from abjad.tools import scoretools
+from abjad.tools import sequencetools
+from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import mutate
+from abjad.tools.topleveltools import new
+from abjad.tools.topleveltools import override
+from abjad.tools.topleveltools import persist
 
 
 class RhythmMaker(AbjadObject):
     '''Rhythm-maker abstract base class.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_beam_cells_together',
+        '_beam_each_cell',
+        '_decrease_durations_monotonically',
+        '_forbidden_written_duration',
+        '_name',
+        )
+
     ### INITIALIZER ###
 
-    @abc.abstractmethod
     def __init__(
         self,
-        forbidden_written_duration=None,
-        beam_each_cell=True,
         beam_cells_together=False,
+        beam_each_cell=True,
+        decrease_durations_monotonically=True,
+        forbidden_written_duration=None,
         ):
-        self.forbidden_written_duration = forbidden_written_duration
-        self.beam_each_cell = beam_each_cell
-        self.beam_cells_together = beam_cells_together
+        self._beam_each_cell = beam_each_cell
+        self._beam_cells_together = beam_cells_together
+        self._decrease_durations_monotonically = \
+            decrease_durations_monotonically
+        self._forbidden_written_duration = forbidden_written_duration
+        self._name = None
 
     ### SPECIAL METHODS ###
 
+    @abc.abstractmethod
     def __call__(self, divisions, seeds=None):
-        r'''Casts `divisions` into duration pairs.
+        r'''Calls rhythm-maker.
+        
+        Casts `divisions` into duration pairs.
+
         Reduces numerator and denominator relative to each other.
 
-        Changes none `seeds` into empty list.
+        Coerces none `seeds` into empty list.
 
         Returns duration pairs and seed list.
         '''
-        duration_pairs = [durationtools.Duration(x).pair for x in divisions]
-        seeds = self._none_to_new_list(seeds)
+        duration_pairs = [
+            mathtools.NonreducedFraction(x).pair 
+            for x in divisions
+            ]
+        seeds = self._to_tuple(seeds)
         return duration_pairs, seeds
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is same type
-        with the equal public nonhelper properties.
-        Otherwise false.
+        r'''Is true when `expr` is a rhythm-maker with type and public 
+        properties equal to those of this rhythm-maker. Otherwise false.
 
         Returns boolean.
         '''
@@ -78,38 +107,143 @@ class RhythmMaker(AbjadObject):
         return str(self)
 
     def __getstate__(self):
-        r'''Gets object state.
+        r'''Gets state of rhythm-maker.
+
+        Returns dictionary.
         '''
-        return vars(self)
+        if hasattr(self, '__dict__'):
+            return vars(self)
+        state = {}
+        for class_ in type(self).__mro__:
+            for slot in getattr(class_, '__slots__', ()):
+                state[slot] = getattr(self, slot, None)
+        return state
+
+    def __makenew__(self, *args, **kwargs):
+        r'''Makes new rhythm-maker with optional `kwargs`.
+
+        Returns new rhythm-maker.
+        '''
+        assert not args
+        arguments = {
+            'beam_cells_together': self.beam_cells_together,
+            'beam_each_cell': self.beam_each_cell,
+            'decrease_durations_monotonically':
+                self.decrease_durations_monotonically,
+            'forbidden_written_duration': self.forbidden_written_duration,
+            }
+        arguments.update(kwargs)
+        maker = type(self)(**arguments)
+        return maker
 
     ### PRIVATE METHODS ###
 
-    # TODO: make static
-    def _all_are_tuplets_or_all_are_leaf_lists(self, expr):
+    @staticmethod
+    def _all_are_tuplets_or_all_are_leaf_lists(expr):
         if all(isinstance(x, scoretools.Tuplet) for x in expr):
             return True
-        elif all(self._is_leaf_list(x) for x in expr):
+        elif all(RhythmMaker._is_leaf_list(x) for x in expr):
             return True
         else:
             return False
+
+    def _gallery_input_block_to_scores(self, block):
+        from abjad.tools import sequencetools
+        maker = type(self)(**block.input_)
+        scores = []
+        for division_list in block.division_lists:
+            lists = maker(division_list)
+            music = sequencetools.flatten_sequence(lists)
+            measures = scoretools.make_spacer_skip_measures(division_list)
+            time_signature_context = scoretools.Context(
+                measures,
+                context_name='TimeSignatureContext',
+                name='TimeSignatureContext',
+                )
+            measures = scoretools.make_spacer_skip_measures(division_list)
+            staff = scoretools.RhythmicStaff(measures)
+            measures = mutate(staff).replace_measure_contents(music)
+            score = scoretools.Score()
+            score.append(time_signature_context)
+            score.append(staff)
+            scores.append(score)
+        return scores
 
     @staticmethod
     def _is_leaf_list(expr):
         return all(isinstance(x, scoretools.Leaf) for x in expr)
 
+    def _gallery_input_to_lilypond_file(self):
+        from abjad.tools import lilypondfiletools
+        from abjad.tools import markuptools
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+        lilypond_file.items.remove(lilypond_file.score_block)
+        title_markup = self._make_gallery_title_markup()
+        lilypond_file.header_block.title = title_markup
+        markups = []
+        for block in self._gallery_input_blocks:
+            markup = block._to_markup(type(self))
+            lilypond_file.items.append(markup)
+            scores = self._gallery_input_block_to_scores(block)
+            for score in scores:
+                score.add_final_bar_line()
+                selection = score.select_leaves(start=-1)
+                last_leaf = selection[0]
+                string = "override Staff.BarLine #'extra-offset = #'(1.6 . 0)"
+                command = indicatortools.LilyPondCommand(
+                    string,
+                    'after',
+                    )
+                attach(command, last_leaf)
+                if not inspect_(score).is_well_formed():
+                    message = 'score is not well-formed: {!r}.'
+                    message = message.format(score)
+                    message += '\n'
+                    message += inspect_(score).tabulate_well_formedness_violations()
+                    raise Exception(message)
+                lilypond_file.items.append(score)
+        lilypond_file.default_paper_size = ('letter', 'portrait')
+        lilypond_file.global_staff_size = 10
+        lilypond_file.use_relative_includes = True
+        stylesheet_path = os.path.join(
+            '..', '..', '..', 
+            'stylesheets', 
+            'gallery-layout.ly',
+            )
+        lilypond_file.file_initial_user_includes.append(stylesheet_path)
+        lilypond_file.paper_block.tagline = markuptools.Markup('')
+        return lilypond_file
+
+    def _make_gallery_title_markup(self):
+        string = self._human_readable_class_name 
+        string = stringtools.capitalize_string_start(string)
+        markup = markuptools.Markup(string)
+        return markup
+
     def _make_secondary_duration_pairs(
-        self, duration_pairs, secondary_divisions):
+        self, 
+        duration_pairs, 
+        secondary_divisions,
+        ):
         if not secondary_divisions:
             return duration_pairs[:]
-        numerators = [duration_pair.numerator
-            for duration_pair in duration_pairs]
+        numerators = [
+            duration_pair.numerator 
+            for duration_pair in duration_pairs
+            ]
         secondary_numerators = sequencetools.split_sequence_by_weights(
-            numerators, secondary_divisions, cyclic=True, overhang=True)
+            numerators, 
+            secondary_divisions, 
+            cyclic=True, 
+            overhang=True,
+            )
         secondary_numerators = \
             sequencetools.flatten_sequence(secondary_numerators)
         denominator = duration_pairs[0].denominator
-        secondary_duration_pairs = \
-            [(n, denominator) for n in secondary_numerators]
+        secondary_duration_pairs = [
+            (n, denominator) 
+            for n in secondary_numerators
+            ]
         return secondary_duration_pairs
 
     def _make_tuplets(self, duration_pairs, leaf_lists):
@@ -120,32 +254,35 @@ class RhythmMaker(AbjadObject):
             tuplets.append(tuplet)
         return tuplets
 
-    def _none_to_new_list(self, expr):
+    def _none_to_tuple(self, expr):
         if expr is None:
-            return []
+            expr = ()
+        assert isinstance(expr, tuple), expr
         return expr
 
     def _none_to_trivial_helper(self, expr):
         if expr is None:
-            return self._trivial_helper
+            expr = self._trivial_helper
+        assert callable(expr)
         return expr
 
-    def _scale_talee(self, duration_pairs, talea_denominator, talee):
+    def _scale_taleas(self, duration_pairs, talea_denominator, taleas):
         dummy_duration_pair = (1, talea_denominator)
         duration_pairs.append(dummy_duration_pair)
         Duration = durationtools.Duration
-        duration_pairs = \
-            Duration.durations_to_nonreduced_fractions(
+        duration_pairs = Duration.durations_to_nonreduced_fractions(
             duration_pairs)
         dummy_duration_pair = duration_pairs.pop()
         lcd = dummy_duration_pair.denominator
         multiplier = lcd / talea_denominator
-        scaled_talee = []
-        for talea in talee:
-            talea = datastructuretools.CyclicTuple([multiplier * x for x in talea])
-            scaled_talee.append(talea)
+        scaled_taleas = []
+        for talea in taleas:
+            talea = datastructuretools.CyclicTuple(
+                [multiplier * x for x in talea],
+                )
+            scaled_taleas.append(talea)
         result = [duration_pairs, lcd]
-        result.extend(scaled_talee)
+        result.extend(scaled_taleas)
         return tuple(result)
 
     def _sequence_to_ellipsized_string(self, sequence):
@@ -156,73 +293,90 @@ class RhythmMaker(AbjadObject):
         else:
             result = ', '.join([str(x) for x in sequence[:4]])
             result += ', ...'
-        result = '[$%s$]' % result
+        result = '[${}$]'.format(result)
         return result
+
+    def _to_tuple(self, expr):
+        if isinstance(expr, list):
+            expr = tuple(expr)
+        return expr
 
     def _trivial_helper(self, talea, seeds):
         if isinstance(seeds, int) and len(talea):
             return sequencetools.rotate_sequence(talea, seeds)
         return talea
 
-    ### PUBLIC METHODS ###
+    def _write_gallery_to_disk(self):
+        lilypond_file = self._gallery_input_to_lilypond_file()
+        file_path = __file__
+        directory_path = os.path.dirname(file_path)
+        class_name = type(self).__name__
+        file_name = '{}.pdf'.format(class_name)
+        file_path = os.path.join(directory_path, 'gallery', file_name)
+        persist(lilypond_file).as_pdf(file_path, remove_ly=True)
 
-    def __makenew__(self, *args, **kwargs):
-        r'''Makes new rhythm-maker with `kwargs`.
+    ### PUBLIC PROPERTIES ###
 
-        ::
+    @property
+    def beam_cells_together(self):
+        r'''Is true when rhythm-maker should beam cells together. Otherwise
+        false.
 
-            >>> maker = rhythmmakertools.NoteRhythmMaker()
-
-        ::
-
-            >>> divisions = [(5, 16), (3, 8)]
-            >>> new_maker = new(maker, decrease_durations_monotonically=False)
-            >>> leaf_lists = new_maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-
-        ::
-
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = Staff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-        ..  doctest::
-
-            >>> print format(staff)
-            \new Staff {
-                {
-                    \time 5/16
-                    c'16 ~
-                    c'4
-                }
-                {
-                    \time 3/8
-                    c'4.
-                }
-            }
-
-        Returns new rhythm-maker.
+        Returns boolean.
         '''
-        new_maker = copy.deepcopy(self)
-        for key, value in kwargs.iteritems():
-            try:
-                setattr(new_maker, key, value)
-            except AttributeError:
-                setattr(new_maker, '_' + key, value)
-        return new_maker
+        return self._beam_cells_together
+
+    @property
+    def beam_each_cell(self):
+        r'''Is true when rhythm-maker should beam each cell. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._beam_each_cell
+
+    @property
+    def decrease_durations_monotonically(self):
+        r'''Is true when rhythm-maker should decrease durations monotonically.
+        Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._decrease_durations_monotonically
+
+    @property
+    def forbidden_written_duration(self):
+        r'''Gets forbidden written duration of rhythm-maker.
+
+        Returns duration or none.
+        '''
+        return self._forbidden_written_duration
+
+    @property
+    def name(self):
+        r'''Gets name of rhythm-maker.
+
+        Returns string or none.
+        '''
+        return self._name
+
+    @name.setter
+    def name(self, arg):
+        assert isinstance(arg, (str, type(None)))
+        self._name = arg
+
+    ### PUBLIC METHODS ###
 
     def reverse(self):
         r'''Reverses rhythm-maker.
 
-        .. note:: method is provisional.
+        Concrete rhythm-makers should override this method.
 
-        Defined equal to exact copy of rhythm-maker.
-
-        This is the fallback for child classes.
-
-        Directed rhythm-maker child classes should override this method.
-
-        Returns newly constructed rhythm-maker.
+        Returns new rhythm-maker.
         '''
-        new = copy.deepcopy(self)
-        return new
+        decrease_durations_monotonically = \
+            not self.decrease_durations_monotonically
+        maker = new(
+            self,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            )
+        return maker

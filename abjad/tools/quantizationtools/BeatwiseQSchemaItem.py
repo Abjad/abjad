@@ -73,7 +73,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
         Returns tuple.
         '''
-        return tuple(
+        return (
             self.beatspan,
             self.search_tree,
             self.tempo,

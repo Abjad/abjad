@@ -60,4 +60,4 @@ def test_labeltools_remove_markup_from_leaves_in_expr_01():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
+    assert inspect_(tuplet).is_well_formed()

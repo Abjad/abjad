@@ -110,7 +110,7 @@ class BassVoice(Instrument):
             ::
 
                 >>> bass.instrument_name_markup
-                Markup(('Bass',))
+                Markup(contents=('Bass',))
 
             ::
 
@@ -163,7 +163,7 @@ class BassVoice(Instrument):
             ::
 
                 >>> bass.short_instrument_name_markup
-                Markup(('Bass',))
+                Markup(contents=('Bass',))
 
             ::
 

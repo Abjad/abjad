@@ -113,7 +113,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_06():
 
     string = "{ c'4 c'4 c'4 c'4 ] }"
     result = LilyPondParser()(string)
-    assert not inspect(result[-1]).get_spanners()
+    assert not inspect_(result[-1]).get_spanners()
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Beam_07():

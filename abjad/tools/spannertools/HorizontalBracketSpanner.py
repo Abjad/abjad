@@ -49,9 +49,6 @@ class HorizontalBracketSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _copy_keyword_args(self, new):
-        pass
-
     def _format_right_of_leaf(self, leaf):
         result = []
         if self._is_my_first_leaf(leaf):

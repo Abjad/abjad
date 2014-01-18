@@ -22,7 +22,7 @@ def test_spannertools_PianoPedalSpanner_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
     assert piano_pedal_spanner.kind == 'sustain'
     assert piano_pedal_spanner.style == 'mixed'
 
@@ -48,7 +48,7 @@ def test_spannertools_PianoPedalSpanner_02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_spannertools_PianoPedalSpanner_03():
@@ -72,7 +72,7 @@ def test_spannertools_PianoPedalSpanner_03():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_spannertools_PianoPedalSpanner_04():
@@ -99,7 +99,7 @@ def test_spannertools_PianoPedalSpanner_04():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_spannertools_PianoPedalSpanner_05():
@@ -126,7 +126,7 @@ def test_spannertools_PianoPedalSpanner_05():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_spannertools_PianoPedalSpanner_06():
@@ -157,4 +157,4 @@ def test_spannertools_PianoPedalSpanner_06():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

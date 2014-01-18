@@ -109,7 +109,7 @@ class AltoVoice(Instrument):
             ::
 
                 >>> alto.instrument_name_markup
-                Markup(('Alto',))
+                Markup(contents=('Alto',))
 
             ::
 
@@ -162,7 +162,7 @@ class AltoVoice(Instrument):
             ::
 
                 >>> alto.short_instrument_name_markup
-                Markup(('Alto',))
+                Markup(contents=('Alto',))
 
             ::
 

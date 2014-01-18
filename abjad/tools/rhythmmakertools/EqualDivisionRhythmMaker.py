@@ -5,6 +5,7 @@ from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+from abjad.tools.topleveltools import new
 
 
 class EqualDivisionRhythmMaker(RhythmMaker):
@@ -49,21 +50,32 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     Usage follows the two-step configure-then-call pattern shown here.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_is_diminution',
+        '_leaf_count',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
         self,
         leaf_count=1,
         is_diminution=True,
-        beam_each_cell=True,
         beam_cells_together=False,
+        beam_each_cell=True,
+        decrease_durations_monotonically=True,
+        forbidden_written_duration=None,
         ):
-        assert mathtools.is_integer_equivalent_expr(leaf_count)
         RhythmMaker.__init__(
             self,
+            beam_cells_together=beam_cells_together,
             beam_each_cell=beam_each_cell,
-            beam_cells_together=beam_cells_together
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            forbidden_written_duration=forbidden_written_duration,
             )
+        assert mathtools.is_integer_equivalent_expr(leaf_count)
         leaf_count = int(leaf_count)
         self._leaf_count = leaf_count
         self._is_diminution = is_diminution
@@ -88,9 +100,10 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         Returns list of selections. Each selection contains exactly one
         fixed-duration tuplet.
         '''
+        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
         result = []
-        for division in divisions:
-            tuplet = self._make_tuplet(division)
+        for duration_pair in duration_pairs:
+            tuplet = self._make_tuplet(duration_pair)
             selection = selectiontools.Selection(tuplet)
             result.append(selection)
         return result
@@ -108,8 +121,9 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 rhythmmakertools.EqualDivisionRhythmMaker(
                     leaf_count=5,
                     is_diminution=True,
-                    beam_each_cell=True,
                     beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=True,
                     )
 
         Set `format_specification` to `''` or `'storage'`.
@@ -134,8 +148,9 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 rhythmmakertools.EqualDivisionRhythmMaker(
                     leaf_count=5,
                     is_diminution=False,
-                    beam_each_cell=True,
                     beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=True,
                     )
 
             ::
@@ -150,7 +165,19 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
         Returns new equal-division rhythm-maker.
         '''
-        return RhythmMaker.__makenew__(self, *args, **kwargs)
+        assert not args
+        arguments = {
+            'beam_cells_together': self.beam_cells_together,
+            'beam_each_cell': self.beam_each_cell,
+            'decrease_durations_monotonically':
+                self.decrease_durations_monotonically,
+            'forbidden_written_duration': self.forbidden_written_duration,
+            'is_diminution': self.is_diminution,
+            'leaf_count': self.leaf_count,
+            }
+        arguments.update(kwargs)
+        new = type(self)(**arguments)
+        return new
 
     ### PRIVATE METHODS ###
 
@@ -216,8 +243,9 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 rhythmmakertools.EqualDivisionRhythmMaker(
                     leaf_count=5,
                     is_diminution=True,
-                    beam_each_cell=True,
                     beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=False,
                     )
 
             ::
@@ -234,4 +262,10 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
         Returns new equal-division rhythm-maker.
         '''
-        return RhythmMaker.__makenew__(self)
+        decrease_durations_monotonically = \
+            not self.decrease_durations_monotonically
+        maker = new(
+            self,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            )
+        return maker

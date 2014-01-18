@@ -41,7 +41,6 @@ class LilyPondCommand(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_format_leaf_children',
         '_format_slot',
         '_name',
         )
@@ -92,7 +91,7 @@ class LilyPondCommand(AbjadObject):
         Returns new LilyPond command.
         '''
         new = type(self)(self._name)
-        new.format_slot = self.format_slot
+        new._format_slot = self.format_slot
         return new
 
     def __eq__(self, arg):

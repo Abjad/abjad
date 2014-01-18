@@ -3,13 +3,18 @@ from abjad.tools.datastructuretools import TypedList
 
 
 class SelectionInventory(TypedList):
-    r'''An inventory of component selections:
+    r'''An inventory of component selections.
 
     ::
 
         >>> inventory = selectiontools.SelectionInventory()
 
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
 
     ### PRIVATE PROPERTIES ###
 

@@ -109,7 +109,7 @@ class SopranoVoice(Instrument):
             ::
 
                 >>> soprano.instrument_name_markup
-                Markup(('Soprano',))
+                Markup(contents=('Soprano',))
 
             ::
 
@@ -162,7 +162,7 @@ class SopranoVoice(Instrument):
             ::
 
                 >>> soprano.short_instrument_name_markup
-                Markup(('Sop.',))
+                Markup(contents=('Sop.',))
 
             ::
 

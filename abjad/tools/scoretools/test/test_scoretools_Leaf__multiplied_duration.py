@@ -28,12 +28,12 @@ def test_scoretools_Leaf__multiplied_duration_03():
     attach(Multiplier(2, 3), note)
 
     assert note.written_duration == Duration(3, 8)
-    assert inspect(note).get_indicator(Multiplier) == Multiplier(2, 3)
+    assert inspect_(note).get_indicator(Multiplier) == Multiplier(2, 3)
     assert note._multiplied_duration == Duration(1, 4)
 
     note.written_duration = Duration(1, 4)
     detach(Multiplier, note)
 
     assert note.written_duration == Duration(1, 4)
-    assert inspect(note).get_indicators(Multiplier) == ()
+    assert inspect_(note).get_indicators(Multiplier) == ()
     assert note._multiplied_duration == Duration(1, 4)

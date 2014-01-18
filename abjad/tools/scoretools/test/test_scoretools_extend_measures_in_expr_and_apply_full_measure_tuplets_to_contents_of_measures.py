@@ -26,7 +26,7 @@ def test_scoretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_co
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_contents_of_measures_02():
@@ -53,4 +53,4 @@ def test_scoretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_co
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()

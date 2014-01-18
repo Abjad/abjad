@@ -11,7 +11,7 @@ def test_scoretools_make_notes_01():
     assert len(note) == 1
     assert isinstance(note[0], Note)
     assert note[0].written_duration == Duration(1, 4)
-    assert all(len(inspect(x).get_logical_tie()) == 1 for x in note)
+    assert all(len(inspect_(x).get_logical_tie()) == 1 for x in note)
 
 
 def test_scoretools_make_notes_02():
@@ -24,7 +24,7 @@ def test_scoretools_make_notes_02():
     assert isinstance(note[1], Note)
     assert note[0].written_duration == Duration(4, 8)
     assert note[1].written_duration == Duration(1, 8)
-    assert all(len(inspect(x).get_logical_tie()) == 2 for x in note)
+    assert all(len(inspect_(x).get_logical_tie()) == 2 for x in note)
 
 
 def test_scoretools_make_notes_03():
@@ -109,8 +109,8 @@ def test_scoretools_make_notes_10():
     assert len(tuplet) == 1
     assert isinstance(tuplet[0], Tuplet)
     assert len(tuplet[0]) == 1
-    assert inspect(tuplet[0]).get_duration() == Duration(1, 36)
-    assert inspect(tuplet[0][0]).get_duration() == Duration(1, 36)
+    assert inspect_(tuplet[0]).get_duration() == Duration(1, 36)
+    assert inspect_(tuplet[0][0]).get_duration() == Duration(1, 36)
     assert tuplet[0][0].written_duration == Duration(1, 32)
 
 
@@ -132,9 +132,9 @@ def test_scoretools_make_notes_11():
     assert isinstance(tuplet[0], Tuplet)
     assert isinstance(tuplet[1], Note)
     assert len(tuplet[0]) == 2
-    assert inspect(tuplet[0]).get_duration() == Duration(3, 12)
-    assert inspect(tuplet[0][0]).get_duration() == Duration(1, 12)
-    assert inspect(tuplet[0][1]).get_duration() == Duration(1, 6)
+    assert inspect_(tuplet[0]).get_duration() == Duration(3, 12)
+    assert inspect_(tuplet[0][0]).get_duration() == Duration(1, 12)
+    assert inspect_(tuplet[0][1]).get_duration() == Duration(1, 6)
     assert tuplet[0][0].written_duration == Duration(1, 8)
     assert tuplet[0][1].written_duration == Duration(1, 4)
     assert tuplet[1].written_duration == Duration(1, 8)
@@ -148,10 +148,10 @@ def test_scoretools_make_notes_12():
     assert isinstance(t[0], Tuplet)
     assert isinstance(t[1], Note)
     assert len(t[0]) == 3
-    assert inspect(t[0]).get_duration() == Duration(7, 12)
-    assert inspect(t[0][0]).get_duration() == Duration(1, 12)
-    assert inspect(t[0][1]).get_duration() == Duration(4, 12)
-    assert inspect(t[0][2]).get_duration() == Duration(1, 6)
+    assert inspect_(t[0]).get_duration() == Duration(7, 12)
+    assert inspect_(t[0][0]).get_duration() == Duration(1, 12)
+    assert inspect_(t[0][1]).get_duration() == Duration(4, 12)
+    assert inspect_(t[0][2]).get_duration() == Duration(1, 6)
     assert t[0][0].written_duration == Duration(1, 8)
     assert t[0][1].written_duration == Duration(4, 8)
     assert t[0][2].written_duration == Duration(1, 4)

@@ -55,7 +55,7 @@ def test_scoretools_Container__split_by_duration_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_02():
@@ -115,7 +115,7 @@ def test_scoretools_Container__split_by_duration_02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_03():
@@ -185,8 +185,8 @@ def test_scoretools_Container__split_by_duration_03():
         '''
         )
 
-    assert not inspect(halves[0][0]).is_well_formed()
-    assert not inspect(halves[1][0]).is_well_formed()
+    assert not inspect_(halves[0][0]).is_well_formed()
+    assert not inspect_(halves[1][0]).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_04():
@@ -245,7 +245,7 @@ def test_scoretools_Container__split_by_duration_04():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_05():
@@ -308,7 +308,7 @@ def test_scoretools_Container__split_by_duration_05():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_06():
@@ -379,7 +379,7 @@ def test_scoretools_Container__split_by_duration_06():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_07():
@@ -448,7 +448,7 @@ def test_scoretools_Container__split_by_duration_07():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_08():
@@ -506,7 +506,7 @@ def test_scoretools_Container__split_by_duration_08():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_09():
@@ -568,7 +568,7 @@ def test_scoretools_Container__split_by_duration_09():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_10():
@@ -696,7 +696,7 @@ def test_scoretools_Container__split_by_duration_11():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_12():
@@ -760,7 +760,7 @@ def test_scoretools_Container__split_by_duration_12():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_13():
@@ -819,7 +819,7 @@ def test_scoretools_Container__split_by_duration_13():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_14():
@@ -838,10 +838,10 @@ def test_scoretools_Container__split_by_duration_14():
         )
 
     assert format(halves[0][0]) == "c'32 [ ] ~"
-    assert inspect(halves[0][0]).is_well_formed()
+    assert inspect_(halves[0][0]).is_well_formed()
 
     assert format(halves[1][0]) == "c'16. [ ]"
-    assert inspect(halves[1][0]).is_well_formed()
+    assert inspect_(halves[1][0]).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_15():
@@ -900,7 +900,7 @@ def test_scoretools_Container__split_by_duration_15():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_16():
@@ -963,7 +963,7 @@ def test_scoretools_Container__split_by_duration_16():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_17():
@@ -1032,7 +1032,7 @@ def test_scoretools_Container__split_by_duration_17():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_18():
@@ -1101,7 +1101,7 @@ def test_scoretools_Container__split_by_duration_18():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_19():
@@ -1176,7 +1176,7 @@ def test_scoretools_Container__split_by_duration_19():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_20():
@@ -1200,8 +1200,8 @@ def test_scoretools_Container__split_by_duration_20():
     assert format(halves[0][0]) == "c'8 * 1/4"
     assert format(halves[1][0]) == "c'8 * 1/4"
 
-    assert inspect(halves[0][0]).is_well_formed()
-    assert inspect(halves[1][0]).is_well_formed()
+    assert inspect_(halves[0][0]).is_well_formed()
+    assert inspect_(halves[1][0]).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_21():
@@ -1225,8 +1225,8 @@ def test_scoretools_Container__split_by_duration_21():
     assert format(halves[0][0]) == "c'8 * 1/6"
     assert format(halves[1][0]) == "c'8 * 1/3"
 
-    assert inspect(halves[0][0]).is_well_formed()
-    assert inspect(halves[1][0]).is_well_formed()
+    assert inspect_(halves[0][0]).is_well_formed()
+    assert inspect_(halves[1][0]).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_22():
@@ -1289,7 +1289,7 @@ def test_scoretools_Container__split_by_duration_22():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_23():
@@ -1356,7 +1356,7 @@ def test_scoretools_Container__split_by_duration_23():
         '''
         )
         
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_24():
@@ -1428,7 +1428,7 @@ def test_scoretools_Container__split_by_duration_24():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_25():
@@ -1477,7 +1477,7 @@ def test_scoretools_Container__split_by_duration_25():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_26():
@@ -1546,7 +1546,7 @@ def test_scoretools_Container__split_by_duration_26():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_27():
@@ -1576,5 +1576,5 @@ def test_scoretools_Container__split_by_duration_27():
         '''
         )
 
-    assert inspect(halves[0][0]).is_well_formed()
-    assert inspect(halves[-1][0]).is_well_formed()
+    assert inspect_(halves[0][0]).is_well_formed()
+    assert inspect_(halves[-1][0]).is_well_formed()

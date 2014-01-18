@@ -23,14 +23,14 @@ class StemTremolo(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_format_slot', 
         '_tremolo_flags',
         )
+
+    _format_slot = 'right'
 
     ### INITIALIZER ###
 
     def __init__(self, *args):
-        self._format_slot = 'right'
         if len(args) == 1 and isinstance(args[0], type(self)):
             tremolo_flags = args[0].tremolo_flags
         elif len(args) == 1 and not isinstance(args[0], type(self)):
@@ -70,9 +70,7 @@ class StemTremolo(AbjadObject):
 
         Returns new stem tremolo.
         '''
-        new = type(self)(self.tremolo_flags)
-        new._format_slot = self._format_slot
-        return new
+        return type(self)(self.tremolo_flags)
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a stem tremolo with equal tremolo flags.
@@ -122,8 +120,11 @@ class StemTremolo(AbjadObject):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
             return self._lilypond_format
+        elif format_specification == 'storage':
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
     def __str__(self):

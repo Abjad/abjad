@@ -3,12 +3,14 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemeColor(Scheme):
-    r'''Abjad model of Scheme color:
+    r'''A Scheme color.
 
-    ::
+    ..  container:: example
 
-        >>> schemetools.SchemeColor('ForestGreen')
-        SchemeColor('ForestGreen')
+        ::
+
+            >>> schemetools.SchemeColor('ForestGreen')
+            SchemeColor('ForestGreen')
 
     Scheme colors are immutable.
     '''
@@ -22,4 +24,6 @@ class SchemeColor(Scheme):
 
     @property
     def _formatted_value(self):
-        return "(x11-color '%s)" % self._value
+        string = "(x11-color '{})"
+        string = string.format(self._value)
+        return string

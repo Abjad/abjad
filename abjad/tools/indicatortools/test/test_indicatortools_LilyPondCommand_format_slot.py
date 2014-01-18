@@ -21,4 +21,4 @@ def test_indicatortools_LilyPondCommand_format_slot_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

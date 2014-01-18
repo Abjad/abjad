@@ -178,11 +178,13 @@ class RomanNumeral(AbjadObject):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        positional_argument_values=(
+            self.symbolic_string,
+            )
         return systemtools.StorageFormatSpecification(
             self,
-            storage_format_pieces=(
-                self._format_string,
-                ),
+            is_indented=False,
+            positional_argument_values=positional_argument_values,
             )
 
     ### PRIVATE METHODS ###

@@ -34,8 +34,8 @@ def test_agenttools_IterationAgent_by_topmost_logical_ties_and_components_01():
     contents = iterate(staff).by_topmost_logical_ties_and_components()
     contents = list(contents)
 
-    assert contents[0] == inspect(staff[0]).get_logical_tie()
-    assert contents[1] == inspect(staff[2]).get_logical_tie()
+    assert contents[0] == inspect_(staff[0]).get_logical_tie()
+    assert contents[1] == inspect_(staff[2]).get_logical_tie()
     assert contents[2] is staff[4]
-    assert contents[3] == inspect(staff[5]).get_logical_tie()
-    assert contents[4] == inspect(staff[7]).get_logical_tie()
+    assert contents[3] == inspect_(staff[5]).get_logical_tie()
+    assert contents[4] == inspect_(staff[7]).get_logical_tie()

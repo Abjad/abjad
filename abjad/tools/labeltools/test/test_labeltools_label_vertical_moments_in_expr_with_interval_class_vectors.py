@@ -55,7 +55,7 @@ def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_0
         '''
         )
 
-    assert inspect(score).is_well_formed()
+    assert inspect_(score).is_well_formed()
 
 
 def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_02():
@@ -82,4 +82,4 @@ def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_0
         '''
         )
 
-    assert inspect(chord).is_well_formed()
+    assert inspect_(chord).is_well_formed()

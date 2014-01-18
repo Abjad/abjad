@@ -58,7 +58,7 @@ class RhythmMakerMaterialPackageMaker(MaterialPackageMaker):
         stylesheet_file_path = os.path.join(
             directory_path, 'stylesheets', 'rhythm-letter-16.ly')
         illustration.file_initial_user_includes.append(stylesheet_file_path)
-        score.add_double_bar()
+        score.add_final_bar_line()
         if 'title' in kwargs:
             illustration.header_block.title = \
                 markuptools.Markup(kwargs.get('title'))

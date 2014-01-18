@@ -89,7 +89,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
         Returns tuple.
         '''
-        return tuple(
+        return (
             self.search_tree,
             self.tempo,
             self.time_signature,

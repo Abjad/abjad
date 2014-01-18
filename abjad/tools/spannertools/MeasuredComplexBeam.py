@@ -83,7 +83,7 @@ class MeasuredComplexBeam(ComplexBeam):
 
     def _copy_keyword_args(self, new):
         ComplexBeam._copy_keyword_args(self, new)
-        new.span_beam_count = self.span_beam_count
+        new._span_beam_count = self.span_beam_count
 
     def _format_before_leaf(self, leaf):
         result = []

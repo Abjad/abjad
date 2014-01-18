@@ -111,7 +111,7 @@ class Contrabassoon(Instrument):
             ::
 
                 >>> contrabassoon.instrument_name_markup
-                Markup(('Contrabassoon',))
+                Markup(contents=('Contrabassoon',))
 
             ::
 
@@ -164,7 +164,7 @@ class Contrabassoon(Instrument):
             ::
 
                 >>> contrabassoon.short_instrument_name_markup
-                Markup(('Contrabsn.',))
+                Markup(contents=('Contrabsn.',))
 
             ::
 

@@ -43,7 +43,7 @@ def test_spannertools_Spanner__remove_01():
         '''
         )
 
-    assert not inspect(voice).is_well_formed()
+    assert not inspect_(voice).is_well_formed()
 
 
 def test_spannertools_Spanner__remove_02():
@@ -100,7 +100,7 @@ def test_spannertools_Spanner__remove_02():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_spannertools_Spanner__remove_03():
@@ -108,10 +108,9 @@ def test_spannertools_Spanner__remove_03():
     '''
 
     class MockSpanner(spannertools.Spanner):
+
         def __init__(self, components=None):
             spannertools.Spanner.__init__(self, components)
-        def _copy_keyword_args(self, new):
-            pass
 
     note = Note("c'4")
     spanner = MockSpanner()

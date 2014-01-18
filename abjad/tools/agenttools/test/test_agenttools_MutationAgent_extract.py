@@ -38,8 +38,8 @@ def test_agenttools_MutationAgent_extract_01():
         '''
         )
 
-    assert inspect(note).is_well_formed()
-    assert inspect(voice).is_well_formed()
+    assert inspect_(note).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_extract_02():
@@ -79,9 +79,9 @@ def test_agenttools_MutationAgent_extract_02():
         )
 
     for note in notes:
-        assert inspect(note).is_well_formed()
+        assert inspect_(note).is_well_formed()
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_extract_03():
@@ -128,7 +128,7 @@ def test_agenttools_MutationAgent_extract_03():
         )
 
     assert not container
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_extract_04():
@@ -187,4 +187,4 @@ def test_agenttools_MutationAgent_extract_04():
     for container in containers:
         assert not container
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()

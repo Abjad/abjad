@@ -47,8 +47,8 @@ class Annotation(AbjadObject):
             self._name = copy.copy(args[0])
             self._value = copy.copy(args[1])
         elif len(args) == 0:
-            name = 'annotation'
-            value = None
+            self._name = 'annotation'
+            self._value = None
         else:
             message = 'can not initialize {}: {!r}'
             message = message.format(type(self).__name__, args)

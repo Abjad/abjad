@@ -61,7 +61,7 @@ class RootedChordClass(PitchClassSet):
         13: 'thirteenth',
         }
 
-    ### CONSTRUCTOR ###
+    ### INITIALIZER ###
 
     def __init__(self, root=None, *args):
         from abjad.tools import tonalanalysistools
@@ -100,7 +100,8 @@ class RootedChordClass(PitchClassSet):
         return False
 
     def __ne__(self, arg):
-        r'''Is true when rooted chord-class does not equal `arg`. Otherwise false.
+        r'''Is true when rooted chord-class does not equal `arg`. Otherwise 
+        false.
 
         Returns boolean.
         '''

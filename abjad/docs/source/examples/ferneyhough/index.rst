@@ -57,7 +57,7 @@ divide the final `logical tie` of the resulting tuplet into yet another ratio:
            tuplet_duration, outer_tuplet_proportions)
        inner_tuplet_proportions = inner_tuplet_subdivision_count * [1]
        last_leaf = outer_tuplet.select_leaves()[-1]
-       right_logical_tie = inspect(last_leaf).get_logical_tie()
+       right_logical_tie = inspect_(last_leaf).get_logical_tie()
        right_logical_tie.to_tuplet(inner_tuplet_proportions)
        return outer_tuplet
 

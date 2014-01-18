@@ -74,7 +74,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         for measure in measures:
             beam = spannertools.Beam()
             attach(beam, [measure])
-        score.add_double_bar()
+        score.add_final_bar_line()
         return illustration
 
     def make_output_material_module_body_lines(self, output_material):

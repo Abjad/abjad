@@ -43,9 +43,7 @@ class BendAfter(AbjadObject):
 
         Returns new bend after.
         '''
-        new = type(self)(self.bend_amount)
-        new.format_slot = self.format_slot
-        return new
+        return type(self)(self.bend_amount)
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a bend after with bend amount equal to bend

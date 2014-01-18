@@ -2566,35 +2566,17 @@ class TimespanInventory(TypedList):
         '''
         from abjad.tools import timespantools
         offset = durationtools.Offset(offset)
-        during_time_relation = timespantools.OffsetTimespanTimeRelation(
-            timespantools.CompoundInequality([
-                'timespan.start < offset',
-                'offset < timespan.stop'],
-                logical_operator='and',
-                ),
-            offset=offset,
-            )
-        during_timespans = self.get_timespans_that_satisfy_time_relation(
-            during_time_relation)
-        before_time_relation = timespantools.OffsetTimespanTimeRelation(
-            timespantools.CompoundInequality([
-                'timespan.stop <= offset'],
-                ),
-            offset=offset,
-            )
-        before_timespans = self.get_timespans_that_satisfy_time_relation(
-            before_time_relation)
-        after_time_relation = timespantools.OffsetTimespanTimeRelation(
-            timespantools.CompoundInequality([
-                'offset <= timespan.start'],
-                ),
-            offset=offset,
-            )
-        after_timespans = self.get_timespans_that_satisfy_time_relation(
-            after_time_relation)
-        before_inventory = type(self)(before_timespans)
-        after_inventory = type(self)(after_timespans)
-        for timespan in during_timespans:
+        before_inventory = type(self)()
+        during_inventory = type(self)()
+        after_inventory = type(self)()
+        for timespan in self:
+            if timespan.stop_offset <= offset:
+                before_inventory.append(timespan)
+            elif offset <= timespan.start_offset:
+                after_inventory.append(timespan)
+            else:
+                during_inventory.append(timespan)
+        for timespan in during_inventory:
             before_timespan, after_timespan = timespan.split_at_offset(offset)
             before_inventory.append(before_timespan)
             after_inventory.append(after_timespan)

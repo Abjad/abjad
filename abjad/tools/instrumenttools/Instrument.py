@@ -221,14 +221,20 @@ class Instrument(AbjadObject):
             return self._performer_names[:]
 
     def _initialize_default_name_markups(self):
-        string = self.instrument_name
-        string = stringtools.capitalize_string_start(string)
-        markup = markuptools.Markup(string)
-        self._instrument_name_markup = markup
-        string = self.short_instrument_name
-        string = stringtools.capitalize_string_start(string)
-        markup = markuptools.Markup(string)
-        self._short_instrument_name_markup = markup
+        if self.instrument_name:
+            string = self.instrument_name
+            string = stringtools.capitalize_string_start(string)
+            markup = markuptools.Markup(contents=string)
+            self._instrument_name_markup = markup
+        else:
+            self._instrument_name_markup = None
+        if self.short_instrument_name:
+            string = self.short_instrument_name
+            string = stringtools.capitalize_string_start(string)
+            markup = markuptools.Markup(contents=string)
+            self._short_instrument_name_markup = markup
+        else:
+            self._short_instrument_name_markup = None
 
     @classmethod
     def _list_instrument_names(cls):
@@ -336,9 +342,10 @@ class Instrument(AbjadObject):
         if self._instrument_name_markup is None:
             self._initialize_default_name_markups()
         if not isinstance(self._instrument_name_markup, markuptools.Markup):
-            markup = markuptools.Markup(self._instrument_name_markup)
+            markup = markuptools.Markup(contents=self._instrument_name_markup)
             self._instrument_name_markup = markup
-        return self._instrument_name_markup
+        if self._instrument_name_markup.contents != ('',):
+            return self._instrument_name_markup
 
     @property
     def pitch_range(self):
@@ -346,8 +353,6 @@ class Instrument(AbjadObject):
 
         Returns pitch range.
         '''
-        if self._pitch_range is None:
-            return self._default_pitch_range
         return self._pitch_range
 
     @property
@@ -356,10 +361,7 @@ class Instrument(AbjadObject):
 
         Returns string.
         '''
-        if self._short_instrument_name is None:
-            return self._default_short_instrument_name
-        else:
-            return self._short_instrument_name
+        return self._short_instrument_name
 
     @property
     def short_instrument_name_markup(self):
@@ -371,9 +373,11 @@ class Instrument(AbjadObject):
             self._initialize_default_name_markups()
         if not isinstance(
             self._short_instrument_name_markup, markuptools.Markup):
-            markup = markuptools.Markup(self._short_instrument_name_markup)
+            markup = markuptools.Markup(
+                contents=self._short_instrument_name_markup)
             self._short_instrument_name_markup = markup
-        return self._short_instrument_name_markup
+        if self._short_instrument_name_markup.contents != ('',):
+            return self._short_instrument_name_markup
 
     @property
     def sounding_pitch_of_written_middle_c(self):

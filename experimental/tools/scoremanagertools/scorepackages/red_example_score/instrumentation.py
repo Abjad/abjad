@@ -13,10 +13,10 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                             instrument_name='horn',
                             short_instrument_name='hn.',
                             instrument_name_markup=markuptools.Markup(
-                                ('Horn',)
+                                contents=('Horn',),
                                 ),
                             short_instrument_name_markup=markuptools.Markup(
-                                ('Hn.',)
+                                contents=('Hn.',),
                                 ),
                             allowable_clefs=indicatortools.ClefInventory(
                                 [
@@ -44,10 +44,10 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                             instrument_name='tenor trombone',
                             short_instrument_name='ten. trb.',
                             instrument_name_markup=markuptools.Markup(
-                                ('Tenor trombone',)
+                                contents=('Tenor trombone',),
                                 ),
                             short_instrument_name_markup=markuptools.Markup(
-                                ('Ten. trb.',)
+                                contents=('Ten. trb.',),
                                 ),
                             allowable_clefs=indicatortools.ClefInventory(
                                 [
@@ -75,10 +75,10 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                             instrument_name='violin',
                             short_instrument_name='vn.',
                             instrument_name_markup=markuptools.Markup(
-                                ('Violin',)
+                                contents=('Violin',),
                                 ),
                             short_instrument_name_markup=markuptools.Markup(
-                                ('Vn.',)
+                                contents=('Vn.',),
                                 ),
                             allowable_clefs=indicatortools.ClefInventory(
                                 [
@@ -103,10 +103,10 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                             instrument_name='cello',
                             short_instrument_name='vc.',
                             instrument_name_markup=markuptools.Markup(
-                                ('Cello',)
+                                contents=('Cello',),
                                 ),
                             short_instrument_name_markup=markuptools.Markup(
-                                ('Vc.',)
+                                contents=('Vc.',),
                                 ),
                             allowable_clefs=indicatortools.ClefInventory(
                                 [
@@ -137,10 +137,10 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                             instrument_name='piano',
                             short_instrument_name='pf.',
                             instrument_name_markup=markuptools.Markup(
-                                ('Piano',)
+                                contents=('Piano',),
                                 ),
                             short_instrument_name_markup=markuptools.Markup(
-                                ('Pf.',)
+                                contents=('Pf.',),
                                 ),
                             allowable_clefs=indicatortools.ClefInventory(
                                 [

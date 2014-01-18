@@ -72,8 +72,8 @@ class NoteHead(AbjadObject):
         return type(self)(*self.__getnewargs__())
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a note-head with written pitch equal to that of
-        this note-head. Otherwise false.
+        r'''Is true when `expr` is a note-head with written pitch equal to 
+        that of this note-head. Otherwise false.
 
         Returns boolean.
         '''
@@ -86,8 +86,11 @@ class NoteHead(AbjadObject):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
             return self._lilypond_format
+        elif format_specification == 'storage':
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
     def __getnewargs__(self):

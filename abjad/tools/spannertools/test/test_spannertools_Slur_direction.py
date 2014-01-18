@@ -20,4 +20,4 @@ def test_spannertools_Slur_direction_01():
         '''
         )
 
-    assert inspect(container).get_spanners() == set([slur])
+    assert inspect_(container).get_spanners() == set([slur])

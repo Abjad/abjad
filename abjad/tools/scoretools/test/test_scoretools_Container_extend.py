@@ -29,7 +29,7 @@ def test_scoretools_Container_extend_01():
     }
     '''
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
     assert systemtools.TestManager.compare(
         voice,
         r'''
@@ -72,7 +72,7 @@ def test_scoretools_Container_extend_02():
     }
     '''
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
     assert systemtools.TestManager.compare(
         voice,
         r'''
@@ -102,7 +102,7 @@ def test_scoretools_Container_extend_03():
     }
     '''
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
     assert systemtools.TestManager.compare(
         voice,
         r'''
@@ -130,7 +130,7 @@ def test_scoretools_Container_extend_04():
     }
     '''
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
     assert systemtools.TestManager.compare(
         voice,
         r'''
@@ -209,7 +209,7 @@ def test_scoretools_Container_extend_07():
     }
     '''
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
     assert systemtools.TestManager.compare(
         voice,
         r'''
@@ -231,7 +231,7 @@ def test_scoretools_Container_extend_07():
     }
     '''
 
-    assert inspect(u).is_well_formed()
+    assert inspect_(u).is_well_formed()
     assert systemtools.TestManager.compare(
         u,
         r'''
@@ -287,7 +287,7 @@ def test_scoretools_Container_extend_08():
     }
     '''
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
     assert systemtools.TestManager.compare(
         voice,
         r'''
@@ -309,7 +309,7 @@ def test_scoretools_Container_extend_08():
     }
     '''
 
-    assert inspect(u).is_well_formed()
+    assert inspect_(u).is_well_formed()
     assert systemtools.TestManager.compare(
         u,
         r'''
@@ -337,7 +337,7 @@ def test_scoretools_Container_extend_09():
     }
     '''
 
-    assert inspect(container).is_well_formed()
+    assert inspect_(container).is_well_formed()
     assert systemtools.TestManager.compare(
         container,
         r'''

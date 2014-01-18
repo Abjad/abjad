@@ -8,7 +8,7 @@ def test_agenttools_IterationAgent_by_logical_voice_01():
 
     tuplet = Tuplet(Multiplier(2, 3), "c'4 c'4 c'4")
     staff = Staff(3 * tuplet)
-    logical_voice = inspect(staff[-1]).get_parentage().logical_voice
+    logical_voice = inspect_(staff[-1]).get_parentage().logical_voice
     iterator = iterate(staff).by_logical_voice(
         Rest,
         logical_voice,
@@ -24,7 +24,7 @@ def test_agenttools_IterationAgent_by_logical_voice_02():
 
     tuplet = Tuplet(Multiplier(2, 3), "c'4 c'4 c'4")
     staff = Staff(3 * tuplet)
-    logical_voice = inspect(staff[-1]).get_parentage().logical_voice
+    logical_voice = inspect_(staff[-1]).get_parentage().logical_voice
     iterator = iterate(staff).by_logical_voice(
         Tuplet,
         logical_voice,
@@ -40,7 +40,7 @@ def test_agenttools_IterationAgent_by_logical_voice_03():
 
     tuplet = Tuplet(Multiplier(2, 3), "c'4 c'4 c'4")
     staff = Staff(3 * tuplet)
-    logical_voice = inspect(staff[-1]).get_parentage().logical_voice
+    logical_voice = inspect_(staff[-1]).get_parentage().logical_voice
     iterator = iterate(staff).by_logical_voice(
         Note,
         logical_voice,
@@ -56,7 +56,7 @@ def test_agenttools_IterationAgent_by_logical_voice_04():
 
     tuplet = Tuplet(Multiplier(2, 3), "c'4 c'4 c'4")
     staff = Staff(3 * tuplet)
-    logical_voice = inspect(staff[-1][-1]).get_parentage().logical_voice
+    logical_voice = inspect_(staff[-1][-1]).get_parentage().logical_voice
     iterator = iterate(staff).by_logical_voice(
         scoretools.Leaf,
         logical_voice,
@@ -74,7 +74,7 @@ def test_agenttools_IterationAgent_by_logical_voice_05():
     voice_2 = Voice("d'4 d'4")
     voice_1.name = voice_2.name = 'piccolo'
     staff = Staff([voice_1, voice_2])
-    logical_voice = inspect(staff[-1]).get_parentage().logical_voice
+    logical_voice = inspect_(staff[-1]).get_parentage().logical_voice
     iterator = iterate(staff).by_logical_voice(
         Note,
         logical_voice,
@@ -94,7 +94,7 @@ def test_agenttools_IterationAgent_by_logical_voice_06():
     voice_1 = Voice("c'4 c'4")
     voice_2 = Voice("d'4 d'4")
     staff = Staff([voice_1, voice_2])
-    logical_voice = inspect(staff[-1]).get_parentage().logical_voice
+    logical_voice = inspect_(staff[-1]).get_parentage().logical_voice
     iterator = iterate(staff).by_logical_voice(
         Note,
         logical_voice,
@@ -117,7 +117,7 @@ def test_agenttools_IterationAgent_by_logical_voice_07():
     voice_1.name = 'flute'
     voice_2.name = 'piccolo'
     staff = Staff([voice_1, voice_2])
-    logical_voice = inspect(staff[-1]).get_parentage().logical_voice
+    logical_voice = inspect_(staff[-1]).get_parentage().logical_voice
     iterator = iterate(staff).by_logical_voice(
         Note,
         logical_voice,
@@ -137,7 +137,7 @@ def test_agenttools_IterationAgent_by_logical_voice_08():
 
     tuplet = Tuplet(Multiplier(2, 3), "c'4 c'4 c'4")
     staff = Staff(3 * tuplet)
-    logical_voice = inspect(staff[0]).get_parentage().logical_voice
+    logical_voice = inspect_(staff[0]).get_parentage().logical_voice
     iterator = iterate(staff).by_logical_voice(
         Rest,
         logical_voice,
@@ -152,7 +152,7 @@ def test_agenttools_IterationAgent_by_logical_voice_09():
 
     tuplet = Tuplet(Multiplier(2, 3), "c'4 c'4 c'4")
     staff = Staff(3 * tuplet)
-    logical_voice = inspect(staff[0]).get_parentage().logical_voice
+    logical_voice = inspect_(staff[0]).get_parentage().logical_voice
     iterator = iterate(staff).by_logical_voice(
         Tuplet,
         logical_voice,
@@ -166,7 +166,7 @@ def test_agenttools_IterationAgent_by_logical_voice_10():
 
     tuplet = Tuplet(Multiplier(2, 3), "c'4 c'4 c'4")
     staff = Staff(3 * tuplet)
-    logical_voice = inspect(staff[0]).get_parentage().logical_voice
+    logical_voice = inspect_(staff[0]).get_parentage().logical_voice
     iterator = iterate(staff).by_logical_voice(
         Note,
         logical_voice,
@@ -181,7 +181,7 @@ def test_agenttools_IterationAgent_by_logical_voice_11():
 
     tuplet = Tuplet(Multiplier(2, 3), "c'4 c'4 c'4")
     staff = Staff(3 * tuplet)
-    logical_voice = inspect(staff[0][0]).get_parentage().logical_voice
+    logical_voice = inspect_(staff[0][0]).get_parentage().logical_voice
     iterator = iterate(staff).by_logical_voice(
         scoretools.Leaf,
         logical_voice,
@@ -198,7 +198,7 @@ def test_agenttools_IterationAgent_by_logical_voice_12():
     voice_2 = Voice("d'4 d'4")
     voice_1.name = voice_2.name = 'piccolo'
     staff = Staff([voice_1, voice_2])
-    logical_voice = inspect(staff[0]).get_parentage().logical_voice
+    logical_voice = inspect_(staff[0]).get_parentage().logical_voice
     iterator = iterate(staff).by_logical_voice(
         Note,
         logical_voice,
@@ -217,7 +217,7 @@ def test_agenttools_IterationAgent_by_logical_voice_13():
     voice_1 = Voice("c'4 c'4")
     voice_2 = Voice("d'4 d'4")
     staff = Staff([voice_1, voice_2])
-    logical_voice = inspect(staff[0]).get_parentage().logical_voice
+    logical_voice = inspect_(staff[0]).get_parentage().logical_voice
     iterator = iterate(staff).by_logical_voice(
         Note,
         logical_voice,
@@ -239,7 +239,7 @@ def test_agenttools_IterationAgent_by_logical_voice_14():
     voice_1.name = 'flute'
     voice_2.name = 'piccolo'
     staff = Staff([voice_1, voice_2])
-    logical_voice = inspect(staff[0]).get_parentage().logical_voice
+    logical_voice = inspect_(staff[0]).get_parentage().logical_voice
     iterator = iterate(staff).by_logical_voice(
         Note,
         logical_voice,

@@ -45,8 +45,8 @@ def test_agenttools_MutationAgent_fuse_04():
     assert fused[0].written_duration == Duration(1, 4)
     assert fused[1].written_duration == Duration(1, 16)
 
-    tie_1 = inspect(fused[0]).get_spanner(Tie)
-    tie_2 = inspect(fused[1]).get_spanner(Tie)
+    tie_1 = inspect_(fused[0]).get_spanner(Tie)
+    tie_2 = inspect_(fused[1]).get_spanner(Tie)
 
     assert tie_1 is tie_2
     assert voice[0] is fused[0]
@@ -72,7 +72,7 @@ def test_agenttools_MutationAgent_fuse_05():
         '''
         )
 
-    assert inspect(staff).get_duration() == Duration(3, 8)
+    assert inspect_(staff).get_duration() == Duration(3, 8)
 
     mutate(staff[:]).fuse()
 
@@ -85,8 +85,8 @@ def test_agenttools_MutationAgent_fuse_05():
         '''
         )
 
-    assert inspect(staff).get_duration() == Duration(3, 8)
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).get_duration() == Duration(3, 8)
+    assert inspect_(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_fuse_06():
@@ -142,7 +142,7 @@ def test_agenttools_MutationAgent_fuse_06():
     assert len(tuplet_1) == 0
     assert len(tuplet_2) == 0
     assert new is not tuplet_1 and new is not tuplet_2
-    assert inspect(new).is_well_formed()
+    assert inspect_(new).is_well_formed()
 
 
 def test_agenttools_MutationAgent_fuse_07():
@@ -194,7 +194,7 @@ def test_agenttools_MutationAgent_fuse_07():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_fuse_08():
@@ -250,7 +250,7 @@ def test_agenttools_MutationAgent_fuse_08():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_fuse_09():
@@ -317,7 +317,7 @@ def test_agenttools_MutationAgent_fuse_11():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_fuse_12():
@@ -370,7 +370,7 @@ def test_agenttools_MutationAgent_fuse_12():
         '''
         )
 
-    assert inspect(new).is_well_formed()
+    assert inspect_(new).is_well_formed()
 
 
 def test_agenttools_MutationAgent_fuse_13():
@@ -418,7 +418,7 @@ def test_agenttools_MutationAgent_fuse_13():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_fuse_14():
@@ -466,7 +466,7 @@ def test_agenttools_MutationAgent_fuse_14():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_fuse_15():
@@ -517,7 +517,7 @@ def test_agenttools_MutationAgent_fuse_15():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_fuse_16():
@@ -588,7 +588,7 @@ def test_agenttools_MutationAgent_fuse_18():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_fuse_19():
@@ -658,4 +658,4 @@ def test_agenttools_MutationAgent_fuse_19():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

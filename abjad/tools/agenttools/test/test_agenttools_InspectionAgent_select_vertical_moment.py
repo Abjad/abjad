@@ -44,7 +44,7 @@ def test_agenttools_InspectionAgent_select_vertical_moment_01():
         )
 
     def piano_staff_moment(expr):
-        return inspect(expr).get_vertical_moment(governor=piano_staff)
+        return inspect_(expr).get_vertical_moment(governor=piano_staff)
 
     moment = piano_staff_moment(piano_staff[1][0])
     assert moment.leaves == (piano_staff[0][0], piano_staff[1][0])
@@ -100,28 +100,28 @@ def test_agenttools_InspectionAgent_select_vertical_moment_02():
         '''
         )
 
-    moment = inspect(piano_staff[1][0]).get_vertical_moment()
+    moment = inspect_(piano_staff[1][0]).get_vertical_moment()
     assert moment.leaves == (
         score[0][0][0], 
         piano_staff[0][0], 
         piano_staff[1][0],
         )
 
-    moment = inspect(piano_staff[1][1]).get_vertical_moment()
+    moment = inspect_(piano_staff[1][1]).get_vertical_moment()
     assert moment.leaves == (
         score[0][0][0], 
         piano_staff[0][0], 
         piano_staff[1][1],
         )
 
-    moment = inspect(piano_staff[1][2]).get_vertical_moment()
+    moment = inspect_(piano_staff[1][2]).get_vertical_moment()
     assert moment.leaves == (
         score[0][0][1], 
         piano_staff[0][1], 
         piano_staff[1][2],
         )
 
-    moment = inspect(piano_staff[1][3]).get_vertical_moment()
+    moment = inspect_(piano_staff[1][3]).get_vertical_moment()
     assert moment.leaves == (
         score[0][0][2], 
         piano_staff[0][1], 

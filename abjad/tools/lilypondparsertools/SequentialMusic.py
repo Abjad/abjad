@@ -1,12 +1,16 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools.lilypondparsertools.Music import Music
 
 
 class SequentialMusic(Music):
     r'''Abjad model of the LilyPond AST sequential music node.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
 
     ### PUBLIC METHODS ###
 

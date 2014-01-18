@@ -68,11 +68,16 @@ class CyclicList(abctools.AbjadObject, list):
         return result
 
     def __str__(self):
-        r'''String representation of cyclic list.
+        r'''Gets string representation of cyclic list.
 
         Returns string.
         '''
-        return '[{!s}]' % ', '.join([str(x) for x in self])
+        if self:
+            contents = [str(x) for x in self]
+            contents = ', '.join(contents)
+            string = '[{!s}]'.format(contents)
+            return string
+        return '[]'
 
     ### PRIVATE PROPERTIES ###
 

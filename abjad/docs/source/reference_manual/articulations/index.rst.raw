@@ -73,7 +73,7 @@ Getting the articulations attached to a leaf
 Use the inspector to get the articulations attached to a leaf:
 
 <abjad>
-inspect(staff[5]).get_indicators(Articulation)
+inspect_(staff[5]).get_indicators(Articulation)
 </abjad>
 
 

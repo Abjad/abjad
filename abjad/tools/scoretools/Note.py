@@ -27,8 +27,6 @@ class Note(Leaf):
                 cs''8.
             }
 
-
-
     '''
 
     ### CLASS VARIABLES ###
@@ -36,8 +34,6 @@ class Note(Leaf):
     __slots__ = (
         '_note_head',
         )
-
-    _repr_is_evaluable = True
 
     ### INITIALIZER ###
 

@@ -25,6 +25,11 @@ class OctaveTranspositionMapping(TypedList):
     are mutable.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __call__(self, pitches):

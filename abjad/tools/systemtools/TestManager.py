@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import inspect
 import os
 
 
@@ -93,7 +94,6 @@ class TestManager(object):
 
         Returns enclosing function name as a string or else none.
         '''
-        import inspect
         stack = inspect.stack()
         # per the inspect module doc page ...
         try:

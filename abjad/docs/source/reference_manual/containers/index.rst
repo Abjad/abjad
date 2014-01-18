@@ -60,7 +60,7 @@ Use the inspector the get the duration of a container:
 
 ::
 
-   >>> inspect(container).get_duration()
+   >>> inspect_(container).get_duration()
    Duration(7, 8)
 
 
@@ -273,8 +273,8 @@ The most common use of LilyPond ``<< >>`` is to group a relatively smaller
 number of note lists together polyphonically.
 
 
-Understanding sequential and simultneous containers
----------------------------------------------------
+Understanding sequential and simultaneous containers
+----------------------------------------------------
 
 Abjad implements LilyPond ``{ }`` and ``<< >>`` in the container 
 ``is_simultaneous`` attribute.

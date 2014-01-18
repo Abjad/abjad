@@ -78,6 +78,19 @@ class Selection(object):
             result = selection
         return result
 
+#    def __getstate__(self):
+#        r'''Gets state of selection.
+#
+#        Returns dictionary.
+#        '''
+#        if hasattr(self, '__dict__'):
+#            return vars(self)
+#        state = {}
+#        for class_ in type(self).__mro__:
+#            for slot in getattr(class_, '__slots__', ()):
+#                state[slot] = getattr(self, slot, None)
+#        return state
+
     def __len__(self):
         r'''Number of components in selection.
 
@@ -123,12 +136,16 @@ class Selection(object):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        if self._music:
+            positional_argument_values = (
+                self._music,
+                )
+        else:
+            positional_argument_values = ()
         return systemtools.StorageFormatSpecification(
             self,
             keyword_argument_names=(),
-            positional_argument_values=(
-                self._music,
-                ),
+            positional_argument_values=positional_argument_values,
             )
 
     ### PRIVATE METHODS ###

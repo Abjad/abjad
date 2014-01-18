@@ -19,10 +19,10 @@ def test_InstrumentSpecifierEditor_run_01():
                 instrument_name='horn',
                 short_instrument_name='hn.',
                 instrument_name_markup=markuptools.Markup(
-                    ('Horn',)
+                    contents=('Horn',),
                     ),
                 short_instrument_name_markup=markuptools.Markup(
-                    ('Hn.',)
+                    contents=('Hn.',),
                     ),
                 allowable_clefs=indicatortools.ClefInventory(
                     [
@@ -60,10 +60,10 @@ def test_InstrumentSpecifierEditor_run_02():
                 instrument_name='rattle',
                 short_instrument_name='rattle',
                 instrument_name_markup=markuptools.Markup(
-                    ('Untuned percussion',)
+                    contents=('Untuned percussion',),
                     ),
                 short_instrument_name_markup=markuptools.Markup(
-                    ('Perc.',)
+                    contents=('Perc.',),
                     ),
                 allowable_clefs=indicatortools.ClefInventory(
                     [

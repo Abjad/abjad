@@ -87,38 +87,35 @@ class Markup(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, argument, direction=None, markup_name=None):
+    def __init__(self, contents=None, direction=None, markup_name=None):
         from abjad.tools import lilypondparsertools
         from abjad.tools import markuptools
-        if not argument:
-            argment = 'This is markup text.'
-        # WARNING: running the LilyPondParser here on a regular basis
-        #          by setting (for example) argument='' in the intializer
-        #          slows performance of the entire system by up to 25%!
-        if isinstance(argument, str):
-            to_parse = r'\markup {{ {} }}'.format(argument)
+        if contents is None:
+            new_contents = ('',)
+        elif isinstance(contents, str):
+            to_parse = r'\markup {{ {} }}'.format(contents)
             parsed = lilypondparsertools.LilyPondParser()(to_parse)
             if all(isinstance(x, str) for x in parsed.contents):
-                contents = (' '.join(parsed.contents),)
+                new_contents = (' '.join(parsed.contents),)
             else:
-                contents = tuple(parsed.contents)
-        elif isinstance(argument, markuptools.MarkupCommand):
-            contents = (argument,)
-        elif isinstance(argument, type(self)):
-            contents = tuple(argument._contents)
-            direction = direction or argument._direction
-            markup_name = markup_name or argument._markup_name
-        elif isinstance(argument, (list, tuple)) and 0 < len(argument):
-            contents = []
-            for arg in argument:
+                new_contents = tuple(parsed.contents)
+        elif isinstance(contents, markuptools.MarkupCommand):
+            new_contents = (contents,)
+        elif isinstance(contents, type(self)):
+            direction = direction or contents._direction
+            markup_name = markup_name or contents._markup_name
+            new_contents = tuple(contents._contents)
+        elif isinstance(contents, (list, tuple)) and 0 < len(contents):
+            new_contents = []
+            for arg in contents:
                 if isinstance(arg, (str, markuptools.MarkupCommand)):
-                    contents.append(arg)
+                    new_contents.append(arg)
                 else:
-                    contents.append(str(arg))
-            contents = tuple(contents)
+                    new_contents.append(str(arg))
+            new_contents = tuple(new_contents)
         else:
-            contents = (str(argument),)
-        self._contents = contents
+            new_contents = (str(contents),)
+        self._contents = new_contents
         self._format_slot = 'right'
         self._markup_name = markup_name
         direction = \
@@ -252,16 +249,6 @@ class Markup(AbjadObject):
     def _lilypond_format(self):
         return '\n'.join(self._get_format_pieces())
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(
-                self.contents,
-                ),
-            )
-
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self):
@@ -270,17 +257,21 @@ class Markup(AbjadObject):
         if self.direction is not None:
             direction = stringtools.arg_to_tridirectional_lilypond_symbol(
                 self.direction)
-        # None
+        # none
         if self.contents is None:
-            return [r'\markup { }']
+            return [r'\markup {}']
         # a single string
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
             content = self.contents[0]
             if '"' in content:
                 content = schemetools.Scheme.format_scheme_value(content)
+            if content:
+                content = '{{ {} }}'.format(content)
+            else:
+                content = '{}'
             if direction:
-                return [r'{} \markup {{ {} }}'.format(direction, content)]
-            return [r'\markup {{ {} }}'.format(content)]
+                return [r'{} \markup {}'.format(direction, content)]
+            return [r'\markup {}'.format(content)]
         # multiple strings or markup commands
         if direction:
             pieces = [r'{} \markup {{'.format(direction)]

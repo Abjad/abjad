@@ -64,4 +64,4 @@ def test_spannertools_MeasuredComplexBeam_direction_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

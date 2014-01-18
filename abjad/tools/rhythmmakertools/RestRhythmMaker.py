@@ -1,120 +1,111 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.rhythmmakertools.DivisionIncisedRestRhythmMaker \
-	import DivisionIncisedRestRhythmMaker
+from abjad.tools import scoretools
+from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
-class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
+class RestRhythmMaker(RhythmMaker):
     r'''Rest rhythm-maker.
 
     ..  container:: example
 
-        **Example 1:**
+        Makes rests equal to the duration of input divisions.
 
         ::
 
             >>> maker = rhythmmakertools.RestRhythmMaker()
 
-        Initialize and then call on arbitrary divisions:
-
         ::
 
             >>> divisions = [(5, 16), (3, 8)]
-            >>> leaf_lists = maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-        ..  doctest::
-
-            >>> print format(staff)
-            \new RhythmicStaff {
-                {
-                    \time 5/16
-                    r4
-                    r16
-                }
-                {
-                    \time 3/8
-                    r4.
-                }
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
 
     ..  container:: example
 
-        **Example 2.** Forbid written durations greater than or equal to a half 
-        note:
+        Forbids rests with written duration greater than or equal to ``1/4`` of
+        a whole note:
 
         ::
 
             >>> maker = rhythmmakertools.RestRhythmMaker(
-            ...     forbidden_written_duration=Duration(1, 4))
+            ...     forbidden_written_duration=Duration(1, 4),
+            ...     )
 
         ::
 
             >>> divisions = [(5, 16), (3, 8)]
-            >>> leaf_lists = maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-
-        ..  doctest::
-
-            >>> print format(staff)
-            \new RhythmicStaff {
-                {
-                    \time 5/16
-                    r8
-                    r8
-                    r16
-                }
-                {
-                    \time 3/8
-                    r8
-                    r8
-                    r8
-                }
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
-    def __init__(self, forbidden_written_duration=None):
-        DivisionIncisedRestRhythmMaker.__init__(
-            self, [],
-            [0],
-            [],
-            [0],
-            1,
-            decrease_durations_monotonically=True,
+    def __init__(
+        self,
+        beam_each_cell=False,
+        beam_cells_together=False,
+        decrease_durations_monotonically=True,
+        forbidden_written_duration=None,
+        ):
+        RhythmMaker.__init__(
+            self,
+            beam_each_cell=beam_each_cell,
+            beam_cells_together=beam_cells_together,
+            decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
-            tie_rests=False,
             )
 
     ### SPECIAL METHODS ###
+
+    def __call__(self, divisions, seeds=None):
+        r'''Calls rest rhythm-maker on `divisions`.
+
+        Returns list of selections.
+        '''
+        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
+        result = []
+        for duration_pair in duration_pairs:
+            rests = scoretools.make_leaves(
+                pitches=None, 
+                durations=[duration_pair],
+                decrease_durations_monotonically=\
+                    self.decrease_durations_monotonically,
+                forbidden_written_duration=self.forbidden_written_duration,
+                )
+            result.append(rests)
+        return result
 
     def __format__(self, format_specification=''):
         r'''Formats rest rhythm-maker.
 
         Set `format_specification` to `''` or `'storage'`.
 
-        ::
+        ..  container:: example
 
-            >>> print format(maker)
-            rhythmmakertools.RestRhythmMaker(
-                forbidden_written_duration=durationtools.Duration(1, 4),
-                )
+            ::
+
+                >>> print format(maker)
+                rhythmmakertools.RestRhythmMaker(
+                    beam_each_cell=False,
+                    beam_cells_together=False,
+                    decrease_durations_monotonically=True,
+                    forbidden_written_duration=durationtools.Duration(1, 4),
+                    )
 
         Returns string.
         '''
@@ -124,58 +115,85 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
     def __makenew__(self, *args, **kwargs):
         r'''Makes new rest rhythm-maker with `kwargs`.
 
-        ::
+        ..  container:: example
 
-            >>> new_maker = new(maker)
+            ::
 
-        ::
+                >>> new_maker = new(maker)
 
-            >>> print format(new_maker)
-            rhythmmakertools.RestRhythmMaker(
-                forbidden_written_duration=durationtools.Duration(1, 4),
-                )
+            ::
 
-        ::
+                >>> print format(new_maker)
+                rhythmmakertools.RestRhythmMaker(
+                    beam_each_cell=False,
+                    beam_cells_together=False,
+                    decrease_durations_monotonically=True,
+                    forbidden_written_duration=durationtools.Duration(1, 4),
+                    )
 
-            >>> divisions = [(5, 16), (3, 8)]
-            >>> leaf_lists = new_maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-            >>> show(staff) # doctest: +SKIP
+            ::
+
+                >>> divisions = [(5, 16), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns new rest rhythm-maker.
         '''
-        return DivisionIncisedRestRhythmMaker.__makenew__(
-            self, *args, **kwargs)
+        return RhythmMaker.__makenew__(self, *args, **kwargs)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def decrease_durations_monotonically(self):
+        r'''Gets decrease durations monotonically flag.
+
+        Returns boolean.
+        '''
+        return self._decrease_durations_monotonically
+
+    @property
+    def forbidden_written_duration(self):
+        r'''Gets forbidden written duration.
+
+        Returns duration or none.
+        '''
+        return self._forbidden_written_duration
 
     ### PUBLIC METHODS ###
 
     def reverse(self):
         r'''Reverses rest rhythm-maker.
 
-        ::
+        ..  container:: example
 
-            >>> reversed_maker = maker.reverse()
+            ::
 
-        ::
+                >>> reversed_maker = maker.reverse()
 
-            >>> print format(reversed_maker)
-            rhythmmakertools.RestRhythmMaker(
-                forbidden_written_duration=durationtools.Duration(1, 4),
-                )
+            ::
 
-        ::
+                >>> print format(reversed_maker)
+                rhythmmakertools.RestRhythmMaker(
+                    beam_each_cell=False,
+                    beam_cells_together=False,
+                    decrease_durations_monotonically=False,
+                    forbidden_written_duration=durationtools.Duration(1, 4),
+                    )
 
-            >>> divisions = [(5, 16), (3, 8)]
-            >>> leaf_lists = reversed_maker(divisions)
-            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = scoretools.make_spacer_skip_measures(divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = mutate(staff).replace_measure_contents(leaves)
-            >>> show(staff) # doctest: +SKIP
+            ::
+
+                >>> divisions = [(5, 16), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns new rest rhythm-maker.
         '''
-        return DivisionIncisedRestRhythmMaker.reverse(self)
+        return RhythmMaker.reverse(self)

@@ -144,7 +144,7 @@ Use the inspector to get the duration of a score:
 
 ::
 
-   >>> inspect(score).get_duration()
+   >>> inspect_(score).get_duration()
    Duration(2, 1)
 
 

@@ -68,7 +68,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
         >>> systemtools.IOManager.count_function_calls(
         ...     'mathtools.NonreducedFraction(3, 6)', globals())
-        30
+        31
 
     Nonreduced fractions are immutable.
     '''
@@ -97,6 +97,8 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             denominator = 1
         elif len(args) == 1 and sequencetools.is_integer_pair(args[0]):
             numerator, denominator = args[0]
+        elif len(args) == 1 and isinstance(args[0], str):
+            numerator, denominator = cls._parse_input_string(args[0])
         elif sequencetools.is_integer_pair(args):
             numerator = args[0]
             denominator = args[1]
@@ -105,7 +107,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             denominator = 1
         else:
             message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, args)
+            message = message.format(cls.__name__, args)
             raise ValueError(message)
         numerator *= mathtools.sign(denominator)
         denominator = abs(denominator)
@@ -143,14 +145,14 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             >>> a = mathtools.NonreducedFraction(3, 6)
             >>> b = mathtools.NonreducedFraction(3, 12)
             >>> systemtools.IOManager.count_function_calls('a + b', globals())
-            67
+            68
 
         Adding an integer is even faster:
 
         ::
 
             >>> systemtools.IOManager.count_function_calls('a + 10', globals())
-            35
+            36
 
         Returns nonreduced fraction.
         '''
@@ -450,6 +452,17 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         denominator = mathtools.least_common_multiple(
             denominator, fraction.denominator)
         return NonreducedFraction(fraction).with_denominator(denominator)
+
+    @staticmethod
+    def _parse_input_string(string):
+        if '/' in string:
+            numerator, denominator = string.split('/')
+            numerator = int(numerator)
+            denominator = int(denominator)
+        else:
+            numerator = int(string)
+            denominator = 1
+        return numerator, denominator
 
     ### PUBLIC PROPERTIES ###
 

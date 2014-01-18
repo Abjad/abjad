@@ -29,4 +29,4 @@ def test_scoretools_NoteHeadInventory_extend_01():
         '''
         )
 
-    assert inspect(chord).is_well_formed()
+    assert inspect_(chord).is_well_formed()

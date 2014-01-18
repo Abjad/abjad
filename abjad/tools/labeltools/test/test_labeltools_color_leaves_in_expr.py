@@ -31,4 +31,4 @@ def test_labeltools_color_leaves_in_expr_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

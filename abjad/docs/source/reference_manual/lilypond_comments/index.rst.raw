@@ -108,7 +108,7 @@ Getting the LilyPond comments attached to a component
 Use the inspector to get the LilyPond comments attached to any component:
 
 <abjad>
-inspect(note).get_indicators(indicatortools.LilyPondComment)
+inspect_(note).get_indicators(indicatortools.LilyPondComment)
 </abjad>
 
 

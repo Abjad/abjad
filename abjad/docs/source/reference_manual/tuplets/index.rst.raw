@@ -5,7 +5,7 @@ Tuplets
 Making a tuplet from a LilyPond input string
 --------------------------------------------
 
-You can tuplets from a LilyPond input string:
+You can create tuplets from a LilyPond input string:
 
 <abjad>
 tuplet = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
@@ -109,7 +109,7 @@ Inspecting tuplet duration
 Use the inspector to get the duration of a tuplet:
 
 <abjad>
-inspect(tuplet).get_duration()
+inspect_(tuplet).get_duration()
 </abjad>
 
 

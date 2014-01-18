@@ -336,7 +336,18 @@ def test_schematic_example_X_08():
     first_measure.timespan.set_rhythm(library.even_runs(2), contexts=['Voice 3'])
     middle_measure.timespan.set_rhythm(library.even_runs(0), contexts=['Voice 3'])
     last_measure.timespan.set_rhythm(library.even_runs(1), contexts=['Voice 3'])
-    maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker([-1], [1], [-1], [1], 32)
+    incision_specifier = rhythmmakertools.InciseSpecifier(
+        prefix_talea=[-1], 
+        prefix_lengths=[1], 
+        suffix_talea=[-1], 
+        suffix_lengths=[1], 
+        talea_denominator=32,
+        )
+    maker = rhythmmakertools.IncisedRhythmMaker(
+        incision_specifier=incision_specifier,
+        fill_with_notes=True,
+        incise_divisions=True,
+        )
     red_segment.set_rhythm(maker, contexts=['Voice 4'])
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures(2 * [(3, 16)])

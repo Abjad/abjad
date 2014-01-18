@@ -131,7 +131,7 @@ Abjad implements LilyPond multpliers as multiplier objects.
 
    >>> note.written_duration
    Duration(1, 4)
-   >>> inspect(note).get_duration()
+   >>> inspect_(note).get_duration()
    Duration(1, 8)
 
 
@@ -199,7 +199,7 @@ Every note in the measure equals one sixteenth of a whole note:
 ::
 
    >>> note = measure[0]
-   >>> inspect(note).get_duration()
+   >>> inspect_(note).get_duration()
    Duration(1, 16)
 
 
@@ -227,7 +227,7 @@ Every note in this measures
 ::
 
    >>> note = tuplet[0]
-   >>> inspect(note).get_duration()
+   >>> inspect_(note).get_duration()
    Duration(1, 20)
 
 

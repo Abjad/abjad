@@ -82,7 +82,7 @@ class Hairpin(Spanner):
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
-        #Spanner._copy_keyword_args(self, new)
+        Spanner._copy_keyword_args(self, new)
         new._direction = self.direction
         new._include_rests = self.include_rests
         new._shape_string = self.shape_string

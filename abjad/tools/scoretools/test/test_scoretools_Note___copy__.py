@@ -66,7 +66,7 @@ def test_scoretools_Note___copy___04():
         )
 
     note_2 = copy.copy(note_1)
-    grace_container_2 = inspect(note_2).get_grace_container()
+    grace_container_2 = inspect_(note_2).get_grace_container()
 
     assert systemtools.TestManager.compare(
         note_2,
@@ -144,12 +144,12 @@ def test_scoretools_Note___copy___06():
     new_note = copy.deepcopy(note)
 
     assert new_note is not note
-    assert inspect(note).get_parentage().parent is staff
-    assert inspect(new_note).get_parentage().parent is not staff
-    assert isinstance(inspect(new_note).get_parentage().parent, Staff)
+    assert inspect_(note).get_parentage().parent is staff
+    assert inspect_(new_note).get_parentage().parent is not staff
+    assert isinstance(inspect_(new_note).get_parentage().parent, Staff)
     assert format(new_note) == format(note)
-    assert format(inspect(note).get_parentage().parent) == \
-        format(inspect(new_note).get_parentage().parent)
+    assert format(inspect_(note).get_parentage().parent) == \
+        format(inspect_(new_note).get_parentage().parent)
 
 
 def test_scoretools_Note___copy___07():
@@ -195,4 +195,4 @@ def test_scoretools_Note___copy___07():
         }
         '''
         )
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

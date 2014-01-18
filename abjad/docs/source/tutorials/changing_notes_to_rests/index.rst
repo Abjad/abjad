@@ -137,7 +137,7 @@ Now we can change every D4 to a rest like this:
 
    >>> generator = iterate(staff).by_class(Note)
    >>> for i, note in enumerate(generator):
-   ...     if inspect(note).get_sounding_pitch == "d'":
+   ...     if inspect_(note).get_sounding_pitch == "d'":
    ...         rest = Rest('r8')
    ...         staff[i] = rest
    ... 

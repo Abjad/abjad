@@ -11,8 +11,8 @@ def test_scoretools_Measure_empty_01():
     assert pytest.raises(UnderfullContainerError, 'format(measure)')
     assert len(measure) == 0
     assert measure._preprolated_duration == 0
-    assert inspect(measure).get_duration() == 0
-    assert not inspect(measure).is_well_formed()
+    assert inspect_(measure).get_duration() == 0
+    assert not inspect_(measure).is_well_formed()
 
 
 def test_scoretools_Measure_empty_02():
@@ -23,5 +23,5 @@ def test_scoretools_Measure_empty_02():
     assert pytest.raises(UnderfullContainerError, 'format(measure)')
     assert len(measure) == 0
     assert measure._preprolated_duration == 0
-    assert inspect(measure).get_duration() == 0
-    assert not inspect(measure).is_well_formed()
+    assert inspect_(measure).get_duration() == 0
+    assert not inspect_(measure).is_well_formed()

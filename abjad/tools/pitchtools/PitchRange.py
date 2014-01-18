@@ -6,6 +6,7 @@ from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.pitchtools.Pitch import Pitch
+from abjad.tools.topleveltools import inspect_
 
 
 # TODO: make iterable so that for x in PitchRange works
@@ -21,7 +22,7 @@ class PitchRange(AbjadObject):
             '[C3, C7]',
             pitch_range_name='four-octave range',
             pitch_range_name_markup=markuptools.Markup(
-                ('four-octave range',)
+                contents=('four-octave range',),
                 ),
             )
 
@@ -152,7 +153,6 @@ class PitchRange(AbjadObject):
         '''
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
-        from abjad.tools.agenttools.InspectionAgent import inspect
         if hasattr(arg, '_has_effective_indicator') and \
             arg._has_effective_indicator(indicatortools.IsUnpitched):
             return True
@@ -162,10 +162,10 @@ class PitchRange(AbjadObject):
         elif isinstance(arg, pitchtools.NamedPitch):
             return self._contains_pitch(arg)
         elif isinstance(arg, scoretools.Note):
-            sounding_pitch = inspect(arg).get_sounding_pitch()
+            sounding_pitch = inspect_(arg).get_sounding_pitch()
             return self._contains_pitch(sounding_pitch)
         elif isinstance(arg, scoretools.Chord):
-            sounding_pitches = inspect(arg).get_sounding_pitches()
+            sounding_pitches = inspect_(arg).get_sounding_pitches()
             return all(self._contains_pitch(x) for x in sounding_pitches)
         elif isinstance(arg, (scoretools.Rest, scoretools.Skip)):
             return True
@@ -536,7 +536,7 @@ class PitchRange(AbjadObject):
         ::
 
             >>> pitch_range.pitch_range_name_markup
-            Markup(('four-octave range',))
+            Markup(contents=('four-octave range',))
 
         Default to `pitch_range_name` when `pitch_range_name_markup`
         not set explicitly.

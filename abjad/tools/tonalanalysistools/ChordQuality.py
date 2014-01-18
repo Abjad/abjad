@@ -66,18 +66,6 @@ class ChordQuality(AbjadObject):
         '''
         return '{}({})'.format(type(self).__name__, self.quality_string)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(
-                self.quality_string,
-                )
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property

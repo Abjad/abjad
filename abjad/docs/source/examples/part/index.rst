@@ -592,7 +592,7 @@ The edits
        voice = score['Cello Voice']
        descents = durated_reservoir['Cello']
    
-       logical_tie = inspect(voice[-1]).get_logical_tie()
+       logical_tie = inspect_(voice[-1]).get_logical_tie()
        for leaf in logical_tie.leaves:
            parent = leaf._get_parentage().parent
            index = parent.index(leaf)
@@ -602,7 +602,7 @@ The edits
        unison_descent = mutate(selection).copy()
        voice.extend(unison_descent)
        for chord in unison_descent:
-           index = inspect(chord).get_parentage().parent.index(chord)
+           index = inspect_(chord).get_parentage().parent.index(chord)
            parent[index] = scoretools.Note(
                chord.written_pitches[1], chord.written_duration)
            articulation = indicatortools.Articulation('accent')

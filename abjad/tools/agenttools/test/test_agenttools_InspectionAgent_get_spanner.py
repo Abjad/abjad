@@ -25,10 +25,10 @@ def test_agenttools_InspectionAgent_get_spanner_01():
         '''
         )
 
-    assert inspect(container).get_spanner() == trill
+    assert inspect_(container).get_spanner() == trill
 
-    string = 'inspect(container[0]).get_spanner()'
+    string = 'inspect_(container[0]).get_spanner()'
     assert pytest.raises(Exception, string)
 
-    string = 'inspect(container[-1]).get_spanner()'
+    string = 'inspect_(container[-1]).get_spanner()'
     assert pytest.raises(Exception, string)

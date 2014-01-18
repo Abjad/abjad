@@ -1,127 +1,122 @@
 # -*- encoding: utf-8 -*-
-import abc
 import copy
-import types
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import scoretools
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
 from abjad.tools import scoretools
+from abjad.tools import sequencetools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
 class IncisedRhythmMaker(RhythmMaker):
-    '''Abstract base class for rhythm-makers that incise some or
-    all of the output cells they produce.
-
+    r'''Incised rhythm-maker.
+    
     Rhythm makers can incise the edge of every output cell.
 
     Or rhythm-makers can incise only the start of the first output cell
     and the end of the last output cell.
+
+
+    ..  container:: example
+
+        Division-incised notes:
+
+        ::
+
+            >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+            ...     prefix_talea=(-1,),
+            ...     prefix_lengths=(0, 1),
+            ...     suffix_talea=(-1,),
+            ...     suffix_lengths=(1,),
+            ...     talea_denominator=16,
+            ...     )
+            >>> maker = rhythmmakertools.IncisedRhythmMaker(
+            ...     incise_specifier=incise_specifier,
+            ...     fill_with_notes=True,
+            ...     incise_divisions=True,
+            ...     )
+
+        ::
+
+            >>> divisions = 4 * [(5, 16)]
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_body_ratio',
+        '_fill_with_notes',
+        '_helper_functions',
+        '_incise_output',
+        '_incise_divisions',
+        '_incise_specifier',
+        '_prolation_addenda',
+        '_secondary_divisions',
+        )
 
     ### INITIALIZER ###
 
     def __init__(
         self,
-        prefix_talea=(8,),
-        prefix_lengths=(1, 2, 3, 4),
-        suffix_talea=(1,),
-        suffix_lengths=(1,),
-        talea_denominator=32,
+        incise_specifier=None,
         body_ratio=None,
         prolation_addenda=None,
         secondary_divisions=None,
-        prefix_talea_helper=None,
-        prefix_lengths_helper=None,
-        suffix_talea_helper=None,
-        suffix_lengths_helper=None,
-        prolation_addenda_helper=None,
-        secondary_divisions_helper=None,
+        helper_functions=None,
         decrease_durations_monotonically=True,
-        tie_rests=False,
         forbidden_written_duration=None,
         beam_each_cell=False,
         beam_cells_together=False,
+        fill_with_notes=True,
+        incise_divisions=False,
+        incise_output=False,
         ):
+        from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
-            forbidden_written_duration=forbidden_written_duration,
-            beam_each_cell=beam_each_cell,
             beam_cells_together=beam_cells_together,
+            beam_each_cell=beam_each_cell,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            forbidden_written_duration=forbidden_written_duration,
             )
+        incise_specifier = incise_specifier or \
+            rhythmmakertools.InciseSpecifier()
+        self._incise_specifier = incise_specifier
         prolation_addenda = \
-            self._none_to_new_list(prolation_addenda)
+            self._to_tuple(prolation_addenda)
         secondary_divisions = \
-            self._none_to_new_list(secondary_divisions)
-        prefix_talea_helper = \
-            self._none_to_trivial_helper(prefix_talea_helper)
-        prefix_lengths_helper = \
-            self._none_to_trivial_helper(prefix_lengths_helper)
-        suffix_talea_helper = \
-            self._none_to_trivial_helper(suffix_talea_helper)
-        suffix_lengths_helper = \
-            self._none_to_trivial_helper(suffix_lengths_helper)
-        prolation_addenda_helper = \
-            self._none_to_trivial_helper(prolation_addenda_helper)
-        secondary_divisions_helper = \
-            self._none_to_trivial_helper(secondary_divisions_helper)
-        assert sequencetools.all_are_integer_equivalent_numbers(
-            prefix_talea), prefix_talea
-        assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-            prefix_lengths), prefix_lengths
-        assert sequencetools.all_are_integer_equivalent_numbers(
-            suffix_talea), suffix_talea
-        assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-            suffix_lengths), suffix_lengths
-        assert mathtools.is_positive_integer_equivalent_number(
-            talea_denominator), talea_denominator
-        assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(
+            self._to_tuple(secondary_divisions)
+
+        if helper_functions is not None:
+            assert isinstance(helper_functions, dict)
+            for name in helper_functions:
+                function = helper_functions.get(name)
+                assert callable(function)
+        self._helper_functions = helper_functions
+        assert prolation_addenda is None or \
+            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             prolation_addenda), prolation_addenda
-        assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(
+        assert secondary_divisions is None or \
+            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             secondary_divisions), secondary_divisions
-        assert isinstance(
-            prefix_talea_helper, (types.FunctionType, types.MethodType))
-        assert isinstance(
-            prefix_lengths_helper, (types.FunctionType, types.MethodType))
-        assert isinstance(
-            suffix_talea_helper, (types.FunctionType, types.MethodType))
-        assert isinstance(
-            suffix_lengths_helper, (types.FunctionType, types.MethodType))
-        assert isinstance(
-            prolation_addenda_helper, (types.FunctionType, types.MethodType))
-        assert isinstance(
-            secondary_divisions_helper, (types.FunctionType, types.MethodType))
-        assert isinstance(
-            decrease_durations_monotonically, bool)
-        assert isinstance(
-            tie_rests, bool)
-        self.prefix_talea = prefix_talea
-        self.prefix_lengths = prefix_lengths
-        self.suffix_talea = suffix_talea
-        self.suffix_lengths = suffix_lengths
-        self.prolation_addenda = prolation_addenda
-        self.talea_denominator = talea_denominator
+        self._prolation_addenda = prolation_addenda
         if body_ratio is not None:
             body_ratio = mathtools.Ratio(body_ratio)
-        self.body_ratio = body_ratio
-        self.secondary_divisions = secondary_divisions
-        self.prefix_talea_helper = \
-            self._none_to_trivial_helper(prefix_talea_helper)
-        self.prefix_lengths_helper = \
-            self._none_to_trivial_helper(prefix_lengths_helper)
-        self.suffix_talea_helper = \
-            self._none_to_trivial_helper(suffix_talea_helper)
-        self.suffix_lengths_helper = \
-            self._none_to_trivial_helper(suffix_lengths_helper)
-        self.prolation_addenda_helper = \
-            self._none_to_trivial_helper(prolation_addenda_helper)
-        self.secondary_divisions_helper = \
-            self._none_to_trivial_helper(secondary_divisions_helper)
-        self.decrease_durations_monotonically = \
-            decrease_durations_monotonically
-        self.tie_rests = tie_rests
+        self._body_ratio = body_ratio
+        self._secondary_divisions = secondary_divisions
+        assert isinstance(fill_with_notes, bool)
+        self._fill_with_notes = fill_with_notes
+        assert isinstance(incise_divisions, bool)
+        self._incise_divisions = incise_divisions
+        assert isinstance(incise_output, bool)
+        self._incise_output = incise_output
 
     ### SPECIAL METHODS ###
 
@@ -135,15 +130,22 @@ class IncisedRhythmMaker(RhythmMaker):
         prefix_talea, prefix_lengths, suffix_talea, suffix_lengths = \
             result[:-2]
         prolation_addenda, secondary_divisions = result[-2:]
-        talee = (
-            prefix_talea, suffix_talea, prolation_addenda, secondary_divisions)
-        result = self._scale_talee(
-            duration_pairs, self.talea_denominator, talee)
+        taleas = (
+            prefix_talea, 
+            suffix_talea, 
+            prolation_addenda, 
+            secondary_divisions,
+            )
+        result = self._scale_taleas(
+            duration_pairs, 
+            self.incise_specifier.talea_denominator, 
+            taleas,
+            )
         duration_pairs, lcd, prefix_talea, suffix_talea = result[:-2]
         prolation_addenda, secondary_divisions = result[-2:]
         secondary_duration_pairs = self._make_secondary_duration_pairs(
             duration_pairs, secondary_divisions)
-        if getattr(self, '_is_division_incised', False):
+        if self.incise_divisions:
             numeric_map = self._make_division_incised_numeric_map(
                 secondary_duration_pairs,
                 prefix_talea,
@@ -153,7 +155,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 prolation_addenda,
                 )
         else:
-            assert getattr(self, '_is_output_incised', False)
+            assert self.incise_output
             numeric_map = self._make_output_incised_numeric_map(
                 secondary_duration_pairs,
                 prefix_talea,
@@ -173,11 +175,67 @@ class IncisedRhythmMaker(RhythmMaker):
             result), repr(result)
         return result
 
+    def __makenew__(self, *args, **kwargs):
+        r'''Makes new incised rhythm-maker with optional `kwargs`.
+
+        Returns new incised rhythm-maker.
+        '''
+        assert not args
+        arguments = {
+            'beam_cells_together': self.beam_cells_together,
+            'beam_each_cell': self.beam_each_cell,
+            'forbidden_written_duration': self.forbidden_written_duration,
+            'incise_specifier': self.incise_specifier,
+            'body_ratio': self.body_ratio,
+            'prolation_addenda': self.prolation_addenda,
+            'secondary_divisions': self.secondary_divisions,
+            'helper_functions': self.helper_functions,
+            'decrease_durations_monotonically':
+                self.decrease_durations_monotonically,
+            'fill_with_notes': self.fill_with_notes,
+            'incise_divisions': self.incise_divisions,
+            'incise_output': self.incise_output,
+            }
+        arguments.update(kwargs)
+        maker = type(self)(**arguments)
+        return maker
+
     ### PRIVATE METHODS ###
 
-    @abc.abstractmethod
     def _make_middle_of_numeric_map_part(self, middle):
-        pass
+        if self.fill_with_notes:
+            if self.incise_divisions:
+                if 0 < middle:
+                    if self.body_ratio is not None:
+                        shards = mathtools.divide_number_by_ratio(
+                            middle, self.body_ratio)
+                        return tuple(shards)
+                    else:
+                        return (middle,)
+                else:
+                    return ()
+            elif self.incise_output:
+                if 0 < middle:
+                    return (middle,)
+                else:
+                    return ()
+            else:
+                message = 'must incise divisions or output.'
+                raise Exception(message)
+        else:
+            if self.incise_divisions:
+                if 0 < middle:
+                    return (-abs(middle),)
+                else:
+                    return ()
+            elif self.incise_output:
+                if 0 < middle:
+                    return (-abs(middle), )
+                else:
+                    return ()
+            else:
+                message = 'must incise divisions or output.'
+                raise Exception(message)
 
     def _make_division_incised_numeric_map(
         self, 
@@ -303,33 +361,53 @@ class IncisedRhythmMaker(RhythmMaker):
                 lcd,
                 forbidden_written_duration=self.forbidden_written_duration,
                 decrease_durations_monotonically=self.decrease_durations_monotonically,
-                tie_rests=self.tie_rests,
                 )
             leaf_lists.append(leaf_list)
         return leaf_lists
 
     def _prepare_input(self, seeds):
-        prefix_talea = \
-            self.prefix_talea_helper(self.prefix_talea, seeds)
-        prefix_lengths = \
-            self.prefix_lengths_helper(self.prefix_lengths, seeds)
-        suffix_talea = \
-            self.suffix_talea_helper(self.suffix_talea, seeds)
-        suffix_lengths = \
-            self.suffix_lengths_helper(self.suffix_lengths, seeds)
-        prolation_addenda = \
-            self.prolation_addenda_helper(self.prolation_addenda, seeds)
-        secondary_divisions = \
-            self.secondary_divisions_helper(self.secondary_divisions, seeds)
+        helper_functions = self.helper_functions or {}
+        prefix_talea = self.incise_specifier.prefix_talea or ()
+        helper = helper_functions.get('prefix_talea')
+        helper = self._none_to_trivial_helper(helper)
+        prefix_talea = helper(prefix_talea, seeds)
         prefix_talea = datastructuretools.CyclicTuple(prefix_talea)
-        suffix_talea = datastructuretools.CyclicTuple(suffix_talea)
+
+        prefix_lengths = self.incise_specifier.prefix_lengths or ()
+        helper = helper_functions.get('prefix_lengths')
+        helper = self._none_to_trivial_helper(helper)
+        prefix_lengths = helper(prefix_lengths, seeds)
         prefix_lengths = datastructuretools.CyclicTuple(prefix_lengths)
+
+        suffix_talea = self.incise_specifier.suffix_talea or ()
+        helper = helper_functions.get('suffix_talea')
+        helper = self._none_to_trivial_helper(helper)
+        suffix_talea = helper(suffix_talea, seeds)
+        suffix_talea = datastructuretools.CyclicTuple(suffix_talea)
+
+        suffix_lengths = self.incise_specifier.suffix_lengths or ()
+        helper = helper_functions.get('suffix_lengths')
+        helper = self._none_to_trivial_helper(helper)
+        suffix_lengths = helper(suffix_lengths, seeds)
         suffix_lengths = datastructuretools.CyclicTuple(suffix_lengths)
+
+        prolation_addenda = self.prolation_addenda or ()
+        helper = helper_functions.get('prolation_addenda')
+        helper = self._none_to_trivial_helper(helper)
+        prolation_addenda = helper(prolation_addenda, seeds)
         if prolation_addenda:
-            prolation_addenda = datastructuretools.CyclicTuple(prolation_addenda)
+            prolation_addenda = datastructuretools.CyclicTuple(
+                prolation_addenda)
         else:
             prolation_addenda = datastructuretools.CyclicTuple([0])
-        secondary_divisions = datastructuretools.CyclicTuple(secondary_divisions)
+
+        secondary_divisions = self.secondary_divisions or ()
+        helper = helper_functions.get('secondary_divisions')
+        helper = self._none_to_trivial_helper(helper)
+        secondary_divisions = helper(secondary_divisions, seeds)
+        secondary_divisions = datastructuretools.CyclicTuple(
+            secondary_divisions)
+
         return (
             prefix_talea,
             prefix_lengths,
@@ -339,6 +417,160 @@ class IncisedRhythmMaker(RhythmMaker):
             secondary_divisions,
             )
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def body_ratio(self):
+        r'''Gets body ratio of rhythm-maker.
+
+        ..  container:: example
+
+            Sets `body_ratio` to divide middle part proportionally:
+
+            ::
+
+                >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+                ...     prefix_talea=(-1,),
+                ...     prefix_lengths=(0, 1),
+                ...     suffix_talea=(-1,),
+                ...     suffix_lengths=(1,),
+                ...     talea_denominator=16,
+                ...     )
+                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                ...     incise_specifier=incise_specifier,
+                ...     body_ratio=(1, 1),
+                ...     fill_with_notes=True,
+                ...     incise_divisions=True,
+                ...     )
+
+            ::
+
+                >>> divisions = 4 * [(5, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+        Returns ratio.
+        '''
+        return self._body_ratio
+
+    @property
+    def fill_with_notes(self):
+        r'''Gets fill with notes boolean.
+
+        Returns boolean.
+        '''
+        return self._fill_with_notes
+
+    @property
+    def helper_functions(self):
+        r'''Gets helper functions of incised rhythm-maker.
+
+        Returns dictionary or none.
+        '''
+        return self._helper_functions
+
+    @property
+    def incise_divisions(self):
+        r'''Gets incise divisions boolean.
+
+        Returns boolean.
+        '''
+        return self._incise_divisions
+
+    @property
+    def incise_output(self):
+        r'''Gets incise output boolean.
+
+        ..  container:: example
+
+            Output-incised notes:
+
+            ::
+
+                >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+                ...     prefix_talea=(-8, -7),
+                ...     prefix_lengths=(2,),
+                ...     suffix_talea=(-3,),
+                ...     suffix_lengths=(4,),
+                ...     talea_denominator=32,
+                ...     )
+                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                ...     incise_specifier=incise_specifier,
+                ...     fill_with_notes=True,
+                ...     incise_output=True,
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (5, 8), (5, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  container:: example
+
+            Output-incised rests:
+
+            ::
+
+                >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+                ...     prefix_talea=(7, 8),
+                ...     prefix_lengths=(2,),
+                ...     suffix_talea=(3,),
+                ...     suffix_lengths=(4,),
+                ...     talea_denominator=32,
+                ...     )
+                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                ...     incise_specifier=incise_specifier,
+                ...     fill_with_notes=False,
+                ...     incise_output=True,
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (5, 8), (5, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+        Returns boolean.
+        '''
+        return self._incise_output
+
+    @property
+    def incise_specifier(self):
+        r'''Gets incision specifier or incised rhythm-maker.
+
+        Returns incision specifier.
+        '''
+        return self._incise_specifier
+
+    @property
+    def prolation_addenda(self):
+        r'''Gets prolation addenda of incised rhythm-maker.
+
+        Returns tuple or none.
+        '''
+        return self._prolation_addenda
+
+    @property
+    def secondary_divisions(self):
+        r'''Gets secondary divisions of incised rhythm-maker.
+
+        Returns tuple or none.
+        '''
+        return self._secondary_divisions
+
     ### PUBLIC METHODS ###
 
     def reverse(self):
@@ -346,13 +578,18 @@ class IncisedRhythmMaker(RhythmMaker):
 
         Returns newly constructed rhythm-maker.
         '''
-        new = copy.deepcopy(self)
-        new.prefix_talea.reverse()
-        new.prefix_lengths.reverse()
-        new.suffix_talea.reverse()
-        new.suffix_lengths.reverse()
-        new.prolation_addenda.reverse()
-        new.secondary_divisions.reverse()
-        if new.decrease_durations_monotonically:
-            new.decrease_durations_monotonically = False
-        return new
+        prolation_addenda = self.prolation_addenda
+        if prolation_addenda is not None:
+            prolation_addenda = tuple(reversed(prolation_addenda))
+        secondary_divisions = self.secondary_divisions
+        if secondary_divisions is not None:
+            secondary_divisions = tuple(reversed(secondary_divisions))
+        decrease_durations_monotonically = \
+            not self.decrease_durations_monotonically
+        maker = new(
+            self,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            prolation_addenda=prolation_addenda,
+            secondary_divisions=secondary_divisions,
+            )
+        return maker

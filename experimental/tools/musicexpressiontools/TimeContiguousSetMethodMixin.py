@@ -123,13 +123,15 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
                 attribute='rhythm',
                 source_expression=musicexpressiontools.RhythmMakerExpression(
                     payload=rhythmmakertools.TaleaRhythmMaker(
-                        talea=[1],
+                        talea=(1,),
                         talea_denominator=16,
-                        prolation_addenda=[],
-                        secondary_divisions=[],
+                        burnish_specifier=rhythmmakertools.BurnishSpecifier(),
                         beam_each_cell=False,
                         beam_cells_together=True,
+                        decrease_durations_monotonically=True,
                         tie_split_notes=False,
+                        burnish_divisions=False,
+                        burnish_output=False,
                         ),
                     ),
                 target_timespan='red',

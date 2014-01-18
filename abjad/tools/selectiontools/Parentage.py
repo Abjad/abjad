@@ -45,7 +45,7 @@ class Parentage(SimultaneousSelection):
 
             >>> bass_voice = score['Bass Voice']
             >>> note = bass_voice[0]
-            >>> parentage = inspect(note).get_parentage()
+            >>> parentage = inspect_(note).get_parentage()
 
         ::
 
@@ -171,7 +171,7 @@ class Parentage(SimultaneousSelection):
         ::
 
             >>> leaf = score.select_leaves()[0]
-            >>> parentage = inspect(leaf).get_parentage()
+            >>> parentage = inspect_(leaf).get_parentage()
             >>> logical_voice = parentage.logical_voice
 
         ::
@@ -274,7 +274,7 @@ class Parentage(SimultaneousSelection):
 
             >>> leaves = score.select_leaves(allow_discontiguous_leaves=True)
             >>> for leaf in leaves:
-            ...     parentage = inspect(leaf).get_parentage()
+            ...     parentage = inspect_(leaf).get_parentage()
             ...     leaf, parentage.score_index
             ...
             (Note("c''2"), (0, 0, 0))
@@ -307,17 +307,17 @@ class Parentage(SimultaneousSelection):
 
         ::
 
-            >>> inspect(note).get_parentage().tuplet_depth
+            >>> inspect_(note).get_parentage().tuplet_depth
             1
 
         ::
 
-            >>> inspect(tuplet).get_parentage().tuplet_depth
+            >>> inspect_(tuplet).get_parentage().tuplet_depth
             0
 
         ::
 
-            >>> inspect(staff).get_parentage().tuplet_depth
+            >>> inspect_(staff).get_parentage().tuplet_depth
             0
 
         Returns nonnegative integer.

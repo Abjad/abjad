@@ -2,7 +2,6 @@
 import inspect
 import pytest
 from abjad.tools import documentationtools
-pytest.skip()
 
 
 classes = documentationtools.list_all_abjad_classes()
@@ -15,3 +14,4 @@ def test___repr___01(class_):
         instance = class_()
         string = repr(instance)
         assert string is not None
+        assert string != ''

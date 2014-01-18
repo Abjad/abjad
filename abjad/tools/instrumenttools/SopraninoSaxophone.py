@@ -108,7 +108,7 @@ class SopraninoSaxophone(Instrument):
             ::
 
                 >>> sopranino_saxophone.instrument_name_markup
-                Markup(('Sopranino saxophone',))
+                Markup(contents=('Sopranino saxophone',))
 
             ::
 
@@ -161,7 +161,7 @@ class SopraninoSaxophone(Instrument):
             ::
 
                 >>> sopranino_saxophone.short_instrument_name_markup
-                Markup(('Sopranino sax.',))
+                Markup(contents=('Sopranino sax.',))
 
             ::
 

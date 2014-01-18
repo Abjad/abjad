@@ -8,10 +8,9 @@ def test_spannertools_Spanner_format_01():
     '''
 
     class MockSpanner(spannertools.Spanner):
+
         def __init__(self, components=None):
             spannertools.Spanner.__init__(self, components)
-        def _copy_keyword_args(self, new):
-            pass
 
     staff = Staff("c'8 d'8 e'8 f'8")
     spanner = MockSpanner()
@@ -29,4 +28,4 @@ def test_spannertools_Spanner_format_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()

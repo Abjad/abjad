@@ -2,11 +2,11 @@
 import fractions
 import math
 from abjad.tools import durationtools
-from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools.topleveltools import mutate
+from abjad.tools import systemtools
 from abjad.tools.scoretools.Container import Container
+from abjad.tools.topleveltools import mutate
 
 
 class Tuplet(Container):
@@ -111,7 +111,7 @@ class Tuplet(Container):
 
         Returns tuple.
         '''
-        return (self.multiplier, )
+        return (self.multiplier,)
 
     def __repr__(self):
         '''Gets interpreter representation of tuplet.
@@ -188,6 +188,19 @@ class Tuplet(Container):
             return ratio_string
         else:
             return None
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = (
+            self.multiplier,
+            self[:],
+            )
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=positional_argument_values,
+            keyword_argument_names=(),
+            )
 
     @property
     def _string_summary(self):

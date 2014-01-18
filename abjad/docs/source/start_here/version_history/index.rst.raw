@@ -34,7 +34,7 @@ built-in ``copy`` module.)
 Abjad 2.13 introduced an inspection protocol (for examining the derived
 properties of score components) and a mutation protocol (for making structural
 changes to score). The user interface to these two protocols are Abjad's
-``inspect()`` and ``mutate()`` functions.
+``inspect_()`` and ``mutate()`` functions.
 
 Abjad 2.14 introduces additional protocols. These are the attachment protocol
 (for attaching and detaching indicators like clefs and articulations to and
@@ -135,7 +135,7 @@ any score component, not only those classes housed in ``indicatortools``:
 staff = Staff("c'4 d'4 e'4 f'4")
 indicator = {'foo': 1, 'bar': 2}
 attach(indicator, staff[0], scope=Staff)
-inspect(staff[-1]).get_effective(dict)
+inspect_(staff[-1]).get_effective(dict)
 </abjad>
 
 

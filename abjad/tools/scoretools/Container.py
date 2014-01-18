@@ -40,10 +40,6 @@ class Container(Component):
         '_simultaneous',
         )
 
-    _storage_format_attribute_mapping = {
-        'music': '_music',
-        }
-
     ### INITIALIZER ###
 
     def __init__(self, music=None):

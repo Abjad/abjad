@@ -13,7 +13,7 @@ free floating *connectors* or Spanners.
 .. image:: images/container-spanner.png
 
 There can be any number of Spanners, they may overlap, and they may
-connect to different levels of the tree hierarchy. The spanner
+connect to different levels of the tree hierarchy. The spanners
 attach to the elements of the tree, so a tree structure must exist for
 spanners to be made manifest.
 
@@ -100,7 +100,7 @@ musical notation.
    construction of the musical fragment and its full Abjad code.
 
 There are many musical signs of different types on the pages: notes,
-dynamicings, clefs, staves, slurs, etc. These signs are
+dynamics, clefs, staves, slurs, etc. These signs are
 structurally related to each other in different ways. Let's start by
 looking at the larger picture. The piano piece is written in two
 staves. As is customary, the staves are graphically grouped with a

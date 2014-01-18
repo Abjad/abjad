@@ -27,7 +27,7 @@ def test_spannertools_OctavationSpanner_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_spannertools_OctavationSpanner_02():
@@ -54,7 +54,7 @@ def test_spannertools_OctavationSpanner_02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_spannertools_OctavationSpanner_03():
@@ -81,7 +81,7 @@ def test_spannertools_OctavationSpanner_03():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_spannertools_OctavationSpanner_04():
@@ -110,7 +110,7 @@ def test_spannertools_OctavationSpanner_04():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_spannertools_OctavationSpanner_05():
@@ -145,7 +145,7 @@ def test_spannertools_OctavationSpanner_05():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert inspect_(staff).is_well_formed()
 
 
 def test_spannertools_OctavationSpanner_06():
@@ -178,4 +178,4 @@ def test_spannertools_OctavationSpanner_06():
         '''
         )
 
-    assert not inspect(staff).is_well_formed()
+    assert not inspect_(staff).is_well_formed()

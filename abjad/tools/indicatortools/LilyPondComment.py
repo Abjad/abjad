@@ -29,7 +29,6 @@ class LilyPondComment(AbjadObject):
 
     __slots__ = (
         '_contents_string',
-        '_format_leaf_children',
         '_format_slot',
         )
 
@@ -69,7 +68,7 @@ class LilyPondComment(AbjadObject):
         Returns new LilyPond comment.
         '''
         new = type(self)(self._contents_string)
-        new.format_slot = self.format_slot
+        new._format_slot = self.format_slot
         return new
 
     def __eq__(self, arg):

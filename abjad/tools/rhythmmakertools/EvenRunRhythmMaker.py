@@ -1,18 +1,13 @@
 # -*- encoding: utf-8 -*-
-import os
 from abjad.tools import durationtools
-from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import spannertools
-from abjad.tools import stringtools
 from abjad.tools import systemtools
-from abjad.tools.agenttools.InspectionAgent import inspect
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import mutate
-from abjad.tools.topleveltools import persist
+from abjad.tools.topleveltools import new
 
 
 class EvenRunRhythmMaker(RhythmMaker):
@@ -63,6 +58,10 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_denominator_multiplier_exponent',
+        )
+
     _human_readable_class_name = 'even-run rhythm-maker'
 
     ### GALLERY INPUT ###
@@ -74,9 +73,25 @@ class EvenRunRhythmMaker(RhythmMaker):
                 'beam_each_cell': True,
                 'beam_cells_together': False,
                 },
-            divisions=[
-                (4, 8), (3, 4), (2, 4), (1, 16), (1, 16), (7, 8), (5, 16),
+            division_lists=(
+                [
+                    (4, 8), (3, 4),
+                    (2, 4), (1, 16), (1, 16), 
+                    (7, 8), (2, 8),
                 ],
+                [
+                    (5, 16), (5, 16), (5, 16), (5, 16),
+                    (4, 16), (4, 16), (4, 16), (4, 16),
+                ],
+                [
+                    (2, 8), (3, 8), (2, 16), (1, 4), 
+                    (2, 4), (2, 16), (2, 4),
+                ],
+                [
+                    (5, 16), (5, 16), (5, 16), (5, 16),
+                    (4, 16), (4, 16), (4, 16), (4, 16),
+                ],
+                ),
             ),
         systemtools.GalleryInputBlock(
             input_={
@@ -84,19 +99,25 @@ class EvenRunRhythmMaker(RhythmMaker):
                 'beam_each_cell': True,
                 'beam_cells_together': False,
                 },
-            divisions=[
-                (4, 8), (3, 4), (2, 4), (1, 16), (1, 16), (7, 8), (5, 16),
+            division_lists=(
+                [
+                    (4, 8), (3, 4),
+                    (2, 4), (1, 16), (1, 16), 
+                    (7, 8), (2, 8),
                 ],
-            ),
-        systemtools.GalleryInputBlock(
-            input_={
-                'denominator_multiplier_exponent': 2,
-                'beam_each_cell': True,
-                'beam_cells_together': False,
-                },
-            divisions=[
-                (4, 8), (3, 4), (2, 4), (1, 16), (1, 16), (7, 8), (5, 16),
+                [
+                    (5, 16), (5, 16), (5, 16), (5, 16),
+                    (4, 16), (4, 16), (4, 16), (4, 16),
                 ],
+                [
+                    (2, 8), (3, 8), (2, 16), (1, 4), 
+                    (2, 4), (2, 16), (2, 4),
+                ],
+                [
+                    (5, 16), (5, 16), (5, 16), (5, 16),
+                    (4, 16), (4, 16), (4, 16), (4, 16),
+                ],
+                ),
             ),
         )
 
@@ -105,15 +126,19 @@ class EvenRunRhythmMaker(RhythmMaker):
     def __init__(
         self,
         denominator_multiplier_exponent=0,
-        beam_each_cell=True,
         beam_cells_together=False,
+        beam_each_cell=True,
+        decrease_durations_monotonically=True,
+        forbidden_written_duration=None,
         ):
         assert mathtools.is_nonnegative_integer(
             denominator_multiplier_exponent)
         RhythmMaker.__init__(
             self,
+            beam_cells_together=beam_cells_together,
             beam_each_cell=beam_each_cell,
-            beam_cells_together=beam_cells_together
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            forbidden_written_duration=forbidden_written_duration,
             )
         self._denominator_multiplier_exponent = \
             denominator_multiplier_exponent
@@ -138,9 +163,10 @@ class EvenRunRhythmMaker(RhythmMaker):
         Returns a list of selections. Each selection holds a single container
         filled with notes.
         '''
+        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
         result = []
-        for division in divisions:
-            container = self._make_container(division)
+        for duration_pair in duration_pairs:
+            container = self._make_container(duration_pair)
             selection = selectiontools.Selection(container)
             result.append(selection)
         return result
@@ -155,8 +181,9 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> print format(maker)
                 rhythmmakertools.EvenRunRhythmMaker(
                     denominator_multiplier_exponent=1,
-                    beam_each_cell=True,
                     beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=True,
                     )
 
         Set `format_specification` to `''` or `'storage'`.
@@ -180,8 +207,9 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> print format(new_maker)
                 rhythmmakertools.EvenRunRhythmMaker(
                     denominator_multiplier_exponent=0,
-                    beam_each_cell=True,
                     beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=True,
                     )
 
             ::
@@ -196,69 +224,21 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         Returns new even-run rhythm-maker.
         '''
-        return RhythmMaker.__makenew__(self, *args, **kwargs)
+        assert not args
+        arguments = {
+            'beam_cells_together': self.beam_cells_together,
+            'beam_each_cell': self.beam_each_cell,
+            'decrease_durations_monotonically':
+                self.decrease_durations_monotonically,
+            'denominator_multiplier_exponent':
+                self.denominator_multiplier_exponent,
+            'forbidden_written_duration': self.forbidden_written_duration,
+            }
+        arguments.update(kwargs)
+        new = type(self)(**arguments)
+        return new
 
     ### PRIVATE METHODS ###
-
-    def _gallery_input_block_to_score(self, block):
-        from abjad.tools import sequencetools
-        maker = type(self)(**block.input_)
-        lists = maker(block.divisions)
-        music = sequencetools.flatten_sequence(lists)
-        measures = scoretools.make_spacer_skip_measures(block.divisions)
-        time_signature_context = scoretools.Context(
-            measures,
-            context_name='TimeSignatureContext',
-            name='TimeSignatureContext',
-            )
-        measures = scoretools.make_spacer_skip_measures(block.divisions)
-        staff = scoretools.RhythmicStaff(measures)
-        measures = mutate(staff).replace_measure_contents(music)
-        score = scoretools.Score()
-        score.append(time_signature_context)
-        score.append(staff)
-        return score
-
-    def _make_gallery_title_markup(self):
-        string = self._human_readable_class_name 
-        string = stringtools.capitalize_string_start(string)
-        markup = markuptools.Markup(string)
-        return markup
-
-    def _gallery_input_to_lilypond_file(self):
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import markuptools
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file()
-        lilypond_file.items.remove(lilypond_file.score_block)
-        title_markup = self._make_gallery_title_markup()
-        lilypond_file.header_block.title = title_markup
-        markups = []
-        scores = []
-        for block in self._gallery_input_blocks:
-            score = self._gallery_input_block_to_score(block)
-            if not inspect(score).is_well_formed():
-                message = 'score is not well-formed: {!r}.'
-                message = message.format(score)
-                message += '\n'
-                message += inspect(score).tabulate_well_formedness_violations()
-                raise Exception(message)
-            scores.append(score)
-            markup = block._to_markup(type(self))
-            markups.append(markup)
-        for markup, score in zip(markups, scores):
-            lilypond_file.items.append(markup)
-            lilypond_file.items.append(score)
-        lilypond_file.default_paper_size = ('letter', 'portrait')
-        lilypond_file.global_staff_size = 10
-        lilypond_file.use_relative_includes = True
-        stylesheet_path = os.path.join(
-            '..', '..', '..', 
-            'stylesheets', 
-            'gallery-layout.ly',
-            )
-        lilypond_file.file_initial_user_includes.append(stylesheet_path)
-        lilypond_file.paper_block.tagline = markuptools.Markup('')
-        return lilypond_file
 
     def _make_container(self, division):
         numerator, denominator = division
@@ -274,15 +254,6 @@ class EvenRunRhythmMaker(RhythmMaker):
             beam = spannertools.MultipartBeam()
             attach(beam, container)
         return container
-
-    def _write_gallery_to_disk(self):
-        lilypond_file = self._gallery_input_to_lilypond_file()
-        file_path = __file__
-        directory_path = os.path.dirname(file_path)
-        class_name = type(self).__name__
-        file_name = '{}.pdf'.format(class_name)
-        file_path = os.path.join(directory_path, 'gallery', file_name)
-        persist(lilypond_file).as_pdf(file_path, remove_ly=True)
 
     ### PUBLIC PROPERTIES ###
 
@@ -317,8 +288,9 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> print format(reversed_maker)
                 rhythmmakertools.EvenRunRhythmMaker(
                     denominator_multiplier_exponent=1,
-                    beam_each_cell=True,
                     beam_cells_together=False,
+                    beam_each_cell=True,
+                    decrease_durations_monotonically=False,
                     )
 
             ::
@@ -335,4 +307,21 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         Returns new even-run rhythm-maker.
         '''
-        return RhythmMaker.reverse(self)
+        decrease_durations_monotonically = \
+            not self.decrease_durations_monotonically
+#        arguments = {
+#            'denominator_multiplier_exponent': 
+#                self.denominator_multiplier_exponent,
+#            'beam_cells_together': self.beam_cells_together,
+#            'beam_each_cell': self.beam_each_cell,
+#            'decrease_durations_monotonically': 
+#                decrease_durations_monotonically,
+#            'forbidden_written_duration': self.forbidden_written_duration,
+#            }
+#        new = type(self)(**arguments)
+#        return new
+        maker = new(
+            self,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            )
+        return maker

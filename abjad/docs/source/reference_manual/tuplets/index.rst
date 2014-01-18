@@ -5,7 +5,7 @@ Tuplets
 Making a tuplet from a LilyPond input string
 --------------------------------------------
 
-You can tuplets from a LilyPond input string:
+You can create tuplets from a LilyPond input string:
 
 ::
 
@@ -132,7 +132,7 @@ Use the inspector to get the duration of a tuplet:
 
 ::
 
-   >>> inspect(tuplet).get_duration()
+   >>> inspect_(tuplet).get_duration()
    Duration(1, 4)
 
 

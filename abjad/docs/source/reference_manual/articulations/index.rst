@@ -86,7 +86,7 @@ Use the inspector to get the articulations attached to a leaf:
 
 ::
 
-   >>> inspect(staff[5]).get_indicators(Articulation)
+   >>> inspect_(staff[5]).get_indicators(Articulation)
    (Articulation('turn'), Articulation('staccato'))
 
 

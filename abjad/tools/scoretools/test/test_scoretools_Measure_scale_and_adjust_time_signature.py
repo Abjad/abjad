@@ -25,7 +25,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_01():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 
@@ -49,7 +49,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_02():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_Measure_scale_and_adjust_time_signature_03():
@@ -72,7 +72,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_03():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_Measure_scale_and_adjust_time_signature_04():
@@ -83,7 +83,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_04():
     measure = Measure((9, 16), "c'8. d'8. e'8.")
     measure.scale_and_adjust_time_signature(Multiplier(2, 3))
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''
@@ -125,7 +125,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_05():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_Measure_scale_and_adjust_time_signature_06():
@@ -148,7 +148,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_06():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
 
 
 def test_scoretools_Measure_scale_and_adjust_time_signature_07():
@@ -160,7 +160,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_07():
     measure = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
     measure.scale_and_adjust_time_signature(Multiplier(1, 2))
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''
@@ -186,7 +186,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_08():
     measure = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
     measure.scale_and_adjust_time_signature(Multiplier(1, 4))
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''
@@ -212,7 +212,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_09():
     measure = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
     measure.scale_and_adjust_time_signature(Multiplier(2))
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''
@@ -238,7 +238,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_10():
     measure = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
     measure.scale_and_adjust_time_signature(Multiplier(4))
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''

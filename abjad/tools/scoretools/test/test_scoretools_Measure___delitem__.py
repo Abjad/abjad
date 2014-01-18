@@ -12,7 +12,7 @@ def test_scoretools_Measure___delitem___01():
     measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''
@@ -36,7 +36,7 @@ def test_scoretools_Measure___delitem___02():
     measure.automatically_adjust_time_signature = True
     del(measure[-1:])
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''
@@ -60,7 +60,7 @@ def test_scoretools_Measure___delitem___03():
     measure.automatically_adjust_time_signature = True
     del(measure[:2])
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''
@@ -83,7 +83,7 @@ def test_scoretools_Measure___delitem___04():
     measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''
@@ -119,7 +119,7 @@ def test_scoretools_Measure___delitem___05():
     }
     '''
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''
@@ -169,7 +169,7 @@ def test_scoretools_Measure___delitem___06():
     }
     '''
 
-    assert inspect(measure).is_well_formed()
+    assert inspect_(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''
@@ -194,9 +194,9 @@ def test_scoretools_Measure___delitem___07():
     measure = Measure((4, 8), "c'8 c' c' c'")
     del(measure[:1])
 
-    assert not inspect(measure).is_well_formed()
+    assert not inspect_(measure).is_well_formed()
     assert len(measure) == 3
-    assert inspect(measure).get_indicator(TimeSignature)
+    assert inspect_(measure).get_indicator(TimeSignature)
 
 
 def test_scoretools_Measure___delitem___08():
@@ -208,6 +208,6 @@ def test_scoretools_Measure___delitem___08():
     measure = Measure((4, 9), "c'8 d' e' f'")
     del(measure[:1])
 
-    assert not inspect(measure).is_well_formed()
+    assert not inspect_(measure).is_well_formed()
     assert len(measure) == 3
-    assert inspect(measure).get_indicator(TimeSignature)
+    assert inspect_(measure).get_indicator(TimeSignature)
