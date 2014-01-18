@@ -27,6 +27,7 @@ def build_chorale():
     bar_line = indicatortools.BarLine('|.')
     attach(bar_line, bass_staff)
 
-    piano_staff = scoretools.PianoStaff([treble_staff, bass_staff])
+    staff_group = StaffGroup([treble_staff, bass_staff])
+    staff_group.context_name = 'PianoStaff'
 
-    return piano_staff
+    return staff_group
