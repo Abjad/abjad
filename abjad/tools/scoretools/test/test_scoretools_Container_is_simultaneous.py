@@ -13,7 +13,6 @@ def test_scoretools_Container_is_simultaneous_01():
     assert not Tuplet(Multiplier(2, 3), []).is_simultaneous
     assert scoretools.GrandStaff([]).is_simultaneous
     assert not scoretools.make_rhythmic_sketch_staff([]).is_simultaneous
-    assert not scoretools.RhythmicStaff([]).is_simultaneous
     assert not Measure((4, 8), []).is_simultaneous
     assert Score([]).is_simultaneous
     assert not Container([]).is_simultaneous

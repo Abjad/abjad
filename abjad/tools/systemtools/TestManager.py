@@ -35,7 +35,8 @@ class TestManager(object):
         # provide more space between staves with pitched notes
         for staff in topleveltools.iterate(
             lilypond_file.score_block[0]).by_class(scoretools.Staff):
-            if not isinstance(staff, scoretools.RhythmicStaff):
+            if not (isinstance(staff, Staff) and 
+                staff.context_name == 'RhythmicStaff'):
                 for item in lilypond_file.layout_block.items:
                     if isinstance(item, lilypondfiletools.ContextBlock):
                         if item.context_name == 'StaffGroup':

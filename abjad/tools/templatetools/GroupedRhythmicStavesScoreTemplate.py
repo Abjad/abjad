@@ -3,8 +3,6 @@ import collections
 from abjad.tools import indicatortools
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -116,17 +114,20 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
         if isinstance(self.staff_count, int):
             for index in range(self.staff_count):
                 number = index + 1
-                voice = scoretools.Voice(name='Voice {}'.format(number))
-                staff = scoretools.RhythmicStaff(
-                    [voice], name='Staff {}'.format(number))
+                name = 'Voice {}'.format(number)
+                voice = scoretools.Voice(name=name)
+                name='Staff {}'.format(number)
+                staff = scoretools.Staff([voice], name=name)
+                staff.context_name = 'RhythmicStaff'
                 staves.append(staff)
-                self.context_name_abbreviations['v{}'.format(number)] = \
-                    voice.name
+                key = 'v{}'.format(number)
+                self.context_name_abbreviations[key] = voice.name
         elif isinstance(self.staff_count, list):
             for staff_index, voice_count in enumerate(self.staff_count):
                 staff_number = staff_index + 1
-                staff = scoretools.RhythmicStaff(
-                    [], name='Staff {}'.format(staff_number))
+                name = 'Staff {}'.format(staff_number)
+                staff = scoretools.Staff(name=name)
+                staff.context_name = 'RhythmicStaff'
                 assert 1 <= voice_count
                 for voice_index in range(voice_count):
                     voice_number = voice_index + 1
@@ -136,11 +137,11 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
                         voice_identifier = '{}-{}'.format(
                             staff_number, voice_number)
                         staff.is_simultaneous = True
-                    voice = scoretools.Voice(
-                        name='Voice {}'.format(voice_identifier))
+                    name = 'Voice {}'.format(voice_identifier)
+                    voice = scoretools.Voice(name=name)
                     staff.append(voice)
-                    self.context_name_abbreviations[
-                        'v{}'.format(voice_identifier)] = voice.name
+                    key = 'v{}'.format(voice_identifier)
+                    self.context_name_abbreviations[key] = voice.name
                 staves.append(staff)
         grouped_rhythmic_staves_staff_group = scoretools.StaffGroup(
             staves, 

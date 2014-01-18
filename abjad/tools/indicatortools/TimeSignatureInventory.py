@@ -54,7 +54,8 @@ class TimeSignatureInventory(TypedList):
         from abjad.tools import lilypondfiletools
         from abjad.tools import scoretools
         measures = scoretools.make_spacer_skip_measures(self)
-        staff = scoretools.RhythmicStaff(measures)
+        staff = scoretools.Staff(measures)
+        staff.context_name = 'RhythmicStaff'
         score = scoretools.Score([staff])
         lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
         return lilypond_file

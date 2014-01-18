@@ -70,7 +70,8 @@ def make_leaves(
             >>> pitches = 4 * [None]
             >>> durations = [Duration(1, 4)]
             >>> leaves = scoretools.make_leaves(pitches, durations)
-            >>> staff = scoretools.RhythmicStaff(leaves)
+            >>> staff = Staff(leaves)
+            >>> staff.context_name = 'RhythmicStaff'
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -242,7 +243,8 @@ def make_leaves(
             ...     durations, 
             ...     tie_rests=True,
             ...     )
-            >>> staff = scoretools.RhythmicStaff(leaves)
+            >>> staff = Staff(leaves)
+            >>> staff.context_name = 'RhythmicStaff'
             >>> time_signature = TimeSignature((5, 8))
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP

@@ -37,7 +37,8 @@ def make_lilypond_file(music, divisions):
     score.append(context)
 
     measures = scoretools.make_spacer_skip_measures(divisions)
-    staff = scoretools.RhythmicStaff(measures)
+    staff = scoretools.Staff(measures)
+    staff.context_name = 'RhythmicStaff'
     music = sequencetools.flatten_sequence(music)
     measures = mutate(staff).replace_measure_contents(music)
     score.append(staff)

@@ -161,7 +161,8 @@ class RhythmMaker(AbjadObject):
                 name='TimeSignatureContext',
                 )
             measures = scoretools.make_spacer_skip_measures(division_list)
-            staff = scoretools.RhythmicStaff(measures)
+            staff = scoretools.Staff(measures)
+            staff.context_name = 'RhythmicStaff'
             measures = mutate(staff).replace_measure_contents(music)
             score = scoretools.Score()
             score.append(time_signature_context)
