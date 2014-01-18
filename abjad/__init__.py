@@ -82,7 +82,6 @@ from abjad.tools.topleveltools import persist
 from abjad.tools.topleveltools import select
 from abjad.tools.topleveltools import set_
 from abjad.tools.topleveltools import show
-from abjad.tools.agenttools.InspectionAgent import inspect
 
 # import custom exceptions into the builtins module
 import os

@@ -744,10 +744,3 @@ class InspectionAgent(abctools.AbjadObject):
             string = string.format(violator_count, total, check_name)
             strings.append(string)
         return '\n'.join(strings)
-
-def inspect(client):
-    r'''Inspect `client`.
-
-    Returns inspector.
-    '''
-    return InspectionAgent(client)
