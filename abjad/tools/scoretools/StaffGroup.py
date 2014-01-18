@@ -3,7 +3,7 @@ from abjad.tools.scoretools.Context import Context
 
 
 class StaffGroup(Context):
-    r'''Abjad model of staff group:
+    r'''A staff group.
 
     ::
 
@@ -32,7 +32,6 @@ class StaffGroup(Context):
             }
         >>
 
-    Returns staff group.
     '''
 
     ### CLASS VARIABLES ###

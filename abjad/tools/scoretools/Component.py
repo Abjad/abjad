@@ -9,19 +9,19 @@ from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
 from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import set_
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
+from abjad.tools.topleveltools import set_
 from abjad.tools.abctools import AbjadObject
 
 
 class Component(AbjadObject):
-    r'''A score component.
+    r'''Abstract base class from which score components inherit.
 
-    Notes, rests, chords, tuplets, voices, staves
-    and scores are all components.
+    Notes, rests, chords, tuplets, measures, voices, staves, staff groups and
+    scores are all components.
     '''
 
     ### CLASS VARIABLES ###

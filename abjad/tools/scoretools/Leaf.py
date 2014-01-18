@@ -2,20 +2,22 @@
 import abc
 import copy
 from abjad.tools import durationtools
-from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
+from abjad.tools import systemtools
 from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import set_
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import select
+from abjad.tools.topleveltools import set_
 from abjad.tools.scoretools.Component import Component
 
 
 class Leaf(Component):
-    r'''Abstract base class from which notes, rests, chords and skips inherit.
+    r'''Abstract base class from which leaves inherit.
+    
+    Leaves include notes, rests, chords and skips.
     '''
 
     ### CLASS VARIABLES ##

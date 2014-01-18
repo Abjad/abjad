@@ -10,7 +10,6 @@ class MultimeasureRest(Leaf):
         >>> rest = scoretools.MultimeasureRest((1, 4))
         >>> show(rest) # doctest: +SKIP
 
-    Multimeasure rests are immutable.
     '''
 
     ### CLASS VARIABLES ###
