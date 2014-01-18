@@ -42,22 +42,26 @@ class RhythmMaker(AbjadObject):
 
     @abc.abstractmethod
     def __call__(self, divisions, seeds=None):
-        r'''Casts `divisions` into duration pairs.
+        r'''Calls rhythm-maker.
+        
+        Casts `divisions` into duration pairs.
+
         Reduces numerator and denominator relative to each other.
 
-        Changes none `seeds` into empty list.
+        Coerces none `seeds` into empty list.
 
         Returns duration pairs and seed list.
         '''
-        duration_pairs = [mathtools.NonreducedFraction(x).pair 
-            for x in divisions]
+        duration_pairs = [
+            mathtools.NonreducedFraction(x).pair 
+            for x in divisions
+            ]
         seeds = self._to_tuple(seeds)
         return duration_pairs, seeds
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is same type
-        with the equal public nonhelper properties.
-        Otherwise false.
+        r'''Is true when `expr` is a rhythm-maker with type and public 
+        properties equal to those of this rhythm-maker. Otherwise false.
 
         Returns boolean.
         '''
@@ -107,11 +111,11 @@ class RhythmMaker(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    # TODO: make static
-    def _all_are_tuplets_or_all_are_leaf_lists(self, expr):
+    @staticmethod
+    def _all_are_tuplets_or_all_are_leaf_lists(expr):
         if all(isinstance(x, scoretools.Tuplet) for x in expr):
             return True
-        elif all(self._is_leaf_list(x) for x in expr):
+        elif all(RhythmMaker._is_leaf_list(x) for x in expr):
             return True
         else:
             return False
@@ -121,18 +125,29 @@ class RhythmMaker(AbjadObject):
         return all(isinstance(x, scoretools.Leaf) for x in expr)
 
     def _make_secondary_duration_pairs(
-        self, duration_pairs, secondary_divisions):
+        self, 
+        duration_pairs, 
+        secondary_divisions,
+        ):
         if not secondary_divisions:
             return duration_pairs[:]
-        numerators = [duration_pair.numerator
-            for duration_pair in duration_pairs]
+        numerators = [
+            duration_pair.numerator 
+            for duration_pair in duration_pairs
+            ]
         secondary_numerators = sequencetools.split_sequence_by_weights(
-            numerators, secondary_divisions, cyclic=True, overhang=True)
+            numerators, 
+            secondary_divisions, 
+            cyclic=True, 
+            overhang=True,
+            )
         secondary_numerators = \
             sequencetools.flatten_sequence(secondary_numerators)
         denominator = duration_pairs[0].denominator
-        secondary_duration_pairs = \
-            [(n, denominator) for n in secondary_numerators]
+        secondary_duration_pairs = [
+            (n, denominator) 
+            for n in secondary_numerators
+            ]
         return secondary_duration_pairs
 
     def _make_tuplets(self, duration_pairs, leaf_lists):
@@ -143,11 +158,6 @@ class RhythmMaker(AbjadObject):
             tuplets.append(tuplet)
         return tuplets
 
-    def _to_tuple(self, expr):
-        if isinstance(expr, list):
-            expr = tuple(expr)
-        return expr
-
     def _none_to_tuple(self, expr):
         if expr is None:
             expr = ()
@@ -156,15 +166,15 @@ class RhythmMaker(AbjadObject):
 
     def _none_to_trivial_helper(self, expr):
         if expr is None:
-            return self._trivial_helper
+            expr = self._trivial_helper
+        assert callable(expr)
         return expr
 
     def _scale_taleas(self, duration_pairs, talea_denominator, taleas):
         dummy_duration_pair = (1, talea_denominator)
         duration_pairs.append(dummy_duration_pair)
         Duration = durationtools.Duration
-        duration_pairs = \
-            Duration.durations_to_nonreduced_fractions(
+        duration_pairs = Duration.durations_to_nonreduced_fractions(
             duration_pairs)
         dummy_duration_pair = duration_pairs.pop()
         lcd = dummy_duration_pair.denominator
@@ -172,7 +182,8 @@ class RhythmMaker(AbjadObject):
         scaled_taleas = []
         for talea in taleas:
             talea = datastructuretools.CyclicTuple(
-                [multiplier * x for x in talea])
+                [multiplier * x for x in talea],
+                )
             scaled_taleas.append(talea)
         result = [duration_pairs, lcd]
         result.extend(scaled_taleas)
@@ -186,8 +197,13 @@ class RhythmMaker(AbjadObject):
         else:
             result = ', '.join([str(x) for x in sequence[:4]])
             result += ', ...'
-        result = '[$%s$]' % result
+        result = '[${}$]'.format(result)
         return result
+
+    def _to_tuple(self, expr):
+        if isinstance(expr, list):
+            expr = tuple(expr)
+        return expr
 
     def _trivial_helper(self, talea, seeds):
         if isinstance(seeds, int) and len(talea):
