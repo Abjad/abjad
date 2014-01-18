@@ -34,7 +34,7 @@
         \override TimeSignature.self-alignment-X = #center
         \override VerticalAxisGroup.default-staff-staff-spacing = #'(
             (basic-distance . 0)
-            (minimum-distance . 9)
+            (minimum-distance . 12)
             (padding . 0)
             (stretchability . 0)
             )
@@ -80,7 +80,12 @@
 }
 
 \paper {
-    markup-system-spacing #'basic-distance = 8
-    score-markup-spacing #'basic-distance = 30
+    evenFooterMarkup = \markup {}
+    left-margin = 12
+    markup-markup-spacing #'basic-distance = 20
+    markup-system-spacing #'basic-distance = 22
+    oddFooterMarkup = \markup {}
+    score-markup-spacing #'basic-distance = 20
+    top-markup-spacing #'basic-distance = 4
 }
 

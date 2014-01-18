@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad.tools import durationtools
+from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
@@ -12,6 +13,7 @@ from abjad.tools.agenttools.InspectionAgent import inspect
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import mutate
+from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import persist
 
 
@@ -247,6 +249,15 @@ class EvenRunRhythmMaker(RhythmMaker):
         scores = []
         for block in self._gallery_input_blocks:
             score = self._gallery_input_block_to_score(block)
+            score.add_final_bar_line()
+            selection = score.select_leaves(start=-1)
+            last_leaf = selection[0]
+            string = "override Staff.BarLine #'extra-offset = #'(1.6 . 0)"
+            command = indicatortools.LilyPondCommand(
+                string,
+                'after',
+                )
+            attach(command, last_leaf)
             if not inspect(score).is_well_formed():
                 message = 'score is not well-formed: {!r}.'
                 message = message.format(score)
@@ -293,7 +304,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         class_name = type(self).__name__
         file_name = '{}.pdf'.format(class_name)
         file_path = os.path.join(directory_path, 'gallery', file_name)
-        persist(lilypond_file).as_pdf(file_path, remove_ly=True)
+        persist(lilypond_file).as_pdf(file_path, remove_ly=False)
 
     ### PUBLIC PROPERTIES ###
 
