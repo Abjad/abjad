@@ -81,11 +81,14 @@
 
 \paper {
     evenFooterMarkup = \markup {}
+    evenHeaderMarkup = \markup {}
     left-margin = 12
     markup-markup-spacing #'basic-distance = 20
     markup-system-spacing #'basic-distance = 22
     oddFooterMarkup = \markup {}
-    score-markup-spacing #'basic-distance = 20
-    top-markup-spacing #'basic-distance = 4
+    oddHeaderMarkup = \markup {}
+    score-markup-spacing #'minimum-distance = 20
+    score-system-spacing #'minimum-distance = 28
+    top-markup-spacing #'minimum-distance = 8
 }
 

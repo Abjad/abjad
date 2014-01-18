@@ -9,16 +9,16 @@ class GalleryInputBlock(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_divisions',
+        '_division_lists',
         '_input_',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, input_=None, divisions=None):
-        divisions = divisions or ()
+    def __init__(self, input_=None, division_lists=None):
+        division_lists = division_lists or ()
         self._input_ = input_
-        self._divisions = tuple(divisions)
+        self._division_lists = tuple(division_lists)
 
     ### PRIVATE METHODS ###
 
@@ -38,12 +38,12 @@ class GalleryInputBlock(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def divisions(self):
-        r'''Gets divisions of gallery input block.
+    def division_lists(self):
+        r'''Gets division lists of gallery input block.
 
         Returns tuple.
         '''
-        return self._divisions
+        return self._division_lists
 
     @property
     def input_(self):

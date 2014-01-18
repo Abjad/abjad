@@ -147,24 +147,27 @@ class RhythmMaker(AbjadObject):
         else:
             return False
 
-    def _gallery_input_block_to_score(self, block):
+    def _gallery_input_block_to_scores(self, block):
         from abjad.tools import sequencetools
         maker = type(self)(**block.input_)
-        lists = maker(block.divisions)
-        music = sequencetools.flatten_sequence(lists)
-        measures = scoretools.make_spacer_skip_measures(block.divisions)
-        time_signature_context = scoretools.Context(
-            measures,
-            context_name='TimeSignatureContext',
-            name='TimeSignatureContext',
-            )
-        measures = scoretools.make_spacer_skip_measures(block.divisions)
-        staff = scoretools.RhythmicStaff(measures)
-        measures = mutate(staff).replace_measure_contents(music)
-        score = scoretools.Score()
-        score.append(time_signature_context)
-        score.append(staff)
-        return score
+        scores = []
+        for division_list in block.division_lists:
+            lists = maker(division_list)
+            music = sequencetools.flatten_sequence(lists)
+            measures = scoretools.make_spacer_skip_measures(division_list)
+            time_signature_context = scoretools.Context(
+                measures,
+                context_name='TimeSignatureContext',
+                name='TimeSignatureContext',
+                )
+            measures = scoretools.make_spacer_skip_measures(division_list)
+            staff = scoretools.RhythmicStaff(measures)
+            measures = mutate(staff).replace_measure_contents(music)
+            score = scoretools.Score()
+            score.append(time_signature_context)
+            score.append(staff)
+            scores.append(score)
+        return scores
 
     @staticmethod
     def _is_leaf_list(expr):
@@ -178,30 +181,27 @@ class RhythmMaker(AbjadObject):
         title_markup = self._make_gallery_title_markup()
         lilypond_file.header_block.title = title_markup
         markups = []
-        scores = []
         for block in self._gallery_input_blocks:
-            score = self._gallery_input_block_to_score(block)
-            score.add_final_bar_line()
-            selection = score.select_leaves(start=-1)
-            last_leaf = selection[0]
-            string = "override Staff.BarLine #'extra-offset = #'(1.6 . 0)"
-            command = indicatortools.LilyPondCommand(
-                string,
-                'after',
-                )
-            attach(command, last_leaf)
-            if not inspect_(score).is_well_formed():
-                message = 'score is not well-formed: {!r}.'
-                message = message.format(score)
-                message += '\n'
-                message += inspect_(score).tabulate_well_formedness_violations()
-                raise Exception(message)
-            scores.append(score)
             markup = block._to_markup(type(self))
-            markups.append(markup)
-        for markup, score in zip(markups, scores):
             lilypond_file.items.append(markup)
-            lilypond_file.items.append(score)
+            scores = self._gallery_input_block_to_scores(block)
+            for score in scores:
+                score.add_final_bar_line()
+                selection = score.select_leaves(start=-1)
+                last_leaf = selection[0]
+                string = "override Staff.BarLine #'extra-offset = #'(1.6 . 0)"
+                command = indicatortools.LilyPondCommand(
+                    string,
+                    'after',
+                    )
+                attach(command, last_leaf)
+                if not inspect_(score).is_well_formed():
+                    message = 'score is not well-formed: {!r}.'
+                    message = message.format(score)
+                    message += '\n'
+                    message += inspect_(score).tabulate_well_formedness_violations()
+                    raise Exception(message)
+                lilypond_file.items.append(score)
         lilypond_file.default_paper_size = ('letter', 'portrait')
         lilypond_file.global_staff_size = 10
         lilypond_file.use_relative_includes = True

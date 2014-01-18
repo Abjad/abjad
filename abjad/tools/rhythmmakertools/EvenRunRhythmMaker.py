@@ -73,9 +73,25 @@ class EvenRunRhythmMaker(RhythmMaker):
                 'beam_each_cell': True,
                 'beam_cells_together': False,
                 },
-            divisions=[
-                (4, 8), (3, 4), (2, 4), (1, 16), (1, 16), (7, 8), (5, 16),
+            division_lists=(
+                [
+                    (4, 8), (3, 4),
+                    (2, 4), (1, 16), (1, 16), 
+                    (7, 8), (2, 8),
                 ],
+                [
+                    (5, 16), (5, 16), (5, 16), (5, 16),
+                    (4, 16), (4, 16), (4, 16), (4, 16),
+                ],
+                [
+                    (2, 8), (3, 8), (2, 16), (1, 4), 
+                    (2, 4), (2, 16), (2, 4),
+                ],
+                [
+                    (5, 16), (5, 16), (5, 16), (5, 16),
+                    (4, 16), (4, 16), (4, 16), (4, 16),
+                ],
+                ),
             ),
         systemtools.GalleryInputBlock(
             input_={
@@ -83,19 +99,25 @@ class EvenRunRhythmMaker(RhythmMaker):
                 'beam_each_cell': True,
                 'beam_cells_together': False,
                 },
-            divisions=[
-                (4, 8), (3, 4), (2, 4), (1, 16), (1, 16), (7, 8), (5, 16),
+            division_lists=(
+                [
+                    (4, 8), (3, 4),
+                    (2, 4), (1, 16), (1, 16), 
+                    (7, 8), (2, 8),
                 ],
-            ),
-        systemtools.GalleryInputBlock(
-            input_={
-                'denominator_multiplier_exponent': 2,
-                'beam_each_cell': True,
-                'beam_cells_together': False,
-                },
-            divisions=[
-                (4, 8), (3, 4), (2, 4), (1, 16), (1, 16), (7, 8), (5, 16),
+                [
+                    (5, 16), (5, 16), (5, 16), (5, 16),
+                    (4, 16), (4, 16), (4, 16), (4, 16),
                 ],
+                [
+                    (2, 8), (3, 8), (2, 16), (1, 4), 
+                    (2, 4), (2, 16), (2, 4),
+                ],
+                [
+                    (5, 16), (5, 16), (5, 16), (5, 16),
+                    (4, 16), (4, 16), (4, 16), (4, 16),
+                ],
+                ),
             ),
         )
 
