@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import types
 
 
@@ -9,11 +10,11 @@ def detach(prototype, component_expression):
     from abjad.tools import indicatortools
     from abjad.tools import scoretools
     from abjad.tools import spannertools
-    from abjad.tools.agenttools.InspectionAgent import inspect
+    from abjad.tools import topleveltools
 
     spanners = []
     grace_containers = []
-    inspector = inspect(component_expression)
+    inspector = topleveltools.inspect_(component_expression)
     if isinstance(prototype, types.TypeType):
         if issubclass(prototype, spannertools.Spanner):
             spanners = inspector.get_spanners(prototype)

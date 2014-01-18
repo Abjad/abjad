@@ -2,9 +2,9 @@
 import bisect
 import copy
 import inspect
-from abjad.tools import scoretools
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
+from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
 

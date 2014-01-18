@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import collections
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 
 
@@ -293,7 +294,6 @@ class _ContextMapComponent(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _as_chain_map(self):
-        from abjad.tools.agenttools.InspectionAgent import inspect
         dictionaries = []
         components = self._client._components
         score = self._client._score
@@ -301,7 +301,7 @@ class _ContextMapComponent(AbjadObject):
             context = score
         else:
             context = score[self._context_name]
-        parentage = inspect(context).get_parentage()
+        parentage = inspect_(context).get_parentage()
         for context in parentage:
             context_name = context.name
             context_settings = components[context_name]._context_settings

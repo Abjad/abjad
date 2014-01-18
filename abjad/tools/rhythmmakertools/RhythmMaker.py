@@ -10,8 +10,8 @@ from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.agenttools.InspectionAgent import inspect
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import persist
@@ -172,11 +172,11 @@ class RhythmMaker(AbjadObject):
                 'after',
                 )
             attach(command, last_leaf)
-            if not inspect(score).is_well_formed():
+            if not inspect_(score).is_well_formed():
                 message = 'score is not well-formed: {!r}.'
                 message = message.format(score)
                 message += '\n'
-                message += inspect(score).tabulate_well_formedness_violations()
+                message += inspect_(score).tabulate_well_formedness_violations()
                 raise Exception(message)
             scores.append(score)
             markup = block._to_markup(type(self))

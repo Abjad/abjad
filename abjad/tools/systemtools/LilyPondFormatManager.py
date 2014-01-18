@@ -93,11 +93,11 @@ class LilyPondFormatManager(object):
         from abjad.tools import indicatortools
         from abjad.tools import markuptools
         from abjad.tools import scoretools
-        from abjad.tools.agenttools.InspectionAgent import inspect
+        from abjad.tools.topleveltools import inspect_
         manager = LilyPondFormatManager
         expressions = []
-        for parent in inspect(component).get_parentage(include_self=True):
-            result = inspect(parent).get_indicators(unwrap=False)
+        for parent in inspect_(component).get_parentage(include_self=True):
+            result = inspect_(parent).get_indicators(unwrap=False)
             expressions.extend(result)
             result = parent._get_spanner_indicators(unwrap=False)
             expressions.extend(result)
