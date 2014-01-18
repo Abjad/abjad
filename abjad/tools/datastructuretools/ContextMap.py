@@ -153,6 +153,78 @@ class ContextMap(AbjadObject):
             )
         return copied
 
+    def update(self, expr):
+        r'''Updates context map with information in context map `expr`.
+
+        ::
+
+            >>> template = templatetools.StringQuartetScoreTemplate()
+            >>> context_map_one = datastructuretools.ContextMap(template)
+            >>> context_map_one['Cello Voice']['one'] = 1
+            >>> context_map_one['Viola Voice']['foo'] = 'bar'
+            >>> context_map_two = datastructuretools.ContextMap(template)
+            >>> context_map_two['Cello Voice']['one'] = 'a'
+            >>> context_map_two['String Quartet Score']['baz'] = (1, 2, 3)
+
+        ::
+
+            >>> print format(context_map_one)
+            datastructuretools.ContextMap(
+                score_template=templatetools.StringQuartetScoreTemplate(),
+                settings={
+                    'Cello Voice': {
+                        'one': 1,
+                        },
+                    'Viola Voice': {
+                        'foo': 'bar',
+                        },
+                    },
+                )
+
+        ::
+
+            >>> print format(context_map_two)
+            datastructuretools.ContextMap(
+                score_template=templatetools.StringQuartetScoreTemplate(),
+                settings={
+                    'Cello Voice': {
+                        'one': 'a',
+                        },
+                    'String Quartet Score': {
+                        'baz': (1, 2, 3),
+                        },
+                    },
+                )
+
+        ::
+
+            >>> context_map_one.update(context_map_two)
+            >>> print format(context_map_one)
+            datastructuretools.ContextMap(
+                score_template=templatetools.StringQuartetScoreTemplate(),
+                settings={
+                    'Cello Voice': {
+                        'one': 'a',
+                        },
+                    'String Quartet Score': {
+                        'baz': (1, 2, 3),
+                        },
+                    'Viola Voice': {
+                        'foo': 'bar',
+                        },
+                    },
+                )
+
+        Operates in place and returns none.
+        '''
+        assert isinstance(expr, type(self))
+        assert self.score_template == expr.score_template
+        for context_name in self._components:
+            self_component = self._components[context_name]
+            expr_component = expr._components[context_name]
+            for key, value in expr_component._context_settings.iteritems():
+                self_component[key] = value
+
     ### PUBLIC PROPERTIES ###
 
     @property
