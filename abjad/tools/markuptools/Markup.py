@@ -257,9 +257,9 @@ class Markup(AbjadObject):
         if self.direction is not None:
             direction = stringtools.arg_to_tridirectional_lilypond_symbol(
                 self.direction)
-        # None
+        # none
         if self.contents is None:
-            return [r'\markup { }']
+            return [r'\markup {}']
         # a single string
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
             content = self.contents[0]
@@ -268,7 +268,7 @@ class Markup(AbjadObject):
             if content:
                 content = '{{ {} }}'.format(content)
             else:
-                content = '{ }'
+                content = '{}'
             if direction:
                 return [r'{} \markup {}'.format(direction, content)]
             return [r'\markup {}'.format(content)]

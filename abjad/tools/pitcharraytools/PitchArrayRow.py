@@ -1,12 +1,10 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools import indicatortools
 from abjad.tools import durationtools
-from abjad.tools import scoretools
-from abjad.tools import scoretools
+from abjad.tools import indicatortools
 from abjad.tools import pitchtools
+from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.pitcharraytools.PitchArrayCell import PitchArrayCell
 
 
 class PitchArrayRow(AbjadObject):
@@ -20,7 +18,7 @@ class PitchArrayRow(AbjadObject):
         >>> array[1].cells[2].pitches.append(4)
         >>> print array
         [c'] [d'    ] [  ]
-        [         ] [ ] [e']
+        [       ] [ ] [e']
 
     ::
 
@@ -135,7 +133,7 @@ class PitchArrayRow(AbjadObject):
             raise ValueError(message)
 
     def __getstate__(self):
-        r'''Gets object state.
+        r'''Gets state of pitch array row.
         '''
         return vars(self)
 
@@ -189,7 +187,7 @@ class PitchArrayRow(AbjadObject):
     def _compact_summary(self):
         len_self = len(self.cells)
         if not len_self:
-            return ' '
+            return ''
         elif 0 < len_self <= 8:
             result = [
                 cell._format_row_column_repr_string for cell in self.cells]
@@ -349,7 +347,8 @@ class PitchArrayRow(AbjadObject):
 
         Returns none.
         '''
-        cell = PitchArrayCell(cell_token)
+        from abjad.tools import pitcharraytools
+        cell = pitcharraytools.PitchArrayCell(cell_token)
         cell._parent_row = self
         self._cells.append(cell)
 
@@ -408,8 +407,8 @@ class PitchArrayRow(AbjadObject):
             self.append(cell_token)
 
     def has_spanning_cell_over_index(self, i):
-        r'''Is true when pitch array row has one or more cells spanning over index
-        `i`. Otherwise false.
+        r'''Is true when pitch array row has one or more cells spanning over 
+        index `i`. Otherwise false.
 
         Returns boolean.
         '''
@@ -431,11 +430,12 @@ class PitchArrayRow(AbjadObject):
 
         Returns pitch array cell.
         '''
+        from abjad.tools import pitcharraytools
         column_indices = []
         pitches = []
         width = 0
         for cell in cells:
-            if not isinstance(cell, PitchArrayCell):
+            if not isinstance(cell, pitcharraytools.PitchArrayCell):
                 raise TypeError
             if not cell.parent_row is self:
                 message = 'cells must belong to row.'
@@ -461,13 +461,14 @@ class PitchArrayRow(AbjadObject):
 
         Returns none.
         '''
+        from abjad.tools import pitcharraytools
         self_width = self.width
         if width < self_width:
             message = 'pad width must not be less than row width.'
             raise ValueError(message)
         missing_width = width - self_width
         for i in range(missing_width):
-            cell = PitchArrayCell()
+            cell = pitcharraytools.PitchArrayCell()
             self.append(cell)
 
     def pop(self, cell_index):

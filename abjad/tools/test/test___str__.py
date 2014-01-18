@@ -2,15 +2,30 @@
 import inspect
 import pytest
 from abjad.tools import documentationtools
-#pytest.skip('working on these now.')
+from abjad.tools import indicatortools
+from abjad.tools import pitcharraytools
+from abjad.tools import pitchtools
+from abjad.tools import schemetools
+from abjad.tools import tonalanalysistools
 
+
+_allowed_to_be_empty_string = (
+    indicatortools.Articulation,
+    pitcharraytools.PitchArray,
+    pitcharraytools.PitchArrayColumn,
+    pitcharraytools.PitchArrayRow,
+    pitchtools.Accidental,
+    schemetools.SchemeColor,
+    tonalanalysistools.ChordSuspension,
+    )
 
 classes = documentationtools.list_all_abjad_classes()
 @pytest.mark.parametrize('class_', classes)
 def test___repr___01(class_):
     r'''All concrete classes have a string representation.
 
-    (But note that exceptions do not have a string representation.)
+    With the exception of the exception classes. And those classes listed 
+    explicitly here.
     '''
 
     if not inspect.isabstract(class_):
@@ -18,4 +33,5 @@ def test___repr___01(class_):
             instance = class_()
             string = str(instance)
             assert string is not None
-            #assert string != ''
+            if class_ not in _allowed_to_be_empty_string:
+                assert string != ''
