@@ -5,7 +5,11 @@ from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
+from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import new
 
 
@@ -60,6 +64,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
     __slots__ = (
         '_is_diminution',
         '_ratio_talea',
+        '_tie_across_divisions',
         )
 
     ### INITIALIZER ###
@@ -72,6 +77,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
         beam_each_cell=True,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
+        tie_across_divisions=False,
         ):
         RhythmMaker.__init__(
             self,
@@ -83,6 +89,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
         ratio_talea = tuple(mathtools.Ratio(x) for x in ratio_talea)
         self._ratio_talea = ratio_talea
         self._is_diminution = is_diminution
+        self._tie_across_divisions = bool(tie_across_divisions)
 
     ### SPECIAL METHODS ###
 
@@ -117,6 +124,23 @@ class RatioTaleaRhythmMaker(RhythmMaker):
             tuplet = self._make_tuplet(duration, ratio)
             selection = selectiontools.Selection(tuplet)
             result.append(selection)
+        if self.tie_across_divisions:
+            for selection_one, selection_two in \
+                sequencetools.iterate_sequence_pairwise_strict(result):
+                tuplet_one = selection_one[0]
+                tuplet_two = selection_two[0]
+                leaf_one = tuplet_one.select_leaves()[-1]
+                leaf_two = tuplet_two.select_leaves()[0]
+                if not isinstance(leaf_one, scoretools.Note) or \
+                    not isinstance(leaf_two, scoretools.Note):
+                    continue
+                logical_tie_one = inspect_(leaf_one).get_logical_tie()
+                logical_tie_two = inspect_(leaf_two).get_logical_tie()
+                for tie in inspect_(leaf_one).get_spanners(spannertools.Tie):
+                    detach(tie, leaf_one)
+                for tie in inspect_(leaf_two).get_spanners(spannertools.Tie):
+                    detach(tie, leaf_two)
+                attach(spannertools.Tie(), logical_tie_one + logical_tie_two)
         return result
 
     def __format__(self, format_specification=''):
@@ -135,6 +159,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=True,
+                    tie_across_divisions=False,
                     )
 
         Set `format_specification` to `''` or `'storage'`.
@@ -165,6 +190,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=True,
+                    tie_across_divisions=False,
                     )
 
             ::
@@ -188,6 +214,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
             'forbidden_written_duration': self.forbidden_written_duration,
             'is_diminution': self.is_diminution,
             'ratio_talea': self.ratio_talea,
+            'tie_across_divisions': self.tie_across_divisions,
             }
         arguments.update(kwargs)
         new_rhythm_maker = type(self)(**arguments)
@@ -237,6 +264,22 @@ class RatioTaleaRhythmMaker(RhythmMaker):
         '''
         return self._ratio_talea
 
+    @property
+    def tie_across_divisions(self):
+        r'''Is true when the last and first leaves of adjacent output tuplets
+        should be tied together. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> maker.tie_across_divisions
+                False
+
+        Returns boolean.
+        '''
+        return self._tie_across_divisions
+
     ### PUBLIC METHODS ###
 
     def reverse(self):
@@ -260,6 +303,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=False,
+                    tie_across_divisions=False,
                     )
 
             ::
