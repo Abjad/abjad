@@ -273,8 +273,25 @@ class RatioTaleaRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> maker = rhythmmakertools.RatioTaleaRhythmMaker(
+                ...     ratio_talea=[(1, 2, 3), (2, -1)],
+                ...     tie_across_divisions=True,
+                ...     )
+
+            ::
+
                 >>> maker.tie_across_divisions
-                False
+                True
+
+            ::
+
+                >>> divisions = [(1, 2), (3, 8), (5, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Returns boolean.
         '''
@@ -296,14 +313,14 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                 >>> print format(reversed_maker)
                 rhythmmakertools.RatioTaleaRhythmMaker(
                     ratio_talea=(
-                        mathtools.Ratio(1, 3),
-                        mathtools.Ratio(-1, 1),
+                        mathtools.Ratio(-1, 2),
+                        mathtools.Ratio(3, 2, 1),
                         ),
                     is_diminution=True,
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=False,
-                    tie_across_divisions=False,
+                    tie_across_divisions=True,
                     )
 
             ::
