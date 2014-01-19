@@ -274,7 +274,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
             ::
 
                 >>> maker = rhythmmakertools.RatioTaleaRhythmMaker(
-                ...     ratio_talea=[(1, 2, 3), (2, -1)],
+                ...     ratio_talea=[(2, 3), (1, -2, 1)],
                 ...     tie_across_divisions=True,
                 ...     )
 
@@ -313,8 +313,8 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                 >>> print format(reversed_maker)
                 rhythmmakertools.RatioTaleaRhythmMaker(
                     ratio_talea=(
-                        mathtools.Ratio(-1, 2),
-                        mathtools.Ratio(3, 2, 1),
+                        mathtools.Ratio(1, -2, 1),
+                        mathtools.Ratio(3, 2),
                         ),
                     is_diminution=True,
                     beam_cells_together=False,
