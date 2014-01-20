@@ -21,7 +21,7 @@ _allowed_to_be_empty_string = (
 
 classes = documentationtools.list_all_abjad_classes()
 @pytest.mark.parametrize('class_', classes)
-def test___repr___01(class_):
+def test___str___01(class_):
     r'''All concrete classes have a string representation.
 
     With the exception of the exception classes. And those classes listed 
