@@ -8,13 +8,14 @@ from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
+from abjad.tools import spannertools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import new
-from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import persist
 
 
@@ -30,6 +31,7 @@ class RhythmMaker(AbjadObject):
         '_decrease_durations_monotonically',
         '_forbidden_written_duration',
         '_name',
+        '_tie_across_divisions',
         )
 
     ### INITIALIZER ###
@@ -40,6 +42,7 @@ class RhythmMaker(AbjadObject):
         beam_each_cell=True,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
+        tie_across_divisions=False,
         ):
         self._beam_each_cell = beam_each_cell
         self._beam_cells_together = beam_cells_together
@@ -47,13 +50,14 @@ class RhythmMaker(AbjadObject):
             decrease_durations_monotonically
         self._forbidden_written_duration = forbidden_written_duration
         self._name = None
+        self._tie_across_divisions = bool(tie_across_divisions)
 
     ### SPECIAL METHODS ###
 
     @abc.abstractmethod
     def __call__(self, divisions, seeds=None):
         r'''Calls rhythm-maker.
-        
+
         Casts `divisions` into duration pairs.
 
         Reduces numerator and denominator relative to each other.
@@ -63,14 +67,14 @@ class RhythmMaker(AbjadObject):
         Returns duration pairs and seed list.
         '''
         duration_pairs = [
-            mathtools.NonreducedFraction(x).pair 
+            mathtools.NonreducedFraction(x).pair
             for x in divisions
             ]
         seeds = self._to_tuple(seeds)
         return duration_pairs, seeds
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a rhythm-maker with type and public 
+        r'''Is true when `expr` is a rhythm-maker with type and public
         properties equal to those of this rhythm-maker. Otherwise false.
 
         Returns boolean.
@@ -148,7 +152,6 @@ class RhythmMaker(AbjadObject):
             return False
 
     def _gallery_input_block_to_scores(self, block):
-        from abjad.tools import sequencetools
         maker = type(self)(**block.input_)
         scores = []
         for division_list in block.division_lists:
@@ -176,7 +179,6 @@ class RhythmMaker(AbjadObject):
 
     def _gallery_input_to_lilypond_file(self):
         from abjad.tools import lilypondfiletools
-        from abjad.tools import markuptools
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
         lilypond_file.items.remove(lilypond_file.score_block)
         title_markup = self._make_gallery_title_markup()
@@ -207,8 +209,8 @@ class RhythmMaker(AbjadObject):
         lilypond_file.global_staff_size = 10
         lilypond_file.use_relative_includes = True
         stylesheet_path = os.path.join(
-            '..', '..', '..', 
-            'stylesheets', 
+            '..', '..', '..',
+            'stylesheets',
             'gallery-layout.ly',
             )
         lilypond_file.file_initial_user_includes.append(stylesheet_path)
@@ -216,36 +218,56 @@ class RhythmMaker(AbjadObject):
         return lilypond_file
 
     def _make_gallery_title_markup(self):
-        string = self._human_readable_class_name 
+        string = self._human_readable_class_name
         string = stringtools.capitalize_string_start(string)
         markup = markuptools.Markup(string)
         return markup
 
     def _make_secondary_duration_pairs(
-        self, 
-        duration_pairs, 
+        self,
+        duration_pairs,
         secondary_divisions,
         ):
         if not secondary_divisions:
             return duration_pairs[:]
         numerators = [
-            duration_pair.numerator 
+            duration_pair.numerator
             for duration_pair in duration_pairs
             ]
         secondary_numerators = sequencetools.split_sequence_by_weights(
-            numerators, 
-            secondary_divisions, 
-            cyclic=True, 
+            numerators,
+            secondary_divisions,
+            cyclic=True,
             overhang=True,
             )
         secondary_numerators = \
             sequencetools.flatten_sequence(secondary_numerators)
         denominator = duration_pairs[0].denominator
         secondary_duration_pairs = [
-            (n, denominator) 
+            (n, denominator)
             for n in secondary_numerators
             ]
         return secondary_duration_pairs
+
+    def _make_ties_across_divisions(self, music):
+        if self.tie_across_divisions:
+            for selection_one, selection_two in \
+                sequencetools.iterate_sequence_pairwise_strict(music):
+                tuplet_one = selection_one[0]
+                tuplet_two = selection_two[0]
+                leaf_one = tuplet_one.select_leaves()[-1]
+                leaf_two = tuplet_two.select_leaves()[0]
+                if not isinstance(leaf_one, scoretools.Note) or \
+                    not isinstance(leaf_two, scoretools.Note):
+                    continue
+                logical_tie_one = inspect_(leaf_one).get_logical_tie()
+                logical_tie_two = inspect_(leaf_two).get_logical_tie()
+                for tie in inspect_(leaf_one).get_spanners(spannertools.Tie):
+                    detach(tie, leaf_one)
+                for tie in inspect_(leaf_two).get_spanners(spannertools.Tie):
+                    detach(tie, leaf_two)
+                attach(spannertools.Tie(), logical_tie_one + logical_tie_two)
+        return music
 
     def _make_tuplets(self, duration_pairs, leaf_lists):
         assert len(duration_pairs) == len(leaf_lists)
@@ -364,6 +386,15 @@ class RhythmMaker(AbjadObject):
     def name(self, arg):
         assert isinstance(arg, (str, type(None)))
         self._name = arg
+
+    @property
+    def tie_across_divisions(self):
+        r'''Is true when the last and first leaves of adjacent output tuplets
+        should be tied together. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._tie_across_divisions
 
     ### PUBLIC METHODS ###
 

@@ -65,6 +65,7 @@ class SkipRhythmMaker(RhythmMaker):
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=True,
+                    tie_across_divisions=False,
                     )
 
         Returns string.
@@ -88,6 +89,7 @@ class SkipRhythmMaker(RhythmMaker):
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=True,
+                    tie_across_divisions=False,
                     )
 
             ::
@@ -122,6 +124,7 @@ class SkipRhythmMaker(RhythmMaker):
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=False,
+                    tie_across_divisions=False,
                     )
 
             ::

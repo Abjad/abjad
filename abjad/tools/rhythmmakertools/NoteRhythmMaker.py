@@ -89,6 +89,7 @@ class NoteRhythmMaker(RhythmMaker):
                     beam_each_cell=True,
                     decrease_durations_monotonically=True,
                     forbidden_written_duration=durationtools.Duration(1, 2),
+                    tie_across_divisions=False,
                     )
 
         Returns string.
@@ -113,6 +114,7 @@ class NoteRhythmMaker(RhythmMaker):
                     beam_each_cell=True,
                     decrease_durations_monotonically=False,
                     forbidden_written_duration=durationtools.Duration(1, 2),
+                    tie_across_divisions=False,
                     )
 
             ::
@@ -148,6 +150,7 @@ class NoteRhythmMaker(RhythmMaker):
                     beam_each_cell=True,
                     decrease_durations_monotonically=False,
                     forbidden_written_duration=durationtools.Duration(1, 2),
+                    tie_across_divisions=False,
                     )
 
             ::
