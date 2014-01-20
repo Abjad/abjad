@@ -14,7 +14,7 @@ class Tuplet(Container):
 
     ..  container:: example
 
-        **Example 1.** A tuplet:
+        A tuplet:
 
             >>> tuplet = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
             >>> show(tuplet) # doctest: +SKIP
@@ -30,7 +30,7 @@ class Tuplet(Container):
 
     ..  container:: example
 
-        **Example 2.** A nested tuplet:
+        A nested tuplet:
 
             >>> second_tuplet = Tuplet((4, 7), "g'4. ( a'16 )")
             >>> tuplet.insert(1, second_tuplet)
@@ -52,7 +52,7 @@ class Tuplet(Container):
 
     ..  container:: example
 
-        **Example 3.** A doubly nested tuplet:
+        A doubly nested tuplet:
 
             >>> third_tuplet = Tuplet((4, 5), [])
             >>> third_tuplet.extend("e''32 [ ef''32 d''32 cs''32 cqs''32 ]")
@@ -107,7 +107,7 @@ class Tuplet(Container):
     ### SPECIAL METHODS ###
 
     def __getnewargs__(self):
-        '''Gets new arguments.
+        '''Gets new arguments of tuplet.
 
         Returns tuple.
         '''
@@ -122,12 +122,12 @@ class Tuplet(Container):
         result = result.format(
             type(self).__name__,
             self.multiplier,
-            self._string_summary,
+            self._contents_summary,
             )
         return result
 
     def __str__(self):
-        '''String representation of tuplet.
+        '''Gets string representation of tuplet.
 
         Returns string.
         '''
@@ -203,13 +203,6 @@ class Tuplet(Container):
             )
 
     @property
-    def _string_summary(self):
-        if 0 < len(self):
-            return ' '.join([str(x) for x in self._music])
-        else:
-            return ''
-
-    @property
     def _summary(self):
         if 0 < len(self):
             return ', '.join([str(x) for x in self._music])
@@ -240,9 +233,6 @@ class Tuplet(Container):
                 component._set_duration(new_written_duration)
 
     def _format_after_slot(self, bundle):
-        r'''Tuple of format contributions to appear
-        immediately after self closing.
-        '''
         result = []
         result.append(('grob reverts', bundle.grob_reverts))
         result.append(('commands', bundle.after.commands))
@@ -257,18 +247,12 @@ class Tuplet(Container):
         return tuple(result)
 
     def _format_close_brackets_slot(self, bundle):
-        r'''Tuple of format contributions used to
-        generate self closing.
-        '''
         result = []
         if self.multiplier:
             result.append([('self_brackets', 'close'), '}'])
         return tuple(result)
 
     def _format_closing_slot(self, bundle):
-        r'''Tuple of format contributions to appear
-        immediately before self closing.
-        '''
         result = []
         result.append(('commands', bundle.closing.commands))
         result.append(('comments', bundle.closing.comments))
@@ -326,11 +310,11 @@ class Tuplet(Container):
 
     @property
     def force_fraction(self):
-        r'''Forced fraction formatting of tuplet.
+        r'''Gets and sets flag to force fraction formatting of tuplet.
 
         ..  container:: example
 
-            **Example 1.** Get forced fraction formatting of tuplet:
+            Gets forced fraction formatting of tuplet:
 
             ::
 
@@ -354,7 +338,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Set forced fraction formatting of tuplet:
+            Sets forced fraction formatting of tuplet:
 
             ::
 
@@ -380,12 +364,13 @@ class Tuplet(Container):
         if isinstance(arg, (bool, type(None))):
             self._force_fraction = arg
         else:
-            message = 'bad type for tuplet force fraction: "%s".'
-            raise TypeError(message % arg)
+            message = 'bad type for tuplet force fraction: {!r}.'
+            message = message.format(arg)
+            raise TypeError(message)
 
     @property
     def implied_prolation(self):
-        r'''Implied prolation of tuplet.
+        r'''Gets implied prolation of tuplet.
 
         ..  container:: example
 
@@ -412,7 +397,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Augmented tuplet:
+            Augmented tuplet:
 
             ::
 
@@ -426,7 +411,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Diminished tuplet:
+            Diminished tuplet:
 
             ::
 
@@ -440,7 +425,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 3.** Trivial tuplet:
+            Trivial tuplet:
 
             ::
 
@@ -466,7 +451,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Augmented tuplet:
+            Augmented tuplet:
 
             ::
 
@@ -480,7 +465,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Diminished tuplet:
+            Diminished tuplet:
 
             ::
 
@@ -494,7 +479,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 3.** Trivial tuplet:
+            Trivial tuplet:
 
             ::
 
@@ -515,11 +500,11 @@ class Tuplet(Container):
 
     @property
     def is_invisible(self):
-        r'''Invisibility status of tuplet.
+        r'''Gets and sets invisibility status of tuplet.
 
         ..  container:: example
 
-            **Example 1.** Get tuplet invisibility status:
+            Gets tuplet invisibility flag:
 
             ::
 
@@ -542,7 +527,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Set tuplet invisibility status:
+            Sets tuplet invisibility flag:
 
             ::
 
@@ -606,11 +591,13 @@ class Tuplet(Container):
         r'''Is true when tuplet multiplier is equal to ``1``.
         Otherwise false:
 
-        ::
+        ..  container:: example
 
-            >>> tuplet = Tuplet((1, 1), "c'8 d'8 e'8")
-            >>> tuplet.is_trivial
-            True
+            ::
+
+                >>> tuplet = Tuplet((1, 1), "c'8 d'8 e'8")
+                >>> tuplet.is_trivial
+                True
 
         Returns boolean.
         '''
@@ -620,11 +607,13 @@ class Tuplet(Container):
     def multiplied_duration(self):
         r'''Multiplied duration of tuplet.
 
-        ::
+        ..  container:: example
 
-            >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-            >>> tuplet.multiplied_duration
-            Duration(1, 4)
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> tuplet.multiplied_duration
+                Duration(1, 4)
 
         Returns duration.
         '''
@@ -632,11 +621,11 @@ class Tuplet(Container):
 
     @property
     def multiplier(self):
-        r'''Tuplet multiplier.
+        r'''Gets and sets multiplier of tuplet.
 
         ..  container:: example
 
-            **Example 1.** Get tuplet multiplier:
+            Gets tuplet multiplier:
 
                 >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
@@ -648,7 +637,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Set tuplet multiplier:
+            Sets tuplet multiplier:
 
                 >>> tuplet.multiplier = Multiplier(4, 3)
                 >>> show(tuplet) # doctest: +SKIP
@@ -675,20 +664,22 @@ class Tuplet(Container):
             rational = durationtools.Multiplier(expr)
         else:
             message = 'can not set tuplet multiplier: {!r}.'
-            raise ValueError(message.format(expr))
+            message = message.format(expr)
+            raise ValueError(message)
         if 0 < rational:
             self._multiplier = rational
         else:
             message = 'tuplet multiplier must be positive: {!r}.'
-            raise ValueError(message.format(expr))
+            message = message.format(epxr)
+            raise ValueError(message)
 
     @property
     def preferred_denominator(self):
-        r'''Preferred denominator of tuplet.
+        r'''Gets and sets preferred denominator of tuplet.
 
         ..  container:: example
 
-            **Example 1.** Get preferred denominator of tuplet:
+            Gets preferred denominator of tuplet:
 
             ::
 
@@ -708,7 +699,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Set preferred denominator of tuplet:
+            Sets preferred denominator of tuplet:
 
             ::
 
@@ -765,10 +756,10 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Make augmented tuplet from `duration` and
+            **Example 1.** Makes augmented tuplet from `duration` and
             `ratio` and avoid dots.
 
-            Make tupletted leaves strictly without dots when all
+            Makes tupletted leaves strictly without dots when all
             `ratio` equal ``1``:
 
             ::
@@ -799,7 +790,7 @@ class Tuplet(Container):
                     }
                 }
 
-            Allow tupletted leaves to return with dots when some `ratio`
+            Allows tupletted leaves to return with dots when some `ratio`
             do not equal ``1``:
 
             ::
@@ -830,7 +821,7 @@ class Tuplet(Container):
                     }
                 }
 
-            Interpret nonassignable `ratio` according to
+            Interprets nonassignable `ratio` according to
             `decrease_durations_monotonically`:
 
             ::
@@ -864,8 +855,8 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Make augmented tuplet from `duration` and
-            `ratio` and encourage dots:
+            **Example 2.** Makes augmented tuplet from `duration` and
+            `ratio` and encourages dots:
 
             ::
 
@@ -895,7 +886,7 @@ class Tuplet(Container):
                     }
                 }
 
-            Interpret nonassignable `ratio` according to
+            Interprets nonassignable `ratio` according to
             `decrease_durations_monotonically`:
 
             ::
@@ -927,10 +918,10 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 3.** Make diminished tuplet from `duration` and nonzero
+            **Example 3.** Makes diminished tuplet from `duration` and nonzero
             integer `ratio`.
 
-            Make tupletted leaves strictly without dots when all
+            Makes tupletted leaves strictly without dots when all
             `ratio` equal ``1``:
 
             ::
@@ -961,7 +952,7 @@ class Tuplet(Container):
                     }
                 }
 
-            Allow tupletted leaves to return with dots when some `ratio`
+            Allows tupletted leaves to return with dots when some `ratio`
             do not equal ``1``:
 
             ::
@@ -992,7 +983,7 @@ class Tuplet(Container):
                     }
                 }
 
-            Interpret nonassignable `ratio` according to
+            Interprets nonassignable `ratio` according to
             `decrease_durations_monotonically`:
 
             ::
@@ -1026,8 +1017,8 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 4.** Make diminished tuplet from `duration` and
-            `ratio` and encourage dots:
+            **Example 4.** Makes diminished tuplet from `duration` and
+            `ratio` and encourages dots:
 
             ::
 
@@ -1056,7 +1047,7 @@ class Tuplet(Container):
                     }
                 }
 
-            Interpret nonassignable `ratio` according to `direction`:
+            Interprets nonassignable `ratio` according to `direction`:
 
             ::
 
@@ -1091,10 +1082,7 @@ class Tuplet(Container):
         Returns fixed-duration tuplet.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
-        from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools import scoretools
         # coerce duration and ratio
         duration = durationtools.Duration(duration)
         ratio = mathtools.Ratio(ratio)
@@ -1157,8 +1145,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1a.** Change leaf to augmented tuplets
-            with `ratio`:
+            **Example 1a.** Changes leaf to augmented tuplets with `ratio`:
 
             ::
 
@@ -1181,8 +1168,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1b.** Change leaf to augmented tuplets
-            with `ratio`:
+            **Example 1b.** Changes leaf to augmented tuplets with `ratio`:
 
             ::
 
@@ -1206,8 +1192,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1c.** Change leaf to augmented tuplets
-            with `ratio`:
+            **Example 1c.** Changes leaf to augmented tuplets with `ratio`:
 
             ::
 
@@ -1233,8 +1218,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1d.** Change leaf to augmented tuplets
-            with `ratio`:
+            **Example 1d.** Changes leaf to augmented tuplets with `ratio`:
 
             ::
 
@@ -1261,8 +1245,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1e.** Change leaf to augmented tuplets
-            with `ratio`:
+            **Example 1e.** Changes leaf to augmented tuplets with `ratio`:
 
             ::
 
@@ -1290,8 +1273,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1f.** Change leaf to augmented tuplets
-            with `ratio`:
+            **Example 1f.** Changes leaf to augmented tuplets with `ratio`:
 
             ::
 
@@ -1320,8 +1302,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2a.** Change leaf to diminished tuplets
-            with `ratio`:
+            **Example 2a.** Changes leaf to diminished tuplets with `ratio`:
 
             ::
 
@@ -1344,8 +1325,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2b.** Change leaf to diminished tuplets
-            with `ratio`:
+            **Example 2b.** Changes leaf to diminished tuplets with `ratio`:
 
             ::
 
@@ -1369,8 +1349,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2c.** Change leaf to diminished tuplets
-            with `ratio`:
+            **Example 2c.** Changes leaf to diminished tuplets with `ratio`:
 
             ::
 
@@ -1395,8 +1374,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2d.** Change leaf to diminished tuplets
-            with `ratio`:
+            **Example 2d.** Changes leaf to diminished tuplets with `ratio`:
 
             ::
 
@@ -1423,8 +1401,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2e.** Change leaf to diminished tuplets
-            with `ratio`:
+            **Example 2e.** Changes leaf to diminished tuplets with `ratio`:
 
             ::
 
@@ -1452,7 +1429,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2f.** Change leaf to diminished tuplets
+            **Example 2f.** Changes leaf to diminished tuplets
             with `ratio`:
 
             ::
@@ -1494,7 +1471,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Make container when no prolation is necessary:
+            **Example 1.** Makes container when no prolation is necessary:
 
             ::
 
@@ -1519,7 +1496,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Make fixed-duration tuplet when
+            **Example 2.** Makes fixed-duration tuplet when
             prolation is necessary:
 
             ::
@@ -1650,9 +1627,6 @@ class Tuplet(Container):
         Returns tuplet or container.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
-        from abjad.tools import scoretools
-        from abjad.tools import scoretools
         ratio = mathtools.NonreducedRatio(ratio)
         if isinstance(fraction, tuple):
             fraction = mathtools.NonreducedFraction(*fraction)
@@ -1703,7 +1677,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Set preferred denominator of tuplet to at least ``8``:
+            Sets preferred denominator of tuplet to at least ``8``:
 
             ::
 
@@ -1755,7 +1729,7 @@ class Tuplet(Container):
         self.preferred_denominator = duration_pairs[1].numerator
 
     def to_fixed_duration_tuplet(self):
-        r'''Change tuplet to fixed-duration tuplet.
+        r'''Changes tuplet to fixed-duration tuplet.
 
         ..  container:: example
 
@@ -1793,7 +1767,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Change augmented tuplet to diminished:
+            **Example 1.** Changes augmented tuplet to diminished:
 
             ::
 
@@ -1829,7 +1803,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Change diminished tuplet to augmented:
+            **Example 2.** Changes diminished tuplet to augmented:
 
             ::
 

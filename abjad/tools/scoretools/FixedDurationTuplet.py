@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools.topleveltools import mutate
 from abjad.tools.scoretools.Tuplet import Tuplet
+from abjad.tools.topleveltools import mutate
 
 
 class FixedDurationTuplet(Tuplet):
@@ -60,7 +60,7 @@ class FixedDurationTuplet(Tuplet):
     ### SPECIAL METHODS ###
 
     def __getnewargs__(self):
-        '''Gets new arguments.
+        '''Gets new arguments of fixed-duration tuplet.
 
         Returns tuple.
         '''
@@ -77,12 +77,12 @@ class FixedDurationTuplet(Tuplet):
         result = result.format(
             type(self).__name__, 
             self.target_duration,
-            self._string_summary,
+            self._contents_summary,
             )
         return result
 
     def __str__(self):
-        '''String representation of fixed-duration tuplet.
+        '''Gets string representation of fixed-duration tuplet.
 
         Returns string.
         '''
@@ -138,7 +138,7 @@ class FixedDurationTuplet(Tuplet):
 
     @property
     def multiplied_duration(self):
-        r'''Multiplied duration of tuplet:
+        r'''Gets multiplied duration of tuplet.
 
         ::
 
@@ -152,7 +152,7 @@ class FixedDurationTuplet(Tuplet):
 
     @property
     def multiplier(self):
-        r'''Multiplier of tuplet:
+        r'''Gets and sets multiplier of fixed-duration tuplet.
 
         ::
 
@@ -217,7 +217,7 @@ class FixedDurationTuplet(Tuplet):
     ### PUBLIC METHODS ###
 
     def to_fixed_multiplier(self):
-        r'''Change fixed-duration tuplet to (unqualified) tuplet.
+        r'''Changes fixed-duration tuplet to (unqualified) tuplet.
 
         ..  container:: example
 
@@ -279,7 +279,7 @@ class FixedDurationTuplet(Tuplet):
                     leaf.written_duration *= 2
 
     def trim(self, start, stop='unused'):
-        r'''Trim fixed-duration tuplet elements from `start` to `stop`:
+        r'''Trims fixed-duration tuplet elements from `start` to `stop`:
 
         ::
 
@@ -294,9 +294,9 @@ class FixedDurationTuplet(Tuplet):
             >>> tuplet
             FixedDurationTuplet(Duration(1, 6), "c'8 d'8")
 
-        Preserve fixed-duration tuplet multiplier.
+        Preserves fixed-duration tuplet multiplier.
 
-        Adjust fixed-duration tuplet duration.
+        Adjusts fixed-duration tuplet duration.
 
         Returns none.
         '''
