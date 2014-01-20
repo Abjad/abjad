@@ -466,7 +466,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> expression.payload
-            {{c'8, d'8, e'8, f'8}}
+            Container('Container("c\'8 d\'8 e\'8 f\'8")')
 
         Returns container.
         '''

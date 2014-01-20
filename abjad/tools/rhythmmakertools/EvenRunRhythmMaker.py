@@ -156,9 +156,9 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> result = maker(divisions)
                 >>> for selection in result:
                 ...     selection
-                Selection({c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16},)
-                Selection({c'8, c'8, c'8, c'8, c'8, c'8},)
-                Selection({c'8, c'8, c'8, c'8},)
+                Selection(Container("c'16 c'16 c'16 c'16 c'16 c'16 c'16 c'16"),)
+                Selection(Container("c'8 c'8 c'8 c'8 c'8 c'8"),)
+                Selection(Container("c'8 c'8 c'8 c'8"),)
 
         Returns a list of selections. Each selection holds a single container
         filled with notes.

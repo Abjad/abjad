@@ -17,7 +17,7 @@ class PersistenceAgent(abctools.AbjadObject):
         ::
 
             >>> persist(staff)
-            PersistenceAgent(client={c'4, e'4, d'4, f'4})
+            PersistenceAgent(client=Staff("c'4 e'4 d'4 f'4"))
 
     '''
 

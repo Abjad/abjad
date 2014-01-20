@@ -90,12 +90,12 @@ class Measure(FixedDurationContainer):
         self._conditionally_adjust_time_signature(old_denominator)
 
     def __getnewargs__(self):
-        r'''Gets new arguments.
+        r'''Gets new arguments of measure.
 
         Returns pair.
         '''
         time_signature = self.time_signature
-        return (time_signature.pair, )
+        return (time_signature.pair,)
 
     def __repr__(self):
         r'''Gets interpreter representation of measure.
@@ -116,8 +116,8 @@ class Measure(FixedDurationContainer):
         indicator = self._get_indicator(indicatortools.TimeSignature)
         forced_time_signature = indicator
         forced_time_signature = forced_time_signature.pair
-        # TODO: remove self._summary
-        #summary = self._summary
+        # TODO: remove self._summary and self._string_summary
+        # TODO: use self._contents_summary only in all containers
         summary = self._string_summary
         if forced_time_signature and len(self):
             result = '{}({!s}, {!r})'

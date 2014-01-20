@@ -89,14 +89,14 @@ class GraceContainer(Container):
         Container.__init__(self, music)
         self.kind = kind
 
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        r'''Gets interpreter representation of grace container.
-
-        Returns string.
-        '''
-        return '{}({})'.format(type(self).__name__, self._summary)
+#    ### SPECIAL METHODS ###
+#
+#    def __repr__(self):
+#        r'''Gets interpreter representation of grace container.
+#
+#        Returns string.
+#        '''
+#        return '{}({})'.format(type(self).__name__, self._summary)
 
     ### PRIVATE PROPERTIES ###
 

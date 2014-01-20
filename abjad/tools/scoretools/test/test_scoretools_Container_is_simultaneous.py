@@ -66,18 +66,16 @@ def test_scoretools_Container_is_simultaneous_04():
 
 
 def test_scoretools_Container_is_simultaneous_05():
-    r'''simultaneous containers must contain only Contexts.
-    It can not take leaves.
+    r'''Simultaneous containers must contain only contexts.
     '''
 
     container = Container("c'8 c'8 c'8 c'8")
-    pytest.raises(AssertionError, 'container.is_simultaneous = True')
+    pytest.raises(Exception, 'container.is_simultaneous = True')
 
 
 def test_scoretools_Container_is_simultaneous_06():
-    r'''simultaneous containers must contain only Contexts.
-    It can not take Containers.
+    r'''Simultaneous containers must contain only Contexts.
     '''
 
     container = Container(2 * Container("c'8 c'8 c'8 c'8"))
-    pytest.raises(AssertionError, 'container.is_simultaneous = True')
+    pytest.raises(Exception, 'container.is_simultaneous = True')

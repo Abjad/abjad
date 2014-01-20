@@ -209,7 +209,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_21():
         mathtools.NonreducedFraction(6, 16),
         )
 
-    assert str(tuplet) == "{c'4.}"
+    assert str(tuplet) == 'Container("c\'4.")'
 
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_22():
@@ -219,7 +219,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_22():
         mathtools.NonreducedFraction(6, 16),
         )
 
-    assert str(tuplet) == "{c'4.}"
+    assert str(tuplet) == 'Container("c\'4.")'
 
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_23():
@@ -229,7 +229,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_23():
         mathtools.NonreducedFraction(6, 16),
         )
 
-    assert str(tuplet) == "{r4.}"
+    assert str(tuplet) == "Container('r4.')"
 
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_24():
@@ -239,7 +239,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_24():
         mathtools.NonreducedFraction(6, 16),
         )
 
-    assert str(tuplet) == "{r4.}"
+    assert str(tuplet) == "Container('r4.')"
 
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_25():

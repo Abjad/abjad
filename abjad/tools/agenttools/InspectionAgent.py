@@ -16,7 +16,7 @@ class InspectionAgent(abctools.AbjadObject):
         ::
 
             >>> inspect_(staff)
-            InspectionAgent(client={c'4, e'4, d'4, f'4})
+            InspectionAgent(client=Staff("c'4 e'4 d'4 f'4"))
 
     '''
 
@@ -252,7 +252,7 @@ class InspectionAgent(abctools.AbjadObject):
             ::
 
                 >>> inspect_(staff[1]).get_grace_containers()
-                (GraceContainer(cs'16), GraceContainer(ds'16))
+                (GraceContainer("cs'16"), GraceContainer("ds'16"))
 
         ..  container:: example
 
@@ -261,7 +261,7 @@ class InspectionAgent(abctools.AbjadObject):
             ::
 
                 >>> inspect_(staff[1]).get_grace_containers(kind='grace')
-                (GraceContainer(cs'16),)
+                (GraceContainer("cs'16"),)
 
         ..  container:: example
 
@@ -270,7 +270,7 @@ class InspectionAgent(abctools.AbjadObject):
             ::
 
                 >>> inspect_(staff[1]).get_grace_containers(kind='after')
-                (GraceContainer(ds'16),)
+                (GraceContainer("ds'16"),)
 
         Set `kind` to ``'grace'``, ``'after'`` or none.
 

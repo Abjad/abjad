@@ -14,7 +14,7 @@ def persist(expr):
         ::
 
             >>> persist(staff)
-            PersistenceAgent(client={c'4, e'4, d'4, f'4})
+            PersistenceAgent(client=Staff("c'4 e'4 d'4 f'4"))
 
     Returns score mutation agent.
     '''

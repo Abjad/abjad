@@ -29,7 +29,6 @@ class Container(Component):
                 f'8
             }
 
-
     '''
 
     ### CLASS VARIABLES ###
@@ -38,17 +37,18 @@ class Container(Component):
         '_formatter',
         '_music',
         '_named_children',
-        '_simultaneous',
+        '_is_simultaneous',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None):
+    def __init__(self, music=None, is_simultaneous=None):
         music = music or []
         Component.__init__(self)
         self._named_children = {}
-        self._simultaneous = False
+        self._is_simultaneous = False
         self._initialize_music(music)
+        self.is_simultaneous = is_simultaneous
 
     ### SPECIAL METHODS ###
 
@@ -128,13 +128,6 @@ class Container(Component):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _compact_representation(self):
-        if not self.is_simultaneous:
-            return '{%s}' % self._summary
-        else:
-            return '<<%s>>' % self._summary
-
-    @property
     def _contents_duration(self):
         if self.is_simultaneous:
             return max([durationtools.Duration(0)] +
@@ -164,16 +157,22 @@ class Container(Component):
     @property
     def _repr_specification(self):
         from abjad.tools import systemtools
+        positional_argument_values=(
+            self._space_delimited_summary,
+            )
+        keyword_argument_names = ()
+        if self.is_simultaneous:
+            keyword_argument_names = (
+                'is_simultaneous',
+                )
         return systemtools.StorageFormatSpecification(
             self,
             is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=(),
-            storage_format_pieces=(
-                self._compact_representation,
-                ),
+            positional_argument_values=positional_argument_values,
+            keyword_argument_names=keyword_argument_names,
             )
 
+    # TODO: rename to self._contents_summary
     @property
     def _space_delimited_summary(self):
         if 0 < len(self):
@@ -203,13 +202,6 @@ class Container(Component):
             keyword_argument_names=(),
             positional_argument_values=positional_argument_values,
             )
-
-    @property
-    def _summary(self):
-        if 0 < len(self):
-            return ', '.join([str(x) for x in self._music])
-        else:
-            return ''
 
     ### PRIVATE METHODS ###
 
@@ -530,16 +522,20 @@ class Container(Component):
 
         Returns boolean.
         '''
-        return self._simultaneous
+        return self._is_simultaneous
 
     @is_simultaneous.setter
     def is_simultaneous(self, expr):
         from abjad.tools import scoretools
+        if expr is None:
+            return
         assert isinstance(expr, bool), repr(expr)
+        prototype = scoretools.Context
         if expr == True:
-            assert all(
-                isinstance(x, scoretools.Context) for x in self._music)
-        self._simultaneous = expr
+            if not all(isinstance(x, prototype) for x in self):
+                message = 'simultaneous containers must contain only contexts.'
+                raise ValueError(message)
+        self._is_simultaneous = expr
         self._update_later(offsets=True)
 
     ### PRIVATE METHODS ###

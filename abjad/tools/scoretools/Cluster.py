@@ -22,7 +22,7 @@ class Cluster(Container):
     ::
 
         >>> cluster
-        Cluster(c'8, <d' g'>8, b'8)
+        Cluster("c'8 <d' g'>8 b'8")
 
     '''
 
@@ -38,20 +38,6 @@ class Cluster(Container):
     def __init__(self, music=None):
         Container.__init__(self, music)
         self.is_simultaneous = False
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        r'''Gets interpreter representation of cluster.
-
-        ::
-
-            >>> cluster
-            Cluster(c'8, <d' g'>8, b'8)
-
-        Returns string.
-        '''
-        return '{}({})'.format(type(self).__name__, self._summary)
 
     ### PRIVATE METHODS ###
 

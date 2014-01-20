@@ -242,7 +242,7 @@ class LilyPondParser(abctools.Parser):
         ::
 
             >>> parser('{ c df e fs }')
-            {c4, df4, e4, fs4}
+            Container('c4 df4 e4 fs4')
 
         ::
 
@@ -253,7 +253,7 @@ class LilyPondParser(abctools.Parser):
         ::
 
             >>> parser('{ c des e fis }')
-            {c4, df4, e4, fs4}
+            Container('c4 df4 e4 fs4')
 
         Returns string.
         '''
