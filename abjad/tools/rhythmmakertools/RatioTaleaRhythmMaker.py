@@ -71,7 +71,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
 
     def __init__(
         self,
-        ratio_talea=[(1, 1), (1, 2), (1, 3)],
+        ratio_talea=((1, 1), (1, 2), (1, 3)),
         is_diminution=True,
         beam_cells_together=False,
         beam_each_cell=True,
