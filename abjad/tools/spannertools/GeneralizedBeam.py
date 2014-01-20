@@ -115,6 +115,7 @@ class GeneralizedBeam(Spanner):
 
     def __init__(
         self,
+        durations=None,
         include_long_duration_notes=False,
         include_long_duration_rests=False,
         isolated_nib_direction=None,
