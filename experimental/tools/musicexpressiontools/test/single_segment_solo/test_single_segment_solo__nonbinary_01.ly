@@ -12,30 +12,20 @@
 	\context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
 		\context RhythmicStaff = "Staff 1" {
 			\context Voice = "Voice 1" {
-				{
-					\times 4/5 {
-						c'4
-					}
+				\times 4/5 {
+					c'4
 				}
-				{
-					\times 4/5 {
-						c'4
-					}
+				\times 4/5 {
+					c'4
 				}
-				{
-					\times 4/5 {
-						c'4
-					}
+				\times 4/5 {
+					c'4
 				}
-				{
-					\times 4/5 {
-						c'4
-					}
+				\times 4/5 {
+					c'4
 				}
-				{
-					\times 4/5 {
-						c'16.
-					}
+				\times 4/5 {
+					c'16.
 				}
 			}
 		}

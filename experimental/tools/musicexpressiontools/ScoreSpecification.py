@@ -230,6 +230,7 @@ class ScoreSpecification(Specification):
                                 tie_split_notes=False,
                                 burnish_divisions=False,
                                 burnish_output=False,
+                                tie_across_divisions=False,
                                 ),
                             ),
                         target_timespan='red',
@@ -312,6 +313,7 @@ class ScoreSpecification(Specification):
                             tie_split_notes=False,
                             burnish_divisions=False,
                             burnish_output=False,
+                            tie_across_divisions=False,
                             ),
                         division_list=musicexpressiontools.DivisionList(
                             [
@@ -361,6 +363,7 @@ class ScoreSpecification(Specification):
                             tie_split_notes=False,
                             burnish_divisions=False,
                             burnish_output=False,
+                            tie_across_divisions=False,
                             ),
                         division_list=musicexpressiontools.DivisionList(
                             [
