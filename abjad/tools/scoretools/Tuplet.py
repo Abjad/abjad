@@ -126,25 +126,6 @@ class Tuplet(Container):
             )
         return result
 
-    def __str__(self):
-        '''Gets string representation of tuplet.
-
-        Returns string.
-        '''
-        if 0 < len(self):
-            return '{{{} {} {} {}}}'.format(
-                self._signifier,
-                self._ratio_string,
-                self._summary,
-                self._signifier,
-                )
-        else:
-            return '{{{} {} {}}}'.format(
-                self._signifier,
-                self.multiplier,
-                self._signifier,
-                )
-
     ### PRIVATE PROPERTIES ###
 
     @property

@@ -81,25 +81,6 @@ class FixedDurationTuplet(Tuplet):
             )
         return result
 
-    def __str__(self):
-        '''Gets string representation of fixed-duration tuplet.
-
-        Returns string.
-        '''
-        if 0 < len(self):
-            return '{%s %s %s %s}' % (
-                self._signifier,
-                self._ratio_string,
-                self._summary,
-                self._signifier,
-                )
-        else:
-            return '{%s %s %s}' % (
-                self._signifier,
-                self.target_duration,
-                self._signifier,
-                )
-
     ### PRIVATE PROPERTIES ###
 
     @property

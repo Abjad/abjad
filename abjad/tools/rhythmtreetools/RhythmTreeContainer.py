@@ -2,9 +2,9 @@
 from abjad.tools import documentationtools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import spannertools
-from abjad.tools import scoretools
 from abjad.tools.datastructuretools.TreeContainer import TreeContainer
 from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
 
@@ -83,7 +83,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
     ::
 
         >>> container((1, 4))
-        [FixedDurationTuplet(Duration(1, 4), "c'8 {@ 5:4 c'8., c'8 @}")]
+        [FixedDurationTuplet(Duration(1, 4), 'c\'8 FixedDurationTuplet(Duration(1, 4), "c\'8. c\'8")')]
 
     ..  doctest::
 
@@ -194,7 +194,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         ::
 
             >>> tree((1, 4))
-            [FixedDurationTuplet(Duration(1, 4), "c'16 {@ 3:2 c'16, c'16, c'16 @} c'8")]
+            [FixedDurationTuplet(Duration(1, 4), 'c\'16 FixedDurationTuplet(Duration(1, 8), "c\'16 c\'16 c\'16") c\'8')]
 
         Returns sequence of components.
         '''
