@@ -39,6 +39,7 @@ class Measure(FixedDurationContainer):
         '_always_format_time_signature',
         '_automatically_adjust_time_signature',
         '_measure_number',
+        '_should_scale_contents',
         )
 
     _is_counttime_component = True
@@ -52,6 +53,7 @@ class Measure(FixedDurationContainer):
         FixedDurationContainer.__init__(self, time_signature, music)
         self._always_format_time_signature = False
         self._measure_number = None
+        self._should_scale_contents = True
         time_signature = indicatortools.TimeSignature(time_signature)
         attach(time_signature, self)
 
@@ -646,6 +648,19 @@ class Measure(FixedDurationContainer):
         '''
         self._update_now(offsets=True)
         return self._measure_number
+
+    @property
+    def should_scale_contents(self):
+        r'''Is true when measure should scale contents. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._should_scale_contents
+
+    @should_scale_contents.setter
+    def should_scale_contents(self, arg):
+        assert isinstance(arg, bool)
+        self._should_scale_contents = arg
 
     @property
     def target_duration(self):
