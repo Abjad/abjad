@@ -37,23 +37,23 @@ class Descendants(SimultaneousSelection):
         ...
         Score<<2>>
         Staff-"Treble Staff"{1}
-        Voice-"Treble Voice"{1}
+        Voice("c'4")
         Note("c'4")
         Staff-"Bass Staff"{1}
-        Voice-"Bass Voice"{1}
+        Voice('b,4')
         Note('b,4')
 
     ::
 
         >>> for x in selectiontools.Descendants(score['Bass Voice']): x
         ...
-        Voice-"Bass Voice"{1}
+        Voice('b,4')
         Note('b,4')
 
     Descendants is treated as the selection of the component's 
     improper descendants.
 
-    Returns descendants instance.
+    Returns descendants.
     '''
 
     ### CLASS VARIABLES ###

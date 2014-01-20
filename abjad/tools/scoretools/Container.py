@@ -157,9 +157,11 @@ class Container(Component):
     @property
     def _repr_specification(self):
         from abjad.tools import systemtools
-        positional_argument_values=(
-            self._space_delimited_summary,
-            )
+        positional_argument_values = ()
+        if len(self):
+            positional_argument_values=(
+                self._space_delimited_summary,
+                )
         keyword_argument_names = ()
         if self.is_simultaneous:
             keyword_argument_names = (

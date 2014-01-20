@@ -18,7 +18,7 @@ class Context(Container):
     ::
 
         >>> context
-        TimeSignatureContext-"MeterVoice"{}
+        Context()
 
     ..  doctest::
 
@@ -58,10 +58,16 @@ class Context(Container):
         ::
 
             >>> context
-            TimeSignatureContext-"MeterVoice"{}
+            Context()
 
         Returns string.
         '''
+        from abjad.tools import scoretools
+        if all(isinstance(x, scoretools.Leaf) for x in self):
+            return Container.__repr__(self)
+        return self._get_abbreviated_string_format()
+
+    def _get_abbreviated_string_format(self):
         if 0 < len(self):
             summary = str(len(self))
         else:

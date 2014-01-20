@@ -73,7 +73,7 @@ def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
     ::
 
         >>> labeltools.color_chord_note_heads_in_expr_by_pitch_class_color_map(staff, color_map)
-        Staff{}
+        Staff()
 
     Return `chord`.
     '''

@@ -12,7 +12,7 @@ class Voice(Context):
     ::
 
         >>> voice
-        Voice{4}
+        Voice("c'8 d'8 e'8 f'8")
 
     ..  doctest::
 

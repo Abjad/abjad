@@ -36,10 +36,10 @@ class Lineage(SimultaneousSelection):
         ...
         Score<<2>>
         Staff-"Treble Staff"{1}
-        Voice-"Treble Voice"{1}
+        Voice("c'4")
         Note("c'4")
         Staff-"Bass Staff"{1}
-        Voice-"Bass Voice"{1}
+        Voice('b,4')
         Note('b,4')
 
     ::
@@ -48,10 +48,10 @@ class Lineage(SimultaneousSelection):
         ...
         Score<<2>>
         Staff-"Bass Staff"{1}
-        Voice-"Bass Voice"{1}
+        Voice('b,4')
         Note('b,4')
 
-    Returns lineage instance.
+    Returns lineage.
     '''
 
     ### CLASS VARIABLES ###

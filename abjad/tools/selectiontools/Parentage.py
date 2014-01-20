@@ -52,7 +52,7 @@ class Parentage(SimultaneousSelection):
             >>> for x in parentage: x
             ...
             Note('c4')
-            Voice-"Bass Voice"{1}
+            Voice('c4')
             Staff-"Bass Staff"{1}
             Score<<2>>
 

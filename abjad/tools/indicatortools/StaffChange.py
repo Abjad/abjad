@@ -90,7 +90,7 @@ class StaffChange(AbjadObject):
         ::
 
             >>> staff_change.staff
-            Staff-"LHStaff"{1}
+            Staff('s2')
 
         Returns staff.
         '''

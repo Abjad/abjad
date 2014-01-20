@@ -684,9 +684,9 @@ class IterationAgent(abctools.AbjadObject):
             ...     x
             ...
             Note("c'8")
-            Voice-"voice 1"{2}
+            Voice("c'8 d'8")
             Note("d'8")
-            Voice-"voice 1"{2}
+            Voice("g'8 a'8")
             Note("g'8")
             Note("a'8")
 
@@ -716,9 +716,9 @@ class IterationAgent(abctools.AbjadObject):
             ...     ):
             ...     x
             Note("c''8")
-            Voice-"voice 2"{2}
+            Voice("b'8 c''8")
             Note("b'8")
-            Voice-"voice 2"{2}
+            Voice("e'8 f'8")
             Note("f'8")
             Note("e'8")
 
@@ -868,7 +868,7 @@ class IterationAgent(abctools.AbjadObject):
             >>> for voice in iterate(staff).by_semantic_voice():
             ...   voice
             ...
-            Voice-"MusicVoice"{5}
+            Voice("c'4. d'4 e'16 f'4 g'16")
 
         Iterate semantic voices backward in `expr`:
 
@@ -877,7 +877,7 @@ class IterationAgent(abctools.AbjadObject):
             >>> for voice in iterate(staff).by_semantic_voice(reverse=True):
             ...   voice
             ...
-            Voice-"MusicVoice"{5}
+            Voice("c'4. d'4 e'16 f'4 g'16")
 
         Returns generator.
         '''
