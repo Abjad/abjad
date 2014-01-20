@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
-import abc
 import copy
-import types
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
@@ -11,19 +9,18 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import new
 
 
 class TaleaRhythmMaker(RhythmMaker):
     '''Talea rhythm-maker.
-    
+
     'Burnishing' means to forcibly cast the first or last
     (or both first and last) elements of a output cell to be
     either a note or rest.
 
-    'Division-burnishing' rhythm-makers burnish every output cell they 
+    'Division-burnishing' rhythm-makers burnish every output cell they
     produce.
 
     'Output-burnishing' rhythm-makers burnish only the first and last
@@ -31,7 +28,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
     ..  container:: example
 
-        Burnishes output: 
+        Burnishes output:
 
         ::
 
@@ -112,17 +109,17 @@ class TaleaRhythmMaker(RhythmMaker):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         talea=(-1, 4, -2, 3),
         talea_denominator=16,
         prolation_addenda=None,
         burnish_specifier=None,
         secondary_divisions=None,
         helper_functions=None,
-        beam_each_cell=False, 
+        beam_each_cell=False,
         beam_cells_together=False,
-        decrease_durations_monotonically=True, 
-        tie_split_notes=False, 
+        decrease_durations_monotonically=True,
+        tie_split_notes=False,
         burnish_divisions=False,
         burnish_output=False,
         ):
@@ -146,7 +143,8 @@ class TaleaRhythmMaker(RhythmMaker):
         rights_helper = helper_functions.get('rights')
         left_lengths_helper = helper_functions.get('left_lengths')
         right_lengths_helper = helper_functions.get('right_lengths')
-        secondary_divisions_helper = helper_functions.get('secondary_divisions')
+        secondary_divisions_helper = \
+            helper_functions.get('secondary_divisions')
         assert isinstance(burnish_divisions, bool)
         assert isinstance(burnish_output, bool)
         self._burnish_divisions = burnish_divisions
@@ -173,10 +171,10 @@ class TaleaRhythmMaker(RhythmMaker):
             talea_denominator)
         assert prolation_addenda is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-            prolation_addenda)
+                prolation_addenda)
         assert secondary_divisions is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-            secondary_divisions)
+                secondary_divisions)
         assert callable(talea_helper)
         assert callable(prolation_addenda_helper)
         assert callable(lefts_helper)
@@ -201,36 +199,11 @@ class TaleaRhythmMaker(RhythmMaker):
 
         Returns either list of tuplets or else list of note-lists.
         '''
-        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
-        octuplet = self._prepare_input(seeds)
-        talea, prolation_addenda = octuplet[:2]
-        secondary_divisions = octuplet[-1]
-        taleas = (talea, prolation_addenda, secondary_divisions)
-        result = self._scale_taleas(
-            duration_pairs, self.talea_denominator, taleas)
-        duration_pairs, lcd, talea, prolation_addenda, secondary_divisions = \
-            result
-        secondary_duration_pairs = self._make_secondary_duration_pairs(
-            duration_pairs, secondary_divisions)
-        septuplet = (talea, prolation_addenda) + octuplet[2:-1]
-        numeric_map = self._make_numeric_map(
-            secondary_duration_pairs, septuplet)
-        leaf_lists = self._make_leaf_lists(numeric_map, lcd)
-        if not prolation_addenda:
-            result = leaf_lists
-        else:
-            tuplets = self._make_tuplets(secondary_duration_pairs, leaf_lists)
-            result = tuplets
-        if self.beam_each_cell:
-            for cell in result:
-                beam = spannertools.MultipartBeam()
-                attach(beam, cell)
-        if self.tie_split_notes:
-            self._add_ties(result)
-        assert isinstance(result, list), repr(result)
-        assert all(isinstance(x, selectiontools.Selection) for x in result) or \
-            all(isinstance(x, scoretools.Tuplet) for x in result)
-        return result
+        return RhythmMaker.__call__(
+            self,
+            divisions,
+            seeds=seeds,
+            )
 
     def __format__(self, format_specification=''):
         r'''Formats talea rhythm-maker.
@@ -322,7 +295,7 @@ class TaleaRhythmMaker(RhythmMaker):
             'beam_each_cell': self.beam_each_cell,
             'beam_cells_together': self.beam_cells_together,
             'decrease_durations_monotonically':
-                self.decrease_durations_monotonically, 
+                self.decrease_durations_monotonically,
             'tie_split_notes': self.tie_split_notes,
             'burnish_divisions': self.burnish_divisions,
             'burnish_output': self.burnish_output,
@@ -334,10 +307,9 @@ class TaleaRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _add_ties(self, result):
-        from abjad.tools import selectiontools
         leaves = list(iterate(result).by_class(scoretools.Leaf))
         written_durations = [leaf.written_duration for leaf in leaves]
-        weights = [durationtools.Duration(numerator, self.talea_denominator) 
+        weights = [durationtools.Duration(numerator, self.talea_denominator)
             for numerator in self.talea]
         parts = sequencetools.partition_sequence_by_weights_exactly(
             written_durations, weights=weights, cyclic=True, overhang=True)
@@ -374,15 +346,15 @@ class TaleaRhythmMaker(RhythmMaker):
         return new_division_part
 
     def _burnish_all_division_parts(self, divisions, quintuplet):
-        lefts, middles, rights, left_lengths, right_lengths=quintuplet
+        lefts, middles, rights, left_lengths, right_lengths = quintuplet
         lefts_index, rights_index = 0, 0
         burnished_divisions = []
         for division_index, division in enumerate(divisions):
             left_length = left_lengths[division_index]
-            left = lefts[lefts_index:lefts_index+left_length]
+            left = lefts[lefts_index:lefts_index + left_length]
             lefts_index += left_length
             right_length = right_lengths[division_index]
-            right = rights[rights_index:rights_index+right_length]
+            right = rights[rights_index:rights_index + right_length]
             rights_index += right_length
             available_left_length = len(division)
             left_length = min([left_length, available_left_length])
@@ -394,11 +366,11 @@ class TaleaRhythmMaker(RhythmMaker):
             right = right[:right_length]
             left_part, middle_part, right_part = \
                 sequencetools.partition_sequence_by_counts(
-                division, 
-                [left_length, middle_length, right_length], 
-                cyclic=False, 
-                overhang=False,
-                )
+                    division,
+                    [left_length, middle_length, right_length],
+                    cyclic=False,
+                    overhang=False,
+                    )
             left_part = self._burnish_division_part(left_part, left)
             middle_part = self._burnish_division_part(middle_part, middle)
             right_part = self._burnish_division_part(right_part, right)
@@ -410,7 +382,8 @@ class TaleaRhythmMaker(RhythmMaker):
         return burnished_divisions
 
     def _burnish_division_parts(self, divisions, quintuplet):
-        if self.burnish_divisions or getattr(self, '_burnish_divisions', False):
+        if self.burnish_divisions or \
+            getattr(self, '_burnish_divisions', False):
             return self._burnish_all_division_parts(divisions, quintuplet)
         elif self.burnish_output or getattr(self, '_burnish_output', False):
             return self._burnish_first_and_last_division_parts(
@@ -436,10 +409,11 @@ class TaleaRhythmMaker(RhythmMaker):
             right = right[:right_length]
             left_part, middle_part, right_part = \
                 sequencetools.partition_sequence_by_counts(
-                divisions[0],
-                [left_length, middle_length, right_length], 
-                cyclic=False,
-                overhang=False)
+                    divisions[0],
+                    [left_length, middle_length, right_length],
+                    cyclic=False,
+                    overhang=False,
+                    )
             left_part = self._burnish_division_part(left_part, left)
             middle_part = self._burnish_division_part(middle_part, middle)
             right_part = self._burnish_division_part(right_part, right)
@@ -454,10 +428,11 @@ class TaleaRhythmMaker(RhythmMaker):
             middle = middle_length * [middles[0]]
             left_part, middle_part = \
                 sequencetools.partition_sequence_by_counts(
-                divisions[0], 
-                [left_length, middle_length],
-                cyclic=False,
-                overhang=False)
+                    divisions[0],
+                    [left_length, middle_length],
+                    cyclic=False,
+                    overhang=False,
+                    )
             left_part = self._burnish_division_part(left_part, left)
             middle_part = self._burnish_division_part(middle_part, middle)
             burnished_division = left_part + middle_part
@@ -477,10 +452,11 @@ class TaleaRhythmMaker(RhythmMaker):
             middle = middle_length * [middles[0]]
             middle_part, right_part = \
                 sequencetools.partition_sequence_by_counts(
-                divisions[-1], 
-                [middle_length, right_length], 
-                cyclic=False,
-                overhang=False)
+                    divisions[-1],
+                    [middle_length, right_length],
+                    cyclic=False,
+                    overhang=False,
+                    )
             middle_part = self._burnish_division_part(middle_part, middle)
             right_part = self._burnish_division_part(right_part, right)
             burnished_division = middle_part + right_part
@@ -494,13 +470,41 @@ class TaleaRhythmMaker(RhythmMaker):
         leaf_lists = []
         for map_division in numeric_map:
             leaf_list = scoretools.make_leaves_from_talea(
-                map_division, 
+                map_division,
                 talea_denominator,
-                decrease_durations_monotonically= \
+                decrease_durations_monotonically=\
                     self.decrease_durations_monotonically,
                 )
             leaf_lists.append(leaf_list)
         return leaf_lists
+
+    def _make_music(self, duration_pairs, seeds):
+        octuplet = self._prepare_input(seeds)
+        talea, prolation_addenda = octuplet[:2]
+        secondary_divisions = octuplet[-1]
+        taleas = (talea, prolation_addenda, secondary_divisions)
+        result = self._scale_taleas(
+            duration_pairs, self.talea_denominator, taleas)
+        duration_pairs, lcd, talea, prolation_addenda, secondary_divisions = \
+            result
+        secondary_duration_pairs = self._make_secondary_duration_pairs(
+            duration_pairs, secondary_divisions)
+        septuplet = (talea, prolation_addenda) + octuplet[2:-1]
+        numeric_map = self._make_numeric_map(
+            secondary_duration_pairs, septuplet)
+        leaf_lists = self._make_leaf_lists(numeric_map, lcd)
+        if not prolation_addenda:
+            result = leaf_lists
+        else:
+            tuplets = self._make_tuplets(secondary_duration_pairs, leaf_lists)
+            result = tuplets
+        if self.beam_each_cell:
+            for cell in result:
+                beam = spannertools.MultipartBeam()
+                attach(beam, cell)
+        if self.tie_split_notes:
+            self._add_ties(result)
+        return result
 
     def _make_numeric_map(self, duration_pairs, septuplet):
         talea, prolation_addenda, lefts, middles, rights, left_lengths, right_lengths = septuplet
@@ -598,11 +602,11 @@ class TaleaRhythmMaker(RhythmMaker):
         return (
             talea,
             prolation_addenda,
-            lefts, 
-            middles, 
-            rights, 
-            left_lengths, 
-            right_lengths, 
+            lefts,
+            middles,
+            rights,
+            left_lengths,
+            right_lengths,
             secondary_divisions,
             )
 
@@ -742,6 +746,6 @@ class TaleaRhythmMaker(RhythmMaker):
             prolation_addenda=prolation_addenda,
             burnish_specifier=burnish_specifier,
             secondary_divisions=secondary_divisions,
-            decrease_durations_monotonically=decrease_durations_monotonically, 
+            decrease_durations_monotonically=decrease_durations_monotonically,
             )
         return maker

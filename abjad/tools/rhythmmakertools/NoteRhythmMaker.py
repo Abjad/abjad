@@ -61,18 +61,11 @@ class NoteRhythmMaker(RhythmMaker):
 
         Returns list of selections.
         '''
-        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
-        result = []
-        for duration_pair in duration_pairs:
-            notes = scoretools.make_leaves(
-                pitches=0,
-                durations=[duration_pair],
-                decrease_durations_monotonically=\
-                    self.decrease_durations_monotonically,
-                forbidden_written_duration=self.forbidden_written_duration,
-                )
-            result.append(notes)
-        return result
+        return RhythmMaker.__call__(
+            self,
+            divisions,
+            seeds=seeds,
+            )
 
     def __format__(self, format_specification=''):
         r'''Formats note rhythm-maker.
@@ -130,6 +123,21 @@ class NoteRhythmMaker(RhythmMaker):
         Returns new note rhythm-maker.
         '''
         return RhythmMaker.__makenew__(self, *args, **kwargs)
+
+    ### PRIVATE METHODS ###
+
+    def _make_music(self, duration_pairs, seeds):
+        result = []
+        for duration_pair in duration_pairs:
+            notes = scoretools.make_leaves(
+                pitches=0,
+                durations=[duration_pair],
+                decrease_durations_monotonically=\
+                    self.decrease_durations_monotonically,
+                forbidden_written_duration=self.forbidden_written_duration,
+                )
+            result.append(notes)
+        return result
 
     ### PUBLIC METHODS ###
 

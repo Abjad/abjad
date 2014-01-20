@@ -125,7 +125,106 @@ class IncisedRhythmMaker(RhythmMaker):
 
         Returns list of tuplets or return list of leaf lists.
         '''
-        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
+        return RhythmMaker.__call__(
+            self,
+            divisions,
+            seeds=seeds,
+            )
+
+    def __makenew__(self, *args, **kwargs):
+        r'''Makes new incised rhythm-maker with optional `kwargs`.
+
+        Returns new incised rhythm-maker.
+        '''
+        assert not args
+        arguments = {
+            'beam_cells_together': self.beam_cells_together,
+            'beam_each_cell': self.beam_each_cell,
+            'forbidden_written_duration': self.forbidden_written_duration,
+            'incise_specifier': self.incise_specifier,
+            'body_ratio': self.body_ratio,
+            'prolation_addenda': self.prolation_addenda,
+            'secondary_divisions': self.secondary_divisions,
+            'helper_functions': self.helper_functions,
+            'decrease_durations_monotonically':
+                self.decrease_durations_monotonically,
+            'fill_with_notes': self.fill_with_notes,
+            'incise_divisions': self.incise_divisions,
+            'incise_output': self.incise_output,
+            }
+        arguments.update(kwargs)
+        maker = type(self)(**arguments)
+        return maker
+
+    ### PRIVATE METHODS ###
+
+    def _make_division_incised_numeric_map(
+        self, 
+        duration_pairs=None,
+        prefix_talea=None, 
+        prefix_lengths=None,
+        suffix_talea=None, 
+        suffix_lengths=None, 
+        prolation_addenda=None,
+        ):
+        numeric_map, prefix_talea_index, suffix_talea_index = [], 0, 0
+        for pair_index, duration_pair in enumerate(duration_pairs):
+            prefix_length, suffix_length = \
+                prefix_lengths[pair_index], suffix_lengths[pair_index]
+            prefix = prefix_talea[
+                prefix_talea_index:prefix_talea_index+prefix_length]
+            suffix = suffix_talea[
+                suffix_talea_index:suffix_talea_index+suffix_length]
+            prefix_talea_index += prefix_length
+            suffix_talea_index += suffix_length
+            prolation_addendum = prolation_addenda[pair_index]
+            if isinstance(duration_pair, tuple):
+                numerator = duration_pair[0] + (
+                    prolation_addendum % duration_pair[0])
+            else:
+                numerator = duration_pair.numerator + (
+                    prolation_addendum % duration_pair.numerator)
+            numeric_map_part = self._make_numeric_map_part(
+                numerator, prefix, suffix)
+            numeric_map.append(numeric_map_part)
+        return numeric_map
+
+    def _make_middle_of_numeric_map_part(self, middle):
+        if self.fill_with_notes:
+            if self.incise_divisions:
+                if 0 < middle:
+                    if self.body_ratio is not None:
+                        shards = mathtools.divide_number_by_ratio(
+                            middle, self.body_ratio)
+                        return tuple(shards)
+                    else:
+                        return (middle,)
+                else:
+                    return ()
+            elif self.incise_output:
+                if 0 < middle:
+                    return (middle,)
+                else:
+                    return ()
+            else:
+                message = 'must incise divisions or output.'
+                raise Exception(message)
+        else:
+            if self.incise_divisions:
+                if 0 < middle:
+                    return (-abs(middle),)
+                else:
+                    return ()
+            elif self.incise_output:
+                if 0 < middle:
+                    return (-abs(middle), )
+                else:
+                    return ()
+            else:
+                message = 'must incise divisions or output.'
+                raise Exception(message)
+
+    def _make_music(self, duration_pairs, seeds):
         result = self._prepare_input(seeds)
         prefix_talea, prefix_lengths, suffix_talea, suffix_lengths = \
             result[:-2]
@@ -174,99 +273,6 @@ class IncisedRhythmMaker(RhythmMaker):
         assert self._all_are_tuplets_or_all_are_leaf_lists(
             result), repr(result)
         return result
-
-    def __makenew__(self, *args, **kwargs):
-        r'''Makes new incised rhythm-maker with optional `kwargs`.
-
-        Returns new incised rhythm-maker.
-        '''
-        assert not args
-        arguments = {
-            'beam_cells_together': self.beam_cells_together,
-            'beam_each_cell': self.beam_each_cell,
-            'forbidden_written_duration': self.forbidden_written_duration,
-            'incise_specifier': self.incise_specifier,
-            'body_ratio': self.body_ratio,
-            'prolation_addenda': self.prolation_addenda,
-            'secondary_divisions': self.secondary_divisions,
-            'helper_functions': self.helper_functions,
-            'decrease_durations_monotonically':
-                self.decrease_durations_monotonically,
-            'fill_with_notes': self.fill_with_notes,
-            'incise_divisions': self.incise_divisions,
-            'incise_output': self.incise_output,
-            }
-        arguments.update(kwargs)
-        maker = type(self)(**arguments)
-        return maker
-
-    ### PRIVATE METHODS ###
-
-    def _make_middle_of_numeric_map_part(self, middle):
-        if self.fill_with_notes:
-            if self.incise_divisions:
-                if 0 < middle:
-                    if self.body_ratio is not None:
-                        shards = mathtools.divide_number_by_ratio(
-                            middle, self.body_ratio)
-                        return tuple(shards)
-                    else:
-                        return (middle,)
-                else:
-                    return ()
-            elif self.incise_output:
-                if 0 < middle:
-                    return (middle,)
-                else:
-                    return ()
-            else:
-                message = 'must incise divisions or output.'
-                raise Exception(message)
-        else:
-            if self.incise_divisions:
-                if 0 < middle:
-                    return (-abs(middle),)
-                else:
-                    return ()
-            elif self.incise_output:
-                if 0 < middle:
-                    return (-abs(middle), )
-                else:
-                    return ()
-            else:
-                message = 'must incise divisions or output.'
-                raise Exception(message)
-
-    def _make_division_incised_numeric_map(
-        self, 
-        duration_pairs=None,
-        prefix_talea=None, 
-        prefix_lengths=None,
-        suffix_talea=None, 
-        suffix_lengths=None, 
-        prolation_addenda=None,
-        ):
-        numeric_map, prefix_talea_index, suffix_talea_index = [], 0, 0
-        for pair_index, duration_pair in enumerate(duration_pairs):
-            prefix_length, suffix_length = \
-                prefix_lengths[pair_index], suffix_lengths[pair_index]
-            prefix = prefix_talea[
-                prefix_talea_index:prefix_talea_index+prefix_length]
-            suffix = suffix_talea[
-                suffix_talea_index:suffix_talea_index+suffix_length]
-            prefix_talea_index += prefix_length
-            suffix_talea_index += suffix_length
-            prolation_addendum = prolation_addenda[pair_index]
-            if isinstance(duration_pair, tuple):
-                numerator = duration_pair[0] + (
-                    prolation_addendum % duration_pair[0])
-            else:
-                numerator = duration_pair.numerator + (
-                    prolation_addendum % duration_pair.numerator)
-            numeric_map_part = self._make_numeric_map_part(
-                numerator, prefix, suffix)
-            numeric_map.append(numeric_map_part)
-        return numeric_map
 
     def _make_numeric_map_part(
         self,

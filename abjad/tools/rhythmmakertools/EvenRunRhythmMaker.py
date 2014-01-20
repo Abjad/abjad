@@ -163,13 +163,11 @@ class EvenRunRhythmMaker(RhythmMaker):
         Returns a list of selections. Each selection holds a single container
         filled with notes.
         '''
-        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
-        result = []
-        for duration_pair in duration_pairs:
-            container = self._make_container(duration_pair)
-            selection = selectiontools.Selection(container)
-            result.append(selection)
-        return result
+        return RhythmMaker.__call__(
+            self,
+            divisions,
+            seeds=seeds,
+            )
 
     def __format__(self, format_specification=''):
         r'''Formats even run rhythm-maker.
@@ -254,6 +252,14 @@ class EvenRunRhythmMaker(RhythmMaker):
             beam = spannertools.MultipartBeam()
             attach(beam, container)
         return container
+
+    def _make_music(self, duration_pairs, seeds):
+        result = []
+        for duration_pair in duration_pairs:
+            container = self._make_container(duration_pair)
+            selection = selectiontools.Selection(container)
+            result.append(selection)
+        return result
 
     ### PUBLIC PROPERTIES ###
 

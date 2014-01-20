@@ -8,6 +8,7 @@ from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
+from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -54,7 +55,6 @@ class RhythmMaker(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    @abc.abstractmethod
     def __call__(self, divisions, seeds=None):
         r'''Calls rhythm-maker.
 
@@ -71,7 +71,15 @@ class RhythmMaker(AbjadObject):
             for x in divisions
             ]
         seeds = self._to_tuple(seeds)
-        return duration_pairs, seeds
+        music = self._make_music(duration_pairs, seeds)
+        assert isinstance(music, list), repr(music)
+        assert len(music), repr(music)
+        prototype = (
+            scoretools.Tuplet,
+            selectiontools.Selection,
+            )
+        assert all(isinstance(x, prototype) for x in music), repr(music)
+        return music
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a rhythm-maker with type and public
@@ -223,6 +231,10 @@ class RhythmMaker(AbjadObject):
         markup = markuptools.Markup(string)
         return markup
 
+    @abc.abstractmethod
+    def _make_music(self, duration_pairs, seeds):
+        raise NotImplementedError
+
     def _make_secondary_duration_pairs(
         self,
         duration_pairs,
@@ -250,24 +262,22 @@ class RhythmMaker(AbjadObject):
         return secondary_duration_pairs
 
     def _make_ties_across_divisions(self, music):
-        if self.tie_across_divisions:
-            for selection_one, selection_two in \
-                sequencetools.iterate_sequence_pairwise_strict(music):
-                tuplet_one = selection_one[0]
-                tuplet_two = selection_two[0]
-                leaf_one = tuplet_one.select_leaves()[-1]
-                leaf_two = tuplet_two.select_leaves()[0]
-                if not isinstance(leaf_one, scoretools.Note) or \
-                    not isinstance(leaf_two, scoretools.Note):
-                    continue
-                logical_tie_one = inspect_(leaf_one).get_logical_tie()
-                logical_tie_two = inspect_(leaf_two).get_logical_tie()
-                for tie in inspect_(leaf_one).get_spanners(spannertools.Tie):
-                    detach(tie, leaf_one)
-                for tie in inspect_(leaf_two).get_spanners(spannertools.Tie):
-                    detach(tie, leaf_two)
-                attach(spannertools.Tie(), logical_tie_one + logical_tie_two)
-        return music
+        for selection_one, selection_two in \
+            sequencetools.iterate_sequence_pairwise_strict(music):
+            tuplet_one = selection_one[0]
+            tuplet_two = selection_two[0]
+            leaf_one = tuplet_one.select_leaves()[-1]
+            leaf_two = tuplet_two.select_leaves()[0]
+            if not isinstance(leaf_one, scoretools.Note) or \
+                not isinstance(leaf_two, scoretools.Note):
+                continue
+            logical_tie_one = inspect_(leaf_one).get_logical_tie()
+            logical_tie_two = inspect_(leaf_two).get_logical_tie()
+            for tie in inspect_(leaf_one).get_spanners(spannertools.Tie):
+                detach(tie, leaf_one)
+            for tie in inspect_(leaf_two).get_spanners(spannertools.Tie):
+                detach(tie, leaf_two)
+            attach(spannertools.Tie(), logical_tie_one + logical_tie_two)
 
     def _make_tuplets(self, duration_pairs, leaf_lists):
         assert len(duration_pairs) == len(leaf_lists)

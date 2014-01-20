@@ -106,21 +106,11 @@ class RatioTaleaRhythmMaker(RhythmMaker):
         Returns list of selections. Each selection contains exactly one
         fixed-duration tuplet.
         '''
-        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
-        result = []
-        if not isinstance(seeds, int):
-            seeds = 0
-        ratio_talea = datastructuretools.CyclicTuple(
-            sequencetools.rotate_sequence(self.ratio_talea, seeds)
+        return RhythmMaker.__call__(
+            self,
+            divisions,
+            seeds=seeds,
             )
-        for duration_index, duration_pair in enumerate(duration_pairs):
-            ratio = ratio_talea[duration_index]
-            duration = durationtools.Duration(duration_pair)
-            tuplet = self._make_tuplet(duration, ratio)
-            selection = selectiontools.Selection(tuplet)
-            result.append(selection)
-        result = self._make_ties_across_divisions(result)
-        return result
 
     def __format__(self, format_specification=''):
         r'''Formats ratio-talea rhythm-maker.
@@ -200,6 +190,23 @@ class RatioTaleaRhythmMaker(RhythmMaker):
         return new_rhythm_maker
 
     ### PRIVATE METHODS ###
+
+    def _make_music(self, duration_pairs, seeds):
+        result = []
+        if not isinstance(seeds, int):
+            seeds = 0
+        ratio_talea = datastructuretools.CyclicTuple(
+            sequencetools.rotate_sequence(self.ratio_talea, seeds)
+            )
+        for duration_index, duration_pair in enumerate(duration_pairs):
+            ratio = ratio_talea[duration_index]
+            duration = durationtools.Duration(duration_pair)
+            tuplet = self._make_tuplet(duration, ratio)
+            selection = selectiontools.Selection(tuplet)
+            result.append(selection)
+        if self.tie_across_divisions:
+            self._make_ties_across_divisions(result)
+        return result
 
     def _make_tuplet(self, duration, ratio):
         tuplet = scoretools.Tuplet.from_duration_and_ratio(
