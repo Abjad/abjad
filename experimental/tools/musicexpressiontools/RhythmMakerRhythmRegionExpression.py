@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import rhythmmakertools
 from abjad.tools import scoretools
+from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
@@ -86,7 +87,11 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
         if not self.division_list:
             return
         leaf_lists = self.source_expression(self.division_list.pairs)
-        rhythm_containers = [scoretools.Container(x) for x in leaf_lists]
+        rhythm_containers = []
+        for x in leaf_lists:
+            if isinstance(x, selectiontools.Selection):
+                x = scoretools.Container(x)
+            rhythm_containers.append(x)
         expression = \
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
             payload=rhythm_containers, start_offset=self.start_offset)

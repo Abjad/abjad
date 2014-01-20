@@ -67,6 +67,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         beam_each_cell=True,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
+        tie_across_divisions=False,
         ):
         RhythmMaker.__init__(
             self,
@@ -74,6 +75,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             beam_each_cell=beam_each_cell,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
+            tie_across_divisions=tie_across_divisions,
             )
         assert mathtools.is_integer_equivalent_expr(leaf_count)
         leaf_count = int(leaf_count)
@@ -120,6 +122,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=True,
+                    tie_across_divisions=False,
                     )
 
         Set `format_specification` to `''` or `'storage'`.
@@ -147,6 +150,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=True,
+                    tie_across_divisions=False,
                     )
 
             ::
@@ -250,6 +254,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=False,
+                    tie_across_divisions=False,
                     )
 
             ::
