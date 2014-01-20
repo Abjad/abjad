@@ -20,7 +20,7 @@ class StringQuartetScoreTemplate(AbjadObject):
     ::
 
         >>> score
-        Score-"String Quartet Score"<<1>>
+        <Score-"String Quartet Score"<<1>>>
 
     ..  doctest::
 

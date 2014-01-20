@@ -166,7 +166,7 @@ class SegmentSpecification(Specification):
         ::
 
             >>> red_segment.score_model
-            Score-"Grouped Rhythmic Staves Score"<<1>>
+            <Score-"Grouped Rhythmic Staves Score"<<1>>>
 
         Returns score.
         '''

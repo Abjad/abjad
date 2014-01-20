@@ -53,8 +53,8 @@ class Parentage(SimultaneousSelection):
             ...
             Note('c4')
             Voice('c4')
-            Staff-"Bass Staff"{1}
-            Score<<2>>
+            <Staff-"Bass Staff"{1}>
+            <Score<<2>>>
 
     '''
 

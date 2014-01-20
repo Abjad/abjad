@@ -35,11 +35,11 @@ class Descendants(SimultaneousSelection):
 
         >>> for x in selectiontools.Descendants(score): x
         ...
-        Score<<2>>
-        Staff-"Treble Staff"{1}
+        <Score<<2>>>
+        <Staff-"Treble Staff"{1}>
         Voice("c'4")
         Note("c'4")
-        Staff-"Bass Staff"{1}
+        <Staff-"Bass Staff"{1}>
         Voice('b,4')
         Note('b,4')
 

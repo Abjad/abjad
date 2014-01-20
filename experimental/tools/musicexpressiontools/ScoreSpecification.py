@@ -413,7 +413,7 @@ class ScoreSpecification(Specification):
         ::
 
             >>> score_specification.score_model
-            Score-"Grouped Rhythmic Staves Score"<<1>>
+            <Score-"Grouped Rhythmic Staves Score"<<1>>>
 
         Returns score.
         '''

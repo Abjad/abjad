@@ -34,11 +34,11 @@ class Lineage(SimultaneousSelection):
 
         >>> for x in selectiontools.Lineage(score): x
         ...
-        Score<<2>>
-        Staff-"Treble Staff"{1}
+        <Score<<2>>>
+        <Staff-"Treble Staff"{1}>
         Voice("c'4")
         Note("c'4")
-        Staff-"Bass Staff"{1}
+        <Staff-"Bass Staff"{1}>
         Voice('b,4')
         Note('b,4')
 
@@ -46,8 +46,8 @@ class Lineage(SimultaneousSelection):
 
         >>> for x in selectiontools.Lineage(score['Bass Voice']): x
         ...
-        Score<<2>>
-        Staff-"Bass Staff"{1}
+        <Score<<2>>>
+        <Staff-"Bass Staff"{1}>
         Voice('b,4')
         Note('b,4')
 

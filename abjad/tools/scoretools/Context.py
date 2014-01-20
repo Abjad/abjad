@@ -81,7 +81,7 @@ class Context(Container):
             name = '-"{}"'.format(name)
         else:
             name = ''
-        result = '{}{}{}{}{}'
+        result = '<{}{}{}{}{}>'
         result = result.format(
             self.context_name,
             name,

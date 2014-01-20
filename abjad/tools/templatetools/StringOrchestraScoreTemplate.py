@@ -3,8 +3,6 @@ import collections
 from abjad.tools import indicatortools
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools import attach
 
@@ -25,7 +23,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
     ::
 
         >>> score
-        Score-"String Orchestra Score"<<4>>
+        <Score-"String Orchestra Score"<<4>>>
 
     ..  doctest::
                 
