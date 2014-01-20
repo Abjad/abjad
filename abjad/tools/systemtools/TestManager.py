@@ -19,7 +19,7 @@ class TestManager(object):
         from abjad.tools import scoretools
         from abjad.tools import topleveltools
         # configure multiple-voice rhythmic staves
-        for staff in topleveltools.iterate(lilypond_file.score_block[0]
+        for staff in topleveltools.iterate(lilypond_file.score_block.items[0]
             ).by_class(scoretools.Staff):
             if staff.is_simultaneous:
                 assert len(staff) == 2
@@ -34,8 +34,8 @@ class TestManager(object):
                     ).vertical_axis_group.staff_staff_spacing = spacing_vector
         # provide more space between staves with pitched notes
         for staff in topleveltools.iterate(
-            lilypond_file.score_block[0]).by_class(scoretools.Staff):
-            if not (isinstance(staff, Staff) and 
+            lilypond_file.score_block.items[0]).by_class(scoretools.Staff):
+            if not (isinstance(staff, scoretools.Staff) and 
                 staff.context_name == 'RhythmicStaff'):
                 for item in lilypond_file.layout_block.items:
                     if isinstance(item, lilypondfiletools.ContextBlock):
@@ -210,8 +210,7 @@ class TestManager(object):
                 vspace_after=4,
                 )
         moment = schemetools.SchemeMoment((1, 48))
-        topleveltools.set_(lilypond_file.score
-            ).proportionalNotationDuration = moment
+        #topleveltools.set_(score).proportionalNotationDuration = moment
         parent_directory_name = os.path.dirname(full_file_name)
         if render_pdf:
             topleveltools.show(lilypond_file)
