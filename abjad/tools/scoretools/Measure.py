@@ -62,25 +62,27 @@ class Measure(FixedDurationContainer):
     def __delitem__(self, i):
         r'''Deletes measure item `i`.
 
-        ::
+        ..  container:: example
 
-            >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
-            >>> measure.automatically_adjust_time_signature = True
-            >>> show(measure) # doctest: +SKIP
+            ::
 
-        ::
+                >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+                >>> measure.automatically_adjust_time_signature = True
+                >>> show(measure) # doctest: +SKIP
 
-            >>> del(measure[1])
-            >>> show(measure) # doctest: +SKIP
+            ::
 
-        ..  doctest:: 
+                >>> del(measure[1])
+                >>> show(measure) # doctest: +SKIP
 
-            {
-                \time 3/8
-                c'8
-                e'8
-                f'8
-            }
+            ..  doctest:: 
+
+                {
+                    \time 3/8
+                    c'8
+                    e'8
+                    f'8
+                }
 
         Returns none.
         '''
@@ -100,15 +102,17 @@ class Measure(FixedDurationContainer):
     def __repr__(self):
         r'''Gets interpreter representation of measure.
 
-        ::
+        ..  container:: example
 
-            >>> measure = Measure((3, 8), "c'8 d'8 e'8")
-            >>> show(measure) # doctest: +SKIP
+            ::
 
-        ::
+                >>> measure = Measure((3, 8), "c'8 d'8 e'8")
+                >>> show(measure) # doctest: +SKIP
 
-            >>> measure
-            Measure((3, 8), "c'8 d'8 e'8")
+            ::
+
+                >>> measure
+                Measure((3, 8), "c'8 d'8 e'8")
 
         Returns string.
         '''
@@ -129,26 +133,28 @@ class Measure(FixedDurationContainer):
     def __setitem__(self, i, expr):
         r'''Sets measure item `i` to `expr`.
 
-        ::
+        ..  container:: example
 
-            >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
-            >>> measure.automatically_adjust_time_signature = True
-            >>> show(measure) # doctest: +SKIP
+            ::
 
-        ::
+                >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+                >>> measure.automatically_adjust_time_signature = True
+                >>> show(measure) # doctest: +SKIP
 
-            >>> measure[1] = Note("ds'8.")
-            >>> show(measure) # doctest: +SKIP
+            ::
 
-        ..  doctest::
+                >>> measure[1] = Note("ds'8.")
+                >>> show(measure) # doctest: +SKIP
 
-            {
-                \time 9/16
-                c'8
-                ds'8.
-                e'8
-                f'8
-            }
+            ..  doctest::
+
+                {
+                    \time 9/16
+                    c'8
+                    ds'8.
+                    e'8
+                    f'8
+                }
 
         Returns none.
         '''
@@ -175,8 +181,10 @@ class Measure(FixedDurationContainer):
 
     @property
     def _preprolated_duration(self):
-        time_signature = self.time_signature
-        return time_signature.implied_prolation * self._contents_duration
+        time_signature_prolation = 1
+        if self.should_scale_contents:
+            time_signature_prolation = self.time_signature.implied_prolation
+        return time_signature_prolation * self._contents_duration
 
     ### PRIVATE METHODS ###
 
@@ -266,7 +274,9 @@ class Measure(FixedDurationContainer):
 
     def _format_content_pieces(self):
         result = []
-        if self.has_non_power_of_two_denominator and type(self) is Measure:
+        if self.has_non_power_of_two_denominator and \
+            type(self) is Measure and \
+            self.should_scale_contents:
             string = "\t\\scaleDurations #'({} . {}) {{"
             string = string.format(
                 self.implied_prolation.numerator,
@@ -282,9 +292,6 @@ class Measure(FixedDurationContainer):
         return result
 
     def _format_opening_slot(self, bundle):
-        r'''This is the slot where LilyPond grob \override commands live.
-        This is also the slot where LilyPond \time commands live.
-        '''
         result = []
         result.append(('comments', bundle.opening.comments))
         result.append(('grob overrides', bundle.grob_overrides))
@@ -354,10 +361,12 @@ class Measure(FixedDurationContainer):
         '''Gets and sets flag to indicate whether time signature
         should appear in LilyPond format even when not expected.
 
-        ::
+        ..  container:: example
 
-            >>> measure.always_format_time_signature
-            False
+            ::
+
+                >>> measure.always_format_time_signature
+                False
 
         Set to true when necessary to print the same signature repeatedly.
 
@@ -377,16 +386,18 @@ class Measure(FixedDurationContainer):
         '''Gets and sets flag to indicate whether time signature
         should update automatically following mutation.
 
-        ::
+        ..  container:: example
 
-            >>> measure = Measure((3, 4), "c' d' e'")
-            >>> show(measure) # doctest: +SKIP
+            ::
 
-        ::
+                >>> measure = Measure((3, 4), "c' d' e'")
+                >>> show(measure) # doctest: +SKIP
 
-            >>> measure.automatically_adjust_time_signature = True
-            >>> measure.append('r')
-            >>> show(measure) # doctest: +SKIP
+            ::
+
+                >>> measure.automatically_adjust_time_signature = True
+                >>> measure.append('r')
+                >>> show(measure) # doctest: +SKIP
 
         Defaults to false.
 
@@ -404,27 +415,31 @@ class Measure(FixedDurationContainer):
         r'''Is true when measure time signature denominator
         is not an integer power of 2.
 
-        ::
+        ..  container:: example
 
-            >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
-            >>> show(measure) # doctest: +SKIP
+            ::
 
-        ::
+                >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
+                >>> show(measure) # doctest: +SKIP
 
-            >>> measure.has_non_power_of_two_denominator
-            True
+            ::
+
+                >>> measure.has_non_power_of_two_denominator
+                True
 
         Otherwise false:
 
-        ::
+        ..  container:: example
 
-            >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
-            >>> show(measure) # doctest: +SKIP
+            ::
 
-        ::
+                >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
+                >>> show(measure) # doctest: +SKIP
 
-            >>> measure.has_non_power_of_two_denominator
-            False
+            ::
+
+                >>> measure.has_non_power_of_two_denominator
+                False
 
         Returns boolean.
         '''
@@ -436,27 +451,31 @@ class Measure(FixedDurationContainer):
         r'''Is true when measure time signature denominator
         is an integer power of 2.
 
-        ::
+        ..  container:: example
 
-            >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
-            >>> show(measure) # doctest: +SKIP
+            ::
 
-        ::
+                >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
+                >>> show(measure) # doctest: +SKIP
 
-            >>> measure.has_power_of_two_denominator
-            True
+            ::
+
+                >>> measure.has_power_of_two_denominator
+                True
 
         Otherwise false:
 
-        ::
+        ..  container:: example
 
-            >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
-            >>> show(measure) # doctest: +SKIP
+            ::
 
-        ::
+                >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
+                >>> show(measure) # doctest: +SKIP
 
-            >>> measure.has_power_of_two_denominator
-            False
+            ::
+
+                >>> measure.has_power_of_two_denominator
+                False
 
         Returns boolean.
         '''
@@ -466,15 +485,17 @@ class Measure(FixedDurationContainer):
     def implied_prolation(self):
         r'''Implied prolation of measure time signature.
 
-        ::
+        ..  container:: example
 
-            >>> measure = Measure((5, 12), "c'8 d' e' f' g'")
-            >>> show(measure) # doctest: +SKIP
+            ::
 
-        ::
+                >>> measure = Measure((5, 12), "c'8 d' e' f' g'")
+                >>> show(measure) # doctest: +SKIP
 
-            >>> measure.implied_prolation
-            Multiplier(2, 3)
+            ::
+
+                >>> measure.implied_prolation
+                Multiplier(2, 3)
 
         Returns multiplier.
         '''
@@ -485,15 +506,17 @@ class Measure(FixedDurationContainer):
     def is_full(self):
         r'''Is true when measure duration equals time signature duration.
 
-        ::
+        ..  container:: example
 
-            >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
-            >>> show(measure) # doctest: +SKIP
+            ::
 
-        ::
+                >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+                >>> show(measure) # doctest: +SKIP
 
-            >>> measure.is_full
-            True
+            ::
+
+                >>> measure.is_full
+                True
 
         Otherwise false.
 
@@ -505,23 +528,27 @@ class Measure(FixedDurationContainer):
     def is_misfilled(self):
         '''Is true when measure is either underfull or overfull.
 
-        ::
+        ..  container:: example
 
-            >>> measure = Measure((3, 4), "c'4 d'4 e'4 f'4")
-            >>> measure.is_misfilled
-            True
+            ::
+
+                >>> measure = Measure((3, 4), "c'4 d'4 e'4 f'4")
+                >>> measure.is_misfilled
+                True
 
         Otherwise false:
 
-        ::
+        ..  container:: example
 
-            >>> measure = Measure((3, 4), "c' d' e'")
-            >>> show(measure) # doctest: +SKIP
+            ::
 
-        ::
+                >>> measure = Measure((3, 4), "c' d' e'")
+                >>> show(measure) # doctest: +SKIP
 
-            >>> measure.is_misfilled
-            False
+            ::
+
+                >>> measure.is_misfilled
+                False
 
         Returns boolean.
         '''
@@ -532,14 +559,16 @@ class Measure(FixedDurationContainer):
         '''Is true when measure duration is greater than time signature 
         duration.
 
-        ::
+        ..  container:: example
 
-            >>> measure = Measure((3, 4), "c'4 d' e' f'")
+            ::
 
-        ::
+                >>> measure = Measure((3, 4), "c'4 d' e' f'")
 
-            >>> measure.is_overfull
-            True
+            ::
+
+                >>> measure.is_overfull
+                True
 
         Otherwise false.
 
@@ -551,14 +580,16 @@ class Measure(FixedDurationContainer):
     def is_underfull(self):
         '''Is true when measure duration is less than time signature duration.
 
-        ::
+        ..  container:: example
 
-            >>> measure = Measure((3, 4), "c'4 d'")
+            ::
 
-        ::
+                >>> measure = Measure((3, 4), "c'4 d'")
 
-            >>> measure.is_underfull
-            True
+            ::
+
+                >>> measure.is_underfull
+                True
 
         Otherwise false.
 
@@ -570,39 +601,41 @@ class Measure(FixedDurationContainer):
     def measure_number(self):
         r'''Gets 1-indexed measure number.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff()
-            >>> staff.append(Measure((3, 4), "c' d' e'"))
-            >>> staff.append(Measure((2, 4), "f' g'"))
-            >>> show(staff) # doctest: +SKIP
+            ::
 
-        ..  doctest::
+                >>> staff = Staff()
+                >>> staff.append(Measure((3, 4), "c' d' e'"))
+                >>> staff.append(Measure((2, 4), "f' g'"))
+                >>> show(staff) # doctest: +SKIP
 
-            >>> print format(staff)
-            \new Staff {
-                {
-                    \time 3/4
-                    c'4
-                    d'4
-                    e'4
+            ..  doctest::
+
+                >>> print format(staff)
+                \new Staff {
+                    {
+                        \time 3/4
+                        c'4
+                        d'4
+                        e'4
+                    }
+                    {
+                        \time 2/4
+                        f'4
+                        g'4
+                    }
                 }
-                {
-                    \time 2/4
-                    f'4
-                    g'4
-                }
-            }
 
-        ::
+            ::
 
-            >>> staff[0].measure_number
-            1
+                >>> staff[0].measure_number
+                1
 
-        ::
+            ::
 
-            >>> staff[1].measure_number
-            2
+                >>> staff[1].measure_number
+                2
 
         Returns positive integer.
         '''
@@ -629,11 +662,13 @@ class Measure(FixedDurationContainer):
         Target duration of measure is always equal to duration
         of effective time signature.
 
-        ::
+        ..  container:: example
 
-            >>> measure = Measure((3, 4), "c'4 d'4 e'4")
-            >>> measure.target_duration
-            Duration(3, 4)
+            ::
+
+                >>> measure = Measure((3, 4), "c'4 d'4 e'4")
+                >>> measure.target_duration
+                Duration(3, 4)
 
         Returns duration.
         '''
@@ -643,10 +678,12 @@ class Measure(FixedDurationContainer):
     def time_signature(self):
         r'''Gets effective time signature of measure.
 
-        ::
-            
-            >>> measure.time_signature
-            TimeSignature((3, 4))
+        ..  container:: example
+
+            ::
+                
+                >>> measure.time_signature
+                TimeSignature((3, 4))
 
         Returns time signature or none.
         '''
