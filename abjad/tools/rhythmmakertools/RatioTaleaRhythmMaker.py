@@ -124,23 +124,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
             tuplet = self._make_tuplet(duration, ratio)
             selection = selectiontools.Selection(tuplet)
             result.append(selection)
-        if self.tie_across_divisions:
-            for selection_one, selection_two in \
-                sequencetools.iterate_sequence_pairwise_strict(result):
-                tuplet_one = selection_one[0]
-                tuplet_two = selection_two[0]
-                leaf_one = tuplet_one.select_leaves()[-1]
-                leaf_two = tuplet_two.select_leaves()[0]
-                if not isinstance(leaf_one, scoretools.Note) or \
-                    not isinstance(leaf_two, scoretools.Note):
-                    continue
-                logical_tie_one = inspect_(leaf_one).get_logical_tie()
-                logical_tie_two = inspect_(leaf_two).get_logical_tie()
-                for tie in inspect_(leaf_one).get_spanners(spannertools.Tie):
-                    detach(tie, leaf_one)
-                for tie in inspect_(leaf_two).get_spanners(spannertools.Tie):
-                    detach(tie, leaf_two)
-                attach(spannertools.Tie(), logical_tie_one + logical_tie_two)
+        result = self._make_ties_across_divisions(result)
         return result
 
     def __format__(self, format_specification=''):
@@ -221,6 +205,26 @@ class RatioTaleaRhythmMaker(RhythmMaker):
         return new_rhythm_maker
 
     ### PRIVATE METHODS ###
+
+    def _make_ties_across_divisions(self, music):
+        if self.tie_across_divisions:
+            for selection_one, selection_two in \
+                sequencetools.iterate_sequence_pairwise_strict(music):
+                tuplet_one = selection_one[0]
+                tuplet_two = selection_two[0]
+                leaf_one = tuplet_one.select_leaves()[-1]
+                leaf_two = tuplet_two.select_leaves()[0]
+                if not isinstance(leaf_one, scoretools.Note) or \
+                    not isinstance(leaf_two, scoretools.Note):
+                    continue
+                logical_tie_one = inspect_(leaf_one).get_logical_tie()
+                logical_tie_two = inspect_(leaf_two).get_logical_tie()
+                for tie in inspect_(leaf_one).get_spanners(spannertools.Tie):
+                    detach(tie, leaf_one)
+                for tie in inspect_(leaf_two).get_spanners(spannertools.Tie):
+                    detach(tie, leaf_two)
+                attach(spannertools.Tie(), logical_tie_one + logical_tie_two)
+        return music
 
     def _make_tuplet(self, duration, ratio):
         tuplet = scoretools.Tuplet.from_duration_and_ratio(
