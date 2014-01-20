@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import fractions
 from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
@@ -41,15 +40,11 @@ class SkipRhythmMaker(RhythmMaker):
 
         Returns list of skips.
         '''
-        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
-        result = []
-        for duration_pair in duration_pairs:
-            written_duration = durationtools.Duration(1)
-            multiplied_duration = duration_pair
-            skip = scoretools.make_skips_with_multiplied_durations(
-                written_duration, [multiplied_duration])
-            result.append(skip)
-        return result
+        return RhythmMaker.__call__(
+            self,
+            divisions,
+            seeds=seeds,
+            )
 
     def __format__(self, format_specification=''):
         r'''Formats skip rhythm-maker.
@@ -105,6 +100,18 @@ class SkipRhythmMaker(RhythmMaker):
         Returns new skip rhythm-maker.
         '''
         return RhythmMaker.__makenew__(self, *args, **kwargs)
+
+    ### PRIVATE METHODS ###
+
+    def _make_music(self, duration_pairs, seeds):
+        result = []
+        for duration_pair in duration_pairs:
+            written_duration = durationtools.Duration(1)
+            multiplied_duration = duration_pair
+            skip = scoretools.make_skips_with_multiplied_durations(
+                written_duration, [multiplied_duration])
+            result.append(skip)
+        return result
 
     ### PUBLIC METHODS ###
 

@@ -39,12 +39,11 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
         Returns list of tuplets.
         '''
-        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
-        result = []
-        for duration_pair in duration_pairs:
-            monad = self._make_monad(duration_pair)
-            result.append([monad])
-        return result
+        return RhythmMaker.__call__(
+            self,
+            divisions,
+            seeds=seeds,
+            )
 
     def __format__(self, format_specification=''):
         r'''Formats tuplet monad rhythm-maker.
@@ -115,6 +114,13 @@ class TupletMonadRhythmMaker(RhythmMaker):
         leaves = scoretools.make_leaves([0], [power_of_two_division])
         tuplet = scoretools.Tuplet(tuplet_multiplier, leaves)
         return tuplet
+
+    def _make_music(self, duration_pairs, seeds):
+        result = []
+        for duration_pair in duration_pairs:
+            monad = self._make_monad(duration_pair)
+            result.append(monad)
+        return result
 
     ### PUBLIC METHODS ###
 

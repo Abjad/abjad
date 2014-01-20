@@ -77,18 +77,11 @@ class RestRhythmMaker(RhythmMaker):
 
         Returns list of selections.
         '''
-        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
-        result = []
-        for duration_pair in duration_pairs:
-            rests = scoretools.make_leaves(
-                pitches=None, 
-                durations=[duration_pair],
-                decrease_durations_monotonically=\
-                    self.decrease_durations_monotonically,
-                forbidden_written_duration=self.forbidden_written_duration,
-                )
-            result.append(rests)
-        return result
+        return RhythmMaker.__call__(
+            self,
+            divisions,
+            seeds=seeds,
+            )
 
     def __format__(self, format_specification=''):
         r'''Formats rest rhythm-maker.
@@ -144,6 +137,21 @@ class RestRhythmMaker(RhythmMaker):
         Returns new rest rhythm-maker.
         '''
         return RhythmMaker.__makenew__(self, *args, **kwargs)
+
+    ### PRIVATE METHODS ###
+
+    def _make_music(self, duration_pairs, seeds):
+        result = []
+        for duration_pair in duration_pairs:
+            rests = scoretools.make_leaves(
+                pitches=None, 
+                durations=[duration_pair],
+                decrease_durations_monotonically=\
+                    self.decrease_durations_monotonically,
+                forbidden_written_duration=self.forbidden_written_duration,
+                )
+            result.append(rests)
+        return result
 
     ### PUBLIC PROPERTIES ###
 

@@ -100,15 +100,11 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         Returns list of selections. Each selection contains exactly one
         fixed-duration tuplet.
         '''
-        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
-        result = []
-        for duration_pair in duration_pairs:
-            tuplet = self._make_tuplet(duration_pair)
-            selection = selectiontools.Selection(tuplet)
-            result.append(selection)
-        return result
-
-    ### SPECIAL METHODS ###
+        return RhythmMaker.__call__(
+            self,
+            divisions,
+            seeds=seeds,
+            )
 
     def __format__(self, format_specification=''):
         r'''Formats equal division rhythm-maker.
@@ -180,6 +176,14 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         return new
 
     ### PRIVATE METHODS ###
+
+    def _make_music(self, duration_pairs, seeds):
+        result = []
+        for duration_pair in duration_pairs:
+            tuplet = self._make_tuplet(duration_pair)
+            selection = selectiontools.Selection(tuplet)
+            result.append(selection)
+        return result
 
     def _make_tuplet(self, division):
         numerator, talea_denominator = division
