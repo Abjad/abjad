@@ -97,11 +97,11 @@ class RatioTaleaRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16)]
                 >>> music = maker(divisions)
-                >>> for selection in music:
-                ...     selection
-                Selection(FixedDurationTuplet(Duration(1, 2), "c'4 r4"),)
-                Selection(FixedDurationTuplet(Duration(3, 8), "c'4. c'8"),)
-                Selection(FixedDurationTuplet(Duration(5, 16), "c'4 r4"),)
+                >>> for division in music:
+                ...     division
+                FixedDurationTuplet(Duration(1, 2), "c'4 r4")
+                FixedDurationTuplet(Duration(3, 8), "c'4. c'8")
+                FixedDurationTuplet(Duration(5, 16), "c'4 r4")
 
         Returns list of selections. Each selection contains exactly one
         fixed-duration tuplet.
@@ -202,10 +202,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
             ratio = ratio_talea[duration_index]
             duration = durationtools.Duration(duration_pair)
             tuplet = self._make_tuplet(duration, ratio)
-            selection = selectiontools.Selection(tuplet)
-            result.append(selection)
-        if self.tie_across_divisions:
-            self._make_ties_across_divisions(result)
+            result.append(tuplet)
         return result
 
     def _make_tuplet(self, duration, ratio):

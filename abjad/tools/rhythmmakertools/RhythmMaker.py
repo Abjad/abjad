@@ -15,6 +15,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import new
 from abjad.tools.topleveltools import persist
@@ -72,6 +73,8 @@ class RhythmMaker(AbjadObject):
             ]
         seeds = self._to_tuple(seeds)
         music = self._make_music(duration_pairs, seeds)
+        if self.tie_across_divisions:
+            self._make_ties_across_divisions(music)
         assert isinstance(music, list), repr(music)
         assert len(music), repr(music)
         prototype = (
@@ -262,12 +265,15 @@ class RhythmMaker(AbjadObject):
         return secondary_duration_pairs
 
     def _make_ties_across_divisions(self, music):
-        for selection_one, selection_two in \
+        for division_one, division_two in \
             sequencetools.iterate_sequence_pairwise_strict(music):
-            tuplet_one = selection_one[0]
-            tuplet_two = selection_two[0]
-            leaf_one = tuplet_one.select_leaves()[-1]
-            leaf_two = tuplet_two.select_leaves()[0]
+            leaf_one = iterate(division_one).by_class(
+                prototype=scoretools.Leaf,
+                reverse=True,
+                ).next()
+            leaf_two = iterate(division_two).by_class(
+                prototype=scoretools.Leaf,
+                ).next()
             if not isinstance(leaf_one, scoretools.Note) or \
                 not isinstance(leaf_two, scoretools.Note):
                 continue
@@ -277,7 +283,8 @@ class RhythmMaker(AbjadObject):
                 detach(tie, leaf_one)
             for tie in inspect_(leaf_two).get_spanners(spannertools.Tie):
                 detach(tie, leaf_two)
-            attach(spannertools.Tie(), logical_tie_one + logical_tie_two)
+            combined_logical_tie = logical_tie_one + logical_tie_two
+            attach(spannertools.Tie(), combined_logical_tie)
 
     def _make_tuplets(self, duration_pairs, leaf_lists):
         assert len(duration_pairs) == len(leaf_lists)
