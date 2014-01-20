@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools import indicatortools
 from abjad.tools import durationtools
+from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import set_
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
+from abjad.tools.topleveltools import set_
 from abjad.tools.scoretools.FixedDurationContainer \
     import FixedDurationContainer
 
@@ -60,7 +60,7 @@ class Measure(FixedDurationContainer):
     ### SPECIAL METHODS ###
 
     def __delitem__(self, i):
-        r'''Deletes `i` from measure.
+        r'''Deletes measure item `i`.
 
         ::
 
@@ -116,9 +116,7 @@ class Measure(FixedDurationContainer):
         indicator = self._get_indicator(indicatortools.TimeSignature)
         forced_time_signature = indicator
         forced_time_signature = forced_time_signature.pair
-        # TODO: remove self._summary and self._string_summary
-        # TODO: use self._contents_summary only in all containers
-        summary = self._string_summary
+        summary = self._contents_summary
         if forced_time_signature and len(self):
             result = '{}({!s}, {!r})'
             result = result.format(class_name, forced_time_signature, summary)
@@ -129,7 +127,7 @@ class Measure(FixedDurationContainer):
             return '{}()'.format(class_name)
 
     def __setitem__(self, i, expr):
-        r'''Sets container item `i` to `expr`.
+        r'''Sets measure item `i` to `expr`.
 
         ::
 
@@ -160,7 +158,7 @@ class Measure(FixedDurationContainer):
         self._conditionally_adjust_time_signature(old_denominator)
 
     def __str__(self):
-        r'''String representation of measure.
+        r'''Gets string representation of measure.
 
         ::
 
@@ -171,7 +169,7 @@ class Measure(FixedDurationContainer):
         Returns string.
         '''
         forced_time_signature = self.time_signature
-        summary = self._space_delimited_summary
+        summary = self._contents_summary
         length = len(self)
         if forced_time_signature and length:
             return '|%s %s|' % (forced_time_signature, summary)
@@ -183,16 +181,6 @@ class Measure(FixedDurationContainer):
             return '| |'
 
     ### PRIVATE PROPERTIES ###
-
-    @property
-    def _compact_representation(self):
-        r'''Display form of measure used for spanners to display
-        potentially many spanned measures one after the other.
-        '''
-        return '|{}({})|'.format(
-            self.time_signature,
-            len(self),
-            )
 
     @property
     def _lilypond_format(self):
@@ -213,12 +201,6 @@ class Measure(FixedDurationContainer):
         time_signature = self.time_signature
         return time_signature.implied_prolation * self._contents_duration
 
-    @property
-    def _string_summary(self):
-        result = [str(x) for x in self]
-        result = ' '.join(result)
-        return result
-
     ### PRIVATE METHODS ###
 
     def _all_contents_are_scalable_by_multiplier(self, multiplier):
@@ -236,7 +218,7 @@ class Measure(FixedDurationContainer):
         if effective_time_signature.has_non_power_of_two_denominator and \
             effective_time_signature.suppress:
             message = 'can not suppress time signature'
-            message += ' with non-power of two denominator.'
+            message += ' with non-power-of-two denominator.'
             raise Exception(message)
         if effective_time_signature.duration < self._preprolated_duration:
             raise OverfullContainerError
@@ -570,7 +552,8 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_overfull(self):
-        '''Is true when measure duration is greater than time signature duration.
+        '''Is true when measure duration is greater than time signature 
+        duration.
 
         ::
 
@@ -608,7 +591,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def measure_number(self):
-        r'''1-indexed measure number.
+        r'''Gets 1-indexed measure number.
 
         ::
 
@@ -664,7 +647,9 @@ class Measure(FixedDurationContainer):
 
     @property
     def target_duration(self):
-        r'''Target duration of measure is always equal to duration
+        r'''Gets target duration of measure.
+        
+        Target duration of measure is always equal to duration
         of effective time signature.
 
         ::
@@ -679,7 +664,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def time_signature(self):
-        r'''Effective time signature of measure.
+        r'''Gets effective time signature of measure.
 
         ::
             
@@ -700,7 +685,7 @@ class Measure(FixedDurationContainer):
 
         ..  container:: example
 
-            **Example 1.** Scale measure by non-power-of-two multiplier:
+            Scales measure by non-power-of-two multiplier:
 
             ::
 

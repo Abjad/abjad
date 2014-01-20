@@ -139,6 +139,19 @@ class Container(Component):
             return duration
 
     @property
+    def _contents_summary(self):
+        if 0 < len(self):
+            result = []
+            for x in self._music:
+                if hasattr(x, '_compact_representation_with_tie'):
+                    result.append(x._compact_representation_with_tie)
+                else:
+                    result.append(str(x))
+            return ' '.join(result)
+        else:
+            return ''
+
+    @property
     def _duration_in_seconds(self):
         from abjad.tools import scoretools
         if self.is_simultaneous:
@@ -160,7 +173,7 @@ class Container(Component):
         positional_argument_values = ()
         if len(self):
             positional_argument_values=(
-                self._space_delimited_summary,
+                self._contents_summary,
                 )
         keyword_argument_names = ()
         if self.is_simultaneous:
@@ -173,20 +186,6 @@ class Container(Component):
             positional_argument_values=positional_argument_values,
             keyword_argument_names=keyword_argument_names,
             )
-
-    # TODO: rename to self._contents_summary
-    @property
-    def _space_delimited_summary(self):
-        if 0 < len(self):
-            result = []
-            for x in self._music:
-                if hasattr(x, '_compact_representation_with_tie'):
-                    result.append(x._compact_representation_with_tie)
-                else:
-                    result.append(str(x))
-            return ' '.join(result)
-        else:
-            return ''
 
     @property
     def _storage_format_specification(self):
