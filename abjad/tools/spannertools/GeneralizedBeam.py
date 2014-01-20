@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import durationtools
+from abjad.tools import mathtools
 from abjad.tools import stringtools
 from abjad.tools.spannertools.Spanner import Spanner
 
@@ -27,8 +29,14 @@ class GeneralizedBeam(Spanner):
                 autoBeaming = ##f
             } {
                 r4
+                \set stemLeftBeamCount = #0
+                \set stemRightBeamCount = #1
                 c'8 [
+                \set stemLeftBeamCount = #1
+                \set stemRightBeamCount = #2
                 d'16
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #0
                 e'16 ]
                 r8
                 fs'8
@@ -58,10 +66,18 @@ class GeneralizedBeam(Spanner):
                 autoBeaming = ##f
             } {
                 r4
+                \set stemLeftBeamCount = #0
+                \set stemRightBeamCount = #1
                 c'8 [
+                \set stemLeftBeamCount = #1
+                \set stemRightBeamCount = #2
                 d'16
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #0
                 e'16 ]
                 r8
+                \set stemLeftBeamCount = #0
+                \set stemRightBeamCount = #1
                 fs'8 [ ]
                 g'4
             }
@@ -90,10 +106,20 @@ class GeneralizedBeam(Spanner):
             } {
                 \override Stem.stemlet-length = 0.75
                 r4
+                \set stemLeftBeamCount = #0
+                \set stemRightBeamCount = #1
                 c'8 [
+                \set stemLeftBeamCount = #1
+                \set stemRightBeamCount = #2
                 d'16
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #1
                 e'16
+                \set stemLeftBeamCount = #1
+                \set stemRightBeamCount = #1
                 r8
+                \set stemLeftBeamCount = #1
+                \set stemRightBeamCount = #0
                 fs'8 ]
                 g'4
                 \revert Stem.stemlet-length
@@ -104,6 +130,7 @@ class GeneralizedBeam(Spanner):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_durations',
         '_include_long_duration_notes',
         '_include_long_duration_rests',
         '_isolated_nib_direction',
@@ -125,6 +152,9 @@ class GeneralizedBeam(Spanner):
         Spanner.__init__(
             self,
             )
+        if durations:
+            durations = tuple(durationtools.Duration(x) for x in durations)
+        self._durations = durations
         self._include_long_duration_notes = bool(include_long_duration_notes)
         self._include_long_duration_rests = bool(include_long_duration_rests)
         assert isolated_nib_direction in (Left, Right, None)
@@ -134,6 +164,12 @@ class GeneralizedBeam(Spanner):
         self._vertical_direction = vertical_direction
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def durations(self):
+        r'''Durations to use for span-beam groupings.
+        '''
+        return self._durations
 
     @property
     def include_long_duration_notes(self):
@@ -173,11 +209,80 @@ class GeneralizedBeam(Spanner):
             result.append(r'\override Stem.stemlet-length = 0.75')
         if not self._is_beamable_component(leaf):
             return result
+        elif not self.use_stemlets and (
+            not hasattr(leaf, 'written_pitch') and
+            not hasattr(leaf, 'written_pitches')):
+            return result
         leaf_ids = [id(x) for x in self._leaves]
+        previous_leaf = leaf._get_leaf(-1)
         previous_leaf_is_joinable = self._leaf_is_joinable(
-            leaf._get_leaf(-1), leaf_ids)
-        next_leaf_is_joinable = self._leaf_is_joinable(
-            leaf._get_leaf(1), leaf_ids)
+            previous_leaf, leaf_ids)
+        next_leaf = leaf._get_leaf(1)
+        next_leaf_is_joinable = self._leaf_is_joinable(next_leaf, leaf_ids)
+        left, right = None, None
+        # leaf is orphan
+        if not previous_leaf_is_joinable and not next_leaf_is_joinable:
+            if self.isolated_nib_direction is Left:
+                left = leaf.written_duration.flag_count
+                right = 0
+            elif self.isolated_nib_direction is Right:
+                left = 0
+                right = leaf.written_duration.flag_count
+        # leaf is first of group
+        elif not previous_leaf_is_joinable:
+            left = 0
+            right = leaf.written_duration.flag_count
+        # leaf is last of group
+        elif not next_leaf_is_joinable:
+            left = leaf.written_duration.flag_count
+            right = 0
+        # leaf is interior
+        elif self._span_points:
+            start_offset = self._duration_offset_in_me(leaf)
+            stop_offset = start_offset + leaf._get_duration()
+            # leaf starts subgroup
+            if start_offset in self._span_points and \
+                not stop_offset in self._span_points:
+                left = min(
+                    previous_leaf.written_duration.flag_count,
+                    leaf.written_duration.flag_count,
+                    )
+                left = (left - 1) or 1
+                right = leaf.written_duration.flag_count
+            # leaf stops subgroup
+            elif stop_offset in self._span_points and \
+                not start_offset in self._span_points:
+                left = leaf.written_duration.flag_count
+                right = min(
+                    leaf.written_duration.flag_count,
+                    next_leaf.written_duration.flag_count,
+                    )
+                right = (right - 1) or 1
+            else:
+                left = min(
+                    previous_leaf.written_duration.flag_count,
+                    leaf.written_duration.flag_count,
+                    )
+                right = min(
+                    leaf.written_duration.flag_count,
+                    next_leaf.written_duration.flag_count,
+                    )
+        # leaf is simple interior leaf
+        else:
+            left = min(
+                previous_leaf.written_duration.flag_count,
+                leaf.written_duration.flag_count,
+                )
+            right = min(
+                leaf.written_duration.flag_count,
+                next_leaf.written_duration.flag_count,
+                )
+        if left is not None:
+            setting = r'\set stemLeftBeamCount = #{}'.format(left)
+            result.append(setting)
+        if right is not None:
+            setting = r'\set stemRightBeamCount = #{}'.format(right)
+            result.append(setting)
         return result
 
     def _format_right_of_leaf(self, leaf):
@@ -217,6 +322,19 @@ class GeneralizedBeam(Spanner):
             return result
         return result
 
+    def _is_beamable_component(self, expr):
+        r'''True if `expr` is beamable, otherwise false.
+        '''
+        from abjad.tools import scoretools
+        if isinstance(expr, scoretools.Leaf):
+            if 0 < expr.written_duration.flag_count:
+                if hasattr(expr, 'written_pitch') or \
+                    hasattr(expr, 'written_pitches'):
+                    return True
+                elif self.use_stemlets:
+                    return True
+        return False
+
     def _leaf_is_joinable(self, leaf, leaf_ids):
         if id(leaf) not in leaf_ids:
             return False
@@ -232,14 +350,11 @@ class GeneralizedBeam(Spanner):
                 return True
         return False
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE PROPERTIES ###
 
-    @staticmethod
-    def _is_beamable_component(expr):
-        r'''True if `expr` is beamable, otherwise false.
-        '''
-        from abjad.tools import scoretools
-        if isinstance(expr, scoretools.Leaf):
-            if 0 < expr.written_duration.flag_count:
-                return True
-        return False
+    @property
+    def _span_points(self):
+        if self.durations is not None:
+            return mathtools.cumulative_sums(self.durations)[1:]
+        return []
+
