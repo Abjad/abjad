@@ -122,6 +122,7 @@ class TaleaRhythmMaker(RhythmMaker):
         tie_split_notes=False,
         burnish_divisions=False,
         burnish_output=False,
+        tie_across_divisions=False,
         ):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
@@ -233,6 +234,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     tie_split_notes=False,
                     burnish_divisions=False,
                     burnish_output=True,
+                    tie_across_divisions=False,
                     )
 
         Returns string.
@@ -270,6 +272,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     tie_split_notes=False,
                     burnish_divisions=False,
                     burnish_output=True,
+                    tie_across_divisions=False,
                     )
 
             ::
@@ -716,6 +719,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     tie_split_notes=False,
                     burnish_divisions=False,
                     burnish_output=True,
+                    tie_across_divisions=False,
                     )
 
             ::

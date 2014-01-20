@@ -77,6 +77,7 @@ class IncisedRhythmMaker(RhythmMaker):
         fill_with_notes=True,
         incise_divisions=False,
         incise_output=False,
+        tie_across_divisions=False,
         ):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
@@ -85,6 +86,7 @@ class IncisedRhythmMaker(RhythmMaker):
             beam_each_cell=beam_each_cell,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
+            tie_across_divisions=tie_across_divisions,
             )
         incise_specifier = incise_specifier or \
             rhythmmakertools.InciseSpecifier()

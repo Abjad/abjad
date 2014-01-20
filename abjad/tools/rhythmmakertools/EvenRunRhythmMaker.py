@@ -130,6 +130,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         beam_each_cell=True,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
+        tie_across_divisions=False,
         ):
         assert mathtools.is_nonnegative_integer(
             denominator_multiplier_exponent)
@@ -139,6 +140,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             beam_each_cell=beam_each_cell,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
+            tie_across_divisions=tie_across_divisions,
             )
         self._denominator_multiplier_exponent = \
             denominator_multiplier_exponent
@@ -182,6 +184,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=True,
+                    tie_across_divisions=False,
                     )
 
         Set `format_specification` to `''` or `'storage'`.
@@ -208,6 +211,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=True,
+                    tie_across_divisions=False,
                     )
 
             ::
@@ -297,6 +301,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=False,
+                    tie_across_divisions=False,
                     )
 
             ::
