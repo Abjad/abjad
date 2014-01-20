@@ -623,14 +623,14 @@ class Meter(AbjadObject):
                 ...     measure = Measure((4, 4), notes)
                 ...     print '{}\t{}'.format(rhythm_number, str(measure))
                 ...
-                0   |4/4 c'1|
-                1   |4/4 c'2. c'4|
-                2   |4/4 c'2 c'4 c'4|
-                3   |4/4 c'2 c'2|
-                4   |4/4 c'4 c'4 c'2|
-                5   |4/4 c'4 c'4 c'4 c'4|
-                6   |4/4 c'4 c'2 c'4|
-                7   |4/4 c'4 c'2.|
+                0	Measure((4, 4), "c'1")
+                1	Measure((4, 4), "c'2. c'4")
+                2	Measure((4, 4), "c'2 c'4 c'4")
+                3	Measure((4, 4), "c'2 c'2")
+                4	Measure((4, 4), "c'4 c'4 c'2")
+                5	Measure((4, 4), "c'4 c'4 c'4 c'4")
+                6	Measure((4, 4), "c'4 c'2 c'4")
+                7	Measure((4, 4), "c'4 c'2.")
 
         ..  container:: example
 
@@ -645,22 +645,22 @@ class Meter(AbjadObject):
                 ...     measure = Measure((5, 4), notes)
                 ...     print '{}\t{}'.format(rhythm_number, str(measure))
                 ...
-                0   |5/4 c'1 ~ c'4|
-                1   |5/4 c'1 c'4|
-                2   |5/4 c'2. c'4 c'4|
-                3   |5/4 c'2. c'2|
-                4   |5/4 c'2 c'4 c'2|
-                5   |5/4 c'2 c'4 c'4 c'4|
-                6   |5/4 c'2 c'2 c'4|
-                7   |5/4 c'2 c'2.|
-                8   |5/4 c'4 c'4 c'2.|
-                9   |5/4 c'4 c'4 c'2 c'4|
-                10  |5/4 c'4 c'4 c'4 c'4 c'4|
-                11  |5/4 c'4 c'4 c'4 c'2|
-                12  |5/4 c'4 c'2 c'2|
-                13  |5/4 c'4 c'2 c'4 c'4|
-                14  |5/4 c'4 c'2. c'4|
-                15  |5/4 c'4 c'1|
+                0	Measure((5, 4), "c'1 ~ c'4")
+                1	Measure((5, 4), "c'1 c'4")
+                2	Measure((5, 4), "c'2. c'4 c'4")
+                3	Measure((5, 4), "c'2. c'2")
+                4	Measure((5, 4), "c'2 c'4 c'2")
+                5	Measure((5, 4), "c'2 c'4 c'4 c'4")
+                6	Measure((5, 4), "c'2 c'2 c'4")
+                7	Measure((5, 4), "c'2 c'2.")
+                8	Measure((5, 4), "c'4 c'4 c'2.")
+                9	Measure((5, 4), "c'4 c'4 c'2 c'4")
+                10	Measure((5, 4), "c'4 c'4 c'4 c'4 c'4")
+                11	Measure((5, 4), "c'4 c'4 c'4 c'2")
+                12	Measure((5, 4), "c'4 c'2 c'2")
+                13	Measure((5, 4), "c'4 c'2 c'4 c'4")
+                14	Measure((5, 4), "c'4 c'2. c'4")
+                15	Measure((5, 4), "c'4 c'1")
 
         Use for testing meter establishment.
         '''

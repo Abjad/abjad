@@ -157,29 +157,6 @@ class Measure(FixedDurationContainer):
         FixedDurationContainer.__setitem__(self, i, expr)
         self._conditionally_adjust_time_signature(old_denominator)
 
-    def __str__(self):
-        r'''Gets string representation of measure.
-
-        ::
-
-            >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
-            >>> str(measure)
-            "|4/8 c'8 d'8 e'8 f'8|"
-
-        Returns string.
-        '''
-        forced_time_signature = self.time_signature
-        summary = self._contents_summary
-        length = len(self)
-        if forced_time_signature and length:
-            return '|%s %s|' % (forced_time_signature, summary)
-        elif forced_time_signature:
-            return '|%s|' % forced_time_signature
-        elif length:
-            return '|%s|' % summary
-        else:
-            return '| |'
-
     ### PRIVATE PROPERTIES ###
 
     @property
