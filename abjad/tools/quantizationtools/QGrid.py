@@ -86,7 +86,7 @@ class QGrid(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_next_downbeat', 
+        '_next_downbeat',
         '_root_node',
         )
 
@@ -121,22 +121,16 @@ class QGrid(AbjadObject):
                 result_leaves.append(x)
         for result_leaf, q_grid_leaf in zip(result_leaves, self.leaves[:-1]):
             if q_grid_leaf.q_event_proxies:
-                q_events = [q_event_proxy.q_event 
+                q_events = [q_event_proxy.q_event
                     for q_event_proxy in q_grid_leaf.q_event_proxies]
                 q_events.sort(key=lambda x: x.index)
-                annotation = indicatortools.Annotation('q_events', tuple(q_events))
+                annotation = indicatortools.Annotation(
+                    'q_events', tuple(q_events))
                 attach(annotation, result_leaf)
         return result
 
     def __copy__(self, *args):
         r'''Copies q-grid.
-
-        Returns new q-grid.
-        '''
-        return self.__deepcopy__(None)
-
-    def __deepcopy__(self, memo):
-        r'''Deepcopies q-grid.
 
         Returns new q-grid.
         '''
@@ -183,7 +177,7 @@ class QGrid(AbjadObject):
         return {
             '_next_downbeat': self.next_downbeat,
             '_root_node': self.root_node,
-        }
+            }
 
     def __setstate__(self, state):
         r'''Sets `state`.
@@ -215,7 +209,7 @@ class QGrid(AbjadObject):
 
     @property
     def leaves(self):
-        r'''All of the leaf nodes in the QGrid, including the next 
+        r'''All of the leaf nodes in the QGrid, including the next
         downbeat's node.
 
         Returns tuple of ``QGridLeaf`` instances.
@@ -240,7 +234,7 @@ class QGrid(AbjadObject):
 
         Returns tuple of ``Offset`` instances.
         '''
-        return tuple([x.start_offset 
+        return tuple([x.start_offset
             for x in self.leaves[:-1]] + [durationtools.Offset(1)])
 
     @property
@@ -276,7 +270,7 @@ class QGrid(AbjadObject):
         Returns None
         '''
         from abjad.tools import quantizationtools
-        assert all(isinstance(x, quantizationtools.QEventProxy) 
+        assert all(isinstance(x, quantizationtools.QEventProxy)
             for x in q_event_proxies)
         leaves, offsets = self.leaves, self.offsets
         for q_event_proxy in q_event_proxies:
@@ -312,9 +306,9 @@ class QGrid(AbjadObject):
         container = quantizationtools.QGridContainer(
             preprolated_duration=leaf.preprolated_duration,
             children=[
-                quantizationtools.QGridLeaf(preprolated_duration=subdivision) 
+                quantizationtools.QGridLeaf(preprolated_duration=subdivision)
                 for subdivision in subdivisions
-            ])
+                ])
         if leaf.parent is not None:
             index = leaf.parent.index(leaf)
             leaf.parent[index] = container
@@ -329,7 +323,7 @@ class QGrid(AbjadObject):
         ``QGridContainers`` containing ``QGridLeaves`` with durations
         equal to their respective subdivision-ratios.
 
-        Returns the ``QEventProxies`` attached to thus subdivided 
+        Returns the ``QEventProxies`` attached to thus subdivided
         ``QGridLeaf``.
         '''
         pairs = sorted(dict(pairs).items())
