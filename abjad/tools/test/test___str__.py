@@ -11,9 +11,9 @@ from abjad.tools import tonalanalysistools
 
 _allowed_to_be_empty_string = (
     indicatortools.Articulation,
-    pitcharraytools.PitchArray,
-    pitcharraytools.PitchArrayColumn,
-    pitcharraytools.PitchArrayRow,
+    pitchtools.PitchArray,
+    pitchtools.PitchArrayColumn,
+    pitchtools.PitchArrayRow,
     pitchtools.Accidental,
     schemetools.SchemeColor,
     tonalanalysistools.ChordSuspension,

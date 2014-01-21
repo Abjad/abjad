@@ -53,7 +53,7 @@ def test_pitchtools_list_named_pitches_in_expr_04():
     r'''Works with pitch arrays.
     '''
 
-    array = pitcharraytools.PitchArray([
+    array = pitchtools.PitchArray([
         [1, (2, 1), (-1.5, 2)],
         [(7, 2), (6, 1), 1],
         ])
