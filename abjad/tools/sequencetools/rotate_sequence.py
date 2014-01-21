@@ -28,9 +28,8 @@ def rotate_sequence(sequence, n):
     '''
 
     result = []
-    n = n % len(sequence)
-
-    for element in sequence[-n:len(sequence)] + sequence[:-n]:
-        result.append(copy.deepcopy(element))
-
+    if len(sequence):
+        n = n % len(sequence)
+        for element in sequence[-n:len(sequence)] + sequence[:-n]:
+            result.append(copy.deepcopy(element))
     return type(sequence)(result)
