@@ -146,10 +146,8 @@ class TaleaRhythmMaker(RhythmMaker):
         right_lengths_helper = helper_functions.get('right_lengths')
         secondary_divisions_helper = \
             helper_functions.get('secondary_divisions')
-        assert isinstance(burnish_divisions, bool)
-        assert isinstance(burnish_output, bool)
-        self._burnish_divisions = burnish_divisions
-        self._burnish_output = burnish_output
+        self._burnish_divisions = bool(burnish_divisions)
+        self._burnish_output = bool(burnish_output)
         prolation_addenda = self._to_tuple(prolation_addenda)
         burnish_specifier = burnish_specifier or \
             rhythmmakertools.BurnishSpecifier()
@@ -183,7 +181,6 @@ class TaleaRhythmMaker(RhythmMaker):
         assert callable(rights_helper)
         assert callable(left_lengths_helper)
         assert callable(right_lengths_helper)
-        assert isinstance(decrease_durations_monotonically, bool)
         assert isinstance(tie_split_notes, bool)
         self._talea_denominator = talea_denominator
         self._prolation_addenda = prolation_addenda
