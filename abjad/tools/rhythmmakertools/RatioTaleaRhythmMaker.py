@@ -62,6 +62,8 @@ class RatioTaleaRhythmMaker(RhythmMaker):
         '_ratio_talea',
         )
 
+    _human_readable_class_name = 'ratio-talea rhythm-maker'
+
     ### INITIALIZER ###
 
     def __init__(

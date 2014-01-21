@@ -106,6 +106,8 @@ class TaleaRhythmMaker(RhythmMaker):
         '_burnish_output',
         )
 
+    _human_readable_class_name = 'talea rhythm-maker'
+
     ### INITIALIZER ###
 
     def __init__(
