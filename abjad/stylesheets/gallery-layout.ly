@@ -68,9 +68,9 @@
         \override StemTremolo.Y-offset = -4
         \override TextScript.Y-extent = #'(-1.5 . 1.5)
         \override TupletBracket.breakable = ##t
-        \override TupletBracket.direction = #down
+        \override TupletBracket.direction = #up
         \override TupletBracket.full-length-to-extent = ##f
-        \override TupletBracket.padding = 0.75
+        \override TupletBracket.padding = 2.0
         \override TupletNumber.font-size = 1
         \override TupletNumber.text = #tuplet-number::calc-fraction-text
         autoBeaming = ##f
