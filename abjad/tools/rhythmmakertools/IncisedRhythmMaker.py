@@ -61,6 +61,8 @@ class IncisedRhythmMaker(RhythmMaker):
         '_secondary_divisions',
         )
 
+    _human_readable_class_name = 'incised rhythm-maker'
+
     ### INITIALIZER ###
 
     def __init__(

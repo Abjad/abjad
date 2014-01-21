@@ -135,6 +135,10 @@ class RhythmMaker(AbjadObject):
         return state
 
     def __illustrate__(self):
+        r'''Illustrates rhythm-maker.
+
+        Returns LilyPond file.
+        '''
         from abjad import abjad_configuration
         from abjad.tools import lilypondfiletools
         division_lists = (
