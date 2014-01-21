@@ -47,13 +47,6 @@ class QGridLeaf(RhythmTreeNode):
         total_duration = pulse_duration * self.preprolated_duration
         return scoretools.make_notes(0, total_duration)
 
-    def __deepcopy__(self, memo):
-        r'''Deepcopies q-grid leaf.
-
-        Returns new q-grid leaf.
-        '''
-        return type(self)(*self.__getnewargs__())
-
     def __eq__(self, expr):
         r'''Is true when `expr` is a q-grid leaf with preprolated duration,
         q-event proxies and divisibility flag equal to those of this q-grid
