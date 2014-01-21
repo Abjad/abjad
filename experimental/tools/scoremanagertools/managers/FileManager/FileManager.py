@@ -132,7 +132,12 @@ class FileManager(FilesystemAssetManager):
         else:
             message = 'Cannot find LilyPond executable.'
             raise ValueError(message)
-        command = '{} {}'.format(executable, self.filesystem_path)
+        output_path = os.path.splitext(self.filesystem_path)[0]
+        command = '{} -o {} {}'.format(
+            executable,
+            output_path,
+            self.filesystem_path,
+            )
         systemtools.IOManager.spawn_subprocess(command)
         self.session.io_manager.proceed('', is_interactive=prompt)
 
