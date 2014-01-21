@@ -33,6 +33,8 @@ class SkipRhythmMaker(RhythmMaker):
     __slots__ = (
         )
 
+    _human_readable_class_name = 'skip rhythm-maker'
+
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):

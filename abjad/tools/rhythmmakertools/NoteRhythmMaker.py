@@ -54,6 +54,8 @@ class NoteRhythmMaker(RhythmMaker):
     __slots__ = (
         )
 
+    _human_readable_class_name = 'note rhythm-maker'
+
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):

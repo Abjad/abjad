@@ -53,6 +53,8 @@ class RestRhythmMaker(RhythmMaker):
     __slots__ = (
         )
 
+    _human_readable_class_name = 'rest rhythm-maker'
+
     ### INITIALIZER ###
 
     def __init__(
