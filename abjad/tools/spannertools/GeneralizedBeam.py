@@ -299,18 +299,22 @@ class GeneralizedBeam(Spanner):
                 stringtools.arg_to_tridirectional_lilypond_symbol(
                     self.vertical_direction)
         leaf_ids = [id(x) for x in self._leaves]
-        previous_leaf_is_joinable = self._leaf_is_joinable(
-            leaf._get_leaf(-1), leaf_ids)
-        next_leaf_is_joinable = self._leaf_is_joinable(
-            leaf._get_leaf(1), leaf_ids)
-        if not previous_leaf_is_joinable:
-            if not next_leaf_is_joinable:
+        previous_leaf = leaf._get_leaf(-1)
+        next_leaf = leaf._get_leaf(1)
+        previous_leaf_is_beamable = \
+            self._is_beamable_component(previous_leaf) and \
+            id(previous_leaf) in leaf_ids
+        next_leaf_is_beamable = \
+            self._is_beamable_component(next_leaf) and \
+            id(next_leaf) in leaf_ids
+        if not previous_leaf_is_beamable:
+            if not next_leaf_is_beamable:
                 if self.isolated_nib_direction is not None:
                     result.append('{}['.format(direction_string))
                     result.append(']')
             else:
                 result.append('{}['.format(direction_string))
-        elif not next_leaf_is_joinable:
+        elif not next_leaf_is_beamable:
             result.append(']')
         return result
 
