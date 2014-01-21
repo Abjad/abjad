@@ -12,9 +12,9 @@ def color_measures_with_non_power_of_two_denominators_in_expr(
 
     ::
 
-        >>> staff = Staff(Measure((2, 8), "c'8 d'8") * 2)
+        >>> staff = Staff(2 * Measure((2, 8), "c'8 d'8"))
         >>> scoretools.scale_measure_denominator_and_adjust_measure_contents(staff[1], 3)
-        Measure((3, 12), "c'8. d'8.")
+        Measure((3, 12), "c'8. d'8.", should_scale_contents=True)
 
     ..  doctest::
 
@@ -41,7 +41,7 @@ def color_measures_with_non_power_of_two_denominators_in_expr(
     ::
 
         >>> labeltools.color_measures_with_non_power_of_two_denominators_in_expr(staff, 'red')
-        [Measure((3, 12), "c'8. d'8.")]
+        [Measure((3, 12), "c'8. d'8.", should_scale_contents=True)]
 
     ..  doctest::
 

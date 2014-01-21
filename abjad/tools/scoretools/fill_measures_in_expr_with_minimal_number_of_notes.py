@@ -3,13 +3,16 @@ from abjad.tools.topleveltools import iterate
 
 
 def fill_measures_in_expr_with_minimal_number_of_notes(
-    expr, decrease_durations_monotonically=True, iterctrl=None):
-    '''Fill measures in `expr` with minimal number of notes that decrease
+    expr, 
+    decrease_durations_monotonically=True, 
+    iterctrl=None,
+    ):
+    '''Fills measures in `expr` with minimal number of notes that decrease
     durations monotonically:
 
     ::
 
-        >>> measure = Measure((5, 18), [])
+        >>> measure = Measure((5, 18), [], should_scale_contents=True)
 
     ::
 
@@ -33,6 +36,7 @@ def fill_measures_in_expr_with_minimal_number_of_notes(
     ::
 
         >>> measure = Measure((5, 18), [])
+        >>> measure.should_scale_contents = True
 
     ::
 

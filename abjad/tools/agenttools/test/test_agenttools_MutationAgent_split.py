@@ -1645,8 +1645,8 @@ def test_agenttools_MutationAgent_split_28():
     '''
 
     voice = Voice()
-    voice.append(Measure((3, 9), "c'8 d'8 e'8"))
-    voice.append(Measure((3, 9), "f'8 g'8 a'8"))
+    voice.append(Measure((3, 9), "c'8 d'8 e'8", should_scale_contents=True))
+    voice.append(Measure((3, 9), "f'8 g'8 a'8", should_scale_contents=True))
     beam = Beam()
     attach(beam, voice[:])
 
@@ -2147,12 +2147,14 @@ def test_agenttools_MutationAgent_split_34():
 
 def test_agenttools_MutationAgent_split_35():
     r'''Splits measure without power-of-two time signature denominator.
-    Fracture spanners.
+    Fractures spanners.
     '''
 
     voice = Voice()
-    voice.append(Measure((3, 9), "c'8 d'8 e'8"))
-    voice.append(Measure((3, 9), "f'8 g'8 a'8"))
+    measure = Measure((3, 9), "c'8 d'8 e'8", should_scale_contents=True)
+    voice.append(measure)
+    measure = Measure((3, 9), "f'8 g'8 a'8", should_scale_contents=True)
+    voice.append(measure)
     beam = Beam()
     attach(beam, voice[:])
     measure = voice[1]

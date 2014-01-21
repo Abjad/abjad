@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import fractions
 from abjad import *
 from experimental.tools.scoremanagertools import predicates
 from experimental.tools.scoremanagertools.editors.UserInputWrapper \
@@ -15,7 +14,8 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
     generic_output_name = 'sargasso measures'
 
     output_material_checker = staticmethod(lambda output: all(
-        isinstance(x, scoretools.Measure) for x in output))
+        isinstance(x, scoretools.Measure) and x.should_scale_contents 
+        for x in output))
 
     output_material_module_import_statements = [
         'from abjad.tools import scoretools']
@@ -59,7 +59,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
                 multiplied_measure_numerator, 
                 2 * multiplied_measure_numerator):
             possible_meter_multiplier = \
-                fractions.Fraction(multiplied_measure_numerator, denominator)
+                Multiplier(multiplied_measure_numerator, denominator)
             possible_meter_multipliers.append(possible_meter_multiplier)
         return possible_meter_multipliers
 
@@ -91,9 +91,16 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         return lines
 
     @staticmethod
-    def output_material_maker(measure_denominator, measure_numerator_talea,
-        measure_division_denominator, measure_division_talea, total_duration,
-        measures_are_scaled, measures_are_split, measures_are_shuffled):
+    def output_material_maker(
+        measure_denominator, 
+        measure_numerator_talea,
+        measure_division_denominator, 
+        measure_division_talea, 
+        total_duration,
+        measures_are_scaled, 
+        measures_are_split, 
+        measures_are_shuffled,
+        ):
 
         #print measure_denominator
         #print measure_numerator_talea
@@ -139,8 +146,9 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
             )
         #print measure_divisions_by_measure
 
-        meter_multipliers = [fractions.Fraction(1) 
-            for x in measure_divisions_by_measure]
+        meter_multipliers = [
+            Multiplier(1) for x in measure_divisions_by_measure
+            ]
 
         if measures_are_scaled:
 
@@ -157,8 +165,8 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
             #print meter_multipliers
 
             prolated_measure_numerators = []
-            for meter_multiplier, multiplied_measure_numerator in zip(
-                meter_multipliers, multiplied_measure_numerators):
+            for meter_multiplier, multiplied_measure_numerator in \
+                zip(meter_multipliers, multiplied_measure_numerators):
                 prolated_measure_numerator = \
                     multiplied_measure_numerator / meter_multiplier
                 assert mathtools.is_integer_equivalent_number(
@@ -195,8 +203,8 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
                     measure_divisions, ratio)
             for division_list in division_lists:
                 if division_list:
-                    divided_measure_tokens.append(
-                        (meter_multiplier, division_list))
+                    token = (meter_multiplier, division_list)
+                    divided_measure_tokens.append(token)
         #for x in divided_measure_tokens: print x
 
         if measures_are_shuffled:
@@ -206,9 +214,9 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
 
         meter_tokens = []
         for meter_multiplier, measure_divisions in divided_measure_tokens:
-            measure_duration = meter_multiplier * fractions.Fraction(
+            measure_duration = meter_multiplier * Multiplier(
                 sum(measure_divisions), measure_division_denominator)
-            meter_base_unit = meter_multiplier * fractions.Fraction(
+            meter_base_unit = meter_multiplier * Multiplier(
                 min(measure_divisions), measure_division_denominator)
             meter_denominator = meter_base_unit.denominator
             meter_token = \
@@ -226,7 +234,11 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         for meter_token, division_token in zip(meter_tokens, division_tokens):
             leaves = scoretools.make_leaves_from_talea(
                 division_token, measure_division_denominator)
-            measure = scoretools.Measure(meter_token, leaves)
+            measure = scoretools.Measure(
+                meter_token, 
+                leaves,
+                should_scale_contents=True,
+                )
             measures.append(measure)
         #print measures
 

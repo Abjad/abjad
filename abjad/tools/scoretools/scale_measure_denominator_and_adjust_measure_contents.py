@@ -14,6 +14,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
         ::
 
             >>> measure = Measure((2, 8), "c'8 d'8")
+            >>> measure.should_scale_contents = True
             >>> beam = spannertools.Beam()
             >>> attach(beam, measure.select_leaves())
             >>> show(measure) # doctest: +SKIP
@@ -31,7 +32,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
 
             >>> scoretools.scale_measure_denominator_and_adjust_measure_contents(
             ...     measure, 3)
-            Measure((3, 12), "c'8. d'8.")
+            Measure((3, 12), "c'8. d'8.", should_scale_contents=True)
             >>> show(measure) # doctest: +SKIP
 
         ..  doctest::
@@ -57,7 +58,6 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
     Picks best new time signature.
     '''
     from abjad.tools import scoretools
-    from abjad.tools import metertools
 
     # save old time signature duration
     old_time_signature_duration = measure.time_signature.duration
@@ -76,6 +76,8 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
     # assign new time signature
     detach(indicatortools.TimeSignature, measure)
     attach(new_time_signature, measure)
+    if new_time_signature.has_non_power_of_two_denominator:
+        measure.should_scale_contents = True
 
     # return measure
     return measure

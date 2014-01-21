@@ -2189,7 +2189,6 @@ class MutationAgent(abctools.AbjadObject):
         Returns list of selections.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         # check input
         components = self._client
@@ -2197,8 +2196,7 @@ class MutationAgent(abctools.AbjadObject):
         if isinstance(components, scoretools.Component):
             single_component_input = True
             components = selectiontools.Selection(components)
-        assert all(
-            isinstance(x, scoretools.Component) for x in components)
+        assert all(isinstance(x, scoretools.Component) for x in components)
         if not isinstance(components, selectiontools.Selection):
             components = selectiontools.Selection(components)
         durations = [durationtools.Duration(x) for x in durations]

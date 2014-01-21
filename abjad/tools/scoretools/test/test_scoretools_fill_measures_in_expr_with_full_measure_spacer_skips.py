@@ -3,22 +3,13 @@ from abjad import *
 
 
 def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_01():
-    r'''Populate non-power-of-two measure with time-scaled skip.
+    r'''Populates non-power-of-two measure with time-scaled skip.
     '''
 
     measure = Measure((5, 18), [])
+    measure.should_scale_contents = True
     scoretools.fill_measures_in_expr_with_full_measure_spacer_skips(measure)
 
-    r'''
-    {
-        \time 5/18
-        \scaleDurations #'(8 . 9) {
-            s1 * 5/16
-        }
-    }
-    '''
-
-    assert inspect_(measure).is_well_formed()
     assert systemtools.TestManager.compare(
         measure,
         r'''
@@ -31,9 +22,11 @@ def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_01():
         '''
         )
 
+    assert inspect_(measure).is_well_formed()
+
 
 def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
-    r'''Populate measures conditionally.
+    r'''Populates measures conditionally.
 
     Iteration control tests index of iteration.
     '''
@@ -99,7 +92,7 @@ def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
 
 
 def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
-    r'''Populate measures conditionally.
+    r'''Populates measures conditionally.
 
     Iteration control tests measure length.
     '''

@@ -4,7 +4,7 @@ import pytest
 
 
 def test_scoretools_Measure_scale_and_adjust_time_signature_01():
-    r'''Scale power-of-two to non-power-of-two.
+    r'''Scales power-of-two measure to non-power-of-two measure.
     No note head rewriting necessary.
     '''
 

@@ -4,7 +4,7 @@ from abjad import *
 
 
 def test_scoretools_Measure_duration_01():
-    r'''Properly filled Measure with power-of-two time signature denominator.
+    r'''Properly filled measure with power-of-two time signature.
     '''
 
     measure = Measure((3, 8), "c'8 d'8 e'8")
@@ -27,11 +27,11 @@ def test_scoretools_Measure_duration_01():
 
 
 def test_scoretools_Measure_duration_02():
-    r'''Properly filled measure without power-of-two time signature 
-    denominator.
+    r'''Properly filled measure with non-power-of-two time signature.
     '''
 
     measure = Measure((3, 10), "c'8 d'8 e'8")
+    measure.should_scale_contents = True
 
     assert systemtools.TestManager.compare(
         measure,
@@ -53,8 +53,7 @@ def test_scoretools_Measure_duration_02():
 
 
 def test_scoretools_Measure_duration_03():
-    r'''Improperly filled measure without power-of-two 
-    time signature denominator.
+    r'''Improperly filled measure with power-of-two time signature.
     '''
 
     measure = Measure((3, 8), "c'8 d'8 e'8 f'8")
@@ -67,11 +66,11 @@ def test_scoretools_Measure_duration_03():
 
 
 def test_scoretools_Measure_duration_04():
-    r'''Impropely filled measure without power-of-two 
-    time signature denominator.
+    r'''Impropely filled measure with non-power-of-two time signature.
     '''
 
     measure = Measure((3, 10), "c'8 d'8 e'8 f'8")
+    measure.should_scale_contents = True
 
     assert pytest.raises(OverfullContainerError, 'format(measure)')
 

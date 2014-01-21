@@ -341,8 +341,9 @@ class ContiguousSelection(Selection):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         # check input
+        prototype=(scoretools.Measure,)
         assert self._all_are_contiguous_components_in_same_parent(
-            self, prototype=(scoretools.Measure, ))
+            self, prototype)
         # return none on empty measures
         if len(self) == 0:
             return None
@@ -350,6 +351,9 @@ class ContiguousSelection(Selection):
         #       instead of returning a reference to existing measure
         if len(self) == 1:
             return self[0]
+        should_scale_contents = self[0].should_scale_contents
+        assert all(
+            x.should_scale_contents == should_scale_contents for x in self)
         selection = selectiontools.SliceSelection(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         old_denominators = []
@@ -374,6 +378,7 @@ class ContiguousSelection(Selection):
             measure_music._set_parents(None)
             music += measure_music
         new_measure = scoretools.Measure(new_time_signature, music)
+        new_measure.should_scale_contents = self[0].should_scale_contents
         if parent is not None:
             self._give_dominant_spanners([new_measure])
         self._set_parents(None)

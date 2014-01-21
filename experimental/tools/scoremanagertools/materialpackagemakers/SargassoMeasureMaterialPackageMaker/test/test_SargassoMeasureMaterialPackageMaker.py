@@ -297,6 +297,12 @@ def test_SargassoMeasureMaterialPackageMaker_08():
             scoretools.Measure((6, 20), "c'4 c'16 c'16"),
             scoretools.Measure((2, 20), "c'16 c'16"),
             scoretools.Measure((9, 19), "c'16 c'4 c'16 c'16 c'8")]
+        for measure in measures:
+            measure.should_scale_contents = True
+        assert format(Staff(measures))
+        for measure in mpp.output_material:
+            assert measure.should_scale_contents
+        assert format(Staff(mpp.output_material))
         assert format(Staff(mpp.output_material)) == format(Staff(measures))
     finally:
         score_manager._run(pending_user_input='m testsargasso del remove default q')

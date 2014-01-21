@@ -477,7 +477,9 @@ def test_agenttools_MutationAgent_fuse_15():
     '''
 
     measure_1 = Measure((1, 8), "c'8")
+    measure_1.should_scale_contents = True
     measure_2 = Measure((1, 12), "d'8")
+    measure_2.should_scale_contents = True
     voice = Voice([measure_1, measure_2])
     beam = Beam()
     attach(beam, voice.select_leaves())
@@ -598,7 +600,9 @@ def test_agenttools_MutationAgent_fuse_19():
     '''
 
     measure_1 = Measure((9, 80), [])
+    measure_1.should_scale_contents = True
     measure_2 = Measure((2, 16), [])
+    measure_2.should_scale_contents = True
     staff = Staff([measure_1, measure_2])
     scoretools.fill_measures_in_expr_with_time_signature_denominator_notes(
         staff)

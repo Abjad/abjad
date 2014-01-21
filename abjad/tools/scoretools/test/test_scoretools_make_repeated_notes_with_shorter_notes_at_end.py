@@ -4,10 +4,11 @@ from abjad import *
 
 
 def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_01():
-    r'''Make train of 1/16th notes equal to 1/4 total duration.
+    r'''Makes repeated 1/16th notes equal to 1/4 total duration.
     '''
 
-    voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(1, 4)))
+    voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(
+        0, Duration(1, 16), Duration(1, 4)))
 
     assert systemtools.TestManager.compare(
         voice,
@@ -25,10 +26,11 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_01():
 
 
 def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_02():
-    r'''Make train of 1/16th notes equal to 9/32 total duration.
+    r'''Makes repeated 1/16th notes equal to 9/32 total duration.
     '''
 
-    voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(9, 32)))
+    voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(
+        0, Duration(1, 16), Duration(9, 32)))
 
     assert systemtools.TestManager.compare(
         voice,
@@ -47,10 +49,11 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_02():
 
 
 def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_03():
-    r'''Make train of 1/16th notes equal to only 1/128 total duration.
+    r'''Makes repeated 1/16th notes equal to only 1/128 total duration.
     '''
 
-    voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(1, 128)))
+    voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(
+        0, Duration(1, 16), Duration(1, 128)))
 
     assert systemtools.TestManager.compare(
         voice,
@@ -65,10 +68,11 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_03():
 
 
 def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_04():
-    r'''Make train of 1/16th notes equal to 4/10 total duration.
+    r'''Makes repeated 1/16th notes equal to 4/10 total duration.
     '''
 
-    voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(4, 10)))
+    voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(
+        0, Duration(1, 16), Duration(4, 10)))
 
     assert systemtools.TestManager.compare(
         voice,
@@ -91,11 +95,18 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_04():
 
 
 def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_05():
-    r'''Make train of written 1/16th notes within measure of 5/18.
+    r'''Makes repeated written 1/16th notes within measure of 5/18.
     '''
 
-    measure = Measure((5, 18), scoretools.make_repeated_notes_with_shorter_notes_at_end(
-        0, Duration(1, 16), Duration(5, 18), prolation = Duration(16, 18)))
+    measure = Measure(
+        (5, 18), 
+        scoretools.make_repeated_notes_with_shorter_notes_at_end(
+            0, 
+            Duration(1, 16), 
+            Duration(5, 18), 
+            prolation=Duration(16, 18)),
+        should_scale_contents=True,
+        )
 
     assert systemtools.TestManager.compare(
         measure,

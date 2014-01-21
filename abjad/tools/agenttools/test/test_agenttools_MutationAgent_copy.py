@@ -790,6 +790,7 @@ def test_agenttools_MutationAgent_copy_16():
     tuplet = scoretools.FixedDurationTuplet(Duration(4, 8), [])
     tuplet.extend("c'8 d'8 e'8 f'8 g'8")
     measure = Measure((4, 8), [tuplet])
+    measure.should_scale_contents = True
 
     assert systemtools.TestManager.compare(
         measure,
@@ -838,7 +839,9 @@ def test_agenttools_MutationAgent_copy_17():
 
     tuplet = scoretools.FixedDurationTuplet(Duration(4, 8), [])
     tuplet.extend("c'8 d'8 e'8 f'8 g'8")
-    voice = Voice([Measure((4, 8), [tuplet])])
+    measure = Measure((4, 8), [tuplet])
+    measure.should_scale_contents = True
+    voice = Voice([measure])
 
     assert systemtools.TestManager.compare(
         voice,
@@ -892,6 +895,7 @@ def test_agenttools_MutationAgent_copy_18():
     tuplet_1 = scoretools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
     tuplet_2 = scoretools.FixedDurationTuplet((2, 8), "f'8 g'8 a'8")
     measure = Measure((4, 8), [tuplet_1, tuplet_2])
+    measure.should_scale_contents = True
 
     assert systemtools.TestManager.compare(
         measure,
@@ -1092,7 +1096,9 @@ def test_agenttools_MutationAgent_copy_22():
     '''
 
     measure_1 = Measure((3, 9), "c'8 d'8 e'8")
+    measure_1.should_scale_contents = True
     measure_2 = Measure((3, 9), "f'8 g'8 a'8")
+    measure_2.should_scale_contents = True
     staff = Staff([measure_1, measure_2])
 
     assert systemtools.TestManager.compare(

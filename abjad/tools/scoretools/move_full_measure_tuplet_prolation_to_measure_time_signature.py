@@ -7,31 +7,35 @@ from abjad.tools.topleveltools import iterate
 
 
 def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
-    r'''Move prolation of full-measure tuplet to time signature of measure.
+    r'''Moves prolation of full-measure tuplet to time signature of measure.
 
-    Measures usually become non-power-of-two as as result:
+    Measures usually become non-power-of-two as as result.
 
-    ::
+    ..  container:: example
 
-        >>> t = Measure((2, 8), [scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
-        >>> scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
+        ::
 
-    ..  doctest::
+            >>> tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+            >>> measure = Measure((2, 8), [tuplet])
+            >>> measure.should_scale_contents = True
+            >>> scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(measure)
 
-        >>> print format(t)
-        {
-            \time 3/12
-            \scaleDurations #'(2 . 3) {
-                c'8
-                d'8
-                e'8
+        ..  doctest::
+
+            >>> print format(measure)
+            {
+                \time 3/12
+                \scaleDurations #'(2 . 3) {
+                    c'8
+                    d'8
+                    e'8
+                }
             }
-        }
 
     Returns none.
     '''
-    from abjad.tools import scoretools
     from abjad.tools import indicatortools
+    from abjad.tools import scoretools
 
     for measure in iterate(expr).by_class(scoretools.Measure):
         if len(measure) == 1:
@@ -48,6 +52,8 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
                 time_signature = indicatortools.TimeSignature((numerator, denominator))
                 detach(indicatortools.TimeSignature, measure)
                 attach(time_signature, measure)
+                if time_signature.has_non_power_of_two_denominator:
+                    measure.should_scale_contents = True
                 time_signature_multiplier = \
                     measure.time_signature.implied_prolation
                 written_adjustment = tuplet_multiplier / time_signature_multiplier

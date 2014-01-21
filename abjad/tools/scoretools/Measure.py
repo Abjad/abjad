@@ -50,7 +50,7 @@ class Measure(FixedDurationContainer):
         self, 
         time_signature=None, 
         music=None,
-        should_scale_contents=True,
+        should_scale_contents=False,
         ):
         # set time signature adjustment before contents initialization
         self._automatically_adjust_time_signature = False
@@ -128,13 +128,33 @@ class Measure(FixedDurationContainer):
         forced_time_signature = forced_time_signature.pair
         summary = self._contents_summary
         if forced_time_signature and len(self):
-            result = '{}({!s}, {!r})'
-            result = result.format(class_name, forced_time_signature, summary)
+            if self.should_scale_contents:
+                result = '{}({!s}, {!r}, should_scale_contents=True)'
+                result = result.format(
+                    class_name, 
+                    forced_time_signature, 
+                    summary,
+                    )
+            else:
+                result = '{}({!s}, {!r})'
+                result = result.format(
+                    class_name, 
+                    forced_time_signature, 
+                    summary,
+                    )
             return result
         elif forced_time_signature:
-            return '{}({!s})'.format(class_name, forced_time_signature)
+            if self.should_scale_contents:
+                string = '{}({!s}, should_scale_contents=True)'
+            else:
+                string = '{}({!s})'
+            string = string.format(class_name, forced_time_signature)
+            return string
         else:
-            return '{}()'.format(class_name)
+            if self.should_scale_contents:
+                return '{}(should_scale_contents=True)'.format(class_name)
+            else:
+                return '{}()'.format(class_name)
 
     def __setitem__(self, i, expr):
         r'''Sets measure item `i` to `expr`.
@@ -181,8 +201,13 @@ class Measure(FixedDurationContainer):
         time_signature = self.time_signature
         pair = (time_signature.numerator, time_signature.denominator)
         contents_string = ' '.join([str(x) for x in self])
-        result = '{}({}, {!r})'
-        result = result.format(type(self).__name__, pair, contents_string)
+        result = '{}({}, {!r}, should_scale_contents={})'
+        result = result.format(
+            type(self).__name__, 
+            pair, 
+            contents_string,
+            self.should_scale_contents,
+            )
         return result
 
     @property
@@ -245,6 +270,7 @@ class Measure(FixedDurationContainer):
             new_indicator = copy.copy(indicator)
             attach(new_indicator, new)
         new.is_simultaneous = self.is_simultaneous
+        new.should_scale_contents = self.should_scale_contents
         return new
 
     @staticmethod
@@ -426,6 +452,7 @@ class Measure(FixedDurationContainer):
             ::
 
                 >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
+                >>> measure.should_scale_contents = True
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -476,6 +503,7 @@ class Measure(FixedDurationContainer):
             ::
 
                 >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
+                >>> measure.should_scale_contents = True
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -496,6 +524,7 @@ class Measure(FixedDurationContainer):
             ::
 
                 >>> measure = Measure((5, 12), "c'8 d' e' f' g'")
+                >>> measure.should_scale_contents = True
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -710,6 +739,7 @@ class Measure(FixedDurationContainer):
             ::
 
                 >>> measure = Measure((3, 8), "c'8 d'8 e'8")
+                >>> measure.should_scale_contents = True
                 >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
@@ -741,8 +771,8 @@ class Measure(FixedDurationContainer):
 
         Returns none.
         '''
-        from abjad.tools import scoretools
         from abjad.tools import indicatortools
+        from abjad.tools import scoretools
         if multiplier == 0:
             raise ZeroDivisionError
         old_time_signature = self.time_signature
@@ -788,6 +818,8 @@ class Measure(FixedDurationContainer):
             new_time_signature = indicatortools.TimeSignature(new_pair)
             detach(indicatortools.TimeSignature, self)
             attach(new_time_signature, self)
+            if new_time_signature.has_non_power_of_two_denominator:
+                self.should_scale_contents = True
         else:
             new_pair = mathtools.NonreducedFraction(old_pair)
             new_pair = new_pair.multiply_with_numerator_preservation(
@@ -795,6 +827,8 @@ class Measure(FixedDurationContainer):
             new_time_signature = indicatortools.TimeSignature(new_pair)
             detach(indicatortools.TimeSignature, self)
             attach(new_time_signature, self)
+            if new_time_signature.has_non_power_of_two_denominator:
+                self.should_scale_contents = True
             remaining_multiplier = \
                 multiplier / new_time_signature.implied_prolation
             if remaining_multiplier != durationtools.Multiplier(1):

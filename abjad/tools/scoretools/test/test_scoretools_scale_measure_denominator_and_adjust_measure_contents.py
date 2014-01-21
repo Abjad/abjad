@@ -3,9 +3,9 @@ from abjad import *
 
 
 def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_01():
-    r'''Make measure with power-of-two denominatro into equivalent
+    r'''Makes measure with power-of-two denominator into equivalent
     measure with non-power-of-two denominator.
-    Assignable 3/2 multiplier conserves note_heads.
+    Assignable 3/2 multiplier conserves note heads.
     '''
 
     measure = Measure((2, 8), "c'8 d'8")

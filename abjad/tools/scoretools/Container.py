@@ -652,11 +652,13 @@ class Container(Component):
             left_pair = left_pair.with_multiple_of_denominator(denominator)
             left_time_signature = indicatortools.TimeSignature(left_pair)
             left = type(self)(left_time_signature, left_music)
+            left.should_scale_contents = self.should_scale_contents
             right_duration = sum([x._get_duration() for x in right_music])
             right_pair = mathtools.NonreducedFraction(right_duration)
             right_pair = right_pair.with_multiple_of_denominator(denominator)
             right_time_signature = indicatortools.TimeSignature(right_pair)
             right = type(self)(right_time_signature, right_music)
+            right.should_scale_contents = self.should_scale_contents
         elif isinstance(self, scoretools.FixedDurationTuplet):
             multiplier = self.multiplier
             left = type(self)(1, left_music)
@@ -733,7 +735,7 @@ class Container(Component):
             split_point_in_measure = \
                 global_split_point - measure._get_timespan().start_offset
             if measure.has_non_power_of_two_denominator:
-                if not measure.implied_prolation ==\
+                if not measure.implied_prolation == \
                     split_point_in_measure.implied_prolation:
                     raise NotImplementedError
             elif not mathtools.is_nonnegative_integer_power_of_two(
