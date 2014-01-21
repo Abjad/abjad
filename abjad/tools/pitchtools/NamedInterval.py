@@ -415,8 +415,10 @@ class NamedInterval(Interval):
         degree_1 = pitch_1.diatonic_pitch_number
         degree_2 = pitch_2.diatonic_pitch_number
         named_interval_number = abs(degree_1 - degree_2) + 1
-        numbered_interval_number = abs(abs(pitchtools.NumberedPitch(pitch_1))
-            - abs(pitchtools.NumberedPitch(pitch_2)))
+        numbered_interval_number = abs(
+            pitchtools.NumberedPitch(pitch_1).pitch_number -
+            pitchtools.NumberedPitch(pitch_2).pitch_number
+            )
         absolute_named_interval = \
             pitchtools.spell_numbered_interval_number(
             named_interval_number, numbered_interval_number)

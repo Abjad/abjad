@@ -19,7 +19,7 @@ class PitchClassTransformSetExpression(LeafSetExpression):
             assert isinstance(leaf, (scoretools.Note, scoretools.Chord))
             if isinstance(leaf, scoretools.Note):
                 sounding_pitch = inspect_(leaf).get_sounding_pitch()
-                sounding_pitch_number = abs(sounding_pitch)
+                sounding_pitch_number = sounding_pitch.pitch_number
                 transformed_pitch_class = \
                     pitch_class_transform_expression(sounding_pitch_number)
                 #leaf.sounding_pitch = transformed_pitch_class
@@ -29,7 +29,7 @@ class PitchClassTransformSetExpression(LeafSetExpression):
                 transformed_pitch_classes = []
                 for sounding_pitch_number in leaf.sounding_pitches:
                     sounding_pitch = inspect_(leaf).get_sounding_pitch()
-                    sounding_pitch_number = abs(sounding_pitch)
+                    sounding_pitch_number = sounding_pitch.pitch_number
                     transformed_pitch_class = \
                         pitch_class_transform_expression(sounding_pitch_number)
                     transformed_pitch_classes.append(transformed_pitch_class)

@@ -10,9 +10,10 @@ class Set(TypedFrozenset):
     '''Music-theoretic set base class.
     '''
 
-    ### CLASS METHODS ###
+    ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -81,14 +82,21 @@ class Set(TypedFrozenset):
         tokens = []
         if self.item_class.__name__.startswith('Named'):
             tokens = [str(x) for x in sorted(self)]
-        else:
+        elif hasattr(self.item_class, 'pitch_number'):
+            tokens = sorted([x.pitch_number for x in self])
+        elif hasattr(self.item_class, 'pitch_class_number'):
+            tokens = sorted([x.pitch_class_number for x in self])
+        elif hasattr(self.item_class, '__abs__'):
             tokens = sorted([abs(x) for x in self])
+        else:
+            raise ValueError
+        positional_argument_values=(
+            tokens,
+            )
         return self._storage_format_specification.__makenew__(
             is_indented=False,
             keyword_argument_names=(),
-            positional_argument_values=(
-                tokens,
-                ),
+            positional_argument_values=positional_argument_values,
             )
 
     ### PUBLIC METHODS ###

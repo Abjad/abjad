@@ -83,18 +83,6 @@ class NamedPitchClass(PitchClass):
 
     ### SPECIAL METHODS ###
 
-    def __abs__(self):
-        r'''Absolute value of named pitch-class.
-
-        ::
-
-            >>> abs(pitch_class)
-            1
-
-        Returns nonnegative number.
-        '''
-        return abs(self.numbered_pitch_class)
-
     def __add__(self, named_interval):
         r'''Adds `named_interval` to named pitch-class.
 

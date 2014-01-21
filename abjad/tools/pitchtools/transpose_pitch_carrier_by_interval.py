@@ -41,10 +41,8 @@ def transpose_pitch_carrier_by_interval(
 
     Return `pitch_carrier`.
     '''
-    from abjad.tools import scoretools
-    from abjad.tools import scoretools
-    from abjad.tools import scoretools
     from abjad.tools import pitchtools
+    from abjad.tools import scoretools
 
     def _transpose_pitch_by_named_interval(pitch, mdi):
         pitch_number = pitch.pitch_number + mdi.semitones
@@ -93,16 +91,18 @@ def transpose_pitch_carrier_by_interval(
             return result.pitch_number
         elif isinstance(pitch_carrier, scoretools.Note):
             new_note = copy.copy(pitch_carrier)
-            number = abs(pitchtools.NumberedPitch(pitch_carrier.written_pitch))
+            number = pitchtools.NumberedPitch(
+                pitch_carrier.written_pitch).pitch_number
             number += mci.number
             new_pitch = pitchtools.NamedPitch(number)
             new_note.written_pitch = new_pitch
             return new_note
         elif isinstance(pitch_carrier, scoretools.Chord):
             new_chord = copy.copy(pitch_carrier)
-            for new_nh, old_nh in \
-                zip(new_chord.note_heads, pitch_carrier.note_heads):
-                number = abs(pitchtools.NumberedPitch(old_nh.written_pitch))
+            pairs = zip(new_chord.note_heads, pitch_carrier.note_heads)
+            for new_nh, old_nh in pairs:
+                number = \
+                    pitchtools.NumberedPitch(old_nh.written_pitch).pitch_number
                 number += mci.number
                 new_pitch = pitchtools.NamedPitch(number)
                 new_nh.written_pitch = new_pitch

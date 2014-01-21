@@ -74,19 +74,6 @@ class NumberedPitchClass(PitchClass):
 
     ### SPECIAL METHODS ###
 
-    def __abs__(self):
-        r'''Absolute value of numbered pitch-class.
-
-        ::
-
-            >>> pitch_class = pitchtools.NumberedPitchClass(9)
-            >>> abs(pitch_class)
-            9
-
-        Returns nonnegative number.
-        '''
-        return self._pitch_class_number
-
     def __add__(self, expr):
         r'''Adds `expr` to numbered pitch-class.
 
@@ -101,7 +88,7 @@ class NumberedPitchClass(PitchClass):
         '''
         from abjad.tools import pitchtools
         interval = pitchtools.NumberedInterval(expr)
-        return type(self)(abs(self) + interval.number % 12)
+        return type(self)(self.pitch_class_number + interval.number % 12)
 
     def __copy__(self, *args):
         r'''Copies numbered pitch-class.
@@ -179,14 +166,14 @@ class NumberedPitchClass(PitchClass):
 
         Returns new numbered pitch-class.
         '''
-        return type(self)(-abs(self))
+        return type(self)(-self.pitch_class_number)
 
     def __str__(self):
         r'''String representation of numbered pitch-class.
 
         Returns string.
         '''
-        return str(abs(self))
+        return str(self.pitch_class_number)
 
     def __sub__(self, expr):
         r'''Subtracts `expr` from numbered pitch-class.
@@ -198,14 +185,17 @@ class NumberedPitchClass(PitchClass):
         '''
         from abjad.tools import pitchtools
         if isinstance(expr, type(self)):
-            interval_class_number = abs(abs(self) - abs(expr))
+            interval_class_number = abs(
+                self.pitch_class_number - 
+                expr.pitch_class_number
+                )
             if 6 < interval_class_number:
                 interval_class_number = 12 - interval_class_number
             return pitchtools.NumberedInversionEquivalentIntervalClass(
                 interval_class_number)
         interval_class = pitchtools.NumberedInversionEquivalentIntervalClass(
             expr)
-        return type(self)(abs(self) - interval_class.number % 12)
+        return type(self)(self.pitch_class_number - interval_class.number % 12)
 
     ### PRIVATE PROPERTIES ###
 
@@ -260,7 +250,7 @@ class NumberedPitchClass(PitchClass):
         '''
         from abjad.tools import pitchtools
         accidental = pitchtools.Accidental(accidental)
-        semitones = abs(self) + accidental.semitones
+        semitones = self.pitch_class_number + accidental.semitones
         return type(self)(semitones)
 
     def invert(self):
@@ -268,7 +258,7 @@ class NumberedPitchClass(PitchClass):
 
         Returns new numbered pitch-class.
         '''
-        return type(self)(12 - abs(self))
+        return type(self)(12 - self.pitch_class_number)
 
     def multiply(self, n=1):
         r'''Multiplies pitch-class number by `n`.
@@ -287,7 +277,7 @@ class NumberedPitchClass(PitchClass):
 
         Returns new numbered pitch-class.
         '''
-        return type(self)(abs(self) + n)
+        return type(self)(self.pitch_class_number + n)
 
     ### PUBLIC PROPERTIES ###
 

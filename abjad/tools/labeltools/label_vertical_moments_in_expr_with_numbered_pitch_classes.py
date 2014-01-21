@@ -92,8 +92,10 @@ def label_vertical_moments_in_expr_with_numbered_pitch_classes(
         pitches = pitchtools.PitchSegment.from_selection(leaves)
         if not pitches:
             continue
-        pitch_classes = \
-            [abs(pitch.numbered_pitch_class) for pitch in pitches]
+        pitch_classes = [
+            pitch.numbered_pitch_class.pitch_class_number
+            for pitch in pitches
+            ]
         pitch_classes = list(set(pitch_classes))
         pitch_classes.sort()
         pitch_classes.reverse()

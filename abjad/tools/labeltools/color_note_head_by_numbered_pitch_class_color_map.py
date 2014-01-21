@@ -56,7 +56,7 @@ def color_note_head_by_numbered_pitch_class_color_map(pitch_carrier):
     '''
 
     pitch = pitchtools.get_named_pitch_from_pitch_carrier(pitch_carrier)
-    color = _pc_number_to_color(abs(pitch.numbered_pitch_class))
+    color = _pc_number_to_color(pitch.numbered_pitch_class.pitch_class_number)
     if color is not None:
         override(pitch_carrier).note_head.color = color
     return pitch_carrier

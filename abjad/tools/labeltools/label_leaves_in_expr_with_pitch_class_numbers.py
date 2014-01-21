@@ -62,7 +62,9 @@ def label_leaves_in_expr_with_pitch_class_numbers(
     for note in iterate(expr).by_class(scoretools.Note):
         if number:
             label = markuptools.MarkupCommand(
-                'small', str(abs(note.written_pitch.numbered_pitch_class)))
+                'small',
+                str(note.written_pitch.numbered_pitch_class.pitch_class_number)
+                )
             markup = markuptools.Markup(label, markup_direction)
             attach(markup, note)
         if color:

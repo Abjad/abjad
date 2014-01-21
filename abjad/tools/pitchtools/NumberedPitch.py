@@ -43,21 +43,13 @@ class NumberedPitch(Pitch):
 
     ### SPECIAL METHODS ###
 
-    # TODO: should this return number or new numbered pitch instance?
-    def __abs__(self):
-        r'''Absolute value of numbered pitch.
-
-        Returns pitch number.
-        '''
-        return self._pitch_number
-
     def __add__(self, arg):
         r'''Adds `arg` to numberd pitch.
 
         Returns new numbered pitch.
         '''
         arg = type(self)(arg)
-        semitones = abs(self) + abs(arg)
+        semitones = self.pitch_number + arg.pitch_number
         return type(self)(semitones)
 
     def __eq__(self, arg):
@@ -117,14 +109,14 @@ class NumberedPitch(Pitch):
 
         Returns new numbered pitch.
         '''
-        return type(self)(-abs(self))
+        return type(self)(-self.pitch_number)
 
     def __str__(self):
         r'''String representation of numbered pitch.
 
         Returns string.
         '''
-        return str(abs(self))
+        return str(self.pitch_number)
 
     def __sub__(self, arg):
         r'''Subtracts `arg` from numbered pitch.
@@ -173,7 +165,7 @@ class NumberedPitch(Pitch):
         '''
         from abjad.tools.pitchtools.Accidental import Accidental
         accidental = Accidental(accidental)
-        semitones = abs(self) + accidental.semitones
+        semitones = self.pitch_number + accidental.semitones
         return type(self)(semitones)
 
     def invert(self, axis=None):
@@ -208,7 +200,7 @@ class NumberedPitch(Pitch):
 
         Returns new numbered pitch.
         '''
-        semitones = abs(self) + n
+        semitones = self.pitch_number + n
         return type(self)(semitones)
 
     ### PUBLIC PROPERTIES ###

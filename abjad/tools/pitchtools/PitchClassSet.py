@@ -27,7 +27,8 @@ class PitchClassSet(Set):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 
@@ -72,16 +73,25 @@ class PitchClassSet(Set):
     def _repr_specification(self):
         tokens = []
         if self.item_class.__name__.startswith('Named'):
-            tokens = [str(x) for x in sorted(
-                self, key=lambda x: x.pitch_class_number)]
-        else:
+            tokens = [
+                str(x) 
+                for x in sorted(self, key=lambda x: x.pitch_class_number)
+                ]
+        elif hasattr(self.item_class, 'pitch_number'):
+            tokens = sorted([x.pitch_number for x in self])
+        elif hasattr(self.item_class, 'pitch_class_number'):
+            tokens = sorted([x.pitch_class_number for x in self])
+        elif hasattr(self.item_class, '__abs__'):
             tokens = sorted([abs(x) for x in self])
+        else:
+            raise ValueError
+        positional_argument_values=(
+            tokens,
+            )
         return self._storage_format_specification.__makenew__(
             is_indented=False,
             keyword_argument_names=(),
-            positional_argument_values=(
-                tokens,
-                ),
+            positional_argument_values=positional_argument_values,
             )
 
     ### PUBLIC METHODS ###

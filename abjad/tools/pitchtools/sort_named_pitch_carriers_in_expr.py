@@ -22,6 +22,9 @@ def sort_named_pitch_carriers_in_expr(pitch_carriers):
 
     result = list(pitch_carriers[:])
     tmp = pitchtools.list_named_pitches_in_expr
-    result.sort(key=lambda x: abs(pitchtools.NumberedPitchClass(tmp(x)[0])))
+    result.sort(
+        key=lambda x:
+        pitchtools.NumberedPitchClass(tmp(x)[0]).pitch_class_number
+        )
 
     return result

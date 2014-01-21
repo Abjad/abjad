@@ -84,10 +84,13 @@ def list_numbered_interval_numbers_pairwise(pitch_carriers, wrap=False):
         pairs = sequencetools.iterate_sequence_pairwise_strict(pitch_carriers)
 
     for first_carrier, second_carrier in pairs:
-        first_pitch = pitchtools.get_named_pitch_from_pitch_carrier(first_carrier)
-        second_pitch = pitchtools.get_named_pitch_from_pitch_carrier(second_carrier)
-        signed_interval = abs(pitchtools.NumberedPitch(second_pitch)) - \
-            abs(pitchtools.NumberedPitch(first_pitch))
+        first_pitch = pitchtools.get_named_pitch_from_pitch_carrier(
+            first_carrier)
+        second_pitch = pitchtools.get_named_pitch_from_pitch_carrier(
+            second_carrier)
+        signed_interval = \
+            pitchtools.NumberedPitch(second_pitch).pitch_number - \
+            pitchtools.NumberedPitch(first_pitch).pitch_number
         result.append(signed_interval)
 
     return result

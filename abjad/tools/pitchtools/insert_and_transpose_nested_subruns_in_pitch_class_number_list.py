@@ -3,7 +3,10 @@ from abjad.tools import sequencetools
 
 
 # TODO: remove from public API altogether
-def insert_and_transpose_nested_subruns_in_pitch_class_number_list(notes, subrun_tokens):
+def insert_and_transpose_nested_subruns_in_pitch_class_number_list(
+    notes, 
+    subrun_tokens,
+    ):
     '''Insert and transpose nested subruns in `pitch_class_number_list`
     according to `subrun_tokens`:
 
@@ -105,8 +108,8 @@ def _get_intervals_in_subrun(subrun_source):
         subrun_source):
         first_pitch = pitchtools.get_named_pitch_from_pitch_carrier(first)
         second_pitch = pitchtools.get_named_pitch_from_pitch_carrier(second)
-        interval = abs(pitchtools.NumberedPitch(second_pitch)) - \
-            abs(pitchtools.NumberedPitch(first_pitch))
+        interval = pitchtools.NumberedPitch(second_pitch).pitch_number - \
+            pitchtools.NumberedPitch(first_pitch).pitch_number
         result.append(interval + result[-1])
     result.pop(0)
     return result
@@ -125,11 +128,11 @@ def _make_index_length_pairs(subrun_token):
 
 
 def _make_new_notes(anchor_pitch, anchor_written_duration, subrun_intervals):
-    from abjad.tools import scoretools
     from abjad.tools import pitchtools
+    from abjad.tools import scoretools
     new_notes = []
     for subrun_interval in subrun_intervals:
-        new_pc = (abs(pitchtools.NumberedPitch(anchor_pitch)) +
+        new_pc = (pitchtools.NumberedPitch(anchor_pitch).pitch_number +
             subrun_interval) % 12
         new_note = scoretools.Note(new_pc, anchor_written_duration)
         new_notes.append(new_note)

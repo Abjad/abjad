@@ -52,7 +52,7 @@ class NumberedPitchClassColorMap(AbjadObject):
         '''
         from abjad.tools import pitchtools
         pc = pitchtools.NumberedPitchClass(pc)
-        color = self._color_dictionary[abs(pc)]
+        color = self._color_dictionary[pc.pitch_class_number]
         return color
 
     ### PRIVATE METHODS ###
@@ -62,12 +62,12 @@ class NumberedPitchClassColorMap(AbjadObject):
         for pitch_iterable, color in zip(self.pitch_iterables, self.colors):
             for pitch in pitch_iterable:
                 pc = pitchtools.NumberedPitchClass(pitch)
-                if abs(pc) in self._color_dictionary.keys():
+                if pc.pitch_class_number in self._color_dictionary.keys():
                     print pc, self._color_dictionary.keys()
                     message = 'duplicated pitch-class in color map: {!r}.'
                     message = message.format(pc)
                     raise KeyError(message)
-                self._color_dictionary[abs(pc)] = color
+                self._color_dictionary[pc.pitch_class_number] = color
 
     ### PUBLIC PROPERTIES ###
 

@@ -67,13 +67,6 @@ class Pitch(AbjadObject):
     ### SPECIAL METHODS ###
 
     @abc.abstractmethod
-    def __abs__(self):
-        r'''Absolute value of pitch.
-        '''
-        message = 'TODO: all pitch-related classes must implement abs.'
-        raise NotImplementedError(message)
-
-    @abc.abstractmethod
     def __float__(self):
         r'''Changes pitch to float.
 

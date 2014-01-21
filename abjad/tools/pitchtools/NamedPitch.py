@@ -81,18 +81,6 @@ class NamedPitch(Pitch):
 
     ### SPECIAL METHODS ###
 
-    def __abs__(self):
-        r'''Absolute value of named pitch.
-
-        ::
-
-            >>> abs(pitch)
-            13
-
-        Returns nonnegative number.
-        '''
-        return abs(self.pitch_number)
-
     def __add__(self, interval):
         r'''Adds named pitch to `interval`.
 
@@ -442,7 +430,7 @@ class NamedPitch(Pitch):
         from abjad.tools import pitchtools
         class_ = pitchtools.PitchClass
         octave = pitchtools.Octave.from_pitch_number(
-            abs(self.numbered_pitch)).octave_number
+            self.numbered_pitch.pitch_number).octave_number
         name = class_._pitch_class_number_to_pitch_class_name_with_flats[
             self.pitch_class_number]
         pitch = type(self)(name, octave)
@@ -461,7 +449,7 @@ class NamedPitch(Pitch):
         from abjad.tools import pitchtools
         class_ = pitchtools.PitchClass
         octave = pitchtools.Octave.from_pitch_number(
-            abs(self.numbered_pitch)).octave_number
+            self.numbered_pitch.pitch_number).octave_number
         name = class_._pitch_class_number_to_pitch_class_name_with_sharps[
             self.pitch_class_number]
         pitch = type(self)(name, octave)
