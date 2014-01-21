@@ -11,7 +11,7 @@ class StorageFormatSpecification(AbjadObject):
     __slots__ = (
         '_body_text',
         '_instance',
-        '_is_bracketted',
+        '_is_bracketed',
         '_is_indented',
         '_keyword_argument_names',
         '_keywords_ignored_when_false',
@@ -25,7 +25,7 @@ class StorageFormatSpecification(AbjadObject):
     def __init__(self,
         instance=None,
         body_text=None,
-        is_bracketted=False,
+        is_bracketed=False,
         is_indented=True,
         keyword_argument_names=None,
         keywords_ignored_when_false=None,
@@ -38,7 +38,7 @@ class StorageFormatSpecification(AbjadObject):
             self._body_text = str(body_text)
         else:
             self._body_text = None
-        self._is_bracketted = bool(is_bracketted)
+        self._is_bracketed = bool(is_bracketed)
         self._is_indented = bool(is_indented)
         if keyword_argument_names is not None:
             self._keyword_argument_names = tuple(keyword_argument_names)
@@ -95,13 +95,13 @@ class StorageFormatSpecification(AbjadObject):
         return self._instance
 
     @property
-    def is_bracketted(self):
-        r'''Is true when storage specification is bracketted.
+    def is_bracketed(self):
+        r'''Is true when storage specification is bracketed.
         Otherwise false.
 
         Returns boolean.
         '''
-        return self._is_bracketted
+        return self._is_bracketed
 
     @property
     def is_indented(self):

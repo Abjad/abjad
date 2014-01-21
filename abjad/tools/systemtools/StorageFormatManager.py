@@ -167,7 +167,7 @@ class StorageFormatManager(object):
                 keyword_argument_pieces.append(prefix + piece)
             keyword_argument_pieces.append(prefix + pieces[-1] + suffix)
 
-        if not as_storage_format and specification.is_bracketted:
+        if not as_storage_format and specification.is_bracketed:
             result.append('<')
 
         if not as_storage_format and specification.body_text:
@@ -195,7 +195,7 @@ class StorageFormatManager(object):
                 else:
                     result.append(')')
 
-        if not as_storage_format and specification.is_bracketted:
+        if not as_storage_format and specification.is_bracketed:
             result.append('>')
 
         if not specification.is_indented:

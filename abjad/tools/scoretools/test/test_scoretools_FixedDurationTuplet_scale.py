@@ -150,7 +150,7 @@ def test_scoretools_FixedDurationTuplet_scale_07():
 
 
 def test_scoretools_FixedDurationTuplet_scale_08():
-    r'''Multiply undotted, unbracketted notes by 3/2.
+    r'''Multiply undotted, unbracketed notes by 3/2.
     That is, add a single dot.
     '''
 
