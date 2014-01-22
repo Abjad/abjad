@@ -62,7 +62,7 @@ class LilyPondFormatManager(object):
                     name, value)
                 result.append(string)
         result.sort()
-        bundle.context_settings[:] = result
+        bundle.context_settings.extend(result)
 
     @staticmethod
     def _populate_grob_override_format_contributions(component, bundle):
@@ -77,7 +77,7 @@ class LilyPondFormatManager(object):
         for string in result[:]:
             if 'NoteHead' in string and 'pitch' in string:
                 contributions.remove(string)
-        bundle.grob_overrides[:] = contributions
+        bundle.grob_overrides.extend(contributions)
 
     @staticmethod
     def _populate_grob_revert_format_contributions(component, bundle):
@@ -86,7 +86,7 @@ class LilyPondFormatManager(object):
         if not isinstance(component, scoretools.Leaf):
             manager = override(component)
             contributions = manager._list_format_contributions('revert')
-            bundle.grob_reverts[:] = contributions
+            bundle.grob_reverts.extend(contributions)
 
     @staticmethod
     def _populate_indicator_format_contributions(component, bundle):
@@ -162,42 +162,47 @@ class LilyPondFormatManager(object):
             bundle.get(format_slot).indicators.extend(format_pieces)
         # handle nonscoped expressions
         for nonscoped_expression in nonscoped_expressions:
+            indicator = nonscoped_expression.indicator
+
+            indicator_format_bundle = getattr(
+                indicator,
+                '_lilypond_format_bundle',
+                None,
+                )
+            if indicator_format_bundle is not None:
+                bundle.update(indicator_format_bundle)
+                continue
+
             if isinstance(
-                nonscoped_expression.indicator,
-                indicatortools.Articulation,
-                ):
-                format_slot_subsection = 'articulations'
-            elif isinstance(
-                nonscoped_expression.indicator, (
+                indicator, (
                     indicatortools.BendAfter,
-                    indicatortools.Arpeggio,
                     indicatortools.LaissezVibrer,
                     )
                 ):
                 format_slot_subsection = 'articulations'
             elif isinstance(
-                nonscoped_expression.indicator,
+                indicator,
                 indicatortools.LilyPondCommand,
                 ):
                 format_slot_subsection = 'commands'
             elif isinstance(
-                nonscoped_expression.indicator,
+                indicator,
                 indicatortools.LilyPondComment,
                 ):
                 format_slot_subsection = 'comments'
             elif isinstance(
-                nonscoped_expression.indicator,
+                indicator,
                 indicatortools.StemTremolo,
                 ):
                 format_slot_subsection = 'stem_tremolos'
             else:
                 message = 'do not know how to classify {!r}.'
-                message = message.format(nonscoped_expression.indicator)
+                message = message.format(indicator)
                 raise Exception(message)
-            format_slot = nonscoped_expression.indicator._format_slot
+            format_slot = indicator._format_slot
             format_slot = bundle.get(format_slot)
             contributions = format_slot.get(format_slot_subsection)
-            contribution = nonscoped_expression.indicator._lilypond_format
+            contribution = indicator._lilypond_format
             contributions.append(contribution)
 
     @staticmethod

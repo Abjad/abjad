@@ -17,6 +17,21 @@ class Arpeggio(AbjadObject):
         >>> print format(chord)
         <c' e' g' c''>4 \arpeggio
 
+    An arpeggio arrow direction can be specified:
+
+    ::
+
+        >>> chord = Chord("<c' e' g' c''>4")
+        >>> arpeggio = indicatortools.Arpeggio(direction=Down)
+        >>> attach(arpeggio, chord)
+        >>> show(chord) # doctest: +SKIP
+
+    ..  doctest::
+
+        >>> print format(chord)
+        \once \override Arpeggio.arpeggio-direction = #Down
+        <c' e' g' c''>4 \arpeggio
+
     '''
 
     ### CLASS VARIABLES ###
@@ -61,4 +76,8 @@ class Arpeggio(AbjadObject):
 
     @property
     def direction(self):
+        r'''Gets arpeggio arrow direction.
+
+        Return ordinal constant or none.
+        '''
         return self._direction

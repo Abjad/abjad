@@ -283,7 +283,6 @@ class Articulation(AbjadObject):
             repr(self._direction)
         return self._direction
 
-
     @property
     def name(self):
         r'''Name of articulation.
