@@ -29,7 +29,7 @@ class Arpeggio(AbjadObject):
     ..  doctest::
 
         >>> print format(chord)
-        \once \override Arpeggio.arpeggio-direction = #Down
+        \arpeggioArrowDown
         <c' e' g' c''>4 \arpeggio
 
     '''
@@ -67,9 +67,11 @@ class Arpeggio(AbjadObject):
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
         lilypond_format_bundle.right.articulations.append(r'\arpeggio')
         if self.direction is not None:
-            lilypond_format_bundle.grob_overrides.append(
-                r'\once \override Arpeggio.arpeggio-direction = #{}'.format(
-                    self.direction))
+            if self.direction is Up:
+                command = r'\arpeggioArrowUp'
+            else:
+                command = r'\arpeggioArrowDown'
+            lilypond_format_bundle.before.commands.append(command)
         return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
