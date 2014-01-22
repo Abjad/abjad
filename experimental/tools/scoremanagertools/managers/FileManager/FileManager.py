@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
-from abjad.tools import systemtools
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from experimental.tools.scoremanagertools.managers.FilesystemAssetManager \
     import FilesystemAssetManager
 
@@ -132,13 +132,13 @@ class FileManager(FilesystemAssetManager):
         else:
             message = 'Cannot find LilyPond executable.'
             raise ValueError(message)
-        output_path = os.path.splitext(self.filesystem_path)[0]
-        command = '{} -o {} {}'.format(
+        command = '{} {}'.format(
             executable,
-            output_path,
             self.filesystem_path,
             )
-        systemtools.IOManager.spawn_subprocess(command)
+        input_directory = os.path.dirname(self.filesystem_path)
+        with systemtools.TemporaryDirectoryChange(input_directory):
+            systemtools.IOManager.spawn_subprocess(command)
         self.session.io_manager.proceed('', is_interactive=prompt)
 
     def interactively_edit(self):
@@ -167,16 +167,17 @@ class FileManager(FilesystemAssetManager):
         output_directory = input_directory
         command = 'pdflatex --jobname={} -output-directory={} {}/{}.tex'
         command = command.format(
-            input_file_name_stem, 
-            output_directory, 
-            input_directory, 
+            input_file_name_stem,
+            output_directory,
+            input_directory,
             input_file_name_stem,
             )
-        systemtools.IOManager.spawn_subprocess(command)
-        command = 'rm {}/*.aux'.format(output_directory)
-        systemtools.IOManager.spawn_subprocess(command)
-        command = 'rm {}/*.log'.format(output_directory)
-        systemtools.IOManager.spawn_subprocess(command)
+        with systemtools.TemporaryDirectoryChange(input_directory):
+            systemtools.IOManager.spawn_subprocess(command)
+            command = 'rm {}/*.aux'.format(output_directory)
+            systemtools.IOManager.spawn_subprocess(command)
+            command = 'rm {}/*.log'.format(output_directory)
+            systemtools.IOManager.spawn_subprocess(command)
         self.session.io_manager.proceed('', is_interactive=prompt)
 
     def interactively_view(self):
