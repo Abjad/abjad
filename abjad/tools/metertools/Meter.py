@@ -278,6 +278,11 @@ class Meter(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
+    def __hash__(self):
+        r'''Hashes meter.
+        '''
+        return hash((type(self), self.rtm_format))
+
     def __iter__(self):
         r'''Iterates meter.
 
