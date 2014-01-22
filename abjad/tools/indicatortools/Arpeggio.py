@@ -22,14 +22,14 @@ class Arpeggio(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_direction',
         )
-
-    _format_slot = 'right'
 
     ### INITIALIZER ###
 
-    def __init__(self):
-        pass
+    def __init__(self, direction=None):
+        assert direction in (Up, Down, None)
+        self._direction = direction
 
     ### SPECIAL METHODS ###
 
@@ -45,3 +45,20 @@ class Arpeggio(AbjadObject):
     @property
     def _lilypond_format(self):
         return r'\arpeggio'
+
+    @property
+    def _lilypond_format_bundle(self):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        lilypond_format_bundle.right.articulations.append(r'\arpeggio')
+        if self.direction is not None:
+            lilypond_format_bundle.grob_overrides.append(
+                r'\once \override Arpeggio.arpeggio-direction = #{}'.format(
+                    self.direction))
+        return lilypond_format_bundle
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def direction(self):
+        return self._direction
