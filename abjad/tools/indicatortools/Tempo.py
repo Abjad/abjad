@@ -40,6 +40,13 @@ class Tempo(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_default_scope',
+        '_duration',
+        '_textual_indication',
+        '_units_per_minute',
+        )
+
     _format_slot = 'opening'
 
     ### INITIALIZER ###

@@ -43,6 +43,17 @@ class TimeSignature(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_default_scope',
+        '_denominator',
+        '_has_non_power_of_two_denominator',
+        '_multiplier',
+        '_numerator',
+        '_partial',
+        '_partial_repr_string',
+        '_suppress',
+        )
+
     _format_slot = 'opening'
 
     ### INITIALIZER ###
@@ -87,7 +98,7 @@ class TimeSignature(AbjadObject):
         suppress = suppress or kwargs.get('suppress', None)
         if not isinstance(suppress, (bool, type(None))):
             raise TypeError
-        self.suppress = suppress
+        self._suppress = suppress
         # initialize derived attributes
         self._multiplier = self.implied_prolation
         self._has_non_power_of_two_denominator = \
@@ -103,7 +114,7 @@ class TimeSignature(AbjadObject):
         '''
         return type(self)(
             (self.numerator, self.denominator),
-            partial=self.partial, 
+            partial=self.partial,
             )
 
     def __eq__(self, arg):
@@ -153,7 +164,7 @@ class TimeSignature(AbjadObject):
             raise TypeError
 
     def __gt__(self, arg):
-        r'''Is true when duration of time signature is greater than duration of 
+        r'''Is true when duration of time signature is greater than duration of
         `arg`. Otherwise false.
 
         Returns boolean.
@@ -283,7 +294,7 @@ class TimeSignature(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Implied prolation of time signature 
+            **Example 1.** Implied prolation of time signature
             with power-of-two denominator:
 
             ::
@@ -293,7 +304,7 @@ class TimeSignature(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Implied prolation of time signature 
+            **Example 2.** Implied prolation of time signature
             with non-power-of-two denominator:
 
             ::
@@ -308,7 +319,7 @@ class TimeSignature(AbjadObject):
 
     @property
     def numerator(self):
-        r'''Time signature nuemrator.
+        r'''Time signature numerator.
 
         ::
 
@@ -344,10 +355,33 @@ class TimeSignature(AbjadObject):
         '''
         return self._partial
 
+    @property
+    def suppress(self):
+        r'''Gets time signature suppression.
+
+        ::
+
+            >>> time_signature.suppress is None
+            True
+
+        Sets time signature suppression.
+
+        ::
+
+            >>> time_signature.suppress = True
+
+        Returns boolean or none.
+        '''
+        return self._suppress
+
+    @suppress.setter
+    def suppress(self, expr):
+        self._suppress = bool(expr)
+
     ### PUBLIC METHODS ###
 
     def with_power_of_two_denominator(
-        self, 
+        self,
         contents_multiplier=durationtools.Multiplier(1),
         ):
         r'''Makes new time signature equivalent to current
