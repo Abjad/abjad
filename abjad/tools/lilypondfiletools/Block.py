@@ -22,6 +22,43 @@ class Block(AbjadObject):
                 right-margin = 2\cm
             }
 
+    ..  container:: example
+
+        ::
+
+            >>> block = lilypondfiletools.Block(name='score')
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
+            >>> block.items.append(staff)
+
+        ::
+
+            >>> print format(block)
+            \score {
+                \new Staff {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+            }
+
+    ..  container:: example
+
+        ::
+
+            >>> block = lilypondfiletools.Block(name='score')
+            >>> markup = Markup('foo')
+            >>> block.items.append(markup)
+
+        ::
+
+            >>> print format(block)
+            \score {
+                {
+                    \markup { foo }
+                }
+            }
+
     '''
 
     ### INITIALIZER ###
@@ -65,7 +102,8 @@ class Block(AbjadObject):
         string = '{} {{'.format(self._escaped_name)
         result.append(string)
         prototype = (scoretools.Leaf, markuptools.Markup)
-        if len(self.items) == 1 and isinstance(self.items[0], prototype):
+        if len(self.items) == 1 and isinstance(self.items[0], prototype) and \
+            self.name == 'score':
             result.append('\t{')
             pieces = self.items[0]._format_pieces
             pieces = ['\t\t' + item for item in pieces]
@@ -181,7 +219,7 @@ class Block(AbjadObject):
             ::
 
                 >>> block.items
-                []
+                [Markup(contents=('foo',))]
 
         Returns list.
         '''
@@ -196,7 +234,7 @@ class Block(AbjadObject):
             ::
 
                 >>> block.name
-                'paper'
+                'score'
 
         Returns string.
         '''
