@@ -141,6 +141,13 @@ class StemTremolo(AbjadObject):
         return str(self)
 
     @property
+    def _lilypond_format_bundle(self):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        lilypond_format_bundle.right.stem_tremolos.append(str(self))
+        return lilypond_format_bundle
+
+    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(

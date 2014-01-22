@@ -81,6 +81,16 @@ class LilyPondComment(AbjadObject):
             return self._contents_string == arg._contents_string
         return False
 
+    def __str__(self):
+        r'''Gets string format of LilyPond comment.
+
+        Returns string.
+        '''
+        from abjad.tools import stringtools
+        command = stringtools.snake_case_to_lower_camel_case(
+            self.contents_string)
+        return r'%% %s' % command
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -89,10 +99,15 @@ class LilyPondComment(AbjadObject):
 
     @property
     def _lilypond_format(self):
-        from abjad.tools import stringtools
-        command = stringtools.snake_case_to_lower_camel_case(
-            self.contents_string)
-        return r'%% %s' % command
+        return str(self)
+
+    @property
+    def _lilypond_format_bundle(self):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        format_slot = lilypond_format_bundle.get(self.format_slot)
+        format_slot.comments.append(str(self))
+        return lilypond_format_bundle
 
     @property
     def _storage_format_specification(self):

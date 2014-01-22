@@ -161,7 +161,6 @@ class LilyPondFormatManager(object):
         # handle nonscoped expressions
         for nonscoped_expression in nonscoped_expressions:
             indicator = nonscoped_expression.indicator
-
             indicator_format_bundle = getattr(
                 indicator,
                 '_lilypond_format_bundle',
@@ -169,27 +168,6 @@ class LilyPondFormatManager(object):
                 )
             if indicator_format_bundle is not None:
                 bundle.update(indicator_format_bundle)
-                continue
-
-            if isinstance(
-                indicator,
-                indicatortools.LilyPondComment,
-                ):
-                format_slot_subsection = 'comments'
-            elif isinstance(
-                indicator,
-                indicatortools.StemTremolo,
-                ):
-                format_slot_subsection = 'stem_tremolos'
-            else:
-                message = 'do not know how to classify {!r}.'
-                message = message.format(indicator)
-                raise Exception(message)
-            format_slot = indicator._format_slot
-            format_slot = bundle.get(format_slot)
-            contributions = format_slot.get(format_slot_subsection)
-            contribution = indicator._lilypond_format
-            contributions.append(contribution)
 
     @staticmethod
     def _populate_spanner_format_contributions(component, bundle):
