@@ -90,7 +90,6 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def _populate_indicator_format_contributions(component, bundle):
-        from abjad.tools import indicatortools
         from abjad.tools import markuptools
         from abjad.tools.topleveltools import inspect_
         expressions = []
@@ -107,7 +106,8 @@ class LilyPondFormatManager(object):
         # classify expressions attached to component
         for expression in expressions:
             # skip nonprinting indicators like annotation
-            if not hasattr(expression.indicator, '_lilypond_format'):
+            if not hasattr(expression.indicator, '_lilypond_format') and \
+                not hasattr(expression.indicator, '_lilypond_format_bundle'):
                 pass
             # skip comments and commands unless attached directly to us
             elif expression.scope is None and \
@@ -144,15 +144,15 @@ class LilyPondFormatManager(object):
                 command = markuptools.MarkupCommand('column', contents)
                 markup = markuptools.Markup(command, direction=direction)
                 format_pieces = markup._get_format_pieces()
-                bundle.right.markup[:] = format_pieces
+                bundle.right.markup.extend(format_pieces)
             else:
                 if markup_list[0].direction is None:
                     markup = markuptools.Markup(markup_list[0], direction='-')
                     format_pieces = markup._get_format_pieces()
-                    bundle.right.markup[:] = format_pieces
+                    bundle.right.markup.extend(format_pieces)
                 else:
                     format_pieces = markup_list[0]._get_format_pieces()
-                    bundle.right.markup[:] = format_pieces
+                    bundle.right.markup.extend(format_pieces)
         # handle scoped expressions
         for scoped_expression in scoped_expressions:
             format_pieces = scoped_expression._get_format_pieces()
