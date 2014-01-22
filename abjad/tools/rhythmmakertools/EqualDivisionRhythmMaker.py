@@ -57,6 +57,8 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         '_leaf_count',
         )
 
+    _class_name_abbreviation = 'ED'
+
     _human_readable_class_name = 'equal-division rhythm-maker'
 
     ### INITIALIZER ###

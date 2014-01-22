@@ -54,6 +54,8 @@ class NoteRhythmMaker(RhythmMaker):
     __slots__ = (
         )
 
+    _class_name_abbreviation = 'N'
+
     _human_readable_class_name = 'note rhythm-maker'
 
     ### SPECIAL METHODS ###

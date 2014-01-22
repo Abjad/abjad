@@ -106,6 +106,8 @@ class TaleaRhythmMaker(RhythmMaker):
         '_burnish_output',
         )
 
+    _class_name_abbreviation = 'TR'
+
     _human_readable_class_name = 'talea rhythm-maker'
 
     ### INITIALIZER ###

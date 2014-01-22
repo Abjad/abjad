@@ -19,6 +19,7 @@ from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import new
 from abjad.tools.topleveltools import persist
+from abjad.tools.topleveltools import set_
 
 
 class RhythmMaker(AbjadObject):
@@ -35,6 +36,10 @@ class RhythmMaker(AbjadObject):
         '_name',
         '_tie_across_divisions',
         )
+
+    _class_name_abbreviation = 'RM'
+
+    _human_readable_class_name = 'rhythm-maker'
 
     ### INITIALIZER ###
 
@@ -239,10 +244,11 @@ class RhythmMaker(AbjadObject):
         else:
             return False
 
-    def _gallery_input_block_to_scores(self, block):
+    def _gallery_input_block_to_scores(self, block, configuration_number):
         maker = type(self)(**block.input_)
         scores = []
-        for division_list in block.division_lists:
+        for i, division_list in enumerate(block.division_lists):
+            example_number = i + 1
             lists = maker(division_list)
             music = sequencetools.flatten_sequence(lists)
             measures = scoretools.make_spacer_skip_measures(division_list)
@@ -253,6 +259,11 @@ class RhythmMaker(AbjadObject):
                 )
             measures = scoretools.make_spacer_skip_measures(division_list)
             staff = scoretools.Staff(measures)
+            markup = self._make_gallery_example_markup(
+                configuration_number,
+                example_number,
+                )
+            set_(staff).instrument_name = markup
             staff.context_name = 'RhythmicStaff'
             measures = mutate(staff).replace_measure_contents(music)
             score = scoretools.Score()
@@ -260,6 +271,28 @@ class RhythmMaker(AbjadObject):
             score.append(staff)
             scores.append(score)
         return scores
+
+    def _make_gallery_example_markup(
+        self, 
+        configuration_number,
+        example_number,
+        ):
+        assert mathtools.is_nonnegative_integer(configuration_number)
+        assert mathtools.is_nonnegative_integer(example_number)
+        abbreviation = self._class_name_abbreviation
+        number_string = '{}-{}'.format(
+            configuration_number,
+            example_number,
+            )
+        width = 9 
+        top = markuptools.MarkupCommand('hcenter-in', width, abbreviation)
+        bottom = markuptools.MarkupCommand('hcenter-in', width, number_string)
+        lines = [top, bottom]
+        command = markuptools.MarkupCommand('column', lines)
+        command = markuptools.MarkupCommand('fontsize', 1, command)
+        command = markuptools.MarkupCommand('hcenter-in', width, command)
+        markup = markuptools.Markup(command)
+        return markup
 
     @staticmethod
     def _is_leaf_list(expr):
@@ -272,10 +305,14 @@ class RhythmMaker(AbjadObject):
         title_markup = self._make_gallery_title_markup()
         lilypond_file.header_block.title = title_markup
         markups = []
-        for block in self._gallery_input_blocks:
+        for i, block in enumerate(self._gallery_input_blocks):
+            configuration_number = i + 1
             markup = block._to_markup(type(self))
             lilypond_file.items.append(markup)
-            scores = self._gallery_input_block_to_scores(block)
+            scores = self._gallery_input_block_to_scores(
+                block,
+                configuration_number,
+                )
             for score in scores:
                 score.add_final_bar_line()
                 selection = score.select_leaves(start=-1)

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import fractions
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
@@ -31,6 +31,8 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
     __slots__ = (
         )
+
+    _class_name_abbreviation = 'TM'
 
     _human_readable_class_name = 'tuplet-monad rhythm-maker'
 
@@ -108,9 +110,11 @@ class TupletMonadRhythmMaker(RhythmMaker):
         numerator, talea_denominator = division
         power_of_two_denominator = \
             mathtools.greatest_power_of_two_less_equal(talea_denominator)
-        duration = fractions.Fraction(abs(numerator), talea_denominator)
-        power_of_two_duration = \
-            fractions.Fraction(abs(numerator), power_of_two_denominator)
+        duration = durationtools.Duration(abs(numerator), talea_denominator)
+        power_of_two_duration = durationtools.Duration(
+            abs(numerator), 
+            power_of_two_denominator,
+            )
         power_of_two_division = (numerator, power_of_two_denominator)
         tuplet_multiplier = duration / power_of_two_duration
         leaves = scoretools.make_leaves([0], [power_of_two_division])

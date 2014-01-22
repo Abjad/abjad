@@ -62,6 +62,8 @@ class EvenRunRhythmMaker(RhythmMaker):
         '_denominator_multiplier_exponent',
         )
 
+    _class_name_abbreviation = 'ER'
+
     _human_readable_class_name = 'even-run rhythm-maker'
 
     ### GALLERY INPUT ###

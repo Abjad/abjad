@@ -61,6 +61,8 @@ class IncisedRhythmMaker(RhythmMaker):
         '_secondary_divisions',
         )
 
+    _class_name_abbreviatio = 'In'
+
     _human_readable_class_name = 'incised rhythm-maker'
 
     ### INITIALIZER ###
