@@ -41,9 +41,22 @@ class LaissezVibrer(AbjadObject):
         '''
         return type(expr) == type(self)
 
+    def __str__(self):
+        r'''String representation of laissez vibrer.
+
+        Returns string.
+        '''
+        return r'\laissezVibrer'
+
     ### PRIVATE PROPERTIES ###
 
     @property
     def _lilypond_format(self):
-        return r'\laissezVibrer'
+        return str(self)
 
+    @property
+    def _lilypond_format_bundle(self):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        lilypond_format_bundle.right.articulations.append(str(self))
+        return lilypond_format_bundle

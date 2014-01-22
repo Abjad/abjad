@@ -174,13 +174,6 @@ class LilyPondFormatManager(object):
                 continue
 
             if isinstance(
-                indicator, (
-                    indicatortools.BendAfter,
-                    indicatortools.LaissezVibrer,
-                    )
-                ):
-                format_slot_subsection = 'articulations'
-            elif isinstance(
                 indicator,
                 indicatortools.LilyPondCommand,
                 ):
