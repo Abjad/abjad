@@ -71,6 +71,7 @@ class Block(AbjadObject):
             pieces = ['\t\t' + item for item in pieces]
             result.extend(pieces)
             result.append('\t}')
+            result.append('}')
             return result
         for item in self.items:
             if isinstance(item, lilypondfiletools.ContextBlock):
