@@ -33,9 +33,9 @@ class LilyPondCommand(AbjadObject):
 
         >>> show(staff) # doctest: +SKIP
 
-    Initialize LilyPond commands from name; or from name
-    with format slot; or from another LilyPond command;
-    or from another LilyPond command with format slot.
+    Initialize LilyPond commands from name; or from name with format slot; or
+    from another LilyPond command; or from another LilyPond command with format
+    slot.
     '''
 
     ### CLASS VARIABLES ###
@@ -48,16 +48,16 @@ class LilyPondCommand(AbjadObject):
     _format_leaf_children = False
 
     _valid_format_slots = (
-        'before', 
-        'after', 
-        'opening', 
-        'closing', 
+        'before',
+        'after',
+        'opening',
+        'closing',
         'right',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self,  *args):
+    def __init__(self, *args):
         if len(args) == 1 and isinstance(args[0], type(self)):
             name = copy.copy(args[0].name)
             format_slot = copy.copy(args[0].format_slot)
@@ -133,6 +133,14 @@ class LilyPondCommand(AbjadObject):
             return command
         else:
             return '\\' + stringtools.snake_case_to_lower_camel_case(command)
+
+    @property
+    def _lilypond_format_bundle(self):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        format_slot = lilypond_format_bundle.get(self.format_slot)
+        format_slot.commands.append(self._lilypond_format)
+        return lilypond_format_bundle
 
     @property
     def _storage_format_specification(self):

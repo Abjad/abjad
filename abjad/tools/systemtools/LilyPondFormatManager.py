@@ -92,9 +92,7 @@ class LilyPondFormatManager(object):
     def _populate_indicator_format_contributions(component, bundle):
         from abjad.tools import indicatortools
         from abjad.tools import markuptools
-        from abjad.tools import scoretools
         from abjad.tools.topleveltools import inspect_
-        manager = LilyPondFormatManager
         expressions = []
         for parent in inspect_(component).get_parentage(include_self=True):
             result = inspect_(parent).get_indicators(unwrap=False)
@@ -175,11 +173,6 @@ class LilyPondFormatManager(object):
 
             if isinstance(
                 indicator,
-                indicatortools.LilyPondCommand,
-                ):
-                format_slot_subsection = 'commands'
-            elif isinstance(
-                indicator,
                 indicatortools.LilyPondComment,
                 ):
                 format_slot_subsection = 'comments'
@@ -201,7 +194,6 @@ class LilyPondFormatManager(object):
     @staticmethod
     def _populate_spanner_format_contributions(component, bundle):
         from abjad.tools import scoretools
-        from abjad.tools import spannertools
         from abjad.tools.topleveltools.override import override
         result = {
             'after': [],
