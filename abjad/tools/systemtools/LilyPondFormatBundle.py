@@ -24,7 +24,7 @@ class LilyPondFormatBundle(AbjadObject):
 
     ### INNER CLASS DEFINITION ###
 
-    class SlotContributions(object):
+    class SlotContributions(AbjadObject):
         r'''Slot contributions.
         '''
 
@@ -48,6 +48,25 @@ class LilyPondFormatBundle(AbjadObject):
             self._stem_tremolos = []
 
         @property
+        def _storage_format_specification(self):
+            from abjad.tools import systemtools
+            keyword_argument_names = [
+                'articulations',
+                'commands',
+                'comments',
+                'indicators',
+                'markup',
+                'spanners',
+                'stem_tremolos',
+                ]
+            keyword_argument_names = [x for x in keyword_argument_names
+                if getattr(self, x)]
+            return systemtools.StorageFormatSpecification(
+                self,
+                keyword_argument_names=keyword_argument_names,
+                )
+
+        @property
         def articulations(self):
             return self._articulations
 
@@ -58,6 +77,20 @@ class LilyPondFormatBundle(AbjadObject):
         @property
         def commands(self):
             return self._commands
+
+        @property
+        def has_contributions(self):
+            contribution_categories = (
+                'articulations',
+                'commands',
+                'comments',
+                'indicators',
+                'markup',
+                'spanners',
+                'stem_tremolos',
+                )
+            return any(getattr(self, contribution_category)
+                for contribution_category in contribution_categories)
 
         @property
         def indicators(self):
@@ -111,6 +144,32 @@ class LilyPondFormatBundle(AbjadObject):
         self._context_settings = []
         self._grob_overrides = []
         self._grob_reverts = []
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        slot_contribution_names = (
+            'before',
+            'after',
+            'opening',
+            'closing',
+            'right',
+            )
+        grob_contribution_names = (
+            'context_settings',
+            'grob_overrides',
+            'grob_reverts',
+            )
+        keyword_argument_names = [x for x in slot_contribution_names
+            if getattr(self, x).has_contributions]
+        keyword_argument_names.extend(x for x in grob_contribution_names
+            if getattr(self, x))
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=keyword_argument_names,
+            )
 
     ### PUBLIC PROPERTIES ###
 
