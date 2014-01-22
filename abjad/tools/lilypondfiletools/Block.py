@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import abc
 from abjad.tools.abctools import AbjadObject
 
 
@@ -20,26 +19,6 @@ class Block(AbjadObject):
             \paper {
                 left-margin = 2\cm
                 right-margin = 2\cm
-            }
-
-    ..  container:: example
-
-        ::
-
-            >>> block = lilypondfiletools.Block(name='score')
-            >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> block.items.append(staff)
-
-        ::
-
-            >>> print format(block)
-            \score {
-                \new Staff {
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                }
             }
 
     ..  container:: example
@@ -170,7 +149,7 @@ class Block(AbjadObject):
         result = []
         for value in self.items:
             acceptable_types = (
-                schemetools.Scheme, 
+                schemetools.Scheme,
                 indicatortools.LilyPondCommand,
                 )
             if isinstance(value, acceptable_types):
@@ -201,7 +180,7 @@ class Block(AbjadObject):
                     formatted_value = [formatted_value]
                 setting = '{!s} = {!s}'
                 setting = setting.format(
-                    formatted_key, 
+                    formatted_key,
                     formatted_value[0],
                     )
                 result.append(setting)
