@@ -11,7 +11,7 @@ class LilyPondFormatBundle(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ =  (
+    __slots__ = (
         '_before',
         '_after',
         '_opening',
@@ -27,7 +27,7 @@ class LilyPondFormatBundle(AbjadObject):
     class SlotContributions(object):
         r'''Slot contributions.
         '''
-        
+
         __slots__ = (
             '_articulations',
             '_commands',
@@ -79,7 +79,7 @@ class LilyPondFormatBundle(AbjadObject):
             self._indicators.sort()
 
         def get(self, identifier):
-            return getattr(self, identifier) 
+            return getattr(self, identifier)
 
         def make_immutable(self):
             self._articulations = tuple(sorted(self.articulations))
@@ -89,7 +89,17 @@ class LilyPondFormatBundle(AbjadObject):
             self._markup = tuple(self.markup)
             self._spanners = tuple(self.spanners)
             self._stem_tremolos = tuple(self.stem_tremolos)
-    
+
+        def update(self, slot_contributions):
+            assert isinstance(slot_contributions, type(self))
+            self.articulations.extend(slot_contributions.articulations)
+            self.commands.extend(slot_contributions.commands)
+            self.comments.extend(slot_contributions.comments)
+            self.indicators.extend(slot_contributions.indicators)
+            self.markup.extend(slot_contributions.markup)
+            self.spanners.extend(slot_contributions.spanners)
+            self.stem_tremolos.extend(slot_contributions.stem_tremolos)
+
     ### INITIALIZER ###
 
     def __init__(self):
@@ -171,7 +181,7 @@ class LilyPondFormatBundle(AbjadObject):
     ### PUBLIC METHODS ###
 
     def alphabetize(self):
-        r'''Alphabetize format contributions in each slot.
+        r'''Alphabetizes format contributions in each slot.
 
         Returns none.
         '''
@@ -183,17 +193,17 @@ class LilyPondFormatBundle(AbjadObject):
         self._context_settings.sort()
         self._grob_overrides.sort()
         self._grob_reverts.sort()
-        
+
     def get(self, identifier):
-        r'''Get `identifier`.
+        r'''Gets `identifier`.
 
         Returns format contributions object or list.
         '''
         return getattr(self, identifier)
 
     def make_immutable(self):
-        r'''Make each slot immutable.
-        
+        r'''Makes each slot immutable.
+
         Returns none.
         '''
         self.before.make_immutable()
@@ -204,3 +214,19 @@ class LilyPondFormatBundle(AbjadObject):
         self._context_settings = tuple(self.context_settings)
         self._grob_overrides = tuple(self.grob_overrides)
         self._grob_reverts = tuple(self.grob_reverts)
+
+    def update(self, format_bundle):
+        r'''Updates format bundle with all format contributions in
+        `format_bundle`.
+
+        Returns none.
+        '''
+        assert isinstance(format_bundle, type(self))
+        self.before.update(format_bundle.before)
+        self.after.update(format_bundle.after)
+        self.opening.update(format_bundle.opening)
+        self.closing.update(format_bundle.closing)
+        self.right.update(format_bundle.right)
+        self.context_settings.extend(format_bundle.context_settings)
+        self.grob_overrides.extend(format_bundle.grob_overrides)
+        self.grob_reverts.extend(format_bundle.grob_reverts)
