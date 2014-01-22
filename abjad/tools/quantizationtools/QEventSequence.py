@@ -601,10 +601,10 @@ class QEventSequence(AbjadObject):
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
         assert Selection._all_are_contiguous_components_in_same_logical_voice(
-            leaves) and len(leaves)
+            leaves)
+        assert len(leaves)
         if tempo is None:
-            assert leaves[0]._get_effective(
-                indicatortools.Tempo) is not None
+            assert leaves[0]._get_effective(indicatortools.Tempo) is not None
         else:
             tempo = indicatortools.Tempo(tempo)
         # sort by silence and tied leaves
