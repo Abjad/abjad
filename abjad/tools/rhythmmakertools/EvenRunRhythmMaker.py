@@ -35,6 +35,38 @@ class EvenRunRhythmMaker(RhythmMaker):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 4/8
+                    {
+                        c'8 [
+                        c'8
+                        c'8
+                        c'8 ]
+                    }
+                }
+                {
+                    \time 3/4
+                    {
+                        c'4
+                        c'4
+                        c'4
+                    }
+                }
+                {
+                    \time 2/4
+                    {
+                        c'4
+                        c'4
+                    }
+                }
+            }
+
+
     ..  container:: example
 
         Makes even run of notes each equal in duration to
@@ -54,6 +86,46 @@ class EvenRunRhythmMaker(RhythmMaker):
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 4/8
+                    {
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
+                    }
+                }
+                {
+                    \time 3/4
+                    {
+                        c'8 [
+                        c'8
+                        c'8
+                        c'8
+                        c'8
+                        c'8 ]
+                    }
+                }
+                {
+                    \time 2/4
+                    {
+                        c'8 [
+                        c'8
+                        c'8
+                        c'8 ]
+                    }
+                }
+            }
 
     Even-run rhythm-maker doesn't yet work with non-power-of-two divisions.
     '''
@@ -215,6 +287,46 @@ class EvenRunRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 3/4
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 2/4
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
+
         Returns new even-run rhythm-maker.
         '''
         assert not args
@@ -304,6 +416,46 @@ class EvenRunRhythmMaker(RhythmMaker):
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 3/4
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 2/4
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
 
         Returns new even-run rhythm-maker.
         '''

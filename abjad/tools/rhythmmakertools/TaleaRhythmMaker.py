@@ -14,7 +14,7 @@ from abjad.tools.topleveltools import new
 
 
 class TaleaRhythmMaker(RhythmMaker):
-    '''Talea rhythm-maker.
+    r'''Talea rhythm-maker.
 
     'Burnishing' means to forcibly cast the first or last
     (or both first and last) elements of a output cell to be
@@ -59,9 +59,39 @@ class TaleaRhythmMaker(RhythmMaker):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
+        ..  doctest::
+            
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 3/8
+                    {
+                        r16
+                        c'8 [
+                        c'8. ]
+                    }
+                }
+                {
+                    \time 4/8
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/5 {
+                        c'16 [
+                        c'8
+                        c'8 ]
+                    }
+                    {
+                        c'16 [
+                        c'16
+                        c'8 ]
+                        r16
+                    }
+                }
+            }
+
     '''
 
-    '''Example helpers:
+    r'''Example helpers:
 
     # used in a piece with four voices:
     # voice 1 starts reading talea at beginning of talea;
@@ -285,6 +315,34 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            r16
+                            c'8 [
+                            c'8. ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 2/3 {
+                            c'16 [
+                            c'8
+                            c'8. ]
+                        }
+                        {
+                            c'16 [
+                            c'8 ]
+                            r16
+                        }
+                    }
+                }
 
         Returns new talea rhythm-maker.
         '''
@@ -732,6 +790,37 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/4 {
+                            r8.
+                            c'8 [
+                            c'16
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            c'16 [
+                            c'8 ]
+                        }
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 5/7 {
+                            c'16 [
+                            c'8.
+                            c'8 ]
+                            r16
+                        }
+                    }
+                }
 
         Returns new talea rhythm-maker.
         '''

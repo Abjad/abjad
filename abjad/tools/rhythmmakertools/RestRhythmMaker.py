@@ -24,6 +24,22 @@ class RestRhythmMaker(RhythmMaker):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 5/16
+                    r4
+                    r16
+                }
+                {
+                    \time 3/8
+                    r4.
+                }
+            }
+
     ..  container:: example
 
         Forbids rests with written duration greater than or equal to ``1/4`` of
@@ -44,6 +60,25 @@ class RestRhythmMaker(RhythmMaker):
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 5/16
+                    r8
+                    r8
+                    r16
+                }
+                {
+                    \time 3/8
+                    r8
+                    r8
+                    r8
+                }
+            }
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''
@@ -133,6 +168,25 @@ class RestRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/16
+                        r8
+                        r8
+                        r16
+                    }
+                    {
+                        \time 3/8
+                        r8
+                        r8
+                        r8
+                    }
+                }
+
         Returns new rest rhythm-maker.
         '''
         #return RhythmMaker.__makenew__(self, *args, **kwargs)
@@ -209,6 +263,25 @@ class RestRhythmMaker(RhythmMaker):
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/16
+                        r8
+                        r8
+                        r16
+                    }
+                    {
+                        \time 3/8
+                        r8
+                        r8
+                        r8
+                    }
+                }
 
         Returns new rest rhythm-maker.
         '''

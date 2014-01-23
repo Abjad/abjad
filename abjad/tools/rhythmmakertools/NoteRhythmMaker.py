@@ -29,6 +29,22 @@ class NoteRhythmMaker(RhythmMaker):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 5/8
+                    c'2 ~
+                    c'8
+                }
+                {
+                    \time 3/8
+                    c'4.
+                }
+            }
+
     ..  container:: example
 
         Forbids notes with written duration greater than or equal to ``1/2``
@@ -49,6 +65,23 @@ class NoteRhythmMaker(RhythmMaker):
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 5/8
+                    c'4 ~
+                    c'4 ~
+                    c'8
+                }
+                {
+                    \time 3/8
+                    c'4.
+                }
+            }
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''
@@ -142,6 +175,23 @@ class NoteRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'4 ~
+                        c'4 ~
+                        c'8
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
         Returns new note rhythm-maker.
         '''
         #return RhythmMaker.__makenew__(self, *args, **kwargs)
@@ -212,6 +262,23 @@ class NoteRhythmMaker(RhythmMaker):
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'4 ~
+                        c'4 ~
+                        c'8
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
 
         Returns new note rhythm-maker.
         '''

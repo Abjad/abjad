@@ -25,6 +25,25 @@ class SkipRhythmMaker(RhythmMaker):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 1/4
+                    s1 * 1/4
+                }
+                {
+                    \time 3/16
+                    s1 * 3/16
+                }
+                {
+                    \time 5/8
+                    s1 * 5/8
+                }
+            }
+
     Usage follows the two-step configure-then-call pattern shown here.
     '''
 
@@ -100,6 +119,25 @@ class SkipRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 1/4
+                        s1 * 1/4
+                    }
+                    {
+                        \time 3/16
+                        s1 * 3/16
+                    }
+                    {
+                        \time 5/8
+                        s1 * 5/8
+                    }
+                }
+
         Returns new skip rhythm-maker.
         '''
         #return RhythmMaker.__makenew__(self, *args, **kwargs)
@@ -148,6 +186,25 @@ class SkipRhythmMaker(RhythmMaker):
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 1/4
+                        s1 * 1/4
+                    }
+                    {
+                        \time 3/16
+                        s1 * 3/16
+                    }
+                    {
+                        \time 5/8
+                        s1 * 5/8
+                    }
+                }
 
         Defined equal to copy of rhythm-maker.
 

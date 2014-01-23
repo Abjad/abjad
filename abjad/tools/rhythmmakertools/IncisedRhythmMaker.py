@@ -46,6 +46,32 @@ class IncisedRhythmMaker(RhythmMaker):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 5/16
+                    c'4
+                    r16
+                }
+                {
+                    r16
+                    c'8.
+                    r16
+                }
+                {
+                    c'4
+                    r16
+                }
+                {
+                    r16
+                    c'8.
+                    r16
+                }
+            }
+
     '''
 
     ### CLASS VARIABLES ###
@@ -465,6 +491,36 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/16
+                        c'8
+                        c'8
+                        r16
+                    }
+                    {
+                        r16
+                        c'16.
+                        c'16.
+                        r16
+                    }
+                    {
+                        c'8
+                        c'8
+                        r16
+                    }
+                    {
+                        r16
+                        c'16.
+                        c'16.
+                        r16
+                    }
+                }
+
         Returns ratio.
         '''
         return self._body_ratio
@@ -526,6 +582,31 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        r4
+                        r8..
+                        c'8 ~
+                        c'32
+                    }
+                    {
+                        c'2 ~
+                        c'8
+                    }
+                    {
+                        c'4
+                        r16.
+                        r16.
+                        r16.
+                        r16.
+                    }
+                }
+
         ..  container:: example
 
             Output-incised rests:
@@ -554,6 +635,31 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'8..
+                        c'4
+                        r8
+                        r32
+                    }
+                    {
+                        r2
+                        r8
+                    }
+                    {
+                        r4
+                        c'16.
+                        c'16.
+                        c'16.
+                        c'16.
+                    }
+                }
 
         Returns boolean.
         '''

@@ -32,6 +32,35 @@ class RatioTaleaRhythmMaker(RhythmMaker):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 1/2
+                    \times 4/5 {
+                        c'4.
+                        c'4
+                    }
+                }
+                {
+                    \time 3/8
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/5 {
+                        c'4.
+                        c'4
+                    }
+                }
+                {
+                    \time 5/16
+                    {
+                        c'8.
+                        c'8
+                    }
+                }
+            }
+
     ..  container:: example
 
         Makes tuplets with alternating ``1:-1`` and ``3:1`` leaf ratios.
@@ -51,6 +80,36 @@ class RatioTaleaRhythmMaker(RhythmMaker):
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 1/2
+                    {
+                        c'4
+                        r4
+                    }
+                }
+                {
+                    \time 3/8
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/4 {
+                        c'4.
+                        c'8
+                    }
+                }
+                {
+                    \time 5/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 5/8 {
+                        c'4
+                        r4
+                    }
+                }
+            }
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''
@@ -176,6 +235,36 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 1/2
+                        {
+                            c'4
+                            r4
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/2 {
+                            c'8.
+                            c'16
+                        }
+                    }
+                    {
+                        \time 5/16
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 5/4 {
+                            c'8
+                            r8
+                        }
+                    }
+                }
+
         Returns new ratio-talea rhythm-maker.
         '''
         assert not args
@@ -280,6 +369,36 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 1/2
+                        \times 4/5 {
+                            c'4
+                            c'4. ~
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/4 {
+                            c'8
+                            r4
+                            c'8 ~
+                        }
+                    }
+                    {
+                        \time 5/16
+                        {
+                            c'8
+                            c'8.
+                        }
+                    }
+                }
+
         Returns boolean.
         '''
         return self._tie_across_divisions
@@ -319,6 +438,38 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 1/2
+                        {
+                            c'8
+                            r4
+                            c'8 ~
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'4.
+                            c'4 ~
+                        }
+                    }
+                    {
+                        \time 5/16
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 5/8 {
+                            c'8
+                            r4
+                            c'8
+                        }
+                    }
+                }
 
         Defined equal to copy of maker with `ratio_talea` reversed, and each
         ratio in `ratio_talea` reversed.
