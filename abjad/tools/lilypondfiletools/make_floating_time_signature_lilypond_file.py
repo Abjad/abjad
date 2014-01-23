@@ -221,7 +221,7 @@ def make_floating_time_signature_lilypond_file(music=None):
 
 def _make_time_signature_context_block(
     font_size=3, 
-    minimum_distance=12, 
+    minimum_distance=10, 
     padding=4,
     ):
     from abjad.tools import layouttools

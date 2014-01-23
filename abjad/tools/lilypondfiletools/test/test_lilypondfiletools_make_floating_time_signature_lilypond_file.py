@@ -24,7 +24,7 @@ def test_lilypondfiletools_make_floating_time_signature_lilypond_file_01():
             \override TimeSignature #'break-visibility = #end-of-line-invisible
             \override TimeSignature #'font-size = #1
             \override TimeSignature #'self-alignment-X = #center
-            \override VerticalAxisGroup #'default-staff-staff-spacing = #'((basic-distance . 0) (minimum-distance . 12) (padding . 6) (stretchability . 0))
+            \override VerticalAxisGroup #'default-staff-staff-spacing = #'((basic-distance . 0) (minimum-distance . 10) (padding . 6) (stretchability . 0))
         }
         '''
         )
