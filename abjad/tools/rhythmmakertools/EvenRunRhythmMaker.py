@@ -61,7 +61,7 @@ class EvenRunRhythmMaker(RhythmMaker):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_denominator_multiplier_exponent',
+        '_exponent',
         )
 
     _class_name_abbreviation = 'ER'
@@ -73,7 +73,7 @@ class EvenRunRhythmMaker(RhythmMaker):
     _gallery_input_blocks = (
         GalleryInputSpecifier(
             input_={
-                'denominator_multiplier_exponent': 0,
+                'exponent': 0,
                 'beam_each_cell': True,
                 'beam_cells_together': False,
                 },
@@ -98,7 +98,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             ),
         GalleryInputSpecifier(
             input_={
-                'denominator_multiplier_exponent': 1,
+                'exponent': 1,
                 'beam_each_cell': True,
                 'beam_cells_together': False,
                 },
@@ -128,7 +128,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     def __init__(
         self,
-        denominator_multiplier_exponent=0,
+        exponent=0,
         beam_cells_together=False,
         beam_each_cell=True,
         decrease_durations_monotonically=True,
@@ -136,7 +136,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         tie_across_divisions=False,
         ):
         assert mathtools.is_nonnegative_integer(
-            denominator_multiplier_exponent)
+            exponent)
         RhythmMaker.__init__(
             self,
             beam_cells_together=beam_cells_together,
@@ -145,8 +145,8 @@ class EvenRunRhythmMaker(RhythmMaker):
             forbidden_written_duration=forbidden_written_duration,
             tie_across_divisions=tie_across_divisions,
             )
-        self._denominator_multiplier_exponent = \
-            denominator_multiplier_exponent
+        self._exponent = \
+            exponent
 
     ### SPECIAL METHODS ###
 
@@ -183,7 +183,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> print format(maker)
                 rhythmmakertools.EvenRunRhythmMaker(
-                    denominator_multiplier_exponent=1,
+                    exponent=1,
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=True,
@@ -204,13 +204,13 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> new_maker = new(maker, denominator_multiplier_exponent=0)
+                >>> new_maker = new(maker, exponent=0)
 
             ::
 
                 >>> print format(new_maker)
                 rhythmmakertools.EvenRunRhythmMaker(
-                    denominator_multiplier_exponent=0,
+                    exponent=0,
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=True,
@@ -235,8 +235,8 @@ class EvenRunRhythmMaker(RhythmMaker):
             'beam_each_cell': self.beam_each_cell,
             'decrease_durations_monotonically':
                 self.decrease_durations_monotonically,
-            'denominator_multiplier_exponent':
-                self.denominator_multiplier_exponent,
+            'exponent':
+                self.exponent,
             'forbidden_written_duration': self.forbidden_written_duration,
             }
         arguments.update(kwargs)
@@ -249,7 +249,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         numerator, denominator = division
         # eventually allow for non-power-of-two divisions
         assert mathtools.is_positive_integer_power_of_two(denominator)
-        denominator_multiplier = 2 ** self.denominator_multiplier_exponent
+        denominator_multiplier = 2 ** self.exponent
         denominator *= denominator_multiplier
         unit_duration = durationtools.Duration(1, denominator)
         numerator *= denominator_multiplier
@@ -271,19 +271,19 @@ class EvenRunRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def denominator_multiplier_exponent(self):
+    def exponent(self):
         r'''Gets denominator multiplier exponent of even-run rhythm-maker.
 
         ..  container:: example
 
             ::
 
-                >>> maker.denominator_multiplier_exponent
+                >>> maker.exponent
                 1
 
         Returns nonnegative integer.
         '''
-        return self._denominator_multiplier_exponent
+        return self._exponent
 
     ### PUBLIC METHODS ###
 
@@ -300,7 +300,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> print format(reversed_maker)
                 rhythmmakertools.EvenRunRhythmMaker(
-                    denominator_multiplier_exponent=1,
+                    exponent=1,
                     beam_cells_together=False,
                     beam_each_cell=True,
                     decrease_durations_monotonically=False,
@@ -323,17 +323,6 @@ class EvenRunRhythmMaker(RhythmMaker):
         '''
         decrease_durations_monotonically = \
             not self.decrease_durations_monotonically
-#        arguments = {
-#            'denominator_multiplier_exponent': 
-#                self.denominator_multiplier_exponent,
-#            'beam_cells_together': self.beam_cells_together,
-#            'beam_each_cell': self.beam_each_cell,
-#            'decrease_durations_monotonically': 
-#                decrease_durations_monotonically,
-#            'forbidden_written_duration': self.forbidden_written_duration,
-#            }
-#        new = type(self)(**arguments)
-#        return new
         maker = new(
             self,
             decrease_durations_monotonically=decrease_durations_monotonically,
