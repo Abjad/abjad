@@ -111,9 +111,8 @@ class Timespan(BoundedObject):
 
         Returns boolean.
         '''
-        if isinstance(timespan, type(self)):
-            return self.offsets == timespan.offsets
-        return False
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.compare(self, timespan)
 
     def __format__(self, format_specification=''):
         r'''Formats timespan.

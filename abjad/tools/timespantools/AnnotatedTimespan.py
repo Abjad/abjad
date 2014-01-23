@@ -44,8 +44,8 @@ class AnnotatedTimespan(Timespan):
 
     def __init__(
         self,
-        start_offset=None,
-        stop_offset=None,
+        start_offset=NegativeInfinity,
+        stop_offset=Infinity,
         annotation=None,
         ):
         Timespan.__init__(
