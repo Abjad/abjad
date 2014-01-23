@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_spannertools_MultipartBeam_format_01():
+def test_spannertools_MultipartBeam___format___01():
 
     container = Container("c'8 d'8 r8 e'8 f'8 g'4")
     beam = spannertools.MultipartBeam()
@@ -18,6 +18,24 @@ def test_spannertools_MultipartBeam_format_01():
             e'8 [
             f'8 ]
             g'4
+        }
+        '''
+        )
+
+
+def test_spannertools_MultipartBeam___format___02():
+    
+    container = Container("c'8 r4 c'8")
+    beam = spannertools.MultipartBeam()
+    attach(beam, container)
+
+    assert systemtools.TestManager.compare(
+        container,
+        r'''
+        {
+            c'8
+            r4
+            c'8
         }
         '''
         )

@@ -255,7 +255,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         \time 5/16
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 5/4 {
-                            c'8 ]
+                            c'8
                             r8
                         }
                     }
@@ -390,7 +390,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 3/4 {
-                            c'8 ]
+                            c'8
                             r4
                             c'8 ~
                         }
@@ -450,7 +450,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                     {
                         \time 1/2
                         {
-                            c'8 ]
+                            c'8
                             r4
                             c'8 ~
                         }
@@ -467,7 +467,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         \time 5/16
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 5/8 {
-                            c'8 ]
+                            c'8
                             r4
                             c'8
                         }
