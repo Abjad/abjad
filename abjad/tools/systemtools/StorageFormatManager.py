@@ -15,7 +15,7 @@ class StorageFormatManager(object):
 
         Returns boolean.
         '''
-        if type(object_one) is not type(object_two):
+        if not isinstance(object_two, type(object_one)):
             return False
         if StorageFormatManager.get_positional_argument_values(object_one) != \
             StorageFormatManager.get_positional_argument_values(object_two):
