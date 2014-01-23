@@ -105,8 +105,7 @@ class IncisedRhythmMaker(RhythmMaker):
         helper_functions=None,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
-        beam_each_cell=True,
-        beam_cells_together=False,
+        beam_specifier=None,
         fill_with_notes=True,
         incise_divisions=False,
         incise_output=False,
@@ -115,8 +114,7 @@ class IncisedRhythmMaker(RhythmMaker):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
-            beam_cells_together=beam_cells_together,
-            beam_each_cell=beam_each_cell,
+            beam_specifier=beam_specifier,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
             tie_across_divisions=tie_across_divisions,
@@ -173,8 +171,7 @@ class IncisedRhythmMaker(RhythmMaker):
         '''
         assert not args
         arguments = {
-            'beam_cells_together': self.beam_cells_together,
-            'beam_each_cell': self.beam_each_cell,
+            'beam_specifier': self.beam_specifier,
             'forbidden_written_duration': self.forbidden_written_duration,
             'incise_specifier': self.incise_specifier,
             'body_ratio': self.body_ratio,
@@ -260,6 +257,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 raise Exception(message)
 
     def _make_music(self, duration_pairs, seeds):
+        from abjad.tools import rhythmmakertools
         input_ = self._prepare_input(seeds)
         prefix_talea = input_[0]
         prefix_lengths = input_[1]
@@ -318,10 +316,13 @@ class IncisedRhythmMaker(RhythmMaker):
                 )
             result.extend(tuplets)
         assert self._all_are_tuplets_or_all_are_leaf_selections(result)
-        if self.beam_cells_together:
+        beam_specifier = self.beam_specifier
+        if beam_specifier is None:
+            beam_specifier = rhythmmakertools.BeamSpecifier()
+        if beam_specifier.beam_cells_together:
             beam = spannertools.MultipartBeam()
             attach(beam, result)
-        elif self.beam_each_cell:
+        elif beam_specifier.beam_each_cell:
             for x in result:
                 beam = spannertools.MultipartBeam()
                 attach(beam, x)
