@@ -244,10 +244,10 @@ class RhythmMaker(AbjadObject):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _all_are_tuplets_or_all_are_leaf_lists(expr):
+    def _all_are_tuplets_or_all_are_leaf_selections(expr):
         if all(isinstance(x, scoretools.Tuplet) for x in expr):
             return True
-        elif all(RhythmMaker._is_leaf_list(x) for x in expr):
+        elif all(RhythmMaker._is_leaf_selection(x) for x in expr):
             return True
         else:
             return False
@@ -310,8 +310,10 @@ class RhythmMaker(AbjadObject):
         return markup
 
     @staticmethod
-    def _is_leaf_list(expr):
-        return all(isinstance(x, scoretools.Leaf) for x in expr)
+    def _is_leaf_selection(expr):
+        if isinstance(expr, selectiontools.Selection):
+            return all(isinstance(x, scoretools.Leaf) for x in expr)
+        return False
 
     def _gallery_input_to_lilypond_file(self):
         from abjad.tools import lilypondfiletools

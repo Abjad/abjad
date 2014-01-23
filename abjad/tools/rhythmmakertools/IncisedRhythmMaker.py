@@ -4,6 +4,7 @@ from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
+from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
@@ -257,23 +258,30 @@ class IncisedRhythmMaker(RhythmMaker):
                 raise Exception(message)
 
     def _make_music(self, duration_pairs, seeds):
-        result = self._prepare_input(seeds)
-        prefix_talea, prefix_lengths, suffix_talea, suffix_lengths = \
-            result[:-2]
-        prolation_addenda, secondary_divisions = result[-2:]
+        input_ = self._prepare_input(seeds)
+        prefix_talea = input_[0]
+        prefix_lengths = input_[1]
+        suffix_talea = input_[2]
+        suffix_lengths = input_[3]
+        prolation_addenda = input_[4]
+        secondary_divisions = input_[5]
         taleas = (
             prefix_talea, 
             suffix_talea, 
             prolation_addenda, 
             secondary_divisions,
             )
-        result = self._scale_taleas(
+        input_ = self._scale_taleas(
             duration_pairs, 
             self.incise_specifier.talea_denominator, 
             taleas,
             )
-        duration_pairs, lcd, prefix_talea, suffix_talea = result[:-2]
-        prolation_addenda, secondary_divisions = result[-2:]
+        duration_pairs = input_[0]
+        lcd = input_[1]
+        prefix_talea = input_[2]
+        suffix_talea = input_[3]
+        prolation_addenda = input_[4]
+        secondary_divisions = input_[5]
         secondary_duration_pairs = self._make_secondary_duration_pairs(
             duration_pairs, secondary_divisions)
         if self.incise_divisions:
@@ -295,14 +303,19 @@ class IncisedRhythmMaker(RhythmMaker):
                 suffix_lengths,
                 prolation_addenda,
                 )
-        leaf_lists = self._numeric_map_and_talea_denominator_to_leaf_lists(
+        result = []
+        selections = \
+            self._numeric_map_and_talea_denominator_to_leaf_selections(
             numeric_map, lcd)
         if not self.prolation_addenda:
-            result = leaf_lists
+            result.extend(selections)
         else:
-            tuplets = self._make_tuplets(secondary_duration_pairs, leaf_lists)
-            result = tuplets
-        assert self._all_are_tuplets_or_all_are_leaf_lists(
+            tuplets = self._make_tuplets(
+                secondary_duration_pairs, 
+                selections,
+                )
+            result.extend(tuplets)
+        assert self._all_are_tuplets_or_all_are_leaf_selections(
             result), repr(result)
         return result
 
@@ -390,18 +403,18 @@ class IncisedRhythmMaker(RhythmMaker):
             numeric_map.append(numeric_map_part)
         return numeric_map
 
-    def _numeric_map_and_talea_denominator_to_leaf_lists(
+    def _numeric_map_and_talea_denominator_to_leaf_selections(
         self, numeric_map, lcd):
-        leaf_lists = []
+        selections = []
         for numeric_map_part in numeric_map:
-            leaf_list = scoretools.make_leaves_from_talea(
+            selection = scoretools.make_leaves_from_talea(
                 numeric_map_part,
                 lcd,
                 forbidden_written_duration=self.forbidden_written_duration,
                 decrease_durations_monotonically=self.decrease_durations_monotonically,
                 )
-            leaf_lists.append(leaf_list)
-        return leaf_lists
+            selections.append(selection)
+        return selections
 
     def _prepare_input(self, seeds):
         helper_functions = self.helper_functions or {}

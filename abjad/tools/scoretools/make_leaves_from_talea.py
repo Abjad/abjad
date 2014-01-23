@@ -103,7 +103,7 @@ def make_leaves_from_talea(
                 r16
             }
 
-    Returns list of leaves.
+    Returns selection.
     '''
     from abjad.tools import scoretools
 
