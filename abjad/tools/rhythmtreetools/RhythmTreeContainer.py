@@ -10,7 +10,7 @@ from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
 
 
 class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
-    r'''A container node in a rhythm tree structure:
+    r'''A rhythm-tree container.
 
     ::
 

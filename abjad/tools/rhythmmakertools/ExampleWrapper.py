@@ -4,7 +4,7 @@ from abjad.tools import schemetools
 from abjad.tools.abctools import AbjadObject
 
 
-class GalleryInputSpecifier(AbjadObject):
+class ExampleWrapper(AbjadObject):
     r'''A gallery input specifier.
     '''
 

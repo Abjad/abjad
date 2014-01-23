@@ -3,7 +3,7 @@ from abjad.tools import scoretools
 
 
 def parse_rtm_syntax(rtm):
-    r'''Parse RTM syntax:
+    r'''Parses RTM syntax.
 
     ::
 

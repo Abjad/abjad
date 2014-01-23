@@ -2,12 +2,11 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
 
 
 class RhythmTreeLeaf(RhythmTreeNode):
-    r'''A leaf node in a rhythm tree.
+    r'''A rhythm-tree leaf.
 
     ::
 

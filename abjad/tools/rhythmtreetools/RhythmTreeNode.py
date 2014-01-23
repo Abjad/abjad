@@ -9,7 +9,7 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class RhythmTreeNode(TreeNode):
-    r'''Abstract base class of nodes in a rhythm tree structure.
+    r'''Rhythm-tree node abstract base class.
     '''
 
     ### INITIALIZER ###
