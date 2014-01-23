@@ -74,8 +74,6 @@ class EvenRunRhythmMaker(RhythmMaker):
         GalleryInputSpecifier(
             input_={
                 'exponent': 0,
-                'beam_each_cell': True,
-                'beam_cells_together': False,
                 },
             division_lists=(
                 [
@@ -99,8 +97,6 @@ class EvenRunRhythmMaker(RhythmMaker):
         GalleryInputSpecifier(
             input_={
                 'exponent': 1,
-                'beam_each_cell': True,
-                'beam_cells_together': False,
                 },
             division_lists=(
                 [
