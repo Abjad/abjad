@@ -21,8 +21,54 @@ class TupletMonadRhythmMaker(RhythmMaker):
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
             ...     music,
             ...     divisions,
+            ...     should_scale_contents=True,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 2/5
+                    \scaleDurations #'(4 . 5) {
+                        \times 4/5 {
+                            c'2
+                        }
+                        s1 * 1/10
+                    }
+                }
+                {
+                    \scaleDurations #'(4 . 5) {
+                        \times 4/5 {
+                            c'2
+                        }
+                        s1 * 1/10
+                    }
+                }
+                {
+                    \time 1/4
+                    {
+                        c'4
+                    }
+                }
+                {
+                    \time 1/5
+                    \scaleDurations #'(4 . 5) {
+                        \times 4/5 {
+                            c'4
+                        }
+                        s1 * 1/20
+                    }
+                }
+                {
+                    \time 3/4
+                    {
+                        c'2.
+                    }
+                }
+            }
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''
@@ -97,8 +143,54 @@ class TupletMonadRhythmMaker(RhythmMaker):
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
+                ...     should_scale_contents=True,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 2/5
+                        \scaleDurations #'(4 . 5) {
+                            \times 4/5 {
+                                c'2
+                            }
+                            s1 * 1/10
+                        }
+                    }
+                    {
+                        \scaleDurations #'(4 . 5) {
+                            \times 4/5 {
+                                c'2
+                            }
+                            s1 * 1/10
+                        }
+                    }
+                    {
+                        \time 1/4
+                        {
+                            c'4
+                        }
+                    }
+                    {
+                        \time 1/5
+                        \scaleDurations #'(4 . 5) {
+                            \times 4/5 {
+                                c'4
+                            }
+                            s1 * 1/20
+                        }
+                    }
+                    {
+                        \time 3/4
+                        {
+                            c'2.
+                        }
+                    }
+                }
 
         Returns new tuplet monad rhythm-maker.
         '''
@@ -156,8 +248,54 @@ class TupletMonadRhythmMaker(RhythmMaker):
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
+                ...     should_scale_contents=True,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 2/5
+                        \scaleDurations #'(4 . 5) {
+                            \times 4/5 {
+                                c'2
+                            }
+                            s1 * 1/10
+                        }
+                    }
+                    {
+                        \scaleDurations #'(4 . 5) {
+                            \times 4/5 {
+                                c'2
+                            }
+                            s1 * 1/10
+                        }
+                    }
+                    {
+                        \time 1/4
+                        {
+                            c'4
+                        }
+                    }
+                    {
+                        \time 1/5
+                        \scaleDurations #'(4 . 5) {
+                            \times 4/5 {
+                                c'4
+                            }
+                            s1 * 1/20
+                        }
+                    }
+                    {
+                        \time 3/4
+                        {
+                            c'2.
+                        }
+                    }
+                }
 
         Returns new tuplet monad rhythm-maker.
         '''
