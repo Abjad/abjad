@@ -32,6 +32,7 @@ class RhythmMaker(AbjadObject):
     __slots__ = (
         '_beam_cells_together',
         '_beam_each_cell',
+        '_beam_specifier',
         '_decrease_durations_monotonically',
         '_forbidden_written_duration',
         '_name',
@@ -48,12 +49,17 @@ class RhythmMaker(AbjadObject):
         self,
         beam_cells_together=False,
         beam_each_cell=True,
+        beam_specifier=None,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
         tie_across_divisions=False,
         ):
+        from abjad.tools import rhythmmakertools
+        prototype = (rhythmmakertools.BeamSpecifier, type(None))
+        assert isinstance(beam_specifier, prototype)
         self._beam_each_cell = beam_each_cell
         self._beam_cells_together = beam_cells_together
+        self._beam_specifier = beam_specifier
         self._decrease_durations_monotonically = \
             decrease_durations_monotonically
         self._forbidden_written_duration = forbidden_written_duration
@@ -494,6 +500,14 @@ class RhythmMaker(AbjadObject):
         Returns boolean.
         '''
         return self._beam_each_cell
+
+    @property
+    def beam_specifier(self):
+        r'''Gets beam specifier of rhythm-maker.
+
+        Returns beam specifier or none.
+        '''
+        return self._beam_specifier
 
     @property
     def decrease_durations_monotonically(self):

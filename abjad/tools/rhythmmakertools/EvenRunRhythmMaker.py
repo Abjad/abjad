@@ -129,24 +129,20 @@ class EvenRunRhythmMaker(RhythmMaker):
     def __init__(
         self,
         exponent=0,
-        beam_cells_together=False,
-        beam_each_cell=True,
+        beam_specifier=None,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
         tie_across_divisions=False,
         ):
-        assert mathtools.is_nonnegative_integer(
-            exponent)
+        assert mathtools.is_nonnegative_integer(exponent)
         RhythmMaker.__init__(
             self,
-            beam_cells_together=beam_cells_together,
-            beam_each_cell=beam_each_cell,
+            beam_specifier=beam_specifier,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
             tie_across_divisions=tie_across_divisions,
             )
-        self._exponent = \
-            exponent
+        self._exponent = exponent
 
     ### SPECIAL METHODS ###
 
@@ -184,8 +180,6 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> print format(maker)
                 rhythmmakertools.EvenRunRhythmMaker(
                     exponent=1,
-                    beam_cells_together=False,
-                    beam_each_cell=True,
                     decrease_durations_monotonically=True,
                     tie_across_divisions=False,
                     )
@@ -211,8 +205,6 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> print format(new_maker)
                 rhythmmakertools.EvenRunRhythmMaker(
                     exponent=0,
-                    beam_cells_together=False,
-                    beam_each_cell=True,
                     decrease_durations_monotonically=True,
                     tie_across_divisions=False,
                     )
@@ -231,12 +223,10 @@ class EvenRunRhythmMaker(RhythmMaker):
         '''
         assert not args
         arguments = {
-            'beam_cells_together': self.beam_cells_together,
-            'beam_each_cell': self.beam_each_cell,
+            'beam_specifier': self.beam_specifier,
             'decrease_durations_monotonically':
                 self.decrease_durations_monotonically,
-            'exponent':
-                self.exponent,
+            'exponent': self.exponent,
             'forbidden_written_duration': self.forbidden_written_duration,
             }
         arguments.update(kwargs)
@@ -246,6 +236,7 @@ class EvenRunRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_container(self, division):
+        from abjad.tools import rhythmmakertools
         numerator, denominator = division
         # eventually allow for non-power-of-two divisions
         assert mathtools.is_positive_integer_power_of_two(denominator)
@@ -255,24 +246,27 @@ class EvenRunRhythmMaker(RhythmMaker):
         numerator *= denominator_multiplier
         notes = scoretools.make_notes(numerator * [0], [unit_duration])
         container = scoretools.Container(notes)
-        if self.beam_each_cell:
+        beam_specifier = self.beam_specifier
+        if not beam_specifier:
+            beam_specifier = rhythmmakertools.BeamSpecifier()
+        if beam_specifier.beam_each_cell:
             beam = spannertools.MultipartBeam()
             attach(beam, container)
         return container
 
     def _make_music(self, duration_pairs, seeds):
-        result = []
+        selections = []
         for duration_pair in duration_pairs:
             container = self._make_container(duration_pair)
             selection = selectiontools.Selection(container)
-            result.append(selection)
-        return result
+            selections.append(selection)
+        return selections
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def exponent(self):
-        r'''Gets denominator multiplier exponent of even-run rhythm-maker.
+        r'''Gets exponent of even-run rhythm-maker.
 
         ..  container:: example
 
@@ -301,8 +295,6 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> print format(reversed_maker)
                 rhythmmakertools.EvenRunRhythmMaker(
                     exponent=1,
-                    beam_cells_together=False,
-                    beam_each_cell=True,
                     decrease_durations_monotonically=False,
                     tie_across_divisions=False,
                     )
@@ -316,8 +308,6 @@ class EvenRunRhythmMaker(RhythmMaker):
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
-
-        Defined equal to copy of even-run rhythm-maker.
 
         Returns new even-run rhythm-maker.
         '''
