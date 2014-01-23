@@ -37,6 +37,15 @@ class SkipRhythmMaker(RhythmMaker):
 
     _human_readable_class_name = 'skip rhythm-maker'
 
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        ):
+        RhythmMaker.__init__(
+            self,
+            )
+
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
@@ -60,12 +69,7 @@ class SkipRhythmMaker(RhythmMaker):
             ::
 
                 >>> print format(maker)
-                rhythmmakertools.SkipRhythmMaker(
-                    beam_cells_together=False,
-                    beam_each_cell=True,
-                    decrease_durations_monotonically=True,
-                    tie_across_divisions=False,
-                    )
+                rhythmmakertools.SkipRhythmMaker()
 
         Returns string.
         '''
@@ -84,12 +88,7 @@ class SkipRhythmMaker(RhythmMaker):
             ::
 
                 >>> print format(new_maker)
-                rhythmmakertools.SkipRhythmMaker(
-                    beam_cells_together=False,
-                    beam_each_cell=True,
-                    decrease_durations_monotonically=True,
-                    tie_across_divisions=False,
-                    )
+                rhythmmakertools.SkipRhythmMaker()
 
             ::
 
@@ -103,7 +102,14 @@ class SkipRhythmMaker(RhythmMaker):
 
         Returns new skip rhythm-maker.
         '''
-        return RhythmMaker.__makenew__(self, *args, **kwargs)
+        #return RhythmMaker.__makenew__(self, *args, **kwargs)
+        # TODO: remove after beam specifier integration is complete
+        assert not args
+        arguments = {
+            }
+        arguments.update(kwargs)
+        maker = type(self)(**arguments)
+        return maker
 
     ### PRIVATE METHODS ###
 
@@ -131,12 +137,7 @@ class SkipRhythmMaker(RhythmMaker):
             ::
 
                 >>> print format(reversed_maker)
-                rhythmmakertools.SkipRhythmMaker(
-                    beam_cells_together=False,
-                    beam_each_cell=True,
-                    decrease_durations_monotonically=False,
-                    tie_across_divisions=False,
-                    )
+                rhythmmakertools.SkipRhythmMaker()
 
             ::
 
@@ -148,6 +149,8 @@ class SkipRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
+        Defined equal to copy of rhythm-maker.
+
         Returns new skip rhythm-maker.
         '''
-        return RhythmMaker.reverse(self)
+        return type(self)()

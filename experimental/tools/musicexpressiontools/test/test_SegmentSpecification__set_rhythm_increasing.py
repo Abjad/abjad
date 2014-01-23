@@ -34,7 +34,12 @@ def test_SegmentSpecification__set_rhythm_increasing_01():
     left_half.set_divisions(voice_2_left_division_set_expression, contexts=['Voice 4'])
     right_half.set_divisions(voice_2_right_division_set_expression, contexts=['Voice 4'])
 
-    red_segment.set_rhythm(library.note_tokens)
+    beam_specifier = rhythmmakertools.BeamSpecifier(
+        beam_each_cell=False,
+        beam_cells_together=False,
+        )
+    maker = new(library.note_tokens, beam_specifier=beam_specifier)
+    red_segment.set_rhythm(maker)
 
     blue_segment = score_specification.append_segment(name='blue')
 

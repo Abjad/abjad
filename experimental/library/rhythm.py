@@ -41,13 +41,11 @@ __all__.append(eighths.name)
 # this isn't the best pattern because initialization of the rhythm-maker 
 # resets beam_cells_together
 equal_divisions = rhythmmakertools.EqualDivisionRhythmMaker
-equal_divisions.beam_each_cell = True
 equal_divisions.name = 'equal_divisions'
 __all__.append(equal_divisions.name)
 
 
 even_runs = rhythmmakertools.EvenRunRhythmMaker
-even_runs.beam_each_cell = True
 even_runs.name = 'even_runs'
 __all__.append(even_runs.name)
 
@@ -61,10 +59,7 @@ halves.name = 'halves'
 __all__.append(halves.name)
 
 
-note_tokens = rhythmmakertools.NoteRhythmMaker(
-    beam_cells_together=False,
-    beam_each_cell=False,
-    )
+note_tokens = rhythmmakertools.NoteRhythmMaker()
 note_tokens.name = 'note_tokens'
 __all__.append(note_tokens.name)
 

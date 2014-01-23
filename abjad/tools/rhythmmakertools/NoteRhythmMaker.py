@@ -1,6 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
+from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
+from abjad.tools.topleveltools import iterate
 
 
 class NoteRhythmMaker(RhythmMaker):
@@ -58,6 +62,24 @@ class NoteRhythmMaker(RhythmMaker):
 
     _human_readable_class_name = 'note rhythm-maker'
 
+    ### INITIALIZER ###
+
+    # TODO: remove after beam specifier integration into all rhythm-makers
+    def __init__(
+        self,
+        beam_specifier=None,
+        decrease_durations_monotonically=True,
+        forbidden_written_duration=None,
+        tie_across_divisions=False,
+        ):
+        RhythmMaker.__init__(
+            self,
+            beam_specifier=beam_specifier,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            forbidden_written_duration=forbidden_written_duration,
+            tie_across_divisions=tie_across_divisions,
+            )
+
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
@@ -82,8 +104,6 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> print format(maker)
                 rhythmmakertools.NoteRhythmMaker(
-                    beam_cells_together=False,
-                    beam_each_cell=True,
                     decrease_durations_monotonically=True,
                     forbidden_written_duration=durationtools.Duration(1, 2),
                     tie_across_divisions=False,
@@ -107,8 +127,6 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> print format(new_maker)
                 rhythmmakertools.NoteRhythmMaker(
-                    beam_cells_together=False,
-                    beam_each_cell=True,
                     decrease_durations_monotonically=False,
                     forbidden_written_duration=durationtools.Duration(1, 2),
                     tie_across_divisions=False,
@@ -126,22 +144,44 @@ class NoteRhythmMaker(RhythmMaker):
 
         Returns new note rhythm-maker.
         '''
-        return RhythmMaker.__makenew__(self, *args, **kwargs)
+        #return RhythmMaker.__makenew__(self, *args, **kwargs)
+        # TODO: remove after beam specifier integration is complete
+        assert not args
+        arguments = {
+            'beam_specifier': self.beam_specifier,
+            'decrease_durations_monotonically':
+                self.decrease_durations_monotonically,
+            'forbidden_written_duration': self.forbidden_written_duration,
+            }
+        arguments.update(kwargs)
+        maker = type(self)(**arguments)
+        return maker
 
     ### PRIVATE METHODS ###
 
     def _make_music(self, duration_pairs, seeds):
-        result = []
+        from abjad.tools import rhythmmakertools
+        selections = []
         for duration_pair in duration_pairs:
-            notes = scoretools.make_leaves(
+            selection = scoretools.make_leaves(
                 pitches=0,
                 durations=[duration_pair],
                 decrease_durations_monotonically=\
                     self.decrease_durations_monotonically,
                 forbidden_written_duration=self.forbidden_written_duration,
                 )
-            result.append(notes)
-        return result
+            selections.append(selection)
+        beam_specifier = self.beam_specifier
+        if beam_specifier is None:
+            beam_specifier = rhythmmakertools.BeamSpecifier()
+        if beam_specifier.beam_cells_together:
+            for component in iterate(selections).by_class():
+                detach(spannertools.Beam, component)
+            beam = spannertools.MultipartBeam()
+            leaves = iterate(selections).by_class(scoretools.Leaf)
+            leaves = list(leaves)
+            attach(beam, leaves) 
+        return selections
 
     ### PUBLIC METHODS ###
 
@@ -158,8 +198,6 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> print format(reversed_maker)
                 rhythmmakertools.NoteRhythmMaker(
-                    beam_cells_together=False,
-                    beam_each_cell=True,
                     decrease_durations_monotonically=False,
                     forbidden_written_duration=durationtools.Duration(1, 2),
                     tie_across_divisions=False,

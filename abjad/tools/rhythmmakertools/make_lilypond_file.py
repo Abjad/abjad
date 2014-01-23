@@ -27,6 +27,9 @@ def make_lilypond_file(music, divisions):
     Returns LilyPond file.
     '''
 
+    assert isinstance(music, list), repr(music)
+    assert isinstance(divisions, (tuple, list)), repr(divisions)
+
     score = scoretools.Score()
     lilypond_file = \
         lilypondfiletools.make_floating_time_signature_lilypond_file(score)

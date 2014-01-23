@@ -232,6 +232,7 @@ class RhythmMaker(AbjadObject):
         arguments = {
             'beam_cells_together': self.beam_cells_together,
             'beam_each_cell': self.beam_each_cell,
+            'beam_specifier': self.beam_specifier,
             'decrease_durations_monotonically':
                 self.decrease_durations_monotonically,
             'forbidden_written_duration': self.forbidden_written_duration,

@@ -59,17 +59,16 @@ class RestRhythmMaker(RhythmMaker):
 
     ### INITIALIZER ###
 
+    # TODO: remove after beam specifier integration into all rhythm-makers
     def __init__(
         self,
-        beam_each_cell=False,
-        beam_cells_together=False,
+        beam_specifier=None,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
         ):
         RhythmMaker.__init__(
             self,
-            beam_each_cell=beam_each_cell,
-            beam_cells_together=beam_cells_together,
+            beam_specifier=beam_specifier,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
             )
@@ -98,8 +97,6 @@ class RestRhythmMaker(RhythmMaker):
 
                 >>> print format(maker)
                 rhythmmakertools.RestRhythmMaker(
-                    beam_each_cell=False,
-                    beam_cells_together=False,
                     decrease_durations_monotonically=True,
                     forbidden_written_duration=durationtools.Duration(1, 4),
                     )
@@ -122,8 +119,6 @@ class RestRhythmMaker(RhythmMaker):
 
                 >>> print format(new_maker)
                 rhythmmakertools.RestRhythmMaker(
-                    beam_each_cell=False,
-                    beam_cells_together=False,
                     decrease_durations_monotonically=True,
                     forbidden_written_duration=durationtools.Duration(1, 4),
                     )
@@ -140,7 +135,18 @@ class RestRhythmMaker(RhythmMaker):
 
         Returns new rest rhythm-maker.
         '''
-        return RhythmMaker.__makenew__(self, *args, **kwargs)
+        #return RhythmMaker.__makenew__(self, *args, **kwargs)
+        # TODO: remove after beam specifier integration is complete
+        assert not args
+        arguments = {
+            'beam_specifier': self.beam_specifier,
+            'decrease_durations_monotonically':
+                self.decrease_durations_monotonically,
+            'forbidden_written_duration': self.forbidden_written_duration,
+            }
+        arguments.update(kwargs)
+        maker = type(self)(**arguments)
+        return maker
 
     ### PRIVATE METHODS ###
 
@@ -190,8 +196,6 @@ class RestRhythmMaker(RhythmMaker):
 
                 >>> print format(reversed_maker)
                 rhythmmakertools.RestRhythmMaker(
-                    beam_each_cell=False,
-                    beam_cells_together=False,
                     decrease_durations_monotonically=False,
                     forbidden_written_duration=durationtools.Duration(1, 4),
                     )

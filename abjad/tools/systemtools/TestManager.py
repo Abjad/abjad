@@ -16,6 +16,7 @@ class TestManager(object):
         Returns none.
         '''
         from abjad.tools import layouttools
+        from abjad.tools import lilypondfiletools
         from abjad.tools import scoretools
         from abjad.tools import topleveltools
         # configure multiple-voice rhythmic staves
@@ -39,13 +40,13 @@ class TestManager(object):
                 staff.context_name == 'RhythmicStaff'):
                 for item in lilypond_file.layout_block.items:
                     if isinstance(item, lilypondfiletools.ContextBlock):
-                        if item.context_name == 'StaffGroup':
+                        if item.source_context_name == 'StaffGroup':
                             break
                 else:
                     message = 'no staff group context block found.'
                     raise Exception(message)
                 spacing_vector = layouttools.make_spacing_vector(0, 0, 6, 0)
-                topleveltools.override(context_block
+                topleveltools.override(item
                     ).vertical_axis_group.staff_staff_spacing = spacing_vector
             break
 

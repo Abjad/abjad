@@ -41,6 +41,11 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
             self.source_expression, 'beam_cells_together', False)
         beam_each_cell = getattr(
             self.source_expression, 'beam_each_cell', False)
+        beam_specifier = getattr(
+            self.source_expression, 'beam_specifier', None)
+        if beam_specifier is not None:
+            beam_cells_together = beam_specifier.beam_cells_together
+            beam_each_cell = beam_specifier.beam_each_cell
         if beam_cells_together:
             for container in iterate(rhythm_containers).by_class():
                 spanners = container._get_spanners()
