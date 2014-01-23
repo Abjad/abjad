@@ -130,8 +130,8 @@ class Clef(AbjadObject):
         '''
         return type(self)(self.name)
 
-    def __eq__(self, arg):
-        r'''Is true when clef name of `arg` equal clef name of clef.
+    def __eq__(self, expr):
+        r'''Is true when `expr` is a clef with name equal to that of this clef.
         Otherwise false.
 
         ::
@@ -152,8 +152,8 @@ class Clef(AbjadObject):
 
         Returns boolean.
         '''
-        if isinstance(arg, type(self)):
-            return self._name == arg._name
+        if isinstance(expr, type(self)):
+            return self._name == expr._name
         return False
 
     def __format__(self, format_specification=''):

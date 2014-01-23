@@ -49,12 +49,12 @@ class Arpeggio(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is an arpeggio indication with the same
-        direction. Otherwise false.
+        r'''Is true when `expr` is an arpeggio indication with a direction
+        equal to that of this arpeggio indication. Otherwise false.
 
         Returns boolean.
         '''
-        if type(expr) == type(self):
+        if isinstance(expr, type(self)):
             if expr.direction == self.direction:
                 return True
         return False

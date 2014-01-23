@@ -34,12 +34,12 @@ class LaissezVibrer(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is an *laissez vibrer* indication. Otherwise
+        r'''Is true when `expr` is a *laissez vibrer* indication. Otherwise
         false.
 
         Returns boolean.
         '''
-        return type(expr) == type(self)
+        return isinstance(expr, type(self))
 
     def __str__(self):
         r'''String representation of laissez vibrer.

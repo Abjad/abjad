@@ -53,15 +53,15 @@ class KeySignature(AbjadObject):
             self.mode,
             )
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a key signature with tonic and mode equal
-        to key signature. Otherwise false.
+    def __eq__(self, expr):
+        r'''Is true when `expr` is a key signature with tonic and mode equal
+        to that of this key signature. Otherwise false.
 
         Returns boolean.
         '''
-        if isinstance(arg, type(self)):
-            if self.tonic == arg.tonic:
-                if self.mode == arg.mode:
+        if isinstance(expr, type(self)):
+            if self.tonic == expr.tonic:
+                if self.mode == expr.mode:
                     return True
         return False
 

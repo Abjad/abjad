@@ -136,14 +136,14 @@ class Dynamic(AbjadObject):
         '''
         return type(self)(self._name)
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a dynamic with a name equal to the name of this
+    def __eq__(self, expr):
+        r'''Is true when `expr` is a dynamic with a name equal to that of this
         dynamic. Otherwise false.
 
         Returns boolean.
         '''
-        if isinstance(arg, type(self)):
-            return self._name == arg._name
+        if isinstance(expr, type(self)):
+            return self._name == expr._name
         return False
 
     ### PRIVATE PROPERTIES ###

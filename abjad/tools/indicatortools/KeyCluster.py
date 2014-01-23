@@ -52,12 +52,13 @@ class KeyCluster(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a key cluster with equivalent keyword
-        argments. Otherwise false.
+        r'''Is true when `expr` is a key cluster indication with black-key and
+        white-key inclusion equal to that of this key cluster indication.
+        Otherwise false.
 
         Returns boolean.
         '''
-        if type(expr) == type(self):
+        if isinstance(expr, type(self)):
             if expr.include_black_keys == self.include_black_keys:
                 if expr.include_white_keys == self.include_white_keys:
                     return True

@@ -61,14 +61,14 @@ class StaffChange(AbjadObject):
         '''
         return type(self)(self.staff)
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a staff change with a staff value equal 
+    def __eq__(self, expr):
+        r'''Is true when `expr` is a staff change with a staff value equal 
         to that of this staff change. Otherwise false.
 
         Returns boolean.
         '''
-        if isinstance(arg, type(self)):
-            return self.staff is arg.staff
+        if isinstance(expr, type(self)):
+            return self.staff is expr.staff
         return False
 
     ### PRIVATE PROPERTIES ###

@@ -73,8 +73,8 @@ class StemTremolo(AbjadObject):
         return type(self)(self.tremolo_flags)
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a stem tremolo with equal tremolo flags.
-        Otherwise false:
+        r'''Is true when `expr` is a stem tremolo with a tremolo flag count
+        equal to that of this stem tremolo.  Otherwise false:
 
         ::
 

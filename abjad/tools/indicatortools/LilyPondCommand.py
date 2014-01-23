@@ -94,14 +94,14 @@ class LilyPondCommand(AbjadObject):
         new._format_slot = self.format_slot
         return new
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a LilyPond command with a name equal to
+    def __eq__(self, expr):
+        r'''Is true when `expr` is a LilyPond command with a name equal to
         that of this LilyPond command. Otherwise false.
 
         Returns boolean.
         '''
-        if isinstance(arg, type(self)):
-            return self._name == arg._name
+        if isinstance(expr, type(self)):
+            return self._name == expr._name
         return False
 
     def __format__(self, format_specification=''):

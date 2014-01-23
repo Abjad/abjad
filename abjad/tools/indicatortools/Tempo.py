@@ -154,7 +154,7 @@ class Tempo(AbjadObject):
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a tempo with duration, textual indication
-        and units-per-minute all equal to this tempo. Otherwise false.
+        and units-per-minute all equal to those of this tempo. Otherwise false.
 
         Returns boolean.
         '''

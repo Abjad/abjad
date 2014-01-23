@@ -71,14 +71,14 @@ class LilyPondComment(AbjadObject):
         new._format_slot = self.format_slot
         return new
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a LilyPond comment with contents string
-        equal to LilyPond comment. Otherwise false.
+    def __eq__(self, expr):
+        r'''Is true when `expr` is a LilyPond comment with contents string
+        equal to that of this LilyPond comment. Otherwise false.
 
         Returns boolean.
         '''
-        if isinstance(arg, type(self)):
-            return self._contents_string == arg._contents_string
+        if isinstance(expr, type(self)):
+            return self._contents_string == expr._contents_string
         return False
 
     def __str__(self):
