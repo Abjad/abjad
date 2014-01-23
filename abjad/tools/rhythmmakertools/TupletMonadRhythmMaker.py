@@ -72,6 +72,19 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
     _human_readable_class_name = 'tuplet-monad rhythm-maker'
 
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        beam_specifier=None,
+        tie_across_divisions=False,
+        ):
+        RhythmMaker.__init__(
+            self,
+            beam_specifier=beam_specifier,
+            tie_across_divisions=tie_across_divisions,
+            )
+
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
@@ -96,9 +109,6 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
                 >>> print format(maker)
                 rhythmmakertools.TupletMonadRhythmMaker(
-                    beam_cells_together=False,
-                    beam_each_cell=True,
-                    decrease_durations_monotonically=True,
                     tie_across_divisions=False,
                     )
 
@@ -120,9 +130,6 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
                 >>> print format(new_maker)
                 rhythmmakertools.TupletMonadRhythmMaker(
-                    beam_cells_together=False,
-                    beam_each_cell=True,
-                    decrease_durations_monotonically=True,
                     tie_across_divisions=False,
                     )
 
@@ -174,7 +181,16 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
         Returns new tuplet monad rhythm-maker.
         '''
-        return RhythmMaker.__makenew__(self, *args, **kwargs)
+        #return RhythmMaker.__makenew__(self, *args, **kwargs)
+        # TODO: remove after specifier integration
+        assert not args
+        arguments = {
+            'beam_specifier': self.beam_specifier,
+            'tie_across_divisions': self.tie_across_divisions,
+            }
+        arguments.update(kwargs)
+        maker = type(self)(**arguments)
+        return maker
 
     ### PRIVATE METHODS ###
 
@@ -215,10 +231,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
                 >>> print format(reversed_maker)
                 rhythmmakertools.TupletMonadRhythmMaker(
-                    beam_cells_together=False,
-                    beam_each_cell=True,
-                    decrease_durations_monotonically=False,
-                    tie_across_divisions=False,
+                    tie_across_divisions=False, 
                     )
 
             ::
@@ -267,6 +280,8 @@ class TupletMonadRhythmMaker(RhythmMaker):
                     }
                 }
 
+        Defined equal to copy of rhythm-maker.
+
         Returns new tuplet monad rhythm-maker.
         '''
-        return RhythmMaker.reverse(self)
+        return type(self)()

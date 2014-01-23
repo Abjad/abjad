@@ -195,7 +195,7 @@ class NoteRhythmMaker(RhythmMaker):
         Returns new note rhythm-maker.
         '''
         #return RhythmMaker.__makenew__(self, *args, **kwargs)
-        # TODO: remove after beam specifier integration is complete
+        # TODO: remove after specifier integration
         assert not args
         arguments = {
             'beam_specifier': self.beam_specifier,
