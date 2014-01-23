@@ -12,12 +12,12 @@ class ToolsPackageDocumenter(Documenter):
 
     def __init__(
         self,
-        object_=None,
+        subject=None,
         ignored_directory_names=(),
         prefix='abjad.tools.',
         ):
-        assert isinstance(object_, (types.ModuleType, type(None)))
-        Documenter.__init__(self, object_, prefix=prefix)
+        assert isinstance(subject, (types.ModuleType, type(None)))
+        Documenter.__init__(self, subject, prefix=prefix)
         self._ignored_directory_names = ignored_directory_names
         self._examine_tools_package()
 
@@ -84,9 +84,9 @@ class ToolsPackageDocumenter(Documenter):
 
     def _examine_tools_package(self):
         from abjad.tools import documentationtools
-        if self.object_ is None:
+        if self.subject is None:
             return
-        code_root = self.object_.__path__[0]
+        code_root = self.subject.__path__[0]
         root_package_name = self.prefix.split('.')[0]
         crawler = documentationtools.ModuleCrawler(
             code_root,
@@ -125,7 +125,7 @@ class ToolsPackageDocumenter(Documenter):
         self._function_documenters = tuple(sorted(
             function_documenters,
             key=lambda x: x.module_name))
-        self._documentation_section = getattr(self.object_,
+        self._documentation_section = getattr(self.subject,
             '_documentation_section', None)
 
     ### PUBLIC METHODS ###
@@ -253,4 +253,4 @@ class ToolsPackageDocumenter(Documenter):
 
         Returns string.
         '''
-        return self.object_.__name__
+        return self.subject.__name__

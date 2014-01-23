@@ -10,9 +10,9 @@ class Documenter(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, object_=None, prefix='abjad.tools.'):
+    def __init__(self, subject=None, prefix='abjad.tools.'):
         assert isinstance(prefix, (str, type(None)))
-        self._object_ = object_
+        self._subject = subject
         self._prefix = prefix
 
     ### SPECIAL METHODS ###
@@ -30,14 +30,14 @@ class Documenter(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
-    def __makenew__(self, object_=None, prefix=None):
+    def __makenew__(self, subject=None, prefix=None):
         r'''Makes new documenter.
 
         Returns new documenter.
         '''
-        object_ = object_ or self.object_
+        subject = subject or self.subject
         prefix = prefix or self.prefix
-        return type(self)(object_=object_, prefix=prefix)
+        return type(self)(subject=subject, prefix=prefix)
 
     ### PRIVATE PROPERTIES ###
 
@@ -47,11 +47,11 @@ class Documenter(AbjadObject):
         keyword_argument_names = (
             'prefix',
             )
-        if self.object_ is type(None):
+        if self.subject is type(None):
             positional_argument_values = ()
         else:
             positional_argument_values = (
-                self.object_,
+                self.subject,
                 )
         return systemtools.StorageFormatSpecification(
             self,
@@ -97,13 +97,13 @@ class Documenter(AbjadObject):
 
         Returns string.
         '''
-        return '{}.{}'.format(self.object_.__module__, self.object_.__name__)
+        return '{}.{}'.format(self.subject.__module__, self.subject.__name__)
 
     @property
-    def object_(self):
+    def subject(self):
         r'''Object of documenter.
         '''
-        return self._object_
+        return self._subject
 
     @property
     def prefix(self):

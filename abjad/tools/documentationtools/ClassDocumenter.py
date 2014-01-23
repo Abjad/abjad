@@ -32,12 +32,12 @@ class ClassDocumenter(Documenter):
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.is_abstract
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.methods
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.module_name
-            ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.object_
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.prefix
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.readonly_properties
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.readwrite_properties
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.special_methods
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.static_methods
+            ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.subject
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.write
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__call__
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__eq__
@@ -76,9 +76,6 @@ class ClassDocumenter(Documenter):
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.module_name
         :noindex:
         <BLANKLINE>
-        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.object_
-        :noindex:
-        <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.prefix
         :noindex:
         <BLANKLINE>
@@ -92,6 +89,9 @@ class ClassDocumenter(Documenter):
         :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.static_methods
+        :noindex:
+        <BLANKLINE>
+        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.subject
         :noindex:
         <BLANKLINE>
         Static methods
@@ -142,11 +142,11 @@ class ClassDocumenter(Documenter):
 
     ### INITIALIZER ###
 
-    def __init__(self, object_=None, prefix='abjad.tools.'):
-        if object_ is None:
-            object_ = type(None)
-        assert isinstance(object_, type)
-        Documenter.__init__(self, object_, prefix)
+    def __init__(self, subject=None, prefix='abjad.tools.'):
+        if subject is None:
+            subject = type(None)
+        assert isinstance(subject, type)
+        Documenter.__init__(self, subject, prefix)
         class_methods = []
         data = []
         inherited_attributes = []
@@ -155,7 +155,7 @@ class ClassDocumenter(Documenter):
         readwrite_properties = []
         special_methods = []
         static_methods = []
-        attrs = inspect.classify_class_attrs(self.object_)
+        attrs = inspect.classify_class_attrs(self.subject)
         for attr in attrs:
             if attr.defining_class is object:
                 continue
@@ -185,7 +185,7 @@ class ClassDocumenter(Documenter):
                 else:
                     readwrite_properties.append(attr)
             elif attr.kind == 'data' and not attr.name.startswith('_') \
-                and attr.name not in getattr(self.object_, '__slots__', ()):
+                and attr.name not in getattr(self.subject, '__slots__', ()):
                 data.append(attr)
         self._class_methods = tuple(sorted(class_methods))
         self._data = tuple(sorted(data))
@@ -207,8 +207,8 @@ class ClassDocumenter(Documenter):
         '''
         from abjad.tools import documentationtools
 
-        stripped_class_name = self._shrink_module_name(self.object_.__module__)
-        parts = self.object_.__module__.split('.')
+        stripped_class_name = self._shrink_module_name(self.subject.__module__)
+        parts = self.subject.__module__.split('.')
         tools_package_path = '.'.join(parts[:3])
         tools_package_name, sep, class_name = stripped_class_name.partition('.')
         banner = '{}.{}'.format(tools_package_name, class_name)
@@ -274,7 +274,7 @@ class ClassDocumenter(Documenter):
     ### PRIVATE METHODS ###
 
     def _attribute_is_inherited(self, attr):
-        if attr.defining_class is not self.object_:
+        if attr.defining_class is not self.subject:
             return True
         return False
 
@@ -333,7 +333,7 @@ class ClassDocumenter(Documenter):
             level=3,
             text='Bases',
             ))
-        mro = inspect.getmro(self.object_)[1:]
+        mro = inspect.getmro(self.subject)[1:]
         for cls in mro:
             packagesystem_path = '.'.join((cls.__module__, cls.__name__))
             stripped_packagesystem_path = self._shrink_module_name(
@@ -378,7 +378,7 @@ class ClassDocumenter(Documenter):
 
         Returns boolean.
         '''
-        return inspect.isabstract(self.object_)
+        return inspect.isabstract(self.subject)
 
     @property
     def methods(self):
