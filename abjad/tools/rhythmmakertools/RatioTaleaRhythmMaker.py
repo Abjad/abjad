@@ -131,16 +131,14 @@ class RatioTaleaRhythmMaker(RhythmMaker):
         self,
         ratio_talea=((1, 1), (1, 2), (1, 3)),
         is_diminution=True,
-        beam_cells_together=False,
-        beam_each_cell=True,
+        beam_specifier=None,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
         tie_across_divisions=False,
         ):
         RhythmMaker.__init__(
             self,
-            beam_cells_together=beam_cells_together,
-            beam_each_cell=beam_each_cell,
+            beam_specifier=beam_specifier,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
             tie_across_divisions=tie_across_divisions,
@@ -188,8 +186,6 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         mathtools.Ratio(3, 1),
                         ),
                     is_diminution=True,
-                    beam_cells_together=False,
-                    beam_each_cell=True,
                     decrease_durations_monotonically=True,
                     tie_across_divisions=False,
                     )
@@ -219,8 +215,6 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         mathtools.Ratio(3, 1),
                         ),
                     is_diminution=False,
-                    beam_cells_together=False,
-                    beam_each_cell=True,
                     decrease_durations_monotonically=True,
                     tie_across_divisions=False,
                     )
@@ -269,8 +263,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
         '''
         assert not args
         arguments = {
-            'beam_cells_together': self.beam_cells_together,
-            'beam_each_cell': self.beam_each_cell,
+            'beam_specifier': self.beam_specifier,
             'decrease_durations_monotonically':
                 self.decrease_durations_monotonically,
             'forbidden_written_duration': self.forbidden_written_duration,
@@ -423,8 +416,6 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         mathtools.Ratio(3, 2),
                         ),
                     is_diminution=True,
-                    beam_cells_together=False,
-                    beam_each_cell=True,
                     decrease_durations_monotonically=False,
                     tie_across_divisions=True,
                     )
