@@ -998,10 +998,10 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___18():
             }
             {
                 r4
+                c'16. [
                 c'16.
                 c'16.
-                c'16.
-                c'16.
+                c'16. ]
             }
         }
         '''

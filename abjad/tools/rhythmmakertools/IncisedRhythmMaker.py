@@ -6,7 +6,9 @@ from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
+from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+from abjad.tools.topleveltools import attach
 
 
 class IncisedRhythmMaker(RhythmMaker):
@@ -315,8 +317,14 @@ class IncisedRhythmMaker(RhythmMaker):
                 selections,
                 )
             result.extend(tuplets)
-        assert self._all_are_tuplets_or_all_are_leaf_selections(
-            result), repr(result)
+        assert self._all_are_tuplets_or_all_are_leaf_selections(result)
+        if self.beam_cells_together:
+            beam = spannertools.MultipartBeam()
+            attach(beam, result)
+        elif self.beam_each_cell:
+            for x in result:
+                beam = spannertools.MultipartBeam()
+                attach(beam, x)
         return result
 
     def _make_numeric_map_part(
@@ -511,25 +519,25 @@ class IncisedRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/16
-                        c'8
-                        c'8
+                        c'8 [
+                        c'8 ]
                         r16
                     }
                     {
                         r16
-                        c'16.
-                        c'16.
+                        c'16. [
+                        c'16. ]
                         r16
                     }
                     {
-                        c'8
-                        c'8
+                        c'8 [
+                        c'8 ]
                         r16
                     }
                     {
                         r16
-                        c'16.
-                        c'16.
+                        c'16. [
+                        c'16. ]
                         r16
                     }
                 }
@@ -604,8 +612,8 @@ class IncisedRhythmMaker(RhythmMaker):
                         \time 5/8
                         r4
                         r8..
-                        c'8 ~
-                        c'32
+                        c'8 [ ~
+                        c'32 ]
                     }
                     {
                         c'2 ~
@@ -667,10 +675,10 @@ class IncisedRhythmMaker(RhythmMaker):
                     }
                     {
                         r4
+                        c'16. [
                         c'16.
                         c'16.
-                        c'16.
-                        c'16.
+                        c'16. ]
                     }
                 }
 
