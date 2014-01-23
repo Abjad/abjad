@@ -12,6 +12,8 @@ class Block(AbjadObject):
             >>> block = lilypondfiletools.Block(name='paper')
             >>> block.left_margin = lilypondfiletools.LilyPondDimension(2, 'cm')
             >>> block.right_margin = lilypondfiletools.LilyPondDimension(2, 'cm')
+            >>> block
+            <Block(name='paper')>
 
         ::
 
@@ -28,6 +30,8 @@ class Block(AbjadObject):
             >>> block = lilypondfiletools.Block(name='score')
             >>> markup = Markup('foo')
             >>> block.items.append(markup)
+            >>> block
+            <Block(name='score')>
 
         ::
 
@@ -131,6 +135,15 @@ class Block(AbjadObject):
     @property
     def _lilypond_format(self):
         return '\n'.join(self._format_pieces)
+
+    @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_bracketed=True,
+            is_indented=False,
+            )
 
     @property
     def _user_attributes(self):

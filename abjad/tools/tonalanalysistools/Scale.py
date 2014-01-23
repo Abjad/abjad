@@ -4,12 +4,12 @@ from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
+from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
-from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import set_
 from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import set_
 from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
 
 

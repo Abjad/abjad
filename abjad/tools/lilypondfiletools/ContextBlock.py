@@ -26,6 +26,8 @@ class ContextBlock(Block):
             >>> override(block).stem.stem_end_position = -6
             >>> set_(block).auto_beaming = False
             >>> set_(block).tuplet_full_length = True
+            >>> block
+            <ContextBlock(source_context_name='Staff', name='FluteStaff', type_='Engraver_group', alias='Staff')>
 
         ::
 

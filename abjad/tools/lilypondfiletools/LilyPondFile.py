@@ -25,6 +25,8 @@ class LilyPondFile(AbjadObject):
             >>> lilypond_file.header_block.title = Markup('Missa sexti tonus')
             >>> lilypond_file.layout_block.indent = 0
             >>> lilypond_file.layout_block.left_margin = 15
+            >>> lilypond_file
+            <LilyPondFile(4)>
 
         ::
 
@@ -115,14 +117,12 @@ class LilyPondFile(AbjadObject):
             ::
 
                 >>> lilypond_file
-                LilyPondFile(4)
+                <LilyPondFile(4)>
 
         Returns string.
         '''
-        item_count = len(self.items)
-        if item_count:
-            return '{}({})'.format(type(self).__name__, item_count)
-        return '{}()'.format(type(self).__name__)
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.get_repr_format(self)
 
     ### PRIVATE PROPERTIES ###
 
@@ -233,6 +233,20 @@ class LilyPondFile(AbjadObject):
     @property
     def _lilypond_format(self):
         return '\n\n'.join(self._format_pieces)
+
+    @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = []
+        if self.items:
+            positional_argument_values.append(len(self.items))
+        positional_argument_values = tuple(positional_argument_values)
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_bracketed=True,
+            is_indented=False,
+            positional_argument_values=positional_argument_values,
+            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -353,10 +367,10 @@ class LilyPondFile(AbjadObject):
 
                 >>> for item in lilypond_file.items:
                 ...     item
-                Block(name='header')
-                Block(name='layout')
-                Block(name='paper')
-                Block(name='score')
+                <Block(name='header')>
+                <Block(name='layout')>
+                <Block(name='paper')>
+                <Block(name='score')>
 
         Returns list.
         '''

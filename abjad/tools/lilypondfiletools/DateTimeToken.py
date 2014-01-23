@@ -8,10 +8,22 @@ class DateTimeToken(AbjadObject):
 
     ..  container:: example
 
-        >>> lilypondfiletools.DateTimeToken() # doctest: +SKIP
-        DateTimeToken('2014-01-04 14:42')
+        >>> lilypondfiletools.DateTimeToken()
+        DateTimeToken()
 
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_date_string',
+        )
+
+    ### INITIALIZER ###
+
+    def __init__(self, date_string=None):
+        assert isinstance(date_string, (str, type(None)))
+        self._date_string = date_string
 
     ### SPECIAL METHODS ###
 
@@ -42,16 +54,35 @@ class DateTimeToken(AbjadObject):
 
             ::
 
-                >>> lilypondfiletools.DateTimeToken() # doctest: +SKIP
-                DateTimeToken('2014-01-04 14:42')
+                >>> lilypondfiletools.DateTimeToken()
+                DateTimeToken()
 
         Returns string.
         '''
-        return '{}({!r})'.format(type(self).__name__, self._lilypond_format)
+        date_string = self._date_string or ''
+        return '{}({})'.format(type(self).__name__, date_string)
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _lilypond_format(self):
-        current_time_string = time.strftime('%Y-%m-%d %H:%M')
-        return current_time_string
+        return self.date_string
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def date_string(self):
+        r'''Gets date string of date / time token.
+
+        ..  container:: example
+
+            ::
+
+                >>> token = lilypondfiletools.DateTimeToken()
+                >>> token.date_string # doctest: +SKIP
+                '2014-01-23 12:21'
+
+        Returns string.
+        '''
+        date_string = self._date_string or time.strftime('%Y-%m-%d %H:%M')
+        return date_string

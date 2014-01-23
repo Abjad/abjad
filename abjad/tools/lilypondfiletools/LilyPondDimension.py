@@ -8,8 +8,10 @@ class LilyPondDimension(abctools.AbjadObject):
 
     ..  container:: example
 
-        >>> lilypondfiletools.LilyPondDimension(2, 'in')
-        LilyPondDimension(value=2, unit='in')
+        ::
+
+            >>> lilypondfiletools.LilyPondDimension(2, 'in')
+            LilyPondDimension(value=2, unit='in')
 
     Use for LilyPond file ``\paper`` block attributes.
     '''
