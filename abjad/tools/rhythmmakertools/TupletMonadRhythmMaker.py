@@ -21,7 +21,6 @@ class TupletMonadRhythmMaker(RhythmMaker):
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
             ...     music,
             ...     divisions,
-            ...     implicit_scaling=True,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
@@ -32,19 +31,13 @@ class TupletMonadRhythmMaker(RhythmMaker):
             \new RhythmicStaff {
                 {
                     \time 2/5
-                    \scaleDurations #'(4 . 5) {
-                        \times 4/5 {
-                            c'2
-                        }
-                        s1 * 1/10
+                    \times 4/5 {
+                        c'2
                     }
                 }
                 {
-                    \scaleDurations #'(4 . 5) {
-                        \times 4/5 {
-                            c'2
-                        }
-                        s1 * 1/10
+                    \times 4/5 {
+                        c'2
                     }
                 }
                 {
@@ -55,11 +48,8 @@ class TupletMonadRhythmMaker(RhythmMaker):
                 }
                 {
                     \time 1/5
-                    \scaleDurations #'(4 . 5) {
-                        \times 4/5 {
-                            c'4
-                        }
-                        s1 * 1/20
+                    \times 4/5 {
+                        c'4
                     }
                 }
                 {
@@ -143,7 +133,6 @@ class TupletMonadRhythmMaker(RhythmMaker):
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
-                ...     implicit_scaling=True,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
@@ -154,19 +143,13 @@ class TupletMonadRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 2/5
-                        \scaleDurations #'(4 . 5) {
-                            \times 4/5 {
-                                c'2
-                            }
-                            s1 * 1/10
+                        \times 4/5 {
+                            c'2
                         }
                     }
                     {
-                        \scaleDurations #'(4 . 5) {
-                            \times 4/5 {
-                                c'2
-                            }
-                            s1 * 1/10
+                        \times 4/5 {
+                            c'2
                         }
                     }
                     {
@@ -177,11 +160,8 @@ class TupletMonadRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 1/5
-                        \scaleDurations #'(4 . 5) {
-                            \times 4/5 {
-                                c'4
-                            }
-                            s1 * 1/20
+                        \times 4/5 {
+                            c'4
                         }
                     }
                     {
@@ -248,7 +228,6 @@ class TupletMonadRhythmMaker(RhythmMaker):
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
-                ...     implicit_scaling=True,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
@@ -259,19 +238,13 @@ class TupletMonadRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 2/5
-                        \scaleDurations #'(4 . 5) {
-                            \times 4/5 {
-                                c'2
-                            }
-                            s1 * 1/10
+                        \times 4/5 {
+                            c'2
                         }
                     }
                     {
-                        \scaleDurations #'(4 . 5) {
-                            \times 4/5 {
-                                c'2
-                            }
-                            s1 * 1/10
+                        \times 4/5 {
+                            c'2
                         }
                     }
                     {
@@ -282,11 +255,8 @@ class TupletMonadRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 1/5
-                        \scaleDurations #'(4 . 5) {
-                            \times 4/5 {
-                                c'4
-                            }
-                            s1 * 1/20
+                        \times 4/5 {
+                            c'4
                         }
                     }
                     {
