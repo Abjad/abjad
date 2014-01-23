@@ -2,7 +2,7 @@
 from abjad.tools.abctools import AbjadObject
 
 
-class GalleryInputBlock(AbjadObject):
+class GalleryInputSpecifier(AbjadObject):
     r'''A gallery input block.
     '''
 

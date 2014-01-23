@@ -5,6 +5,8 @@ from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools import systemtools
+from abjad.tools.rhythmmakertools.GalleryInputSpecifier \
+    import GalleryInputSpecifier
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import new
@@ -69,7 +71,7 @@ class EvenRunRhythmMaker(RhythmMaker):
     ### GALLERY INPUT ###
 
     _gallery_input_blocks = (
-        systemtools.GalleryInputBlock(
+        GalleryInputSpecifier(
             input_={
                 'denominator_multiplier_exponent': 0,
                 'beam_each_cell': True,
@@ -95,7 +97,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                 ],
                 ),
             ),
-        systemtools.GalleryInputBlock(
+        GalleryInputSpecifier(
             input_={
                 'denominator_multiplier_exponent': 1,
                 'beam_each_cell': True,
