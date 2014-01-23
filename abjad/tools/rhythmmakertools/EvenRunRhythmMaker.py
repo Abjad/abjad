@@ -236,7 +236,6 @@ class EvenRunRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_container(self, division):
-        from abjad.tools import rhythmmakertools
         numerator, denominator = division
         # eventually allow for non-power-of-two divisions
         assert mathtools.is_positive_integer_power_of_two(denominator)
@@ -246,18 +245,19 @@ class EvenRunRhythmMaker(RhythmMaker):
         numerator *= denominator_multiplier
         notes = scoretools.make_notes(numerator * [0], [unit_duration])
         container = scoretools.Container(notes)
-        beam_specifier = self.beam_specifier
-        if not beam_specifier:
-            beam_specifier = rhythmmakertools.BeamSpecifier()
-        if beam_specifier.beam_each_cell:
-            beam = spannertools.MultipartBeam()
-            attach(beam, container)
         return container
 
     def _make_music(self, duration_pairs, seeds):
+        from abjad.tools import rhythmmakertools
         selections = []
+        beam_specifier = self.beam_specifier
+        if not beam_specifier:
+            beam_specifier = rhythmmakertools.BeamSpecifier()
         for duration_pair in duration_pairs:
             container = self._make_container(duration_pair)
+            if beam_specifier.beam_each_cell:
+                beam = spannertools.MultipartBeam()
+                attach(beam, container)
             selection = selectiontools.Selection(container)
             selections.append(selection)
         return selections

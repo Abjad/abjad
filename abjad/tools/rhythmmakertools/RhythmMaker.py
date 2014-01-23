@@ -279,6 +279,13 @@ class RhythmMaker(AbjadObject):
             scores.append(score)
         return scores
 
+    @staticmethod
+    def _get_rhythmic_staff(lilypond_file):
+        score_block = lilypond_file.items[-1]
+        score = score_block.items[0]
+        rhythmic_staff = score[-1]
+        return rhythmic_staff
+
     def _make_gallery_example_markup(
         self, 
         configuration_number,

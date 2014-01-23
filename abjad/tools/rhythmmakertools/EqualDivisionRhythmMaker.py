@@ -4,7 +4,9 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
+from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import new
 
 
@@ -29,6 +31,42 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 1/2
+                    {
+                        c'8 [
+                        c'8
+                        c'8
+                        c'8 ]
+                    }
+                }
+                {
+                    \time 3/8
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/4 {
+                        c'8 [
+                        c'8
+                        c'8
+                        c'8 ]
+                    }
+                }
+                {
+                    \time 5/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 5/8 {
+                        c'8 [
+                        c'8
+                        c'8
+                        c'8 ]
+                    }
+                }
+            }
+
     ..  container:: example
 
         Makes tuplets with ``5`` equal duration notes each.
@@ -46,6 +84,44 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 1/2
+                    \times 4/5 {
+                        c'8 [
+                        c'8
+                        c'8
+                        c'8
+                        c'8 ]
+                    }
+                }
+                {
+                    \time 3/8
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/5 {
+                        c'8 [
+                        c'8
+                        c'8
+                        c'8
+                        c'8 ]
+                    }
+                }
+                {
+                    \time 5/16
+                    {
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
+                    }
+                }
+            }
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''
@@ -67,16 +143,14 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         self,
         leaf_count=1,
         is_diminution=True,
-        beam_cells_together=False,
-        beam_each_cell=True,
+        beam_specifier=None,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
         tie_across_divisions=False,
         ):
         RhythmMaker.__init__(
             self,
-            beam_cells_together=beam_cells_together,
-            beam_each_cell=beam_each_cell,
+            beam_specifier=beam_specifier,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
             tie_across_divisions=tie_across_divisions,
@@ -123,8 +197,6 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 rhythmmakertools.EqualDivisionRhythmMaker(
                     leaf_count=5,
                     is_diminution=True,
-                    beam_cells_together=False,
-                    beam_each_cell=True,
                     decrease_durations_monotonically=True,
                     tie_across_divisions=False,
                     )
@@ -151,8 +223,6 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 rhythmmakertools.EqualDivisionRhythmMaker(
                     leaf_count=5,
                     is_diminution=False,
-                    beam_cells_together=False,
-                    beam_each_cell=True,
                     decrease_durations_monotonically=True,
                     tie_across_divisions=False,
                     )
@@ -171,8 +241,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         '''
         assert not args
         arguments = {
-            'beam_cells_together': self.beam_cells_together,
-            'beam_each_cell': self.beam_each_cell,
+            'beam_specifier': self.beam_specifier,
             'decrease_durations_monotonically':
                 self.decrease_durations_monotonically,
             'forbidden_written_duration': self.forbidden_written_duration,
@@ -186,11 +255,18 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_music(self, duration_pairs, seeds):
-        result = []
+        from abjad.tools import rhythmmakertools
+        tuplets = []
+        beam_specifier = self.beam_specifier
+        if not beam_specifier:
+            beam_specifier = rhythmmakertools.BeamSpecifier()
         for duration_pair in duration_pairs:
             tuplet = self._make_tuplet(duration_pair)
-            result.append(tuplet)
-        return result
+            if beam_specifier.beam_each_cell:
+                beam = spannertools.MultipartBeam()
+                attach(beam, tuplet)
+            tuplets.append(tuplet)
+        return tuplets
 
     def _make_tuplet(self, division):
         numerator, talea_denominator = division
@@ -202,6 +278,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             avoid_dots=True,
             is_diminution=self.is_diminution,
             )
+
         return tuplet
 
     ### PUBLIC PROPERTIES ###
@@ -254,8 +331,6 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 rhythmmakertools.EqualDivisionRhythmMaker(
                     leaf_count=5,
                     is_diminution=True,
-                    beam_cells_together=False,
-                    beam_each_cell=True,
                     decrease_durations_monotonically=False,
                     tie_across_divisions=False,
                     )
