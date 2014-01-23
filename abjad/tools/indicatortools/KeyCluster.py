@@ -36,6 +36,7 @@ class KeyCluster(AbjadObject):
     __slots__ = (
         '_include_black_keys',
         '_include_white_keys',
+        '_suppress_markup',
         )
 
     ### INITIALIZER ###
@@ -44,10 +45,12 @@ class KeyCluster(AbjadObject):
         self,
         include_black_keys=True,
         include_white_keys=True,
+        suppress_markup=False,
         ):
         assert include_black_keys or include_white_keys
         self._include_black_keys = bool(include_black_keys)
         self._include_white_keys = bool(include_white_keys)
+        self._suppress_markup = bool(suppress_markup)
 
     ### SPECIAL METHODS ###
 
@@ -61,7 +64,8 @@ class KeyCluster(AbjadObject):
         if isinstance(expr, type(self)):
             if expr.include_black_keys == self.include_black_keys:
                 if expr.include_white_keys == self.include_white_keys:
-                    return True
+                    if expr.suppress_markup == self.suppress_markup:
+                        return True
         return False
 
     ### PRIVATE PROPERTIES ###
@@ -77,15 +81,16 @@ class KeyCluster(AbjadObject):
             "\t\\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25\n"
             '}'
             )
-        if self.include_black_keys and self.include_white_keys:
-            string = r'\center-align \concat { \natural \flat }'
-        elif self.include_black_keys:
-            string = r'\center-align \flat'
-        else:
-            string = r'\center-align \natural'
-        markup = markuptools.Markup(string, direction=Up)
-        markup_format_pieces = markup._get_format_pieces()
-        lilypond_format_bundle.right.markup.extend(markup_format_pieces)
+        if not self.suppress_markup:
+            if self.include_black_keys and self.include_white_keys:
+                string = r'\center-align \concat { \natural \flat }'
+            elif self.include_black_keys:
+                string = r'\center-align \flat'
+            else:
+                string = r'\center-align \natural'
+            markup = markuptools.Markup(string, direction=Up)
+            markup_format_pieces = markup._get_format_pieces()
+            lilypond_format_bundle.right.markup.extend(markup_format_pieces)
         return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
@@ -105,3 +110,11 @@ class KeyCluster(AbjadObject):
         Returns boolean.
         '''
         return self._include_white_keys
+
+    @property
+    def suppress_markup(self):
+        r'''Is true if key cluster suppresses key markup.
+
+        Returns boolean.
+        '''
+        return self._suppress_markup
