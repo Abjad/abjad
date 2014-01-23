@@ -5,7 +5,9 @@ from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
+from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import new
 
 
@@ -55,8 +57,8 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                 {
                     \time 5/16
                     {
-                        c'8.
-                        c'8
+                        c'8. [
+                        c'8 ]
                     }
                 }
             }
@@ -245,15 +247,15 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 3/2 {
-                            c'8.
-                            c'16
+                            c'8. [
+                            c'16 ]
                         }
                     }
                     {
                         \time 5/16
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 5/4 {
-                            c'8
+                            c'8 ]
                             r8
                         }
                     }
@@ -278,18 +280,28 @@ class RatioTaleaRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_music(self, duration_pairs, seeds):
-        result = []
+        from abjad.tools import rhythmmakertools
+        tuplets = []
         if not isinstance(seeds, int):
             seeds = 0
         ratio_talea = datastructuretools.CyclicTuple(
             sequencetools.rotate_sequence(self.ratio_talea, seeds)
             )
+        beam_specifier = self.beam_specifier
+        if beam_specifier is None:
+            beam_specifier = rhythmmakertools.BeamSpecifier()
         for duration_index, duration_pair in enumerate(duration_pairs):
             ratio = ratio_talea[duration_index]
             duration = durationtools.Duration(duration_pair)
             tuplet = self._make_tuplet(duration, ratio)
-            result.append(tuplet)
-        return result
+            if beam_specifier.beam_each_cell:
+                beam = spannertools.MultipartBeam()
+                attach(beam, tuplet)
+            tuplets.append(tuplet)
+        if beam_specifier.beam_cells_together:
+            beam = spannertools.MultipartBeam()
+            attach(beam, tuplets)
+        return tuplets
 
     def _make_tuplet(self, duration, ratio):
         tuplet = scoretools.Tuplet.from_duration_and_ratio(
@@ -378,7 +390,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         \time 3/8
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 3/4 {
-                            c'8
+                            c'8 ]
                             r4
                             c'8 ~
                         }
@@ -386,8 +398,8 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                     {
                         \time 5/16
                         {
-                            c'8
-                            c'8.
+                            c'8 [
+                            c'8. ]
                         }
                     }
                 }
@@ -438,7 +450,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                     {
                         \time 1/2
                         {
-                            c'8
+                            c'8 ]
                             r4
                             c'8 ~
                         }
@@ -455,7 +467,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         \time 5/16
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 5/8 {
-                            c'8
+                            c'8 ]
                             r4
                             c'8
                         }
