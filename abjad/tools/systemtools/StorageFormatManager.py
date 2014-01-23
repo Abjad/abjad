@@ -203,10 +203,10 @@ class StorageFormatManager(object):
         return tuple(result)
 
     @staticmethod
-    def get_hash_values(object_):
-        r'''Gets hash values for `object_`.
+    def get_hash_values(subject):
+        r'''Gets hash values for `subject`.
 
-        The hash values are a tuple of the type of `object_`, the values of its
+        The hash values are a tuple of the type of `subject`, the values of its
         positional arguments, and the values of its keyword arguments, both
         sorted by argument name.
 
@@ -221,11 +221,11 @@ class StorageFormatManager(object):
                 value = tuple(value)
             return value
         values = []
-        values.append(type(object_))
+        values.append(type(subject))
         positional_argument_dictionary = \
-            StorageFormatManager.get_positional_argument_dictionary(object_)
+            StorageFormatManager.get_positional_argument_dictionary(subject)
         keyword_argument_dictionary = \
-            StorageFormatManager.get_keyword_argument_dictionary(object_)
+            StorageFormatManager.get_keyword_argument_dictionary(subject)
         for key, value in sorted(positional_argument_dictionary.items()):
             values.append(make_hashable(value))
         for key, value in sorted(keyword_argument_dictionary.items()):
@@ -242,73 +242,73 @@ class StorageFormatManager(object):
         return prefix, infix, suffix
 
     @staticmethod
-    def get_input_argument_values(object_):
+    def get_input_argument_values(subject):
         r'''Gets input argument values.
         '''
-        return StorageFormatManager.get_positional_argument_values(object_) + \
-            StorageFormatManager.get_keyword_argument_values(object_)
+        return StorageFormatManager.get_positional_argument_values(subject) + \
+            StorageFormatManager.get_keyword_argument_values(subject)
 
     @staticmethod
-    def get_keyword_argument_dictionary(object_):
+    def get_keyword_argument_dictionary(subject):
         r'''Gets keyword argument dictionary.
         '''
-        names = StorageFormatManager.get_keyword_argument_names(object_)
-        values = StorageFormatManager.get_keyword_argument_values(object_)
+        names = StorageFormatManager.get_keyword_argument_names(subject)
+        values = StorageFormatManager.get_keyword_argument_values(subject)
         assert len(names) == len(values)
         result = dict(zip(names, values))
         return result
 
     @staticmethod
-    def get_keyword_argument_names(object_):
+    def get_keyword_argument_names(subject):
         r'''Gets keyword argument names.
         '''
         return StorageFormatManager.get_signature_keyword_argument_names(
-            object_)
+            subject)
 
     @staticmethod
-    def get_keyword_argument_values(object_):
+    def get_keyword_argument_values(subject):
         r'''Gets keyword argument values.
         '''
         result = []
-        for name in StorageFormatManager.get_keyword_argument_names(object_):
-            result.append(getattr(object_, name))
+        for name in StorageFormatManager.get_keyword_argument_names(subject):
+            result.append(getattr(subject, name))
         return tuple(result)
 
     @staticmethod
-    def get_positional_argument_dictionary(object_):
+    def get_positional_argument_dictionary(subject):
         r'''Gets positional argument dictionary.
         '''
-        names = StorageFormatManager.get_positional_argument_names(object_)
-        values = StorageFormatManager.get_positional_argument_values(object_)
+        names = StorageFormatManager.get_positional_argument_names(subject)
+        values = StorageFormatManager.get_positional_argument_values(subject)
         assert len(names) == len(values)
         result = dict(zip(names, values))
         return result
 
     @staticmethod
-    def get_positional_argument_names(object_):
+    def get_positional_argument_names(subject):
         r'''Gets positional argument names.
         '''
         return StorageFormatManager.get_signature_positional_argument_names(
-            object_)
+            subject)
 
     @staticmethod
-    def get_positional_argument_values(object_):
+    def get_positional_argument_values(subject):
         r'''Gets positional argument values.
         '''
-        names = StorageFormatManager.get_positional_argument_names(object_)
+        names = StorageFormatManager.get_positional_argument_names(subject)
         result = []
         for name in names:
-            result.append(getattr(object_, name))
+            result.append(getattr(subject, name))
         return tuple(result)
 
     @staticmethod
     def get_repr_format(
-        object_,
+        subject,
         ):
         r'''Gets interpreter representation format.
         '''
-        assert '_repr_specification' in dir(object_)
-        specification = object_._repr_specification
+        assert '_repr_specification' in dir(subject)
+        specification = subject._repr_specification
         pieces = StorageFormatManager.get_format_pieces(
             specification,
             as_storage_format=False,
@@ -316,11 +316,11 @@ class StorageFormatManager(object):
         return ''.join(pieces)
 
     @staticmethod
-    def get_signature_keyword_argument_names(object_):
+    def get_signature_keyword_argument_names(subject):
         r'''Gets signature keyword argument names.
         '''
-        if hasattr(object_.__init__, '__func__'):
-            initializer = object_.__init__.__func__
+        if hasattr(subject.__init__, '__func__'):
+            initializer = subject.__init__.__func__
             if initializer.func_defaults:
                 keyword_argument_count = len(initializer.func_defaults)
                 initializer_code = initializer.func_code
@@ -334,11 +334,11 @@ class StorageFormatManager(object):
         return ()
 
     @staticmethod
-    def get_signature_positional_argument_names(object_):
+    def get_signature_positional_argument_names(subject):
         r'''Gets signature positional argument names.
         '''
-        if hasattr(object_.__init__, '__func__'):
-            initializer = object_.__init__.__func__
+        if hasattr(subject.__init__, '__func__'):
+            initializer = subject.__init__.__func__
             if initializer.func_defaults:
                 keyword_argument_count = len(initializer.func_defaults)
             else:
@@ -352,12 +352,12 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_storage_format(
-        object_,
+        subject,
         ):
         r'''Gets storage format.
         '''
-        assert '_storage_format_specification' in dir(object_)
-        specification = object_._storage_format_specification
+        assert '_storage_format_specification' in dir(subject)
+        specification = subject._storage_format_specification
         pieces = StorageFormatManager.get_format_pieces(
             specification,
             as_storage_format=True,
@@ -366,8 +366,8 @@ class StorageFormatManager(object):
         return result
 
     @staticmethod
-    def get_tools_package_name(object_):
-        r'''Gets tools-package name of `object_`.
+    def get_tools_package_name(subject):
+        r'''Gets tools-package name of `subject`.
 
         ::
 
@@ -376,17 +376,17 @@ class StorageFormatManager(object):
             'scoretools'
 
         '''
-        if StorageFormatManager.is_instance(object_):
-            class_name = type(object_).__name__
+        if StorageFormatManager.is_instance(subject):
+            class_name = type(subject).__name__
         else:
-            class_name = object_.__name__
-        for part in reversed(object_.__module__.split('.')):
+            class_name = subject.__name__
+        for part in reversed(subject.__module__.split('.')):
             if not part == class_name:
                 return part
 
     @staticmethod
-    def get_tools_package_qualified_class_name(object_):
-        r'''Gets tools-package qualified class name of `object_`.
+    def get_tools_package_qualified_class_name(subject):
+        r'''Gets tools-package qualified class name of `subject`.
 
         ::
 
@@ -397,25 +397,25 @@ class StorageFormatManager(object):
         Returns string.
         '''
         tools_package_name = None
-        if StorageFormatManager.is_instance(object_):
-            class_name = type(object_).__name__
+        if StorageFormatManager.is_instance(subject):
+            class_name = type(subject).__name__
         else:
-            class_name = object_.__name__
+            class_name = subject.__name__
         if not tools_package_name:
-            for part in reversed(object_.__module__.split('.')):
+            for part in reversed(subject.__module__.split('.')):
                 if not part == class_name:
                     tools_package_name = part
                     break
         return '{}.{}'.format(tools_package_name, class_name)
 
     @staticmethod
-    def is_instance(object_):
-        r'''Is true when `object_` is instance. Otherwise false.
+    def is_instance(subject):
+        r'''Is true when `subject` is instance. Otherwise false.
 
         Returns boolean.
         '''
-        if isinstance(object_, types.TypeType):
+        if isinstance(subject, types.TypeType):
             return False
-        elif type(object_) is object_.__class__:
+        elif type(subject) is subject.__class__:
             return True
         return False

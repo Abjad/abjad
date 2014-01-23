@@ -12,20 +12,20 @@ class GalleryInputSpecifier(AbjadObject):
 
     __slots__ = (
         '_division_lists',
-        '_input_',
+        '_arguments',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, input_=None, division_lists=None):
+    def __init__(self, arguments=None, division_lists=None):
         division_lists = division_lists or ()
-        self._input_ = input_
+        self._arguments = arguments
         self._division_lists = tuple(division_lists)
 
     ### PRIVATE METHODS ###
 
     def _to_markup(self, class_):
-        instance = class_(**self.input_)
+        instance = class_(**self.arguments)
         string = format(instance, 'storage')
         string = string.replace('rhythmmakertools.', '')
         lines = string.split('\n')
@@ -46,9 +46,9 @@ class GalleryInputSpecifier(AbjadObject):
         return self._division_lists
 
     @property
-    def input_(self):
+    def arguments(self):
         r'''Gets input to gallery input block.
 
         Returns dictionary.
         '''
-        return self._input_
+        return self._arguments

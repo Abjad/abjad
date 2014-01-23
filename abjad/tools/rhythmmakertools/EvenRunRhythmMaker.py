@@ -72,7 +72,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     _gallery_input_blocks = (
         GalleryInputSpecifier(
-            input_={
+            arguments={
                 'exponent': 0,
                 },
             division_lists=(
@@ -95,7 +95,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                 ),
             ),
         GalleryInputSpecifier(
-            input_={
+            arguments={
                 'exponent': 1,
                 },
             division_lists=(
