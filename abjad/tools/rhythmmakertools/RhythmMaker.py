@@ -252,7 +252,7 @@ class RhythmMaker(AbjadObject):
             return False
 
     def _gallery_input_block_to_scores(self, block, configuration_number):
-        maker = type(self)(**block.input_)
+        maker = type(self)(**block.arguments)
         scores = []
         for i, division_list in enumerate(block.division_lists):
             example_number = i + 1
