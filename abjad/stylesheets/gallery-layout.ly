@@ -83,12 +83,12 @@
     evenFooterMarkup = \markup {}
     evenHeaderMarkup = \markup {}
     left-margin = 12
-    markup-markup-spacing #'basic-distance = 20
-    markup-system-spacing #'basic-distance = 22
+    markup-markup-spacing #'basic-distance = 16
+    markup-system-spacing #'basic-distance = 34
     oddFooterMarkup = \markup {}
     oddHeaderMarkup = \markup {}
-    score-markup-spacing #'minimum-distance = 20
+    %score-markup-spacing #'minimum-distance = 20
     score-system-spacing #'minimum-distance = 28
-    top-markup-spacing #'minimum-distance = 8
+    top-markup-spacing #'minimum-distance = 6
 }
 

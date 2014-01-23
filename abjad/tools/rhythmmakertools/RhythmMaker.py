@@ -6,9 +6,10 @@ from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
+from abjad.tools import schemetools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import selectiontools
+from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -304,7 +305,6 @@ class RhythmMaker(AbjadObject):
         lilypond_file.items.remove(lilypond_file.score_block)
         title_markup = self._make_gallery_title_markup()
         lilypond_file.header_block.title = title_markup
-        markups = []
         for i, block in enumerate(self._gallery_input_blocks):
             configuration_number = i + 1
             markup = block._to_markup(type(self))
@@ -330,6 +330,10 @@ class RhythmMaker(AbjadObject):
                     message += inspect_(score).tabulate_well_formedness_violations()
                     raise Exception(message)
                 lilypond_file.items.append(score)
+            string = r'\pageBreak'
+            lilypond_file.items.append(string)
+        assert lilypond_file.items[-1] == string
+        lilypond_file.items.pop(-1)
         lilypond_file.default_paper_size = ('letter', 'portrait')
         lilypond_file.global_staff_size = 10
         lilypond_file.use_relative_includes = True
@@ -345,7 +349,10 @@ class RhythmMaker(AbjadObject):
     def _make_gallery_title_markup(self):
         string = self._human_readable_class_name
         string = stringtools.capitalize_string_start(string)
-        markup = markuptools.Markup(string)
+        pair = schemetools.SchemePair('font-name', 'Times')
+        command = markuptools.MarkupCommand('override', pair, string)
+        command = markuptools.MarkupCommand('fontsize', 4.5, command)
+        markup = markuptools.Markup(command)
         return markup
 
     @abc.abstractmethod
