@@ -71,7 +71,7 @@ class MultipartBeam(Beam):
                 else:
                     if previous_leaf is not None:
                         if not self._is_beamable_component(previous_leaf):
-                            if next_leaf is not None:
+                            if self._is_beamable_component(next_leaf):
                                 string = '{}['.format(direction_string)
                                 result.append(string)
                 if self._is_my_last_leaf(leaf):

@@ -151,6 +151,7 @@ class TaleaRhythmMaker(RhythmMaker):
         secondary_divisions=None,
         helper_functions=None,
         beam_each_cell=False,
+        #beam_each_cell=True,
         beam_cells_together=False,
         decrease_durations_monotonically=True,
         tie_split_notes=False,
