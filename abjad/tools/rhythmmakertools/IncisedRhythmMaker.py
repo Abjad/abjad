@@ -102,7 +102,7 @@ class IncisedRhythmMaker(RhythmMaker):
         helper_functions=None,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
-        beam_each_cell=False,
+        beam_each_cell=True,
         beam_cells_together=False,
         fill_with_notes=True,
         incise_divisions=False,
