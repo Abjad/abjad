@@ -8,7 +8,7 @@ def test_scoretools_fill_measures_in_expr_with_time_signature_denominator_notes_
     '''
 
     measure = Measure((5, 18), [])
-    measure.should_scale_contents = True
+    measure.implicit_scaling = True
     scoretools.fill_measures_in_expr_with_time_signature_denominator_notes(measure)
 
     assert systemtools.TestManager.compare(

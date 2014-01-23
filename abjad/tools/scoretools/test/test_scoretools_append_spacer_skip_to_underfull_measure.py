@@ -8,7 +8,7 @@ def test_scoretools_append_spacer_skip_to_underfull_measure_01():
     '''
 
     measure = Measure((4, 12), "c'8 d'8 e'8 f'8")
-    measure.should_scale_contents = True
+    measure.implicit_scaling = True
     detach(TimeSignature, measure)
     time_signature = TimeSignature((5, 12))
     attach(time_signature, measure)

@@ -31,7 +31,7 @@ def test_scoretools_Measure_duration_02():
     '''
 
     measure = Measure((3, 10), "c'8 d'8 e'8")
-    measure.should_scale_contents = True
+    measure.implicit_scaling = True
 
     assert systemtools.TestManager.compare(
         measure,
@@ -70,7 +70,7 @@ def test_scoretools_Measure_duration_04():
     '''
 
     measure = Measure((3, 10), "c'8 d'8 e'8 f'8")
-    measure.should_scale_contents = True
+    measure.implicit_scaling = True
 
     assert pytest.raises(OverfullContainerError, 'format(measure)')
 

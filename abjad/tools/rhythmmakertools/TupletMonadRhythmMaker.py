@@ -21,7 +21,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
             ...     music,
             ...     divisions,
-            ...     should_scale_contents=True,
+            ...     implicit_scaling=True,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
@@ -143,7 +143,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
-                ...     should_scale_contents=True,
+                ...     implicit_scaling=True,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
@@ -248,7 +248,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
-                ...     should_scale_contents=True,
+                ...     implicit_scaling=True,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 

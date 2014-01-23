@@ -351,9 +351,9 @@ class ContiguousSelection(Selection):
         #       instead of returning a reference to existing measure
         if len(self) == 1:
             return self[0]
-        should_scale_contents = self[0].should_scale_contents
+        implicit_scaling = self[0].implicit_scaling
         assert all(
-            x.should_scale_contents == should_scale_contents for x in self)
+            x.implicit_scaling == implicit_scaling for x in self)
         selection = selectiontools.SliceSelection(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         old_denominators = []
@@ -378,7 +378,7 @@ class ContiguousSelection(Selection):
             measure_music._set_parents(None)
             music += measure_music
         new_measure = scoretools.Measure(new_time_signature, music)
-        new_measure.should_scale_contents = self[0].should_scale_contents
+        new_measure.implicit_scaling = self[0].implicit_scaling
         if parent is not None:
             self._give_dominant_spanners([new_measure])
         self._set_parents(None)

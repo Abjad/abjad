@@ -3,7 +3,6 @@ import inspect
 import pytest
 from abjad.tools import documentationtools
 from abjad.tools import indicatortools
-from abjad.tools import pitcharraytools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
 from abjad.tools import tonalanalysistools

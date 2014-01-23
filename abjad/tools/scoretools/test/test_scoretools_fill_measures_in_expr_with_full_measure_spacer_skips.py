@@ -7,7 +7,7 @@ def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_01():
     '''
 
     measure = Measure((5, 18), [])
-    measure.should_scale_contents = True
+    measure.implicit_scaling = True
     scoretools.fill_measures_in_expr_with_full_measure_spacer_skips(measure)
 
     assert systemtools.TestManager.compare(

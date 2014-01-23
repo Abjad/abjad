@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import pitcharraytools
 
 
 def test_pitchtools_PitchArrayRow___add___01():

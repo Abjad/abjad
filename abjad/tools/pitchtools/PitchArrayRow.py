@@ -461,7 +461,7 @@ class PitchArrayRow(AbjadObject):
 
         Returns none.
         '''
-        from abjad.tools import pitcharraytools
+        from abjad.tools import pitchtools
         self_width = self.width
         if width < self_width:
             message = 'pad width must not be less than row width.'

@@ -652,13 +652,13 @@ class Container(Component):
             left_pair = left_pair.with_multiple_of_denominator(denominator)
             left_time_signature = indicatortools.TimeSignature(left_pair)
             left = type(self)(left_time_signature, left_music)
-            left.should_scale_contents = self.should_scale_contents
+            left.implicit_scaling = self.implicit_scaling
             right_duration = sum([x._get_duration() for x in right_music])
             right_pair = mathtools.NonreducedFraction(right_duration)
             right_pair = right_pair.with_multiple_of_denominator(denominator)
             right_time_signature = indicatortools.TimeSignature(right_pair)
             right = type(self)(right_time_signature, right_music)
-            right.should_scale_contents = self.should_scale_contents
+            right.implicit_scaling = self.implicit_scaling
         elif isinstance(self, scoretools.FixedDurationTuplet):
             multiplier = self.multiplier
             left = type(self)(1, left_music)

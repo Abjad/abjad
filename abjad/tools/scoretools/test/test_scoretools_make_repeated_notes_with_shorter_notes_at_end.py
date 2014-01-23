@@ -105,7 +105,7 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_05():
             Duration(1, 16), 
             Duration(5, 18), 
             prolation=Duration(16, 18)),
-        should_scale_contents=True,
+        implicit_scaling=True,
         )
 
     assert systemtools.TestManager.compare(

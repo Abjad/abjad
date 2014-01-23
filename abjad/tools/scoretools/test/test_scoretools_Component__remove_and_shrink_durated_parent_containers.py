@@ -6,7 +6,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_01():
     r'''Remove leaf from tuplet and measure.
     '''
 
-    measure = Measure((4, 4), [], should_scale_contents=True)
+    measure = Measure((4, 4), [], implicit_scaling=True)
     measure.append(scoretools.FixedDurationTuplet((2, 4), "c'4 d'4 e'4"))
     measure.append(scoretools.FixedDurationTuplet((2, 4), "f'4 g'4 a'4"))
 
@@ -58,7 +58,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_02():
     r'''Remove leaf from tuplet and measure.
     '''
 
-    measure = Measure((4, 4), [], should_scale_contents=True)
+    measure = Measure((4, 4), [], implicit_scaling=True)
     tuplet_1 = scoretools.FixedDurationTuplet((2, 4), "c'8 d' e' f' g'")
     tuplet_2 = scoretools.FixedDurationTuplet((2, 4), "a'8 b' c'' d'' e''")
     measure.extend([tuplet_1, tuplet_2])
@@ -119,7 +119,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_03():
     r'''Remove leaf from tuplet and measure.
     '''
 
-    measure = Measure((5, 6), [], should_scale_contents=True)
+    measure = Measure((5, 6), [], implicit_scaling=True)
     tuplet_1 = scoretools.FixedDurationTuplet(
         (3, 4), "c'4 d' e' f' g'")
     tuplet_2 = scoretools.FixedDurationTuplet(
@@ -192,7 +192,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_04():
     Change time signature denominator and reset tuplet target durations.
     '''
 
-    measure = Measure((5, 6), [], should_scale_contents=True)
+    measure = Measure((5, 6), [], implicit_scaling=True)
     tuplet_1 = scoretools.FixedDurationTuplet(
         (3, 4), "c'4 cs' d' ef' e'")
     tuplet_2 = scoretools.FixedDurationTuplet(
@@ -264,7 +264,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_05():
     Trigger tuplet insertion.
     '''
 
-    measure = Measure((5, 6), [], should_scale_contents=True)
+    measure = Measure((5, 6), [], implicit_scaling=True)
     tuplet = scoretools.FixedDurationTuplet((4, 8), [])
     tuplet.extend("c'8 cs' d' ef' e' f' fs'")
     measure.append(tuplet)
@@ -334,7 +334,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_06():
     Does not trigger trivial 1:1 tuplet insertion.
     '''
 
-    measure = Measure((5, 6), [], should_scale_contents=True)
+    measure = Measure((5, 6), [], implicit_scaling=True)
     tuplet = scoretools.FixedDurationTuplet((4, 8), [])
     tuplet.extend("c'8 cs' d' ef' e' f' fs'")
     measure.append(tuplet)
@@ -394,7 +394,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_07():
     r'''Nested fixed-duration tuplet.
     '''
 
-    measure = Measure((4, 4), [], should_scale_contents=True)
+    measure = Measure((4, 4), [], implicit_scaling=True)
     inner_tuplet = scoretools.FixedDurationTuplet((2, 4), "d'4 ef'4 e'4")
     outer_tuplet = scoretools.FixedDurationTuplet((2, 2), [])
     outer_tuplet.extend([Note("c'2"), Note("cs'2"), inner_tuplet])

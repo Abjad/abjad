@@ -17,7 +17,7 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
 
             >>> tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
             >>> measure = Measure((2, 8), [tuplet])
-            >>> measure.should_scale_contents = True
+            >>> measure.implicit_scaling = True
             >>> scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(measure)
 
         ..  doctest::
@@ -53,7 +53,7 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
                 detach(indicatortools.TimeSignature, measure)
                 attach(time_signature, measure)
                 if time_signature.has_non_power_of_two_denominator:
-                    measure.should_scale_contents = True
+                    measure.implicit_scaling = True
                 time_signature_multiplier = \
                     measure.time_signature.implied_prolation
                 written_adjustment = tuplet_multiplier / time_signature_multiplier

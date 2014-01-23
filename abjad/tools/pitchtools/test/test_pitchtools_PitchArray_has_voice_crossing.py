@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import pitcharraytools
 
 
 def test_pitchtools_PitchArray_has_voice_crossing_01():

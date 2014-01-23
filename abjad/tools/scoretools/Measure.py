@@ -39,7 +39,7 @@ class Measure(FixedDurationContainer):
         '_always_format_time_signature',
         '_automatically_adjust_time_signature',
         '_measure_number',
-        '_should_scale_contents',
+        '_implicit_scaling',
         )
 
     _is_counttime_component = True
@@ -50,12 +50,12 @@ class Measure(FixedDurationContainer):
         self, 
         time_signature=None, 
         music=None,
-        should_scale_contents=False,
+        implicit_scaling=False,
         ):
         # set time signature adjustment before contents initialization
         self._automatically_adjust_time_signature = False
         time_signature = time_signature or (4, 4)
-        self.should_scale_contents = should_scale_contents
+        self.implicit_scaling = implicit_scaling
         FixedDurationContainer.__init__(self, time_signature, music)
         self._always_format_time_signature = False
         self._measure_number = None
@@ -127,8 +127,8 @@ class Measure(FixedDurationContainer):
         forced_time_signature = forced_time_signature.pair
         summary = self._contents_summary
         if forced_time_signature and len(self):
-            if self.should_scale_contents:
-                result = '{}({!s}, {!r}, should_scale_contents=True)'
+            if self.implicit_scaling:
+                result = '{}({!s}, {!r}, implicit_scaling=True)'
                 result = result.format(
                     class_name, 
                     forced_time_signature, 
@@ -143,15 +143,15 @@ class Measure(FixedDurationContainer):
                     )
             return result
         elif forced_time_signature:
-            if self.should_scale_contents:
-                string = '{}({!s}, should_scale_contents=True)'
+            if self.implicit_scaling:
+                string = '{}({!s}, implicit_scaling=True)'
             else:
                 string = '{}({!s})'
             string = string.format(class_name, forced_time_signature)
             return string
         else:
-            if self.should_scale_contents:
-                return '{}(should_scale_contents=True)'.format(class_name)
+            if self.implicit_scaling:
+                return '{}(implicit_scaling=True)'.format(class_name)
             else:
                 return '{}()'.format(class_name)
 
@@ -200,19 +200,19 @@ class Measure(FixedDurationContainer):
         time_signature = self.time_signature
         pair = (time_signature.numerator, time_signature.denominator)
         contents_string = ' '.join([str(x) for x in self])
-        result = '{}({}, {!r}, should_scale_contents={})'
+        result = '{}({}, {!r}, implicit_scaling={})'
         result = result.format(
             type(self).__name__, 
             pair, 
             contents_string,
-            self.should_scale_contents,
+            self.implicit_scaling,
             )
         return result
 
     @property
     def _preprolated_duration(self):
         time_signature_prolation = 1
-        if self.should_scale_contents:
+        if self.implicit_scaling:
             time_signature_prolation = self.time_signature.implied_prolation
         return time_signature_prolation * self._contents_duration
 
@@ -269,7 +269,7 @@ class Measure(FixedDurationContainer):
             new_indicator = copy.copy(indicator)
             attach(new_indicator, new)
         new.is_simultaneous = self.is_simultaneous
-        new.should_scale_contents = self.should_scale_contents
+        new.implicit_scaling = self.implicit_scaling
         return new
 
     @staticmethod
@@ -307,7 +307,7 @@ class Measure(FixedDurationContainer):
         result = []
         if self.has_non_power_of_two_denominator and \
             type(self) is Measure and \
-            self.should_scale_contents:
+            self.implicit_scaling:
             string = "\t\\scaleDurations #'({} . {}) {{"
             string = string.format(
                 self.implied_prolation.numerator,
@@ -451,7 +451,7 @@ class Measure(FixedDurationContainer):
             ::
 
                 >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
-                >>> measure.should_scale_contents = True
+                >>> measure.implicit_scaling = True
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -502,7 +502,7 @@ class Measure(FixedDurationContainer):
             ::
 
                 >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
-                >>> measure.should_scale_contents = True
+                >>> measure.implicit_scaling = True
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -523,7 +523,7 @@ class Measure(FixedDurationContainer):
             ::
 
                 >>> measure = Measure((5, 12), "c'8 d' e' f' g'")
-                >>> measure.should_scale_contents = True
+                >>> measure.implicit_scaling = True
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -677,17 +677,17 @@ class Measure(FixedDurationContainer):
         return self._measure_number
 
     @property
-    def should_scale_contents(self):
+    def implicit_scaling(self):
         r'''Is true when measure should scale contents. Otherwise false.
 
         Returns boolean.
         '''
-        return self._should_scale_contents
+        return self._implicit_scaling
 
-    @should_scale_contents.setter
-    def should_scale_contents(self, arg):
+    @implicit_scaling.setter
+    def implicit_scaling(self, arg):
         assert isinstance(arg, bool)
-        self._should_scale_contents = arg
+        self._implicit_scaling = arg
 
     @property
     def target_duration(self):
@@ -738,7 +738,7 @@ class Measure(FixedDurationContainer):
             ::
 
                 >>> measure = Measure((3, 8), "c'8 d'8 e'8")
-                >>> measure.should_scale_contents = True
+                >>> measure.implicit_scaling = True
                 >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
@@ -818,7 +818,7 @@ class Measure(FixedDurationContainer):
             detach(indicatortools.TimeSignature, self)
             attach(new_time_signature, self)
             if new_time_signature.has_non_power_of_two_denominator:
-                self.should_scale_contents = True
+                self.implicit_scaling = True
         else:
             new_pair = mathtools.NonreducedFraction(old_pair)
             new_pair = new_pair.multiply_with_numerator_preservation(
@@ -827,7 +827,7 @@ class Measure(FixedDurationContainer):
             detach(indicatortools.TimeSignature, self)
             attach(new_time_signature, self)
             if new_time_signature.has_non_power_of_two_denominator:
-                self.should_scale_contents = True
+                self.implicit_scaling = True
             remaining_multiplier = \
                 multiplier / new_time_signature.implied_prolation
             if remaining_multiplier != durationtools.Multiplier(1):

@@ -1488,7 +1488,7 @@ def test_scoretools_Container__split_by_duration_26():
     '''
 
     measure = Measure((15, 80), "c'32 d' e' f' g' a' b' c''64")
-    measure.should_scale_contents = True
+    measure.implicit_scaling = True
     staff = Staff([measure])
     beam = Beam()
     attach(beam, staff[0])

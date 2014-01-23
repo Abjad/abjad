@@ -109,7 +109,7 @@ def test_scoretools_Measure___delitem___05():
     '''
 
     measure = Measure((4, 9), "c'8 d'8 e'8 f'8")
-    measure.should_scale_contents = True
+    measure.implicit_scaling = True
     measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
@@ -137,7 +137,7 @@ def test_scoretools_Measure___delitem___06():
     '''
 
     measure = Measure((3, 9), "c'16 d'16 e'8 f'8")
-    measure.should_scale_contents = True
+    measure.implicit_scaling = True
     measure.automatically_adjust_time_signature = True
 
     systemtools.TestManager.compare(
@@ -195,7 +195,7 @@ def test_scoretools_Measure___delitem___08():
     '''
 
     measure = Measure((4, 9), "c'8 d' e' f'")
-    measure.should_scale_contents = True
+    measure.implicit_scaling = True
     del(measure[:1])
 
     assert len(measure) == 3

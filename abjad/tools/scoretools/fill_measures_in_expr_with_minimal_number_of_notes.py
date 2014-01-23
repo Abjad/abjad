@@ -12,7 +12,7 @@ def fill_measures_in_expr_with_minimal_number_of_notes(
 
     ::
 
-        >>> measure = Measure((5, 18), [], should_scale_contents=True)
+        >>> measure = Measure((5, 18), [], implicit_scaling=True)
 
     ::
 
@@ -36,7 +36,7 @@ def fill_measures_in_expr_with_minimal_number_of_notes(
     ::
 
         >>> measure = Measure((5, 18), [])
-        >>> measure.should_scale_contents = True
+        >>> measure.implicit_scaling = True
 
     ::
 

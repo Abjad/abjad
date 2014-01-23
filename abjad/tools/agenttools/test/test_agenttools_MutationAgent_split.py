@@ -1645,8 +1645,8 @@ def test_agenttools_MutationAgent_split_28():
     '''
 
     voice = Voice()
-    voice.append(Measure((3, 9), "c'8 d'8 e'8", should_scale_contents=True))
-    voice.append(Measure((3, 9), "f'8 g'8 a'8", should_scale_contents=True))
+    voice.append(Measure((3, 9), "c'8 d'8 e'8", implicit_scaling=True))
+    voice.append(Measure((3, 9), "f'8 g'8 a'8", implicit_scaling=True))
     beam = Beam()
     attach(beam, voice[:])
 
@@ -2151,9 +2151,9 @@ def test_agenttools_MutationAgent_split_35():
     '''
 
     voice = Voice()
-    measure = Measure((3, 9), "c'8 d'8 e'8", should_scale_contents=True)
+    measure = Measure((3, 9), "c'8 d'8 e'8", implicit_scaling=True)
     voice.append(measure)
-    measure = Measure((3, 9), "f'8 g'8 a'8", should_scale_contents=True)
+    measure = Measure((3, 9), "f'8 g'8 a'8", implicit_scaling=True)
     voice.append(measure)
     beam = Beam()
     attach(beam, voice[:])

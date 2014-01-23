@@ -14,7 +14,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
     generic_output_name = 'sargasso measures'
 
     output_material_checker = staticmethod(lambda output: all(
-        isinstance(x, scoretools.Measure) and x.should_scale_contents 
+        isinstance(x, scoretools.Measure) and x.implicit_scaling 
         for x in output))
 
     output_material_module_import_statements = [
@@ -237,7 +237,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
             measure = scoretools.Measure(
                 meter_token, 
                 leaves,
-                should_scale_contents=True,
+                implicit_scaling=True,
                 )
             measures.append(measure)
         #print measures

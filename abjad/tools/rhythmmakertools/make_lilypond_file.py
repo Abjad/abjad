@@ -7,7 +7,7 @@ from abjad.tools import sequencetools
 from abjad.tools.topleveltools import mutate
 
 
-def make_lilypond_file(music, divisions, should_scale_contents=False):
+def make_lilypond_file(music, divisions, implicit_scaling=False):
     r'''Makes LilyPond file.
 
     ..  container::
@@ -40,14 +40,14 @@ def make_lilypond_file(music, divisions, should_scale_contents=False):
     context = scoretools.Context(context_name='TimeSignatureContext')
     measures = scoretools.make_spacer_skip_measures(
         divisions,
-        should_scale_contents=should_scale_contents,
+        implicit_scaling=implicit_scaling,
         )
     context.extend(measures)
     score.append(context)
 
     measures = scoretools.make_spacer_skip_measures(
         divisions,
-        should_scale_contents=should_scale_contents,
+        implicit_scaling=implicit_scaling,
         )
     staff = scoretools.Staff(measures)
     staff.context_name = 'RhythmicStaff'

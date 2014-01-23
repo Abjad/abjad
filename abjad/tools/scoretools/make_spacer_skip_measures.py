@@ -2,7 +2,7 @@
 from abjad.tools import selectiontools
 
 
-def make_spacer_skip_measures(time_signatures, should_scale_contents=False):
+def make_spacer_skip_measures(time_signatures, implicit_scaling=False):
     r'''Makes measures with full-measure spacer skips from `time_signatures`.
 
     ..  container:: example
@@ -42,7 +42,7 @@ def make_spacer_skip_measures(time_signatures, should_scale_contents=False):
         time_signature = indicatortools.TimeSignature(time_signature)
         measure = scoretools.Measure(
             time_signature,
-            should_scale_contents=should_scale_contents,
+            implicit_scaling=implicit_scaling,
             )
         measures.append(measure)
     scoretools.fill_measures_in_expr_with_full_measure_spacer_skips(measures)

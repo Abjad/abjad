@@ -9,7 +9,7 @@ def test_agenttools_InspectionAgent_get_duration_01():
     '''
 
     voice = Voice([
-        Measure((2, 12), "c'8 d'8", should_scale_contents=True),
+        Measure((2, 12), "c'8 d'8", implicit_scaling=True),
         Measure((2, 8), "c'8 d'8")]
         )
     tempo = Tempo(Duration(1, 8), 42)
@@ -51,7 +51,7 @@ def test_agenttools_InspectionAgent_get_duration_01():
 def test_agenttools_InspectionAgent_get_duration_02():
 
     voice = Voice(
-        [Measure((2, 12), "c'8 d'8", should_scale_contents=True),
+        [Measure((2, 12), "c'8 d'8", implicit_scaling=True),
         Measure((2, 8), "c'8 d'8")]
         )
     beam = Beam()

@@ -8,7 +8,7 @@ def append_spacer_skip_to_underfull_measure(measure):
     ::
 
         >>> measure = Measure((4, 12), "c'8 d'8 e'8 f'8")
-        >>> measure.should_scale_contents = True
+        >>> measure.implicit_scaling = True
         >>> detach(TimeSignature, measure)
         (TimeSignature((4, 12)),)
         >>> new_time_signature = TimeSignature((5, 12))
@@ -19,7 +19,7 @@ def append_spacer_skip_to_underfull_measure(measure):
     ::
 
         >>> scoretools.append_spacer_skip_to_underfull_measure(measure)
-        Measure((5, 12), "c'8 d'8 e'8 f'8 s1 * 1/8", should_scale_contents=True)
+        Measure((5, 12), "c'8 d'8 e'8 f'8 s1 * 1/8", implicit_scaling=True)
 
     ..  doctest::
 
