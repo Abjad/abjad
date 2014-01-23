@@ -140,7 +140,7 @@ class SegmentSpecification(Specification):
                                 talea=(1,),
                                 talea_denominator=16,
                                 burnish_specifier=rhythmmakertools.BurnishSpecifier(),
-                                beam_each_cell=False,
+                                beam_each_cell=True,
                                 beam_cells_together=True,
                                 decrease_durations_monotonically=True,
                                 tie_split_notes=False,

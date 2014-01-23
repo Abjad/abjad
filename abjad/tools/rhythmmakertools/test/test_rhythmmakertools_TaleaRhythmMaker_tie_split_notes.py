@@ -27,16 +27,16 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
                 c'4 ~
             }
             {
-                c'16
-                c'8. ~
+                c'16 [
+                c'8. ] ~
             }
             {
-                c'8
-                c'8 ~
+                c'8 [
+                c'8 ] ~
             }
             {
-                c'8.
-                c'16
+                c'8. [
+                c'16 ]
             }
         }
         '''
@@ -73,15 +73,15 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
                 \time 5/8
                 c'8
                 c'4 ~
-                c'16
-                c'8. ~
+                c'16 [
+                c'8. ] ~
             }
             {
                 \time 4/8
                 c'8
                 c'4 ~
-                c'16
-                c'16 ~
+                c'16 [
+                c'16 ] ~
             }
             {
                 \time 7/16

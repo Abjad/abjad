@@ -36,9 +36,9 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_divisions_01():
                 {
                     r32
                     r32
-                    c'16
+                    c'16 [
                     c'8
-                    c'32
+                    c'32 ]
                     r32
                 }
             }
@@ -47,9 +47,9 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_divisions_01():
                 {
                     r16
                     r8
+                    c'32 [
                     c'32
-                    c'32
-                    c'16
+                    c'16 ]
                     r16
                 }
             }
@@ -90,8 +90,8 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_divisions_02():
             {
                 \time 5/16
                 {
-                    c'32
-                    c'32
+                    c'32 [
+                    c'32 ]
                     r16
                     r8
                     r32
@@ -101,8 +101,8 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_divisions_02():
             {
                 \time 6/16
                 {
-                    c'16
-                    c'8
+                    c'16 [
+                    c'8 ]
                     r32
                     r32
                     r16
@@ -147,8 +147,8 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_divisions_03():
                 \time 5/16
                 \tweak #'text #tuplet-number::calc-fraction-text
                 \times 10/13 {
-                    c'32
-                    c'32
+                    c'32 [
+                    c'32 ]
                     r16
                     r8
                     r32
@@ -160,8 +160,8 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_divisions_03():
             {
                 \time 6/16
                 \times 4/5 {
-                    c'16.
-                    c'32
+                    c'16. [
+                    c'32 ]
                     r32
                     r16
                     r8
@@ -208,10 +208,10 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_divisions_04():
                 \time 5/16
                 {
                     r32
-                    c'32
+                    c'32 [
                     c'16
                     c'8
-                    c'32
+                    c'32 ]
                     r32
                 }
             }
@@ -219,11 +219,11 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_divisions_04():
                 \time 6/16
                 \times 4/5 {
                     r16
-                    c'8
+                    c'8 [
                     c'32
                     c'32
                     c'16
-                    c'8
+                    c'8 ]
                     r32
                 }
             }
@@ -266,10 +266,10 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_divisions_05():
                 \time 5/16
                 {
                     r32
-                    c'32
+                    c'32 [
                     c'16
                     c'8
-                    c'32
+                    c'32 ]
                     r32
                 }
             }
@@ -282,8 +282,8 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_divisions_05():
                 }
                 {
                     r32
-                    c'16
-                    c'8
+                    c'16 [
+                    c'8 ]
                     r32
                 }
             }

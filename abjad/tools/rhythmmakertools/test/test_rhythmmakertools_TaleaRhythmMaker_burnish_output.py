@@ -149,22 +149,22 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_output_03():
                 \time 3/8
                 {
                     r16
-                    c'8
-                    c'8.
+                    c'8 [
+                    c'8. ]
                 }
             }
             {
                 \time 4/8
                 \tweak #'text #tuplet-number::calc-fraction-text
                 \times 3/5 {
-                    c'16
+                    c'16 [
                     c'8
-                    c'8
+                    c'8 ]
                 }
                 {
+                    c'16 [
                     c'16
-                    c'16
-                    c'8
+                    c'8 ]
                     r16
                 }
             }
@@ -206,11 +206,11 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_output_04():
             {
                 \time 8/8
                 r8
+                c'8 [
                 c'8
                 c'8
                 c'8
-                c'8
-                c'8
+                c'8 ]
                 r8
                 r8
             }
