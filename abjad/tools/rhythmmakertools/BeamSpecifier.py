@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class BeamSpecifier(AbjadObject):
-    r'''A beam specifier.
+    r'''Beam specifier.
 
     ..  container:: example
 

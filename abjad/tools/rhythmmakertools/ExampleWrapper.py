@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class ExampleWrapper(AbjadObject):
-    r'''A gallery input specifier.
+    r'''Example wrapper.
     '''
 
     ### CLASS VARIABLES ###
