@@ -156,8 +156,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> maker = rhythmmakertools.NoteRhythmMaker()
-                >>> divisions = [(4, 8), (3, 4), (2, 4), (1, 16), (1, 16)]
-                >>> show(maker, divisions=divisions) # doctest: +SKIP
+                >>> show(maker) # doctest: +SKIP
 
         Returns LilyPond file.
         '''
