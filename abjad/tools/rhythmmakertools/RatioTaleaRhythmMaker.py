@@ -294,11 +294,11 @@ class RatioTaleaRhythmMaker(RhythmMaker):
             ratio = ratio_talea[duration_index]
             duration = durationtools.Duration(duration_pair)
             tuplet = self._make_tuplet(duration, ratio)
-            if beam_specifier.beam_each_cell:
+            if beam_specifier.beam_each_division:
                 beam = spannertools.MultipartBeam()
                 attach(beam, tuplet)
             tuplets.append(tuplet)
-        if beam_specifier.beam_cells_together:
+        if beam_specifier.beam_divisions_together:
             beam = spannertools.MultipartBeam()
             attach(beam, tuplets)
         return tuplets

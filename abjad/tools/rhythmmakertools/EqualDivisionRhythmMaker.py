@@ -300,7 +300,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             beam_specifier = rhythmmakertools.BeamSpecifier()
         for duration_pair in duration_pairs:
             tuplet = self._make_tuplet(duration_pair)
-            if beam_specifier.beam_each_cell:
+            if beam_specifier.beam_each_division:
                 beam = spannertools.MultipartBeam()
                 attach(beam, tuplet)
             tuplets.append(tuplet)

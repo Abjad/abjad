@@ -249,7 +249,7 @@ class NoteRhythmMaker(RhythmMaker):
         beam_specifier = self.beam_specifier
         if beam_specifier is None:
             beam_specifier = rhythmmakertools.BeamSpecifier()
-        if beam_specifier.beam_cells_together:
+        if beam_specifier.beam_divisions_together:
             for component in iterate(selections).by_class():
                 detach(spannertools.Beam, component)
             beam = spannertools.MultipartBeam()

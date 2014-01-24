@@ -5,15 +5,15 @@ __all__ = []
 ### SPECIFIERS ###
 
 join_specifier = rhythmmakertools.BeamSpecifier(
-    beam_each_cell=True,
-    beam_cells_together=True,
+    beam_each_division=True,
+    beam_divisions_together=True,
     )
 __all__.append('join_specifier')
 
 
 unbeam_specifier = rhythmmakertools.BeamSpecifier(
-    beam_each_cell=False,
-    beam_cells_together=False,
+    beam_each_division=False,
+    beam_divisions_together=False,
     )
 __all__.append('unbeam_specifier')
 

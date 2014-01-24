@@ -362,7 +362,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             beam_specifier = rhythmmakertools.BeamSpecifier()
         for duration_pair in duration_pairs:
             container = self._make_container(duration_pair)
-            if beam_specifier.beam_each_cell:
+            if beam_specifier.beam_each_division:
                 beam = spannertools.MultipartBeam()
                 attach(beam, container)
             selection = selectiontools.Selection(container)

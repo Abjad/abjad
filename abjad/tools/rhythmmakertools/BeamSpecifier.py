@@ -12,8 +12,8 @@ class BeamSpecifier(AbjadObject):
         ::
 
             >>> specifier = rhythmmakertools.BeamSpecifier(
-            ...     beam_each_cell=True,
-            ...     beam_cells_together=False
+            ...     beam_each_division=True,
+            ...     beam_divisions_together=False
             ...     )
 
     ..  container:: example
@@ -23,8 +23,8 @@ class BeamSpecifier(AbjadObject):
         ::
 
             >>> specifier = rhythmmakertools.BeamSpecifier(
-            ...     beam_each_cell=True,
-            ...     beam_cells_together=True
+            ...     beam_each_division=True,
+            ...     beam_divisions_together=True
             ...     )
             
     ..  container:: example
@@ -34,8 +34,8 @@ class BeamSpecifier(AbjadObject):
         ::
 
             >>> specifier = rhythmmakertools.BeamSpecifier(
-            ...     beam_each_cell=True,
-            ...     beam_cells_together=True
+            ...     beam_each_division=True,
+            ...     beam_divisions_together=True
             ...     )
 
     Beam specifiers are immutable.
@@ -44,27 +44,27 @@ class BeamSpecifier(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_beam_cells_together',
-        '_beam_each_cell',
+        '_beam_divisions_together',
+        '_beam_each_division',
         )
 
     ### INITIALIZER ###
 
     def __init__(
         self,
-        beam_each_cell=True,
-        beam_cells_together=False,
+        beam_each_division=True,
+        beam_divisions_together=False,
         ):
-        assert isinstance(beam_each_cell, bool)
-        assert isinstance(beam_cells_together, bool)
-        self._beam_each_cell = beam_each_cell
-        self._beam_cells_together = beam_cells_together
+        assert isinstance(beam_each_division, bool)
+        assert isinstance(beam_divisions_together, bool)
+        self._beam_each_division = beam_each_division
+        self._beam_divisions_together = beam_divisions_together
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        r'''Is true when `arg` is a beam specifier with `beam_each_cell`
-        and `beam_cells_together` equal to those of this beam specifier.
+        r'''Is true when `arg` is a beam specifier with `beam_each_division`
+        and `beam_divisions_together` equal to those of this beam specifier.
         Otherwise false.
 
         ..  container:: example
@@ -72,10 +72,10 @@ class BeamSpecifier(AbjadObject):
             ::
 
                 >>> specifier_1 = rhythmmakertools.BeamSpecifier(
-                ...     beam_each_cell=True,
+                ...     beam_each_division=True,
                 ...     )
                 >>> specifier_2 = rhythmmakertools.BeamSpecifier(
-                ...     beam_each_cell=False,
+                ...     beam_each_division=False,
                 ...     )
 
             ::
@@ -92,8 +92,8 @@ class BeamSpecifier(AbjadObject):
         Returns boolean.
         '''
         if isinstance(arg, type(self)):
-            if self.beam_each_cell == arg.beam_each_cell and \
-                self.beam_cells_together == arg.beam_cells_together:
+            if self.beam_each_division == arg.beam_each_division and \
+                self.beam_divisions_together == arg.beam_divisions_together:
                 return True
         return False
 
@@ -107,8 +107,8 @@ class BeamSpecifier(AbjadObject):
                 >>> specifier = rhythmmakertools.BeamSpecifier()
                 >>> print format(specifier)
                 rhythmmakertools.BeamSpecifier(
-                    beam_each_cell=True,
-                    beam_cells_together=False,
+                    beam_each_division=True,
+                    beam_divisions_together=False,
                     )
 
         Returns string.
@@ -126,7 +126,7 @@ class BeamSpecifier(AbjadObject):
             ::
 
                 >>> rhythmmakertools.BeamSpecifier()
-                BeamSpecifier(beam_each_cell=True, beam_cells_together=False)
+                BeamSpecifier(beam_each_division=True, beam_divisions_together=False)
 
         Returns string.
         '''
@@ -135,7 +135,7 @@ class BeamSpecifier(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def beam_cells_together(self):
+    def beam_divisions_together(self):
         r'''Is true when target should beam cells together.
         Otherwise false.
 
@@ -144,18 +144,18 @@ class BeamSpecifier(AbjadObject):
             ::
 
                 >>> specifier = rhythmmakertools.BeamSpecifier()
-                >>> specifier.beam_cells_together
+                >>> specifier.beam_divisions_together
                 False
 
         Defaults to false.
 
         Returns boolean.
         '''
-        return self._beam_cells_together
+        return self._beam_divisions_together
 
 
     @property
-    def beam_each_cell(self):
+    def beam_each_division(self):
         r'''Is true when target should beam each cell.
         Otherwise false.
 
@@ -164,11 +164,11 @@ class BeamSpecifier(AbjadObject):
             ::
 
                 >>> specifier = rhythmmakertools.BeamSpecifier()
-                >>> specifier.beam_each_cell
+                >>> specifier.beam_each_division
                 True
 
         Defaults to true.
 
         Returns boolean.
         '''
-        return self._beam_each_cell
+        return self._beam_each_division

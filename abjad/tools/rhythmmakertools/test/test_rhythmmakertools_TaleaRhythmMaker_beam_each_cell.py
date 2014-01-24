@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_rhythmmakertools_TaleaRhythmMaker_beam_each_cell_01():
+def test_rhythmmakertools_TaleaRhythmMaker_beam_each_division_01():
     r'''Beam each cell with a multipart beam spanner.
     '''
 

@@ -39,9 +39,9 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
     def _beam_rhythm_containers(self, rhythm_containers):
         beam_specifier = self.source_expression.beam_specifier
         beam_specifier = beam_specifier or rhythmmakertools.BeamSpecifier()
-        beam_cells_together = beam_specifier.beam_cells_together
-        beam_each_cell = beam_specifier.beam_each_cell
-        if beam_cells_together:
+        beam_divisions_together = beam_specifier.beam_divisions_together
+        beam_each_division = beam_specifier.beam_each_division
+        if beam_divisions_together:
             for container in iterate(rhythm_containers).by_class():
                 spanners = container._get_spanners(spannertools.Beam)
                 for spanner in spanners:
@@ -52,7 +52,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
                 span_beam_count=1,
                 )
             attach(beam, rhythm_containers)
-        elif beam_each_cell:
+        elif beam_each_division:
             for container in iterate(rhythm_containers).by_class():
                 spanners = container._get_spanners(spannertools.Beam)
                 for spanner in spanners:

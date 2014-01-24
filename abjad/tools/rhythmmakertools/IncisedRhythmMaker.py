@@ -319,10 +319,10 @@ class IncisedRhythmMaker(RhythmMaker):
         beam_specifier = self.beam_specifier
         if beam_specifier is None:
             beam_specifier = rhythmmakertools.BeamSpecifier()
-        if beam_specifier.beam_cells_together:
+        if beam_specifier.beam_divisions_together:
             beam = spannertools.MultipartBeam()
             attach(beam, result)
-        elif beam_specifier.beam_each_cell:
+        elif beam_specifier.beam_each_division:
             for x in result:
                 beam = spannertools.MultipartBeam()
                 attach(beam, x)
