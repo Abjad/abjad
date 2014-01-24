@@ -3,12 +3,14 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
+from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import systemtools
 from abjad.tools.rhythmmakertools.ExampleWrapper \
     import ExampleWrapper
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import new
 
 
@@ -387,6 +389,66 @@ class EvenRunRhythmMaker(RhythmMaker):
         '''
         return self._exponent
 
+    @property
+    def tie_across_divisions(self):
+        r'''Is true when rhythm-maker should tie across divisions.
+        Otherwise false.
+
+        ..  container:: example
+
+            Ties across divisions:
+
+            ::
+            
+                >>> maker = rhythmmakertools.EvenRunRhythmMaker(
+                ...     tie_across_divisions=True,
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 4), (2, 4)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ] ~
+                        }
+                    }
+                    {
+                        \time 3/4
+                        {
+                            c'4
+                            c'4
+                            c'4 ~
+                        }
+                    }
+                    {
+                        \time 2/4
+                        {
+                            c'4
+                            c'4
+                        }
+                    }
+                }
+
+        Returns boolean.
+        '''
+        return RhythmMaker.tie_across_divisions.fget(self)
+
     ### PUBLIC METHODS ###
 
     def reverse(self):
@@ -396,6 +458,9 @@ class EvenRunRhythmMaker(RhythmMaker):
         
             ::
 
+                >>> maker = rhythmmakertools.EvenRunRhythmMaker(
+                ...     exponent=1,
+                ...     )
                 >>> reversed_maker = maker.reverse()
 
             ::

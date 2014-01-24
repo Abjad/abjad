@@ -403,8 +403,9 @@ class RhythmMaker(AbjadObject):
             leaf_two = iterate(division_two).by_class(
                 prototype=scoretools.Leaf,
                 ).next()
-            if not isinstance(leaf_one, scoretools.Note) or \
-                not isinstance(leaf_two, scoretools.Note):
+            leaves = [leaf_one, leaf_two]
+            prototype = (scoretools.Note, scoretools.Chord)
+            if not all(isinstance(x, prototype) for x in leaves):
                 continue
             logical_tie_one = inspect_(leaf_one).get_logical_tie()
             logical_tie_two = inspect_(leaf_two).get_logical_tie()
@@ -414,6 +415,22 @@ class RhythmMaker(AbjadObject):
                 detach(tie, leaf_two)
             combined_logical_tie = logical_tie_one + logical_tie_two
             attach(spannertools.Tie(), combined_logical_tie)
+
+#    @staticmethod
+#    def _make_ties_across_divisions_alternative(selections):
+#        for pair in sequencetools.iterate_sequence_pairwise_strict(selections):
+#            left_selection, right_selection = pair
+#            left_leaves = iterate(left_selection).by_class(scoretools.Leaf)
+#            left_leaves = list(left_leaves)
+#            last_left_leaf = left_leaves[-1]
+#            right_leaves = iterate(right_selection).by_class(scoretools.Leaf)
+#            right_leaves = list(right_leaves)
+#            first_right_leaf = right_leaves[0]
+#            prototype = (scoretools.Note, scoretools.Chord)
+#            two_leaves = [last_left_leaf, first_right_leaf]
+#            if all(isinstance(x, prototype) for x in two_leaves):
+#                tie = spannertools.Tie()
+#                attach(tie, two_leaves)
 
     def _make_tuplets(self, duration_pairs, leaf_lists):
         assert len(duration_pairs) == len(leaf_lists)
