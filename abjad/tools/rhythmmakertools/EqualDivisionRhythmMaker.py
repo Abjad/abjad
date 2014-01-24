@@ -67,62 +67,6 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 }
             }
 
-    ..  container:: example
-
-        Makes tuplets with ``5`` equal duration notes each.
-
-        ::
-
-            >>> maker = rhythmmakertools.EqualDivisionRhythmMaker(leaf_count=5)
-
-        ::
-
-            >>> divisions = [(1, 2), (3, 8), (5, 16)]
-            >>> music = maker(divisions)
-            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-            ...     music,
-            ...     divisions,
-            ...     )
-            >>> show(lilypond_file) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
-            >>> f(staff)
-            \new RhythmicStaff {
-                {
-                    \time 1/2
-                    \times 4/5 {
-                        c'8 [
-                        c'8
-                        c'8
-                        c'8
-                        c'8 ]
-                    }
-                }
-                {
-                    \time 3/8
-                    \tweak #'text #tuplet-number::calc-fraction-text
-                    \times 3/5 {
-                        c'8 [
-                        c'8
-                        c'8
-                        c'8
-                        c'8 ]
-                    }
-                }
-                {
-                    \time 5/16
-                    {
-                        c'16 [
-                        c'16
-                        c'16
-                        c'16
-                        c'16 ]
-                    }
-                }
-            }
-
     Usage follows the two-step configure-then-call pattern shown here.
     '''
 
@@ -144,15 +88,11 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         leaf_count=1,
         is_diminution=True,
         beam_specifier=None,
-        decrease_durations_monotonically=True,
-        forbidden_written_duration=None,
         tie_across_divisions=False,
         ):
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-            decrease_durations_monotonically=decrease_durations_monotonically,
-            forbidden_written_duration=forbidden_written_duration,
             tie_across_divisions=tie_across_divisions,
             )
         assert mathtools.is_integer_equivalent_expr(leaf_count)
@@ -170,15 +110,14 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16)]
-                >>> music = maker(divisions)
-                >>> for selection in music:
-                ...     selection
-                FixedDurationTuplet(Duration(1, 2), "c'8 c'8 c'8 c'8 c'8")
-                FixedDurationTuplet(Duration(3, 8), "c'8 c'8 c'8 c'8 c'8")
-                FixedDurationTuplet(Duration(5, 16), "c'16 c'16 c'16 c'16 c'16")
+                >>> tuplets = maker(divisions)
+                >>> for tuplet in tuplets:
+                ...     tuplet
+                FixedDurationTuplet(Duration(1, 2), "c'8 c'8 c'8 c'8")
+                FixedDurationTuplet(Duration(3, 8), "c'8 c'8 c'8 c'8")
+                FixedDurationTuplet(Duration(5, 16), "c'8 c'8 c'8 c'8")
 
-        Returns list of selections. Each selection contains exactly one
-        fixed-duration tuplet.
+        Returns list of fixed-duration tuplets.
         '''
         return RhythmMaker.__call__(
             self,
@@ -195,9 +134,8 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
                 >>> print format(maker)
                 rhythmmakertools.EqualDivisionRhythmMaker(
-                    leaf_count=5,
+                    leaf_count=4,
                     is_diminution=True,
-                    decrease_durations_monotonically=True,
                     tie_across_divisions=False,
                     )
 
@@ -215,15 +153,17 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> maker = rhythmmakertools.EqualDivisionRhythmMaker(
+                ...     leaf_count=4,
+                ...     )
                 >>> new_maker = new(maker, is_diminution=False)
 
             ::
 
                 >>> print format(new_maker)
                 rhythmmakertools.EqualDivisionRhythmMaker(
-                    leaf_count=5,
+                    leaf_count=4,
                     is_diminution=False,
-                    decrease_durations_monotonically=True,
                     tie_across_divisions=False,
                     )
 
@@ -244,9 +184,8 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 1/2
-                        \times 4/5 {
+                        {
                             c'8 [
-                            c'8
                             c'8
                             c'8
                             c'8 ]
@@ -255,9 +194,8 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                     {
                         \time 3/8
                         \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
+                        \times 3/4 {
                             c'8 [
-                            c'8
                             c'8
                             c'8
                             c'8 ]
@@ -265,24 +203,23 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 5/16
-                        {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 5/8 {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
                         }
                     }
                 }
+
+            ..  todo:: make is_diminution=False work.
 
         Returns new equal-division rhythm-maker.
         '''
         assert not args
         arguments = {
             'beam_specifier': self.beam_specifier,
-            'decrease_durations_monotonically':
-                self.decrease_durations_monotonically,
-            'forbidden_written_duration': self.forbidden_written_duration,
             'is_diminution': self.is_diminution,
             'leaf_count': self.leaf_count,
             }
@@ -322,6 +259,76 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def beam_specifier(self):
+        r'''Gets beam specifier of equal-division rhythm-maker.
+
+        ..  container:: example
+
+            Beams divisions together:
+
+            ::
+
+                >>> beam_specifier = rhythmmakertools.BeamSpecifier(
+                ...     beam_divisions_together=True,
+                ...     )
+                >>> maker = rhythmmakertools.EqualDivisionRhythmMaker(
+                ...     leaf_count=4,
+                ...     beam_specifier=beam_specifier,
+                ...     )
+
+            ::
+
+                >>> divisions = [(1, 2), (3, 8), (5, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 1/2
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/4 {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 5/16
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 5/8 {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
+
+            ..  todo:: make beam_divisions_together=True work.
+
+        Returns beam specifier or none.
+        '''
+        return RhythmMaker.beam_specifier.fget(self)
+
+    @property
     def is_diminution(self):
         r'''Is true when output tuplets should be diminuted.
         False when output tuplets should be augmented.
@@ -343,14 +350,126 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
+            Makes tuplets with ``5`` equal duration notes each:
+
             ::
 
-                >>> maker.leaf_count
-                5
+                >>> maker = rhythmmakertools.EqualDivisionRhythmMaker(leaf_count=5)
+
+            ::
+
+                >>> divisions = [(1, 2), (3, 8), (5, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 1/2
+                        \times 4/5 {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 5/16
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                }
 
         Returns positive integer.
         '''
         return self._leaf_count
+
+    @property
+    def tie_across_divisions(self):
+        r'''Is true when rhythm-maker should tie across divisions.
+
+        ..  container:: example
+
+            ::
+
+                >>> maker = rhythmmakertools.EqualDivisionRhythmMaker(
+                ...     leaf_count=4,
+                ...     tie_across_divisions=True,
+                ...     )
+
+            ::
+
+                >>> divisions = [(1, 2), (3, 8), (5, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 1/2
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ] ~
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/4 {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ] ~
+                        }
+                    }
+                    {
+                        \time 5/16
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 5/8 {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
+
+        Returns boolean.
+        '''
+        return RhythmMaker.tie_across_divisions.fget(self)
 
     ### PUBLIC METHODS ###
 
@@ -361,6 +480,9 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> maker = rhythmmakertools.EqualDivisionRhythmMaker(
+                ...     leaf_count=5,
+                ...     )
                 >>> reversed_maker = maker.reverse()
 
             ::
@@ -369,7 +491,6 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 rhythmmakertools.EqualDivisionRhythmMaker(
                     leaf_count=5,
                     is_diminution=True,
-                    decrease_durations_monotonically=False,
                     tie_across_divisions=False,
                     )
 
@@ -421,12 +542,8 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                     }
                 }
 
+        Defined equal to copy of rhythm-maker.
+
         Returns new equal-division rhythm-maker.
         '''
-        decrease_durations_monotonically = \
-            not self.decrease_durations_monotonically
-        maker = new(
-            self,
-            decrease_durations_monotonically=decrease_durations_monotonically,
-            )
-        return maker
+        return new(self)
