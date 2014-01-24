@@ -140,8 +140,6 @@ class SkipRhythmMaker(RhythmMaker):
 
         Returns new skip rhythm-maker.
         '''
-        #return RhythmMaker.__makenew__(self, *args, **kwargs)
-        # TODO: remove after beam specifier integration is complete
         assert not args
         arguments = {
             }

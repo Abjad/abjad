@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+from abjad.tools.topleveltools import new
 
 
 class RestRhythmMaker(RhythmMaker):
@@ -40,45 +41,6 @@ class RestRhythmMaker(RhythmMaker):
                 }
             }
 
-    ..  container:: example
-
-        Forbids rests with written duration greater than or equal to ``1/4`` of
-        a whole note:
-
-        ::
-
-            >>> maker = rhythmmakertools.RestRhythmMaker(
-            ...     forbidden_written_duration=Duration(1, 4),
-            ...     )
-
-        ::
-
-            >>> divisions = [(5, 16), (3, 8)]
-            >>> music = maker(divisions)
-            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-            ...     music,
-            ...     divisions,
-            ...     )
-            >>> show(lilypond_file) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
-            >>> f(staff)
-            \new RhythmicStaff {
-                {
-                    \time 5/16
-                    r8
-                    r8
-                    r16
-                }
-                {
-                    \time 3/8
-                    r8
-                    r8
-                    r8
-                }
-            }
 
     Usage follows the two-step configure-then-call pattern shown here.
     '''
@@ -96,15 +58,11 @@ class RestRhythmMaker(RhythmMaker):
 
     def __init__(
         self,
-        beam_specifier=None,
-        decrease_durations_monotonically=True,
-        forbidden_written_duration=None,
+        duration_spelling_specifier=None,
         ):
         RhythmMaker.__init__(
             self,
-            beam_specifier=beam_specifier,
-            decrease_durations_monotonically=decrease_durations_monotonically,
-            forbidden_written_duration=forbidden_written_duration,
+            duration_spelling_specifier=duration_spelling_specifier,
             )
 
     ### SPECIAL METHODS ###
@@ -130,10 +88,7 @@ class RestRhythmMaker(RhythmMaker):
             ::
 
                 >>> print format(maker)
-                rhythmmakertools.RestRhythmMaker(
-                    decrease_durations_monotonically=True,
-                    forbidden_written_duration=durationtools.Duration(1, 4),
-                    )
+                rhythmmakertools.RestRhythmMaker()
 
         Returns string.
         '''
@@ -152,10 +107,7 @@ class RestRhythmMaker(RhythmMaker):
             ::
 
                 >>> print format(new_maker)
-                rhythmmakertools.RestRhythmMaker(
-                    decrease_durations_monotonically=True,
-                    forbidden_written_duration=durationtools.Duration(1, 4),
-                    )
+                rhythmmakertools.RestRhythmMaker()
 
             ::
 
@@ -174,28 +126,20 @@ class RestRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/16
-                        r8
-                        r8
+                        r4
                         r16
                     }
                     {
                         \time 3/8
-                        r8
-                        r8
-                        r8
+                        r4.
                     }
                 }
 
         Returns new rest rhythm-maker.
         '''
-        #return RhythmMaker.__makenew__(self, *args, **kwargs)
-        # TODO: remove after beam specifier integration is complete
         assert not args
         arguments = {
-            'beam_specifier': self.beam_specifier,
-            'decrease_durations_monotonically':
-                self.decrease_durations_monotonically,
-            'forbidden_written_duration': self.forbidden_written_duration,
+            'duration_spelling_specifier': self.duration_spelling_specifier,
             }
         arguments.update(kwargs)
         maker = type(self)(**arguments)
@@ -204,14 +148,19 @@ class RestRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_music(self, duration_pairs, seeds):
+        from abjad.tools import rhythmmakertools
         result = []
+        specifier = self.duration_spelling_specifier
+        if specifier is None:
+            specifier = rhythmmakertools.DurationSpellingSpecifier()
         for duration_pair in duration_pairs:
             rests = scoretools.make_leaves(
                 pitches=None, 
                 durations=[duration_pair],
                 decrease_durations_monotonically=\
-                    self.decrease_durations_monotonically,
-                forbidden_written_duration=self.forbidden_written_duration,
+                    specifier.decrease_durations_monotonically,
+                forbidden_written_duration=\
+                    specifier.forbidden_written_duration,
                 )
             result.append(rests)
         return result
@@ -219,20 +168,56 @@ class RestRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def decrease_durations_monotonically(self):
-        r'''Gets decrease durations monotonically flag.
+    def duration_spelling_specifier(self):
+        r'''Gets duration spelling specifier of rest rhythm-maker.
 
-        Returns boolean.
+            ..  container:: example
+
+                Forbids rests with written duration greater than or equal to
+                ``1/4`` of a whole note:
+
+                ::
+
+                    >>> duration_spelling_specifier = \
+                    ...     rhythmmakertools.DurationSpellingSpecifier(
+                    ...     forbidden_written_duration=Duration(1, 4),
+                    ...     )
+                    >>> maker = rhythmmakertools.RestRhythmMaker(
+                    ...     duration_spelling_specifier=duration_spelling_specifier,
+                    ...     )
+
+                ::
+
+                    >>> divisions = [(5, 16), (3, 8)]
+                    >>> music = maker(divisions)
+                    >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                    ...     music,
+                    ...     divisions,
+                    ...     )
+                    >>> show(lilypond_file) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                    >>> f(staff)
+                    \new RhythmicStaff {
+                        {
+                            \time 5/16
+                            r8
+                            r8
+                            r16
+                        }
+                        {
+                            \time 3/8
+                            r8
+                            r8
+                            r8
+                        }
+                    }
+
+        Returns duration spelling specifier or none.
         '''
-        return self._decrease_durations_monotonically
-
-    @property
-    def forbidden_written_duration(self):
-        r'''Gets forbidden written duration.
-
-        Returns duration or none.
-        '''
-        return self._forbidden_written_duration
+        return RhythmMaker.duration_spelling_specifier.fget(self)
 
     ### PUBLIC METHODS ###
 
@@ -243,14 +228,16 @@ class RestRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> maker = rhythmmakertools.RestRhythmMaker()
                 >>> reversed_maker = maker.reverse()
 
             ::
 
                 >>> print format(reversed_maker)
                 rhythmmakertools.RestRhythmMaker(
-                    decrease_durations_monotonically=False,
-                    forbidden_written_duration=durationtools.Duration(1, 4),
+                    duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                        decrease_durations_monotonically=False,
+                        ),
                     )
 
             ::
@@ -270,18 +257,25 @@ class RestRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/16
-                        r8
-                        r8
+                        r4
                         r16
                     }
                     {
                         \time 3/8
-                        r8
-                        r8
-                        r8
+                        r4.
                     }
                 }
 
         Returns new rest rhythm-maker.
         '''
-        return RhythmMaker.reverse(self)
+        from abjad.tools import rhythmmakertools
+        duration_spelling_specifier = self.duration_spelling_specifier
+        if duration_spelling_specifier is None:
+            default = rhythmmakertools.DurationSpellingSpecifier()
+            duration_spelling_specifier = default
+        duration_spelling_specifier = duration_spelling_specifier.reverse()
+        arguments = {
+            'duration_spelling_specifier': duration_spelling_specifier,
+            }
+        result = new(self, **arguments)
+        return result
