@@ -14,7 +14,7 @@ def test_multiple_segment_solo__incomplete_division_coverage_01():
     red_segment.set_time_signatures([(6, 8), (3, 8)])
     left_measure = red_segment.select_measures('Voice 1')[:1]
     left_measure.timespan.set_divisions([(4, 16)], persist=False)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
@@ -34,7 +34,7 @@ def test_multiple_segment_solo__incomplete_division_coverage_02():
     red_segment.set_time_signatures([(6, 8), (3, 8)])
     left_measure = red_segment.select_measures('Voice 1')[:1]
     left_measure.timespan.set_divisions([(4, 16)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
@@ -56,7 +56,7 @@ def test_multiple_segment_solo__incomplete_division_coverage_03():
     right_measure = red_segment.select_measures('Voice 1')[1:2]
     left_measure.timespan.set_divisions([(4, 16)], contexts=['Voice 1'])
     right_measure.timespan.set_divisions([(2, 16)], contexts=['Voice 1'], persist=False)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 

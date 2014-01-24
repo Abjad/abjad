@@ -13,7 +13,7 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_01():
     red_segment.set_time_signatures(3 * [(4, 8)])
     select_expression = red_segment.timespan.set_offsets((10, 16), (13, 16))
     select_expression.set_divisions([(2, 32)])
-    select_expression.set_rhythm(library.thirty_seconds)
+    select_expression.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -32,7 +32,7 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_02():
     select_expression = red_segment.timespan.set_offsets((10, 16), (13, 16))
     select_expression.set_divisions([(2, 32)])
     select_expression = red_segment.timespan.divide_by_ratio((1, 2))[-1]
-    select_expression.set_rhythm(library.thirty_seconds)
+    select_expression.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -52,9 +52,9 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_03():
     left.set_divisions([(3, 16)])
     right.set_divisions([(2, 16)])
     select_expression = red_segment.select_divisions('Voice 1')[:2]
-    select_expression.timespan.set_rhythm(library.sixteenths)
+    select_expression.timespan.set_rhythm(library.joined_sixteenths)
     select_expression = red_segment.select_divisions('Voice 1')[2:]
-    select_expression.timespan.set_rhythm(library.thirty_seconds)
+    select_expression.timespan.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

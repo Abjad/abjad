@@ -14,12 +14,7 @@ def test_optimization_targets_01():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(50 * [(3, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths, 
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
 
     string = 'score_specification.interpret()'
     count = systemtools.IOManager.count_function_calls(string, globals(), locals(), fixed_point=False)
@@ -38,12 +33,7 @@ def test_optimization_targets_02():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(50 * [(3, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     score_specification.select_leaves('Voice 1').set_leaf_color('red')
 
     string = 'score_specification.interpret()'
@@ -63,12 +53,7 @@ def test_optimization_targets_03():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(50 * [(3, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     divisions = score_specification.select_divisions('Voice 1')
     divisions.select_leaves('Voice 1').set_leaf_color('red')
 
@@ -91,12 +76,7 @@ def test_optimization_targets_04():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(50 * [(3, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
 
     parts = score_specification.select_leaves('Voice 1').partition_by_ratio(16 * [1])
     for i, part in enumerate(parts):
@@ -124,12 +104,7 @@ def test_optimization_targets_05():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(50 * [(3, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
 
     parts = score_specification.select_divisions('Voice 1').partition_by_ratio(16 * [1])
     for i, part in enumerate(parts):

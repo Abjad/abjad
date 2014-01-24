@@ -13,7 +13,7 @@ def test_SegmentSpecification__select_offsets_01():
     middle_part_of_segment= red_segment.timespan.set_offsets((1, 8), (4, 8))
     red_segment.set_divisions([(2, 16)])
     middle_part_of_segment.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -32,7 +32,7 @@ def test_SegmentSpecification__select_offsets_02():
     middle_part_of_segment = red_segment.timespan.set_offsets(stop_offset=(4, 8))
     red_segment.set_divisions([(2, 16)])
     middle_part_of_segment.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -51,7 +51,7 @@ def test_SegmentSpecification__select_offsets_03():
     middle_part_of_segment = red_segment.timespan.set_offsets(start_offset=(2, 8))
     red_segment.set_divisions([(2, 16)])
     middle_part_of_segment.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -70,7 +70,7 @@ def test_SegmentSpecification__select_offsets_04():
     whole_segment = red_segment.timespan
     red_segment.set_divisions([(2, 16)])
     whole_segment.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -89,7 +89,7 @@ def test_SegmentSpecification__select_offsets_05():
     whole_segment = red_segment.timespan.set_offsets(start_offset=(-4, 8))
     red_segment.set_divisions([(2, 16)])
     whole_segment.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -108,7 +108,7 @@ def test_SegmentSpecification__select_offsets_06():
     whole_segment = red_segment.timespan.set_offsets(stop_offset=(-2, 8))
     red_segment.set_divisions([(2, 16)])
     whole_segment.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -127,7 +127,7 @@ def test_SegmentSpecification__select_offsets_07():
     whole_segment = red_segment.timespan.set_offsets(start_offset=(-4, 8), stop_offset=(-2, 8))
     red_segment.set_divisions([(2, 16)])
     whole_segment.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

@@ -23,7 +23,7 @@ def test_multiple_segment_quartet_01():
     red_segment.set_time_signatures([(3, 8), (3, 8), (2, 8), (2, 8)])
     upper = ['Voice 1', 'Voice 2']
     red_segment.set_divisions([(3, 16)], contexts=upper)
-    red_segment.set_rhythm(library.thirty_seconds, contexts=upper)
+    red_segment.set_rhythm(library.joined_thirty_seconds, contexts=upper)
     lower = ['Voice 3', 'Voice 4']
     red_segment.set_rhythm(library.note_tokens, contexts=lower)
     blue_segment = score_specification.append_segment(name='blue')
@@ -50,7 +50,7 @@ def test_multiple_segment_quartet_02():
     red_segment.set_time_signatures([(3, 8), (3, 8), (2, 8), (2, 8)])
     upper = ['Voice 1', 'Voice 2']
     red_segment.set_divisions([(5, 16)], contexts=upper)
-    red_segment.set_rhythm(library.thirty_seconds, contexts=upper)
+    red_segment.set_rhythm(library.joined_thirty_seconds, contexts=upper)
     lower = ['Voice 3', 'Voice 4']
     red_segment.set_divisions([(4, 16), (3, 16)], contexts=lower)
     red_segment.set_rhythm(library.note_tokens, contexts=lower)
@@ -86,7 +86,7 @@ def test_multiple_segment_quartet_03():
     second_half.set_divisions([(5, 16)], contexts=['Voice 3'], persist=False)
     first_half.set_divisions([(5, 16)], contexts=['Voice 4'], persist=False)
     second_half.set_divisions([(3, 16)], contexts=['Voice 4'], persist=False)
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     blue_segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
@@ -108,7 +108,7 @@ def test_multiple_segment_quartet_04():
     red_segment.set_divisions(source_expression.rotate(-1), contexts=['Voice 2'], truncate=True)
     red_segment.set_divisions(source_expression.rotate(-2), contexts=['Voice 3'], truncate=True)
     red_segment.set_divisions(source_expression.rotate(-3), contexts=['Voice 4'], truncate=True)
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     blue_segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 

@@ -10,12 +10,7 @@ def test_ScoreSpecification__set_spanner_01():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     leaves = score_specification.select_leaves('Voice 1')
     leaves.set_pitch(library.example_pitches_1())
     divisions = score_specification.select_divisions('Voice 1')[2:4]
@@ -36,12 +31,7 @@ def test_ScoreSpecification__set_spanner_02():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     leaves = score_specification.select_leaves('Voice 1')
     leaves.set_pitch(library.example_pitches_1())
     divisions = score_specification.select_divisions('Voice 1')[2:4]

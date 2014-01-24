@@ -10,8 +10,8 @@ def test_ScoreSpecification__set_rhythm_01():
     blue_segment = score_specification.append_segment(name='blue')
     green_segment = score_specification.append_segment(name='green')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
-    score_specification.set_rhythm(library.eighths)
-    blue_segment.set_rhythm(library.sixteenths, persist=False)
+    score_specification.set_rhythm(library.joined_eighths)
+    blue_segment.set_rhythm(library.joined_sixteenths, persist=False)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

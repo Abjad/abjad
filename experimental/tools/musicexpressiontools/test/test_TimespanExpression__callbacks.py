@@ -11,10 +11,10 @@ def test_TimespanExpression__callbacks_01():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     measures = red_segment.select_measures('Voice 1')[:1]
     timespan = measures.timespan.scale(Multiplier(4))
-    timespan.set_rhythm(library.thirty_seconds)
+    timespan.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -31,10 +31,10 @@ def test_TimespanExpression__callbacks_02():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     measures = red_segment.select_measures('Voice 1')[:1]
     timespan = measures.timespan.set_duration(Duration(2, 8))
-    timespan.set_rhythm(library.thirty_seconds)
+    timespan.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -51,10 +51,10 @@ def test_TimespanExpression__callbacks_03():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     measures = red_segment.select_measures('Voice 1')[:2]
     timespan = measures.timespan.set_offsets(start_offset=Offset(1, 8))
-    timespan.set_rhythm(library.thirty_seconds)
+    timespan.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -71,10 +71,10 @@ def test_TimespanExpression__callbacks_04():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     measures = red_segment.select_measures('Voice 1')[:1]
     timespan = measures.timespan.set_offsets(stop_offset=Offset(2, 8))
-    timespan.set_rhythm(library.thirty_seconds)
+    timespan.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -91,10 +91,10 @@ def test_TimespanExpression__callbacks_05():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     measures = red_segment.select_measures('Voice 1')[:1]
     timespan = measures.timespan.translate_offsets(Duration(1, 8), Duration(1, 8))
-    timespan.set_rhythm(library.thirty_seconds)
+    timespan.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -111,10 +111,10 @@ def test_TimespanExpression__callbacks_06():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     measures = red_segment.select_measures('Voice 1')[:2]
     timespan = measures.timespan.translate_offsets(start_offset_translation=Duration(1, 8))
-    timespan.set_rhythm(library.thirty_seconds)
+    timespan.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -131,10 +131,10 @@ def test_TimespanExpression__callbacks_07():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     measures = red_segment.select_measures('Voice 1')[:2]
     timespan = measures.timespan.translate_offsets(stop_offset_translation=Duration(-1, 8))
-    timespan.set_rhythm(library.thirty_seconds)
+    timespan.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -151,11 +151,11 @@ def test_TimespanExpression__callbacks_08():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     measures = red_segment.select_measures('Voice 1')[:2]
     timespan = measures.timespan.translate_offsets(start_offset_translation=Duration(1, 8))
     timespan = timespan.scale(Multiplier(2))
-    timespan.set_rhythm(library.thirty_seconds)
+    timespan.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

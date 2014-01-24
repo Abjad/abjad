@@ -11,7 +11,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_01():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8)])
     red_segment.set_divisions([(6, 16)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
     red_rhythm_set_expression = red_segment.timespan.start_offset.look_up_rhythm_set_expression('Voice 1')
@@ -33,7 +33,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_02():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
-    red_segment.set_rhythm(library.dotted_sixteenths)
+    red_segment.set_rhythm(library.joined_dotted_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
     red_rhythm_set_expression = red_segment.timespan.start_offset.look_up_rhythm_set_expression('Voice 1')
@@ -56,7 +56,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_03():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
-    red_segment.set_rhythm(library.dotted_sixteenths)
+    red_segment.set_rhythm(library.joined_dotted_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
     red_rhythm_set_expression = red_segment.timespan.start_offset.look_up_rhythm_set_expression('Voice 1')
@@ -79,7 +79,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_04():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
-    red_segment.set_rhythm(library.dotted_sixteenths)
+    red_segment.set_rhythm(library.joined_dotted_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
     red_rhythm_set_expression = red_segment.timespan.start_offset.look_up_rhythm_set_expression('Voice 1')
@@ -104,9 +104,9 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_05():
     blue_segment = score_specification.append_segment(name='blue')
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8), (5, 8)])
     measures = red_segment.select_measures('Voice 1')[1:3]
-    red_segment.set_rhythm(library.eighths)
-    measures.timespan.set_rhythm(library.sixteenths)
-    blue_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_eighths)
+    measures.timespan.set_rhythm(library.joined_sixteenths)
+    blue_segment.set_rhythm(library.joined_thirty_seconds)
     measures = blue_segment.select_measures('Voice 1')[1:3]
     leaves = red_segment.select_leaves('Voice 1')[:4]
     rhythm_set_expression = leaves.timespan.start_offset.look_up_rhythm_set_expression('Voice 1')
@@ -129,9 +129,9 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_past_06():
     blue_segment = score_specification.append_segment(name='blue')
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8), (5, 8)])
     measures = red_segment.select_measures('Voice 1')[1:3]
-    red_segment.set_rhythm(library.eighths)
-    measures.timespan.set_rhythm(library.sixteenths)
-    blue_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_eighths)
+    measures.timespan.set_rhythm(library.joined_sixteenths)
+    blue_segment.set_rhythm(library.joined_thirty_seconds)
     measures = blue_segment.select_measures('Voice 1')[1:3]
     leaves = red_segment.select_leaves('Voice 1')[:4]
     rhythm_set_expression = leaves.timespan.stop_offset.look_up_rhythm_set_expression('Voice 1')

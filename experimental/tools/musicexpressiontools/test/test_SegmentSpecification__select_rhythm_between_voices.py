@@ -13,7 +13,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_01():
     red_segment.set_divisions([(1, 8)])
     voice_2_rhythm = red_segment.select_leaves('Voice 2')
     red_segment.set_rhythm(voice_2_rhythm, contexts=['Voice 1'])
-    red_segment.set_rhythm(library.dotted_sixteenths, contexts=['Voice 2'])
+    red_segment.set_rhythm(library.joined_dotted_sixteenths, contexts=['Voice 2'])
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -33,7 +33,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_02():
     voice_2_rhythm = red_segment.select_leaves('Voice 2')
     voice_2_rhythm = voice_2_rhythm.reflect()
     red_segment.set_rhythm(voice_2_rhythm, contexts=['Voice 1'])
-    red_segment.set_rhythm(library.dotted_sixteenths, contexts=['Voice 2'])
+    red_segment.set_rhythm(library.joined_dotted_sixteenths, contexts=['Voice 2'])
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -53,7 +53,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_03():
     voice_2_rhythm = red_segment.select_leaves('Voice 2')
     voice_2_rhythm = voice_2_rhythm.reflect()
     red_segment.set_rhythm(voice_2_rhythm, contexts=['Voice 1'])
-    red_segment.set_rhythm(library.dotted_sixteenths, contexts=['Voice 2'])
+    red_segment.set_rhythm(library.joined_dotted_sixteenths, contexts=['Voice 2'])
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -74,7 +74,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_04():
     voice_2_rhythm = voice_2_rhythm.reflect()
     voice_2_rhythm = voice_2_rhythm.reflect()
     red_segment.set_rhythm(voice_2_rhythm, contexts=['Voice 1'])
-    red_segment.set_rhythm(library.dotted_sixteenths, contexts=['Voice 2'])
+    red_segment.set_rhythm(library.joined_dotted_sixteenths, contexts=['Voice 2'])
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

@@ -14,7 +14,7 @@ def test_SegmentSpecification__set_divisions_01():
     time_signatures = red_segment.select_time_signatures('Voice 1')
     time_signatures = time_signatures.reflect()
     red_segment.set_divisions(time_signatures, contexts=['Voice 1'])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

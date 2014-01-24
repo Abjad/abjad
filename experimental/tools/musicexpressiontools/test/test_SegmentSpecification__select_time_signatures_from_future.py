@@ -14,7 +14,7 @@ def test_SegmentSpecification__select_time_signatures_from_future_01():
     red_segment.set_time_signatures(blue_time_signatures)
     blue_segment.set_time_signatures([(3, 8), (3, 8)])
     blue_segment.set_divisions([(2, 16), (4, 16)])
-    blue_segment.set_rhythm(library.sixteenths)
+    blue_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -35,7 +35,7 @@ def test_SegmentSpecification__select_time_signatures_from_future_02():
     red_segment.set_time_signatures(blue_time_signatures)
     blue_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment.set_divisions([(2, 16), (6, 16)])
-    blue_segment.set_rhythm(library.sixteenths)
+    blue_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -56,7 +56,7 @@ def test_SegmentSpecification__select_time_signatures_from_future_03():
     red_segment.set_time_signatures(blue_time_signatures)
     blue_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment.set_divisions([(2, 16), (6, 16)])
-    blue_segment.set_rhythm(library.sixteenths)
+    blue_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -74,7 +74,7 @@ def test_SegmentSpecification__select_time_signatures_from_future_04():
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment.set_divisions([(2, 16), (6, 16)])
-    blue_segment.set_rhythm(library.sixteenths)
+    blue_segment.set_rhythm(library.joined_sixteenths)
     blue_time_signatures = blue_segment.select_time_signatures('Voice 1')
     blue_time_signatures = blue_time_signatures.reflect()
     blue_time_signatures = blue_time_signatures.reflect()

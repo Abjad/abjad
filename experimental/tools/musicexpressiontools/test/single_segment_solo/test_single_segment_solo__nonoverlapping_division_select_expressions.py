@@ -16,7 +16,7 @@ def test_single_segment_solo__nonoverlapping_division_select_expressions_01():
     second_measure.timespan.set_divisions([(3, 32)])
     third_measure = red_segment.select_measures('Voice 1')[2:3]
     third_measure.timespan.set_divisions([(4, 32)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

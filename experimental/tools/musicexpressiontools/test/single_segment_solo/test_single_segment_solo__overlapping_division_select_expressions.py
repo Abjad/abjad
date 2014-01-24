@@ -13,7 +13,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_01():
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(3, 16)])
     red_segment.set_divisions([(1, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -34,7 +34,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_02():
     first_measure = red_segment.select_measures('Voice 1')[:1]
     first_measure.timespan.set_divisions([(3, 16)])
     red_segment.set_divisions([(1, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -55,7 +55,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_03():
     first_measure = red_segment.select_measures('Voice 1')[1:2]
     first_measure.timespan.set_divisions([(3, 16)])
     red_segment.set_divisions([(1, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -77,7 +77,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_04():
     last_measure = red_segment.select_measures('Voice 1')[1:2]
     red_segment.set_divisions([(3, 16)])
     last_measure.timespan.set_divisions([(1, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -97,7 +97,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_05():
     middle_measure = red_segment.select_measures('Voice 1')[1:2]
     red_segment.set_divisions([(3, 16)])
     middle_measure.timespan.set_divisions([(1, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -118,7 +118,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_06():
     middle_measure = red_segment.timespan.divide_by_ratio((4, 3, 2))[1]
     red_segment.set_divisions([(3, 16)])
     middle_measure.set_divisions([(1, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -138,7 +138,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_07():
     red_segment.set_divisions([(3, 16)])
     red_segment.set_divisions([(2, 16)])
     red_segment.set_divisions([(1, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -159,7 +159,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_08():
     middle_measure = red_segment.select_measures('Voice 1')[1:2]
     middle_measure.timespan.set_divisions([(2, 16)])
     middle_measure.timespan.set_divisions([(1, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -180,7 +180,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_09():
     middle_measure.timespan.set_divisions([(2, 16)])
     arbitrary_chunk = red_segment.timespan.set_offsets((5, 8), (6, 8))
     arbitrary_chunk.set_divisions([(1, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

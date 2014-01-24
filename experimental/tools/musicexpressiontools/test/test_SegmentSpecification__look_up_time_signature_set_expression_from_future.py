@@ -14,7 +14,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_future
     red_segment.set_time_signatures(blue_time_signature_set_expression)
     blue_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment.set_divisions([(2, 16), (6, 16)])
-    blue_segment.set_rhythm(library.sixteenths)
+    blue_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -36,7 +36,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_future
     red_segment.set_time_signatures(blue_time_signature_set_expression)
     blue_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment.set_divisions([(2, 16), (6, 16)])
-    blue_segment.set_rhythm(library.sixteenths)
+    blue_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -58,7 +58,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_future
     red_segment.set_time_signatures(blue_time_signature_set_expression)
     blue_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment.set_divisions([(2, 16), (6, 16)])
-    blue_segment.set_rhythm(library.sixteenths)
+    blue_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -81,7 +81,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_future
     red_segment.set_time_signatures(blue_time_signature_set_expression)
     blue_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment.set_divisions([(2, 16), (6, 16)])
-    blue_segment.set_rhythm(library.sixteenths)
+    blue_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

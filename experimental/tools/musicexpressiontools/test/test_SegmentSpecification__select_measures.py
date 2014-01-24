@@ -14,7 +14,7 @@ def test_SegmentSpecification__select_measures_01():
     last_two_measures = red_segment.select_measures('Voice 1')[-2:]
     red_segment.set_divisions([(2, 32)])
     last_two_measures.timespan.set_divisions([(3, 32)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -33,7 +33,7 @@ def test_SegmentSpecification__select_measures_02():
     first_two_measures = red_segment.select_measures('Voice 1')[:-1]
     red_segment.set_divisions([(2, 32)])
     first_two_measures.timespan.set_divisions([(3, 32)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -52,7 +52,7 @@ def test_SegmentSpecification__select_measures_03():
     middle_measure = red_segment.select_measures('Voice 1')[1:-1]
     red_segment.set_divisions([(2, 32)])
     middle_measure.timespan.set_divisions([(3, 32)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -71,7 +71,7 @@ def test_SegmentSpecification__select_measures_04():
     last_measure = red_segment.select_measures('Voice 1')[-1:]
     red_segment.set_divisions([(2, 32)])
     last_measure.timespan.set_divisions([(3, 32)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -90,7 +90,7 @@ def test_SegmentSpecification__select_measures_05():
     last_measure = red_segment.select_measures('Voice 1')[1:2]
     red_segment.set_divisions([(2, 32)])
     last_measure.timespan.set_divisions([(3, 32)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -108,7 +108,7 @@ def test_SegmentSpecification__select_measures_06():
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8), (5, 8)])
     left_half = red_segment.timespan.divide_by_ratio((1, 1))[0]
     left_measures = left_half.select_measures('Voice 1')
-    left_measures.timespan.set_rhythm(library.eighths)
+    left_measures.timespan.set_rhythm(library.joined_eighths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -129,8 +129,8 @@ def test_SegmentSpecification__select_measures_07():
     left_half, right_half = red_segment.timespan.divide_by_ratio((1, 1))
     left_measures = left_half.select_measures('Voice 1')
     right_measures = right_half.select_measures('Voice 1')
-    left_measures.timespan.set_rhythm(library.eighths)
-    right_measures.timespan.set_rhythm(library.sixteenths)
+    left_measures.timespan.set_rhythm(library.joined_eighths)
+    right_measures.timespan.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -151,8 +151,8 @@ def test_SegmentSpecification__select_measures_08():
     left_half, right_half = red_segment.timespan.divide_by_ratio((1, 1))
     left_measures = left_half.select_measures('Voice 1')
     right_measures = right_half.select_measures('Voice 1')
-    right_measures.timespan.set_rhythm(library.sixteenths)
-    left_measures.timespan.set_rhythm(library.eighths)
+    right_measures.timespan.set_rhythm(library.joined_sixteenths)
+    left_measures.timespan.set_rhythm(library.joined_eighths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -172,7 +172,7 @@ def test_SegmentSpecification__select_measures_09():
     left_half = red_segment.timespan.divide_by_ratio((1, 1))[0]
     time_relation = timespantools.timespan_2_stops_during_timespan_1()
     left_measures = left_half.select_measures('Voice 1', time_relation=time_relation)
-    left_measures.timespan.set_rhythm(library.eighths)
+    left_measures.timespan.set_rhythm(library.joined_eighths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -192,7 +192,7 @@ def test_SegmentSpecification__select_measures_10():
     left_half = red_segment.timespan.divide_by_ratio((1, 1))[0]
     time_relation = timespantools.timespan_2_overlaps_stop_of_timespan_1()
     left_measures = left_half.select_measures('Voice 1', time_relation=time_relation)
-    left_measures.timespan.set_rhythm(library.eighths)
+    left_measures.timespan.set_rhythm(library.joined_eighths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -208,9 +208,9 @@ def test_SegmentSpecification__select_measures_11():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(2 * [(2, 8), (3, 8), (4, 8), (5, 8)])
-    red_segment.set_rhythm(library.eighths)
+    red_segment.set_rhythm(library.joined_eighths)
     measures = red_segment.select_measures('Voice 1')[2:6][1:3]
-    measures.timespan.set_rhythm(library.sixteenths)
+    measures.timespan.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -226,11 +226,11 @@ def test_SegmentSpecification__select_measures_12():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(2 * [(1, 8), (2, 8), (3, 8), (4, 8), (5, 8)])
-    red_segment.set_rhythm(library.eighths)
+    red_segment.set_rhythm(library.joined_eighths)
     measures = red_segment.select_measures('Voice 1')
     measures = measures.partition_by_ratio((1, 1, 1))[1]
     measures = measures[:2]
-    measures.timespan.set_rhythm(library.sixteenths)
+    measures.timespan.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -246,11 +246,11 @@ def test_SegmentSpecification__select_measures_13():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(2 * [(1, 8), (2, 8), (3, 8), (4, 8), (5, 8)])
-    red_segment.set_rhythm(library.eighths)
+    red_segment.set_rhythm(library.joined_eighths)
     measures = red_segment.select_measures('Voice 1')
     measures = measures[2:8]
     measures = measures.partition_by_ratio((1, 1, 1))[1]
-    measures.timespan.set_rhythm(library.sixteenths)
+    measures.timespan.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -267,7 +267,7 @@ def test_SegmentSpecification__select_measures_14():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(2, 8)])
     red_segment.set_divisions([(2, 16)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     measure = red_segment.select_measures('Voice 1')[1]
     measure.timespan.select_leaves('Voice 1').set_spanner(spannertools.Slur())
     score = score_specification.interpret()
@@ -286,7 +286,7 @@ def test_SegmentSpecification__select_measures_15():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(2, 8)])
     red_segment.set_divisions([(2, 16)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     measure = red_segment.select_measures('Voice 1')[-2]
     measure.timespan.select_leaves('Voice 1').set_spanner(spannertools.Slur())
     score = score_specification.interpret()

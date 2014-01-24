@@ -33,7 +33,7 @@ def test_custom_contexts_01():
     score_template = CustomContextScoreTemplate()
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures([(4, 8), (4, 8), (4, 8)])
-    score_specification.set_rhythm(library.sixteenths, contexts=['Custom Voice'])
+    score_specification.set_rhythm(library.joined_sixteenths, contexts=['Custom Voice'])
     score = score_specification.interpret()
     lilypond_file = lilypondfiletools.make_floating_time_signature_lilypond_file(score)
 

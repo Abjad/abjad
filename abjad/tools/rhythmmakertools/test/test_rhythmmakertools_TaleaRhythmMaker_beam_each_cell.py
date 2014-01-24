@@ -10,7 +10,6 @@ def test_rhythmmakertools_TaleaRhythmMaker_beam_each_cell_01():
         talea=(1, 1, 1, -1, 2, 2), 
         talea_denominator=32, 
         prolation_addenda=(3, 4), 
-        beam_each_cell=True,
         )
 
     divisions = [(2, 16), (5, 16)]

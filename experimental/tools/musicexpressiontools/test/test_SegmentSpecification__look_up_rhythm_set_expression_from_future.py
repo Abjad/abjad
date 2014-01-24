@@ -15,7 +15,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_01():
     blue_rhythm = blue_segment.timespan.start_offset.look_up_rhythm_set_expression('Voice 1')
     red_segment.set_rhythm(blue_rhythm)
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
-    blue_segment.set_rhythm(library.dotted_sixteenths)
+    blue_segment.set_rhythm(library.joined_dotted_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -38,7 +38,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_02():
     blue_rhythm = blue_rhythm.reflect()
     red_segment.set_rhythm(blue_rhythm)
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
-    blue_segment.set_rhythm(library.dotted_sixteenths)
+    blue_segment.set_rhythm(library.joined_dotted_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -61,7 +61,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_03():
     blue_rhythm = blue_rhythm.reflect()
     red_segment.set_rhythm(blue_rhythm)
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
-    blue_segment.set_rhythm(library.dotted_sixteenths)
+    blue_segment.set_rhythm(library.joined_dotted_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -85,7 +85,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_04():
     blue_rhythm = blue_rhythm.reflect()
     red_segment.set_rhythm(blue_rhythm)
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
-    blue_segment.set_rhythm(library.dotted_sixteenths)
+    blue_segment.set_rhythm(library.joined_dotted_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

@@ -12,7 +12,7 @@ def test_multiple_segment_solo_01():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(3, 16)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     blue_segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
@@ -32,7 +32,7 @@ def test_multiple_segment_solo_02():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(3, 16)], contexts=['Voice 1'], truncate=True)
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     blue_segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
@@ -50,7 +50,7 @@ def test_multiple_segment_solo_03():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(14, 16)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     blue_segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
@@ -70,7 +70,7 @@ def test_multiple_segment_solo_04():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(14, 16)], contexts=['Voice 1'], truncate=True)
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     blue_segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
@@ -89,7 +89,7 @@ def test_multiple_segment_solo_05():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(20, 16)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     blue_segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
@@ -109,7 +109,7 @@ def test_multiple_segment_solo_06():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(20, 16)], contexts=['Voice 1'], truncate=True)
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     blue_segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
@@ -128,7 +128,7 @@ def test_multiple_segment_solo_07():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(15, 8)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     blue_segment = score_specification.append_segment(name='blue')
     green_segment = score_specification.append_segment(name='green')
     score = score_specification.interpret()

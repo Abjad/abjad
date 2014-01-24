@@ -13,7 +13,7 @@ def test_BeatSelectExpression__callbacks_01():
     beats = red_segment.select_beats('Voice 1')
     beats = beats[2:6]
     red_segment.set_divisions(beats)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -32,8 +32,8 @@ def test_BeatSelectExpression__callbacks_02():
     beats = red_segment.select_beats('Voice 1')
     red_segment.set_divisions(beats)
     left, right = beats.partition_by_ratio((1, 1))
-    left.timespan.set_rhythm(library.sixteenths)
-    right.timespan.set_rhythm(library.thirty_seconds)
+    left.timespan.set_rhythm(library.joined_sixteenths)
+    right.timespan.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -52,8 +52,8 @@ def test_BeatSelectExpression__callbacks_03():
     beats = red_segment.select_beats('Voice 1')
     red_segment.set_divisions(beats)
     left, right = beats.partition_by_ratio_of_durations((1, 1))
-    left.timespan.set_rhythm(library.sixteenths)
-    right.timespan.set_rhythm(library.thirty_seconds)
+    left.timespan.set_rhythm(library.joined_sixteenths)
+    right.timespan.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -72,7 +72,7 @@ def test_BeatSelectExpression__callbacks_04():
     beats = red_segment.select_beats('Voice 1')
     beats = beats.repeat_to_duration(Duration(5, 8))
     red_segment.set_divisions(beats)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -91,7 +91,7 @@ def test_BeatSelectExpression__callbacks_05():
     beats = red_segment.select_beats('Voice 1')
     beats = beats.repeat_to_length(3)
     red_segment.set_divisions(beats)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -110,7 +110,7 @@ def test_BeatSelectExpression__callbacks_06():
     beats = red_segment.select_beats('Voice 1')
     beats = beats.reflect()
     red_segment.set_divisions(beats)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -129,7 +129,7 @@ def test_BeatSelectExpression__callbacks_07():
     beats = red_segment.select_beats('Voice 1')
     beats = beats.rotate(-1)
     red_segment.set_divisions(beats)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -149,7 +149,7 @@ def test_BeatSelectExpression__callbacks_08():
     timespan = timespantools.Timespan(Offset(2, 8), Offset(6, 8))
     beats = beats & timespan
     red_segment.set_divisions(beats)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

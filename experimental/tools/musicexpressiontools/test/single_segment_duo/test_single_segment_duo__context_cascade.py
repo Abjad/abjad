@@ -12,7 +12,7 @@ def test_single_segment_duo__context_cascade_01():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     red_segment.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     red_segment.set_rhythm(library.note_tokens, contexts=['Voice 2'])
     score = score_specification.interpret()
 

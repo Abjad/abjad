@@ -10,7 +10,7 @@ def test_SegmentSpecification__select_beats_01():
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
-    score_specification.set_rhythm(library.sixteenths)
+    score_specification.set_rhythm(library.joined_sixteenths)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (2, 4)])
     red_beats = red_segment.select_beats('Voice 1')
@@ -32,7 +32,7 @@ def test_SegmentSpecification__select_beats_02():
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
-    score_specification.set_rhythm(library.sixteenths)
+    score_specification.set_rhythm(library.joined_sixteenths)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (2, 4)])
     red_beats = red_segment.select_beats('Voice 1')
@@ -55,7 +55,7 @@ def test_SegmentSpecification__select_beats_03():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
-    score_specification.set_rhythm(library.sixteenths)
+    score_specification.set_rhythm(library.joined_sixteenths)
     red_segment.set_time_signatures([(2, 8), (2, 4)])
     blue_beats = blue_segment.select_beats('Voice 1')
     red_segment.set_divisions(blue_beats)
@@ -74,7 +74,7 @@ def test_SegmentSpecification__select_beats_04():
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
-    score_specification.set_rhythm(library.sixteenths)
+    score_specification.set_rhythm(library.joined_sixteenths)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (2, 4)])
     red_beats = red_segment.select_beats('Voice 1')
@@ -98,7 +98,7 @@ def test_SegmentSpecification__select_beats_05():
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
-    score_specification.set_rhythm(library.sixteenths)
+    score_specification.set_rhythm(library.joined_sixteenths)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (2, 4)])
     red_beats = red_segment.select_beats('Voice 1')
@@ -122,12 +122,7 @@ def test_SegmentSpecification__select_beats_06():
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (2, 4)])
     red_beats = red_segment.select_beats('Voice 1')
@@ -149,12 +144,7 @@ def test_SegmentSpecification__select_beats_07():
 
     score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (2, 4)])
     red_beats = red_segment.select_beats('Voice 1')

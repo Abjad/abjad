@@ -10,7 +10,7 @@ def test_multiple_voice_duo_01():
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(4, 16)], contexts=['Voice 1-1', 'Voice 2-1'])
     red_segment.set_divisions([(3, 16)], contexts=['Voice 1-2', 'Voice 2-2'])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

@@ -12,7 +12,7 @@ def test_single_segment_solo__incomplete_division_coverage_01():
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     measures = red_segment.select_measures('Voice 1')[1:2]
     measures.timespan.set_divisions([(2, 16)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -32,7 +32,7 @@ def test_single_segment_solo__incomplete_division_coverage_02():
     measures.timespan.set_divisions([(3, 16)])
     measures = red_segment.select_measures('Voice 1')[-1:]
     measures.timespan.set_divisions([(2, 16)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -51,7 +51,7 @@ def test_single_segment_solo__incomplete_division_coverage_03():
     measures = red_segment.select_measures('Voice 1')[1:2]
     measures.timespan.set_divisions([(2, 16)])
     measures.timespan.set_divisions([(2, 16)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -71,7 +71,7 @@ def test_single_segment_solo__incomplete_division_coverage_04():
     measures.timespan.set_divisions([(3, 16)])
     measures = red_segment.select_measures('Voice 1')[-1:]
     measures.timespan.set_divisions([(2, 16)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -91,7 +91,7 @@ def test_single_segment_solo__incomplete_division_coverage_05():
     measures.timespan.set_divisions([(2, 16)])
     measures = red_segment.select_measures('Voice 1')[-1:]
     measures.timespan.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -111,7 +111,7 @@ def test_single_segment_solo__incomplete_division_coverage_06():
     measures.timespan.set_divisions([(2, 16)])
     measures = red_segment.select_measures('Voice 1')[-1:]
     measures.timespan.set_divisions([(3, 16)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -131,7 +131,7 @@ def test_single_segment_solo__incomplete_division_coverage_07():
     measures.timespan.set_divisions([(2, 16)], contexts=['Voice 1'])
     measures = red_segment.select_measures('Voice 1')[-1:]
     measures.timespan.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -149,7 +149,7 @@ def test_single_segment_solo__incomplete_division_coverage_08():
     red_segment.set_time_signatures(3 * [(4, 8)])
     select_expression = red_segment.timespan.set_offsets((10, 16), (13, 16))
     select_expression.set_divisions([(2, 32)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

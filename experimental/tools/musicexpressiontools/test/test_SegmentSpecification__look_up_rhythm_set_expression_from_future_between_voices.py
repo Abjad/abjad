@@ -15,7 +15,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_between
     red_segment.set_divisions([(1, 8), (3, 8)], contexts=['Voice 2'])
     blue_voice_2_rhythm_set_expression = blue_segment.timespan.start_offset.look_up_rhythm_set_expression('Voice 2')
     red_segment.set_rhythm(blue_voice_2_rhythm_set_expression, contexts=['Voice 1'])
-    red_segment.set_rhythm(library.dotted_sixteenths)
+    red_segment.set_rhythm(library.joined_dotted_sixteenths)
     blue_segment.set_time_signatures([(2, 8), (2, 8)])
     score = score_specification.interpret()
 
@@ -39,7 +39,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_between
     blue_voice_2_rhythm_set_expression = blue_segment.timespan.start_offset.look_up_rhythm_set_expression('Voice 2')
     blue_voice_2_rhythm_set_expression = blue_voice_2_rhythm_set_expression.reflect()
     red_segment.set_rhythm(blue_voice_2_rhythm_set_expression, contexts=['Voice 1'])
-    red_segment.set_rhythm(library.dotted_sixteenths)
+    red_segment.set_rhythm(library.joined_dotted_sixteenths)
     blue_segment.set_time_signatures([(2, 8), (2, 8)])
     score = score_specification.interpret()
 
@@ -63,7 +63,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_between
     blue_voice_2_rhythm_set_expression = blue_segment.timespan.start_offset.look_up_rhythm_set_expression('Voice 2')
     blue_voice_2_rhythm_set_expression = blue_voice_2_rhythm_set_expression.reflect()
     red_segment.set_rhythm(blue_voice_2_rhythm_set_expression, contexts=['Voice 1'])
-    red_segment.set_rhythm(library.dotted_sixteenths)
+    red_segment.set_rhythm(library.joined_dotted_sixteenths)
     blue_segment.set_time_signatures([(2, 8), (2, 8)])
     score = score_specification.interpret()
 
@@ -88,7 +88,7 @@ def test_SegmentSpecification__look_up_rhythm_set_expression_from_future_between
     blue_voice_2_rhythm_set_expression = blue_voice_2_rhythm_set_expression.reflect()
     blue_voice_2_rhythm_set_expression = blue_voice_2_rhythm_set_expression.reflect()
     red_segment.set_rhythm(blue_voice_2_rhythm_set_expression, contexts=['Voice 1'])
-    red_segment.set_rhythm(library.dotted_sixteenths)
+    red_segment.set_rhythm(library.joined_dotted_sixteenths)
     blue_segment.set_time_signatures([(2, 8), (2, 8)])
     score = score_specification.interpret()
 

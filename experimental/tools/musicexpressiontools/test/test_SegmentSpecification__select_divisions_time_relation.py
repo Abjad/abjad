@@ -15,8 +15,8 @@ def test_SegmentSpecification__select_divisions_time_relation_01():
     time_relation = timespantools.timespan_2_stops_during_timespan_1()
     divisions_that_stop_during_red = red_segment.select_divisions('Voice 1', time_relation=time_relation)
     divisions_that_stop_during_blue = blue_segment.select_divisions('Voice 1', time_relation=time_relation)
-    divisions_that_stop_during_red.timespan.set_rhythm(library.sixteenths)
-    divisions_that_stop_during_blue.timespan.set_rhythm(library.eighths)
+    divisions_that_stop_during_red.timespan.set_rhythm(library.joined_sixteenths)
+    divisions_that_stop_during_blue.timespan.set_rhythm(library.joined_eighths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

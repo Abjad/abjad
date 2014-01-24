@@ -39,7 +39,7 @@ def test_single_segment_quartet_01():
     left_half.set_divisions(voice_2_left_division_set_expression, contexts=['Voice 4'])
     right_half.set_divisions(voice_2_right_division_set_expression, contexts=['Voice 4'])
 
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

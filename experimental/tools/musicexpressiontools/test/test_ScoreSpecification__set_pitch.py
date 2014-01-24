@@ -11,12 +11,7 @@ def test_ScoreSpecification__set_pitch_01():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False,
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     leaves = score_specification.select_leaves('Voice 1')
     leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
@@ -34,12 +29,7 @@ def test_ScoreSpecification__set_pitch_02():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     leaves = score_specification.select_leaves('Voice 1')[9:18]
     leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
@@ -57,7 +47,7 @@ def test_ScoreSpecification__set_pitch_03():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    score_specification.set_rhythm(library.sixteenths)
+    score_specification.set_rhythm(library.joined_sixteenths)
     first_leaves = score_specification.select_leaves('Voice 1')[:10]
     last_leaves = score_specification.select_leaves('Voice 1')[-10:]
     leaves = first_leaves + last_leaves
@@ -77,12 +67,7 @@ def test_ScoreSpecification__set_pitch_04():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     first_leaves = score_specification.select_leaves('Voice 1')[:10]
     last_leaves = score_specification.select_leaves('Voice 2')[-10:]
     leaves = first_leaves + last_leaves
@@ -103,12 +88,7 @@ def test_ScoreSpecification__set_pitch_05():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     first_leaves = score_specification.select_leaves('Voice 1')[:9]
     last_leaves = score_specification.select_leaves('Voice 1')[3:12]
     leaves = first_leaves + last_leaves
@@ -129,12 +109,7 @@ def test_ScoreSpecification__set_pitch_06():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     leaves = score_specification.select_leaves('Voice 1')[:9]
     leaves += score_specification.select_leaves('Voice 2')[:9]
     leaves.set_pitch(library.example_pitches_1())
@@ -154,12 +129,7 @@ def test_ScoreSpecification__set_pitch_07():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     leaves = score_specification.select_leaves('Voice 2')[:9]
     leaves += score_specification.select_leaves('Voice 1')[:9]
     leaves.set_pitch(library.example_pitches_1())
@@ -178,12 +148,7 @@ def test_ScoreSpecification__set_pitch_08():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     cursor_1 = library.example_pitches_1()
     cursor_2 = library.example_pitches_1()
     score_specification.select_leaves('Voice 1')[:9].set_pitch(cursor_1)
@@ -203,12 +168,7 @@ def test_ScoreSpecification__set_pitch_09():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     cursor = library.example_pitches_1()
     score_specification.select_leaves('Voice 1')[:3].set_pitch(cursor)
     score_specification.select_leaves('Voice 1')[6:9].set_pitch(cursor)
@@ -228,12 +188,7 @@ def test_ScoreSpecification__set_pitch_10():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     cursor_1 = library.example_pitches_1()
     score_specification.select_leaves('Voice 1')[:9].set_pitch(cursor_1)
     cursor_2 = library.example_pitches_1(position=cursor_1.position)
@@ -253,12 +208,7 @@ def test_ScoreSpecification__set_pitch_11():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     cursor_1 = library.example_pitches_1()
     score_specification.select_leaves('Voice 1')[:9].set_pitch(cursor_1)
     cursor_2 = copy.deepcopy(cursor_1)
@@ -278,12 +228,7 @@ def test_ScoreSpecification__set_pitch_12():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     leaves = score_specification.select_leaves('Voice 1')[:9]
     leaves.set_pitch(library.example_pitches_1(reverse=True))
     score = score_specification.interpret()
@@ -301,12 +246,7 @@ def test_ScoreSpecification__set_pitch_13():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     leaves = score_specification.select_leaves('Voice 1')
     leaves.set_pitch(library.example_pitches_1(), node_count=4, level=-1)
     score = score_specification.interpret()
@@ -324,12 +264,7 @@ def test_ScoreSpecification__set_pitch_14():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     leaves = score_specification.select_leaves('Voice 1')
     leaves.set_pitch(library.example_pitches_1(position=(2, 0)), node_count=4, level=-1)
     score = score_specification.interpret()
@@ -347,12 +282,7 @@ def test_ScoreSpecification__set_pitch_15():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     leaves = score_specification.select_leaves('Voice 1')
     leaves.set_pitch(library.example_pitches_1(), node_count=2, level=-2)
     score = score_specification.interpret()
@@ -370,12 +300,7 @@ def test_ScoreSpecification__set_pitch_16():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
-    rhythm = new(
-        library.sixteenths,
-        beam_cells_together=False, 
-        beam_each_cell=True,
-        )
-    score_specification.set_rhythm(rhythm)
+    score_specification.set_rhythm(library.sixteenths)
     leaves = score_specification.select_leaves('Voice 1')
     leaves.set_pitch(library.example_pitches_1(position=(2, )), node_count=2, level=-2)
     score = score_specification.interpret()

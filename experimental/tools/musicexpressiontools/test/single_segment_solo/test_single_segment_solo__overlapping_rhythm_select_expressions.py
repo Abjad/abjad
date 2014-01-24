@@ -11,8 +11,8 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_01():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(2, 8)])
     red_segment.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -29,9 +29,9 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_02():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(2, 8)])
     red_segment.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     first_two_measures = red_segment.select_measures('Voice 1')[:2]
-    first_two_measures.timespan.set_rhythm(library.sixteenths)
+    first_two_measures.timespan.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -48,9 +48,9 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_03():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(2, 8)])
     red_segment.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     first_two_measures = red_segment.select_measures('Voice 1')[-2:]
-    first_two_measures.timespan.set_rhythm(library.sixteenths)
+    first_two_measures.timespan.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -67,9 +67,9 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_04():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(2, 8)])
     red_segment.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     first_two_measures = red_segment.select_measures('Voice 1')[1:2]
-    first_two_measures.timespan.set_rhythm(library.sixteenths)
+    first_two_measures.timespan.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

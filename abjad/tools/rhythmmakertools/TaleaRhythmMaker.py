@@ -9,6 +9,7 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import new
 
@@ -45,7 +46,6 @@ class TaleaRhythmMaker(RhythmMaker):
             ...     burnish_specifier=burnish_specifier,
             ...     prolation_addenda=(0, 2),
             ...     secondary_divisions=(9,),
-            ...     beam_each_cell=True,
             ...     burnish_output=True,
             ...     )
 
@@ -150,8 +150,7 @@ class TaleaRhythmMaker(RhythmMaker):
         burnish_specifier=None,
         secondary_divisions=None,
         helper_functions=None,
-        beam_each_cell=True,
-        beam_cells_together=False,
+        beam_specifier=None,
         decrease_durations_monotonically=True,
         tie_split_notes=False,
         burnish_divisions=False,
@@ -161,8 +160,7 @@ class TaleaRhythmMaker(RhythmMaker):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
-            beam_each_cell=beam_each_cell,
-            beam_cells_together=beam_cells_together,
+            beam_specifier=beam_specifier,
             decrease_durations_monotonically=decrease_durations_monotonically,
             )
         prototype = (tuple, type(None))
@@ -259,8 +257,6 @@ class TaleaRhythmMaker(RhythmMaker):
                         right_lengths=(1,),
                         ),
                     secondary_divisions=(9,),
-                    beam_each_cell=True,
-                    beam_cells_together=False,
                     decrease_durations_monotonically=True,
                     tie_split_notes=False,
                     burnish_divisions=False,
@@ -297,8 +293,6 @@ class TaleaRhythmMaker(RhythmMaker):
                         right_lengths=(1,),
                         ),
                     secondary_divisions=(10,),
-                    beam_each_cell=True,
-                    beam_cells_together=False,
                     decrease_durations_monotonically=True,
                     tie_split_notes=False,
                     burnish_divisions=False,
@@ -354,8 +348,7 @@ class TaleaRhythmMaker(RhythmMaker):
             'burnish_specifier': copy.deepcopy(self.burnish_specifier),
             'secondary_divisions': self.secondary_divisions,
             'helper_functions': self.helper_functions,
-            'beam_each_cell': self.beam_each_cell,
-            'beam_cells_together': self.beam_cells_together,
+            'beam_specifier': self.beam_specifier,
             'decrease_durations_monotonically':
                 self.decrease_durations_monotonically,
             'tie_split_notes': self.tie_split_notes,
@@ -541,6 +534,7 @@ class TaleaRhythmMaker(RhythmMaker):
         return leaf_lists
 
     def _make_music(self, duration_pairs, seeds):
+        from abjad.tools import rhythmmakertools
         octuplet = self._prepare_input(seeds)
         talea, prolation_addenda = octuplet[:2]
         secondary_divisions = octuplet[-1]
@@ -560,7 +554,32 @@ class TaleaRhythmMaker(RhythmMaker):
         else:
             tuplets = self._make_tuplets(secondary_duration_pairs, leaf_lists)
             result = tuplets
-        if self.beam_each_cell:
+        beam_specifier = self.beam_specifier
+        if beam_specifier is None:
+            beam_specifier = rhythmmakertools.BeamSpecifier()
+        if beam_specifier.beam_cells_together:
+            #beam = spannertools.MultipartBeam()
+            #attach(beam, result)
+            durations = []
+            for x in result:
+                duration = x.get_duration()
+                durations.append(duration)
+            beam = spannertools.DuratedComplexBeam(
+                durations=durations,
+                span_beam_count=1,
+                )
+            #raise Exception(result)
+            #attach(beam, result)
+            components = []
+            for x in result:
+                if isinstance(x, selectiontools.Selection):
+                    components.extend(x)
+                elif isinstance(x, scoretools.Tuplet):
+                    components.append(x)
+                else:
+                    raise TypeError(x)
+            attach(beam, components)
+        elif beam_specifier.beam_each_cell:
             for cell in result:
                 beam = spannertools.MultipartBeam()
                 attach(beam, cell)
@@ -772,8 +791,6 @@ class TaleaRhythmMaker(RhythmMaker):
                         right_lengths=(1,),
                         ),
                     secondary_divisions=(9,),
-                    beam_each_cell=True,
-                    beam_cells_together=False,
                     decrease_durations_monotonically=False,
                     tie_split_notes=False,
                     burnish_divisions=False,

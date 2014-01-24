@@ -14,7 +14,7 @@ def test_SegmentSpecification__select_rhythm_from_past_01():
     right_measure = red_segment.select_measures('Voice 1')[1:2]
     left_measure.timespan.set_divisions([(3, 16)], contexts=['Voice 1'])
     right_measure.timespan.set_divisions([(5, 16)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     red_voice_1_rhythm = red_segment.select_leaves('Voice 1')
     blue_segment.set_rhythm(red_voice_1_rhythm, contexts=['Voice 1'])
@@ -39,7 +39,7 @@ def test_SegmentSpecification__select_rhythm_from_past_02():
     right_measure = red_segment.select_measures('Voice 1')[1:2]
     left_measure.timespan.set_divisions([(3, 16)], contexts=['Voice 1'])
     right_measure.timespan.set_divisions([(5, 16)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(8, 8)])
     red_voice_1_rhythm = red_segment.select_leaves('Voice 1')
@@ -63,7 +63,7 @@ def test_SegmentSpecification__select_rhythm_from_past_03():
     right_measure = red_segment.select_measures('Voice 1')[1:2]
     left_measure.timespan.set_divisions([(3, 16)], contexts=['Voice 1'])
     right_measure.timespan.set_divisions([(5, 16)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     red_voice_1_rhythm = red_segment.select_leaves('Voice 1')
     red_voice_1_rhythm = red_voice_1_rhythm.reflect()
@@ -87,7 +87,7 @@ def test_SegmentSpecification__select_rhythm_from_past_04():
     right_measure = red_segment.select_measures('Voice 1')[1:2]
     left_measure.timespan.set_divisions([(3, 16)], contexts=['Voice 1'])
     right_measure.timespan.set_divisions([(5, 16)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     red_voice_1_rhythm = red_segment.select_leaves('Voice 1')
     red_voice_1_rhythm = red_voice_1_rhythm.reflect()
@@ -111,7 +111,7 @@ def test_SegmentSpecification__select_rhythm_from_past_05():
     right_measure = red_segment.select_measures('Voice 1')[1:2]
     left_measure.timespan.set_divisions([(3, 16)], contexts=['Voice 1'])
     right_measure.timespan.set_divisions([(5, 16)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     red_voice_1_rhythm = red_segment.select_leaves('Voice 1')
     red_voice_1_rhythm = red_voice_1_rhythm.reflect()
@@ -136,7 +136,7 @@ def test_SegmentSpecification__select_rhythm_from_past_06():
     right_measure = red_segment.select_measures('Voice 1')[1:2]
     left_measure.timespan.set_divisions([(3, 16)], contexts=['Voice 1'])
     right_measure.timespan.set_divisions([(5, 16)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     red_voice_1_rhythm = red_segment.select_leaves('Voice 1')
     red_voice_1_rhythm = red_voice_1_rhythm.rotate(8)
@@ -160,7 +160,7 @@ def test_SegmentSpecification__select_rhythm_from_past_07():
     right_measure = red_segment.select_measures('Voice 1')[1:2]
     left_measure.timespan.set_divisions([(3, 16)], contexts=['Voice 1'])
     right_measure.timespan.set_divisions([(5, 16)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     red_voice_1_rhythm = red_segment.select_leaves('Voice 1')
     blue_segment.set_rhythm(red_voice_1_rhythm.rotate(8), contexts=['Voice 1'])
@@ -183,7 +183,7 @@ def test_SegmentSpecification__select_rhythm_from_past_08():
     right_measure = red_segment.select_measures('Voice 1')[1:2]
     left_measure.timespan.set_divisions([(3, 16)], contexts=['Voice 1'])
     right_measure.timespan.set_divisions([(5, 16)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     red_voice_1_rhythm = red_segment.select_leaves('Voice 1')
     red_voice_1_rhythm = red_voice_1_rhythm.rotate(8)
@@ -210,7 +210,7 @@ def test_SegmentSpecification__select_rhythm_from_past_09():
     right_measure = red_segment.select_measures('Voice 1')[1:2]
     left_measure.timespan.set_divisions([(3, 16)], contexts=['Voice 1'])
     right_measure.timespan.set_divisions([(5, 16)], contexts=['Voice 1'])
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(6, 8), (9, 8)])
     red_rhythm = red_segment.select_leaves('Voice 1')

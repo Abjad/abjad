@@ -11,7 +11,7 @@ def test_SegmentSelectExpression__divide_by_ratio_01():
     second_half_of_segment = red_segment.timespan.divide_by_ratio((1, 1))[-1]
     red_segment.set_divisions([(2, 16)])
     second_half_of_segment.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -28,7 +28,7 @@ def test_SegmentSelectExpression__divide_by_ratio_02():
     middle_third_of_segment = red_segment.timespan.divide_by_ratio((1, 1, 1))[1]
     red_segment.set_divisions([(2, 16)])
     middle_third_of_segment.set_divisions([(3, 16)])
-    red_segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.joined_thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -46,7 +46,7 @@ def test_SegmentSelectExpression__divide_by_ratio_03():
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     divisions = red_segment.timespan.divide_by_ratio([1, 1, 1])
     red_segment.set_divisions(divisions)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -65,7 +65,7 @@ def test_SegmentSelectExpression__divide_by_ratio_04():
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     divisions = red_segment.timespan.divide_by_ratio([1, 1, 1])
     red_segment.set_divisions(divisions)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 

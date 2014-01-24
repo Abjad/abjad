@@ -14,7 +14,7 @@ def test_IterablePayloadExpression__callbacks_01():
     divisions = material_manager.register_material([(1, 16), (2, 16), (3, 16), (4, 16)])
     divisions = divisions[1:3]
     red_segment.set_divisions(divisions)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -34,7 +34,7 @@ def test_IterablePayloadExpression__callbacks_02():
     divisions = material_manager.register_material([(1, 16), (2, 16), (3, 16), (4, 16)])
     left_divisions, right_divisions = divisions.partition_by_ratio((1, 1))
     red_segment.set_divisions(left_divisions)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -54,7 +54,7 @@ def test_IterablePayloadExpression__callbacks_03():
     divisions = material_manager.register_material([(1, 16), (2, 16), (3, 16), (4, 16)])
     left_divisions, right_divisions = divisions.partition_by_ratio_of_durations((1, 1))
     red_segment.set_divisions(left_divisions)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -74,7 +74,7 @@ def test_IterablePayloadExpression__callbacks_04():
     divisions = material_manager.register_material([(1, 16), (2, 16), (3, 16), (4, 16)])
     divisions = divisions.repeat_to_duration(Duration(5, 16))
     red_segment.set_divisions(divisions)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -94,7 +94,7 @@ def test_IterablePayloadExpression__callbacks_05():
     divisions = material_manager.register_material([(1, 16), (2, 16), (3, 16), (4, 16)])
     divisions = divisions.repeat_to_duration(Duration(13, 16))
     red_segment.set_divisions(divisions)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -114,7 +114,7 @@ def test_IterablePayloadExpression__callbacks_06():
     divisions = material_manager.register_material([(1, 16), (2, 16), (3, 16), (4, 16)])
     divisions = divisions.repeat_to_length(3)
     red_segment.set_divisions(divisions)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -134,7 +134,7 @@ def test_IterablePayloadExpression__callbacks_07():
     divisions = material_manager.register_material([(1, 16), (2, 16), (3, 16), (4, 16)])
     divisions = divisions.repeat_to_length(6)
     red_segment.set_divisions(divisions)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -154,7 +154,7 @@ def test_IterablePayloadExpression__callbacks_08():
     divisions = material_manager.register_material([(1, 16), (2, 16), (3, 16), (4, 16)])
     divisions = divisions.reflect()
     red_segment.set_divisions(divisions)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -174,7 +174,7 @@ def test_IterablePayloadExpression__callbacks_09():
     divisions = material_manager.register_material([(1, 16), (2, 16), (3, 16), (4, 16)])
     divisions = divisions.rotate(-1)
     red_segment.set_divisions(divisions)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
@@ -195,7 +195,7 @@ def test_IterablePayloadExpression__callbacks_10():
     timespan = timespantools.Timespan(Offset(2, 16), Offset(10, 16))
     divisions = divisions & timespan
     red_segment.set_divisions(divisions)
-    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.joined_sixteenths)
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
