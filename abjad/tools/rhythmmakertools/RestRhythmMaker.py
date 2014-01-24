@@ -94,7 +94,6 @@ class RestRhythmMaker(RhythmMaker):
 
     ### INITIALIZER ###
 
-    # TODO: remove after beam specifier integration into all rhythm-makers
     def __init__(
         self,
         beam_specifier=None,

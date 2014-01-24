@@ -10,7 +10,7 @@ class DurationSpellingSpecifier(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_decrease_monotonically',
+        '_decrease_durations_monotonically',
         '_forbidden_written_duration',
         )
 
@@ -18,21 +18,21 @@ class DurationSpellingSpecifier(AbjadObject):
 
     def __init__(
         self,
-        decrease_monotonically=True,
+        decrease_durations_monotonically=True,
         forbidden_written_duration=None,
         ):
-        assert isinstance(decrease_monotonically, bool)
+        assert isinstance(decrease_durations_monotonically, bool)
         if forbidden_written_duration is not None:
             forbidden_written_duration = durationtools.Duration(
                 forbidden_written_duration)
-        self._decrease_monotonically = decrease_monotonically 
+        self._decrease_durations_monotonically = decrease_durations_monotonically 
         self._forbidden_written_duration = forbidden_written_duration
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         r'''Is true when `arg` is a duration spelling specifier with
-        values of `decrease_monotonically` and `forbidden_written_duration`
+        values of `decrease_durations_monotonically` and `forbidden_written_duration`
         equal to those of this duration spelling specifier. Otherwise false.
 
         ..  container:: example
@@ -40,10 +40,10 @@ class DurationSpellingSpecifier(AbjadObject):
             ::
 
                 >>> specifier_1 = rhythmmakertools.DurationSpellingSpecifier(
-                ...     decrease_monotonically=True,
+                ...     decrease_durations_monotonically=True,
                 ...     )
                 >>> specifier_2 = rhythmmakertools.DurationSpellingSpecifier(
-                ...     decrease_monotonically=False,
+                ...     decrease_durations_monotonically=False,
                 ...     )
 
             ::
@@ -60,7 +60,7 @@ class DurationSpellingSpecifier(AbjadObject):
         Returns boolean.
         '''
         if isinstance(arg, type(self)):
-            if self.decrease_monotonically == arg.decrease_monotonically and \
+            if self.decrease_durations_monotonically == arg.decrease_durations_monotonically and \
                 self.forbidden_written_duration == \
                 arg.forbidden_written_duration:
                 return True
@@ -76,7 +76,7 @@ class DurationSpellingSpecifier(AbjadObject):
                 >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
                 >>> print format(specifier)
                 rhythmmakertools.DurationSpellingSpecifier(
-                    decrease_monotonically=True,
+                    decrease_durations_monotonically=True,
                     )
 
         Returns string.
@@ -94,7 +94,7 @@ class DurationSpellingSpecifier(AbjadObject):
             ::
 
                 >>> rhythmmakertools.DurationSpellingSpecifier()
-                DurationSpellingSpecifier(decrease_monotonically=True)
+                DurationSpellingSpecifier(decrease_durations_monotonically=True)
 
         Returns string.
         '''
@@ -103,7 +103,7 @@ class DurationSpellingSpecifier(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def decrease_monotonically(self):
+    def decrease_durations_monotonically(self):
         r'''Is true when all durations should be spelled as a tied series of
         monotonically decreasing values. Otherwise false.
 
@@ -112,14 +112,14 @@ class DurationSpellingSpecifier(AbjadObject):
             ::
 
                 >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
-                >>> specifier.decrease_monotonically
+                >>> specifier.decrease_durations_monotonically
                 True
 
         Defaults to true.
 
         Returns boolean.
         '''
-        return self._decrease_monotonically
+        return self._decrease_durations_monotonically
 
     @property
     def forbidden_written_duration(self):
@@ -151,7 +151,7 @@ class DurationSpellingSpecifier(AbjadObject):
                 >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
                 >>> print format(specifier)
                 rhythmmakertools.DurationSpellingSpecifier(
-                    decrease_monotonically=True,
+                    decrease_durations_monotonically=True,
                     )
 
             ::
@@ -159,16 +159,16 @@ class DurationSpellingSpecifier(AbjadObject):
                 >>> reversed_specifier = specifier.reverse()
                 >>> print format(reversed_specifier)
                 rhythmmakertools.DurationSpellingSpecifier(
-                    decrease_monotonically=False,
+                    decrease_durations_monotonically=False,
                     )
 
         Negates `decrecase_monotonically`.
 
         Returns new duration spelling specifier.
         '''
-        decrease_monotonically = not self.decrease_monotonically
+        decrease_durations_monotonically = not self.decrease_durations_monotonically
         arguments = {
-            'decrease_monotonically': decrease_monotonically,
+            'decrease_durations_monotonically': decrease_durations_monotonically,
             'forbidden_written_duration': self.forbidden_written_duration,
             }
         result = type(self)(**arguments)

@@ -532,7 +532,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                 rhythmmakertools.EvenRunRhythmMaker(
                     exponent=1,
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
-                        decrease_monotonically=False,
+                        decrease_durations_monotonically=False,
                         ),
                     tie_across_divisions=False,
                     )

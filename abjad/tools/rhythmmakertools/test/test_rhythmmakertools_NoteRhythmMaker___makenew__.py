@@ -8,7 +8,7 @@ def test_rhythmmakertools_NoteRhythmMaker___makenew___01():
 
     divisions = [(5, 16), (3, 8)]
     duration_spelling_specifier = rhythmmakertools.DurationSpellingSpecifier(
-        decrease_monotonically=False,
+        decrease_durations_monotonically=False,
         )
     maker = new(
         maker,

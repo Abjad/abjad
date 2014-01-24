@@ -242,7 +242,7 @@ class NoteRhythmMaker(RhythmMaker):
             selection = scoretools.make_leaves(
                 pitches=0,
                 durations=[duration_pair],
-                decrease_durations_monotonically=specifier.decrease_monotonically,
+                decrease_durations_monotonically=specifier.decrease_durations_monotonically,
                 forbidden_written_duration=specifier.forbidden_written_duration,
                 )
             selections.append(selection)
@@ -326,7 +326,7 @@ class NoteRhythmMaker(RhythmMaker):
                 >>> print format(reversed_maker)
                 rhythmmakertools.NoteRhythmMaker(
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
-                        decrease_monotonically=False,
+                        decrease_durations_monotonically=False,
                         forbidden_written_duration=durationtools.Duration(1, 2),
                         ),
                     tie_across_divisions=False,
