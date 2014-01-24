@@ -9,17 +9,19 @@ class MetricAccentKernel(AbjadObject):
 
     ::
 
-        >>> hierarchy = metertools.Meter((5, 8))
+        >>> hierarchy = metertools.Meter((7, 8))
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
         >>> kernel
         MetricAccentKernel(
             {
-                Offset(0, 1): Multiplier(3, 11),
-                Offset(1, 8): Multiplier(1, 11),
-                Offset(1, 4): Multiplier(1, 11),
-                Offset(3, 8): Multiplier(2, 11),
-                Offset(1, 2): Multiplier(1, 11),
-                Offset(5, 8): Multiplier(3, 11),
+                Offset(0, 1): Multiplier(3, 14),
+                Offset(1, 8): Multiplier(1, 14),
+                Offset(1, 4): Multiplier(1, 14),
+                Offset(3, 8): Multiplier(1, 7),
+                Offset(1, 2): Multiplier(1, 14),
+                Offset(5, 8): Multiplier(1, 7),
+                Offset(3, 4): Multiplier(1, 14),
+                Offset(7, 8): Multiplier(3, 14),
                 }
             )
 
@@ -30,7 +32,7 @@ class MetricAccentKernel(AbjadObject):
 
         >>> offsets = [(0, 8), (1, 8), (1, 8), (3, 8)]
         >>> kernel(offsets)
-        0.6363636363636364
+        0.5
 
     Return `MetricAccentKernel` instance.
     '''

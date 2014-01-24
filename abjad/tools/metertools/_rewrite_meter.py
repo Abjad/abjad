@@ -29,7 +29,16 @@ def _rewrite_meter(
             for first, second in \
                 sequencetools.iterate_sequence_pairwise_strict(old_offsets):
                 new_offsets.append(first)
-                new_offsets.append((first + second) / 2)
+                difference = second - first
+                half = (first + second) / 2
+                if durationtools.Duration(1, 8) < difference:
+                    new_offsets.append(half)
+                else:
+                    one_quarter = (first + half) / 2
+                    three_quarters = (half + second) / 2
+                    new_offsets.append(one_quarter)
+                    new_offsets.append(half)
+                    new_offsets.append(three_quarters)
             new_offsets.append(old_offsets[-1])
             offset_inventory.append(tuple(new_offsets))
         return offset_inventory[depth]

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_timesignaturetools_Meter___iter___01():
+def test_metertools_Meter___iter___01():
 
     bh = metertools.Meter(TimeSignature((3, 8)))
 

@@ -910,14 +910,14 @@ class MutationAgent(abctools.AbjadObject):
                 {
                     \time 3/4
                     c'32
-                    d'32 ~
                     d'16 ~
+                    d'32 ~
                     d'32
-                    e'32 ~
                     e'16 ~
+                    e'32 ~
                     e'32
-                    fs'32 ~
                     fs'16 ~
+                    fs'32 ~
                     fs'8 ~
                     fs'4
                 }
@@ -1383,8 +1383,7 @@ class MutationAgent(abctools.AbjadObject):
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             d'16
-                            e'8 ~
-                            e'16
+                            e'8.
                             f'16 ~
                         }
                     }

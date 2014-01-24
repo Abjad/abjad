@@ -67,11 +67,14 @@ class Meter(AbjadObject):
 
     ::
 
-        >>> meter = metertools.Meter((5, 4))
+        >>> meter = metertools.Meter((7, 4))
         >>> print meter.pretty_rtm_format
-        (5/4 (
+        (7/4 (
             (3/4 (
                 1/4
+                1/4
+                1/4))
+            (2/4 (
                 1/4
                 1/4))
             (2/4 (
@@ -81,9 +84,12 @@ class Meter(AbjadObject):
     ::
 
         >>> meter = metertools.Meter(
-        ...     (5, 4), decrease_durations_monotonically=False)
+        ...     (7, 4), decrease_durations_monotonically=False)
         >>> print meter.pretty_rtm_format
-        (5/4 (
+        (7/4 (
+            (2/4 (
+                1/4
+                1/4))
             (2/4 (
                 1/4
                 1/4))
@@ -137,7 +143,7 @@ class Meter(AbjadObject):
             if factors:
                 factor, factors = factors[0], factors[1:]
                 preprolated_duration = node.preprolated_duration / factor
-                if factor in (2, 3, 4):
+                if factor in (2, 3, 4, 5):
                     if factors:
                         for _ in range(factor):
                             child = rhythmtreetools.RhythmTreeContainer(
@@ -265,10 +271,10 @@ class Meter(AbjadObject):
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
 
-            >>> meter = metertools.Meter((5, 4))
+            >>> meter = metertools.Meter((7, 4))
             >>> print format(meter)
             metertools.Meter(
-                '(5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))'
+                '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
                 )
 
         Returns string.
@@ -298,10 +304,8 @@ class Meter(AbjadObject):
             (NonreducedFraction(0, 4), NonreducedFraction(1, 4))
             (NonreducedFraction(1, 4), NonreducedFraction(2, 4))
             (NonreducedFraction(2, 4), NonreducedFraction(3, 4))
-            (NonreducedFraction(0, 4), NonreducedFraction(3, 4))
             (NonreducedFraction(3, 4), NonreducedFraction(4, 4))
             (NonreducedFraction(4, 4), NonreducedFraction(5, 4))
-            (NonreducedFraction(3, 4), NonreducedFraction(5, 4))
             (NonreducedFraction(0, 4), NonreducedFraction(5, 4))
 
         Yields pairs.
@@ -350,9 +354,10 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter = \
-                ...     metertools.Meter((5, 4),
-                ...     decrease_durations_monotonically=False)
+                >>> meter = metertools.Meter(
+                ...     (7, 4),
+                ...     decrease_durations_monotonically=False,
+                ...     )
 
             ::
 
@@ -362,7 +367,10 @@ class Meter(AbjadObject):
             ::
 
                 >>> print meter.pretty_rtm_format
-                (5/4 (
+                (7/4 (
+                    (2/4 (
+                        1/4
+                        1/4))
                     (2/4 (
                         1/4
                         1/4))
@@ -379,7 +387,7 @@ class Meter(AbjadObject):
             ::
 
                 >>> meter = \
-                ...     metertools.Meter((5, 4),
+                ...     metertools.Meter((7, 4),
                 ...     decrease_durations_monotonically=True)
 
             ::
@@ -390,9 +398,12 @@ class Meter(AbjadObject):
             ::
 
                 >>> print meter.pretty_rtm_format
-                (5/4 (
+                (7/4 (
                     (3/4 (
                         1/4
+                        1/4
+                        1/4))
+                    (2/4 (
                         1/4
                         1/4))
                     (2/4 (
@@ -425,9 +436,9 @@ class Meter(AbjadObject):
             >>> for depth, offsets in enumerate(
             ...     meter.depthwise_offset_inventory):
             ...     print depth, offsets
-            0 (Offset(0, 1), Offset(5, 4))
-            1 (Offset(0, 1), Offset(3, 4), Offset(5, 4))
-            2 (Offset(0, 1), Offset(1, 4), Offset(1, 2), Offset(3, 4), Offset(1, 1), Offset(5, 4))
+            0 (Offset(0, 1), Offset(7, 4))
+            1 (Offset(0, 1), Offset(3, 4), Offset(5, 4), Offset(7, 4))
+            2 (Offset(0, 1), Offset(1, 4), Offset(1, 2), Offset(3, 4), Offset(1, 1), Offset(5, 4), Offset(3, 2), Offset(7, 4))
 
         Returns dictionary.
         '''
@@ -450,7 +461,7 @@ class Meter(AbjadObject):
 
             >>> print meter.graphviz_format
             digraph G {
-                node_0 [label="5/4",
+                node_0 [label="7/4",
                     shape=triangle];
                 node_1 [label="3/4",
                     shape=triangle];
@@ -466,13 +477,22 @@ class Meter(AbjadObject):
                     shape=box];
                 node_7 [label="1/4",
                     shape=box];
+                node_8 [label="2/4",
+                    shape=triangle];
+                node_9 [label="1/4",
+                    shape=box];
+                node_10 [label="1/4",
+                    shape=box];
                 node_0 -> node_1;
                 node_0 -> node_5;
+                node_0 -> node_8;
                 node_1 -> node_2;
                 node_1 -> node_3;
                 node_1 -> node_4;
                 node_5 -> node_6;
                 node_5 -> node_7;
+                node_8 -> node_10;
+                node_8 -> node_9;
             }
 
         ::
@@ -504,7 +524,7 @@ class Meter(AbjadObject):
         ::
 
             >>> meter.numerator
-            5
+            7
 
         Returns positive integer.
         '''
@@ -517,7 +537,7 @@ class Meter(AbjadObject):
         ::
 
             >>> meter.preprolated_duration
-            Duration(5, 4)
+            Duration(7, 4)
 
         Returns preprolated_duration.
         '''
@@ -530,9 +550,12 @@ class Meter(AbjadObject):
         ::
 
             >>> print meter.pretty_rtm_format
-            (5/4 (
+            (7/4 (
                 (3/4 (
                     1/4
+                    1/4
+                    1/4))
+                (2/4 (
                     1/4
                     1/4))
                 (2/4 (
@@ -582,8 +605,21 @@ class Meter(AbjadObject):
                             ),
                         preprolated_duration=NonreducedFraction(2, 4)
                         ),
+                    RhythmTreeContainer(
+                        children=(
+                            RhythmTreeLeaf(
+                                preprolated_duration=Duration(1, 4),
+                                is_pitched=True
+                                ),
+                            RhythmTreeLeaf(
+                                preprolated_duration=Duration(1, 4),
+                                is_pitched=True
+                                ),
+                            ),
+                        preprolated_duration=NonreducedFraction(2, 4)
+                        ),
                     ),
-                preprolated_duration=NonreducedFraction(5, 4)
+                preprolated_duration=NonreducedFraction(7, 4)
                 )
 
         Returns rhythm tree node.
@@ -597,7 +633,7 @@ class Meter(AbjadObject):
         ::
 
             >>> meter.rtm_format
-            '(5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))'
+            '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
 
         Returns string.
         '''
@@ -742,8 +778,9 @@ class Meter(AbjadObject):
                 ...     expr, meters):
                 ...     print x.implied_time_signature
                 ...
-                5/4
-                5/4
+                3/4
+                3/4
+                4/4
                 5/4
                 5/4
 
