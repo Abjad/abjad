@@ -5,6 +5,7 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import new
 
 
 class NoteRhythmMaker(RhythmMaker):
@@ -45,44 +46,6 @@ class NoteRhythmMaker(RhythmMaker):
                 }
             }
 
-    ..  container:: example
-
-        Forbids notes with written duration greater than or equal to ``1/2``
-        of a whole note:
-
-        ::
-
-            >>> maker = rhythmmakertools.NoteRhythmMaker(
-            ...     forbidden_written_duration=Duration(1, 2),
-            ...     )
-
-        ::
-
-            >>> divisions = [(5, 8), (3, 8)]
-            >>> music = maker(divisions)
-            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-            ...     music,
-            ...     divisions,
-            ...     )
-            >>> show(lilypond_file) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
-            >>> f(staff)
-            \new RhythmicStaff {
-                {
-                    \time 5/8
-                    c'4 ~
-                    c'4 ~
-                    c'8
-                }
-                {
-                    \time 3/8
-                    c'4.
-                }
-            }
-
     Usage follows the two-step configure-then-call pattern shown here.
     '''
 
@@ -97,19 +60,16 @@ class NoteRhythmMaker(RhythmMaker):
 
     ### INITIALIZER ###
 
-    # TODO: remove after beam specifier integration into all rhythm-makers
     def __init__(
         self,
         beam_specifier=None,
-        decrease_durations_monotonically=True,
-        forbidden_written_duration=None,
+        duration_spelling_specifier=None,
         tie_across_divisions=False,
         ):
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-            decrease_durations_monotonically=decrease_durations_monotonically,
-            forbidden_written_duration=forbidden_written_duration,
+            duration_spelling_specifier=duration_spelling_specifier,
             tie_across_divisions=tie_across_divisions,
             )
 
@@ -117,6 +77,18 @@ class NoteRhythmMaker(RhythmMaker):
 
     def __call__(self, divisions, seeds=None):
         r'''Calls note rhythm-maker on `divisions`.
+
+        ..  container:: example
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = [(5, 8), (3, 8)]
+                >>> result = maker(divisions)
+                >>> for x in result:
+                ...     x
+                Selection(Note("c'2"), Note("c'8"))
+                Selection(Note("c'4."),)
 
         Returns list of selections.
         '''
@@ -126,6 +98,37 @@ class NoteRhythmMaker(RhythmMaker):
             seeds=seeds,
             )
 
+    def __eq__(self, arg):
+        r'''True when `arg` is a note rhythm-maker with values of
+        `beam_specifier`, `duration_spelling_specifier` and `tie_specifier`
+        equal to those of this note rhythm-maker. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> maker_1 = rhythmmakertools.NoteRhythmMaker(
+                ...     tie_across_divisions=False,
+                ...     )
+                >>> maker_2 = rhythmmakertools.NoteRhythmMaker(
+                ...     tie_across_divisions=True,
+                ...     )
+
+            ::
+
+                >>> maker_1 == maker_1
+                True
+                >>> maker_1 == maker_2
+                False
+                >>> maker_2 == maker_1
+                False
+                >>> maker_2 == maker_2
+                True
+
+        Returns boolean.
+        '''
+        return RhythmMaker.__eq__(self, arg)
+        
     def __format__(self, format_specification=''):
         r'''Formats note rhythm-maker.
 
@@ -137,8 +140,6 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> print format(maker)
                 rhythmmakertools.NoteRhythmMaker(
-                    decrease_durations_monotonically=True,
-                    forbidden_written_duration=durationtools.Duration(1, 2),
                     tie_across_divisions=False,
                     )
 
@@ -147,6 +148,19 @@ class NoteRhythmMaker(RhythmMaker):
         superclass = super(NoteRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
+    def __illustrate__(self, **kwargs):
+        r'''Illustrates note rhythm-maker.
+
+        ..  container:: example
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+
+        Returns LilyPond file.
+        '''
+        return RhythmMaker.__illustrate__(self)
+
     def __makenew__(self, *args, **kwargs):
         r'''Makes new note rhythm-maker.
 
@@ -154,16 +168,115 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> new_maker = new(maker, decrease_durations_monotonically=False)
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> new_maker = new(maker, tie_across_divisions=True)
 
             ::
 
                 >>> print format(new_maker)
                 rhythmmakertools.NoteRhythmMaker(
-                    decrease_durations_monotonically=False,
-                    forbidden_written_duration=durationtools.Duration(1, 2),
-                    tie_across_divisions=False,
+                    tie_across_divisions=True,
                     )
+
+            ::
+
+                >>> divisions = [(5, 8), (3, 8)]
+                >>> music = new_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = new_maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'2 ~
+                        c'8 ~
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
+        Returns new note rhythm-maker.
+        '''
+        assert not args
+        arguments = {
+            'beam_specifier': self.beam_specifier,
+            'duration_spelling_specifier': self.duration_spelling_specifier,
+            }
+        arguments.update(kwargs)
+        maker = type(self)(**arguments)
+        return maker
+
+    def __repr__(self):
+        r'''Gets interpreter representation of note rhythm-maker.
+
+        ..  container:: example
+
+            ::
+
+                >>> rhythmmakertools.NoteRhythmMaker()
+                NoteRhythmMaker(tie_across_divisions=False)
+
+        Returns string.
+        '''
+        return RhythmMaker.__repr__(self)
+
+    ### PRIVATE METHODS ###
+
+    def _make_music(self, duration_pairs, seeds):
+        from abjad.tools import rhythmmakertools
+        selections = []
+        specifier = self.duration_spelling_specifier
+        if specifier is None:
+            specifier = rhythmmakertools.DurationSpellingSpecifier()
+        for duration_pair in duration_pairs:
+            selection = scoretools.make_leaves(
+                pitches=0,
+                durations=[duration_pair],
+                decrease_durations_monotonically=specifier.decrease_monotonically,
+                forbidden_written_duration=specifier.forbidden_written_duration,
+                )
+            selections.append(selection)
+        beam_specifier = self.beam_specifier
+        if beam_specifier is None:
+            beam_specifier = rhythmmakertools.BeamSpecifier()
+        if beam_specifier.beam_cells_together:
+            for component in iterate(selections).by_class():
+                detach(spannertools.Beam, component)
+            beam = spannertools.MultipartBeam()
+            leaves = iterate(selections).by_class(scoretools.Leaf)
+            leaves = list(leaves)
+            attach(beam, leaves) 
+        return selections
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def duration_spelling_specifier(self):
+        r'''Gets duration spelling specifier of note rhythm-maker.
+
+        ..  container:: example
+
+            Forbids notes with written duration greater than or equal to 
+            ``1/2`` of a whole note:
+
+            ::
+
+                >>> duration_spelling_specifier = \
+                ...     rhythmmakertools.DurationSpellingSpecifier(
+                ...     forbidden_written_duration=Duration(1, 2),
+                ...     )
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     duration_spelling_specifier=duration_spelling_specifier,
+                ...     )
 
             ::
 
@@ -192,46 +305,9 @@ class NoteRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Returns new note rhythm-maker.
+        Returns duration spelling specifier or none.
         '''
-        #return RhythmMaker.__makenew__(self, *args, **kwargs)
-        # TODO: remove after specifier integration
-        assert not args
-        arguments = {
-            'beam_specifier': self.beam_specifier,
-            'decrease_durations_monotonically':
-                self.decrease_durations_monotonically,
-            'forbidden_written_duration': self.forbidden_written_duration,
-            }
-        arguments.update(kwargs)
-        maker = type(self)(**arguments)
-        return maker
-
-    ### PRIVATE METHODS ###
-
-    def _make_music(self, duration_pairs, seeds):
-        from abjad.tools import rhythmmakertools
-        selections = []
-        for duration_pair in duration_pairs:
-            selection = scoretools.make_leaves(
-                pitches=0,
-                durations=[duration_pair],
-                decrease_durations_monotonically=\
-                    self.decrease_durations_monotonically,
-                forbidden_written_duration=self.forbidden_written_duration,
-                )
-            selections.append(selection)
-        beam_specifier = self.beam_specifier
-        if beam_specifier is None:
-            beam_specifier = rhythmmakertools.BeamSpecifier()
-        if beam_specifier.beam_cells_together:
-            for component in iterate(selections).by_class():
-                detach(spannertools.Beam, component)
-            beam = spannertools.MultipartBeam()
-            leaves = iterate(selections).by_class(scoretools.Leaf)
-            leaves = list(leaves)
-            attach(beam, leaves) 
-        return selections
+        return RhythmMaker.duration_spelling_specifier.fget(self)
 
     ### PUBLIC METHODS ###
 
@@ -248,8 +324,10 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> print format(reversed_maker)
                 rhythmmakertools.NoteRhythmMaker(
-                    decrease_durations_monotonically=False,
-                    forbidden_written_duration=durationtools.Duration(1, 2),
+                    duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                        decrease_monotonically=False,
+                        forbidden_written_duration=durationtools.Duration(1, 2),
+                        ),
                     tie_across_divisions=False,
                     )
 
@@ -282,4 +360,14 @@ class NoteRhythmMaker(RhythmMaker):
 
         Returns new note rhythm-maker.
         '''
-        return RhythmMaker.reverse(self)
+        duration_spelling_specifier = self.duration_spelling_specifier
+        if duration_spelling_specifier is None:
+            default = rhythmmakertools.DurationSpellingSpecifier()
+            duration_spelling_specifier = default
+        duration_spelling_specifier = duration_spelling_specifier.reverse()
+        arguments = {
+            'duration_spelling_specifier': duration_spelling_specifier,
+            'tie_across_divisions': self.tie_across_divisions,
+            }
+        result = new(self, **arguments)
+        return result

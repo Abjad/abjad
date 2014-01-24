@@ -34,8 +34,11 @@ def test_rhythmmakertools_NoteRhythmMaker___call___01():
 
 def test_rhythmmakertools_NoteRhythmMaker___call___02():
 
+    duration_spelling_specifier = rhythmmakertools.DurationSpellingSpecifier(
+        decrease_monotonically=False,
+        )
     maker = rhythmmakertools.NoteRhythmMaker(
-        decrease_durations_monotonically=False,
+        duration_spelling_specifier=duration_spelling_specifier,
         )
 
     divisions = [(5, 16), (3, 8)]
