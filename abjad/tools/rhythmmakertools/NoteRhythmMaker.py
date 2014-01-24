@@ -148,20 +148,20 @@ class NoteRhythmMaker(RhythmMaker):
         superclass = super(NoteRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
-    def __illustrate__(self, **kwargs):
+    def __illustrate__(self, divisions=None):
         r'''Illustrates note rhythm-maker.
-
 
         ..  container:: example
 
             ::
 
                 >>> maker = rhythmmakertools.NoteRhythmMaker()
-                >>> show(maker) # doctest: +SKIP
+                >>> divisions = [(4, 8), (3, 4), (2, 4), (1, 16), (1, 16)]
+                >>> show(maker, divisions=divisions) # doctest: +SKIP
 
         Returns LilyPond file.
         '''
-        return RhythmMaker.__illustrate__(self)
+        return RhythmMaker.__illustrate__(self, divisions=divisions)
 
     def __makenew__(self, *args, **kwargs):
         r'''Makes new note rhythm-maker.
@@ -362,6 +362,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         Returns new note rhythm-maker.
         '''
+        from abjad.tools import rhythmmakertools
         duration_spelling_specifier = self.duration_spelling_specifier
         if duration_spelling_specifier is None:
             default = rhythmmakertools.DurationSpellingSpecifier()

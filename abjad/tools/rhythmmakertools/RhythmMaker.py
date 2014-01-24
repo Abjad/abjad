@@ -145,21 +145,20 @@ class RhythmMaker(AbjadObject):
                 state[slot] = getattr(self, slot, None)
         return state
 
-    def __illustrate__(self):
+    def __illustrate__(self, divisions=None):
         r'''Illustrates rhythm-maker.
 
         Returns LilyPond file.
         '''
         from abjad import abjad_configuration
         from abjad.tools import lilypondfiletools
-        division_lists = (
-            [
-                (4, 8), (3, 4),
-                (2, 4), (1, 16), (1, 16), (2, 8), (2, 16),
-                ],
-            )
+        divisions = divisions or [
+            (4, 8), (3, 4),
+            (2, 4), (1, 16), (1, 16), (2, 8), (2, 16),
+            ]
         scores = []
         maker = new(self)
+        division_lists = [divisions]
         for division_list in division_lists:
             lists = maker(division_list)
             music = sequencetools.flatten_sequence(lists)

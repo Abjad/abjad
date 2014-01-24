@@ -2,7 +2,7 @@
 import os
 
 
-def show(expr, return_timing=False):
+def show(expr, return_timing=False, **kwargs):
     r'''Shows `expr`.
 
     ..  container:: example
@@ -40,7 +40,7 @@ def show(expr, return_timing=False):
     from abjad.tools import topleveltools
     assert '__illustrate__' in dir(expr)
     pdf_file_path, abjad_formatting_time, lilypond_rendering_time = \
-        topleveltools.persist(expr).as_pdf()
+        topleveltools.persist(expr).as_pdf(**kwargs)
     systemtools.IOManager.open_file(pdf_file_path)
     if return_timing:
         return abjad_formatting_time, lilypond_rendering_time

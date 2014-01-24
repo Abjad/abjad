@@ -44,7 +44,7 @@ class PersistenceAgent(abctools.AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def as_ly(self, ly_file_path=None):
+    def as_ly(self, ly_file_path=None, **kwargs):
         r'''Persists client as LilyPond file.
 
         Autogenerates file path when `ly_file_path` is none.
@@ -64,7 +64,7 @@ class PersistenceAgent(abctools.AbjadObject):
         from abjad.tools import systemtools
         # get the illustration
         assert '__illustrate__' in dir(self._client)
-        illustration = self._client.__illustrate__()
+        illustration = self._client.__illustrate__(**kwargs)
         # validate the output path
         if ly_file_path is None:
             ly_file_name = systemtools.IOManager.get_next_output_file_name()
@@ -87,7 +87,7 @@ class PersistenceAgent(abctools.AbjadObject):
             file_handle.write(lilypond_format)
         return ly_file_path, abjad_formatting_time
 
-    def as_midi(self, midi_file_path=None, remove_ly=False):
+    def as_midi(self, midi_file_path=None, remove_ly=False, **kwargs):
         r'''Persists client as MIDI file.
 
         Autogenerates file path when `midi_file_path` is none.
@@ -108,7 +108,7 @@ class PersistenceAgent(abctools.AbjadObject):
         from abjad.tools import lilypondfiletools
         from abjad.tools import systemtools
         assert '__illustrate__' in dir(self._client)
-        illustration = self._client.__illustrate__()
+        illustration = self._client.__illustrate__(**kwargs)
         assert hasattr(illustration, 'score_block')
         block = lilypondfiletools.Block(name='midi')
         illustration.score_block.items.append(block)
@@ -118,7 +118,7 @@ class PersistenceAgent(abctools.AbjadObject):
             ly_file_path = '{}.ly'.format(without_extension)
         else:
             ly_file_path = None
-        result = type(self)(illustration).as_ly(ly_file_path)
+        result = type(self)(illustration).as_ly(ly_file_path, **kwargs)
         ly_file_path, abjad_formatting_time = result
         timer = systemtools.Timer()
         with timer:
@@ -181,7 +181,7 @@ class PersistenceAgent(abctools.AbjadObject):
         with open(module_file_path, 'w') as f:
             f.write(result)
 
-    def as_pdf(self, pdf_file_path=None, remove_ly=False):
+    def as_pdf(self, pdf_file_path=None, remove_ly=False, **kwargs):
         r'''Persists client as PDF.
 
         Autogenerates file path when `pdf_file_path` is none.
@@ -207,7 +207,8 @@ class PersistenceAgent(abctools.AbjadObject):
         else:
             ly_file_path = None
         # format and write the lilypond file
-        ly_file_path, abjad_formatting_time = self.as_ly(ly_file_path)
+        ly_file_path, abjad_formatting_time = self.as_ly(
+            ly_file_path, **kwargs)
         without_extension = os.path.splitext(ly_file_path)[0]
         pdf_file_path = '{}.pdf'.format(without_extension)
         # render the pdf
