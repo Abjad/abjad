@@ -37,18 +37,13 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
     ### PRIVATE METHODS ###
 
     def _beam_rhythm_containers(self, rhythm_containers):
-        beam_cells_together = getattr(
-            self.source_expression, 'beam_cells_together', False)
-        beam_each_cell = getattr(
-            self.source_expression, 'beam_each_cell', False)
-        beam_specifier = getattr(
-            self.source_expression, 'beam_specifier', None)
-        if beam_specifier is not None:
-            beam_cells_together = beam_specifier.beam_cells_together
-            beam_each_cell = beam_specifier.beam_each_cell
+        beam_specifier = self.source_expression.beam_specifier
+        beam_specifier = beam_specifier or rhythmmakertools.BeamSpecifier()
+        beam_cells_together = beam_specifier.beam_cells_together
+        beam_each_cell = beam_specifier.beam_each_cell
         if beam_cells_together:
             for container in iterate(rhythm_containers).by_class():
-                spanners = container._get_spanners()
+                spanners = container._get_spanners(spannertools.Beam)
                 for spanner in spanners:
                     spanner._sever_all_components()
             durations = [x._get_duration() for x in rhythm_containers]
@@ -59,12 +54,13 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
             attach(beam, rhythm_containers)
         elif beam_each_cell:
             for container in iterate(rhythm_containers).by_class():
-                spanners = container._get_spanners()
+                spanners = container._get_spanners(spannertools.Beam)
                 for spanner in spanners:
                     spanner._sever_all_components()
             for rhythm_container in rhythm_containers:
+                duration = rhythm_container._get_duration()
                 beam = spannertools.DuratedComplexBeam(
-                    durations=[rhythm_container._get_duration()],
+                    durations=[duration],
                     span_beam_count=1,
                     )
                 attach(beam, rhythm_container)

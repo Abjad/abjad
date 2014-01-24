@@ -30,8 +30,6 @@ class RhythmMaker(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_beam_cells_together',
-        '_beam_each_cell',
         '_beam_specifier',
         '_decrease_durations_monotonically',
         '_forbidden_written_duration',
@@ -47,8 +45,6 @@ class RhythmMaker(AbjadObject):
 
     def __init__(
         self,
-        beam_cells_together=False,
-        beam_each_cell=True,
         beam_specifier=None,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
@@ -57,8 +53,6 @@ class RhythmMaker(AbjadObject):
         from abjad.tools import rhythmmakertools
         prototype = (rhythmmakertools.BeamSpecifier, type(None))
         assert isinstance(beam_specifier, prototype)
-        self._beam_each_cell = beam_each_cell
-        self._beam_cells_together = beam_cells_together
         self._beam_specifier = beam_specifier
         self._decrease_durations_monotonically = \
             decrease_durations_monotonically
@@ -230,8 +224,6 @@ class RhythmMaker(AbjadObject):
         '''
         assert not args
         arguments = {
-            'beam_cells_together': self.beam_cells_together,
-            'beam_each_cell': self.beam_each_cell,
             'beam_specifier': self.beam_specifier,
             'decrease_durations_monotonically':
                 self.decrease_durations_monotonically,
@@ -493,23 +485,6 @@ class RhythmMaker(AbjadObject):
         persist(lilypond_file).as_pdf(file_path, remove_ly=True)
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def beam_cells_together(self):
-        r'''Is true when rhythm-maker should beam cells together. Otherwise
-        false.
-
-        Returns boolean.
-        '''
-        return self._beam_cells_together
-
-    @property
-    def beam_each_cell(self):
-        r'''Is true when rhythm-maker should beam each cell. Otherwise false.
-
-        Returns boolean.
-        '''
-        return self._beam_each_cell
 
     @property
     def beam_specifier(self):
