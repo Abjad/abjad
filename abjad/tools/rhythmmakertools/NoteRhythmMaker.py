@@ -151,11 +151,13 @@ class NoteRhythmMaker(RhythmMaker):
     def __illustrate__(self, **kwargs):
         r'''Illustrates note rhythm-maker.
 
+
         ..  container:: example
 
             ::
 
                 >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> show(maker) # doctest: +SKIP
 
         Returns LilyPond file.
         '''

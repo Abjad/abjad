@@ -155,20 +155,7 @@ class RhythmMaker(AbjadObject):
         division_lists = (
             [
                 (4, 8), (3, 4),
-                (2, 4), (1, 16), (1, 16),
-                (7, 8), (2, 8),
-                ],
-            [
-                (5, 16), (5, 16), (5, 16), (5, 16),
-                (4, 16), (4, 16), (4, 16), (4, 16),
-                ],
-            [
-                (2, 8), (3, 8), (2, 16), (1, 4),
-                (2, 4), (2, 16), (2, 4),
-                ],
-            [
-                (5, 16), (5, 16), (5, 16), (5, 16),
-                (4, 16), (4, 16), (4, 16), (4, 16),
+                (2, 4), (1, 16), (1, 16), (2, 8), (2, 16),
                 ],
             )
         scores = []
@@ -192,8 +179,6 @@ class RhythmMaker(AbjadObject):
             scores.append(score)
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
         lilypond_file.items.remove(lilypond_file.score_block)
-        title_markup = self._make_gallery_title_markup()
-        lilypond_file.header_block.title = title_markup
         for score in scores:
             score.add_final_bar_line()
             selection = score.select_leaves(start=-1)
