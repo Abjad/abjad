@@ -32,6 +32,7 @@ class RhythmMaker(AbjadObject):
     __slots__ = (
         '_beam_specifier',
         '_decrease_durations_monotonically',
+        '_duration_spelling_specifier',
         '_forbidden_written_duration',
         '_name',
         '_tie_across_divisions',
@@ -48,12 +49,16 @@ class RhythmMaker(AbjadObject):
         beam_specifier=None,
         decrease_durations_monotonically=True,
         forbidden_written_duration=None,
+        duration_spelling_specifier=None,
         tie_across_divisions=False,
         ):
         from abjad.tools import rhythmmakertools
         prototype = (rhythmmakertools.BeamSpecifier, type(None))
         assert isinstance(beam_specifier, prototype)
+        prototype = (rhythmmakertools.DurationSpellingSpecifier, type(None))
+        assert isinstance(duration_spelling_specifier, prototype)
         self._beam_specifier = beam_specifier
+        self._duration_spelling_specifier = duration_spelling_specifier
         self._decrease_durations_monotonically = \
             decrease_durations_monotonically
         self._forbidden_written_duration = forbidden_written_duration
@@ -519,6 +524,14 @@ class RhythmMaker(AbjadObject):
         Returns boolean.
         '''
         return self._decrease_durations_monotonically
+
+    @property
+    def duration_spelling_specifier(self):
+        r'''Gets duration spelling specifier of rhythm-maker.
+
+        Returns duration spelling specifier or none.
+        '''
+        return self._duration_spelling_specifier
 
     @property
     def forbidden_written_duration(self):

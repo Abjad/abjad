@@ -138,3 +138,38 @@ class DurationSpellingSpecifier(AbjadObject):
         Returns duration or none.
         '''
         return self._forbidden_written_duration
+
+    ### PUBLIC METHODS ###
+
+    def reverse(self):
+        r'''Reverses duration spelling specifier.
+
+        ..  container:: example
+
+            ::
+
+                >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
+                >>> print format(specifier)
+                rhythmmakertools.DurationSpellingSpecifier(
+                    decrease_monotonically=True,
+                    )
+
+            ::
+
+                >>> reversed_specifier = specifier.reverse()
+                >>> print format(reversed_specifier)
+                rhythmmakertools.DurationSpellingSpecifier(
+                    decrease_monotonically=False,
+                    )
+
+        Negates `decrecase_monotonically`.
+
+        Returns new duration spelling specifier.
+        '''
+        decrease_monotonically = not self.decrease_monotonically
+        arguments = {
+            'decrease_monotonically': decrease_monotonically,
+            'forbidden_written_duration': self.forbidden_written_duration,
+            }
+        result = type(self)(**arguments)
+        return result

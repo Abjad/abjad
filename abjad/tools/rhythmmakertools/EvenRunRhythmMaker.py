@@ -6,8 +6,7 @@ from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import systemtools
-from abjad.tools.rhythmmakertools.ExampleWrapper \
-    import ExampleWrapper
+from abjad.tools.rhythmmakertools.ExampleWrapper import ExampleWrapper
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
@@ -200,16 +199,18 @@ class EvenRunRhythmMaker(RhythmMaker):
         self,
         exponent=0,
         beam_specifier=None,
-        decrease_durations_monotonically=True,
-        forbidden_written_duration=None,
+#        decrease_durations_monotonically=True,
+#        forbidden_written_duration=None,
+        duration_spelling_specifier=None,
         tie_across_divisions=False,
         ):
         assert mathtools.is_nonnegative_integer(exponent)
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-            decrease_durations_monotonically=decrease_durations_monotonically,
-            forbidden_written_duration=forbidden_written_duration,
+#            decrease_durations_monotonically=decrease_durations_monotonically,
+#            forbidden_written_duration=forbidden_written_duration,
+            duration_spelling_specifier=duration_spelling_specifier,
             tie_across_divisions=tie_across_divisions,
             )
         self._exponent = exponent
@@ -250,7 +251,6 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> print format(maker)
                 rhythmmakertools.EvenRunRhythmMaker(
                     exponent=1,
-                    decrease_durations_monotonically=True,
                     tie_across_divisions=False,
                     )
 
@@ -275,7 +275,6 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> print format(new_maker)
                 rhythmmakertools.EvenRunRhythmMaker(
                     exponent=0,
-                    decrease_durations_monotonically=True,
                     tie_across_divisions=False,
                     )
 
@@ -334,10 +333,8 @@ class EvenRunRhythmMaker(RhythmMaker):
         assert not args
         arguments = {
             'beam_specifier': self.beam_specifier,
-            'decrease_durations_monotonically':
-                self.decrease_durations_monotonically,
+            'duration_spelling_specifier': self.duration_spelling_specifier,
             'exponent': self.exponent,
-            'forbidden_written_duration': self.forbidden_written_duration,
             }
         arguments.update(kwargs)
         new = type(self)(**arguments)
@@ -375,6 +372,69 @@ class EvenRunRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def duration_spelling_specifier(self):
+        r'''Gets duration spelling specifier of even-run rhythm-maker.
+
+        ..  container:: example
+
+            ::
+
+                >>> specifier = rhythmmakertools.DurationSpellingSpecifier(
+                ...     forbidden_written_duration=Duration(1, 4),
+                ...     )
+                >>> maker = rhythmmakertools.EvenRunRhythmMaker(
+                ...     exponent=0,
+                ...     duration_spelling_specifier=specifier,
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 4), (2, 4)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/4
+                        {
+                            c'4
+                            c'4
+                            c'4
+                        }
+                    }
+                    {
+                        \time 2/4
+                        {
+                            c'4
+                            c'4
+                        }
+                    }
+                }
+
+            ..  todo:: make this example work: should forbid quarter notes.
+
+        Returns duration spelling specifier or none.
+        '''
+        return self._duration_spelling_specifier
+
+    @property
     def exponent(self):
         r'''Gets exponent of even-run rhythm-maker.
 
@@ -382,8 +442,11 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> maker = rhythmmakertools.EvenRunRhythmMaker()
                 >>> maker.exponent
-                1
+                0
+
+        Defaults to ``0``.
 
         Returns nonnegative integer.
         '''
@@ -468,7 +531,9 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> print format(reversed_maker)
                 rhythmmakertools.EvenRunRhythmMaker(
                     exponent=1,
-                    decrease_durations_monotonically=False,
+                    duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                        decrease_monotonically=False,
+                        ),
                     tie_across_divisions=False,
                     )
 
@@ -524,10 +589,14 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         Returns new even-run rhythm-maker.
         '''
-        decrease_durations_monotonically = \
-            not self.decrease_durations_monotonically
+        from abjad.tools import rhythmmakertools
+        duration_spelling_specifier = self.duration_spelling_specifier
+        if duration_spelling_specifier is None:
+            default = rhythmmakertools.DurationSpellingSpecifier()
+            duration_spelling_specifier = default
+        duration_spelling_specifier = duration_spelling_specifier.reverse()
         maker = new(
             self,
-            decrease_durations_monotonically=decrease_durations_monotonically,
+            duration_spelling_specifier=duration_spelling_specifier,
             )
         return maker
