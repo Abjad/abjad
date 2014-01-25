@@ -67,67 +67,6 @@ class EvenRunRhythmMaker(RhythmMaker):
                 }
             }
 
-
-    ..  container:: example
-
-        Makes even run of notes each equal in duration to
-        ``1/(2**d)`` with ``d`` equal to the denominator of each division
-        on which the rhythm-maker is called:
-
-        ::
-
-            >>> maker = rhythmmakertools.EvenRunRhythmMaker(1)
-
-        ::
-
-            >>> divisions = [(4, 8), (3, 4), (2, 4)]
-            >>> music = maker(divisions)
-            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-            ...     music,
-            ...     divisions,
-            ...     )
-            >>> show(lilypond_file) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
-            >>> f(staff)
-            \new RhythmicStaff {
-                {
-                    \time 4/8
-                    {
-                        c'16 [
-                        c'16
-                        c'16
-                        c'16
-                        c'16
-                        c'16
-                        c'16
-                        c'16 ]
-                    }
-                }
-                {
-                    \time 3/4
-                    {
-                        c'8 [
-                        c'8
-                        c'8
-                        c'8
-                        c'8
-                        c'8 ]
-                    }
-                }
-                {
-                    \time 2/4
-                    {
-                        c'8 [
-                        c'8
-                        c'8
-                        c'8 ]
-                    }
-                }
-            }
-
     Even-run rhythm-maker doesn't yet work with non-power-of-two divisions.
     '''
 
@@ -199,19 +138,15 @@ class EvenRunRhythmMaker(RhythmMaker):
         self,
         exponent=0,
         beam_specifier=None,
-#        decrease_durations_monotonically=True,
-#        forbidden_written_duration=None,
         duration_spelling_specifier=None,
-        tie_across_divisions=False,
+        tie_specifier=None,
         ):
         assert mathtools.is_nonnegative_integer(exponent)
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-#            decrease_durations_monotonically=decrease_durations_monotonically,
-#            forbidden_written_duration=forbidden_written_duration,
             duration_spelling_specifier=duration_spelling_specifier,
-            tie_across_divisions=tie_across_divisions,
+            tie_specifier=tie_specifier,
             )
         self._exponent = exponent
 
@@ -224,13 +159,14 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> maker = rhythmmakertools.EvenRunRhythmMaker()
                 >>> divisions = [(4, 8), (3, 4), (2, 4)]
                 >>> result = maker(divisions)
                 >>> for selection in result:
                 ...     selection
-                Selection(Container("c'16 c'16 c'16 c'16 c'16 c'16 c'16 c'16"),)
-                Selection(Container("c'8 c'8 c'8 c'8 c'8 c'8"),)
                 Selection(Container("c'8 c'8 c'8 c'8"),)
+                Selection(Container("c'4 c'4 c'4"),)
+                Selection(Container("c'4 c'4"),)
 
         Returns a list of selections. Each selection holds a single container
         filled with notes.
@@ -250,8 +186,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> print format(maker)
                 rhythmmakertools.EvenRunRhythmMaker(
-                    exponent=1,
-                    tie_across_divisions=False,
+                    exponent=0,
                     )
 
         Set `format_specification` to `''` or `'storage'`.
@@ -275,7 +210,6 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> print format(new_maker)
                 rhythmmakertools.EvenRunRhythmMaker(
                     exponent=0,
-                    tie_across_divisions=False,
                     )
 
             ::
@@ -296,34 +230,25 @@ class EvenRunRhythmMaker(RhythmMaker):
                     {
                         \time 4/8
                         {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
                         }
                     }
                     {
                         \time 3/4
                         {
-                            c'8 [
-                            c'8
-                            c'8
-                            c'8
-                            c'8
-                            c'8 ]
+                            c'4
+                            c'4
+                            c'4
                         }
                     }
                     {
                         \time 2/4
                         {
-                            c'8 [
-                            c'8
-                            c'8
-                            c'8 ]
+                            c'4
+                            c'4
                         }
                     }
                 }
@@ -440,11 +365,63 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
+            Makes even run of notes each equal in duration to
+            ``1/(2**d)`` with ``d`` equal to the denominator of each division
+            on which the rhythm-maker is called:
+
             ::
 
-                >>> maker = rhythmmakertools.EvenRunRhythmMaker()
-                >>> maker.exponent
-                0
+                >>> maker = rhythmmakertools.EvenRunRhythmMaker(1)
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 4), (2, 4)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 3/4
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 2/4
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
 
         Defaults to ``0``.
 
@@ -453,9 +430,8 @@ class EvenRunRhythmMaker(RhythmMaker):
         return self._exponent
 
     @property
-    def tie_across_divisions(self):
-        r'''Is true when rhythm-maker should tie across divisions.
-        Otherwise false.
+    def tie_specifier(self):
+        r'''Gets tie specifier of rhythm-maker.
 
         ..  container:: example
 
@@ -463,8 +439,11 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
             
-                >>> maker = rhythmmakertools.EvenRunRhythmMaker(
+                >>> tie_specifier = rhythmmakertools.TieSpecifier(
                 ...     tie_across_divisions=True,
+                ...     )
+                >>> maker = rhythmmakertools.EvenRunRhythmMaker(
+                ...     tie_specifier=tie_specifier,
                 ...     )
 
             ::
@@ -510,7 +489,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         Returns boolean.
         '''
-        return RhythmMaker.tie_across_divisions.fget(self)
+        return RhythmMaker.tie_specifier.fget(self)
 
     ### PUBLIC METHODS ###
 
@@ -534,7 +513,6 @@ class EvenRunRhythmMaker(RhythmMaker):
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
                         ),
-                    tie_across_divisions=False,
                     )
 
             ::

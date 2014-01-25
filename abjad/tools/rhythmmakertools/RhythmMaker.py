@@ -34,6 +34,7 @@ class RhythmMaker(AbjadObject):
         '_duration_spelling_specifier',
         '_name',
         '_tie_across_divisions',
+        '_tie_specifier',
         )
 
     _class_name_abbreviation = 'RM'
@@ -46,6 +47,7 @@ class RhythmMaker(AbjadObject):
         self,
         beam_specifier=None,
         duration_spelling_specifier=None,
+        tie_specifier=None,
         tie_across_divisions=False,
         ):
         from abjad.tools import rhythmmakertools
@@ -53,10 +55,13 @@ class RhythmMaker(AbjadObject):
         assert isinstance(beam_specifier, prototype)
         prototype = (rhythmmakertools.DurationSpellingSpecifier, type(None))
         assert isinstance(duration_spelling_specifier, prototype)
+        prototype = (rhythmmakertools.TieSpecifier, type(None))
+        assert isinstance(tie_specifier, prototype)
         self._beam_specifier = beam_specifier
         self._duration_spelling_specifier = duration_spelling_specifier
-        self._name = None
+        self._tie_specifier = tie_specifier
         self._tie_across_divisions = bool(tie_across_divisions)
+        self._name = None
 
     ### SPECIAL METHODS ###
 
@@ -71,13 +76,18 @@ class RhythmMaker(AbjadObject):
 
         Returns duration pairs and seed list.
         '''
+        from abjad.tools import rhythmmakertools
         duration_pairs = [
             mathtools.NonreducedFraction(x).pair
             for x in divisions
             ]
         seeds = self._to_tuple(seeds)
         music = self._make_music(duration_pairs, seeds)
-        if self.tie_across_divisions:
+        tie_specifier = self.tie_specifier
+        if tie_specifier is None:
+            tie_specifier = rhythmmakertools.TieSpecifier()
+        if tie_specifier.tie_across_divisions or \
+            self.tie_across_divisions:
             self._make_ties_across_divisions(music)
         assert isinstance(music, list), repr(music)
         assert len(music), repr(music)
@@ -208,6 +218,7 @@ class RhythmMaker(AbjadObject):
         arguments = {
             'beam_specifier': self.beam_specifier,
             'duration_spelling_specifier': self.duraiton_spelling_specifier,
+            'tie_specifier': self.tie_specifier,
             }
         arguments.update(kwargs)
         maker = type(self)(**arguments)
@@ -520,6 +531,14 @@ class RhythmMaker(AbjadObject):
         Returns boolean.
         '''
         return self._tie_across_divisions
+
+    @property
+    def tie_specifier(self):
+        r'''Gets tie specifier of rhythm-maker.
+
+        Return tie specifier or none.
+        '''
+        return self._tie_specifier
 
     ### PUBLIC METHODS ###
 
