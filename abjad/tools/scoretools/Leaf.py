@@ -176,6 +176,7 @@ class Leaf(Component):
     def _format_after_slot(leaf, bundle):
         result = []
         result.append(('spanners', bundle.after.spanners))
+        result.append(('grob reverts', bundle.grob_reverts))
         result.append(('indicators', bundle.after.indicators))
         result.append(('commands', bundle.after.commands))
         result.append(('comments', bundle.after.comments))
