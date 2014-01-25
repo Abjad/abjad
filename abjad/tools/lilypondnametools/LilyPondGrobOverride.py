@@ -43,6 +43,8 @@ class LilyPondGrobOverride(AbjadObject):
         '_value',
         )
 
+    _format_leaf_children = False
+
     ### INITIALIZER ###
 
     def __init__(
