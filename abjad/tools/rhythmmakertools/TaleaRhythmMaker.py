@@ -151,7 +151,7 @@ class TaleaRhythmMaker(RhythmMaker):
         secondary_divisions=None,
         helper_functions=None,
         beam_specifier=None,
-        decrease_durations_monotonically=True,
+        duration_spelling_specifier=None,
         tie_split_notes=False,
         burnish_divisions=False,
         burnish_output=False,
@@ -161,7 +161,7 @@ class TaleaRhythmMaker(RhythmMaker):
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-            decrease_durations_monotonically=decrease_durations_monotonically,
+            duration_spelling_specifier=duration_spelling_specifier,
             )
         prototype = (tuple, type(None))
         talea = self._to_tuple(talea)
@@ -257,7 +257,6 @@ class TaleaRhythmMaker(RhythmMaker):
                         right_lengths=(1,),
                         ),
                     secondary_divisions=(9,),
-                    decrease_durations_monotonically=True,
                     tie_split_notes=False,
                     burnish_divisions=False,
                     burnish_output=True,
@@ -293,7 +292,6 @@ class TaleaRhythmMaker(RhythmMaker):
                         right_lengths=(1,),
                         ),
                     secondary_divisions=(10,),
-                    decrease_durations_monotonically=True,
                     tie_split_notes=False,
                     burnish_divisions=False,
                     burnish_output=True,
@@ -349,8 +347,7 @@ class TaleaRhythmMaker(RhythmMaker):
             'secondary_divisions': self.secondary_divisions,
             'helper_functions': self.helper_functions,
             'beam_specifier': self.beam_specifier,
-            'decrease_durations_monotonically':
-                self.decrease_durations_monotonically,
+            'duration_spelling_specifier': self.duration_spelling_specifier,
             'tie_split_notes': self.tie_split_notes,
             'burnish_divisions': self.burnish_divisions,
             'burnish_output': self.burnish_output,
@@ -522,13 +519,19 @@ class TaleaRhythmMaker(RhythmMaker):
         return burnished_divisions
 
     def _make_leaf_lists(self, numeric_map, talea_denominator):
+        from abjad.tools import rhythmmakertools
         leaf_lists = []
+        specifier = self.duration_spelling_specifier
+        if specifier is None:
+            specifier = rhythmmakertools.DurationSpellingSpecifier()
         for map_division in numeric_map:
             leaf_list = scoretools.make_leaves_from_talea(
                 map_division,
                 talea_denominator,
                 decrease_durations_monotonically=\
-                    self.decrease_durations_monotonically,
+                    specifier.decrease_durations_monotonically,
+                forbidden_written_duration=\
+                    specifier.forbidden_written_duration,
                 )
             leaf_lists.append(leaf_list)
         return leaf_lists
@@ -791,7 +794,9 @@ class TaleaRhythmMaker(RhythmMaker):
                         right_lengths=(1,),
                         ),
                     secondary_divisions=(9,),
-                    decrease_durations_monotonically=False,
+                    duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                        decrease_durations_monotonically=False,
+                        ),
                     tie_split_notes=False,
                     burnish_divisions=False,
                     burnish_output=True,
@@ -841,6 +846,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         Returns new talea rhythm-maker.
         '''
+        from abjad.tools import rhythmmakertools
         talea = tuple(reversed(self.talea))
         prolation_addenda = self.prolation_addenda
         if prolation_addenda is not None:
@@ -849,14 +855,16 @@ class TaleaRhythmMaker(RhythmMaker):
         secondary_divisions = self.secondary_divisions
         if secondary_divisions is not None:
             secondary_divisions = tuple(reversed(secondary_divisions))
-        decrease_durations_monotonically = \
-            not self.decrease_durations_monotonically
+        specifier = self.duration_spelling_specifier
+        if specifier is None:
+            specifier = rhythmmakertools.DurationSpellingSpecifier()
+        specifier = specifier.reverse()
         maker = new(
             self,
             talea=talea,
             prolation_addenda=prolation_addenda,
             burnish_specifier=burnish_specifier,
             secondary_divisions=secondary_divisions,
-            decrease_durations_monotonically=decrease_durations_monotonically,
+            duration_spelling_specifier=specifier,
             )
         return maker
