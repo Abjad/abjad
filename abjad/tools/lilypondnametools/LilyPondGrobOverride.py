@@ -73,6 +73,40 @@ class LilyPondGrobOverride(AbjadObject):
         self._property_path = property_path
         self._value = value
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _lilypond_format_bundle(self):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        if not self.is_once:
+            revert_format = '\n'.join(self.revert_format_pieces)
+            lilypond_format_bundle.grob_reverts.append(revert_format)
+        if not self.is_revert:
+            override_format = '\n'.join(self.override_format_pieces)
+            lilypond_format_bundle.grob_overrides.append(override_format)
+        return lilypond_format_bundle
+
+    @property
+    def _override_property_path_string(self):
+        parts = []
+        if self.context_name is not None:
+            parts.append(self.context_name)
+        parts.append(self.grob_name)
+        parts.extend(self.property_path)
+        path = '.'.join(parts)
+        return path
+
+    @property
+    def _revert_property_path_string(self):
+        parts = []
+        if self.context_name is not None:
+            parts.append(self.context_name)
+        parts.append(self.grob_name)
+        parts.append(self.property_path[0])
+        path = '.'.join(parts)
+        return path
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -119,13 +153,7 @@ class LilyPondGrobOverride(AbjadObject):
         if self.is_once:
             result.append(r'\once')
         result.append(r'\override')
-        property_path = []
-        if self.context_name is not None:
-            property_path.append(self.context_name)
-        property_path.append(self.grob_name)
-        property_path.extend(self.property_path)
-        property_path = '.'.join(property_path)
-        result.append(property_path)
+        result.append(self._override_property_path_string)
         result.append('=')
         value_pieces = schemetools.Scheme.format_scheme_value(self.value)
         value_pieces = value_pieces.split('\n')
@@ -148,7 +176,8 @@ class LilyPondGrobOverride(AbjadObject):
 
         Returns tuple of strings.
         '''
-        raise NotImplementedError
+        result = r'\revert {}'.format(self._revert_property_path_string) 
+        return [result]
 
     @property
     def value(self):
