@@ -85,7 +85,6 @@ class EvenRunRhythmMaker(RhythmMaker):
     _gallery_input_blocks = (
         ExampleWrapper(
             arguments={
-                'exponent': 0,
                 },
             division_lists=(
                 [
@@ -136,12 +135,13 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     def __init__(
         self,
-        exponent=0,
+        exponent=None,
         beam_specifier=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
         ):
-        assert mathtools.is_nonnegative_integer(exponent)
+        if exponent is not None:
+            assert mathtools.is_nonnegative_integer(exponent)
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
@@ -185,9 +185,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             ::
 
                 >>> print format(maker)
-                rhythmmakertools.EvenRunRhythmMaker(
-                    exponent=0,
-                    )
+                rhythmmakertools.EvenRunRhythmMaker()
 
         Set `format_specification` to `''` or `'storage'`.
 
@@ -203,13 +201,13 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> new_maker = new(maker, exponent=0)
+                >>> new_maker = new(maker, exponent=1)
 
             ::
 
                 >>> print format(new_maker)
                 rhythmmakertools.EvenRunRhythmMaker(
-                    exponent=0,
+                    exponent=1,
                     )
 
             ::
@@ -271,7 +269,8 @@ class EvenRunRhythmMaker(RhythmMaker):
         numerator, denominator = division
         # eventually allow for non-power-of-two divisions
         assert mathtools.is_positive_integer_power_of_two(denominator)
-        denominator_multiplier = 2 ** self.exponent
+        exponent = self.exponent or 0
+        denominator_multiplier = 2 ** exponent
         denominator *= denominator_multiplier
         unit_duration = durationtools.Duration(1, denominator)
         numerator *= denominator_multiplier
@@ -308,7 +307,6 @@ class EvenRunRhythmMaker(RhythmMaker):
                 ...     forbidden_written_duration=Duration(1, 4),
                 ...     )
                 >>> maker = rhythmmakertools.EvenRunRhythmMaker(
-                ...     exponent=0,
                 ...     duration_spelling_specifier=specifier,
                 ...     )
 
@@ -371,7 +369,9 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.EvenRunRhythmMaker(1)
+                >>> maker = rhythmmakertools.EvenRunRhythmMaker(
+                ...     exponent=1,
+                ...     )
 
             ::
 
@@ -423,9 +423,9 @@ class EvenRunRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Defaults to ``0``.
+        Defaults to none and interprets none equal to ``0``.
 
-        Returns nonnegative integer.
+        Returns nonnegative integer or none.
         '''
         return self._exponent
 
@@ -500,16 +500,13 @@ class EvenRunRhythmMaker(RhythmMaker):
         
             ::
 
-                >>> maker = rhythmmakertools.EvenRunRhythmMaker(
-                ...     exponent=1,
-                ...     )
+                >>> maker = rhythmmakertools.EvenRunRhythmMaker()
                 >>> reversed_maker = maker.reverse()
 
             ::
 
                 >>> print format(reversed_maker)
                 rhythmmakertools.EvenRunRhythmMaker(
-                    exponent=1,
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
                         ),
@@ -533,34 +530,25 @@ class EvenRunRhythmMaker(RhythmMaker):
                     {
                         \time 4/8
                         {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
                         }
                     }
                     {
                         \time 3/4
                         {
-                            c'8 [
-                            c'8
-                            c'8
-                            c'8
-                            c'8
-                            c'8 ]
+                            c'4
+                            c'4
+                            c'4
                         }
                     }
                     {
                         \time 2/4
                         {
-                            c'8 [
-                            c'8
-                            c'8
-                            c'8 ]
+                            c'4
+                            c'4
                         }
                     }
                 }
