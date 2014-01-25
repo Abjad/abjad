@@ -134,15 +134,13 @@ class RatioTaleaRhythmMaker(RhythmMaker):
         ratio_talea=((1, 1), (1, 2), (1, 3)),
         is_diminution=True,
         beam_specifier=None,
-        decrease_durations_monotonically=True,
-        forbidden_written_duration=None,
+        duration_spelling_specifier=None,
         tie_across_divisions=False,
         ):
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-            decrease_durations_monotonically=decrease_durations_monotonically,
-            forbidden_written_duration=forbidden_written_duration,
+            duration_spelling_specifier=duration_spelling_specifier,
             tie_across_divisions=tie_across_divisions,
             )
         ratio_talea = tuple(mathtools.Ratio(x) for x in ratio_talea)
@@ -188,7 +186,6 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         mathtools.Ratio(3, 1),
                         ),
                     is_diminution=True,
-                    decrease_durations_monotonically=True,
                     tie_across_divisions=False,
                     )
 
@@ -217,7 +214,6 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         mathtools.Ratio(3, 1),
                         ),
                     is_diminution=False,
-                    decrease_durations_monotonically=True,
                     tie_across_divisions=False,
                     )
 
@@ -266,9 +262,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
         assert not args
         arguments = {
             'beam_specifier': self.beam_specifier,
-            'decrease_durations_monotonically':
-                self.decrease_durations_monotonically,
-            'forbidden_written_duration': self.forbidden_written_duration,
+            'duration_spelling_specifier': self.duration_spelling_specifier,
             'is_diminution': self.is_diminution,
             'ratio_talea': self.ratio_talea,
             'tie_across_divisions': self.tie_across_divisions,
@@ -428,7 +422,9 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         mathtools.Ratio(3, 2),
                         ),
                     is_diminution=True,
-                    decrease_durations_monotonically=False,
+                    duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                        decrease_durations_monotonically=False,
+                        ),
                     tie_across_divisions=True,
                     )
 
@@ -479,16 +475,19 @@ class RatioTaleaRhythmMaker(RhythmMaker):
 
         Returns new ratio-talea rhythm-maker.
         '''
-        decrease_durations_monotonically = \
-            not self.decrease_durations_monotonically
+        from abjad.tools import rhythmmakertools
         ratio_talea = []
         for ratio in reversed(self.ratio_talea):
             ratio = mathtools.Ratio([x for x in reversed(ratio)])
             ratio_talea.append(ratio)
         ratio_talea = tuple(ratio_talea)
+        specifier = self.duration_spelling_specifier
+        if specifier is None:
+            specifier = rhythmmakertools.DurationSpellingSpecifier()
+        specifier = specifier.reverse()
         maker = new(
             self,
-            decrease_durations_monotonically=decrease_durations_monotonically,
             ratio_talea=ratio_talea,
+            duration_spelling_specifier=specifier,
             )
         return maker
