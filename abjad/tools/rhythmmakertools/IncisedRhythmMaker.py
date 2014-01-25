@@ -103,9 +103,8 @@ class IncisedRhythmMaker(RhythmMaker):
         prolation_addenda=None,
         secondary_divisions=None,
         helper_functions=None,
-        decrease_durations_monotonically=True,
-        forbidden_written_duration=None,
         beam_specifier=None,
+        duration_spelling_specifier=None,
         fill_with_notes=True,
         incise_divisions=False,
         incise_output=False,
@@ -115,8 +114,7 @@ class IncisedRhythmMaker(RhythmMaker):
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-            decrease_durations_monotonically=decrease_durations_monotonically,
-            forbidden_written_duration=forbidden_written_duration,
+            duration_spelling_specifier=duration_spelling_specifier,
             tie_across_divisions=tie_across_divisions,
             )
         incise_specifier = incise_specifier or \
@@ -172,14 +170,12 @@ class IncisedRhythmMaker(RhythmMaker):
         assert not args
         arguments = {
             'beam_specifier': self.beam_specifier,
-            'forbidden_written_duration': self.forbidden_written_duration,
+            'duration_spelling_specifier': self.duration_spelling_specifier,
             'incise_specifier': self.incise_specifier,
             'body_ratio': self.body_ratio,
             'prolation_addenda': self.prolation_addenda,
             'secondary_divisions': self.secondary_divisions,
             'helper_functions': self.helper_functions,
-            'decrease_durations_monotonically':
-                self.decrease_durations_monotonically,
             'fill_with_notes': self.fill_with_notes,
             'incise_divisions': self.incise_divisions,
             'incise_output': self.incise_output,
@@ -414,13 +410,19 @@ class IncisedRhythmMaker(RhythmMaker):
 
     def _numeric_map_and_talea_denominator_to_leaf_selections(
         self, numeric_map, lcd):
+        from abjad.tools import rhythmmakertools
         selections = []
+        specifier = self.duration_spelling_specifier
+        if specifier is None:
+            specifier = rhythmmakertools.DurationSpellingSpecifier()
         for numeric_map_part in numeric_map:
             selection = scoretools.make_leaves_from_talea(
                 numeric_map_part,
                 lcd,
-                forbidden_written_duration=self.forbidden_written_duration,
-                decrease_durations_monotonically=self.decrease_durations_monotonically,
+                forbidden_written_duration=\
+                    specifier.forbidden_written_duration,
+                decrease_durations_monotonically=\
+                    specifier.decrease_durations_monotonically,
                 )
             selections.append(selection)
         return selections
@@ -718,18 +720,21 @@ class IncisedRhythmMaker(RhythmMaker):
 
         Returns newly constructed rhythm-maker.
         '''
+        from abjad.tools import rhythmmakertools
         prolation_addenda = self.prolation_addenda
         if prolation_addenda is not None:
             prolation_addenda = tuple(reversed(prolation_addenda))
         secondary_divisions = self.secondary_divisions
         if secondary_divisions is not None:
             secondary_divisions = tuple(reversed(secondary_divisions))
-        decrease_durations_monotonically = \
-            not self.decrease_durations_monotonically
+        specifier = self.duration_spelling_specifier
+        if specifier is None:
+            specifier = rhythmmakertools.DurationSpellingSpecifier()
+        specifier = specifier.reverse()
         maker = new(
             self,
-            decrease_durations_monotonically=decrease_durations_monotonically,
             prolation_addenda=prolation_addenda,
             secondary_divisions=secondary_divisions,
+            duration_spelling_specifier=specifier,
             )
         return maker
