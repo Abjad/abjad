@@ -31,9 +31,7 @@ class RhythmMaker(AbjadObject):
 
     __slots__ = (
         '_beam_specifier',
-        '_decrease_durations_monotonically',
         '_duration_spelling_specifier',
-        '_forbidden_written_duration',
         '_name',
         '_tie_across_divisions',
         )
@@ -47,8 +45,6 @@ class RhythmMaker(AbjadObject):
     def __init__(
         self,
         beam_specifier=None,
-        decrease_durations_monotonically=True,
-        forbidden_written_duration=None,
         duration_spelling_specifier=None,
         tie_across_divisions=False,
         ):
@@ -59,9 +55,6 @@ class RhythmMaker(AbjadObject):
         assert isinstance(duration_spelling_specifier, prototype)
         self._beam_specifier = beam_specifier
         self._duration_spelling_specifier = duration_spelling_specifier
-        self._decrease_durations_monotonically = \
-            decrease_durations_monotonically
-        self._forbidden_written_duration = forbidden_written_duration
         self._name = None
         self._tie_across_divisions = bool(tie_across_divisions)
 
@@ -214,9 +207,7 @@ class RhythmMaker(AbjadObject):
         assert not args
         arguments = {
             'beam_specifier': self.beam_specifier,
-            'decrease_durations_monotonically':
-                self.decrease_durations_monotonically,
-            'forbidden_written_duration': self.forbidden_written_duration,
+            'duration_spelling_specifier': self.duraiton_spelling_specifier,
             }
         arguments.update(kwargs)
         maker = type(self)(**arguments)
@@ -501,29 +492,12 @@ class RhythmMaker(AbjadObject):
         return self._beam_specifier
 
     @property
-    def decrease_durations_monotonically(self):
-        r'''Is true when rhythm-maker should decrease durations monotonically.
-        Otherwise false.
-
-        Returns boolean.
-        '''
-        return self._decrease_durations_monotonically
-
-    @property
     def duration_spelling_specifier(self):
         r'''Gets duration spelling specifier of rhythm-maker.
 
         Returns duration spelling specifier or none.
         '''
         return self._duration_spelling_specifier
-
-    @property
-    def forbidden_written_duration(self):
-        r'''Gets forbidden written duration of rhythm-maker.
-
-        Returns duration or none.
-        '''
-        return self._forbidden_written_duration
 
     @property
     def name(self):
@@ -556,10 +530,13 @@ class RhythmMaker(AbjadObject):
 
         Returns new rhythm-maker.
         '''
-        decrease_durations_monotonically = \
-            not self.decrease_durations_monotonically
+        from abjad.tools import rhythmmakertools
+        specifier = self.duration_spelling_specifier
+        if specifier is None:
+            specifier = rhythmmakertools.DurationSpellingSpecifier()
+        specifier = specifier.reverse()
         maker = new(
             self,
-            decrease_durations_monotonically=decrease_durations_monotonically,
+            duration_spelling_specifier=specifier,
             )
         return maker
