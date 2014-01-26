@@ -38,6 +38,13 @@ class StaffChange(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_default_scope',
+        '_staff',
+        )
+
+    _format_leaf_children = False
+
     _format_slot = 'opening'
 
     ### INITIALIZER ###
@@ -62,7 +69,7 @@ class StaffChange(AbjadObject):
         return type(self)(self.staff)
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a staff change with a staff value equal 
+        r'''Is true when `expr` is a staff change with a staff value equal
         to that of this staff change. Otherwise false.
 
         Returns boolean.
@@ -70,6 +77,18 @@ class StaffChange(AbjadObject):
         if isinstance(expr, type(self)):
             return self.staff is expr.staff
         return False
+
+    def __str__(self):
+        r'''Gets string format of staff change.
+
+        Returns string.
+        '''
+        from abjad.tools import schemetools
+        if self.staff is None:
+            return r'\change Staff = ##f'
+        return r'\change Staff = {}'.format(
+            schemetools.Scheme.format_scheme_value(self.staff.name),
+            )
 
     ### PRIVATE PROPERTIES ###
 
@@ -79,7 +98,14 @@ class StaffChange(AbjadObject):
 
     @property
     def _lilypond_format(self):
-        return r'\change Staff = {}'.format(self.staff.name)
+        return str(self)
+
+    @property
+    def _lilypond_format_bundle(self):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        lilypond_format_bundle.opening.commands.append(str(self))
+        return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
 
