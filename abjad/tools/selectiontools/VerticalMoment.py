@@ -298,28 +298,40 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def notes(self):
-        r'''Tuple of zero or more notes
-        at vertical moment.
+        r'''Tuple of zero or more notes at vertical moment.
         '''
         from abjad.tools import scoretools
         result = []
+        prototype = (scoretools.Note,)
         for component in self.components:
-            if isinstance(component, scoretools.Note):
+            if isinstance(component, prototype):
+                result.append(component)
+        result = tuple(result)
+        return result
+
+    @property
+    def notes_and_chords(self):
+        r'''Tuple of zero or more notes and chords at vertical moment.
+        '''
+        from abjad.tools import scoretools
+        result = []
+        prototype = (scoretools.Chord, scoretools.Note)
+        for component in self.components:
+            if isinstance(component, prototype):
                 result.append(component)
         result = tuple(result)
         return result
 
     @property
     def offset(self):
-        r'''Rational-valued score offset
-        at which vertical moment is evaluated.
+        r'''Rational-valued score offset at which vertical moment is evaluated.
         '''
         return self._offset
 
     @property
     def overlap_components(self):
-        r'''Tuple of components in vertical moment
-        starting before vertical moment, ordered by score index.
+        r'''Tuple of components in vertical moment starting before vertical
+        moment, ordered by score index.
         '''
         result = []
         for component in self.components:
@@ -330,33 +342,33 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def overlap_leaves(self):
-        r'''Tuple of leaves in vertical moment
-        starting before vertical moment, ordered by score index.
+        r'''Tuple of leaves in vertical moment starting before vertical moment,
+        ordered by score index.
         '''
         from abjad.tools import scoretools
-        result = [x for x in self.overlap_components 
+        result = [x for x in self.overlap_components
             if isinstance(x, scoretools.Leaf)]
         result = tuple(result)
         return result
 
     @property
     def overlap_measures(self):
-        r'''Tuple of measures in vertical moment
-        starting before vertical moment, ordered by score index.
+        r'''Tuple of measures in vertical moment starting before vertical
+        moment, ordered by score index.
         '''
         from abjad.tools import scoretools
-        result = [x for x in self.overlap_components 
+        result = [x for x in self.overlap_components
             if isinstance(x, scoretools.Measure)]
         result = tuple(result)
         return result
 
     @property
     def overlap_notes(self):
-        r'''Tuple of notes in vertical moment
-        starting before vertical moment, ordered by score index.
+        r'''Tuple of notes in vertical moment starting before vertical moment,
+        ordered by score index.
         '''
         from abjad.tools import scoretools
-        result = [x for x in self.overlap_components 
+        result = [x for x in self.overlap_components
             if isinstance(x, scoretools.Note)]
         result = tuple(result)
         return result
@@ -401,8 +413,8 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def start_components(self):
-        r'''Tuple of components in vertical moment
-        starting with at vertical moment, ordered by score index.
+        r'''Tuple of components in vertical moment starting with at vertical
+        moment, ordered by score index.
         '''
         result = []
         for component in self.components:
@@ -413,22 +425,22 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def start_leaves(self):
-        r'''Tuple of leaves in vertical moment
-        starting with vertical moment, ordered by score index.
+        r'''Tuple of leaves in vertical moment starting with vertical moment,
+        ordered by score index.
         '''
         from abjad.tools import scoretools
-        result = [x for x in self.start_components 
+        result = [x for x in self.start_components
             if isinstance(x, scoretools.Leaf)]
         result = tuple(result)
         return result
 
     @property
     def start_notes(self):
-        r'''Tuple of notes in vertical moment
-        starting with vertical moment, ordered by score index.
+        r'''Tuple of notes in vertical moment starting with vertical moment,
+        ordered by score index.
         '''
         from abjad.tools import scoretools
-        result = [x for x in self.start_components 
+        result = [x for x in self.start_components
             if isinstance(x, scoretools.Note)]
         result = tuple(result)
         return result
