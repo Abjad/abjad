@@ -75,6 +75,22 @@ class LilyPondGrobOverride(AbjadObject):
         self._property_path = property_path
         self._value = value
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        r'''Is true when `expr` is a LilyPond grob override with equivalent
+        keyword values.
+        '''
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.compare(self, expr)
+
+    def __hash__(self, expr):
+        r'''Gets hash of LilyPond grob override.
+        '''
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatManager.get_hash_values(self)
+        return hash(hash_values)
+
     ### PRIVATE PROPERTIES ###
 
     @property
