@@ -224,10 +224,12 @@ class ScoreSpecification(Specification):
                                 talea=(1,),
                                 talea_denominator=16,
                                 burnish_specifier=rhythmmakertools.BurnishSpecifier(),
-                                tie_split_notes=True,
                                 burnish_divisions=False,
                                 burnish_output=False,
-                                tie_across_divisions=False,
+                                tie_specifier=rhythmmakertools.TieSpecifier(
+                                    tie_across_divisions=False,
+                                    tie_split_notes=False,
+                                    ),
                                 ),
                             ),
                         target_timespan='red',
@@ -304,10 +306,12 @@ class ScoreSpecification(Specification):
                             talea=(1,),
                             talea_denominator=16,
                             burnish_specifier=rhythmmakertools.BurnishSpecifier(),
-                            tie_split_notes=True,
                             burnish_divisions=False,
                             burnish_output=False,
-                            tie_across_divisions=False,
+                            tie_specifier=rhythmmakertools.TieSpecifier(
+                                tie_across_divisions=False,
+                                tie_split_notes=False,
+                                ),
                             ),
                         division_list=musicexpressiontools.DivisionList(
                             [
@@ -351,10 +355,12 @@ class ScoreSpecification(Specification):
                             talea=(1,),
                             talea_denominator=16,
                             burnish_specifier=rhythmmakertools.BurnishSpecifier(),
-                            tie_split_notes=True,
                             burnish_divisions=False,
                             burnish_output=False,
-                            tie_across_divisions=False,
+                            tie_specifier=rhythmmakertools.TieSpecifier(
+                                tie_across_divisions=False,
+                                tie_split_notes=False,
+                                ),
                             ),
                         division_list=musicexpressiontools.DivisionList(
                             [

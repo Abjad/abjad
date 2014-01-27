@@ -131,7 +131,6 @@ class TaleaRhythmMaker(RhythmMaker):
         '_burnish_specifier',
         '_secondary_divisions',
         '_helper_functions',
-        '_tie_split_notes',
         '_burnish_divisions',
         '_burnish_output',
         )
@@ -152,17 +151,16 @@ class TaleaRhythmMaker(RhythmMaker):
         helper_functions=None,
         beam_specifier=None,
         duration_spelling_specifier=None,
-        #tie_split_notes=False,
-        tie_split_notes=True,
         burnish_divisions=False,
         burnish_output=False,
-        tie_across_divisions=False,
+        tie_specifier=None,
         ):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
+            tie_specifier=tie_specifier,
             )
         prototype = (tuple, type(None))
         talea = self._to_tuple(talea)
@@ -214,14 +212,12 @@ class TaleaRhythmMaker(RhythmMaker):
         assert callable(rights_helper)
         assert callable(left_lengths_helper)
         assert callable(right_lengths_helper)
-        assert isinstance(tie_split_notes, bool)
         self._talea_denominator = talea_denominator
         self._prolation_addenda = prolation_addenda
         self._secondary_divisions = secondary_divisions
         if helper_functions == {}:
             helper_functions = None
         self._helper_functions = helper_functions
-        self._tie_split_notes = tie_split_notes
 
     ### SPECIAL METHODS ###
 
@@ -258,10 +254,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         right_lengths=(1,),
                         ),
                     secondary_divisions=(9,),
-                    tie_split_notes=True,
                     burnish_divisions=False,
                     burnish_output=True,
-                    tie_across_divisions=False,
                     )
 
         Returns string.
@@ -293,10 +287,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         right_lengths=(1,),
                         ),
                     secondary_divisions=(10,),
-                    tie_split_notes=True,
                     burnish_divisions=False,
                     burnish_output=True,
-                    tie_across_divisions=False,
                     )
 
             ::
@@ -349,9 +341,9 @@ class TaleaRhythmMaker(RhythmMaker):
             'helper_functions': self.helper_functions,
             'beam_specifier': self.beam_specifier,
             'duration_spelling_specifier': self.duration_spelling_specifier,
-            'tie_split_notes': self.tie_split_notes,
             'burnish_divisions': self.burnish_divisions,
             'burnish_output': self.burnish_output,
+            'tie_specifier': self.tie_specifier,
             }
         arguments.update(kwargs)
         maker = type(self)(**arguments)
@@ -388,7 +380,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     prototype=prototype):
                     spanner._sever_all_components()
                 #detach(prototype, component)
-            # TODO: remove usae of Spanner._extend()
+            # TODO: remove usage of Spanner._extend()
             tie_spanner._extend(part)
 
     def _burnish_division_part(self, division_part, token):
@@ -595,7 +587,10 @@ class TaleaRhythmMaker(RhythmMaker):
             for cell in result:
                 beam = spannertools.MultipartBeam()
                 attach(beam, cell)
-        if self.tie_split_notes:
+        tie_specifier = self.tie_specifier
+        if tie_specifier is None:
+            tie_specifier = rhythmmakertools.TieSpecifier()
+        if tie_specifier.tie_split_notes:
             self._add_ties(result)
         return result
 
@@ -769,14 +764,6 @@ class TaleaRhythmMaker(RhythmMaker):
         '''
         return self._talea_denominator
 
-    @property
-    def tie_split_notes(self):
-        r'''Gets tie split notes boolean.
-
-        Returns boolean.
-        '''
-        return self._tie_split_notes
-
     ### PUBLIC METHODS ###
 
     def reverse(self):
@@ -806,10 +793,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
                         ),
-                    tie_split_notes=True,
                     burnish_divisions=False,
                     burnish_output=True,
-                    tie_across_divisions=False,
                     )
 
             ::

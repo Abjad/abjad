@@ -18,7 +18,7 @@ class TieSpecifier(AbjadObject):
     def __init__(
         self,
         tie_across_divisions=False,
-        tie_split_notes=False,
+        tie_split_notes=True,
         ):
         assert isinstance(tie_across_divisions, bool)
         assert isinstance(tie_split_notes, bool)
