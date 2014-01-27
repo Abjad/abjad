@@ -21,7 +21,7 @@ class TupletRhythmMaker(RhythmMaker):
         ::
 
             >>> maker = rhythmmakertools.TupletRhythmMaker(
-            ...     ratio_talea=[(3, 2)],
+            ...     tuplet_ratios=[(3, 2)],
             ...     )
 
         ::
@@ -70,7 +70,7 @@ class TupletRhythmMaker(RhythmMaker):
         ::
 
             >>> maker = rhythmmakertools.TupletRhythmMaker(
-            ...     ratio_talea=[(1, -1), (3, 1)],
+            ...     tuplet_ratios=[(1, -1), (3, 1)],
             ...     )
 
         ::
@@ -120,7 +120,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     __slots__ = (
         '_is_diminution',
-        '_ratio_talea',
+        '_tuplet_ratios',
         )
 
     _class_name_abbreviation = 'T'
@@ -131,7 +131,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     def __init__(
         self,
-        ratio_talea=((1, 1), (1, 2), (1, 3)),
+        tuplet_ratios=((1, 1), (1, 2), (1, 3)),
         is_diminution=True,
         beam_specifier=None,
         duration_spelling_specifier=None,
@@ -143,8 +143,8 @@ class TupletRhythmMaker(RhythmMaker):
             duration_spelling_specifier=duration_spelling_specifier,
             tie_specifier=tie_specifier,
             )
-        ratio_talea = tuple(mathtools.Ratio(x) for x in ratio_talea)
-        self._ratio_talea = ratio_talea
+        tuplet_ratios = tuple(mathtools.Ratio(x) for x in tuplet_ratios)
+        self._tuplet_ratios = tuplet_ratios
         self._is_diminution = is_diminution
 
     ### SPECIAL METHODS ###
@@ -180,7 +180,7 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 rhythmmakertools.TupletRhythmMaker(
-                    ratio_talea=(
+                    tuplet_ratios=(
                         mathtools.Ratio(1, -1),
                         mathtools.Ratio(3, 1),
                         ),
@@ -207,7 +207,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> print format(new_maker)
                 rhythmmakertools.TupletRhythmMaker(
-                    ratio_talea=(
+                    tuplet_ratios=(
                         mathtools.Ratio(1, -1),
                         mathtools.Ratio(3, 1),
                         ),
@@ -261,7 +261,7 @@ class TupletRhythmMaker(RhythmMaker):
             'beam_specifier': self.beam_specifier,
             'duration_spelling_specifier': self.duration_spelling_specifier,
             'is_diminution': self.is_diminution,
-            'ratio_talea': self.ratio_talea,
+            'tuplet_ratios': self.tuplet_ratios,
             'tie_specifier': self.tie_specifier,
             }
         arguments.update(kwargs)
@@ -275,14 +275,14 @@ class TupletRhythmMaker(RhythmMaker):
         tuplets = []
         if not isinstance(seeds, int):
             seeds = 0
-        ratio_talea = datastructuretools.CyclicTuple(
-            sequencetools.rotate_sequence(self.ratio_talea, seeds)
+        tuplet_ratios = datastructuretools.CyclicTuple(
+            sequencetools.rotate_sequence(self.tuplet_ratios, seeds)
             )
         beam_specifier = self.beam_specifier
         if beam_specifier is None:
             beam_specifier = rhythmmakertools.BeamSpecifier()
         for duration_index, duration_pair in enumerate(duration_pairs):
-            ratio = ratio_talea[duration_index]
+            ratio = tuplet_ratios[duration_index]
             duration = durationtools.Duration(duration_pair)
             tuplet = self._make_tuplet(duration, ratio)
             if beam_specifier.beam_each_division:
@@ -322,21 +322,6 @@ class TupletRhythmMaker(RhythmMaker):
         return self._is_diminution
 
     @property
-    def ratio_talea(self):
-        r'''Gets ratio talea of tuplet rhythm-maker.
-
-        ..  container:: example
-
-            ::
-
-                >>> maker.ratio_talea
-                (Ratio(1, -1), Ratio(3, 1))
-
-        Returns tuple of ratios.
-        '''
-        return self._ratio_talea
-
-    @property
     def tie_specifier(self):
         r'''Gets tie specifier of ratio talea rhythm-maker.
 
@@ -348,7 +333,7 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tie_across_divisions=True,
                 ...     )
                 >>> maker = rhythmmakertools.TupletRhythmMaker(
-                ...     ratio_talea=[(2, 3), (1, -2, 1)],
+                ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
                 ...     tie_specifier=tie_specifier,
                 ...     )
 
@@ -396,6 +381,25 @@ class TupletRhythmMaker(RhythmMaker):
         '''
         return RhythmMaker.tie_specifier.fget(self)
 
+    @property
+    def tuplet_ratios(self):
+        r'''Gets ratio talea of tuplet rhythm-maker.
+
+        ..  container:: example
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
+                ...     tie_specifier=tie_specifier,
+                ...     )
+                >>> maker.tuplet_ratios
+                (Ratio(2, 3), Ratio(1, -2, 1))
+
+        Returns tuple of ratios.
+        '''
+        return self._tuplet_ratios
+
     ### PUBLIC METHODS ###
 
     def reverse(self):
@@ -406,7 +410,7 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> maker = rhythmmakertools.TupletRhythmMaker(
-                ...     ratio_talea=[(2, 3), (1, -2, 1)],
+                ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
                 ...     )
                 >>> reversed_maker = maker.reverse()
 
@@ -414,7 +418,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> print format(reversed_maker)
                 rhythmmakertools.TupletRhythmMaker(
-                    ratio_talea=(
+                    tuplet_ratios=(
                         mathtools.Ratio(1, -2, 1),
                         mathtools.Ratio(3, 2),
                         ),
@@ -466,24 +470,24 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Defined equal to copy of maker with `ratio_talea` and
+        Defined equal to copy of maker with `tuplet_ratios` and
         `duration_spelling_specifier` reversed.
 
         Returns new tuplet rhythm-maker.
         '''
         from abjad.tools import rhythmmakertools
-        ratio_talea = []
-        for ratio in reversed(self.ratio_talea):
+        tuplet_ratios = []
+        for ratio in reversed(self.tuplet_ratios):
             ratio = mathtools.Ratio([x for x in reversed(ratio)])
-            ratio_talea.append(ratio)
-        ratio_talea = tuple(ratio_talea)
+            tuplet_ratios.append(ratio)
+        tuplet_ratios = tuple(tuplet_ratios)
         specifier = self.duration_spelling_specifier
         if specifier is None:
             specifier = rhythmmakertools.DurationSpellingSpecifier()
         specifier = specifier.reverse()
         maker = new(
             self,
-            ratio_talea=ratio_talea,
+            tuplet_ratios=tuplet_ratios,
             duration_spelling_specifier=specifier,
             )
         return maker
