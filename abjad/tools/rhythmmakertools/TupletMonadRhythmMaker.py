@@ -77,12 +77,12 @@ class TupletMonadRhythmMaker(RhythmMaker):
     def __init__(
         self,
         beam_specifier=None,
-        tie_across_divisions=False,
+        tie_specifier=None,
         ):
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-            tie_across_divisions=tie_across_divisions,
+            tie_specifier=tie_specifier,
             )
 
     ### SPECIAL METHODS ###
@@ -108,9 +108,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
             ::
 
                 >>> print format(maker)
-                rhythmmakertools.TupletMonadRhythmMaker(
-                    tie_across_divisions=False,
-                    )
+                rhythmmakertools.TupletMonadRhythmMaker()
 
         Returns string.
         '''
@@ -129,9 +127,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
             ::
 
                 >>> print format(new_maker)
-                rhythmmakertools.TupletMonadRhythmMaker(
-                    tie_across_divisions=False,
-                    )
+                rhythmmakertools.TupletMonadRhythmMaker()
 
             ::
 
@@ -181,12 +177,10 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
         Returns new tuplet monad rhythm-maker.
         '''
-        #return RhythmMaker.__makenew__(self, *args, **kwargs)
-        # TODO: remove after specifier integration
         assert not args
         arguments = {
             'beam_specifier': self.beam_specifier,
-            'tie_across_divisions': self.tie_across_divisions,
+            'tie_specifier': self.tie_specifier,
             }
         arguments.update(kwargs)
         maker = type(self)(**arguments)
@@ -230,9 +224,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
             ::
 
                 >>> print format(reversed_maker)
-                rhythmmakertools.TupletMonadRhythmMaker(
-                    tie_across_divisions=False, 
-                    )
+                rhythmmakertools.TupletMonadRhythmMaker()
 
             ::
 
