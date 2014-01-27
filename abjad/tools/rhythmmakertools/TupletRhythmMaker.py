@@ -11,16 +11,16 @@ from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import new
 
 
-class RatioTaleaRhythmMaker(RhythmMaker):
-    r'''Ratio-talea rhythm-maker.
+class TupletRhythmMaker(RhythmMaker):
+    r'''Tuplet rhythm-maker.
 
     ..  container:: example
 
-        Makes tuplets with ``3:2`` leaf ratios each.
+        Makes tuplets with ``3:2`` leaf ratios:
 
         ::
 
-            >>> maker = rhythmmakertools.RatioTaleaRhythmMaker(
+            >>> maker = rhythmmakertools.TupletRhythmMaker(
             ...     ratio_talea=[(3, 2)],
             ...     )
 
@@ -65,11 +65,11 @@ class RatioTaleaRhythmMaker(RhythmMaker):
 
     ..  container:: example
 
-        Makes tuplets with alternating ``1:-1`` and ``3:1`` leaf ratios.
+        Makes tuplets with alternating ``1:-1`` and ``3:1`` leaf ratios:
 
         ::
 
-            >>> maker = rhythmmakertools.RatioTaleaRhythmMaker(
+            >>> maker = rhythmmakertools.TupletRhythmMaker(
             ...     ratio_talea=[(1, -1), (3, 1)],
             ...     )
 
@@ -123,9 +123,9 @@ class RatioTaleaRhythmMaker(RhythmMaker):
         '_ratio_talea',
         )
 
-    _class_name_abbreviation = 'RT'
+    _class_name_abbreviation = 'T'
 
-    _human_readable_class_name = 'ratio-talea rhythm-maker'
+    _human_readable_class_name = 'tuplet rhythm-maker'
 
     ### INITIALIZER ###
 
@@ -150,7 +150,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
-        r'''Calls ratio-talea rhythm-maker on `divisions`.
+        r'''Calls tuplet rhythm-maker on `divisions`.
 
         ..  container:: example
 
@@ -173,13 +173,13 @@ class RatioTaleaRhythmMaker(RhythmMaker):
             )
 
     def __format__(self, format_specification=''):
-        r'''Formats ratio-talea rhythm-maker.
+        r'''Formats tuplet rhythm-maker.
 
         ..  container:: example
 
             ::
 
-                rhythmmakertools.RatioTaleaRhythmMaker(
+                rhythmmakertools.TupletRhythmMaker(
                     ratio_talea=(
                         mathtools.Ratio(1, -1),
                         mathtools.Ratio(3, 1),
@@ -191,11 +191,11 @@ class RatioTaleaRhythmMaker(RhythmMaker):
 
         Returns string.
         '''
-        superclass = super(RatioTaleaRhythmMaker, self)
+        superclass = super(TupletRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
     def __makenew__(self, *args, **kwargs):
-        r'''Makes new ratio-talea rhythm-maker with `kwargs`.
+        r'''Makes new tuplet rhythm-maker with `kwargs`.
 
         ..  container:: example
 
@@ -206,7 +206,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
             ::
 
                 >>> print format(new_maker)
-                rhythmmakertools.RatioTaleaRhythmMaker(
+                rhythmmakertools.TupletRhythmMaker(
                     ratio_talea=(
                         mathtools.Ratio(1, -1),
                         mathtools.Ratio(3, 1),
@@ -254,7 +254,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Returns new ratio-talea rhythm-maker.
+        Returns new tuplet rhythm-maker.
         '''
         assert not args
         arguments = {
@@ -323,7 +323,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
 
     @property
     def ratio_talea(self):
-        r'''Gets ratio talea
+        r'''Gets ratio talea of tuplet rhythm-maker.
 
         ..  container:: example
 
@@ -347,7 +347,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                 >>> tie_specifier = rhythmmakertools.TieSpecifier(
                 ...     tie_across_divisions=True,
                 ...     )
-                >>> maker = rhythmmakertools.RatioTaleaRhythmMaker(
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
                 ...     ratio_talea=[(2, 3), (1, -2, 1)],
                 ...     tie_specifier=tie_specifier,
                 ...     )
@@ -399,13 +399,13 @@ class RatioTaleaRhythmMaker(RhythmMaker):
     ### PUBLIC METHODS ###
 
     def reverse(self):
-        r'''Reverses ratio-talea rhythm-maker.
+        r'''Reverses tuplet rhythm-maker.
 
         ..  container:: example
 
             ::
 
-                >>> maker = rhythmmakertools.RatioTaleaRhythmMaker(
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
                 ...     ratio_talea=[(2, 3), (1, -2, 1)],
                 ...     )
                 >>> reversed_maker = maker.reverse()
@@ -413,7 +413,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
             ::
 
                 >>> print format(reversed_maker)
-                rhythmmakertools.RatioTaleaRhythmMaker(
+                rhythmmakertools.TupletRhythmMaker(
                     ratio_talea=(
                         mathtools.Ratio(1, -2, 1),
                         mathtools.Ratio(3, 2),
@@ -469,7 +469,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
         Defined equal to copy of maker with `ratio_talea` and
         `duration_spelling_specifier` reversed.
 
-        Returns new ratio-talea rhythm-maker.
+        Returns new tuplet rhythm-maker.
         '''
         from abjad.tools import rhythmmakertools
         ratio_talea = []
