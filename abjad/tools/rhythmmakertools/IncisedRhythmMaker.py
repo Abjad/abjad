@@ -108,14 +108,14 @@ class IncisedRhythmMaker(RhythmMaker):
         fill_with_notes=True,
         incise_divisions=False,
         incise_output=False,
-        tie_across_divisions=False,
+        tie_specifier=None,
         ):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
-            tie_across_divisions=tie_across_divisions,
+            tie_specifier=tie_specifier,
             )
         incise_specifier = incise_specifier or \
             rhythmmakertools.InciseSpecifier()
