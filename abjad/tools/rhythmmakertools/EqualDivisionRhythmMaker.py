@@ -88,12 +88,12 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         leaf_count=1,
         is_diminution=True,
         beam_specifier=None,
-        tie_across_divisions=False,
+        tie_specifier=None,
         ):
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-            tie_across_divisions=tie_across_divisions,
+            tie_specifier=tie_specifier,
             )
         assert mathtools.is_integer_equivalent_expr(leaf_count)
         leaf_count = int(leaf_count)
@@ -136,7 +136,6 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 rhythmmakertools.EqualDivisionRhythmMaker(
                     leaf_count=4,
                     is_diminution=True,
-                    tie_across_divisions=False,
                     )
 
         Set `format_specification` to `''` or `'storage'`.
@@ -164,7 +163,6 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 rhythmmakertools.EqualDivisionRhythmMaker(
                     leaf_count=4,
                     is_diminution=False,
-                    tie_across_divisions=False,
                     )
 
             ::
@@ -409,16 +407,19 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         return self._leaf_count
 
     @property
-    def tie_across_divisions(self):
-        r'''Is true when rhythm-maker should tie across divisions.
+    def tie_specifier(self):
+        r'''Gets tie specifier of equal-division rhtyhm-maker.
 
         ..  container:: example
 
             ::
 
+                >>> tie_specifier = rhythmmakertools.TieSpecifier(
+                ...     tie_across_divisions=True,
+                ...     )
                 >>> maker = rhythmmakertools.EqualDivisionRhythmMaker(
                 ...     leaf_count=4,
-                ...     tie_across_divisions=True,
+                ...     tie_specifier=tie_specifier,
                 ...     )
 
             ::
@@ -469,7 +470,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
         Returns boolean.
         '''
-        return RhythmMaker.tie_across_divisions.fget(self)
+        return RhythmMaker.tie_specifier.fget(self)
 
     ### PUBLIC METHODS ###
 
@@ -491,7 +492,6 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 rhythmmakertools.EqualDivisionRhythmMaker(
                     leaf_count=5,
                     is_diminution=True,
-                    tie_across_divisions=False,
                     )
 
             ::
