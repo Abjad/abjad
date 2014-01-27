@@ -164,8 +164,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                 FixedDurationTuplet(Duration(3, 8), "c'4. c'8")
                 FixedDurationTuplet(Duration(5, 16), "c'4 r4")
 
-        Returns list of selections. Each selection contains exactly one
-        fixed-duration tuplet.
+        Returns list of fixed-duration tuplets.
         '''
         return RhythmMaker.__call__(
             self,
@@ -467,7 +466,8 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Defined equal to copy of maker with `ratio_talea` reversed.
+        Defined equal to copy of maker with `ratio_talea` and
+        `duration_spelling_specifier` reversed.
 
         Returns new ratio-talea rhythm-maker.
         '''

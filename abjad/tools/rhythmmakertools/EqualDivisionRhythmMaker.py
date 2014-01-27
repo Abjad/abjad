@@ -220,6 +220,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             'beam_specifier': self.beam_specifier,
             'is_diminution': self.is_diminution,
             'leaf_count': self.leaf_count,
+            'tie_specifier': self.tie_specifier,
             }
         arguments.update(kwargs)
         new = type(self)(**arguments)
