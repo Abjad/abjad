@@ -59,11 +59,6 @@ eighths.name = 'eighths'
 __all__.append(eighths.name)
 
 
-equal_divisions = rhythmmakertools.EqualDivisionRhythmMaker
-equal_divisions.name = 'equal_divisions'
-__all__.append(equal_divisions.name)
-
-
 even_runs = rhythmmakertools.EvenRunRhythmMaker
 even_runs.name = 'even_runs'
 __all__.append(even_runs.name)
