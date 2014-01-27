@@ -78,7 +78,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     \times 3/5 {
                         c'16 [
                         c'8
-                        c'8 ]
+                        c'8 ] ~
                     }
                     {
                         c'16 [
@@ -152,8 +152,8 @@ class TaleaRhythmMaker(RhythmMaker):
         helper_functions=None,
         beam_specifier=None,
         duration_spelling_specifier=None,
-        tie_split_notes=False,
-        #tie_split_notes=True,
+        #tie_split_notes=False,
+        tie_split_notes=True,
         burnish_divisions=False,
         burnish_output=False,
         tie_across_divisions=False,
@@ -258,7 +258,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         right_lengths=(1,),
                         ),
                     secondary_divisions=(9,),
-                    tie_split_notes=False,
+                    tie_split_notes=True,
                     burnish_divisions=False,
                     burnish_output=True,
                     tie_across_divisions=False,
@@ -293,7 +293,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         right_lengths=(1,),
                         ),
                     secondary_divisions=(10,),
-                    tie_split_notes=False,
+                    tie_split_notes=True,
                     burnish_divisions=False,
                     burnish_output=True,
                     tie_across_divisions=False,
@@ -806,7 +806,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
                         ),
-                    tie_split_notes=False,
+                    tie_split_notes=True,
                     burnish_divisions=False,
                     burnish_output=True,
                     tie_across_divisions=False,
@@ -834,7 +834,7 @@ class TaleaRhythmMaker(RhythmMaker):
                             r8.
                             c'8 [
                             c'16
-                            c'8 ]
+                            c'8 ] ~
                         }
                     }
                     {

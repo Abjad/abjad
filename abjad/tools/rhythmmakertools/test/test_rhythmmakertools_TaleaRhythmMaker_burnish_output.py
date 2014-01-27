@@ -97,7 +97,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_output_02():
                 \tweak #'text #tuplet-number::calc-fraction-text
                 \times 3/5 {
                     r4
-                    c'16
+                    c'16 ~
                 }
             }
             {
@@ -159,7 +159,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_output_03():
                 \times 3/5 {
                     c'16 [
                     c'8
-                    c'8 ]
+                    c'8 ] ~
                 }
                 {
                     c'16 [

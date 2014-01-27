@@ -126,7 +126,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
                         talea=(1,),
                         talea_denominator=16,
                         burnish_specifier=rhythmmakertools.BurnishSpecifier(),
-                        tie_split_notes=False,
+                        tie_split_notes=True,
                         burnish_divisions=False,
                         burnish_output=False,
                         tie_across_divisions=False,

@@ -154,7 +154,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_burnish_divisions_03():
                     r32
                     r32
                     r16
-                    c'32
+                    c'32 ~
                 }
             }
             {

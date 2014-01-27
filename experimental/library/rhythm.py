@@ -135,6 +135,7 @@ __all__.append(rest_tokens.name)
 sixteenths = rhythmmakertools.TaleaRhythmMaker(
     talea=(1,), 
     talea_denominator=16, 
+    tie_split_notes=False,
     )
 sixteenths.name = 'sixteenths'
 __all__.append(sixteenths.name)
