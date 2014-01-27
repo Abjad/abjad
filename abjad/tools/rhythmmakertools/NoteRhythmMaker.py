@@ -64,13 +64,13 @@ class NoteRhythmMaker(RhythmMaker):
         self,
         beam_specifier=None,
         duration_spelling_specifier=None,
-        tie_across_divisions=False,
+        tie_specifier=None,
         ):
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
-            tie_across_divisions=tie_across_divisions,
+            tie_specifier=tie_specifier,
             )
 
     ### SPECIAL METHODS ###
@@ -107,11 +107,12 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker_1 = rhythmmakertools.NoteRhythmMaker(
-                ...     tie_across_divisions=False,
+                >>> maker_1 = rhythmmakertools.NoteRhythmMaker()
+                >>> tie_specifier = rhythmmakertools.TieSpecifier(
+                ...     tie_across_divisions=True,
                 ...     )
                 >>> maker_2 = rhythmmakertools.NoteRhythmMaker(
-                ...     tie_across_divisions=True,
+                ...     tie_specifier=tie_specifier,
                 ...     )
 
             ::
@@ -138,10 +139,9 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
                 >>> print format(maker)
-                rhythmmakertools.NoteRhythmMaker(
-                    tie_across_divisions=False,
-                    )
+                rhythmmakertools.NoteRhythmMaker()
 
         Returns string.
         '''
@@ -170,13 +170,19 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> maker = rhythmmakertools.NoteRhythmMaker()
-                >>> new_maker = new(maker, tie_across_divisions=True)
+                >>> tie_specifier = rhythmmakertools.TieSpecifier(
+                ...     tie_across_divisions=True,
+                ...     )
+                >>> new_maker = new(maker, tie_specifier=tie_specifier)
 
             ::
 
                 >>> print format(new_maker)
                 rhythmmakertools.NoteRhythmMaker(
-                    tie_across_divisions=True,
+                    tie_specifier=rhythmmakertools.TieSpecifier(
+                        tie_across_divisions=True,
+                        tie_split_notes=True,
+                        ),
                     )
 
             ::
@@ -211,6 +217,7 @@ class NoteRhythmMaker(RhythmMaker):
         arguments = {
             'beam_specifier': self.beam_specifier,
             'duration_spelling_specifier': self.duration_spelling_specifier,
+            'tie_specifier': self.tie_specifier,
             }
         arguments.update(kwargs)
         maker = type(self)(**arguments)
@@ -224,7 +231,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythmmakertools.NoteRhythmMaker()
-                NoteRhythmMaker(tie_across_divisions=False)
+                NoteRhythmMaker()
 
         Returns string.
         '''
@@ -242,8 +249,10 @@ class NoteRhythmMaker(RhythmMaker):
             selection = scoretools.make_leaves(
                 pitches=0,
                 durations=[duration_pair],
-                decrease_durations_monotonically=specifier.decrease_durations_monotonically,
-                forbidden_written_duration=specifier.forbidden_written_duration,
+                decrease_durations_monotonically=\
+                    specifier.decrease_durations_monotonically,
+                forbidden_written_duration=\
+                    specifier.forbidden_written_duration,
                 )
             selections.append(selection)
         beam_specifier = self.beam_specifier
@@ -319,6 +328,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
                 >>> reversed_maker = maker.reverse()
 
             ::
@@ -327,9 +337,7 @@ class NoteRhythmMaker(RhythmMaker):
                 rhythmmakertools.NoteRhythmMaker(
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
-                        forbidden_written_duration=durationtools.Duration(1, 2),
                         ),
-                    tie_across_divisions=False,
                     )
 
             ::
@@ -349,8 +357,7 @@ class NoteRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        c'4 ~
-                        c'4 ~
+                        c'2 ~
                         c'8
                     }
                     {
@@ -358,6 +365,9 @@ class NoteRhythmMaker(RhythmMaker):
                         c'4.
                     }
                 }
+
+        Defined equal to copy of note rhythm-maker with
+        `duration_spelling_specifier` reversed.
 
         Returns new note rhythm-maker.
         '''
@@ -369,7 +379,6 @@ class NoteRhythmMaker(RhythmMaker):
         duration_spelling_specifier = duration_spelling_specifier.reverse()
         arguments = {
             'duration_spelling_specifier': duration_spelling_specifier,
-            'tie_across_divisions': self.tie_across_divisions,
             }
         result = new(self, **arguments)
         return result
