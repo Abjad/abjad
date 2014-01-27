@@ -153,6 +153,7 @@ class TaleaRhythmMaker(RhythmMaker):
         beam_specifier=None,
         duration_spelling_specifier=None,
         tie_split_notes=False,
+        #tie_split_notes=True,
         burnish_divisions=False,
         burnish_output=False,
         tie_across_divisions=False,
@@ -361,10 +362,18 @@ class TaleaRhythmMaker(RhythmMaker):
     def _add_ties(self, result):
         leaves = list(iterate(result).by_class(scoretools.Leaf))
         written_durations = [leaf.written_duration for leaf in leaves]
-        weights = [durationtools.Duration(numerator, self.talea_denominator)
-            for numerator in self.talea]
+        weights = []
+        for numerator in self.talea:
+            duration = durationtools.Duration(
+                numerator, self.talea_denominator)
+            weight = abs(duration)
+            weights.append(weight)
         parts = sequencetools.partition_sequence_by_weights_exactly(
-            written_durations, weights=weights, cyclic=True, overhang=True)
+            written_durations, 
+            weights=weights, 
+            cyclic=True, 
+            overhang=True,
+            )
         counts = [len(part) for part in parts]
         parts = sequencetools.partition_sequence_by_counts(leaves, counts)
         prototype = (spannertools.Tie,)
