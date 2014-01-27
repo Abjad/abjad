@@ -135,13 +135,13 @@ class RatioTaleaRhythmMaker(RhythmMaker):
         is_diminution=True,
         beam_specifier=None,
         duration_spelling_specifier=None,
-        tie_across_divisions=False,
+        tie_specifier=None,
         ):
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
-            tie_across_divisions=tie_across_divisions,
+            tie_specifier=tie_specifier,
             )
         ratio_talea = tuple(mathtools.Ratio(x) for x in ratio_talea)
         self._ratio_talea = ratio_talea
@@ -186,7 +186,6 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         mathtools.Ratio(3, 1),
                         ),
                     is_diminution=True,
-                    tie_across_divisions=False,
                     )
 
         Set `format_specification` to `''` or `'storage'`.
@@ -214,7 +213,6 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         mathtools.Ratio(3, 1),
                         ),
                     is_diminution=False,
-                    tie_across_divisions=False,
                     )
 
             ::
@@ -265,7 +263,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
             'duration_spelling_specifier': self.duration_spelling_specifier,
             'is_diminution': self.is_diminution,
             'ratio_talea': self.ratio_talea,
-            'tie_across_divisions': self.tie_across_divisions,
+            'tie_specifier': self.tie_specifier,
             }
         arguments.update(kwargs)
         new_rhythm_maker = type(self)(**arguments)
@@ -340,23 +338,20 @@ class RatioTaleaRhythmMaker(RhythmMaker):
         return self._ratio_talea
 
     @property
-    def tie_across_divisions(self):
-        r'''Is true when the last and first leaves of adjacent output tuplets
-        should be tied together. Otherwise false.
+    def tie_specifier(self):
+        r'''Gets tie specifier of ratio talea rhythm-maker.
 
         ..  container:: example
 
             ::
 
-                >>> maker = rhythmmakertools.RatioTaleaRhythmMaker(
-                ...     ratio_talea=[(2, 3), (1, -2, 1)],
+                >>> tie_specifier = rhythmmakertools.TieSpecifier(
                 ...     tie_across_divisions=True,
                 ...     )
-
-            ::
-
-                >>> maker.tie_across_divisions
-                True
+                >>> maker = rhythmmakertools.RatioTaleaRhythmMaker(
+                ...     ratio_talea=[(2, 3), (1, -2, 1)],
+                ...     tie_specifier=tie_specifier,
+                ...     )
 
             ::
 
@@ -398,9 +393,9 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Returns boolean.
+        Returns tie specifier.
         '''
-        return self._tie_across_divisions
+        return RhythmMaker.tie_specifier.fget(self)
 
     ### PUBLIC METHODS ###
 
@@ -411,6 +406,9 @@ class RatioTaleaRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> maker = rhythmmakertools.RatioTaleaRhythmMaker(
+                ...     ratio_talea=[(2, 3), (1, -2, 1)],
+                ...     )
                 >>> reversed_maker = maker.reverse()
 
             ::
@@ -425,7 +423,6 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
                         ),
-                    tie_across_divisions=True,
                     )
 
             ::
@@ -448,7 +445,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         {
                             c'8
                             r4
-                            c'8 ~
+                            c'8
                         }
                     }
                     {
@@ -456,7 +453,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'4.
-                            c'4 ~
+                            c'4
                         }
                     }
                     {
@@ -470,8 +467,7 @@ class RatioTaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Defined equal to copy of maker with `ratio_talea` reversed, and each
-        ratio in `ratio_talea` reversed.
+        Defined equal to copy of maker with `ratio_talea` reversed.
 
         Returns new ratio-talea rhythm-maker.
         '''
