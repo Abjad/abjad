@@ -25,6 +25,7 @@ from abjad.tools.topleveltools import set_
 
 class RhythmMaker(AbjadObject):
     '''Rhythm-maker abstract base class.
+
     '''
 
     ### CLASS VARIABLES ###
