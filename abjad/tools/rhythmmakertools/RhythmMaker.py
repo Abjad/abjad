@@ -33,7 +33,6 @@ class RhythmMaker(AbjadObject):
         '_beam_specifier',
         '_duration_spelling_specifier',
         '_name',
-        '_tie_across_divisions',
         '_tie_specifier',
         )
 
@@ -48,7 +47,6 @@ class RhythmMaker(AbjadObject):
         beam_specifier=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
-        tie_across_divisions=False,
         ):
         from abjad.tools import rhythmmakertools
         prototype = (rhythmmakertools.BeamSpecifier, type(None))
@@ -60,7 +58,6 @@ class RhythmMaker(AbjadObject):
         self._beam_specifier = beam_specifier
         self._duration_spelling_specifier = duration_spelling_specifier
         self._tie_specifier = tie_specifier
-        self._tie_across_divisions = bool(tie_across_divisions)
         self._name = None
 
     ### SPECIAL METHODS ###
@@ -86,8 +83,7 @@ class RhythmMaker(AbjadObject):
         tie_specifier = self.tie_specifier
         if tie_specifier is None:
             tie_specifier = rhythmmakertools.TieSpecifier()
-        if tie_specifier.tie_across_divisions or \
-            self.tie_across_divisions:
+        if tie_specifier.tie_across_divisions:
             self._make_ties_across_divisions(music)
         assert isinstance(music, list), repr(music)
         assert len(music), repr(music)
@@ -522,15 +518,6 @@ class RhythmMaker(AbjadObject):
     def name(self, arg):
         assert isinstance(arg, (str, type(None)))
         self._name = arg
-
-    @property
-    def tie_across_divisions(self):
-        r'''Is true when the last and first leaves of adjacent output tuplets
-        should be tied together. Otherwise false.
-
-        Returns boolean.
-        '''
-        return self._tie_across_divisions
 
     @property
     def tie_specifier(self):
