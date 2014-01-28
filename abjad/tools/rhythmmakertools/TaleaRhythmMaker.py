@@ -34,6 +34,7 @@ class TaleaRhythmMaker(RhythmMaker):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
+            ...     burnish_output=True,
             ...     lefts=(-1,),
             ...     middles=(0,),
             ...     rights=(-1,),
@@ -46,7 +47,6 @@ class TaleaRhythmMaker(RhythmMaker):
             ...     burnish_specifier=burnish_specifier,
             ...     prolation_addenda=(0, 2),
             ...     secondary_divisions=(9,),
-            ...     burnish_output=True,
             ...     )
 
         ::
@@ -125,8 +125,6 @@ class TaleaRhythmMaker(RhythmMaker):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_burnish_divisions',
-        '_burnish_output',
         '_burnish_specifier',
         '_helper_functions',
         '_prolation_addenda',
@@ -149,8 +147,6 @@ class TaleaRhythmMaker(RhythmMaker):
         secondary_divisions=None,
         beam_specifier=None,
         burnish_specifier=None,
-        burnish_divisions=False,
-        burnish_output=False,
         duration_spelling_specifier=None,
         tie_specifier=None,
         helper_functions=None,
@@ -177,8 +173,6 @@ class TaleaRhythmMaker(RhythmMaker):
         right_lengths_helper = helper_functions.get('right_lengths')
         secondary_divisions_helper = \
             helper_functions.get('secondary_divisions')
-        self._burnish_divisions = bool(burnish_divisions)
-        self._burnish_output = bool(burnish_output)
         prolation_addenda = self._to_tuple(prolation_addenda)
         burnish_specifier = burnish_specifier or \
             rhythmmakertools.BurnishSpecifier()
@@ -249,15 +243,13 @@ class TaleaRhythmMaker(RhythmMaker):
                     secondary_divisions=(9,),
                     burnish_specifier=rhythmmakertools.BurnishSpecifier(
                         burnish_divisions=False,
-                        burnish_output=False,
+                        burnish_output=True,
                         lefts=(-1,),
                         middles=(0,),
                         rights=(-1,),
                         left_lengths=(1,),
                         right_lengths=(1,),
                         ),
-                    burnish_divisions=False,
-                    burnish_output=True,
                     )
 
         Returns string.
@@ -284,15 +276,13 @@ class TaleaRhythmMaker(RhythmMaker):
                     secondary_divisions=(10,),
                     burnish_specifier=rhythmmakertools.BurnishSpecifier(
                         burnish_divisions=False,
-                        burnish_output=False,
+                        burnish_output=True,
                         lefts=(-1,),
                         middles=(0,),
                         rights=(-1,),
                         left_lengths=(1,),
                         right_lengths=(1,),
                         ),
-                    burnish_divisions=False,
-                    burnish_output=True,
                     )
 
             ::
@@ -335,6 +325,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         Returns new talea rhythm-maker.
         '''
+        # TODO: remove custom implementation and use RhythmMaker instead.
         assert not args
         arguments = {
             'talea': self.talea,
@@ -345,8 +336,6 @@ class TaleaRhythmMaker(RhythmMaker):
             'helper_functions': self.helper_functions,
             'beam_specifier': self.beam_specifier,
             'duration_spelling_specifier': self.duration_spelling_specifier,
-            'burnish_divisions': self.burnish_divisions,
-            'burnish_output': self.burnish_output,
             'tie_specifier': self.tie_specifier,
             }
         arguments.update(kwargs)
@@ -439,10 +428,13 @@ class TaleaRhythmMaker(RhythmMaker):
         return burnished_divisions
 
     def _burnish_division_parts(self, divisions, quintuplet):
-        if self.burnish_divisions or \
-            getattr(self, '_burnish_divisions', False):
+        from abjad.tools import rhythmmakertools
+        burnish_specifier = self.burnish_specifier
+        if burnish_specifier is None:
+            burnish_specifier = rhythmmakertools.BurnishSpecifier()
+        if burnish_specifier.burnish_divisions:
             return self._burnish_all_division_parts(divisions, quintuplet)
-        elif self.burnish_output or getattr(self, '_burnish_output', False):
+        elif burnish_specifier.burnish_output:
             return self._burnish_first_and_last_division_parts(
                 divisions, quintuplet)
         else:
@@ -705,22 +697,6 @@ class TaleaRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def burnish_divisions(self):
-        r'''Gets burnish divisions boolean.
-
-        Returns boolean.
-        '''
-        return self._burnish_divisions
-
-    @property
-    def burnish_output(self):
-        r'''Gets burnish output boolean.
-
-        Returns boolean.
-        '''
-        return self._burnish_output
-
-    @property
     def burnish_specifier(self):
         r'''Gets burnish specifier of talea rhythm-maker.
 
@@ -777,10 +753,65 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> reversed_maker = maker.reverse()
+                >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
+                ...     burnish_output=True,
+                ...     lefts=(-1,),
+                ...     middles=(0,),
+                ...     rights=(-1,),
+                ...     left_lengths=(1,),
+                ...     right_lengths=(1,),
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=(1, 2, 3),
+                ...     talea_denominator=16,
+                ...     burnish_specifier=burnish_specifier,
+                ...     prolation_addenda=(0, 2),
+                ...     secondary_divisions=(9,),
+                ...     )
 
             ::
 
+                >>> divisions = [(3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            r16
+                            c'8 [
+                            c'8. ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'8
+                            c'8 ] ~
+                        }
+                        {
+                            c'16 [
+                            c'16
+                            c'8 ]
+                            r16
+                        }
+                    }
+                }
+
+            ::
+
+                >>> reversed_maker = maker.reverse()
                 >>> print format(reversed_maker)
                 rhythmmakertools.TaleaRhythmMaker(
                     talea=(3, 2, 1),
@@ -789,15 +820,13 @@ class TaleaRhythmMaker(RhythmMaker):
                     secondary_divisions=(9,),
                     burnish_specifier=rhythmmakertools.BurnishSpecifier(
                         burnish_divisions=False,
-                        burnish_output=False,
+                        burnish_output=True,
                         lefts=(-1,),
                         middles=(0,),
                         rights=(-1,),
                         left_lengths=(1,),
                         right_lengths=(1,),
                         ),
-                    burnish_divisions=False,
-                    burnish_output=True,
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
                         ),
@@ -844,6 +873,10 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
+        Defined equal to copy of this talea rhythm-maker with `talea`,
+        `prolation_addenda`, `secondary_divisions`, `burnish_specifier` and
+        `duration_spelling_specifier` reversed.
+
         Returns new talea rhythm-maker.
         '''
         from abjad.tools import rhythmmakertools
@@ -863,8 +896,8 @@ class TaleaRhythmMaker(RhythmMaker):
             self,
             talea=talea,
             prolation_addenda=prolation_addenda,
-            burnish_specifier=burnish_specifier,
             secondary_divisions=secondary_divisions,
+            burnish_specifier=burnish_specifier,
             duration_spelling_specifier=specifier,
             )
         return maker

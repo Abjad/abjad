@@ -143,8 +143,6 @@ class SegmentSpecification(Specification):
                                     burnish_divisions=False,
                                     burnish_output=False,
                                 ),
-                                burnish_divisions=False,
-                                burnish_output=False,
                                 tie_specifier=rhythmmakertools.TieSpecifier(
                                     tie_across_divisions=False,
                                     tie_split_notes=False,

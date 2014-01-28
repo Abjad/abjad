@@ -33,10 +33,8 @@ class RhythmMakerExpression(PayloadExpression):
                         burnish_divisions=False,
                         burnish_output=False,
                     ),
-                    burnish_divisions=False,
-                    burnish_output=False,
-                    ),
-                )
+                ),
+            )
 
         ::
 
@@ -53,8 +51,6 @@ class RhythmMakerExpression(PayloadExpression):
                         burnish_divisions=False,
                         burnish_output=False,
                     ),
-                    burnish_divisions=False,
-                    burnish_output=False,
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
                         ),

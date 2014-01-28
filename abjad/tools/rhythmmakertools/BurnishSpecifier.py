@@ -488,6 +488,8 @@ class BurnishSpecifier(AbjadObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
+                ...     burnish_divisions=True,
+                ...     burnish_output=False,
                 ...     lefts=(-1, 0),
                 ...     middles=(0,),
                 ...     rights=(-1, -1, 0),
@@ -499,7 +501,7 @@ class BurnishSpecifier(AbjadObject):
 
                 >>> print format(burnish_specifier.reverse())
                 rhythmmakertools.BurnishSpecifier(
-                    burnish_divisions=False,
+                    burnish_divisions=True,
                     burnish_output=False,
                     lefts=(0, -1),
                     middles=(0,),
@@ -510,12 +512,15 @@ class BurnishSpecifier(AbjadObject):
 
         Returns new burnish specification.
         '''
+        # TODO: reimplement in terms of new()
         lefts = self._reverse_tuple(self.lefts)
         middles = self._reverse_tuple(self.middles)
         rights = self._reverse_tuple(self.rights)
         left_lengths = self._reverse_tuple(self.left_lengths)
         right_lengths = self._reverse_tuple(self.right_lengths)
         new = type(self)(
+            burnish_divisions=self.burnish_divisions,
+            burnish_output=self.burnish_output,
             lefts=lefts,
             middles=middles,
             rights=rights,
