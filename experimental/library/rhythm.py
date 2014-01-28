@@ -167,7 +167,14 @@ thirty_seconds.name = 'thirty_seconds'
 __all__.append(thirty_seconds.name)
 
 
-tuplet_monads = rhythmmakertools.TupletMonadRhythmMaker()
+#tuplet_monads = rhythmmakertools.TupletMonadRhythmMaker()
+tuplet_spelling_specifier = rhythmmakertools.TupletSpellingSpecifier(
+    avoid_dots=False, 
+    )
+tuplet_monads = rhythmmakertools.TupletRhythmMaker(
+    tuplet_ratios=[(1,)],
+    tuplet_spelling_specifier=tuplet_spelling_specifier,
+    )
 tuplet_monads.name = 'tuplet_monads'
 __all__.append(tuplet_monads.name)
 

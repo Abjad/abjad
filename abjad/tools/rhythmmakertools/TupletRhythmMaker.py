@@ -106,9 +106,9 @@ class TupletRhythmMaker(RhythmMaker):
                 {
                     \time 5/16
                     \tweak #'text #tuplet-number::calc-fraction-text
-                    \times 5/8 {
-                        c'4
-                        r4
+                    \times 5/6 {
+                        c'8.
+                        r8.
                     }
                 }
             }
@@ -119,8 +119,8 @@ class TupletRhythmMaker(RhythmMaker):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_is_diminution',
         '_tuplet_ratios',
+        '_tuplet_spelling_specifier',
         )
 
     _class_name_abbreviation = 'T'
@@ -132,10 +132,10 @@ class TupletRhythmMaker(RhythmMaker):
     def __init__(
         self,
         tuplet_ratios=((1, 1), (1, 2), (1, 3)),
-        is_diminution=True,
         beam_specifier=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
+        tuplet_spelling_specifier=None,
         ):
         RhythmMaker.__init__(
             self,
@@ -143,9 +143,12 @@ class TupletRhythmMaker(RhythmMaker):
             duration_spelling_specifier=duration_spelling_specifier,
             tie_specifier=tie_specifier,
             )
+        from abjad.tools import rhythmmakertools
+        prototype = (rhythmmakertools.TupletSpellingSpecifier, type(None))
+        assert isinstance(tuplet_spelling_specifier, prototype)
         tuplet_ratios = tuple(mathtools.Ratio(x) for x in tuplet_ratios)
         self._tuplet_ratios = tuplet_ratios
-        self._is_diminution = is_diminution
+        self._tuplet_spelling_specifier = tuplet_spelling_specifier
 
     ### SPECIAL METHODS ###
 
@@ -162,7 +165,7 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     division
                 FixedDurationTuplet(Duration(1, 2), "c'4 r4")
                 FixedDurationTuplet(Duration(3, 8), "c'4. c'8")
-                FixedDurationTuplet(Duration(5, 16), "c'4 r4")
+                FixedDurationTuplet(Duration(5, 16), "c'8. r8.")
 
         Returns list of fixed-duration tuplets.
         '''
@@ -184,7 +187,6 @@ class TupletRhythmMaker(RhythmMaker):
                         mathtools.Ratio(1, -1),
                         mathtools.Ratio(3, 1),
                         ),
-                    is_diminution=True,
                     )
 
         Set `format_specification` to `''` or `'storage'`.
@@ -201,17 +203,17 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> new_maker = new(maker, is_diminution=False)
+                >>> tuplet_ratios = [(1, 1, -1), (1, 1, -2)]
+                >>> new_maker = new(maker, tuplet_ratios=tuplet_ratios)
 
             ::
 
                 >>> print format(new_maker)
                 rhythmmakertools.TupletRhythmMaker(
                     tuplet_ratios=(
-                        mathtools.Ratio(1, -1),
-                        mathtools.Ratio(3, 1),
+                        mathtools.Ratio(1, 1, -1),
+                        mathtools.Ratio(1, 1, -2),
                         ),
-                    is_diminution=False,
                     )
 
             ::
@@ -231,42 +233,42 @@ class TupletRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 1/2
-                        {
+                        \times 2/3 {
+                            c'4
                             c'4
                             r4
                         }
                     }
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 3/2 {
-                            c'8. [
-                            c'16 ]
+                        {
+                            c'16. [
+                            c'16. ]
+                            r8.
                         }
                     }
                     {
                         \time 5/16
                         \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 5/4 {
-                            c'8
-                            r8
+                        \times 5/9 {
+                            c'8. [
+                            c'8. ]
+                            r8.
                         }
                     }
                 }
 
         Returns new tuplet rhythm-maker.
         '''
+        from abjad.tools import systemtools
         assert not args
-        arguments = {
-            'beam_specifier': self.beam_specifier,
-            'duration_spelling_specifier': self.duration_spelling_specifier,
-            'is_diminution': self.is_diminution,
-            'tuplet_ratios': self.tuplet_ratios,
-            'tie_specifier': self.tie_specifier,
-            }
+        arguments = {}
+        manager = systemtools.StorageFormatManager
+        argument_names = manager.get_keyword_argument_names(self)
+        for argument_name in argument_names:
+            arguments[argument_name] = getattr(self, argument_name)
         arguments.update(kwargs)
-        new_rhythm_maker = type(self)(**arguments)
-        return new_rhythm_maker
+        return type(self)(**arguments)
 
     ### PRIVATE METHODS ###
 
@@ -281,10 +283,19 @@ class TupletRhythmMaker(RhythmMaker):
         beam_specifier = self.beam_specifier
         if beam_specifier is None:
             beam_specifier = rhythmmakertools.BeamSpecifier()
+        tuplet_spelling_specifier = self.tuplet_spelling_specifier
+        if tuplet_spelling_specifier is None:
+            tuplet_spelling_specifier = \
+                rhythmmakertools.TupletSpellingSpecifier()
         for duration_index, duration_pair in enumerate(duration_pairs):
             ratio = tuplet_ratios[duration_index]
             duration = durationtools.Duration(duration_pair)
-            tuplet = self._make_tuplet(duration, ratio)
+            tuplet = self._make_tuplet(
+                duration, 
+                ratio,
+                avoid_dots=tuplet_spelling_specifier.avoid_dots,
+                is_diminution=tuplet_spelling_specifier.is_diminution,
+                )
             if beam_specifier.beam_each_division:
                 beam = spannertools.MultipartBeam()
                 attach(beam, tuplet)
@@ -294,32 +305,22 @@ class TupletRhythmMaker(RhythmMaker):
             attach(beam, tuplets)
         return tuplets
 
-    def _make_tuplet(self, duration, ratio):
+    def _make_tuplet(
+        self, 
+        duration, 
+        ratio, 
+        avoid_dots=False,
+        is_diminution=True,
+        ):
         tuplet = scoretools.Tuplet.from_duration_and_ratio(
             duration,
             ratio,
-            avoid_dots=True,
-            is_diminution=self.is_diminution,
+            avoid_dots=avoid_dots,
+            is_diminution=is_diminution,
             )
         return tuplet
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def is_diminution(self):
-        r'''Is true when output tuplets should be diminuted.
-        False when output tuplets should be augmented.
-
-        ..  container:: example
-
-            ::
-
-                >>> maker.is_diminution
-                True
-
-        Returns boolean.
-        '''
-        return self._is_diminution
 
     @property
     def tie_specifier(self):
@@ -361,11 +362,10 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 3/4 {
-                            c'8
-                            r4
-                            c'8 ~
+                        {
+                            c'16.
+                            r8.
+                            c'16. ~
                         }
                     }
                     {
@@ -400,6 +400,14 @@ class TupletRhythmMaker(RhythmMaker):
         '''
         return self._tuplet_ratios
 
+    @property
+    def tuplet_spelling_specifier(self):
+        r'''Gets tuplet spelling specifier of tuplet rhythm-maker.
+
+        Returns tuplet spelling specifier.
+        '''
+        return self._tuplet_spelling_specifier
+
     ### PUBLIC METHODS ###
 
     def reverse(self):
@@ -422,7 +430,6 @@ class TupletRhythmMaker(RhythmMaker):
                         mathtools.Ratio(1, -2, 1),
                         mathtools.Ratio(3, 2),
                         ),
-                    is_diminution=True,
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
                         ),
@@ -462,10 +469,10 @@ class TupletRhythmMaker(RhythmMaker):
                     {
                         \time 5/16
                         \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 5/8 {
-                            c'8
-                            r4
-                            c'8
+                        \times 5/6 {
+                            c'16.
+                            r8.
+                            c'16.
                         }
                     }
                 }
