@@ -2,9 +2,14 @@
 from abjad import *
 
 
-def test_rhythmmakertools_TupletMonadRhythmMaker___call___01():
+def test_rhythmmakertools_TupletRhythmMaker___call___01():
+    r'''TupletRhythmMaker can make tuplet monads.
+    '''
 
-    maker = rhythmmakertools.TupletMonadRhythmMaker()
+
+    tuplet_ratios = [(1,)]
+    maker = rhythmmakertools.TupletRhythmMaker(tuplet_ratios=tuplet_ratios)
+
 
     divisions = [(1, 5), (1, 4), (1, 6), (7, 9)]
     tuplet_lists = maker(divisions)
