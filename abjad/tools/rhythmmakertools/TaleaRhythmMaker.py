@@ -891,7 +891,187 @@ class TaleaRhythmMaker(RhythmMaker):
     def prolation_addenda(self):
         r'''Gets prolation addenda of talea rhythm-maker.
 
-        Returns tuple or none.
+        ..  container:: example
+
+            Here's a talea:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=(1, 2, 3, 4),
+                ...     talea_denominator=16,
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+                
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'8
+                        c'8. ]
+                    }
+                    {
+                        \time 4/8
+                        c'4
+                        c'16 [
+                        c'8
+                        c'16 ] ~
+                    }
+                    {
+                        \time 3/8
+                        c'8
+                        c'4
+                    }
+                    {
+                        \time 4/8
+                        c'16 [
+                        c'8
+                        c'8.
+                        c'8 ]
+                    }
+                }
+
+            Here's the same rhythm with an extra count added to every other
+            division:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=(1, 2, 3, 4),
+                ...     talea_denominator=16,
+                ...     prolation_addenda=(0, 1,),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+                
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            c'16 [
+                            c'8
+                            c'8. ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 8/9 {
+                            c'4
+                            c'16 [
+                            c'8
+                            c'8 ] ~
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'16
+                            c'4
+                            c'16
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 8/9 {
+                            c'8 [
+                            c'8. ]
+                            c'4
+                        }
+                    }
+                }
+
+            And here's the same rhythm with two extra counts added to every
+            other division:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=(1, 2, 3, 4),
+                ...     talea_denominator=16,
+                ...     prolation_addenda=(0, 2,),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+                
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            c'16 [
+                            c'8
+                            c'8. ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 4/5 {
+                            c'4
+                            c'16 [
+                            c'8
+                            c'8. ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'4
+                            c'16 [
+                            c'16 ] ~
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 4/5 {
+                            c'16 [
+                            c'8. ]
+                            c'4
+                            c'16 [
+                            c'16 ]
+                        }
+                    }
+                }
+
+            Note that the duration of each added count is equal to the duration
+            of each count in the rhythm-maker's input talea.
+
+        Returns integer tuple or none.
         '''
         return self._prolation_addenda
 
