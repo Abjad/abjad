@@ -9,7 +9,7 @@ def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
     maker = rhythmmakertools.TaleaRhythmMaker(
         talea=(1, 1, 1, -1, 2, 2), 
         talea_denominator=32, 
-        prolation_addenda=(3, 4), 
+        extra_counts_per_division=(3, 4), 
         )
 
     divisions = [(2, 16), (5, 16)]

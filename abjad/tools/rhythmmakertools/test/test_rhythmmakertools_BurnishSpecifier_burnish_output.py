@@ -17,7 +17,7 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_output_01():
         talea=(1,), 
         talea_denominator=16, 
         burnish_specifier=burnish_specifier,
-        prolation_addenda=(2,),
+        extra_counts_per_division=(2,),
         )
 
     divisions = [(3, 16), (3, 8)]
@@ -77,7 +77,7 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_output_02():
         talea=(1,), 
         talea_denominator=4, 
         burnish_specifier=burnish_specifier,
-        prolation_addenda=(2,),
+        extra_counts_per_division=(2,),
         )
 
     divisions = [(3, 16), (3, 8)]
@@ -129,7 +129,7 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_output_03():
         talea=(1, 2, 3), 
         talea_denominator=16, 
         burnish_specifier=burnish_specifier,
-        prolation_addenda=(0, 2),
+        extra_counts_per_division=(0, 2),
         split_divisions_every=(9,),
         )
 
@@ -188,7 +188,7 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_output_04():
         talea=(1,), 
         talea_denominator=8, 
         burnish_specifier=burnish_specifier,
-        prolation_addenda=(),
+        extra_counts_per_division=(),
         )
 
     divisions = [(8, 8)]

@@ -24,7 +24,7 @@ def test_RhythmMakerMaterialPackageMaker_01():
         maker = rhythmmakertools.TaleaRhythmMaker(
             talea=(-1, 2, -3, 4),
             talea_denominator=16,
-            prolation_addenda=(2, 3),
+            extra_counts_per_division=(2, 3),
             split_divisions_every=(6,),
             )
         assert mpp.output_material == maker

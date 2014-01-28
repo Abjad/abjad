@@ -16,6 +16,6 @@ class TaleaRhythmMakerEditor(RhythmMakerEditor):
         ('talea', None, 'ta', getters.get_nonzero_integers, True),
         ('talea_denominator', None, 'de', 
             getters.get_positive_integer_power_of_two, True),
-        ('prolation_addenda', None, 'ad', getters.get_integers, False),
+        ('extra_counts_per_division', None, 'ad', getters.get_integers, False),
         ('split_divisions_every', None, 'sd', getters.get_integers, False),
         )

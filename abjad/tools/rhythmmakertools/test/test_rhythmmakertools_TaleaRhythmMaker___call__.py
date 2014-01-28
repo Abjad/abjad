@@ -7,7 +7,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___01():
     maker = rhythmmakertools.TaleaRhythmMaker(
         talea=(-1, 4, -2, 3), 
         talea_denominator=16, 
-        prolation_addenda=(3, 4),
+        extra_counts_per_division=(3, 4),
         )
 
     divisions = [(2, 8), (5, 8)]
@@ -52,7 +52,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___02():
     maker = rhythmmakertools.TaleaRhythmMaker(
         talea=(-1, 4, -2, 3), 
         talea_denominator=16, 
-        prolation_addenda=(3, 4), 
+        extra_counts_per_division=(3, 4), 
         split_divisions_every=(6,),
         )
 

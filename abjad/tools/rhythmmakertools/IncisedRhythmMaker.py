@@ -100,7 +100,7 @@ class IncisedRhythmMaker(RhythmMaker):
         self,
         incise_specifier=None,
         body_ratio=None,
-        prolation_addenda=None,
+        extra_counts_per_division=None,
         split_divisions_every=None,
         helper_functions=None,
         beam_specifier=None,
@@ -120,8 +120,8 @@ class IncisedRhythmMaker(RhythmMaker):
         incise_specifier = incise_specifier or \
             rhythmmakertools.InciseSpecifier()
         self._incise_specifier = incise_specifier
-        prolation_addenda = \
-            self._to_tuple(prolation_addenda)
+        extra_counts_per_division = \
+            self._to_tuple(extra_counts_per_division)
         split_divisions_every = \
             self._to_tuple(split_divisions_every)
 
@@ -131,13 +131,13 @@ class IncisedRhythmMaker(RhythmMaker):
                 function = helper_functions.get(name)
                 assert callable(function)
         self._helper_functions = helper_functions
-        assert prolation_addenda is None or \
+        assert extra_counts_per_division is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-            prolation_addenda), prolation_addenda
+            extra_counts_per_division), extra_counts_per_division
         assert split_divisions_every is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             split_divisions_every), split_divisions_every
-        self._prolation_addenda = prolation_addenda
+        self._prolation_addenda = extra_counts_per_division
         if body_ratio is not None:
             body_ratio = mathtools.Ratio(body_ratio)
         self._body_ratio = body_ratio
@@ -178,7 +178,7 @@ class IncisedRhythmMaker(RhythmMaker):
         prefix_lengths=None,
         suffix_talea=None, 
         suffix_lengths=None, 
-        prolation_addenda=None,
+        extra_counts_per_division=None,
         ):
         numeric_map, prefix_talea_index, suffix_talea_index = [], 0, 0
         for pair_index, duration_pair in enumerate(duration_pairs):
@@ -190,7 +190,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 suffix_talea_index:suffix_talea_index+suffix_length]
             prefix_talea_index += prefix_length
             suffix_talea_index += suffix_length
-            prolation_addendum = prolation_addenda[pair_index]
+            prolation_addendum = extra_counts_per_division[pair_index]
             if isinstance(duration_pair, tuple):
                 numerator = duration_pair[0] + (
                     prolation_addendum % duration_pair[0])
@@ -244,12 +244,12 @@ class IncisedRhythmMaker(RhythmMaker):
         prefix_lengths = input_[1]
         suffix_talea = input_[2]
         suffix_lengths = input_[3]
-        prolation_addenda = input_[4]
+        extra_counts_per_division = input_[4]
         split_divisions_every = input_[5]
         taleas = (
             prefix_talea, 
             suffix_talea, 
-            prolation_addenda, 
+            extra_counts_per_division, 
             split_divisions_every,
             )
         input_ = self._scale_taleas(
@@ -261,7 +261,7 @@ class IncisedRhythmMaker(RhythmMaker):
         lcd = input_[1]
         prefix_talea = input_[2]
         suffix_talea = input_[3]
-        prolation_addenda = input_[4]
+        extra_counts_per_division = input_[4]
         split_divisions_every = input_[5]
         secondary_duration_pairs = self._make_secondary_duration_pairs(
             duration_pairs, split_divisions_every)
@@ -272,7 +272,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 prefix_lengths,
                 suffix_talea,
                 suffix_lengths,
-                prolation_addenda,
+                extra_counts_per_division,
                 )
         else:
             assert self.incise_output
@@ -282,13 +282,13 @@ class IncisedRhythmMaker(RhythmMaker):
                 prefix_lengths,
                 suffix_talea,
                 suffix_lengths,
-                prolation_addenda,
+                extra_counts_per_division,
                 )
         result = []
         selections = \
             self._numeric_map_and_talea_denominator_to_leaf_selections(
             numeric_map, lcd)
-        if not self.prolation_addenda:
+        if not self.extra_counts_per_division:
             result.extend(selections)
         else:
             tuplets = self._make_tuplets(
@@ -341,7 +341,7 @@ class IncisedRhythmMaker(RhythmMaker):
         prefix_lengths,
         suffix_talea,
         suffix_lengths,
-        prolation_addenda,
+        extra_counts_per_division,
         ):
         numeric_map, prefix_talea_index, suffix_talea_index = [], 0, 0
         prefix_length, suffix_length = prefix_lengths[0], suffix_lengths[0]
@@ -350,7 +350,7 @@ class IncisedRhythmMaker(RhythmMaker):
         suffix = suffix_talea[
             suffix_talea_index:suffix_talea_index+suffix_length]
         if len(duration_pairs) == 1:
-            prolation_addendum = prolation_addenda[0]
+            prolation_addendum = extra_counts_per_division[0]
             if isinstance(duration_pairs[0], mathtools.NonreducedFraction):
                 numerator = duration_pairs[0].numerator
             else:
@@ -360,7 +360,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 numerator, prefix, suffix)
             numeric_map.append(numeric_map_part)
         else:
-            prolation_addendum = prolation_addenda[0]
+            prolation_addendum = extra_counts_per_division[0]
             if isinstance(duration_pairs[0], tuple):
                 numerator = duration_pairs[0][0]
             else:
@@ -370,7 +370,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 numerator, prefix, ())
             numeric_map.append(numeric_map_part)
             for i, duration_pair in enumerate(duration_pairs[1:-1]):
-                prolation_addendum = prolation_addenda[i+1]
+                prolation_addendum = extra_counts_per_division[i+1]
                 if isinstance(duration_pair, tuple):
                     numerator = duration_pair[0]
                 else:
@@ -380,9 +380,9 @@ class IncisedRhythmMaker(RhythmMaker):
                     numerator, (), ())
                 numeric_map.append(numeric_map_part)
             try:
-                prolation_addendum = prolation_addenda[i+2]
+                prolation_addendum = extra_counts_per_division[i+2]
             except UnboundLocalError:
-                prolation_addendum = prolation_addenda[1+2]
+                prolation_addendum = extra_counts_per_division[1+2]
             if isinstance(duration_pairs[-1], tuple):
                 numerator = duration_pairs[-1][0]
             else:
@@ -438,15 +438,15 @@ class IncisedRhythmMaker(RhythmMaker):
         suffix_lengths = helper(suffix_lengths, seeds)
         suffix_lengths = datastructuretools.CyclicTuple(suffix_lengths)
 
-        prolation_addenda = self.prolation_addenda or ()
-        helper = helper_functions.get('prolation_addenda')
+        extra_counts_per_division = self.extra_counts_per_division or ()
+        helper = helper_functions.get('extra_counts_per_division')
         helper = self._none_to_trivial_helper(helper)
-        prolation_addenda = helper(prolation_addenda, seeds)
-        if prolation_addenda:
-            prolation_addenda = datastructuretools.CyclicTuple(
-                prolation_addenda)
+        extra_counts_per_division = helper(extra_counts_per_division, seeds)
+        if extra_counts_per_division:
+            extra_counts_per_division = datastructuretools.CyclicTuple(
+                extra_counts_per_division)
         else:
-            prolation_addenda = datastructuretools.CyclicTuple([0])
+            extra_counts_per_division = datastructuretools.CyclicTuple([0])
 
         split_divisions_every = self.split_divisions_every or ()
         helper = helper_functions.get('split_divisions_every')
@@ -460,7 +460,7 @@ class IncisedRhythmMaker(RhythmMaker):
             prefix_lengths,
             suffix_talea,
             suffix_lengths,
-            prolation_addenda,
+            extra_counts_per_division,
             split_divisions_every,
             )
 
@@ -683,7 +683,7 @@ class IncisedRhythmMaker(RhythmMaker):
         return self._incise_specifier
 
     @property
-    def prolation_addenda(self):
+    def extra_counts_per_division(self):
         r'''Gets prolation addenda of incised rhythm-maker.
 
         Returns tuple or none.
@@ -706,9 +706,9 @@ class IncisedRhythmMaker(RhythmMaker):
         Returns newly constructed rhythm-maker.
         '''
         from abjad.tools import rhythmmakertools
-        prolation_addenda = self.prolation_addenda
-        if prolation_addenda is not None:
-            prolation_addenda = tuple(reversed(prolation_addenda))
+        extra_counts_per_division = self.extra_counts_per_division
+        if extra_counts_per_division is not None:
+            extra_counts_per_division = tuple(reversed(extra_counts_per_division))
         split_divisions_every = self.split_divisions_every
         if split_divisions_every is not None:
             split_divisions_every = tuple(reversed(split_divisions_every))
@@ -718,7 +718,7 @@ class IncisedRhythmMaker(RhythmMaker):
         specifier = specifier.reverse()
         maker = new(
             self,
-            prolation_addenda=prolation_addenda,
+            extra_counts_per_division=extra_counts_per_division,
             split_divisions_every=split_divisions_every,
             duration_spelling_specifier=specifier,
             )

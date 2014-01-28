@@ -231,7 +231,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___05():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        prolation_addenda=(1, 0, 3),
+        extra_counts_per_division=(1, 0, 3),
         fill_with_notes=True,
         incise_divisions=True,
         )
@@ -290,7 +290,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        prolation_addenda=(2, 0),
+        extra_counts_per_division=(2, 0),
         split_divisions_every=(20,),
         fill_with_notes=True,
         incise_divisions=True,
@@ -576,7 +576,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___11():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        prolation_addenda=(1, 0, 3),
+        extra_counts_per_division=(1, 0, 3),
         fill_with_notes=False,
         incise_divisions=True,
         )
@@ -635,7 +635,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___12():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        prolation_addenda=(2, 0),
+        extra_counts_per_division=(2, 0),
         split_divisions_every=(20,),
         fill_with_notes=False,
         incise_divisions=True,
@@ -853,7 +853,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___16():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        prolation_addenda=(1, 0, 3),
+        extra_counts_per_division=(1, 0, 3),
         fill_with_notes=True,
         incise_output=True,
         )
@@ -907,7 +907,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___17():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        prolation_addenda=(1, 0, 0, 0, 2), 
+        extra_counts_per_division=(1, 0, 0, 0, 2), 
         split_divisions_every=(3, 1, 4, 1, 3),
         fill_with_notes=True,
         incise_output=True,
@@ -1120,7 +1120,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___21():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        prolation_addenda=(1, 0, 3),
+        extra_counts_per_division=(1, 0, 3),
         fill_with_notes=False,
         incise_output=True,
         )
@@ -1174,7 +1174,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___22():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        prolation_addenda=(1, 0, 0, 0, 2), 
+        extra_counts_per_division=(1, 0, 0, 0, 2), 
         split_divisions_every=(3, 1, 4, 1, 3),
         fill_with_notes=False,
         incise_output=True,
