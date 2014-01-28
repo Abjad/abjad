@@ -248,6 +248,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     prolation_addenda=(0, 2),
                     secondary_divisions=(9,),
                     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                        burnish_divisions=False,
+                        burnish_output=False,
                         lefts=(-1,),
                         middles=(0,),
                         rights=(-1,),
@@ -281,6 +283,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     prolation_addenda=(0, 2),
                     secondary_divisions=(10,),
                     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                        burnish_divisions=False,
+                        burnish_output=False,
                         lefts=(-1,),
                         middles=(0,),
                         rights=(-1,),
@@ -784,6 +788,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     prolation_addenda=(2, 0),
                     secondary_divisions=(9,),
                     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                        burnish_divisions=False,
+                        burnish_output=False,
                         lefts=(-1,),
                         middles=(0,),
                         rights=(-1,),

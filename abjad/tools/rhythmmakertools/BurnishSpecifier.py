@@ -104,6 +104,8 @@ class BurnishSpecifier(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_burnish_divisions',
+        '_burnish_output',
         '_left_lengths',
         '_lefts',
         '_middles',
@@ -115,12 +117,18 @@ class BurnishSpecifier(AbjadObject):
 
     def __init__(
         self,
+        burnish_divisions=False,
+        burnish_output=False,
         lefts=None, 
         middles=None, 
         rights=None, 
         left_lengths=None, 
         right_lengths=None,
         ):
+        assert isinstance(burnish_divisions, bool)
+        assert isinstance(burnish_output, bool)
+        self._burnish_divisions = burnish_divisions
+        self._burnish_output = burnish_output
         lefts = self._to_tuple(lefts)
         middles = self._to_tuple(middles)
         rights = self._to_tuple(rights)
@@ -180,6 +188,7 @@ class BurnishSpecifier(AbjadObject):
 
         Returns boolean.
         '''
+        # TODO: redo with StorageFormatManager.compare()
         if isinstance(expr, type(self)) and \
             self.lefts == expr.lefts and \
             self.middles == expr.middles and \
@@ -205,6 +214,8 @@ class BurnishSpecifier(AbjadObject):
 
                 >>> print format(burnish_specifier)
                 rhythmmakertools.BurnishSpecifier(
+                    burnish_divisions=False,
+                    burnish_output=False,
                     lefts=(-1, 0),
                     left_lengths=(1,),
                     )
@@ -216,7 +227,7 @@ class BurnishSpecifier(AbjadObject):
             format_specification=format_specification,
             )
 
-    # TODO: implement makenew
+    # TODO: implement makenew with StorageFormatManager
     def __makenew__(self, **kwargs):
         r'''Makes new burnish specifier with optional `kwargs`.
 
@@ -282,7 +293,7 @@ class BurnishSpecifier(AbjadObject):
             ::
 
                 >>> burnish_specifier
-                BurnishSpecifier(lefts=(-1, 0), left_lengths=(1,))
+                BurnishSpecifier(burnish_divisions=False, burnish_output=False, lefts=(-1, 0), left_lengths=(1,))
 
         Returns string.
         '''
@@ -319,6 +330,28 @@ class BurnishSpecifier(AbjadObject):
         return expr
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def burnish_divisions(self):
+        r'''Is true when rhythm-maker should burnish every division in output.
+        Otherwise false.
+
+        Defaults to false.
+
+        Returns boolean.
+        '''
+        return self._burnish_divisions
+
+    @property
+    def burnish_output(self):
+        r'''Is true when rhythm-maker should burnish first and last division 
+        in output. Otherwise false.
+
+        Defaults to false.
+
+        Returns boolean.
+        '''
+        return self._burnish_output
 
     @property
     def left_lengths(self):
@@ -466,6 +499,8 @@ class BurnishSpecifier(AbjadObject):
 
                 >>> print format(burnish_specifier.reverse())
                 rhythmmakertools.BurnishSpecifier(
+                    burnish_divisions=False,
+                    burnish_output=False,
                     lefts=(0, -1),
                     middles=(0,),
                     rights=(0, -1, -1),
