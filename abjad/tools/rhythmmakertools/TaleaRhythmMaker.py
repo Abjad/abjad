@@ -105,8 +105,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
     __slots__ = (
         '_burnish_specifier',
+        '_extra_counts_per_division',
         '_helper_functions',
-        '_prolation_addenda',
         '_split_divisions_every',
         '_talea',
         '_talea_denominator',
@@ -122,8 +122,8 @@ class TaleaRhythmMaker(RhythmMaker):
         self,
         talea=(-1, 4, -2, 3),
         talea_denominator=16,
-        extra_counts_per_division=None,
         split_divisions_every=None,
+        extra_counts_per_division=None,
         beam_specifier=None,
         burnish_specifier=None,
         duration_spelling_specifier=None,
@@ -185,7 +185,7 @@ class TaleaRhythmMaker(RhythmMaker):
         assert callable(left_lengths_helper)
         assert callable(right_lengths_helper)
         self._talea_denominator = talea_denominator
-        self._prolation_addenda = extra_counts_per_division
+        self._extra_counts_per_division = extra_counts_per_division
         self._split_divisions_every = split_divisions_every
         if helper_functions == {}:
             helper_functions = None
@@ -1073,7 +1073,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         Returns integer tuple or none.
         '''
-        return self._prolation_addenda
+        return self._extra_counts_per_division
 
     @property
     def split_divisions_every(self):

@@ -81,12 +81,12 @@ class IncisedRhythmMaker(RhythmMaker):
 
     __slots__ = (
         '_body_ratio',
+        '_extra_counts_per_division',
         '_fill_with_notes',
         '_helper_functions',
         '_incise_output',
         '_incise_divisions',
         '_incise_specifier',
-        '_prolation_addenda',
         '_split_divisions_every',
         )
 
@@ -100,8 +100,8 @@ class IncisedRhythmMaker(RhythmMaker):
         self,
         incise_specifier=None,
         body_ratio=None,
-        extra_counts_per_division=None,
         split_divisions_every=None,
+        extra_counts_per_division=None,
         helper_functions=None,
         beam_specifier=None,
         duration_spelling_specifier=None,
@@ -137,7 +137,7 @@ class IncisedRhythmMaker(RhythmMaker):
         assert split_divisions_every is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             split_divisions_every), split_divisions_every
-        self._prolation_addenda = extra_counts_per_division
+        self._extra_counts_per_division = extra_counts_per_division
         if body_ratio is not None:
             body_ratio = mathtools.Ratio(body_ratio)
         self._body_ratio = body_ratio
@@ -688,7 +688,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         Returns tuple or none.
         '''
-        return self._prolation_addenda
+        return self._extra_counts_per_division
 
     @property
     def split_divisions_every(self):
