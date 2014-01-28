@@ -153,9 +153,8 @@ class TaleaRhythmMaker(RhythmMaker):
         secondary_divisions_helper = \
             helper_functions.get('secondary_divisions')
         prolation_addenda = self._to_tuple(prolation_addenda)
-        burnish_specifier = burnish_specifier or \
-            rhythmmakertools.BurnishSpecifier()
-        assert isinstance(burnish_specifier, rhythmmakertools.BurnishSpecifier)
+        prototype = (rhythmmakertools.BurnishSpecifier, type(None))
+        assert isinstance(burnish_specifier, prototype)
         self._burnish_specifier = burnish_specifier
         secondary_divisions = self._to_tuple(secondary_divisions)
         talea_helper = self._none_to_trivial_helper(talea_helper)
@@ -218,10 +217,6 @@ class TaleaRhythmMaker(RhythmMaker):
                 rhythmmakertools.TaleaRhythmMaker(
                     talea=(1, 2, 3, 4),
                     talea_denominator=16,
-                    burnish_specifier=rhythmmakertools.BurnishSpecifier(
-                        burnish_divisions=False,
-                        burnish_output=False,
-                        ),
                     )
 
         Returns string.
@@ -245,10 +240,6 @@ class TaleaRhythmMaker(RhythmMaker):
                     talea=(1, 2, 3, 4),
                     talea_denominator=16,
                     secondary_divisions=(10,),
-                    burnish_specifier=rhythmmakertools.BurnishSpecifier(
-                        burnish_divisions=False,
-                        burnish_output=False,
-                        ),
                     )
 
             ::
@@ -572,6 +563,7 @@ class TaleaRhythmMaker(RhythmMaker):
         return prolated_duration_pairs
 
     def _prepare_input(self, seeds):
+        from abjad.tools import rhythmmakertools
         helper_functions = self.helper_functions or {}
         talea = self.talea or ()
         talea_helper = helper_functions.get('talea')
@@ -587,31 +579,34 @@ class TaleaRhythmMaker(RhythmMaker):
                 prolation_addenda, seeds)
         prolation_addenda = datastructuretools.CyclicTuple(prolation_addenda)
 
-        lefts = self.burnish_specifier.lefts or ()
+        burnish_specifier = self.burnish_specifier
+        if burnish_specifier is None:
+            burnish_specifier = rhythmmakertools.BurnishSpecifier()
+        lefts = burnish_specifier.lefts or ()
         lefts_helper = helper_functions.get('lefts')
         if lefts_helper is not None:
             lefts = lefts_helper(lefts, seeds)
         lefts = datastructuretools.CyclicTuple(lefts)
 
-        middles = self.burnish_specifier.middles or ()
+        middles = burnish_specifier.middles or ()
         middles_helper = helper_functions.get('middles')
         if middles_helper is not None:
             middles = middles_helper(middles, seeds)
         middles = datastructuretools.CyclicTuple(middles)
 
-        rights = self.burnish_specifier.rights or ()
+        rights = burnish_specifier.rights or ()
         rights_helper = helper_functions.get('rights')
         if rights_helper is not None:
             rights = rights_helper(rights)
         rights = datastructuretools.CyclicTuple(rights)
 
-        left_lengths = self.burnish_specifier.left_lengths or ()
+        left_lengths = burnish_specifier.left_lengths or ()
         left_lengths_helper = helper_functions.get('left_lengths')
         if left_lengths_helper is not None:
             left_lengths = left_lengths_helper(left_lengths)
         left_lengths = datastructuretools.CyclicTuple(left_lengths)
 
-        right_lengths = self.burnish_specifier.right_lengths or ()
+        right_lengths = burnish_specifier.right_lengths or ()
         right_lengths_helper = helper_functions.get('right_lengths')
         if right_lengths_helper is not None:
             right_lengths = right_lengths_helper(right_lengths)
@@ -837,7 +832,10 @@ class TaleaRhythmMaker(RhythmMaker):
         prolation_addenda = self.prolation_addenda
         if prolation_addenda is not None:
             prolation_addenda = tuple(reversed(prolation_addenda))
-        burnish_specifier = self.burnish_specifier.reverse()
+        burnish_specifier = self.burnish_specifier
+        if burnish_specifier is None:
+            burnish_specifier = rhythmmakertools.BurnishSpecifier()
+        burnish_specifier = burnish_specifier.reverse()
         secondary_divisions = self.secondary_divisions
         if secondary_divisions is not None:
             secondary_divisions = tuple(reversed(secondary_divisions))
