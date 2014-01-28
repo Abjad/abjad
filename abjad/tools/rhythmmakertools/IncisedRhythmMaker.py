@@ -87,7 +87,7 @@ class IncisedRhythmMaker(RhythmMaker):
         '_incise_output',
         '_incise_divisions',
         '_incise_specifier',
-        '_split_divisions_every',
+        '_split_divisions_by_counts',
         )
 
     _class_name_abbreviatio = 'In'
@@ -100,7 +100,7 @@ class IncisedRhythmMaker(RhythmMaker):
         self,
         incise_specifier=None,
         body_ratio=None,
-        split_divisions_every=None,
+        split_divisions_by_counts=None,
         extra_counts_per_division=None,
         helper_functions=None,
         beam_specifier=None,
@@ -122,8 +122,8 @@ class IncisedRhythmMaker(RhythmMaker):
         self._incise_specifier = incise_specifier
         extra_counts_per_division = \
             self._to_tuple(extra_counts_per_division)
-        split_divisions_every = \
-            self._to_tuple(split_divisions_every)
+        split_divisions_by_counts = \
+            self._to_tuple(split_divisions_by_counts)
 
         if helper_functions is not None:
             assert isinstance(helper_functions, dict)
@@ -134,14 +134,14 @@ class IncisedRhythmMaker(RhythmMaker):
         assert extra_counts_per_division is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             extra_counts_per_division), extra_counts_per_division
-        assert split_divisions_every is None or \
+        assert split_divisions_by_counts is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-            split_divisions_every), split_divisions_every
+            split_divisions_by_counts), split_divisions_by_counts
         self._extra_counts_per_division = extra_counts_per_division
         if body_ratio is not None:
             body_ratio = mathtools.Ratio(body_ratio)
         self._body_ratio = body_ratio
-        self._split_divisions_every = split_divisions_every
+        self._split_divisions_by_counts = split_divisions_by_counts
         assert isinstance(fill_with_notes, bool)
         self._fill_with_notes = fill_with_notes
         assert isinstance(incise_divisions, bool)
@@ -245,12 +245,12 @@ class IncisedRhythmMaker(RhythmMaker):
         suffix_talea = input_[2]
         suffix_lengths = input_[3]
         extra_counts_per_division = input_[4]
-        split_divisions_every = input_[5]
+        split_divisions_by_counts = input_[5]
         taleas = (
             prefix_talea, 
             suffix_talea, 
             extra_counts_per_division, 
-            split_divisions_every,
+            split_divisions_by_counts,
             )
         input_ = self._scale_taleas(
             duration_pairs, 
@@ -262,9 +262,9 @@ class IncisedRhythmMaker(RhythmMaker):
         prefix_talea = input_[2]
         suffix_talea = input_[3]
         extra_counts_per_division = input_[4]
-        split_divisions_every = input_[5]
+        split_divisions_by_counts = input_[5]
         secondary_duration_pairs = self._make_secondary_duration_pairs(
-            duration_pairs, split_divisions_every)
+            duration_pairs, split_divisions_by_counts)
         if self.incise_divisions:
             numeric_map = self._make_division_incised_numeric_map(
                 secondary_duration_pairs,
@@ -448,12 +448,12 @@ class IncisedRhythmMaker(RhythmMaker):
         else:
             extra_counts_per_division = datastructuretools.CyclicTuple([0])
 
-        split_divisions_every = self.split_divisions_every or ()
-        helper = helper_functions.get('split_divisions_every')
+        split_divisions_by_counts = self.split_divisions_by_counts or ()
+        helper = helper_functions.get('split_divisions_by_counts')
         helper = self._none_to_trivial_helper(helper)
-        split_divisions_every = helper(split_divisions_every, seeds)
-        split_divisions_every = datastructuretools.CyclicTuple(
-            split_divisions_every)
+        split_divisions_by_counts = helper(split_divisions_by_counts, seeds)
+        split_divisions_by_counts = datastructuretools.CyclicTuple(
+            split_divisions_by_counts)
 
         return (
             prefix_talea,
@@ -461,7 +461,7 @@ class IncisedRhythmMaker(RhythmMaker):
             suffix_talea,
             suffix_lengths,
             extra_counts_per_division,
-            split_divisions_every,
+            split_divisions_by_counts,
             )
 
     ### PUBLIC PROPERTIES ###
@@ -691,12 +691,12 @@ class IncisedRhythmMaker(RhythmMaker):
         return self._extra_counts_per_division
 
     @property
-    def split_divisions_every(self):
+    def split_divisions_by_counts(self):
         r'''Gets secondary divisions of incised rhythm-maker.
 
         Returns tuple or none.
         '''
-        return self._split_divisions_every
+        return self._split_divisions_by_counts
 
     ### PUBLIC METHODS ###
 
@@ -709,9 +709,9 @@ class IncisedRhythmMaker(RhythmMaker):
         extra_counts_per_division = self.extra_counts_per_division
         if extra_counts_per_division is not None:
             extra_counts_per_division = tuple(reversed(extra_counts_per_division))
-        split_divisions_every = self.split_divisions_every
-        if split_divisions_every is not None:
-            split_divisions_every = tuple(reversed(split_divisions_every))
+        split_divisions_by_counts = self.split_divisions_by_counts
+        if split_divisions_by_counts is not None:
+            split_divisions_by_counts = tuple(reversed(split_divisions_by_counts))
         specifier = self.duration_spelling_specifier
         if specifier is None:
             specifier = rhythmmakertools.DurationSpellingSpecifier()
@@ -719,7 +719,7 @@ class IncisedRhythmMaker(RhythmMaker):
         maker = new(
             self,
             extra_counts_per_division=extra_counts_per_division,
-            split_divisions_every=split_divisions_every,
+            split_divisions_by_counts=split_divisions_by_counts,
             duration_spelling_specifier=specifier,
             )
         return maker

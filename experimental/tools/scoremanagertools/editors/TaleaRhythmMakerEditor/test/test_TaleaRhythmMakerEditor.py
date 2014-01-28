@@ -14,7 +14,7 @@ def test_TaleaRhythmMakerEditor_01():
         talea=(-1, 2, -3, 4), 
         talea_denominator=16,
         extra_counts_per_division=(2, 3),
-        split_divisions_every=(6,),
+        split_divisions_by_counts=(6,),
         )
 
     assert editor.target == maker

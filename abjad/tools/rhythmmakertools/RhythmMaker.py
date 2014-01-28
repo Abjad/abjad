@@ -358,9 +358,9 @@ class RhythmMaker(AbjadObject):
     def _make_secondary_duration_pairs(
         self,
         duration_pairs,
-        split_divisions_every,
+        split_divisions_by_counts,
         ):
-        if not split_divisions_every:
+        if not split_divisions_by_counts:
             return duration_pairs[:]
         numerators = [
             duration_pair.numerator
@@ -368,7 +368,7 @@ class RhythmMaker(AbjadObject):
             ]
         secondary_numerators = sequencetools.split_sequence_by_weights(
             numerators,
-            split_divisions_every,
+            split_divisions_by_counts,
             cyclic=True,
             overhang=True,
             )

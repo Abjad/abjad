@@ -8,14 +8,14 @@ def test_rhythmmakertools_TaleaRhythmMaker___eq___01():
         talea=(-1, 2, -3, 4), 
         talea_denominator=16,
         extra_counts_per_division=(2, 3),
-        split_divisions_every=(6,),
+        split_divisions_by_counts=(6,),
         )
 
     maker_2 = rhythmmakertools.TaleaRhythmMaker(
         talea=(-1, 2, -3, 4), 
         talea_denominator=16,
         extra_counts_per_division=(2, 3),
-        split_divisions_every=(6,),
+        split_divisions_by_counts=(6,),
         )
 
     assert maker_1 == maker_1
