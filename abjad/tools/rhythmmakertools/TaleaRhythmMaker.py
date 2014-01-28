@@ -899,7 +899,223 @@ class TaleaRhythmMaker(RhythmMaker):
     def secondary_divisions(self):
         r'''Gets secondary divisions of talea rhythm-maker.
 
-        Returns tuple or none.
+        Secondary divisions impose a cyclic split operation on divisions.
+
+        ..  container:: example
+            
+            Here's a talea equal to two thirty-second repeating indefinitely.
+            The maker makes four divisions equal to 12 thirty-second notes
+            each:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=(2,),
+                ...     talea_denominator=32,
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
+                    }
+                    {
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
+                    }
+                    {
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
+                    }
+                    {
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
+                    }
+                }
+
+            Here's the same talea with secondary divisions set to split the
+            divisions every 17 thirty-second notes. The maker makes six
+            divisions with durations equal, respectively, to 12, 5, 7, 10, 2
+            and 12 thirty-second notes.
+
+            Note that ``12 + 5 = 17`` and ``7 + 10 = 17``:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=(2,),
+                ...     talea_denominator=32,
+                ...     secondary_divisions=(17,)
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+                
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
+                    }
+                    {
+                        c'16 [
+                        c'16
+                        c'32 ] ~
+                        c'32 [
+                        c'16
+                        c'16
+                        c'16 ]
+                    }
+                    {
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
+                        c'16
+                    }
+                    {
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
+                    }
+                }
+
+            Note that the additional divisions created when using
+            `secondary_divisions` are subject to `prolation_addenda` just like
+            other divisions.
+
+            This example adds one extra thirty-second note to every other 
+            division. The durations of the divisions remain the same as in the
+            previous example. But now every other division is tupletted:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=(2,),
+                ...     talea_denominator=32,
+                ...     secondary_divisions=(17,),
+                ...     prolation_addenda=(0, 1),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+                
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 5/6 {
+                            c'16 [
+                            c'16
+                            c'16 ]
+                        }
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'32 ] ~
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 10/11 {
+                            c'32 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                        {
+                            c'16
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 12/13 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'32 ]
+                        }
+                    }
+                }
+
+        Returns positive integer tuple or none.
         '''
         return self._secondary_divisions
 
