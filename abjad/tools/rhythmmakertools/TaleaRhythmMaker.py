@@ -738,17 +738,144 @@ class TaleaRhythmMaker(RhythmMaker):
     def burnish_specifier(self):
         r'''Gets burnish specifier of talea rhythm-maker.
 
-        'Burnishing' means to forcibly cast the first or last
-        (or both first and last) elements of a output cell to be
-        either a note or rest.
+        ..  container:: example
 
-        'Division-burnishing' rhythm-makers burnish every output cell they
-        produce.
+            'Output burnishing' means forcibly to cast the first leaf (or
+            leaves) of output; or forcibly to cast the last leaf (or leaves) of
+            output; or to cast both the first and last leaves of output at the
+            same time.
 
-        'Output-burnishing' rhythm-makers burnish only the first and last
-        output cells they produce and leave interior output cells unchanged.
+            This example makes a talea rhythm with the first leaf of output
+            forcibly cast to a rest and also with the last two leaves of output
+            forcibly cast to rests:
 
-        Returns burnish specifier.
+            ::
+
+                >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
+                ...     burnish_output=True,
+                ...     lefts=(-1,),
+                ...     middles=(0,),
+                ...     rights=(-1,),
+                ...     left_lengths=(1,),
+                ...     right_lengths=(2,),
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=(1, 2, 3, 4),
+                ...     talea_denominator=16,
+                ...     burnish_specifier=burnish_specifier,
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+                
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        r16
+                        c'8 [
+                        c'8. ]
+                    }
+                    {
+                        \time 4/8
+                        c'4
+                        c'16 [
+                        c'8
+                        c'16 ] ~
+                    }
+                    {
+                        \time 3/8
+                        c'8
+                        c'4
+                    }
+                    {
+                        \time 4/8
+                        c'16 [
+                        c'8 ]
+                        r8.
+                        r8
+                    }
+                }
+
+        ..  container:: example
+
+            'Division burnishing' means forcibly to cast the first leaf (or
+            leaves) of every division; or forcibly to cast the last
+            leaf (or leaves) of every division; or forcibly to cast
+            both the first and last leaves of every division at the same time.
+
+            This example makes a talea rhythm with the first leaf of every
+            division forcibly cast to a rest:
+
+            ::
+
+                >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
+                ...     burnish_divisions=True,
+                ...     lefts=(-1,),
+                ...     middles=(0,),
+                ...     rights=(0,),
+                ...     left_lengths=(1,),
+                ...     right_lengths=(0,),
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=(1, 2, 3, 4),
+                ...     talea_denominator=16,
+                ...     burnish_specifier=burnish_specifier,
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+                
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        r16
+                        c'8 [
+                        c'8. ]
+                    }
+                    {
+                        \time 4/8
+                        r4
+                        c'16 [
+                        c'8
+                        c'16 ] ~
+                    }
+                    {
+                        \time 3/8
+                        r8
+                        c'4
+                    }
+                    {
+                        \time 4/8
+                        r16
+                        c'8 [
+                        c'8.
+                        c'8 ]
+                    }
+                }
+
+        Returns burnish specifier or none.
         '''
         return self._burnish_specifier
 
