@@ -125,17 +125,17 @@ class TaleaRhythmMaker(RhythmMaker):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_talea',
-        '_talea_denominator',
-        '_prolation_addenda',
-        '_burnish_specifier',
-        '_secondary_divisions',
-        '_helper_functions',
         '_burnish_divisions',
         '_burnish_output',
+        '_burnish_specifier',
+        '_helper_functions',
+        '_prolation_addenda',
+        '_secondary_divisions',
+        '_talea',
+        '_talea_denominator',
         )
 
-    _class_name_abbreviation = 'TR'
+    _class_name_abbreviation = 'TlRM'
 
     _human_readable_class_name = 'talea rhythm-maker'
 
@@ -146,14 +146,14 @@ class TaleaRhythmMaker(RhythmMaker):
         talea=(-1, 4, -2, 3),
         talea_denominator=16,
         prolation_addenda=None,
-        burnish_specifier=None,
         secondary_divisions=None,
-        helper_functions=None,
         beam_specifier=None,
-        duration_spelling_specifier=None,
+        burnish_specifier=None,
         burnish_divisions=False,
         burnish_output=False,
+        duration_spelling_specifier=None,
         tie_specifier=None,
+        helper_functions=None,
         ):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
@@ -246,6 +246,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     talea=(1, 2, 3),
                     talea_denominator=16,
                     prolation_addenda=(0, 2),
+                    secondary_divisions=(9,),
                     burnish_specifier=rhythmmakertools.BurnishSpecifier(
                         lefts=(-1,),
                         middles=(0,),
@@ -253,7 +254,6 @@ class TaleaRhythmMaker(RhythmMaker):
                         left_lengths=(1,),
                         right_lengths=(1,),
                         ),
-                    secondary_divisions=(9,),
                     burnish_divisions=False,
                     burnish_output=True,
                     )
@@ -279,6 +279,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     talea=(1, 2, 3),
                     talea_denominator=16,
                     prolation_addenda=(0, 2),
+                    secondary_divisions=(10,),
                     burnish_specifier=rhythmmakertools.BurnishSpecifier(
                         lefts=(-1,),
                         middles=(0,),
@@ -286,7 +287,6 @@ class TaleaRhythmMaker(RhythmMaker):
                         left_lengths=(1,),
                         right_lengths=(1,),
                         ),
-                    secondary_divisions=(10,),
                     burnish_divisions=False,
                     burnish_output=True,
                     )
@@ -782,6 +782,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     talea=(3, 2, 1),
                     talea_denominator=16,
                     prolation_addenda=(2, 0),
+                    secondary_divisions=(9,),
                     burnish_specifier=rhythmmakertools.BurnishSpecifier(
                         lefts=(-1,),
                         middles=(0,),
@@ -789,12 +790,11 @@ class TaleaRhythmMaker(RhythmMaker):
                         left_lengths=(1,),
                         right_lengths=(1,),
                         ),
-                    secondary_divisions=(9,),
+                    burnish_divisions=False,
+                    burnish_output=True,
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
                         ),
-                    burnish_divisions=False,
-                    burnish_output=True,
                     )
 
             ::
