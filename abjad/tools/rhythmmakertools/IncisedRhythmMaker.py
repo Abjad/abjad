@@ -167,22 +167,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         Returns new incised rhythm-maker.
         '''
-        assert not args
-        arguments = {
-            'beam_specifier': self.beam_specifier,
-            'duration_spelling_specifier': self.duration_spelling_specifier,
-            'incise_specifier': self.incise_specifier,
-            'body_ratio': self.body_ratio,
-            'prolation_addenda': self.prolation_addenda,
-            'secondary_divisions': self.secondary_divisions,
-            'helper_functions': self.helper_functions,
-            'fill_with_notes': self.fill_with_notes,
-            'incise_divisions': self.incise_divisions,
-            'incise_output': self.incise_output,
-            }
-        arguments.update(kwargs)
-        maker = type(self)(**arguments)
-        return maker
+        return RhythmMaker.__makenew__(self, *args, **kwargs)
 
     ### PRIVATE METHODS ###
 

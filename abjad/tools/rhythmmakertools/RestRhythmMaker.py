@@ -137,13 +137,7 @@ class RestRhythmMaker(RhythmMaker):
 
         Returns new rest rhythm-maker.
         '''
-        assert not args
-        arguments = {
-            'duration_spelling_specifier': self.duration_spelling_specifier,
-            }
-        arguments.update(kwargs)
-        maker = type(self)(**arguments)
-        return maker
+        return RhythmMaker.__makenew__(self, *args, **kwargs)
 
     ### PRIVATE METHODS ###
 

@@ -17,41 +17,18 @@ from abjad.tools.topleveltools import new
 class TaleaRhythmMaker(RhythmMaker):
     r'''Talea rhythm-maker.
 
-    'Burnishing' means to forcibly cast the first or last
-    (or both first and last) elements of a output cell to be
-    either a note or rest.
-
-    'Division-burnishing' rhythm-makers burnish every output cell they
-    produce.
-
-    'Output-burnishing' rhythm-makers burnish only the first and last
-    output cells they produce and leave interior output cells unchanged.
-
     ..  container:: example
 
-        Burnishes output:
-
         ::
 
-            >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     burnish_output=True,
-            ...     lefts=(-1,),
-            ...     middles=(0,),
-            ...     rights=(-1,),
-            ...     left_lengths=(1,),
-            ...     right_lengths=(1,),
-            ...     )
             >>> maker = rhythmmakertools.TaleaRhythmMaker(
-            ...     talea=(1, 2, 3),
+            ...     talea=(1, 2, 3, 4),
             ...     talea_denominator=16,
-            ...     burnish_specifier=burnish_specifier,
-            ...     prolation_addenda=(0, 2),
-            ...     secondary_divisions=(9,),
             ...     )
 
         ::
 
-            >>> divisions = [(3, 8), (4, 8)]
+            >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
             >>> music = maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
             ...     music,
@@ -66,26 +43,28 @@ class TaleaRhythmMaker(RhythmMaker):
             \new RhythmicStaff {
                 {
                     \time 3/8
-                    {
-                        r16
-                        c'8 [
-                        c'8. ]
-                    }
+                    c'16 [
+                    c'8
+                    c'8. ]
                 }
                 {
                     \time 4/8
-                    \tweak #'text #tuplet-number::calc-fraction-text
-                    \times 3/5 {
-                        c'16 [
-                        c'8
-                        c'8 ] ~
-                    }
-                    {
-                        c'16 [
-                        c'16
-                        c'8 ]
-                        r16
-                    }
+                    c'4
+                    c'16 [
+                    c'8
+                    c'16 ] ~
+                }
+                {
+                    \time 3/8
+                    c'8
+                    c'4
+                }
+                {
+                    \time 4/8
+                    c'16 [
+                    c'8
+                    c'8.
+                    c'8 ]
                 }
             }
 
@@ -237,18 +216,11 @@ class TaleaRhythmMaker(RhythmMaker):
 
                 >>> print format(maker)
                 rhythmmakertools.TaleaRhythmMaker(
-                    talea=(1, 2, 3),
+                    talea=(1, 2, 3, 4),
                     talea_denominator=16,
-                    prolation_addenda=(0, 2),
-                    secondary_divisions=(9,),
                     burnish_specifier=rhythmmakertools.BurnishSpecifier(
                         burnish_divisions=False,
-                        burnish_output=True,
-                        lefts=(-1,),
-                        middles=(0,),
-                        rights=(-1,),
-                        left_lengths=(1,),
-                        right_lengths=(1,),
+                        burnish_output=False,
                         ),
                     )
 
@@ -270,18 +242,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
                 >>> print format(new_maker)
                 rhythmmakertools.TaleaRhythmMaker(
-                    talea=(1, 2, 3),
+                    talea=(1, 2, 3, 4),
                     talea_denominator=16,
-                    prolation_addenda=(0, 2),
                     secondary_divisions=(10,),
                     burnish_specifier=rhythmmakertools.BurnishSpecifier(
                         burnish_divisions=False,
-                        burnish_output=True,
-                        lefts=(-1,),
-                        middles=(0,),
-                        rights=(-1,),
-                        left_lengths=(1,),
-                        right_lengths=(1,),
+                        burnish_output=False,
                         ),
                     )
 
@@ -302,45 +268,22 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 3/8
-                        {
-                            r16
-                            c'8 [
-                            c'8. ]
-                        }
+                        c'16 [
+                        c'8
+                        c'8. ]
                     }
                     {
                         \time 4/8
-                        \times 2/3 {
-                            c'16 [
-                            c'8
-                            c'8. ]
-                        }
-                        {
-                            c'16 [
-                            c'8 ]
-                            r16
-                        }
+                        c'4
+                        c'16 [
+                        c'8
+                        c'16 ]
                     }
                 }
 
         Returns new talea rhythm-maker.
         '''
-        # TODO: remove custom implementation and use RhythmMaker instead.
-        assert not args
-        arguments = {
-            'talea': self.talea,
-            'talea_denominator': self.talea_denominator,
-            'prolation_addenda': self.prolation_addenda,
-            'burnish_specifier': copy.deepcopy(self.burnish_specifier),
-            'secondary_divisions': self.secondary_divisions,
-            'helper_functions': self.helper_functions,
-            'beam_specifier': self.beam_specifier,
-            'duration_spelling_specifier': self.duration_spelling_specifier,
-            'tie_specifier': self.tie_specifier,
-            }
-        arguments.update(kwargs)
-        maker = type(self)(**arguments)
-        return maker
+        return RhythmMaker.__makenew__(self, *args, **kwargs)
 
     ### PRIVATE METHODS ###
 
@@ -699,6 +642,16 @@ class TaleaRhythmMaker(RhythmMaker):
     @property
     def burnish_specifier(self):
         r'''Gets burnish specifier of talea rhythm-maker.
+
+        'Burnishing' means to forcibly cast the first or last
+        (or both first and last) elements of a output cell to be
+        either a note or rest.
+
+        'Division-burnishing' rhythm-makers burnish every output cell they
+        produce.
+
+        'Output-burnishing' rhythm-makers burnish only the first and last
+        output cells they produce and leave interior output cells unchanged.
 
         Returns burnish specifier.
         '''

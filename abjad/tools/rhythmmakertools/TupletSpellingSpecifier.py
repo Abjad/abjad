@@ -36,9 +36,9 @@ class TupletSpellingSpecifier(AbjadObject):
         assert not args
         arguments = {}
         manager = systemtools.StorageFormatManager
-        argument_names = manager.get_keyword_argument_names()
+        argument_names = manager.get_keyword_argument_names(self)
         for argument_name in argument_names:
-            arguments[attribute_name] = getattr(self, attribute_name)
+            arguments[argument_name] = getattr(self, argument_name)
         arguments.update(kwargs)
         return type(self)(**arguments)
 

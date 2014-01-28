@@ -140,12 +140,7 @@ class SkipRhythmMaker(RhythmMaker):
 
         Returns new skip rhythm-maker.
         '''
-        assert not args
-        arguments = {
-            }
-        arguments.update(kwargs)
-        maker = type(self)(**arguments)
-        return maker
+        return RhythmMaker.__makenew__(self, *args, **kwargs)
 
     ### PRIVATE METHODS ###
 

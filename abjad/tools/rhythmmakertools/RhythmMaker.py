@@ -211,15 +211,15 @@ class RhythmMaker(AbjadObject):
 
         Returns new rhythm-maker.
         '''
+        from abjad.tools import systemtools
         assert not args
-        arguments = {
-            'beam_specifier': self.beam_specifier,
-            'duration_spelling_specifier': self.duraiton_spelling_specifier,
-            'tie_specifier': self.tie_specifier,
-            }
+        arguments = {}
+        manager = systemtools.StorageFormatManager
+        argument_names = manager.get_keyword_argument_names(self)
+        for argument_name in argument_names:
+            arguments[argument_name] = getattr(self, argument_name)
         arguments.update(kwargs)
-        maker = type(self)(**arguments)
-        return maker
+        return type(self)(**arguments)
 
     ### PRIVATE METHODS ###
 

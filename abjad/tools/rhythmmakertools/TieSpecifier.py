@@ -40,6 +40,21 @@ class TieSpecifier(AbjadObject):
                 return True
         return False
 
+    def __makenew__(self, *args, **kwargs):
+        r'''Makes new tie specifier with optional `kwargs`.
+
+        Returns new tie spelling specifier.
+        '''
+        from abjad.tools import systemtools
+        assert not args
+        arguments = {}
+        manager = systemtools.StorageFormatManager
+        argument_names = manager.get_keyword_argument_names(self)
+        for argument_name in argument_names:
+            arguments[argument_name] = getattr(self, argument_name)
+        arguments.update(kwargs)
+        return type(self)(**arguments)
+
     ### PUBLIC PROPERTIES ###
 
     @property

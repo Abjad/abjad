@@ -213,15 +213,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         Returns new note rhythm-maker.
         '''
-        assert not args
-        arguments = {
-            'beam_specifier': self.beam_specifier,
-            'duration_spelling_specifier': self.duration_spelling_specifier,
-            'tie_specifier': self.tie_specifier,
-            }
-        arguments.update(kwargs)
-        maker = type(self)(**arguments)
-        return maker
+        return RhythmMaker.__makenew__(self, *args, **kwargs)
 
     def __repr__(self):
         r'''Gets interpreter representation of note rhythm-maker.

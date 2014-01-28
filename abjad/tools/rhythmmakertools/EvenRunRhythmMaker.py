@@ -253,15 +253,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         Returns new even-run rhythm-maker.
         '''
-        assert not args
-        arguments = {
-            'beam_specifier': self.beam_specifier,
-            'duration_spelling_specifier': self.duration_spelling_specifier,
-            'exponent': self.exponent,
-            }
-        arguments.update(kwargs)
-        new = type(self)(**arguments)
-        return new
+        return RhythmMaker.__makenew__(self, *args, **kwargs)
 
     ### PRIVATE METHODS ###
 

@@ -60,17 +60,15 @@ class InciseSpecifier(AbjadObject):
 
         Returns new incise specifier.
         '''
+        from abjad.tools import systemtools
         assert not args
-        arguments = {
-            'prefix_talea': self.prefix_talea,
-            'prefix_lengths': self.prefix_lengths,
-            'suffix_talea': self.suffix_talea,
-            'suffix_lengths': self.suffix_lengths,
-            'talea_denominator': self.talea_denominator,
-            }
+        arguments = {}
+        manager = systemtools.StorageFormatManager
+        argument_names = manager.get_keyword_argument_names(self)
+        for argument_name in argument_names:
+            arguments[argument_name] = getattr(self, argument_name)
         arguments.update(kwargs)
-        specifier = type(self)(**arguments)
-        return specifier
+        return type(self)(**arguments)
 
     ### PRIVATE METHODS ###
 
