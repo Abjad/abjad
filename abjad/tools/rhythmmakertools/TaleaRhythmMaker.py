@@ -196,7 +196,28 @@ class TaleaRhythmMaker(RhythmMaker):
     def __call__(self, divisions, seeds=None):
         r'''Calls talea rhythm-maker on `divisions`.
 
-        Returns either list of tuplets or else list of note-lists.
+        ..  container:: example
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=(1, 2, 3, 4),
+                ...     talea_denominator=16,
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> selections = maker(divisions)
+
+            ::
+
+                >>> for selection in selections:
+                ...     selection
+                Selection(Note("c'16"), Note("c'8"), Note("c'8."))
+                Selection(Note("c'4"), Note("c'16"), Note("c'8"), Note("c'16"))
+                Selection(Note("c'8"), Note("c'4"))
+                Selection(Note("c'16"), Note("c'8"), Note("c'8."), Note("c'8"))
+
+        Returns list of of selections.
         '''
         return RhythmMaker.__call__(
             self,
@@ -210,6 +231,13 @@ class TaleaRhythmMaker(RhythmMaker):
         Set `format_specification` to `''` or `'storage'`.
 
         ..  container:: example
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=(1, 2, 3, 4),
+                ...     talea_denominator=16,
+                ...     )
 
             ::
 
@@ -231,21 +259,15 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> new_maker = new(maker, secondary_divisions=(10,))
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=(1, 2, 3, 4),
+                ...     talea_denominator=16,
+                ...     )
 
             ::
 
-                >>> print format(new_maker)
-                rhythmmakertools.TaleaRhythmMaker(
-                    talea=(1, 2, 3, 4),
-                    talea_denominator=16,
-                    secondary_divisions=(10,),
-                    )
-
-            ::
-
-                >>> divisions = [(3, 8), (4, 8)]
-                >>> music = new_maker(divisions)
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
@@ -268,13 +290,91 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'4
                         c'16 [
                         c'8
-                        c'16 ]
+                        c'16 ] ~
+                    }
+                    {
+                        \time 3/8
+                        c'8
+                        c'4
+                    }
+                    {
+                        \time 4/8
+                        c'16 [
+                        c'8
+                        c'8.
+                        c'8 ]
+                    }
+                }
+
+            ::
+
+                >>> new_maker = new(maker, talea_denominator=8)
+
+            ::
+
+                >>> print format(new_maker)
+                rhythmmakertools.TaleaRhythmMaker(
+                    talea=(1, 2, 3, 4),
+                    talea_denominator=8,
+                    )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = new_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'8
+                        c'4
+                    }
+                    {
+                        \time 4/8
+                        c'4.
+                        c'8 ~
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 4/8
+                        c'8
+                        c'4
+                        c'8
                     }
                 }
 
         Returns new talea rhythm-maker.
         '''
         return RhythmMaker.__makenew__(self, *args, **kwargs)
+
+    def __repr__(self):
+        r'''Gets interpreter representation of talea rhythm-maker.
+
+        ..  container:: example
+
+            ::
+
+                >>> rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=(1, 2, 3, 4),
+                ...     talea_denominator=16,
+                ...     )
+                TaleaRhythmMaker(talea=(1, 2, 3, 4), talea_denominator=16)
+
+        Returns string.
+        '''
+        return RhythmMaker.__repr__(self)
 
     ### PRIVATE METHODS ###
 
@@ -701,25 +801,14 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     burnish_output=True,
-                ...     lefts=(-1,),
-                ...     middles=(0,),
-                ...     rights=(-1,),
-                ...     left_lengths=(1,),
-                ...     right_lengths=(1,),
-                ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=(1, 2, 3),
+                ...     talea=(1, 2, 3, 4),
                 ...     talea_denominator=16,
-                ...     burnish_specifier=burnish_specifier,
-                ...     prolation_addenda=(0, 2),
-                ...     secondary_divisions=(9,),
                 ...     )
 
             ::
 
-                >>> divisions = [(3, 8), (4, 8)]
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
                 >>> music = maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
@@ -734,26 +823,28 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 3/8
-                        {
-                            r16
-                            c'8 [
-                            c'8. ]
-                        }
+                        c'16 [
+                        c'8
+                        c'8. ]
                     }
                     {
                         \time 4/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 3/5 {
-                            c'16 [
-                            c'8
-                            c'8 ] ~
-                        }
-                        {
-                            c'16 [
-                            c'16
-                            c'8 ]
-                            r16
-                        }
+                        c'4
+                        c'16 [
+                        c'8
+                        c'16 ] ~
+                    }
+                    {
+                        \time 3/8
+                        c'8
+                        c'4
+                    }
+                    {
+                        \time 4/8
+                        c'16 [
+                        c'8
+                        c'8.
+                        c'8 ]
                     }
                 }
 
@@ -762,18 +853,11 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> reversed_maker = maker.reverse()
                 >>> print format(reversed_maker)
                 rhythmmakertools.TaleaRhythmMaker(
-                    talea=(3, 2, 1),
+                    talea=(4, 3, 2, 1),
                     talea_denominator=16,
-                    prolation_addenda=(2, 0),
-                    secondary_divisions=(9,),
                     burnish_specifier=rhythmmakertools.BurnishSpecifier(
                         burnish_divisions=False,
-                        burnish_output=True,
-                        lefts=(-1,),
-                        middles=(0,),
-                        rights=(-1,),
-                        left_lengths=(1,),
-                        right_lengths=(1,),
+                        burnish_output=False,
                         ),
                     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                         decrease_durations_monotonically=False,
@@ -782,7 +866,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> divisions = [(3, 8), (4, 8)]
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
                 >>> music = reversed_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
@@ -797,27 +881,27 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 3/4 {
-                            r8.
-                            c'8 [
-                            c'16
-                            c'8 ] ~
-                        }
+                        c'4
+                        c'8 ~
                     }
                     {
                         \time 4/8
-                        {
-                            c'16 [
-                            c'8 ]
-                        }
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 5/7 {
-                            c'16 [
-                            c'8.
-                            c'8 ]
-                            r16
-                        }
+                        c'16 [
+                        c'8
+                        c'16 ]
+                        c'4
+                    }
+                    {
+                        \time 3/8
+                        c'8. [
+                        c'8
+                        c'16 ]
+                    }
+                    {
+                        \time 4/8
+                        c'4
+                        c'8. [
+                        c'16 ]
                     }
                 }
 
