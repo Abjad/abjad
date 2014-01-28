@@ -130,7 +130,7 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_output_03():
         talea_denominator=16, 
         burnish_specifier=burnish_specifier,
         prolation_addenda=(0, 2),
-        secondary_divisions=(9,),
+        split_divisions_every=(9,),
         )
 
     divisions = [(3, 8), (4, 8)]

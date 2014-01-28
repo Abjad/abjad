@@ -53,7 +53,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___02():
         talea=(-1, 4, -2, 3), 
         talea_denominator=16, 
         prolation_addenda=(3, 4), 
-        secondary_divisions=(6,),
+        split_divisions_every=(6,),
         )
 
     divisions = [(2, 8), (5, 8)]

@@ -107,7 +107,7 @@ class TaleaRhythmMaker(RhythmMaker):
         '_burnish_specifier',
         '_helper_functions',
         '_prolation_addenda',
-        '_secondary_divisions',
+        '_split_divisions_every',
         '_talea',
         '_talea_denominator',
         )
@@ -123,7 +123,7 @@ class TaleaRhythmMaker(RhythmMaker):
         talea=(-1, 4, -2, 3),
         talea_denominator=16,
         prolation_addenda=None,
-        secondary_divisions=None,
+        split_divisions_every=None,
         beam_specifier=None,
         burnish_specifier=None,
         duration_spelling_specifier=None,
@@ -151,12 +151,12 @@ class TaleaRhythmMaker(RhythmMaker):
         left_lengths_helper = helper_functions.get('left_lengths')
         right_lengths_helper = helper_functions.get('right_lengths')
         secondary_divisions_helper = \
-            helper_functions.get('secondary_divisions')
+            helper_functions.get('split_divisions_every')
         prolation_addenda = self._to_tuple(prolation_addenda)
         prototype = (rhythmmakertools.BurnishSpecifier, type(None))
         assert isinstance(burnish_specifier, prototype)
         self._burnish_specifier = burnish_specifier
-        secondary_divisions = self._to_tuple(secondary_divisions)
+        split_divisions_every = self._to_tuple(split_divisions_every)
         talea_helper = self._none_to_trivial_helper(talea_helper)
         prolation_addenda_helper = self._none_to_trivial_helper(
             prolation_addenda_helper)
@@ -174,9 +174,9 @@ class TaleaRhythmMaker(RhythmMaker):
         assert prolation_addenda is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
                 prolation_addenda)
-        assert secondary_divisions is None or \
+        assert split_divisions_every is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-                secondary_divisions)
+                split_divisions_every)
         assert callable(talea_helper)
         assert callable(prolation_addenda_helper)
         assert callable(lefts_helper)
@@ -186,7 +186,7 @@ class TaleaRhythmMaker(RhythmMaker):
         assert callable(right_lengths_helper)
         self._talea_denominator = talea_denominator
         self._prolation_addenda = prolation_addenda
-        self._secondary_divisions = secondary_divisions
+        self._split_divisions_every = split_divisions_every
         if helper_functions == {}:
             helper_functions = None
         self._helper_functions = helper_functions
@@ -571,14 +571,14 @@ class TaleaRhythmMaker(RhythmMaker):
         from abjad.tools import rhythmmakertools
         octuplet = self._prepare_input(seeds)
         talea, prolation_addenda = octuplet[:2]
-        secondary_divisions = octuplet[-1]
-        taleas = (talea, prolation_addenda, secondary_divisions)
+        split_divisions_every = octuplet[-1]
+        taleas = (talea, prolation_addenda, split_divisions_every)
         result = self._scale_taleas(
             duration_pairs, self.talea_denominator, taleas)
-        duration_pairs, lcd, talea, prolation_addenda, secondary_divisions = \
+        duration_pairs, lcd, talea, prolation_addenda, split_divisions_every = \
             result
         secondary_duration_pairs = self._make_secondary_duration_pairs(
-            duration_pairs, secondary_divisions)
+            duration_pairs, split_divisions_every)
         septuplet = (talea, prolation_addenda) + octuplet[2:-1]
         numeric_map = self._make_numeric_map(
             secondary_duration_pairs, septuplet)
@@ -712,14 +712,14 @@ class TaleaRhythmMaker(RhythmMaker):
             right_lengths = right_lengths_helper(right_lengths)
         right_lengths = datastructuretools.CyclicTuple(right_lengths)
 
-        secondary_divisions = self.secondary_divisions or ()
+        split_divisions_every = self.split_divisions_every or ()
         secondary_divisions_helper = helper_functions.get(
-            'secondary_divisions')
+            'split_divisions_every')
         if secondary_divisions_helper is not None:
-            secondary_divisions = secondary_divisions_helper(
-                secondary_divisions)
-        secondary_divisions = datastructuretools.CyclicTuple(
-            secondary_divisions)
+            split_divisions_every = secondary_divisions_helper(
+                split_divisions_every)
+        split_divisions_every = datastructuretools.CyclicTuple(
+            split_divisions_every)
 
         return (
             talea,
@@ -729,7 +729,7 @@ class TaleaRhythmMaker(RhythmMaker):
             rights,
             left_lengths,
             right_lengths,
-            secondary_divisions,
+            split_divisions_every,
             )
 
     ### PUBLIC PROPERTIES ###
@@ -896,7 +896,7 @@ class TaleaRhythmMaker(RhythmMaker):
         return self._prolation_addenda
 
     @property
-    def secondary_divisions(self):
+    def split_divisions_every(self):
         r'''Gets secondary divisions of talea rhythm-maker.
 
         Secondary divisions impose a cyclic split operation on divisions.
@@ -976,7 +976,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=(2,),
                 ...     talea_denominator=32,
-                ...     secondary_divisions=(17,)
+                ...     split_divisions_every=(17,)
                 ...     )
 
             ::
@@ -1031,7 +1031,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 }
 
             Note that the additional divisions created when using
-            `secondary_divisions` are subject to `prolation_addenda` just like
+            `split_divisions_every` are subject to `prolation_addenda` just like
             other divisions.
 
             This example adds one extra thirty-second note to every other 
@@ -1043,7 +1043,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=(2,),
                 ...     talea_denominator=32,
-                ...     secondary_divisions=(17,),
+                ...     split_divisions_every=(17,),
                 ...     prolation_addenda=(0, 1),
                 ...     )
 
@@ -1117,7 +1117,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         Returns positive integer tuple or none.
         '''
-        return self._secondary_divisions
+        return self._split_divisions_every
 
     @property
     def talea(self):
@@ -1249,7 +1249,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 }
 
         Defined equal to copy of this talea rhythm-maker with `talea`,
-        `prolation_addenda`, `secondary_divisions`, `burnish_specifier` and
+        `prolation_addenda`, `split_divisions_every`, `burnish_specifier` and
         `duration_spelling_specifier` reversed.
 
         Returns new talea rhythm-maker.
@@ -1263,9 +1263,9 @@ class TaleaRhythmMaker(RhythmMaker):
         if burnish_specifier is None:
             burnish_specifier = rhythmmakertools.BurnishSpecifier()
         burnish_specifier = burnish_specifier.reverse()
-        secondary_divisions = self.secondary_divisions
-        if secondary_divisions is not None:
-            secondary_divisions = tuple(reversed(secondary_divisions))
+        split_divisions_every = self.split_divisions_every
+        if split_divisions_every is not None:
+            split_divisions_every = tuple(reversed(split_divisions_every))
         specifier = self.duration_spelling_specifier
         if specifier is None:
             specifier = rhythmmakertools.DurationSpellingSpecifier()
@@ -1274,7 +1274,7 @@ class TaleaRhythmMaker(RhythmMaker):
             self,
             talea=talea,
             prolation_addenda=prolation_addenda,
-            secondary_divisions=secondary_divisions,
+            split_divisions_every=split_divisions_every,
             burnish_specifier=burnish_specifier,
             duration_spelling_specifier=specifier,
             )
