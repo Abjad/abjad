@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
+from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
@@ -67,7 +68,6 @@ class EvenRunRhythmMaker(RhythmMaker):
                 }
             }
 
-    Even-run rhythm-maker doesn't yet work with non-power-of-two divisions.
     '''
 
     ### CLASS VARIABLES ###
@@ -259,7 +259,9 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     def _make_container(self, division):
         numerator, denominator = division
-        # eventually allow for non-power-of-two divisions
+        time_signature = indicatortools.TimeSignature(division)
+        implied_prolation = time_signature.implied_prolation
+        denominator = mathtools.greatest_power_of_two_less_equal(denominator)
         assert mathtools.is_positive_integer_power_of_two(denominator)
         exponent = self.exponent or 0
         denominator_multiplier = 2 ** exponent
@@ -267,8 +269,12 @@ class EvenRunRhythmMaker(RhythmMaker):
         unit_duration = durationtools.Duration(1, denominator)
         numerator *= denominator_multiplier
         notes = scoretools.make_notes(numerator * [0], [unit_duration])
-        container = scoretools.Container(notes)
-        return container
+        if implied_prolation == 1:
+            result = scoretools.Container(notes)
+        else:
+            multiplier = implied_prolation
+            result = scoretools.Tuplet(multiplier, notes)
+        return result
 
     def _make_music(self, duration_pairs, seeds):
         from abjad.tools import rhythmmakertools
