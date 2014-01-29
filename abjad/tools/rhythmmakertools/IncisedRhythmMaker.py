@@ -27,6 +27,7 @@ class IncisedRhythmMaker(RhythmMaker):
         ::
 
             >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+            ...     incise_divisions=True,
             ...     prefix_talea=(-1,),
             ...     prefix_lengths=(0, 1),
             ...     suffix_talea=(-1,),
@@ -36,7 +37,6 @@ class IncisedRhythmMaker(RhythmMaker):
             >>> maker = rhythmmakertools.IncisedRhythmMaker(
             ...     incise_specifier=incise_specifier,
             ...     fill_with_notes=True,
-            ...     incise_divisions=True,
             ...     )
 
         ::
@@ -84,8 +84,6 @@ class IncisedRhythmMaker(RhythmMaker):
         '_extra_counts_per_division',
         '_fill_with_notes',
         '_helper_functions',
-        '_incise_output',
-        '_incise_divisions',
         '_incise_specifier',
         '_split_divisions_by_counts',
         )
@@ -106,8 +104,6 @@ class IncisedRhythmMaker(RhythmMaker):
         beam_specifier=None,
         duration_spelling_specifier=None,
         fill_with_notes=True,
-        incise_divisions=False,
-        incise_output=False,
         tie_specifier=None,
         ):
         from abjad.tools import rhythmmakertools
@@ -144,10 +140,6 @@ class IncisedRhythmMaker(RhythmMaker):
         self._split_divisions_by_counts = split_divisions_by_counts
         assert isinstance(fill_with_notes, bool)
         self._fill_with_notes = fill_with_notes
-        assert isinstance(incise_divisions, bool)
-        self._incise_divisions = incise_divisions
-        assert isinstance(incise_output, bool)
-        self._incise_output = incise_output
 
     ### SPECIAL METHODS ###
 
@@ -203,8 +195,12 @@ class IncisedRhythmMaker(RhythmMaker):
         return numeric_map
 
     def _make_middle_of_numeric_map_part(self, middle):
+        from abjad.tools import rhythmmakertools
+        incise_specifier = self.incise_specifier
+        if incise_specifier is None:
+            incise_specifier = rhythmmakertools.InciseSpecifier()
         if self.fill_with_notes:
-            if self.incise_divisions:
+            if incise_specifier.incise_divisions:
                 if 0 < middle:
                     if self.body_ratio is not None:
                         shards = mathtools.divide_number_by_ratio(
@@ -214,7 +210,7 @@ class IncisedRhythmMaker(RhythmMaker):
                         return (middle,)
                 else:
                     return ()
-            elif self.incise_output:
+            elif incise_specifier.incise_output:
                 if 0 < middle:
                     return (middle,)
                 else:
@@ -223,12 +219,12 @@ class IncisedRhythmMaker(RhythmMaker):
                 message = 'must incise divisions or output.'
                 raise Exception(message)
         else:
-            if self.incise_divisions:
+            if incise_specifier.incise_divisions:
                 if 0 < middle:
                     return (-abs(middle),)
                 else:
                     return ()
-            elif self.incise_output:
+            elif incise_specifier.incise_output:
                 if 0 < middle:
                     return (-abs(middle), )
                 else:
@@ -265,7 +261,10 @@ class IncisedRhythmMaker(RhythmMaker):
         split_divisions_by_counts = input_[5]
         secondary_duration_pairs = self._make_secondary_duration_pairs(
             duration_pairs, split_divisions_by_counts)
-        if self.incise_divisions:
+        incise_specifier = self.incise_specifier
+        if incise_specifier is None:
+            incise_specifier = rhythmmakertools.InciseSpecifier()
+        if incise_specifier.incise_divisions:
             numeric_map = self._make_division_incised_numeric_map(
                 secondary_duration_pairs,
                 prefix_talea,
@@ -275,7 +274,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 extra_counts_per_division,
                 )
         else:
-            assert self.incise_output
+            assert incise_specifier.incise_output
             numeric_map = self._make_output_incised_numeric_map(
                 secondary_duration_pairs,
                 prefix_talea,
@@ -330,7 +329,11 @@ class IncisedRhythmMaker(RhythmMaker):
         elif suffix_space < suffix_weight:
             weights = [suffix_space]
             suffix = sequencetools.split_sequence_by_weights(
-                suffix, weights, cyclic=False, overhang=False)[0]
+                suffix, 
+                weights, 
+                cyclic=False, 
+                overhang=False,
+                )[0]
         numeric_map_part = prefix + middle + suffix
         return numeric_map_part
 
@@ -477,6 +480,7 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+                ...     incise_divisions=True,
                 ...     prefix_talea=(-1,),
                 ...     prefix_lengths=(0, 1),
                 ...     suffix_talea=(-1,),
@@ -487,7 +491,6 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     incise_specifier=incise_specifier,
                 ...     body_ratio=(1, 1),
                 ...     fill_with_notes=True,
-                ...     incise_divisions=True,
                 ...     )
 
             ::
@@ -550,17 +553,25 @@ class IncisedRhythmMaker(RhythmMaker):
         '''
         return self._helper_functions
 
-    @property
-    def incise_divisions(self):
-        r'''Gets incise divisions boolean.
+#    @property
+#    def incise_divisions(self):
+#        r'''Gets incise divisions boolean.
+#
+#        Returns boolean.
+#        '''
+#        return self._incise_divisions
 
-        Returns boolean.
-        '''
-        return self._incise_divisions
+#    @property
+#    def incise_output(self):
+#        r'''Gets incise output boolean.
+#
+#        Returns boolean.
+#        '''
+#        return self._incise_output
 
     @property
-    def incise_output(self):
-        r'''Gets incise output boolean.
+    def incise_specifier(self):
+        r'''Gets incise specifier or incised rhythm-maker.
 
         ..  container:: example
 
@@ -569,6 +580,7 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+                ...     incise_output=True,
                 ...     prefix_talea=(-8, -7),
                 ...     prefix_lengths=(2,),
                 ...     suffix_talea=(-3,),
@@ -578,7 +590,6 @@ class IncisedRhythmMaker(RhythmMaker):
                 >>> maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=incise_specifier,
                 ...     fill_with_notes=True,
-                ...     incise_output=True,
                 ...     )
 
             ::
@@ -623,6 +634,7 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+                ...     incise_output=True,
                 ...     prefix_talea=(7, 8),
                 ...     prefix_lengths=(2,),
                 ...     suffix_talea=(3,),
@@ -632,7 +644,6 @@ class IncisedRhythmMaker(RhythmMaker):
                 >>> maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=incise_specifier,
                 ...     fill_with_notes=False,
-                ...     incise_output=True,
                 ...     )
 
             ::
@@ -670,15 +681,7 @@ class IncisedRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Returns boolean.
-        '''
-        return self._incise_output
-
-    @property
-    def incise_specifier(self):
-        r'''Gets incision specifier or incised rhythm-maker.
-
-        Returns incision specifier.
+        Returns incise specifier or none.
         '''
         return self._incise_specifier
 
