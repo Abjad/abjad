@@ -755,6 +755,302 @@ class TaleaRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def beam_specifier(self):
+        r'''Gets beam specifier of talea rhythm-maker.
+
+        Three beam specifier configurations are available.
+
+        ..  container:: example
+
+            This rhythm-maker beams each division:
+
+            ::
+
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1,),
+                ...     denominator=16,
+                ...     )
+                >>> beam_specifier = rhythmmakertools.BeamSpecifier(
+                ...     beam_each_division=True,
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=talea,
+                ...     beam_specifier=beam_specifier,
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+                
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
+                    }
+                    {
+                        \time 4/8
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
+                    }
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
+                    }
+                    {
+                        \time 4/8
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
+                    }
+                }
+
+            The behavior shown here is the talea rhythm-maker's default
+            beaming.
+
+        ..  container:: example
+
+            This rhythm-maker beams divisions together:
+
+            ::
+
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1,),
+                ...     denominator=16,
+                ...     )
+                >>> beam_specifier = rhythmmakertools.BeamSpecifier(
+                ...     beam_divisions_together=True,
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=talea,
+                ...     beam_specifier=beam_specifier,
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+                
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        \set stemLeftBeamCount = #0
+                        \set stemRightBeamCount = #2
+                        c'16 [
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #1
+                        c'16
+                    }
+                    {
+                        \time 4/8
+                        \set stemLeftBeamCount = #1
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #1
+                        c'16
+                    }
+                    {
+                        \time 3/8
+                        \set stemLeftBeamCount = #1
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #1
+                        c'16
+                    }
+                    {
+                        \time 4/8
+                        \set stemLeftBeamCount = #1
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #0
+                        c'16 ]
+                    }
+                }
+
+        ..  container:: example
+
+            This rhythm-maker makes no beams:
+
+            ::
+
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1,),
+                ...     denominator=16,
+                ...     )
+                >>> beam_specifier = rhythmmakertools.BeamSpecifier(
+                ...     beam_each_division=False,
+                ...     beam_divisions_together=False,
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=talea,
+                ...     beam_specifier=beam_specifier,
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+                
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                    }
+                    {
+                        \time 4/8
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                    }
+                    {
+                        \time 3/8
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                    }
+                    {
+                        \time 4/8
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                    }
+                }
+
+
+        Returns beam specifier or none.
+        '''
+        return RhythmMaker.beam_specifier.fget(self)
+
+    @property
     def burnish_specifier(self):
         r'''Gets burnish specifier of talea rhythm-maker.
 
