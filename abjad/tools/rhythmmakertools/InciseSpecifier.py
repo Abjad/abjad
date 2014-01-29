@@ -12,6 +12,8 @@ class InciseSpecifier(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_incise_divisions',
+        '_incise_output',
         '_prefix_talea',
         '_prefix_lengths',
         '_suffix_talea',
@@ -23,34 +25,27 @@ class InciseSpecifier(AbjadObject):
 
     def __init__(
         self,
-        prefix_talea=(8,),
-        prefix_lengths=(1, 2, 3, 4),
-        suffix_talea=(1,),
+        incise_divisions=False,
+        incise_output=False,
+        prefix_talea=(-1,),
+        prefix_lengths=(0, 1),
+        suffix_talea=(-11,),
         suffix_lengths=(1,),
         talea_denominator=32,
         ):
-        prefix_talea = self._to_tuple(prefix_talea)
-        assert prefix_talea is None or \
-            sequencetools.all_are_integer_equivalent_numbers(
-            prefix_talea), prefix_talea
+        assert isinstance(incise_divisions, bool)
+        self._incise_divisions = incise_divisions
+        assert isinstance(incise_output, bool)
+        self._incise_output = incise_output
+        assert self._is_integer_tuple(prefix_talea)
         self._prefix_talea = prefix_talea
-        prefix_lengths = self._to_tuple(prefix_lengths)
-        assert prefix_lengths is None or \
-            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-            prefix_lengths), prefix_lengths
+        assert self._is_length_tuple(prefix_lengths)
         self._prefix_lengths = prefix_lengths
-        suffix_talea = self._to_tuple(suffix_talea)
-        assert suffix_talea is None or \
-            sequencetools.all_are_integer_equivalent_numbers(
-            suffix_talea), suffix_talea
+        assert self._is_integer_tuple(suffix_talea)
         self._suffix_talea = suffix_talea
-        suffix_lengths = self._to_tuple(suffix_lengths)
-        assert suffix_lengths is None or \
-            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
-            suffix_lengths), suffix_lengths
+        assert self._is_length_tuple(suffix_lengths)
         self._suffix_lengths = suffix_lengths
-        assert mathtools.is_positive_integer_equivalent_number(
-            talea_denominator), talea_denominator
+        assert mathtools.is_nonnegative_integer_power_of_two(talea_denominator)
         self._talea_denominator = talea_denominator
 
     ### SPECIAL METHODS ##
@@ -73,12 +68,52 @@ class InciseSpecifier(AbjadObject):
     ### PRIVATE METHODS ###
 
     @staticmethod
+    def _is_integer_tuple(expr):
+        if expr is None:
+            return True
+        if all(isinstance(x, int) for x in expr):
+            return True
+        return False
+        
+    @staticmethod
+    def _is_length_tuple(expr):
+        if expr is None:
+            return True
+        if sequencetools.all_are_nonnegative_integer_equivalent_numbers(expr):
+            if isinstance(expr, tuple):
+                return True
+        return False
+
+    @staticmethod
     def _to_tuple(expr):
         if isinstance(expr, list):
             expr = tuple(expr)
         return expr
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def incise_divisions(self):
+        r'''Is true when rhythm-maker should incise every division.
+        Otherwise false.
+
+        Defaults to false.
+
+        Returns boolean.
+        '''
+        return self._incise_divisions
+
+
+    @property
+    def incise_output(self):
+        r'''Is true when rhythm-maker should incise first and last divisions.
+        Otherwise false.
+
+        Defaults to false.
+
+        Returns boolean.
+        '''
+        return self._incise_output
 
     @property
     def prefix_lengths(self):
