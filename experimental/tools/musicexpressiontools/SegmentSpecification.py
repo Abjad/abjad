@@ -137,8 +137,10 @@ class SegmentSpecification(Specification):
                     musicexpressiontools.SingleContextRhythmSetExpression(
                         source_expression=musicexpressiontools.RhythmMakerExpression(
                             payload=rhythmmakertools.TaleaRhythmMaker(
-                                talea=(1,),
-                                talea_denominator=16,
+                                talea=rhythmmakertools.Talea(
+                                    counts=(1,),
+                                    denominator=16,
+                                    ),
                                 tie_specifier=rhythmmakertools.TieSpecifier(
                                     tie_across_divisions=False,
                                     tie_split_notes=False,

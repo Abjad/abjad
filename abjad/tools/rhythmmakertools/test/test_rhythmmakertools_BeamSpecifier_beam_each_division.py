@@ -6,9 +6,13 @@ def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
     r'''Beam each cell with a multipart beam spanner.
     '''
 
+    talea = rhythmmakertools.Talea(
+        counts=(1, 1, 1, -1, 2, 2), 
+        denominator=32, 
+        )
+
     maker = rhythmmakertools.TaleaRhythmMaker(
-        talea=(1, 1, 1, -1, 2, 2), 
-        talea_denominator=32, 
+        talea=talea,
         extra_counts_per_division=(3, 4), 
         )
 

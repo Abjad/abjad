@@ -85,7 +85,9 @@ class LilyPondGrobOverride(AbjadObject):
         return systemtools.StorageFormatManager.compare(self, expr)
 
     def __hash__(self, expr):
-        r'''Gets hash of LilyPond grob override.
+        r'''Hashes LilyPond grob override.
+
+        Returns integer.
         '''
         from abjad.tools import systemtools
         hash_values = systemtools.StorageFormatManager.get_hash_values(self)

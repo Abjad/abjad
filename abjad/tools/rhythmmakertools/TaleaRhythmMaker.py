@@ -21,9 +21,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ::
 
+            >>> talea = rhythmmakertools.Talea(
+            ...     counts=(1, 2, 3, 4),
+            ...     denominator=16,
+            ...     )
             >>> maker = rhythmmakertools.TaleaRhythmMaker(
-            ...     talea=(1, 2, 3, 4),
-            ...     talea_denominator=16,
+            ...     talea=talea,
             ...     )
 
         ::
@@ -120,8 +123,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
     def __init__(
         self,
-        talea=(-1, 4, -2, 3),
-        talea_denominator=16,
+        talea=None,
         split_divisions_by_counts=None,
         extra_counts_per_division=None,
         beam_specifier=None,
@@ -137,10 +139,8 @@ class TaleaRhythmMaker(RhythmMaker):
             duration_spelling_specifier=duration_spelling_specifier,
             tie_specifier=tie_specifier,
             )
-        prototype = (tuple, type(None))
-        talea = self._to_tuple(talea)
+        prototype = (rhythmmakertools.Talea, type(None))
         assert isinstance(talea, prototype)
-        assert sequencetools.all_are_integer_equivalent_numbers(talea)
         self._talea = talea
         helper_functions = helper_functions or {}
         talea_helper = helper_functions.get('talea')
@@ -169,8 +169,6 @@ class TaleaRhythmMaker(RhythmMaker):
             right_lengths_helper)
         secondary_divisions_helper = self._none_to_trivial_helper(
             secondary_divisions_helper)
-        assert mathtools.is_positive_integer_equivalent_number(
-            talea_denominator)
         assert extra_counts_per_division is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
                 extra_counts_per_division)
@@ -184,7 +182,6 @@ class TaleaRhythmMaker(RhythmMaker):
         assert callable(rights_helper)
         assert callable(left_lengths_helper)
         assert callable(right_lengths_helper)
-        self._talea_denominator = talea_denominator
         self._extra_counts_per_division = extra_counts_per_division
         self._split_divisions_by_counts = split_divisions_by_counts
         if helper_functions == {}:
@@ -198,9 +195,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1, 2, 3, 4),
+                ...     denominator=16,
+                ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=(1, 2, 3, 4),
-                ...     talea_denominator=16,
+                ...     talea=talea, 
                 ...     )
 
             ::
@@ -234,17 +234,22 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1, 2, 3, 4),
+                ...     denominator=16,
+                ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=(1, 2, 3, 4),
-                ...     talea_denominator=16,
+                ...     talea=talea, 
                 ...     )
 
             ::
 
                 >>> print format(maker)
                 rhythmmakertools.TaleaRhythmMaker(
-                    talea=(1, 2, 3, 4),
-                    talea_denominator=16,
+                    talea=rhythmmakertools.Talea(
+                        counts=(1, 2, 3, 4),
+                        denominator=16,
+                        ),
                     )
 
         Returns string.
@@ -259,9 +264,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1, 2, 3, 4),
+                ...     denominator=16,
+                ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=(1, 2, 3, 4),
-                ...     talea_denominator=16,
+                ...     talea=talea, 
                 ...     )
 
             ::
@@ -308,14 +316,23 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> new_maker = new(maker, talea_denominator=8)
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1, 2, 3, 4),
+                ...     denominator=8,
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=talea, 
+                ...     )
+                >>> new_maker = new(maker, talea=talea)
 
             ::
 
                 >>> print format(new_maker)
                 rhythmmakertools.TaleaRhythmMaker(
-                    talea=(1, 2, 3, 4),
-                    talea_denominator=8,
+                    talea=rhythmmakertools.Talea(
+                        counts=(1, 2, 3, 4),
+                        denominator=8,
+                        ),
                     )
 
             ::
@@ -366,11 +383,14 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=(1, 2, 3, 4),
-                ...     talea_denominator=16,
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1, 2, 3, 4),
+                ...     denominator=16,
                 ...     )
-                TaleaRhythmMaker(talea=(1, 2, 3, 4), talea_denominator=16)
+                >>> rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=talea, 
+                ...     )
+                TaleaRhythmMaker(talea=Talea(counts=(1, 2, 3, 4), denominator=16))
 
         Returns string.
         '''
@@ -382,9 +402,9 @@ class TaleaRhythmMaker(RhythmMaker):
         leaves = list(iterate(result).by_class(scoretools.Leaf))
         written_durations = [leaf.written_duration for leaf in leaves]
         weights = []
-        for numerator in self.talea:
+        for numerator in self.talea.counts:
             duration = durationtools.Duration(
-                numerator, self.talea_denominator)
+                numerator, self.talea.denominator)
             weight = abs(duration)
             weights.append(weight)
         parts = sequencetools.partition_sequence_by_weights_exactly(
@@ -574,7 +594,7 @@ class TaleaRhythmMaker(RhythmMaker):
         split_divisions_by_counts = octuplet[-1]
         taleas = (talea, extra_counts_per_division, split_divisions_by_counts)
         result = self._scale_taleas(
-            duration_pairs, self.talea_denominator, taleas)
+            duration_pairs, self.talea.denominator, taleas)
         duration_pairs, lcd, talea, extra_counts_per_division, split_divisions_by_counts = \
             result
         secondary_duration_pairs = self._make_secondary_duration_pairs(
@@ -665,7 +685,7 @@ class TaleaRhythmMaker(RhythmMaker):
     def _prepare_input(self, seeds):
         from abjad.tools import rhythmmakertools
         helper_functions = self.helper_functions or {}
-        talea = self.talea or ()
+        talea = self.talea.counts or ()
         talea_helper = helper_functions.get('talea')
         if talea_helper is not None:
             talea = talea_helper(talea, seeds)
@@ -751,6 +771,10 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1, 2, 3, 4),
+                ...     denominator=16,
+                ...     )
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
                 ...     burnish_output=True,
                 ...     lefts=(-1,),
@@ -760,8 +784,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     right_lengths=(2,),
                 ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=(1, 2, 3, 4),
-                ...     talea_denominator=16,
+                ...     talea=talea, 
                 ...     burnish_specifier=burnish_specifier,
                 ...     )
 
@@ -819,6 +842,10 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1, 2, 3, 4),
+                ...     denominator=16,
+                ...     )
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
                 ...     burnish_divisions=True,
                 ...     lefts=(-1,),
@@ -828,8 +855,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     right_lengths=(0,),
                 ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=(1, 2, 3, 4),
-                ...     talea_denominator=16,
+                ...     talea=talea, 
                 ...     burnish_specifier=burnish_specifier,
                 ...     )
 
@@ -897,9 +923,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1, 2, 3, 4),
+                ...     denominator=16,
+                ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=(1, 2, 3, 4),
-                ...     talea_denominator=16,
+                ...     talea=talea,
                 ...     )
 
             ::
@@ -949,9 +978,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1, 2, 3, 4),
+                ...     denominator=16,
+                ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=(1, 2, 3, 4),
-                ...     talea_denominator=16,
+                ...     talea=talea,
                 ...     extra_counts_per_division=(0, 1,),
                 ...     )
 
@@ -1010,9 +1042,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1, 2, 3, 4),
+                ...     denominator=16,
+                ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=(1, 2, 3, 4),
-                ...     talea_denominator=16,
+                ...     talea=talea,
                 ...     extra_counts_per_division=(0, 2,),
                 ...     )
 
@@ -1089,9 +1124,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(2,),
+                ...     denominator=32,
+                ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=(2,),
-                ...     talea_denominator=32,
+                ...     talea=talea,
                 ...     )
 
             ::
@@ -1153,9 +1191,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(2,),
+                ...     denominator=32,
+                ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=(2,),
-                ...     talea_denominator=32,
+                ...     talea=talea,
                 ...     split_divisions_by_counts=(17,)
                 ...     )
 
@@ -1220,9 +1261,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(2,),
+                ...     denominator=32,
+                ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=(2,),
-                ...     talea_denominator=32,
+                ...     talea=talea,
                 ...     split_divisions_by_counts=(17,),
                 ...     extra_counts_per_division=(0, 1),
                 ...     )
@@ -1307,14 +1351,6 @@ class TaleaRhythmMaker(RhythmMaker):
         '''
         return self._talea
 
-    @property
-    def talea_denominator(self):
-        r'''Gets talea denominator of talea rhythm-maker.
-
-        Returns positive integer.
-        '''
-        return self._talea_denominator
-
     ### PUBLIC METHODS ###
 
     def reverse(self):
@@ -1324,9 +1360,12 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1, 2, 3, 4),
+                ...     denominator=16,
+                ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=(1, 2, 3, 4),
-                ...     talea_denominator=16,
+                ...     talea=talea,
                 ...     )
 
             ::
@@ -1376,8 +1415,10 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> reversed_maker = maker.reverse()
                 >>> print format(reversed_maker)
                 rhythmmakertools.TaleaRhythmMaker(
-                    talea=(4, 3, 2, 1),
-                    talea_denominator=16,
+                    talea=rhythmmakertools.Talea(
+                        counts=(4, 3, 2, 1),
+                        denominator=16,
+                        ),
                     burnish_specifier=rhythmmakertools.BurnishSpecifier(
                         burnish_divisions=False,
                         burnish_output=False,
@@ -1429,13 +1470,13 @@ class TaleaRhythmMaker(RhythmMaker):
                 }
 
         Defined equal to copy of this talea rhythm-maker with `talea`,
-        `extra_counts_per_division`, `split_divisions_by_counts`, `burnish_specifier` and
-        `duration_spelling_specifier` reversed.
+        `extra_counts_per_division`, `split_divisions_by_counts`,
+        `burnish_specifier` and `duration_spelling_specifier` reversed.
 
         Returns new talea rhythm-maker.
         '''
         from abjad.tools import rhythmmakertools
-        talea = tuple(reversed(self.talea))
+        talea = self.talea.reverse()
         extra_counts_per_division = self.extra_counts_per_division
         if extra_counts_per_division is not None:
             extra_counts_per_division = tuple(reversed(extra_counts_per_division))

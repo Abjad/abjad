@@ -4,16 +4,22 @@ from abjad import *
 
 def test_rhythmmakertools_TaleaRhythmMaker___eq___01():
 
+    talea = rhythmmakertools.Talea(
+        counts=(-1, 2, -3, 4), 
+        denominator=16,
+        )
     maker_1 = rhythmmakertools.TaleaRhythmMaker(
-        talea=(-1, 2, -3, 4), 
-        talea_denominator=16,
+        talea=talea,
         extra_counts_per_division=(2, 3),
         split_divisions_by_counts=(6,),
         )
 
+    talea = rhythmmakertools.Talea(
+        counts=(-1, 2, -3, 4), 
+        denominator=16,
+        )
     maker_2 = rhythmmakertools.TaleaRhythmMaker(
-        talea=(-1, 2, -3, 4), 
-        talea_denominator=16,
+        talea=talea,
         extra_counts_per_division=(2, 3),
         split_divisions_by_counts=(6,),
         )

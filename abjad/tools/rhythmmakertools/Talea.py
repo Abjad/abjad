@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -27,6 +28,26 @@ class Talea(AbjadObject):
         assert mathtools.is_nonnegative_integer_power_of_two(denominator)
         self._denominator = denominator
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        r'''Is true when `expr` is a talea with `counts` and `denominator` 
+        equal to those of this talea. Otherwise false.
+
+        Returns boolean.
+        '''
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.compare(self, expr)
+
+    def __hash__(self):
+        r'''Hashes talea.
+
+        Returns integer.
+        '''
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatManager.get_hash_values(self)
+        return hash(hash_values)
+
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -52,3 +73,17 @@ class Talea(AbjadObject):
         Returns nonnegative integer power of two.
         '''
         return self._denominator
+
+    ### PUBLIC METHODS ###
+
+    def reverse(self):
+        r'''Reverses talea.
+
+        Returns new talea.
+        '''
+        counts = tuple(reversed(self.counts))
+        result = type(self)(
+            counts=counts,
+            denominator=self.denominator,
+            )
+        return result

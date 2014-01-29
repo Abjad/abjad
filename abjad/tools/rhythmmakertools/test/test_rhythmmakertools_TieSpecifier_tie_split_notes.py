@@ -4,10 +4,12 @@ from abjad import *
 
 def test_rhythmmakertools_TieSpecifier_tie_split_notes_01():
 
+    talea = rhythmmakertools.Talea(
+        counts=(5,), 
+        denominator=16, 
+        )
     maker = rhythmmakertools.TaleaRhythmMaker(
-        talea=(5,), 
-        talea_denominator=16, 
-        #tie_split_notes=True,
+        talea=talea,
         )
 
     divisions = [(2, 8), (2, 8), (2, 8), (2, 8)]
@@ -47,10 +49,12 @@ def test_rhythmmakertools_TieSpecifier_tie_split_notes_01():
 
 def test_rhythmmakertools_TieSpecifier_tie_split_notes_02():
 
+    talea = rhythmmakertools.Talea(
+        counts=(5,), 
+        denominator=16, 
+        )
     maker = rhythmmakertools.TaleaRhythmMaker(
-        talea=(5,), 
-        talea_denominator=16, 
-        #tie_split_notes=True,
+        talea=talea,
         )
 
     divisions = [(3, 16), (5, 8), (4, 8), (7, 16)]
