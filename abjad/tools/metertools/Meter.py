@@ -738,9 +738,10 @@ class Meter(AbjadObject):
     def fit_meters_to_expr(
         expr,
         meters,
-        discard_final_orphan_downbeat=True,
-        starting_offset=None,
         denominator=32,
+        discard_final_orphan_downbeat=True,
+        maximum_repetitions=None,
+        starting_offset=None,
         ):
         r'''Find the best-matching sequence of meters for the offsets
         contained in `expr`.
@@ -802,16 +803,16 @@ class Meter(AbjadObject):
             start_offset = durationtools.Offset(0)
         else:
             start_offset = durationtools.Offset(starting_offset)
-        metrical_hierarchy_inventory = datastructuretools.TypedTuple(
+        meter_inventory = datastructuretools.TypedTuple(
             tokens=meters,
             item_class=metertools.Meter,
             )
-        longest_hierarchy = sorted(metrical_hierarchy_inventory,
+        longest_hierarchy = sorted(meter_inventory,
             key=lambda x: x.preprolated_duration, reverse=True)[0]
         longest_kernel_duration = max(
-            x.preprolated_duration for x in metrical_hierarchy_inventory)
+            x.preprolated_duration for x in meter_inventory)
         kernels = [x.generate_offset_kernel_to_denominator(denominator)
-            for x in metrical_hierarchy_inventory]
+            for x in meter_inventory]
         current_start_offset = start_offset
         selected_hierarchies = []
         while len(ordered_offsets) and \
@@ -836,12 +837,24 @@ class Meter(AbjadObject):
                 winner = longest_hierarchy
             else:
                 candidates = []
-                for i, kernel in enumerate(kernels):
+                if maximum_repetitions is not None:
+                    fencepost = -1 * abs(maximum_repetitions)
+                    meter_buffer = selected_hierarchies[fencepost:]
+                    print meter_buffer
+                for meter_index, kernel in enumerate(kernels):
+                    if maximum_repetitions is not None and \
+                        len(meter_buffer) == maximum_repetitions:
+                        meter_set = set(meter_buffer +
+                            [meter_inventory[meter_index]])
+                        if len(meter_set) == 1 and 1 < len(meter_inventory):
+                            print '\tNO:', meter_set
+                            continue
+                        print '\tOK:', meter_set
                     response = kernel(current_offset_counter)
-                    candidates.append((response, i))
+                    candidates.append((response, meter_index))
                 candidates.sort(key=lambda x: x[0], reverse=True)
                 response, index = candidates[0]
-                winner = metrical_hierarchy_inventory[index]
+                winner = meter_inventory[index]
             selected_hierarchies.append(winner)
             current_start_offset += winner.preprolated_duration
             while len(ordered_offsets) \
@@ -850,8 +863,8 @@ class Meter(AbjadObject):
         return selected_hierarchies
 
     def generate_offset_kernel_to_denominator(
-        self, 
-        denominator, 
+        self,
+        denominator,
         normalize=True,
         ):
         r'''Generate a dictionary of all offsets in a meter up
