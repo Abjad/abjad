@@ -11,13 +11,35 @@ class IntervalSet(Set):
 
     __slots__ = ()
 
+    ### INITIALIZER ###
+
+    def __init__(self, tokens=None, item_class=None, custom_identifier=None):
+        from abjad.tools import pitchtools
+        prototype = (
+            pitchtools.PitchClassSegment,
+            pitchtools.PitchClassSet,
+            pitchtools.PitchSegment,
+            pitchtools.PitchSet,
+            )
+        if isinstance(tokens, prototype):
+            tokens = list(tokens)
+            pairs = sequencetools.yield_all_unordered_pairs_of_sequence(
+                tokens)
+            tokens = [second - first for first, second in pairs]
+        Set.__init__(
+            self,
+            tokens=tokens,
+            item_class=item_class,
+            custom_identifier=custom_identifier,
+            )
+
     ### PRIVATE PROPERTIES ###
 
     @property
     def _named_item_class(self):
         from abjad.tools import pitchtools
         return pitchtools.NamedInterval
-    
+
     @property
     def _numbered_item_class(self):
         from abjad.tools import pitchtools
@@ -61,7 +83,7 @@ class IntervalSet(Set):
             NamedInterval('-M2')
             NamedInterval('-m3')
             NamedInterval('+P5')
-        
+
         Returns interval set.
         '''
         from abjad.tools import pitchtools
