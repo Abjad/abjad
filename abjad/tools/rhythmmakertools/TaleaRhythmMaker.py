@@ -1202,6 +1202,243 @@ class TaleaRhythmMaker(RhythmMaker):
         return self._burnish_specifier
 
     @property
+    def duration_spelling_specifier(self):
+        r'''Gets duration spelling specifier of talea rhythm-maker.
+
+        Several beam spelling specifier configurations are available.
+
+        ..  container:: example
+
+            This rhythm-maker spells nonassignable durations like ``5/16`` with
+            monontonically decreasing durations:
+
+            ::
+
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(5,),
+                ...     denominator=16,
+                ...     )
+                >>> duration_spelling_specifier = \
+                ...     rhythmmakertools.DurationSpellingSpecifier(
+                ...     decrease_durations_monotonically=True,
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=talea,
+                ...     beam_specifier=beam_specifier,
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (5, 8), (5, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+                
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'4 ~
+                        c'16
+                        c'4 ~
+                        c'16
+                    }
+                    {
+                        c'4 ~
+                        c'16
+                        c'4 ~
+                        c'16
+                    }
+                    {
+                        c'4 ~
+                        c'16
+                        c'4 ~
+                        c'16
+                    }
+                }
+
+            The behavior shown here is a default duration-spelling behavior.
+
+        ..  container:: example
+
+            This rhythm-maker spells nonassignable durations like ``5/16`` with
+            monontonically increasing durations:
+
+            ::
+
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(5,),
+                ...     denominator=16,
+                ...     )
+                >>> duration_spelling_specifier = \
+                ...     rhythmmakertools.DurationSpellingSpecifier(
+                ...     decrease_durations_monotonically=False,
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=talea,
+                ...     duration_spelling_specifier=duration_spelling_specifier,
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (5, 8), (5, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+                
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'16 ~
+                        c'4
+                        c'16 ~
+                        c'4
+                    }
+                    {
+                        c'16 ~
+                        c'4
+                        c'16 ~
+                        c'4
+                    }
+                    {
+                        c'16 ~
+                        c'4
+                        c'16 ~
+                        c'4
+                    }
+                }
+
+        ..  container:: example
+
+            This rhythm-maker has no forbidden durations:
+
+            ::
+
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1, 1, 1, 1, 4, 4),
+                ...     denominator=16,
+                ...     )
+                >>> duration_spelling_specifier = \
+                ...     rhythmmakertools.DurationSpellingSpecifier(
+                ...     forbidden_written_duration=None,
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=talea,
+                ...     duration_spelling_specifier=duration_spelling_specifier,
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 4), (3, 4)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+                
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/4
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16 ]
+                        c'4
+                        c'4
+                    }
+                    {
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16 ]
+                        c'4
+                        c'4
+                    }
+                }
+
+            The behavior shown here is a default duration-spelling behavior.
+
+        ..  container:: example
+
+            This rhythm-maker forbids durations equal to ``1/4`` or greater:
+
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1, 1, 1, 1, 4, 4),
+                ...     denominator=16,
+                ...     )
+                >>> duration_spelling_specifier = \
+                ...     rhythmmakertools.DurationSpellingSpecifier(
+                ...     forbidden_written_duration=Duration(1, 4),
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=talea,
+                ...     duration_spelling_specifier=duration_spelling_specifier,
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 4), (3, 4)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+                
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/4
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'8 ~
+                        c'8
+                        c'8 ~
+                        c'8 ]
+                    }
+                    {
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'8 ~
+                        c'8
+                        c'8 ~
+                        c'8 ]
+                    }
+                }
+
+            Forbidden durations are rewritten with smaller durations tied
+            together.
+
+        Returns duration spelling specifier or none.
+        '''
+        return RhythmMaker.duration_spelling_specifier.fget(self)
+
+    @property
     def helper_functions(self):
         r'''Gets helper functions of talea rhythm-maker.
 
