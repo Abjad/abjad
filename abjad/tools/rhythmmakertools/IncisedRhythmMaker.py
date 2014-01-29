@@ -14,15 +14,7 @@ from abjad.tools.topleveltools import attach
 class IncisedRhythmMaker(RhythmMaker):
     r'''Incised rhythm-maker.
     
-    Rhythm makers can incise the edge of every output cell.
-
-    Or rhythm-makers can incise only the start of the first output cell
-    and the end of the last output cell.
-
-
     ..  container:: example
-
-        Division-incised notes:
 
         ::
 
@@ -96,10 +88,10 @@ class IncisedRhythmMaker(RhythmMaker):
         incise_specifier=None,
         split_divisions_by_counts=None,
         extra_counts_per_division=None,
-        helper_functions=None,
         beam_specifier=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
+        helper_functions=None,
         ):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
@@ -108,9 +100,8 @@ class IncisedRhythmMaker(RhythmMaker):
             duration_spelling_specifier=duration_spelling_specifier,
             tie_specifier=tie_specifier,
             )
-        # TODO: allow storage of none for incise specifier
-        incise_specifier = incise_specifier or \
-            rhythmmakertools.InciseSpecifier()
+        prototype = (rhythmmakertools.InciseSpecifier, type(None))
+        assert isinstance(incise_specifier, prototype)
         self._incise_specifier = incise_specifier
         extra_counts_per_division = \
             self._to_tuple(extra_counts_per_division)
