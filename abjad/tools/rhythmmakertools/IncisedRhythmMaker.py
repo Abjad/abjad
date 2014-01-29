@@ -36,7 +36,6 @@ class IncisedRhythmMaker(RhythmMaker):
             ...     )
             >>> maker = rhythmmakertools.IncisedRhythmMaker(
             ...     incise_specifier=incise_specifier,
-            ...     fill_with_notes=True,
             ...     )
 
         ::
@@ -80,9 +79,7 @@ class IncisedRhythmMaker(RhythmMaker):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_body_ratio',
         '_extra_counts_per_division',
-        '_fill_with_notes',
         '_helper_functions',
         '_incise_specifier',
         '_split_divisions_by_counts',
@@ -97,13 +94,11 @@ class IncisedRhythmMaker(RhythmMaker):
     def __init__(
         self,
         incise_specifier=None,
-        body_ratio=None,
         split_divisions_by_counts=None,
         extra_counts_per_division=None,
         helper_functions=None,
         beam_specifier=None,
         duration_spelling_specifier=None,
-        fill_with_notes=True,
         tie_specifier=None,
         ):
         from abjad.tools import rhythmmakertools
@@ -113,6 +108,7 @@ class IncisedRhythmMaker(RhythmMaker):
             duration_spelling_specifier=duration_spelling_specifier,
             tie_specifier=tie_specifier,
             )
+        # TODO: allow storage of none for incise specifier
         incise_specifier = incise_specifier or \
             rhythmmakertools.InciseSpecifier()
         self._incise_specifier = incise_specifier
@@ -120,13 +116,6 @@ class IncisedRhythmMaker(RhythmMaker):
             self._to_tuple(extra_counts_per_division)
         split_divisions_by_counts = \
             self._to_tuple(split_divisions_by_counts)
-
-        if helper_functions is not None:
-            assert isinstance(helper_functions, dict)
-            for name in helper_functions:
-                function = helper_functions.get(name)
-                assert callable(function)
-        self._helper_functions = helper_functions
         assert extra_counts_per_division is None or \
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             extra_counts_per_division), extra_counts_per_division
@@ -134,12 +123,13 @@ class IncisedRhythmMaker(RhythmMaker):
             sequencetools.all_are_nonnegative_integer_equivalent_numbers(
             split_divisions_by_counts), split_divisions_by_counts
         self._extra_counts_per_division = extra_counts_per_division
-        if body_ratio is not None:
-            body_ratio = mathtools.Ratio(body_ratio)
-        self._body_ratio = body_ratio
         self._split_divisions_by_counts = split_divisions_by_counts
-        assert isinstance(fill_with_notes, bool)
-        self._fill_with_notes = fill_with_notes
+        if helper_functions is not None:
+            assert isinstance(helper_functions, dict)
+            for name in helper_functions:
+                function = helper_functions.get(name)
+                assert callable(function)
+        self._helper_functions = helper_functions
 
     ### SPECIAL METHODS ###
 
@@ -199,12 +189,12 @@ class IncisedRhythmMaker(RhythmMaker):
         incise_specifier = self.incise_specifier
         if incise_specifier is None:
             incise_specifier = rhythmmakertools.InciseSpecifier()
-        if self.fill_with_notes:
+        if incise_specifier.fill_with_notes:
             if incise_specifier.incise_divisions:
                 if 0 < middle:
-                    if self.body_ratio is not None:
+                    if incise_specifier.body_ratio is not None:
                         shards = mathtools.divide_number_by_ratio(
-                            middle, self.body_ratio)
+                            middle, incise_specifier.body_ratio)
                         return tuple(shards)
                     else:
                         return (middle,)
@@ -470,104 +460,12 @@ class IncisedRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def body_ratio(self):
-        r'''Gets body ratio of rhythm-maker.
-
-        ..  container:: example
-
-            Sets `body_ratio` to divide middle part proportionally:
-
-            ::
-
-                >>> incise_specifier = rhythmmakertools.InciseSpecifier(
-                ...     incise_divisions=True,
-                ...     prefix_talea=(-1,),
-                ...     prefix_lengths=(0, 1),
-                ...     suffix_talea=(-1,),
-                ...     suffix_lengths=(1,),
-                ...     talea_denominator=16,
-                ...     )
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
-                ...     incise_specifier=incise_specifier,
-                ...     body_ratio=(1, 1),
-                ...     fill_with_notes=True,
-                ...     )
-
-            ::
-
-                >>> divisions = 4 * [(5, 16)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 5/16
-                        c'8 [
-                        c'8 ]
-                        r16
-                    }
-                    {
-                        r16
-                        c'16. [
-                        c'16. ]
-                        r16
-                    }
-                    {
-                        c'8 [
-                        c'8 ]
-                        r16
-                    }
-                    {
-                        r16
-                        c'16. [
-                        c'16. ]
-                        r16
-                    }
-                }
-
-        Returns ratio.
-        '''
-        return self._body_ratio
-
-    @property
-    def fill_with_notes(self):
-        r'''Gets fill with notes boolean.
-
-        Returns boolean.
-        '''
-        return self._fill_with_notes
-
-    @property
     def helper_functions(self):
         r'''Gets helper functions of incised rhythm-maker.
 
         Returns dictionary or none.
         '''
         return self._helper_functions
-
-#    @property
-#    def incise_divisions(self):
-#        r'''Gets incise divisions boolean.
-#
-#        Returns boolean.
-#        '''
-#        return self._incise_divisions
-
-#    @property
-#    def incise_output(self):
-#        r'''Gets incise output boolean.
-#
-#        Returns boolean.
-#        '''
-#        return self._incise_output
 
     @property
     def incise_specifier(self):
@@ -589,7 +487,6 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=incise_specifier,
-                ...     fill_with_notes=True,
                 ...     )
 
             ::
@@ -640,10 +537,10 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     suffix_talea=(3,),
                 ...     suffix_lengths=(4,),
                 ...     talea_denominator=32,
+                ...     fill_with_notes=False,
                 ...     )
                 >>> maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=incise_specifier,
-                ...     fill_with_notes=False,
                 ...     )
 
             ::

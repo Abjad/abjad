@@ -17,7 +17,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___01():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        fill_with_notes=True,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
@@ -74,7 +73,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___02():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        fill_with_notes=True,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
@@ -131,7 +129,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___03():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        fill_with_notes=True,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
@@ -184,7 +181,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___04():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        fill_with_notes=True,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
@@ -233,7 +229,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___05():
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
         extra_counts_per_division=(1, 0, 3),
-        fill_with_notes=True,
         )
 
     divisions = [(4, 8), (4, 8), (4, 8)]
@@ -293,7 +288,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
         incise_specifier=incise_specifier,
         extra_counts_per_division=(2, 0),
         split_divisions_by_counts=(20,),
-        fill_with_notes=True,
         )
 
     divisions = [(4, 8), (4, 8), (4, 8)]
@@ -355,11 +349,11 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___07():
         suffix_talea=(1,), 
         suffix_lengths=(1,), 
         talea_denominator=32,
+        fill_with_notes=False,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        fill_with_notes=False,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
@@ -413,11 +407,11 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___08():
         suffix_talea=(1,), 
         suffix_lengths=(1,), 
         talea_denominator=32,
+        fill_with_notes=False,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        fill_with_notes=False,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
@@ -471,11 +465,11 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___09():
         suffix_talea=(8,), 
         suffix_lengths=(1, 2, 3), 
         talea_denominator=32,
+        fill_with_notes=False,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        fill_with_notes=False,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
@@ -525,11 +519,11 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___10():
         suffix_talea=(), 
         suffix_lengths=(0,), 
         talea_denominator=8,
+        fill_with_notes=False,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        fill_with_notes=False,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
@@ -573,12 +567,12 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___11():
         suffix_talea=(1,), 
         suffix_lengths=(1,), 
         talea_denominator=8,
+        fill_with_notes=False,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
         extra_counts_per_division=(1, 0, 3),
-        fill_with_notes=False,
         )
 
     divisions = [(4, 8), (4, 8), (4, 8)]
@@ -632,13 +626,13 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___12():
         suffix_talea=(),
         suffix_lengths=(0,),
         talea_denominator=32,
+        fill_with_notes=False,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
         extra_counts_per_division=(2, 0),
         split_divisions_by_counts=(20,),
-        fill_with_notes=False,
         )
 
     divisions = [(4, 8), (4, 8), (4, 8)]
@@ -704,7 +698,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___13():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        fill_with_notes=True,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
@@ -756,7 +749,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___14():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        fill_with_notes=True,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
@@ -806,7 +798,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___15():
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        fill_with_notes=True,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
@@ -855,7 +846,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___16():
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
         extra_counts_per_division=(1, 0, 3),
-        fill_with_notes=True,
         )
 
     divisions = [(4, 8), (4, 8), (4, 8)]
@@ -910,7 +900,6 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___17():
         incise_specifier=incise_specifier,
         extra_counts_per_division=(1, 0, 0, 0, 2), 
         split_divisions_by_counts=(3, 1, 4, 1, 3),
-        fill_with_notes=True,
         )
 
     divisions = [(4, 8), (4, 8), (4, 8)]
@@ -967,11 +956,11 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___18():
         suffix_talea=(3,), 
         suffix_lengths=(4,), 
         talea_denominator=32,
+        fill_with_notes=False,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        fill_with_notes=False,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
@@ -1019,11 +1008,11 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___19():
         suffix_talea=(1,), 
         suffix_lengths=(2,), 
         talea_denominator=4,
+        fill_with_notes=False,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        fill_with_notes=False,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
@@ -1069,11 +1058,11 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___20():
         suffix_talea=(), 
         suffix_lengths=(0,), 
         talea_denominator=4,
+        fill_with_notes=False,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
-        fill_with_notes=False,
         )
 
     divisions = [(5, 8), (5, 8), (5, 8)]
@@ -1117,12 +1106,12 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___21():
         suffix_talea=(1,), 
         suffix_lengths=(1,), 
         talea_denominator=8,
+        fill_with_notes=False,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
         extra_counts_per_division=(1, 0, 3),
-        fill_with_notes=False,
         )
 
     divisions = [(4, 8), (4, 8), (4, 8)]
@@ -1171,13 +1160,13 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___22():
         suffix_talea=(1,), 
         suffix_lengths=(1,), 
         talea_denominator=8,
+        fill_with_notes=False,
         )
 
     maker = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=incise_specifier,
         extra_counts_per_division=(1, 0, 0, 0, 2), 
         split_divisions_by_counts=(3, 1, 4, 1, 3),
-        fill_with_notes=False,
         )
 
     divisions = [(4, 8), (4, 8), (4, 8)]

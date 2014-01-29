@@ -12,6 +12,8 @@ class InciseSpecifier(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_body_ratio',
+        '_fill_with_notes',
         '_incise_divisions',
         '_incise_output',
         '_prefix_talea',
@@ -32,6 +34,8 @@ class InciseSpecifier(AbjadObject):
         suffix_talea=(-11,),
         suffix_lengths=(1,),
         talea_denominator=32,
+        body_ratio=None,
+        fill_with_notes=True,
         ):
         assert isinstance(incise_divisions, bool)
         self._incise_divisions = incise_divisions
@@ -47,6 +51,11 @@ class InciseSpecifier(AbjadObject):
         self._suffix_lengths = suffix_lengths
         assert mathtools.is_nonnegative_integer_power_of_two(talea_denominator)
         self._talea_denominator = talea_denominator
+        if body_ratio is not None:
+            body_ratio = mathtools.Ratio(body_ratio)
+        self._body_ratio = body_ratio
+        assert isinstance(fill_with_notes, bool)
+        self._fill_with_notes = fill_with_notes
 
     ### SPECIAL METHODS ##
 
@@ -93,6 +102,86 @@ class InciseSpecifier(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def body_ratio(self):
+        r'''Gets body ratio of incise specifier.
+
+        ..  container:: example
+
+            Sets `body_ratio` to divide middle part proportionally:
+
+            ::
+
+                >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+                ...     incise_divisions=True,
+                ...     prefix_talea=(-1,),
+                ...     prefix_lengths=(0, 1),
+                ...     suffix_talea=(-1,),
+                ...     suffix_lengths=(1,),
+                ...     talea_denominator=16,
+                ...     body_ratio=(1, 1),
+                ...     )
+                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                ...     incise_specifier=incise_specifier,
+                ...     )
+
+            ::
+
+                >>> divisions = 4 * [(5, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/16
+                        c'8 [
+                        c'8 ]
+                        r16
+                    }
+                    {
+                        r16
+                        c'16. [
+                        c'16. ]
+                        r16
+                    }
+                    {
+                        c'8 [
+                        c'8 ]
+                        r16
+                    }
+                    {
+                        r16
+                        c'16. [
+                        c'16. ]
+                        r16
+                    }
+                }
+
+        Defaults to none.
+
+        Returns ratio or none.
+        '''
+        return self._body_ratio
+
+    @property
+    def fill_with_notes(self):
+        r'''Is true when rhythm-maker should fill divisions with notes.
+        Otherwise false.
+
+        Defaults to true.
+
+        Returns boolean.
+        '''
+        return self._fill_with_notes
+
+    @property
     def incise_divisions(self):
         r'''Is true when rhythm-maker should incise every division.
         Otherwise false.
@@ -102,7 +191,6 @@ class InciseSpecifier(AbjadObject):
         Returns boolean.
         '''
         return self._incise_divisions
-
 
     @property
     def incise_output(self):
