@@ -164,8 +164,22 @@ class Scheme(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    @classmethod
-    def format_scheme_value(cls, value, force_quotes=False):
+    @staticmethod
+    def format_embedded_scheme_value(value, force_quotes=False):
+        r'''Formats `value` as an embedded Scheme value.
+        '''
+        from abjad.tools import schemetools
+        result = Scheme.format_scheme_value(value, force_quotes=force_quotes)
+        if isinstance(value, bool):
+            result = '#{}'.format(result)
+        elif isinstance(value, str) and not force_quotes:
+            result = '#{}'.format(result)
+        elif isinstance(value, schemetools.Scheme):
+            result = '#{}'.format(result)
+        return result
+
+    @staticmethod
+    def format_scheme_value(value, force_quotes=False):
         r'''Formats `value` as Scheme would.
 
         ::
@@ -211,7 +225,8 @@ class Scheme(AbjadObject):
             return '#f'
         elif isinstance(value, (list, tuple)):
             return '({})'.format(
-                ' '.join(cls.format_scheme_value(x) for x in value))
+                ' '.join(schemetools.Scheme.format_scheme_value(x)
+                    for x in value))
         elif isinstance(value, schemetools.Scheme):
             return str(value)
         elif isinstance(value, type(None)):
