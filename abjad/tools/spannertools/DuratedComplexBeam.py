@@ -1,4 +1,4 @@
-#[ -*- encoding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools.spannertools.ComplexBeam import ComplexBeam
@@ -115,13 +115,9 @@ class DuratedComplexBeam(ComplexBeam):
         return offsets
 
     def _is_just_left_of_gap(self, leaf):
-        #print
-        #print 'in just left ...'
         local_start_offset = self._start_offset_in_me(leaf)
         local_stop_offset = self._stop_offset_in_me(leaf)
         span_beam_offsets = self._get_span_beam_offsets()
-        #print local_start_offset, local_stop_offset, span_beam_offsets
-        #print 
         if local_stop_offset in span_beam_offsets:
             if local_start_offset not in span_beam_offsets:
                 return True
@@ -143,10 +139,8 @@ class DuratedComplexBeam(ComplexBeam):
         result = []
         if self._is_beamable_component(leaf):
             if self._is_exterior_leaf(leaf):
-                #print leaf, '(EXTERIOR)'
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
             elif self._is_just_left_of_gap(leaf):
-                #print leaf, '(JUST LEFT OF GAP)'
                 left = leaf.written_duration.flag_count
                 if self.nibs_towards_nonbeamable_components:
                     right = self.span_beam_count
@@ -157,7 +151,6 @@ class DuratedComplexBeam(ComplexBeam):
                     else:
                         right = 0
             elif self._is_just_right_of_gap(leaf):
-                #print leaf, '(JUST RIGHT OF GAP)'
                 if self.nibs_towards_nonbeamable_components:
                     left = self.span_beam_count
                 else:
@@ -169,7 +162,6 @@ class DuratedComplexBeam(ComplexBeam):
                 right = leaf.written_duration.flag_count
             else:
                 assert self._is_interior_leaf(leaf)
-                #print leaf, '(INTERIOR)'
                 left, right = self._get_left_right_for_interior_leaf(leaf)
             if left is not None:
                 string = r'\set stemLeftBeamCount = #{}'.format(left)
