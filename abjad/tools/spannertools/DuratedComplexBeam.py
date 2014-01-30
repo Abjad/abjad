@@ -84,7 +84,7 @@ class DuratedComplexBeam(ComplexBeam):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _span_points(self):
+    def _span_beam_offsets(self):
         result = []
         if self.durations is not None:
             result.append(self.durations[0])
@@ -108,29 +108,37 @@ class DuratedComplexBeam(ComplexBeam):
             new._durations = self.durations[:]
         new._span_beam_count = self.span_beam_count
 
+    def _is_just_left_of_gap(self, leaf):
+        local_start_offset = self._start_offset_in_me(leaf)
+        local_stop_offset = self._stop_offset_in_me(leaf)
+        if local_stop_offset in self._span_beam_offsets:
+            if local_start_offset not in self._span_beam_offsets:
+                return True
+        return False
+
+    def _is_just_right_of_gap(self, leaf):
+        local_start_offset = self._start_offset_in_me(leaf)
+        local_stop_offset = self._stop_offset_in_me(leaf)
+        if local_start_offset in self._span_beam_offsets:
+            if local_stop_offset not in self._span_beam_offsets:
+                return True
+        return False
+
     def _format_before_leaf(self, leaf):
         result = []
-        #if leaf.beam.beamable:
         if self._is_beamable_component(leaf):
             if self._is_exterior_leaf(leaf):
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
-            # just right of span_beam_count gap
-            elif self._duration_offset_in_me(leaf) in self._span_points and \
-                not (self._duration_offset_in_me(leaf) + leaf._get_duration() in \
-                self._span_points):
+            elif self._is_just_left_of_gap(leaf):
                 assert isinstance(self.span_beam_count, int)
-                left = self.span_beam_count
-                #right = leaf._get_duration()._flags
-                right = leaf.written_duration.flag_count
-            # just left of span_beam_count gap
-            elif self._duration_offset_in_me(leaf) + leaf._get_duration() in \
-                self._span_points and \
-                not self._duration_offset_in_me(leaf) in self._span_points:
-                assert isinstance(self.span_beam_count, int)
-                #left = leaf._get_duration()._flags
                 left = leaf.written_duration.flag_count
                 right = self.span_beam_count
+            elif self._is_just_right_of_gap(leaf):
+                assert isinstance(self.span_beam_count, int)
+                left = self.span_beam_count
+                right = leaf.written_duration.flag_count
             else:
+                assert self._is_interior_leaf(leaf)
                 left, right = self._get_left_right_for_interior_leaf(leaf)
             if left is not None:
                 string = r'\set stemLeftBeamCount = #{}'.format(left)

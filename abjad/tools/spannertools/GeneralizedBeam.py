@@ -238,8 +238,8 @@ class GeneralizedBeam(Spanner):
             right = 0
         # leaf is interior
         elif self._span_points:
-            start_offset = self._duration_offset_in_me(leaf)
-            stop_offset = start_offset + leaf._get_duration()
+            start_offset = self._start_offset_in_me(leaf)
+            stop_offset = self._stop_offset_in_me(leaf)
             # leaf starts subgroup
             if start_offset in self._span_points and \
                 not stop_offset in self._span_points:

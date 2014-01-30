@@ -254,11 +254,6 @@ class Spanner(AbjadObject):
     def _detach(self):
         self._sever_all_components()
 
-    def _duration_offset_in_me(self, leaf):
-        leaf_start_offset = leaf._get_timespan().start_offset
-        self_start_offset = self._get_timespan().start_offset
-        return leaf_start_offset - self_start_offset
-
     def _extend(self, components):
         component_input = self[-1:]
         component_input.extend(components)
@@ -411,11 +406,6 @@ class Spanner(AbjadObject):
             start_offset=start_offset, stop_offset=stop_offset)
 
     def _index(self, component):
-#        for i, x in enumerate(self._components):
-#            if x is component:
-#                return i
-#        else:
-#            raise IndexError
         return self._components.index(component)
 
     def _insert(self, i, component):
@@ -437,6 +427,20 @@ class Spanner(AbjadObject):
             return True
         else:
             return False
+
+    def _is_interior_leaf(self, leaf):
+        leaves = self._leaves
+        if leaf not in leaves:
+            return False
+        if len(leaves) < 3:
+            return False
+        leaf_count = len(leaves)
+        first_index = 0
+        last_index = leaf_count - 1
+        leaf_index = leaves.index(leaf)
+        if first_index < leaf_index < last_index:
+            return True
+        return False
 
     def _is_my_first(self, leaf, prototype):
         for component in iterate(self).by_class(prototype):
@@ -542,6 +546,16 @@ class Spanner(AbjadObject):
         '''
         self._block_component(component)
         self._remove_component(component)
+
+    def _start_offset_in_me(self, leaf):
+        leaf_start_offset = leaf._get_timespan().start_offset
+        self_start_offset = self._get_timespan().start_offset
+        return leaf_start_offset - self_start_offset
+
+    def _stop_offset_in_me(self, leaf):
+        leaf_start_offset = self._start_offset_in_me(leaf)
+        leaf_stop_offset = leaf_start_offset + leaf._get_duration()
+        return leaf_stop_offset
 
     def _unblock_all_components(self):
         r'''Not composer-safe.

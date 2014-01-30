@@ -947,7 +947,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             for spanner in descendants.get_spanners(prototype):
                 if left_half[-1] in spanner and right_half[0] in spanner:
                     leaf_right_of_split = right_half[0]
-                    split_offset_in_beam = spanner._duration_offset_in_me(
+                    split_offset_in_beam = spanner._start_offset_in_me(
                         leaf_right_of_split)
                     left_durations, right_durations = \
                         sequencetools.split_sequence_by_weights(
