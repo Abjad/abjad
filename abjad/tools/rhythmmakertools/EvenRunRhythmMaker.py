@@ -7,8 +7,10 @@ from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import systemtools
+from abjad.tools.rhythmmakertools.BeamSpecifier import BeamSpecifier
 from abjad.tools.rhythmmakertools.ExampleWrapper import ExampleWrapper
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+from abjad.tools.rhythmmakertools.TieSpecifier import TieSpecifier
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import new
@@ -82,52 +84,63 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     ### GALLERY INPUT ###
 
+    _gallery_division_lists = (
+        [
+            (4, 16), (5, 16), (1, 2), (2, 12),
+            (1, 2), (2, 12), (4, 16), (5, 16),
+        ],
+        [
+            (1, 11), (3, 8), (3, 8), (3, 8),
+            (3, 8), (3, 8), (1, 11), (3, 8),
+        ],
+        [
+            (3, 15), (3, 15), (3, 16),
+            (5, 24), (5, 24), (5, 16), 
+            (2, 12), (2, 12), (2, 8),
+            (3, 28), (3, 28), (3, 16),
+            (1, 9), (1, 9), (1, 8),
+        ],
+        [
+            (9, 16), (1, 5), (9, 16),
+            (1, 5), (9, 16), (9, 16),
+        ],
+        )
+
     _gallery_input_blocks = (
         ExampleWrapper(
             arguments={
                 },
-            division_lists=(
-                [
-                    (4, 8), (3, 4),
-                    (2, 4), (1, 16), (1, 16), (2, 8), (2, 16),
-                ],
-                [
-                    (5, 16), (5, 16), (5, 16), (5, 16),
-                    (4, 16), (4, 16), (4, 16), (4, 16),
-                ],
-                [
-                    (2, 8), (3, 8), (2, 16), (1, 4), 
-                    (2, 4), (2, 16), (2, 4),
-                ],
-                [
-                    (5, 16), (5, 16), (5, 16), (5, 16),
-                    (4, 16), (4, 16), (4, 16), (4, 16),
-                ],
-                ),
+            division_lists=_gallery_division_lists,
+            ),
+        ExampleWrapper(
+            arguments={
+                'beam_specifier': BeamSpecifier(
+                    beam_divisions_together=True,
+                    ),
+                },
+            division_lists=_gallery_division_lists,
+            ),
+        ExampleWrapper(
+            arguments={
+                'beam_specifier': BeamSpecifier(
+                    beam_each_division=False,
+                    ),
+                },
+            division_lists=_gallery_division_lists,
+            ),
+        ExampleWrapper(
+            arguments={
+                'tie_specifier': TieSpecifier(
+                    tie_across_divisions=True,
+                    ),
+                },
+            division_lists=_gallery_division_lists,
             ),
         ExampleWrapper(
             arguments={
                 'exponent': 1,
                 },
-            division_lists=(
-                [
-                    (4, 8), (3, 4),
-                    (2, 4), (1, 16), (1, 16), 
-                    (7, 8), (2, 8),
-                ],
-                [
-                    (5, 16), (5, 16), (5, 16), (5, 16),
-                    (4, 16), (4, 16), (4, 16), (4, 16),
-                ],
-                [
-                    (2, 8), (3, 8), (2, 16), (1, 4), 
-                    (2, 4), (2, 16), (2, 4),
-                ],
-                [
-                    (5, 16), (5, 16), (5, 16), (5, 16),
-                    (4, 16), (4, 16), (4, 16), (4, 16),
-                ],
-                ),
+            division_lists=_gallery_division_lists,
             ),
         )
 
@@ -284,11 +297,25 @@ class EvenRunRhythmMaker(RhythmMaker):
             beam_specifier = rhythmmakertools.BeamSpecifier()
         for duration_pair in duration_pairs:
             container = self._make_container(duration_pair)
-            if beam_specifier.beam_each_division:
-                beam = spannertools.MultipartBeam()
-                attach(beam, container)
             selection = selectiontools.Selection(container)
             selections.append(selection)
+        if beam_specifier.beam_divisions_together:
+            durations = []
+            for selection in selections:
+                duration = selection.get_duration()
+                durations.append(duration)
+            beam = spannertools.DuratedComplexBeam(
+                durations=durations,
+                span_beam_count=1,
+                )
+            components = []
+            for selection in selections:
+                components.extend(selection)
+            attach(beam, components)
+        elif beam_specifier.beam_each_division:
+            for selection in selections:
+                beam = spannertools.MultipartBeam()
+                attach(beam, selection)
         return selections
 
     ### PUBLIC PROPERTIES ###

@@ -612,8 +612,6 @@ class TaleaRhythmMaker(RhythmMaker):
         if beam_specifier is None:
             beam_specifier = rhythmmakertools.BeamSpecifier()
         if beam_specifier.beam_divisions_together:
-            #beam = spannertools.MultipartBeam()
-            #attach(beam, result)
             durations = []
             for x in result:
                 duration = x.get_duration()
@@ -622,8 +620,6 @@ class TaleaRhythmMaker(RhythmMaker):
                 durations=durations,
                 span_beam_count=1,
                 )
-            #raise Exception(result)
-            #attach(beam, result)
             components = []
             for x in result:
                 if isinstance(x, selectiontools.Selection):
