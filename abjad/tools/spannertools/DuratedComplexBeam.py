@@ -56,8 +56,8 @@ class DuratedComplexBeam(ComplexBeam):
 
     __slots__ = (
         '_durations',
-        '_lone',
-        '_span',
+        '_isolated_nib_direction',
+        '_span_beam_count',
         )
 
     ### INITIALIZER ###
@@ -76,22 +76,10 @@ class DuratedComplexBeam(ComplexBeam):
             isolated_nib_direction=isolated_nib_direction,
             overrides=overrides,
             )
-        if durations is None:
-            self._durations = None
-        elif isinstance(durations, list):
-            for i, d in enumerate(durations):
-                if isinstance(d, tuple):
-                    durations[i] = durationtools.Duration(*d)
-                else:
-                    durations[i] = durationtools.Duration(d)
-            durations = tuple(durations)
-            self._durations = durations
-        else:
-            message = 'durations must be list of durations or none.'
-            raise ValueError(message)
+        durations = self._coerce_durations(durations)
         self._durations = durations
         assert isinstance(span_beam_count, (int, type(None)))
-        self._span = span_beam_count
+        self._span_beam_count = span_beam_count
 
     ### PRIVATE PROPERTIES ###
 
@@ -106,11 +94,19 @@ class DuratedComplexBeam(ComplexBeam):
 
     ### PRIVATE METHODS ###
 
+    @staticmethod
+    def _coerce_durations(durations):
+        durations = durations or ()
+        assert isinstance(durations, (list, tuple))
+        durations = [durationtools.Duration(x) for x in durations]
+        durations = tuple(durations)
+        return durations
+
     def _copy_keyword_args(self, new):
         ComplexBeam._copy_keyword_args(self, new)
         if self.durations is not None:
             new._durations = self.durations[:]
-        new._span = self.span_beam_count
+        new._span_beam_count = self.span_beam_count
 
     def _format_before_leaf(self, leaf):
         result = []
@@ -137,9 +133,11 @@ class DuratedComplexBeam(ComplexBeam):
             else:
                 left, right = self._get_left_right_for_interior_leaf(leaf)
             if left is not None:
-                result.append(r'\set stemLeftBeamCount = #%s' % left)
+                string = r'\set stemLeftBeamCount = #{}'.format(left)
+                result.append(string)
             if right is not None:
-                result.append(r'\set stemRightBeamCount = #%s' % right)
+                string = r'\set stemRightBeamCount = #{}'.format(right)
+                result.append(string)
         return result
 
     def _fracture_left(self, i):
@@ -182,18 +180,42 @@ class DuratedComplexBeam(ComplexBeam):
 
     @property
     def durations(self):
-        r'''Gets spanner leaf group durations.
+        r'''Gets durations of leaf groups in spanner.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'16 d'16 e'16 f'16")
-            >>> durations = [Duration(1, 8), Duration(1, 8)]
-            >>> beam = spannertools.DuratedComplexBeam(
-            ...     durations=durations,
-            ...     )
-            >>> attach(beam, staff[:])
-            >>> beam.durations
-            (Duration(1, 8), Duration(1, 8))
+            ::
+
+                >>> staff = Staff("c'16 d'16 e'16 f'16")
+                >>> durations = [Duration(1, 8), Duration(1, 8)]
+                >>> beam = spannertools.DuratedComplexBeam(
+                ...     durations=durations,
+                ...     )
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #2
+                    c'16 [
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #1
+                    d'16
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #2
+                    e'16
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #0
+                    f'16 ]
+                }
+
+            ::
+
+                >>> beam.durations
+                (Duration(1, 8), Duration(1, 8))
 
         Returns tuple of durations or none.
         '''
@@ -201,20 +223,124 @@ class DuratedComplexBeam(ComplexBeam):
 
     @property
     def span_beam_count(self):
-        r'''Gets top-level span_beam_count-beam count.
+        r'''Gets span beam count of spanner.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'16 d'16 e'16 f'16")
-            >>> durations = [Duration(1, 8), Duration(1, 8)]
-            >>> beam = spannertools.DuratedComplexBeam(
-            ...     durations=durations, 
-            ...     span_beam_count=1,
-            ...     )
-            >>> attach(beam, staff[:])
-            >>> beam.span_beam_count
-            1
+            Creates a single span beam between adjacent groups in spanner:
 
-        Set nonnegative integer.
+            ::
+
+                >>> staff = Staff("c'32 d'32 e'32 f'32")
+                >>> durations = [Duration(1, 16), Duration(1, 16)]
+                >>> beam = spannertools.DuratedComplexBeam(
+                ...     durations=durations, 
+                ...     span_beam_count=1,
+                ...     )
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #3
+                    c'32 [
+                    \set stemLeftBeamCount = #3
+                    \set stemRightBeamCount = #1
+                    d'32
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #3
+                    e'32
+                    \set stemLeftBeamCount = #3
+                    \set stemRightBeamCount = #0
+                    f'32 ]
+                }
+
+            ::
+
+                >>> beam.span_beam_count
+                1
+
+        ..  container:: example
+
+            Creates a double span beam between adjacent groups in spanner:
+
+            ::
+
+                >>> staff = Staff("c'32 d'32 e'32 f'32")
+                >>> durations = [Duration(1, 16), Duration(1, 16)]
+                >>> beam = spannertools.DuratedComplexBeam(
+                ...     durations=durations, 
+                ...     span_beam_count=2,
+                ...     )
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #3
+                    c'32 [
+                    \set stemLeftBeamCount = #3
+                    \set stemRightBeamCount = #2
+                    d'32
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #3
+                    e'32
+                    \set stemLeftBeamCount = #3
+                    \set stemRightBeamCount = #0
+                    f'32 ]
+                }
+
+            ::
+
+                >>> beam.span_beam_count
+                2
+
+        ..  container:: example
+
+            Creates no span beam between adjacent groups in spanner:
+
+            ::
+
+                >>> staff = Staff("c'32 d'32 e'32 f'32")
+                >>> durations = [Duration(1, 16), Duration(1, 16)]
+                >>> beam = spannertools.DuratedComplexBeam(
+                ...     durations=durations, 
+                ...     span_beam_count=0,
+                ...     )
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #3
+                    c'32 [
+                    \set stemLeftBeamCount = #3
+                    \set stemRightBeamCount = #0
+                    d'32
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #3
+                    e'32
+                    \set stemLeftBeamCount = #3
+                    \set stemRightBeamCount = #0
+                    f'32 ]
+                }
+
+            ::
+
+                >>> beam.span_beam_count
+                0
+
+        Defaults to ``1``.
+
+        Returns nonnegative integer.
         '''
-        return self._span
+        return self._span_beam_count
