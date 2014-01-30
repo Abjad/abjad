@@ -19,7 +19,7 @@ def test_spannertools_StaffLinesSpanner_format_01():
             c'8
             d'8
             \stopStaff
-            \once \override Staff.StaffSymbol #'line-count = #3
+            \once \override Staff.StaffSymbol.line-count = 3
             \startStaff
             e'8
             f'8
@@ -52,7 +52,7 @@ def test_spannertools_StaffLinesSpanner_format_02():
             c'8
             d'8
             \stopStaff
-            \once \override Staff.StaffSymbol #'line-positions = #'(-5 -4 -3 -2 -1 0 1.5 3 4.5)
+            \once \override Staff.StaffSymbol.line-positions = #'(-5 -4 -3 -2 -1 0 1.5 3 4.5)
             \startStaff
             e'8
             f'8
@@ -79,7 +79,7 @@ def test_spannertools_StaffLinesSpanner_format_03():
         \new Staff {
             c'8
             \stopStaff
-            \once \override Staff.StaffSymbol #'line-positions = #'(-1.5 0 1.5)
+            \once \override Staff.StaffSymbol.line-positions = #'(-1.5 0 1.5)
             \startStaff
             d'8
             e'8

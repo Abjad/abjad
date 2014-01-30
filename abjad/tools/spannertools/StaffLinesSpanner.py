@@ -21,7 +21,7 @@ class StaffLinesSpanner(Spanner):
             \new Staff {
                 c'8
                 \stopStaff
-                \once \override Staff.StaffSymbol #'line-count = #1
+                \once \override Staff.StaffSymbol.line-count = 1
                 \startStaff
                 d'8
                 e'8
@@ -82,18 +82,29 @@ class StaffLinesSpanner(Spanner):
         return result
 
     def _format_before_leaf(self, leaf):
+        from abjad.tools import lilypondnametools
         result = []
         if self._is_my_first_leaf(leaf):
             result.append(r'\stopStaff')
             if isinstance(self.lines, int):
-                string = r"\once \override Staff.StaffSymbol "
-                string += "#'line-count = #{}"
-                string = string.format(self.lines)
+                override = lilypondnametools.LilyPondGrobOverride(
+                    context_name='Staff',
+                    grob_name='StaffSymbol',
+                    is_once=True,
+                    property_path='line-count',
+                    value=self.lines,
+                    )
+                string = '\n'.join(override.override_format_pieces)
                 result.append(string)
             else:
-                string = r"\once \override Staff.StaffSymbol "
-                string += "#'line-positions = {}"
-                string = string.format(schemetools.SchemeVector(*self.lines))
+                override = lilypondnametools.LilyPondGrobOverride(
+                    context_name='Staff',
+                    grob_name='StaffSymbol',
+                    is_once=True,
+                    property_path='line-positions',
+                    value=schemetools.SchemeVector(*self.lines),
+                    )
+                string = '\n'.join(override.override_format_pieces)
                 result.append(string)
             result.append(r'\startStaff')
         return result
