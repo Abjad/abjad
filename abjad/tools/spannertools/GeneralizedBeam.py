@@ -204,9 +204,16 @@ class GeneralizedBeam(Spanner):
     ### PRIVATE METHODS ###
 
     def _format_before_leaf(self, leaf):
+        from abjad.tools import lilypondnametools
         result = []
         if self.use_stemlets and self._is_my_first_leaf(leaf):
-            result.append(r'\override Stem.stemlet-length = 0.75')
+            override = lilypondnametools.LilyPondGrobOverride(
+                grob_name='Stem',
+                property_path=('stemlet-length',),
+                value=0.75,
+                )
+            string = '\n'.join(override.override_format_pieces)
+            result.append(string)
         if not self._is_beamable_component(leaf):
             return result
         elif not self.use_stemlets and (
@@ -278,11 +285,19 @@ class GeneralizedBeam(Spanner):
                 next_leaf.written_duration.flag_count,
                 )
         if left is not None:
-            setting = r'\set stemLeftBeamCount = #{}'.format(left)
-            result.append(setting)
+            setting = lilypondnametools.LilyPondContextSetting(
+                context_property='stemLeftBeamCount',
+                value=left,
+                )
+            string = '\n'.join(setting.format_pieces)
+            result.append(string)
         if right is not None:
-            setting = r'\set stemRightBeamCount = #{}'.format(right)
-            result.append(setting)
+            setting = lilypondnametools.LilyPondContextSetting(
+                context_property='stemRightBeamCount',
+                value=right,
+                )
+            string = '\n'.join(setting.format_pieces)
+            result.append(string)
         return result
 
     def _format_right_of_leaf(self, leaf):
@@ -319,9 +334,16 @@ class GeneralizedBeam(Spanner):
         return result
 
     def _format_after_leaf(self, leaf):
+        from abjad.tools import lilypondnametools
         result = []
         if self.use_stemlets and self._is_my_last_leaf(leaf):
-            result.append(r'\revert Stem.stemlet-length')
+            override = lilypondnametools.LilyPondGrobOverride(
+                grob_name='Stem',
+                property_path=('stemlet-length',),
+                value=0.75,
+                )
+            string = '\n'.join(override.revert_format_pieces)
+            result.append(string)
         if not self._is_beamable_component(leaf):
             return result
         return result

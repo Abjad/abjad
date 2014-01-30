@@ -35,7 +35,7 @@ class LilyPondContextSetting(AbjadObject):
 
     def __init__(
         self,
-        context_name='Score',
+        context_name=None,
         context_property='autoBeaming',
         is_unset=False,
         value=False,
