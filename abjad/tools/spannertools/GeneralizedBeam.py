@@ -29,14 +29,14 @@ class GeneralizedBeam(Spanner):
                 autoBeaming = ##f
             } {
                 r4
-                \set stemLeftBeamCount = #0
-                \set stemRightBeamCount = #1
+                \set stemLeftBeamCount = 0
+                \set stemRightBeamCount = 1
                 c'8 [
-                \set stemLeftBeamCount = #1
-                \set stemRightBeamCount = #2
+                \set stemLeftBeamCount = 1
+                \set stemRightBeamCount = 2
                 d'16
-                \set stemLeftBeamCount = #2
-                \set stemRightBeamCount = #0
+                \set stemLeftBeamCount = 2
+                \set stemRightBeamCount = 0
                 e'16 ]
                 r8
                 fs'8
@@ -66,18 +66,18 @@ class GeneralizedBeam(Spanner):
                 autoBeaming = ##f
             } {
                 r4
-                \set stemLeftBeamCount = #0
-                \set stemRightBeamCount = #1
+                \set stemLeftBeamCount = 0
+                \set stemRightBeamCount = 1
                 c'8 [
-                \set stemLeftBeamCount = #1
-                \set stemRightBeamCount = #2
+                \set stemLeftBeamCount = 1
+                \set stemRightBeamCount = 2
                 d'16
-                \set stemLeftBeamCount = #2
-                \set stemRightBeamCount = #0
+                \set stemLeftBeamCount = 2
+                \set stemRightBeamCount = 0
                 e'16 ]
                 r8
-                \set stemLeftBeamCount = #0
-                \set stemRightBeamCount = #1
+                \set stemLeftBeamCount = 0
+                \set stemRightBeamCount = 1
                 fs'8 [ ]
                 g'4
             }
@@ -106,20 +106,20 @@ class GeneralizedBeam(Spanner):
             } {
                 \override Stem.stemlet-length = 0.75
                 r4
-                \set stemLeftBeamCount = #0
-                \set stemRightBeamCount = #1
+                \set stemLeftBeamCount = 0
+                \set stemRightBeamCount = 1
                 c'8 [
-                \set stemLeftBeamCount = #1
-                \set stemRightBeamCount = #2
+                \set stemLeftBeamCount = 1
+                \set stemRightBeamCount = 2
                 d'16
-                \set stemLeftBeamCount = #2
-                \set stemRightBeamCount = #1
+                \set stemLeftBeamCount = 2
+                \set stemRightBeamCount = 1
                 e'16
-                \set stemLeftBeamCount = #1
-                \set stemRightBeamCount = #1
+                \set stemLeftBeamCount = 1
+                \set stemRightBeamCount = 1
                 r8
-                \set stemLeftBeamCount = #1
-                \set stemRightBeamCount = #0
+                \set stemLeftBeamCount = 1
+                \set stemRightBeamCount = 0
                 fs'8 ]
                 g'4
                 \revert Stem.stemlet-length
