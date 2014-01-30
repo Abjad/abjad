@@ -117,7 +117,8 @@ class LilyPondContextSetting(AbjadObject):
         else:
             result.append(self.context_property)
         result.append('=')
-        value_pieces = '#' + schemetools.Scheme.format_scheme_value(self.value)
+        value_pieces = schemetools.Scheme.format_embedded_scheme_value(
+            self.value)
         value_pieces = value_pieces.split('\n')
         result.append(value_pieces[0])
         result[:] = [' '.join(result)]

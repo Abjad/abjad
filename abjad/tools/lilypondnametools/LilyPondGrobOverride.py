@@ -70,8 +70,7 @@ class LilyPondGrobOverride(AbjadObject):
         if isinstance(property_path, str):
             property_path = [property_path]
         property_path = tuple(property_path)
-        assert len(property_path)
-        assert all(isinstance(x, str) for x in property_path)
+        assert all(isinstance(x, str) and x for x in property_path)
         self._property_path = property_path
         self._value = value
 
@@ -175,7 +174,8 @@ class LilyPondGrobOverride(AbjadObject):
         result.append(r'\override')
         result.append(self._override_property_path_string)
         result.append('=')
-        value_pieces = schemetools.Scheme.format_scheme_value(self.value)
+        value_pieces = schemetools.Scheme.format_embedded_scheme_value(
+            self.value)
         value_pieces = value_pieces.split('\n')
         result.append(value_pieces[0])
         result[:] = [' '.join(result)]
