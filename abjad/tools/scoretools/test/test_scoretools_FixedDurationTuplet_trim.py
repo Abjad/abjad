@@ -12,6 +12,7 @@ def test_scoretools_FixedDurationTuplet_trim_01():
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak #'edge-height #'(0.7 . 0)
         \times 4/3 {
             d'8
             e'8
@@ -31,6 +32,7 @@ def test_scoretools_FixedDurationTuplet_trim_02():
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak #'edge-height #'(0.7 . 0)
         \times 4/3 {
             c'8
             e'8
@@ -76,6 +78,7 @@ def test_scoretools_FixedDurationTuplet_trim_05():
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak #'edge-height #'(0.7 . 0)
         \times 4/3 {
             d'8
             e'8
@@ -95,6 +98,7 @@ def test_scoretools_FixedDurationTuplet_trim_06():
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak #'edge-height #'(0.7 . 0)
         \times 4/3 {
             c'8
             e'8

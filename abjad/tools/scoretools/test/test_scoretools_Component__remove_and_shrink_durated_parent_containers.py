@@ -679,6 +679,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_14():
         container,
         r'''
         {
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'4
                 c'4
@@ -727,6 +728,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_15():
         voice,
         r'''
         \new Voice {
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'4
                 c'4
@@ -775,6 +777,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_16():
         staff,
         r'''
         \new Staff {
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'4
                 c'4
@@ -818,6 +821,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_17():
     assert systemtools.TestManager.compare(
         tuplet,
         r'''
+        \tweak #'edge-height #'(0.7 . 0)
         \times 2/3 {
             c'4
             c'4
@@ -859,6 +863,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_18():
     assert systemtools.TestManager.compare(
         tuplet,
         r'''
+        \tweak #'edge-height #'(0.7 . 0)
         \times 2/3 {
             c'4
             d'4
@@ -901,6 +906,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_19():
     assert systemtools.TestManager.compare(
         tuplet,
         r'''
+        \tweak #'edge-height #'(0.7 . 0)
         \times 2/3 {
             c'4
             d'4
@@ -941,6 +947,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_20():
     assert systemtools.TestManager.compare(
         tuplet,
         r'''
+        \tweak #'edge-height #'(0.7 . 0)
         \times 4/5 {
             d'8
             e'8
@@ -977,6 +984,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_21():
     assert systemtools.TestManager.compare(
         tuplet,
         r'''
+        \tweak #'edge-height #'(0.7 . 0)
         \times 4/5 {
             d'8
             e'8
@@ -1017,9 +1025,11 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_22():
     assert systemtools.TestManager.compare(
         tuplet,
         r'''
+        \tweak #'edge-height #'(0.7 . 0)
         \times 2/3 {
             c'2
             cs'2
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 d'4
                 ef'4
@@ -1058,9 +1068,11 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_23():
     assert systemtools.TestManager.compare(
         tuplet,
         r'''
+        \tweak #'edge-height #'(0.7 . 0)
         \times 2/3 {
             c'2
             cs'2
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 d'4
                 ef'4

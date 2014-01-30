@@ -12,18 +12,23 @@
 	\context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
 		\context RhythmicStaff = "Staff 1" {
 			\context Voice = "Voice 1" {
+				\tweak #'edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
+				\tweak #'edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
+				\tweak #'edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
+				\tweak #'edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
+				\tweak #'edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'16.
 				}

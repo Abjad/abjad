@@ -1582,9 +1582,11 @@ def test_agenttools_MutationAgent_split_26():
                 d'8
                 e'8
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 f'8
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 g'8
                 a'8 ]
@@ -1890,27 +1892,9 @@ def test_agenttools_MutationAgent_split_32():
     right = result[1][0]
 
     assert systemtools.TestManager.compare(
-        staff,
-        r'''
-        \new Staff {
-            \new Voice {
-                \times 4/5 {
-                    c'8 [
-                    c'8
-                }
-                \times 4/5 {
-                    c'8
-                    c'8
-                    c'8 ]
-                }
-            }
-        }
-        '''
-        )
-
-    assert systemtools.TestManager.compare(
         left,
         r'''
+        \tweak #'edge-height #'(0.7 . 0)
         \times 4/5 {
             c'8 [
             c'8
@@ -1921,6 +1905,7 @@ def test_agenttools_MutationAgent_split_32():
     assert systemtools.TestManager.compare(
         right,
         r'''
+        \tweak #'edge-height #'(0.7 . 0)
         \times 4/5 {
             c'8
             c'8
@@ -1941,10 +1926,12 @@ def test_agenttools_MutationAgent_split_32():
         voice,
         r'''
         \new Voice {
+            \tweak #'edge-height #'(0.7 . 0)
             \times 4/5 {
                 c'8 [
                 c'8
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 4/5 {
                 c'8
                 c'8
@@ -1959,10 +1946,12 @@ def test_agenttools_MutationAgent_split_32():
         r'''
         \new Staff {
             \new Voice {
+                \tweak #'edge-height #'(0.7 . 0)
                 \times 4/5 {
                     c'8 [
                     c'8
                 }
+                \tweak #'edge-height #'(0.7 . 0)
                 \times 4/5 {
                     c'8
                     c'8
@@ -2016,6 +2005,7 @@ def test_agenttools_MutationAgent_split_33():
     assert systemtools.TestManager.compare(
         left,
         r'''
+        \tweak #'edge-height #'(0.7 . 0)
         \times 2/3 {
             f'8 ]
         }
@@ -2025,6 +2015,7 @@ def test_agenttools_MutationAgent_split_33():
     assert systemtools.TestManager.compare(
         right,
         r'''
+        \tweak #'edge-height #'(0.7 . 0)
         \times 2/3 {
             g'8 [
             a'8 ]
@@ -2043,9 +2034,11 @@ def test_agenttools_MutationAgent_split_33():
                 d'8
                 e'8
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 f'8 ]
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 g'8 [
                 a'8 ]
@@ -2953,10 +2946,12 @@ def test_agenttools_MutationAgent_split_48():
         staff,
         r'''
         \new Staff {
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'4 ~
                 c'16 ~
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'16
             }

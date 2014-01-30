@@ -218,6 +218,7 @@ def test_agenttools_MutationAgent_fuse_08():
                 d'8
                 e'8 ]
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'8 (
                 d'8
@@ -236,6 +237,7 @@ def test_agenttools_MutationAgent_fuse_08():
         voice,
         r'''
         \new Voice {
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'8 [
                 d'8
@@ -290,9 +292,11 @@ def test_agenttools_MutationAgent_fuse_11():
         voice,
         r'''
         \new Voice {
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'8 (
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'4
             }

@@ -165,9 +165,11 @@ def test_scoretools_Leaf__split_by_duration_05():
         r'''
         \new Staff {
             c'8 [
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 d'16
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 d'8
             }

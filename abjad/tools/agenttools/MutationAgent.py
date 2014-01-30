@@ -1627,6 +1627,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> print format(staff)
                 \new Staff {
                     c'8 (
+                    \tweak #'edge-height #'(0.7 . 0)
                     \times 2/3 {
                         d'8
                     }
@@ -1661,6 +1662,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print format(staff)
                 \new Staff {
+                    \tweak #'edge-height #'(0.7 . 0)
                     \times 2/3 {
                         c'4 -\accent
                     }
@@ -1694,15 +1696,19 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print format(container)
                 {
+                    \tweak #'edge-height #'(0.7 . 0)
                     \times 2/3 {
                         c'4 (
                     }
+                    \tweak #'edge-height #'(0.7 . 0)
                     \times 2/3 {
                         d'4
                     }
+                    \tweak #'edge-height #'(0.7 . 0)
                     \times 2/3 {
                         e'4
                     }
+                    \tweak #'edge-height #'(0.7 . 0)
                     \times 2/3 {
                         f'4 )
                     }
@@ -1728,6 +1734,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> print format(staff)
                 \new Staff {
                     c'8 (
+                    \tweak #'edge-height #'(0.7 . 0)
                     \times 2/3 {
                         d'8 ~
                         d'32

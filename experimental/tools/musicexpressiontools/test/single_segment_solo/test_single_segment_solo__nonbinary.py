@@ -21,4 +21,8 @@ def test_single_segment_solo__nonbinary_01():
         current_function_name,
         go=False,
         )
-    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
+    test_output = systemtools.TestManager.read_test_output(
+        __file__, 
+        current_function_name,
+        )
+    assert format(score) == test_output

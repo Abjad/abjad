@@ -618,10 +618,12 @@ def test_agenttools_MutationAgent_copy_11():
         new_staff,
         r'''
         \new Staff {
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 d'8
                 e'8
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 f'8
                 g'8
@@ -670,10 +672,12 @@ def test_agenttools_MutationAgent_copy_12():
         r'''
         \new Staff {
             \new Voice {
+                \tweak #'edge-height #'(0.7 . 0)
                 \times 2/3 {
                     d'8
                     e'8
                 }
+                \tweak #'edge-height #'(0.7 . 0)
                 \times 2/3 {
                     f'8
                     g'8
@@ -1028,6 +1032,7 @@ def test_agenttools_MutationAgent_copy_20():
         new_staff,
         r'''
         \new Staff {
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 g'8
                 a'8

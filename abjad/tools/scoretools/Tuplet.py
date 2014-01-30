@@ -6,6 +6,7 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import systemtools
 from abjad.tools.scoretools.Container import Container
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import mutate
 
 
@@ -39,6 +40,7 @@ class Tuplet(Container):
         ..  doctest::
 
             >>> print format(tuplet)
+    		\tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'8
                 \times 4/7 {
@@ -62,8 +64,10 @@ class Tuplet(Container):
         ..  doctest::
 
             >>> print format(tuplet)
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'8
+                \tweak #'edge-height #'(0.7 . 0)
                 \times 4/7 {
                     g'4. (
                     \times 4/5 {
@@ -200,7 +204,6 @@ class Tuplet(Container):
     # TODO: hoist to Tuplet and make work for all tuplet instances
     def _fix(self):
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
         if not isinstance(self, scoretools.FixedDurationTuplet):
             return
         # find tuplet multiplier
@@ -251,10 +254,10 @@ class Tuplet(Container):
         result = []
         if self.multiplier:
             if self.is_invisible:
-                multiplier = self.multiplier
-                n, d = multiplier.numerator, multiplier.denominator
                 contributor = (self, 'is_invisible')
-                contributions = [r"\scaleDurations #'(%s . %s) {" % (n, d)]
+                scale_durations_command_string = \
+                    self._get_scale_durations_command_string()
+                contributions = [scale_durations_command_string]
                 result.append([contributor, contributions])
             else:
                 contributor = ('self_brackets', 'open')
@@ -264,13 +267,39 @@ class Tuplet(Container):
                         self._format_lilypond_fraction_command_string()
                     if fraction_command_string:
                         contributions.append(fraction_command_string)
-                    contributions.append(r'\times {} {{'.format(
-                        self._multiplier_fraction_string
-                        ))
+                    edge_height_tweak_string = \
+                        self._get_edge_height_tweak_string()
+                    if edge_height_tweak_string:
+                        contributions.append(edge_height_tweak_string)
+                    times_command_string = self._get_times_command_string()
+                    contributions.append(times_command_string)
                 else:
                     contributions = ['{']
                 result.append([contributor, contributions])
         return tuple(result)
+
+    def _get_edge_height_tweak_string(self):
+        from abjad.tools import scoretools
+        parentage = inspect_(self).get_parentage()
+        measure = parentage.get_first(scoretools.Measure)
+        if measure and measure.implicit_scaling:
+            return
+        duration = self._preprolated_duration
+        denominator = duration.denominator
+        if not mathtools.is_nonnegative_integer_power_of_two(denominator):
+            return r"\tweak #'edge-height #'(0.7 . 0)"
+    
+    def _get_scale_durations_command_string(self):
+        multiplier = self.multiplier
+        string = r"\scaleDurations #'({} . {}) {{"
+        string = string.format(multiplier.numerator, multiplier.denominator)
+        return string
+
+    def _get_times_command_string(self):
+        string = r'\times {} {{'.format(
+            self._multiplier_fraction_string
+            )
+        return string
 
     def _format_opening_slot(self, bundle):
         result = []

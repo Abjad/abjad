@@ -5,7 +5,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_lilypondparsertools_LilyPondParser__containers__Tuplet_01():
 
-    notes = scoretools.make_notes([0, 2, 4, 5, 7], (1, 8))
+    notes = scoretools.make_notes([0, 2, 4], (1, 8))
     target = scoretools.Tuplet(Multiplier(2, 3), notes)
 
     assert systemtools.TestManager.compare(
@@ -15,8 +15,6 @@ def test_lilypondparsertools_LilyPondParser__containers__Tuplet_01():
             c'8
             d'8
             e'8
-            f'8
-            g'8
         }
         '''
         )

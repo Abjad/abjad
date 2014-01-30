@@ -105,6 +105,7 @@ def test_quantizationtools_QGrid___call___03():
     assert systemtools.TestManager.compare(
         result[0],
         r'''
+        \tweak #'edge-height #'(0.7 . 0)
         \times 2/3 {
             c'4
             c'4

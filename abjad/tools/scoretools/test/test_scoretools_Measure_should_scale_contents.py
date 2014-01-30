@@ -12,6 +12,7 @@ def test_scoretools_Measure_implicit_scaling_01():
         r'''
         {
             \time 5/12
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'8
                 d'8

@@ -61,15 +61,19 @@ def test_agenttools_MutationAgent_scale_03():
         voice,
         r'''
         \new Voice {
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'4
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 d'4
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 e'4
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 f'4
             }
@@ -91,18 +95,22 @@ def test_agenttools_MutationAgent_scale_04():
         voice,
         r'''
         \new Voice {
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'8 ~
                 c'32
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 d'8 ~
                 d'32
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 e'8 ~
                 e'32
             }
+            \tweak #'edge-height #'(0.7 . 0)
             \times 2/3 {
                 f'8 ~
                 f'32

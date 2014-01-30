@@ -5,9 +5,13 @@ from abjad.tools import selectiontools
 
 
 def make_repeated_notes_with_shorter_notes_at_end(
-    pitch, written_duration, total_duration, prolation=1):
-    r'''Make repeated notes with `pitch` and `written_duration` summing to
-    `total_duration` under `prolation`:
+    pitch, 
+    written_duration, 
+    total_duration, 
+    prolation=1,
+    ):
+    r'''Makes repeated notes with `pitch` and `written_duration` summing to
+    `total_duration` under `prolation`.
 
     ::
 
@@ -62,6 +66,7 @@ def make_repeated_notes_with_shorter_notes_at_end(
             c'16
             c'16
             c'16
+            \tweak #'edge-height #'(0.7 . 0)
             \times 4/5 {
                 c'32
             }
