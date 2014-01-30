@@ -2,6 +2,7 @@
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools.spannertools.ComplexBeam import ComplexBeam
+from abjad.tools.topleveltools import inspect_
 
 
 class DuratedComplexBeam(ComplexBeam):
@@ -57,6 +58,7 @@ class DuratedComplexBeam(ComplexBeam):
     __slots__ = (
         '_durations',
         '_isolated_nib_direction',
+        '_nibs_towards_nonbeamable_components',
         '_span_beam_count',
         )
 
@@ -67,6 +69,7 @@ class DuratedComplexBeam(ComplexBeam):
         direction=None,
         durations=None, 
         isolated_nib_direction=False, 
+        nibs_towards_nonbeamable_components=True,
         overrides=None,
         span_beam_count=1, 
         ):
@@ -78,19 +81,11 @@ class DuratedComplexBeam(ComplexBeam):
             )
         durations = self._coerce_durations(durations)
         self._durations = durations
+        assert isinstance(nibs_towards_nonbeamable_components, bool)
+        self._nibs_towards_nonbeamable_components = \
+            nibs_towards_nonbeamable_components
         assert isinstance(span_beam_count, (int, type(None)))
         self._span_beam_count = span_beam_count
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _span_beam_offsets(self):
-        result = []
-        if self.durations is not None:
-            result.append(self.durations[0])
-            for d in self.durations[1:]:
-                result.append(result[-1] + d)
-        return result
 
     ### PRIVATE METHODS ###
 
@@ -108,19 +103,29 @@ class DuratedComplexBeam(ComplexBeam):
             new._durations = self.durations[:]
         new._span_beam_count = self.span_beam_count
 
+    def _get_span_beam_offsets(self):
+        result = []
+        if self.durations is not None:
+            result.append(self.durations[0])
+            for duration in self.durations[1:]:
+                result.append(result[-1] + duration)
+        return result
+
     def _is_just_left_of_gap(self, leaf):
         local_start_offset = self._start_offset_in_me(leaf)
         local_stop_offset = self._stop_offset_in_me(leaf)
-        if local_stop_offset in self._span_beam_offsets:
-            if local_start_offset not in self._span_beam_offsets:
+        span_beam_offsets = self._get_span_beam_offsets()
+        if local_stop_offset in span_beam_offsets:
+            if local_start_offset not in span_beam_offsets:
                 return True
         return False
 
     def _is_just_right_of_gap(self, leaf):
         local_start_offset = self._start_offset_in_me(leaf)
         local_stop_offset = self._stop_offset_in_me(leaf)
-        if local_start_offset in self._span_beam_offsets:
-            if local_stop_offset not in self._span_beam_offsets:
+        span_beam_offsets = self._get_span_beam_offsets()
+        if local_start_offset in span_beam_offsets:
+            if local_stop_offset not in span_beam_offsets:
                 return True
         return False
 
@@ -130,12 +135,24 @@ class DuratedComplexBeam(ComplexBeam):
             if self._is_exterior_leaf(leaf):
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
             elif self._is_just_left_of_gap(leaf):
-                assert isinstance(self.span_beam_count, int)
                 left = leaf.written_duration.flag_count
-                right = self.span_beam_count
+                if self.nibs_towards_nonbeamable_components:
+                    right = self.span_beam_count
+                else:
+                    next_leaf = inspect_(leaf).get_leaf(1)
+                    if self._is_beamable_component(next_leaf):
+                        right = self.span_beam_count
+                    else:
+                        right = 0
             elif self._is_just_right_of_gap(leaf):
-                assert isinstance(self.span_beam_count, int)
-                left = self.span_beam_count
+                if self.nibs_towards_nonbeamable_components:
+                    left = self.span_beam_count
+                else:
+                    previous_leaf = inspect_(leaf).get_leaf(-1)
+                    if self._is_beamable_component(previous_leaf):
+                        left = self.span_beam_count
+                    else:
+                        left = 0
                 right = leaf.written_duration.flag_count
             else:
                 assert self._is_interior_leaf(leaf)
@@ -150,7 +167,10 @@ class DuratedComplexBeam(ComplexBeam):
 
     def _fracture_left(self, i):
         self, left, right = ComplexBeam._fracture_left(self, i)
-        weights = [left._get_duration(), right._get_duration()]
+        weights = [
+            inspect_(left).get_duration(), 
+            inspect_(right).get_duration(),
+            ]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
             self.durations, 
@@ -165,7 +185,10 @@ class DuratedComplexBeam(ComplexBeam):
 
     def _fracture_right(self, i):
         self, left, right = ComplexBeam._fracture_right(self, i)
-        weights = [left._get_duration(), right._get_duration()]
+        weights = [
+            inspect_(left).get_duration(), 
+            inspect_(right).get_duration(),
+            ]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
             self.durations, 
@@ -228,6 +251,85 @@ class DuratedComplexBeam(ComplexBeam):
         Returns tuple of durations or none.
         '''
         return self._durations
+
+    @property
+    def nibs_towards_nonbeamable_components(self):
+        r'''Is true when when spanner should render nibs pointing towards
+        nonbeamable components included in spanner. Otherwise false.
+
+        ..  container:: example
+
+            Does not draw nibs towards nonbeamable components:
+
+            ::
+
+                >>> staff = Staff("c'16 d'16 r4 e'16 f'16")
+                >>> durations = [Duration(1, 8), Duration(1, 4), Duration(1, 8)]
+                >>> beam = spannertools.DuratedComplexBeam(
+                ...     durations=durations,
+                ...     nibs_towards_nonbeamable_components=False
+                ...     )
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #2
+                    c'16 [
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #0
+                    d'16 ]
+                    r4
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #2
+                    e'16 [
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #0
+                    f'16 ]
+                }
+
+        ..  container:: example
+
+            Do draw nibs towards nonbeamable components:
+
+            ::
+
+                >>> staff = Staff("c'16 d'16 r4 e'16 f'16")
+                >>> durations = [Duration(1, 8), Duration(1, 4), Duration(1, 8)]
+                >>> beam = spannertools.DuratedComplexBeam(
+                ...     durations=durations,
+                ...     nibs_towards_nonbeamable_components=True
+                ...     )
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #2
+                    c'16 [
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #1
+                    d'16 ]
+                    r4
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #2
+                    e'16 [
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #0
+                    f'16 ]
+                }
+
+        Defaults to true.
+
+        Returns boolean.
+        '''
+        return self._nibs_towards_nonbeamable_components
 
     @property
     def span_beam_count(self):

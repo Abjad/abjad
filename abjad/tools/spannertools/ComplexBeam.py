@@ -4,7 +4,7 @@ from abjad.tools.spannertools.Beam import Beam
 
 
 class ComplexBeam(Beam):
-    r'''A complex beam spanner.
+    r'''A complex beam.
 
     ..  container:: example
 
@@ -83,10 +83,9 @@ class ComplexBeam(Beam):
         new._isolated_nib_direction = self.isolated_nib_direction
 
     def _format_before_leaf(self, leaf):
-        r'''Spanner format contribution to output before leaf.
-        '''
         result = []
-        result.extend(Beam._format_before_leaf(self, leaf))
+        superclass_contributions = Beam._format_before_leaf(self, leaf)
+        result.extend(superclass_contributions)
         if self._is_beamable_component(leaf):
             if self._is_my_only_leaf(leaf):
                 left, right = self._get_left_right_for_lone_leaf(leaf)
@@ -95,17 +94,15 @@ class ComplexBeam(Beam):
             else:
                 left, right = self._get_left_right_for_interior_leaf(leaf)
             if left is not None:
-                result.append(r'\set stemLeftBeamCount = #%s' % left)
+                string = r'\set stemLeftBeamCount = #{}'.format(left)
+                result.append(string)
             if right is not None:
-                result.append(r'\set stemRightBeamCount = #%s' % right)
+                string = r'\set stemRightBeamCount = #{}'.format(right)
+                result.append(string)
         return result
 
     def _format_right_of_leaf(self, leaf):
-        r'''Spanner format contribution to output right of leaf.
-        '''
-        from abjad.tools import scoretools
         result = []
-        #if leaf.beam.beamable:
         if self._is_beamable_component(leaf):
             previous_leaf = leaf._get_leaf(-1)
             next_leaf = leaf._get_leaf(1)
@@ -113,14 +110,16 @@ class ComplexBeam(Beam):
             if self._is_my_only_leaf(leaf):
                 if self.isolated_nib_direction:
                     if self.direction is not None:
-                        result.append('%s [' % self.direction)
+                        string = '{} ['.format(self.direction)
+                        result.append(string)
                     else:
                         result.append('[')
             # otherwise
             elif self._is_my_first_leaf(leaf) or not previous_leaf or \
                 not self._is_beamable_component(previous_leaf):
                 if self.direction is not None:
-                    result.append('%s [' % self.direction)
+                    string = '{} ['.format(self.direction)
+                    result.append(string)
                 else:
                     result.append('[')
             # isolated_nib_direction
@@ -134,9 +133,8 @@ class ComplexBeam(Beam):
         return result
 
     def _get_left_right_for_exterior_leaf(self, leaf):
-        r'''Get left and right flag counts for exterior leaf in spanner.
+        r'''Gets left and right flag counts for exterior leaf in spanner.
         '''
-        from abjad.tools import scoretools
         # isolated_nib_direction
         if self._is_my_only_leaf(leaf):
             left, right = self._get_left_right_for_lone_leaf(leaf)
@@ -159,7 +157,6 @@ class ComplexBeam(Beam):
         Interior leaves may be surrounded by unbeamable leaves.
         Four cases total for beamability of surrounding leaves.
         '''
-        from abjad.tools import scoretools
         previous_leaf = leaf._get_leaf(-1)
         previous_written = previous_leaf.written_duration
         current_written = leaf.written_duration
@@ -192,7 +189,7 @@ class ComplexBeam(Beam):
         return left, right
 
     def _get_left_right_for_lone_leaf(self, leaf):
-        r'''Get left and right flag counts for only leaf in spanner.
+        r'''Gets left and right flag counts for only leaf in spanner.
         '''
         current_flag_count = leaf.written_duration.flag_count
         left, right = None, None
