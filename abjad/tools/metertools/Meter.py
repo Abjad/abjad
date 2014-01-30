@@ -840,16 +840,13 @@ class Meter(AbjadObject):
                 if maximum_repetitions is not None:
                     fencepost = -1 * abs(maximum_repetitions)
                     meter_buffer = selected_hierarchies[fencepost:]
-                    print meter_buffer
                 for meter_index, kernel in enumerate(kernels):
                     if maximum_repetitions is not None and \
                         len(meter_buffer) == maximum_repetitions:
                         meter_set = set(meter_buffer +
                             [meter_inventory[meter_index]])
                         if len(meter_set) == 1 and 1 < len(meter_inventory):
-                            print '\tNO:', meter_set
                             continue
-                        print '\tOK:', meter_set
                     response = kernel(current_offset_counter)
                     candidates.append((response, meter_index))
                 candidates.sort(key=lambda x: x[0], reverse=True)
