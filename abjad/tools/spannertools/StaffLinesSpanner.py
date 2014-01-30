@@ -21,12 +21,11 @@ class StaffLinesSpanner(Spanner):
             \new Staff {
                 c'8
                 \stopStaff
-                \override Staff.StaffSymbol #'line-count = #1
+                \once \override Staff.StaffSymbol #'line-count = #1
                 \startStaff
                 d'8
                 e'8
                 \stopStaff
-                \revert Staff.StaffSymbol #'line-count
                 \startStaff
                 f'8
             }
@@ -51,12 +50,12 @@ class StaffLinesSpanner(Spanner):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         lines=5,
         overrides=None,
         ):
         Spanner.__init__(
-            self, 
+            self,
             overrides=overrides,
             )
         if isinstance(lines, int) and 0 < lines:
@@ -65,7 +64,7 @@ class StaffLinesSpanner(Spanner):
             and all(isinstance(x, (int, float)) for x in lines):
             self._lines = tuple(lines)
         else:
-            messsage = 'must be integer or a sequence of integers: {!r}.'
+            message = 'must be integer or a sequence of integers: {!r}.'
             message = message.format(lines)
             raise ValueError(message)
         self._lines = lines
@@ -79,12 +78,6 @@ class StaffLinesSpanner(Spanner):
         result = []
         if self._is_my_last_leaf(leaf):
             result.append(r'\stopStaff')
-            if isinstance(self.lines, int):
-                string = r"\revert Staff.StaffSymbol #'line-count"
-                result.append(string)
-            else:
-                string = r"\revert Staff.StaffSymbol #'line-positions"
-                result.append(string)
             result.append(r'\startStaff')
         return result
 
@@ -93,11 +86,13 @@ class StaffLinesSpanner(Spanner):
         if self._is_my_first_leaf(leaf):
             result.append(r'\stopStaff')
             if isinstance(self.lines, int):
-                string = r"\override Staff.StaffSymbol #'line-count = #{}"
+                string = r"\once \override Staff.StaffSymbol "
+                string += "#'line-count = #{}"
                 string = string.format(self.lines)
                 result.append(string)
             else:
-                string = r"\override Staff.StaffSymbol #'line-positions = {}"
+                string = r"\once \override Staff.StaffSymbol "
+                string += "#'line-positions = {}"
                 string = string.format(schemetools.SchemeVector(*self.lines))
                 result.append(string)
             result.append(r'\startStaff')
