@@ -104,12 +104,15 @@ class DuratedComplexBeam(ComplexBeam):
         new._span_beam_count = self.span_beam_count
 
     def _get_span_beam_offsets(self):
-        result = []
-        if self.durations is not None:
-            result.append(self.durations[0])
+        offsets = []
+        if self.durations:
+            offset = durationtools.Offset(self.durations[0])
+            offsets.append(offset)
             for duration in self.durations[1:]:
-                result.append(result[-1] + duration)
-        return result
+                offset = offsets[-1] + duration
+                offsets.append(offset)
+            offsets.pop()
+        return offsets
 
     def _is_just_left_of_gap(self, leaf):
         local_start_offset = self._start_offset_in_me(leaf)
@@ -133,8 +136,10 @@ class DuratedComplexBeam(ComplexBeam):
         result = []
         if self._is_beamable_component(leaf):
             if self._is_exterior_leaf(leaf):
+                #print 'EXTERIOR', leaf
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
             elif self._is_just_left_of_gap(leaf):
+                #print 'JUST LEFT OF GAP', leaf
                 left = leaf.written_duration.flag_count
                 if self.nibs_towards_nonbeamable_components:
                     right = self.span_beam_count
@@ -145,6 +150,7 @@ class DuratedComplexBeam(ComplexBeam):
                     else:
                         right = 0
             elif self._is_just_right_of_gap(leaf):
+                #print 'JUST RIGHT OF GAP', leaf
                 if self.nibs_towards_nonbeamable_components:
                     left = self.span_beam_count
                 else:
@@ -156,6 +162,7 @@ class DuratedComplexBeam(ComplexBeam):
                 right = leaf.written_duration.flag_count
             else:
                 assert self._is_interior_leaf(leaf)
+                #print 'INTERIOR', leaf
                 left, right = self._get_left_right_for_interior_leaf(leaf)
             if left is not None:
                 string = r'\set stemLeftBeamCount = #{}'.format(left)

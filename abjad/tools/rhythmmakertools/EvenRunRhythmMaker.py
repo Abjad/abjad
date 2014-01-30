@@ -307,7 +307,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             beam = spannertools.DuratedComplexBeam(
                 durations=durations,
                 span_beam_count=1,
-                nibs_towards_nonbeamable_components=True,
+                nibs_towards_nonbeamable_components=False,
                 )
             components = []
             for selection in selections:

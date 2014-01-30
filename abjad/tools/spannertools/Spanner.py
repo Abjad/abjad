@@ -122,10 +122,10 @@ class Spanner(AbjadObject):
         if not len_self:
             return ''
         elif 0 < len_self <= 8:
-            return ', '.join([x._compact_representation for x in self])
+            return ', '.join([str(x) for x in self])
         else:
-            left = ', '.join([x._compact_representation for x in self[:2]])
-            right = ', '.join([x._compact_representation for x in self[-2:]])
+            left = ', '.join([str(x) for x in self[:2]])
+            right = ', '.join([str(x) for x in self[-2:]])
             number_in_middle = len_self - 4
             middle = ', ... [%s] ..., ' % number_in_middle
             return left + middle + right
