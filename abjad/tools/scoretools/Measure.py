@@ -516,13 +516,16 @@ class Measure(FixedDurationContainer):
 
     @property
     def implied_prolation(self):
-        r'''Implied prolation of measure time signature.
+        r'''Implied prolation of measure.
 
         ..  container:: example
 
+            Measures with implicit scaling scale the duration of their
+            contents:
+
             ::
 
-                >>> measure = Measure((5, 12), "c'8 d' e' f' g'")
+                >>> measure = Measure((5, 12), "c'8 d'8 e'8 f'8 g'8")
                 >>> measure.implicit_scaling = True
                 >>> show(measure) # doctest: +SKIP
 
@@ -531,10 +534,37 @@ class Measure(FixedDurationContainer):
                 >>> measure.implied_prolation
                 Multiplier(2, 3)
 
-        Returns multiplier.
+            ::
+
+                >>> for note in measure:
+                ...     note, inspect_(note).get_duration()
+                (Note("c'8"), Duration(1, 12))
+                (Note("d'8"), Duration(1, 12))
+                (Note("e'8"), Duration(1, 12))
+                (Note("f'8"), Duration(1, 12))
+                (Note("g'8"), Duration(1, 12))
+
+        ..  container:: example
+
+            Measures without implicit scaling turned on do not 
+            scale the duration of their contents:
+
+            ::
+
+                >>> measure = Measure((5, 12), [])
+                >>> measure.implicit_scaling = False
+
+            ::
+
+                >>> measure.implied_prolation
+                Multiplier(1, 1)
+
+        Returns positive multiplier.
         '''
-        time_signature = self.time_signature
-        return time_signature.implied_prolation
+        if self.implicit_scaling:
+            time_signature = self.time_signature
+            return time_signature.implied_prolation
+        return durationtools.Multiplier(1)
 
     @property
     def is_full(self):
