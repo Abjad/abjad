@@ -26,7 +26,8 @@
         \Score
         \accepts TimeSignatureContext
         \override BarLine.hair-thickness = 0.5
-        \override BarNumber.stencil = ##f
+        \override BarNumber.color = #red
+        \override BarNumber.transparent = ##t
         \override Beam.breakable = ##t
         \override DynamicLineSpanner.Y-extent = #'(-1.5 . 1.5)
         \override Glissando.breakable = ##t
