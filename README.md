@@ -2,15 +2,12 @@ abjad
 =====
 
 Abjad helps composers build up complex pieces of music notation in an iterative
-and incremental way.
-
-Use Abjad to create a symbolic representation of all the notes, rests, staves,
-tuplets, beams and slurs in any score.
-
-Because Abjad extends the Python programming language, you can use Abjad to
-make systematic changes to your music as you work. And because Abjad wraps the
-powerful LilyPond music notation package, you can use Abjad to control the
-typographic details of the symbols on the page.
+and incremental way. Use Abjad to create a symbolic representation of all the
+notes, rests, staves, tuplets, beams and slurs in any score. Because Abjad
+extends the Python programming language, you can use Abjad to make systematic
+changes to your music as you work. And because Abjad wraps the powerful
+LilyPond music notation package, you can use Abjad to control the typographic
+details of the symbols on the page.
 
 You can find Abjad's documentation at http://projectabjad.org.
 
@@ -18,7 +15,7 @@ You can find Abjad's documentation at http://projectabjad.org.
 Abjad depends on Python
 -----------------------
 
-This information here refers to Abjad 2.14.
+The information here refers to Abjad 2.14.
 
 You must have Python 2.7.5 installed to run Abjad.
 
@@ -49,8 +46,8 @@ Type the following to see if LilyPond is callable from your commandline:
 
     lilypond --version
 
-If LilyPond is not callable from your commandline you should add the location
-of the LilyPond executable to your ``PATH`` environment variable.
+If LilyPond is not callable from your commandline then you should add the
+location of the LilyPond executable to your ``PATH`` environment variable.
 
 
 Documentation
@@ -59,13 +56,13 @@ Documentation
 Online documentation for the most recent release of Abjad is available at
 http://projectabjad.org.
 
-PDFs are available in Abjad's ``abjad/docs/pdf/`` directory after you install
+PDFs are available in Abjad's ``docs/pdf`` directory after you install
 the package.
 
 Most users will find the online or PDF version of the docs sufficient. If you
-work with Abjad a lot then you might want to build recent copies of the docs
-yourself. Download and install Graphviz from http://graphviz.org if you plan
-on the building Abjad's docs yourself.
+work with Abjad a lot then you might want to build the docs yourself. Abjad's
+doc-building system depends on Graphviz. So visit http://graphviz.org if you
+decide to build the docs yourself. 
 
 
 Installing the current packaged version of Abjad with pip
@@ -79,7 +76,7 @@ One of the most direct ways is with ``pip``.  Type the following to find out if
     pip --version
 
 If you do not have ``pip`` installed we strongly recommend that you use
-Python's ``easy_install`` to install ``pip`` first:
+Python's ``easy_install`` to install ``pip``:
 
     sudo easy_install pip
 
@@ -96,7 +93,7 @@ Manually installing Abjad from the Python Package Index
 
 What if you do not have ``pip`` or ``easy_install`` installed on your computer?
 Then you should install the current packaged version of Abjad from the Python
-Package Index:
+Package Index. Follow these steps:
 
 1.  Download the current packaged version of Abjad from 
     http://pypi.python.org/pypi/Abjad.
@@ -132,11 +129,11 @@ Configuring Abjad
 
 Abjad creates a ``~/.abjad`` directory the first time it runs.
 
-In ``~/.abjad`` you will find a the file ``abjad.cfg``. This is the Abjad
-configuration file.
+In the ``~/.abjad`` directory you will find an ``abjad.cfg`` file. This is the
+Abjad configuration file.
 
 You can use the Abjad configuration file to tell Abjad about your preferred PDF
-file viewer, MIDI player, your preferred LilyPond language and so on.
+file viewer, MIDI player, LilyPond language and so on.
 
 Your configuration filewill look something like this the first time you open
 it:
@@ -176,10 +173,9 @@ it:
 
 Follow the basics of ``ini`` syntax when editing the Abjad configuration file.
 
-(Background information is available at Wikipiedia at
-http://en.wikipedia.org/wiki/INI_file.)
+Background information on ``ini`` is available at
+http://en.wikipedia.org/wiki/INI_file.
 
-How you configure Abjad is up to you. Under Linux you might want to set your
-``pdf_viewer`` to evince and your ``midi_player`` to tiMIDIty. Under
-MacOs you might want to set you ``midi_player`` to iTunes, and so on.
-
+Under MacOs you might want to set you ``midi_player`` to *iTunes*. Under Linux
+you might want to set your ``pdf_viewer`` to *evince* and your ``midi_player``
+to *tiMIDIty*.
