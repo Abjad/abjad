@@ -36,8 +36,6 @@ Abjad also depends on the following Python packages:
 
 Type the following to check the version of Python installed on your computer:
 
-.. code-block:: bash
-
     python --version
 
 Abjad does not yet support the Python 3.x series of releases.
@@ -54,8 +52,6 @@ You can download LilyPond at http://www.lilypond.org.
 
 After you have installed LilyPond you should type the following to see if
 LilyPond is callable from your commandline:
-
-.. code-block:: bash
 
     lilypond --version
 
@@ -80,32 +76,25 @@ docs for yourself as you work. To build Abjad's docs locally you'll need to
 install Graphviz. See http://graphviz.org/ for instructions.
 
 
-Installing the current packaged version of Abjad with ``pip``
--------------------------------------------------------------
+Installing the current packaged version of Abjad with pip
+---------------------------------------------------------
 
 There are different ways to install Python packages on your computer. One of
 the most direct ways is with ``pip``. This is the package management tool
 recommended by the Python Package Index (https://pypi.python.org/pypi).
 
-Type the following to find out if ``pip`` is installed on your compute:
-
-..  code-block:: bash
+Type the following to find out if ``pip`` is installed on your computer:
 
     pip --version
 
 If you do not have ``pip`` installed then we strongly recommend that you use
 Python's ``easy_install`` to install ``pip``.
 
-..  code-block:: bash
-
     sudo easy_install pip
 
 Once ``pip`` is available on your computer you'll be ready to install Abjad.
 
-
 Type the following to install the current packaged version of Abjad:
-
-..  code-block:: bash
 
     sudo pip install abjad --upgrade
 
@@ -129,26 +118,18 @@ from the Python Package Index:
     Under Linux execute the following command with ``x.y`` replaced by 
     the current release of Abjad:
     
-    .. code-block:: bash
-
         tar xzvf Abjad-x.y.tar.gz
     
 3.  Change into the directory created in step 2:
-
-    .. code-block:: bash
 
         cd Abjad-x.y
 
 4.  Run the following under MacOS or Linux:
 
-    .. code-block:: bash
-
         sudo python setup.py install
 
 5.  Or run this command under Windows after starting up a command shell 
     with administrator privileges:
-
-    .. code-block:: bash
 
         setup.py install
 
@@ -166,8 +147,6 @@ file viewer, MIDI player, your preferred LilyPond language and so on.
 
 Your configuration file's contents will look approximately like
 this by default:
-
-.. code-block:: bash
 
     # Abjad configuration file created by Abjad on 31 January 2014 00:08:17.
     # File is interpreted by ConfigObj and should follow ini syntax.
