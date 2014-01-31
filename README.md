@@ -111,16 +111,3 @@ Otherwise, follow these manual install instructions:
 
 These commands will cause Python to install Abjad in your site packages
 directory.
-
-
-Note for Linux users
---------------------
-
-Abjad defaults to xdg-open to display PDF files using your default PDF viewer.
-Most Linux distributions now come with xdg-utils installed.
-
-If you do not have xdg-utils installed, you can download it from 
-http://www.portland.freedsektop.org and install it.
-
-Alternatively you can set the pdfviewer variable in the $HOME/.abjad/abjad.cfg
-file to your favorite PDF viewer. 
