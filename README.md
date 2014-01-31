@@ -1,4 +1,4 @@
-abjad
+Abjad
 =====
 
 Abjad helps composers build up complex pieces of music notation in an iterative
@@ -49,8 +49,8 @@ Type the following to see if LilyPond is callable from your commandline:
 If LilyPond is not callable from your commandline then you should add the
 location of the LilyPond executable to your ``PATH`` environment variable.
 
-If you are new to working with the commandline you should use Google to get a
-basic introduction to editing your profile and setting environment variables.
+If you are new to working with the commandline you should Google to get a basic
+introduction to editing your profile and setting environment variables.
 
 
 Documentation
@@ -76,8 +76,8 @@ One of the most direct ways is with ``pip``.  Type the following to find out if
 
     pip --version
 
-If you do not have ``pip`` installed we strongly recommend that you install
-``pip`` with Python's ``easy_install``:
+If you do not have ``pip`` installed we strongly recommend that you get it with
+Python's ``easy_install``:
 
     sudo easy_install pip
 
