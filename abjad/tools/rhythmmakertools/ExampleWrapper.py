@@ -49,14 +49,14 @@ class ExampleWrapper(AbjadObject):
         command = markuptools.MarkupCommand('column', lines)
         pair = schemetools.SchemePair('font-name', 'Courier')
         command = markuptools.MarkupCommand('override', pair, command)
-        markup = markuptools.Markup(command)
+        markup = markuptools.Markup(command, direction=Up)
         return markup
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def division_lists(self):
-        r'''Gets division lists of gallery input block.
+        r'''Gets division lists of example wrapper.
 
         Returns tuple.
         '''
@@ -64,7 +64,7 @@ class ExampleWrapper(AbjadObject):
 
     @property
     def arguments(self):
-        r'''Gets input to gallery input block.
+        r'''Gets arguments of example wrapper.
 
         Returns dictionary.
         '''

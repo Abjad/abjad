@@ -25,6 +25,8 @@
         \name TimeSignatureContext
         \consists Time_signature_engraver
         \consists Axis_group_engraver
+        \consists Text_engraver
+        \override TextScript.padding = 8
         \override TimeSignature.X-extent = #'(0 . 0)
         \override TimeSignature.X-offset = #ly:self-alignment-interface::x-aligned-on-self
         \override TimeSignature.Y-extent = #'(0 . 0)
@@ -66,7 +68,6 @@
         \override StemTremolo.flag-count = 4
         \override StemTremolo.slope = 0.5
         \override StemTremolo.Y-offset = -4
-        \override TextScript.Y-extent = #'(-1.5 . 1.5)
         \override TupletBracket.breakable = ##t
         \override TupletBracket.direction = #up
         \override TupletBracket.full-length-to-extent = ##f
@@ -90,5 +91,6 @@
     %score-markup-spacing #'minimum-distance = 20
     score-system-spacing #'minimum-distance = 28
     top-markup-spacing #'minimum-distance = 6
+    top-system-spacing #'minimum-distance = 40
 }
 

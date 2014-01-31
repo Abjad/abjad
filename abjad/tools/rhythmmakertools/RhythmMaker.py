@@ -4,6 +4,7 @@ import os
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
+from abjad.tools import lilypondfiletools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools import schemetools
@@ -151,7 +152,6 @@ class RhythmMaker(AbjadObject):
         Returns LilyPond file.
         '''
         from abjad import abjad_configuration
-        from abjad.tools import lilypondfiletools
         divisions = divisions or [
             (4, 8), (3, 4),
             (2, 4), (1, 16), (1, 16), (2, 8), (2, 16),
@@ -171,6 +171,7 @@ class RhythmMaker(AbjadObject):
             measures = scoretools.make_spacer_skip_measures(division_list)
             staff = scoretools.Staff(measures)
             staff.context_name = 'RhythmicStaff'
+            staff.name = 'Note-entry staff'
             measures = mutate(staff).replace_measure_contents(music)
             score = scoretools.Score()
             score.append(time_signature_context)
@@ -203,7 +204,7 @@ class RhythmMaker(AbjadObject):
             'gallery-layout.ly',
             )
         lilypond_file.file_initial_user_includes.append(stylesheet_path)
-        lilypond_file.paper_block.tagline = markuptools.Markup('')
+        lilypond_file.paper_block.tagline = markuptools.Markup()
         return lilypond_file
 
     def __makenew__(self, *args, **kwargs):
@@ -232,10 +233,14 @@ class RhythmMaker(AbjadObject):
         else:
             return False
 
-    def _gallery_input_block_to_scores(self, block, configuration_number):
-        maker = type(self)(**block.arguments)
+    def _gallery_example_wrapper_to_scores(
+        self, 
+        example_wrapper, 
+        configuration_number,
+        ):
+        maker = type(self)(**example_wrapper.arguments)
         scores = []
-        for i, division_list in enumerate(block.division_lists):
+        for i, division_list in enumerate(example_wrapper.division_lists):
             example_number = i + 1
             lists = maker(division_list)
             music = sequencetools.flatten_sequence(lists)
@@ -253,6 +258,7 @@ class RhythmMaker(AbjadObject):
                 )
             set_(staff).instrument_name = markup
             staff.context_name = 'RhythmicStaff'
+            staff.name = 'Note-entry staff'
             measures = mutate(staff).replace_measure_contents(music)
             score = scoretools.Score()
             score.append(time_signature_context)
@@ -295,20 +301,24 @@ class RhythmMaker(AbjadObject):
             return all(isinstance(x, scoretools.Leaf) for x in expr)
         return False
 
-    def _gallery_input_to_lilypond_file(self):
-        from abjad.tools import lilypondfiletools
+    def _gallery_example_wrapper_to_lilypond_file(self):
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
         lilypond_file.items.remove(lilypond_file.score_block)
         title_markup = self._make_gallery_title_markup()
         lilypond_file.header_block.title = title_markup
-        for i, block in enumerate(self._gallery_input_blocks):
+        for i, example_wrapper in enumerate(self._gallery_example_wrappers):
             configuration_number = i + 1
-            markup = block._to_markup(type(self))
-            lilypond_file.items.append(markup)
-            scores = self._gallery_input_block_to_scores(
-                block,
+            markup = example_wrapper._to_markup(type(self))
+            scores = self._gallery_example_wrapper_to_scores(
+                example_wrapper,
                 configuration_number,
                 )
+            first_score = scores[0]
+            context = first_score['TimeSignatureContext']
+            for leaf in iterate(context).by_class(scoretools.Leaf):
+                break
+            first_leaf = leaf
+            attach(markup, first_leaf)
             for score in scores:
                 score.add_final_bar_line()
                 selection = score.select_leaves(start=-1)
@@ -339,7 +349,7 @@ class RhythmMaker(AbjadObject):
             'gallery-layout.ly',
             )
         lilypond_file.file_initial_user_includes.append(stylesheet_path)
-        lilypond_file.paper_block.tagline = markuptools.Markup('')
+        lilypond_file.paper_block.tagline = markuptools.Markup()
         return lilypond_file
 
     def _make_gallery_title_markup(self):
@@ -481,13 +491,13 @@ class RhythmMaker(AbjadObject):
         return talea
 
     def _write_gallery_to_disk(self):
-        lilypond_file = self._gallery_input_to_lilypond_file()
+        lilypond_file = self._gallery_example_wrapper_to_lilypond_file()
         file_path = __file__
         directory_path = os.path.dirname(file_path)
         class_name = type(self).__name__
         file_name = '{}.pdf'.format(class_name)
         file_path = os.path.join(directory_path, 'gallery', file_name)
-        persist(lilypond_file).as_pdf(file_path, remove_ly=True)
+        persist(lilypond_file).as_pdf(file_path, remove_ly=False)
 
     ### PUBLIC PROPERTIES ###
 

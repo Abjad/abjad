@@ -82,7 +82,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     _human_readable_class_name = 'even-run rhythm-maker'
 
-    ### GALLERY INPUT ###
+    ### GALLERY EXAMPLES ###
 
     _gallery_division_lists = (
         [
@@ -106,7 +106,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         ],
         )
 
-    _gallery_input_blocks = (
+    _gallery_example_wrappers = (
         ExampleWrapper(
             arguments={
                 },
