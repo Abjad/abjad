@@ -320,6 +320,7 @@ class RhythmMaker(AbjadObject):
         lilypond_file.items.pop(-1)
         lilypond_file.default_paper_size = ('letter', 'portrait')
         lilypond_file.global_staff_size = 10
+        lilypond_file.use_relative_includes = True
         lilypond_file.file_initial_user_includes.append('stylesheet.ily')
         lilypond_file.paper_block.tagline = markuptools.Markup()
         return lilypond_file
