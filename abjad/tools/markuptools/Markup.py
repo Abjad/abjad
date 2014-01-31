@@ -215,6 +215,55 @@ class Markup(AbjadObject):
         lilypond_file.items.append(self)
         return lilypond_file
 
+    def __makenew__(self, *args, **kwargs):
+        r'''Makes new markup with optional `kwargs`.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup_1 = Markup(r'\italic { Allegro moderato }')
+                >>> show(markup_1) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(markup_1)
+                \markup {
+                    \italic
+                        {
+                            Allegro
+                            moderato
+                        }
+                    }
+
+            ::
+
+                >>> contents = r'\italic { Allegro }'
+                >>> markup_2 = new(markup_1, contents=contents)
+                >>> show(markup_2) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(markup_2)
+                \markup {
+                    \italic
+                        {
+                            Allegro
+                        }
+                    }
+
+        Returns new rhythm-maker.
+        '''
+        from abjad.tools import systemtools
+        assert not args
+        arguments = {}
+        manager = systemtools.StorageFormatManager
+        argument_names = manager.get_keyword_argument_names(self)
+        for argument_name in argument_names:
+            arguments[argument_name] = getattr(self, argument_name)
+        arguments.update(kwargs)
+        return type(self)(**arguments)
+
     def __str__(self):
         r'''Gets string representation of markup.
 
