@@ -33,8 +33,8 @@ class AbjadConfiguration(Configuration):
 
     `AbjadConfiguration` then writes the configuration back to disk.
 
-    The Abjad output directory is created the from `abjad_output` key
-    if it does not already exist.
+    The Abjad output directory is created the from
+    `abjad_output_directory_path` key if it does not already exist.
 
     `AbjadConfiguration` supports the mutable mapping interface
     and can be subscripted as a dictionary.
@@ -61,8 +61,7 @@ class AbjadConfiguration(Configuration):
     @property
     def _option_definitions(self):
         options = {
-            # TODO: change name to 'abjad_output_directory_path'
-            'abjad_output': {
+            'abjad_output_directory_path': {
                 'comment': [
                     '',
                     'Set to the directory where all Abjad-generated files',
