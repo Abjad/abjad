@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Abjad by Abjad</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Abjad</h1>
+        <p>Abjad is a Python API for Formalized Score Control</p>
+
+        <p class="view"><a href="https://github.com/Abjad/abjad">View the Project on GitHub <small>Abjad/abjad</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/Abjad/abjad/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Abjad/abjad/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Abjad/abjad">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="abjad" class="anchor" href="#abjad"><span class="octicon octicon-link"></span></a>abjad</h1>
+
+<p>Abjad helps composers build up complex pieces of music notation in an iterative
+and incremental way.</p>
+
+<p>Use Abjad to create a symbolic representation of all the notes, rests, staves,
+tuplets, beams and slurs in any score.</p>
+
+<p>Because Abjad extends the Python programming language, you can use Abjad to
+make systematic changes to your music as you work. And because Abjad wraps the
+powerful LilyPond music notation package, you can use Abjad to control the
+typographic details of the symbols on the page.</p>
+
+<p>You can find Abjad's documentation at <a href="http://projectabjad.org">http://projectabjad.org</a>.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>This install file refers to Abjad 2.14.</p>
+
+<h2>
+<a name="abjad-depends-on-python" class="anchor" href="#abjad-depends-on-python"><span class="octicon octicon-link"></span></a>Abjad depends on Python</h2>
+
+<p>You must have Python 2.7.5 installed to run Abjad.</p>
+
+<p>You must also have the following Python packages installed:</p>
+
+<pre><code>* configobj
+* ply
+* pytest
+* Sphinx
+</code></pre>
+
+<p>Type the following to check the version of Python installed on your computer:</p>
+
+<pre><code>python --version
+</code></pre>
+
+<p>You can download different versions of Python at <a href="http://www.python.org">http://www.python.org</a>.</p>
+
+<p>Note that Abjad does not yet support the Python 3.x series of releases.</p>
+
+<h2>
+<a name="abjad-depends-on-lilypond" class="anchor" href="#abjad-depends-on-lilypond"><span class="octicon octicon-link"></span></a>Abjad depends on LilyPond</h2>
+
+<p>You must have LilyPond 2.17 or greater installed to run Abjad.</p>
+
+<p>Download LilyPond at <a href="http://www.lilypond.org">http://www.lilypond.org</a>.</p>
+
+<p>Type the following to see if LilyPond is callable from your commandline:</p>
+
+<pre><code>lilypond --version
+</code></pre>
+
+<p>If LilyPond is not callable from your commandline you should add the location
+of the LilyPond executable to your <code>PATH</code> environment variable.</p>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>Online documentation for the most recent release of Abjad is available at
+<a href="http://projectabjad.org">http://projectabjad.org</a>.</p>
+
+<p>PDFs are available in Abjad's <code>abjad/docs/pdf/</code> directory after you install
+the package.</p>
+
+<p>Most users will find the online or PDF version of the docs sufficient. If you
+work with Abjad lot and decide to add code to Abjad that you want to contribute
+back to the project, it will probably make sense to build a local copy of the
+docs for yourself as you work. To build Abjad's docs locally you'll need to
+install Graphviz. See <a href="http://graphviz.org">http://graphviz.org</a> for instructions.</p>
+
+<h2>
+<a name="installing-the-current-packaged-version-of-abjad-with-pip" class="anchor" href="#installing-the-current-packaged-version-of-abjad-with-pip"><span class="octicon octicon-link"></span></a>Installing the current packaged version of Abjad with pip</h2>
+
+<p>There are different ways to install Python packages on your computer. One of
+the most direct ways is with <code>pip</code>.</p>
+
+<p>Type the following to find out if <code>pip</code> is installed on your computer:</p>
+
+<pre><code>pip --version
+</code></pre>
+
+<p>If you do not have <code>pip</code> installed then we strongly recommend that you use
+Python's <code>easy_install</code> to install <code>pip</code> first:</p>
+
+<pre><code>sudo easy_install pip
+</code></pre>
+
+<p>Then type the following to install the current packaged version of Abjad:</p>
+
+<pre><code>sudo pip install abjad --upgrade
+</code></pre>
+
+<p>Python will install Abjad in the site packages directory on your computer.</p>
+
+<p>You'll then be ready to start using Abjad.</p>
+
+<h2>
+<a name="manually-installing-abjad-from-the-python-package-index" class="anchor" href="#manually-installing-abjad-from-the-python-package-index"><span class="octicon octicon-link"></span></a>Manually installing Abjad from the Python Package Index</h2>
+
+<p>What if you do not have <code>pip</code> or <code>easy_install</code> installed on your computer?
+Then you should follow these steps to install the current packaged version of
+Abjad from the Python Package Index:</p>
+
+<ol>
+<li><p>Download the current release of Abjad from 
+<a href="http://pypi.python.org/pypi/Abjad">http://pypi.python.org/pypi/Abjad</a>.</p></li>
+<li>
+<p>Unarchive the downloaded file. Under MacOS and Windows you can 
+double click the archived file.</p>
+
+<p>Under Linux execute the following command with <code>x.y</code> replaced by 
+the current release of Abjad:</p>
+
+<pre><code>tar xzvf Abjad-x.y.tar.gz
+</code></pre>
+</li>
+<li>
+<p>Change into the directory created in step 2:</p>
+
+<pre><code>cd Abjad-x.y
+</code></pre>
+</li>
+<li>
+<p>Then run the following under MacOS or Linux:</p>
+
+<pre><code>sudo python setup.py install
+</code></pre>
+</li>
+<li>
+<p>Or run this command under Windows after starting up a command shell 
+with administrator privileges:</p>
+
+<pre><code>setup.py install
+</code></pre>
+</li>
+</ol><p>Python will install Abjad in the site packages directory on your computer.</p>
+
+<p>You'll then be ready to start using Abjad.</p>
+
+<h2>
+<a name="configuring-abjad" class="anchor" href="#configuring-abjad"><span class="octicon octicon-link"></span></a>Configuring Abjad</h2>
+
+<p>Abjad creates a <code>~/.abjad</code> directory the first time it runs.  In <code>~/.abjad</code>
+you will find a the file <code>abjad.cfg</code>.  This is the Abjad configuration file.</p>
+
+<p>You can use the Abjad configuration file to tell Abjad about your preferred PDF
+file viewer, MIDI player, your preferred LilyPond language and so on.</p>
+
+<p>Your configuration filewill look something like this the first time you open
+it:</p>
+
+<pre><code># Abjad configuration file created by Abjad on 31 January 2014 00:08:17.
+# File is interpreted by ConfigObj and should follow ini syntax.
+
+# Set to the directory where all Abjad-generated files
+# (such as PDFs and LilyPond files) should be saved.
+# Defaults to $HOME.abjad/output/
+abjad_output = /Users/username/.abjad/output
+
+# Default accidental spelling (mixed|sharps|flats).
+accidental_spelling = mixed
+
+# Comma-separated list of LilyPond files that 
+# Abjad will "\include" in all generated *.ly files
+lilypond_includes = ,
+
+# Language to use in all generated LilyPond files.
+lilypond_language = english
+
+# Lilypond executable path. Set to override dynamic lookup.
+lilypond_path = lilypond
+
+# MIDI player to open MIDI files.
+# When unset your OS should know how to open MIDI files.
+midi_player = 
+
+# PDF viewer to open PDF files.
+# When unset your OS should know how to open PDFs.
+pdf_viewer = 
+
+# Text editor to edit text files.
+# When unset your OS should know how to open text files.
+text_editor = 
+</code></pre>
+
+<p>In Linux you might want to set your <code>pdf_viewer</code> to <code>evince</code> and your
+<code>midi_player</code> to <code>tiMIDIty</code>.</p>
+
+<p>The configuration file follows <code>ini</code> syntax. So make sure to follow <code>ini</code>
+syntax conventions when editing the Abjad configuration file.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Abjad">Abjad</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
