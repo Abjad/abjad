@@ -53,19 +53,6 @@ If you are new to working with the commandline you should Google to get a basic
 introduction to editing your profile and setting environment variables.
 
 
-Documentation
--------------
-
-Current online documentation for Abjad is available at http://projectabjad.org.
-
-PDFs are available in Abjad's ``docs/pdf`` directory after you install.
-
-Most users will find the online and PDF versions of the docs complete. If you
-work with Abjad a lot then you might want to build the docs yourself. Abjad's
-build system depends on Graphviz. So visit http://graphviz.org and install
-Graphviz if you decide to build the docs yourself. 
-
-
 Installing the current packaged version of Abjad with pip
 ---------------------------------------------------------
 
@@ -123,6 +110,19 @@ Package Index. Follow these steps:
 
 Python will install Abjad in the site packages directory on your computer and
 you will be ready to start using Abjad.
+
+
+Documentation
+-------------
+
+Current online documentation for Abjad is available at http://projectabjad.org.
+
+PDFs are available in Abjad's ``docs/pdf`` directory after you install.
+
+Most users will find the online and PDF versions of the docs complete. If you
+work with Abjad a lot then you might want to build the docs yourself. Abjad's
+build system depends on Graphviz. So visit http://graphviz.org and install
+Graphviz if you decide to build the docs yourself. 
 
 
 Configuring Abjad
