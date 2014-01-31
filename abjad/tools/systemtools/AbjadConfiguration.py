@@ -8,26 +8,29 @@ from abjad.tools.systemtools.Configuration import Configuration
 class AbjadConfiguration(Configuration):
     r'''Abjad configuration.
 
-    ::
+    ..  container:: example
 
-        >>> ABJCONFIG = systemtools.AbjadConfiguration()
-        >>> ABJCONFIG['accidental_spelling']
-        'mixed'
+        ::
 
-    ::
+            >>> abjad_configuration = systemtools.AbjadConfiguration()
 
-        >>> configuration = systemtools.AbjadConfiguration()
+        ::
+
+            >>> abjad_configuration['accidental_spelling']
+            'mixed'
 
     `AbjadConfiguration` creates the `$HOME/.abjad/` directory
     on instantiation.
 
     `AbjadConfiguration` then attempts to read an `abjad.cfg` file in
     that directory and parse the file as a `ConfigObj` configuration.
+
     `AbjadConfiguration` generates a default configuration if no file
     is found.
 
     `AbjadConfiguration` validates the `ConfigObj` instance
     and replaces key-value pairs which fail validation with default values.
+
     `AbjadConfiguration` then writes the configuration back to disk.
 
     The Abjad output directory is created the from `abjad_output` key
@@ -49,11 +52,11 @@ class AbjadConfiguration(Configuration):
 
     @property
     def _initial_comment(self):
-        return [
-            'Abjad configuration file created by Abjad on {}.'.format(
-                self._current_time),
-            'File is interpreted by ConfigObj and should follow ini syntax.',
-        ]
+        line_1 = 'Abjad configuration file created by Abjad on {}.'
+        line_1 = line_1.format(self._current_time)
+        line_2 = 'File is interpreted by ConfigObj'
+        line_2 += ' and should follow ini syntax.'
+        return [line_1, line_2]
 
     @property
     def _option_definitions(self):
@@ -68,7 +71,10 @@ class AbjadConfiguration(Configuration):
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(
-                        self.abjad_configuration_directory_path, 'output'))
+                        self.abjad_configuration_directory_path, 
+                        'output',
+                        )
+                    )
             },
             'accidental_spelling': {
                 'comment': [
@@ -133,10 +139,12 @@ class AbjadConfiguration(Configuration):
     def get_abjad_startup_string(cls):
         r'''Gets Abjad startup string.
 
-        ::
+        ..  container:: example
 
-            >>> abjad_configuration.get_abjad_startup_string()
-            'Abjad 2.15 (development)'
+            ::
+
+                >>> abjad_configuration.get_abjad_startup_string()
+                'Abjad 2.15 (development)'
 
         Returns string.
         '''
@@ -151,10 +159,12 @@ class AbjadConfiguration(Configuration):
     def get_abjad_version_string():
         '''Gets Abjad version string.
 
-        ::
+        ..  container:: example
 
-            >>> abjad_configuration.get_abjad_version_string()
-            '2.15'
+            ::
+
+                >>> abjad_configuration.get_abjad_version_string()
+                '2.15'
 
         Returns string.
         '''
@@ -165,14 +175,12 @@ class AbjadConfiguration(Configuration):
     def get_lilypond_minimum_version_string(cls):
         r'''Gets LilyPond minimum version string.
 
-        ::
+        ..  container:: example
 
-            >>> abjad_configuration.get_lilypond_minimum_version_string() # doctest: +SKIP
-            '2.17.0'
+            ::
 
-        This is useful for documentation purposes, where all developers are
-        using the development version of LilyPond, but not necessarily
-        the exact same version.
+                >>> abjad_configuration.get_lilypond_minimum_version_string() # doctest: +SKIP
+                '2.17.0'
 
         Returns string.
         '''
@@ -183,12 +191,14 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def get_lilypond_version_string():
-        '''Gets LilyPond version string:
+        '''Gets LilyPond version string.
 
-        ::
+        ..  container:: example
 
-            >>> abjad_configuration.get_lilypond_version_string() # doctest: +SKIP
-            '2.17.28'
+            ::
+
+                >>> abjad_configuration.get_lilypond_version_string() # doctest: +SKIP
+                '2.19.1'
 
         Returns string.
         '''
@@ -216,10 +226,12 @@ class AbjadConfiguration(Configuration):
     def get_python_version_string():
         '''Gets Python version string.
 
-        ::
+        ..  container:: example
 
-            >>> abjad_configuration.get_python_version_string() # doctest: +SKIP
-            '2.7.5'
+            ::
+
+                >>> abjad_configuration.get_python_version_string() # doctest: +SKIP
+                '2.7.5'
 
         Returns string.
         '''
@@ -237,13 +249,14 @@ class AbjadConfiguration(Configuration):
     def get_tab_width():
         r'''Gets tab width.
 
-        ::
+        ..  container:: example
 
-            >>> abjad_configuration.get_tab_width()
-            4
+            ::
 
-        The value is used by various functions that generate or
-        test code in the system.
+                >>> abjad_configuration.get_tab_width()
+                4
+
+        Used by code generation functions.
 
         Returns nonnegative integer.
         '''
@@ -251,12 +264,14 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def get_text_editor():
-        r'''Get text editor.
+        r'''Gets text editor.
 
-        ::
+        ..  container:: example
 
-            >>> abjad_configuration.get_text_editor() # doctest: +SKIP
-            'vim'
+            ::
+
+                >>> abjad_configuration.get_text_editor() # doctest: +SKIP
+                'vim'
 
         Returns string.
         '''
@@ -269,14 +284,17 @@ class AbjadConfiguration(Configuration):
         else:
             return 'edit'
 
+    # TODO: remove?
     @staticmethod
     def list_abjad_environment_variables():
         r'''Lists Abjad environment variables.
 
-        ::
+        ..  container:: example
 
-            >>> for x in abjad_configuration.list_abjad_environment_variables():
-            ...     x
+            ::
+
+                >>> for x in abjad_configuration.list_abjad_environment_variables():
+                ...     x
 
 
         Abjad environment variables are defined in
@@ -295,10 +313,12 @@ class AbjadConfiguration(Configuration):
     def list_package_dependency_versions():
         r'''Lists package dependency versions.
 
-        ::
+        ..  container:: example
 
-            >>> abjad_configuration.list_package_dependency_versions() # doctest: +SKIP
-            {'sphinx': '1.1.2', 'pytest': '2.1.2'}
+            ::
+
+                >>> abjad_configuration.list_package_dependency_versions() # doctest: +SKIP
+                {'sphinx': '1.1.2', 'pytest': '2.1.2'}
 
         Returns dictionary.
         '''
@@ -331,40 +351,48 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def set_default_accidental_spelling(spelling='mixed'):
-        '''Set default accidental spelling to sharps:
+        '''Sets default accidental spelling.
+        
+        ..  container:: example
+        
+            Sets default accidental spelling to sharps:
 
-        ::
+            ::
 
-            >>> abjad_configuration.set_default_accidental_spelling('sharps')
+                >>> abjad_configuration.set_default_accidental_spelling('sharps')
 
-        ::
+            ::
 
-            >>> [Note(13, (1, 4)), Note(15, (1, 4))]
-            [Note("cs''4"), Note("ds''4")]
+                >>> [Note(13, (1, 4)), Note(15, (1, 4))]
+                [Note("cs''4"), Note("ds''4")]
 
-        Set default accidental spelling to flats:
+        ..  container:: example
 
-        ::
+            Sets default accidental spelling to flats:
 
-            >>> abjad_configuration.set_default_accidental_spelling('flats')
+            ::
 
-        ::
+                >>> abjad_configuration.set_default_accidental_spelling('flats')
 
-            >>> [Note(13, (1, 4)), Note(15, (1, 4))]
-            [Note("df''4"), Note("ef''4")]
+            ::
 
-        Set default accidental spelling to mixed:
+                >>> [Note(13, (1, 4)), Note(15, (1, 4))]
+                [Note("df''4"), Note("ef''4")]
 
-        ::
+        ..  container:: example
 
-            >>> abjad_configuration.set_default_accidental_spelling()
+            Sets default accidental spelling to mixed:
 
-        ::
+            ::
 
-            >>> [Note(13, (1, 4)), Note(15, (1, 4))]
-            [Note("cs''4"), Note("ef''4")]
+                >>> abjad_configuration.set_default_accidental_spelling()
 
-        Mixed is system default.
+            ::
+
+                >>> [Note(13, (1, 4)), Note(15, (1, 4))]
+                [Note("cs''4"), Note("ef''4")]
+
+        Defaults to ``'mixed'``.
 
         Mixed test case must appear last here for doc tests to check correctly.
 
@@ -383,7 +411,11 @@ class AbjadConfiguration(Configuration):
 
         Returns string.
         '''
-        return os.path.join(self.home_directory_path, '.abjad')
+        relative_path = os.path.join(
+            self.home_directory_path, 
+            '.abjad',
+            )
+        return os.path.abspath(relative_path)
 
     @property
     def abjad_configuration_file_path(self):
@@ -414,10 +446,11 @@ class AbjadConfiguration(Configuration):
 
         Returns string.
         '''
-        return os.path.abspath(os.path.join(
+        relative_path = os.path.join(
             self.abjad_root_directory_path,
             'experimental',
-            ))
+            )
+        return os.path.abspath(relative_path)
 
     @property
     def abjad_output_directory_path(self):
@@ -433,10 +466,11 @@ class AbjadConfiguration(Configuration):
 
         Returns string.
         '''
-        return os.path.abspath(os.path.join(
+        relative_path = os.path.join(
             self.abjad_directory_path,
             '..',
-            ))
+            )
+        return os.path.abspath(relative_path)
 
     @property
     def abjad_stylesheets_directory_path(self):
@@ -444,10 +478,11 @@ class AbjadConfiguration(Configuration):
 
         Returns string.
         '''
-        return os.path.abspath(os.path.join(
+        relative_path = os.path.join(
             self.abjad_directory_path,
             'stylesheets',
-            ))
+            )
+        return os.path.abspath(relative_path)
 
     @property
     def configuration_directory_path(self):

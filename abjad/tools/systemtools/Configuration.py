@@ -74,21 +74,21 @@ class Configuration(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __delitem__(self, i):
-        r'''Deletes `i` from settings.
+        r'''Deletes item `i` from configuration.
 
         Returns none.
         '''
         del(self._settings[i])
 
     def __getitem__(self, i):
-        r'''Gets `i` from settings.
+        r'''Gets item `i` from configuration.
 
         Returns none.
         '''
         return self._settings[i]
 
     def __iter__(self):
-        r'''Iterates settings.
+        r'''Iterates configuration settings.
 
         Returns generator.
         '''
@@ -96,14 +96,14 @@ class Configuration(AbjadObject):
             yield key
 
     def __len__(self):
-        r'''Number of settings in configuration.
+        r'''Gets the number of settings in configuration.
 
         Returns nonnegative integer.
         '''
         return len(self._settings)
 
     def __setitem__(self, i, arg):
-        r'''Sets setting `i` to `arg`.
+        r'''Sets configuration item `i` to `arg`.
 
         Returns none.
         '''
@@ -145,7 +145,7 @@ class Configuration(AbjadObject):
 
     @abc.abstractproperty
     def configuration_directory_path(self):
-        r'''Configuration directory path.
+        r'''Gets configuration directory path.
 
         Returns string.
         '''
@@ -153,7 +153,7 @@ class Configuration(AbjadObject):
 
     @abc.abstractproperty
     def configuration_file_name(self):
-        r'''Configuration file name.
+        r'''Gets configuration file name.
 
         Returns string.
         '''
@@ -161,7 +161,7 @@ class Configuration(AbjadObject):
 
     @property
     def configuration_file_path(self):
-        r'''Configuration file path.
+        r'''Gets configuration file path.
 
         Returns string.
         '''
@@ -172,7 +172,7 @@ class Configuration(AbjadObject):
 
     @property
     def home_directory_path(self):
-        r'''Home directory path.
+        r'''Gets home directory path.
 
         Returns string.
         '''
