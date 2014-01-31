@@ -214,8 +214,13 @@ class PersistenceAgent(abctools.AbjadObject):
         # render the pdf
         timer = systemtools.Timer()
         with timer:
-            systemtools.IOManager.run_lilypond(ly_file_path)
+            success = systemtools.IOManager.run_lilypond(ly_file_path)
         lilypond_rendering_time = timer.elapsed_time
         if remove_ly:
             os.remove(ly_file_path)
-        return pdf_file_path, abjad_formatting_time, lilypond_rendering_time
+        return (
+            pdf_file_path,
+            abjad_formatting_time,
+            lilypond_rendering_time,
+            success,
+            )

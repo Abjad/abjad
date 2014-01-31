@@ -402,13 +402,25 @@ class IOManager(object):
             lilypond_file_name,
             log_file_path,
             )
-        IOManager.spawn_subprocess(command)
+        exit_code = IOManager.spawn_subprocess(command)
         postscript_file_name = lilypond_file_name.replace('.ly', '.ps')
         try:
             os.remove(postscript_file_name)
         except OSError:
             # no such file...
             pass
+        if exit_code:
+            log_path = os.path.join(
+                abjad_configuration.abjad_output_directory_path,
+                'lily.log',
+                )
+            if os.path.exists(log_path):
+                with open(log_path, 'r') as f:
+                    print f.read()
+            message = 'LilyPond rendering failed. Press any key to continue.'
+            raw_input(message)
+            return False
+        return True
 
     @staticmethod
     def save_last_ly_as(file_path):
@@ -469,7 +481,7 @@ class IOManager(object):
         The function is basically a reimplementation of the
         deprecated ``os.system()`` using Python's ``subprocess`` module.
 
-        Returns integer result code.
+        Returns integer exit code.
         '''
         return subprocess.call(command, shell=True)
 

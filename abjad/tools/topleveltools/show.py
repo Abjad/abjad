@@ -39,8 +39,9 @@ def show(expr, return_timing=False, **kwargs):
     from abjad.tools import systemtools
     from abjad.tools import topleveltools
     assert '__illustrate__' in dir(expr)
-    pdf_file_path, abjad_formatting_time, lilypond_rendering_time = \
+    pdf_file_path, abjad_formatting_time, lilypond_rendering_time, success = \
         topleveltools.persist(expr).as_pdf(**kwargs)
-    systemtools.IOManager.open_file(pdf_file_path)
+    if success:
+        systemtools.IOManager.open_file(pdf_file_path)
     if return_timing:
         return abjad_formatting_time, lilypond_rendering_time
