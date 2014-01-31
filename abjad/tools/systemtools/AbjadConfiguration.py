@@ -284,31 +284,6 @@ class AbjadConfiguration(Configuration):
         else:
             return 'edit'
 
-    # TODO: remove?
-    @staticmethod
-    def list_abjad_environment_variables():
-        r'''Lists Abjad environment variables.
-
-        ..  container:: example
-
-            ::
-
-                >>> for x in abjad_configuration.list_abjad_environment_variables():
-                ...     x
-
-
-        Abjad environment variables are defined in
-        ``abjad/tools/abjad_configuration/AbjadConfiguration.py``.
-
-        Returns tuple of zero or more environment variable / setting pairs.
-        '''
-        from abjad import abjad_configuration
-        result = []
-        for key in dir(abjad_configuration):
-            if key.isupper() and not key.startswith('_'):
-                result.append((key, getattr(abjad_configuration, key)))
-        return tuple(result)
-
     @staticmethod
     def list_package_dependency_versions():
         r'''Lists package dependency versions.
