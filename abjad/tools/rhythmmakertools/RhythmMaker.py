@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
+import copy
 import os
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
@@ -266,46 +267,10 @@ class RhythmMaker(AbjadObject):
             scores.append(score)
         return scores
 
-    @staticmethod
-    def _get_rhythmic_staff(lilypond_file):
-        score_block = lilypond_file.items[-1]
-        score = score_block.items[0]
-        rhythmic_staff = score[-1]
-        return rhythmic_staff
-
-    def _make_gallery_example_markup(
-        self, 
-        configuration_number,
-        example_number,
-        ):
-        assert mathtools.is_nonnegative_integer(configuration_number)
-        assert mathtools.is_nonnegative_integer(example_number)
-        abbreviation = self._class_name_abbreviation
-        number_string = '{}-{}'.format(
-            configuration_number,
-            example_number,
-            )
-        width = 9 
-        top = markuptools.MarkupCommand('hcenter-in', width, abbreviation)
-        bottom = markuptools.MarkupCommand('hcenter-in', width, number_string)
-        lines = [top, bottom]
-        command = markuptools.MarkupCommand('column', lines)
-        command = markuptools.MarkupCommand('fontsize', 1, command)
-        command = markuptools.MarkupCommand('hcenter-in', width, command)
-        markup = markuptools.Markup(command)
-        return markup
-
-    @staticmethod
-    def _is_leaf_selection(expr):
-        if isinstance(expr, selectiontools.Selection):
-            return all(isinstance(x, scoretools.Leaf) for x in expr)
-        return False
-
-    def _gallery_example_wrapper_to_lilypond_file(self):
+    def _gallery_example_wrappers_to_lilypond_file(self):
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
         lilypond_file.items.remove(lilypond_file.score_block)
         title_markup = self._make_gallery_title_markup()
-        lilypond_file.header_block.title = title_markup
         for i, example_wrapper in enumerate(self._gallery_example_wrappers):
             configuration_number = i + 1
             markup = example_wrapper._to_markup(type(self))
@@ -335,7 +300,12 @@ class RhythmMaker(AbjadObject):
                     message += '\n'
                     message += inspect_(score).tabulate_well_formedness_violations()
                     raise Exception(message)
-                lilypond_file.items.append(score)
+                score_block = lilypondfiletools.Block(name='score')
+                header_block = lilypondfiletools.Block(name='header')
+                header_block.title = copy.copy(title_markup)
+                score_block.items.append(header_block)
+                score_block.items.append(score)
+                lilypond_file.items.append(score_block)
             string = r'\pageBreak'
             lilypond_file.items.append(string)
         assert lilypond_file.items[-1] == string
@@ -351,6 +321,41 @@ class RhythmMaker(AbjadObject):
         lilypond_file.file_initial_user_includes.append(stylesheet_path)
         lilypond_file.paper_block.tagline = markuptools.Markup()
         return lilypond_file
+
+    @staticmethod
+    def _get_rhythmic_staff(lilypond_file):
+        score_block = lilypond_file.items[-1]
+        score = score_block.items[0]
+        rhythmic_staff = score[-1]
+        return rhythmic_staff
+
+    @staticmethod
+    def _is_leaf_selection(expr):
+        if isinstance(expr, selectiontools.Selection):
+            return all(isinstance(x, scoretools.Leaf) for x in expr)
+        return False
+
+    def _make_gallery_example_markup(
+        self, 
+        configuration_number,
+        example_number,
+        ):
+        assert mathtools.is_nonnegative_integer(configuration_number)
+        assert mathtools.is_nonnegative_integer(example_number)
+        abbreviation = self._class_name_abbreviation
+        number_string = '{}-{}'.format(
+            configuration_number,
+            example_number,
+            )
+        width = 9 
+        top = markuptools.MarkupCommand('hcenter-in', width, abbreviation)
+        bottom = markuptools.MarkupCommand('hcenter-in', width, number_string)
+        lines = [top, bottom]
+        command = markuptools.MarkupCommand('column', lines)
+        command = markuptools.MarkupCommand('fontsize', 1, command)
+        command = markuptools.MarkupCommand('hcenter-in', width, command)
+        markup = markuptools.Markup(command)
+        return markup
 
     def _make_gallery_title_markup(self):
         string = self._human_readable_class_name
@@ -414,22 +419,6 @@ class RhythmMaker(AbjadObject):
             combined_logical_tie = logical_tie_one + logical_tie_two
             attach(spannertools.Tie(), combined_logical_tie)
 
-#    @staticmethod
-#    def _make_ties_across_divisions_alternative(selections):
-#        for pair in sequencetools.iterate_sequence_pairwise_strict(selections):
-#            left_selection, right_selection = pair
-#            left_leaves = iterate(left_selection).by_class(scoretools.Leaf)
-#            left_leaves = list(left_leaves)
-#            last_left_leaf = left_leaves[-1]
-#            right_leaves = iterate(right_selection).by_class(scoretools.Leaf)
-#            right_leaves = list(right_leaves)
-#            first_right_leaf = right_leaves[0]
-#            prototype = (scoretools.Note, scoretools.Chord)
-#            two_leaves = [last_left_leaf, first_right_leaf]
-#            if all(isinstance(x, prototype) for x in two_leaves):
-#                tie = spannertools.Tie()
-#                attach(tie, two_leaves)
-
     def _make_tuplets(self, duration_pairs, leaf_lists):
         assert len(duration_pairs) == len(leaf_lists)
         tuplets = []
@@ -491,7 +480,7 @@ class RhythmMaker(AbjadObject):
         return talea
 
     def _write_gallery_to_disk(self):
-        lilypond_file = self._gallery_example_wrapper_to_lilypond_file()
+        lilypond_file = self._gallery_example_wrappers_to_lilypond_file()
         file_path = __file__
         directory_path = os.path.dirname(file_path)
         class_name = type(self).__name__
