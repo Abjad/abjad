@@ -65,7 +65,7 @@
 \paper {
     evenFooterMarkup = \markup {}
     evenHeaderMarkup = \markup {}
-    left-margin = 12
+    left-margin = 14
     markup-system-spacing #'minimum-distance = 36
     oddFooterMarkup = \markup {}
     oddHeaderMarkup = \markup {}

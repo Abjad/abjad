@@ -345,17 +345,16 @@ class RhythmMaker(AbjadObject):
         ):
         assert mathtools.is_nonnegative_integer(configuration_number)
         assert mathtools.is_nonnegative_integer(example_number)
-        abbreviation = self._class_name_abbreviation
         number_string = '{}-{}'.format(
             configuration_number,
             example_number,
             )
-        width = 9 
-        top = markuptools.MarkupCommand('hcenter-in', width, abbreviation)
-        bottom = markuptools.MarkupCommand('hcenter-in', width, number_string)
-        lines = [top, bottom]
-        command = markuptools.MarkupCommand('column', lines)
-        command = markuptools.MarkupCommand('fontsize', 1, command)
+        command = markuptools.MarkupCommand('fontsize', 2, number_string)
+        command = markuptools.MarkupCommand('italic', command)
+        command = markuptools.MarkupCommand('box', command)
+        pair = schemetools.SchemePair('box-padding', 0.75)
+        command = markuptools.MarkupCommand('override', pair, command)
+        width = 9
         command = markuptools.MarkupCommand('hcenter-in', width, command)
         markup = markuptools.Markup(command)
         return markup
