@@ -279,47 +279,39 @@ class PayloadTree(AbjadObject):
     def __repr__(self):
         r'''Gets interpreter representation of payload tree.
 
-        ::
+        ..  container:: example
 
-            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = datastructuretools.PayloadTree(sequence)
+            Typical payload tree:
 
-        ::
+            ::
 
-            >>> tree
-            PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+                >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+                >>> datastructuretools.PayloadTree(sequence)
+                PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+
+        ..  container:: example
+
+            Payload tree leaf:
+
+            ::
+
+                >>> datastructuretools.PayloadTree(0)
+                PayloadTree(0)
+
+        ..  container:: example
+
+            Empty payload tree:
+
+            ::
+
+                >>> datastructuretools.PayloadTree()
+                PayloadTree([])
 
         Returns string.
         '''
-        return '{}({!s})'.format(type(self).__name__, self)
-
-    def __str__(self):
-        r'''String representation of payload tree.
-
-        ::
-
-            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = datastructuretools.PayloadTree(sequence)
-
-        ::
-
-            >>> str(tree)
-            '[[0, 1], [2, 3], [4, 5], [6, 7]]'
-
-        Returns string.
-        '''
-        if self.payload is None:
-            return '[{}]'.format(
-                ', '.join([str(x) for x in self._noncyclic_children])
-                )
-        else:
-            return repr(self.payload)
+        return AbjadObject.__repr__(self)
 
     ### PRIVATE PROPERTIES ###
-
-    @property
-    def _input_argument(self):
-        return eval(str(self))
 
     @property
     def _noncyclic_children(self):
@@ -328,9 +320,15 @@ class PayloadTree(AbjadObject):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
-        positional_argument_values = (
-            self._input_argument,
-            )
+        positional_argument_values = []
+        if self.payload is not None:
+            positional_argument_values.append(self.payload)
+        elif self.depth == 0:
+            pass
+        else:
+            nested_lists = self.to_nested_lists()
+            positional_argument_values.append(nested_lists)
+        positional_argument_values = tuple(positional_argument_values)
         return systemtools.StorageFormatSpecification(
             self,
             keyword_argument_names=(),
@@ -391,6 +389,12 @@ class PayloadTree(AbjadObject):
         for node in self.iterate_depth_first():
             levels.add(node.level)
         return max(levels) - self.level + 1
+
+    @property
+    def expr(self):
+        r'''Gets input argument.
+        '''
+        return self._expr
 
     @property
     def graphviz_format(self):
