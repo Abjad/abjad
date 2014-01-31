@@ -6,60 +6,64 @@ from abjad.tools.abctools import AbjadObject
 class MarkupCommand(AbjadObject):
     r'''A LilyPond markup command.
 
-    ::
+    ..  container:: example
 
-        >>> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
-        >>> square = markuptools.MarkupCommand('rounded-box', 'hello?')
-        >>> line = markuptools.MarkupCommand('line', [square, 'wow!'])
-        >>> rotate = markuptools.MarkupCommand('rotate', 60, line)
-        >>> combine = markuptools.MarkupCommand('combine', rotate, circle)
+        This creates a LilyPond markup command:
 
-    ::
+        ::
 
-        >>> print format(combine, 'lilypond')
-        \combine
-            \rotate
-                #60
-                \line
-                    {
-                        \rounded-box
-                            hello?
-                        wow!
+            >>> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
+            >>> square = markuptools.MarkupCommand('rounded-box', 'hello?')
+            >>> line = markuptools.MarkupCommand('line', [square, 'wow!'])
+            >>> rotate = markuptools.MarkupCommand('rotate', 60, line)
+            >>> combine = markuptools.MarkupCommand('combine', rotate, circle)
+
+        ::
+
+            >>> print format(combine, 'lilypond')
+            \combine
+                \rotate
+                    #60
+                    \line
+                        {
+                            \rounded-box
+                                hello?
+                            wow!
+                        }
+                \draw-circle
+                    #2.5
+                    #0.1
+                    ##f
+
+        Insert a markup command in markup in order to attach it to 
+        score components:
+
+        ::
+
+            >>> note = Note("c'4")
+            >>> markup = markuptools.Markup(combine)
+            >>> attach(markup, note)
+            >>> show(note) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print format(note)
+            c'4
+                - \markup {
+                    \combine
+                        \rotate
+                            #60
+                            \line
+                                {
+                                    \rounded-box
+                                        hello?
+                                    wow!
+                                }
+                        \draw-circle
+                            #2.5
+                            #0.1
+                            ##f
                     }
-            \draw-circle
-                #2.5
-                #0.1
-                ##f
-
-    Insert a markup command in markup in order to attach it to 
-    score components:
-
-    ::
-
-        >>> note = Note("c'4")
-        >>> markup = markuptools.Markup(combine)
-        >>> attach(markup, note)
-        >>> show(note) # doctest: +SKIP
-
-    ..  doctest::
-
-        >>> print format(note)
-        c'4
-            - \markup {
-                \combine
-                    \rotate
-                        #60
-                        \line
-                            {
-                                \rounded-box
-                                    hello?
-                                wow!
-                            }
-                    \draw-circle
-                        #2.5
-                        #0.1
-                        ##f
-                }
 
     Markup commands are immutable.
     '''
@@ -69,6 +73,7 @@ class MarkupCommand(AbjadObject):
     __slots__ = (
         '_args', 
         '_command',
+        '_force_quotes',
         )
 
     ### INITIALIZER ###
@@ -81,6 +86,7 @@ class MarkupCommand(AbjadObject):
             and len(command) and command.find(' ') == -1
         self._command = command
         self._args = tuple(args)
+        self._force_quotes = False
 
     ### SPECIAL METHODS ###
 
@@ -160,7 +166,10 @@ class MarkupCommand(AbjadObject):
                 elif isinstance(x, schemetools.Scheme):
                     result.append(format(x))
                 else:
-                    formatted = schemetools.Scheme.format_scheme_value(x)
+                    formatted = schemetools.Scheme.format_scheme_value(
+                        x,
+                        force_quotes=self.force_quotes,
+                        )
                     if isinstance(x, str):
                         result.append(formatted)
                     else:
@@ -188,3 +197,70 @@ class MarkupCommand(AbjadObject):
         Returns string.
         '''
         return self._command
+
+    @property
+    def force_quotes(self):
+        r'''Is true when markup command should force quotes around arguments.
+        Otherwise false.
+
+        ..  container:: example
+
+            Here's a markup command formatted in the usual way without forced
+            quotes:
+
+            ::
+
+                >>> lines = ['foo', 'bar blah', 'baz']
+                >>> command = markuptools.MarkupCommand('column', lines)
+                >>> markup = Markup(command)
+
+            ::
+
+                >>> f(markup)
+                \markup {
+                    \column
+                        {
+                            foo
+                            "bar blah"
+                            baz
+                        }
+                    }
+
+            The markup command forces quotes around only the spaced string 
+            ``'bar blah'``.
+
+        ..  container:: example
+
+            Here's the same markup command with forced quotes:
+
+                >>> lines = ['foo', 'bar blah', 'baz']
+                >>> command = markuptools.MarkupCommand('column', lines)
+                >>> command.force_quotes = True
+                >>> markup = Markup(command)
+
+            ::
+
+                >>> f(markup)
+                \markup {
+                    \column
+                        {
+                            "foo"
+                            "bar blah"
+                            "baz"
+                        }
+                    }
+
+            The markup command forces quotes around all strings.
+
+        The rendered result of forced and unforced quotes is the same.
+
+        Defaults to false.
+
+        Returns boolean.
+        '''
+        return self._force_quotes
+
+    @force_quotes.setter
+    def force_quotes(self, arg):
+        assert isinstance(arg, bool), repr(arg)
+        self._force_quotes = arg

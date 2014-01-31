@@ -47,6 +47,7 @@ class ExampleWrapper(AbjadObject):
         string = string.replace('rhythmmakertools.', '')
         lines = string.split('\n')
         command = markuptools.MarkupCommand('column', lines)
+        command.force_quotes = True
         pair = schemetools.SchemePair('font-name', 'Courier')
         command = markuptools.MarkupCommand('override', pair, command)
         markup = markuptools.Markup(command, direction=Up)

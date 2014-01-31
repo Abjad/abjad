@@ -284,6 +284,7 @@ class RhythmMaker(AbjadObject):
                 break
             first_leaf = leaf
             attach(markup, first_leaf)
+            score_blocks = []
             for score in scores:
                 score.add_final_bar_line()
                 selection = score.select_leaves(start=-1)
@@ -301,11 +302,21 @@ class RhythmMaker(AbjadObject):
                     message += inspect_(score).tabulate_well_formedness_violations()
                     raise Exception(message)
                 score_block = lilypondfiletools.Block(name='score')
-                header_block = lilypondfiletools.Block(name='header')
-                header_block.title = copy.copy(title_markup)
-                score_block.items.append(header_block)
                 score_block.items.append(score)
+                score_blocks.append(score_block)
+
+            header_block = lilypondfiletools.Block(name='header')
+            transparent = False
+            if 1 <= i:
+                transparent = True
+                title_markup = self._make_gallery_title_markup(
+                    transparent=transparent)
+            header_block.title = title_markup
+            score_blocks[0].items.append(header_block)
+
+            for score_block in score_blocks:
                 lilypond_file.items.append(score_block)
+
             string = r'\pageBreak'
             lilypond_file.items.append(string)
         assert lilypond_file.items[-1] == string
@@ -357,12 +368,14 @@ class RhythmMaker(AbjadObject):
         markup = markuptools.Markup(command)
         return markup
 
-    def _make_gallery_title_markup(self):
+    def _make_gallery_title_markup(self, transparent=False):
         string = self._human_readable_class_name
         string = stringtools.capitalize_string_start(string)
         pair = schemetools.SchemePair('font-name', 'Times')
         command = markuptools.MarkupCommand('override', pair, string)
         command = markuptools.MarkupCommand('fontsize', 4.5, command)
+        if transparent:
+            command = markuptools.MarkupCommand('transparent', command)
         markup = markuptools.Markup(command)
         return markup
 
