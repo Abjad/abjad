@@ -200,11 +200,7 @@ class RhythmMaker(AbjadObject):
         lilypond_file.default_paper_size = ('letter', 'portrait')
         lilypond_file.global_staff_size = 10
         lilypond_file.use_relative_includes = True
-        stylesheet_path = os.path.join(
-            abjad_configuration.abjad_stylesheets_directory_path,
-            'gallery-layout.ly',
-            )
-        lilypond_file.file_initial_user_includes.append(stylesheet_path)
+        lilypond_file.file_initial_user_includes.append('stylesheet.ly')
         lilypond_file.paper_block.tagline = markuptools.Markup()
         return lilypond_file
 
@@ -268,6 +264,7 @@ class RhythmMaker(AbjadObject):
         return scores
 
     def _gallery_example_wrappers_to_lilypond_file(self):
+        from abjad import abjad_configuration
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
         lilypond_file.items.remove(lilypond_file.score_block)
         title_markup = self._make_gallery_title_markup()
@@ -323,13 +320,7 @@ class RhythmMaker(AbjadObject):
         lilypond_file.items.pop(-1)
         lilypond_file.default_paper_size = ('letter', 'portrait')
         lilypond_file.global_staff_size = 10
-        lilypond_file.use_relative_includes = True
-        stylesheet_path = os.path.join(
-            '..', '..', '..',
-            'stylesheets',
-            'gallery-layout.ly',
-            )
-        lilypond_file.file_initial_user_includes.append(stylesheet_path)
+        lilypond_file.file_initial_user_includes.append('stylesheet.ly')
         lilypond_file.paper_block.tagline = markuptools.Markup()
         return lilypond_file
 

@@ -459,6 +459,18 @@ class AbjadConfiguration(Configuration):
         return os.path.abspath(relative_path)
 
     @property
+    def abjad_tools_directory_path(self):
+        r'''Abjad tools directory path.
+
+        Returns string.
+        '''
+        relative_path = os.path.join(
+            self.abjad_directory_path,
+            'tools',
+            )
+        return os.path.abspath(relative_path)
+
+    @property
     def configuration_directory_path(self):
         r'''Configuration directory path.
 
