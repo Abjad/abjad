@@ -127,6 +127,9 @@ class StatalServerCursor(AbjadObject):
         result = []
         #print
         #print repr(self.position), '(position)'
+        if not self.statal_server.cyclic_tree._is_valid_level(level):
+            message = 'invalid level: {!r}.'.format(level)
+            raise Exception(message)
         current_node = self.statal_server.cyclic_tree.get_node_at_position(
             self.position)
         if self.reverse:

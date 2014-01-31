@@ -709,7 +709,9 @@ class PayloadTree(AbjadObject):
         level, 
         nodes_must_be_complete=False,
         ):
-        #print self.level, self.negative_level, '(level, negative level)'
+        if not self._is_valid_level(level):
+            message = 'invalid level: {!r}.'.format(level)
+            raise Exception(message)
         result = []
         self_is_found = False
         first_node_returned_is_trimmed = False
@@ -724,7 +726,6 @@ class PayloadTree(AbjadObject):
             generator = self.root.iterate_depth_first(reverse=reverse)
         previous_node = None
         for node in generator:
-            #print repr(node), '(node)', len(node)
             if len(result) == n:
                 if not first_node_returned_is_trimmed or \
                     not nodes_must_be_complete:
@@ -772,6 +773,12 @@ class PayloadTree(AbjadObject):
 
     def _initialize_children_list(self):
         return []
+
+    def _is_valid_level(self, level):
+        maximum_absolute_level = self.depth + 1
+        if maximum_absolute_level < abs(level):
+            return False
+        return True
 
     ### PUBLIC METHODS ###
 
