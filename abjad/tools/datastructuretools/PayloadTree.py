@@ -703,8 +703,13 @@ class PayloadTree(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_next_n_nodes_at_level_helper(self, 
-        n, level, nodes_must_be_complete=False):
+    def _get_next_n_nodes_at_level_helper(
+        self, 
+        n, 
+        level, 
+        nodes_must_be_complete=False,
+        ):
+        #print self.level, self.negative_level, '(level, negative level)'
         result = []
         self_is_found = False
         first_node_returned_is_trimmed = False
@@ -717,7 +722,9 @@ class PayloadTree(AbjadObject):
             generator = self.root.iterate_forever_depth_first(reverse=reverse)
         else:
             generator = self.root.iterate_depth_first(reverse=reverse)
+        previous_node = None
         for node in generator:
+            #print repr(node), '(node)', len(node)
             if len(result) == n:
                 if not first_node_returned_is_trimmed or \
                     not nodes_must_be_complete:
@@ -730,7 +737,7 @@ class PayloadTree(AbjadObject):
                 # or-clause allows for test of either nonnegative 
                 # or negative level
                 if ((0 <= level) and level < self.level) or \
-                   ((level < 0) and level < self.negative_level):
+                    ((level < 0) and level < self.negative_level):
                     first_node_returned_is_trimmed = True
                     subtree_to_trim = node.parent
                     # find subtree to trim where level is nonnegative
@@ -753,6 +760,11 @@ class PayloadTree(AbjadObject):
                 if node is not self:
                     if node.is_at_level(level):
                         result.append(node)
+                    # special case to handle a cyclic tree of length 1
+                    elif node.is_at_level(0) and len(node) == 1:
+                        if previous_node.is_at_level(level):
+                            result.append(node)
+            previous_node = node
         else:
             message = 'not enough nodes at level {}.'
             message = message.format(level)
@@ -857,67 +869,82 @@ class PayloadTree(AbjadObject):
     def get_next_n_complete_nodes_at_level(self, n, level):
         r'''Gets next `n` complete nodes at `level` from node.
 
-        ::
+        ..  container:: example
 
-            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = datastructuretools.PayloadTree(sequence)
+            Payload tree of length greater than ``1`` for examples
+            with positive `n`:
 
-        Gets next 4 nodes at level 2:
+            ::
 
-        ::
+                >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+                >>> tree = datastructuretools.PayloadTree(sequence)
 
-            >>> tree[0][0].get_next_n_complete_nodes_at_level(4, 2)
-            [PayloadTree(1), PayloadTree(2), PayloadTree(3), PayloadTree(4)]
+            Gets next 4 nodes at level 2:
 
-        Gets next 3 nodes at level 1:
+            ::
 
-        ::
+                >>> tree[0][0].get_next_n_complete_nodes_at_level(4, 2)
+                [PayloadTree(1), PayloadTree(2), PayloadTree(3), PayloadTree(4)]
 
-            >>> tree[0][0].get_next_n_complete_nodes_at_level(3, 1)
-            [PayloadTree([1]), PayloadTree([2, 3]), PayloadTree([4, 5]), PayloadTree([6, 7])]
+            Gets next 3 nodes at level 1:
 
-        Gets next 4 nodes at level -1:
+            ::
 
-        ::
+                >>> tree[0][0].get_next_n_complete_nodes_at_level(3, 1)
+                [PayloadTree([1]), PayloadTree([2, 3]), PayloadTree([4, 5]), PayloadTree([6, 7])]
 
-            >>> tree[0][0].get_next_n_complete_nodes_at_level(4, -1)
-            [PayloadTree(1), PayloadTree(2), PayloadTree(3), PayloadTree(4)]
+            Gets next 4 nodes at level -1:
 
-        Gets next 3 nodes at level -2:
+            ::
 
-        ::
+                >>> tree[0][0].get_next_n_complete_nodes_at_level(4, -1)
+                [PayloadTree(1), PayloadTree(2), PayloadTree(3), PayloadTree(4)]
 
-            >>> tree[0][0].get_next_n_complete_nodes_at_level(3, -2)
-            [PayloadTree([1]), PayloadTree([2, 3]), PayloadTree([4, 5]), PayloadTree([6, 7])]
+            Gets next 3 nodes at level -2:
 
-        Gets previous 4 nodes at level 2:
+            ::
 
-        ::
+                >>> tree[0][0].get_next_n_complete_nodes_at_level(3, -2)
+                [PayloadTree([1]), PayloadTree([2, 3]), PayloadTree([4, 5]), PayloadTree([6, 7])]
 
-            >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-4, 2)
-            [PayloadTree(6), PayloadTree(5), PayloadTree(4), PayloadTree(3)]
+        ..  container:: example
 
-        Gets previous 3 nodes at level 1:
+            Payload tree of length greater than ``1`` for examples
+            with negative `n`:
 
-        ::
+            ::
 
-            >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-3, 1)
-            [PayloadTree([6]), PayloadTree([4, 5]), PayloadTree([2, 3]), PayloadTree([0, 1])]
+                >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+                >>> tree = datastructuretools.PayloadTree(sequence)
+
+            Gets previous 4 nodes at level 2:
+
+            ::
+
+                >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-4, 2)
+                [PayloadTree(6), PayloadTree(5), PayloadTree(4), PayloadTree(3)]
+
+            Gets previous 3 nodes at level 1:
+
+            ::
+
+                >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-3, 1)
+                [PayloadTree([6]), PayloadTree([4, 5]), PayloadTree([2, 3]), PayloadTree([0, 1])]
 
 
-        Gets previous 4 nodes at level -1:
+            Gets previous 4 nodes at level -1:
 
-        ::
+            ::
 
-            >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-4, -1)
-            [PayloadTree(6), PayloadTree(5), PayloadTree(4), PayloadTree(3)]
+                >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-4, -1)
+                [PayloadTree(6), PayloadTree(5), PayloadTree(4), PayloadTree(3)]
 
-        Gets previous 3 nodes at level -2:
+            Gets previous 3 nodes at level -2:
 
-        ::
+            ::
 
-            >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-3, -2)
-            [PayloadTree([6]), PayloadTree([4, 5]), PayloadTree([2, 3]), PayloadTree([0, 1])]
+                >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-3, -2)
+                [PayloadTree([6]), PayloadTree([4, 5]), PayloadTree([2, 3]), PayloadTree([0, 1])]
 
         Trims first node if necessary.
 

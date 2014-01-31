@@ -25,7 +25,87 @@ class StatalServerCursor(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, n=1, level=-1):
-        r'''Get manifest payload of next `n` nodes at `level`.
+        r'''Gets manifest payload of next `n` nodes at `level`.
+
+        ..  container:: example
+
+            Gets manifest payload of nodes at level -1:
+
+            ::
+
+                >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
+                >>> server = datastructuretools.StatalServer(sequence)
+                >>> cursor = server()
+
+            ::
+
+                >>> cursor()
+                [0]
+                >>> cursor()
+                [1]
+                >>> cursor()
+                [2]
+                >>> cursor()
+                [3]
+                >>> cursor()
+                [4]
+                >>> cursor()
+                [5]
+                >>> cursor()
+                [6]
+                >>> cursor()
+                [7]
+                >>> cursor()
+                [0]
+                >>> cursor()
+                [1]
+
+        ..  container:: example
+
+            Gets manifest payload of nodes at level -2:
+
+            ::
+
+                >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
+                >>> server = datastructuretools.StatalServer(sequence)
+                >>> cursor = server()
+
+            ::
+
+                >>> cursor(level=-2)
+                [0, 1]
+                >>> cursor(level=-2)
+                [2, 3]
+                >>> cursor(level=-2)
+                [4, 5]
+                >>> cursor(level=-2)
+                [6, 7]
+                >>> cursor(level=-2)
+                [0, 1]
+
+        ..  container:: example
+
+            Gets manifest payload of nodes at level -1 for statal server of
+            length 1:
+
+            ::
+
+                >>> sequence = [0]
+                >>> server = datastructuretools.StatalServer(sequence)
+                >>> cursor = server()
+
+            ::
+
+                >>> cursor()
+                [0]
+                >>> cursor()
+                [0]
+                >>> cursor()
+                [0]
+                >>> cursor()
+                [0]
+                >>> cursor()
+                [0]
 
         Returns list of arbitrary values.
         '''
@@ -45,6 +125,8 @@ class StatalServerCursor(AbjadObject):
 
     def _get_manifest_payload_of_next_n_nodes_at_level(self, n=1, level=-1):
         result = []
+        #print
+        #print repr(self.position), '(position)'
         current_node = self.statal_server.cyclic_tree.get_node_at_position(
             self.position)
         if self.reverse:
@@ -54,6 +136,7 @@ class StatalServerCursor(AbjadObject):
         self._position = position
         for node in nodes:
             result.extend(node.manifest_payload)
+        #print repr(result), '(result)'
         return result
 
     ### PUBLIC PROPERTIES ###

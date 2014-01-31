@@ -112,68 +112,121 @@ class CyclicPayloadTree(PayloadTree):
     def get_next_n_nodes_at_level(self, n, level):
         r'''Gets next `n` nodes of cyclic payload tree at `level`.
 
-        ::
+        ..  container:: example
 
-            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = datastructuretools.CyclicPayloadTree(sequence)
+            Cyclic payload tree of length greater than ``1`` for examples with
+            positive `n`:
 
-        Gets next 4 nodes at level 2:
+            ::
 
-        ::
+                >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+                >>> tree = datastructuretools.CyclicPayloadTree(sequence)
 
-            >>> for x in tree[0][0].get_next_n_nodes_at_level(4, 2):
-            ...     x
-            CyclicPayloadTree(1)
-            CyclicPayloadTree(2)
-            CyclicPayloadTree(3)
-            CyclicPayloadTree(4)
+            Gets next 4 nodes at level 2:
 
-        Gets next 10 nodes at level 2:
+            ::
 
-        ::
+                >>> for x in tree[0][0].get_next_n_nodes_at_level(4, 2):
+                ...     x
+                CyclicPayloadTree(1)
+                CyclicPayloadTree(2)
+                CyclicPayloadTree(3)
+                CyclicPayloadTree(4)
 
-            >>> for node in tree[0][0].get_next_n_nodes_at_level(10, 2):
-            ...     node
-            CyclicPayloadTree(1)
-            CyclicPayloadTree(2)
-            CyclicPayloadTree(3)
-            CyclicPayloadTree(4)
-            CyclicPayloadTree(5)
-            CyclicPayloadTree(6)
-            CyclicPayloadTree(7)
-            CyclicPayloadTree(1)
-            CyclicPayloadTree(2)
-            CyclicPayloadTree(3)
+            Gets next 10 nodes at level 2:
 
-        ### PREVIOUS MNODES ###
+            ::
 
-        Gets previous 4 nodes at level 2:
+                >>> for node in tree[0][0].get_next_n_nodes_at_level(10, 2):
+                ...     node
+                CyclicPayloadTree(1)
+                CyclicPayloadTree(2)
+                CyclicPayloadTree(3)
+                CyclicPayloadTree(4)
+                CyclicPayloadTree(5)
+                CyclicPayloadTree(6)
+                CyclicPayloadTree(7)
+                CyclicPayloadTree(1)
+                CyclicPayloadTree(2)
+                CyclicPayloadTree(3)
 
-        ::
+        ..  container:: example
 
-            >>> for x in tree[0][0].get_next_n_nodes_at_level(-4, 2):
-            ...     x
-            CyclicPayloadTree(7)
-            CyclicPayloadTree(6)
-            CyclicPayloadTree(5)
-            CyclicPayloadTree(4)
+            Cyclic payload tree of length greater than ``1`` for examples with
+            negative `n`:
 
-        Gets previous 10 nodes at level 2:
+            ::
 
-        ::
+                >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+                >>> tree = datastructuretools.CyclicPayloadTree(sequence)
 
-            >>> for node in tree[0][0].get_next_n_nodes_at_level(-10, 2):
-            ...     node
-            CyclicPayloadTree(7)
-            CyclicPayloadTree(6)
-            CyclicPayloadTree(5)
-            CyclicPayloadTree(4)
-            CyclicPayloadTree(3)
-            CyclicPayloadTree(2)
-            CyclicPayloadTree(1)
-            CyclicPayloadTree(7)
-            CyclicPayloadTree(6)
-            CyclicPayloadTree(5)
+            Gets previous 4 nodes at level 2:
+
+            ::
+
+                >>> for x in tree[0][0].get_next_n_nodes_at_level(-4, 2):
+                ...     x
+                CyclicPayloadTree(7)
+                CyclicPayloadTree(6)
+                CyclicPayloadTree(5)
+                CyclicPayloadTree(4)
+
+            Gets previous 10 nodes at level 2:
+
+            ::
+
+                >>> for node in tree[0][0].get_next_n_nodes_at_level(-10, 2):
+                ...     node
+                CyclicPayloadTree(7)
+                CyclicPayloadTree(6)
+                CyclicPayloadTree(5)
+                CyclicPayloadTree(4)
+                CyclicPayloadTree(3)
+                CyclicPayloadTree(2)
+                CyclicPayloadTree(1)
+                CyclicPayloadTree(7)
+                CyclicPayloadTree(6)
+                CyclicPayloadTree(5)
+
+        ..  container:: example
+
+            Cyclic payload tree of length ``1`` for examples with positive `n`:
+
+            ::
+
+                >>> sequence = [0]
+                >>> tree = datastructuretools.CyclicPayloadTree(sequence)
+
+            Gets next 4 nodes at level -1:
+
+            ::
+
+                >>> for x in tree.get_next_n_nodes_at_level(4, -1):
+                ...     x
+                CyclicPayloadTree(0)
+                CyclicPayloadTree(0)
+                CyclicPayloadTree(0)
+                CyclicPayloadTree(0)
+
+        ..  container:: example
+
+            Cyclic payload tree of length ``1`` for examples with negative `n`:
+
+            ::
+
+                >>> sequence = [0]
+                >>> tree = datastructuretools.CyclicPayloadTree(sequence)
+
+            Gets next 4 nodes at level -1:
+
+            ::
+
+                >>> for x in tree.get_next_n_nodes_at_level(-4, -1):
+                ...     x
+                CyclicPayloadTree(0)
+                CyclicPayloadTree(0)
+                CyclicPayloadTree(0)
+                CyclicPayloadTree(0)
 
         Returns list of nodes.
         '''

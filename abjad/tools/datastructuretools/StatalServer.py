@@ -28,8 +28,8 @@ class StatalServer(AbjadObject):
         return cursor
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a statal server with cyclic tree equal to that
-        of this statal server. Otherwise false.
+        r'''Is true when `expr` is a statal server with cyclic tree equal to 
+        that of this statal server. Otherwise false.
 
         Returns boolean.
         '''
