@@ -31,7 +31,6 @@ class RhythmMaker(AbjadObject):
     __slots__ = (
         '_beam_specifier',
         '_duration_spelling_specifier',
-        '_name',
         '_tie_specifier',
         )
 
@@ -57,7 +56,6 @@ class RhythmMaker(AbjadObject):
         self._beam_specifier = beam_specifier
         self._duration_spelling_specifier = duration_spelling_specifier
         self._tie_specifier = tie_specifier
-        self._name = None
 
     ### SPECIAL METHODS ###
 
@@ -377,20 +375,6 @@ class RhythmMaker(AbjadObject):
         Returns duration spelling specifier or none.
         '''
         return self._duration_spelling_specifier
-
-    # TODO: remove name
-    @property
-    def name(self):
-        r'''Gets name of rhythm-maker.
-
-        Returns string or none.
-        '''
-        return self._name
-
-    @name.setter
-    def name(self, arg):
-        assert isinstance(arg, (str, type(None)))
-        self._name = arg
 
     @property
     def tie_specifier(self):
