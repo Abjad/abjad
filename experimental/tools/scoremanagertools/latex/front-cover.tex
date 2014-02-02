@@ -1,0 +1,83 @@
+\documentclass[11pt]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[papersize={17in, 11in}]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+% uncomment for use with xelatex
+%\usepackage{xltxtra,fontspec,xunicode}
+%\defaultfontfeatures{Scale=MatchLowercase}
+%\setromanfont[Numbers=Uppercase]{Didot}
+
+\newlength{\drop}
+\parindent=0pt
+
+\begin{document}
+    \begin{titlepage}
+
+        \begin{tikzpicture}[remember picture, overlay]
+            \draw[line width = 1.6pt]
+                ($(current page.north west) + (1in,-1in)$)
+                rectangle
+                ($(current page.south east) + (-1in,1in)$);
+            \draw[line width = 0.4pt]
+                ($(current page.north west) + (1in,-1in) + (2.8pt,-2.8pt)$)
+                rectangle
+                ($(current page.south east) + (-1in,1in) + (-2.8pt,2.8pt)$);
+        \end{tikzpicture}
+
+        \drop=0.1\textheight
+        \centering
+
+        \vspace*{\baselineskip}
+
+        \rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}
+        \rule{\textwidth}{0.4pt}\\[\baselineskip]
+        {
+            \fontsize{6cm}{1em}\selectfont
+            PIECE\\
+            [0.2\baselineskip]
+            TITLE
+        }
+        \rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
+        \rule{\textwidth}{1.6pt}\\[\baselineskip]
+
+        \vspace*{2\baselineskip}
+
+        {
+            \itshape
+            A quartet for
+        }
+        \\
+        {
+            \large
+            Instrument one,\\
+            Instrument two,\\
+            Instrument three, and\\
+            Instrument four
+            \par
+        }
+
+        \vspace*{2\baselineskip}
+
+        {
+            \itshape
+            Composed by
+        }
+        \\
+        {
+            \Large
+            COMPOSER
+            \par
+        }
+
+        \vspace*{2\baselineskip}
+
+        {
+            \Large
+            Year of Composition
+        }
+
+    \end{titlepage}
+\end{document}
