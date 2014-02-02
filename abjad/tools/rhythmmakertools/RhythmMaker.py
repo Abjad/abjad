@@ -247,7 +247,7 @@ class RhythmMaker(AbjadObject):
 
     @abc.abstractmethod
     def _make_music(self, duration_pairs, seeds):
-        raise NotImplementedError
+        pass
 
     def _make_secondary_duration_pairs(
         self,

@@ -22,7 +22,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
         >>> score
         <Score-"Two-Staff Piano Score"<<1>>>
 
-    ..  doctest::
+    ::
 
         >>> print format(score)
         \context Score = "Two-Staff Piano Score" <<
