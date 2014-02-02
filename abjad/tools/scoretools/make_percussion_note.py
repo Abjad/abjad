@@ -58,7 +58,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
             >>> print format(staff)
             \new Staff {
                 d'8
-                r1 ~
+                r1
                 r8
             }
 

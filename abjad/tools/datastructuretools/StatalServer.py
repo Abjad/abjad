@@ -20,6 +20,8 @@ class StatalServer(AbjadObject):
         Returns statal server cursor.
         '''
         from abjad.tools import datastructuretools
+        if isinstance(position, int):
+            position = (position,)
         cursor = datastructuretools.StatalServerCursor(
             statal_server=self,
             position=position,

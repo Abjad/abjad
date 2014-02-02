@@ -55,13 +55,24 @@ class Tie(Spanner):
         new._direction = self.direction
 
     def _format_right_of_leaf(self, leaf):
+        from abjad.tools import scoretools
         result = []
-        if not self._is_my_last_leaf(leaf):
-            if self.direction is not None:
-                string = '{} ~'.format(self.direction)
-                result.append(string)
-            else:
-                result.append('~')
+        prototype = (
+            scoretools.Rest,
+            scoretools.Skip,
+            scoretools.MultimeasureRest,
+            )
+        if self._is_my_last_leaf(leaf):
+            return result
+        elif isinstance(leaf, prototype):
+            return result
+        elif isinstance(leaf._get_leaf(1), prototype):
+            return result
+        if self.direction is not None:
+            string = '{} ~'.format(self.direction)
+            result.append(string)
+        else:
+            result.append('~')
         return result
 
     ### PUBLIC PROPERTIES ###
