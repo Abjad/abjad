@@ -29,6 +29,7 @@ class SegmentMaker(AbjadObject):
         Returns LilyPond file.
         '''
         music = self._make_music(divisions=divisions)
+        return music
 
     def __eq__(self, expr):
         r'''Is true if `expr` is a segment-maker with equivalent properties.

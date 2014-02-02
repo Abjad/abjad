@@ -20,6 +20,23 @@ class PianoStaffSegmentMaker(SegmentMaker):
         '_score',
         )
 
+    _test_pitch_numbers = (
+        43, 19, 36, 22, 29, -34, -37, 31, 40, 35, 14, -6, 28, 14, 43,
+        -22, -32, -22, -3, 32, 7, 1, 27, -34, -17, -35, 42, 36, 38, 
+        -11, -11, -31, 8, 9, 16, 31, 22, -27, -3, -28, -13, -14, 0, 
+        34, 37, -33, -12, -26, -20, -2, 41, -37, -16, -2, -6, 6, 43, 
+        -19, 10, 34, -2, -16, 34, -2, 21, -17, 22, 17, 4, -15, 42, -33, 
+        -37, -32, -21, -2, 23, -2, 10, 31, -20, -39, -32, 22, 31, 0, 
+        43, -19, 45, 35, -26, -35, -38, 7, 41, 38, 27, 5, -35, 15, 15, 
+        -20, -19, 41, -20, 27, -4, 14, -26, -17, 17, -19, 9, -8, -31, 
+        -14, 30, -28, 43, -34, -7, 14, 25, -26, 46, 36, -33, -17, 3, 
+        -4, -12, 16, 4, 28, -20, 13, -34, -37, -38, -32, -10, -22, 9, 
+        -25, 48, 32, 21, -27, 28, 14, 10, 7, 33, 39, 20, -3, 41, -36, 
+        18, -20, 9, 28, 6, 39, 43, 39, 13, -35, -30, -36, -10, -11, 17, 
+        -13, -36, -28, -13, -3, -20, -10, 42, 38, 23, 46, -17, 27, -10, 
+        45, -28, 36, 29, 12, -1, 37, -10, 15, 45, 20, 32, -17
+        )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -30,10 +47,13 @@ class PianoStaffSegmentMaker(SegmentMaker):
         lh_pitch_range=None,
         ):
         SegmentMaker.__init__(self)
-        prototype = (rhythmmakertools.RhythmMaker, type(None))
-        assert isinstance(rh_rhythm_maker, prototype)
+        if rh_rhythm_maker is None:
+            rh_rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+        assert isinstance(rh_rhythm_maker, rhythmmakertools.RhythmMaker)
         self._rh_rhythm_maker = rh_rhythm_maker
-        assert isinstance(lh_rhythm_maker, prototype)
+        if lh_rhythm_maker is None:
+            lh_rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+        assert isinstance(lh_rhythm_maker, rhythmmakertools.RhythmMaker)
         self._lh_rhythm_maker = lh_rhythm_maker
         rh_pitch_range = rh_pitch_range or '[C2, C4)'
         rh_pitch_range = pitchtools.PitchRange(rh_pitch_range)
@@ -57,15 +77,17 @@ class PianoStaffSegmentMaker(SegmentMaker):
         return score
 
     def _populate_pitches(self, voice, pitch_range):
-        pass
+        assert isinstance(pitch_range, pitchtools.PitchRange)
+        numbers = self._random_pitch_numbers
+        for note in iterate(voice).by_class(scoretools.Note):
+            pass
 
     def _populate_rhythms(self, voice, rhythm_maker, divisions):
         assert isinstance(voice, scoretools.Voice)
         assert isinstance(divisions, (list, tuple))
         selections = rhythm_maker(divisions)
         for selection in selections:
-            pass
-
+            voice.extend(selection)
 
     ### PUBLIC PROPERTIES ###
 
