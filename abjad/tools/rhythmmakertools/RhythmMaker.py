@@ -68,13 +68,13 @@ class RhythmMaker(AbjadObject):
     def __call__(self, divisions, seeds=None):
         r'''Calls rhythm-maker.
 
-        Casts `divisions` into duration pairs.
+        Makes music.
 
-        Reduces numerator and denominator relative to each other.
+        Applies ties specified by tie specifier.
 
-        Coerces none `seeds` into empty list.
+        Checks output type.
 
-        Returns duration pairs and seed list.
+        Returns list of selections or list of tuples.
         '''
         from abjad.tools import rhythmmakertools
         duration_pairs = [
@@ -83,11 +83,16 @@ class RhythmMaker(AbjadObject):
             ]
         seeds = self._to_tuple(seeds)
         music = self._make_music(duration_pairs, seeds)
+        # TODO: encapsulate tie-handling into a single method
         tie_specifier = self.tie_specifier
         if tie_specifier is None:
             tie_specifier = rhythmmakertools.TieSpecifier()
         if tie_specifier.tie_across_divisions:
             self._make_ties_across_divisions(music)
+        # TODO: consider making return type even more uniform:
+        #       always a list of selection; this would mean that
+        #       the maker returning lists of tuples would need
+        #       to wrap each tuple in a selection.
         assert isinstance(music, list), repr(music)
         assert len(music), repr(music)
         prototype = (
@@ -97,6 +102,7 @@ class RhythmMaker(AbjadObject):
         assert all(isinstance(x, prototype) for x in music), repr(music)
         return music
 
+    # TODO: replace with StorageFormatManager.compare()
     def __eq__(self, expr):
         r'''Is true when `expr` is a rhythm-maker with type and public
         properties equal to those of this rhythm-maker. Otherwise false.
@@ -147,6 +153,7 @@ class RhythmMaker(AbjadObject):
                 state[slot] = getattr(self, slot, None)
         return state
 
+    # TODO: do not duplicate code; reimplement
     def __illustrate__(self, divisions=None):
         r'''Illustrates rhythm-maker.
 
@@ -204,6 +211,7 @@ class RhythmMaker(AbjadObject):
         lilypond_file.paper_block.tagline = markuptools.Markup()
         return lilypond_file
 
+    # TODO: replace with StorageFormatManager
     def __makenew__(self, *args, **kwargs):
         r'''Makes new rhythm-maker with optional `kwargs`.
 
@@ -230,100 +238,97 @@ class RhythmMaker(AbjadObject):
         else:
             return False
 
-    def _gallery_example_wrapper_to_scores(
-        self, 
-        example_wrapper, 
-        configuration_number,
-        ):
-        maker = type(self)(**example_wrapper.arguments)
-        scores = []
-        for i, division_list in enumerate(example_wrapper.division_lists):
-            example_number = i + 1
-            lists = maker(division_list)
-            music = sequencetools.flatten_sequence(lists)
-            measures = scoretools.make_spacer_skip_measures(division_list)
-            time_signature_context = scoretools.Context(
-                measures,
-                context_name='TimeSignatureContext',
-                name='TimeSignatureContext',
-                )
-            measures = scoretools.make_spacer_skip_measures(division_list)
-            staff = scoretools.Staff(measures)
-            markup = self._make_gallery_example_markup(
-                configuration_number,
-                example_number,
-                )
-            set_(staff).instrument_name = markup
-            staff.context_name = 'RhythmicStaff'
-            staff.name = 'Note-entry staff'
-            measures = mutate(staff).replace_measure_contents(music)
-            score = scoretools.Score()
-            score.append(time_signature_context)
-            score.append(staff)
-            scores.append(score)
-        return scores
+#    def _gallery_example_wrappers_to_lilypond_file(self):
+#        from abjad import abjad_configuration
+#        lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+#        lilypond_file.items.remove(lilypond_file.score_block)
+#        title_markup = self._make_gallery_title_markup()
+#        for i, example_wrapper in enumerate(self._gallery_example_wrappers):
+#            configuration_number = i + 1
+#            markup = example_wrapper._to_markup(type(self))
+#            scores = self._gallery_example_wrapper_to_scores(
+#                example_wrapper,
+#                configuration_number,
+#                )
+#            first_score = scores[0]
+#            context = first_score['TimeSignatureContext']
+#            for leaf in iterate(context).by_class(scoretools.Leaf):
+#                break
+#            first_leaf = leaf
+#            attach(markup, first_leaf)
+#            score_blocks = []
+#            for score in scores:
+#                score.add_final_bar_line()
+#                selection = score.select_leaves(start=-1)
+#                last_leaf = selection[0]
+#                string = "override Staff.BarLine #'extra-offset = #'(1.6 . 0)"
+#                command = indicatortools.LilyPondCommand(
+#                    string,
+#                    'after',
+#                    )
+#                attach(command, last_leaf)
+#                if not inspect_(score).is_well_formed():
+#                    message = 'score is not well-formed: {!r}.'
+#                    message = message.format(score)
+#                    message += '\n'
+#                    message += inspect_(score).tabulate_well_formedness_violations()
+#                    raise Exception(message)
+#                score_block = lilypondfiletools.Block(name='score')
+#                score_block.items.append(score)
+#                score_blocks.append(score_block)
+#            header_block = lilypondfiletools.Block(name='header')
+#            transparent = False
+#            if 1 <= i:
+#                transparent = True
+#                title_markup = self._make_gallery_title_markup(
+#                    transparent=transparent)
+#            header_block.title = title_markup
+#            score_blocks[0].items.append(header_block)
+#            for score_block in score_blocks:
+#                lilypond_file.items.append(score_block)
+#            string = r'\pageBreak'
+#            lilypond_file.items.append(string)
+#        assert lilypond_file.items[-1] == string
+#        lilypond_file.items.pop(-1)
+#        lilypond_file.default_paper_size = ('letter', 'portrait')
+#        lilypond_file.global_staff_size = 10
+#        lilypond_file.use_relative_includes = True
+#        lilypond_file.file_initial_user_includes.append('stylesheet.ily')
+#        lilypond_file.paper_block.tagline = markuptools.Markup()
+#        return lilypond_file
 
-    def _gallery_example_wrappers_to_lilypond_file(self):
-        from abjad import abjad_configuration
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file()
-        lilypond_file.items.remove(lilypond_file.score_block)
-        title_markup = self._make_gallery_title_markup()
-        for i, example_wrapper in enumerate(self._gallery_example_wrappers):
-            configuration_number = i + 1
-            markup = example_wrapper._to_markup(type(self))
-            scores = self._gallery_example_wrapper_to_scores(
-                example_wrapper,
-                configuration_number,
-                )
-            first_score = scores[0]
-            context = first_score['TimeSignatureContext']
-            for leaf in iterate(context).by_class(scoretools.Leaf):
-                break
-            first_leaf = leaf
-            attach(markup, first_leaf)
-            score_blocks = []
-            for score in scores:
-                score.add_final_bar_line()
-                selection = score.select_leaves(start=-1)
-                last_leaf = selection[0]
-                string = "override Staff.BarLine #'extra-offset = #'(1.6 . 0)"
-                command = indicatortools.LilyPondCommand(
-                    string,
-                    'after',
-                    )
-                attach(command, last_leaf)
-                if not inspect_(score).is_well_formed():
-                    message = 'score is not well-formed: {!r}.'
-                    message = message.format(score)
-                    message += '\n'
-                    message += inspect_(score).tabulate_well_formedness_violations()
-                    raise Exception(message)
-                score_block = lilypondfiletools.Block(name='score')
-                score_block.items.append(score)
-                score_blocks.append(score_block)
-
-            header_block = lilypondfiletools.Block(name='header')
-            transparent = False
-            if 1 <= i:
-                transparent = True
-                title_markup = self._make_gallery_title_markup(
-                    transparent=transparent)
-            header_block.title = title_markup
-            score_blocks[0].items.append(header_block)
-
-            for score_block in score_blocks:
-                lilypond_file.items.append(score_block)
-
-            string = r'\pageBreak'
-            lilypond_file.items.append(string)
-        assert lilypond_file.items[-1] == string
-        lilypond_file.items.pop(-1)
-        lilypond_file.default_paper_size = ('letter', 'portrait')
-        lilypond_file.global_staff_size = 10
-        lilypond_file.use_relative_includes = True
-        lilypond_file.file_initial_user_includes.append('stylesheet.ily')
-        lilypond_file.paper_block.tagline = markuptools.Markup()
-        return lilypond_file
+#    def _gallery_example_wrapper_to_scores(
+#        self, 
+#        example_wrapper, 
+#        configuration_number,
+#        ):
+#        maker = type(self)(**example_wrapper.arguments)
+#        scores = []
+#        for i, division_list in enumerate(example_wrapper.division_lists):
+#            example_number = i + 1
+#            lists = maker(division_list)
+#            music = sequencetools.flatten_sequence(lists)
+#            measures = scoretools.make_spacer_skip_measures(division_list)
+#            time_signature_context = scoretools.Context(
+#                measures,
+#                context_name='TimeSignatureContext',
+#                name='TimeSignatureContext',
+#                )
+#            measures = scoretools.make_spacer_skip_measures(division_list)
+#            staff = scoretools.Staff(measures)
+#            markup = self._make_gallery_example_markup(
+#                configuration_number,
+#                example_number,
+#                )
+#            set_(staff).instrument_name = markup
+#            staff.context_name = 'RhythmicStaff'
+#            staff.name = 'Note-entry staff'
+#            measures = mutate(staff).replace_measure_contents(music)
+#            score = scoretools.Score()
+#            score.append(time_signature_context)
+#            score.append(staff)
+#            scores.append(score)
+#        return scores
 
     @staticmethod
     def _get_rhythmic_staff(lilypond_file):
@@ -338,37 +343,37 @@ class RhythmMaker(AbjadObject):
             return all(isinstance(x, scoretools.Leaf) for x in expr)
         return False
 
-    def _make_gallery_example_markup(
-        self, 
-        configuration_number,
-        example_number,
-        ):
-        assert mathtools.is_nonnegative_integer(configuration_number)
-        assert mathtools.is_nonnegative_integer(example_number)
-        number_string = '{}-{}'.format(
-            configuration_number,
-            example_number,
-            )
-        command = markuptools.MarkupCommand('fontsize', 2, number_string)
-        command = markuptools.MarkupCommand('italic', command)
-        command = markuptools.MarkupCommand('box', command)
-        pair = schemetools.SchemePair('box-padding', 0.75)
-        command = markuptools.MarkupCommand('override', pair, command)
-        width = 9
-        command = markuptools.MarkupCommand('hcenter-in', width, command)
-        markup = markuptools.Markup(command)
-        return markup
+#    def _make_gallery_example_markup(
+#        self, 
+#        configuration_number,
+#        example_number,
+#        ):
+#        assert mathtools.is_nonnegative_integer(configuration_number)
+#        assert mathtools.is_nonnegative_integer(example_number)
+#        number_string = '{}-{}'.format(
+#            configuration_number,
+#            example_number,
+#            )
+#        command = markuptools.MarkupCommand('fontsize', 2, number_string)
+#        command = markuptools.MarkupCommand('italic', command)
+#        command = markuptools.MarkupCommand('box', command)
+#        pair = schemetools.SchemePair('box-padding', 0.75)
+#        command = markuptools.MarkupCommand('override', pair, command)
+#        width = 9
+#        command = markuptools.MarkupCommand('hcenter-in', width, command)
+#        markup = markuptools.Markup(command)
+#        return markup
 
-    def _make_gallery_title_markup(self, transparent=False):
-        string = self._human_readable_class_name
-        string = stringtools.capitalize_string_start(string)
-        pair = schemetools.SchemePair('font-name', 'Times')
-        command = markuptools.MarkupCommand('override', pair, string)
-        command = markuptools.MarkupCommand('fontsize', 4.5, command)
-        if transparent:
-            command = markuptools.MarkupCommand('transparent', command)
-        markup = markuptools.Markup(command)
-        return markup
+#    def _make_gallery_title_markup(self, transparent=False):
+#        string = self._human_readable_class_name
+#        string = stringtools.capitalize_string_start(string)
+#        pair = schemetools.SchemePair('font-name', 'Times')
+#        command = markuptools.MarkupCommand('override', pair, string)
+#        command = markuptools.MarkupCommand('fontsize', 4.5, command)
+#        if transparent:
+#            command = markuptools.MarkupCommand('transparent', command)
+#        markup = markuptools.Markup(command)
+#        return markup
 
     @abc.abstractmethod
     def _make_music(self, duration_pairs, seeds):
@@ -483,14 +488,14 @@ class RhythmMaker(AbjadObject):
             return sequencetools.rotate_sequence(talea, seeds)
         return talea
 
-    def _write_gallery_to_disk(self):
-        lilypond_file = self._gallery_example_wrappers_to_lilypond_file()
-        file_path = __file__
-        directory_path = os.path.dirname(file_path)
-        class_name = type(self).__name__
-        file_name = '{}.pdf'.format(class_name)
-        file_path = os.path.join(directory_path, 'gallery', file_name)
-        persist(lilypond_file).as_pdf(file_path, remove_ly=False)
+#    def _write_gallery_to_disk(self):
+#        lilypond_file = self._gallery_example_wrappers_to_lilypond_file()
+#        file_path = __file__
+#        directory_path = os.path.dirname(file_path)
+#        class_name = type(self).__name__
+#        file_name = '{}.pdf'.format(class_name)
+#        file_path = os.path.join(directory_path, 'gallery', file_name)
+#        persist(lilypond_file).as_pdf(file_path, remove_ly=False)
 
     ### PUBLIC PROPERTIES ###
 
@@ -510,6 +515,7 @@ class RhythmMaker(AbjadObject):
         '''
         return self._duration_spelling_specifier
 
+    # TODO: remove name
     @property
     def name(self):
         r'''Gets name of rhythm-maker.

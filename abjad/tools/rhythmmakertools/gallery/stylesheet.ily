@@ -1,5 +1,8 @@
 \include "../../../stylesheets/time-signature-context.ily"
 
+#(set-default-paper-size "letter" 'portrait)
+#(set-global-staff-size 10)
+
 \layout {
     \accidentalStyle forget
     indent = 0
