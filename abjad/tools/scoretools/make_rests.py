@@ -44,9 +44,9 @@ def make_rests(
 
         >>> print format(voice)
         \new Voice {
-            r4 ~
+            r4
             r16
-            r2 ~
+            r2
             r16
         }
 

@@ -1177,7 +1177,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         r4
                         c'16 [
                         c'8
-                        c'16 ] ~
+                        c'16 ]
                     }
                     {
                         \time 3/8

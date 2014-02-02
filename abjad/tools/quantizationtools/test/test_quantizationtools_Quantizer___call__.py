@@ -27,7 +27,7 @@ def test_quantizationtools_Quantizer___call___01():
                         \time 4/4
                         c'4 ~
                         c'8
-                        r8 ~
+                        r8
                         r8
                         c'8 ~
                         c'8
@@ -35,11 +35,11 @@ def test_quantizationtools_Quantizer___call___01():
                     }
                     {
                         c'8
-                        r8 ~
+                        r8
                         r8
                         c'8 ~
                         c'8
-                        r8 ~
+                        r8
                         r8
                         c'8
                     }

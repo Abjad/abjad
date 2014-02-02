@@ -19,8 +19,8 @@ def make_leaves(
     r'''Make leaves.
 
     ..  container:: example
-    
-        **Example 1.** Integer and string elements in `pitches` result in 
+
+        **Example 1.** Integer and string elements in `pitches` result in
         notes:
 
         ::
@@ -42,7 +42,7 @@ def make_leaves(
             }
 
     ..  container:: example
-    
+
         **Example 2.** Tuple elements in `pitches` result in chords:
 
         ::
@@ -62,7 +62,7 @@ def make_leaves(
             }
 
     ..  container:: example
-        
+
         **Example 3.** None-valued elements in `pitches` result in rests:
 
         ::
@@ -85,7 +85,7 @@ def make_leaves(
             }
 
     ..  container:: example
-        
+
         **Example 4.** You can mix and match values passed to `pitches`:
 
         ::
@@ -107,7 +107,7 @@ def make_leaves(
             }
 
     ..  container:: example
-            
+
         **Example 5.** Read `pitches` cyclically when the length of `pitches`
         is less than the length of `durations`:
 
@@ -130,8 +130,8 @@ def make_leaves(
             }
 
     ..  container:: example
-            
-        **Example 6.** Read `durations` cyclically when the length of 
+
+        **Example 6.** Read `durations` cyclically when the length of
         `durations` is less than the length of `pitches`:
 
         ::
@@ -153,10 +153,10 @@ def make_leaves(
             }
 
     ..  container:: example
-            
-        **Example 7.** Elements in `durations` with non-power-of-two 
-        denominators result in tuplet-nested leaves: 
-        
+
+        **Example 7.** Elements in `durations` with non-power-of-two
+        denominators result in tuplet-nested leaves:
+
         ::
 
             >>> pitches = ['D5']
@@ -177,8 +177,8 @@ def make_leaves(
             }
 
     ..  container:: example
-            
-        **Example 8.** Set `decrease_durations_monotonically` to true to 
+
+        **Example 8.** Set `decrease_durations_monotonically` to true to
         return nonassignable durations tied from greatest to least:
 
         ::
@@ -201,8 +201,8 @@ def make_leaves(
             }
 
     ..  container:: example
-            
-        **Example 9.** Set `decrease_durations_monotonically` to false 
+
+        **Example 9.** Set `decrease_durations_monotonically` to false
         to return nonassignable durations tied from least to greatest:
 
         ::
@@ -210,7 +210,7 @@ def make_leaves(
             >>> pitches = ['E5']
             >>> durations = [Duration(13, 16)]
             >>> leaves = scoretools.make_leaves(
-            ...     pitches, 
+            ...     pitches,
             ...     durations,
             ...     decrease_durations_monotonically=False,
             ...     )
@@ -229,9 +229,9 @@ def make_leaves(
             }
 
     ..  container:: example
-        
-        **Example 10.** Set `tie_rests` to true to return tied rests for 
-        nonassignable durations. Note that LilyPond does not engrave 
+
+        **Example 10.** Set `tie_rests` to true to return tied rests for
+        nonassignable durations. Note that LilyPond does not engrave
         ties between rests:
 
         ::
@@ -239,8 +239,8 @@ def make_leaves(
             >>> pitches = [None]
             >>> durations = [Duration(5, 8)]
             >>> leaves = scoretools.make_leaves(
-            ...     pitches, 
-            ...     durations, 
+            ...     pitches,
+            ...     durations,
             ...     tie_rests=True,
             ...     )
             >>> staff = Staff(leaves)
@@ -254,13 +254,13 @@ def make_leaves(
             >>> print format(staff)
             \new RhythmicStaff {
                 \time 5/8
-                r2 ~
+                r2
                 r8
             }
 
     ..  container:: example
-    
-        **Example 11.** Set `forbidden_written_duration` to avoid notes 
+
+        **Example 11.** Set `forbidden_written_duration` to avoid notes
         greater than or equal to a certain written duration:
 
         ::
@@ -291,7 +291,7 @@ def make_leaves(
             }
 
     ..  container:: example
-        
+
         **Example 12.** You may set `forbidden_written_duration` and
         `decrease_durations_monotonically` together:
 
@@ -340,7 +340,7 @@ def make_leaves(
         durations = [durations]
 
     # make duration pairs
-    duration_pairs = [durationtools.Duration(duration) 
+    duration_pairs = [durationtools.Duration(duration)
         for duration in durations]
 
     # set lists of pitches and duration pairs to the same length
@@ -379,7 +379,7 @@ def make_leaves(
                 mathtools.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
             ratio = 1 / durationtools.Duration(*multiplier)
-            duration_group = [ratio * durationtools.Duration(duration) 
+            duration_group = [ratio * durationtools.Duration(duration)
                 for duration in duration_group]
             # make tuplet leaves
             tuplet_leaves = []
