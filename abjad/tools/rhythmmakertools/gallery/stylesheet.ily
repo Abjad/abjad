@@ -76,4 +76,3 @@
     score-system-spacing #'minimum-distance = 12
     top-markup-spacing #'minimum-distance = 6
 }
-

@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
+import os
 from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
+from abjad.tools import lilypondfiletools
 from abjad.tools import pitchtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import scoretools
@@ -17,6 +19,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_divisions',
         '_lh_pitch_range',
         '_lh_rhythm_maker',
         '_rh_pitch_range',
@@ -47,6 +50,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
     def __init__(
         self,
         time_signatures=None,
+        divisions=None,
         rh_rhythm_maker=None,
         lh_rhythm_maker=None,
         rh_pitch_range=None,
@@ -58,6 +62,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
             indicatortools.TimeSignature(x) for x in time_signatures
             ]
         self._time_signatures = time_signatures
+        self._divisions = divisions
         if rh_rhythm_maker is None:
             rh_rhythm_maker = rhythmmakertools.NoteRhythmMaker()
         assert isinstance(rh_rhythm_maker, rhythmmakertools.RhythmMaker)
@@ -87,18 +92,30 @@ class PianoStaffSegmentMaker(SegmentMaker):
         time_signature_context.extend(measures)
         score.insert(0, time_signature_context)
 
-    def _make_music(self, divisions=None):
+    def _configure_lilypond_file(self, lilypond_file):
+        lilypond_file.use_relative_includes = True
+        stylesheet_path = os.path.join(
+            '..', 
+            '..', 
+            'stylesheets',
+            'red-example-score-stylesheet.ly',
+            )
+        lilypond_file.file_initial_user_includes.append(stylesheet_path)
+
+    def _make_music(self):
         template = templatetools.TwoStaffPianoScoreTemplate()
         score = template()
         self._score = score
         self._add_time_signature_context(score)
         rh_voice = score['RH Voice']
         lh_voice = score['LH Voice']
-        self._populate_rhythms(rh_voice, self.rh_rhythm_maker, divisions)
-        self._populate_rhythms(lh_voice, self.lh_rhythm_maker, divisions)
+        self._populate_rhythms(rh_voice, self.rh_rhythm_maker)
+        self._populate_rhythms(lh_voice, self.lh_rhythm_maker)
         self._populate_pitches(rh_voice, self.rh_pitch_range)
         self._populate_pitches(lh_voice, self.lh_pitch_range)
-        return score
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+        self._configure_lilypond_file(lilypond_file)
+        return lilypond_file
 
     def _populate_pitches(self, voice, pitch_range):
         assert isinstance(pitch_range, pitchtools.PitchRange)
@@ -114,8 +131,9 @@ class PianoStaffSegmentMaker(SegmentMaker):
             for note in logical_tie:
                 note.written_pitch = pitch_number
 
-    def _populate_rhythms(self, voice, rhythm_maker, divisions):
+    def _populate_rhythms(self, voice, rhythm_maker):
         assert isinstance(voice, scoretools.Voice)
+        divisions = self.divisions
         if isinstance(divisions, dict):
             divisions = divisions[voice.name]
         assert isinstance(divisions, (list, tuple))
@@ -124,6 +142,14 @@ class PianoStaffSegmentMaker(SegmentMaker):
             voice.extend(selection)
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def divisions(self):
+        r'''Gets divisions of segment-maker.
+
+        Returns list.
+        '''
+        return self._divisions
 
     @property
     def lh_rhythm_maker(self):

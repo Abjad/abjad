@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
+from abjad.tools import lilypondfiletools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -23,12 +24,13 @@ class SegmentMaker(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions=None):
+    def __call__(self):
         r'''Calls segment-maker.
 
         Returns LilyPond file.
         '''
-        music = self._make_music(divisions=divisions)
+        music = self._make_music()
+        assert isinstance(music, lilypondfiletools.LilyPondFile)
         return music
 
     def __eq__(self, expr):
