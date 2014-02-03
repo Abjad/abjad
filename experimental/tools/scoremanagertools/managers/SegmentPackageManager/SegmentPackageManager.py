@@ -114,7 +114,7 @@ class SegmentPackageManager(PackageManager):
             command_section.default_index = len(command_section) - 1
         command_section = main_menu.make_command_section()
         versions_directory_path = self._get_versions_directory_path()
-        if os.listdir(versions_directory_path):
+        if self._is_populated_directory(versions_directory_path):
             command_section.append(('versioned pdfs - view', 'vv'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         if os.path.isfile(self._get_output_lilypond_file_path()):

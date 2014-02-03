@@ -91,6 +91,12 @@ class FilesystemAssetManager(ScoreManagerObject):
         directory_path = os.path.dirname(self.filesystem_path)
         return '.svn' in os.listdir(directory_path)
 
+    def _is_populated_directory(self, directory_path):
+        if os.path.exists(directory_path):
+            if os.listdir(directory_path):
+                return True
+        return False
+
     def _is_versioned(self):
         if self.filesystem_path is None:
             return False

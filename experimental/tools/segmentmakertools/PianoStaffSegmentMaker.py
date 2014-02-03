@@ -1,8 +1,12 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import datastructuretools
+from abjad.tools import indicatortools
 from abjad.tools import pitchtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import scoretools
+from abjad.tools import sequencetools
 from abjad.tools import templatetools
+from abjad.tools.topleveltools import iterate
 from experimental.tools.segmentmakertools.SegmentMaker import SegmentMaker
 
 
@@ -18,6 +22,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
         '_rh_pitch_range',
         '_rh_rhythm_maker',
         '_score',
+        '_time_signatures',
         )
 
     _test_pitch_numbers = (
@@ -41,12 +46,18 @@ class PianoStaffSegmentMaker(SegmentMaker):
 
     def __init__(
         self,
+        time_signatures=None,
         rh_rhythm_maker=None,
         lh_rhythm_maker=None,
         rh_pitch_range=None,
         lh_pitch_range=None,
         ):
         SegmentMaker.__init__(self)
+        time_signatures = time_signatures or []
+        time_signatures = [
+            indicatortools.TimeSignature(x) for x in time_signatures
+            ]
+        self._time_signatures = time_signatures
         if rh_rhythm_maker is None:
             rh_rhythm_maker = rhythmmakertools.NoteRhythmMaker()
         assert isinstance(rh_rhythm_maker, rhythmmakertools.RhythmMaker)
@@ -55,19 +66,32 @@ class PianoStaffSegmentMaker(SegmentMaker):
             lh_rhythm_maker = rhythmmakertools.NoteRhythmMaker()
         assert isinstance(lh_rhythm_maker, rhythmmakertools.RhythmMaker)
         self._lh_rhythm_maker = lh_rhythm_maker
-        rh_pitch_range = rh_pitch_range or '[C2, C4)'
+        rh_pitch_range = rh_pitch_range or '[C4, C6]'
         rh_pitch_range = pitchtools.PitchRange(rh_pitch_range)
         self._rh_pitch_range = rh_pitch_range
-        lh_pitch_range = lh_pitch_range or '[C4, C6]'
+        lh_pitch_range = lh_pitch_range or '[C2, C4)'
         lh_pitch_range = pitchtools.PitchRange(lh_pitch_range)
         self._lh_pitch_range = lh_pitch_range
 
     ### PRIVATE METHODS ###
 
+    def _add_time_signature_context(self, score):
+        time_signatures = self.time_signatures
+        if not time_signatures:
+            return
+        time_signature_context = scoretools.Context(
+            context_name='TimeSignatureContext',
+            name='Time Signature Context',
+            )
+        measures = scoretools.make_spacer_skip_measures(time_signatures)
+        time_signature_context.extend(measures)
+        score.insert(0, time_signature_context)
+
     def _make_music(self, divisions=None):
         template = templatetools.TwoStaffPianoScoreTemplate()
         score = template()
         self._score = score
+        self._add_time_signature_context(score)
         rh_voice = score['RH Voice']
         lh_voice = score['LH Voice']
         self._populate_rhythms(rh_voice, self.rh_rhythm_maker, divisions)
@@ -78,12 +102,22 @@ class PianoStaffSegmentMaker(SegmentMaker):
 
     def _populate_pitches(self, voice, pitch_range):
         assert isinstance(pitch_range, pitchtools.PitchRange)
-        numbers = self._random_pitch_numbers
-        for note in iterate(voice).by_class(scoretools.Note):
-            pass
+        pitch_numbers = [
+            x for x in self._test_pitch_numbers
+            if x in pitch_range
+            ]
+        pitch_numbers = sequencetools.remove_repeated_elements(pitch_numbers)
+        pitch_numbers = datastructuretools.CyclicTuple(pitch_numbers)
+        logical_ties = iterate(voice).by_logical_tie(pitched=True)
+        for i, logical_tie in enumerate(logical_ties):
+            pitch_number = pitch_numbers[i]
+            for note in logical_tie:
+                note.written_pitch = pitch_number
 
     def _populate_rhythms(self, voice, rhythm_maker, divisions):
         assert isinstance(voice, scoretools.Voice)
+        if isinstance(divisions, dict):
+            divisions = divisions[voice.name]
         assert isinstance(divisions, (list, tuple))
         selections = rhythm_maker(divisions)
         for selection in selections:
@@ -122,3 +156,11 @@ class PianoStaffSegmentMaker(SegmentMaker):
         Defaults to ``[C4, C6]``.
         '''
         return self._rh_pitch_range
+
+    @property
+    def time_signatures(self):
+        r'''Gets time signatures of segment-maker.
+
+        Returns list or none.
+        '''
+        return self._time_signatures
