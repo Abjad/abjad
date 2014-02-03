@@ -682,58 +682,58 @@ class TaleaRhythmMaker(RhythmMaker):
         from abjad.tools import rhythmmakertools
         helper_functions = self.helper_functions or {}
         talea = self.talea.counts or ()
-        talea_helper = helper_functions.get('talea')
-        if talea_helper is not None:
-            talea = talea_helper(talea, seeds)
+        talea_helper = self._none_to_trivial_helper(
+            helper_functions.get('talea'))
+        talea = talea_helper(talea, seeds)
         talea = datastructuretools.CyclicTuple(talea)
 
         extra_counts_per_division = self.extra_counts_per_division or ()
-        prolation_addenda_helper = helper_functions.get(
-            'extra_counts_per_division')
-        if prolation_addenda_helper is not None:
-            extra_counts_per_division = prolation_addenda_helper(
-                extra_counts_per_division, seeds)
-        extra_counts_per_division = datastructuretools.CyclicTuple(extra_counts_per_division)
+        prolation_addenda_helper = self._none_to_trivial_helper(
+            helper_functions.get('extra_counts_per_division'))
+        extra_counts_per_division = prolation_addenda_helper(
+            extra_counts_per_division, seeds)
+        extra_counts_per_division = datastructuretools.CyclicTuple(
+            extra_counts_per_division)
 
         burnish_specifier = self.burnish_specifier
         if burnish_specifier is None:
             burnish_specifier = rhythmmakertools.BurnishSpecifier()
+
         lefts = burnish_specifier.lefts or ()
-        lefts_helper = helper_functions.get('lefts')
-        if lefts_helper is not None:
-            lefts = lefts_helper(lefts, seeds)
+        lefts_helper = self._none_to_trivial_helper(
+            helper_functions.get('lefts'))
+        lefts = lefts_helper(lefts, seeds)
         lefts = datastructuretools.CyclicTuple(lefts)
 
         middles = burnish_specifier.middles or ()
-        middles_helper = helper_functions.get('middles')
-        if middles_helper is not None:
-            middles = middles_helper(middles, seeds)
+        middles_helper = self._none_to_trivial_helper(
+            helper_functions.get('middles'))
+        middles = middles_helper(middles, seeds)
         middles = datastructuretools.CyclicTuple(middles)
 
         rights = burnish_specifier.rights or ()
-        rights_helper = helper_functions.get('rights')
-        if rights_helper is not None:
-            rights = rights_helper(rights)
+        rights_helper = self._none_to_trivial_helper(
+            helper_functions.get('rights'))
+        rights = rights_helper(rights, seeds)
         rights = datastructuretools.CyclicTuple(rights)
 
         left_lengths = burnish_specifier.left_lengths or ()
-        left_lengths_helper = helper_functions.get('left_lengths')
-        if left_lengths_helper is not None:
-            left_lengths = left_lengths_helper(left_lengths)
+        left_lengths_helper = self._none_to_trivial_helper(
+            helper_functions.get('left_lengths'))
+        left_lengths = left_lengths_helper(left_lengths, seeds)
         left_lengths = datastructuretools.CyclicTuple(left_lengths)
 
         right_lengths = burnish_specifier.right_lengths or ()
-        right_lengths_helper = helper_functions.get('right_lengths')
-        if right_lengths_helper is not None:
-            right_lengths = right_lengths_helper(right_lengths)
+        right_lengths_helper = self._none_to_trivial_helper(
+            helper_functions.get('right_lengths'))
+        right_lengths = right_lengths_helper(right_lengths, seeds)
         right_lengths = datastructuretools.CyclicTuple(right_lengths)
 
         split_divisions_by_counts = self.split_divisions_by_counts or ()
-        secondary_divisions_helper = helper_functions.get(
-            'split_divisions_by_counts')
-        if secondary_divisions_helper is not None:
-            split_divisions_by_counts = secondary_divisions_helper(
-                split_divisions_by_counts)
+        secondary_divisions_helper = self._none_to_trivial_helper(
+            helper_functions.get('split_divisions_by_counts'))
+        split_divisions_by_counts = secondary_divisions_helper(
+            split_divisions_by_counts, seeds)
         split_divisions_by_counts = datastructuretools.CyclicTuple(
             split_divisions_by_counts)
 
