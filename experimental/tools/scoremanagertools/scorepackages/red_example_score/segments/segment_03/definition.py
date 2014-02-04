@@ -1,9 +1,34 @@
 # -*- encoding: utf-8 -*-
 import os
 from experimental import *
-systemtools.IOManager.spawn_subprocess('clear')
 
 
-### CONTEXT SHORTCUTS (TO EXTERNALIZE LATER) ###
+time_signatures = 2 * [(6, 8)]
+rh_divisions = []
+rh_divisions.extend(6 * [(2, 16)])
+rh_divisions.extend(3 * [(3, 8)])
+rh_divisions.extend(6 * [(2, 16)])
+rh_divisions.extend(3 * [(3, 8)])
+lh_divisions = []
+lh_divisions.extend(3 * [(3, 8)])
+lh_divisions.extend(6 * [(2, 16)])
+lh_divisions.extend(3 * [(3, 8)])
+lh_divisions.extend(6 * [(2, 16)])
+divisions = {
+    'RH Voice': rh_divisions,
+    'LH Voice': lh_divisions,
+    }
+segment_maker = segmentmakertools.PianoStaffSegmentMaker(
+    time_signatures=time_signatures,
+    divisions=divisions,
+    )
 
-# segment code goes here
+if __name__ == '__main__':
+    lilypond_file = segment_maker()
+    current_directory_path = os.path.dirname(__file__)
+    ly_file_path = os.path.join(current_directory_path, 'output.ly')
+    persist(lilypond_file).as_ly(ly_file_path)
+    pdf_file_path = os.path.join(current_directory_path, 'output.pdf')
+    persist(lilypond_file).as_pdf(pdf_file_path)
+    command = 'open {}'.format(pdf_file_path)
+    os.system(command)

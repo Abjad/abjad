@@ -21,9 +21,9 @@
     \context {
         \RhythmicStaff
         \remove Time_signature_engraver
-        \override BarLine.bar-extent = #'(-2 . 4)
-        \override Beam.positions = #'(4 . 4)
-        \override Stem.length = 8
+        %\override BarLine.bar-extent = #'(-2 . 4)
+        %\override Beam.positions = #'(4 . 4)
+        %\override Stem.length = 8
     }
     \context {
         \Score
@@ -48,11 +48,11 @@
             (padding . 1)
             (stretchability . 9)
             )
-        \override Stem.direction = #up
-        \override StemTremolo.beam-width = 1.5
-        \override StemTremolo.flag-count = 4
-        \override StemTremolo.slope = 0.5
-        \override StemTremolo.Y-offset = -4
+        %\override Stem.direction = #up
+        %\override StemTremolo.beam-width = 1.5
+        %\override StemTremolo.flag-count = 4
+        %\override StemTremolo.slope = 0.5
+        %\override StemTremolo.Y-offset = -4
         \override TupletBracket.breakable = ##t
         \override TupletBracket.direction = #up
         \override TupletBracket.full-length-to-extent = ##f
@@ -60,7 +60,7 @@
         \override TupletNumber.font-size = 1
         \override TupletNumber.text = #tuplet-number::calc-fraction-text
         autoBeaming = ##f
-        proportionalNotationDuration = #(ly:make-moment 1 64)
+        proportionalNotationDuration = #(ly:make-moment 1 24)
         tupletFullLength = ##t
     }
 }

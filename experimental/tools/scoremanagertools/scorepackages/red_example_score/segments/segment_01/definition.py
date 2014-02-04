@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
 from experimental import *
-systemtools.IOManager.spawn_subprocess('clear')
 
 
 time_signatures = [(15, 8), (18, 8)]
