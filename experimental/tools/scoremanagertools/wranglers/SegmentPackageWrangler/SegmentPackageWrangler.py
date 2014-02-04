@@ -100,7 +100,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_path,
                 session=self.session,
                 )
-            manager.interactively_execute_asset_definition_module(prompt=False)
+            manager.interactively_make_asset_pdf()
             output_pdf_file_path = manager._get_output_pdf_file_path()
             if os.path.isfile(output_pdf_file_path):
                 message = 'segment {} PDF created.'
