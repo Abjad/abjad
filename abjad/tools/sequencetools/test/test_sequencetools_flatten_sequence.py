@@ -45,3 +45,39 @@ def test_sequencetools_flatten_sequence_06():
     assert sequencetools.flatten_sequence(l, depth=1) == [1, 2, 3, [4], 5, 6, 7, [8]]
     assert sequencetools.flatten_sequence(l, depth=2) == [1, 2, 3, 4, 5, 6, 7, 8]
     assert sequencetools.flatten_sequence(l, depth=2) == sequencetools.flatten_sequence(l, depth=99)
+
+
+def test_sequencetools_flatten_sequence_07():
+    r'''Works with positive indices.
+    '''
+
+    sequence_1 = [0, 1, [2, 3, 4], [5, 6, 7]]
+    sequence_2 = sequencetools.flatten_sequence(sequence_1, indices=[2])
+
+    assert sequence_2 == [0, 1, 2, 3, 4, [5, 6, 7]]
+
+
+def test_sequencetools_flatten_sequence_08():
+    r'''Works with negative indices.
+    '''
+
+    sequence_1 = [0, 1, [2, 3, 4], [5, 6, 7]]
+    works = sequencetools.flatten_sequence(sequence_1, indices=[-1])
+
+    assert works == [0, 1, [2, 3, 4], 5, 6, 7]
+
+
+def test_sequencetools_flatten_sequence_09():
+    r'''Boundary cases.
+    '''
+
+    sequence_1 = [0, 1, [2, 3, 4], [5, 6, 7]]
+
+    sequence_2 = sequencetools.flatten_sequence(sequence_1, indices=[])
+    assert sequence_2 == [0, 1, [2, 3, 4], [5, 6, 7]]
+
+    sequence_2 = sequencetools.flatten_sequence(sequence_1, indices=[99])
+    assert sequence_2 == [0, 1, [2, 3, 4], [5, 6, 7]]
+
+    sequence_2 = sequencetools.flatten_sequence(sequence_1, indices=[-99])
+    assert sequence_2 == [0, 1, [2, 3, 4], [5, 6, 7]]
