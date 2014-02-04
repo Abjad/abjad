@@ -172,6 +172,7 @@ class LilyPondFormatManager(object):
     @staticmethod
     def _populate_spanner_format_contributions(component, bundle):
         from abjad.tools import scoretools
+        from abjad.tools import spannertools
         from abjad.tools.topleveltools.override import override
         result = {
             'after': [],
@@ -229,9 +230,19 @@ class LilyPondFormatManager(object):
                 del(result[key])
             else:
                 result[key].sort(key=lambda x: x[0].__class__.__name__)
+                if key == 'right':
+                    trill_contributions = []
+                    for triple in result[key][:]:
+                        prototype = (
+                            spannertools.TrillSpanner,
+                            )
+                        if isinstance(triple[0], prototype):
+                            trill_contributions.append(triple)
+                            result[key].remove(triple)
+                    result[key].extend(trill_contributions)
                 result[key] = [x[1] for x in result[key]]
         for format_slot, contributions in result.iteritems():
-            # contributions can no be any of these:
+            # contributions can now be any of these:
             # 1 contribution: (')',)
             # 2 contributions: ('[', '(')
             # 3 contributions: ('[', '(', '~')
