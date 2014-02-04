@@ -98,7 +98,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
             '..', 
             '..', 
             'stylesheets',
-            'red-example-score-stylesheet.ly',
+            'red-example-score-stylesheet.ily',
             )
         lilypond_file.file_initial_user_includes.append(stylesheet_path)
 
