@@ -21,7 +21,7 @@ def test_sequencetools_iterate_sequence_pairwise_strict_02():
         assert (pair[0], pair[1]) == (t[i], t[i + 1])
 
 
-def test_sequencetools_iterate_sequence_pairwise_strict_04():
+def test_sequencetools_iterate_sequence_pairwise_strict_03():
     r'''Works on generators.
     '''
 

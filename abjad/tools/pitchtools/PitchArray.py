@@ -271,7 +271,7 @@ class PitchArray(AbjadObject):
         columns = []
         rows = self.rows
         for i, cells in enumerate(
-            sequencetools.zip_sequences_without_truncation(self.rows)):
+            sequencetools.zip_sequences(self.rows, truncate=False)):
             column = PitchArrayColumn(cells)
             column._parent_array = self
             column._column_index = i

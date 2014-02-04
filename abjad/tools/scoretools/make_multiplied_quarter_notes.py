@@ -40,14 +40,16 @@ def make_multiplied_quarter_notes(
     '''
     from abjad.tools import scoretools
 
-    multiplied_durations = [durationtools.Duration(x) for x in multiplied_durations]
+    multiplied_durations = [
+        durationtools.Duration(x) for x in multiplied_durations]
     quarter_notes = []
 
     sequences = [pitches, multiplied_durations]
-    for pitch, duration in sequencetools.zip_sequences_cyclically(sequences):
+    for pitch, duration in sequencetools.zip_sequences(sequences, cyclic=True):
         quarter_note = scoretools.Note(pitch, durationtools.Duration(1, 4))
         duration = durationtools.Duration(duration)
-        multiplier = durationtools.Multiplier(duration / durationtools.Duration(1, 4))
+        multiplier = durationtools.Multiplier(
+            duration / durationtools.Duration(1, 4))
         attach(multiplier, quarter_note)
         quarter_notes.append(quarter_note)
 

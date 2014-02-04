@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_scoretools_Measure_implicit_scaling_01():
+def test_scoretools_Measure_should_scale_contents_01():
 
     tuplet = Tuplet((2, 3), "c'8 d'8 e'8 f'8 g'8")
     measure = Measure((5, 12), [tuplet], implicit_scaling=False)

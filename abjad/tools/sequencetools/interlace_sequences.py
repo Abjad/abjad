@@ -17,7 +17,7 @@ def interlace_sequences(*sequences):
     '''
     from abjad.tools import sequencetools
 
-    result = sequencetools.zip_sequences_without_truncation(sequences)
+    result = sequencetools.zip_sequences(sequences, truncate=False)
     result = sequencetools.flatten_sequence(result, depth=1)
 
     return result
