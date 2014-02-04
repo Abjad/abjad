@@ -79,33 +79,41 @@ class CleanScript(DirectoryScript):
         if args.tmp:
             print '\ttmp* directories'
 
-        for root, dirs, files in os.walk(args.path):
-            if '.svn' in dirs:
-                dirs.remove('.svn')
-
+        for root_directory, directory_names, file_names in os.walk(args.path):
+            if '.svn' in directory_names:
+                directory_names.remove('.svn')
             extensions = ()
             if args.pyc:
                 extensions += ('.pyc',)
             if args.swp:
                 extensions += ('.swp',)
-            for file in files:
-                if file.endswith(extensions):
-                    os.remove(os.path.join(root, file))
-
+            for file_name in file_names:
+                if file_name.endswith(extensions):
+                    file_path = os.path.join(
+                        root_directory,
+                        file_name,
+                        )
+                    os.remove(file_path)
             directories_to_remove = []
-            predicate = lambda x: False
-            if args.pycache and args.tmp:
-                predicate = lambda x: x == '__pycache__' or x.startswith('tmp')
-            elif args.pycache:
-                predicate = lambda x: x == '__pycache__'
-            elif args.tmp:
-                predicate = lambda x: x.startswith('tmp')
-            for dir in dirs:
-                if predicate(dir):
-                    shutil.rmtree(os.path.join(root, dir))
-                    directories_to_remove.append(dir)
-            for dir in directories_to_remove:
-                dirs.remove(dir)
+            for directory_name in directory_names:
+                directory_path = os.path.join(
+                    root_directory,
+                    directory_name,
+                    )
+                should_remove = False
+                if args.pycache:
+                    if directory_name == '__pycache__':
+                        should_remove = True
+                if args.tmp:
+                    if directory_name.startswith('tmp'):
+                        should_remove = True
+                if not os.listdir(directory_path):
+                    should_remove = True
+                if should_remove:
+                    shutil.rmtree(directory_path)
+                    directories_to_remove.append(directory_name)
+            for directory_name in directories_to_remove:
+                directory_names.remove(directory_name)
 
     def setup_argument_parser(self, parser):
         r'''Sets up argument `parser`.
