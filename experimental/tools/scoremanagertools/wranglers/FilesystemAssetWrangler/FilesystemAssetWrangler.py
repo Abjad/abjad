@@ -177,7 +177,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             key = os.path.join(*path_parts)
             keys.append(key)
         sequences = [display_strings, [None], [None], keys]
-        return sequencetools.zip_sequences_cyclically(sequences)
+        return sequencetools.zip_sequences(sequences, cyclic=True)
 
     @abc.abstractmethod
     def _make_main_menu(self, head=None):

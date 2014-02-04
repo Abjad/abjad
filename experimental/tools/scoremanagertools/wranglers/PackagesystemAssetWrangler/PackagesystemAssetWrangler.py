@@ -68,7 +68,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         assert len(names) == len(keys) == len(paths)
         if names:
             sequences = (names, [None], [None], paths)
-            entries = sequencetools.zip_sequences_cyclically(sequences)
+            entries = sequencetools.zip_sequences(sequences, cyclic=True)
             package_manager = self._get_current_package_manager()
             if package_manager:
                 view_name = package_manager._get_metadata('view_name')

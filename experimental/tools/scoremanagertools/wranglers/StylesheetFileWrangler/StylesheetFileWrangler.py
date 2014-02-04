@@ -114,7 +114,7 @@ class StylesheetFileWrangler(FileWrangler):
         menu_entries = []
         if display_strings:
             sequences = (display_strings, [None], [None], filesystem_paths)
-            menu_entries = sequencetools.zip_sequences_cyclically(sequences)
+            menu_entries = sequencetools.zip_sequences(sequences, cyclic=True)
         return menu_entries
 
     def _make_main_menu(self, head=None):

@@ -68,7 +68,7 @@ class DirectoryManager(FilesystemAssetManager):
         menu_entries = []
         if display_strings:
             sequences = [display_strings, [None], [None], file_paths]
-            menu_entries = sequencetools.zip_sequences_cyclically(sequences)
+            menu_entries = sequencetools.zip_sequences(sequences, cyclic=True)
         return menu_entries
 
     def _make_empty_asset(self, is_interactive=False):
