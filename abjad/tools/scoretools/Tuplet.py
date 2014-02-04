@@ -1092,14 +1092,9 @@ class Tuplet(Container):
         Returns fixed-duration tuplet.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import selectiontools
         # coerce duration and ratio
         duration = durationtools.Duration(duration)
         ratio = mathtools.Ratio(ratio)
-        # reduce ratio relative to each other
-        ratio = \
-            sequencetools.divide_sequence_elements_by_greatest_common_divisor(
-                ratio)
         # find basic duration of note in tuplet
         basic_prolated_duration = duration / mathtools.weight(ratio)
         # find basic written duration of note in tuplet

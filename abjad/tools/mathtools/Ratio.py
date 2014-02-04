@@ -31,16 +31,15 @@ class Ratio(NonreducedRatio):
     ### CONSTRUCTOR ###
 
     def __new__(cls, *args):
-        from abjad.tools import sequencetools
+        from abjad.tools import mathtools
         if len(args) == 1 and isinstance(args[0], (list, tuple)):
             args = args[0]
         elif len(args) == 0:
             args = (1, 1)
         assert args, repr(args)
         assert all(x != 0 for x in args), repr(args)
-        args = \
-            sequencetools.divide_sequence_elements_by_greatest_common_divisor(
-            args)
+        gcd = mathtools.greatest_common_divisor(*args)
+        args = [x / gcd for x in args]
         self = NonreducedRatio.__new__(cls, args)
         return self
 
