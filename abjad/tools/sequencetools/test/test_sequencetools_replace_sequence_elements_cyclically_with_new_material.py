@@ -1,11 +1,13 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_01():
-    r'''Overwrite elements in sequence_1 at cyclic indices with cyclic material.
-    Here replace at every index equal to 0 % 2 and read ['A', 'B'] % 3.'''
+    r'''Overwrites elements in sequence_1 at cyclic indices with cyclic 
+    material. Here replace at every index equal to 0 % 2 and 
+    read ['A', 'B'] % 3.
+    '''
 
     sequence_1 = range(20)
     indices = ([0], 2)
@@ -18,8 +20,9 @@ def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_01
 
 
 def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_02():
-    r'''Overwrite elements in sequence_1 at cyclic indices with cyclic material.
-    Here replace at indices equal to 0 % 2 and read ['*'] % 1.'''
+    r'''Overwrites elements in sequence_1 at cyclic indices with cyclic 
+    material. Here replace at indices equal to 0 % 2 and read ['*'] % 1.
+    '''
 
     sequence_1 = range(20)
     indices = ([0], 2)
@@ -31,8 +34,10 @@ def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_02
 
 
 def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_03():
-    r'''Overwrite elements in sequence_1 at cyclic indices with cyclic material.
-    Here replace at indices equal to 0 % 2 and read material only once.'''
+    r'''Overwrites elements in sequence_1 at cyclic indices with cyclic 
+    material. Here replace at indices equal to 0 % 2 and read material only 
+    once.
+    '''
 
     sequence_1 = range(20)
     indices = ([0], 2)
@@ -44,8 +49,10 @@ def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_03
 
 
 def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_04():
-    r'''Overwrite elements in sequence_1 at cyclic indices with cyclic material.
-    Here replace at indices 0, 1, 8, 13 only and read material only once.'''
+    r'''Overwrites elements in sequence_1 at cyclic indices with cyclic 
+    material. Here replace at indices 0, 1, 8, 13 only and read material 
+    only once.
+    '''
 
     sequence_1 = range(20)
     indices = ([0, 1, 8, 13], None)
@@ -57,8 +64,8 @@ def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_04
 
 
 def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_05():
-    r'''Raise TypeError when sequence_1 is not a list.
+    r'''Raises TypeError when sequence_1 is not a list.
     '''
 
-    assert pytest.raises(TypeError,
-        "sequencetools.replace_sequence_elements_cyclically_with_new_material('foo', ([0], 2), ([10, 12], 3))")
+    statement = "sequencetools.replace_sequence_elements_cyclically_with_new_material('foo', ([0], 2), ([10, 12], 3))"
+    assert pytest.raises(TypeError, statement)

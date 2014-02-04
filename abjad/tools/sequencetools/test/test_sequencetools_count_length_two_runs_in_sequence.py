@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import sequencetools
 
 
 def test_sequencetools_count_length_two_runs_in_sequence_01():

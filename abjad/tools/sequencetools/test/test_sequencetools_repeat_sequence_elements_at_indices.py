@@ -3,8 +3,6 @@ from abjad import *
 
 
 def test_sequencetools_repeat_sequence_elements_at_indices_01():
-    r'''Excepted case.
-    '''
 
     sequence_2 = list(sequencetools.repeat_sequence_elements_at_indices(range(10), [6, 7, 8], 3))
     assert sequence_2 == [0, 1, 2, 3, 4, 5, [6, 6, 6], [7, 7, 7], [8, 8, 8], 9]

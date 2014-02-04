@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import sequencetools
 
 
 def test_sequencetools_get_sequence_element_at_cyclic_index_01():
-    r'''Get element at nonnegative cyclic index.
+    r'''Gets element at nonnegative cyclic index.
     '''
 
     iterable = 'string'
@@ -22,7 +21,7 @@ def test_sequencetools_get_sequence_element_at_cyclic_index_01():
 
 
 def test_sequencetools_get_sequence_element_at_cyclic_index_02():
-    r'''Get element at negative cyclic index.
+    r'''Gets element at negative cyclic index.
     '''
 
     iterable = 'string'

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_sequencetools_negate_absolute_value_of_sequence_elements_at_indices_01():
@@ -13,5 +13,5 @@ def test_sequencetools_negate_absolute_value_of_sequence_elements_at_indices_01(
 
 def test_sequencetools_negate_absolute_value_of_sequence_elements_at_indices_02():
 
-    assert pytest.raises(TypeError,
-        "sequencetools.negate_absolute_value_of_sequence_elements_at_indices('foo', [0, 1, 2])")
+    statement = "sequencetools.negate_absolute_value_of_sequence_elements_at_indices('foo', [0, 1, 2])"
+    assert pytest.raises(TypeError, statement)

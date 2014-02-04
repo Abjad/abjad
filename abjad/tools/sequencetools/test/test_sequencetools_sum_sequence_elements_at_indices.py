@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_sequencetools_sum_sequence_elements_at_indices_01():
@@ -24,7 +24,8 @@ def test_sequencetools_sum_sequence_elements_at_indices_01():
 
 def test_sequencetools_sum_sequence_elements_at_indices_02():
     r'''Sum slice at only the zeroth index.
-        Append overhang elements.'''
+    Append overhang elements.
+    '''
 
     sequence_1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
@@ -43,7 +44,8 @@ def test_sequencetools_sum_sequence_elements_at_indices_02():
 
 def test_sequencetools_sum_sequence_elements_at_indices_03():
     r'''Sum every 5, 6, 7 or 8 elements together.
-        Do append incomplete final sums.'''
+    Do append incomplete final sums.
+    '''
 
     sequence_1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
@@ -62,7 +64,8 @@ def test_sequencetools_sum_sequence_elements_at_indices_03():
 
 def test_sequencetools_sum_sequence_elements_at_indices_04():
     r'''Sum every 5, 6, 7 or 8 elements together.
-        Do not append incomplete final sums.'''
+    Do not append incomplete final sums.
+    '''
 
     sequence_1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 

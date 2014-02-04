@@ -29,7 +29,8 @@ def test_sequencetools_yield_all_unordered_pairs_of_sequence_04():
     r'''Handles set input. Note that we can't control
     the order in which the elements in set are iterated.
     So we must test result as an unordered set rather
-    than an ordered list.'''
+    than an ordered list.
+    '''
 
     t = set([1, 2, 3])
     result = list(sequencetools.yield_all_unordered_pairs_of_sequence(t) )

@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_sequencetools_yield_all_rotations_of_sequence_01():
-    r'''Yield all rotations of list.
+    r'''Yields all rotations of list.
     '''
 
     rotations = list(sequencetools.yield_all_rotations_of_sequence([1, 2, 3, 4], -1))
@@ -12,7 +12,7 @@ def test_sequencetools_yield_all_rotations_of_sequence_01():
 
 
 def test_sequencetools_yield_all_rotations_of_sequence_02():
-    r'''Yield all rotations of tuple.
+    r'''Yields all rotations of tuple.
     '''
 
     rotations = list(sequencetools.yield_all_rotations_of_sequence((1, 2, 3, 4), -1))

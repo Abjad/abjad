@@ -3,8 +3,6 @@ from abjad import *
 
 
 def test_sequencetools_iterate_sequence_pairwise_wrapped_01():
-    r'''Wrapped pairwise.
-    '''
 
     sequence = range(6)
     pairs = sequencetools.iterate_sequence_pairwise_wrapped(sequence)

@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import sequencetools
 
 
 def test_sequencetools_yield_all_permutations_of_sequence_01():
@@ -13,6 +12,7 @@ def test_sequencetools_yield_all_permutations_of_sequence_01():
     assert permutations == [(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)]
 
 
+# TODO: remove this functionality
 def test_sequencetools_yield_all_permutations_of_sequence_02():
     r'''Yield all permtuations of Abjad container.
     '''

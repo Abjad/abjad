@@ -41,11 +41,9 @@ def test_sequencetools_truncate_sequence_to_sum_03():
     assert sequence_2 == [2, 2, 1]
 
 
-# ERRORS #
-
 def test_sequencetools_truncate_sequence_to_sum_04():
     r'''Raise ValueError on negative total.
     '''
 
-    assert pytest.raises(ValueError,
-        'sequence_2 = sequencetools.truncate_sequence_to_sum([2, 2, 2], -1)')
+    statement = 'sequence_2 = sequencetools.truncate_sequence_to_sum([2, 2, 2], -1)'
+    assert pytest.raises(ValueError, statement)

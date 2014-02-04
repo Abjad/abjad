@@ -4,7 +4,7 @@ from abjad import *
 
 
 def test_sequencetools_rotate_sequence_01():
-    r'''Rotate sequence by distance less than or equal to sequence length.
+    r'''Rotates sequence by distance less than or equal to sequence length.
     '''
 
     assert sequencetools.rotate_sequence(range(10), -3) == [3, 4, 5, 6, 7, 8, 9, 0, 1, 2]
@@ -13,7 +13,7 @@ def test_sequencetools_rotate_sequence_01():
 
 
 def test_sequencetools_rotate_sequence_02():
-    r'''Rotate sequence by distance greatern than sequence length.
+    r'''Rotates sequence by distance greatern than sequence length.
     '''
 
     assert sequencetools.rotate_sequence(range(10), -23) == [3, 4, 5, 6, 7, 8, 9, 0, 1, 2]
@@ -34,9 +34,10 @@ def test_sequencetools_rotate_sequence_03():
 
 
 def test_sequencetools_rotate_sequence_04():
-    r'''Rotate named pitch segment.
+    r'''Rotates named pitch segment.
     '''
     pytest.skip('FIXME')
+
     named_pitch_segment_1 = pitchtools.PitchSegment("c'' d'' e'' f''")
     named_pitch_segment_2 = sequencetools.rotate_sequence(named_pitch_segment_1, -1)
     named_pitch_segment_3 = pitchtools.PitchSegment("d'' e'' f'' c''")

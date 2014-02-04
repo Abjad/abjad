@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools.mathtools import NonreducedFraction
-from abjad.tools import sequencetools
 
 
 def test_sequencetools_repeat_sequence_to_weight_exactly_01():
@@ -13,8 +11,11 @@ def test_sequencetools_repeat_sequence_to_weight_exactly_02():
     r'''Works with nonreduced fractions.
     '''
 
-    sequence = [NonreducedFraction(3, 16)]
-    sequence = sequencetools.repeat_sequence_to_weight_exactly(sequence, NonreducedFraction(5, 4))
+    sequence = [mathtools.NonreducedFraction(3, 16)]
+    sequence = sequencetools.repeat_sequence_to_weight_exactly(
+        sequence, 
+        mathtools.NonreducedFraction(5, 4),
+        )
 
-    assert sum(sequence) == NonreducedFraction(5, 4)
+    assert sum(sequence) == mathtools.NonreducedFraction(5, 4)
     assert [x.pair for x in sequence] == [(3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (2, 16)]

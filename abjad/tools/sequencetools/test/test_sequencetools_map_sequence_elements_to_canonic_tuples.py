@@ -21,12 +21,10 @@ def test_sequencetools_map_sequence_elements_to_canonic_tuples_02():
 
 
 def test_sequencetools_map_sequence_elements_to_canonic_tuples_03():
-    r'''Raise TypeError when sequence_1 is not a list.
-    Raise ValueError on noninteger elements in sequence_1.
-    '''
 
     statement = "sequencetools.map_sequence_elements_to_canonic_tuples('foo')"
     assert pytest.raises(TypeError, statement)
-    statement = 'sequencetools.map_sequence_elements_to_canonic_tuples(' + \
-        '[Fraction(1, 2), Fraction(1, 2)])'
+
+    statement = 'sequencetools.map_sequence_elements_to_canonic_tuples('
+    statement += '[Fraction(1, 2), Fraction(1, 2)])'
     assert pytest.raises(ValueError, statement)

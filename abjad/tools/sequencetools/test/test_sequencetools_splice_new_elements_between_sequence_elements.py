@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_sequencetools_splice_new_elements_between_sequence_elements_01():
-    r'''Insert a copy of the elements of sequence 2 between
+    r'''Inserts a copy of the elements of sequence 2 between
     each of the elements of sequence 1.
     '''
 

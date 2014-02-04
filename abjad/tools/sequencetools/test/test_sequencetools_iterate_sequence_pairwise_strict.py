@@ -21,14 +21,6 @@ def test_sequencetools_iterate_sequence_pairwise_strict_02():
         assert (pair[0], pair[1]) == (t[i], t[i + 1])
 
 
-#def test_sequencetools_iterate_sequence_pairwise_strict_03():
-#   r'''Counted pairwise.'''
-#   t = range(6)
-#   pairs = sequencetools.iterate_sequence_pairwise_strict(t, 10)
-#   assert list(pairs) == [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5),
-#      (5, 0), (0, 1), (1, 2), (2, 3), (3, 4)]
-
-
 def test_sequencetools_iterate_sequence_pairwise_strict_04():
     r'''Works on generators.
     '''
