@@ -36,12 +36,13 @@ class TypedList(TypedCollection):
         >>> print format(new(object_collection, keep_sorted=True))
         datastructuretools.TypedList(
             [
+                False,
+                3.14159,
                 23,
                 'foo',
-                False,
                 (1, 2, 3),
-                3.14159,
-                ]
+                ],
+            keep_sorted=True,
             )
 
     ::
@@ -167,12 +168,13 @@ class TypedList(TypedCollection):
         if tokens is None:
             tokens = self._collection
         item_class = item_class or self.item_class
-        if keep_sorted is None:
+        if keep_sorted is not None:
             keep_sorted = self.keep_sorted
         custom_identifier = custom_identifier or self.custom_identifier
         return type(self)(
             tokens=tokens,
             item_class=item_class,
+            keep_sorted=keep_sorted,
             custom_identifier=custom_identifier,
             )
 
@@ -405,10 +407,7 @@ class TypedList(TypedCollection):
 
     @keep_sorted.setter
     def keep_sorted(self, expr):
-        if not expr:
-            expr = None
-        else:
-            expr = True
+        assert isinstance(expr, (bool, type(None)))
         self._keep_sorted = expr
 
 

@@ -12,6 +12,7 @@ class SegmentMaker(AbjadObject):
 
     __slots__ = (
         '_name',
+        '_score',
         )
 
     ### INITIALIZER ###
@@ -21,6 +22,7 @@ class SegmentMaker(AbjadObject):
         name=None,
         ):
         self._name = name
+        self._score = None
 
     ### SPECIAL METHODS ###
 
@@ -90,3 +92,11 @@ class SegmentMaker(AbjadObject):
         Returns string.
         '''
         return self._name
+
+    @property
+    def score(self):
+        r'''Gets segment score.
+
+        Returns score.
+        '''
+        return self._score

@@ -193,3 +193,9 @@ class TypedCollection(AbjadObject):
         r'''Item class to coerce tokens into.
         '''
         return self._item_class
+
+    @property
+    def tokens(self):
+        r'''Gets collection tokens.
+        '''
+        return [x for x in self]
