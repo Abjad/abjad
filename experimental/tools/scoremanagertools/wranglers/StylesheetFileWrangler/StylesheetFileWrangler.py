@@ -260,7 +260,7 @@ class StylesheetFileWrangler(FileWrangler):
             '.../tools/scoremanagertools/stylesheets/clean-letter-14.ly'
             '.../tools/scoremanagertools/stylesheets/clean-letter-16.ly'
             '.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly'
-            '.../red_example_score/stylesheets/red-example-score-stylesheet.ly'
+            '.../red_example_score/stylesheets/red-example-score-stylesheet.ily'
 
         Returns list.
         '''
@@ -294,7 +294,7 @@ class StylesheetFileWrangler(FileWrangler):
             FileManager('.../tools/scoremanagertools/stylesheets/clean-letter-14.ly')
             FileManager('.../tools/scoremanagertools/stylesheets/clean-letter-16.ly')
             FileManager('.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly')
-            FileManager('.../tools/scoremanagertools/scorepackages/red_example_score/stylesheets/red-example-score-stylesheet.ly')
+            FileManager('.../tools/scoremanagertools/scorepackages/red_example_score/stylesheets/red-example-score-stylesheet.ily')
 
         Returns list.
         '''
@@ -330,7 +330,7 @@ class StylesheetFileWrangler(FileWrangler):
             'clean-letter-14.ly'
             'clean-letter-16.ly'
             'rhythm-letter-16.ly'
-            'red-example-score-stylesheet.ly'
+            'red-example-score-stylesheet.ily'
 
         Returns list.
         '''

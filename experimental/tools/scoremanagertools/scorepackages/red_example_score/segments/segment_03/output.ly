@@ -5,7 +5,7 @@
 
 #(ly:set-option 'relative-includes #t)
 
-\include "../../stylesheets/red-example-score-stylesheet.ly"
+\include "../../stylesheets/red-example-score-stylesheet.ily"
 
 \header {}
 
