@@ -47,11 +47,9 @@ class TrillSpanner(Spanner):
             self, 
             overrides=overrides,
             )
-        if pitch is None:
-            self._pitch = pitch
-        else:
+        if pitch is not None:
             pitch = pitchtools.NamedPitch(pitch)
-            self._pitch = pitch
+        self._pitch = pitch
 
     ### PRIVATE METHODS ###
 
