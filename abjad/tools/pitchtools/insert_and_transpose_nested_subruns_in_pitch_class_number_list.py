@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
 
 
@@ -87,8 +88,8 @@ def insert_and_transpose_nested_subruns_in_pitch_class_number_list(
             anchor_written_duration = anchor_note.written_duration
             source_start_index = anchor_index + 1
             source_stop_index = source_start_index + subrun_length + 1
-            subrun_source = sequencetools.iterate_sequence_cyclically_from_start_to_stop(
-                notes, source_start_index, source_stop_index)
+            cyclic_notes = datastructuretools.CyclicTuple(notes)
+            subrun_source = cyclic_notes[source_start_index:source_stop_index]
             subrun_intervals = _get_intervals_in_subrun(subrun_source)
             new_notes = _make_new_notes(
                 anchor_pitch, anchor_written_duration, subrun_intervals)
