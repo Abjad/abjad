@@ -101,11 +101,16 @@ class CyclicPayloadTree(PayloadTree):
         '''
         return self._noncyclic_children.__iter__()
 
-    ### PRVATE METHODS ###
+    ### PUBLIC PROPERTIES ###
 
-    def _initialize_children_list(self):
+    @property
+    def children(self):
+        r'''Children of cyclic payload tree.
+
+        Returns tuple of zero or more nodes.
+        '''
         from abjad.tools import datastructuretools
-        return datastructuretools.CyclicList([])
+        return datastructuretools.CyclicTuple(self._children)
 
     ### PUBLIC METHODS ###
 

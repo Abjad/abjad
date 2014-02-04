@@ -248,11 +248,11 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> tree[-2:]
-            [PayloadTree([4, 5]), PayloadTree([6, 7])]
+            (PayloadTree([4, 5]), PayloadTree([6, 7]))
 
         Returns node.
         '''
-        return self._children[expr]
+        return self.children[expr]
 
     def __getstate__(self):
         r'''Gets object state.

@@ -20,7 +20,7 @@ class TerracedDynamicsHandler(DynamicHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr, offset=0):
-        dynamics = datastructuretools.CyclicList(self.dynamics)
+        dynamics = datastructuretools.CyclicTuple(self.dynamics)
         for i, note_or_chord in enumerate(
             iterate(expr).by_class((scoretools.Note, scoretools.Chord))):
             dynamic_name = dynamics[offset + i]

@@ -34,7 +34,8 @@ class PatternedArticulationsHandler(ArticulationHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr, offset=0, skip_first=0, skip_last=0):
-        articulation_lists = datastructuretools.CyclicList(self.articulation_lists)
+        articulation_lists = datastructuretools.CyclicTuple(
+            self.articulation_lists)
         notes_and_chords = \
             list(iterate(expr).by_class((scoretools.Note, scoretools.Chord)))
         notes_and_chords = notes_and_chords[skip_first:]
