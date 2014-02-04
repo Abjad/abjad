@@ -1,8 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 
-def increase_sequence_elements_cyclically_by_addenda(sequence, addenda, shield=True):
-    '''Increase `sequence` cyclically by `addenda`:
+def increase_sequence_elements_cyclically_by_addenda(
+    sequence, 
+    addenda, 
+    shield=True,
+    ):
+    '''Increases `sequence` cyclically by `addenda`.
 
     ::
 
@@ -10,7 +14,8 @@ def increase_sequence_elements_cyclically_by_addenda(sequence, addenda, shield=T
         ...     range(10), [10, -10], shield=False)
         [10, -9, 12, -7, 14, -5, 16, -3, 18, -1]
 
-    Increase `sequence` cyclically by addenda and map nonpositive values to ``1``:
+    Increases `sequence` cyclically by addenda and map nonpositive values 
+    to ``1``:
 
     ::
 

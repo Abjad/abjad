@@ -2,7 +2,7 @@
 
 
 def remove_repeated_elements(sequence):
-    r'''Removed repeated elements from `sequence`.
+    r'''Removes repeated elements from `sequence`.
 
     ..  container:: example
 

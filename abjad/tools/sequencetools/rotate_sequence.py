@@ -3,21 +3,23 @@ import copy
 
 
 def rotate_sequence(sequence, n):
-    '''Rotate `sequence` to the right:
+    '''Rotates `sequence`.
+
+    Rotates `sequence` to the right:
 
     ::
 
         >>> sequencetools.rotate_sequence(range(10), 4)
         [6, 7, 8, 9, 0, 1, 2, 3, 4, 5]
 
-    Rotate `sequence` to the left:
+    Rotates `sequence` to the left:
 
     ::
 
         >>> sequencetools.rotate_sequence(range(10), -3)
         [3, 4, 5, 6, 7, 8, 9, 0, 1, 2]
 
-    Rotate `sequence` neither to the right nor the left:
+    Rotates `sequence` neither to the right nor the left:
 
     ::
 

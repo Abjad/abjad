@@ -2,7 +2,8 @@
 
 
 def is_strictly_decreasing_sequence(expr):
-    r'''Is true when `expr` is a sequence and the elements in `expr` decrease strictly:
+    r'''Is true when `expr` is a sequence and the elements in `expr` 
+    decrease strictly.
 
     ::
 
@@ -10,7 +11,8 @@ def is_strictly_decreasing_sequence(expr):
         >>> sequencetools.is_strictly_decreasing_sequence(expr)
         True
 
-    False when `expr` is a sequence and the elements in `expr` do not decrease strictly:
+    False when `expr` is a sequence and the elements in `expr` do not 
+    decrease strictly:
 
     ::
 

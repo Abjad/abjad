@@ -2,7 +2,8 @@
 
 
 def negate_sequence_elements_cyclically(sequence, indices, period):
-    '''Negate `sequence` elements at `indices` cyclically according to `period`:
+    '''Negates `sequence` elements at `indices` cyclically according 
+    to `period`.
 
     ::
 

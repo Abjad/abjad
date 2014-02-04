@@ -1,27 +1,29 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.sequencetools.rotate_sequence import rotate_sequence
 
 
 def yield_all_rotations_of_sequence(sequence, n=1):
-    '''Yield all `n`-rotations of `sequence` up to identity:
+    '''Yields all `n`-rotations of `sequence`.
 
     ::
 
         >>> list(sequencetools.yield_all_rotations_of_sequence([1, 2, 3, 4], -1))
         [[1, 2, 3, 4], [2, 3, 4, 1], [3, 4, 1, 2], [4, 1, 2, 3]]
 
+    Yields rotations up to but not including identity.
+
     Returns generator of `sequence` objects.
     '''
+    from abjad.tools import sequencetools
 
     len_sequence = len(sequence)
     total_rotations_yielded = 0
 
-    yield rotate_sequence(sequence, 0)
+    yield sequencetools.rotate_sequence(sequence, 0)
     total_rotations_yielded += 1
 
     index = n
     while True:
-        rotation = rotate_sequence(sequence, index)
+        rotation = sequencetools.rotate_sequence(sequence, index)
         if len_sequence <= total_rotations_yielded:
             break
         elif rotation == sequence:

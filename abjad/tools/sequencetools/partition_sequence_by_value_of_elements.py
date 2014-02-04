@@ -3,7 +3,7 @@ import itertools
 
 
 def partition_sequence_by_value_of_elements(sequence):
-    '''Group `sequence` elements by value of elements:
+    '''Groups `sequence` elements by value of elements.
 
     ::
 

@@ -2,7 +2,7 @@
 
 
 def all_are_unequal(expr):
-    '''Is true when `expr` is a sequence all elements in `expr` are unequal:
+    '''Is true when `expr` is a sequence all elements in `expr` are unequal.
 
     ::
 

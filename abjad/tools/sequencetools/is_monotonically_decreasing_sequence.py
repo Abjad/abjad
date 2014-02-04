@@ -2,7 +2,8 @@
 
 
 def is_monotonically_decreasing_sequence(expr):
-    r'''Is true when `expr` is a sequence and the elements in `expr` decrease monotonically:
+    r'''Is true when `expr` is a sequence and the elements in `expr` 
+    decrease monotonically.
 
     ::
 
@@ -22,7 +23,8 @@ def is_monotonically_decreasing_sequence(expr):
         >>> sequencetools.is_monotonically_decreasing_sequence(expr)
         True
 
-    False when `expr` is a sequence and the elements in `expr` do not decrease monotonically:
+    False when `expr` is a sequence and the elements in `expr` do not 
+    decrease monotonically:
 
     ::
 

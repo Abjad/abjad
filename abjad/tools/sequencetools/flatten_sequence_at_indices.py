@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.sequencetools.flatten_sequence import flatten_sequence
 
 
 def flatten_sequence_at_indices(sequence, indices, classes=None, depth=-1):
@@ -21,6 +20,7 @@ def flatten_sequence_at_indices(sequence, indices, classes=None, depth=-1):
 
     Returns newly constructed `sequence` object.
     '''
+    from abjad.tools import sequencetools
 
     if classes is None:
         classes = (list, tuple)
@@ -36,7 +36,11 @@ def flatten_sequence_at_indices(sequence, indices, classes=None, depth=-1):
     for i, element in enumerate(sequence):
         if i in indices:
             try:
-                flattened = flatten_sequence(element, classes=classes, depth=depth)
+                flattened = sequencetools.flatten_sequence(
+                    element, 
+                    classes=classes, 
+                    depth=depth,
+                    )
                 result.extend(flattened)
             except:
                 result.append(element)

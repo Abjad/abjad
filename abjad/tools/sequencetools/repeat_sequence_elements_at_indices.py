@@ -2,7 +2,7 @@
 
 
 def repeat_sequence_elements_at_indices(sequence, indices, total):
-    '''Repeat `sequence` elements at `indices` to `total` length:
+    '''Repeats `sequence` elements at `indices` to `total` length.
 
     ::
 

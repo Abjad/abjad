@@ -2,7 +2,7 @@
 
 
 def iterate_sequence_pairwise_wrapped(sequence):
-    '''Iterate `sequence` pairwise wrapped:
+    '''Iterates `sequence` pairwise wrapped.
 
     ::
 

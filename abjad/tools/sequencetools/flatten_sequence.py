@@ -6,7 +6,7 @@ def flatten_sequence(sequence, classes=None, depth=-1):
 
     ..  container:: example
 
-        Faltten sequence completely:
+        Flattens sequence completely:
 
         ::
 
@@ -16,7 +16,7 @@ def flatten_sequence(sequence, classes=None, depth=-1):
 
     ..  container:: example
 
-        Flatten `sequence` to depth ``1``:
+        Flattens `sequence` to depth ``1``:
 
         ::
 
@@ -26,7 +26,7 @@ def flatten_sequence(sequence, classes=None, depth=-1):
 
     ..  container:: example
 
-        Flatten `sequence` to depth ``2``:
+        Flattens `sequence` to depth ``2``:
 
         ::
 

@@ -4,7 +4,7 @@ from abjad.tools import mathtools
 
 
 def partition_sequence_by_sign_of_elements(sequence, sign=(-1, 0, 1)):
-    '''Partition `sequence` elements by sign:
+    '''Partitions `sequence` elements by sign.
 
     ::
 
@@ -58,11 +58,11 @@ def partition_sequence_by_sign_of_elements(sequence, sign=(-1, 0, 1)):
         ...     sequence, sign=[-1, 0, 1]))
         [[0, 0], [-1, -1], [2, 3], [-5], [1, 2, 5], [-5, -6]]
 
-    When ``-1`` in ``sign``, group negative elements.
+    When ``-1`` in ``sign``, groups negative elements.
 
-    When ``0`` in ``sign``, group ``0`` elements.
+    When ``0`` in ``sign``, groups ``0`` elements.
 
-    When ``1`` in ``sign``, group positive elements.
+    When ``1`` in ``sign``, groups positive elements.
 
     Returns list of tuples of `sequence` element references.
     '''

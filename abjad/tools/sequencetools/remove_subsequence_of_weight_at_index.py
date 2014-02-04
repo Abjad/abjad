@@ -2,7 +2,7 @@
 
 
 def remove_subsequence_of_weight_at_index(sequence, weight, index):
-    '''Remove subsequence of `weight` at `index`:
+    '''Removes subsequence of `weight` at `index`.
 
     ::
 

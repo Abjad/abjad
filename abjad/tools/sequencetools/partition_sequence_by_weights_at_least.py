@@ -8,7 +8,7 @@ def partition_sequence_by_weights_at_least(
     cyclic=False, 
     overhang=False,
     ):
-    r'''Partition `sequence` by `weights` at least.
+    r'''Partitions `sequence` by `weights` at least.
 
     ::
 

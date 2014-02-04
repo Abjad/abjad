@@ -2,7 +2,7 @@
 
 
 def retain_sequence_elements_at_indices(sequence, indices):
-    '''Retain `sequence` elements at `indices`:
+    '''Retains `sequence` elements at `indices`.
 
     ::
 
@@ -11,7 +11,7 @@ def retain_sequence_elements_at_indices(sequence, indices):
 
     Returns sequence elements in the order they appear in `sequence`.
 
-    Ignore negative indices.
+    Ignores negative indices.
 
     Returns list.
     '''

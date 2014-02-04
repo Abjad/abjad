@@ -1,8 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 
-def increase_sequence_elements_at_indices_by_addenda(sequence, addenda, indices):
-    '''Increase `sequence` by `addenda` at `indices`:
+def increase_sequence_elements_at_indices_by_addenda(
+    sequence, 
+    addenda, 
+    indices,
+    ):
+    '''Increases `sequence` at `indices` by `addenda`.
 
     ::
 
@@ -19,7 +23,8 @@ def increase_sequence_elements_at_indices_by_addenda(sequence, addenda, indices)
     from abjad.tools import sequencetools
 
     # assert no overlaps
-    tmp = sequencetools.flatten_sequence([range(i, len(addenda)) for i in indices])
+    tmp = [range(i, len(addenda)) for i in indices]
+    tmp = sequencetools.flatten_sequence(tmp)
     assert len(tmp) == len(set(tmp))
 
     result = sequence[:]

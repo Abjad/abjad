@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.sequencetools.is_integer_equivalent_pair \
-	import is_integer_equivalent_pair
 
 
 def is_fraction_equivalent_pair(expr):
-    r'''Is true when `expr` is an integer-equivalent pair of numbers excluding ``0`` as the second term:
+    r'''Is true when `expr` is an integer-equivalent pair of numbers 
+    excluding ``0`` as the second term.
 
     ::
 
@@ -20,5 +19,6 @@ def is_fraction_equivalent_pair(expr):
 
     Returns boolean.
     '''
+    from abjad.tools import sequencetools
 
-    return is_integer_equivalent_pair(expr) and not expr[1] == 0
+    return sequencetools.is_integer_equivalent_pair(expr) and not expr[1] == 0

@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def partition_sequence_by_ratio_of_lengths(sequence, lengths):
-    '''Partition `sequence` by ratio of `lengths`:
+    '''Partitions `sequence` by ratio of `lengths`.
 
     ::
 
@@ -17,7 +17,7 @@ def partition_sequence_by_ratio_of_lengths(sequence, lengths):
         ...     )
         [(0, 1, 2), (3, 4), (5, 6, 7, 8, 9)]
 
-    Use rounding magic to avoid fractional part lengths.
+    Uses rounding magic to avoid fractional part lengths.
 
     Returns list of `sequence` objects.
     '''

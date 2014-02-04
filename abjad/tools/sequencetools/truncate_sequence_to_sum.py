@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 
 
+# TODO: rename target_sum to sum_
 def truncate_sequence_to_sum(sequence, target_sum):
-    '''Truncate `sequence` to `target_sum`:
+    '''Truncates `sequence` to `target_sum`.
 
     ::
 
@@ -31,9 +32,9 @@ def truncate_sequence_to_sum(sequence, target_sum):
         >>> sequencetools.truncate_sequence_to_sum([1, 2, 3, 4, 5], 0)
         []
 
-    Raise type error when `sequence` is not a list.
+    Raises type error when `sequence` is not a list.
 
-    Raise value error on negative `target_sum`.
+    Raises value error on negative `target_sum`.
 
     Returns new list.
     '''

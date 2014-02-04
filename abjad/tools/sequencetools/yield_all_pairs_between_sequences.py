@@ -2,7 +2,7 @@
 
 
 def yield_all_pairs_between_sequences(l, m):
-    '''Yield all pairs between sequences `l` and `m`:
+    '''Yields all pairs between sequences `l` and `m`.
 
     ::
 

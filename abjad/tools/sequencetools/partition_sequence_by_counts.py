@@ -10,7 +10,7 @@ def partition_sequence_by_counts(
     overhang=False, 
     copy_elements=False,
     ):
-    r'''Partition sequence by counts.
+    r'''Partitions sequence by counts.
     
     ..  container:: example
 

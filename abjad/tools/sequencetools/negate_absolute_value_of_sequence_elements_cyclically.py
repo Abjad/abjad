@@ -1,9 +1,13 @@
 # -*- encoding: utf-8 -*-
 
 
-def negate_absolute_value_of_sequence_elements_cyclically(sequence, indices, period):
-    '''Negate the absolute value of `sequence` elements at `indices` cyclically
-    according to `period`:
+def negate_absolute_value_of_sequence_elements_cyclically(
+    sequence, 
+    indices, 
+    period,
+    ):
+    '''Negates the absolute value of `sequence` elements at `indices` 
+    cyclically according to `period`.
 
     ::
 

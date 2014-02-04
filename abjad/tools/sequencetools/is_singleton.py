@@ -2,7 +2,7 @@
 
 
 def is_singleton(expr):
-    r'''Is true when `expr` is a tuple of length ``1``:
+    r'''Is true when `expr` is a tuple of length ``1``.
 
     ::
 

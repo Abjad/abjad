@@ -4,7 +4,7 @@ from abjad.tools import mathtools
 
 
 def repeat_sequence_to_weight_at_least(sequence, weight):
-    '''Repeat `sequence` to `weight` at least:
+    '''Repeats `sequence` to `weight` at least.
 
     ::
 

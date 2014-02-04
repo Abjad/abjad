@@ -2,14 +2,15 @@
 
 
 def yield_all_permutations_of_sequence_in_orbit(sequence, permutation):
-    '''Yield all permutations of `sequence` in orbit of `permutation` 
-    in lex order:
+    '''Yields all permutations of `sequence` in orbit of `permutation`.
 
     ::
 
         >>> list(sequencetools.yield_all_permutations_of_sequence_in_orbit(
         ...     (1, 2, 3, 4), [1, 2, 3, 0]))
         [(1, 2, 3, 4), (2, 3, 4, 1), (3, 4, 1, 2), (4, 1, 2, 3)]
+
+    Returns permutations in lex order.
 
     Returns generator of `sequence` objects.
     '''
@@ -21,11 +22,11 @@ def yield_all_permutations_of_sequence_in_orbit(sequence, permutation):
         message = message.format(permutation, len(sequence))
         raise TypeError(message)
 
-    # return identity first #
+    # return identity first
     next_permutation = sequencetools.permute_sequence(sequence, range(len(sequence)))
     yield next_permutation
 
-    # then return remaining permutations in orbit of permutation #
+    # then return remaining permutations in orbit of permutation
     while True:
         next_permutation = sequencetools.permute_sequence(next_permutation, permutation)
         if next_permutation == sequence:

@@ -2,10 +2,11 @@
 from abjad.tools import sievetools
 
 
+# TODO: remove sievetools dependency
 def repeat_sequence_elements_at_indices_cyclically(
     sequence, cycle_token, total):
-    '''Repeat `sequence` elements at indices specified by `cycle_token` 
-    to `total` length:
+    '''Repeats `sequence` elements at indices specified by `cycle_token` 
+    to `total` length.
 
     ::
 

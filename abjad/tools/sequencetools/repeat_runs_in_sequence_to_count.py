@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 
 
+# TODO: tame docstring
 def repeat_runs_in_sequence_to_count(sequence, tokens):
-    '''Repeat subruns in `sequence` according to `tokens`.
+    '''Repeats subruns in `sequence` according to `tokens`.
     The `tokens` input parameter must be a list of zero or more ``(start,
     length, count)`` triples.  For every ``(start, length, count)`` token in
     `tokens`, the function copies ``sequence[start:start+length]`` and inserts

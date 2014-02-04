@@ -2,7 +2,8 @@
 
 
 def is_strictly_increasing_sequence(expr):
-    r'''Is true when `expr` is a sequence and the elements in `expr` increase strictly:
+    r'''Is true when `expr` is a sequence and the elements in `expr` 
+    increase strictly.
 
     ::
 
@@ -10,7 +11,8 @@ def is_strictly_increasing_sequence(expr):
         >>> sequencetools.is_strictly_increasing_sequence(expr)
         True
 
-    False when `expr` is a sequence and the elements in `expr` do not increase strictly:
+    False when `expr` is a sequence and the elements in `expr` do not 
+    increase strictly:
 
     ::
 

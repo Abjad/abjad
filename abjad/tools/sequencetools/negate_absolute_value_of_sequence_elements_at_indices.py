@@ -2,7 +2,7 @@
 
 
 def negate_absolute_value_of_sequence_elements_at_indices(sequence, indices):
-    '''Negate the absolute value of `sequence` elements at `indices`:
+    '''Negates the absolute value of `sequence` elements at `indices`.
 
     ::
 

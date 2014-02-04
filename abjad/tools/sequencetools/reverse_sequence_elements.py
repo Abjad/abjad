@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.sequencetools.reverse_sequence import reverse_sequence
 
 
 def reverse_sequence_elements(sequence):
-    '''Reverse `sequence` elements:
+    '''Reverses `sequence` elements.
 
     ::
 
@@ -12,11 +11,12 @@ def reverse_sequence_elements(sequence):
 
     Returns new `sequence` object.
     '''
+    from abjad.tools import sequencetools
 
     result = []
     for element in sequence:
         try:
-            result.append(reverse_sequence(element))
+            result.append(sequencetools.reverse_sequence(element))
         except TypeError:
             result.append(element)
     result = type(sequence)(result)

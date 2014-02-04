@@ -2,7 +2,7 @@
 
 
 def negate_sequence_elements_at_indices(sequence, indices):
-    '''Negate `sequence` elements at `indices`:
+    '''Negates `sequence` elements at `indices`.
 
     ::
 

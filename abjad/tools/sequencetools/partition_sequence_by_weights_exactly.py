@@ -7,7 +7,7 @@ def partition_sequence_by_weights_exactly(
     cyclic=False, 
     overhang=False,
     ):
-    r'''Partition `sequence` by `weights` exactly.
+    r'''Partitions `sequence` by `weights` exactly.
 
     ::
 

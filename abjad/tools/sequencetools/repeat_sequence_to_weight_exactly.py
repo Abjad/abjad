@@ -5,7 +5,7 @@ from abjad.tools import mathtools
 
 
 def repeat_sequence_to_weight_exactly(sequence, weight):
-    '''Repeat `sequence` to `weight` exactly:
+    '''Repeats `sequence` to `weight` exactly.
 
     ::
 
@@ -21,7 +21,9 @@ def repeat_sequence_to_weight_exactly(sequence, weight):
 
     # repeat sequence and find overage
     sequence_weight = mathtools.weight(sequence)
-    complete_repetitions = int(math.ceil(float(weight) / float(sequence_weight)))
+    complete_repetitions = int(
+        math.ceil(float(weight) / float(sequence_weight))
+        )
     result = list(sequence)
     result = complete_repetitions * result
     overage = complete_repetitions * sequence_weight - weight

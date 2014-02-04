@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def get_sequence_element_at_cyclic_index(sequence, index):
-    r'''Get `sequence` element at nonnegative cyclic `index`:
+    r'''Gets `sequence` element at nonnegative cyclic `index`.
 
     ::
 

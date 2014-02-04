@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def yield_all_restricted_growth_functions_of_length(length):
-    '''Generate all restricted growth functions of `length` in lex order:
+    '''Yields all restricted growth functions of `length`.
 
     ::
 
@@ -25,6 +25,8 @@ def yield_all_restricted_growth_functions_of_length(length):
         (1, 2, 3, 2)
         (1, 2, 3, 3)
         (1, 2, 3, 4)
+
+    Returns restricted growth functions in lex order.
 
     Returns generator of tuples.
     '''

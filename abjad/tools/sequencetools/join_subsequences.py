@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def join_subsequences(sequence):
-    '''Join subsequences in `sequence`:
+    '''Join subsequences in `sequence`.
 
     ::
 

@@ -4,14 +4,14 @@ from abjad.tools import mathtools
 
 
 def repeat_sequence_n_times(sequence, n):
-    '''Repeat `sequence` `n` times:
+    '''Repeats `sequence` `n` times.
 
     ::
 
         >>> sequencetools.repeat_sequence_n_times((1, 2, 3, 4, 5), 3)
         (1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5)
 
-    Repeat `sequence` ``0`` times:
+    Repeats `sequence` ``0`` times:
 
     ::
 

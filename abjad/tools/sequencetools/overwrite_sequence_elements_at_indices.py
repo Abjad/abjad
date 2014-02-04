@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
-# TODO Implement optional period keyword.
-# TODO Read anchor_index and length values cyclically.
+
+
+# TODO: remove from mainline
 def overwrite_sequence_elements_at_indices(sequence, pairs):
-    '''Overwrite `sequence` elements at indices according to `pairs`:
+    '''Overwrites `sequence` elements at indices according to `pairs`.
 
     ::
 

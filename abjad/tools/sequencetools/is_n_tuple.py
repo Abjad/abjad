@@ -2,7 +2,7 @@
 
 
 def is_n_tuple(expr, n):
-    r'''Is true when `expr` is a tuple of length `n`:
+    r'''Is true when `expr` is a tuple of length `n`.
 
     ::
 

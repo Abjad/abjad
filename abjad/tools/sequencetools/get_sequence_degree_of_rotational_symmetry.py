@@ -2,7 +2,7 @@
 
 
 def get_sequence_degree_of_rotational_symmetry(sequence):
-    '''Change `sequence` to degree of rotational symmetry:
+    '''Gets `sequence` degree of rotational symmetry.
 
     ::
 

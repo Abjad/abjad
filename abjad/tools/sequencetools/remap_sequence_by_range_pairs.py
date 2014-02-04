@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 
 
+# TODO: remove?
 def remap_sequence_by_range_pairs(sequence, range_pairs):
-    r'''Remaps `sequence` by `range_pairs`:
+    r'''Remaps `sequence` by `range_pairs`.
 
     ::
 

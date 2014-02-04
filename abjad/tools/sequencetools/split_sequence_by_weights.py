@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def split_sequence_by_weights(sequence, weights, cyclic=False, overhang=False):
-    '''Split sequence by weights.
+    '''Splits sequence by weights.
 
     ..  container:: example
 

@@ -1,10 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.sequencetools.iterate_sequence_pairwise_strict \
-	import iterate_sequence_pairwise_strict
 
 
 def is_repetition_free_sequence(expr):
-    '''Is true when `expr` is a sequence and `expr` is repetition free:
+    '''Is true when `expr` is a sequence and `expr` is repetition free.
 
     ::
 
@@ -34,9 +32,11 @@ def is_repetition_free_sequence(expr):
 
     Returns boolean.
     '''
+    from abjad.tools import sequencetools
 
     try:
-        for left, right in iterate_sequence_pairwise_strict(expr):
+        pairs = sequencetools.iterate_sequence_pairwise_strict(expr)
+        for left, right in pairs:
             if left == right:
                 return False
         return True

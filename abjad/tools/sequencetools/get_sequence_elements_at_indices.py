@@ -2,7 +2,7 @@
 
 
 def get_sequence_elements_at_indices(sequence, indices):
-    '''Get `sequence` elements at `indices`:
+    '''Gets `sequence` elements at `indices`.
 
     ::
 

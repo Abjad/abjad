@@ -2,8 +2,12 @@
 from abjad.tools import mathtools
 
 
-def pair_duration_sequence_elements_with_input_pair_values(duration_sequence, input_pairs):
-    r'''Pair `duration_sequence` elements with the values of `input_pairs`:
+# TODO: remove from mainline
+def pair_duration_sequence_elements_with_input_pair_values(
+    duration_sequence, 
+    input_pairs,
+    ):
+    r'''Pairs `duration_sequence` elements with the values of `input_pairs`.
 
     ::
 
@@ -35,7 +39,8 @@ def pair_duration_sequence_elements_with_input_pair_values(duration_sequence, in
     current_input_pair_value = current_input_pair[0]
     current_input_pair_duration = current_input_pair[-1]
     current_input_pair_start = 0
-    current_input_pair_stop = current_input_pair_start + current_input_pair_duration
+    current_input_pair_stop = \
+        current_input_pair_start + current_input_pair_duration
 
     for element in duration_sequence:
         while current_input_pair_stop <= current_element_start:

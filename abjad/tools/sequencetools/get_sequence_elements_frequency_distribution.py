@@ -2,7 +2,7 @@
 
 
 def get_sequence_elements_frequency_distribution(sequence):
-    '''Get `sequence` elements frequency distribution:
+    '''Gets `sequence` elements frequency distribution.
 
     ::
 

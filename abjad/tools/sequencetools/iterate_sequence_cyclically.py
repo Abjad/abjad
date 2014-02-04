@@ -2,10 +2,10 @@
 import itertools
 
 
-# TODO: merge with sequencetools.repeat_to_length() #
-
+# TODO: merge with sequencetools.repeat_to_length()
 def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
-    '''Iterate `sequence` cyclically according to `step`, `start` and `length`:
+    '''Iterates `sequence` cyclically according to `step`, `start` and 
+    `length`.
 
     ::
 
@@ -42,7 +42,8 @@ def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
 
     Set `start` to the index of `sequence` where the function begins iterating.
 
-    Set `length` to number of elements to return. Set to ``'inf'`` to return infinitely.
+    Set `length` to number of elements to return. Set to ``'inf'`` to 
+    return infinitely.
 
     Returns generator.
     '''

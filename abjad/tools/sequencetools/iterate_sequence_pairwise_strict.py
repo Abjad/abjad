@@ -2,7 +2,7 @@
 
 
 def iterate_sequence_pairwise_strict(sequence):
-    '''Iterate `sequence` pairwise strict:
+    '''Iterates `sequence` pairwise strict.
 
     ::
 

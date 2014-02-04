@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.mathtools.get_shared_numeric_sign \
-	import get_shared_numeric_sign
+from abjad.tools import mathtools
 
 
 def join_subsequences_by_sign_of_subsequence_elements(sequence):
-    '''Join subsequences in `sequence` by sign:
+    '''Join subsequences in `sequence` by sign of elements.
 
     ::
 
@@ -27,7 +26,7 @@ def join_subsequences_by_sign_of_subsequence_elements(sequence):
     if not all(isinstance(x, list) for x in sequence):
         raise TypeError
 
-    if any(get_shared_numeric_sign(x) is None for x in sequence):
+    if any(mathtools.get_shared_numeric_sign(x) is None for x in sequence):
         raise ValueError
 
     result = []
@@ -35,7 +34,8 @@ def join_subsequences_by_sign_of_subsequence_elements(sequence):
     for sublist in sequence:
         try:
             previous_sublist = result[-1]
-            if get_shared_numeric_sign(previous_sublist) == get_shared_numeric_sign(sublist):
+            if mathtools.get_shared_numeric_sign(previous_sublist) == \
+                mathtools.get_shared_numeric_sign(sublist):
                 previous_sublist.extend(sublist)
             else:
                 result.append(sublist[:])

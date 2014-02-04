@@ -1,11 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
-from abjad.tools.sequencetools.get_sequence_degree_of_rotational_symmetry import \
-    get_sequence_degree_of_rotational_symmetry
 
 
 def get_sequence_period_of_rotation(sequence, n):
-    '''Change `sequence` to period of rotation:
+    '''Gets `sequence` to period of rotation.
 
     ::
 
@@ -24,8 +22,9 @@ def get_sequence_period_of_rotation(sequence, n):
 
     Returns positive integer.
     '''
+    from abjad.tools import sequencetools
 
-    degree = get_sequence_degree_of_rotational_symmetry(sequence)
+    degree = sequencetools.get_sequence_degree_of_rotational_symmetry(sequence)
     period = len(sequence) / degree
     divisors_of_n = set(mathtools.divisors(n))
     divisors_of_period = set(mathtools.divisors(period))

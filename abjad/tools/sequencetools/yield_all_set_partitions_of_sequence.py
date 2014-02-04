@@ -2,7 +2,7 @@
 
 
 def yield_all_set_partitions_of_sequence(sequence):
-    '''Yield all set partitions of `sequence` in restricted growth function order:
+    '''Yields all set partitions of `sequence`.
 
     ::
 
@@ -25,6 +25,8 @@ def yield_all_set_partitions_of_sequence(sequence):
         [[21], [22, 24], [23]]
         [[21], [22], [23, 24]]
         [[21], [22], [23], [24]]
+
+    Returns set partitions in order of restricted growth function.
 
     Returns generator of list of lists.
     '''

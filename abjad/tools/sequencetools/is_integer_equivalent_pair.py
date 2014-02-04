@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def is_integer_equivalent_pair(expr):
-    r'''Is true when `expr` is a pair of integer-equivalent expressions:
+    r'''Is true when `expr` is a pair of integer-equivalent expressions.
 
     ::
 

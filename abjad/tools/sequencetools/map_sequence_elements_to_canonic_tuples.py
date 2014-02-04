@@ -2,8 +2,12 @@
 from abjad.tools import mathtools
 
 
-def map_sequence_elements_to_canonic_tuples(sequence, decrease_parts_monotonically=True):
-    '''Partition `sequence` elements into canonic parts that decrease monotonically:
+def map_sequence_elements_to_canonic_tuples(
+    sequence, 
+    decrease_parts_monotonically=True,
+    ):
+    '''Partitions `sequence` elements into canonic parts that decrease 
+    monotonically.
 
     ::
 
@@ -11,7 +15,8 @@ def map_sequence_elements_to_canonic_tuples(sequence, decrease_parts_monotonical
         ...     range(10))
         [(0,), (1,), (2,), (3,), (4,), (4, 1), (6,), (7,), (8,), (8, 1)]
 
-    Partition `sequence` elements into canonic parts that increase monotonically:
+    Partitions `sequence` elements into canonic parts that increase 
+    monotonically:
 
     ::
 
@@ -19,9 +24,9 @@ def map_sequence_elements_to_canonic_tuples(sequence, decrease_parts_monotonical
         ...     range(10), decrease_parts_monotonically=False)
         [(0,), (1,), (2,), (3,), (4,), (1, 4), (6,), (7,), (8,), (1, 8)]
 
-    Raise type error when `sequence` is not a list.
+    Raises type error when `sequence` is not a list.
 
-    Raise value error on noninteger elements in `sequence`.
+    Raises value error on noninteger elements in `sequence`.
 
     Returns list of tuples.
     '''

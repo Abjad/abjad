@@ -2,23 +2,29 @@
 import fractions
 
 
-def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True):
-    '''Sum `sequence` elements at indices according to `pairs`:
+def sum_sequence_elements_at_indices(
+    sequence, 
+    pairs, 
+    period=None, 
+    overhang=True,
+    ):
+    '''Sums `sequence` elements at indices according to `pairs`.
 
     ::
 
         >>> sequencetools.sum_sequence_elements_at_indices(range(10), [(0, 3)])
         [3, 3, 4, 5, 6, 7, 8, 9]
 
-    Sum `sequence` elements cyclically at indices according to `pairs` and `period`:
+    Sums `sequence` elements cyclically at indices according to `pairs` 
+    and `period`:
 
     ::
 
         >>> sequencetools.sum_sequence_elements_at_indices(range(10), [(0, 3)], period=4)
         [3, 3, 15, 7, 17]
 
-    Sum `sequence` elements cyclically at indices according to `pairs` and `period`
-    and do not return incomplete final sum:
+    Sums `sequence` elements cyclically at indices according to `pairs` 
+    and `period` and do not return incomplete final sum:
 
     ::
 
@@ -26,7 +32,7 @@ def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True
         ...     range(10), [(0, 3)], period=4, overhang=False)
         [3, 3, 15, 7]
 
-    Replace ``sequence[i:i+count]`` with ``sum(sequence[i:i+count])``
+    Replaces ``sequence[i:i+count]`` with ``sum(sequence[i:i+count])``
     for each ``(i, count)`` in `pairs`.
 
     Indices in `pairs` must be less than `period` when `period` is not none.

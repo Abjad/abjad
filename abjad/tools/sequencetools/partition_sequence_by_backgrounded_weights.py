@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import mathtools
 import copy
+from abjad.tools import mathtools
 
 
+# TODO: remove from mainline
 def partition_sequence_by_backgrounded_weights(sequence, weights):
-    r'''Partition `sequence` by backgrounded `weights`:
+    r'''Partitions `sequence` by backgrounded `weights`.
 
     ::
 

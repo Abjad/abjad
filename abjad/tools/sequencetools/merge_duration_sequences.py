@@ -2,15 +2,17 @@
 from abjad.tools import mathtools
 
 
+# TODO: change signature to single input arugment
+# TODO: remove from mainline
 def merge_duration_sequences(*sequences):
-    r'''Merge duration `sequences`:
+    r'''Merges duration `sequences`.
 
     ::
 
         >>> sequencetools.merge_duration_sequences([10, 10, 10], [7])
         [7, 3, 10, 10]
 
-    Merge more duration sequences:
+    Merges more duration sequences:
 
     ::
 

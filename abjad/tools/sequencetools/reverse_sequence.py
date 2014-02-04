@@ -2,7 +2,7 @@
 
 
 def reverse_sequence(sequence):
-    '''Reverse `sequence`:
+    '''Reverses `sequence`.
 
     ::
 

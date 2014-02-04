@@ -3,8 +3,8 @@ from abjad.tools import mathtools
 
 
 def all_are_positive_integer_equivalent_numbers(expr):
-    '''Is true when `expr` is a sequence and all elements in `expr` are positive
-    integer-equivalent numbers. Otherwise false:
+    '''Is true when `expr` is a sequence and all elements in `expr` are 
+    positive integer-equivalent numbers. Otherwise false:
 
     ::
 

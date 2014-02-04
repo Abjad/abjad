@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def truncate_sequence_to_weight(sequence, weight):
-    '''Truncate `sequence` to `weight`:
+    '''Truncates `sequence` to `weight`.
 
     ::
 
@@ -29,9 +29,9 @@ def truncate_sequence_to_weight(sequence, weight):
         >>> sequencetools.truncate_sequence_to_weight([1, 2, 3, 4, 5], 0)
         []
 
-    Raise type error when `sequence` is not a list.
+    Raises type error when `sequence` is not a list.
 
-    Raise value error on negative `weight`.
+    Raises value error on negative `weight`.
 
     Returns new list.
     '''

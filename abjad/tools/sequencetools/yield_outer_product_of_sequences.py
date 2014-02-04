@@ -2,7 +2,7 @@
 
 
 def yield_outer_product_of_sequences(sequences):
-    '''Yield outer product of `sequences`:
+    '''Yields outer product of `sequences`.
 
     ::
 
@@ -39,6 +39,5 @@ def yield_outer_product_of_sequences(sequences):
     sequences[0] = [[x] for x in sequences[0]]
     result = reduce(_helper, sequences)
 
-    #return result
     for element in result:
         yield element

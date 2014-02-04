@@ -2,7 +2,7 @@
 
 
 def is_null_tuple(expr):
-    r'''Is true when `expr` is a tuple of length ``0``:
+    r'''Is true when `expr` is a tuple of length ``0``.
 
     ::
 

@@ -2,8 +2,8 @@
 
 
 def is_restricted_growth_function(expr):
-    '''Is true when `expr` is a sequence and `expr` meets the criteria for a restricted
-    growth function:
+    '''Is true when `expr` is a sequence and `expr` meets the criteria 
+    for a restricted growth function.
 
     ::
 

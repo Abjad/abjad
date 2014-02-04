@@ -18,7 +18,7 @@ def zip_sequences_cyclically(sequences):
         >>> sequencetools.zip_sequences_cyclically(sequences)
         [(10, 20, 30), (11, 21, 31), (12, 20, 32), (10, 21, 33)]
 
-    Cycle over the elements of the sequences of shorter length.
+    Cycles over the elements of the sequences of shorter length.
 
     Returns list of length equal to sequence of greatest length in `sequences`.
     '''

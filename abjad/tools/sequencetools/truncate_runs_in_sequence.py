@@ -2,8 +2,10 @@
 import numbers
 
 
+# TODO: this duplicates sequencetools.remove_duplicate_elemens()
+#       sequencetools.remove_duplciate_elements() is a better name.
 def truncate_runs_in_sequence(sequence):
-    '''Truncate subruns of like elements in `sequence` to length ``1``:
+    '''Truncates subruns of like elements in `sequence` to length ``1``.
 
     ::
 
@@ -17,7 +19,7 @@ def truncate_runs_in_sequence(sequence):
         >>> sequencetools.truncate_runs_in_sequence([])
         []
 
-    Raise type error when `sequence` is not a list.
+    Raises type error when `sequence` is not a list.
 
     Returns new list.
     '''

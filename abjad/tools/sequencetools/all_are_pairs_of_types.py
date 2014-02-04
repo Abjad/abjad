@@ -2,9 +2,10 @@
 
 
 def all_are_pairs_of_types(expr, first_type, second_type):
-    r'''Is true when `expr` is a sequence whose members are all sequences of length 2,
-    and where the first member of each pair is an instance of `first_type` and
-    where the second member of each pair is an instance of `second_type`:
+    r'''Is true when `expr` is a sequence whose members are all sequences of 
+    length 2, and where the first member of each pair is an instance of 
+    `first_type` and where the second member of each pair is an instance 
+    of `second_type`.
 
     ::
 

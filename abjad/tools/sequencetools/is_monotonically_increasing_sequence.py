@@ -2,7 +2,8 @@
 
 
 def is_monotonically_increasing_sequence(expr):
-    r'''Is true when `expr` is a sequence and the elements in `expr` increase monotonically:
+    r'''Is true when `expr` is a sequence and the elements in `expr` 
+    increase monotonically.
 
     ::
 
@@ -22,7 +23,8 @@ def is_monotonically_increasing_sequence(expr):
         >>> sequencetools.is_monotonically_increasing_sequence(expr)
         True
 
-    False when `expr` is a sequence and the elements in `expr` do not increase monotonically:
+    False when `expr` is a sequence and the elements in `expr` do not 
+    increase monotonically:
 
     ::
 

@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def yield_all_k_ary_sequences_of_length(k, length):
-    '''Generate all `k`-ary sequences of `length`:
+    '''Yields all `k`-ary sequences of `length`.
 
     ::
 

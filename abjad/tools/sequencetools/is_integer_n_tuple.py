@@ -2,7 +2,7 @@
 
 
 def is_integer_n_tuple(expr, n):
-    r'''Is true when `expr` is an integer tuple of length `n`:
+    r'''Is true when `expr` is an integer tuple of length `n`.
 
     ::
 
@@ -19,4 +19,5 @@ def is_integer_n_tuple(expr, n):
     Returns boolean.
     '''
 
-    return isinstance(expr, tuple) and len(expr) == n and all(isinstance(x, int) for x in expr)
+    return isinstance(expr, tuple) and len(expr) == n and \
+        all(isinstance(x, int) for x in expr)
