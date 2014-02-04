@@ -6,14 +6,14 @@ def is_pair(expr):
 
     ::
 
-        >>> sequencetools.is_pair((19, 20))
+        >>> mathtools.is_pair((19, 20))
         True
 
     Otherwise false:
 
     ::
 
-        >>> sequencetools.is_pair((19, 20, 21))
+        >>> mathtools.is_pair((19, 20, 21))
         False
 
     Returns boolean.

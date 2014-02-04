@@ -74,7 +74,7 @@ class NamedIntervalClass(IntervalClass):
                 NamedIntervalClass._quality_abbreviation_to_quality_string[
                     quality_abbreviation]
             number = int(direction_string + number_string)
-        elif len(args) == 1 and sequencetools.is_pair(args[0]):
+        elif len(args) == 1 and mathtools.is_pair(args[0]):
             quality_string, number = args[0]
         elif len(args) == 2:
             quality_string, number = args

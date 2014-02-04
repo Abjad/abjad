@@ -6,14 +6,14 @@ def is_null_tuple(expr):
 
     ::
 
-        >>> sequencetools.is_null_tuple(())
+        >>> mathtools.is_null_tuple(())
         True
 
     Otherwise false:
 
     ::
 
-        >>> sequencetools.is_null_tuple((19, 20, 21))
+        >>> mathtools.is_null_tuple((19, 20, 21))
         False
 
     Returns boolean.

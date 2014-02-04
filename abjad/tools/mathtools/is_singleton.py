@@ -6,14 +6,14 @@ def is_singleton(expr):
 
     ::
 
-        >>> sequencetools.is_singleton((19,))
+        >>> mathtools.is_singleton((19,))
         True
 
     Otherwise false:
 
     ::
 
-        >>> sequencetools.is_singleton((19, 20, 21))
+        >>> mathtools.is_singleton((19, 20, 21))
         False
 
     Returns boolean.

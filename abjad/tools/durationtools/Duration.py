@@ -141,10 +141,10 @@ class Duration(AbjadObject, fractions.Fraction):
         except AttributeError:
             pass
         if len(args) == 1 and \
-            sequencetools.is_integer_equivalent_singleton(args[0]):
+            mathtools.is_integer_equivalent_singleton(args[0]):
             self = fractions.Fraction.__new__(cls, int(args[0][0]))
         elif len(args) == 1 and \
-            sequencetools.is_fraction_equivalent_pair(args[0]):
+            mathtools.is_fraction_equivalent_pair(args[0]):
             self = fractions.Fraction.__new__(
                 cls, int(args[0][0]), int(args[0][1]))
         elif len(args) == 1 and \

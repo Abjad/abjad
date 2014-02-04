@@ -6,14 +6,14 @@ def is_integer_pair(expr):
 
     ::
 
-        >>> sequencetools.is_integer_pair((19, 20))
+        >>> mathtools.is_integer_pair((19, 20))
         True
 
     Otherwise false:
 
     ::
 
-        >>> sequencetools.is_integer_pair(('some', 'text'))
+        >>> mathtools.is_integer_pair(('some', 'text'))
         False
 
     Returns boolean.

@@ -495,21 +495,21 @@ New sequence tools are available.
 - Added new type- and form-checking predicates to the ``sequencetools`` package:: 
 
     mathtools.all_are_integer_equivalent_exprs
-    sequencetools.is_null_tuple(expr)
-    sequencetools.is_singleton(expr)
-    sequencetools.is_pair(expr)
-    sequencetools.is_n_tuple(expr, n)
-    sequencetools.is_integer_singleton(expr)
-    sequencetools.is_integer_pair(expr)
-    sequencetools.is_integer_n_tuple(expr, n)
-    sequencetools.is_integer_equivalent_n_tuple
-    sequencetools.is_integer_equivalent_pair
-    sequencetools.is_integer_equivalent_singleton
-    sequencetools.is_fraction_equivalent_pair
+    mathtools.is_null_tuple(expr)
+    mathtools.is_singleton(expr)
+    mathtools.is_pair(expr)
+    mathtools.is_n_tuple(expr, n)
+    mathtools.is_integer_singleton(expr)
+    mathtools.is_integer_pair(expr)
+    mathtools.is_integer_n_tuple(expr, n)
+    mathtools.is_integer_equivalent_n_tuple
+    mathtools.is_integer_equivalent_pair
+    mathtools.is_integer_equivalent_singleton
+    mathtools.is_fraction_equivalent_pair
  
   Each function returns a boolean::
 
-    >>> sequencetools.is_integer_singleton((19,))
+    >>> mathtools.is_integer_singleton((19,))
     True
 
 - Added a new ``NonreducedFraction`` class to the ``sequencetools`` package::

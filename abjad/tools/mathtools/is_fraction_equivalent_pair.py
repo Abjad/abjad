@@ -7,18 +7,18 @@ def is_fraction_equivalent_pair(expr):
 
     ::
 
-        >>> sequencetools.is_fraction_equivalent_pair((2, 3))
+        >>> mathtools.is_fraction_equivalent_pair((2, 3))
         True
 
     Otherwise false:
 
     ::
 
-        >>> sequencetools.is_fraction_equivalent_pair((2, 0))
+        >>> mathtools.is_fraction_equivalent_pair((2, 0))
         False
 
     Returns boolean.
     '''
-    from abjad.tools import sequencetools
+    from abjad.tools import mathtools
 
-    return sequencetools.is_integer_equivalent_pair(expr) and not expr[1] == 0
+    return mathtools.is_integer_equivalent_pair(expr) and not expr[1] == 0

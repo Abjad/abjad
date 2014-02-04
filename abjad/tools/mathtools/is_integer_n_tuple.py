@@ -6,14 +6,14 @@ def is_integer_n_tuple(expr, n):
 
     ::
 
-        >>> sequencetools.is_integer_n_tuple((19, 20, 21), 3)
+        >>> mathtools.is_integer_n_tuple((19, 20, 21), 3)
         True
 
     Otherwise false:
 
     ::
 
-        >>> sequencetools.is_integer_n_tuple((19, 20, 'text'), 3)
+        >>> mathtools.is_integer_n_tuple((19, 20, 'text'), 3)
         False
 
     Returns boolean.
