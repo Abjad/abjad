@@ -1,20 +1,21 @@
 # -*- encoding: utf-8 -*-
-from __future__ import division
 
 
-def zip_sequences_cyclically(*sequences):
-    '''Zip `sequences` cyclically:
+def zip_sequences_cyclically(sequences):
+    '''Zips `sequences` cyclically:
 
     ::
 
-        >>> sequencetools.zip_sequences_cyclically([1, 2, 3], ['a', 'b'])
+        >>> sequences = [[1, 2, 3], ['a', 'b']]
+        >>> sequencetools.zip_sequences_cyclically(sequences)
         [(1, 'a'), (2, 'b'), (3, 'a')]
 
     Arbitrary number of input sequences now allowed.
 
     ::
 
-        >>> sequencetools.zip_sequences_cyclically([10, 11, 12], [20, 21], [30, 31, 32, 33])
+        >>> sequences = [[10, 11, 12], [20, 21], [30, 31, 32, 33]]
+        >>> sequencetools.zip_sequences_cyclically(sequences)
         [(10, 20, 30), (11, 21, 31), (12, 20, 32), (10, 21, 33)]
 
     Cycle over the elements of the sequences of shorter length.
@@ -22,22 +23,19 @@ def zip_sequences_cyclically(*sequences):
     Returns list of length equal to sequence of greatest length in `sequences`.
     '''
 
-    # make sure sequences are, in fact, all sequences
-    new_sequences = []
-    for sequence in sequences:
-        if not isinstance(sequence, (list, tuple)):
-            new_sequences.append([sequence])
-        else:
-            new_sequences.append(sequence)
-
     # find length of longest sequence
-    max_length = max([len(x) for x in new_sequences])
+    max_length = max([len(x) for x in sequences])
 
     # produce list of tuples
     result = []
     for i in range(max_length):
-        part = [x[i % len(x)] for x in new_sequences]
-        result.append(tuple(part))
+        part = []
+        for sequence in sequences:
+            index = i % len(sequence)
+            element = sequence[index]
+            part.append(element)
+        part = tuple(part)
+        result.append(part)
 
     # return result
     return result

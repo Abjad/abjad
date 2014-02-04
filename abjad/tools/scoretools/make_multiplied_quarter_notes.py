@@ -43,7 +43,8 @@ def make_multiplied_quarter_notes(
     multiplied_durations = [durationtools.Duration(x) for x in multiplied_durations]
     quarter_notes = []
 
-    for pitch, duration in sequencetools.zip_sequences_cyclically(pitches, multiplied_durations):
+    sequences = [pitches, multiplied_durations]
+    for pitch, duration in sequencetools.zip_sequences_cyclically(sequences):
         quarter_note = scoretools.Note(pitch, durationtools.Duration(1, 4))
         duration = durationtools.Duration(duration)
         multiplier = durationtools.Multiplier(duration / durationtools.Duration(1, 4))

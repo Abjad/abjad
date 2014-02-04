@@ -113,12 +113,8 @@ class StylesheetFileWrangler(FileWrangler):
             display_strings.append(display_string)
         menu_entries = []
         if display_strings:
-            menu_entries = sequencetools.zip_sequences_cyclically(
-                display_strings, 
-                [None], 
-                [None], 
-                filesystem_paths,
-                )
+            sequences = (display_strings, [None], [None], filesystem_paths)
+            menu_entries = sequencetools.zip_sequences_cyclically(sequences)
         return menu_entries
 
     def _make_main_menu(self, head=None):

@@ -83,8 +83,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         names = self.list_asset_names(head=head)
         paths = self.list_asset_packagesystem_paths(head=head)
         assert len(names) == len(paths)
-        return sequencetools.zip_sequences_cyclically(
-            names, [None], [None], paths)
+        sequences = (names, [None], [None], paths)
+        return sequencetools.zip_sequences_cyclically(sequences)
 
     def _make_main_menu(self, head=None):
         main_menu = self.session.io_manager.make_menu(where=self._where)

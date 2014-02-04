@@ -176,8 +176,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 self.score_package_asset_storehouse_path_infix_parts
             key = os.path.join(*path_parts)
             keys.append(key)
-        return sequencetools.zip_sequences_cyclically(
-            display_strings, [None], [None], keys)
+        sequences = [display_strings, [None], [None], keys]
+        return sequencetools.zip_sequences_cyclically(sequences)
 
     @abc.abstractmethod
     def _make_main_menu(self, head=None):
