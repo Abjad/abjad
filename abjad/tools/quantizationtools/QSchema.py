@@ -2,7 +2,7 @@
 import abc
 import bisect
 import copy
-from abjad.tools import sequencetools
+from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -40,14 +40,14 @@ class QSchema(AbjadObject):
             items = copy.copy(args[0].items)
         elif 1 == len(args) and isinstance(args[0], dict):
             items = args[0].items()
-            if sequencetools.all_are_pairs_of_types(items, int, dict):
+            if mathtools.all_are_pairs_of_types(items, int, dict):
                 items = [(x, self.item_class(**y)) for x, y in items]
-            assert sequencetools.all_are_pairs_of_types(
+            assert mathtools.all_are_pairs_of_types(
                 items, int, self.item_class)
             items = dict(items)
-        elif sequencetools.all_are_pairs_of_types(args, int, self.item_class):
+        elif mathtools.all_are_pairs_of_types(args, int, self.item_class):
             items = dict(args)
-        elif sequencetools.all_are_pairs_of_types(args, int, dict):
+        elif mathtools.all_are_pairs_of_types(args, int, dict):
             items = [(x, self.item_class(**y)) for x, y in args]
             items = dict(items)
         elif all(isinstance(x, self.item_class) for x in args):

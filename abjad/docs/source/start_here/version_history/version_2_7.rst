@@ -148,13 +148,13 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
   The class inherits from list.
 
-- Added ``sequencetools.all_are_pairs()`` predicate::
+- Added ``mathtools.all_are_pairs()`` predicate::
 
     >>> from abjad.tools.sequencetools import all_are_pairs
     >>> all_are_pairs([(1, 2), (3, 4), (5, 6)])
     True
 
-- Added ``sequencetools.all_are_pairs_of_types()`` predicate::
+- Added ``mathtools.all_are_pairs_of_types()`` predicate::
 
     >>> from abjad.tools.sequencetools import all_are_pairs_of_types
     >>> all_are_pairs_of_types([('a', 1.4), ('b', 2.3), ('c', 1.5)], str, float)

@@ -9,21 +9,21 @@ def all_are_pairs_of_types(expr, first_type, second_type):
 
     ::
 
-        >>> sequencetools.all_are_pairs_of_types([(1., 'a'), (2.1, 'b'), (3.45, 'c')], float, str)
+        >>> mathtools.all_are_pairs_of_types([(1., 'a'), (2.1, 'b'), (3.45, 'c')], float, str)
         True
 
     Is true when `expr` is an empty sequence:
 
     ::
 
-        >>> sequencetools.all_are_pairs_of_types([], float, str)
+        >>> mathtools.all_are_pairs_of_types([], float, str)
         True
 
     Otherwise false:
 
     ::
 
-        >>> sequencetools.all_are_pairs_of_types('foo', float, str)
+        >>> mathtools.all_are_pairs_of_types('foo', float, str)
         False
 
     Returns boolean.

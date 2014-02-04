@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import mathtools
 
 
 def all_are_positive_integers(expr):
@@ -8,18 +7,19 @@ def all_are_positive_integers(expr):
 
     ::
 
-        >>> sequencetools.all_are_positive_integers([1, 2, 3, 99])
+        >>> mathtools.all_are_positive_integers([1, 2, 3, 99])
         True
 
     Otherwise false:
 
     ::
 
-        >>> sequencetools.all_are_positive_integers(17)
+        >>> mathtools.all_are_positive_integers(17)
         False
 
     Returns boolean.
     '''
+    from abjad.tools import mathtools
 
     try:
         return all(mathtools.is_positive_integer(x) for x in expr)

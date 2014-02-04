@@ -29,8 +29,8 @@ def pair_duration_sequence_elements_with_input_pair_values(
     '''
     from abjad.tools import sequencetools
 
-    assert sequencetools.all_are_numbers(duration_sequence)
-    assert sequencetools.all_are_pairs(input_pairs)
+    assert mathtools.all_are_numbers(duration_sequence)
+    assert mathtools.all_are_pairs(input_pairs)
 
     output_pairs = []
     current_element_start = 0

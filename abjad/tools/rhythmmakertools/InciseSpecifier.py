@@ -88,7 +88,7 @@ class InciseSpecifier(AbjadObject):
     def _is_length_tuple(expr):
         if expr is None:
             return True
-        if sequencetools.all_are_nonnegative_integer_equivalent_numbers(expr):
+        if mathtools.all_are_nonnegative_integer_equivalent_numbers(expr):
             if isinstance(expr, tuple):
                 return True
         return False

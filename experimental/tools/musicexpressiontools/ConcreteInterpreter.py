@@ -120,7 +120,7 @@ class ConcreteInterpreter(Interpreter):
             segment_durations = [
                 durationtools.Duration(sum(x.time_signatures))
                 for x in self.score_specification.segment_specifications]
-            assert sequencetools.all_are_numbers(segment_durations)
+            assert mathtools.all_are_numbers(segment_durations)
             score_duration = sum(segment_durations)
             score_start_offset = durationtools.Offset(0)
             score_stop_offset = durationtools.Offset(score_duration)

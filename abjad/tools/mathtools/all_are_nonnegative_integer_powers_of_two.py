@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import mathtools
 
 
 def all_are_nonnegative_integer_powers_of_two(expr):
@@ -8,25 +7,26 @@ def all_are_nonnegative_integer_powers_of_two(expr):
 
     ::
 
-        >>> sequencetools.all_are_nonnegative_integer_powers_of_two([0, 1, 1, 1, 2, 4, 32, 32])
+        >>> mathtools.all_are_nonnegative_integer_powers_of_two([0, 1, 1, 1, 2, 4, 32, 32])
         True
 
     Is true when `expr` is an empty sequence:
 
     ::
 
-        >>> sequencetools.all_are_nonnegative_integer_powers_of_two([])
+        >>> mathtools.all_are_nonnegative_integer_powers_of_two([])
         True
 
     Otherwise false:
 
     ::
 
-        >>> sequencetools.all_are_nonnegative_integer_powers_of_two(17)
+        >>> mathtools.all_are_nonnegative_integer_powers_of_two(17)
         False
 
     Returns boolean.
     '''
+    from abjad.tools import mathtools
 
     try:
         return all(

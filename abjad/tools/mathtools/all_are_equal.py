@@ -6,21 +6,21 @@ def all_are_equal(expr):
 
     ::
 
-        >>> sequencetools.all_are_equal([99, 99, 99, 99, 99, 99])
+        >>> mathtools.all_are_equal([99, 99, 99, 99, 99, 99])
         True
 
     Is true when `expr` is an empty sequence:
 
     ::
 
-        >>> sequencetools.all_are_equal([])
+        >>> mathtools.all_are_equal([])
         True
 
     Otherwise false:
 
     ::
 
-        >>> sequencetools.all_are_equal(17)
+        >>> mathtools.all_are_equal(17)
         False
 
     Returns boolean.

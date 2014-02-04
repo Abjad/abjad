@@ -8,21 +8,21 @@ def all_are_numbers(expr):
 
     ::
 
-        >>> sequencetools.all_are_numbers([1, 2, 3.0, Fraction(13, 8)])
+        >>> mathtools.all_are_numbers([1, 2, 3.0, Fraction(13, 8)])
         True
 
     Is true when `expr` is an empty sequence:
 
     ::
 
-        >>> sequencetools.all_are_numbers([])
+        >>> mathtools.all_are_numbers([])
         True
 
     Otherwise false:
 
     ::
 
-        >>> sequencetools.all_are_numbers(17)
+        >>> mathtools.all_are_numbers(17)
         False
 
     Returns boolean.

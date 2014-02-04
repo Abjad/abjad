@@ -89,7 +89,7 @@ class IterablePayloadExpression(PayloadExpression):
         Returns newly constructed payload expression.
         '''
         from experimental.tools import musicexpressiontools
-        if not sequencetools.all_are_numbers(self.payload):
+        if not mathtools.all_are_numbers(self.payload):
             payload = [mathtools.NonreducedFraction(x) for x in self.payload]
         else:
             payload = self.payload
@@ -356,7 +356,7 @@ class IterablePayloadExpression(PayloadExpression):
 
         Returns newly constructed payload expression.
         '''
-        if not sequencetools.all_are_numbers(self.payload):
+        if not mathtools.all_are_numbers(self.payload):
             payload = [mathtools.NonreducedFraction(x) for x in self.payload]
         else:
             payload = self.payload

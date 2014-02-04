@@ -494,7 +494,7 @@ New sequence tools are available.
 
 - Added new type- and form-checking predicates to the ``sequencetools`` package:: 
 
-    sequencetools.all_are_integer_equivalent_exprs
+    mathtools.all_are_integer_equivalent_exprs
     sequencetools.is_null_tuple(expr)
     sequencetools.is_singleton(expr)
     sequencetools.is_pair(expr)

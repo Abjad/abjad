@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import itertools
 from abjad.tools import durationtools
-from abjad.tools import sequencetools
+from abjad.tools import mathtools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import mutate
@@ -108,7 +108,7 @@ class LogicalTie(ContiguousSelection):
 
         Returns boolean.
         '''
-        return sequencetools.all_are_equal(
+        return mathtools.all_are_equal(
             [leaf._parent for leaf in self.leaves])
 
     @property

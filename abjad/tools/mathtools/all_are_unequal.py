@@ -6,21 +6,21 @@ def all_are_unequal(expr):
 
     ::
 
-        >>> sequencetools.all_are_unequal([1, 2, 3, 4, 9])
+        >>> mathtools.all_are_unequal([1, 2, 3, 4, 9])
         True
 
     Is true when `expr` is an empty sequence:
 
     ::
 
-        >>> sequencetools.all_are_unequal([])
+        >>> mathtools.all_are_unequal([])
         True
 
     Otherwise false:
 
     ::
 
-        >>> sequencetools.all_are_unequal(17)
+        >>> mathtools.all_are_unequal(17)
         False
 
     Returns boolean.

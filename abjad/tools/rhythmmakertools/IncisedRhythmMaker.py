@@ -108,10 +108,10 @@ class IncisedRhythmMaker(RhythmMaker):
         split_divisions_by_counts = \
             self._to_tuple(split_divisions_by_counts)
         assert extra_counts_per_division is None or \
-            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
+            mathtools.all_are_nonnegative_integer_equivalent_numbers(
             extra_counts_per_division), extra_counts_per_division
         assert split_divisions_by_counts is None or \
-            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
+            mathtools.all_are_nonnegative_integer_equivalent_numbers(
             split_divisions_by_counts), split_divisions_by_counts
         self._extra_counts_per_division = extra_counts_per_division
         self._split_divisions_by_counts = split_divisions_by_counts

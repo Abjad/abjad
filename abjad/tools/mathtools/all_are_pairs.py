@@ -7,21 +7,21 @@ def all_are_pairs(expr):
 
     ::
 
-        >>> sequencetools.all_are_pairs([(1, 2), (3, 4), (5, 6), (7, 8)])
+        >>> mathtools.all_are_pairs([(1, 2), (3, 4), (5, 6), (7, 8)])
         True
 
     Is true when `expr` is an empty sequence:
 
     ::
 
-        >>> sequencetools.all_are_pairs([])
+        >>> mathtools.all_are_pairs([])
         True
 
     Otherwise false:
 
     ::
 
-        >>> sequencetools.all_are_pairs('foo')
+        >>> mathtools.all_are_pairs('foo')
         False
 
     Returns boolean.

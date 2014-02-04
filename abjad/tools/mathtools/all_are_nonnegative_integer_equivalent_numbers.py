@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import mathtools
 
 
 def all_are_nonnegative_integer_equivalent_numbers(expr):
@@ -10,11 +9,12 @@ def all_are_nonnegative_integer_equivalent_numbers(expr):
 
 
         >>> expr = [0, 0.0, Fraction(0), 2, 2.0, Fraction(2)]
-        >>> sequencetools.all_are_nonnegative_integer_equivalent_numbers(expr)
+        >>> mathtools.all_are_nonnegative_integer_equivalent_numbers(expr)
         True
 
     Returns boolean.
     '''
+    from abjad.tools import mathtools
 
     try:
         return all(

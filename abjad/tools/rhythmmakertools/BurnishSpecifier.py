@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import sequencetools
+from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -311,7 +311,7 @@ class BurnishSpecifier(AbjadObject):
     def _is_length_tuple(expr):
         if expr is None:
             return True
-        if sequencetools.all_are_nonnegative_integer_equivalent_numbers(
+        if mathtools.all_are_nonnegative_integer_equivalent_numbers(
             expr) and isinstance(expr, tuple):
             return True
         return False

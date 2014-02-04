@@ -170,10 +170,10 @@ class TaleaRhythmMaker(RhythmMaker):
         secondary_divisions_helper = self._none_to_trivial_helper(
             secondary_divisions_helper)
         assert extra_counts_per_division is None or \
-            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
+            mathtools.all_are_nonnegative_integer_equivalent_numbers(
                 extra_counts_per_division)
         assert split_divisions_by_counts is None or \
-            sequencetools.all_are_nonnegative_integer_equivalent_numbers(
+            mathtools.all_are_nonnegative_integer_equivalent_numbers(
                 split_divisions_by_counts)
         assert callable(talea_helper)
         assert callable(prolation_addenda_helper)

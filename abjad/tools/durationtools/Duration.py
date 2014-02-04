@@ -151,7 +151,7 @@ class Duration(AbjadObject, fractions.Fraction):
             isinstance(args[0], str) and not '/' in args[0]:
             result = Duration._initialize_from_lilypond_duration_string(args[0])
             self = fractions.Fraction.__new__(cls, result)
-        elif sequencetools.all_are_integer_equivalent_numbers(args):
+        elif mathtools.all_are_integer_equivalent_numbers(args):
             self = fractions.Fraction.__new__(cls, *[int(x) for x in args])
         else:
             raise ValueError(args)
