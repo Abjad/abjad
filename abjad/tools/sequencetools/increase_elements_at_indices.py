@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-def increase_sequence_elements_at_indices_by_addenda(
+def increase_elements_at_indices(
     sequence, 
     addenda, 
     indices,
@@ -14,7 +14,7 @@ def increase_sequence_elements_at_indices_by_addenda(
 
     ::
 
-        >>> sequencetools.increase_sequence_elements_at_indices_by_addenda(
+        >>> sequencetools.increase_elements_at_indices(
         ...     sequence, [0.5, 0.5], [0, 4, 8])
         [1.5, 1.5, 2, 3, 5.5, 5.5, 1, 2, 5.5, 5.5, 6]
 
