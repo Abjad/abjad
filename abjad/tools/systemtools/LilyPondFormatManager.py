@@ -234,6 +234,7 @@ class LilyPondFormatManager(object):
                     trill_contributions = []
                     for triple in result[key][:]:
                         prototype = (
+                            spannertools.ComplexTrillSpanner,
                             spannertools.TrillSpanner,
                             )
                         if isinstance(triple[0], prototype):
