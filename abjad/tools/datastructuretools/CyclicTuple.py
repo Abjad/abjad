@@ -53,6 +53,8 @@ class CyclicTuple(abctools.AbjadObject, tuple):
 
         Returns item.
         '''
+        if not self:
+            raise IndexError
         i = i % len(self)
         return tuple.__getitem__(self, i)
 
