@@ -56,7 +56,7 @@ class OrdinalConstant(AbjadObject):
         >>> bool(pytest.raises(Exception, 'Left < Up'))
         True
 
-    The ``Left``, ``Right``, ``Center``, ``Up`` and ``Down`` constants 
+    The ``Left``, ``Right``, ``Center``, ``Up`` and ``Down`` constants
     shown here load into Python's built-in namespace on Abjad import.
 
     These four objects can be used as constant values supplied to keywords.
@@ -77,9 +77,9 @@ class OrdinalConstant(AbjadObject):
     ### CONSTRUCTOR ###
 
     def __new__(
-        cls, 
-        dimension=None, 
-        value=0, 
+        cls,
+        dimension=None,
+        value=0,
         representation=None,
         ):
         dimension = dimension or ''
@@ -135,8 +135,21 @@ class OrdinalConstant(AbjadObject):
             self._representation,
             )
 
+    def __hash__(self):
+        r'''Hashes ordinal constant.
+
+        Returns int.
+        '''
+        hash_values = (
+            type(self),
+            self._dimension,
+            self._representation,
+            self._value,
+            )
+        return hash(hash_values)
+
     def __lt__(self, expr):
-        r'''Is true when `expr` is an ordinal with value greater than that of 
+        r'''Is true when `expr` is an ordinal with value greater than that of
         this ordinal constant. Otherwise false.
 
         Returns boolean.
