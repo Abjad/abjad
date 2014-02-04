@@ -2,7 +2,7 @@
 
 
 def zip_sequences_cyclically(sequences):
-    '''Zips `sequences` cyclically:
+    '''Zips `sequences` cyclically.
 
     ::
 

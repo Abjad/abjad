@@ -1,11 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.sequencetools.flatten_sequence import flatten_sequence
-from abjad.tools.sequencetools.zip_sequences_without_truncation \
-	import zip_sequences_without_truncation
 
 
 def interlace_sequences(*sequences):
-    '''Interlace `sequences`:
+    '''Interlaces `sequences`.
 
     ::
 
@@ -18,8 +15,9 @@ def interlace_sequences(*sequences):
 
     Returns list.
     '''
+    from abjad.tools import sequencetools
 
-    zipped_sequences = zip_sequences_without_truncation(*sequences)
-    flattened_sequences = flatten_sequence(zipped_sequences, depth=1)
+    result = sequencetools.zip_sequences_without_truncation(sequences)
+    result = sequencetools.flatten_sequence(result, depth=1)
 
-    return flattened_sequences
+    return result
