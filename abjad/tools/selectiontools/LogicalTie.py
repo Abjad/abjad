@@ -168,6 +168,15 @@ class LogicalTie(ContiguousSelection):
         return result
 
     @property
+    def tail(self):
+        r'''Reference to element ``-1`` in logical tie.
+
+        Returns component.
+        '''
+        if self._music:
+            return self._music[-1]
+
+    @property
     def tie_spanner(self):
         r'''Tie spanner governing logical tie.
 
