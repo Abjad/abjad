@@ -11,7 +11,7 @@
 
 6.  Make user input handler creation work.
 
-7.  Find a way dynamcially to present default notice 
+7.  Find a way dynamically to present default notice 
     with default menu entries.
 
 8.  Distinguish positional editor parameters from keyword editor parameters.
