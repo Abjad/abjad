@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import abctools
+from abjad.tools import mathtools
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 # TODO: remove multiple inheritance; hold a private _tuple instead
-class CyclicTuple(abctools.AbjadObject, tuple):
+class CyclicTuple(AbjadObject, tuple):
     '''A cylic tuple.
 
     ::
@@ -62,8 +63,32 @@ class CyclicTuple(abctools.AbjadObject, tuple):
         r'''Gets slice of items from `start_index` to `stop_index` in cyclic
         tuple.
 
+        ..  container:: example
+
+            Gets slice open at right:
+
+            ::
+
+                >>> sequence = [0, 1, 2, 3, 4, 5]
+                >>> sequence = datastructuretools.CyclicTuple(sequence)
+                >>> sequence[2:]
+                (2, 3, 4, 5)
+
+        ..  container:: example
+
+            Gets slice closed at right:
+
+            ::
+
+                >>> sequence = [0, 1, 2, 3, 4, 5]
+                >>> sequence = datastructuretools.CyclicTuple(sequence)
+                >>> sequence[:15]
+                (0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2)
+
         Returns tuple.
         '''
+        if 1000000 < stop_index:
+            stop_index = len(self)
         result = []
         result = [self[n] for n in range(start_index, stop_index)]
         return tuple(result)
@@ -91,3 +116,83 @@ class CyclicTuple(abctools.AbjadObject, tuple):
                 list(self),
                 ),
             )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def degree_of_rotational_symmetry(self):
+        '''Gets degree of rotational symmetry.
+
+        ::
+
+            >>> sequence = [1, 2, 3, 4, 5, 6]
+            >>> sequence = datastructuretools.CyclicTuple(sequence)
+            >>> sequence.degree_of_rotational_symmetry
+            1
+
+        ::
+
+            >>> sequence = [1, 2, 3, 1, 2, 3]
+            >>> sequence = datastructuretools.CyclicTuple(sequence)
+            >>> sequence.degree_of_rotational_symmetry
+            2
+
+        ::
+
+            >>> sequence = [1, 2, 1, 2, 1, 2]
+            >>> sequence = datastructuretools.CyclicTuple(sequence)
+            >>> sequence.degree_of_rotational_symmetry
+            3
+
+        ::
+
+            >>> sequence = [1, 1, 1, 1, 1, 1]
+            >>> sequence = datastructuretools.CyclicTuple(sequence)
+            >>> sequence.degree_of_rotational_symmetry
+            6
+
+        Returns positive integer.
+        '''
+        degree_of_rotational_symmetry = 0
+        for index in range(len(self)):
+            rotation = self[index:] + self[:index]
+            if rotation == self:
+                degree_of_rotational_symmetry += 1
+        return degree_of_rotational_symmetry
+
+    ### PUBLIC METHODS ###
+
+    def get_period_of_rotation(self, n):
+        '''Gets period of rotation.
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence = [1, 2, 3, 1, 2, 3]
+                >>> sequence = datastructuretools.CyclicTuple(sequence)
+
+            ::
+
+                >>> sequence.get_period_of_rotation(1)
+                3
+
+            ::
+
+                >>> sequence.get_period_of_rotation(2)
+                3
+
+            ::
+
+                >>> sequence.get_period_of_rotation(3)
+                1
+
+        Returns positive integer.
+        '''
+        from abjad.tools import sequencetools
+        degree = self.degree_of_rotational_symmetry
+        period = len(self) / degree
+        divisors_of_n = set(mathtools.divisors(n))
+        divisors_of_period = set(mathtools.divisors(period))
+        max_shared_divisor = max(divisors_of_n & divisors_of_period)
+        return period / max_shared_divisor
