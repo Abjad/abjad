@@ -191,7 +191,7 @@ class ListEditor(InteractiveEditor):
         indices = [argument_number - 1 for argument_number in argument_range]
         indices = list(reversed(sorted(set(indices))))
         items = self.items[:]
-        items = sequencetools.remove_sequence_elements_at_indices(
+        items = sequencetools.remove_elements_at_indices(
             items, indices)
         self.items[:] = items
 
