@@ -344,7 +344,7 @@ class Measure(FixedDurationContainer):
                 logical_tie_duration = expr._preprolated_duration
                 logical_tie_duration_numerators.append(
                     logical_tie_duration.numerator)
-        if len(sequencetools.truncate_runs_in_sequence(
+        if len(sequencetools.remove_repeated_elements(
             logical_tie_duration_numerators)) == 1:
             numerator = logical_tie_duration_numerators[0]
             denominator = mathtools.greatest_power_of_two_less_equal(numerator)
