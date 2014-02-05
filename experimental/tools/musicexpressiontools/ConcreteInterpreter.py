@@ -437,7 +437,7 @@ class ConcreteInterpreter(Interpreter):
                 division_region_durations,
                 timespan_delimited_single_context_rhythm_set_expression_durations)
         # assert that rhythm set expressions cover rhythm regions exactly
-        assert sequencetools.partition_sequence_by_weights_exactly(
+        assert sequencetools.partition_sequence_by_weights(
             timespan_delimited_single_context_rhythm_set_expression_merged_durations,
             timespan_delimited_single_context_rhythm_set_expression_durations)
         rhythm_region_start_division_duration_lists = \

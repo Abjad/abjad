@@ -288,7 +288,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 numerator, self.talea.denominator)
             weight = abs(duration)
             weights.append(weight)
-        parts = sequencetools.partition_sequence_by_weights_exactly(
+        parts = sequencetools.partition_sequence_by_weights(
             written_durations, 
             weights=weights, 
             cyclic=True, 

@@ -2,10 +2,10 @@
 from abjad import *
 
 
-def test_sequencetools_partition_sequence_by_weights_exactly_01():
+def test_sequencetools_partition_sequence_by_weights_01():
 
     sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
-    groups = sequencetools.partition_sequence_by_weights_exactly(
+    groups = sequencetools.partition_sequence_by_weights(
         sequence, 
         [3, 9], 
         cyclic=False, 
@@ -14,10 +14,10 @@ def test_sequencetools_partition_sequence_by_weights_exactly_01():
     assert groups == [[3], [3, 3, 3], [4, 4, 4, 4, 5, 5]]
 
 
-def test_sequencetools_partition_sequence_by_weights_exactly_02():
+def test_sequencetools_partition_sequence_by_weights_02():
 
     sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
-    groups = sequencetools.partition_sequence_by_weights_exactly(
+    groups = sequencetools.partition_sequence_by_weights(
         sequence, 
         [3, 9], 
         cyclic=False, 
@@ -26,10 +26,10 @@ def test_sequencetools_partition_sequence_by_weights_exactly_02():
     assert groups == [[3], [3, 3, 3]]
 
 
-def test_sequencetools_partition_sequence_by_weights_exactly_03():
+def test_sequencetools_partition_sequence_by_weights_03():
 
     sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5]
-    groups = sequencetools.partition_sequence_by_weights_exactly(
+    groups = sequencetools.partition_sequence_by_weights(
         sequence, 
         [12],
         cyclic=True, 
@@ -38,10 +38,10 @@ def test_sequencetools_partition_sequence_by_weights_exactly_03():
     assert groups == [[3, 3, 3, 3], [4, 4, 4], [4, 5]]
 
 
-def test_sequencetools_partition_sequence_by_weights_exactly_04():
+def test_sequencetools_partition_sequence_by_weights_04():
 
     sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5]
-    groups = sequencetools.partition_sequence_by_weights_exactly(
+    groups = sequencetools.partition_sequence_by_weights(
         sequence, 
         [12], 
         cyclic=True, 

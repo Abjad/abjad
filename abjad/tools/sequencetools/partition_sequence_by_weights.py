@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-def partition_sequence_by_weights_exactly(
+def partition_sequence_by_weights(
     sequence, 
     weights, 
     cyclic=False, 
@@ -20,7 +20,7 @@ def partition_sequence_by_weights_exactly(
 
         ::
 
-            >>> sequencetools.partition_sequence_by_weights_exactly(
+            >>> sequencetools.partition_sequence_by_weights(
             ...     sequence, 
             ...     [3, 9], 
             ...     cyclic=False, 
@@ -35,7 +35,7 @@ def partition_sequence_by_weights_exactly(
 
         ::
 
-            >>> sequencetools.partition_sequence_by_weights_exactly(
+            >>> sequencetools.partition_sequence_by_weights(
             ...     sequence, 
             ...     [3, 9], 
             ...     cyclic=False, 
@@ -50,7 +50,7 @@ def partition_sequence_by_weights_exactly(
 
         ::
 
-            >>> sequencetools.partition_sequence_by_weights_exactly(
+            >>> sequencetools.partition_sequence_by_weights(
             ...     sequence, 
             ...     [12], 
             ...     cyclic=True, 
@@ -65,7 +65,7 @@ def partition_sequence_by_weights_exactly(
 
         ::
 
-            >>> sequencetools.partition_sequence_by_weights_exactly(
+            >>> sequencetools.partition_sequence_by_weights(
             ...     sequence, 
             ...     [12], 
             ...     cyclic=True, 
