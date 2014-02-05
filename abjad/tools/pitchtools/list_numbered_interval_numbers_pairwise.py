@@ -79,7 +79,8 @@ def list_numbered_interval_numbers_pairwise(pitch_carriers, wrap=False):
             raise TypeError(message)
 
     if wrap:
-        pairs = sequencetools.iterate_sequence_nwise_wrapped(pitch_carriers)
+        pairs = sequencetools.iterate_sequence_nwise(
+            pitch_carriers, wrapped=True)
     else:
         pairs = sequencetools.iterate_sequence_nwise(pitch_carriers)
 

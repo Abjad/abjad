@@ -281,10 +281,10 @@ class LilyPondParser(abctools.Parser):
         if leaves:
             first_leaf = leaves[0]
         for leaf, next_leaf in \
-            sequencetools.iterate_sequence_nwise_wrapped(leaves):
+            sequencetools.iterate_sequence_nwise(leaves, wrapped=True):
 
             span_events = _get_span_events(leaf)
-            directed_events = { }
+            directed_events = {}
 
             # sort span events into directed and undirected groups
             for span_event in span_events:

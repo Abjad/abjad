@@ -118,7 +118,8 @@ def list_numbered_inversion_equivalent_interval_classes_pairwise(pitch_carriers,
             raise TypeError(message)
 
     if wrap:
-        pairs = sequencetools.iterate_sequence_nwise_wrapped(pitch_carriers)
+        pairs = sequencetools.iterate_sequence_nwise(
+            pitch_carriers, wrapped=True)
     else:
         pairs = sequencetools.iterate_sequence_nwise(pitch_carriers)
 
