@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
+import math
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
@@ -531,7 +532,7 @@ class TaleaRhythmMaker(RhythmMaker):
         else:
             prolated_numerators = [
                 pair.numerator for pair in prolated_duration_pairs]
-        map_divisions = sequencetools.split_sequence_extended_to_weights(
+        map_divisions = self._split_sequence_extended_to_weights(
             talea, prolated_numerators, overhang=False)
         quintuplet = (lefts, middles, rights, left_lengths, right_lengths)
         burnished_map_divisions = self._burnish_division_parts(
@@ -628,6 +629,12 @@ class TaleaRhythmMaker(RhythmMaker):
             right_lengths,
             split_divisions_by_counts,
             )
+
+    @staticmethod
+    def _split_sequence_extended_to_weights(sequence, weights, overhang=True):
+        n = int(math.ceil(float(mathtools.weight(weights)) / mathtools.weight(sequence)))
+        sequence = sequencetools.repeat_sequence(sequence, n)
+        return sequencetools.split_sequence_by_weights(sequence, weights, cyclic=False, overhang=overhang)
 
     ### PUBLIC PROPERTIES ###
 

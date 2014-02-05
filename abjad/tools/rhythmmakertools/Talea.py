@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
+from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 
 
