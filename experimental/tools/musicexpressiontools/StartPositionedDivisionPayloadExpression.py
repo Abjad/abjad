@@ -815,7 +815,7 @@ class StartPositionedDivisionPayloadExpression(
 
         Returns newly constructed start-positioned division payload expression.
         '''
-        divisions = sequencetools.repeat_sequence_to_weight_exactly(self.payload, duration)
+        divisions = sequencetools.repeat_sequence_to_weight(self.payload, duration)
         result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=self.start_offset)
         return result
 

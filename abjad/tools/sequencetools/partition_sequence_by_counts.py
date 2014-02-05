@@ -134,7 +134,7 @@ def partition_sequence_by_counts(
 
     if cyclic:
         if overhang:
-            counts = sequencetools.repeat_sequence_to_weight_exactly(
+            counts = sequencetools.repeat_sequence_to_weight(
                 counts, len(sequence))
         else:
             counts = sequencetools.repeat_sequence_to_weight_at_most(

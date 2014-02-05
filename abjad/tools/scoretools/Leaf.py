@@ -437,7 +437,7 @@ class Leaf(Component):
         from abjad.tools import spannertools
         durations = [durationtools.Duration(x) for x in durations]
         if cyclic:
-            durations = sequencetools.repeat_sequence_to_weight_exactly(
+            durations = sequencetools.repeat_sequence_to_weight(
                 durations, self._get_duration())
         durations = [durationtools.Duration(x) for x in durations]
         if sum(durations) < self._get_duration():

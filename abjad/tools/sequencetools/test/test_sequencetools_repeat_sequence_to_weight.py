@@ -2,17 +2,17 @@
 from abjad import *
 
 
-def test_sequencetools_repeat_sequence_to_weight_exactly_01():
+def test_sequencetools_repeat_sequence_to_weight_01():
 
-    assert sequencetools.repeat_sequence_to_weight_exactly((5, -5, -5), 23) == (5, -5, -5, 5, -3)
+    assert sequencetools.repeat_sequence_to_weight((5, -5, -5), 23) == (5, -5, -5, 5, -3)
 
 
-def test_sequencetools_repeat_sequence_to_weight_exactly_02():
+def test_sequencetools_repeat_sequence_to_weight_02():
     r'''Works with nonreduced fractions.
     '''
 
     sequence = [mathtools.NonreducedFraction(3, 16)]
-    sequence = sequencetools.repeat_sequence_to_weight_exactly(
+    sequence = sequencetools.repeat_sequence_to_weight(
         sequence, 
         mathtools.NonreducedFraction(5, 4),
         )

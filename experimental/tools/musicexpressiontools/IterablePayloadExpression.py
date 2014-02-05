@@ -360,7 +360,7 @@ class IterablePayloadExpression(PayloadExpression):
             payload = [mathtools.NonreducedFraction(x) for x in self.payload]
         else:
             payload = self.payload
-        payload = sequencetools.repeat_sequence_to_weight_exactly(
+        payload = sequencetools.repeat_sequence_to_weight(
             payload, duration)
         result = self.__makenew__(payload=payload)
         return result

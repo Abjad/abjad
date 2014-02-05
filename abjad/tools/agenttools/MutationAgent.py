@@ -2217,7 +2217,7 @@ class MutationAgent(abctools.AbjadObject):
         total_split_duration = sum(durations)
         # calculate durations
         if cyclic:
-            durations = sequencetools.repeat_sequence_to_weight_exactly(
+            durations = sequencetools.repeat_sequence_to_weight(
                 durations, total_component_duration)
         elif total_split_duration < total_component_duration:
             final_offset = total_component_duration - sum(durations)

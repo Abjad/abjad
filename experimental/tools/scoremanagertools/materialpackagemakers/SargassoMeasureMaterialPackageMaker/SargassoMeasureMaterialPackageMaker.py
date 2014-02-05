@@ -124,12 +124,12 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         total_duration = durationtools.Duration(total_duration)
 
         weight = int(measure_denominator * total_duration)
-        measure_numerators = sequencetools.repeat_sequence_to_weight_exactly(
+        measure_numerators = sequencetools.repeat_sequence_to_weight(
             measure_numerator_talea, weight)
         #print measure_numerators
 
         weight = int(measure_division_denominator * total_duration)
-        measure_divisions = sequencetools.repeat_sequence_to_weight_exactly(
+        measure_divisions = sequencetools.repeat_sequence_to_weight(
             measure_division_talea, weight)
         #print measure_divisions
 
@@ -176,7 +176,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
             #print prolated_measure_numerators
 
             measure_divisions = \
-                sequencetools.repeat_sequence_to_weight_exactly(
+                sequencetools.repeat_sequence_to_weight(
                 measure_division_talea, sum(prolated_measure_numerators))
             #print measure_divisions
 
