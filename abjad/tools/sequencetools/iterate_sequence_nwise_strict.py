@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 
-def iterate_sequence_nwise_strict(sequence, n):
+def iterate_sequence_nwise_strict(sequence, n=2):
     '''Iterates elements in `sequence` `n` at a time.
 
     ::
 
-        >>> for x in sequencetools.iterate_sequence_nwise_strict(range(10), 4):
+        >>> for x in sequencetools.iterate_sequence_nwise_strict(range(10), n=4):
         ...     x
         ...
         (0, 1, 2, 3)

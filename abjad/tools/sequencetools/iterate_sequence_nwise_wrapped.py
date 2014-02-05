@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 
-def iterate_sequence_nwise_wrapped(sequence, n):
+def iterate_sequence_nwise_wrapped(sequence, n=2):
     '''Iterates elements in `sequence` `n` at a time wrapped to beginning.
 
     ::
 
-        >>> list(sequencetools.iterate_sequence_nwise_wrapped(range(6), 3))
+        >>> list(sequencetools.iterate_sequence_nwise_wrapped(range(6), n=3))
         [(0, 1, 2), (1, 2, 3), (2, 3, 4), (3, 4, 5), (4, 5, 0), (5, 0, 1)]
 
     Returns generator.

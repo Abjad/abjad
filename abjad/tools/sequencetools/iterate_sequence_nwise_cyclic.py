@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 
-def iterate_sequence_nwise_cyclic(sequence, n):
+def iterate_sequence_nwise_cyclic(sequence, n=2):
     '''Iterates elements in `sequence` cyclically `n` at a time.
 
     ::
 
-        >>> g = sequencetools.iterate_sequence_nwise_cyclic(range(6), 3)
+        >>> g = sequencetools.iterate_sequence_nwise_cyclic(range(6), n=3)
         >>> for n in range(10):
         ...   print g.next()
         (0, 1, 2)
