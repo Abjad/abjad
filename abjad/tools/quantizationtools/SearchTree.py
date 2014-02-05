@@ -104,7 +104,7 @@ class SearchTree(AbjadObject):
         leaves = q_grid.leaves
         i = 0
         for leaf_one, leaf_two in \
-            sequencetools.iterate_sequence_nwise_strict(leaves):
+            sequencetools.iterate_sequence_nwise(leaves):
             if (leaf_one.succeeding_q_event_proxies or 
                 leaf_two.preceding_q_event_proxies) and \
                 leaf_one.is_divisible:

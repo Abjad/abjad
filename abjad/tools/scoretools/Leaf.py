@@ -507,7 +507,7 @@ class Leaf(Component):
             flattened_result_leaves = iterate(flattened_result).by_class(
                 scoretools.Leaf)
             # TODO: implement SliceSelection._attach_tie_spanner_to_leaves()
-            for leaf_pair in sequencetools.iterate_sequence_nwise_strict(
+            for leaf_pair in sequencetools.iterate_sequence_nwise(
                 flattened_result_leaves):
                 selection = selectiontools.ContiguousSelection(leaf_pair)
                 selection._attach_tie_spanner_to_leaf_pair()

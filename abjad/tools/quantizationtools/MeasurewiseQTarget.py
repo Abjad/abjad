@@ -61,7 +61,7 @@ class MeasurewiseQTarget(QTarget):
 
         # generate the rest pairwise, comparing tempi
         for q_target_measure_one, q_target_measure_two in \
-            sequencetools.iterate_sequence_nwise_strict(self.items):
+            sequencetools.iterate_sequence_nwise(self.items):
             measure = scoretools.Measure(q_target_measure_two.time_signature)
             for beat in q_target_measure_two.beats:
                 measure.extend(beat.q_grid(beat.beatspan))

@@ -986,7 +986,7 @@ class Timespan(BoundedObject):
             [self.start_offset] + part_durations,
             start=None,
             )
-        offset_pairs = sequencetools.iterate_sequence_nwise_strict(
+        offset_pairs = sequencetools.iterate_sequence_nwise(
             start_offsets)
         result = [type(self)(*offset_pair) for offset_pair in offset_pairs]
         return tuple(result)

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-def iterate_sequence_nwise_strict(sequence, n=2):
+def iterate_sequence_nwise(sequence, n=2):
     '''Iterates elements in `sequence` `n` at a time.
 
     ..  container:: example
@@ -10,7 +10,7 @@ def iterate_sequence_nwise_strict(sequence, n=2):
 
         ::
 
-            >>> for x in sequencetools.iterate_sequence_nwise_strict(range(10), n=4):
+            >>> for x in sequencetools.iterate_sequence_nwise(range(10), n=4):
             ...     x
             ...
             (0, 1, 2, 3)
@@ -27,7 +27,7 @@ def iterate_sequence_nwise_strict(sequence, n=2):
 
         ::
 
-            >>> for x in sequencetools.iterate_sequence_nwise_strict(range(10), n=2):
+            >>> for x in sequencetools.iterate_sequence_nwise(range(10), n=2):
             ...     x
             ...
             (0, 1)

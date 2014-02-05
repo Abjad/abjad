@@ -435,7 +435,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         '''
         from abjad.tools import scoretools
         direction_string = None
-        for left, right in sequencetools.iterate_sequence_nwise_strict(
+        for left, right in sequencetools.iterate_sequence_nwise(
             iterate(self._client).by_class(scoretools.Note)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
@@ -467,7 +467,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         Returns boolean.
         '''
         from abjad.tools import scoretools
-        for left, right in sequencetools.iterate_sequence_nwise_strict(
+        for left, right in sequencetools.iterate_sequence_nwise(
             iterate(self._client).by_class(scoretools.Note)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
@@ -505,7 +505,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         Returns boolean.
         '''
         from abjad.tools import scoretools
-        for left, right in sequencetools.iterate_sequence_nwise_strict(
+        for left, right in sequencetools.iterate_sequence_nwise(
             iterate(self._client).by_class(scoretools.Note)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
@@ -535,7 +535,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         Returns boolean.
         '''
         from abjad.tools import scoretools
-        for left, right in sequencetools.iterate_sequence_nwise_strict(
+        for left, right in sequencetools.iterate_sequence_nwise(
             iterate(self._client).by_class(scoretools.Note)):
             try:
                 assert not (left.written_pitch == right.written_pitch)

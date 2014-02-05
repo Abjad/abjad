@@ -236,7 +236,7 @@ class RhythmTreeNode(TreeNode):
         prolations = [durationtools.Multiplier(1)]
         improper_parentage = self.improper_parentage
         for child, parent in \
-            sequencetools.iterate_sequence_nwise_strict(improper_parentage):
+            sequencetools.iterate_sequence_nwise(improper_parentage):
             prolations.append(durationtools.Multiplier(
                 parent.preprolated_duration, parent._contents_duration))
         return tuple(prolations)

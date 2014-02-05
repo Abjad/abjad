@@ -232,7 +232,7 @@ class PitchArrayColumn(AbjadObject):
         Returns boolean.
         '''
         for upper, lower in \
-            sequencetools.iterate_sequence_nwise_strict(self.cells):
+            sequencetools.iterate_sequence_nwise(self.cells):
             for lower_pitch in lower.pitches:
                 for upper_pitch in upper.pitches:
                     if upper_pitch.numbered_pitch < \

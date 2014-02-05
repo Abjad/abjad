@@ -904,7 +904,7 @@ class Meter(AbjadObject):
             old_offsets = inventory[-1]
             new_offsets = []
             for first, second in \
-                sequencetools.iterate_sequence_nwise_strict(old_offsets):
+                sequencetools.iterate_sequence_nwise(old_offsets):
                 new_offsets.append(first)
                 new_offsets.append((first + second) / 2)
             new_offsets.append(old_offsets[-1])

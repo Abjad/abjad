@@ -53,7 +53,7 @@ class BeatwiseQTarget(QTarget):
 
         # generate the rest pairwise, comparing tempi
         for beat_one, beat_two in \
-            sequencetools.iterate_sequence_nwise_strict(self.items):
+            sequencetools.iterate_sequence_nwise(self.items):
             components = beat_two.q_grid(beat_two.beatspan)
             if (beat_two.tempo != beat_one.tempo) and attach_tempos:
                 attachment_target = components[0]

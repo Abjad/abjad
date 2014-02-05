@@ -667,7 +667,7 @@ class PitchArray(AbjadObject):
         array_depth = self.depth
         subarrays = []
         for start_column, stop_column in \
-            sequencetools.iterate_sequence_nwise_strict(unspanned_indices):
+            sequencetools.iterate_sequence_nwise(unspanned_indices):
             upper_left_pair = (0, start_column)
             lower_right_pair = (array_depth, stop_column)
             subarray = self.copy_subarray(upper_left_pair, lower_right_pair)

@@ -276,7 +276,7 @@ class AbjadBookProcessor(AbjadObject):
         interleaved = []
         interleaved.append(
             '\n'.join(lines[:code_blocks[0].starting_line_number]))
-        for pair in sequencetools.iterate_sequence_nwise_strict(code_blocks):
+        for pair in sequencetools.iterate_sequence_nwise(code_blocks):
             first_block, second_block = pair
             interleaved.extend(output_format(first_block, image_dict))
             interleaved.append('\n'.join(lines[
