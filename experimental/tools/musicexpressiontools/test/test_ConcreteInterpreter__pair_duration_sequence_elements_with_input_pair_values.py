@@ -2,7 +2,7 @@
 from experimental import *
 
 
-def test_sequencetools_pair_duration_sequence_elements_with_input_pair_values_01():
+def test_ConcreteInterpreter__pair_duration_sequence_elements_with_input_pair_values_01():
 
 
     duration_sequence = [10, 10, 10, 10]
