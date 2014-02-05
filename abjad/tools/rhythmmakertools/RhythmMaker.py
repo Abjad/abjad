@@ -147,64 +147,6 @@ class RhythmMaker(AbjadObject):
                 state[slot] = getattr(self, slot, None)
         return state
 
-    # TODO: do not duplicate code; possibly reimplement with GalleryMaker
-    def __illustrate__(self, divisions=None):
-        r'''Illustrates rhythm-maker.
-
-        Returns LilyPond file.
-        '''
-        from abjad import abjad_configuration
-        divisions = divisions or [
-            (4, 8), (3, 4),
-            (2, 4), (1, 16), (1, 16), (2, 8), (2, 16),
-            ]
-        scores = []
-        maker = new(self)
-        division_lists = [divisions]
-        for division_list in division_lists:
-            lists = maker(division_list)
-            music = sequencetools.flatten_sequence(lists)
-            measures = scoretools.make_spacer_skip_measures(division_list)
-            time_signature_context = scoretools.Context(
-                measures,
-                context_name='TimeSignatureContext',
-                name='TimeSignatureContext',
-                )
-            measures = scoretools.make_spacer_skip_measures(division_list)
-            staff = scoretools.Staff(measures)
-            staff.context_name = 'RhythmicStaff'
-            staff.name = 'Note-entry staff'
-            measures = mutate(staff).replace_measure_contents(music)
-            score = scoretools.Score()
-            score.append(time_signature_context)
-            score.append(staff)
-            scores.append(score)
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file()
-        lilypond_file.items.remove(lilypond_file.score_block)
-        for score in scores:
-            score.add_final_bar_line()
-            selection = score.select_leaves(start=-1)
-            last_leaf = selection[0]
-            string = "override Staff.BarLine #'extra-offset = #'(1.6 . 0)"
-            command = indicatortools.LilyPondCommand(
-                string,
-                'after',
-                )
-            attach(command, last_leaf)
-            if not inspect_(score).is_well_formed():
-                message = 'score is not well-formed: {!r}.'
-                message = message.format(score)
-                message += '\n'
-                message += inspect_(score).tabulate_well_formedness_violations()
-                raise Exception(message)
-            lilypond_file.items.append(score)
-        lilypond_file.default_paper_size = ('letter', 'portrait')
-        lilypond_file.global_staff_size = 10
-        lilypond_file.use_relative_includes = True
-        lilypond_file.file_initial_user_includes.append('stylesheet.ily')
-        lilypond_file.paper_block.tagline = markuptools.Markup()
-        return lilypond_file
-
     # TODO: replace with StorageFormatManager
     def __makenew__(self, *args, **kwargs):
         r'''Makes new rhythm-maker with optional `kwargs`.
