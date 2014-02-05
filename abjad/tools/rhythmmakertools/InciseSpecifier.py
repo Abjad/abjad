@@ -57,23 +57,6 @@ class InciseSpecifier(AbjadObject):
         assert isinstance(fill_with_notes, bool)
         self._fill_with_notes = fill_with_notes
 
-    ### SPECIAL METHODS ##
-
-    def __makenew__(self, *args, **kwargs):
-        r'''Makes new incise specifier with optional `kwargs`.
-
-        Returns new incise specifier.
-        '''
-        from abjad.tools import systemtools
-        assert not args
-        arguments = {}
-        manager = systemtools.StorageFormatManager
-        argument_names = manager.get_keyword_argument_names(self)
-        for argument_name in argument_names:
-            arguments[argument_name] = getattr(self, argument_name)
-        arguments.update(kwargs)
-        return type(self)(**arguments)
-
     ### PRIVATE METHODS ###
 
     @staticmethod

@@ -227,21 +227,6 @@ class BurnishSpecifier(AbjadObject):
             format_specification=format_specification,
             )
 
-    def __makenew__(self, **kwargs):
-        r'''Makes new burnish specifier with optional `kwargs`.
-
-        Returns new burnish specifier.
-        '''
-        from abjad.tools import systemtools
-        assert not args
-        arguments = {}
-        manager = systemtools.StorageFormatManager
-        argument_names = manager.get_keyword_argument_names(self)
-        for argument_name in argument_names:
-            arguments[argument_name] = getattr(self, argument_name)
-        arguments.update(kwargs)
-        return type(self)(**arguments)
-
     def __ne__(self, expr):
         r'''Is true when `expr` does not equal burnish specifier.
 

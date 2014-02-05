@@ -86,21 +86,6 @@ class DurationSpellingSpecifier(AbjadObject):
             format_specification=format_specification,
             )
 
-    def __makenew__(self, *args, **kwargs):
-        r'''Makes new duration spelling specifier with optional `kwargs`.
-
-        Returns new duration spelling specifier.
-        '''
-        from abjad.tools import systemtools
-        assert not args
-        arguments = {}
-        manager = systemtools.StorageFormatManager
-        argument_names = manager.get_keyword_argument_names(self)
-        for argument_name in argument_names:
-            arguments[argument_name] = getattr(self, argument_name)
-        arguments.update(kwargs)
-        return type(self)(**arguments)
-
     def __repr__(self):
         r'''Gets interpreter representation of duration spelling specifier.
 

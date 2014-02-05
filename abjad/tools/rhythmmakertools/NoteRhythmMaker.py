@@ -162,59 +162,6 @@ class NoteRhythmMaker(RhythmMaker):
         '''
         return RhythmMaker.__illustrate__(self, divisions=divisions)
 
-    def __makenew__(self, *args, **kwargs):
-        r'''Makes new note rhythm-maker.
-
-        ..  container:: example
-
-            ::
-
-                >>> maker = rhythmmakertools.NoteRhythmMaker()
-                >>> tie_specifier = rhythmmakertools.TieSpecifier(
-                ...     tie_across_divisions=True,
-                ...     )
-                >>> new_maker = new(maker, tie_specifier=tie_specifier)
-
-            ::
-
-                >>> print format(new_maker)
-                rhythmmakertools.NoteRhythmMaker(
-                    tie_specifier=rhythmmakertools.TieSpecifier(
-                        tie_across_divisions=True,
-                        tie_split_notes=True,
-                        ),
-                    )
-
-            ::
-
-                >>> divisions = [(5, 8), (3, 8)]
-                >>> music = new_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = new_maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 5/8
-                        c'2 ~
-                        c'8 ~
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                }
-
-        Returns new note rhythm-maker.
-        '''
-        return RhythmMaker.__makenew__(self, *args, **kwargs)
-
     def __repr__(self):
         r'''Gets interpreter representation of note rhythm-maker.
 

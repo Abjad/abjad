@@ -95,50 +95,6 @@ class RestRhythmMaker(RhythmMaker):
         superclass = super(RestRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
-    def __makenew__(self, *args, **kwargs):
-        r'''Makes new rest rhythm-maker with `kwargs`.
-
-        ..  container:: example
-
-            ::
-
-                >>> new_maker = new(maker)
-
-            ::
-
-                >>> print format(new_maker)
-                rhythmmakertools.RestRhythmMaker()
-
-            ::
-
-                >>> divisions = [(5, 16), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 5/16
-                        r4
-                        r16
-                    }
-                    {
-                        \time 3/8
-                        r4.
-                    }
-                }
-
-        Returns new rest rhythm-maker.
-        '''
-        return RhythmMaker.__makenew__(self, *args, **kwargs)
-
     ### PRIVATE METHODS ###
 
     def _make_music(self, duration_pairs, seeds):
@@ -149,7 +105,7 @@ class RestRhythmMaker(RhythmMaker):
             specifier = rhythmmakertools.DurationSpellingSpecifier()
         for duration_pair in duration_pairs:
             rests = scoretools.make_leaves(
-                pitches=None, 
+                pitches=None,
                 durations=[duration_pair],
                 decrease_durations_monotonically=\
                     specifier.decrease_durations_monotonically,

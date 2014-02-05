@@ -13,7 +13,7 @@ from abjad.tools.topleveltools import attach
 
 class IncisedRhythmMaker(RhythmMaker):
     r'''Incised rhythm-maker.
-    
+
     ..  container:: example
 
         ::
@@ -135,22 +135,15 @@ class IncisedRhythmMaker(RhythmMaker):
             seeds=seeds,
             )
 
-    def __makenew__(self, *args, **kwargs):
-        r'''Makes new incised rhythm-maker with optional `kwargs`.
-
-        Returns new incised rhythm-maker.
-        '''
-        return RhythmMaker.__makenew__(self, *args, **kwargs)
-
     ### PRIVATE METHODS ###
 
     def _make_division_incised_numeric_map(
-        self, 
+        self,
         duration_pairs=None,
-        prefix_talea=None, 
+        prefix_talea=None,
         prefix_lengths=None,
-        suffix_talea=None, 
-        suffix_lengths=None, 
+        suffix_talea=None,
+        suffix_lengths=None,
         extra_counts_per_division=None,
         ):
         numeric_map, prefix_talea_index, suffix_talea_index = [], 0, 0
@@ -224,14 +217,14 @@ class IncisedRhythmMaker(RhythmMaker):
         extra_counts_per_division = input_[4]
         split_divisions_by_counts = input_[5]
         taleas = (
-            prefix_talea, 
-            suffix_talea, 
-            extra_counts_per_division, 
+            prefix_talea,
+            suffix_talea,
+            extra_counts_per_division,
             split_divisions_by_counts,
             )
         input_ = self._scale_taleas(
-            duration_pairs, 
-            self.incise_specifier.talea_denominator, 
+            duration_pairs,
+            self.incise_specifier.talea_denominator,
             taleas,
             )
         duration_pairs = input_[0]
@@ -272,7 +265,7 @@ class IncisedRhythmMaker(RhythmMaker):
             result.extend(selections)
         else:
             tuplets = self._make_tuplets(
-                secondary_duration_pairs, 
+                secondary_duration_pairs,
                 selections,
                 )
             result.extend(tuplets)
@@ -310,9 +303,9 @@ class IncisedRhythmMaker(RhythmMaker):
         elif suffix_space < suffix_weight:
             weights = [suffix_space]
             suffix = sequencetools.split_sequence_by_weights(
-                suffix, 
-                weights, 
-                cyclic=False, 
+                suffix,
+                weights,
+                cyclic=False,
                 overhang=False,
                 )[0]
         numeric_map_part = prefix + middle + suffix

@@ -95,53 +95,6 @@ class SkipRhythmMaker(RhythmMaker):
         superclass = super(SkipRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
-    def __makenew__(self, *args, **kwargs):
-        r'''Makes new skip rhythm-maker with `kwargs`.
-
-        ..  container:: example
-
-            ::
-
-                >>> new_maker = new(maker)
-
-            ::
-
-                >>> print format(new_maker)
-                rhythmmakertools.SkipRhythmMaker()
-
-            ::
-
-                >>> divisions = [(1, 4), (3, 16), (5, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 1/4
-                        s1 * 1/4
-                    }
-                    {
-                        \time 3/16
-                        s1 * 3/16
-                    }
-                    {
-                        \time 5/8
-                        s1 * 5/8
-                    }
-                }
-
-        Returns new skip rhythm-maker.
-        '''
-        return RhythmMaker.__makenew__(self, *args, **kwargs)
-
     ### PRIVATE METHODS ###
 
     def _make_music(self, duration_pairs, seeds):

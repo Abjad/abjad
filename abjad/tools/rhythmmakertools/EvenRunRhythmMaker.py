@@ -207,67 +207,6 @@ class EvenRunRhythmMaker(RhythmMaker):
         superclass = super(EvenRunRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
-    def __makenew__(self, *args, **kwargs):
-        r'''Makes new even-run rhythm-maker with `kwargs`.
-
-        ..  container:: example
-
-            ::
-
-                >>> new_maker = new(maker, exponent=1)
-
-            ::
-
-                >>> print format(new_maker)
-                rhythmmakertools.EvenRunRhythmMaker(
-                    exponent=1,
-                    )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 4), (2, 4)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 4/8
-                        {
-                            c'8 [
-                            c'8
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                    {
-                        \time 3/4
-                        {
-                            c'4
-                            c'4
-                            c'4
-                        }
-                    }
-                    {
-                        \time 2/4
-                        {
-                            c'4
-                            c'4
-                        }
-                    }
-                }
-
-        Returns new even-run rhythm-maker.
-        '''
-        return RhythmMaker.__makenew__(self, *args, **kwargs)
-
     ### PRIVATE METHODS ###
 
     def _make_container(self, division):

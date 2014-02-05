@@ -22,23 +22,6 @@ class ExampleWrapper(AbjadObject):
         self._arguments = arguments
         self._division_lists = tuple(division_lists)
 
-    ### SPECIAL METHODS ###
-
-    def __makenew__(self, *args, **kwargs):
-        r'''Makes new example wrapper with optional `kwargs`.
-
-        Returns new example wrapper.
-        '''
-        from abjad.tools import systemtools
-        assert not args
-        arguments = {}
-        manager = systemtools.StorageFormatManager
-        argument_names = manager.get_keyword_argument_names(self)
-        for argument_name in argument_names:
-            arguments[argument_name] = getattr(self, argument_name)
-        arguments.update(kwargs)
-        return type(self)(**arguments)
-
     ### PRIVATE METHODS ###
 
     def _to_markup(self, class_):
