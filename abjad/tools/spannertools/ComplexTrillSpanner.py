@@ -177,6 +177,7 @@ class ComplexTrillSpanner(Spanner):
         ..  container:: example
 
             ::
+
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> interval = pitchtools.NamedInterval('m3')
                 >>> complex_trill = spannertools.ComplexTrillSpanner(
