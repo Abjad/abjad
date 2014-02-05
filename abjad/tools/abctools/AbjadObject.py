@@ -82,7 +82,9 @@ class AbjadObject(object):
 
     @property
     def _repr_specification(self):
-        return self._storage_format_specification.__makenew__(
+        from abjad.tools.topleveltools import new
+        return new(
+            self._storage_format_specification,
             is_indented=False,
             )
 
