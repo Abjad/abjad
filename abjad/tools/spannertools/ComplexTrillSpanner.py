@@ -43,6 +43,9 @@ class ComplexTrillSpanner(Spanner):
                 c'4 ~ \startTrillSpan f'
                 c'8
                 <> \stopTrillSpan
+                \once \override TrillSpanner.bound-details.left.text = \markup {
+                    \null
+                    }
                 \pitchedTrill
                 d'8 \startTrillSpan g'
                 <> \stopTrillSpan
@@ -88,6 +91,8 @@ class ComplexTrillSpanner(Spanner):
         new._interval = self.interval
 
     def _format_before_leaf(self, leaf):
+        from abjad.tools import lilypondnametools
+        from abjad.tools import markuptools
         from abjad.tools import scoretools
         result = []
         prototype = (
@@ -99,10 +104,22 @@ class ComplexTrillSpanner(Spanner):
             return result
         leaf_ids = [id(x) for x in self._leaves]
         previous_leaf = leaf._get_leaf(-1)
-        if id(previous_leaf) not in leaf_ids or \
-            isinstance(previous_leaf, prototype) or \
-            inspect_(leaf).get_logical_tie() != \
-            inspect_(previous_leaf).get_logical_tie():
+        logical_tie = inspect_(leaf).get_logical_tie()
+        if leaf is logical_tie.head:
+            if id(previous_leaf) in leaf_ids and \
+                not isinstance(previous_leaf, prototype):
+                override = lilypondnametools.LilyPondGrobOverride(
+                    grob_name='TrillSpanner',
+                    is_once=True,
+                    property_path=(
+                        'bound-details',
+                        'left',
+                        'text',
+                        ),
+                    value=markuptools.Markup(r'\null'),
+                    )
+                override_string = '\n'.join(override.override_format_pieces)
+                result.append(override_string)
             if self.interval is not None:
                 result.append(r'\pitchedTrill')
         return result
@@ -175,6 +192,9 @@ class ComplexTrillSpanner(Spanner):
                     \pitchedTrill
                     d'4 \startTrillSpan f'
                     <> \stopTrillSpan
+                    \once \override TrillSpanner.bound-details.left.text = \markup {
+                        \null
+                        }
                     \pitchedTrill
                     e'4 \startTrillSpan g'
                     <> \stopTrillSpan
