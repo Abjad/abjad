@@ -5,21 +5,22 @@ from abjad.tools import mathtools
 
 
 def repeat_sequence_to_weight(sequence, weight, allow_total=Exact):
-    '''Repeats `sequence` to `weight` exactly.
+    '''Repeats `sequence` to `weight`.
 
     ..  container:: example
 
-        Repeats sequence to weight of 23:
+        Repeats sequence to weight of 23 exactly:
 
         ::
 
             >>> sequencetools.repeat_sequence_to_weight((5, -5, -5), 23)
             (5, -5, -5, 5, -3)
 
+        Truncates last element when necessary.
+
     ..  container:: example
 
-        Repeats sequence to weight of 23. Allows weight to total just more 
-        than 23 to avoid truncating last element:
+        Repeats sequence to weight of 23 more:
 
         ::
 
@@ -30,10 +31,11 @@ def repeat_sequence_to_weight(sequence, weight, allow_total=Exact):
             ...     )
             (5, -5, -5, 5, -5)
 
+        Does not truncate last element.
+
     ..  container:: example
 
-        Repeats sequence to weight of 23. Allows weight to total just less 
-        than 23 to discard any oversize last element:
+        Repeats sequence to weight of 23 or less:
 
         ::
 
@@ -43,6 +45,8 @@ def repeat_sequence_to_weight(sequence, weight, allow_total=Exact):
             ...     allow_total=Less,
             ...     )
             (5, -5, -5, 5)
+
+        Discards last element when necessary.
 
     Returns newly constructed `sequence` object.
     '''

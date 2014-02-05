@@ -70,7 +70,8 @@ def split_sequence_by_weights(sequence, weights, cyclic=False, overhang=False):
     current_piece = []
 
     if cyclic:
-        weights = sequencetools.repeat_sequence_to_weight_at_most(weights, mathtools.weight(sequence))
+        weights = sequencetools.repeat_sequence_to_weight(
+            weights, mathtools.weight(sequence), allow_total=Less)
 
     for weight in weights:
         current_piece_weight = mathtools.weight(current_piece)

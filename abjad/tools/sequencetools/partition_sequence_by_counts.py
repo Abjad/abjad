@@ -137,8 +137,8 @@ def partition_sequence_by_counts(
             counts = sequencetools.repeat_sequence_to_weight(
                 counts, len(sequence))
         else:
-            counts = sequencetools.repeat_sequence_to_weight_at_most(
-                counts, len(sequence))
+            counts = sequencetools.repeat_sequence_to_weight(
+                counts, len(sequence), allow_total=Less)
     elif overhang:
         weight_counts = mathtools.weight(counts)
         len_sequence = len(sequence)
