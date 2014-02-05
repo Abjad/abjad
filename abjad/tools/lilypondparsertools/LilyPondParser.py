@@ -915,6 +915,50 @@ class LilyPondParser(abctools.Parser):
         return sorted(contexts.keys())
         
     @staticmethod
+    def list_known_dynamics():
+        r'''Lists all dynamics recognized by LilyPond parser.
+
+        ::
+
+            >>> for x in lilypondparsertools.LilyPondParser.list_known_dynamics():
+            ...     print x
+            ...
+            f
+            ff
+            fff
+            ffff
+            fffff
+            fp
+            fz
+            mf
+            mp
+            p
+            pp
+            ppp
+            pppp
+            ppppp
+            rfz
+            sf
+            sff
+            sfp
+            sfz
+            sp
+            spp
+
+        Returns tuple.
+        '''
+        from abjad.ly import current_module
+        result = []
+        for key, value in current_module.iteritems():
+            if not isinstance(value, dict):
+                continue
+            if 'dynamic-event' in value.get('types', ()):
+                result.append(key)
+        result.sort()
+        result = tuple(result)
+        return result
+
+    @staticmethod
     def list_known_grobs():
         r'''Lists all LilyPond grobs recognized by LilyPond parser.
 
