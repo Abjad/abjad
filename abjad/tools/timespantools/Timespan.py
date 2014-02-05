@@ -14,10 +14,10 @@ class Timespan(BoundedObject):
 
         ::
 
-                >>> timespan_1 = timespantools.Timespan(0, 10)
-                >>> timespan_2 = timespantools.Timespan(5, 12)
-                >>> timespan_3 = timespantools.Timespan(-2, 2)
-                >>> timespan_4 = timespantools.Timespan(10, 20)
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 12)
+            >>> timespan_3 = timespantools.Timespan(-2, 2)
+            >>> timespan_4 = timespantools.Timespan(10, 20)
 
     Timespans are closed-open intervals.
 
@@ -86,12 +86,17 @@ class Timespan(BoundedObject):
         Returns timespan inventory.
         '''
         from abjad.tools import timespantools
+        from abjad.tools.topleveltools import new
         expr = self._get_timespan(expr)
         if not self.intersects_timespan(expr):
             return timespantools.TimespanInventory()
         new_start_offset = max(self.start_offset, expr.start_offset)
         new_stop_offset = min(self.stop_offset, expr.stop_offset)
-        timespan = type(self)(new_start_offset, new_stop_offset)
+        timespan = new(
+            self,
+            start_offset=new_start_offset,
+            stop_offset=new_stop_offset,
+            )
         return timespantools.TimespanInventory([timespan])
 
     def __eq__(self, timespan):
@@ -256,41 +261,6 @@ class Timespan(BoundedObject):
                 return True
             return False
         return self.start_offset < expr.start_offset
-
-    def __makenew__(self, *args, **kwargs):
-        r'''Makes  new timespan with `args` and `kwargs`.
-
-        ::
-
-            >>> new(timespan_1, stop_offset=Offset(9))
-            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(9, 1))
-
-        Returns new timespan.
-        '''
-        from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        keyword_argument_dictionary = \
-            manager.get_keyword_argument_dictionary(self)
-        positional_argument_dictionary = \
-            manager.get_positional_argument_dictionary(self)
-        for key, value in kwargs.iteritems():
-            if key in positional_argument_dictionary:
-                positional_argument_dictionary[key] = value
-            elif key in keyword_argument_dictionary:
-                keyword_argument_dictionary[key] = value
-            else:
-                raise KeyError(key)
-        positional_argument_values = []
-        positional_argument_names = getattr(
-            self, '_positional_argument_names', None) or \
-            manager.get_positional_argument_names(self)
-        for positional_argument_name in positional_argument_names:
-            positional_argument_value = positional_argument_dictionary[
-                positional_argument_name]
-            positional_argument_values.append(positional_argument_value)
-        result = type(self)(
-            *positional_argument_values, **keyword_argument_dictionary)
-        return result
 
     def __ne__(self, timespan):
         r'''Is true when `timespan` is not a timespan with equivalent offsets.
@@ -1404,6 +1374,7 @@ class Timespan(BoundedObject):
 
         Returns new timespan.
         '''
+        from abjad.tools.topleveltools import new
         multiplier = abs(durationtools.Multiplier(multiplier))
         assert 0 < multiplier
         new_start_offset = durationtools.Offset(
@@ -1415,10 +1386,12 @@ class Timespan(BoundedObject):
                 new_stop_offset = new_stop_offset + multiplier
             else:
                 new_start_offset = new_start_offset - multiplier
-        return self.__makenew__(
+        result = new(
+            self,
             start_offset=new_start_offset,
             stop_offset=new_stop_offset,
             )
+        return result
 
     def scale(self, multiplier, anchor=Left):
         r'''Scales timespan by `multiplier`.
@@ -1445,6 +1418,7 @@ class Timespan(BoundedObject):
 
         Returns new timespan.
         '''
+        from abjad.tools.topleveltools import new
         multiplier = durationtools.Multiplier(multiplier)
         assert 0 < multiplier
         new_duration = multiplier * self.duration
@@ -1456,7 +1430,11 @@ class Timespan(BoundedObject):
             new_start_offset = self.stop_offset - new_duration
         else:
             raise ValueError
-        result = type(self)(new_start_offset, new_stop_offset)
+        result = new(
+            self,
+            start_offset=new_start_offset,
+            stop_offset=new_stop_offset,
+            )
         return result
 
     def set_duration(self, duration):
@@ -1473,9 +1451,13 @@ class Timespan(BoundedObject):
 
         Returns new timespan.
         '''
+        from abjad.tools.topleveltools import new
         duration = durationtools.Duration(duration)
         new_stop_offset = self.start_offset + duration
-        result = type(self)(self.start_offset, new_stop_offset)
+        result = new(
+            self,
+            stop_offset=new_stop_offset,
+            )
         return result
 
     def set_offsets(self, start_offset=None, stop_offset=None):
@@ -1507,6 +1489,7 @@ class Timespan(BoundedObject):
 
         Returns new timespan.
         '''
+        from abjad.tools.topleveltools import new
         if start_offset is not None and 0 <= start_offset:
             new_start_offset = start_offset
         elif start_offset is not None and start_offset < 0:
@@ -1521,7 +1504,11 @@ class Timespan(BoundedObject):
                 self.stop_offset + durationtools.Offset(stop_offset)
         else:
             new_stop_offset = self.stop_offset
-        result = type(self)(new_start_offset, new_stop_offset)
+        result = new(
+            self,
+            start_offset=new_start_offset,
+            stop_offset=new_stop_offset,
+            )
         return result
 
     # TODO: extend to self.split_at_offsets()
@@ -1561,16 +1548,13 @@ class Timespan(BoundedObject):
                 start_offset=self.start_offset,
                 stop_offset=offset,
                 )
-            #left = type(self)(self.start_offset, offset)
             right = new(self,
                 start_offset=offset,
                 stop_offset=self.stop_offset,
                 )
-            #right = type(self)(offset, self.stop_offset)
             return left, right
         else:
             return new(self)
-            #return type(self)(self.start_offset, self.stop_offset)
 
     def starts_after_offset(self, offset):
         r'''Is true when timespan overlaps start of `timespan`. Otherwise false:
@@ -2201,13 +2185,19 @@ class Timespan(BoundedObject):
 
         Returns newly emitted timespan.
         '''
+        from abjad.tools.topleveltools import new
         multiplier = durationtools.Multiplier(multiplier)
         assert 0 < multiplier
         if anchor is None:
             anchor = self.start_offset
         new_start_offset = (multiplier * (self.start_offset - anchor)) + anchor
         new_stop_offset =  (multiplier * (self.stop_offset - anchor)) + anchor
-        return type(self)(new_start_offset, new_stop_offset)
+        result = new(
+            self,
+            start_offset=new_start_offset,
+            stop_offset=new_stop_offset,
+            )
+        return result
 
     def translate(self, translation=None):
         r'''Translates timespan by `translation`.

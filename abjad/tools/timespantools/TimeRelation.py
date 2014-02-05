@@ -77,22 +77,3 @@ class TimeRelation(AbjadObject):
         Returns boolean.
         '''
         pass
-
-    ### PUBLIC METHODS ###
-
-    def __makenew__(self, *args, **kwargs):
-        r'''Makes new time relation with optional `args` and `kwargs`.
-
-        Returns new time relation.
-        '''
-        from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        keyword_argument_dictionary = \
-            manager.get_keyword_argument_dictionary(self)
-        for key, value in kwargs.iteritems():
-            keyword_argument_dictionary[key] = value
-        result = type(self)(
-            *manager.get_positional_argument_values(self),
-            **keyword_argument_dictionary
-            )
-        return result
