@@ -1,5 +1,4 @@
-# -*- encoding: utf-8 -*-
-lilypond_version = "2.17.9"
+lilypond_version = "2.19.1"
 
 engravers = set([
     "Accidental_engraver",
@@ -48,13 +47,13 @@ engravers = set([
     "Forbid_line_break_engraver",
     "Fretboard_engraver",
     "Glissando_engraver",
+    "Grace_auto_beam_engraver",
     "Grace_beam_engraver",
     "Grace_engraver",
     "Grace_spacing_engraver",
     "Grid_line_span_engraver",
     "Grid_point_engraver",
     "Grob_pq_engraver",
-    "Hara_kiri_engraver",
     "Horizontal_bracket_engraver",
     "Hyphen_engraver",
     "Instrument_name_engraver",
@@ -62,6 +61,7 @@ engravers = set([
     "Keep_alive_together_engraver",
     "Key_engraver",
     "Key_performer",
+    "Kievan_ligature_engraver",
     "Laissez_vibrer_engraver",
     "Ledger_line_engraver",
     "Ligature_bracket_engraver",
@@ -72,8 +72,8 @@ engravers = set([
     "Melody_engraver",
     "Mensural_ligature_engraver",
     "Metronome_mark_engraver",
+    "Midi_control_function_performer",
     "Multi_measure_rest_engraver",
-    "New_dynamic_engraver",
     "New_fingering_engraver",
     "Note_head_line_engraver",
     "Note_heads_engraver",

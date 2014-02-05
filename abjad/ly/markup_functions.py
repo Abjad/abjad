@@ -1,5 +1,4 @@
-# -*- encoding: utf-8 -*-
-lilypond_version = "2.17.9"
+lilypond_version = "2.19.1"
 
 markup_functions = {
     'abs-fontsize': ('number?', 'cheap-markup?',),
@@ -23,11 +22,15 @@ markup_functions = {
     'doubleflat': (),
     'doublesharp': (),
     'draw-circle': ('number?', 'number?', 'boolean?',),
+    'draw-dashed-line': ('number-pair?',),
+    'draw-dotted-line': ('number-pair?',),
     'draw-hline': (),
     'draw-line': ('number-pair?',),
     'dynamic': ('cheap-markup?',),
+    'ellipse': ('cheap-markup?',),
     'epsfile': ('number?', 'number?', 'string?',),
     'eyeglasses': (),
+    'fermata': (),
     'fill-line': ('markup-list?',),
     'fill-with-pattern': ('number?', 'ly:dir?', 'cheap-markup?', 'cheap-markup?', 'cheap-markup?',),
     'filled-box': ('number-pair?', 'number-pair?', 'number?',),
@@ -75,6 +78,7 @@ markup_functions = {
     'null': (),
     'number': ('cheap-markup?',),
     'on-the-fly': ('procedure?', 'cheap-markup?',),
+    'oval': ('cheap-markup?',),
     'override': ('pair?', 'cheap-markup?',),
     'pad-around': ('number?', 'cheap-markup?',),
     'pad': ('number?', 'cheap-markup?',),
@@ -143,7 +147,9 @@ markup_functions = {
 markup_list_functions = {
     'column-lines': ('markup-list?',),
     'justified-lines': ('markup-list?',),
+    'map-markup-commands': ('procedure?', 'markup-list?',),
     'override-lines': ('pair?', 'markup-list?',),
+    'score-lines': ('ly:score?',),
     'table-of-contents': (),
     'wordwrap-internal': ('boolean?', 'markup-list?',),
     'wordwrap-lines': ('markup-list?',),

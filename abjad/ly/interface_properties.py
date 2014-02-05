@@ -1,5 +1,4 @@
-# -*- encoding: utf-8 -*-
-lilypond_version = "2.17.9"
+lilypond_version = "2.19.1"
 
 interface_properties = {
     "accidental-interface": [
@@ -28,12 +27,15 @@ interface_properties = {
     ],
     "ambitus-interface": [
         "gap",
+        "length-fraction",
+        "maximum-gap",
         "thickness",
     ],
     "arpeggio-interface": [
         "arpeggio-direction",
         "dash-definition",
         "positions",
+        "protrusion",
         "script-priority",
     ],
     "axis-group-interface": [
@@ -44,7 +46,6 @@ interface_properties = {
         "nonstaff-nonstaff-spacing",
         "nonstaff-relatedstaff-spacing",
         "nonstaff-unrelatedstaff-spacing",
-        "outside-staff-placement-directive",
         "staff-affinity",
         "staff-staff-spacing",
     ],
@@ -74,7 +75,6 @@ interface_properties = {
         "X-positions",
         "annotation",
         "auto-knee-gap",
-        "beam-gap",
         "beam-thickness",
         "beamed-stem-shorten",
         "beaming",
@@ -86,6 +86,7 @@ interface_properties = {
         "damping",
         "details",
         "direction",
+        "gap",
         "gap-count",
         "grow-direction",
         "inspect-quants",
@@ -122,6 +123,7 @@ interface_properties = {
         "glyph-name",
         "non-default",
     ],
+    "clef-modifier-interface": [],
     "cluster-beacon-interface": [
         "positions",
     ],
@@ -135,6 +137,7 @@ interface_properties = {
         "style",
     ],
     "dot-column-interface": [
+        "chord-dots-limit",
         "direction",
         "positioning-done",
     ],
@@ -169,6 +172,7 @@ interface_properties = {
     "fingering-column-interface": [
         "padding",
         "positioning-done",
+        "snap-radius",
     ],
     "flag-interface": [
         "glyph-name",
@@ -225,9 +229,6 @@ interface_properties = {
         "layer",
         "minimum-X-extent",
         "minimum-Y-extent",
-        "outside-staff-horizontal-padding",
-        "outside-staff-padding",
-        "outside-staff-priority",
         "rotation",
         "skyline-horizontal-padding",
         "springs-and-rods",
@@ -270,18 +271,19 @@ interface_properties = {
     "key-cancellation-interface": [],
     "key-signature-interface": [
         "alteration-alist",
-        "c0-position",
         "flat-positions",
         "glyph-name-alist",
         "padding",
         "padding-pairs",
         "sharp-positions",
     ],
+    "kievan-ligature-interface": [
+        "padding",
+    ],
     "ledger-line-spanner-interface": [
         "gap",
         "length-fraction",
         "minimum-length-fraction",
-        "thickness",
     ],
     "ledgered-interface": [
         "no-ledgers",
@@ -385,13 +387,20 @@ interface_properties = {
         "space-to-barline",
         "stem-spacing-correction",
     ],
-    "octavate-eight-interface": [],
     "only-prebreak-interface": [],
     "ottava-bracket-interface": [
         "bracket-flare",
         "edge-height",
         "minimum-length",
         "shorten-pair",
+    ],
+    "outside-staff-axis-group-interface": [
+        "outside-staff-placement-directive",
+    ],
+    "outside-staff-interface": [
+        "outside-staff-horizontal-padding",
+        "outside-staff-padding",
+        "outside-staff-priority",
     ],
     "paper-column-interface": [
         "between-cols",
@@ -460,12 +469,11 @@ interface_properties = {
         "toward-stem-shift",
     ],
     "self-alignment-interface": [
-        "collision-bias",
-        "collision-padding",
         "self-alignment-X",
         "self-alignment-Y",
     ],
     "semi-tie-column-interface": [
+        "direction",
         "head-direction",
         "positioning-done",
         "tie-configuration",
@@ -486,6 +494,7 @@ interface_properties = {
     "side-position-interface": [
         "add-stem-support",
         "direction",
+        "horizon-padding",
         "minimum-space",
         "padding",
         "side-axis",
@@ -612,6 +621,7 @@ interface_properties = {
     ],
     "text-interface": [
         "baseline-skip",
+        "flag-style",
         "replacement-alist",
         "text",
         "text-direction",

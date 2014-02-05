@@ -948,6 +948,7 @@ class LilyPondParser(abctools.Parser):
             BreathingSign
             ChordName
             Clef
+            ClefModifier
             ClusterSpanner
             ClusterSpannerBeacon
             CombineTextScript
@@ -979,6 +980,7 @@ class LilyPondParser(abctools.Parser):
             InstrumentSwitch
             KeyCancellation
             KeySignature
+            KievanLigature
             LaissezVibrerTie
             LaissezVibrerTieColumn
             LedgerLineSpanner
@@ -1002,7 +1004,6 @@ class LilyPondParser(abctools.Parser):
             NoteHead
             NoteName
             NoteSpacing
-            OctavateEight
             OttavaBracket
             PaperColumn
             ParenthesesItem
@@ -1126,11 +1127,15 @@ class LilyPondParser(abctools.Parser):
             doubleflat
             doublesharp
             draw-circle
+            draw-dashed-line
+            draw-dotted-line
             draw-hline
             draw-line
             dynamic
+            ellipse
             epsfile
             eyeglasses
+            fermata
             fill-line
             fill-with-pattern
             filled-box
@@ -1165,6 +1170,7 @@ class LilyPondParser(abctools.Parser):
             lookup
             lower
             magnify
+            map-markup-commands
             markalphabet
             markletter
             medium
@@ -1179,6 +1185,7 @@ class LilyPondParser(abctools.Parser):
             null
             number
             on-the-fly
+            oval
             override
             override-lines
             pad
@@ -1206,6 +1213,7 @@ class LilyPondParser(abctools.Parser):
             sans
             scale
             score
+            score-lines
             semiflat
             semisharp
             sesquiflat

@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
+
 from abjad.tools.pitchtools import NamedPitchClass
 
 
-lilypond_version = "2.17.9"
+lilypond_version = "2.19.1"
 
 language_pitch_names = {
     'nederlands':  {

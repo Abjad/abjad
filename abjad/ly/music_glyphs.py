@@ -1,5 +1,4 @@
-# -*- encoding: utf-8 -*-
-lilypond_version = "2.17.9"
+lilypond_version = "2.19.1"
 
 music_glyphs = set([
     "accidentals.doublesharp",
