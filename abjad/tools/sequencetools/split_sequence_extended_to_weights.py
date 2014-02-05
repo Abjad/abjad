@@ -32,6 +32,6 @@ def split_sequence_extended_to_weights(sequence, weights, overhang=True):
 
     n = int(math.ceil(float(mathtools.weight(weights)) / mathtools.weight(sequence)))
 
-    sequence = sequencetools.repeat_sequence_n_times(sequence, n)
+    sequence = sequencetools.repeat_sequence(sequence, n)
 
     return sequencetools.split_sequence_by_weights(sequence, weights, cyclic=False, overhang=overhang)

@@ -3,19 +3,19 @@ import copy
 from abjad.tools import mathtools
 
 
-def repeat_sequence_n_times(sequence, n):
+def repeat_sequence(sequence, n):
     '''Repeats `sequence` `n` times.
 
     ::
 
-        >>> sequencetools.repeat_sequence_n_times((1, 2, 3, 4, 5), 3)
+        >>> sequencetools.repeat_sequence((1, 2, 3, 4, 5), 3)
         (1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5)
 
     Repeats `sequence` ``0`` times:
 
     ::
 
-        >>> sequencetools.repeat_sequence_n_times((1, 2, 3, 4, 5), 0)
+        >>> sequencetools.repeat_sequence((1, 2, 3, 4, 5), 0)
         ()
 
     Returns newly constructed `sequence` object of copied `sequence` elements.

@@ -37,7 +37,7 @@ def partition_sequence_extended_to_counts(sequence, counts, overhang=True):
 
     n = int(math.ceil(float(sum(counts)) / len(sequence)))
 
-    sequence = sequencetools.repeat_sequence_n_times(sequence, n)
+    sequence = sequencetools.repeat_sequence(sequence, n)
 
     return sequencetools.partition_sequence_by_counts(
         sequence, 
