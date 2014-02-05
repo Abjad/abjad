@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 
 
-def iterate_sequence_forward_and_backward_overlapping(sequence):
+def iterate_sequence_boustrophedon(sequence, duplicates=False):
     '''Iterates `sequence` first forward and then backward,
     with first and last elements appearing only once.
 
     ::
 
-        >>> list(sequencetools.iterate_sequence_forward_and_backward_overlapping([1, 2, 3, 4, 5]))
+        >>> list(sequencetools.iterate_sequence_boustrophedon([1, 2, 3, 4, 5]))
         [1, 2, 3, 4, 5, 4, 3, 2]
 
     Returns generator.
