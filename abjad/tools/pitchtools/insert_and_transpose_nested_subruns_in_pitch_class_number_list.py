@@ -105,7 +105,7 @@ def _get_intervals_in_subrun(subrun_source):
 
     subrun_source = list(subrun_source)
     result = [0]
-    for first, second in sequencetools.iterate_sequence_pairwise_strict(
+    for first, second in sequencetools.iterate_sequence_nwise_strict(
         subrun_source):
         first_pitch = pitchtools.get_named_pitch_from_pitch_carrier(first)
         second_pitch = pitchtools.get_named_pitch_from_pitch_carrier(second)

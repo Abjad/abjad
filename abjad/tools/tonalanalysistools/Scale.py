@@ -143,7 +143,7 @@ class Scale(PitchClassSegment):
         '''
         dics = []
         for left, right in \
-            sequencetools.iterate_sequence_pairwise_wrapped(self):
+            sequencetools.iterate_sequence_nwise_wrapped(self):
             dic = left - right
             dics.append(dic)
         dicg = pitchtools.IntervalClassSegment(

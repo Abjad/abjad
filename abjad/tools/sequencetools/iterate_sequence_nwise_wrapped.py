@@ -4,10 +4,23 @@
 def iterate_sequence_nwise_wrapped(sequence, n=2):
     '''Iterates elements in `sequence` `n` at a time wrapped to beginning.
 
-    ::
+    ..  container:: example
+    
+        Nonempty sequence:
 
-        >>> list(sequencetools.iterate_sequence_nwise_wrapped(range(6), n=3))
-        [(0, 1, 2), (1, 2, 3), (2, 3, 4), (3, 4, 5), (4, 5, 0), (5, 0, 1)]
+        ::
+
+            >>> list(sequencetools.iterate_sequence_nwise_wrapped(range(6), n=3))
+            [(0, 1, 2), (1, 2, 3), (2, 3, 4), (3, 4, 5), (4, 5, 0), (5, 0, 1)]
+
+    ..  container:: example
+
+        Empty sequence:
+
+        ::
+
+            >>> list(sequencetools.iterate_sequence_nwise_wrapped([]))
+            []
 
     Returns generator.
     '''
@@ -22,5 +35,6 @@ def iterate_sequence_nwise_wrapped(sequence, n=2):
         if len(first_n_minus_1) < n - 1:
             first_n_minus_1.append(element)
     element_buffer = element_buffer + first_n_minus_1
-    for x in range(n - 1):
-        yield tuple(element_buffer[x:x+n])
+    if element_buffer:
+        for x in range(n - 1):
+            yield tuple(element_buffer[x:x+n])

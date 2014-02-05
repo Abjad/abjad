@@ -397,7 +397,7 @@ class IterationAgent(abctools.AbjadObject):
         '''
         vertical_moments = self.by_vertical_moment()
         for moment_1, moment_2 in \
-            sequencetools.iterate_sequence_pairwise_strict(vertical_moments):
+            sequencetools.iterate_sequence_nwise_strict(vertical_moments):
             for pair in sequencetools.yield_all_unordered_pairs_of_sequence(
                 moment_1.start_leaves):
                 yield pair

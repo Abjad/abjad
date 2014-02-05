@@ -27,7 +27,7 @@ def _rewrite_meter(
             new_offsets = []
             old_offsets = offset_inventory[-1]
             for first, second in \
-                sequencetools.iterate_sequence_pairwise_strict(old_offsets):
+                sequencetools.iterate_sequence_nwise_strict(old_offsets):
                 new_offsets.append(first)
                 difference = second - first
                 half = (first + second) / 2

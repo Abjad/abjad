@@ -203,7 +203,7 @@ class RhythmMaker(AbjadObject):
 
     def _make_ties_across_divisions(self, music):
         for division_one, division_two in \
-            sequencetools.iterate_sequence_pairwise_strict(music):
+            sequencetools.iterate_sequence_nwise_strict(music):
             leaf_one = iterate(division_one).by_class(
                 prototype=scoretools.Leaf,
                 reverse=True,

@@ -35,7 +35,7 @@ def is_repetition_free_sequence(expr):
     from abjad.tools import sequencetools
 
     try:
-        pairs = sequencetools.iterate_sequence_pairwise_strict(expr)
+        pairs = sequencetools.iterate_sequence_nwise_strict(expr)
         for left, right in pairs:
             if left == right:
                 return False

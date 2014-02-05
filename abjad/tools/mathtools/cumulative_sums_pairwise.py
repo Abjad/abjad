@@ -14,4 +14,5 @@ def cumulative_sums_pairwise(sequence):
     from abjad.tools import mathtools
     from abjad.tools import sequencetools
 
-    return list(sequencetools.iterate_sequence_pairwise_strict(mathtools.cumulative_sums(sequence)))
+    sums = mathtools.cumulative_sums(sequence)
+    return list(sequencetools.iterate_sequence_nwise_strict(sums))
