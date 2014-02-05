@@ -2,7 +2,7 @@
 from abjad.tools import mathtools
 
 
-def split_sequence_by_weights(sequence, weights, cyclic=False, overhang=False):
+def split_sequence(sequence, weights, cyclic=False, overhang=False):
     '''Splits sequence by weights.
 
     ..  container:: example
@@ -11,7 +11,7 @@ def split_sequence_by_weights(sequence, weights, cyclic=False, overhang=False):
 
         ::
 
-            >>> sequencetools.split_sequence_by_weights(
+            >>> sequencetools.split_sequence(
             ...     (10, -10, 10, -10), 
             ...     (3, 15, 3), 
             ...     cyclic=True, 
@@ -25,7 +25,7 @@ def split_sequence_by_weights(sequence, weights, cyclic=False, overhang=False):
 
         ::
 
-            >>> sequencetools.split_sequence_by_weights(
+            >>> sequencetools.split_sequence(
             ...     (10, -10, 10, -10), 
             ...     (3, 15, 3), 
             ...     cyclic=True, 
@@ -39,7 +39,7 @@ def split_sequence_by_weights(sequence, weights, cyclic=False, overhang=False):
 
         ::
 
-            >>> sequencetools.split_sequence_by_weights(
+            >>> sequencetools.split_sequence(
             ...     (10, -10, 10, -10), 
             ...     (3, 15, 3), 
             ...     cyclic=False, 
@@ -53,7 +53,7 @@ def split_sequence_by_weights(sequence, weights, cyclic=False, overhang=False):
 
         ::
 
-            >>> sequencetools.split_sequence_by_weights(
+            >>> sequencetools.split_sequence(
             ...     (10, -10, 10, -10), 
             ...     (3, 15, 3), 
             ...     cyclic=False, 

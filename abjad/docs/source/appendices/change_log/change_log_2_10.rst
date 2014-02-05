@@ -879,7 +879,7 @@ Changes to the ``sequencetools`` package:
 
   ::
 
-    sequencetools.split_sequence_by_weights()
+    sequencetools.split_sequence()
 
 - Renamed::
 

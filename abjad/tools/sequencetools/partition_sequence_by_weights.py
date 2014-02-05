@@ -216,7 +216,7 @@ def partition_sequence_by_weights(
     from abjad.tools import sequencetools
 
     if allow_part_weights == Exact:
-        candidate = sequencetools.split_sequence_by_weights(
+        candidate = sequencetools.split_sequence(
             sequence, 
             weights, 
             cyclic=cyclic, 

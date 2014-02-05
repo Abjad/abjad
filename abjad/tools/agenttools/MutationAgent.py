@@ -2270,7 +2270,7 @@ class MutationAgent(abctools.AbjadObject):
                     current_duration = current_component._get_duration()
                     additional_required_duration = \
                         current_duration - local_split_duration
-                    split_durations = sequencetools.split_sequence_by_weights(
+                    split_durations = sequencetools.split_sequence(
                         durations,
                         [additional_required_duration],
                         cyclic=False,

@@ -488,7 +488,7 @@ class StartPositionedDivisionPayloadExpression(
         divisions = self.payload.divisions
         self._payload = musicexpressiontools.DivisionList(
             [], voice_name=self.voice_name, start_offset=self.start_offset)
-        shards = sequencetools.split_sequence_by_weights(
+        shards = sequencetools.split_sequence(
             divisions, offsets, cyclic=False, overhang=True)
         result, total_duration = [], durationtools.Duration(0)
         for shard in shards:

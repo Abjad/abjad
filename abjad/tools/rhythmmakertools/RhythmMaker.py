@@ -186,7 +186,7 @@ class RhythmMaker(AbjadObject):
             duration_pair.numerator
             for duration_pair in duration_pairs
             ]
-        secondary_numerators = sequencetools.split_sequence_by_weights(
+        secondary_numerators = sequencetools.split_sequence(
             numerators,
             split_divisions_by_counts,
             cyclic=True,

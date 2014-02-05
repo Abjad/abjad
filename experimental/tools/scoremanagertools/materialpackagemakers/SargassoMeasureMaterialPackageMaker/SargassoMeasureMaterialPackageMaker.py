@@ -138,7 +138,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
             multiplier * x for x in measure_numerators]
         #print multiplied_measure_numerators
 
-        measure_divisions_by_measure = sequencetools.split_sequence_by_weights(
+        measure_divisions_by_measure = sequencetools.split_sequence(
             measure_divisions, 
             multiplied_measure_numerators, 
             cyclic=True, 
@@ -181,7 +181,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
             #print measure_divisions
 
             measure_divisions_by_measure = \
-                sequencetools.split_sequence_by_weights(
+                sequencetools.split_sequence(
                 measure_divisions,
                 prolated_measure_numerators,
                 cyclic=True,

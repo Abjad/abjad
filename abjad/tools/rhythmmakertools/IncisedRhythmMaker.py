@@ -294,7 +294,7 @@ class IncisedRhythmMaker(RhythmMaker):
         middle = numerator - prefix_weight - suffix_weight
         if numerator < prefix_weight:
             weights = [numerator]
-            prefix = sequencetools.split_sequence_by_weights(
+            prefix = sequencetools.split_sequence(
                 prefix, weights, cyclic=False, overhang=False)[0]
         middle = self._make_middle_of_numeric_map_part(middle)
         suffix_space = numerator - prefix_weight
@@ -302,7 +302,7 @@ class IncisedRhythmMaker(RhythmMaker):
             suffix = ()
         elif suffix_space < suffix_weight:
             weights = [suffix_space]
-            suffix = sequencetools.split_sequence_by_weights(
+            suffix = sequencetools.split_sequence(
                 suffix,
                 weights,
                 cyclic=False,

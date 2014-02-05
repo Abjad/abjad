@@ -813,7 +813,7 @@ class ScoreSpecification(Specification):
         '''
         assert self.time_signatures
         weights = [timespan.start_offset, timespan.duration]
-        shards = sequencetools.split_sequence_by_weights(
+        shards = sequencetools.split_sequence(
             self.time_signatures,
             weights,
             cyclic=False,

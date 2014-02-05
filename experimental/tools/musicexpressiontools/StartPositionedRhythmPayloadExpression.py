@@ -950,7 +950,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                     split_offset_in_beam = spanner._start_offset_in_me(
                         leaf_right_of_split)
                     left_durations, right_durations = \
-                        sequencetools.split_sequence_by_weights(
+                        sequencetools.split_sequence(
                             spanner.durations,
                             [split_offset_in_beam],
                             cyclic=False,
