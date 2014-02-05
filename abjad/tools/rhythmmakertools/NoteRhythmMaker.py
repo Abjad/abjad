@@ -148,20 +148,6 @@ class NoteRhythmMaker(RhythmMaker):
         superclass = super(NoteRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
-    def __illustrate__(self, divisions=None):
-        r'''Illustrates note rhythm-maker.
-
-        ..  container:: example
-
-            ::
-
-                >>> maker = rhythmmakertools.NoteRhythmMaker()
-                >>> show(maker) # doctest: +SKIP
-
-        Returns LilyPond file.
-        '''
-        return RhythmMaker.__illustrate__(self, divisions=divisions)
-
     def __repr__(self):
         r'''Gets interpreter representation of note rhythm-maker.
 
