@@ -39,6 +39,40 @@ class ConcreteInterpreter(Interpreter):
     ### PRIVATE METHODS ###
 
     @staticmethod
+    def _merge_duration_sequences(*sequences):
+        r'''Merges duration `sequences`.
+
+        ::
+
+            >>> interpreter = musicexpressiontools.ConcreteInterpreter
+
+        ::
+
+            >>> interpreter._merge_duration_sequences([10, 10, 10], [7])
+            [7, 3, 10, 10]
+
+        Merges more duration sequences:
+
+        ::
+
+            >>> interpreter._merge_duration_sequences([10, 10, 10], [10, 10])
+            [10, 10, 10]
+
+        The idea is that each sequence element represents a duration.
+
+        Returns list.
+        '''
+        offset_lists = []
+        for sequence in sequences:
+            offset_list = mathtools.cumulative_sums(sequence, start=None)
+            offset_lists.append(offset_list)
+        all_offsets = sequencetools.join_subsequences(offset_lists)
+        all_offsets = list(sorted(set(all_offsets)))
+        all_offsets.insert(0, 0)
+        all_durations = mathtools.difference_series(all_offsets)
+        return all_durations
+
+    @staticmethod
     def _pair_duration_sequence_elements_with_input_pair_values(
         duration_sequence, 
         input_pairs,
@@ -311,7 +345,7 @@ class ConcreteInterpreter(Interpreter):
         assert sum(division_region_durations) == \
             sum(timespan_delimited_single_context_rhythm_set_expression_durations)
         timespan_delimited_single_context_rhythm_set_expression_merged_durations = \
-            sequencetools.merge_duration_sequences(
+            self._merge_duration_sequences(
                 division_region_durations,
                 timespan_delimited_single_context_rhythm_set_expression_durations)
         # assert that rhythm set expressions cover rhythm regions exactly

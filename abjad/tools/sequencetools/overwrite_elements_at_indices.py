@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 
 
-# TODO: remove from mainline
 def overwrite_elements_at_indices(sequence, pairs):
     '''Overwrites `sequence` elements at indices according to `pairs`.
 
