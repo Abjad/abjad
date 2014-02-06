@@ -108,8 +108,6 @@ def retain_elements(
     Returns list.
     '''
 
-    result = []
-
     length = len(sequence)
     period = period or length
 
@@ -127,6 +125,8 @@ def retain_elements(
 
     indices = new_indices
     indices.sort()
+
+    result = []
 
     for i, element in enumerate(sequence):
         if i % period in indices:
