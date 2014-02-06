@@ -2223,8 +2223,10 @@ class MutationAgent(abctools.AbjadObject):
             final_offset = total_component_duration - sum(durations)
             durations.append(final_offset)
         elif total_component_duration < total_split_duration:
-            durations = sequencetools.truncate_sequence_to_weight(
-                durations, total_component_duration)
+            durations = sequencetools.truncate_sequence(
+                durations, 
+                weight=total_component_duration,
+                )
         # keep copy of durations to partition result components
         durations_copy = durations[:]
         # calculate total split duration

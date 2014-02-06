@@ -59,6 +59,7 @@ from abjad.tools.scoretools import Staff
 from abjad.tools.scoretools import StaffGroup
 from abjad.tools.scoretools import Tuplet
 from abjad.tools.scoretools import Voice
+from abjad.tools.sequencetools import Sequence
 from abjad.tools.spannertools import Beam
 from abjad.tools.spannertools import Crescendo
 from abjad.tools.spannertools import Decrescendo
@@ -99,23 +100,4 @@ from abjad._version import __version_info__, __version__
 del _version
 
 def f(expr):
-    r'''Formats `expr` and prints to standard out.
-
-    ::
-
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> show(staff) # doctest: +SKIP
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            c'8
-            d'8
-            e'8
-            f'8
-        }
-
-    Returns none.
-    '''
     print format(expr, 'lilypond')

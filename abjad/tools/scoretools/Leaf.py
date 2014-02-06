@@ -443,8 +443,10 @@ class Leaf(Component):
         if sum(durations) < self._get_duration():
             last_duration = self._get_duration() - sum(durations)
             durations.append(last_duration)
-        sequencetools.truncate_sequence_to_weight(
-            durations, self._get_duration())
+        sequencetools.truncate_sequence(
+            durations, 
+            weight=self._get_duration(),
+            )
         result = []
         leaf_prolation = self._get_parentage(include_self=False).prolation
         leaf_copy = copy.copy(self)
