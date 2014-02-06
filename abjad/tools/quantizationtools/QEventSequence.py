@@ -89,8 +89,9 @@ class QEventSequence(AbjadObject):
             assert all(isinstance(q_event, q_event_classes)
                 for q_event in sequence[:-1])
             assert isinstance(sequence[-1], quantizationtools.TerminalQEvent)
-            assert sequencetools.is_monotonically_increasing_sequence(
-                x.offset for x in sequence)
+            offsets = [x.offset for x in sequence]
+            offsets = sequencetools.Sequence(offsets)
+            assert offsets.is_monotonically_increasing()
             assert 0 <= sequence[0].offset
             self._sequence = tuple(sequence)
 
