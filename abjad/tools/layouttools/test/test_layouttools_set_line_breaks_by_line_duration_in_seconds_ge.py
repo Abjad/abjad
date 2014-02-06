@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_layouttools_set_line_breaks_cyclically_by_line_duration_in_seconds_ge_01():
+def test_layouttools_set_line_breaks_by_line_duration_in_seconds_ge_01():
     r'''Iterate line-break class instances in expr and 
     accumulate duration in seconds.
     Add line break after every total less than or equal to line_duration.
@@ -15,7 +15,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_in_seconds_ge_0
     staff.append(Measure((2, 8), "b'8 c''8"))
     tempo = Tempo(Duration(1, 8), 44)
     attach(tempo, staff, scope=Staff)
-    layouttools.set_line_breaks_cyclically_by_line_duration_in_seconds_ge(
+    layouttools.set_line_breaks_by_line_duration_in_seconds_ge(
         staff, 
         Duration(6),
         )
