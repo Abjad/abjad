@@ -5,7 +5,6 @@ def retain_elements(
     sequence, 
     indices=None,
     period=None, 
-    #offset=0,
     ):
     '''Retains `sequence` elements.
 
@@ -44,7 +43,7 @@ def retain_elements(
 
     ..  container:: example
 
-        Retains elements at indices congruent to 2 or 3 mod 4:
+        Retains elements at indices congruent to 2 or 3 (mod 4):
 
         ::
 
@@ -57,7 +56,7 @@ def retain_elements(
 
     ..  container:: example
 
-        Retains elements at indices congruent to -2 or -3 mod 4:
+        Retains elements at indices congruent to -2 or -3 (mod 4):
 
         ::
 
@@ -104,7 +103,7 @@ def retain_elements(
             ...     )
             []
 
-    Returns sequence elements in the order they appear in `sequence`.
+    Returns elements in the order they appear in `sequence`.
 
     Returns list.
     '''
