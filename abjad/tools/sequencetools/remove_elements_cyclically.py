@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-def remove_elements_at_indices_cyclically(
+def remove_elements_cyclically(
     sequence, 
     indices, 
     period, 
@@ -11,7 +11,7 @@ def remove_elements_at_indices_cyclically(
 
     ::
 
-        >>> sequencetools.remove_elements_at_indices_cyclically(range(20), [0, 1], 5, 3)
+        >>> sequencetools.remove_elements_cyclically(range(20), [0, 1], 5, 3)
         [0, 1, 2, 5, 6, 7, 10, 11, 12, 15, 16, 17]
 
     Ignores negative indices.

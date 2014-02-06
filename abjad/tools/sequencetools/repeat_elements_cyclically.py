@@ -3,14 +3,14 @@ from abjad.tools import sievetools
 
 
 # TODO: remove sievetools dependency
-def repeat_elements_at_indices_cyclically(
+def repeat_elements_cyclically(
     sequence, cycle_token, total):
     '''Repeats `sequence` elements at indices specified by `cycle_token` 
     to `total` length.
 
     ::
 
-        >>> sequencetools.repeat_elements_at_indices_cyclically(
+        >>> sequencetools.repeat_elements_cyclically(
         ...     range(10), (5, [1, 2]), 3)
         [0, [1, 1, 1], [2, 2, 2], 3, 4, 5, [6, 6, 6], [7, 7, 7], 8, 9]
 
@@ -19,7 +19,7 @@ def repeat_elements_at_indices_cyclically(
     ::
 
         >>> sieve = sievetools.Sieve.from_cycle_tokens((5, [1, 2]))
-        >>> sequencetools.repeat_elements_at_indices_cyclically(
+        >>> sequencetools.repeat_elements_cyclically(
         ...     range(10), sieve, 3)
         [0, [1, 1, 1], [2, 2, 2], 3, 4, 5, [6, 6, 6], [7, 7, 7], 8, 9]
 

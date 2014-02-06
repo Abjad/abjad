@@ -2,7 +2,7 @@
 import fractions
 
 
-def sum_elements_at_indices(
+def sum_elements(
     sequence, 
     pairs, 
     period=None, 
@@ -12,7 +12,7 @@ def sum_elements_at_indices(
 
     ::
 
-        >>> sequencetools.sum_elements_at_indices(range(10), [(0, 3)])
+        >>> sequencetools.sum_elements(range(10), [(0, 3)])
         [3, 3, 4, 5, 6, 7, 8, 9]
 
     Sums `sequence` elements cyclically at indices according to `pairs` 
@@ -20,7 +20,7 @@ def sum_elements_at_indices(
 
     ::
 
-        >>> sequencetools.sum_elements_at_indices(range(10), [(0, 3)], period=4)
+        >>> sequencetools.sum_elements(range(10), [(0, 3)], period=4)
         [3, 3, 15, 7, 17]
 
     Sums `sequence` elements cyclically at indices according to `pairs` 
@@ -28,7 +28,7 @@ def sum_elements_at_indices(
 
     ::
 
-        >>> sequencetools.sum_elements_at_indices(
+        >>> sequencetools.sum_elements(
         ...     range(10), [(0, 3)], period=4, overhang=False)
         [3, 3, 15, 7]
 
