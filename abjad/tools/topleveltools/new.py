@@ -7,6 +7,8 @@ def new(expr, **kwargs):
     Returns new object with the same type as `expr`.
     '''
     from abjad.tools import systemtools
+    if expr is None:
+        return expr
     manager = systemtools.StorageFormatManager
     keyword_argument_dictionary = \
         manager.get_keyword_argument_dictionary(expr)
