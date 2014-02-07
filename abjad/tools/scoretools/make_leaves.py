@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from __future__ import division
 import numbers
 from abjad.tools import durationtools
 from abjad.tools import mathtools
@@ -326,9 +325,6 @@ def make_leaves(
     Returns selection of unincorporated leaves.
     '''
     from abjad.tools import scoretools
-    from abjad.tools import scoretools
-    from abjad.tools import scoretools
-    from abjad.tools import scoretools
 
     if isinstance(pitches, str):
         pitches = pitches.split()
@@ -404,9 +400,6 @@ def _make_leaf_on_pitch(
     forbidden_written_duration=None,
     tie_rests=False,
     ):
-    from abjad.tools import scoretools
-    from abjad.tools import scoretools
-    from abjad.tools import scoretools
     from abjad.tools import scoretools
     note_types = (numbers.Number, str, pitchtools.NamedPitch)
     chord_types = (tuple, list)

@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from __future__ import division
 import copy
 import math
 from abjad.tools import mathtools
@@ -31,7 +30,7 @@ def repeat_sequence_to_length(sequence, length, start=0):
     result = []
     start %= len(sequence)
     stop_index = start + length
-    repetitions = int(math.ceil(stop_index / len(sequence)))
+    repetitions = int(math.ceil(float(stop_index) / len(sequence)))
     for x in range(repetitions):
         for element in sequence:
             result.append(copy.copy(element))

@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from __future__ import division
 import fractions
 import numbers
 
