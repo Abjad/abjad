@@ -27,15 +27,21 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
+            Adds sequence to sequence:
+
             ::
 
                 >>> Sequence(1, 2, 3) + Sequence(4, 5, 6)
                 Sequence(1, 2, 3, 4, 5, 6)
 
+            Adds tuple to sequence:
+
             ::
 
                 >>> Sequence(1, 2, 3) + (4, 5, 6)
                 Sequence(1, 2, 3, 4, 5, 6)
+
+            Adds list to sequence:
 
             ::
 
@@ -50,7 +56,7 @@ class Sequence(AbjadObject):
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a sequence with elements equal to those of
-        this sequence.
+        this sequence. Otherwise false.
 
         ..  container:: example
 
@@ -58,10 +64,6 @@ class Sequence(AbjadObject):
 
                 >>> Sequence(1, 2, 3, 4, 5, 6) == Sequence(1, 2, 3, 4, 5, 6)
                 True
-
-        ..  container:: example
-
-            Otherwise false:
 
             ::
 
@@ -73,15 +75,36 @@ class Sequence(AbjadObject):
             return self._elements == expr._elements
         return False
 
-    def __len__(self):
-        r'''Gets length of sequence.
+    def __format__(self, format_specification=''):
+        r'''Formats sequence.
 
-        Returns nonnegative integer.
+        ..  container:: example
+
+            Prints format:
+
+            ::
+
+                >>> print format(Sequence(1, 2, 3, 4, 5, 6))
+                sequencetools.Sequence(1, 2, 3, 4, 5, 6)
+
+        Returns string.
         '''
-        return len(self._elements)
+        return AbjadObject.__format__(
+            self, 
+            format_specification=format_specification,
+            )
 
     def __getitem__(self, i):
         r'''Gets item `i` from sequence.
+
+        ..  container:: example
+
+            Gets last item in sequence:
+
+            ::
+
+                >>> Sequence(1, 2, 3, 4, 5, 6)[-1]
+                6
 
         Returns item.
         '''
@@ -90,26 +113,75 @@ class Sequence(AbjadObject):
     def __getslice__(self, start, stop):
         r'''Gets slice from `start` to `stop`.
 
+        ..  container:: example
+
+            Gets last three items in sequence:
+
+            ::
+
+                >>> Sequence(1, 2, 3, 4, 5, 6)[-3:]
+                Sequence(4, 5, 6)
+
         Returns new sequence.
         '''
         result = self._elements.__getslice__(start, stop)
         result = type(self)(*result)
         return result
 
+    def __len__(self):
+        r'''Gets length of sequence.
+
+        ..  container:: example
+
+            Gets length of six-item sequence:
+
+            ::
+                
+                >>> len(Sequence(1, 2, 3, 4, 5, 6))
+                6
+
+        Returns nonnegative integer.
+        '''
+        return len(self._elements)
+
+    def __ne__(self, expr):
+        r'''Is true when sequence is not equal to `expr`. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> Sequence(1, 2, 3, 4, 5, 6) != (1, 2, 3, 4, 5, 6)
+                True
+
+            ::
+
+                >>> Sequence(1, 2, 3, 4, 5, 6) != Sequence(1, 2, 3, 4, 5, 6)
+                False
+
+        '''
+        return not self == expr
+
     def __radd__(self, expr):
         r'''Adds sequence to `expr`.
 
         ..  container:: example
+
+            Adds sequence to sequence:
 
             ::
 
                 >>> Sequence(1, 2, 3) + Sequence(4, 5, 6)
                 Sequence(1, 2, 3, 4, 5, 6)
 
+            Adds sequence to tuple:
+
             ::
 
                 >>> (1, 2, 3) + Sequence(4, 5, 6)
                 Sequence(1, 2, 3, 4, 5, 6)
+
+            Adds sequence to list:
 
             ::
 
@@ -121,6 +193,20 @@ class Sequence(AbjadObject):
         expr = type(self)(*expr)
         elements = expr._elements + self._elements
         return type(self)(*elements)
+
+    def __repr__(self):
+        r'''Gets interpreter representation of sequence.
+
+        ..  container:: example
+
+            ::
+
+                >>> Sequence(1, 2, 3, 4, 5, 6)
+                Sequence(1, 2, 3, 4, 5, 6)
+
+        Returns string.
+        '''
+        return AbjadObject.__repr__(self)
 
     ### PRIVATE PROPERTIES ###
 
@@ -148,13 +234,8 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(1, 2, 3, 4, 5, 6).degree_of_rotational_symmetry
-                1
-
-            ::
-
-                >>> Sequence(1, 2, 3, 1, 2, 3).degree_of_rotational_symmetry
-                2
+                >>> Sequence(1, 1, 1, 1, 1, 1).degree_of_rotational_symmetry
+                6
 
             ::
 
@@ -163,8 +244,18 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(1, 1, 1, 1, 1, 1).degree_of_rotational_symmetry
-                6
+                >>> Sequence(1, 2, 3, 1, 2, 3).degree_of_rotational_symmetry
+                2
+
+            ::
+
+                >>> Sequence(1, 2, 3, 4, 5, 6).degree_of_rotational_symmetry
+                1
+
+            ::
+
+                >>> Sequence().degree_of_rotational_symmetry
+                1
 
         Returns positive integer.
         '''
@@ -173,38 +264,48 @@ class Sequence(AbjadObject):
             rotation = self[index:] + self[:index]
             if rotation == self:
                 degree_of_rotational_symmetry += 1
+        degree_of_rotational_symmetry = degree_of_rotational_symmetry or 1
         return degree_of_rotational_symmetry
 
-    ### PUBLIC METHODS ###
-
-    def get_period_of_rotation(self, n):
+    @property
+    def period_of_rotation(self):
         '''Gets period of rotation.
 
         ..  container:: example
 
             ::
+                
+                >>> Sequence(1, 2, 3, 4, 5, 6).period_of_rotation
+                6
 
-                >>> Sequence(1, 2, 3, 1, 2, 3).get_period_of_rotation(1)
+            ::
+
+                >>> Sequence(1, 2, 3, 1, 2, 3).period_of_rotation
                 3
 
             ::
 
-                >>> Sequence(1, 2, 3, 1, 2, 3).get_period_of_rotation(2)
-                3
+                >>> Sequence(1, 2, 1, 2, 1, 2).period_of_rotation
+                2
 
             ::
 
-                >>> Sequence(1, 2, 3, 1, 2, 3).get_period_of_rotation(3)
+                >>> Sequence(1, 1, 1, 1, 1, 1).period_of_rotation
                 1
+
+            ::
+
+                >>> Sequence().period_of_rotation
+                0
+
+        Defined equal to length of sequence divided by degree of rotational
+        symmetry of sequence.
 
         Returns positive integer.
         '''
-        degree = self.degree_of_rotational_symmetry
-        period = len(self) / degree
-        divisors_of_n = set(mathtools.divisors(n))
-        divisors_of_period = set(mathtools.divisors(period))
-        max_shared_divisor = max(divisors_of_n & divisors_of_period)
-        return period / max_shared_divisor
+        return len(self) / self.degree_of_rotational_symmetry
+
+    ### PUBLIC METHODS ###
 
     def is_decreasing(self, strict=True):
         r'''Is true when sequence decreases.
