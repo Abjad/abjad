@@ -3,6 +3,7 @@ import abc
 import inspect
 from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.topleveltools import new
 
 
 class QEvent(AbjadObject):
@@ -65,7 +66,9 @@ class QEvent(AbjadObject):
 
     @property
     def _repr_specification(self):
-        return self._storage_format_specification.__makenew__(
+        #return self._storage_format_specification.__makenew__(
+        return new(
+            self._storage_format_specification,
             is_indented=False,
             )
 

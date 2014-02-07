@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.topleveltools import new
 
 
 class Annotation(AbjadObject):
@@ -79,7 +80,9 @@ class Annotation(AbjadObject):
 
     @property
     def _repr_specification(self):
-        return self._storage_format_specification.__makenew__(
+        #return self._storage_format_specification.__makenew__(
+        return new(
+            self._storage_format_specification,
             is_indented=False,
             )
 

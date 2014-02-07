@@ -120,43 +120,43 @@ class Instrument(AbjadObject):
             self.short_instrument_name,
             ))
 
-    def __makenew__(
-        self,
-        instrument_name=None,
-        short_instrument_name=None,
-        instrument_name_markup=None,
-        short_instrument_name_markup=None,
-        allowable_clefs=None,
-        pitch_range=None,
-        sounding_pitch_of_written_middle_c=None,
-        ):
-        r'''Makes new instrument.
-
-        Returns new instrument.
-        '''
-        instrument_name = instrument_name or self.instrument_name
-        short_instrument_name = short_instrument_name or \
-            self._short_instrument_name
-        instrument_name_markup = instrument_name_markup or \
-            self.instrument_name_markup
-        short_instrument_name_markup = short_instrument_name_markup or \
-            self.short_instrument_name_markup
-        allowable_clefs = allowable_clefs or self.allowable_clefs
-        pitch_range = pitch_range or self.pitch_range
-        sounding_pitch_of_written_middle_c = \
-            sounding_pitch_of_written_middle_c or \
-            self.sounding_pitch_of_written_middle_c
-        new = type(self)(
-            instrument_name=instrument_name,
-            short_instrument_name=short_instrument_name,
-            instrument_name_markup=instrument_name_markup,
-            short_instrument_name_markup=short_instrument_name_markup,
-            allowable_clefs=allowable_clefs,
-            pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
-            )
-        return new
+#    def __makenew__(
+#        self,
+#        instrument_name=None,
+#        short_instrument_name=None,
+#        instrument_name_markup=None,
+#        short_instrument_name_markup=None,
+#        allowable_clefs=None,
+#        pitch_range=None,
+#        sounding_pitch_of_written_middle_c=None,
+#        ):
+#        r'''Makes new instrument.
+#
+#        Returns new instrument.
+#        '''
+#        instrument_name = instrument_name or self.instrument_name
+#        short_instrument_name = short_instrument_name or \
+#            self._short_instrument_name
+#        instrument_name_markup = instrument_name_markup or \
+#            self.instrument_name_markup
+#        short_instrument_name_markup = short_instrument_name_markup or \
+#            self.short_instrument_name_markup
+#        allowable_clefs = allowable_clefs or self.allowable_clefs
+#        pitch_range = pitch_range or self.pitch_range
+#        sounding_pitch_of_written_middle_c = \
+#            sounding_pitch_of_written_middle_c or \
+#            self.sounding_pitch_of_written_middle_c
+#        new = type(self)(
+#            instrument_name=instrument_name,
+#            short_instrument_name=short_instrument_name,
+#            instrument_name_markup=instrument_name_markup,
+#            short_instrument_name_markup=short_instrument_name_markup,
+#            allowable_clefs=allowable_clefs,
+#            pitch_range=pitch_range,
+#            sounding_pitch_of_written_middle_c=\
+#                sounding_pitch_of_written_middle_c,
+#            )
+#        return new
 
     def __repr__(self):
         r'''Gets interpreter representation of instrument.

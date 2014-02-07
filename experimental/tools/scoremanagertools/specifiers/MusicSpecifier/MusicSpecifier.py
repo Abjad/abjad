@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.datastructuretools.TypedList import TypedList
+from abjad.tools.topleveltools import new
 from experimental.tools.scoremanagertools.specifiers.MusicContributionSpecifier \
     import MusicContributionSpecifier
 from experimental.tools.scoremanagertools.specifiers.Specifier \
@@ -42,7 +43,9 @@ class MusicSpecifier(Specifier, TypedList):
 
     @property
     def _repr_specification(self):
-        return self._storage_format_specification.__makenew__(
+        #return self._storage_format_specification.__makenew__(
+        return new(
+            self._storage_format_specification,
             is_indented=False,
             )
 

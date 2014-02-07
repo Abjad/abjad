@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import collections
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
+from abjad.tools.topleveltools import new
 
 
 class TypedTuple(TypedCollection):
@@ -33,10 +34,13 @@ class TypedTuple(TypedCollection):
         '''
         if isinstance(expr, type(self)):
             tokens = expr._collection
-            return self.__makenew__(tokens=self._collection[:] + tokens)
+            #return self.__makenew__(tokens=self._collection[:] + tokens)
+            return new(self, tokens=self._collection[:] + tokens)
+
         elif isinstance(expr, type(self._collection)):
             tokens = expr[:]
-            return self.__makenew__(tokens=self._collection[:] + tokens)
+            #return self.__makenew__(tokens=self._collection[:] + tokens)
+            return new(self, tokens=self._collection[:] + tokens)
         raise NotImplementedError
 
     def __contains__(self, token):
@@ -63,7 +67,8 @@ class TypedTuple(TypedCollection):
 
         Returns new typed tuple.
         '''
-        return self.__makenew__(tokens=self._collection[start:stop])
+        #return self.__makenew__(tokens=self._collection[start:stop])
+        return new(self, tokens=self._collection[start:stop])
 
     def __hash__(self):
         r'''Hashes typed tuple.
@@ -83,7 +88,8 @@ class TypedTuple(TypedCollection):
         Returns new typed tuple.
         '''
         tokens = self._collection * expr
-        return self.__makenew__(tokens=tokens)
+        #return self.__makenew__(tokens=tokens)
+        return new(self, tokens=tokens)
 
     def __rmul__(self, expr):
         r'''Multiplies `expr` by typed tuple.

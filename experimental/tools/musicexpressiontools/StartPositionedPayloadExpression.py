@@ -9,6 +9,7 @@ from abjad.tools import sequencetools
 from abjad.tools import timespantools
 from abjad.tools import timespantools
 from abjad.tools.topleveltools import mutate
+from abjad.tools.topleveltools import new
 from abjad.tools.topleveltools import select
 from experimental.tools.musicexpressiontools.IterablePayloadExpression \
     import IterablePayloadExpression
@@ -91,7 +92,8 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             raise ValueError
         duration_before = self._get_duration_of_list(elements_before)
         new_start_offset = self.start_offset + duration_before
-        result = self.__makenew__(payload=new_payload, start_offset=new_start_offset)
+        #result = self.__makenew__(payload=new_payload, start_offset=new_start_offset)
+        result = new(self, payload=new_payload, start_offset=new_start_offset)
         return result
 
     def __len__(self):
@@ -337,7 +339,9 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             callback_cache[key] = elements
         elements = callback_cache[key]
         start_offset = elements[0].start_offset
-        expression = self.__makenew__(
+        #expression = self.__makenew__(
+        expression = new(
+            self,
             payload=elements, 
             start_offset=start_offset,
             )

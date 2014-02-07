@@ -7,6 +7,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import schemetools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.topleveltools import new
 
 
 @functools.total_ordering
@@ -320,7 +321,9 @@ class Tempo(AbjadObject):
 
     @property
     def _repr_specification(self):
-        return self._storage_format_specification.__makenew__(
+        #return self._storage_format_specification.__makenew__(
+        return new(
+            self._storage_format_specification,
             is_indented=False,
             )
 

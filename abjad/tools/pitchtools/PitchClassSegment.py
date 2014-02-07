@@ -2,6 +2,7 @@
 from abjad.tools import durationtools
 from abjad.tools.pitchtools.Segment import Segment
 from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import new
 
 
 class PitchClassSegment(Segment):
@@ -98,7 +99,8 @@ class PitchClassSegment(Segment):
             else:
                 number = int(number)
             numbers.append(number)
-        return self.__makenew__(tokens=numbers)
+        #return self.__makenew__(tokens=numbers)
+        return new(self, tokens=numbers)
 
     @classmethod
     def from_selection(cls, selection, item_class=None, custom_identifier=None):
@@ -136,7 +138,8 @@ class PitchClassSegment(Segment):
         Returns new pitch-class segment.
         '''
         tokens = (pc.invert() for pc in self)
-        return self.__makenew__(tokens=tokens)
+        #return self.__makenew__(tokens=tokens)
+        return new(self, tokens=tokens)
 
     def is_equivalent_under_transposition(self, expr):
         r'''True if equivalent under transposition to `expr`. Otherwise False.
@@ -151,7 +154,8 @@ class PitchClassSegment(Segment):
         difference = -(pitchtools.NamedPitch(expr[0], 4) -
             pitchtools.NamedPitch(self[0], 4))
         new_pitch_classes = (x + difference for x in self)
-        new_pitch_classes = self.__makenew__(tokens=new_pitch_classes)
+        #new_pitch_classes = self.__makenew__(tokens=new_pitch_classes)
+        new_pitch_classes = new(self, tokens=new_pitch_classes)
         return expr == new_pitch_classes
 
     def make_notes(self, n=None, written_duration=None):
@@ -239,7 +243,8 @@ class PitchClassSegment(Segment):
         from abjad.tools import pitchtools
         tokens = (pitchtools.NumberedPitchClass(pc).multiply(n)
             for pc in self)
-        return self.__makenew__(tokens=tokens)
+        #return self.__makenew__(tokens=tokens)
+        return new(self, tokens=tokens)
 
     def retrograde(self):
         r'''Retrograde of pitch-class segment:
@@ -253,7 +258,8 @@ class PitchClassSegment(Segment):
 
         Returns new pitch-class segment.
         '''
-        return self.__makenew__(tokens=reversed(self))
+        #return self.__makenew__(tokens=reversed(self))
+        return new(self, tokens=reversed(self))
 
     def rotate(self, n, transpose=False):
         r'''Rotate pitch-class segment:
@@ -286,7 +292,8 @@ class PitchClassSegment(Segment):
         '''
         from abjad.tools import sequencetools
         tokens = sequencetools.rotate_sequence(self._collection, n)
-        new_segment = self.__makenew__(tokens=tokens)
+        #new_segment = self.__makenew__(tokens=tokens)
+        new_segment = new(self, tokens=tokens)
         if transpose:
             interval_of_transposition = float(self[0]) - float(new_segment[0])
             new_segment = new_segment.transpose(interval_of_transposition)
@@ -305,7 +312,8 @@ class PitchClassSegment(Segment):
         Returns new pitch-class segment.
         '''
         tokens = (pitch_class.transpose(expr) for pitch_class in self)
-        return self.__makenew__(tokens=tokens)
+        #return self.__makenew__(tokens=tokens)
+        return new(self, tokens=tokens)
 
     def voice_horizontally(self, initial_octave=4):
         r'''Voices pitch-class segment as pitch segment, with each pitch as

@@ -4,6 +4,7 @@ import collections
 import types
 from abjad.tools import datastructuretools
 from abjad.tools.datastructuretools import TypedFrozenset
+from abjad.tools.topleveltools import new
 
 
 class Set(TypedFrozenset):
@@ -93,7 +94,9 @@ class Set(TypedFrozenset):
         positional_argument_values=(
             tokens,
             )
-        return self._storage_format_specification.__makenew__(
+        #return self._storage_format_specification.__makenew__(
+        return new(
+            self._storage_format_specification,
             is_indented=False,
             keyword_argument_names=(),
             positional_argument_values=positional_argument_values,

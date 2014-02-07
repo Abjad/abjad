@@ -3,6 +3,7 @@ import abc
 import collections
 import types
 from abjad.tools.datastructuretools import TypedTuple
+from abjad.tools.topleveltools import new
 
 
 class Segment(TypedTuple):
@@ -93,7 +94,9 @@ class Segment(TypedTuple):
             tokens = [abs(x) for x in self]
         else:
             raise ValueError
-        return self._storage_format_specification.__makenew__(
+        #return self._storage_format_specification.__makenew__(
+        return new(
+            self._storage_format_specification,
             is_indented=False,
             keyword_argument_names=(),
             positional_argument_values=(

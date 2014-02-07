@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.pitchtools.Segment import Segment
 from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import new
 from abjad.tools.topleveltools import select
 
 
@@ -159,7 +160,8 @@ class PitchSegment(Segment):
         Returns new pitch segment.
         '''
         tokens = (pitch.invert(axis) for pitch in self)
-        return self.__makenew__(tokens=tokens)
+        #return self.__makenew__(tokens=tokens)
+        return new(self, tokens=tokens)
 
     def is_equivalent_under_transposition(self, expr):
         r'''True if pitch segment is equivalent to `expr` under transposition.
@@ -175,7 +177,8 @@ class PitchSegment(Segment):
         difference = -(pitchtools.NamedPitch(expr[0], 4) -
             pitchtools.NamedPitch(self[0], 4))
         new_pitches = (x + difference for x in self)
-        new_pitches = self.__makenew__(tokens=new_pitch)
+        #new_pitches = self.__makenew__(tokens=new_pitch)
+        new_pitches = new(self, tokens=new_pitch)
         return expr == new_pitches
 
     def make_notes(self, n=None, written_duration=None):
@@ -256,7 +259,8 @@ class PitchSegment(Segment):
 
         Returns new pitch segment.
         '''
-        return self.__makenew__(tokens=reversed(self))
+        #return self.__makenew__(tokens=reversed(self))
+        return new(self, tokens=reversed(self))
 
     def rotate(self, n):
         r'''Rotates pitch segment.
@@ -285,7 +289,8 @@ class PitchSegment(Segment):
         '''
         from abjad.tools import sequencetools
         tokens = sequencetools.rotate_sequence(self._collection, n)
-        return self.__makenew__(tokens=tokens)
+        #return self.__makenew__(tokens=tokens)
+        return new(self, tokens=tokens)
 
     def transpose(self, expr):
         r'''Transposes pitch segment by `expr`.
@@ -293,7 +298,8 @@ class PitchSegment(Segment):
         Returns new pitch segment.
         '''
         tokens = (pitch.transpose(expr) for pitch in self)
-        return self.__makenew__(tokens=tokens)
+        #return self.__makenew__(tokens=tokens)
+        return new(self, tokens=tokens)
 
     ### PUBLIC PROPERTIES ###
 

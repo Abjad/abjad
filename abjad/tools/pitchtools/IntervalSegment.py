@@ -2,6 +2,7 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Segment import Segment
+from abjad.tools.topleveltools import new
 
 
 class IntervalSegment(Segment):
@@ -44,7 +45,9 @@ class IntervalSegment(Segment):
             tokens = [str(x) for x in self]
         else:
             tokens = [x.number for x in self]
-        return self._storage_format_specification.__makenew__(
+        #return self._storage_format_specification.__makenew__(
+        return new(
+            self._storage_format_specification,
             is_indented=False,
             keyword_argument_names=(),
             positional_argument_values=(
@@ -86,7 +89,8 @@ class IntervalSegment(Segment):
 
         Returns new interval segment.
         '''
-        return self.__makenew__(self[-n:] + self[:-n])
+        #return self.__makenew__(self[-n:] + self[:-n])
+        return new(self, self[-n:] + self[:-n])
 
     ### PUBLIC PROPERTIES ###
 

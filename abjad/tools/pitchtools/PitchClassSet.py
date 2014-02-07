@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.pitchtools.Set import Set
+from abjad.tools.topleveltools import new
 
 
 class PitchClassSet(Set):
@@ -88,7 +89,9 @@ class PitchClassSet(Set):
         positional_argument_values=(
             tokens,
             )
-        return self._storage_format_specification.__makenew__(
+        #return self._storage_format_specification.__makenew__(
+        return new(
+            self._storage_format_specification,
             is_indented=False,
             keyword_argument_names=(),
             positional_argument_values=positional_argument_values,
@@ -200,7 +203,8 @@ class PitchClassSet(Set):
         Returns new pitch-class set.
         '''
         tokens = (pitch_class.multiply(n) for pitch_class in self)
-        return self.__makenew__(tokens=tokens)
+        #return self.__makenew__(tokens=tokens)
+        return new(self, tokens=tokens)
 
     def order_by(self, pitch_class_segment):
         r'''Orders pitch-class set by `pitch_class_segment`.
@@ -230,4 +234,5 @@ class PitchClassSet(Set):
         Returns new pitch-class set.
         '''
         tokens = (pitch_class + expr for pitch_class in self)
-        return self.__makenew__(tokens=tokens)
+        #return self.__makenew__(tokens=tokens)
+        return new(self, tokens=tokens)

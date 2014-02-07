@@ -4,6 +4,7 @@ import collections
 import types
 from abjad.tools import datastructuretools
 from abjad.tools.datastructuretools import TypedCounter
+from abjad.tools.topleveltools import new
 
 
 class Vector(TypedCounter):
@@ -85,7 +86,9 @@ class Vector(TypedCounter):
         tokens = {}
         for key, value in self:
             tokens[str(key)] = value
-        return self._storage_format_specification.__makenew__(
+        #return self._storage_format_specification.__makenew__(
+        return new(
+            self._storage_format_specification,
             is_indented=False,
             keyword_argument_names=(),
             positional_argument_values=(

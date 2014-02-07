@@ -6,6 +6,7 @@ from abjad.tools import mathtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
+from abjad.tools.topleveltools import new
 from experimental.tools.musicexpressiontools.PayloadExpression \
     import PayloadExpression
 
@@ -100,7 +101,8 @@ class IterablePayloadExpression(PayloadExpression):
         assert len(result) in (0, 1)
         if result:
             divisions = result[0].payload.divisions
-            expression = self.__makenew__(payload=divisions)
+            #expression = self.__makenew__(payload=divisions)
+            expression = new(self, payload=divisions)
             result[0] = expression
         return result
 
@@ -145,7 +147,8 @@ class IterablePayloadExpression(PayloadExpression):
         with referenced payload.
         '''
         payload = self.payload.__getitem__(expr)
-        result = self.__makenew__(payload=payload)
+        #result = self.__makenew__(payload=payload)
+        result = new(self, payload=payload)
         return result
 
     ### PRIVATE METHODS ###
@@ -265,7 +268,8 @@ class IterablePayloadExpression(PayloadExpression):
             self.payload, ratio)
         result = []
         for part in parts:
-            part = self.__makenew__(payload=part)
+            #part = self.__makenew__(payload=part)
+            part = new(self, payload=part)
             result.append(part)
         return result
 
@@ -305,7 +309,8 @@ class IterablePayloadExpression(PayloadExpression):
             self.payload, part_lengths)
         result = []
         for part in element_parts:
-            part = self.__makenew__(payload=part)
+            #part = self.__makenew__(payload=part)
+            part = new(self, payload=part)
             result.append(part)
         return result
 
@@ -330,7 +335,8 @@ class IterablePayloadExpression(PayloadExpression):
         '''
         assert isinstance(self.payload, tuple), repr(self.payload)
         payload = type(self.payload)(reversed(self.payload))
-        result = self.__makenew__(payload=payload)
+        #result = self.__makenew__(payload=payload)
+        result = new(self, payload=payload)
         return result
 
     def repeat_to_duration(self, duration):
@@ -362,7 +368,8 @@ class IterablePayloadExpression(PayloadExpression):
             payload = self.payload
         payload = sequencetools.repeat_sequence_to_weight(
             payload, duration)
-        result = self.__makenew__(payload=payload)
+        #result = self.__makenew__(payload=payload)
+        result = new(self, payload=payload)
         return result
 
     def repeat_to_length(self, length):
@@ -388,7 +395,8 @@ class IterablePayloadExpression(PayloadExpression):
         '''
         payload = sequencetools.repeat_sequence_to_length(
             self.payload, length)
-        result = self.__makenew__(payload=payload)
+        #result = self.__makenew__(payload=payload)
+        result = new(self, payload=payload)
         return result
 
     def rotate(self, n):
@@ -411,5 +419,6 @@ class IterablePayloadExpression(PayloadExpression):
         Returns newly constructed payload expression.
         '''
         payload = sequencetools.rotate_sequence(self.payload, n)
-        result = self.__makenew__(payload=payload)
+        #result = self.__makenew__(payload=payload)
+        result = new(self, payload=payload)
         return result
