@@ -230,3 +230,63 @@ class Sequence(AbjadObject):
             return True
         except TypeError:
             return False
+
+    def is_restricted_growth_function(self):
+        '''Is true when sequence is a restricted growth function.
+
+        ..  container:: example
+
+            Is true when sequence is a restricted growth function:
+
+            ::
+
+                >>> Sequence(1, 1, 1, 1).is_restricted_growth_function()
+                True
+
+            ::
+
+
+                >>> Sequence(1, 1, 1, 2).is_restricted_growth_function()
+                True
+
+            ::
+
+                >>> Sequence(1, 1, 2, 1).is_restricted_growth_function()
+                True
+
+            ::
+
+                >>> Sequence(1, 1, 2, 2).is_restricted_growth_function()
+                True
+
+        ..  container:: example
+
+            Is false when sequence is not a restricted growth function:
+            
+            ::
+
+                >>> Sequence(1, 1, 1, 3).is_restricted_growth_function()
+                False
+
+            ::
+
+                >>> Sequence(17).is_restricted_growth_function()
+                False
+
+        A restricted growth function is a sequence ``l`` such that 
+        ``l[0] == 1`` and such that ``l[i] <= max(l[:i]) + 1`` for 
+        ``1 <= i <= len(l)``.
+
+        Returns boolean.
+        '''
+        try:
+            for i, n in enumerate(self):
+                if i == 0:
+                    if not n == 1:
+                        return False
+                else:
+                    if not n <= max(self[:i]) + 1:
+                        return False
+            return True
+        except TypeError:
+            return False
