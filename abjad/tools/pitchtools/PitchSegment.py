@@ -160,7 +160,6 @@ class PitchSegment(Segment):
         Returns new pitch segment.
         '''
         tokens = (pitch.invert(axis) for pitch in self)
-        #return self.__makenew__(tokens=tokens)
         return new(self, tokens=tokens)
 
     def is_equivalent_under_transposition(self, expr):
@@ -177,7 +176,6 @@ class PitchSegment(Segment):
         difference = -(pitchtools.NamedPitch(expr[0], 4) -
             pitchtools.NamedPitch(self[0], 4))
         new_pitches = (x + difference for x in self)
-        #new_pitches = self.__makenew__(tokens=new_pitch)
         new_pitches = new(self, tokens=new_pitch)
         return expr == new_pitches
 
@@ -259,7 +257,6 @@ class PitchSegment(Segment):
 
         Returns new pitch segment.
         '''
-        #return self.__makenew__(tokens=reversed(self))
         return new(self, tokens=reversed(self))
 
     def rotate(self, n):
@@ -289,7 +286,6 @@ class PitchSegment(Segment):
         '''
         from abjad.tools import sequencetools
         tokens = sequencetools.rotate_sequence(self._collection, n)
-        #return self.__makenew__(tokens=tokens)
         return new(self, tokens=tokens)
 
     def transpose(self, expr):
@@ -298,7 +294,6 @@ class PitchSegment(Segment):
         Returns new pitch segment.
         '''
         tokens = (pitch.transpose(expr) for pitch in self)
-        #return self.__makenew__(tokens=tokens)
         return new(self, tokens=tokens)
 
     ### PUBLIC PROPERTIES ###

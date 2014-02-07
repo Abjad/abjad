@@ -77,7 +77,6 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         stop_offset = self.target_timespan.stop_offset + \
             set_expression.target_timespan.duration
         target_timespan = new(self.target_timespan, stop_offset=stop_offset)
-        #result = self.__makenew__(target_timespan=target_timespan)
         result = new(self, target_timespan=target_timespan)
         return timespantools.TimespanInventory([result])
 
@@ -93,7 +92,6 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         result = \
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for timespan in timespans:
-            #region_expression = self.__makenew__(target_timespan=timespan)
             region_expression = new(self, target_timespan=timespan)
             result.append(region_expression)
         return result

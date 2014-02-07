@@ -92,32 +92,6 @@ class Division(NonreducedFraction, BoundedObject):
     # TODO: remove?
     __deepcopy__ = __copy__
 
-#    def __makenew__(self, *args, **kwargs):
-#        from abjad.tools import systemtools
-#        manager = systemtools.StorageFormatManager
-#        keyword_argument_dictionary = \
-#            manager.get_keyword_argument_dictionary(self)
-#        positional_argument_dictionary = \
-#            manager.get_positional_argument_dictionary(self)
-#        for key, value in kwargs.iteritems():
-#            if key in positional_argument_dictionary:
-#                positional_argument_dictionary[key] = value
-#            elif key in keyword_argument_dictionary:
-#                keyword_argument_dictionary[key] = value
-#            else:
-#                raise KeyError(key)
-#        positional_argument_values = []
-#        positional_argument_names = getattr(
-#            self, '_positional_argument_names', None) or \
-#            manager.get_positional_argument_names(self)
-#        for positional_argument_name in positional_argument_names:
-#            positional_argument_value = \
-#                positional_argument_dictionary[positional_argument_name]
-#            positional_argument_values.append(positional_argument_value)
-#        result = type(self)(
-#            *positional_argument_values, **keyword_argument_dictionary)
-#        return result
-
     def __repr__(self):
         if self.start_offset is not None:
             return '{}({!r}, start_offset={!r})'.format(

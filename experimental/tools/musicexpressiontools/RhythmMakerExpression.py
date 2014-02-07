@@ -61,6 +61,5 @@ class RhythmMakerExpression(PayloadExpression):
         Returns newly constructed rhythm-maker payload expression.
         '''
         rhythm_maker = self.payload.reverse()
-        #result = self.__makenew__(payload=rhythm_maker)
         result = new(self, payload=rhythm_maker)
         return result

@@ -30,15 +30,6 @@ class Documenter(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
-#    def __makenew__(self, subject=None, prefix=None):
-#        r'''Makes new documenter.
-#
-#        Returns new documenter.
-#        '''
-#        subject = subject or self.subject
-#        prefix = prefix or self.prefix
-#        return type(self)(subject=subject, prefix=prefix)
-
     ### PRIVATE PROPERTIES ###
 
     @property

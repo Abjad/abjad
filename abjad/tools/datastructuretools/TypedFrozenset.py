@@ -32,10 +32,8 @@ class TypedFrozenset(TypedCollection):
 
         Returns new typed frozen set.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         result = self._collection.__and__(expr._collection)
-        #return self.__makenew__(result)
         result = type(self)(result)
         return result
 
@@ -45,7 +43,6 @@ class TypedFrozenset(TypedCollection):
 
         Returns boolean.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         return self._collection.__ge__(expr._collection)
 
@@ -54,7 +51,6 @@ class TypedFrozenset(TypedCollection):
 
         Returns boolean.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         return self._collection.__gt__(expr._collection)
 
@@ -76,7 +72,6 @@ class TypedFrozenset(TypedCollection):
 
         Returns boolean.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         return self._collection.__le__(expr._collection)
 
@@ -85,7 +80,6 @@ class TypedFrozenset(TypedCollection):
 
         Returns boolean.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         return self._collection.__lt__(expr._collection)
 
@@ -94,7 +88,6 @@ class TypedFrozenset(TypedCollection):
 
         Returns boolean.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         return self._collection.__ne__(expr._collection)
 
@@ -103,10 +96,8 @@ class TypedFrozenset(TypedCollection):
 
         Returns new typed frozen set.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         result = self._collection.__or__(expr._collection)
-        #return self.__makenew__(result)
         result = type(self)(result)
         return result
 
@@ -115,10 +106,8 @@ class TypedFrozenset(TypedCollection):
 
         Returns new typed frozen set.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         result = self._collection.__sub__(expr._collection)
-        #return self.__makenew__(result)
         result = type(self)(result)
         return result
 
@@ -127,10 +116,8 @@ class TypedFrozenset(TypedCollection):
 
         Returns new typed frozen set.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         result = self._collection.__xor__(expr._collection)
-        #return self.__makenew__(result)
         result = type(self)(result)
         return result
 
@@ -141,7 +128,6 @@ class TypedFrozenset(TypedCollection):
 
         Returns new typed frozen set.
         '''
-        #return self.__makenew__(self._collection.copy())
         return type(self)(self._collection.copy())
 
     def difference(self, expr):
@@ -149,10 +135,8 @@ class TypedFrozenset(TypedCollection):
 
         Returns new typed frozen set.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         result = self._collection.difference(expr._collection)
-        #return self.__makenew__(result)
         result = type(self)(result)
         return result
 
@@ -161,10 +145,8 @@ class TypedFrozenset(TypedCollection):
 
         Returns new typed frozen set.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         result = self._collection.intersection(expr._collection)
-        #return self.__makenew__(result)
         result = type(self)(result)
         return result
 
@@ -174,7 +156,6 @@ class TypedFrozenset(TypedCollection):
 
         Returns boolean.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         return self._collection.isdisjoint(expr._collection)
 
@@ -183,7 +164,6 @@ class TypedFrozenset(TypedCollection):
 
         Returns boolean.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         return self._collection.issubset(expr._collection)
 
@@ -193,7 +173,6 @@ class TypedFrozenset(TypedCollection):
 
         Returns boolean.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         return self._collection.issuperset(expr._collection)
 
@@ -202,10 +181,8 @@ class TypedFrozenset(TypedCollection):
 
         Returns new typed frozen set.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         result = self._collection.symmetric_difference(expr._collection)
-        #return self.__makenew__(result)
         result = type(self)(result)
         return result
 
@@ -214,10 +191,8 @@ class TypedFrozenset(TypedCollection):
 
         Returns new typed frozen set.
         '''
-        #expr = self.__makenew__(expr)
         expr = type(self)(expr)
         result = self._collection.union(expr._collection)
-        #return self.__makenew__(result)
         result = type(self)(result)
         return result
 

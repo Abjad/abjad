@@ -45,7 +45,6 @@ class IntervalSegment(Segment):
             tokens = [str(x) for x in self]
         else:
             tokens = [x.number for x in self]
-        #return self._storage_format_specification.__makenew__(
         return new(
             self._storage_format_specification,
             is_indented=False,
@@ -89,7 +88,6 @@ class IntervalSegment(Segment):
 
         Returns new interval segment.
         '''
-        #return self.__makenew__(self[-n:] + self[:-n])
         return new(self, self[-n:] + self[:-n])
 
     ### PUBLIC PROPERTIES ###

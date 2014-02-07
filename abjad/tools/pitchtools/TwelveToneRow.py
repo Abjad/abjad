@@ -58,22 +58,6 @@ class TwelveToneRow(PitchClassSegment):
             custom_identifier=self.custom_identifier,
             )
 
-#    def __makenew__(self, tokens=None, custom_identifier=None):
-#        r'''Makes new twelve-tone row with optional `tokens` and
-#        `custom_identifier`.
-#
-#        Returns new twelve-tone row.
-#        '''
-#        from abjad.tools import pitchtools
-#        # allow for empty iterables:
-#        if tokens is None:
-#            tokens = self._collection
-#        custom_identifier = custom_identifier or self.custom_identifier
-#        return type(self)(
-#            tokens=tokens,
-#            custom_identifier=custom_identifier,
-#            )
-
     def __mul__(self, expr):
         r'''Multiplies twelve-tone row by `expr`.
 

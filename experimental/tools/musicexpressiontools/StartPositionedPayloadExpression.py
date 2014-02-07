@@ -92,7 +92,6 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             raise ValueError
         duration_before = self._get_duration_of_list(elements_before)
         new_start_offset = self.start_offset + duration_before
-        #result = self.__makenew__(payload=new_payload, start_offset=new_start_offset)
         result = new(self, payload=new_payload, start_offset=new_start_offset)
         return result
 
@@ -339,7 +338,6 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             callback_cache[key] = elements
         elements = callback_cache[key]
         start_offset = elements[0].start_offset
-        #expression = self.__makenew__(
         expression = new(
             self,
             payload=elements, 

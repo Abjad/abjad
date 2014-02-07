@@ -242,24 +242,6 @@ class Clef(AbjadObject):
     def _list_clef_names(cls):
         return list(sorted(cls._clef_name_to_middle_c_position))
 
-    ### PRIVATE PROPERTIES ###
-
-#    @property
-#    def _repr_specification(self):
-#        return self._storage_format_specification.__makenew__(
-#            is_indented=False,
-#            )
-
-#    @property
-#    def _storage_format_specification(self):
-#        from abjad.tools import systemtools
-#        return systemtools.StorageFormatSpecification(
-#            self,
-#            positional_argument_values=(
-#                self.name,
-#                ),
-#            )
-
     ### PUBLIC PROPERTIES ###
 
     @property

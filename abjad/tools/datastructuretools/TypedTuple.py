@@ -34,12 +34,10 @@ class TypedTuple(TypedCollection):
         '''
         if isinstance(expr, type(self)):
             tokens = expr._collection
-            #return self.__makenew__(tokens=self._collection[:] + tokens)
             return new(self, tokens=self._collection[:] + tokens)
 
         elif isinstance(expr, type(self._collection)):
             tokens = expr[:]
-            #return self.__makenew__(tokens=self._collection[:] + tokens)
             return new(self, tokens=self._collection[:] + tokens)
         raise NotImplementedError
 
@@ -67,7 +65,6 @@ class TypedTuple(TypedCollection):
 
         Returns new typed tuple.
         '''
-        #return self.__makenew__(tokens=self._collection[start:stop])
         return new(self, tokens=self._collection[start:stop])
 
     def __hash__(self):
@@ -88,7 +85,6 @@ class TypedTuple(TypedCollection):
         Returns new typed tuple.
         '''
         tokens = self._collection * expr
-        #return self.__makenew__(tokens=tokens)
         return new(self, tokens=tokens)
 
     def __rmul__(self, expr):

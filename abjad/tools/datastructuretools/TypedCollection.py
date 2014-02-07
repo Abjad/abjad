@@ -85,27 +85,6 @@ class TypedCollection(AbjadObject):
         '''
         return len(self._collection)
 
-#    def __makenew__(
-#        self, 
-#        tokens=None, 
-#        item_class=None, 
-#        custom_identifier=None,
-#        ):
-#        r'''Makes new typed collection with optional new values.
-#
-#        Returns new typed collection.
-#        '''
-#        # allow for empty iterables
-#        if tokens is None:
-#            tokens = self._collection
-#        item_class = item_class or self.item_class
-#        custom_identifier = custom_identifier or self.custom_identifier
-#        return type(self)(
-#            tokens=tokens,
-#            item_class=item_class,
-#            custom_identifier=custom_identifier,
-#            )
-
     def __ne__(self, expr):
         r'''Is true when `expr` is not a typed collection with items equal to 
         this typed collection. Otherwise false.

@@ -86,7 +86,6 @@ class Vector(TypedCounter):
         tokens = {}
         for key, value in self:
             tokens[str(key)] = value
-        #return self._storage_format_specification.__makenew__(
         return new(
             self._storage_format_specification,
             is_indented=False,

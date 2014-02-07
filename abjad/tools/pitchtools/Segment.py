@@ -84,8 +84,6 @@ class Segment(TypedTuple):
         tokens = []
         if self.item_class.__name__.startswith('Named'):
             tokens = [str(x) for x in self]
-#        else:
-#            tokens = [abs(x) for x in self]
         elif hasattr(self.item_class, 'pitch_number'):
             tokens = [x.pitch_number for x in self]
         elif hasattr(self.item_class, 'pitch_class_number'):
@@ -94,7 +92,6 @@ class Segment(TypedTuple):
             tokens = [abs(x) for x in self]
         else:
             raise ValueError
-        #return self._storage_format_specification.__makenew__(
         return new(
             self._storage_format_specification,
             is_indented=False,

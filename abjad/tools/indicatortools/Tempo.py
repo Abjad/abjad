@@ -321,7 +321,6 @@ class Tempo(AbjadObject):
 
     @property
     def _repr_specification(self):
-        #return self._storage_format_specification.__makenew__(
         return new(
             self._storage_format_specification,
             is_indented=False,

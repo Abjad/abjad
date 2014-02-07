@@ -89,7 +89,6 @@ class PitchClassSet(Set):
         positional_argument_values=(
             tokens,
             )
-        #return self._storage_format_specification.__makenew__(
         return new(
             self._storage_format_specification,
             is_indented=False,
@@ -203,7 +202,6 @@ class PitchClassSet(Set):
         Returns new pitch-class set.
         '''
         tokens = (pitch_class.multiply(n) for pitch_class in self)
-        #return self.__makenew__(tokens=tokens)
         return new(self, tokens=tokens)
 
     def order_by(self, pitch_class_segment):
@@ -234,5 +232,4 @@ class PitchClassSet(Set):
         Returns new pitch-class set.
         '''
         tokens = (pitch_class + expr for pitch_class in self)
-        #return self.__makenew__(tokens=tokens)
         return new(self, tokens=tokens)

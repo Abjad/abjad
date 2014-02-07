@@ -94,7 +94,6 @@ class Set(TypedFrozenset):
         positional_argument_values=(
             tokens,
             )
-        #return self._storage_format_specification.__makenew__(
         return new(
             self._storage_format_specification,
             is_indented=False,

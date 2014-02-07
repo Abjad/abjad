@@ -63,19 +63,6 @@ class StorageFormatSpecification(AbjadObject):
         else:
             self._tools_package_name = None
 
-    ### SPECIAL METHODS ###
-
-#    def __makenew__(self, *args, **kwargs):
-#        r'''Makes new storage format specification with optional `kwargs`.
-#
-#        Returns new storage format specification.
-#        '''
-#        state = {}
-#        for slot in self.__slots__:
-#            name = slot[1:]
-#            state[name] = kwargs.get(name, getattr(self, slot))
-#        return type(self)(**state)
-
     ### PUBLIC PROPERTIES ###
 
     @property

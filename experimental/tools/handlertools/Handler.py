@@ -35,10 +35,6 @@ class Handler(abctools.AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
-#    def __makenew__(self, *args, **kwargs):
-#        new = type(self)(*args, **kwargs)
-#        return new
-
     ### PRIVATE METHODS ###
 
     @staticmethod
