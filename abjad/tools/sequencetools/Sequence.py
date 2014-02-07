@@ -54,11 +54,11 @@ class Sequence(AbjadObject):
     ### PUBLIC METHODS ###
 
     def is_monotonically_decreasing(self):
-        r'''Is true when elements decrease monotonically.
+        r'''Is true when sequence decreases monotonically.
 
         ..  container:: example
 
-            Is true when elements decrease monotonically:
+            Is true when sequence decreases monotonically:
 
             ::
 
@@ -75,9 +75,16 @@ class Sequence(AbjadObject):
                 >>> Sequence(3, 3, 3, 3, 3, 3).is_monotonically_decreasing()
                 True
 
+            Is true when sequence is empty:
+
+            ::
+
+                >>> Sequence().is_monotonically_decreasing()
+                True
+
         ..  container:: example
 
-            False when elements do not decrease monotonically:
+            Is false when sequence decreases monotonically:
 
             ::
 
@@ -88,15 +95,6 @@ class Sequence(AbjadObject):
 
                 >>> Sequence(0, 1, 2, 3, 3, 3).is_monotonically_decreasing()
                 False
-
-        ..  container:: example
-
-            Is true when empty:
-
-            ::
-
-                >>> Sequence().is_monotonically_decreasing()
-                True
 
         Returns boolean.
         '''
@@ -112,11 +110,11 @@ class Sequence(AbjadObject):
             return False
 
     def is_monotonically_increasing(self):
-        r'''Is true when elements increase monotonically.
+        r'''Is true when sequence increases monotonically.
 
         ..  container:: example
 
-            Is true when elements increasing monotonically:
+            Is true when sequence increases monotonically:
 
             ::
 
@@ -133,9 +131,16 @@ class Sequence(AbjadObject):
                 >>> Sequence(3, 3, 3, 3, 3, 3).is_monotonically_increasing()
                 True
 
+            Is true when sequence is empty:
+
+            ::
+
+                >>> Sequence().is_monotonically_increasing()
+                True
+
         ..  container:: example
 
-            Is false when elements do not increase monotonically:
+            Is false when sequence does not increase monotonically:
 
             ::
 
@@ -146,15 +151,6 @@ class Sequence(AbjadObject):
 
                 >>> Sequence(3, 3, 3, 2, 1, 0).is_monotonically_increasing()
                 False
-
-        ..  container:: example
-
-            Is true when empty:
-
-            ::
-
-                >>> Sequence().is_monotonically_increasing()
-                True
 
         Returns boolean.
         '''
@@ -171,7 +167,7 @@ class Sequence(AbjadObject):
 
 
     def is_permutation(self, length=None):
-        '''Is true when `expr` is a permutation.
+        '''Is true when sequence is a permutation.
 
         ..  container:: example
 
@@ -184,7 +180,7 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            Otherwise false:
+            Is false when sequence is not a permutation:
 
             ::
 
@@ -194,3 +190,43 @@ class Sequence(AbjadObject):
         Returns boolean.
         '''
         return sorted(self) == range(len(self))
+
+    def is_repetition_free(self):
+        '''Is true when sequence is repetition-free.
+
+        ..  container:: example
+
+            Is true when sequence contains no repetitions:
+
+            ::
+
+                >>> Sequence(0, 1, 2, 6, 7, 8).is_repetition_free()
+                True
+
+            Is true when sequence is empty: 
+
+            ::
+
+                >>> Sequence().is_repetition_free()
+                True
+
+        ..  container:: example
+
+            Is false when sequence contains repetitions:
+
+            ::
+
+                >>> Sequence(0, 1, 2, 2, 7, 8).is_repetition_free()
+                False
+
+        Returns boolean.
+        '''
+        from abjad.tools import sequencetools
+        try:
+            pairs = sequencetools.iterate_sequence_nwise(self)
+            for left, right in pairs:
+                if left == right:
+                    return False
+            return True
+        except TypeError:
+            return False
