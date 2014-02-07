@@ -16,7 +16,8 @@ def yield_all_permutations_of_sequence_in_orbit(sequence, permutation):
     '''
     from abjad.tools import sequencetools
 
-    if not sequencetools.is_permutation(permutation, len(sequence)):
+    if not sequencetools.Sequence(*permutation).is_permutation() or \
+        len(sequence) != len(permutation):
         args = (str(permutation), len(sequence))
         message = '{!r} must be permutation of length {}.'
         message = message.format(permutation, len(sequence))

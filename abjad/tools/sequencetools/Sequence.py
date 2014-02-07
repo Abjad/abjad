@@ -168,3 +168,29 @@ class Sequence(AbjadObject):
             return True
         except TypeError:
             return False
+
+
+    def is_permutation(self, length=None):
+        '''Is true when `expr` is a permutation.
+
+        ..  container:: example
+
+            Is true when sequence is a permutation:
+
+            ::
+
+                >>> Sequence(4, 5, 0, 3, 2, 1).is_permutation()
+                True
+
+        ..  container:: example
+
+            Otherwise false:
+
+            ::
+
+                >>> Sequence(1, 1, 5, 3, 2, 1).is_permutation()
+                False
+
+        Returns boolean.
+        '''
+        return sorted(self) == range(len(self))
