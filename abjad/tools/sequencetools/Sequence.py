@@ -53,118 +53,157 @@ class Sequence(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def is_monotonically_decreasing(self):
-        r'''Is true when sequence decreases monotonically.
+    def is_decreasing(self, strict=True):
+        r'''Is true when sequence decreases.
 
         ..  container:: example
 
-            Is true when sequence decreases monotonically:
+            With ``strict=True``:
 
             ::
 
-                >>> Sequence(5, 4, 3, 2, 1, 0).is_monotonically_decreasing()
+                >>> Sequence(5, 4, 3, 2, 1, 0).is_decreasing(strict=True)
                 True
 
             ::
 
-                >>> Sequence(3, 3, 3, 2, 1, 0).is_monotonically_decreasing()
-                True
-
-            ::
-
-                >>> Sequence(3, 3, 3, 3, 3, 3).is_monotonically_decreasing()
-                True
-
-            Is true when sequence is empty:
-
-            ::
-
-                >>> Sequence().is_monotonically_decreasing()
-                True
-
-        ..  container:: example
-
-            Is false when sequence decreases monotonically:
-
-            ::
-
-                >>> Sequence(0, 1, 2, 3, 4, 5).is_monotonically_decreasing()
+                >>> Sequence(3, 3, 3, 2, 1, 0).is_decreasing(strict=True)
                 False
 
             ::
 
-                >>> Sequence(0, 1, 2, 3, 3, 3).is_monotonically_decreasing()
+                >>> Sequence(3, 3, 3, 3, 3, 3).is_decreasing(strict=True)
                 False
+
+            ::
+
+                >>> Sequence().is_decreasing(strict=True)
+                True
+
+        ..  container:: example
+
+            With ``strict=False``:
+
+            ::
+
+                >>> Sequence(5, 4, 3, 2, 1, 0).is_decreasing(strict=False)
+                True
+
+            ::
+
+                >>> Sequence(3, 3, 3, 2, 1, 0).is_decreasing(strict=False)
+                True
+
+            ::
+
+                >>> Sequence(3, 3, 3, 3, 3, 3).is_decreasing(strict=False)
+                True
+
+            ::
+
+                >>> Sequence().is_decreasing(strict=False)
+                True
 
         Returns boolean.
         '''
-        try:
-            previous = None
-            for current in self:
-                if previous is not None:
-                    if not current <= previous:
-                        return False
-                previous = current
-            return True
-        except TypeError:
-            return False
+        if strict:
+            try:
+                previous = None
+                for current in self:
+                    if previous is not None:
+                        if not current < previous:
+                            return False
+                    previous = current
+                return True
+            except TypeError:
+                return False
+        else:
+            try:
+                previous = None
+                for current in self:
+                    if previous is not None:
+                        if not current <= previous:
+                            return False
+                    previous = current
+                return True
+            except TypeError:
+                return False
 
-    def is_monotonically_increasing(self):
-        r'''Is true when sequence increases monotonically.
-
-        ..  container:: example
-
-            Is true when sequence increases monotonically:
-
-            ::
-
-                >>> Sequence(0, 1, 2, 3, 4, 5).is_monotonically_increasing()
-                True
-
-            ::
-
-                >>> Sequence(0, 1, 2, 3, 3, 3).is_monotonically_increasing()
-                True
-
-            ::
-
-                >>> Sequence(3, 3, 3, 3, 3, 3).is_monotonically_increasing()
-                True
-
-            Is true when sequence is empty:
-
-            ::
-
-                >>> Sequence().is_monotonically_increasing()
-                True
+    def is_increasing(self, strict=True):
+        r'''Is true when sequence increases.
 
         ..  container:: example
 
-            Is false when sequence does not increase monotonically:
+            With ``strict=True``:
 
             ::
 
-                >>> Sequence(5, 4, 3, 2, 1, 0).is_monotonically_increasing()
+                >>> Sequence(0, 1, 2, 3, 4, 5).is_increasing(strict=True)
+                True
+
+            ::
+
+                >>> Sequence(0, 1, 2, 3, 3, 3).is_increasing(strict=True)
                 False
 
             ::
 
-                >>> Sequence(3, 3, 3, 2, 1, 0).is_monotonically_increasing()
+                >>> Sequence(3, 3, 3, 3, 3, 3).is_increasing(strict=True)
                 False
+
+            ::
+
+                >>> Sequence().is_increasing(strict=True)
+                True
+
+        ..  container:: example
+
+            With ``strict=False``:
+
+            ::
+
+                >>> Sequence(0, 1, 2, 3, 4, 5).is_increasing(strict=False)
+                True
+
+            ::
+
+                >>> Sequence(0, 1, 2, 3, 3, 3).is_increasing(strict=False)
+                True
+
+            ::
+
+                >>> Sequence(3, 3, 3, 3, 3, 3).is_increasing(strict=False)
+                True
+
+            ::
+
+                >>> Sequence().is_increasing(strict=False)
+                True
 
         Returns boolean.
         '''
-        try:
-            previous = None
-            for current in self:
-                if previous is not None:
-                    if not previous <= current:
-                        return False
-                previous = current
-            return True
-        except TypeError:
-            return False
-
+        if strict:
+            try:
+                previous = None
+                for current in self:
+                    if previous is not None:
+                        if not previous < current:
+                            return False
+                    previous = current
+                return True
+            except TypeError:
+                return False
+        else:
+            try:
+                previous = None
+                for current in self:
+                    if previous is not None:
+                        if not previous <= current:
+                            return False
+                    previous = current
+                return True
+            except TypeError:
+                return False
 
     def is_permutation(self, length=None):
         '''Is true when sequence is a permutation.
