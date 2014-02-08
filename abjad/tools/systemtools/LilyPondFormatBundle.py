@@ -300,6 +300,8 @@ class LilyPondFormatBundle(AbjadObject):
 
         Returns none.
         '''
+        if hasattr(format_bundle, '_lilypond_format_bundle'):
+            format_bundle = format_bundle._lilypond_format_bundle
         assert isinstance(format_bundle, type(self))
         self.before.update(format_bundle.before)
         self.after.update(format_bundle.after)
