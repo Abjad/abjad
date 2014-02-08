@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
 from abjad.tools.spannertools.Spanner import Spanner
+from abjad.tools.topleveltools import override
 
 
 class Slur(Spanner):
@@ -56,18 +57,28 @@ class Slur(Spanner):
     def _copy_keyword_args(self, new):
         new._direction = self.direction
 
-    def _format_right_of_leaf(self, leaf):
-        result = []
+    def _get_lilypond_format_bundle(self, leaf):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
         if self._is_my_first_leaf(leaf):
-            direction = self.direction
-            if direction is not None:
+            contributions = override(self)._list_format_contributions(
+                'override',
+                is_once=False,
+                )
+            lilypond_format_bundle.grob_overrides.extend(contributions)
+            if self.direction is not None:
                 string = '{} ('.format(self.direction)
-                result.append(string)
             else:
-                result.append('(')
+                string = '('
+            lilypond_format_bundle.right.spanner_starts.append(string)
         if self._is_my_last_leaf(leaf):
-            result.append(')')
-        return result
+            contributions = override(self)._list_format_contributions(
+                'revert',
+                )
+            lilypond_format_bundle.grob_reverts.extend(contributions)
+            string = ')'
+            lilypond_format_bundle.right.spanner_stops.append(string)
+        return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
 
