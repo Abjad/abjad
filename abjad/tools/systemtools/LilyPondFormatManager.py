@@ -482,37 +482,27 @@ class LilyPondFormatManager(object):
 
             >>> manager = systemtools.LilyPondFormatManager
             >>> print manager.report_spanner_format_contributions(spanner)
-            c8  before: []
-                after: []
-                right: ['[']
-            <BLANKLINE>
-            d8  before: []
-                after: []
-                right: []
-            <BLANKLINE>
-            e8  before: []
-                after: []
-                right: []
-            <BLANKLINE>
-            f8  before: []
-                after: []
-                right: [']']
+            c8	systemtools.LilyPondFormatBundle(
+                    right=LilyPondFormatBundle.SlotContributions(
+                        spanner_starts=['['],
+                        ),
+                    )
+            d8	systemtools.LilyPondFormatBundle()
+            e8	systemtools.LilyPondFormatBundle()
+            f8	systemtools.LilyPondFormatBundle(
+                    right=LilyPondFormatBundle.SlotContributions(
+                        spanner_stops=[']'],
+                        ),
+                    )
 
         Returns none or return string.
         '''
-        result = ''
+        result = []
         for leaf in spanner._leaves:
-            result += str(leaf)
-            string = '\tbefore: {}\n'
-            string = string.format(spanner._format_before_leaf(leaf))
-            result += string
-            string = '\t after: {}\n'
-            string = string.format(spanner._format_after_leaf(leaf))
-            result += string
-            string = '\t right: {}\n'
-            string = string.format(spanner._format_right_of_leaf(leaf))
-            result += string
-            result += '\n'
-        if result[-1] == '\n':
-            result = result[:-1]
+            bundle = spanner._get_lilypond_format_bundle(leaf)
+            bundle_pieces = format(bundle).split('\n')
+            result.append('{!s}\t{}'.format(leaf, bundle_pieces[0]))
+            for piece in bundle_pieces[1:]:
+                result.append('\t{}'.format(piece))
+        result = '\n'.join(result)
         return result
