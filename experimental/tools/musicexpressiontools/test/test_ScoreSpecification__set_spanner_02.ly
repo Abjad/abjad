@@ -46,12 +46,12 @@
 					f'16 ]
 				}
 				{
-					\set stemLeftBeamCount = #0
-					\set stemRightBeamCount = #2
 					\override Accidental #'color = #red
 					\override Beam #'color = #red
 					\override NoteHead #'color = #red
 					\override Stem #'color = #red
+					\set stemLeftBeamCount = #0
+					\set stemRightBeamCount = #2
 					fs'16 [ (
 					\set stemLeftBeamCount = #2
 					\set stemRightBeamCount = #2
