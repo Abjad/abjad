@@ -1598,7 +1598,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print format(container)
                 {
-                    c'8 ( ~
+                    c'8 ~ (
                     c'32
                     d'8 ~
                     d'32

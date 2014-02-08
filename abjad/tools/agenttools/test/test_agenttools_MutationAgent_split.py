@@ -32,7 +32,7 @@ def test_agenttools_MutationAgent_split_01():
             }
         }
         '''
-        )
+        ), format(staff)
 
     notes = staff[0][1:2]
     result = mutate(notes).split(
@@ -58,7 +58,7 @@ def test_agenttools_MutationAgent_split_01():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 3
@@ -91,7 +91,7 @@ def test_agenttools_MutationAgent_split_02():
             }
         }
         '''
-        )
+        ), format(staff)
 
     leaves = staff.select_leaves()
     result = mutate(leaves).split(
@@ -106,20 +106,20 @@ def test_agenttools_MutationAgent_split_02():
         \new Staff {
             {
                 \time 2/8
-                c'16. [ ( ~
+                c'16. ~ [ (
                 c'32
                 d'16 ~
                 d'16 ]
             }
             {
-                e'32 [ ~
+                e'32 ~ [
                 e'16.
                 f'16. ~
                 f'32 ] )
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 6
@@ -152,7 +152,7 @@ def test_agenttools_MutationAgent_split_03():
             }
         }
         '''
-        )
+        ), format(staff)
 
     measures = staff[:1]
     result = mutate(measures).split(
@@ -185,7 +185,7 @@ def test_agenttools_MutationAgent_split_03():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 3
@@ -219,7 +219,7 @@ def test_agenttools_MutationAgent_split_04():
             }
         }
         '''
-        )
+        ), format(staff)
 
     measures = staff[:]
     result = mutate(measures).split(
@@ -262,7 +262,7 @@ def test_agenttools_MutationAgent_split_04():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 6
@@ -321,7 +321,7 @@ def test_agenttools_MutationAgent_split_05():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 6
@@ -354,7 +354,7 @@ def test_agenttools_MutationAgent_split_06():
             }
         }
         '''
-        )
+        ), format(staff)
 
     notes = staff[0][1:]
     result = mutate(notes).split(
@@ -382,7 +382,7 @@ def test_agenttools_MutationAgent_split_06():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 4
@@ -415,7 +415,7 @@ def test_agenttools_MutationAgent_split_07():
             }
         }
         '''
-        )
+        ), format(staff)
 
     leaves = staff.select_leaves()
     result = mutate(leaves).split(
@@ -431,20 +431,20 @@ def test_agenttools_MutationAgent_split_07():
         \new Staff {
             {
                 \time 2/8
-                c'16 [ ( ~
+                c'16 ~ [ (
                 c'16
                 d'16 ~
                 d'16 ]
             }
             {
-                e'16 [ ~
+                e'16 ~ [
                 e'16
                 f'16 ~
                 f'16 ] )
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 8
@@ -477,7 +477,7 @@ def test_agenttools_MutationAgent_split_08():
             }
         }
         '''
-        )
+        ), format(staff)
 
     measures = staff[:1]
     result = mutate(measures).split(
@@ -493,7 +493,7 @@ def test_agenttools_MutationAgent_split_08():
         \new Staff {
             {
                 \time 1/16
-                c'16 [ ( ~
+                c'16 ~ [ (
             }
             {
                 c'16
@@ -511,7 +511,7 @@ def test_agenttools_MutationAgent_split_08():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 4
@@ -545,7 +545,7 @@ def test_agenttools_MutationAgent_split_09():
             }
         }
         '''
-        )
+        ), format(staff)
 
     measures = staff[:]
     result = mutate(measures).split(
@@ -561,7 +561,7 @@ def test_agenttools_MutationAgent_split_09():
         \new Staff {
             {
                 \time 3/32
-                c'16. [ ( ~
+                c'16. ~ [ (
             }
             {
                 c'32
@@ -573,7 +573,7 @@ def test_agenttools_MutationAgent_split_09():
             }
             {
                 \time 1/32
-                e'32 [ ~
+                e'32 ~ [
             }
             {
                 \time 3/32
@@ -588,7 +588,7 @@ def test_agenttools_MutationAgent_split_09():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 6
@@ -621,7 +621,7 @@ def test_agenttools_MutationAgent_split_10():
             }
         }
         '''
-        )
+        ), format(staff)
 
     notes = staff[0][1:2]
     result = mutate(notes).split(
@@ -637,8 +637,8 @@ def test_agenttools_MutationAgent_split_10():
             {
                 \time 2/8
                 c'8 [ (
-                d'32. ) ~
-                d'32. ( ) ~
+                d'32. ~ )
+                d'32. ~ ( )
                 d'32 ] (
             }
             {
@@ -647,7 +647,7 @@ def test_agenttools_MutationAgent_split_10():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 3
@@ -680,7 +680,7 @@ def test_agenttools_MutationAgent_split_11():
             }
         }
         '''
-        )
+        ), format(staff)
 
     leaves = staff.select_leaves()
     result = mutate(leaves).split(
@@ -695,20 +695,20 @@ def test_agenttools_MutationAgent_split_11():
         \new Staff {
             {
                 \time 2/8
-                c'16. [ ( ) ~
+                c'16. ~ [ ( )
                 c'32 (
-                d'16 ) ~
+                d'16 ~ )
                 d'16 ] (
             }
             {
-                e'32 [ ) ~
+                e'32 ~ ) [
                 e'16. (
-                f'16. ) ~
+                f'16. ~ )
                 f'32 ] ( )
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 6
@@ -741,7 +741,7 @@ def test_agenttools_MutationAgent_split_12():
             }
         }
         '''
-        )
+        ), format(staff)
 
     measures = staff[:1]
     result = mutate(measures).split(
@@ -774,7 +774,7 @@ def test_agenttools_MutationAgent_split_12():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 3
@@ -807,7 +807,7 @@ def test_agenttools_MutationAgent_split_13():
             }
         }
         '''
-        )
+        ), format(staff)
 
     measures = staff[:]
     result = mutate(measures).split(
@@ -835,7 +835,7 @@ def test_agenttools_MutationAgent_split_13():
             }
             {
                 \time 1/32
-                e'32 [ ] )
+                e'32 ) [ ]
             }
             {
                 \time 3/32
@@ -850,7 +850,7 @@ def test_agenttools_MutationAgent_split_13():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 6
@@ -885,7 +885,7 @@ def test_agenttools_MutationAgent_split_14():
             f'32
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 6
@@ -944,7 +944,7 @@ def test_agenttools_MutationAgent_split_15():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 6
@@ -977,7 +977,7 @@ def test_agenttools_MutationAgent_split_16():
             }
         }
         '''
-        )
+        ), format(staff)
 
     notes = staff[0][1:]
     result = mutate(notes).split(
@@ -994,9 +994,9 @@ def test_agenttools_MutationAgent_split_16():
             {
                 \time 2/8
                 c'8 [ (
-                d'32 ) ~
-                d'32 ( ) ~
-                d'32 ( ) ~
+                d'32 ~ )
+                d'32 ~ ( )
+                d'32 ~ ( )
                 d'32 ] (
             }
             {
@@ -1005,7 +1005,7 @@ def test_agenttools_MutationAgent_split_16():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 4
@@ -1038,7 +1038,7 @@ def test_agenttools_MutationAgent_split_17():
             }
         }
         '''
-        )
+        ), format(staff)
 
     leaves = staff.select_leaves()
     result = mutate(leaves).split(
@@ -1054,20 +1054,20 @@ def test_agenttools_MutationAgent_split_17():
         \new Staff {
             {
                 \time 2/8
-                c'16 [ ( ) ~
+                c'16 ~ [ ( )
                 c'16 (
-                d'16 ) ~
+                d'16 ~ )
                 d'16 ] (
             }
             {
-                e'16 [ ) ~
+                e'16 ~ ) [
                 e'16 (
-                f'16 ) ~
+                f'16 ~ )
                 f'16 ] ( )
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 8
@@ -1100,7 +1100,7 @@ def test_agenttools_MutationAgent_split_18():
             }
         }
         '''
-        )
+        ), format(staff)
 
     measures = staff[:1]
     result = mutate(measures).split(
@@ -1116,13 +1116,13 @@ def test_agenttools_MutationAgent_split_18():
         \new Staff {
             {
                 \time 1/16
-                c'16 [ ] ( ) ~
+                c'16 ~ [ ] ( )
             }
             {
                 c'16 [ ] ( )
             }
             {
-                d'16 [ ] ( ) ~
+                d'16 ~ [ ] ( )
             }
             {
                 d'16 [ ] (
@@ -1134,7 +1134,7 @@ def test_agenttools_MutationAgent_split_18():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 4
@@ -1167,7 +1167,7 @@ def test_agenttools_MutationAgent_split_19():
             }
         }
         '''
-        )
+        ), format(staff)
 
     measures = staff[:]
     result = mutate(measures).split(
@@ -1183,11 +1183,11 @@ def test_agenttools_MutationAgent_split_19():
         \new Staff {
             {
                 \time 3/32
-                c'16. [ ] ( ) ~
+                c'16. ~ [ ] ( )
             }
             {
                 c'32 [ (
-                d'16 ] ) ~
+                d'16 ~ ] )
             }
             {
                 \time 2/32
@@ -1195,14 +1195,14 @@ def test_agenttools_MutationAgent_split_19():
             }
             {
                 \time 1/32
-                e'32 [ ] ) ~
+                e'32 ~ ) [ ]
             }
             {
                 \time 3/32
                 e'16. [ ] ( )
             }
             {
-                f'16. [ ] ( ) ~
+                f'16. ~ [ ] ( )
             }
             {
                 \time 1/32
@@ -1210,7 +1210,7 @@ def test_agenttools_MutationAgent_split_19():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 6
@@ -1243,7 +1243,7 @@ def test_agenttools_MutationAgent_split_20():
             }
         }
         '''
-        )
+        ), format(staff)
 
     measures = staff[:1]
     result = mutate(measures).split(
@@ -1276,7 +1276,7 @@ def test_agenttools_MutationAgent_split_20():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 3
@@ -1309,7 +1309,7 @@ def test_agenttools_MutationAgent_split_21():
             }
         }
         '''
-        )
+        ), format(staff)
 
     measures = staff[:]
     result = mutate(measures).split(
@@ -1346,7 +1346,7 @@ def test_agenttools_MutationAgent_split_21():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 4
@@ -1379,7 +1379,7 @@ def test_agenttools_MutationAgent_split_22():
             }
         }
         '''
-        )
+        ), format(staff)
 
     measures = staff[:1]
     result = mutate(measures).split(
@@ -1412,7 +1412,7 @@ def test_agenttools_MutationAgent_split_22():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 3
@@ -1445,7 +1445,7 @@ def test_agenttools_MutationAgent_split_23():
             }
         }
         '''
-        )
+        ), format(staff)
 
     measures = staff[:]
     result = mutate(measures).split(
@@ -1474,7 +1474,7 @@ def test_agenttools_MutationAgent_split_23():
             }
             {
                 \time 1/32
-                e'32 [ ] )
+                e'32 ) [ ]
             }
             {
                 \time 7/32
@@ -1483,7 +1483,7 @@ def test_agenttools_MutationAgent_split_23():
             }
         }
         '''
-        )
+        ), format(staff)
 
 
 def test_agenttools_MutationAgent_split_24():
@@ -1513,7 +1513,7 @@ def test_agenttools_MutationAgent_split_24():
             c'16
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 3
@@ -1532,7 +1532,7 @@ def test_agenttools_MutationAgent_split_25():
             c'8 [ ]
         }
         '''
-        )
+        ), format(staff)
 
     notes = staff[:]
     result = mutate(notes).split(
@@ -1547,12 +1547,12 @@ def test_agenttools_MutationAgent_split_25():
         r'''
         \new Staff {
             c'64 [ ]
-            c'16 [ ~
+            c'16 ~ [
             c'64 ]
             c'32 [ ]
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -1593,7 +1593,7 @@ def test_agenttools_MutationAgent_split_26():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert inspect_(voice).is_well_formed()
 
@@ -1636,7 +1636,7 @@ def test_agenttools_MutationAgent_split_27():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert inspect_(voice).is_well_formed()
 
@@ -1685,7 +1685,7 @@ def test_agenttools_MutationAgent_split_28():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert inspect_(voice).is_well_formed()
 
@@ -1714,7 +1714,7 @@ def test_agenttools_MutationAgent_split_29():
             d'8
         }
         '''
-        )
+        ), format(voice_1)
 
     assert inspect_(voice_1).is_well_formed()
 
@@ -1726,7 +1726,7 @@ def test_agenttools_MutationAgent_split_29():
             f'8
         }
         '''
-        )
+        ), format(voice_2)
 
     assert inspect_(voice_2).is_well_formed()
 
@@ -1754,7 +1754,7 @@ def test_agenttools_MutationAgent_split_30():
             d'8
         }
         '''
-        )
+        ), format(left)
 
     assert systemtools.TestManager.compare(
         right,
@@ -1764,7 +1764,7 @@ def test_agenttools_MutationAgent_split_30():
             f'8
         }
         '''
-        )
+        ), format(right)
 
     assert systemtools.TestManager.compare(
         voice,
@@ -1772,7 +1772,7 @@ def test_agenttools_MutationAgent_split_30():
         \new Voice {
         }
         '''
-        )
+        ), format(voice)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -1788,7 +1788,7 @@ def test_agenttools_MutationAgent_split_30():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -1824,7 +1824,7 @@ def test_agenttools_MutationAgent_split_31():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert systemtools.TestManager.compare(
         left,
@@ -1834,7 +1834,7 @@ def test_agenttools_MutationAgent_split_31():
             d'8
         }
         '''
-        )
+        ), format(left)
 
     assert systemtools.TestManager.compare(
         right,
@@ -1844,7 +1844,7 @@ def test_agenttools_MutationAgent_split_31():
             f'8 ]
         }
         '''
-        )
+        ), format(right)
 
     assert systemtools.TestManager.compare(
         voice,
@@ -1852,7 +1852,7 @@ def test_agenttools_MutationAgent_split_31():
         {
         }
         '''
-        )
+        ), format(voice)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -1868,7 +1868,7 @@ def test_agenttools_MutationAgent_split_31():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -1900,7 +1900,7 @@ def test_agenttools_MutationAgent_split_32():
             c'8
         }
         '''
-        )
+        ), format(left)
 
     assert systemtools.TestManager.compare(
         right,
@@ -1912,7 +1912,7 @@ def test_agenttools_MutationAgent_split_32():
             c'8 ]
         }
         '''
-        )
+        ), format(right)
 
     assert systemtools.TestManager.compare(
         tuplet,
@@ -1920,7 +1920,7 @@ def test_agenttools_MutationAgent_split_32():
         \times 4/5 {
         }
         '''
-        )
+        ), format(tuplet)
 
     assert systemtools.TestManager.compare(
         voice,
@@ -1939,7 +1939,7 @@ def test_agenttools_MutationAgent_split_32():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -1960,7 +1960,7 @@ def test_agenttools_MutationAgent_split_32():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -1992,7 +1992,7 @@ def test_agenttools_MutationAgent_split_33():
             }
         }
         '''
-        )
+        ), format(voice)
 
     result = mutate([tuplet]).split(
         [Duration(1, 12)],
@@ -2010,7 +2010,7 @@ def test_agenttools_MutationAgent_split_33():
             f'8 ]
         }
         '''
-        )
+        ), format(left)
 
     assert systemtools.TestManager.compare(
         right,
@@ -2021,7 +2021,7 @@ def test_agenttools_MutationAgent_split_33():
             a'8 ]
         }
         '''
-        )
+        ), format(right)
 
     assert format(tuplet) == '\\times 2/3 {\n}'
 
@@ -2045,7 +2045,7 @@ def test_agenttools_MutationAgent_split_33():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert inspect_(voice).is_well_formed()
 
@@ -2079,7 +2079,7 @@ def test_agenttools_MutationAgent_split_34():
             }
         }
         '''
-        )
+        ), format(voice)
 
     result = mutate([measure]).split(
         [Duration(1, 8)],
@@ -2097,7 +2097,7 @@ def test_agenttools_MutationAgent_split_34():
             f'8 ]
         }
         '''
-        )
+        ), format(left)
 
     assert systemtools.TestManager.compare(
         right,
@@ -2108,7 +2108,7 @@ def test_agenttools_MutationAgent_split_34():
             a'8 ]
         }
         '''
-        )
+        ), format(right)
 
     assert pytest.raises(UnderfullContainerError, 'format(measure)')
 
@@ -2133,7 +2133,7 @@ def test_agenttools_MutationAgent_split_34():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert inspect_(voice).is_well_formed()
 
@@ -2173,7 +2173,7 @@ def test_agenttools_MutationAgent_split_35():
             }
         }
         '''
-        )
+        ), format(voice)
 
     result = mutate([measure]).split(
         [Duration(1, 9)],
@@ -2193,7 +2193,7 @@ def test_agenttools_MutationAgent_split_35():
             }
         }
         '''
-        )
+        ), format(left)
 
     assert systemtools.TestManager.compare(
         right,
@@ -2206,7 +2206,7 @@ def test_agenttools_MutationAgent_split_35():
             }
         }
         '''
-        )
+        ), format(right)
 
     assert pytest.raises(UnderfullContainerError, 'format(measure)')
 
@@ -2237,7 +2237,7 @@ def test_agenttools_MutationAgent_split_35():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert inspect_(voice).is_well_formed()
 
@@ -2261,7 +2261,7 @@ def test_agenttools_MutationAgent_split_36():
             f'8 ]
         }
         '''
-        )
+        ), format(voice)
 
     result = mutate([voice]).split(
         [Duration(1, 4)],
@@ -2279,7 +2279,7 @@ def test_agenttools_MutationAgent_split_36():
             d'8 ]
         }
         '''
-        )
+        ), format(left)
 
     assert systemtools.TestManager.compare(
         right,
@@ -2289,7 +2289,7 @@ def test_agenttools_MutationAgent_split_36():
             f'8 ]
         }
         '''
-        )
+        ), format(right)
 
     assert systemtools.TestManager.compare(
         voice,
@@ -2297,7 +2297,7 @@ def test_agenttools_MutationAgent_split_36():
         \new Voice {
         }
         '''
-        )
+        ), format(voice)
 
 
 def test_agenttools_MutationAgent_split_37():
@@ -2329,7 +2329,7 @@ def test_agenttools_MutationAgent_split_37():
             }
         }
         '''
-        )
+        ), format(staff)
 
     measures = staff[:1]
     result = mutate(measures).split(
@@ -2358,7 +2358,7 @@ def test_agenttools_MutationAgent_split_37():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -2386,7 +2386,7 @@ def test_agenttools_MutationAgent_split_38():
             }
         }
         '''
-        )
+        ), format(staff)
 
     measures = staff[:1]
     result = mutate(measures).split(
@@ -2407,7 +2407,7 @@ def test_agenttools_MutationAgent_split_38():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 2
@@ -2440,7 +2440,7 @@ def test_agenttools_MutationAgent_split_39():
             }
         }
         '''
-        )
+        ), format(voice)
 
     note = voice[0]
     result = mutate(note).split(
@@ -2471,7 +2471,7 @@ def test_agenttools_MutationAgent_split_39():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert inspect_(voice).is_well_formed()
 
@@ -2498,7 +2498,7 @@ def test_agenttools_MutationAgent_split_40():
             }
         }
         '''
-        )
+        ), format(voice)
 
     container = voice[0]
     result = mutate(container).split(
@@ -2525,7 +2525,7 @@ def test_agenttools_MutationAgent_split_40():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert inspect_(voice).is_well_formed()
 
@@ -2558,7 +2558,7 @@ def test_agenttools_MutationAgent_split_41():
             }
         }
         '''
-        )
+        ), format(voice)
 
     container = voice[0]
     result = mutate(container).split(
@@ -2589,7 +2589,7 @@ def test_agenttools_MutationAgent_split_41():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert inspect_(voice).is_well_formed()
     assert len(result) == 4
@@ -2617,7 +2617,7 @@ def test_agenttools_MutationAgent_split_42():
             }
         }
         '''
-        )
+        ), format(voice)
 
     container = voice[0]
     result = mutate(container).split(
@@ -2644,7 +2644,7 @@ def test_agenttools_MutationAgent_split_42():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert inspect_(voice).is_well_formed()
     assert len(result) == 4
@@ -2673,7 +2673,7 @@ def test_agenttools_MutationAgent_split_43():
             }
         }
         '''
-        )
+        ), format(voice)
 
     container = voice[0]
     result = mutate(container).split(
@@ -2696,7 +2696,7 @@ def test_agenttools_MutationAgent_split_43():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert inspect_(voice).is_well_formed()
     assert len(result) == 2
@@ -2725,7 +2725,7 @@ def test_agenttools_MutationAgent_split_44():
             }
         }
         '''
-        )
+        ), format(voice)
 
     container = voice[0]
     result = mutate(container).split(
@@ -2746,7 +2746,7 @@ def test_agenttools_MutationAgent_split_44():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert inspect_(voice).is_well_formed()
     assert len(result) == 1
@@ -2780,7 +2780,7 @@ def test_agenttools_MutationAgent_split_45():
             }
         }
         '''
-        )
+        ), format(voice)
 
     container = voice[0]
     result = mutate(container).split(
@@ -2809,7 +2809,7 @@ def test_agenttools_MutationAgent_split_45():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert inspect_(voice).is_well_formed()
     assert len(result) == 3
@@ -2843,7 +2843,7 @@ def test_agenttools_MutationAgent_split_46():
             }
         }
         '''
-        )
+        ), format(voice)
 
     container = voice[0]
     result = mutate(container).split(
@@ -2872,7 +2872,7 @@ def test_agenttools_MutationAgent_split_46():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert inspect_(voice).is_well_formed()
     assert len(result) == 3
@@ -2901,7 +2901,7 @@ def test_agenttools_MutationAgent_split_47():
             }
         }
         '''
-        )
+        ), format(voice)
 
     container = voice[0]
     result = mutate(container).split(
@@ -2924,7 +2924,7 @@ def test_agenttools_MutationAgent_split_47():
             }
         }
         '''
-        )
+        ), format(voice)
 
     assert inspect_(voice).is_well_formed()
     assert len(result) == 2
@@ -2957,7 +2957,7 @@ def test_agenttools_MutationAgent_split_48():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -2991,7 +2991,7 @@ def test_agenttools_MutationAgent_split_49():
             }
         }
         '''
-        )
+        ), format(staff)
 
     measures = staff[:1]
     result = mutate(measures).split(
@@ -3011,12 +3011,12 @@ def test_agenttools_MutationAgent_split_49():
             }
             {
                 \scaleDurations #'(2 . 3) {
-                    d'8. [ ] )
+                    d'8. ) [ ]
                 }
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
     assert len(result) == 2

@@ -38,7 +38,7 @@ def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
                     c'32 ]
                     r32
                     c'16 [
-                    c'32 ] ~
+                    c'32 ~ ]
                 }
             }
             {

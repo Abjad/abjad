@@ -25,7 +25,7 @@ def test_agenttools_MutationAgent_replace_01():
             f'8 ] \!
         }
         '''
-        )
+        ), format(staff)
 
     old_notes = staff[1:3]
     new_notes = 5 * Note("c''16")
@@ -41,10 +41,10 @@ def test_agenttools_MutationAgent_replace_01():
             c''16
             c''16
             c''16
-            f'8 [ ] \!
+            f'8 \! [ ]
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -72,7 +72,7 @@ def test_agenttools_MutationAgent_replace_02():
             f'8 ] \!
         }
         '''
-        )
+        ), format(staff)
 
     old_notes = staff[:1]
     new_notes = 5 * Note("c''16")
@@ -92,7 +92,7 @@ def test_agenttools_MutationAgent_replace_02():
             f'8 ] \!
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -120,7 +120,7 @@ def test_agenttools_MutationAgent_replace_03():
             f'8 ] \!
         }
         '''
-        )
+        ), format(staff)
 
     old_notes = staff[:2]
     new_notes = 5 * Note("c''16")
@@ -139,7 +139,7 @@ def test_agenttools_MutationAgent_replace_03():
             f'8 ] \!
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -167,7 +167,7 @@ def test_agenttools_MutationAgent_replace_04():
             f'8 ] \!
         }
         '''
-        )
+        ), format(staff)
 
     old_notes = staff[:3] 
     new_notes = 5 * Note("c''16")
@@ -182,10 +182,10 @@ def test_agenttools_MutationAgent_replace_04():
             c''16
             c''16
             c''16
-            f'8 [ ] \!
+            f'8 \! [ ]
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -213,7 +213,7 @@ def test_agenttools_MutationAgent_replace_05():
             f'8 ] \!
         }
         '''
-        )
+        ), format(staff)
 
     old_notes = staff[:]
     new_notes = 5 * Note("c''16")
@@ -230,7 +230,7 @@ def test_agenttools_MutationAgent_replace_05():
             c''16 \!
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -256,7 +256,7 @@ def test_agenttools_MutationAgent_replace_06():
             }
         }
         '''
-        )
+        ), format(staff)
 
     voice_selection = staff[:1]
     voice = voice_selection[0]
@@ -272,7 +272,7 @@ def test_agenttools_MutationAgent_replace_06():
             f'8 ]
         }
         '''
-        )
+        ), format(staff)
 
     assert not voice
     assert inspect_(staff).is_well_formed()

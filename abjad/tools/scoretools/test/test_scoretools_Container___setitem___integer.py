@@ -428,7 +428,7 @@ def test_scoretools_Container___setitem___integer_09():
             f'8 \glissando
             {
                 g'8 \glissando (
-                a'8 \glissando )
+                a'8 ) \glissando
             }
             b'8
         }

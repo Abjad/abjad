@@ -501,7 +501,7 @@ class IncisedRhythmMaker(RhythmMaker):
                         \time 5/8
                         r4
                         r8..
-                        c'8 [ ~
+                        c'8 ~ [
                         c'32 ]
                     }
                     {

@@ -231,7 +231,7 @@ class LogicalTie(ContiguousSelection):
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
                     \time 7/16
-                    c'8 \< \p ~
+                    c'8 ~ \< \p
                     c'16
                     cqs''4 \f
                 }
@@ -287,7 +287,7 @@ class LogicalTie(ContiguousSelection):
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
                     \time 7/16
-                    c'8 \< \p ~
+                    c'8 ~ \< \p
                     c'16
                     cqs''4 \f
                 }

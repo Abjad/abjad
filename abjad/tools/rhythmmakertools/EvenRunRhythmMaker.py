@@ -449,7 +449,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                             c'8 [
                             c'8
                             c'8
-                            c'8 ] ~
+                            c'8 ~ ]
                         }
                     }
                     {

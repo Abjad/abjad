@@ -29,11 +29,11 @@ def test_scoretools_Container__split_by_duration_01():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff.select_leaves()[0]._split_by_duration(
-        Duration(1, 32), 
-        fracture_spanners=False, 
+        Duration(1, 32),
+        fracture_spanners=False,
         tie_split_notes=False,
         )
 
@@ -53,7 +53,7 @@ def test_scoretools_Container__split_by_duration_01():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -85,11 +85,11 @@ def test_scoretools_Container__split_by_duration_02():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(1, 32), 
-        fracture_spanners=False, 
+        Duration(1, 32),
+        fracture_spanners=False,
         tie_split_notes=False,
         )
 
@@ -113,7 +113,7 @@ def test_scoretools_Container__split_by_duration_02():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -147,11 +147,11 @@ def test_scoretools_Container__split_by_duration_03():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff._split_by_duration(
-        Duration(1, 32), 
-        fracture_spanners=False, 
+        Duration(1, 32),
+        fracture_spanners=False,
         tie_split_notes=False,
         )
 
@@ -165,7 +165,7 @@ def test_scoretools_Container__split_by_duration_03():
             }
         }
         '''
-        )
+        ), format(halves[0][0])
 
     assert systemtools.TestManager.compare(
         halves[1][0],
@@ -183,7 +183,7 @@ def test_scoretools_Container__split_by_duration_03():
             }
         }
         '''
-        )
+        ), format(halves[1][0])
 
     assert not inspect_(halves[0][0]).is_well_formed()
     assert not inspect_(halves[1][0]).is_well_formed()
@@ -219,11 +219,11 @@ def test_scoretools_Container__split_by_duration_04():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff.select_leaves()[0]._split_by_duration(
-        Duration(1, 32), 
-        fracture_spanners=False, 
+        Duration(1, 32),
+        fracture_spanners=False,
         tie_split_notes=True,
         )
 
@@ -233,7 +233,7 @@ def test_scoretools_Container__split_by_duration_04():
         \new Staff {
             {
                 \time 2/8
-                c'32 [ ( ~
+                c'32 ~ [ (
                 c'16.
                 d'8 ]
             }
@@ -243,7 +243,7 @@ def test_scoretools_Container__split_by_duration_04():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -278,11 +278,11 @@ def test_scoretools_Container__split_by_duration_05():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(1, 32), 
-        fracture_spanners=False, 
+        Duration(1, 32),
+        fracture_spanners=False,
         tie_split_notes=True,
         )
 
@@ -292,7 +292,7 @@ def test_scoretools_Container__split_by_duration_05():
         \new Staff {
             {
                 \time 1/32
-                c'32 [ ( ~
+                c'32 ~ [ (
             }
             {
                 \time 7/32
@@ -306,7 +306,7 @@ def test_scoretools_Container__split_by_duration_05():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -342,10 +342,10 @@ def test_scoretools_Container__split_by_duration_06():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(1, 5), 
+        Duration(1, 5),
         fracture_spanners=False,
         )
 
@@ -359,7 +359,7 @@ def test_scoretools_Container__split_by_duration_06():
             {
                 \time 4/20
                 \scaleDurations #'(4 . 5) {
-                    c'8 [ ( ~
+                    c'8 ~ [ (
                     c'32
                     d'16. ~
                 }
@@ -377,7 +377,7 @@ def test_scoretools_Container__split_by_duration_06():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -413,11 +413,11 @@ def test_scoretools_Container__split_by_duration_07():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(1, 5), 
-        fracture_spanners=False, 
+        Duration(1, 5),
+        fracture_spanners=False,
         tie_split_notes=True,
         )
 
@@ -428,7 +428,7 @@ def test_scoretools_Container__split_by_duration_07():
             {
                 \time 4/20
                 \scaleDurations #'(4 . 5) {
-                    c'8 [ ( ~
+                    c'8 ~ [ (
                     c'32
                     d'16. ~
                 }
@@ -446,7 +446,7 @@ def test_scoretools_Container__split_by_duration_07():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -480,11 +480,11 @@ def test_scoretools_Container__split_by_duration_08():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff.select_leaves()[0]._split_by_duration(
-        Duration(1, 32), 
-        fracture_spanners=True, 
+        Duration(1, 32),
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -504,7 +504,7 @@ def test_scoretools_Container__split_by_duration_08():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -538,11 +538,11 @@ def test_scoretools_Container__split_by_duration_09():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(1, 32), 
-        fracture_spanners=True, 
+        Duration(1, 32),
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -566,7 +566,7 @@ def test_scoretools_Container__split_by_duration_09():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -600,11 +600,11 @@ def test_scoretools_Container__split_by_duration_10():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff._split_by_duration(
-        Duration(1, 32), 
-        fracture_spanners=True, 
+        Duration(1, 32),
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -618,7 +618,7 @@ def test_scoretools_Container__split_by_duration_10():
             }
         }
         '''
-        )
+        ), format(halves[0][0])
 
     assert systemtools.TestManager.compare(
         halves[1][0],
@@ -636,7 +636,7 @@ def test_scoretools_Container__split_by_duration_10():
             }
         }
         '''
-        )
+        ), format(halves[1][0])
 
 
 def test_scoretools_Container__split_by_duration_11():
@@ -670,11 +670,11 @@ def test_scoretools_Container__split_by_duration_11():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff.select_leaves()[1]._split_by_duration(
-        Duration(1, 32), 
-        fracture_spanners=True, 
+        Duration(1, 32),
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -694,7 +694,7 @@ def test_scoretools_Container__split_by_duration_11():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -730,11 +730,11 @@ def test_scoretools_Container__split_by_duration_12():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(7, 32), 
-        fracture_spanners=True, 
+        Duration(7, 32),
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -758,7 +758,7 @@ def test_scoretools_Container__split_by_duration_12():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -792,10 +792,10 @@ def test_scoretools_Container__split_by_duration_13():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(1, 8), 
+        Duration(1, 8),
         fracture_spanners=True,
         )
 
@@ -817,7 +817,7 @@ def test_scoretools_Container__split_by_duration_13():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -833,11 +833,11 @@ def test_scoretools_Container__split_by_duration_14():
     assert format(note) == "c'8 [ ]"
 
     halves = note._split_by_duration(
-        Duration(1, 32), 
+        Duration(1, 32),
         fracture_spanners=True,
         )
 
-    assert format(halves[0][0]) == "c'32 [ ] ~"
+    assert format(halves[0][0]) == "c'32 ~ [ ]"
     assert inspect_(halves[0][0]).is_well_formed()
 
     assert format(halves[1][0]) == "c'16. [ ]"
@@ -874,11 +874,11 @@ def test_scoretools_Container__split_by_duration_15():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff.select_leaves()[0]._split_by_duration(
-        Duration(1, 32), 
-        fracture_spanners=True, 
+        Duration(1, 32),
+        fracture_spanners=True,
         tie_split_notes=True,
         )
 
@@ -888,7 +888,7 @@ def test_scoretools_Container__split_by_duration_15():
         \new Staff {
             {
                 \time 2/8
-                c'32 [ ( ) ~
+                c'32 ~ [ ( )
                 c'16. (
                 d'8 ]
             }
@@ -898,7 +898,7 @@ def test_scoretools_Container__split_by_duration_15():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -933,11 +933,11 @@ def test_scoretools_Container__split_by_duration_16():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(1, 32), 
-        fracture_spanners=True, 
+        Duration(1, 32),
+        fracture_spanners=True,
         tie_split_notes=True,
         )
 
@@ -947,7 +947,7 @@ def test_scoretools_Container__split_by_duration_16():
         \new Staff {
             {
                 \time 1/32
-                c'32 [ ] ( ) ~
+                c'32 ~ [ ] ( )
             }
             {
                 \time 7/32
@@ -961,7 +961,7 @@ def test_scoretools_Container__split_by_duration_16():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -997,11 +997,11 @@ def test_scoretools_Container__split_by_duration_17():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(1, 5), 
-        fracture_spanners=True, 
+        Duration(1, 5),
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -1012,7 +1012,7 @@ def test_scoretools_Container__split_by_duration_17():
             {
                 \time 4/20
                 \scaleDurations #'(4 . 5) {
-                    c'8 [ ( ~
+                    c'8 ~ [ (
                     c'32
                     d'16. ] )
                 }
@@ -1030,7 +1030,7 @@ def test_scoretools_Container__split_by_duration_17():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -1066,11 +1066,11 @@ def test_scoretools_Container__split_by_duration_18():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(1, 5), 
-        fracture_spanners=True, 
+        Duration(1, 5),
+        fracture_spanners=True,
         tie_split_notes=True,
         )
 
@@ -1081,9 +1081,9 @@ def test_scoretools_Container__split_by_duration_18():
             {
                 \time 4/20
                 \scaleDurations #'(4 . 5) {
-                    c'8 [ ( ~
+                    c'8 ~ [ (
                     c'32
-                    d'16. ] ) ~
+                    d'16. ~ ] )
                 }
             }
             {
@@ -1099,7 +1099,7 @@ def test_scoretools_Container__split_by_duration_18():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -1139,10 +1139,10 @@ def test_scoretools_Container__split_by_duration_19():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(7, 20), 
+        Duration(7, 20),
         fracture_spanners=True,
         )
 
@@ -1153,7 +1153,7 @@ def test_scoretools_Container__split_by_duration_19():
             {
                 \time 14/40
                 \scaleDurations #'(4 . 5) {
-                    c'8 [ ( ~
+                    c'8 ~ [ (
                     c'32
                     d'8 ~
                     d'32
@@ -1174,7 +1174,7 @@ def test_scoretools_Container__split_by_duration_19():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -1192,8 +1192,8 @@ def test_scoretools_Container__split_by_duration_20():
     assert format(note) == "c'8 * 1/2"
 
     halves = note._split_by_duration(
-        Duration(1, 32), 
-        fracture_spanners=True, 
+        Duration(1, 32),
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -1217,8 +1217,8 @@ def test_scoretools_Container__split_by_duration_21():
     assert format(note) == "c'8 * 1/2"
 
     halves = note._split_by_duration(
-        Duration(1, 48), 
-        fracture_spanners=True, 
+        Duration(1, 48),
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -1230,8 +1230,8 @@ def test_scoretools_Container__split_by_duration_21():
 
 
 def test_scoretools_Container__split_by_duration_22():
-    r'''Split measure with power-of-two time signature denominator 
-    with multiplied leaes. Split at between-leaf offset with 
+    r'''Split measure with power-of-two time signature denominator
+    with multiplied leaes. Split at between-leaf offset with
     power-of-two denominator. Leaves remain unaltered.
     '''
 
@@ -1262,10 +1262,10 @@ def test_scoretools_Container__split_by_duration_22():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(1, 16), 
+        Duration(1, 16),
         fracture_spanners=True,
         )
 
@@ -1287,15 +1287,15 @@ def test_scoretools_Container__split_by_duration_22():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_23():
-    r'''Split measure with power-of-two time signature denominator 
-    with multiplied leaves. Split at through-leaf offset with 
-    power-of-two denominator. Leaf written durations stay the same 
+    r'''Split measure with power-of-two time signature denominator
+    with multiplied leaves. Split at through-leaf offset with
+    power-of-two denominator. Leaf written durations stay the same
     but multipliers change.
     '''
 
@@ -1326,11 +1326,11 @@ def test_scoretools_Container__split_by_duration_23():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(3, 32), 
-        fracture_spanners=True, 
+        Duration(3, 32),
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -1354,15 +1354,15 @@ def test_scoretools_Container__split_by_duration_23():
             }
         }
         '''
-        )
-        
+        ), format(staff)
+
     assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_24():
-    r'''Split measure with power-of-two time signature denominator 
-    with multiplied leaves. Split at through-leaf offset without 
-    power-of-two denominator. Leaf written durations adjust for change 
+    r'''Split measure with power-of-two time signature denominator
+    with multiplied leaves. Split at through-leaf offset without
+    power-of-two denominator. Leaf written durations adjust for change
     from power-of-two denominator to non-power-of-two denominator.
     Leaf multipliers also change.
     '''
@@ -1394,11 +1394,11 @@ def test_scoretools_Container__split_by_duration_24():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(2, 24), 
-        fracture_spanners=True, 
+        Duration(2, 24),
+        fracture_spanners=True,
         tie_split_notes=False,
         )
 
@@ -1426,15 +1426,15 @@ def test_scoretools_Container__split_by_duration_24():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
 
 def test_scoretools_Container__split_by_duration_25():
-    r'''Split measure with power-of-two time signature denominator 
-    with multiplied leaves. Time signature carries numerator that 
-    necessitates ties. Split at through-leaf offset without 
+    r'''Split measure with power-of-two time signature denominator
+    with multiplied leaves. Time signature carries numerator that
+    necessitates ties. Split at through-leaf offset without
     power-of-two denominator.
     '''
 
@@ -1450,10 +1450,10 @@ def test_scoretools_Container__split_by_duration_25():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(16, 80), 
+        Duration(16, 80),
         fracture_spanners=True,
         )
 
@@ -1475,7 +1475,7 @@ def test_scoretools_Container__split_by_duration_25():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -1514,10 +1514,10 @@ def test_scoretools_Container__split_by_duration_26():
             }
         }
         '''
-        )
+        ), format(staff)
 
     halves = staff[0]._split_by_duration(
-        Duration(14, 80), 
+        Duration(14, 80),
         fracture_spanners=True,
         )
 
@@ -1545,7 +1545,7 @@ def test_scoretools_Container__split_by_duration_26():
             }
         }
         '''
-        )
+        ), format(staff)
 
     assert inspect_(staff).is_well_formed()
 
@@ -1555,7 +1555,7 @@ def test_scoretools_Container__split_by_duration_27():
     '''
 
     halves = Container("c'4")._split_by_duration(
-        Duration(3, 16), 
+        Duration(3, 16),
         fracture_spanners=True,
         )
 
@@ -1566,7 +1566,7 @@ def test_scoretools_Container__split_by_duration_27():
             c'8.
         }
         '''
-        )
+        ), format(halves[0][0])
 
     assert systemtools.TestManager.compare(
         halves[-1][0],
@@ -1575,7 +1575,7 @@ def test_scoretools_Container__split_by_duration_27():
             c'16
         }
         '''
-        )
+        ), format(halves[-1][0])
 
     assert inspect_(halves[0][0]).is_well_formed()
     assert inspect_(halves[-1][0]).is_well_formed()

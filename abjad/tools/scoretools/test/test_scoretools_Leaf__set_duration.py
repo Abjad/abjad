@@ -54,7 +54,7 @@ def test_scoretools_Leaf__set_duration_02():
         voice,
         r'''
         \new Voice {
-            c'8 [ ~
+            c'8 ~ [
             c'8 ]
             c'8
             c'8
@@ -68,7 +68,7 @@ def test_scoretools_Leaf__set_duration_02():
         voice,
         r'''
         \new Voice {
-            c'8 [ ~
+            c'8 ~ [
             c'8 ~
             c'32 ]
             c'8

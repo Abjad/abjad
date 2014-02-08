@@ -171,7 +171,7 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_output_03():
                 \times 3/5 {
                     c'16 [
                     c'8
-                    c'8 ] ~
+                    c'8 ~ ]
                 }
                 {
                     c'16 [

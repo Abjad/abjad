@@ -30,11 +30,11 @@ def test_rhythmmakertools_TieSpecifier_tie_split_notes_01():
             }
             {
                 c'16 [
-                c'8. ] ~
+                c'8. ~ ]
             }
             {
                 c'8 [
-                c'8 ] ~
+                c'8 ~ ]
             }
             {
                 c'8. [
@@ -78,14 +78,14 @@ def test_rhythmmakertools_TieSpecifier_tie_split_notes_02():
                 c'8
                 c'4 ~
                 c'16 [
-                c'8. ] ~
+                c'8. ~ ]
             }
             {
                 \time 4/8
                 c'8
                 c'4 ~
                 c'16 [
-                c'16 ] ~
+                c'16 ~ ]
             }
             {
                 \time 7/16

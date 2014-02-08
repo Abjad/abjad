@@ -12,7 +12,7 @@ def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_durat
 
     r'''
     \new Staff {
-        c'8 [ ~
+        c'8 ~ [
         c'32 ]
     }
     '''
@@ -22,7 +22,7 @@ def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_durat
         staff,
         r'''
         \new Staff {
-            c'8 [ ~
+            c'8 ~ [
             c'32 ]
         }
         '''
@@ -33,7 +33,7 @@ def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_durat
     r'''Change nontrivial logical tie to trivial logical tie.
     '''
 
-    staff = Staff("c'8 [ ~ c'32 ]")
+    staff = Staff("c'8 ~ [ c'32 ]")
     logical_tie = inspect_(staff[0]).get_logical_tie()
     logical_tie._add_or_remove_notes_to_achieve_written_duration(Duration(1, 8))
 

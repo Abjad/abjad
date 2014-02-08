@@ -57,7 +57,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     c'4
                     c'16 [
                     c'8
-                    c'16 ] ~
+                    c'16 ~ ]
                 }
                 {
                     \time 3/8
@@ -292,12 +292,12 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'4
                         c'16 [
                         c'8
-                        c'16 ] ~
+                        c'16 ~ ]
                     }
                     {
                         \time 3/16
                         c'8 [
-                        c'16 ] ~
+                        c'16 ~ ]
                     }
                     {
                         \time 4/16
@@ -1048,7 +1048,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'4
                         c'16 [
                         c'8
-                        c'16 ] ~
+                        c'16 ~ ]
                     }
                     {
                         \time 3/8
@@ -1420,7 +1420,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'4
                         c'16 [
                         c'8
-                        c'16 ] ~
+                        c'16 ~ ]
                     }
                     {
                         \time 3/8
@@ -1479,7 +1479,7 @@ class TaleaRhythmMaker(RhythmMaker):
                             c'4
                             c'16 [
                             c'8
-                            c'8 ] ~
+                            c'8 ~ ]
                         }
                     }
                     {
@@ -1551,7 +1551,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         {
                             c'4
                             c'16 [
-                            c'16 ] ~
+                            c'16 ~ ]
                         }
                     }
                     {
@@ -1698,7 +1698,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     {
                         c'16 [
                         c'16
-                        c'32 ] ~
+                        c'32 ~ ]
                         c'32 [
                         c'16
                         c'16
@@ -1779,7 +1779,7 @@ class TaleaRhythmMaker(RhythmMaker):
                             c'16 [
                             c'16
                             c'16
-                            c'32 ] ~
+                            c'32 ~ ]
                         }
                     }
                     {
@@ -1865,7 +1865,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'4
                         c'16 [
                         c'8
-                        c'16 ] ~
+                        c'16 ~ ]
                     }
                     {
                         \time 3/8

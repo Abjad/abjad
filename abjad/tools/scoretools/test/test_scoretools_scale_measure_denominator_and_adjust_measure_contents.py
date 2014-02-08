@@ -72,7 +72,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_02():
         {
             \time 5/20
             \scaleDurations #'(4 . 5) {
-                c'8 [ ~
+                c'8 ~ [
                 c'32
                 d'8 ~
                 d'32 ]
@@ -154,7 +154,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_04():
         {
             \time 9/36
             \scaleDurations #'(8 . 9) {
-                c'8 [ ~
+                c'8 ~ [
                 c'64
                 d'8 ~
                 d'64 ]

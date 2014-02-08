@@ -138,7 +138,7 @@ def test_scoretools_Leaf__split_by_duration_04():
         r'''
         \new Staff {
             c'8 [
-            d'32 ] ~
+            d'32 ~ ]
             d'16. [
             e'8 ]
         }
