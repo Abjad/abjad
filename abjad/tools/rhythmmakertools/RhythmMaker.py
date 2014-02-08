@@ -96,7 +96,6 @@ class RhythmMaker(AbjadObject):
         assert all(isinstance(x, prototype) for x in music), repr(music)
         return music
 
-    # TODO: replace with StorageFormatManager.compare()
     def __eq__(self, expr):
         r'''Is true when `expr` is a rhythm-maker with type and public
         properties equal to those of this rhythm-maker. Otherwise false.
@@ -104,20 +103,7 @@ class RhythmMaker(AbjadObject):
         Returns boolean.
         '''
         from abjad.tools import systemtools
-        if isinstance(expr, type(self)):
-            manager = systemtools.StorageFormatManager
-            if manager.get_positional_argument_values(self) == \
-                manager.get_positional_argument_values(expr):
-                nonhelper_keyword_argument_names = [
-                    x for x in manager.get_keyword_argument_names(self)
-                    if 'helper' not in x]
-                for nonhelper_keyword_argument_name in \
-                    nonhelper_keyword_argument_names:
-                    if not getattr(self, nonhelper_keyword_argument_name) == \
-                        getattr(expr, nonhelper_keyword_argument_name):
-                        return False
-                return True
-        return False
+        return systemtools.StorageFormatManager.compare(self, expr)
 
     def __format__(self, format_specification=''):
         r'''Formats rhythm-maker.
