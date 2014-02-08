@@ -3,6 +3,7 @@ from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools import stringtools
 from abjad.tools.spannertools.Spanner import Spanner
+from abjad.tools.topleveltools import override
 
 
 class Hairpin(Spanner):
@@ -89,8 +90,20 @@ class Hairpin(Spanner):
         new._start_dynamic = self.start_dynamic
         new._stop_dynamic = self.stop_dynamic
 
-    def _format_right_of_leaf(self, leaf):
-        result = []
+    def _get_lilypond_format_bundle(self, leaf):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        if self._is_my_first_leaf(leaf):
+            contributions = override(self)._list_format_contributions(
+                'override',
+                is_once=False,
+                )
+            lilypond_format_bundle.grob_overrides.extend(contributions)
+        if self._is_my_last_leaf(leaf):
+            contributions = override(self)._list_format_contributions(
+                'revert',
+                )
+            lilypond_format_bundle.grob_reverts.extend(contributions)
         direction_string = ''
         if self.direction is not None:
             direction_string = \
@@ -99,26 +112,28 @@ class Hairpin(Spanner):
             direction_string = '{} '.format(direction_string)
         if self.include_rests:
             if self._is_my_first_leaf(leaf):
-                string = '{}\\{}'.format(direction_string, self.shape_string)
-                result.append(string)
+                string = r'{}\{}'.format(direction_string, self.shape_string)
+                lilypond_format_bundle.right.spanner_starts.append(string)
                 if self.start_dynamic:
-                    string = '{}\\{}'.format(
-                        direction_string, 
+                    string = r'{}\{}'.format(
+                        direction_string,
                         self.start_dynamic.name,
                         )
-                    result.append(string)
+                    lilypond_format_bundle.right.spanner_starts.append(string)
             if self._is_my_last_leaf(leaf):
                 if self.stop_dynamic:
-                    string = '{}\\{}'.format(
+                    string = r'{}\{}'.format(
                         direction_string,
                         self.stop_dynamic.name,
                         )
-                    result.append(string)
+                    lilypond_format_bundle.right.spanner_stops.append(string)
                 else:
                     effective_dynamic = leaf._get_effective(
                         indicatortools.Dynamic)
                     if effective_dynamic is None:
-                        result.append('\\!')
+                        string = r'\!'
+                        lilypond_format_bundle.right.spanner_stops.append(
+                            string)
                     elif effective_dynamic not in leaf._indicator_expressions:
                         found_match = False
                         for indicator in \
@@ -126,33 +141,37 @@ class Hairpin(Spanner):
                             if indicator == effective_dynamic:
                                 found_match = True
                         if not found_match:
-                            result.append('\\!')
+                            string = r'\!'
+                            lilypond_format_bundle.right.spanner_stops.append(
+                                string)
         else:
             if self._is_my_first(leaf, (scoretools.Chord, scoretools.Note)):
-                string = '{}\\{}'.format(
-                    direction_string, 
+                string = r'{}\{}'.format(
+                    direction_string,
                     self.shape_string,
                     )
-                result.append(string)
+                lilypond_format_bundle.right.spanner_starts.append(string)
                 if self.start_dynamic:
-                    string = '{}\\{}'.format(
-                        direction_string, 
+                    string = r'{}\{}'.format(
+                        direction_string,
                         self.start_dynamic.name,
                         )
-                    result.append(string)
+                    lilypond_format_bundle.right.spanner_starts.append(string)
             if self._is_my_last(leaf, (scoretools.Chord, scoretools.Note)):
                 if self.stop_dynamic:
-                    string = '{}\\{}'.format(
-                        direction_string, 
+                    string = r'{}\{}'.format(
+                        direction_string,
                         self.stop_dynamic.name,
                         )
-                    result.append(string)
+                    lilypond_format_bundle.right.spanner_stops.append(string)
                 else:
                     effective_dynamic = leaf._get_effective(
                         indicatortools.Dynamic)
                     if effective_dynamic is None:
-                        result.append('\\!')
-        return result
+                        string = r'\!'
+                        lilypond_format_bundle.right.spanner_stops.append(
+                            string)
+        return lilypond_format_bundle
 
     @staticmethod
     def _is_hairpin_shape_string(arg):
