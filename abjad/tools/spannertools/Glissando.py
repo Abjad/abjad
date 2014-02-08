@@ -46,9 +46,10 @@ class Glissando(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _format_right_of_leaf(self, leaf):
-        result = []
-        if not self._is_my_last_leaf(leaf):
-            if isinstance(leaf, (scoretools.Chord, scoretools.Note)):
-                result.append(r'\glissando')
-        return result
+    def _get_lilypond_format_bundle(self, leaf):
+        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        prototype = (scoretools.Chord, scoretools.Note)
+        if not self._is_my_last_leaf(leaf) and isinstance(leaf, prototype):
+            string = r'\glissando'
+            lilypond_format_bundle.right.spanner_starts.append(string)
+        return lilypond_format_bundle
