@@ -179,6 +179,37 @@ def make_configurations_by_class():
     pair = (maker, gallery_division_lists)
     pairs.append(pair)
 
+    ### RestRhythmMaker ###
+
+    maker = RestRhythmMaker()
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = RestRhythmMaker(
+        duration_spelling_specifier=DurationSpellingSpecifier(
+            decrease_durations_monotonically=False,
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = RestRhythmMaker(
+        duration_spelling_specifier=DurationSpellingSpecifier(
+            forbidden_written_duration=Duration(1, 4),
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = RestRhythmMaker(
+        duration_spelling_specifier=DurationSpellingSpecifier(
+            decrease_durations_monotonically=False,
+            forbidden_written_duration=Duration(1, 4),
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
     ### EvenRunRhythmMaker ###
 
     maker = EvenRunRhythmMaker()
