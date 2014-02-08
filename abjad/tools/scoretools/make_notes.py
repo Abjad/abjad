@@ -61,12 +61,10 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
 
     Set `durations` to a single duration or a list of durations.
 
-    Returns list of newly constructed notes.
+    Returns selection.
     '''
     from abjad.tools import scoretools
-    from abjad.tools import scoretools
     from abjad.tools import selectiontools
-    from abjad.tools import scoretools
 
     if isinstance(pitches, str):
         pitches = pitches.split()

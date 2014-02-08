@@ -406,6 +406,15 @@ class Container(Component):
                 len(expr) == 1 and \
                 isinstance(expr[0], str):
                 expr = self._parse_string(expr[0])[:]
+            prototype = (scoretools.Component, selectiontools.Selection)
+            assert all(isinstance(x, prototype) for x in expr)
+            new_expr = []
+            for item in expr:
+                if isinstance(item, selectiontools.Selection):
+                    new_expr.extend(item)
+                else:
+                    new_expr.append(item)
+            expr = new_expr
             assert all(isinstance(x, scoretools.Component) for x in expr)
             if any(isinstance(x, scoretools.GraceContainer) for x in expr):
                 message = 'must attach grace container to note or chord.'
