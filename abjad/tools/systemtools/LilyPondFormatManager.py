@@ -174,6 +174,15 @@ class LilyPondFormatManager(object):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools.topleveltools.override import override
+        pairs = []
+        for spanner in component._get_parentage()._get_spanners():
+            spanner_bundle = spanner._get_lilypond_format_bundle(component)
+            pair = (spanner, spanner_bundle)
+            pairs.append(pair)
+        pairs.sort(key=lambda x: type(x[0]).__name__)
+        for spanner, spanner_bundle in pairs:
+            bundle.update(spanner_bundle)
+        return
         result = {
             'after': [],
             'before': [],

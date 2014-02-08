@@ -337,6 +337,28 @@ class Spanner(AbjadObject):
             for component in self
             )
 
+    def _get_lilypond_format_bundle(self, leaf):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        if self._is_my_first_leaf(leaf):
+            contributions = override(self)._list_format_contributions(
+                'override',
+                is_once=False,
+                )
+            lilypond_format_bundle.grob_overrides.extend(contributions)
+        if self._is_my_last_leaf(leaf):
+            contributions = override(self)._list_format_contributions(
+                'revert',
+                )
+            lilypond_format_bundle.grob_reverts.extend(contributions)
+        lilypond_format_bundle.get('before').spanners.extend(
+            self._format_before_leaf(leaf))
+        lilypond_format_bundle.get('right').spanners.extend(
+            self._format_right_of_leaf(leaf))
+        lilypond_format_bundle.get('after').spanners.extend(
+            self._format_after_leaf(leaf))
+        return lilypond_format_bundle
+
     def _get_indicators(self, prototype=None, unwrap=True):
         from abjad.tools import indicatortools
         prototype = prototype or (object,)

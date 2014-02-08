@@ -225,6 +225,8 @@ class Leaf(Component):
         result.extend(bundle.right.commands)
         result.extend(bundle.right.indicators)
         result.extend(bundle.right.spanners)
+        result.extend(bundle.right.spanner_stops)
+        result.extend(bundle.right.spanner_starts)
         result.extend(bundle.right.comments)
         result = [' '.join(result)]
         markup = bundle.right.markup
