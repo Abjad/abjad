@@ -1,5 +1,11 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import scoretools
+from abjad.tools import sequencetools
+from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import iterate
 
 
 class TieSpecifier(AbjadObject):
@@ -39,6 +45,36 @@ class TieSpecifier(AbjadObject):
                 self.tie_split_notes == arg.tie_split_notes:
                 return True
         return False
+
+    ### PRIVATE METHODS ###
+
+    def _make_ties(self, music):
+        if self.tie_across_divisions:
+            self._make_ties_across_divisions(music)
+
+    @staticmethod
+    def _make_ties_across_divisions(music):
+        for division_one, division_two in \
+            sequencetools.iterate_sequence_nwise(music):
+            leaf_one = iterate(division_one).by_class(
+                prototype=scoretools.Leaf,
+                reverse=True,
+                ).next()
+            leaf_two = iterate(division_two).by_class(
+                prototype=scoretools.Leaf,
+                ).next()
+            leaves = [leaf_one, leaf_two]
+            prototype = (scoretools.Note, scoretools.Chord)
+            if not all(isinstance(x, prototype) for x in leaves):
+                continue
+            logical_tie_one = inspect_(leaf_one).get_logical_tie()
+            logical_tie_two = inspect_(leaf_two).get_logical_tie()
+            for tie in inspect_(leaf_one).get_spanners(spannertools.Tie):
+                detach(tie, leaf_one)
+            for tie in inspect_(leaf_two).get_spanners(spannertools.Tie):
+                detach(tie, leaf_two)
+            combined_logical_tie = logical_tie_one + logical_tie_two
+            attach(spannertools.Tie(), combined_logical_tie)
 
     ### PUBLIC PROPERTIES ###
 

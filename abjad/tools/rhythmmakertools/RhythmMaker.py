@@ -11,14 +11,8 @@ from abjad.tools import schemetools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
-from abjad.tools import spannertools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
-from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import new
 
 
@@ -77,14 +71,12 @@ class RhythmMaker(AbjadObject):
             ]
         seeds = self._to_tuple(seeds)
         music = self._make_music(duration_pairs, seeds)
-        # TODO: encapsulate tie-handling into a single method
         tie_specifier = self.tie_specifier
         if tie_specifier is None:
             tie_specifier = rhythmmakertools.TieSpecifier()
-        if tie_specifier.tie_across_divisions:
-            self._make_ties_across_divisions(music)
+        tie_specifier._make_ties(music)
         # TODO: consider making return type even more uniform:
-        #       always a list of selection; this would mean that
+        #       always a list of selections; this would mean that
         #       the maker returning lists of tuples would need
         #       to wrap each tuple in a selection.
         assert isinstance(music, list), repr(music)
@@ -186,29 +178,6 @@ class RhythmMaker(AbjadObject):
             for n in secondary_numerators
             ]
         return secondary_duration_pairs
-
-    def _make_ties_across_divisions(self, music):
-        for division_one, division_two in \
-            sequencetools.iterate_sequence_nwise(music):
-            leaf_one = iterate(division_one).by_class(
-                prototype=scoretools.Leaf,
-                reverse=True,
-                ).next()
-            leaf_two = iterate(division_two).by_class(
-                prototype=scoretools.Leaf,
-                ).next()
-            leaves = [leaf_one, leaf_two]
-            prototype = (scoretools.Note, scoretools.Chord)
-            if not all(isinstance(x, prototype) for x in leaves):
-                continue
-            logical_tie_one = inspect_(leaf_one).get_logical_tie()
-            logical_tie_two = inspect_(leaf_two).get_logical_tie()
-            for tie in inspect_(leaf_one).get_spanners(spannertools.Tie):
-                detach(tie, leaf_one)
-            for tie in inspect_(leaf_two).get_spanners(spannertools.Tie):
-                detach(tie, leaf_two)
-            combined_logical_tie = logical_tie_one + logical_tie_two
-            attach(spannertools.Tie(), combined_logical_tie)
 
     def _make_tuplets(self, duration_pairs, leaf_lists):
         assert len(duration_pairs) == len(leaf_lists)
