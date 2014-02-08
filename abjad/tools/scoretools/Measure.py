@@ -515,6 +515,19 @@ class Measure(FixedDurationContainer):
         return not self.has_non_power_of_two_denominator
 
     @property
+    def implicit_scaling(self):
+        r'''Is true when measure should scale contents. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._implicit_scaling
+
+    @implicit_scaling.setter
+    def implicit_scaling(self, arg):
+        assert isinstance(arg, bool)
+        self._implicit_scaling = arg
+
+    @property
     def implied_prolation(self):
         r'''Implied prolation of measure.
 
@@ -705,19 +718,6 @@ class Measure(FixedDurationContainer):
         '''
         self._update_now(offsets=True)
         return self._measure_number
-
-    @property
-    def implicit_scaling(self):
-        r'''Is true when measure should scale contents. Otherwise false.
-
-        Returns boolean.
-        '''
-        return self._implicit_scaling
-
-    @implicit_scaling.setter
-    def implicit_scaling(self, arg):
-        assert isinstance(arg, bool)
-        self._implicit_scaling = arg
 
     @property
     def target_duration(self):

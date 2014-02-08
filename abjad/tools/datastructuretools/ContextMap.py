@@ -334,6 +334,14 @@ class _ContextMapComponent(AbjadObject):
         '''
         return self._as_chain_map().__contains__(key)
 
+    def __getitem__(self, key):
+        r'''Gets `key` for context map component.
+
+        Returns value of `key`.
+        '''
+        assert isinstance(key, str)
+        return self._as_chain_map().__getitem__(key)
+
     def __iter__(self):
         r'''Iterates over keys in context map component.
 
@@ -348,14 +356,6 @@ class _ContextMapComponent(AbjadObject):
         '''
         return len(self._as_chain_map())
 
-    def __getitem__(self, key):
-        r'''Gets `key` for context map component.
-
-        Returns value of `key`.
-        '''
-        assert isinstance(key, str)
-        return self._as_chain_map().__getitem__(key)
-
     def __setitem__(self, key, value):
         r'''Sets `key` to `value` in context map component.
 
@@ -363,4 +363,3 @@ class _ContextMapComponent(AbjadObject):
         '''
         assert isinstance(key, str)
         self._context_settings[key] = value
-

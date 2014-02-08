@@ -127,13 +127,6 @@ class Context(Container):
             result.append(string)
         return result
 
-    def _format_remove_commands(self):
-        result = []
-        for engraver in self.remove_commands:
-            string = r'\remove {}'.format(engraver)
-            result.append(string)
-        return result
-
     def _format_invocation(self):
         if self.name is not None:
             string = r'\context {} = "{}"'
@@ -194,20 +187,14 @@ class Context(Container):
         result.append(('commands', bundle.opening.commands))
         return context._format_slot_contributions_with_indent(result)
 
+    def _format_remove_commands(self):
+        result = []
+        for engraver in self.remove_commands:
+            string = r'\remove {}'.format(engraver)
+            result.append(string)
+        return result
+
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def context_name(self):
-        r'''Gets and sets context name of context.
-
-        Returns string.
-        '''
-        return self._context_name
-
-    @context_name.setter
-    def context_name(self, arg):
-        assert isinstance(arg, str)
-        self._context_name = arg
 
     @property
     def consists_commands(self):
@@ -230,23 +217,17 @@ class Context(Container):
         return self._consists_commands
 
     @property
-    def remove_commands(self):
-        r'''Unordered set of LilyPond engravers to remove from context.
+    def context_name(self):
+        r'''Gets and sets context name of context.
 
-        Manage with add, update, other standard set commands:
-
-        ::
-
-            >>> staff = Staff([])
-            >>> staff.remove_commands.append('Time_signature_engraver')
-            >>> print format(staff)
-            \new Staff \with {
-                \remove Time_signature_engraver
-            } {
-            }
-
+        Returns string.
         '''
-        return self._remove_commands
+        return self._context_name
+
+    @context_name.setter
+    def context_name(self, arg):
+        assert isinstance(arg, str)
+        self._context_name = arg
 
     @property
     def is_nonsemantic(self):
@@ -344,3 +325,22 @@ class Context(Container):
                 else:
                     named_children[arg].append(self)
         self._name = arg
+
+    @property
+    def remove_commands(self):
+        r'''Unordered set of LilyPond engravers to remove from context.
+
+        Manage with add, update, other standard set commands:
+
+        ::
+
+            >>> staff = Staff([])
+            >>> staff.remove_commands.append('Time_signature_engraver')
+            >>> print format(staff)
+            \new Staff \with {
+                \remove Time_signature_engraver
+            } {
+            }
+
+        '''
+        return self._remove_commands

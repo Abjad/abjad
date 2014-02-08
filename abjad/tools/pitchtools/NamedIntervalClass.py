@@ -248,19 +248,6 @@ class NamedIntervalClass(IntervalClass):
             return 1
 
     @property
-    def direction_symbol(self):
-        r'''Direction symbol of named interval-class.
-
-        Returns string.
-        '''
-        if self.number < 1:
-            return '-'
-        elif self.number == 1:
-            return ''
-        else:
-            return '+'
-
-    @property
     def direction_string(self):
         r'''Direction word of named interval-class.
 
@@ -272,6 +259,19 @@ class NamedIntervalClass(IntervalClass):
             return None
         elif self.direction_number == 1:
             return 'ascending'
+
+    @property
+    def direction_symbol(self):
+        r'''Direction symbol of named interval-class.
+
+        Returns string.
+        '''
+        if self.number < 1:
+            return '-'
+        elif self.number == 1:
+            return ''
+        else:
+            return '+'
 
     @property
     def quality_string(self):

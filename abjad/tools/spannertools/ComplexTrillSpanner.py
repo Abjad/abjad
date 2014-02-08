@@ -90,6 +90,20 @@ class ComplexTrillSpanner(Spanner):
     def _copy_keyword_args(self, new):
         new._interval = self.interval
 
+    def _format_after_leaf(self, leaf):
+        from abjad.tools import scoretools
+        result = []
+        prototype = (
+            scoretools.Rest,
+            scoretools.MultimeasureRest,
+            scoretools.Skip,
+            )
+        if not isinstance(leaf, prototype):
+            logical_tie = inspect_(leaf).get_logical_tie()
+            if leaf is logical_tie.tail:
+                result.append(r'<> \stopTrillSpan')
+        return result
+
     def _format_before_leaf(self, leaf):
         from abjad.tools import lilypondnametools
         from abjad.tools import markuptools
@@ -145,20 +159,6 @@ class ComplexTrillSpanner(Spanner):
                 else:
                     string = r'\startTrillSpan'
                 result.append(string)
-        return result
-
-    def _format_after_leaf(self, leaf):
-        from abjad.tools import scoretools
-        result = []
-        prototype = (
-            scoretools.Rest,
-            scoretools.MultimeasureRest,
-            scoretools.Skip,
-            )
-        if not isinstance(leaf, prototype):
-            logical_tie = inspect_(leaf).get_logical_tie()
-            if leaf is logical_tie.tail:
-                result.append(r'<> \stopTrillSpan')
         return result
 
     def _format_trill_start(self, leaf):

@@ -278,6 +278,12 @@ class Tuplet(Container):
                 result.append([contributor, contributions])
         return tuple(result)
 
+    def _format_opening_slot(self, bundle):
+        result = []
+        result.append(('comments', bundle.opening.comments))
+        result.append(('commands', bundle.opening.commands))
+        return self._format_slot_contributions_with_indent(result)
+
     def _get_edge_height_tweak_string(self):
         from abjad.tools import scoretools
         parentage = inspect_(self).get_parentage()
@@ -300,12 +306,6 @@ class Tuplet(Container):
             self._multiplier_fraction_string
             )
         return string
-
-    def _format_opening_slot(self, bundle):
-        result = []
-        result.append(('comments', bundle.opening.comments))
-        result.append(('commands', bundle.opening.commands))
-        return self._format_slot_contributions_with_indent(result)
 
     def _scale(self, multiplier):
         from abjad.tools import scoretools

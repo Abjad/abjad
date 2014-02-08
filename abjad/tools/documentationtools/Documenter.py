@@ -91,13 +91,13 @@ class Documenter(AbjadObject):
         return '{}.{}'.format(self.subject.__module__, self.subject.__name__)
 
     @property
-    def subject(self):
-        r'''Object of documenter.
-        '''
-        return self._subject
-
-    @property
     def prefix(self):
         r'''Prefix of documenter.
         '''
         return self._prefix
+
+    @property
+    def subject(self):
+        r'''Object of documenter.
+        '''
+        return self._subject

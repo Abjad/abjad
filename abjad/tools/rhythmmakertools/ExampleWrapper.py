@@ -39,6 +39,14 @@ class ExampleWrapper(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def arguments(self):
+        r'''Gets arguments of example wrapper.
+
+        Returns dictionary.
+        '''
+        return self._arguments
+
+    @property
     def division_lists(self):
         r'''Gets division lists of example wrapper.
 
@@ -46,10 +54,3 @@ class ExampleWrapper(AbjadObject):
         '''
         return self._division_lists
 
-    @property
-    def arguments(self):
-        r'''Gets arguments of example wrapper.
-
-        Returns dictionary.
-        '''
-        return self._arguments

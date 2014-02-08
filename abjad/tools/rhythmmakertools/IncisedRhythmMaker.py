@@ -445,6 +445,14 @@ class IncisedRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def extra_counts_per_division(self):
+        r'''Gets prolation addenda of incised rhythm-maker.
+
+        Returns tuple or none.
+        '''
+        return self._extra_counts_per_division
+
+    @property
     def helper_functions(self):
         r'''Gets helper functions of incised rhythm-maker.
 
@@ -566,14 +574,6 @@ class IncisedRhythmMaker(RhythmMaker):
         Returns incise specifier or none.
         '''
         return self._incise_specifier
-
-    @property
-    def extra_counts_per_division(self):
-        r'''Gets prolation addenda of incised rhythm-maker.
-
-        Returns tuple or none.
-        '''
-        return self._extra_counts_per_division
 
     @property
     def split_divisions_by_counts(self):

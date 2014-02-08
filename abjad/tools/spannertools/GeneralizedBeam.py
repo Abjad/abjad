@@ -203,6 +203,21 @@ class GeneralizedBeam(Spanner):
 
     ### PRIVATE METHODS ###
 
+    def _format_after_leaf(self, leaf):
+        from abjad.tools import lilypondnametools
+        result = []
+        if self.use_stemlets and self._is_my_last_leaf(leaf):
+            override = lilypondnametools.LilyPondGrobOverride(
+                grob_name='Stem',
+                property_path=('stemlet-length',),
+                value=0.75,
+                )
+            string = '\n'.join(override.revert_format_pieces)
+            result.append(string)
+        if not self._is_beamable_component(leaf):
+            return result
+        return result
+
     def _format_before_leaf(self, leaf):
         from abjad.tools import lilypondnametools
         result = []
@@ -331,21 +346,6 @@ class GeneralizedBeam(Spanner):
                 result.append('{}['.format(direction_string))
         elif not next_leaf_is_beamable:
             result.append(']')
-        return result
-
-    def _format_after_leaf(self, leaf):
-        from abjad.tools import lilypondnametools
-        result = []
-        if self.use_stemlets and self._is_my_last_leaf(leaf):
-            override = lilypondnametools.LilyPondGrobOverride(
-                grob_name='Stem',
-                property_path=('stemlet-length',),
-                value=0.75,
-                )
-            string = '\n'.join(override.revert_format_pieces)
-            result.append(string)
-        if not self._is_beamable_component(leaf):
-            return result
         return result
 
     def _is_beamable_component(self, expr):

@@ -312,21 +312,6 @@ class TaleaRhythmMaker(RhythmMaker):
             # TODO: remove usage of Spanner._extend()
             tie_spanner._extend(part)
 
-    def _burnish_division_part(self, division_part, token):
-        assert len(division_part) == len(token)
-        new_division_part = []
-        for number, i in zip(division_part, token):
-            if i == -1:
-                new_division_part.append(-abs(number))
-            elif i == 0:
-                new_division_part.append(number)
-            elif i == 1:
-                new_division_part.append(abs(number))
-            else:
-                raise ValueError
-        new_division_part = type(division_part)(new_division_part)
-        return new_division_part
-
     def _burnish_all_division_parts(self, divisions, quintuplet):
         lefts, middles, rights, left_lengths, right_lengths = quintuplet
         lefts_index, rights_index = 0, 0
@@ -362,6 +347,21 @@ class TaleaRhythmMaker(RhythmMaker):
         burnished_weights = [mathtools.weight(x) for x in burnished_divisions]
         assert burnished_weights == unburnished_weights
         return burnished_divisions
+
+    def _burnish_division_part(self, division_part, token):
+        assert len(division_part) == len(token)
+        new_division_part = []
+        for number, i in zip(division_part, token):
+            if i == -1:
+                new_division_part.append(-abs(number))
+            elif i == 0:
+                new_division_part.append(number)
+            elif i == 1:
+                new_division_part.append(abs(number))
+            else:
+                raise ValueError
+        new_division_part = type(division_part)(new_division_part)
+        return new_division_part
 
     def _burnish_division_parts(self, divisions, quintuplet):
         from abjad.tools import rhythmmakertools
@@ -1324,14 +1324,6 @@ class TaleaRhythmMaker(RhythmMaker):
         return RhythmMaker.duration_spelling_specifier.fget(self)
 
     @property
-    def helper_functions(self):
-        r'''Gets helper functions of talea rhythm-maker.
-
-        Returns dictionary or none.
-        '''
-        return self._helper_functions
-
-    @property
     def extra_counts_per_division(self):
         r'''Gets prolation addenda of talea rhythm-maker.
 
@@ -1527,6 +1519,14 @@ class TaleaRhythmMaker(RhythmMaker):
         Returns integer tuple or none.
         '''
         return self._extra_counts_per_division
+
+    @property
+    def helper_functions(self):
+        r'''Gets helper functions of talea rhythm-maker.
+
+        Returns dictionary or none.
+        '''
+        return self._helper_functions
 
     @property
     def split_divisions_by_counts(self):

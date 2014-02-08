@@ -152,14 +152,6 @@ class PianoStaffSegmentMaker(SegmentMaker):
         return self._divisions
 
     @property
-    def lh_rhythm_maker(self):
-        r'''Gets LH rhythm-maker.
-
-        Defaults to note rhythm-maker.
-        '''
-        return self._lh_rhythm_maker
-
-    @property
     def lh_pitch_range(self):
         r'''Gets LH pitch range.
 
@@ -168,12 +160,12 @@ class PianoStaffSegmentMaker(SegmentMaker):
         return self._lh_pitch_range
 
     @property
-    def rh_rhythm_maker(self):
-        r'''Gets RH rhythm-maker.
+    def lh_rhythm_maker(self):
+        r'''Gets LH rhythm-maker.
 
         Defaults to note rhythm-maker.
         '''
-        return self._rh_rhythm_maker
+        return self._lh_rhythm_maker
 
     @property
     def rh_pitch_range(self):
@@ -182,6 +174,14 @@ class PianoStaffSegmentMaker(SegmentMaker):
         Defaults to ``[C4, C6]``.
         '''
         return self._rh_pitch_range
+
+    @property
+    def rh_rhythm_maker(self):
+        r'''Gets RH rhythm-maker.
+
+        Defaults to note rhythm-maker.
+        '''
+        return self._rh_rhythm_maker
 
     @property
     def time_signatures(self):

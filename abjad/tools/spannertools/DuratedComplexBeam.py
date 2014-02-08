@@ -103,35 +103,6 @@ class DuratedComplexBeam(ComplexBeam):
             new._durations = self.durations[:]
         new._span_beam_count = self.span_beam_count
 
-    def _get_span_beam_offsets(self):
-        offsets = []
-        if self.durations:
-            offset = durationtools.Offset(self.durations[0])
-            offsets.append(offset)
-            for duration in self.durations[1:]:
-                offset = offsets[-1] + duration
-                offsets.append(offset)
-            offsets.pop()
-        return offsets
-
-    def _is_just_left_of_gap(self, leaf):
-        local_start_offset = self._start_offset_in_me(leaf)
-        local_stop_offset = self._stop_offset_in_me(leaf)
-        span_beam_offsets = self._get_span_beam_offsets()
-        if local_stop_offset in span_beam_offsets:
-            if local_start_offset not in span_beam_offsets:
-                return True
-        return False
-
-    def _is_just_right_of_gap(self, leaf):
-        local_start_offset = self._start_offset_in_me(leaf)
-        local_stop_offset = self._stop_offset_in_me(leaf)
-        span_beam_offsets = self._get_span_beam_offsets()
-        if local_start_offset in span_beam_offsets:
-            if local_stop_offset not in span_beam_offsets:
-                return True
-        return False
-
     def _format_before_leaf(self, leaf):
         from abjad.tools import scoretools
         if not isinstance(leaf, scoretools.Leaf):
@@ -206,6 +177,35 @@ class DuratedComplexBeam(ComplexBeam):
         left._durations = left_durations
         right._durations = right_durations
         return self, left, right
+
+    def _get_span_beam_offsets(self):
+        offsets = []
+        if self.durations:
+            offset = durationtools.Offset(self.durations[0])
+            offsets.append(offset)
+            for duration in self.durations[1:]:
+                offset = offsets[-1] + duration
+                offsets.append(offset)
+            offsets.pop()
+        return offsets
+
+    def _is_just_left_of_gap(self, leaf):
+        local_start_offset = self._start_offset_in_me(leaf)
+        local_stop_offset = self._stop_offset_in_me(leaf)
+        span_beam_offsets = self._get_span_beam_offsets()
+        if local_stop_offset in span_beam_offsets:
+            if local_start_offset not in span_beam_offsets:
+                return True
+        return False
+
+    def _is_just_right_of_gap(self, leaf):
+        local_start_offset = self._start_offset_in_me(leaf)
+        local_stop_offset = self._stop_offset_in_me(leaf)
+        span_beam_offsets = self._get_span_beam_offsets()
+        if local_start_offset in span_beam_offsets:
+            if local_stop_offset not in span_beam_offsets:
+                return True
+        return False
 
     def _reverse_components(self):
         ComplexBeam._reverse_components(self)

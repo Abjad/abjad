@@ -180,16 +180,16 @@ class RhythmMaker(AbjadObject):
             tuplets.append(tuplet)
         return tuplets
 
-    def _none_to_tuple(self, expr):
-        if expr is None:
-            expr = ()
-        assert isinstance(expr, tuple), expr
-        return expr
-
     def _none_to_trivial_helper(self, expr):
         if expr is None:
             expr = self._trivial_helper
         assert callable(expr)
+        return expr
+
+    def _none_to_tuple(self, expr):
+        if expr is None:
+            expr = ()
+        assert isinstance(expr, tuple), expr
         return expr
 
     def _scale_taleas(self, duration_pairs, talea_denominator, taleas):
