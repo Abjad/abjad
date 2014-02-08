@@ -62,7 +62,7 @@ class RhythmMaker(AbjadObject):
 
         Checks output type.
 
-        Returns list of selections or list of tuples.
+        Returns list of selections.
         '''
         from abjad.tools import rhythmmakertools
         duration_pairs = [
@@ -75,16 +75,9 @@ class RhythmMaker(AbjadObject):
         if tie_specifier is None:
             tie_specifier = rhythmmakertools.TieSpecifier()
         tie_specifier._make_ties(music)
-        # TODO: consider making return type even more uniform:
-        #       always a list of selections; this would mean that
-        #       the maker returning lists of tuples would need
-        #       to wrap each tuple in a selection.
         assert isinstance(music, list), repr(music)
         assert len(music), repr(music)
-        prototype = (
-            scoretools.Tuplet,
-            selectiontools.Selection,
-            )
+        prototype = selectiontools.Selection
         assert all(isinstance(x, prototype) for x in music), repr(music)
         return music
 

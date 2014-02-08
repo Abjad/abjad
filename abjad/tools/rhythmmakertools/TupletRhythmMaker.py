@@ -163,11 +163,12 @@ class TupletRhythmMaker(RhythmMaker):
                 >>> music = maker(divisions)
                 >>> for division in music:
                 ...     division
-                FixedDurationTuplet(Duration(1, 2), "c'4 r4")
-                FixedDurationTuplet(Duration(3, 8), "c'4. c'8")
-                FixedDurationTuplet(Duration(5, 16), "c'8. r8.")
+                Selection(FixedDurationTuplet(Duration(1, 2), "c'4 r4"),)
+                Selection(FixedDurationTuplet(Duration(3, 8), "c'4. c'8"),)
+                Selection(FixedDurationTuplet(Duration(5, 16), "c'8. r8."),)
 
-        Returns list of fixed-duration tuplets.
+        Returns list of selections. Each selection holds a single
+        fixed-duration tuplet.
         '''
         return RhythmMaker.__call__(
             self,
@@ -229,7 +230,8 @@ class TupletRhythmMaker(RhythmMaker):
         if beam_specifier.beam_divisions_together:
             beam = spannertools.MultipartBeam()
             attach(beam, tuplets)
-        return tuplets
+        selections = [selectiontools.Selection(x) for x in tuplets]
+        return selections
 
     def _make_tuplet(
         self, 

@@ -90,7 +90,7 @@ class NoteRhythmMaker(RhythmMaker):
                 Selection(Note("c'2"), Note("c'8"))
                 Selection(Note("c'4."),)
 
-        Returns list of selections.
+        Returns list of selections. Each selection holds one or more notes.
         '''
         return RhythmMaker.__call__(
             self,

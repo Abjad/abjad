@@ -200,7 +200,9 @@ class TestManager(object):
             lilypond_file = output
             score = lilypond_file.score_block[0]
         else:
-            raise TypeError(output)
+            message = 'output must be score or LilyPond file: {!r}.'
+            message = message.format(output)
+            raise TypeError(message)
         title_lines = TestManager.test_function_name_to_title_lines(
             test_function_name)
         lilypond_file.header_block.title = \
@@ -210,8 +212,6 @@ class TestManager(object):
                 vspace_before=2,
                 vspace_after=4,
                 )
-        moment = schemetools.SchemeMoment((1, 48))
-        #topleveltools.set_(score).proportionalNotationDuration = moment
         parent_directory_name = os.path.dirname(full_file_name)
         if render_pdf:
             topleveltools.show(lilypond_file)

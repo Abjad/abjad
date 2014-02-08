@@ -70,7 +70,7 @@ class SkipRhythmMaker(RhythmMaker):
     def __call__(self, divisions, seeds=None):
         r'''Calls skip rhythm-maker on `divisions`.
 
-        Returns list of skips.
+        Returns list of selections.
         '''
         return RhythmMaker.__call__(
             self,

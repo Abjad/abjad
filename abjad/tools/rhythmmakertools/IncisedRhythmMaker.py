@@ -127,7 +127,7 @@ class IncisedRhythmMaker(RhythmMaker):
     def __call__(self, divisions, seeds=None):
         r'''Calls incised rhythm-maker on `divisions`.
 
-        Returns list of tuplets or return list of leaf lists.
+        Returns list of selections.
         '''
         return RhythmMaker.__call__(
             self,
@@ -280,6 +280,7 @@ class IncisedRhythmMaker(RhythmMaker):
             for x in result:
                 beam = spannertools.MultipartBeam()
                 attach(beam, x)
+        result = [selectiontools.Selection(x) for x in result]
         return result
 
     def _make_numeric_map_part(

@@ -520,6 +520,7 @@ class TaleaRhythmMaker(RhythmMaker):
             tie_specifier = rhythmmakertools.TieSpecifier()
         if tie_specifier.tie_split_notes:
             self._add_ties(result)
+        result = [selectiontools.Selection(x) for x in result]
         return result
 
     def _make_numeric_map(self, duration_pairs, septuplet):
