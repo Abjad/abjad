@@ -42,6 +42,14 @@ def make_configurations_by_class():
     pairs.append(pair)
 
     maker = NoteRhythmMaker(
+        tie_specifier=TieSpecifier(
+            tie_across_divisions=True,
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = NoteRhythmMaker(
         beam_specifier=BeamSpecifier(
             beam_divisions_together=True,
             ),
@@ -52,6 +60,17 @@ def make_configurations_by_class():
     maker = NoteRhythmMaker(
         duration_spelling_specifier=DurationSpellingSpecifier(
             decrease_durations_monotonically=False,
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = NoteRhythmMaker(
+        duration_spelling_specifier=DurationSpellingSpecifier(
+            decrease_durations_monotonically=False,
+            ),
+        tie_specifier=TieSpecifier(
+            tie_across_divisions=True,
             ),
         )
     pair = (maker, gallery_division_lists)
@@ -71,6 +90,90 @@ def make_configurations_by_class():
     maker = NoteRhythmMaker(
         duration_spelling_specifier=DurationSpellingSpecifier(
             forbidden_written_duration=Duration(1, 4),
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = NoteRhythmMaker(
+        duration_spelling_specifier=DurationSpellingSpecifier(
+            forbidden_written_duration=Duration(1, 4),
+            ),
+        tie_specifier=TieSpecifier(
+            tie_across_divisions=True,
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = NoteRhythmMaker(
+        duration_spelling_specifier=DurationSpellingSpecifier(
+            forbidden_written_duration=Duration(1, 4),
+            decrease_durations_monotonically=False,
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = NoteRhythmMaker(
+        duration_spelling_specifier=DurationSpellingSpecifier(
+            forbidden_written_duration=Duration(1, 4),
+            decrease_durations_monotonically=False,
+            ),
+        tie_specifier=TieSpecifier(
+            tie_across_divisions=True,
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = NoteRhythmMaker(
+        beam_specifier=BeamSpecifier(
+            beam_each_division=False,
+            ),
+        duration_spelling_specifier=DurationSpellingSpecifier(
+            forbidden_written_duration=Duration(1, 4),
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = NoteRhythmMaker(
+        beam_specifier=BeamSpecifier(
+            beam_each_division=False,
+            ),
+        duration_spelling_specifier=DurationSpellingSpecifier(
+            forbidden_written_duration=Duration(1, 4),
+            ),
+        tie_specifier=TieSpecifier(
+            tie_across_divisions=True,
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = NoteRhythmMaker(
+        beam_specifier=BeamSpecifier(
+            beam_each_division=False,
+            ),
+        duration_spelling_specifier=DurationSpellingSpecifier(
+            forbidden_written_duration=Duration(1, 4),
+            decrease_durations_monotonically=False,
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = NoteRhythmMaker(
+        beam_specifier=BeamSpecifier(
+            beam_each_division=False,
+            ),
+        duration_spelling_specifier=DurationSpellingSpecifier(
+            forbidden_written_duration=Duration(1, 4),
+            decrease_durations_monotonically=False,
+            ),
+        tie_specifier=TieSpecifier(
+            tie_across_divisions=True,
             ),
         )
     pair = (maker, gallery_division_lists)
