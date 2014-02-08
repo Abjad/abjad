@@ -35,6 +35,48 @@ def make_configurations_by_class():
     configurations_by_class = collections.OrderedDict()
     pairs = []
 
+    ### NoteRhythmMaker ###
+
+    maker = NoteRhythmMaker()
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = NoteRhythmMaker(
+        beam_specifier=BeamSpecifier(
+            beam_divisions_together=True,
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = NoteRhythmMaker(
+        duration_spelling_specifier=DurationSpellingSpecifier(
+            decrease_durations_monotonically=False,
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = NoteRhythmMaker(
+        duration_spelling_specifier=DurationSpellingSpecifier(
+            decrease_durations_monotonically=False,
+            ),
+        beam_specifier=BeamSpecifier(
+            beam_divisions_together=True,
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    maker = NoteRhythmMaker(
+        duration_spelling_specifier=DurationSpellingSpecifier(
+            forbidden_written_duration=Duration(1, 4),
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+
+    ### EvenRunRhythmMaker ###
 
     maker = EvenRunRhythmMaker()
     pair = (maker, gallery_division_lists)

@@ -4,6 +4,7 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 
