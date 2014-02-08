@@ -84,8 +84,8 @@ class ComplexBeam(Beam):
 
     def _format_before_leaf(self, leaf):
         result = []
-        superclass_contributions = Beam._format_before_leaf(self, leaf)
-        result.extend(superclass_contributions)
+        #superclass_contributions = Beam._format_before_leaf(self, leaf)
+        #result.extend(superclass_contributions)
         if self._is_beamable_component(leaf):
             if self._is_my_only_leaf(leaf):
                 left, right = self._get_left_right_for_lone_leaf(leaf)
@@ -207,9 +207,19 @@ class ComplexBeam(Beam):
             right = None
         else:
             message = 'long must be left, right, true or false: {!r}.'
-            message = message.format(isolated_nib_direction)
+            message = message.format(self.isolated_nib_direction)
             raise ValueError(message)
         return left, right
+
+    def _get_lilypond_format_bundle(self, leaf):
+        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        lilypond_format_bundle.get('before').spanners.extend(
+            self._format_before_leaf(leaf))
+        lilypond_format_bundle.get('right').spanners.extend(
+            self._format_right_of_leaf(leaf))
+        lilypond_format_bundle.get('after').spanners.extend(
+            self._format_after_leaf(leaf))
+        return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
 
