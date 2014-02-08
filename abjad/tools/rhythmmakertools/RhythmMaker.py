@@ -118,6 +118,22 @@ class RhythmMaker(AbjadObject):
                 state[slot] = getattr(self, slot, None)
         return state
 
+    def __illustrate__(self, divisions=None):
+        r'''Illustrates rhythm-maker.
+
+        Defaults `divisions` to ``3/8``, ``4/8``, ``3/16``, ``4/16``.
+
+        Returns LilyPond file.
+        '''
+        from abjad.tools import rhythmmakertools
+        divisions = divisions or [(3, 8), (4, 8), (3, 16), (4, 16)]
+        selections = self(divisions)
+        lilypond_file = rhythmmakertools.make_lilypond_file(
+            selections,
+            divisions,
+            )
+        return lilypond_file
+        
     ### PRIVATE METHODS ###
 
     @staticmethod

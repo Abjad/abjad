@@ -259,6 +259,59 @@ class TaleaRhythmMaker(RhythmMaker):
         superclass = super(TaleaRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
+    def __illustrate__(self, divisions=None):
+        r'''Illustrates talea rhythm-maker.
+
+        ..  container:: example
+
+            ::
+
+                >>> talea = rhythmmakertools.Talea(
+                ...     counts=(1, 2, 3, 4),
+                ...     denominator=16,
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=talea, 
+                ...     )
+                >>> show(maker) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = maker.__illustrate__()
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'8
+                        c'8. ]
+                    }
+                    {
+                        \time 4/8
+                        c'4
+                        c'16 [
+                        c'8
+                        c'16 ] ~
+                    }
+                    {
+                        \time 3/16
+                        c'8 [
+                        c'16 ] ~
+                    }
+                    {
+                        \time 4/16
+                        c'8. [
+                        c'16 ]
+                    }
+                }
+
+        Defaults `divisions` to ``3/8``, ``4/8``, ``3/16``, ``4/16``.
+
+        Returns LilyPond file.
+        '''
+        return RhythmMaker.__illustrate__(self, divisions=divisions)
+
     def __repr__(self):
         r'''Gets interpreter representation of talea rhythm-maker.
 
