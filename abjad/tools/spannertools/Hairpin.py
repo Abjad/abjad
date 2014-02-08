@@ -171,6 +171,10 @@ class Hairpin(Spanner):
                         string = r'\!'
                         lilypond_format_bundle.right.spanner_stops.append(
                             string)
+        if self._is_my_only_leaf(leaf):
+            lilypond_format_bundle.right.spanner_starts.extend(
+                lilypond_format_bundle.right.spanner_stops)
+            lilypond_format_bundle.right.spanner_stops[:] = []
         return lilypond_format_bundle
 
     @staticmethod
