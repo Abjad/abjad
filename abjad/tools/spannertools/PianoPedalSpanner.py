@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.spannertools.Spanner import Spanner
+from abjad.tools.topleveltools import override
 
 
 class PianoPedalSpanner(Spanner):
@@ -41,7 +42,7 @@ class PianoPedalSpanner(Spanner):
 
     _kinds = {
         'sustain': (r'\sustainOn', r'\sustainOff'),
-        'sostenuto':(r'\sostenutoOn', r'\sostenutoOff'),
+        'sostenuto': (r'\sostenutoOn', r'\sostenutoOff'),
         'corda': (r'\unaCorda', r'\treCorde'),
         }
 
@@ -54,13 +55,13 @@ class PianoPedalSpanner(Spanner):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         kind='sustain',
         overrides=None,
         style='mixed',
         ):
         Spanner.__init__(
-            self, 
+            self,
             overrides=overrides,
             )
         if not kind in self._kinds.keys():
@@ -80,23 +81,35 @@ class PianoPedalSpanner(Spanner):
         new._kind = self.kind
         new._style = self.style
 
-    def _format_before_leaf(self, leaf):
-        result = []
-        if self._is_my_first_leaf(leaf):
-            string = r"\set Staff.pedalSustainStyle = #'{}"
-            string = string.format(self.style)
-            result.append(string)
-        return result
-
-    def _format_right_of_leaf(self, leaf):
-        result = []
-        if self._is_my_first_leaf(leaf):
-            start = self._kinds[self.kind][0]
-            result.append(start)
-        if self._is_my_last_leaf(leaf):
-            stop = self._kinds[self.kind][1]
-            result.append(stop)
-        return result
+    def _get_lilypond_format_bundle(self, leaf):
+        from abjad.tools import lilypondnametools
+        from abjad.tools import schemetools
+        from abjad.tools import systemtools
+        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        if self._is_my_only_leaf(leaf):
+            context_setting = lilypondnametools.LilyPondContextSetting(
+                context_name='Staff',
+                context_property='pedalSustainStyle',
+                value=schemetools.Scheme(self.style, quoting="'"),
+                )
+            lilypond_format_bundle.update(context_setting)
+            string = self._kinds[self.kind][0]
+            lilypond_format_bundle.right.spanner_starts.append(string)
+            string = self._kinds[self.kind][1]
+            lilypond_format_bundle.right.spanner_starts.append(string)
+        elif self._is_my_first_leaf(leaf):
+            context_setting = lilypondnametools.LilyPondContextSetting(
+                context_name='Staff',
+                context_property='pedalSustainStyle',
+                value=schemetools.Scheme(self.style, quoting="'"),
+                )
+            lilypond_format_bundle.update(context_setting)
+            string = self._kinds[self.kind][0]
+            lilypond_format_bundle.right.spanner_starts.append(string)
+        elif self._is_my_last_leaf(leaf):
+            string = self._kinds[self.kind][1]
+            lilypond_format_bundle.right.spanner_stops.append(string)
+        return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
 
