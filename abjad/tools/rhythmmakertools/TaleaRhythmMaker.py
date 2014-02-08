@@ -10,6 +10,7 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import new
@@ -305,8 +306,7 @@ class TaleaRhythmMaker(RhythmMaker):
             tie_spanner._contiguity_constraint = None
             for component in part:
                 # TODO: make top-level detach() work here
-                for spanner in component._get_spanners(
-                    prototype=prototype):
+                for spanner in component._get_spanners(prototype=prototype):
                     spanner._sever_all_components()
                 #detach(prototype, component)
             # TODO: remove usage of Spanner._extend()

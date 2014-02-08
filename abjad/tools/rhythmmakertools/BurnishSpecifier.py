@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.topleveltools import new
 
 
 class BurnishSpecifier(AbjadObject):
@@ -188,15 +189,8 @@ class BurnishSpecifier(AbjadObject):
 
         Returns boolean.
         '''
-        # TODO: redo with StorageFormatManager.compare()
-        if isinstance(expr, type(self)) and \
-            self.lefts == expr.lefts and \
-            self.middles == expr.middles and \
-            self.rights == expr.rights and \
-            self.left_lengths == expr.left_lengths and \
-            self.right_lengths == expr.right_lengths:
-            return True
-        return False
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.compare(self, expr)
 
     def __format__(self, format_specification=''):
         r'''Formats burnish specifier.
@@ -503,13 +497,13 @@ class BurnishSpecifier(AbjadObject):
 
         Returns new burnish specification.
         '''
-        # TODO: reimplement in terms of new()
         lefts = self._reverse_tuple(self.lefts)
         middles = self._reverse_tuple(self.middles)
         rights = self._reverse_tuple(self.rights)
         left_lengths = self._reverse_tuple(self.left_lengths)
         right_lengths = self._reverse_tuple(self.right_lengths)
-        new = type(self)(
+        result = new(
+            self,
             burnish_divisions=self.burnish_divisions,
             burnish_output=self.burnish_output,
             lefts=lefts,
@@ -518,4 +512,4 @@ class BurnishSpecifier(AbjadObject):
             left_lengths=left_lengths,
             right_lengths=right_lengths,
             )
-        return new
+        return result
