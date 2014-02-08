@@ -82,67 +82,67 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     _human_readable_class_name = 'even-run rhythm-maker'
 
-    ### GALLERY EXAMPLES ###
-
-    _gallery_division_lists = (
-        [
-            (4, 16), (5, 16), (1, 2), (2, 12),
-            (1, 2), (2, 12), (4, 16), (5, 16),
-        ],
-        [
-            (1, 11), (3, 8), (3, 8), (3, 8),
-            (3, 8), (3, 8), (1, 11), (3, 8),
-        ],
-        [
-            (3, 15), (3, 15), (3, 16),
-            (5, 24), (5, 24), (5, 16), 
-            (2, 12), (2, 12), (2, 8),
-            (3, 28), (3, 28), (3, 16),
-            (1, 9), (1, 9), (1, 8),
-        ],
-        [
-            (9, 16), (1, 5), (9, 16),
-            (1, 5), (9, 16), (9, 16),
-        ],
-        )
-
-    _gallery_example_wrappers = (
-        ExampleWrapper(
-            arguments={
-                },
-            division_lists=_gallery_division_lists,
-            ),
-        ExampleWrapper(
-            arguments={
-                'beam_specifier': BeamSpecifier(
-                    beam_divisions_together=True,
-                    ),
-                },
-            division_lists=_gallery_division_lists,
-            ),
-        ExampleWrapper(
-            arguments={
-                'beam_specifier': BeamSpecifier(
-                    beam_each_division=False,
-                    ),
-                },
-            division_lists=_gallery_division_lists,
-            ),
-        ExampleWrapper(
-            arguments={
-                'tie_specifier': TieSpecifier(
-                    tie_across_divisions=True,
-                    ),
-                },
-            division_lists=_gallery_division_lists,
-            ),
-        ExampleWrapper(
-            arguments={
-                'exponent': 1,
-                },
-            division_lists=_gallery_division_lists,
-            ),
-        )
+#    ### GALLERY EXAMPLES ###
+#
+#    _gallery_division_lists = (
+#        [
+#            (4, 16), (5, 16), (1, 2), (2, 12),
+#            (1, 2), (2, 12), (4, 16), (5, 16),
+#        ],
+#        [
+#            (1, 11), (3, 8), (3, 8), (3, 8),
+#            (3, 8), (3, 8), (1, 11), (3, 8),
+#        ],
+#        [
+#            (3, 15), (3, 15), (3, 16),
+#            (5, 24), (5, 24), (5, 16), 
+#            (2, 12), (2, 12), (2, 8),
+#            (3, 28), (3, 28), (3, 16),
+#            (1, 9), (1, 9), (1, 8),
+#        ],
+#        [
+#            (9, 16), (1, 5), (9, 16),
+#            (1, 5), (9, 16), (9, 16),
+#        ],
+#        )
+#
+#    _gallery_example_wrappers = (
+#        ExampleWrapper(
+#            arguments={
+#                },
+#            division_lists=_gallery_division_lists,
+#            ),
+#        ExampleWrapper(
+#            arguments={
+#                'beam_specifier': BeamSpecifier(
+#                    beam_divisions_together=True,
+#                    ),
+#                },
+#            division_lists=_gallery_division_lists,
+#            ),
+#        ExampleWrapper(
+#            arguments={
+#                'beam_specifier': BeamSpecifier(
+#                    beam_each_division=False,
+#                    ),
+#                },
+#            division_lists=_gallery_division_lists,
+#            ),
+#        ExampleWrapper(
+#            arguments={
+#                'tie_specifier': TieSpecifier(
+#                    tie_across_divisions=True,
+#                    ),
+#                },
+#            division_lists=_gallery_division_lists,
+#            ),
+#        ExampleWrapper(
+#            arguments={
+#                'exponent': 1,
+#                },
+#            division_lists=_gallery_division_lists,
+#            ),
+#        )
 
     ### INITIALIZER ###
 

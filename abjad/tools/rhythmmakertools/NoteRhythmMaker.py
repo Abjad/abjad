@@ -190,6 +190,10 @@ class NoteRhythmMaker(RhythmMaker):
             leaves = iterate(selections).by_class(scoretools.Leaf)
             leaves = list(leaves)
             attach(beam, leaves) 
+        elif beam_specifier.beam_each_division:
+            for selection in selections:
+                beam = spannertools.MultipartBeam()
+                attach(beam, selection)
         return selections
 
     ### PUBLIC PROPERTIES ###
