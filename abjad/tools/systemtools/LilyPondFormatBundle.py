@@ -35,6 +35,8 @@ class LilyPondFormatBundle(AbjadObject):
             '_indicators',
             '_markup',
             '_spanners',
+            '_spanner_starts',
+            '_spanner_stops',
             '_stem_tremolos',
             )
 
@@ -45,6 +47,8 @@ class LilyPondFormatBundle(AbjadObject):
             self._indicators = []
             self._markup = []
             self._spanners = []
+            self._spanner_starts = []
+            self._spanner_stops = []
             self._stem_tremolos = []
 
         @property
@@ -57,6 +61,8 @@ class LilyPondFormatBundle(AbjadObject):
                 'indicators',
                 'markup',
                 'spanners',
+                'spanner_starts',
+                'spanner_stops',
                 'stem_tremolos',
                 ]
             keyword_argument_names = [x for x in keyword_argument_names
@@ -87,6 +93,8 @@ class LilyPondFormatBundle(AbjadObject):
                 'indicators',
                 'markup',
                 'spanners',
+                'spanner_starts',
+                'spanner_stops',
                 'stem_tremolos',
                 )
             return any(getattr(self, contribution_category)
@@ -105,6 +113,14 @@ class LilyPondFormatBundle(AbjadObject):
             return self._spanners
 
         @property
+        def spanner_starts(self):
+            return self._spanner_starts
+
+        @property
+        def spanner_stops(self):
+            return self._spanner_stops
+
+        @property
         def stem_tremolos(self):
             return self._stem_tremolos
 
@@ -121,6 +137,8 @@ class LilyPondFormatBundle(AbjadObject):
             self._indicators = tuple(self.indicators)
             self._markup = tuple(self.markup)
             self._spanners = tuple(self.spanners)
+            self._spanner_starts = tuple(self.spanner_starts)
+            self._spanner_stops = tuple(self.spanner_stops)
             self._stem_tremolos = tuple(self.stem_tremolos)
 
         def update(self, slot_contributions):
@@ -131,6 +149,8 @@ class LilyPondFormatBundle(AbjadObject):
             self.indicators.extend(slot_contributions.indicators)
             self.markup.extend(slot_contributions.markup)
             self.spanners.extend(slot_contributions.spanners)
+            self.spanner_starts.extend(slot_contributions.spanner_starts)
+            self.spanner_stops.extend(slot_contributions.spanner_stops)
             self.stem_tremolos.extend(slot_contributions.stem_tremolos)
 
     ### INITIALIZER ###
@@ -270,9 +290,9 @@ class LilyPondFormatBundle(AbjadObject):
         self.opening.make_immutable()
         self.closing.make_immutable()
         self.right.make_immutable()
-        self._context_settings = tuple(self.context_settings)
-        self._grob_overrides = tuple(self.grob_overrides)
-        self._grob_reverts = tuple(self.grob_reverts)
+        self._context_settings = tuple(sorted(set(self.context_settings)))
+        self._grob_overrides = tuple(sorted(set(self.grob_overrides)))
+        self._grob_reverts = tuple(sorted(set(self.grob_reverts)))
 
     def update(self, format_bundle):
         r'''Updates format bundle with all format contributions in
