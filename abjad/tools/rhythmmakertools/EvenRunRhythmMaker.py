@@ -210,15 +210,28 @@ class EvenRunRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_container(self, division):
-        numerator, denominator = division
+        from abjad.tools import rhythmmakertools
+        duration_spelling_specifier = self.duration_spelling_specifier
+        if duration_spelling_specifier is None:
+            duration_spelling_specifier = \
+                rhythmmakertools.DurationSpellingSpecifier()
+        forbidden_written_duration = \
+            duration_spelling_specifier.forbidden_written_duration
         time_signature = indicatortools.TimeSignature(division)
         implied_prolation = time_signature.implied_prolation
+        numerator, denominator = division
         denominator = mathtools.greatest_power_of_two_less_equal(denominator)
         assert mathtools.is_positive_integer_power_of_two(denominator)
         exponent = self.exponent or 0
         denominator_multiplier = 2 ** exponent
         denominator *= denominator_multiplier
         unit_duration = durationtools.Duration(1, denominator)
+        if forbidden_written_duration is not None:
+            multiplier = 1
+            while forbidden_written_duration <= unit_duration:
+                unit_duration /= 2
+                multiplier *= 2
+            numerator *= multiplier
         numerator *= denominator_multiplier
         notes = scoretools.make_notes(numerator * [0], [unit_duration])
         if implied_prolation == 1:
@@ -228,16 +241,17 @@ class EvenRunRhythmMaker(RhythmMaker):
             result = scoretools.Tuplet(multiplier, notes)
         return result
 
-    def _make_music(self, duration_pairs, seeds):
+    def _make_music(self, divisions, seeds):
         from abjad.tools import rhythmmakertools
         selections = []
-        beam_specifier = self.beam_specifier
-        if not beam_specifier:
-            beam_specifier = rhythmmakertools.BeamSpecifier()
-        for duration_pair in duration_pairs:
+        assert all(isinstance(x, tuple) for x in divisions)
+        for duration_pair in divisions:
             container = self._make_container(duration_pair)
             selection = selectiontools.Selection(container)
             selections.append(selection)
+        beam_specifier = self.beam_specifier
+        if not beam_specifier:
+            beam_specifier = rhythmmakertools.BeamSpecifier()
         if beam_specifier.beam_divisions_together:
             durations = []
             for selection in selections:
@@ -302,21 +316,24 @@ class EvenRunRhythmMaker(RhythmMaker):
                     {
                         \time 3/4
                         {
-                            c'4
-                            c'4
-                            c'4
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8
+                            c'8
+                            c'8 ]
                         }
                     }
                     {
                         \time 2/4
                         {
-                            c'4
-                            c'4
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
                         }
                     }
                 }
-
-            ..  todo:: make this example work: should forbid quarter notes.
 
         Returns duration spelling specifier or none.
         '''

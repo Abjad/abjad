@@ -154,7 +154,9 @@ class Duration(AbjadObject, fractions.Fraction):
         elif mathtools.all_are_integer_equivalent_numbers(args):
             self = fractions.Fraction.__new__(cls, *[int(x) for x in args])
         else:
-            raise ValueError(args)
+            message = 'can not construct duration: {!r}.'
+            message = message.format(args)
+            raise ValueError(message)
         return self
 
     ### SPECIAL METHODS ###

@@ -2,6 +2,7 @@
 import collections
 import os
 from abjad import *
+from abjad.tools.rhythmmakertools import *
 
 
 gallery_division_lists = (
@@ -35,35 +36,43 @@ def make_configurations_by_class():
     pairs = []
 
 
-    maker = rhythmmakertools.EvenRunRhythmMaker()
+    maker = EvenRunRhythmMaker()
     pair = (maker, gallery_division_lists)
     pairs.append(pair)
 
-    maker = rhythmmakertools.EvenRunRhythmMaker(
-        beam_specifier=rhythmmakertools.BeamSpecifier(
+    maker = EvenRunRhythmMaker(
+        beam_specifier=BeamSpecifier(
             beam_divisions_together=True,
             ),
         )
     pair = (maker, gallery_division_lists)
     pairs.append(pair)
 
-    maker = rhythmmakertools.EvenRunRhythmMaker(
-        beam_specifier=rhythmmakertools.BeamSpecifier(
+    maker = EvenRunRhythmMaker(
+        beam_specifier=BeamSpecifier(
             beam_each_division=False,
             ),
         )
     pair = (maker, gallery_division_lists)
     pairs.append(pair)
 
-    maker = rhythmmakertools.EvenRunRhythmMaker(
-        tie_specifier=rhythmmakertools.TieSpecifier(
+    maker = EvenRunRhythmMaker(
+        tie_specifier=TieSpecifier(
             tie_across_divisions=True,
             ),
         )
     pair = (maker, gallery_division_lists)
     pairs.append(pair)
 
-    maker = rhythmmakertools.EvenRunRhythmMaker(
+    maker = EvenRunRhythmMaker(
+        duration_spelling_specifier=DurationSpellingSpecifier(
+            forbidden_written_duration=Duration(1, 4),
+            ),
+        )
+    pair = (maker, gallery_division_lists)
+    pairs.append(pair)
+        
+    maker = EvenRunRhythmMaker(
         exponent=1,
         )
     pair = (maker, gallery_division_lists)
@@ -79,7 +88,7 @@ def make_configurations_by_class():
 
 
 if __name__ == '__main__':
-    maker = rhythmmakertools.GalleryMaker()
+    maker = GalleryMaker()
     configurations_by_class = make_configurations_by_class()
     lilypond_file = maker(configurations_by_class)
     file_path = __file__
