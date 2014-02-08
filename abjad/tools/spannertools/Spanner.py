@@ -337,7 +337,7 @@ class Spanner(AbjadObject):
             for component in self
             )
 
-    def _get_lilypond_format_bundle(self, leaf):
+    def _get_basic_lilypond_format_bundle(self, leaf):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
         if self._is_my_first_leaf(leaf):
@@ -351,6 +351,10 @@ class Spanner(AbjadObject):
                 'revert',
                 )
             lilypond_format_bundle.grob_reverts.extend(contributions)
+        return lilypond_format_bundle
+
+    def _get_lilypond_format_bundle(self, leaf):
+        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
         lilypond_format_bundle.get('before').spanners.extend(
             self._format_before_leaf(leaf))
         lilypond_format_bundle.get('right').spanners.extend(
