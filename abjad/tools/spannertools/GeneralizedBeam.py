@@ -203,46 +203,16 @@ class GeneralizedBeam(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _format_after_leaf(self, leaf):
-        from abjad.tools import lilypondnametools
-        result = []
-        if self.use_stemlets and self._is_my_last_leaf(leaf):
-            override = lilypondnametools.LilyPondGrobOverride(
-                grob_name='Stem',
-                property_path=('stemlet-length',),
-                value=0.75,
-                )
-            string = '\n'.join(override.revert_format_pieces)
-            result.append(string)
-        if not self._is_beamable_component(leaf):
-            return result
-        return result
-
-    def _format_before_leaf(self, leaf):
-        from abjad.tools import lilypondnametools
-        result = []
-        if self.use_stemlets and self._is_my_first_leaf(leaf):
-            override = lilypondnametools.LilyPondGrobOverride(
-                grob_name='Stem',
-                property_path=('stemlet-length',),
-                value=0.75,
-                )
-            string = '\n'.join(override.override_format_pieces)
-            result.append(string)
-        if not self._is_beamable_component(leaf):
-            return result
-        elif not self.use_stemlets and (
-            not hasattr(leaf, 'written_pitch') and
-            not hasattr(leaf, 'written_pitches')):
-            return result
-        leaf_ids = [id(x) for x in self._leaves]
-        previous_leaf = leaf._get_leaf(-1)
-        previous_leaf_is_joinable = self._leaf_is_joinable(
-            previous_leaf, leaf_ids)
-        next_leaf = leaf._get_leaf(1)
-        next_leaf_is_joinable = self._leaf_is_joinable(next_leaf, leaf_ids)
-        left, right = None, None
+    def _get_beam_counts(
+        self,
+        leaf,
+        previous_leaf,
+        previous_leaf_is_joinable,
+        next_leaf,
+        next_leaf_is_joinable,
+        ):
         # leaf is orphan
+        left, right = None, None
         if not previous_leaf_is_joinable and not next_leaf_is_joinable:
             if self.isolated_nib_direction is Left:
                 left = leaf.written_duration.flag_count
@@ -299,38 +269,87 @@ class GeneralizedBeam(Spanner):
                 leaf.written_duration.flag_count,
                 next_leaf.written_duration.flag_count,
                 )
-        if left is not None:
-            setting = lilypondnametools.LilyPondContextSetting(
-                context_property='stemLeftBeamCount',
-                value=left,
-                )
-            string = '\n'.join(setting.format_pieces)
-            result.append(string)
-        if right is not None:
-            setting = lilypondnametools.LilyPondContextSetting(
-                context_property='stemRightBeamCount',
-                value=right,
-                )
-            string = '\n'.join(setting.format_pieces)
-            result.append(string)
-        return result
+        return left, right
 
-    def _format_right_of_leaf(self, leaf):
-        result = []
+    def _get_lilypond_format_bundle(self, leaf):
+        from abjad.tools import lilypondnametools
+        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        if self.use_stemlets and self._is_my_first_leaf(leaf):
+            grob_override = lilypondnametools.LilyPondGrobOverride(
+                grob_name='Stem',
+                property_path=('stemlet-length',),
+                value=0.75,
+                )
+            grob_string = '\n'.join(grob_override.override_format_pieces)
+            lilypond_format_bundle.grob_overrides.append(grob_string)
+        if self.use_stemlets and self._is_my_last_leaf(leaf):
+            grob_override = lilypondnametools.LilyPondGrobOverride(
+                grob_name='Stem',
+                is_revert=True,
+                property_path=('stemlet-length',),
+                )
+            grob_string = '\n'.join(grob_override.revert_format_pieces)
+            lilypond_format_bundle.grob_reverts.append(grob_string)
         if not self._is_beamable_component(leaf):
-            return result
+            return lilypond_format_bundle
         elif not self.use_stemlets and (
             not hasattr(leaf, 'written_pitch') and
             not hasattr(leaf, 'written_pitches')):
-            return result
+            return lilypond_format_bundle
+        leaf_ids = [id(x) for x in self._leaves]
+        previous_leaf = leaf._get_leaf(-1)
+        previous_leaf_is_joinable = self._leaf_is_joinable(
+            previous_leaf, leaf_ids)
+        next_leaf = leaf._get_leaf(1)
+        next_leaf_is_joinable = self._leaf_is_joinable(next_leaf, leaf_ids)
+        left_beam_count, right_beam_count = self._get_beam_counts(
+            leaf,
+            previous_leaf,
+            previous_leaf_is_joinable,
+            next_leaf,
+            next_leaf_is_joinable,
+            )
+        if left_beam_count is not None:
+            context_setting = lilypondnametools.LilyPondContextSetting(
+                context_property='stemLeftBeamCount',
+                value=left_beam_count,
+                )
+            lilypond_format_bundle.update(context_setting)
+        if right_beam_count is not None:
+            context_setting = lilypondnametools.LilyPondContextSetting(
+                context_property='stemRightBeamCount',
+                value=right_beam_count,
+                )
+            lilypond_format_bundle.update(context_setting)
+        start_piece, stop_piece = self._get_start_and_stop_pieces(
+            leaf,
+            previous_leaf,
+            next_leaf,
+            leaf_ids,
+            )
+        if start_piece and stop_piece:
+            lilypond_format_bundle.right.spanner_starts.extend([
+                start_piece, stop_piece])
+        elif start_piece:
+            lilypond_format_bundle.right.spanner_starts.append(start_piece)
+        elif stop_piece:
+            lilypond_format_bundle.right.spanner_stops.append(stop_piece)
+        return lilypond_format_bundle
+
+    def _get_start_and_stop_pieces(
+        self,
+        leaf,
+        previous_leaf,
+        next_leaf,
+        leaf_ids,
+        ):
+        start_piece = None
+        stop_piece = None
         direction_string = ''
         if self.vertical_direction is not None:
             direction_string = \
                 stringtools.arg_to_tridirectional_lilypond_symbol(
                     self.vertical_direction)
-        leaf_ids = [id(x) for x in self._leaves]
-        previous_leaf = leaf._get_leaf(-1)
-        next_leaf = leaf._get_leaf(1)
         previous_leaf_is_beamable = \
             self._is_beamable_component(previous_leaf) and \
             id(previous_leaf) in leaf_ids
@@ -340,13 +359,13 @@ class GeneralizedBeam(Spanner):
         if not previous_leaf_is_beamable:
             if not next_leaf_is_beamable:
                 if self.isolated_nib_direction is not None:
-                    result.append('{}['.format(direction_string))
-                    result.append(']')
+                    start_piece = '{}['.format(direction_string)
+                    stop_piece = ']'
             else:
-                result.append('{}['.format(direction_string))
+                start_piece = '{}['.format(direction_string)
         elif not next_leaf_is_beamable:
-            result.append(']')
-        return result
+            stop_piece = ']'
+        return start_piece, stop_piece
 
     def _is_beamable_component(self, expr):
         r'''True if `expr` is beamable, otherwise false.
