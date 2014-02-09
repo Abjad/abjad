@@ -187,7 +187,10 @@ class SegmentPackageManager(PackageManager):
             print string
         self.session.io_manager.proceed('')
 
-    def interactively_make_asset_pdf(self):
+    def interactively_make_asset_pdf(
+        self,
+        view_asset_pdf=True,
+        ):
         r'''Interactively makes asset PDF.
 
         Returns none.
@@ -201,7 +204,7 @@ class SegmentPackageManager(PackageManager):
         new_modification_time = 0
         if os.path.isfile(output_pdf_file_path):
             new_modification_time = os.path.getmtime(output_pdf_file_path)
-        if modification_time < new_modification_time:
+        if modification_time < new_modification_time and view_asset_pdf:
             self.view_output_pdf()
 
     def interactively_save_to_versions_directory(
