@@ -383,9 +383,13 @@ class ScoreManagerConfiguration(Configuration):
             prefix_length = \
                 len(os.path.dirname(
                 self.user_asset_library_stylesheets_directory_path)) + 1
+        elif filesystem_path.startswith(
+            self.abjad_configuration.abjad_stylesheets_directory_path):
+            prefix_length = \
+                len(self.abjad_configuration.abjad_root_directory_path) + 1
         else:
-            message = 'can not change filesystem path {!r}'
-            message += ' to packagesystem path.'
+            message = 'can not change filesystem path'
+            message += ' to packagesystem path: {!r}.'
             raise Exception(message.format(filesystem_path))
         packagesystem_path = filesystem_path[prefix_length:]
         packagesystem_path = packagesystem_path.replace(os.path.sep, '.')

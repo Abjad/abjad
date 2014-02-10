@@ -19,9 +19,12 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### CLASS VARIABLES ###
 
-    asset_storehouse_filesystem_path_in_built_in_asset_library = os.path.join(
-        FileWrangler.configuration.score_manager_tools_directory_path, 
-        'stylesheets')
+#    asset_storehouse_filesystem_path_in_built_in_asset_library = os.path.join(
+#        FileWrangler.configuration.score_manager_tools_directory_path, 
+#        'stylesheets')
+
+    asset_storehouse_filesystem_path_in_built_in_asset_library = \
+        FileWrangler.configuration.abjad_configuration.abjad_stylesheets_directory_path
 
     score_package_asset_storehouse_path_infix_parts = ('stylesheets',)
 
@@ -253,9 +256,9 @@ class StylesheetFileWrangler(FileWrangler):
             ...     in_user_score_packages=False,
             ...     ):
             ...     x
-            '.../tools/scoremanagertools/stylesheets/clean-letter-14.ily'
-            '.../tools/scoremanagertools/stylesheets/clean-letter-16.ily'
-            '.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ily'
+            '.../abjad/stylesheets/clean-letter-14.ily'
+            '.../abjad/stylesheets/clean-letter-16.ily'
+            '.../abjad/stylesheets/rhythm-letter-16.ily'
             '.../red_example_score/stylesheets/red-example-score-stylesheet.ily'
 
         Returns list.
@@ -287,9 +290,9 @@ class StylesheetFileWrangler(FileWrangler):
             ...     in_user_asset_library=False, 
             ...    in_user_score_packages=False):
             ...     x
-            FileManager('.../tools/scoremanagertools/stylesheets/clean-letter-14.ily')
-            FileManager('.../tools/scoremanagertools/stylesheets/clean-letter-16.ily')
-            FileManager('.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ily')
+            FileManager('.../abjad/stylesheets/clean-letter-14.ily')
+            FileManager('.../abjad/stylesheets/clean-letter-16.ily')
+            FileManager('.../abjad/stylesheets/rhythm-letter-16.ily')
             FileManager('.../tools/scoremanagertools/scorepackages/red_example_score/stylesheets/red-example-score-stylesheet.ily')
 
         Returns list.
@@ -326,6 +329,7 @@ class StylesheetFileWrangler(FileWrangler):
             'clean-letter-14.ily'
             'clean-letter-16.ily'
             'rhythm-letter-16.ily'
+            'time-signature-context.ily'
             'red-example-score-stylesheet.ily'
 
         Returns list.
@@ -358,7 +362,7 @@ class StylesheetFileWrangler(FileWrangler):
             ...     in_user_score_packages=False,
             ...     ):
             ...     x
-            '.../tools/scoremanagertools/stylesheets'
+            '.../abjad/stylesheets'
             '.../blue_example_score/stylesheets'
             '.../green_example_score/stylesheets'
             '.../red_example_score/stylesheets'

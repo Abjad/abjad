@@ -315,7 +315,6 @@ class ScoreManager(ScoreManagerObject):
     def manage_stylesheets(self):
         self.stylesheet_file_wrangler._run(
             rollback=True, 
-            head='scoremanagertools.stylesheets',
             )
 
     def profile_visible_scores(self):
