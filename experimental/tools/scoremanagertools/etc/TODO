@@ -154,3 +154,4 @@
     (S) or equivalent.
 
 44. Enforce .ily stylesheet extension in score manager.
+    Enforce hypens instead of underscores in stylesheet files in score manager.
