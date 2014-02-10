@@ -253,9 +253,9 @@ class StylesheetFileWrangler(FileWrangler):
             ...     in_user_score_packages=False,
             ...     ):
             ...     x
-            '.../tools/scoremanagertools/stylesheets/clean-letter-14.ly'
-            '.../tools/scoremanagertools/stylesheets/clean-letter-16.ly'
-            '.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly'
+            '.../tools/scoremanagertools/stylesheets/clean-letter-14.ily'
+            '.../tools/scoremanagertools/stylesheets/clean-letter-16.ily'
+            '.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ily'
             '.../red_example_score/stylesheets/red-example-score-stylesheet.ily'
 
         Returns list.
@@ -287,9 +287,9 @@ class StylesheetFileWrangler(FileWrangler):
             ...     in_user_asset_library=False, 
             ...    in_user_score_packages=False):
             ...     x
-            FileManager('.../tools/scoremanagertools/stylesheets/clean-letter-14.ly')
-            FileManager('.../tools/scoremanagertools/stylesheets/clean-letter-16.ly')
-            FileManager('.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly')
+            FileManager('.../tools/scoremanagertools/stylesheets/clean-letter-14.ily')
+            FileManager('.../tools/scoremanagertools/stylesheets/clean-letter-16.ily')
+            FileManager('.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ily')
             FileManager('.../tools/scoremanagertools/scorepackages/red_example_score/stylesheets/red-example-score-stylesheet.ily')
 
         Returns list.
@@ -323,9 +323,9 @@ class StylesheetFileWrangler(FileWrangler):
             ...     in_user_score_packages=False, 
             ...     include_extension=True):
             ...     x
-            'clean-letter-14.ly'
-            'clean-letter-16.ly'
-            'rhythm-letter-16.ly'
+            'clean-letter-14.ily'
+            'clean-letter-16.ily'
+            'rhythm-letter-16.ily'
             'red-example-score-stylesheet.ily'
 
         Returns list.

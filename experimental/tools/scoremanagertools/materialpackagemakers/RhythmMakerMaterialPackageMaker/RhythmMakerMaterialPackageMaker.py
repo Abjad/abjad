@@ -57,7 +57,7 @@ class RhythmMakerMaterialPackageMaker(MaterialPackageMaker):
         directory_path = \
             score_manager_configuration.score_manager_tools_directory_path
         stylesheet_file_path = os.path.join(
-            directory_path, 'stylesheets', 'rhythm-letter-16.ly')
+            directory_path, 'stylesheets', 'rhythm-letter-16.ily')
         illustration.file_initial_user_includes.append(stylesheet_file_path)
         score.add_final_bar_line()
         if 'title' in kwargs:

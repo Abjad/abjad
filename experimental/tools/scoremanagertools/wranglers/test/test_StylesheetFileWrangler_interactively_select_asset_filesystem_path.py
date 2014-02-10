@@ -12,4 +12,4 @@ def test_StylesheetFileWrangler_interactively_select_asset_filesystem_path_01():
 
     assert filesystem_path == os.path.join(
         score_manager.configuration.built_in_stylesheets_directory_path,
-        'clean-letter-14.ly')
+        'clean-letter-14.ily')

@@ -152,3 +152,5 @@
 
 43. There also needs to be a one-key command equal to (score). Something like
     (S) or equivalent.
+
+44. Enforce .ily stylesheet extension in score manager.
