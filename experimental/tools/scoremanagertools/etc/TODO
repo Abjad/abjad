@@ -156,15 +156,18 @@
 44. Enforce .ily stylesheet extension in score manager.
     Enforce hypens instead of underscores in stylesheet files in score manager.
 
-45. Remove FunctionInputMaterialPackageMaker. Looks like it is only used b
-    SargassoMeasureMaterialPackageMaker.
-
-46. I don't understand the relationship between MaterialPackageManager and
+45. I don't understand the relationship between MaterialPackageManager and
     MaterialPackageMaker. The current relationship is that MaterialPackageMaker
     inherits from MaterialPackageManager. But I don't understand why this
-    should be the case.
+    should be the case. Maybe the correct way to look at things is that the
+    system only comprises material package *managers*; this would mean
+    eliminating the MaterialPackageMaker class and moving all of its
+    implementation into MaterialPackageManager. This would also mean changing
+    the class names of all 'maker' classes back to 'manager': so
+    ArticulationHandlerMaterialPackageManager instead of
+    ArticulationHandlerMaterialPackageMaker.
 
-47. Stop sprinkling empty __metadata__.py moudles in directories:
+46. Stop sprinkling empty __metadata__.py moudles in directories:
         .../materialpackagemakers/stylesheets/__metadata__.py
         .../materialpackagemakers/test/__metadata__.py
     And remove empty ...

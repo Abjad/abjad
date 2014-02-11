@@ -26,7 +26,6 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         PackageWrangler.configuration.built_in_material_package_makers_package_path
 
     forbidden_directory_entries = (
-        'FunctionInputMaterialPackageMaker',
         'InventoryMaterialPackageMaker',
         'MaterialPackageMaker',
         )
