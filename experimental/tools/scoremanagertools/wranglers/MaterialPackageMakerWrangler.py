@@ -59,8 +59,13 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         material_package_manager = \
             scoremanagertools.managers.MaterialPackageManager(
             package_path, session=self.session)
-        material_package_maker_class_name = \
-            material_package_manager.material_package_maker_class_name
+        if 'materialpackagemakers' in material_package_manager.filesystem_path:
+            most, last = os.path.split(
+                material_package_manager.filesystem_path)
+            material_package_maker_class_name = last
+        else:
+            material_package_maker_class_name = \
+                material_package_manager.material_package_maker_class_name
         if material_package_maker_class_name is not None:
             material_package_maker_class = None
             command = 'from experimental.tools.scoremanagertools'
@@ -78,6 +83,18 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             material_package_manager = material_package_maker_class(
                 package_path, session=self.session)
         return material_package_manager
+
+    def _is_valid_directory_entry(self, directory_entry):
+        if directory_entry in ('test', 'stylesheets'):
+            return False
+        if directory_entry.endswith('.pyc'):
+            return False
+        if directory_entry in self.forbidden_directory_entries:
+            return False
+        if directory_entry[0].isalpha():
+            if directory_entry[0].isupper():
+                return True
+        return False
 
     def _make_asset_menu_entries(self, head=None):
         names = self.list_asset_names(head=head)
@@ -149,7 +166,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             '.../tools/scoremanagertools/materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker'
             '.../tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker'
             '.../tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker'
-            '.../tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker'
+            '.../tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker.py'
             '.../tools/scoremanagertools/materialpackagemakers/TempoInventoryMaterialPackageMaker'
 
         Returns list.
@@ -181,15 +198,15 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/ListMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/TempoInventoryMaterialPackageMaker')
+            ArticulationHandlerMaterialPackageMaker('.../materialpackagemakers/ArticulationHandlerMaterialPackageMaker')
+            DynamicHandlerMaterialPackageMaker('.../materialpackagemakers/DynamicHandlerMaterialPackageMaker')
+            ListMaterialPackageMaker('.../materialpackagemakers/ListMaterialPackageMaker')
+            MarkupInventoryMaterialPackageMaker('.../materialpackagemakers/MarkupInventoryMaterialPackageMaker')
+            OctaveTranspositionMappingInventoryMaterialPackageMaker('.../materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker')
+            PitchRangeInventoryMaterialPackageMaker('.../materialpackagemakers/PitchRangeInventoryMaterialPackageMaker')
+            RhythmMakerMaterialPackageMaker('.../materialpackagemakers/RhythmMakerMaterialPackageMaker')
+            SargassoMeasureMaterialPackageMaker('.../materialpackagemakers/SargassoMeasureMaterialPackageMaker')
+            TempoInventoryMaterialPackageMaker('.../materialpackagemakers/TempoInventoryMaterialPackageMaker')
 
         Returns list.
         '''
