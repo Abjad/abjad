@@ -104,7 +104,6 @@ class GeneralizedBeam(Spanner):
             \new Staff \with {
                 autoBeaming = ##f
             } {
-                \override Stem.stemlet-length = 0.75
                 r4
                 \set stemLeftBeamCount = 0
                 \set stemRightBeamCount = 1
@@ -122,7 +121,6 @@ class GeneralizedBeam(Spanner):
                 \set stemRightBeamCount = 0
                 fs'8 ]
                 g'4
-                \revert Stem.stemlet-length
             }
 
     '''
@@ -277,22 +275,6 @@ class GeneralizedBeam(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         from abjad.tools import lilypondnametools
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-        if self.use_stemlets and self._is_my_first_leaf(leaf):
-            grob_override = lilypondnametools.LilyPondGrobOverride(
-                grob_name='Stem',
-                property_path=('stemlet-length',),
-                value=0.75,
-                )
-            grob_string = '\n'.join(grob_override.override_format_pieces)
-            lilypond_format_bundle.grob_overrides.append(grob_string)
-        if self.use_stemlets and self._is_my_last_leaf(leaf):
-            grob_override = lilypondnametools.LilyPondGrobOverride(
-                grob_name='Stem',
-                is_revert=True,
-                property_path=('stemlet-length',),
-                )
-            grob_string = '\n'.join(grob_override.revert_format_pieces)
-            lilypond_format_bundle.grob_reverts.append(grob_string)
         if not self._is_beamable_component(leaf):
             return lilypond_format_bundle
         elif not self.use_stemlets and (
@@ -405,4 +387,3 @@ class GeneralizedBeam(Spanner):
         if self.durations is not None:
             return mathtools.cumulative_sums(self.durations)[1:]
         return []
-
