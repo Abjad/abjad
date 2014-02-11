@@ -39,6 +39,7 @@ class GeneralizedBeam(Spanner):
                 \set stemRightBeamCount = 0
                 e'16 ]
                 r8
+                \set stemRightBeamCount = 1
                 fs'8
                 g'4
             }
