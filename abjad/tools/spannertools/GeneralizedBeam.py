@@ -269,6 +269,9 @@ class GeneralizedBeam(Spanner):
                 leaf.written_duration.flag_count,
                 next_leaf.written_duration.flag_count,
                 )
+        flag_count = leaf.written_duration.flag_count
+        if left < flag_count and right < flag_count:
+            right = flag_count
         return left, right
 
     def _get_lilypond_format_bundle(self, leaf):
