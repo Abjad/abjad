@@ -3,11 +3,11 @@ from abjad import *
 from experimental.tools.scoremanagertools import predicates
 from experimental.tools.scoremanagertools.editors.UserInputWrapper \
     import UserInputWrapper
-from experimental.tools.scoremanagertools.materialpackagemakers.FunctionInputMaterialPackageMaker \
-    import FunctionInputMaterialPackageMaker
+from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker \
+    import MaterialPackageMaker
 
 
-class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
+class SargassoMeasureMaterialPackageMaker(MaterialPackageMaker):
 
     ### CLASS VARIABLES ###
 
@@ -19,6 +19,8 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
 
     output_material_module_import_statements = [
         'from abjad.tools import scoretools']
+
+    should_have_user_input_module = True
 
     user_input_demo_values = [
         ('measure_denominator', 4),

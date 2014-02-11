@@ -38,8 +38,15 @@ class MaterialPackageMaker(MaterialPackageManager):
         from experimental.tools import scoremanagertools
         if not self.should_have_user_input_module:
             return
+        if self.package_path.endswith('PackageMaker'):
+            parts = self.package_path.split('.')
+            parts = parts[:-1]
+            parent_package_path = '.'.join(parts)
+            package_path = parent_package_path
+        else:
+            package_path = self.package_path
         user_input_module_packagesystem_path = '.'.join([
-            self.package_path,
+            package_path,
             'user_input',
             ])
         user_input_module_file_path = \
@@ -50,7 +57,6 @@ class MaterialPackageMaker(MaterialPackageManager):
         if not os.path.exists(user_input_module_file_path):
             file(user_input_module_file_path, 'w').write('')
         manager = scoremanagertools.managers.UserInputModuleManager(
-            #user_input_module_packagesystem_path,
             user_input_module_file_path,
             session=self.session,
             )

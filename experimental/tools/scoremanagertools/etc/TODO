@@ -155,3 +155,26 @@
 
 44. Enforce .ily stylesheet extension in score manager.
     Enforce hypens instead of underscores in stylesheet files in score manager.
+
+45. I don't understand the relationship between MaterialPackageManager and
+    MaterialPackageMaker. The current relationship is that MaterialPackageMaker
+    inherits from MaterialPackageManager. But I don't understand why this
+    should be the case. Maybe the correct way to look at things is that the
+    system only comprises material package *managers*; this would mean
+    eliminating the MaterialPackageMaker class and moving all of its
+    implementation into MaterialPackageManager. This would also mean changing
+    the class names of all 'maker' classes back to 'manager': so
+    ArticulationHandlerMaterialPackageManager instead of
+    ArticulationHandlerMaterialPackageMaker.
+    It also looks like MaterialPackageMaker basically functions to manager any
+    user input wrapper associated with a material package manager. So perhaps a
+    UserInputWrapperManager could encapsulate all such functionality. It would
+    then be possible to aggregate a UserInputWrapperManager reference into
+    MaterialPackageManager and remove MaterialPackageMaker altogether.
+
+46. Stop sprinkling empty __metadata__.py moudles in directories:
+        .../materialpackagemakers/stylesheets/__metadata__.py
+        .../materialpackagemakers/test/__metadata__.py
+    And remove empty ...
+        .../materialpackagemakers/user_input.py
+    ... module, too.
