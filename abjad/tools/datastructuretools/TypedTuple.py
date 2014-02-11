@@ -76,7 +76,7 @@ class TypedTuple(TypedCollection):
             type(self), 
             self._collection,
             self.item_class,
-            self.name,
+            self.custom_identifier,
             ))
 
     def __mul__(self, expr):
