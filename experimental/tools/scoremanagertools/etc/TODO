@@ -166,6 +166,11 @@
     the class names of all 'maker' classes back to 'manager': so
     ArticulationHandlerMaterialPackageManager instead of
     ArticulationHandlerMaterialPackageMaker.
+    It also looks like MaterialPackageMaker basically functions to manager any
+    user input wrapper associated with a material package manager. So perhaps a
+    UserInputWrapperManager could encapsulate all such functionality. It would
+    then be possible to aggregate a UserInputWrapperManager reference into
+    MaterialPackageManager and remove MaterialPackageMaker altogether.
 
 46. Stop sprinkling empty __metadata__.py moudles in directories:
         .../materialpackagemakers/stylesheets/__metadata__.py

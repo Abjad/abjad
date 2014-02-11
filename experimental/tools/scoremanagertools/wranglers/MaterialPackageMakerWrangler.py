@@ -26,8 +26,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         PackageWrangler.configuration.built_in_material_package_makers_package_path
 
     forbidden_directory_entries = (
-        'InventoryMaterialPackageMaker',
-        'MaterialPackageMaker',
+        'InventoryMaterialPackageMaker.py',
+        'MaterialPackageMaker.py',
         )
 
     score_package_asset_storehouse_path_infix_parts = None
@@ -158,15 +158,15 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            '.../tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker'
-            '.../tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker'
-            '.../tools/scoremanagertools/materialpackagemakers/ListMaterialPackageMaker'
-            '.../tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker'
-            '.../tools/scoremanagertools/materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker'
-            '.../tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker'
-            '.../tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker'
-            '.../tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker.py'
-            '.../tools/scoremanagertools/materialpackagemakers/TempoInventoryMaterialPackageMaker'
+            '.../materialpackagemakers/ArticulationHandlerMaterialPackageMaker.py'
+            '.../materialpackagemakers/DynamicHandlerMaterialPackageMaker.py'
+            '.../materialpackagemakers/ListMaterialPackageMaker.py'
+            '.../materialpackagemakers/MarkupInventoryMaterialPackageMaker.py'
+            '.../materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker.py'
+            '.../materialpackagemakers/PitchRangeInventoryMaterialPackageMaker.py'
+            '.../materialpackagemakers/RhythmMakerMaterialPackageMaker.py'
+            '.../materialpackagemakers/SargassoMeasureMaterialPackageMaker.py'
+            '.../materialpackagemakers/TempoInventoryMaterialPackageMaker.py'
 
         Returns list.
         '''
