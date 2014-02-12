@@ -28,7 +28,7 @@ class MIDIOutputProxy(AssetOutputProxy):
         else:
             payload = copy.deepcopy(payload)
             manager = systemtools.IOManager
-            lilypond_file = manager.insert_expr_into_lilypond_file(payload)
+            lilypond_file = manager._insert_expr_into_lilypond_file(payload)
             lilypond_file.file_initial_system_comments[:] = []
             token = lilypondfiletools.LilyPondVersionToken(
                 abjad_configuration.get_lilypond_minimum_version_string(),

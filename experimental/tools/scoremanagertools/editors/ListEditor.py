@@ -93,7 +93,7 @@ class ListEditor(InteractiveEditor):
         result = []
         for item in self.items:
             result.append(
-                self.session.io_manager.get_one_line_menuing_summary(item))
+                self.session.io_manager._get_one_line_menuing_summary(item))
         return result
 
     ### PUBLIC METHODS ###

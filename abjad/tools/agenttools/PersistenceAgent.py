@@ -82,7 +82,7 @@ class PersistenceAgent(abctools.AbjadObject):
         abjad_formatting_time = timer.elapsed_time
         # write the formatted illustration to disk
         directory_path = os.path.dirname(ly_file_path)
-        systemtools.IOManager.ensure_directory_existence(directory_path)
+        systemtools.IOManager._ensure_directory_existence(directory_path)
         with open(ly_file_path, 'w') as file_handle:
             file_handle.write(lilypond_format)
         return ly_file_path, abjad_formatting_time
@@ -177,7 +177,7 @@ class PersistenceAgent(abctools.AbjadObject):
         result = '\n'.join(result)
         module_file_path = os.path.expanduser(module_file_path)
         directory_path = os.path.dirname(module_file_path)
-        systemtools.IOManager.ensure_directory_existence(directory_path)
+        systemtools.IOManager._ensure_directory_existence(directory_path)
         with open(module_file_path, 'w') as f:
             f.write(result)
 

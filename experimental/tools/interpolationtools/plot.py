@@ -17,7 +17,7 @@ def plot(expr, image_format='png', width=640, height=320):
     assert systemtools.IOManager.find_executable('gnuplot'), message
     gnuplot_format = expr.gnuplot_format
     abjad_output = abjad_configuration['abjad_output']
-    systemtools.IOManager.ensure_directory_existence(abjad_output)
+    systemtools.IOManager._ensure_directory_existence(abjad_output)
     txt_path = os.path.join(
         abjad_output, systemtools.IOManager.get_next_output_file_name(
             file_extension='txt'))

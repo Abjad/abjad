@@ -21,7 +21,6 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
     def __init__(self, session=None, where=None):
         ScoreManagerObject.__init__(self, session=session)
         PromptMakerMixin.__init__(self)
-        hidden_section = self.session.io_manager.make_default_hidden_section()
         self._prompts = []
         self.allow_none = False
         self.capitalize_prompts = True

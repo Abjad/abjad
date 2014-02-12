@@ -3,12 +3,13 @@ import abc
 import os
 import readline
 import types
-from abjad.tools import systemtools
 from abjad.tools import stringtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.systemtools.IOManager import IOManager
 
 
-class IOManager(AbjadObject):
+class IOManager(IOManager):
+    r'''Manages Abjad IO.
+    '''
 
     ### INITIALIZER ###
 
@@ -19,7 +20,29 @@ class IOManager(AbjadObject):
 
     @property
     def session(self):
+        r'''Gets session.
+
+        Returns session.
+        '''
         return self._session
+
+    ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _is_score_string(string):
+        if isinstance(string, str):
+            if 3 <= len(string):
+                if 'score'.startswith(string):
+                    return True
+        return False
+
+    @staticmethod
+    def _is_home_string(string):
+        if isinstance(string, str):
+            if 3 <= len(string):
+                if 'home'.startswith(string):
+                    return True
+        return False
 
     ### PUBLIC METHODS ###
 
@@ -35,7 +58,8 @@ class IOManager(AbjadObject):
     def clear_terminal(self):
         if not self.session.hide_next_redraw:
             if self.session.is_displayable:
-                systemtools.IOManager.clear_terminal()
+                superclass = super(IOManager, self)
+                superclass.clear_terminal()
 
     def confirm(
         self, 
@@ -74,12 +98,12 @@ class IOManager(AbjadObject):
                     self.session.io_transcript.append_lines(lines)
             if self.session.is_displayable:
                 if clear_terminal:
-                    systemtools.IOManager.clear_terminal()
+                    self.clear_terminal()
                 for line in lines:
                     print line
 
     @staticmethod
-    def get_one_line_menuing_summary(expr):
+    def _get_one_line_menuing_summary(expr):
         if isinstance(expr, (types.ClassType, abc.ABCMeta, types.TypeType)):
             return expr.__name__
         elif getattr(expr, '_one_line_menuing_summary', None):
@@ -101,8 +125,7 @@ class IOManager(AbjadObject):
         elif key == 'here':
             self.interactively_edit_calling_code()
         elif key == 'log':
-            self.interactively_exec_statement(
-                'systemtools.IOManager.view_last_log()')
+            self.view_last_log()
         elif key == 'next':
             self.session.is_navigating_to_next_score = True
             self.session.is_backtracking_to_score_manager = True
@@ -114,12 +137,9 @@ class IOManager(AbjadObject):
 #        # TODO: make this redraw!
 #        elif key == 'r':
 #            pass
-        elif isinstance(key, str) and \
-            3 <= len(key) and 'score'.startswith(key):
-            if self.session.is_in_score:
-                self.session.is_backtracking_to_score = True
-        elif isinstance(key, str) and \
-            3 <= len(key) and 'home'.startswith(key):
+        elif self._is_score_string(key):
+            self.session.is_backtracking_to_score = True
+        elif self._is_home_string(key):
             self.session.is_backtracking_to_score_manager = True
         elif key == 'twt':
             self.session.enable_where = not self.session.enable_where
@@ -205,27 +225,6 @@ class IOManager(AbjadObject):
             self.display(lines)
         self.session.hide_next_redraw = True
 
-    def make_default_hidden_section(self):
-        from experimental.tools import scoremanagertools
-        hidden_section = scoremanagertools.iotools.MenuSection()
-        hidden_section.return_value_attribute = 'key'
-        hidden_section.is_hidden = True
-        hidden_section.append(('display calling code', 'where'))
-        hidden_section.append(('display hidden menu', 'hidden'))
-        hidden_section.append(('edit client source', 'here'))
-        hidden_section.append(('execute statement', 'exec'))
-        hidden_section.append(('go back', 'b'))
-        hidden_section.append(('go home', 'home'))
-        hidden_section.append(('go to current score', 'score'))
-        hidden_section.append(('go to next score', 'next'))
-        hidden_section.append(('go to prev score', 'prev'))
-        hidden_section.append(('quit', 'q'))
-        hidden_section.append(('redraw', 'r'))
-        hidden_section.append(('toggle menu commands', 'tmc'))
-        hidden_section.append(('toggle where-tracking', 'twt'))
-        hidden_section.append(('view LilyPond log', 'log'))
-        return hidden_section
-
     def make_getter(self, where=None):
         from experimental.tools import scoremanagertools
         getter = scoremanagertools.iotools.UserInputGetter(
@@ -305,5 +304,4 @@ class IOManager(AbjadObject):
             'press return to continue.', 
             include_chevron=False,
             )
-        if self.session.is_displayable:
-            systemtools.IOManager.clear_terminal()
+        self.clear_terminal()

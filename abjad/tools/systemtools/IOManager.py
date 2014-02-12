@@ -17,11 +17,45 @@ class IOManager(object):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _warn_when_output_directory_almost_full(last_number):
-        r'''Prints warning when Abjad output directory is almost full.
+    def _ensure_directory_existence(directory):
+        if not directory:
+            directory = '.'
+        if not os.path.isdir(directory):
+            lines = []
+            line = 'Attention: {!r} does not exist on your system.'
+            line = line.format(directory)
+            lines.append(line)
+            lines.append('Abjad will now create it to store all output files.')
+            lines.append('Press any key to continue.')
+            message = '\n'.join(lines)
+            raw_input(message)
+            os.makedirs(directory)
 
-        Returns none.
-        '''
+    @staticmethod
+    def _insert_expr_into_lilypond_file(expr, tagline=False):
+        from abjad.tools import lilypondfiletools
+        from abjad.tools import scoretools
+        if isinstance(expr, lilypondfiletools.LilyPondFile):
+            lilypond_file = expr
+        elif isinstance(expr, scoretools.Context):
+            lilypond_file = lilypondfiletools.make_basic_lilypond_file(expr)
+            lilypond_file._is_temporary = True
+        else:
+            lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+            score_block = lilypondfiletools.Block(name='score')
+            score_block.items.append(expr)
+            lilypond_file.items.append(score_block)
+            lilypond_file.score_block = score_block
+            lilypond_file._is_temporary = True
+        if not tagline:
+            try:
+                lilypond_file.header_block.tagline = markuptools.Markup('""')
+            except:
+                pass
+        return lilypond_file
+
+    @staticmethod
+    def _warn_when_output_directory_almost_full(last_number):
         from abjad import abjad_configuration
         abjad_output = abjad_configuration['abjad_output']
         max_number = 10000
@@ -42,13 +76,11 @@ class IOManager(object):
 
     @staticmethod
     def clear_terminal():
-        '''Runs ``clear`` if OS is POSIX-compliant (UNIX / Linux / MacOS).
+        '''Clears terminal.
+
+        Runs ``clear`` if OS is POSIX-compliant (UNIX / Linux / MacOS).
 
         Runs ``cls`` if OS is not POSIX-compliant (Windows).
-
-        ::
-
-            >>> IOManager.clear_terminal() # doctest: +SKIP
 
         Returns none.
         '''
@@ -65,12 +97,11 @@ class IOManager(object):
         local_context=None,
         fixed_point=True,
         ):
-        '''Counts function calls returned by ``IOManager.profile_expr(expr)``.
-
+        '''Counts function calls required to execute `expr`.
+        
         ..  container:: example
 
-            **Example 1.** Function calls required to initialize note
-            from string:
+            Counts function calls required to initialize note from string:
 
             ::
 
@@ -82,8 +113,7 @@ class IOManager(object):
 
         ..  container:: example
 
-            **Example 2.** Function calls required to initialize note
-            from integers:
+            Counts function calls required to initialize note from integers:
 
             ::
 
@@ -92,6 +122,8 @@ class IOManager(object):
                 ...     globals(),
                 ...     )
                 170
+
+        Wraps ``IOManager.profile_expr(expr)``.
 
         Returns nonnegative integer.
         '''
@@ -122,34 +154,17 @@ class IOManager(object):
         return result
 
     @staticmethod
-    def ensure_directory_existence(directory):
-        r'''Ensures existence of `directory`.
-
-        Returns none.
-        '''
-        if not directory:
-            directory = '.'
-        if not os.path.isdir(directory):
-            lines = []
-            line = 'Attention: {!r} does not exist on your system.'
-            line = line.format(directory)
-            lines.append(line)
-            lines.append('Abjad will now create it to store all output files.')
-            lines.append('Press any key to continue.')
-            message = '\n'.join(lines)
-            raw_input(message)
-            os.makedirs(directory)
-
-    @staticmethod
     def find_executable(name, flags=os.X_OK):
         r'''Finds executable `name`.
 
         Similar to Unix ``which`` command.
 
-        ::
+        ..  container:: example
 
-            >>> IOManager.find_executable('python2.7') # doctest: +SKIP
-            ['/usr/bin/python2.7']
+            ::
+
+                >>> IOManager.find_executable('python2.7') # doctest: +SKIP
+                ['/usr/bin/python2.7']
 
         Returns list of zero or more full paths to `name`.
         '''
@@ -174,12 +189,14 @@ class IOManager(object):
 
     @staticmethod
     def get_last_output_file_name(output_directory_path=None):
-        r'''Gets last output file name in output directory.
+        r'''Gets last output file name in `output_directory_path`.
 
-        ::
+        ..  container:: example
 
-            >>> systemtools.IOManager.get_last_output_file_name() # doctest: +SKIP
-            '6222.ly'
+            ::
+
+                >>> systemtools.IOManager.get_last_output_file_name() # doctest: +SKIP
+                '6222.ly'
 
         Gets last output file name in Abjad output directory when
         `output_directory_path` is none.
@@ -205,15 +222,18 @@ class IOManager(object):
         file_extension='ly',
         output_directory_path=None,
         ):
-        r'''Gets next output file name in output directory.
+        r'''Gets next output file name with `file_extension` in
+        `output_directory_path`.
 
-        ::
+        ..  container:: example
 
-            >>> systemtools.IOManager.get_next_output_file_name() # doctest: +SKIP
-            '6223.ly'
+            ::
 
-        Gets next output file name in Abjad output directory
-        when `output_directory_path` is none.
+                >>> systemtools.IOManager.get_next_output_file_name() # doctest: +SKIP
+                '6223.ly'
+
+        Gets next output file name with `file_extension` in Abjad output
+        directory when `output_directory_path` is none.
 
         Returns string.
         '''
@@ -238,42 +258,12 @@ class IOManager(object):
         return next_output_file_name
 
     @staticmethod
-    def insert_expr_into_lilypond_file(expr, tagline=False):
-        r'''Inserts `expr` into LilyPond file.
-
-        Returns LilyPond file.
-        '''
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import scoretools
-        if isinstance(expr, lilypondfiletools.LilyPondFile):
-            lilypond_file = expr
-        elif isinstance(expr, scoretools.Context):
-            lilypond_file = lilypondfiletools.make_basic_lilypond_file(expr)
-            lilypond_file._is_temporary = True
-        else:
-            lilypond_file = lilypondfiletools.make_basic_lilypond_file()
-            score_block = lilypondfiletools.Block(name='score')
-            score_block.items.append(expr)
-            # NOTE: don't quite understand the logic here.
-            # why append a score_block and then set the score_block attribute
-            # to the same thing?
-            lilypond_file.items.append(score_block)
-            #lilypond_file.score = score_block
-            lilypond_file.score_block = score_block
-            lilypond_file._is_temporary = True
-        if not tagline:
-            try:
-                lilypond_file.header_block.tagline = markuptools.Markup('""')
-            except:
-                pass
-        return lilypond_file
-
-    @staticmethod
     def open_file(file_path, application=None):
-        r'''Opens `file_path` with operating system-specific file-opener
-        with `application` is none.
+        r'''Opens `file_path`.
+        
+        Uses operating system-specific file-opener when `application` is none.
 
-        Opens `file_path` with `application` when `application` is not none.
+        Uses `application` when `application` is not none.
 
         Returns none.
         '''
@@ -300,29 +290,31 @@ class IOManager(object):
         ):
         r'''Profiles `expr`.
 
-        ::
+        ..  container:: example
 
-            >>> expr = 'Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
-            >>> IOManager.profile_expr(expr) # doctest: +SKIP
-            Tue Apr  5 20:32:40 2011    _tmp_abj_profile
+            ::
 
-                    2852 function calls (2829 primitive calls) in 0.006 CPU seconds
+                >>> expr = 'Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
+                >>> IOManager.profile_expr(expr) # doctest: +SKIP
+                Tue Apr  5 20:32:40 2011    _tmp_abj_profile
 
-            Ordered by: cumulative time
-            List reduced from 118 to 12 due to restriction <12>
+                        2852 function calls (2829 primitive calls) in 0.006 CPU seconds
 
-            ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-                    1    0.000    0.000    0.006    0.006 <string>:1(<module>)
-                    1    0.001    0.001    0.003    0.003 make_notes.py:12(make_not
-                    1    0.000    0.000    0.003    0.003 Staff.py:21(__init__)
-                    1    0.000    0.000    0.003    0.003 Context.py:11(__init__)
-                    1    0.000    0.000    0.003    0.003 Container.py:23(__init__)
-                    1    0.000    0.000    0.003    0.003 Container.py:271(_initial
-                    2    0.000    0.000    0.002    0.001 all_are_logical_voice_con
-                52    0.001    0.000    0.002    0.000 component_to_logical_voic
-                    1    0.000    0.000    0.002    0.002 _construct_unprolated_not
-                    8    0.000    0.000    0.002    0.000 make_tied_note.py:5(make_
-                    8    0.000    0.000    0.002    0.000 make_tied_leaf.py:5(make_
+                Ordered by: cumulative time
+                List reduced from 118 to 12 due to restriction <12>
+
+                ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+                        1    0.000    0.000    0.006    0.006 <string>:1(<module>)
+                        1    0.001    0.001    0.003    0.003 make_notes.py:12(make_not
+                        1    0.000    0.000    0.003    0.003 Staff.py:21(__init__)
+                        1    0.000    0.000    0.003    0.003 Context.py:11(__init__)
+                        1    0.000    0.000    0.003    0.003 Container.py:23(__init__)
+                        1    0.000    0.000    0.003    0.003 Container.py:271(_initial
+                        2    0.000    0.000    0.002    0.001 all_are_logical_voice_con
+                    52    0.001    0.000    0.002    0.000 component_to_logical_voic
+                        1    0.000    0.000    0.002    0.002 _construct_unprolated_not
+                        8    0.000    0.000    0.002    0.000 make_tied_note.py:5(make_
+                        8    0.000    0.000    0.002    0.000 make_tied_leaf.py:5(make_
 
         Wraps the built-in Python ``cProfile`` module.
 
@@ -341,11 +333,9 @@ class IOManager(object):
 
         Returns string when `print_to_terminal` is true.
         '''
-
         import cProfile
         import pstats
         now_string = datetime.datetime.today().strftime('%a %b %d %H:%M:%S %Y')
-
         profile = cProfile.Profile()
         if global_context is None:
             profile = profile.run(
@@ -357,14 +347,11 @@ class IOManager(object):
                 global_context,
                 local_context,
                 )
-
         stats_stream = StringIO.StringIO()
         stats = pstats.Stats(profile, stream=stats_stream)
-
         if sort_by == 'cum':
             if platform.python_version() == '2.7.5':
                 sort_by = 'cumulative'
-
         if strip_dirs:
             stats.strip_dirs().sort_stats(sort_by).print_stats(line_count)
         else:
@@ -373,10 +360,8 @@ class IOManager(object):
             stats.sort_stats(sort_by).print_callers(line_count)
         if print_callees:
             stats.sort_stats(sort_by).print_callees(line_count)
-
         result = now_string + '\n\n' + stats_stream.getvalue()
         stats_stream.close()
-
         if print_to_terminal:
             print result
         else:
@@ -384,7 +369,7 @@ class IOManager(object):
 
     @staticmethod
     def run_lilypond(lilypond_file_name, lilypond_path=None):
-        r'''Runs LilyPond.
+        r'''Runs LilyPond on `lilypond_file_name`.
 
         Returns none.
         '''
@@ -424,12 +409,14 @@ class IOManager(object):
 
     @staticmethod
     def save_last_ly_as(file_path):
-        r'''Saves last LilyPond file created in Abjad as `file_path`.
+        r'''Saves last LilyPond file created by Abjad as `file_path`.
 
-        ::
+        ..  container:: example
 
-            >>> file_path = '/project/output/example-1.ly'
-            >>> IOManager.save_last_ly_as(file_path) # doctest: +SKIP
+            ::
+
+                >>> file_path = '/project/output/example-1.ly'
+                >>> IOManager.save_last_ly_as(file_path) # doctest: +SKIP
 
         Returns none.
         '''
@@ -447,12 +434,14 @@ class IOManager(object):
 
     @staticmethod
     def save_last_pdf_as(file_path):
-        r'''Saves last PDF created in Abjad as `file_path`.
+        r'''Saves last PDF created by Abjad as `file_path`.
 
-        ::
+        ..  container:: example
 
-            >>> file_path = '/project/output/example-1.pdf'
-            >>> IOManager.save_last_pdf_as(file_path) # doctest: +SKIP
+            ::
+
+                >>> file_path = '/project/output/example-1.pdf'
+                >>> IOManager.save_last_pdf_as(file_path) # doctest: +SKIP
 
         Returns none.
         '''
@@ -470,16 +459,18 @@ class IOManager(object):
     def spawn_subprocess(command):
         r'''Spawns subprocess and runs `command`.
 
-        Redirects stderr to stdout.
+        ..  container:: example
 
-        ::
+            ::
 
-            >>> command = 'echo "hellow world"'
-            >>> IOManager.spawn_subprocess(command) # doctest: +SKIP
-            hello world
+                >>> command = 'echo "hellow world"'
+                >>> IOManager.spawn_subprocess(command) # doctest: +SKIP
+                hello world
 
         The function is basically a reimplementation of the
         deprecated ``os.system()`` using Python's ``subprocess`` module.
+
+        Redirects stderr to stdout.
 
         Returns integer exit code.
         '''
@@ -487,25 +478,27 @@ class IOManager(object):
 
     @staticmethod
     def view_last_log():
-        r'''Opens the LilyPond log file in operating system-specific text
+        r'''Opens LilyPond log file in operating system-specific text
         editor.
 
-        ::
+        ..  container:: example
 
-            >>> systemtools.IOManager.view_last_log() # doctest: +SKIP
+            ::
 
-        ::
+                >>> systemtools.IOManager.view_last_log() # doctest: +SKIP
 
-            GNU LilyPond 2.12.2
-            Processing `0440.ly'
-            Parsing...
-            Interpreting music...
-            Preprocessing graphical objects...
-            Finding the ideal number of pages...
-            Fitting music on 1 page...
-            Drawing systems...
-            Layout output to `0440.ps'...
-            Converting to `./0440.pdf'...
+            ::
+
+                GNU LilyPond 2.19.2
+                Processing `0440.ly'
+                Parsing...
+                Interpreting music...
+                Preprocessing graphical objects...
+                Finding the ideal number of pages...
+                Fitting music on 1 page...
+                Drawing systems...
+                Layout output to `0440.ps'...
+                Converting to `./0440.pdf'...
 
         Returns none.
         '''
@@ -519,11 +512,11 @@ class IOManager(object):
 
     @staticmethod
     def view_last_ly(target=-1):
-        r'''Opens the last LilyPond output file in text editor.
+        r'''Opens last LilyPond output file produced by Abjad.
 
         ..  container:: example
 
-            **Example 1.** Open the last LilyPond output file:
+            Opens the last LilyPond output file:
 
             ::
 
@@ -531,23 +524,29 @@ class IOManager(object):
 
             ::
 
-                % Abjad revision 2162
-                % 2009-05-31 14:29
+                % 2014-02-12 14:29
 
-                \version "2.12.2"
-                \include "english.ly"
+                \version "2.19.2"
+                \language "english"
 
-                {
-                    c'4
+                \header {
+                    tagline = \markup {}
                 }
 
-        ..  container:: example
+                \layout {}
 
-            **Example 2.** Open the next-to-last LilyPond output file:
+                \paper {}
 
-            ::
+                \score {
+                    {
+                        c'4
+                    }
+                }
 
-                >>> systemtools.IOManager.view_last_ly(-2) # doctest: +SKIP
+        Uses operating-specific text editor.
+
+        Set ``target=-2`` to open the next-to-last LilyPond output file
+        produced by Abjad, and so on.
 
         Returns none.
         '''
@@ -587,16 +586,16 @@ class IOManager(object):
 
     @staticmethod
     def view_last_pdf(target=-1):
-        r'''Opens the last PDF generated by Abjad with ``systemtools.pdf()``.
-
-        Opens the next-to-last PDF generated by Abjad with ``systemtools.pdf(-2)``.
-
-        Returns none.
+        r'''Opens last PDF generated by Abjad.
 
         Abjad writes PDFs to the ``~/.abjad/output`` directory by default.
 
         You may change this by setting the ``abjad_output`` variable in
         the ``config.py`` file.
+
+        Set ``target=-2`` to open the next-to-last PDF generated by Abjad.
+
+        Returns none.
         '''
         from abjad import abjad_configuration
         from abjad.tools import systemtools
