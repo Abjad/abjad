@@ -4,7 +4,7 @@ from experimental import *
 
 def test_Menu_display_calling_code_line_number_01():
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     score_manager._run('twt where q')
 
     menu_lines = score_manager.session.io_transcript[-2][1]

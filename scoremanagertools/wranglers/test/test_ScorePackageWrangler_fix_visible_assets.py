@@ -6,7 +6,7 @@ pytest.skip('skipping temporarily.')
 
 def test_ScorePackageWrangler_fix_visible_assets_01():
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     wrangler = score_manager.score_package_wrangler
     wrangler.session.display_all_scores()
 

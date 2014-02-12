@@ -5,7 +5,7 @@ from experimental import *
 
 def test_StylesheetFileWrangler_interactively_select_asset_filesystem_path_01():
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     wrangler = score_manager.stylesheet_file_wrangler
     wrangler.session.pending_user_input = 'clean'
     filesystem_path = wrangler.interactively_select_asset_filesystem_path()

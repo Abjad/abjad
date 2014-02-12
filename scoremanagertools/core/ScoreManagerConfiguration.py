@@ -8,7 +8,7 @@ class ScoreManagerConfiguration(Configuration):
     r'''Score manager configuration.
 
         >>> configuration = \
-        ...     scoremanagertools.scoremanager.ScoreManagerConfiguration()
+        ...     scoremanagertools.core.ScoreManagerConfiguration()
         >>> configuration
         ScoreManagerConfiguration()
 

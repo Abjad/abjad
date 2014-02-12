@@ -7,7 +7,7 @@ pytest.skip('unskip me after making decision about cache.')
 def test_ScorePackageManager_interactively_edit_title_01():
 
     try:
-        score_manager = scoremanagertools.scoremanager.ScoreManager()
+        score_manager = scoremanagertools.core.ScoreManager()
         score_manager._run(pending_user_input='green~example~score score~setup title Foo q')
         assert score_manager.session.io_transcript.signature == (9,)
         assert score_manager.session.io_transcript[-5][1][0] == 'Green Example Score (2013) - setup'

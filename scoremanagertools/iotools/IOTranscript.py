@@ -3,7 +3,7 @@ import datetime
 import os
 import time
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from scoremanagertools.scoremanager.ScoreManagerConfiguration \
+from scoremanagertools.core.ScoreManagerConfiguration \
     import ScoreManagerConfiguration
 
 

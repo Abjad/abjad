@@ -26,7 +26,7 @@ def test_InstrumentEditor_base_states_02():
     '''
 
     editor = scoremanagertools.editors.InstrumentEditor()
-    assert isinstance(editor.session, scoremanagertools.scoremanager.Session)
+    assert isinstance(editor.session, scoremanagertools.core.Session)
     assert editor.target is None
 
 
@@ -39,5 +39,5 @@ def test_InstrumentEditor_base_states_03():
         short_instrument_name='acc. I',
         )
     editor = scoremanagertools.editors.InstrumentEditor(target=accordion)
-    assert isinstance(editor.session, scoremanagertools.scoremanager.Session)
+    assert isinstance(editor.session, scoremanagertools.core.Session)
     assert editor.target is accordion

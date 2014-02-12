@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 import subprocess
-from scoremanagertools.scoremanager.ScoreManagerObject \
+from scoremanagertools.core.ScoreManagerObject \
     import ScoreManagerObject
 
 
@@ -10,7 +10,7 @@ class ScoreManager(ScoreManagerObject):
 
     ::
 
-        >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
+        >>> score_manager = scoremanagertools.core.ScoreManager()
         >>> score_manager
         ScoreManager()
 

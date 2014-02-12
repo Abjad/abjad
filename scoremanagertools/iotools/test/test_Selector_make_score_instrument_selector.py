@@ -5,7 +5,7 @@ from scoremanagertools.iotools import Selector
 
 def test_Selector_make_score_instrument_selector_01():
 
-    session = scoremanagertools.scoremanager.Session()
+    session = scoremanagertools.core.Session()
     session.snake_case_current_score_name = 'red_example_score'
     selector = Selector.make_score_instrument_selector(session=session)
 

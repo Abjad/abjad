@@ -5,7 +5,7 @@ from experimental import *
 
 def test_StylesheetFileWrangler_interactively_make_asset_01():
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     configuration = score_manager.configuration
     filesystem_path = os.path.join(
         configuration.user_asset_library_stylesheets_directory_path,

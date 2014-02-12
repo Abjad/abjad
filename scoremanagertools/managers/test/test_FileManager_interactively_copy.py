@@ -5,7 +5,7 @@ from experimental import *
 
 def test_FileManager_interactively_copy_01():
 
-    score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
+    score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path, 'temporary_file.txt')
     file_manager = scoremanagertools.managers.FileManager(filesystem_path=filesystem_path)

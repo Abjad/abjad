@@ -9,7 +9,7 @@ def test_PerformerEditor_move_instrument_01():
     '''
     pytest.skip('remove custom score name.')
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     score_manager._run(pending_user_input="l'arch score~setup instrumentation flutist move q")
     assert score_manager.session.io_transcript.signature == (11,)
 

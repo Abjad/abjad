@@ -9,7 +9,7 @@ def test_MaterialPackageManager_screenscrapes_01():
     pytest.skip('TODO: add Red Example Score time signatures.')
 
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     score_manager._run(pending_user_input='all red_example_score m black q')
 
     assert score_manager.io_transcript[-2] == \

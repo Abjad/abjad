@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import core
 import editors
 import exceptions
 import getters
@@ -6,7 +7,6 @@ import iotools
 import managers
 import materialpackagemakers
 import predicates
-import scoremanager
 import specifiers
 import wizards
 import wranglers

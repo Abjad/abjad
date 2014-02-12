@@ -4,7 +4,7 @@ from experimental import *
 
 def test_DynamicHandlerMaterialPackageMaker_01():
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
         'scoremanagertools.materialpackages.testdynamichandler')
     try:

@@ -8,7 +8,7 @@ def test_FileManager_interactively_rename_01():
     '''
 
     score_manager_configuration = \
-        scoremanagertools.scoremanager.ScoreManagerConfiguration()
+        scoremanagertools.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path, 
         'test_file.txt',
@@ -40,7 +40,7 @@ def test_FileManager_interactively_rename_02():
     '''
 
     score_manager_configuration = \
-        scoremanagertools.scoremanager.ScoreManagerConfiguration()
+        scoremanagertools.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path, 
         'test_file.txt',

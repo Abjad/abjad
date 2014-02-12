@@ -55,7 +55,7 @@ def test_ScorePackageManager_04():
     r'''User 'home' input results in return home.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     score_manager._run(pending_user_input="red~example~score home q")
 
     assert score_manager.session.io_transcript.signature == (6, (0, 4))
@@ -81,7 +81,7 @@ def test_ScorePackageManager_06():
     r'''User 'b' input returns home.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     score_manager._run(pending_user_input='red~example~score b q')
 
     assert score_manager.session.io_transcript.signature == (6, (0, 4))

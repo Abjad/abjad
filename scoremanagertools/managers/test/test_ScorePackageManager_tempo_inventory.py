@@ -5,7 +5,7 @@ from experimental import *
 
 def test_ScorePackageManager_tempo_inventory_01():
 
-    configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
+    configuration = scoremanagertools.core.ScoreManagerConfiguration()
     directory_path = os.path.join(
         configuration.built_in_score_packages_directory_path,
         'red_example_score',

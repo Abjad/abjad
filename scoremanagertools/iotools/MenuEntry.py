@@ -6,7 +6,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class MenuEntry(AbjadObject):
     r'''Menu entry.
 
-        >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
+        >>> score_manager = scoremanagertools.core.ScoreManager()
         >>> menu = score_manager._make_repository_menu()
         >>> menu
         <Menu (2)>

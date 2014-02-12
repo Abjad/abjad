@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from scoremanagertools.scoremanager.ScoreManagerObject \
+from scoremanagertools.core.ScoreManagerObject \
     import ScoreManagerObject
 
 

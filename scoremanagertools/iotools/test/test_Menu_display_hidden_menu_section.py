@@ -5,7 +5,7 @@ from experimental import *
 
 def test_Menu_display_hidden_menu_section_01():
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     score_manager._run(pending_user_input='hidden q')
     assert score_manager.session.io_transcript[-2][1] == \
         ['Score manager - active scores - hidden commands',
@@ -40,7 +40,7 @@ def test_Menu_display_hidden_menu_section_01():
 
 def test_Menu_display_hidden_menu_section_02():
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     score_manager._run(pending_user_input='red~example~score hidden q')
 
     assert score_manager.session.io_transcript[-2][1] == \

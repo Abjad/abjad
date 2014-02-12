@@ -2,7 +2,7 @@
 import os
 from abjad.tools import stringtools
 from abjad.tools import abctools
-from scoremanagertools.scoremanager.ScoreManagerConfiguration \
+from scoremanagertools.core.ScoreManagerConfiguration \
     import ScoreManagerConfiguration
 
 
@@ -15,7 +15,7 @@ class Session(abctools.AbjadObject):
 
         ::
 
-            >>> session = scoremanagertools.scoremanager.Session()
+            >>> session = scoremanagertools.core.Session()
             >>> session
             Session()
 
@@ -25,7 +25,7 @@ class Session(abctools.AbjadObject):
 
         ::
 
-            >>> session_in_score = scoremanagertools.scoremanager.Session()
+            >>> session_in_score = scoremanagertools.core.Session()
             >>> session_in_score.snake_case_current_score_name = 'foo'
             >>> session_in_score
             Session()

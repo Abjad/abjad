@@ -9,7 +9,7 @@ class MenuSection(AbjadObject):
 
     ::
 
-        >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
+        >>> score_manager = scoremanagertools.core.ScoreManager()
         >>> menu = score_manager._make_repository_menu()
         >>> menu
         <Menu (2)>

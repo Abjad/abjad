@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
-from scoremanagertools.scoremanager.ScoreManagerObject \
+from scoremanagertools.core.ScoreManagerObject \
     import ScoreManagerObject
 
 

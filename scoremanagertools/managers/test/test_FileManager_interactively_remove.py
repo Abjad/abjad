@@ -7,7 +7,7 @@ def test_FileManager_interactively_remove_01():
     r'''Nonversioned file.
     '''
 
-    configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
+    configuration = scoremanagertools.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         configuration.score_manager_tools_directory_path, 
         'temporary_file.txt',
@@ -32,7 +32,7 @@ def test_FileManager_interactively_remove_02():
     r'''Versioned file.
     '''
 
-    configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
+    configuration = scoremanagertools.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         configuration.score_manager_tools_directory_path, 
         'temporary_file.txt',

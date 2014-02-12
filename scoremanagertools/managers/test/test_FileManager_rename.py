@@ -7,7 +7,7 @@ def test_FileManager_rename_01():
     r'''Nonversioned file.
     '''
 
-    score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
+    score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path, 
         'temporary_file.txt',
@@ -40,7 +40,7 @@ def test_FileManager_rename_02():
     r'''Versioned file.
     '''
 
-    score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
+    score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path, 
         'temporary_file.txt',

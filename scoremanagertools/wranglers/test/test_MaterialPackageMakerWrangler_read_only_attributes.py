@@ -4,7 +4,7 @@ from experimental import *
 
 def test_MaterialPackageMakerWrangler_read_only_attributes_01():
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     wrangler = score_manager.material_package_maker_wrangler
 
     assert wrangler._breadcrumb == 'material package makers'

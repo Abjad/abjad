@@ -6,7 +6,7 @@ def test_PerformerEditor_interactively_set_initial_configuration_01():
     r'''Quit, back, home, score & junk all work.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     score_manager._run(pending_user_input='red~example~score score~setup instrumentation add accordionist q')
     assert score_manager.session.io_transcript.signature == (12,)
 

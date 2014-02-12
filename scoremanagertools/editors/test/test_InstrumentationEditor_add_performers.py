@@ -6,7 +6,7 @@ def test_InstrumentationEditor_add_performers_01():
     r'''Quit, back, home, score & junk all work.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     score_manager._run(pending_user_input='red~example~score score~setup instrumentation add q')
     assert score_manager.session.io_transcript.signature == (10,)
 

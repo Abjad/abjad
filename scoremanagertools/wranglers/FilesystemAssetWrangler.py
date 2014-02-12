@@ -4,7 +4,7 @@ import os
 from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from scoremanagertools.scoremanager.ScoreManagerObject \
+from scoremanagertools.core.ScoreManagerObject \
     import ScoreManagerObject
 
 

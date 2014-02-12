@@ -6,7 +6,7 @@ def test_PerformerEditor_delete_instruments_01():
     r'''Quit, back, home, score & junk all work.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     score_manager._run(pending_user_input='red~example~score score~setup instrumentation hornist rm q')
     assert score_manager.session.io_transcript.signature == (11,)
 

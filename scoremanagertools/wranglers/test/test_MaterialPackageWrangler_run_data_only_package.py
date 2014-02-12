@@ -6,7 +6,7 @@ def test_MaterialPackageWrangler_run_data_only_package_01():
     r'''Make data package. Delete package.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
         'scoremanagertools.materialpackages.testnumbers')
 
@@ -36,7 +36,7 @@ def test_MaterialPackageWrangler_run_data_only_package_02():
     Verify invalid initializer. Remove package.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
         'scoremanagertools.materialpackages.testnumbers')
 
@@ -68,7 +68,7 @@ def test_MaterialPackageWrangler_run_data_only_package_03():
     Verify initializer. Remove package.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
         'scoremanagertools.materialpackages.testnumbers')
 
@@ -101,7 +101,7 @@ def test_MaterialPackageWrangler_run_data_only_package_04():
     Delete package."
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
         'scoremanagertools.materialpackages.testnumbers')
 
@@ -134,7 +134,7 @@ def test_MaterialPackageWrangler_run_data_only_package_05():
     Remove package.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
         'scoremanagertools.materialpackages.testnumbers')
 
@@ -166,7 +166,7 @@ def test_MaterialPackageWrangler_run_data_only_package_06():
     Delete package.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
         'scoremanagertools.materialpackages.testnumbers')
 
@@ -198,7 +198,7 @@ def test_MaterialPackageWrangler_run_data_only_package_07():
     Make output material. Remove output material. Remove package.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
         'scoremanagertools.materialpackages.testnumbers')
 
@@ -234,7 +234,7 @@ def test_MaterialPackageWrangler_run_data_only_package_08():
     Examine package state. Remove package.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
         'scoremanagertools.materialpackages.testnumbers')
 
@@ -266,7 +266,7 @@ def test_MaterialPackageWrangler_run_data_only_package_09():
     Verify invalid output material module. Remove package.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
         'scoremanagertools.materialpackages.testnumbers')
 

@@ -2,7 +2,7 @@
 import os
 from experimental import *
 
-score_manager = scoremanagertools.scoremanager.ScoreManager()
+score_manager = scoremanagertools.core.ScoreManager()
 wrangler = score_manager.score_package_wrangler
 
 

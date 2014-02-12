@@ -11,7 +11,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ::
 
-        >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
+        >>> score_manager = scoremanagertools.core.ScoreManager()
         >>> wrangler = score_manager.segment_package_wrangler
         >>> wrangler
         SegmentPackageWrangler()

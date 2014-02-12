@@ -6,7 +6,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_01():
     r'''Stub material package.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists('scoremanagertools.materialpackages.testpir')
     try:
         score_manager._run(pending_user_input=
@@ -29,7 +29,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_02():
     r'''Populate output material module.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists('scoremanagertools.materialpackages.testpir')
     try:
         score_manager._run(pending_user_input=

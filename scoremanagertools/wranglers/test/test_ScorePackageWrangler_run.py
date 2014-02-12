@@ -8,7 +8,7 @@ def test_ScorePackageWrangler_run_01():
     '''
     pytest.skip('unskip after deciding about cache.')
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists('testscore')
 
     try:

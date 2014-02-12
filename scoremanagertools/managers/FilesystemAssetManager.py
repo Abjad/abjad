@@ -4,7 +4,7 @@ import os
 import shutil
 import subprocess
 from abjad.tools import stringtools
-from scoremanagertools.scoremanager.ScoreManagerObject \
+from scoremanagertools.core.ScoreManagerObject \
     import ScoreManagerObject
 
 

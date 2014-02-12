@@ -6,7 +6,7 @@ pytest.skip('unskip once it is possible to edit composite objects.')
 
 def test_RhythmMakerMaterialPackageMaker_01():
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
         'scoremanagertools.materialpackages.testrhythmmaker')
     try:

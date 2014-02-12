@@ -3,7 +3,7 @@ import os
 from abjad.tools import mathtools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
-from scoremanagertools.scoremanager.ScoreManagerObject \
+from scoremanagertools.core.ScoreManagerObject \
     import ScoreManagerObject
 from scoremanagertools.iotools.MenuSection \
     import MenuSection
@@ -16,7 +16,7 @@ class Menu(ScoreManagerObject):
 
         ::
 
-            >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
+            >>> score_manager = scoremanagertools.core.ScoreManager()
             >>> menu = score_manager._make_repository_menu()
             >>> menu
             <Menu (2)>

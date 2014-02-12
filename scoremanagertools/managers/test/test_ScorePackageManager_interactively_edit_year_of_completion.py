@@ -5,7 +5,7 @@ from experimental import *
 def test_ScorePackageManager_interactively_edit_year_of_completion_01():
 
     try:
-        score_manager = scoremanagertools.scoremanager.ScoreManager()
+        score_manager = scoremanagertools.core.ScoreManager()
         user_input = 'red~example~score score~setup year 2001 q'
         score_manager._run(pending_user_input=user_input)
         io_transcript = score_manager.session.io_transcript

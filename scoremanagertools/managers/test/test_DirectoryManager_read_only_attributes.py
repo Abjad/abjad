@@ -7,7 +7,7 @@ def test_DirectoryManager_read_only_attributes_01():
     r'''Named directory manager already written to disk.
     '''
 
-    score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
+    score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     directory_path = score_manager_configuration.score_manager_tools_directory_path
     directory_manager = scoremanagertools.managers.DirectoryManager(directory_path)
     assert directory_manager.filesystem_path is not None

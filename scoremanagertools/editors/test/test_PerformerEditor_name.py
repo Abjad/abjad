@@ -6,7 +6,7 @@ def test_PerformerEditor_name_01():
     r'''Quit, back and home all work.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     score_manager._run(pending_user_input='red~example~score score~setup instrumentation hornist name q')
     assert score_manager.session.io_transcript.signature == (11,)
 
@@ -21,7 +21,7 @@ def test_PerformerEditor_name_02():
     r'''String input only.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     score_manager._run(pending_user_input='red~example~score score~setup instrumentation hornist name -99 q')
     assert score_manager.session.io_transcript.signature == (13,)
 

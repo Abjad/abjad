@@ -7,7 +7,7 @@ def test_MaterialPackageWrangler_run_makermade_package_01():
     r'''Make makermade package. Delete package.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists('scoremanagertools.materialpackages.testsargasso')
 
     try:
@@ -34,7 +34,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
     r'''Make score-resident makermade package. Delete package.
     '''
 
-    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager = scoremanagertools.core.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
         'scoremanagertools.scorepackages.red_example_score.materials.testsargasso')
 
@@ -65,7 +65,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Verify invalid initializer. Remove package.
 #    '''
 #
-#    score_manager = scoremanagertools.scoremanager.ScoreManager()
+#    score_manager = scoremanagertools.core.ScoreManager()
 #    assert not score_manager.configuration.packagesystem_path_exists('scoremanagertools.materialpackages.testsargasso')
 #
 #    try:
@@ -91,7 +91,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Verify initializer. Remove package.
 #    '''
 #
-#    score_manager = scoremanagertools.scoremanager.ScoreManager()
+#    score_manager = scoremanagertools.core.ScoreManager()
 #    assert not score_manager.configuration.packagesystem_path_exists('scoremanagertools.materialpackages.testsargasso')
 #
 #    try:
@@ -117,7 +117,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Delete package."
 #    '''
 #
-#    score_manager = scoremanagertools.scoremanager.ScoreManager()
+#    score_manager = scoremanagertools.core.ScoreManager()
 #    assert not score_manager.configuration.packagesystem_path_exists('scoremanagertools.materialpackages.testsargasso')
 #
 #    try:
@@ -145,7 +145,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Remove package.
 #    '''
 #
-#    score_manager = scoremanagertools.scoremanager.ScoreManager()
+#    score_manager = scoremanagertools.core.ScoreManager()
 #    assert not score_manager.configuration.packagesystem_path_exists('scoremanagertools.materialpackages.testsargasso')
 #
 #    try:
@@ -171,7 +171,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Delete package.
 #    '''
 #
-#    score_manager = scoremanagertools.scoremanager.ScoreManager()
+#    score_manager = scoremanagertools.core.ScoreManager()
 #    assert not score_manager.configuration.packagesystem_path_exists('scoremanagertools.materialpackages.testsargasso')
 #
 #    try:
@@ -196,7 +196,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Remove package.
 #    '''
 #
-#    score_manager = scoremanagertools.scoremanager.ScoreManager()
+#    score_manager = scoremanagertools.core.ScoreManager()
 #    assert not score_manager.configuration.packagesystem_path_exists('scoremanagertools.materialpackages.testsargasso')
 #
 #    try:
@@ -224,7 +224,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Examine package state. Remove package.
 #    '''
 #
-#    score_manager = scoremanagertools.scoremanager.ScoreManager()
+#    score_manager = scoremanagertools.core.ScoreManager()
 #    assert not score_manager.configuration.packagesystem_path_exists('scoremanagertools.materialpackages.testsargasso')
 #
 #    try:
@@ -249,7 +249,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Verify invalid output material module. Remove package.
 #    '''
 #
-#    score_manager = scoremanagertools.scoremanager.ScoreManager()
+#    score_manager = scoremanagertools.core.ScoreManager()
 #    assert not score_manager.configuration.packagesystem_path_exists('scoremanagertools.materialpackages.testsargasso')
 #
 #    try:
@@ -277,7 +277,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    Make output data. Make PDF. Remove package.
 #    '''
 #
-#    score_manager = scoremanagertools.scoremanager.ScoreManager()
+#    score_manager = scoremanagertools.core.ScoreManager()
 #    assert not score_manager.configuration.packagesystem_path_exists('scoremanagertools.materialpackages.testsargasso')
 #
 #    try:

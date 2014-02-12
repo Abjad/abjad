@@ -2,7 +2,7 @@
 import types
 from abjad.tools import stringtools
 from scoremanagertools import predicates
-from scoremanagertools.scoremanager.ScoreManagerObject \
+from scoremanagertools.core.ScoreManagerObject \
     import ScoreManagerObject
 from scoremanagertools.iotools.Menu import Menu
 from scoremanagertools.iotools.PromptMakerMixin \

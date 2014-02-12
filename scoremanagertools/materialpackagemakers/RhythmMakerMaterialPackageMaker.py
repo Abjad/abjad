@@ -53,7 +53,7 @@ class RhythmMakerMaterialPackageMaker(MaterialPackageMaker):
         score = Score([staff])
         illustration = lilypondfiletools.make_basic_lilypond_file(score)
         score_manager_configuration = \
-            scoremanagertools.scoremanager.ScoreManagerConfiguration()
+            scoremanagertools.core.ScoreManagerConfiguration()
         directory_path = \
             score_manager_configuration.score_manager_tools_directory_path
         stylesheet_file_path = os.path.join(
