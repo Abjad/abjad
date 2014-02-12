@@ -264,18 +264,14 @@ class Selector(ScoreManagerObject):
         selector.items = items
         return selector
 
+    # TODO: remove after removing specifiers
     @staticmethod
     def make_parameter_specifier_class_name_selector(
         session=None,
         ):
         selector = Selector(session=session)
         items = []
-        forbidden_directory_entries = (
-            'MusicSpecifier',
-            'MusicContributionSpecifier',
-            'ParameterSpecifier',
-            'Specifier',
-            )
+        forbidden_directory_entries = ()
         path = selector.configuration.built_in_specifiers_directory_path
         for directory_entry in sorted(os.listdir(path)):
             if not directory_entry.endswith('.py'):

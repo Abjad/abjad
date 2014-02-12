@@ -250,8 +250,6 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            MaterialPackageManager('.../scoremanager/materialpackages/black_music_specifier')
-            MaterialPackageManager('.../scoremanager/materialpackages/green_music_specifier')
             MarkupInventoryMaterialPackageMaker('.../scoremanager/materialpackages/red_directives')
             DynamicHandlerMaterialPackageMaker('.../scoremanager/materialpackages/red_forte')
             ArticulationHandlerMaterialPackageMaker('.../scoremanager/materialpackages/red_marcati')
@@ -289,8 +287,6 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_asset_names(
             ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
-            'black music specifier'
-            'green music specifier'
             'red directives'
             'red forte'
             'red marcati'
@@ -329,8 +325,6 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            'scoremanager.materialpackages.black_music_specifier'
-            'scoremanager.materialpackages.green_music_specifier'
             'scoremanager.materialpackages.red_directives'
             'scoremanager.materialpackages.red_forte'
             'scoremanager.materialpackages.red_marcati'
