@@ -13,5 +13,7 @@ def test_Session_command_history_string_01():
 def test_Session_command_history_string_02():
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='red~example~score instrumentation q')
-    assert score_manager.session.command_history_string == 'red example score instrumentation q'
+    string = 'red~example~score instrumentation q'
+    score_manager._run(pending_user_input=string)
+    string = 'red example score instrumentation q'
+    assert score_manager.session.command_history_string == string

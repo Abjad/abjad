@@ -7,10 +7,16 @@ from scoremanager import specifiers
 def test_MusicContributionSpecifier___eq___01():
 
     specifier_1 = scoremanager.specifiers.MusicContributionSpecifier([])
-    specifier_1.append(specifiers.ArticulationSpecifier(articulation_handler_name='foo'))
+    specifier = specifiers.ArticulationSpecifier(
+        articulation_handler_name='foo',
+        )
+    specifier_1.append(specifier)
 
     specifier_2 = scoremanager.specifiers.MusicContributionSpecifier([])
-    specifier_2.append(specifiers.ArticulationSpecifier(articulation_handler_name='foo'))
+    specifier = specifiers.ArticulationSpecifier(
+        articulation_handler_name='foo',
+        )
+    specifier_2.append(specifier)
 
     specifier_3 = scoremanager.specifiers.MusicContributionSpecifier([])
 

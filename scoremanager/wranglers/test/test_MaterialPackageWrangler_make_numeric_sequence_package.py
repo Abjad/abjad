@@ -6,12 +6,13 @@ import scoremanager
 def test_MaterialPackageWrangler_make_numeric_sequence_package_01():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    assert not wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsequence')
+    string = 'scoremanager.materialpackages.testsequence'
+    assert not wrangler.configuration.packagesystem_path_exists(string)
 
     try:
-        wrangler.make_numeric_sequence_package('scoremanager.materialpackages.testsequence')
-        assert wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsequence')
-        mpp = scoremanager.managers.MaterialPackageManager('scoremanager.materialpackages.testsequence')
+        wrangler.make_numeric_sequence_package(string)
+        assert wrangler.configuration.packagesystem_path_exists(string)
+        mpp = scoremanager.managers.MaterialPackageManager(string)
         assert mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -22,7 +23,7 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_01():
         assert mpp._get_metadata('is_material_package')
     finally:
         mpp.remove()
-        assert not wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsequence')
+        assert not wrangler.configuration.packagesystem_path_exists(string)
 
 
 def test_MaterialPackageWrangler_make_numeric_sequence_package_02():
@@ -30,12 +31,14 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_02():
     '''
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    assert not wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsequence')
+    string = 'scoremanager.materialpackages.testsequence'
+    assert not wrangler.configuration.packagesystem_path_exists(string)
 
     try:
-        wrangler.interactively_make_numeric_sequence_package(pending_user_input='testsequence')
-        assert wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsequence')
-        mpp = scoremanager.managers.MaterialPackageManager('scoremanager.materialpackages.testsequence')
+        wrangler.interactively_make_numeric_sequence_package(
+            pending_user_input='testsequence')
+        assert wrangler.configuration.packagesystem_path_exists(string)
+        mpp = scoremanager.managers.MaterialPackageManager(string)
         assert mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -46,4 +49,4 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_02():
         assert mpp._get_metadata('is_material_package')
     finally:
         mpp.remove()
-        assert not wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsequence')
+        assert not wrangler.configuration.packagesystem_path_exists(string)

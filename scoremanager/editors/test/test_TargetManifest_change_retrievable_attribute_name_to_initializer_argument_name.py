@@ -18,5 +18,6 @@ def test_TargetManifest_change_retrievable_attribute_name_to_initializer_argumen
 
     editor = scoremanager.editors.MarkupEditor()
 
-    assert pytest.raises(Exception,
-        "editor.target_manifest.change_retrievable_attribute_name_to_initializer_argument_name('asdfasdf')")
+    statement = "editor.target_manifest.change_retrievable_attribute_name"
+    statement += "_to_initializer_argument_name('asdfasdf')"
+    assert pytest.raises(Exception, statement)

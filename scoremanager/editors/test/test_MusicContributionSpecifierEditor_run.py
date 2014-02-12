@@ -7,7 +7,9 @@ from scoremanager import specifiers
 def test_MusicContributionSpecifierEditor_run_01():
 
     editor = scoremanager.editors.MusicContributionSpecifierEditor()
-    editor._run(pending_user_input='id blue~violin~pizzicati add instrument instrument violin done done')
+    string = 'id blue~violin~pizzicati add instrument instrument violin'
+    string += ' done done'
+    editor._run(pending_user_input=string)
 
     specifier = specifiers.MusicContributionSpecifier([
         specifiers.InstrumentSpecifier(

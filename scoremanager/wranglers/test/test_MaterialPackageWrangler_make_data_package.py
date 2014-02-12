@@ -7,12 +7,13 @@ import scoremanager
 def test_MaterialPackageWrangler_make_data_package_01():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    assert not wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.testnumbers')
+    string = 'scoremanager.materialpackages.testnumbers'
+    assert not wrangler.configuration.packagesystem_path_exists(string)
 
     try:
-        wrangler.make_data_package('scoremanager.materialpackages.testnumbers')
-        assert wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.testnumbers')
-        mpp = scoremanager.managers.MaterialPackageManager('scoremanager.materialpackages.testnumbers')
+        wrangler.make_data_package(string)
+        assert wrangler.configuration.packagesystem_path_exists(string)
+        mpp = scoremanager.managers.MaterialPackageManager(string)
         assert mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -24,14 +25,16 @@ def test_MaterialPackageWrangler_make_data_package_01():
         assert mpp.output_material is None
     finally:
         mpp.remove()
-        assert not wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.testnumbers')
+        assert not wrangler.configuration.packagesystem_path_exists(string)
 
 
 def test_MaterialPackageWrangler_make_data_package_02():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    assert wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.red_numbers')
-    assert pytest.raises(Exception, "wrangler.make_data_package('scoremanager.materialpackages.red_numbers')")
+    string = 'scoremanager.materialpackages.red_numbers'
+    assert wrangler.configuration.packagesystem_path_exists(string)
+    statement = "wrangler.make_data_package('scoremanager.materialpackages.red_numbers')"
+    assert pytest.raises(Exception, statement)
 
 
 def test_MaterialPackageWrangler_make_data_package_03():
@@ -39,12 +42,13 @@ def test_MaterialPackageWrangler_make_data_package_03():
     '''
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    assert not wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.testnumbers')
+    string = 'scoremanager.materialpackages.testnumbers'
+    assert not wrangler.configuration.packagesystem_path_exists(string)
 
     try:
         wrangler.interactively_make_data_package(pending_user_input='testnumbers q')
-        assert wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.testnumbers')
-        mpp = scoremanager.managers.MaterialPackageManager('scoremanager.materialpackages.testnumbers')
+        assert wrangler.configuration.packagesystem_path_exists(string)
+        mpp = scoremanager.managers.MaterialPackageManager(string)
         assert mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -53,7 +57,7 @@ def test_MaterialPackageWrangler_make_data_package_03():
             ]
     finally:
         mpp.remove()
-        assert not wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.testnumbers')
+        assert not wrangler.configuration.packagesystem_path_exists(string)
 
 
 def test_MaterialPackageWrangler_make_data_package_04():
@@ -61,15 +65,16 @@ def test_MaterialPackageWrangler_make_data_package_04():
     '''
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    assert not wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.testnumbers')
+    string = 'scoremanager.materialpackages.testnumbers'
+    assert not wrangler.configuration.packagesystem_path_exists(string)
 
     try:
         tags = {'color': 'red', 'is_colored': True}
-        wrangler.make_data_package('scoremanager.materialpackages.testnumbers', tags=tags)
-        assert wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.testnumbers')
-        mpp = scoremanager.managers.MaterialPackageManager('scoremanager.materialpackages.testnumbers')
+        wrangler.make_data_package(string, tags=tags)
+        assert wrangler.configuration.packagesystem_path_exists(string)
+        mpp = scoremanager.managers.MaterialPackageManager(string)
         assert mpp._get_metadata('color') == 'red'
         assert mpp._get_metadata('is_colored')
     finally:
         mpp.remove()
-        assert not wrangler.configuration.packagesystem_path_exists('scoremanager.materialpackages.testnumbers')
+        assert not wrangler.configuration.packagesystem_path_exists(string)

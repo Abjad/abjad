@@ -7,7 +7,8 @@ import scoremanager
 def test_NoteAndChordHairpinHandlerEditor_run_01():
 
     editor = scoremanager.editors.NoteAndChordHairpinHandlerEditor()
-    editor._run(pending_user_input="1 ('p', '<', 'f') Duration(1, 8) q", is_autoadvancing=True)
+    string = "1 ('p', '<', 'f') Duration(1, 8) q"
+    editor._run(pending_user_input=string, is_autoadvancing=True)
 
     handler = handlertools.NoteAndChordHairpinHandler(
         hairpin_token=('p', '<', 'f'),

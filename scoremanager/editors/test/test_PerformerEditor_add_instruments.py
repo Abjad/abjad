@@ -8,19 +8,25 @@ def test_PerformerEditor_add_instruments_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='red~example~score score~setup instrumentation hornist add q')
+    string = 'red~example~score score~setup instrumentation hornist add q'
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (12,)
 
-    score_manager._run(pending_user_input='red~example~score score~setup instrumentation hornist add b q')
+    string = 'red~example~score score~setup instrumentation hornist add b q'
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (14, (8, 12))
 
-    score_manager._run(pending_user_input='red~example~score score~setup instrumentation hornist add home q')
+    string = 'red~example~score score~setup instrumentation hornist add home q'
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (14, (0, 12))
 
-    score_manager._run(pending_user_input='red~example~score score~setup instrumentation hornist add score q')
+    string = 'red~example~score score~setup instrumentation'
+    string += ' hornist add score q'
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (14, (2, 12))
 
-    score_manager._run(pending_user_input='red~example~score score~setup instrumentation hornist add foo q')
+    string = 'red~example~score score~setup instrumentation hornist add foo q'
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (14, (10, 12))
 
 

@@ -12,10 +12,12 @@ def test_StylesheetFileWrangler_interactively_remove_assets_01():
     configuration = score_manager.configuration
     first_filesystem_path = os.path.join(
         configuration.user_asset_library_stylesheets_directory_path,
-        'aaa.ly')
+        'aaa.ly',
+        )
     second_filesystem_path = os.path.join(
         configuration.user_asset_library_stylesheets_directory_path,
-        'aab.ly')
+        'aab.ly',
+        )
 
     assert not os.path.exists(first_filesystem_path)
     assert not os.path.exists(second_filesystem_path)

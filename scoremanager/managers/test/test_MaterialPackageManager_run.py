@@ -32,7 +32,8 @@ def test_MaterialPackageManager_run_02():
 
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='m sargasso q')
-    assert score_manager.session.io_transcript[-2][1][0] == 'Score manager - materials - sargasso multipliers'
+    string = 'Score manager - materials - sargasso multipliers'
+    assert score_manager.session.io_transcript[-2][1][0] == string
 
 
 def test_MaterialPackageManager_run_03():
@@ -63,5 +64,7 @@ def test_MaterialPackageManager_run_04():
     pytest.skip('TODO: add Red Example Score time signatures.')
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='all red_example_score m time_signatures q')
-    assert score_manager.session.io_transcript[-2][1][0] == 'Red Example Score - materials - time signatures'
+    string = 'all red_example_score m time_signatures q'
+    score_manager._run(pending_user_input=string)
+    string = 'Red Example Score - materials - time signatures'
+    assert score_manager.session.io_transcript[-2][1][0] == string

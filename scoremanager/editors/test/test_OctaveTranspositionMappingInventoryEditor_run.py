@@ -46,11 +46,12 @@ def test_OctaveTranspositionMappingInventoryEditor_run_03():
         'done done done '
         )
 
-    inventory = pitchtools.OctaveTranspositionMappingInventory(
-        [pitchtools.OctaveTranspositionMapping(
+    inventory = pitchtools.OctaveTranspositionMappingInventory([
+        pitchtools.OctaveTranspositionMapping(
             [('[A0, C8]', 14)],
-            custom_identifier='piccolo strict first octave')],
-        custom_identifier='mapping inventory'
+            custom_identifier='piccolo strict first octave',
+            )],
+        custom_identifier='mapping inventory',
         )
 
     assert editor.target == inventory

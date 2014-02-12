@@ -7,7 +7,8 @@ import scoremanager
 def test_PatternedArticulationsHandlerEditor_run_01():
 
     editor = scoremanager.editors.PatternedArticulationsHandlerEditor()
-    editor._run(pending_user_input="1 [['.', '^'], ['.']] (1, 16) (1, 8) cs'' c''' done", is_autoadvancing=True)
+    string = "1 [['.', '^'], ['.']] (1, 16) (1, 8) cs'' c''' done"
+    editor._run(pending_user_input=string, is_autoadvancing=True)
 
 
     handler = handlertools.PatternedArticulationsHandler(
@@ -15,6 +16,7 @@ def test_PatternedArticulationsHandlerEditor_run_01():
         minimum_duration=Duration(1, 16),
         maximum_duration=Duration(1, 8),
         minimum_written_pitch=NamedPitch("cs''"),
-        maximum_written_pitch=NamedPitch("c'''"))
+        maximum_written_pitch=NamedPitch("c'''"),
+        )
 
     assert editor.target == handler

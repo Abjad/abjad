@@ -8,8 +8,8 @@ pytest.skip('unskip once it is possible to edit composite objects.')
 def test_RhythmMakerMaterialPackageMaker_01():
 
     score_manager = scoremanager.core.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists(
-        'scoremanager.materialpackages.testrhythmmaker')
+    string = 'scoremanager.materialpackages.testrhythmmaker'
+    assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
             'materials maker rhythm testrhythmmaker default '
@@ -17,8 +17,9 @@ def test_RhythmMakerMaterialPackageMaker_01():
             '(-1, 2, -3, 4) 16 (2, 3) (6,) b default '
             'q '
             )
+        string = 'scoremanager.materialpackages.testrhythmmaker'
         mpp = scoremanager.materialpackagemakers.RhythmMakerMaterialPackageMaker(
-            'scoremanager.materialpackages.testrhythmmaker')
+            string)
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -35,8 +36,8 @@ def test_RhythmMakerMaterialPackageMaker_01():
             )
         assert mpp.output_material == maker
     finally:
-        score_manager._run(pending_user_input=
-            'm testrhythmmaker del remove default q',
-            )
-        assert not score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testrhythmmaker')
+        string = 'm testrhythmmaker del remove default q'
+        score_manager._run(pending_user_input=string)
+        string = 'scoremanager.materialpackages.testrhythmmaker'
+        assert not \
+            score_manager.configuration.packagesystem_path_exists(string)

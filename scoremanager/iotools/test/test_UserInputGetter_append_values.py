@@ -19,7 +19,8 @@ def test_UserInputGetter_append_values_01():
     menu_entries = ['apple', 'banana', 'cherry', 'durian', 'endive', 'fennel']
     menu_section.menu_entries = menu_entries
     getter.append_menu_section_range('attribute', menu_section)
-    assert getter._run(pending_user_input='fen-dur, app, che') == [6, 5, 4, 1, 3]
+    result = [6, 5, 4, 1, 3]
+    assert getter._run(pending_user_input='fen-dur, app, che') == result
 
     getter = scoremanager.iotools.UserInputGetter()
     getter.append_markup('attribute')

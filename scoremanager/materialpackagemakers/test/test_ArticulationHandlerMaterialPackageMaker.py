@@ -7,8 +7,8 @@ import scoremanager
 def test_ArticulationHandlerMaterialPackageMaker_01():
 
     score_manager = scoremanager.core.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists(
-        'scoremanager.materialpackages.testarticulationhandler')
+    string = 'scoremanager.materialpackages.testarticulationhandler'
+    assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
             'materials maker articulation testarticulationhandler default '
@@ -16,9 +16,10 @@ def test_ArticulationHandlerMaterialPackageMaker_01():
             "['^', '.'] (1, 64) (1, 4) c c'''' done default "
             'q '
             )
-        mpp = scoremanager.materialpackagemakers.ArticulationHandlerMaterialPackageMaker(
-            'scoremanager.materialpackages.testarticulationhandler')
-        assert mpp._list_directory() == [
+        string = 'scoremanager.materialpackages.testarticulationhandler'
+        manager = scoremanager.materialpackagemakers.ArticulationHandlerMaterialPackageMaker(
+            string)
+        assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'output_material.py', 
@@ -30,8 +31,10 @@ def test_ArticulationHandlerMaterialPackageMaker_01():
             minimum_written_pitch=NamedPitch('c'),
             maximum_written_pitch=NamedPitch("c''''"),
             )
-        assert mpp.output_material == handler
+        assert manager.output_material == handler
     finally:
-        score_manager._run(pending_user_input='m testarticulationhandler del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testarticulationhandler')
+        string = 'm testarticulationhandler del remove default q'
+        score_manager._run(pending_user_input=string)
+        string = 'scoremanager.materialpackages.testarticulationhandler'
+        assert not \
+            score_manager.configuration.packagesystem_path_exists(string)

@@ -12,9 +12,7 @@ def test_MusicSpecifierEditor_public_attributes_01():
     assert editor._breadcrumb == 'music specifier'
     assert not editor.has_target
     assert editor.target is None
-    assert editor.target_attribute_tokens == [
-        #('id', 'custom_identifier', 'None'),
-        ]
+    assert editor.target_attribute_tokens == []
     assert editor.target_name is None
 
 
@@ -22,18 +20,18 @@ def test_MusicSpecifierEditor_public_attributes_02():
     r'''With target.
     '''
 
-    mcs_1 = scoremanager.specifiers.MusicContributionSpecifier([])
-    mcs_1.articulation_specifier = 'foo'
-    mcs_1.clef_specifier = 'bar'
-    mcs_1.directive_specifier = ['apple', 'banana', 'cherry']
+    specifier_1 = scoremanager.specifiers.MusicContributionSpecifier([])
+    specifier_1.articulation_specifier = 'foo'
+    specifier_1.clef_specifier = 'bar'
+    specifier_1.directive_specifier = ['apple', 'banana', 'cherry']
 
-    mcs_2 = scoremanager.specifiers.MusicContributionSpecifier([])
-    mcs_2.articulation_specifier = 'blee'
-    mcs_2.clef_specifier = 'blah'
-    mcs_2.directive_specifier = ['durian']
+    specifier_2 = scoremanager.specifiers.MusicContributionSpecifier([])
+    specifier_2.articulation_specifier = 'blee'
+    specifier_2.clef_specifier = 'blah'
+    specifier_2.directive_specifier = ['durian']
 
     ms = scoremanager.specifiers.MusicSpecifier([])
-    ms.extend([mcs_1, mcs_2])
+    ms.extend([specifier_1, specifier_2])
 
     r'''
     specifiers.MusicSpecifier([
@@ -56,6 +54,5 @@ def test_MusicSpecifierEditor_public_attributes_02():
     assert editor._breadcrumb == 'music specifier'
     assert editor.has_target
     assert editor.target is ms
-    assert editor.target_attribute_tokens == [
-        ]
+    assert editor.target_attribute_tokens == []
     assert editor.target_name is None

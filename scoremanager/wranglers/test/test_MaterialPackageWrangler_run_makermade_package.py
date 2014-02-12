@@ -9,13 +9,14 @@ def test_MaterialPackageWrangler_run_makermade_package_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
+    name = 'scoremanager.materialpackages.testsargasso'
+    assert not score_manager.configuration.packagesystem_path_exists(name)
 
     try:
-        score_manager._run(pending_user_input='m m sargasso testsargasso default q')
-        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
-        mpp = scoremanager.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
-            'scoremanager.materialpackages.testsargasso')
+        string = 'm m sargasso testsargasso default q'
+        score_manager._run(pending_user_input=string)
+        assert score_manager.configuration.packagesystem_path_exists(name)
+        mpp = scoremanager.materialpackagemakers.SargassoMeasureMaterialPackageMaker(name)
         assert mpp.is_makermade
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -27,8 +28,9 @@ def test_MaterialPackageWrangler_run_makermade_package_01():
         assert mpp.has_user_input_module
         assert mpp.output_material is None
     finally:
-        score_manager._run(pending_user_input='m testsargasso del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
+        string = 'm testsargasso del remove default q'
+        score_manager._run(pending_user_input=string)
+        assert not score_manager.configuration.packagesystem_path_exists(name)
 
 
 def test_MaterialPackageWrangler_run_makermade_package_02():
@@ -36,15 +38,14 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists(
-        'scoremanager.scorepackages.red_example_score.materials.testsargasso')
+    name = 'scoremanager.scorepackages.red_example_score.materials.testsargasso'
+    assert not score_manager.configuration.packagesystem_path_exists(name)
 
     try:
-        score_manager._run(pending_user_input='red~example~score m m sargasso testsargasso default q')
-        assert score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.scorepackages.red_example_score.materials.testsargasso')
-        mpp = scoremanager.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
-            'scoremanager.scorepackages.red_example_score.materials.testsargasso')
+        string = 'red~example~score m m sargasso testsargasso default q'
+        score_manager._run(pending_user_input=string)
+        assert score_manager.configuration.packagesystem_path_exists(name)
+        mpp = scoremanager.materialpackagemakers.SargassoMeasureMaterialPackageMaker(name)
         assert mpp.is_makermade
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -56,9 +57,9 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
         assert mpp.has_user_input_module
         assert mpp.output_material is None
     finally:
+        string = 'red~example~score m testsargasso del remove default q'
         score_manager._run(pending_user_input='red~example~score m testsargasso del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.scorepackages.red_example_score.materials.testsargasso')
+        assert not score_manager.configuration.packagesystem_path_exists(name)
 
 
 #def test_MaterialPackageWrangler_run_makermade_package_03():

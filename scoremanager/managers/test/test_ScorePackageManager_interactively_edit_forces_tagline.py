@@ -8,20 +8,20 @@ def test_ScorePackageManager_interactively_edit_forces_tagline_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    user_input = 'red~example~score score~setup tagline q'
-    score_manager._run(pending_user_input=user_input)
+    string = 'red~example~score score~setup tagline q'
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (7,)
 
-    user_input = 'red~example~score score~setup tagline b q'
-    score_manager._run(pending_user_input=user_input)
+    string = 'red~example~score score~setup tagline b q'
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (9, (4, 7))
 
-    user_input = 'red~example~score score~setup tagline score q'
-    score_manager._run(pending_user_input=user_input)
+    string = 'red~example~score score~setup tagline score q'
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (9, (2, 7))
 
-    user_input = 'red~example~score score~setup tagline home q'
-    score_manager._run(pending_user_input=user_input)
+    string = 'red~example~score score~setup tagline home q'
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (9, (0, 7))
 
 
@@ -29,14 +29,14 @@ def test_ScorePackageManager_interactively_edit_forces_tagline_02():
 
     try:
         score_manager = scoremanager.core.ScoreManager()
-        user_input = 'red~example~score score~setup tagline for~foo~bar q'
-        score_manager._run(pending_user_input=user_input)
+        string = 'red~example~score score~setup tagline for~foo~bar q'
+        score_manager._run(pending_user_input=string)
         path = 'scoremanager.scorepackages.red_example_score'
         manager = scoremanager.managers.ScorePackageManager(path)
         assert manager._get_metadata('forces_tagline') == 'for foo bar'
     finally:
-        user_input = 'red~example~score score~setup tagline for~six~players q'
-        score_manager._run(pending_user_input=user_input)
+        string = 'red~example~score score~setup tagline for~six~players q'
+        score_manager._run(pending_user_input=string)
         path = 'scoremanager.scorepackages.red_example_score'
         manager = scoremanager.managers.ScorePackageManager(path)
         assert manager._get_metadata('forces_tagline') == 'for six players'

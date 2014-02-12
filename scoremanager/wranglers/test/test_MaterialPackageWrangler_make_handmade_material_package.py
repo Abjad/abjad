@@ -7,17 +7,14 @@ import scoremanager
 def test_MaterialPackageWrangler_make_handmade_material_package_01():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    assert not wrangler.configuration.packagesystem_path_exists(
-        'scoremanager.materialpackages.testnotes')
+    string = 'scoremanager.materialpackages.testnotes'
+    assert not wrangler.configuration.packagesystem_path_exists(string)
 
 
     try:
-        wrangler.make_handmade_material_package(
-            'scoremanager.materialpackages.testnotes')
-        assert wrangler.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnotes')
-        mpp = scoremanager.managers.MaterialPackageManager(
-            'scoremanager.materialpackages.testnotes')
+        wrangler.make_handmade_material_package(string)
+        assert wrangler.configuration.packagesystem_path_exists(string)
+        mpp = scoremanager.managers.MaterialPackageManager(string)
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -30,17 +27,17 @@ def test_MaterialPackageWrangler_make_handmade_material_package_01():
         assert mpp.output_material is None
     finally:
         mpp.remove()
-        assert not wrangler.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnotes')
+        assert not wrangler.configuration.packagesystem_path_exists(string)
 
 
 def test_MaterialPackageWrangler_make_handmade_material_package_02():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    assert wrangler.configuration.packagesystem_path_exists(
-        'scoremanager.materialpackages.red_notes')
-    assert pytest.raises(Exception, 'wrangler.make_handmade_material_package'
-        "('scoremanager.materialpackages.red_notes')")
+    string = 'scoremanager.materialpackages.red_notes'
+    assert wrangler.configuration.packagesystem_path_exists(string)
+    statement = 'wrangler.make_handmade_material_package'
+    statement += "('scoremanager.materialpackages.red_notes')"
+    assert pytest.raises(Exception, statement)
 
 
 def test_MaterialPackageWrangler_make_handmade_material_package_03():
@@ -48,16 +45,14 @@ def test_MaterialPackageWrangler_make_handmade_material_package_03():
     '''
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    assert not wrangler.configuration.packagesystem_path_exists(
-        'scoremanager.materialpackages.testnotes')
-
+    string = 'scoremanager.materialpackages.testnotes'
+    assert not wrangler.configuration.packagesystem_path_exists(string)
 
     try:
-        wrangler.interactively_make_handmade_material_package(pending_user_input='testnotes q')
-        assert wrangler.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnotes')
-        mpp = scoremanager.managers.MaterialPackageManager(
-            'scoremanager.materialpackages.testnotes')
+        wrangler.interactively_make_handmade_material_package(
+            pending_user_input='testnotes q')
+        assert wrangler.configuration.packagesystem_path_exists(string)
+        mpp = scoremanager.managers.MaterialPackageManager(string)
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -66,8 +61,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_03():
             ]
     finally:
         mpp.remove()
-        assert not wrangler.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnotes')
+        assert not wrangler.configuration.packagesystem_path_exists(string)
 
 
 def test_MaterialPackageWrangler_make_handmade_material_package_04():
@@ -75,21 +69,16 @@ def test_MaterialPackageWrangler_make_handmade_material_package_04():
     '''
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    assert not wrangler.configuration.packagesystem_path_exists(
-        'scoremanager.materialpackages.testnotes')
-
+    string = 'scoremanager.materialpackages.testnotes'
+    assert not wrangler.configuration.packagesystem_path_exists(string)
 
     try:
         tags = {'color': 'red', 'is_colored': True}
-        wrangler.make_handmade_material_package(
-            'scoremanager.materialpackages.testnotes', tags=tags)
-        assert wrangler.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnotes')
-        mpp = scoremanager.managers.MaterialPackageManager(
-            'scoremanager.materialpackages.testnotes')
+        wrangler.make_handmade_material_package(string, tags=tags)
+        assert wrangler.configuration.packagesystem_path_exists(string)
+        mpp = scoremanager.managers.MaterialPackageManager(string)
         assert mpp._get_metadata('color') == 'red'
         assert mpp._get_metadata('is_colored')
     finally:
         mpp.remove()
-        assert not wrangler.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnotes')
+        assert not wrangler.configuration.packagesystem_path_exists(string)

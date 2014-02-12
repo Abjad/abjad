@@ -25,6 +25,11 @@ def test_MarkupEditor_run_03():
 
     markup = markuptools.Markup('foo bar', markup_name='foo')
     editor = scoremanager.editors.MarkupEditor(target=markup)
-    editor._run(pending_user_input='arg entirely~new~text name bar direction up done')
+    string = 'arg entirely~new~text name bar direction up done'
+    editor._run(pending_user_input=string)
 
-    assert editor.target == markuptools.Markup('entirely new text', direction='up', markup_name='bar')
+    assert editor.target == markuptools.Markup(
+        'entirely new text', 
+        direction='up', 
+        markup_name='bar',
+        )

@@ -8,9 +8,9 @@ def test_FileManager_rename_01():
     r'''Nonversioned file.
     '''
 
-    score_manager_configuration = scoremanager.core.ScoreManagerConfiguration()
+    configuration = scoremanager.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
-        score_manager_configuration.score_manager_tools_directory_path, 
+        configuration.score_manager_tools_directory_path, 
         'temporary_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(
@@ -21,7 +21,7 @@ def test_FileManager_rename_01():
         file_manager._make_empty_asset()
         assert os.path.exists(filesystem_path)
         new_filesystem_path = os.path.join(
-            score_manager_configuration.score_manager_tools_directory_path, 
+            configuration.score_manager_tools_directory_path, 
             'new_temporary_file.txt',
             )
         file_manager._rename(new_filesystem_path)
@@ -41,9 +41,9 @@ def test_FileManager_rename_02():
     r'''Versioned file.
     '''
 
-    score_manager_configuration = scoremanager.core.ScoreManagerConfiguration()
+    configuration = scoremanager.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
-        score_manager_configuration.score_manager_tools_directory_path, 
+        configuration.score_manager_tools_directory_path, 
         'temporary_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(
@@ -56,7 +56,7 @@ def test_FileManager_rename_02():
         file_manager.repository_add()
         assert file_manager._is_versioned()
         new_filesystem_path = os.path.join(
-            score_manager_configuration.score_manager_tools_directory_path, 
+            configuration.score_manager_tools_directory_path, 
             'new_temporary_file.txt',
             )
         file_manager._rename(new_filesystem_path)

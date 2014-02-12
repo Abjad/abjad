@@ -8,15 +8,13 @@ def test_MaterialPackageWrangler_run_data_only_package_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists(
-        'scoremanager.materialpackages.testnumbers')
+    name = 'scoremanager.materialpackages.testnumbers'
+    assert not score_manager.configuration.packagesystem_path_exists(name)
 
     try:
         score_manager._run(pending_user_input='m d testnumbers default q')
-        assert score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
-        mpp = scoremanager.managers.MaterialPackageManager(
-            'scoremanager.materialpackages.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(name)
+        mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -27,9 +25,9 @@ def test_MaterialPackageWrangler_run_data_only_package_01():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager._run(pending_user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
+        string = 'm testnumbers del remove default q'
+        score_manager._run(pending_user_input=string)
+        assert not score_manager.configuration.packagesystem_path_exists(name)
 
 
 def test_MaterialPackageWrangler_run_data_only_package_02():
@@ -38,17 +36,15 @@ def test_MaterialPackageWrangler_run_data_only_package_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists(
-        'scoremanager.materialpackages.testnumbers')
+    name ='scoremanager.materialpackages.testnumbers'
+    assert not score_manager.configuration.packagesystem_path_exists(name)
 
     try:
         score_manager._run(pending_user_input=
             'm d testnumbers default '
             'testnumbers incanned canned_exception.py default q')
-        assert score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
-        mpp = scoremanager.managers.MaterialPackageManager(
-            'scoremanager.materialpackages.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(name)
+        mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -59,9 +55,9 @@ def test_MaterialPackageWrangler_run_data_only_package_02():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager._run(pending_user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
+        string = 'm testnumbers del remove default q'
+        score_manager._run(pending_user_input=string)
+        assert not score_manager.configuration.packagesystem_path_exists(name)
 
 
 def test_MaterialPackageWrangler_run_data_only_package_03():
@@ -70,18 +66,16 @@ def test_MaterialPackageWrangler_run_data_only_package_03():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists(
-        'scoremanager.materialpackages.testnumbers')
+    name = 'scoremanager.materialpackages.testnumbers'
+    assert not score_manager.configuration.packagesystem_path_exists(name)
 
     try:
         score_manager._run(pending_user_input=
             'm d testnumbers default '
             'testnumbers incanned canned_exception.py default '
             'inr yes no default q')
-        assert score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
-        mpp = scoremanager.managers.MaterialPackageManager(
-            'scoremanager.materialpackages.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(name)
+        mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -92,9 +86,9 @@ def test_MaterialPackageWrangler_run_data_only_package_03():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager._run(pending_user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
+        string = 'm testnumbers del remove default q'
+        score_manager._run(pending_user_input=string)
+        assert not score_manager.configuration.packagesystem_path_exists(name)
 
 
 def test_MaterialPackageWrangler_run_data_only_package_04():
@@ -103,18 +97,16 @@ def test_MaterialPackageWrangler_run_data_only_package_04():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists(
-        'scoremanager.materialpackages.testnumbers')
+    name = 'scoremanager.materialpackages.testnumbers'
+    assert not score_manager.configuration.packagesystem_path_exists(name)
 
     try:
         score_manager._run(pending_user_input=
             'm d testnumbers default '
             'testnumbers mdcanned canned_testnumbers_material_definition.py default '
             'omm default q')
-        assert score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
-        mpp = scoremanager.managers.MaterialPackageManager(
-            'scoremanager.materialpackages.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(name)
+        mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -125,9 +117,9 @@ def test_MaterialPackageWrangler_run_data_only_package_04():
         assert mpp.material_definition == [1, 2, 3, 4, 5]
         assert mpp.output_material == [1, 2, 3, 4, 5]
     finally:
-        score_manager._run(pending_user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
+        string = 'm testnumbers del remove default q'
+        score_manager._run(pending_user_input=string)
+        assert not score_manager.configuration.packagesystem_path_exists(name)
 
 
 def test_MaterialPackageWrangler_run_data_only_package_05():
@@ -136,17 +128,15 @@ def test_MaterialPackageWrangler_run_data_only_package_05():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists(
-        'scoremanager.materialpackages.testnumbers')
+    name = 'scoremanager.materialpackages.testnumbers'
+    assert not score_manager.configuration.packagesystem_path_exists(name)
 
     try:
         score_manager._run(pending_user_input=
             'm d testnumbers default '
             'testnumbers mddelete default q')
-        assert score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
-        mpp = scoremanager.managers.MaterialPackageManager(
-            'scoremanager.materialpackages.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(name)
+        mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -157,9 +147,9 @@ def test_MaterialPackageWrangler_run_data_only_package_05():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager._run(pending_user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
+        string = 'm testnumbers del remove default q'
+        score_manager._run(pending_user_input=string)
+        assert not score_manager.configuration.packagesystem_path_exists(name)
 
 
 def test_MaterialPackageWrangler_run_data_only_package_06():
@@ -168,17 +158,15 @@ def test_MaterialPackageWrangler_run_data_only_package_06():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists(
-        'scoremanager.materialpackages.testnumbers')
+    name = 'scoremanager.materialpackages.testnumbers'
+    assert not score_manager.configuration.packagesystem_path_exists(name)
 
     try:
         score_manager._run(pending_user_input=
             'm d testnumbers default '
             'testnumbers mdstub default q')
-        assert score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
-        mpp = scoremanager.managers.MaterialPackageManager(
-            'scoremanager.materialpackages.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(name)
+        mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -189,9 +177,9 @@ def test_MaterialPackageWrangler_run_data_only_package_06():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager._run(pending_user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
+        string = 'm testnumbers del remove default q'
+        score_manager._run(pending_user_input=string)
+        assert not score_manager.configuration.packagesystem_path_exists(name)
 
 
 def test_MaterialPackageWrangler_run_data_only_package_07():
@@ -200,8 +188,8 @@ def test_MaterialPackageWrangler_run_data_only_package_07():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists(
-        'scoremanager.materialpackages.testnumbers')
+    name = 'scoremanager.materialpackages.testnumbers'
+    assert not score_manager.configuration.packagesystem_path_exists(name)
 
     try:
         score_manager._run(pending_user_input=
@@ -210,10 +198,8 @@ def test_MaterialPackageWrangler_run_data_only_package_07():
             'default '
             'omm default '
             'omdelete default q')
-        assert score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
-        mpp = scoremanager.managers.MaterialPackageManager(
-            'scoremanager.materialpackages.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(name)
+        mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -224,10 +210,9 @@ def test_MaterialPackageWrangler_run_data_only_package_07():
         assert mpp.material_definition == [1, 2, 3, 4, 5]
         assert mpp.output_material is None
     finally:
-        score_manager._run(
-            pending_user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
+        string = 'm testnumbers del remove default q'
+        score_manager._run(pending_user_input=string)
+        assert not score_manager.configuration.packagesystem_path_exists(name)
 
 
 def test_MaterialPackageWrangler_run_data_only_package_08():
@@ -236,17 +221,18 @@ def test_MaterialPackageWrangler_run_data_only_package_08():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists(
-        'scoremanager.materialpackages.testnumbers')
+    name = 'scoremanager.materialpackages.testnumbers'
+    assert not score_manager.configuration.packagesystem_path_exists(name)
 
     try:
         score_manager._run(pending_user_input=
-            'm d testnumbers default '
-            'testnumbers mdcanned canned_testnumbers_material_definition_with_exception.py default q')
-        assert score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
-        mpp = scoremanager.managers.MaterialPackageManager(
-            'scoremanager.materialpackages.testnumbers')
+            'm d testnumbers default'
+            ' testnumbers mdcanned'
+            ' canned_testnumbers_material_definition_with_exception.py'
+            ' default q'
+            )
+        assert score_manager.configuration.packagesystem_path_exists(name)
+        mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -257,30 +243,31 @@ def test_MaterialPackageWrangler_run_data_only_package_08():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager._run(pending_user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
+        string = 'm testnumbers del remove default q'
+        score_manager._run(pending_user_input=string)
+        assert not score_manager.configuration.packagesystem_path_exists(name)
 
 
 def test_MaterialPackageWrangler_run_data_only_package_09():
-    r'''Make data package. Copy canned material definition module. Make output data. Corrupt output data.
-    Verify invalid output material module. Remove package.
+    r'''Make data package. Copy canned material definition module. 
+    Make output data. Corrupt output data. Verify invalid output material 
+    module. Remove package.
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists(
-        'scoremanager.materialpackages.testnumbers')
+    name = 'scoremanager.materialpackages.testnumbers'
+    assert not score_manager.configuration.packagesystem_path_exists(name)
 
     try:
         score_manager._run(pending_user_input=
-            'm d testnumbers default '
-            'testnumbers mdcanned canned_testnumbers_material_definition.py default '
-            'omm default '
-            'omcanned canned_exception.py default q')
-        assert score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
-        mpp = scoremanager.managers.MaterialPackageManager(
-            'scoremanager.materialpackages.testnumbers')
+            'm d testnumbers default'
+            ' testnumbers mdcanned canned_testnumbers_material_definition.py'
+            ' default'
+            ' omm default'
+            ' omcanned canned_exception.py default q'
+            )
+        assert score_manager.configuration.packagesystem_path_exists(name)
+        mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -291,6 +278,6 @@ def test_MaterialPackageWrangler_run_data_only_package_09():
         assert mpp.material_definition == [1, 2, 3, 4, 5]
         assert mpp.output_material is None
     finally:
-        score_manager._run(pending_user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists(
-            'scoremanager.materialpackages.testnumbers')
+        string = 'm testnumbers del remove default q'
+        score_manager._run(pending_user_input=string)
+        assert not score_manager.configuration.packagesystem_path_exists(name)

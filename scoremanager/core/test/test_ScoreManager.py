@@ -92,7 +92,8 @@ def test_ScoreManager_08():
 
     assert score_manager.session.io_transcript[1][1] == ['> exec', '']
     assert score_manager.session.io_transcript[2][1] == ['XCF> foo']
-    assert score_manager.session.io_transcript[3][1] == ['Expression not executable.', '']
+    assert score_manager.session.io_transcript[3][1] == \
+        ['Expression not executable.', '']
     assert score_manager.session.io_transcript[4][1] == ['> q', '']
 
 
@@ -102,7 +103,8 @@ def test_ScoreManager_09():
 
     score_manager = scoremanager.core.ScoreManager()
 
-    assert score_manager.session is score_manager.score_package_wrangler.session
+    assert score_manager.session is \
+        score_manager.score_package_wrangler.session
 
 
 def test_ScoreManager_10():

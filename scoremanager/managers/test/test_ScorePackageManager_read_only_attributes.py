@@ -8,8 +8,8 @@ def test_ScorePackageManager_read_only_attributes_01():
     r'''Read-only public attributes.
     '''
 
-    package_manager = scoremanager.managers.ScorePackageManager(
-        'scoremanager.scorepackages.red_example_score')
+    string = 'scoremanager.scorepackages.red_example_score'
+    package_manager = scoremanager.managers.ScorePackageManager(string)
 
     assert isinstance(
         package_manager.segment_wrangler, 

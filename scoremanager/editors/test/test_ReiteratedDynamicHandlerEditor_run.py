@@ -7,7 +7,10 @@ import scoremanager
 def test_ReiteratedDynamicHandlerEditor_run_01():
 
     editor = scoremanager.editors.ReiteratedDynamicHandlerEditor()
-    editor._run(pending_user_input="1 f Duration(1, 8) q", is_autoadvancing=True)
+    editor._run(
+        pending_user_input="1 f Duration(1, 8) q", 
+        is_autoadvancing=True,
+        )
 
     handler = handlertools.ReiteratedDynamicHandler(
         dynamic_name='f',

@@ -8,19 +8,24 @@ def test_InstrumentationEditor_add_performers_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='red~example~score score~setup instrumentation add q')
+    string = 'red~example~score score~setup instrumentation add q'
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (10,)
 
-    score_manager._run(pending_user_input='red~example~score score~setup instrumentation add b q')
+    string = 'red~example~score score~setup instrumentation add b q'
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (12, (6, 10))
 
-    score_manager._run(pending_user_input='red~example~score score~setup instrumentation add home q')
+    string = 'red~example~score score~setup instrumentation add home q'
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (12, (0, 10))
 
-    score_manager._run(pending_user_input='red~example~score score~setup instrumentation add score q')
+    string = 'red~example~score score~setup instrumentation add score q'
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (12, (2, 10))
 
-    score_manager._run(pending_user_input='red~example~score score~setup instrumentation add foo q')
+    string = 'red~example~score score~setup instrumentation add foo q'
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (12, (8, 10))
 
 
@@ -29,11 +34,22 @@ def test_InstrumentationEditor_add_performers_02():
     '''
 
     editor = scoremanager.editors.InstrumentationEditor()
-    editor._run(pending_user_input='add accordionist default add bassoonist default add cellist default q')
+    string = 'add accordionist default add bassoonist default'
+    string += ' add cellist default q'
+    editor._run(pending_user_input=string)
     assert editor.target == instrumenttools.InstrumentationSpecifier([
-        instrumenttools.Performer(name='accordionist', instruments=[instrumenttools.Accordion()]),
-        instrumenttools.Performer(name='bassoonist', instruments=[instrumenttools.Bassoon()]),
-        instrumenttools.Performer(name='cellist', instruments=[instrumenttools.Cello()])])
+        instrumenttools.Performer(
+            name='accordionist', 
+            instruments=[instrumenttools.Accordion()],
+            ),
+        instrumenttools.Performer(
+            name='bassoonist', 
+            instruments=[instrumenttools.Bassoon()],
+            ),
+        instrumenttools.Performer(
+            name='cellist', 
+            instruments=[instrumenttools.Cello()],
+            )])
 
 
 def test_InstrumentationEditor_add_performers_03():
@@ -44,8 +60,12 @@ def test_InstrumentationEditor_add_performers_03():
     editor._run(pending_user_input='add 1-3 default default default q')
     assert editor.target == instrumenttools.InstrumentationSpecifier([
         instrumenttools.Performer(
-            name='accordionist', instruments=[instrumenttools.Accordion()]),
+            name='accordionist', 
+            instruments=[instrumenttools.Accordion()]),
         instrumenttools.Performer(
-            name='alto', instruments=[instrumenttools.AltoVoice()]),
+            name='alto', 
+            instruments=[instrumenttools.AltoVoice()]),
         instrumenttools.Performer(
-            name='baritone', instruments=[instrumenttools.BaritoneVoice()])])
+            name='baritone', 
+            instruments=[instrumenttools.BaritoneVoice()]),
+            ])

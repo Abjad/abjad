@@ -11,19 +11,24 @@ def test_PerformerEditor_move_instrument_01():
     pytest.skip('remove custom score name.')
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input="l'arch score~setup instrumentation flutist move q")
+    string = "l'arch score~setup instrumentation flutist move q"
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (11,)
 
-    score_manager._run(pending_user_input="l'arch score~setup instrumentation flutist move b q")
+    string = "l'arch score~setup instrumentation flutist move b q"
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (13, (8, 11))
 
-    score_manager._run(pending_user_input="l'arch score~setup instrumentation flutist move home q")
+    string = "l'arch score~setup instrumentation flutist move home q"
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (13, (0, 11))
 
-    score_manager._run(pending_user_input="l'arch score~setup instrumentation flutist move score q")
+    string = "l'arch score~setup instrumentation flutist move score q"
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (13, (2, 11))
 
-    score_manager._run(pending_user_input="l'arch score~setup instrumentation flutist move foo q")
+    string = "l'arch score~setup instrumentation flutist move foo q"
+    score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (13,)
 
 

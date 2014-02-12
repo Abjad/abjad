@@ -10,18 +10,20 @@ def test_ScorePackageWrangler_run_01():
     pytest.skip('unskip after deciding about cache.')
 
     score_manager = scoremanager.core.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists('testscore')
+    name = 'testscore'
+    assert not score_manager.configuration.packagesystem_path_exists(name)
 
     try:
         score_manager._run(pending_user_input=
             'new Test~score testscore 2012 '
             'q'
             )
-        assert score_manager.configuration.packagesystem_path_exists('testscore')
-        spp = scoremanager.managers.ScorePackageManager('testscore')
+        assert score_manager.configuration.packagesystem_path_exists(name)
+        spp = scoremanager.managers.ScorePackageManager(name)
         assert spp.annotated_title == 'Test score (2012)'
         assert spp.composer is None
         assert spp.instrumentation is None
     finally:
-        score_manager._run(pending_user_input='test removescore clobberscore remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists('testscore')
+        string = 'test removescore clobberscore remove default q'
+        score_manager._run(pending_user_input=string)
+        assert not score_manager.configuration.packagesystem_path_exists(name)

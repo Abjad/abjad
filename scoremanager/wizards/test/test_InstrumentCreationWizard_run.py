@@ -37,6 +37,7 @@ def test_InstrumentCreationWizard_run_04():
         instrumenttools.Viola(),
         instrumenttools.UntunedPercussion(
             instrument_name='vibraslap',
-            short_instrument_name='vibraslap'),
+            short_instrument_name='vibraslap',
+            ),
         ]
     assert wizard.target == instruments

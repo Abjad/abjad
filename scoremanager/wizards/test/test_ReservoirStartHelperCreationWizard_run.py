@@ -15,4 +15,5 @@ def test_ReservoirStartHelperCreationWizard_run_01():
 def test_ReservoirStartHelperCreationWizard_run_02():
 
     wizard = scoremanager.wizards.ReservoirStartHelperCreationWizard()
-    assert wizard._run(pending_user_input='start~at~index~0') == [('start at index 0', ())]
+    assert wizard._run(pending_user_input='start~at~index~0') == \
+        [('start at index 0', ())]

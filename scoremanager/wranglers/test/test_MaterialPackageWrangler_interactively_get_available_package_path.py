@@ -23,7 +23,8 @@ def test_MaterialPackageWrangler_interactively_get_available_package_path_02():
 
     result = wrangler.interactively_get_available_packagesystem_path(
         pending_user_input='foo')
-    assert result == 'scoremanager.scorepackages.red_example_score.materials.foo'
+    string = 'scoremanager.scorepackages.red_example_score.materials.foo'
+    assert result == string
 
 
 def test_MaterialPackageWrangler_interactively_get_available_package_path_03():

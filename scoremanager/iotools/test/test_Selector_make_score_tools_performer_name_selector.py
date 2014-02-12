@@ -26,4 +26,5 @@ def test_Selector_make_score_tools_performer_name_selector_03():
 
     selector = Selector.make_score_tools_performer_name_selector()
     selector.is_ranged = True
-    assert selector._run(pending_user_input='vn, va') == ['violinist', 'violist']
+    result = ['violinist', 'violist']
+    assert selector._run(pending_user_input='vn, va') == result
