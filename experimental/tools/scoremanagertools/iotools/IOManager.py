@@ -8,6 +8,8 @@ from abjad.tools.systemtools.IOManager import IOManager
 
 
 class IOManager(IOManager):
+    r'''Manages Abjad IO.
+    '''
 
     ### INITIALIZER ###
 
@@ -18,6 +20,10 @@ class IOManager(IOManager):
 
     @property
     def session(self):
+        r'''Gets session.
+
+        Returns session.
+        '''
         return self._session
 
     ### PRIVATE METHODS ###
@@ -97,7 +103,7 @@ class IOManager(IOManager):
                     print line
 
     @staticmethod
-    def get_one_line_menuing_summary(expr):
+    def _get_one_line_menuing_summary(expr):
         if isinstance(expr, (types.ClassType, abc.ABCMeta, types.TypeType)):
             return expr.__name__
         elif getattr(expr, '_one_line_menuing_summary', None):
@@ -218,27 +224,6 @@ class IOManager(IOManager):
         if is_interactive:
             self.display(lines)
         self.session.hide_next_redraw = True
-
-    def make_default_hidden_section(self):
-        from experimental.tools import scoremanagertools
-        hidden_section = scoremanagertools.iotools.MenuSection()
-        hidden_section.return_value_attribute = 'key'
-        hidden_section.is_hidden = True
-        hidden_section.append(('display calling code', 'where'))
-        hidden_section.append(('display hidden menu', 'hidden'))
-        hidden_section.append(('edit client source', 'here'))
-        hidden_section.append(('execute statement', 'exec'))
-        hidden_section.append(('go back', 'b'))
-        hidden_section.append(('go home', 'home'))
-        hidden_section.append(('go to current score', 'score'))
-        hidden_section.append(('go to next score', 'next'))
-        hidden_section.append(('go to prev score', 'prev'))
-        hidden_section.append(('quit', 'q'))
-        hidden_section.append(('redraw', 'r'))
-        hidden_section.append(('toggle menu commands', 'tmc'))
-        hidden_section.append(('toggle where-tracking', 'twt'))
-        hidden_section.append(('view LilyPond log', 'log'))
-        return hidden_section
 
     def make_getter(self, where=None):
         from experimental.tools import scoremanagertools

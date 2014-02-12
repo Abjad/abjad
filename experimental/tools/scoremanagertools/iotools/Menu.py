@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 import os
-from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject \
     import ScoreManagerObject
 from experimental.tools.scoremanagertools.iotools.MenuSection \
@@ -10,14 +10,16 @@ from experimental.tools.scoremanagertools.iotools.MenuSection \
 
 
 class Menu(ScoreManagerObject):
-    r'''Menu.
+    r'''A menu.
 
-    ::
+    ..  container:: example
 
-        >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
-        >>> menu = score_manager._make_repository_menu()
-        >>> menu
-        <Menu (2)>
+        ::
+
+            >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
+            >>> menu = score_manager._make_repository_menu()
+            >>> menu
+            <Menu (2)>
 
     '''
 
@@ -31,8 +33,8 @@ class Menu(ScoreManagerObject):
         title=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
-        hidden_section = self.session.io_manager.make_default_hidden_section()
-        self._menu_sections = [hidden_section]
+        self._menu_sections = []
+        self._make_default_hidden_section()
         self.should_clear_terminal = should_clear_terminal
         self.title = title
         self.where = where
@@ -40,7 +42,7 @@ class Menu(ScoreManagerObject):
     ### SPECIAL METHODS ###
 
     def __len__(self):
-        r'''Number of menu sections in menu.
+        r'''Gets number of menu sections in menu.
 
         Returns nonnegative integer.
         '''
@@ -55,6 +57,7 @@ class Menu(ScoreManagerObject):
 
     ### PRIVATE PROPERTIES ###
 
+    # TODO: make into method
     @property
     def _first_nonhidden_return_value_in_menu(self):
         for menu_section in self.menu_sections:
@@ -62,10 +65,12 @@ class Menu(ScoreManagerObject):
                 if menu_section._menu_entry_return_values:
                     return menu_section._menu_entry_return_values[0]
 
+    # TODO: make into method
     @property
     def _has_numbered_section(self):
         return any(x.is_numbered for x in self.menu_sections)
 
+    # TODO: make into method
     @property
     def _has_ranged_section(self):
         return any(x.is_ranged for x in self.menu_sections)
@@ -156,6 +161,31 @@ class Menu(ScoreManagerObject):
             entry = ranged_section._menu_entry_return_values[i]
             result.append(entry)
         return result
+
+    def _make_default_hidden_section(self):
+#        from experimental.tools import scoremanagertools
+#        hidden_section = scoremanagertools.iotools.MenuSection()
+#        hidden_section.return_value_attribute = 'key'
+#        hidden_section.is_hidden = True
+        hidden_section = self._make_section(
+            is_hidden=True,
+            return_value_attribute='key',
+            )
+        hidden_section.append(('display calling code', 'where'))
+        hidden_section.append(('display hidden menu', 'hidden'))
+        hidden_section.append(('edit client source', 'here'))
+        hidden_section.append(('execute statement', 'exec'))
+        hidden_section.append(('go back', 'b'))
+        hidden_section.append(('go home', 'home'))
+        hidden_section.append(('go to current score', 'score'))
+        hidden_section.append(('go to next score', 'next'))
+        hidden_section.append(('go to prev score', 'prev'))
+        hidden_section.append(('quit', 'q'))
+        hidden_section.append(('redraw', 'r'))
+        hidden_section.append(('toggle menu commands', 'tmc'))
+        hidden_section.append(('toggle where-tracking', 'twt'))
+        hidden_section.append(('view LilyPond log', 'log'))
+        return hidden_section
 
     def _make_menu_lines(self):
         result = []
