@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 import pytest
-from experimental import *
+from abjad import *
 from abjad.tools.instrumenttools import *
+import scoremanager
 
 
 def test_PerformerEditor_move_instrument_01():

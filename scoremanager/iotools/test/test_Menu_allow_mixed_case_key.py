@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import pytest
-from experimental import *
+from abjad import *
+import scoremanager
 
 
 def test_Menu_allow_mixed_case_key_01():

@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
+from abjad import *
+import scoremanager
 from scoremanager.specifiers.Specifier import Specifier
-from experimental import *
 
 
 class ConcreteSpecifier(Specifier):

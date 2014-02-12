@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
-from experimental import *
+from abjad import *
+import scoremanager
 
 
 def test_Selector_make_clef_name_selector_01():

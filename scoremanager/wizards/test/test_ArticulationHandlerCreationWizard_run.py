@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
+from abjad import *
 from experimental import *
+import scoremanager
 
 
 def test_ArticulationHandlerCreationWizard_run_01():

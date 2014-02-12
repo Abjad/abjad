@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
-from experimental import *
+from abjad import *
+import scoremanager
 
 score_manager = scoremanager.core.ScoreManager()
 wrangler = score_manager.score_package_wrangler
