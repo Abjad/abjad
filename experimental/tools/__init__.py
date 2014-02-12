@@ -7,5 +7,5 @@ import handlertools
 import interpolationtools
 import musicexpressiontools
 import newabjadbooktools
-import scoremanagertools
+import scoremanager
 import segmentmakertools

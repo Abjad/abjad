@@ -494,6 +494,6 @@ class AbjadConfiguration(Configuration):
         '''
         relative_path = os.path.join(
             self.abjad_root_directory_path,
-            'scoremanagertools'
+            'scoremanager'
             )
         return os.path.abspath(relative_path)

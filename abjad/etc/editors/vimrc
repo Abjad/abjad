@@ -145,7 +145,7 @@ map <leader>jt :CtrlP $ABJADTRUNK<cr>
 map <leader>jx :CtrlP $ABJADEXPERIMENTAL<cr>
 map <leader>mx :CtrlP $ABJADEXPERIMENTAL/tools/musicexpressiontools<cr>
 map <leader>nj :CtrlP $ABJADEXPERIMENTAL/tools/newabjadbooktools<cr>
-map <leader>sm :CtrlP $ABJADTRUNK/scoremanagertools<cr>
+map <leader>sm :CtrlP $ABJADTRUNK/scoremanager<cr>
 
 " jedi-vim (https://github.com/davidhalter/jedi-vim)
 let g:jedi#popup_on_dot = 0
