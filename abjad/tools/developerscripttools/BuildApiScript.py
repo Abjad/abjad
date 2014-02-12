@@ -15,6 +15,109 @@ class BuildApiScript(DeveloperScript):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    class ExperimentalAPIGenerator(AbjadAPIGenerator):
+
+        _api_title = 'Abjad Experimental API'
+
+        @property
+        def docs_api_index_path(self):
+            from abjad import abjad_configuration
+            return os.path.join(
+                abjad_configuration.abjad_root_directory_path,
+                'experimental',
+                'docs',
+                'source',
+                'index.rst',
+                )
+
+        @property
+        def path_definitions(self):
+            from abjad import abjad_configuration
+            return (
+                (
+                    os.path.join(
+                        abjad_configuration.abjad_root_directory_path,
+                        'experimental',
+                        'tools',
+                        ),
+                    os.path.join(
+                        abjad_configuration.abjad_root_directory_path,
+                        'experimental',
+                        'docs',
+                        'source',
+                        'tools',
+                        ),
+                    'experimental.tools.',
+                    ),
+                (
+                    os.path.join(
+                        abjad_configuration.abjad_root_directory_path,
+                        'experimental',
+                        'demos',
+                        ),
+                    os.path.join(
+                        abjad_configuration.abjad_root_directory_path,
+                        'experimental',
+                        'docs',
+                        'source',
+                        'demos',
+                        ),
+                    'experimental.demos.',
+                    ),
+                )
+
+        @property
+        def root_package(self):
+            return 'experimental'
+
+        @property
+        def tools_package_path_index(self):
+            return 2
+
+    class ScoreManagerAPIGenerator(AbjadAPIGenerator):
+
+        _api_title = 'Abjad Score Manager API'
+
+        @property
+        def docs_api_index_path(self):
+            from abjad import abjad_configuration
+            return os.path.join(
+                abjad_configuration.abjad_root_directory_path,
+                'scoremanager',
+                'docs',
+                'source',
+                'index.rst',
+                )
+
+        @property
+        def path_definitions(self):
+            from abjad import abjad_configuration
+            return (
+                (
+                    os.path.join(
+                        abjad_configuration.abjad_root_directory_path,
+                        'scoremanager',
+                        ),
+                    os.path.join(
+                        abjad_configuration.abjad_root_directory_path,
+                        'scoremanager',
+                        'docs',
+                        'source',
+                        ),
+                    'scoremanager.',
+                    ),
+                )
+
+        @property
+        def root_package(self):
+            return 'scoremanager'
+
+        @property
+        def tools_package_path_index(self):
+            return 1
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -59,98 +162,112 @@ class BuildApiScript(DeveloperScript):
 
     ### PRIVATE METHODS ###
 
-    def _build_experimental_api(self, format='html', clean=False):
-
+    def _build_experimental_api(self, api_format='html', clean=False):
         from abjad import abjad_configuration
-
-        class ExperimentalAPIGenerator(AbjadAPIGenerator):
-
-            _api_title = 'Abjad Experimental API'
-
-            @property
-            def docs_api_index_path(self):
-                return os.path.join(
-                    abjad_configuration.abjad_experimental_directory_path,
-                    'docs', 'source', 'index.rst')
-
-            @property
-            def path_definitions(self):
-                from abjad import abjad_configuration
-                return (
-                    (
-                        os.path.join(
-                            abjad_configuration.abjad_experimental_directory_path, 
-                            'tools'),
-                        os.path.join(
-                            abjad_configuration.abjad_experimental_directory_path, 
-                            'docs', 'source', 'tools'),
-                        'experimental.tools.',
-                    ),
-                    (
-                        os.path.join(
-                            abjad_configuration.abjad_experimental_directory_path, 
-                            'demos'),
-                        os.path.join(
-                            abjad_configuration.abjad_experimental_directory_path, 
-                            'docs', 'source', 'demos'),
-                        'experimental.demos.',
-                    ),
-                )
-
-            @property
-            def root_package(self):
-                return 'experimental'
-
-            @property
-            def tools_package_path_index(self):
-                return 2
-
-        ExperimentalAPIGenerator()(verbose=True)
-
-        # print greeting
-        print 'Now building the Experimental {} docs ...'.format(
-            format.upper())
-        print ''
-
-        # change to docs directory because makefile lives there
+        api_generator = BuildApiScript.ExperimentalAPIGenerator()
+        api_title = 'experimental'
         docs_directory = os.path.join(
-            abjad_configuration.abjad_experimental_directory_path, 'docs')
-        os.chdir(docs_directory)
+            abjad_configuration.abjad_root_directory_path,
+            'experimental',
+            'docs',
+            )
+        self._build_api(
+            api_generator=api_generator,
+            api_title=api_title,
+            api_format=api_format,
+            clean=clean,
+            docs_directory=docs_directory,
+            )
+        path = os.path.join(
+            abjad_configuration.abjad_root_directory_path,
+            'experimental',
+            'docs',
+            'build',
+            'html',
+            'index.html',
+            )
+        return path
 
-        # optionally, make clean before building
-        if clean:
-            print 'Cleaning build directory ...'
-            systemtools.IOManager.spawn_subprocess('make clean')
-
-        if format == 'coverage':
-            systemtools.IOManager.spawn_subprocess('sphinx-build -b coverage {} {}'.format(
-                'source',
-                os.path.join('build', 'coverage'),
-                ))
-        else:
-            systemtools.IOManager.spawn_subprocess('make {}'.format(format))
-
-    def _build_mainline_api(self, format='html', clean=False):
+    def _build_mainline_api(self, api_format='html', clean=False):
         from abjad import abjad_configuration
-        AbjadAPIGenerator()(verbose=True)
-        # print greeting
-        print 'Now building the {} docs ...'.format(format.upper())
+        api_generator = AbjadAPIGenerator()
+        api_title = 'mainline'
+        docs_directory = os.path.join(
+            abjad_configuration.abjad_directory_path,
+            'docs',
+            )
+        self._build_api(
+            api_generator=api_generator,
+            api_title=api_title,
+            api_format=api_format,
+            clean=clean,
+            docs_directory=docs_directory,
+            )
+        path = os.path.join(
+            abjad_configuration.abjad_root_directory_path,
+            'abjad',
+            'docs',
+            'build',
+            'html',
+            'api',
+            'index.html',
+            )
+        return path
+
+    def _build_scoremanager_api(self, api_format='html', clean=False):
+        from abjad import abjad_configuration
+        api_generator = BuildApiScript.ScoreManagerAPIGenerator()
+        api_title = 'score manager'
+        docs_directory = os.path.join(
+            abjad_configuration.abjad_root_directory_path,
+            'scoremanager',
+            'docs',
+            )
+        self._build_api(
+            api_generator=api_generator,
+            api_title=api_title,
+            api_format=api_format,
+            clean=clean,
+            docs_directory=docs_directory,
+            )
+        path = os.path.join(
+            abjad_configuration.abjad_root_directory_path,
+            'scoremanager',
+            'docs',
+            'build',
+            'html',
+            'index.html',
+            )
+        return path
+
+    def _build_api(
+        self,
+        docs_directory=None,
+        api_generator=None,
+        api_title=None,
+        api_format='html',
+        clean=False,
+        ):
+        api_generator(verbose=True)
+        print 'Now building the {} {} docs ...'.format(
+            api_title,
+            api_format.upper(),
+            )
         print ''
-        # change to docs directory because makefile lives there
-        docs_directory = os.path.relpath(os.path.join(
-            abjad_configuration.abjad_directory_path, 'docs'))
         os.chdir(docs_directory)
-        # optionally, make clean before building
         if clean:
             print 'Cleaning build directory ...'
-            systemtools.IOManager.spawn_subprocess('make clean')
+            command = 'make clean'
+            systemtools.IOManager.spawn_subprocess(command)
         if format == 'coverage':
-            systemtools.IOManager.spawn_subprocess('sphinx-build -b coverage {} {}'.format(
+            command = 'sphinx-build -b coverage {} {}'.format(
                 'source',
                 os.path.join('build', 'coverage'),
-                ))
+                )
+            systemtools.IOManager.spawn_subprocess(command)
         else:
-            systemtools.IOManager.spawn_subprocess('make {}'.format(format))
+            command = 'make {}'.format(api_format)
+            systemtools.IOManager.spawn_subprocess(command)
 
     ### PUBLIC METHODS ###
 
@@ -159,30 +276,28 @@ class BuildApiScript(DeveloperScript):
 
         Returns none.
         '''
-        from abjad import abjad_configuration
-        format = args.format
+        api_format = args.format
         clean = args.clean
         paths = []
         if args.mainline:
-            self._build_mainline_api(format=format, clean=clean)
-            paths.append(os.path.abspath(os.path.join(
-                abjad_configuration.abjad_directory_path,
-                'docs',
-                'build',
-                'html',
-                'api',
-                'index.html',
-                )))
+            path = self._build_mainline_api(
+                api_format=api_format,
+                clean=clean,
+                )
+            paths.append(path)
         if args.experimental:
-            self._build_experimental_api(format=format, clean=clean)
-            paths.append(os.path.abspath(os.path.join(
-                abjad_configuration.abjad_experimental_directory_path,
-                'docs',
-                'build',
-                'html',
-                'index.html',
-                )))
-        if args.format == 'html' and args.openinbrowser:
+            path = self._build_experimental_api(
+                api_format=api_format,
+                clean=clean,
+                )
+            paths.append(path)
+        if args.scoremanager:
+            path = self._build_scoremanager_api(
+                api_format=api_format,
+                clean=clean,
+                )
+            paths.append(path)
+        if api_format == 'html' and args.openinbrowser:
             for path in paths:
                 if path.startswith('/'):
                     path = 'file://' + path
@@ -201,6 +316,10 @@ class BuildApiScript(DeveloperScript):
             action='store_true',
             help='build the experimental API'
             )
+        parser.add_argument('-S', '--scoremanager',
+            action='store_true',
+            help='build the score manager API'
+            )
         parser.add_argument('-C', '--clean',
             action='store_true',
             dest='clean',
@@ -218,7 +337,6 @@ class BuildApiScript(DeveloperScript):
                 'latex',
                 'latexpdf',
                 ),
-            dest='format',
             help='Sphinx builder to use',
             metavar='FORMAT',
             )
