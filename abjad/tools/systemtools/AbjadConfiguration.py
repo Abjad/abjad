@@ -485,3 +485,15 @@ class AbjadConfiguration(Configuration):
         Returns string.
         '''
         return 'abjad.cfg'
+
+    @property
+    def score_manager_directory_path(self):
+        r'''Abjad score manager directory path.
+
+        Returns string.
+        '''
+        relative_path = os.path.join(
+            self.abjad_root_directory_path,
+            'scoremanagertools'
+            )
+        return os.path.abspath(relative_path)
