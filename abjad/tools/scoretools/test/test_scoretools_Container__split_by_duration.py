@@ -494,7 +494,7 @@ def test_scoretools_Container__split_by_duration_08():
         \new Staff {
             {
                 \time 2/8
-                c'32 [ ( )
+                c'32 [
                 c'16. (
                 d'8 ]
             }
@@ -552,7 +552,7 @@ def test_scoretools_Container__split_by_duration_09():
         \new Staff {
             {
                 \time 1/32
-                c'32 [ ] ( )
+                c'32 [ ]
             }
             {
                 \time 7/32
@@ -614,7 +614,7 @@ def test_scoretools_Container__split_by_duration_10():
         \new Staff {
             {
                 \time 1/32
-                c'32 [ ] ( )
+                c'32 [ ]
             }
         }
         '''
@@ -805,7 +805,7 @@ def test_scoretools_Container__split_by_duration_13():
         \new Staff {
             {
                 \time 1/8
-                c'8 [ ] ( )
+                c'8 [ ]
             }
             {
                 d'8 [ ] (
@@ -888,7 +888,7 @@ def test_scoretools_Container__split_by_duration_15():
         \new Staff {
             {
                 \time 2/8
-                c'32 ~ [ ( )
+                c'32 ~ [
                 c'16. (
                 d'8 ]
             }
@@ -947,7 +947,7 @@ def test_scoretools_Container__split_by_duration_16():
         \new Staff {
             {
                 \time 1/32
-                c'32 ~ [ ] ( )
+                c'32 ~ [ ]
             }
             {
                 \time 7/32
@@ -1275,7 +1275,7 @@ def test_scoretools_Container__split_by_duration_22():
         \new Staff {
             {
                 \time 1/16
-                c'8 * 1/2 [ ] ( )
+                c'8 * 1/2 [ ]
             }
             {
                 d'8 * 1/2 [ ] (
@@ -1540,7 +1540,7 @@ def test_scoretools_Container__split_by_duration_26():
             {
                 \time 1/80
                 \scaleDurations #'(4 . 5) {
-                    c''64 [ ] ( )
+                    c''64 [ ]
                 }
             }
         }

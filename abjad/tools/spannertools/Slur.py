@@ -60,13 +60,7 @@ class Slur(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_only_leaf(leaf):
-            if self.direction is not None:
-                string = '{} ('.format(self.direction)
-            else:
-                string = '('
-            lilypond_format_bundle.right.spanner_starts.append(string)
-            string = ')'
-            lilypond_format_bundle.right.spanner_starts.append(string)
+            pass
         elif self._is_my_first_leaf(leaf):
             if self.direction is not None:
                 string = '{} ('.format(self.direction)
