@@ -122,7 +122,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             default_value = str(self._current_prompt.default_value)
             include_chevron = self._current_prompt.include_chevron
             user_input = \
-                self.session.io_manager.handle_raw_input_with_default(
+                self.session.io_manager.handle_user_input(
                 prompt_string, 
                 default_value=default_value,
                 include_chevron=include_chevron, 

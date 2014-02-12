@@ -5,7 +5,7 @@
 3.  Make user input getter defaults work like menu defaults.
     Implement default value on user input getter.
 
-4.  Fix ScoreManagerObject.handle_user_input_with_default() default handling.
+4.  Fix IOManager.handle_user_input() default handling.
 
 5.  Define range inventories for all scores.
 

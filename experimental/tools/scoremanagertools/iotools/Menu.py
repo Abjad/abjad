@@ -117,7 +117,7 @@ class Menu(ScoreManagerObject):
         if predetermined_user_input is not None:
             return predetermined_user_input
         user_entered_lone_return = False
-        user_input = self.session.io_manager.handle_raw_input_with_default('')
+        user_input = self.session.io_manager.handle_user_input('')
         if user_input == '':
             user_entered_lone_return = True
         directive = self._change_user_input_to_directive(user_input)

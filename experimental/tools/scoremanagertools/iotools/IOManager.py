@@ -189,7 +189,7 @@ class IOManager(IOManager):
                 for line in lines:
                     print line
 
-    def handle_raw_input_with_default(
+    def handle_user_input(
         self, 
         prompt_string, 
         default_value=None, 
@@ -198,13 +198,13 @@ class IOManager(IOManager):
         prompt_character='>', 
         capitalize_prompt=True,
         ):
-        r'''Handles raw input.
+        r'''Handles user input.
 
-        Appends input to command history.
+        Appends user input to command history.
 
-        Appends input to IO transscript.
+        Appends user input to IO transscript.
 
-        Returns processed user input.
+        Returns command selected by user.
         '''
         if default_value in (None, 'None'):
             default_value = ''
@@ -250,7 +250,7 @@ class IOManager(IOManager):
         lines = []
         is_interactive = True
         if statement is None:
-            statement = self.handle_raw_input_with_default('XCF', include_newline=False)
+            statement = self.handle_user_input('XCF', include_newline=False)
         else:
             is_interactive = False
         command = 'from abjad import *'
@@ -343,7 +343,7 @@ class IOManager(IOManager):
             if lines != ['']:
                 lines.append('')
             self.display(lines)
-        self.handle_raw_input_with_default(
+        self.handle_user_input(
             'press return to continue.', 
             include_chevron=False,
             )
