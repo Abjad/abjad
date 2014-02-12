@@ -23,7 +23,11 @@ class ClefInventoryEditor(ObjectInventoryEditor):
 
     item_identifier = 'clef'
 
-    target_manifest = TargetManifest(
-        indicatortools.ClefInventory,
-        target_name_attribute='name',
-        )
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            indicatortools.ClefInventory,
+            target_name_attribute='name',
+            )

@@ -14,55 +14,57 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
 
 class InstrumentEditor(InteractiveEditor):
 
-    ### CLASS VARIABLES ###
+    ### PUBLIC PROPERTIES ###
 
-    target_manifest = TargetManifest(
-        Instrument,
-        (
-            'instrument_name', 
-            'instrument name', 
-            'in', 
-            getters.get_string, 
-            False,
-            ),
-        (
-            'instrument_name_markup', 
-            'instrument name markup',
-            'im', 
-            getters.get_markup,
-            False,
-            ),
-        (
-            'short_instrument_name', 
-            'short instrument name',
-            'sn', 
-            getters.get_string,
-            False,
-            ),
-        (
-            'short_instrument_name_markup', 
-            'short instrument name markup',
-            'sm', 
-            getters.get_markup,
-            False,
-            ),
-        (
-            'pitch_range', 
-            'pitch range',
-            'range', 
-            'rg', 
-            getters.get_symbolic_pitch_range_string,
-            False,
-            ),
-        (
-            'allowable_clefs', 
-            'allowable clefs',
-            'clefs', 
-            'cf', 
-            ClefInventoryEditor,
-            False,
-            ),
-        )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            Instrument,
+            (
+                'instrument_name', 
+                'instrument name', 
+                'in', 
+                getters.get_string, 
+                False,
+                ),
+            (
+                'instrument_name_markup', 
+                'instrument name markup',
+                'im', 
+                getters.get_markup,
+                False,
+                ),
+            (
+                'short_instrument_name', 
+                'short instrument name',
+                'sn', 
+                getters.get_string,
+                False,
+                ),
+            (
+                'short_instrument_name_markup', 
+                'short instrument name markup',
+                'sm', 
+                getters.get_markup,
+                False,
+                ),
+            (
+                'pitch_range', 
+                'pitch range',
+                'range', 
+                'rg', 
+                getters.get_symbolic_pitch_range_string,
+                False,
+                ),
+            (
+                'allowable_clefs', 
+                'allowable clefs',
+                'clefs', 
+                'cf', 
+                ClefInventoryEditor,
+                False,
+                ),
+            )
 
     ### PRIVATE METHODS ###
 

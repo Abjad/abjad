@@ -10,14 +10,16 @@ from experimental.tools.scoremanagertools.specifiers.ArticulationSpecifier \
 
 class ArticulationSpecifierEditor(ParameterSpecifierEditor):
 
-    ### CLASS VARIABLES ###
+    ### PUBLIC PROPERTIES ###
 
-    target_manifest = TargetManifest(
-        ArticulationSpecifier,
-        (
-            'articulation_handler_name', 
-            'articulation handler',
-            'ah',
-            iotools.Selector.make_articulation_handler_selector,
-            ),
-        )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            ArticulationSpecifier,
+            (
+                'articulation_handler_name', 
+                'articulation handler',
+                'ah',
+                iotools.Selector.make_articulation_handler_selector,
+                ),
+            )

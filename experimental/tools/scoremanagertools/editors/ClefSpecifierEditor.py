@@ -12,7 +12,9 @@ class ClefSpecifierEditor(ParameterSpecifierEditor):
 
     ### CLASS VARIABLES ###
 
-    target_manifest = TargetManifest(
-        ClefSpecifier,
-        ('clef_name', 'cf', iotools.Selector.make_clef_name_selector),
-        )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            ClefSpecifier,
+            ('clef_name', 'cf', iotools.Selector.make_clef_name_selector),
+            )

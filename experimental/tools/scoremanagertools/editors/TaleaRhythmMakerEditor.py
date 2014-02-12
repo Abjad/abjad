@@ -9,13 +9,15 @@ from experimental.tools.scoremanagertools import getters
 
 class TaleaRhythmMakerEditor(RhythmMakerEditor):
 
-    ### CLASS VARIABLES ###
+    ### PUBLIC PROPERTIES ###
 
-    target_manifest = TargetManifest(
-        rhythmmakertools.TaleaRhythmMaker,
-        ('talea', None, 'ta', getters.get_nonzero_integers, True),
-        ('talea_denominator', None, 'de', 
-            getters.get_positive_integer_power_of_two, True),
-        ('extra_counts_per_division', None, 'ad', getters.get_integers, False),
-        ('split_divisions_by_counts', None, 'sd', getters.get_integers, False),
-        )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            rhythmmakertools.TaleaRhythmMaker,
+            ('talea', None, 'ta', getters.get_nonzero_integers, True),
+            ('talea_denominator', None, 'de', 
+                getters.get_positive_integer_power_of_two, True),
+            ('extra_counts_per_division', None, 'ad', getters.get_integers, False),
+            ('split_divisions_by_counts', None, 'sd', getters.get_integers, False),
+            )

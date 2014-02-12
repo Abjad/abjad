@@ -44,8 +44,6 @@ class ListEditor(InteractiveEditor):
 
     item_identifier = 'element'
 
-    target_manifest = TargetManifest(list,)
-
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
@@ -87,6 +85,10 @@ class ListEditor(InteractiveEditor):
             return self._items_identifer
         else:
             return stringtools.pluralize_string(self.item_identifier)
+
+    @property
+    def target_manifest(self):
+        return TargetManifest(list,)
 
     @property
     def target_summary_lines(self):

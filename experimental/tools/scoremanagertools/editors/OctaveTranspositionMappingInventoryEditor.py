@@ -21,8 +21,12 @@ class OctaveTranspositionMappingInventoryEditor(ObjectInventoryEditor):
 
     item_identifier = 'octave transposition mapping'
 
-    target_manifest = TargetManifest(
-        pitchtools.OctaveTranspositionMappingInventory,
-        ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
-        target_attribute_name='name',
-        )
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            pitchtools.OctaveTranspositionMappingInventory,
+            ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
+            target_attribute_name='name',
+            )

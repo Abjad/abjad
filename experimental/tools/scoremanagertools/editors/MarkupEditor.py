@@ -9,11 +9,13 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
 
 class MarkupEditor(InteractiveEditor):
 
-    ### CLASS VARIABLES ###
+    ### PUBLIC PROPERTIES ###
 
-    target_manifest = TargetManifest(
-        markuptools.Markup,
-        ('arg', 'contents_string', 'arg', 'ag', getters.get_string, True),
-        ('direction', 'direction', 'dr', getters.get_direction_string, False),
-        ('markup_name', 'name', 'nm', getters.get_string, False),
-    )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            markuptools.Markup,
+            ('arg', 'contents_string', 'arg', 'ag', getters.get_string, True),
+            ('direction', 'direction', 'dr', getters.get_direction_string, False),
+            ('markup_name', 'name', 'nm', getters.get_string, False),
+            )

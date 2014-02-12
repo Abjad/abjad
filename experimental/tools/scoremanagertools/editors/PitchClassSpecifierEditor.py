@@ -12,31 +12,31 @@ from experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier \
 
 class PitchClassSpecifierEditor(ParameterSpecifierEditor):
 
-    ### CLASS VARIABLES ###
-
-    target_manifest = TargetManifest(
-        PitchClassSpecifier,
-        ('custom_identifier', 'id', getters.get_string),
-        ('description', 'ds', getters.get_string),
-        (),
-        (
-            'pitch_class_reservoir', 
-            'pc', 
-            iotools.Selector.make_pitch_class_reservoir_selector,
-            ),
-        (
-            'pitch_class_transform', 
-            'tr', 
-            wizards.PitchClassTransformCreationWizard,
-            ),
-        (
-            'reservoir_start_helper', 
-            'hp', 
-            wizards.ReservoirStartHelperCreationWizard,
-            ),
-        )
-
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            PitchClassSpecifier,
+            ('custom_identifier', 'id', getters.get_string),
+            ('description', 'ds', getters.get_string),
+            (),
+            (
+                'pitch_class_reservoir', 
+                'pc', 
+                iotools.Selector.make_pitch_class_reservoir_selector,
+                ),
+            (
+                'pitch_class_transform', 
+                'tr', 
+                wizards.PitchClassTransformCreationWizard,
+                ),
+            (
+                'reservoir_start_helper', 
+                'hp', 
+                wizards.ReservoirStartHelperCreationWizard,
+                ),
+            )
 
     @property
     def target_name(self):

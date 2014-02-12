@@ -9,10 +9,12 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
 
 class NoteAndChordHairpinsHandlerEditor(DynamicHandlerEditor):
 
-    ### CLASS VARIABLES ###
+    ### PUBLIC PROPERTIES ###
 
-    target_manifest = TargetManifest(
-        handlertools.NoteAndChordHairpinsHandler,
-        ('hairpin_tokens', None, 'ht', getters.get_hairpin_tokens, True),
-        ('minimum_duration', None, 'md', getters.get_duration, True),
-    )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            handlertools.NoteAndChordHairpinsHandler,
+            ('hairpin_tokens', None, 'ht', getters.get_hairpin_tokens, True),
+            ('minimum_duration', None, 'md', getters.get_duration, True),
+            )

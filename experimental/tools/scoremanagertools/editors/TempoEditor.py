@@ -10,10 +10,12 @@ from experimental.tools.scoremanagertools import getters
 
 class TempoEditor(InteractiveEditor):
 
-    ### CLASS VARIABLES ###
+    ### PUBLIC PROPERTIES ###
 
-    target_manifest = TargetManifest(
-        indicatortools.Tempo,
-        ('duration', 'd', getters.get_duration),
-        ('units_per_minute', 'm', getters.get_integer),
-        )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            indicatortools.Tempo,
+            ('duration', 'd', getters.get_duration),
+            ('units_per_minute', 'm', getters.get_integer),
+            )

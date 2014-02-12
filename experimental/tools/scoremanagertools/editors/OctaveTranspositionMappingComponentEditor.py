@@ -9,10 +9,12 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
 
 class OctaveTranspositionMappingComponentEditor(InteractiveEditor):
 
-    ### CLASS VARIABLES ###
+    ### PUBLIC PROPERTIES ###
 
-    target_manifest = TargetManifest(
-        pitchtools.OctaveTranspositionMappingComponent,
-        ('source_pitch_range', 'pr', getters.get_symbolic_pitch_range_string),
-        ('target_octave_start_pitch', 'sp', getters.get_integer),
-        )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            pitchtools.OctaveTranspositionMappingComponent,
+            ('source_pitch_range', 'pr', getters.get_symbolic_pitch_range_string),
+            ('target_octave_start_pitch', 'sp', getters.get_integer),
+            )

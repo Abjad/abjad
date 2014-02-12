@@ -11,17 +11,19 @@ from experimental.tools.scoremanagertools.specifiers.DynamicSpecifier \
 
 class DynamicSpecifierEditor(ParameterSpecifierEditor):
 
-    ### CLASS VARIABLES ###
+    ### PUBLIC PROPERTIES ###
 
-    target_manifest = TargetManifest(
-        DynamicSpecifier,
-        ('custom_identifier', 'id', getters.get_string),
-        ('description', 'ds', getters.get_string),
-        (),
-        (
-            'dynamic_handler_name', 
-            'dynamic handler', 
-            'dh', 
-            iotools.Selector.make_dynamic_handler_package_selector,
-            ),
-        )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            DynamicSpecifier,
+            ('custom_identifier', 'id', getters.get_string),
+            ('description', 'ds', getters.get_string),
+            (),
+            (
+                'dynamic_handler_name', 
+                'dynamic handler', 
+                'dh', 
+                iotools.Selector.make_dynamic_handler_package_selector,
+                ),
+            )

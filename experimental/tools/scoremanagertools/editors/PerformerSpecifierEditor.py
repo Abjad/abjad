@@ -10,14 +10,14 @@ from experimental.tools.scoremanagertools import iotools
 
 class PerformerSpecifierEditor(ParameterSpecifierEditor):
 
-    ### CLASS VARIABLES ###
-
-    target_manifest = TargetManifest(
-        PerformerSpecifier,
-        ('performer', 'pf', iotools.Selector.make_performer_selector,)
-        )
-
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            PerformerSpecifier,
+            ('performer', 'pf', iotools.Selector.make_performer_selector,)
+            )
 
     @property
     def target_name(self):

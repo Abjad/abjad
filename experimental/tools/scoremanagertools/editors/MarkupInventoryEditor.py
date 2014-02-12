@@ -24,13 +24,15 @@ class MarkupInventoryEditor(ObjectInventoryEditor):
 
     item_identifier = 'markup'
 
-    target_manifest = TargetManifest(
-        markuptools.MarkupInventory,
-        ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
-        target_name_attribute='inventory name',
-        )
-
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            markuptools.MarkupInventory,
+            ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
+            target_name_attribute='inventory name',
+            )
 
     # TODO: abstract up to ObjectInventoryEditor?
     @property

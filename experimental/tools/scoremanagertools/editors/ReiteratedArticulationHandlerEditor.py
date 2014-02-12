@@ -9,15 +9,17 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
 
 class ReiteratedArticulationHandlerEditor(InteractiveEditor):
 
-    ### CLASS VARIABLES ###
+    ### PUBLIC PROPERTIES ###
 
-    target_manifest = TargetManifest(
-        handlertools.ReiteratedArticulationHandler,
-        ('articulation_list', None, 'al', getters.get_articulations, False),
-        ('minimum_duration', None, 'nd', getters.get_duration, False),
-        ('maximum_duration', None, 'xd', getters.get_duration, False),
-        ('minimum_written_pitch', None, 'np', 
-            getters.get_named_pitch, False),
-        ('maximum_written_pitch', None, 'xp', 
-            getters.get_named_pitch, False),
-        )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            handlertools.ReiteratedArticulationHandler,
+            ('articulation_list', None, 'al', getters.get_articulations, False),
+            ('minimum_duration', None, 'nd', getters.get_duration, False),
+            ('maximum_duration', None, 'xd', getters.get_duration, False),
+            ('minimum_written_pitch', None, 'np', 
+                getters.get_named_pitch, False),
+            ('maximum_written_pitch', None, 'xp', 
+                getters.get_named_pitch, False),
+            )

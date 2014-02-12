@@ -24,10 +24,6 @@ class InstrumentationEditor(ListEditor):
 
     item_identifier = 'performer'
 
-    target_manifest = TargetManifest(
-        instrumenttools.InstrumentationSpecifier,
-        )
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -39,3 +35,10 @@ class InstrumentationEditor(ListEditor):
     @property
     def items(self):
         return self.target.performers
+
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            instrumenttools.InstrumentationSpecifier,
+            )
+

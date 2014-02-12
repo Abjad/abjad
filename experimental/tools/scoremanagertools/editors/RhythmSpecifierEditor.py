@@ -11,17 +11,19 @@ from experimental.tools.scoremanagertools.specifiers.RhythmSpecifier \
 
 class RhythmSpecifierEditor(ParameterSpecifierEditor):
 
-    ### CLASS VARIABLES ###
+    ### PUBLIC PROPERTIES ###
 
-    target_manifest = TargetManifest(
-        RhythmSpecifier,
-        ('custom_identifier', 'id', getters.get_string),
-        ('description', 'ds', getters.get_string),
-        (),
-        (
-            'rhythm_maker_package_path', 
-            'time-menu_entry', 
-            'ttm', 
-            iotools.Selector.make_rhythm_maker_package_selector,
-            ),
-        )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            RhythmSpecifier,
+            ('custom_identifier', 'id', getters.get_string),
+            ('description', 'ds', getters.get_string),
+            (),
+            (
+                'rhythm_maker_package_path', 
+                'time-menu_entry', 
+                'ttm', 
+                iotools.Selector.make_rhythm_maker_package_selector,
+                ),
+            )

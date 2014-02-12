@@ -10,6 +10,19 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
 
 class InstrumentSpecifierEditor(ParameterSpecifierEditor):
 
+    ### CLASS VARIABLES ###
+
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            specifiers.InstrumentSpecifier,
+            ('custom_identifier', 'id', getters.get_string),
+            ('instrument', 'st', wizards.InstrumentSelectionWizard),
+            target_attribute_name='name',
+            )
+
+    ### INITIALIZER ###
+
     def __init__(
         self,
         instruments=None,
@@ -21,15 +34,6 @@ class InstrumentSpecifierEditor(ParameterSpecifierEditor):
             session=session,
             target=target,
             )
-
-    ### CLASS VARIABLES ###
-
-    target_manifest = TargetManifest(
-        specifiers.InstrumentSpecifier,
-        ('custom_identifier', 'id', getters.get_string),
-        ('instrument', 'st', wizards.InstrumentSelectionWizard),
-        target_attribute_name='name',
-        )
 
     ### PUBLIC PROPERTIES ###
 

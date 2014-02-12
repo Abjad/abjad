@@ -26,17 +26,19 @@ class PerformerEditor(ListEditor):
 
     item_identifier = 'instrument'
 
-    target_manifest = TargetManifest(
-        instrumenttools.Performer,
-        ('name', 'nm', getters.get_string),
-        target_attribute_name='name',
-        )
-
     ### PUBLIC PROPERTIES ###
 
     @property
     def items(self):
         return self.target.instruments
+
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            instrumenttools.Performer,
+            ('name', 'nm', getters.get_string),
+            target_attribute_name='name',
+            )
 
     ### PUBLIC METHODS ###
 

@@ -23,13 +23,15 @@ class TempoInventoryEditor(ObjectInventoryEditor):
 
     item_identifier = 'tempo'
 
-    target_manifest = TargetManifest(
-        indicatortools.TempoInventory,
-        ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
-        target_name_attribute='inventory name',
-        )
-
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            indicatortools.TempoInventory,
+            ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
+            target_name_attribute='inventory name',
+            )
 
     # TODO: abstract up to ObjectInventoryEditor?
     @property

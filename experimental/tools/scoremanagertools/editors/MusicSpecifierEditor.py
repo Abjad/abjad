@@ -21,8 +21,10 @@ class MusicSpecifierEditor(ObjectInventoryEditor):
 
     item_identifier = 'music contribution'
 
-    target_manifest = TargetManifest(
-        specifiers.MusicSpecifier,
-        #('custom_identifier', 'custom_identifier', 'id', getters.get_string, False),
-        #target_attribute_name='name',
-        )
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            specifiers.MusicSpecifier,
+            )

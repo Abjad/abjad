@@ -9,10 +9,12 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
 
 class PitchRangeEditor(InteractiveEditor):
 
-    ### CLASS VARIABLES ###
+    ### PUBLIC PROPERTIES ###
 
-    target_manifest = TargetManifest(
-        pitchtools.PitchRange,
-        ('one_line_named_pitch_repr', 'rp', 
-            getters.get_symbolic_pitch_range_string),
-        )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            pitchtools.PitchRange,
+            ('one_line_named_pitch_repr', 'rp', 
+                getters.get_symbolic_pitch_range_string),
+            )

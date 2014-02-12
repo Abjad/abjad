@@ -9,10 +9,12 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
 
 class ReiteratedDynamicHandlerEditor(DynamicHandlerEditor):
 
-    ### CLASS VARIABLES ###
+    ### PUBLIC PROPERTIES ###
 
-    target_manifest = TargetManifest(
-        handlertools.ReiteratedDynamicHandler,
-        ('dynamic_name', None, 'dy', getters.get_dynamic, True),
-        ('minimum_duration', None, 'md', getters.get_duration, True),
-    )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            handlertools.ReiteratedDynamicHandler,
+            ('dynamic_name', None, 'dy', getters.get_dynamic, True),
+            ('minimum_duration', None, 'md', getters.get_duration, True),
+            )

@@ -28,13 +28,6 @@ class MusicContributionSpecifierEditor(ObjectInventoryEditor):
 
     item_identifier = 'parameter specifier'
 
-    target_manifest = TargetManifest(
-        specifiers.MusicContributionSpecifier,
-        ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
-        ('description', 'ds', getters.get_string),
-        target_attribute_name='name',
-        )
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -42,6 +35,17 @@ class MusicContributionSpecifierEditor(ObjectInventoryEditor):
         if self.target:
             return self.target._one_line_menuing_summary
         return 'unknown contribution'
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            specifiers.MusicContributionSpecifier,
+            ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
+            ('description', 'ds', getters.get_string),
+            target_attribute_name='name',
+            )
 
     ### PUBLIC METHODS ###
 

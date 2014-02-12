@@ -9,8 +9,10 @@ from experimental.tools.scoremanagertools import getters
 
 class RestRhythmMakerEditor(RhythmMakerEditor):
 
-    ### CLASS VARIABLES ###
+    ### PUBLIC PROPERTIES ###
 
-    target_manifest = TargetManifest(
-        rhythmmakertools.RestRhythmMaker,
-        )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            rhythmmakertools.RestRhythmMaker,
+            )

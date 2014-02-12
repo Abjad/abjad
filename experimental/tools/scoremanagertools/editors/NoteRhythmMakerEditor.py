@@ -9,8 +9,10 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
 
 class NoteRhythmMakerEditor(RhythmMakerEditor):
 
-    ### CLASS VARIABLES ###
+    ### PUBLIC PROPERTIES ###
 
-    target_manifest = TargetManifest(
-        rhythmmakertools.NoteRhythmMaker,
-        )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            rhythmmakertools.NoteRhythmMaker,
+            )

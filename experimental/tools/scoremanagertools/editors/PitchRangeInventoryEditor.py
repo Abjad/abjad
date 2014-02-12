@@ -25,12 +25,14 @@ class PitchRangeInventoryEditor(ObjectInventoryEditor):
 
     item_identifier = 'pitch range'
 
-    target_manifest = TargetManifest(
-        pitchtools.PitchRangeInventory,
-        target_name_attribute='name',
-        )
-
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            pitchtools.PitchRangeInventory,
+            target_name_attribute='name',
+            )
 
     @property
     def target_summary_lines(self):

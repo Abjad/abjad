@@ -9,9 +9,11 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
 
 class ClefEditor(InteractiveEditor):
 
-    ### CLASS VARIABLES ###
+    ### PUBLIC PROPERTIES ###
 
-    target_manifest = TargetManifest(
-        indicatortools.Clef,
-        ('clef_name', 'nm', getters.get_string),
-        )
+    @property
+    def target_manifest(self):
+        return TargetManifest(
+            indicatortools.Clef,
+            ('clef_name', 'nm', getters.get_string),
+            )
