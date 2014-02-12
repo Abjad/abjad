@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 from experimental.tools import handlertools
 from scoremanager import getters
-from scoremanager.editors.DynamicHandlerEditor \
-    import DynamicHandlerEditor
+from scoremanager.editors.DynamicHandlerEditor import DynamicHandlerEditor
 
 
 class NoteAndChordHairpinHandlerEditor(DynamicHandlerEditor):

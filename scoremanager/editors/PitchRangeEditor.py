@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import pitchtools
 from scoremanager import getters
-from scoremanager.editors.InteractiveEditor \
-    import InteractiveEditor
+from scoremanager.editors.InteractiveEditor import InteractiveEditor
 
 
 class PitchRangeEditor(InteractiveEditor):

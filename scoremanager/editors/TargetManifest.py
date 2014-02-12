@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from scoremanager.editors.AttributeDetail \
-    import AttributeDetail
+from scoremanager.editors.AttributeDetail import AttributeDetail
 
 
 class TargetManifest(AbjadObject):

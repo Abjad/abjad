@@ -2,8 +2,7 @@
 from abjad.tools import indicatortools
 from abjad.tools import durationtools
 from scoremanager import getters
-from scoremanager.editors.InteractiveEditor \
-    import InteractiveEditor
+from scoremanager.editors.InteractiveEditor import InteractiveEditor
 
 
 class TempoEditor(InteractiveEditor):

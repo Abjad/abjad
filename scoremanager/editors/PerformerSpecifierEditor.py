@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
-from scoremanager.editors.SpecifierEditor \
-    import SpecifierEditor
-from scoremanager.specifiers.PerformerSpecifier \
-    import PerformerSpecifier
+from scoremanager.editors.SpecifierEditor import SpecifierEditor
+from scoremanager.specifiers.PerformerSpecifier import PerformerSpecifier
 from scoremanager import iotools
 
 

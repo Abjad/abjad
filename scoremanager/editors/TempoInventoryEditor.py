@@ -1,12 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import indicatortools
 from scoremanager import getters
-from scoremanager.editors.ObjectInventoryEditor \
-    import ObjectInventoryEditor
-from scoremanager.editors.TempoEditor \
-    import TempoEditor
-from scoremanager.iotools.UserInputGetter \
-    import UserInputGetter
+from scoremanager.editors.ObjectInventoryEditor import ObjectInventoryEditor
+from scoremanager.editors.TempoEditor import TempoEditor
+from scoremanager.iotools.UserInputGetter import UserInputGetter
 
 
 class TempoInventoryEditor(ObjectInventoryEditor):

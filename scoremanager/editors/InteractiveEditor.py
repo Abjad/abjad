@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from scoremanager.core.ScoreManagerObject \
-    import ScoreManagerObject
+from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
 class InteractiveEditor(ScoreManagerObject):

@@ -1,8 +1,5 @@
 # -*- encoding: utf-8 -*-
-from scoremanager import getters
-from scoremanager import wizards
-from scoremanager.editors.SpecifierEditor \
-    import SpecifierEditor 
+from scoremanager.editors.SpecifierEditor import SpecifierEditor 
 
 
 class InstrumentSpecifierEditor(SpecifierEditor):
@@ -11,7 +8,9 @@ class InstrumentSpecifierEditor(SpecifierEditor):
 
     @property
     def target_manifest(self):
+        from scoremanager import getters
         from scoremanager import specifiers
+        from scoremanager import wizards
         return self.TargetManifest(
             specifiers.InstrumentSpecifier,
             ('custom_identifier', 'id', getters.get_string),

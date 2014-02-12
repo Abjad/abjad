@@ -2,8 +2,7 @@
 from scoremanager import getters
 from scoremanager import specifiers
 from scoremanager import wizards
-from scoremanager.editors.ObjectInventoryEditor \
-    import ObjectInventoryEditor
+from scoremanager.editors.ObjectInventoryEditor import ObjectInventoryEditor
 
 
 class MusicContributionSpecifierEditor(ObjectInventoryEditor):

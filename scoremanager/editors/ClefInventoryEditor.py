@@ -2,8 +2,7 @@
 from abjad.tools import indicatortools
 from scoremanager import iotools
 from scoremanager.editors.ClefEditor import ClefEditor
-from scoremanager.editors.ObjectInventoryEditor \
-    import ObjectInventoryEditor
+from scoremanager.editors.ObjectInventoryEditor import ObjectInventoryEditor
 
 
 class ClefInventoryEditor(ObjectInventoryEditor):

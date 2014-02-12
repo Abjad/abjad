@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 from scoremanager import getters
 from scoremanager import specifiers
-from scoremanager.editors.ObjectInventoryEditor \
-    import ObjectInventoryEditor
+from scoremanager.editors.ObjectInventoryEditor import ObjectInventoryEditor
 from scoremanager.editors.MusicContributionSpecifierEditor \
     import MusicContributionSpecifierEditor
 
