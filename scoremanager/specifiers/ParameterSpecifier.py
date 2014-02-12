@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
-from scoremanager.specifiers.Specifier \
-	import Specifier
+from scoremanager.specifiers.Specifier import Specifier
 
 
 class ParameterSpecifier(Specifier):

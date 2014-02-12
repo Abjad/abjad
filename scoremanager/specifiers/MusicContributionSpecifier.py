@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.datastructuretools.TypedList import TypedList
 from scoremanager.specifiers.Specifier import Specifier
-from scoremanager.specifiers.ArticulationSpecifier \
-    import ArticulationSpecifier
+from scoremanager.specifiers.ArticulationSpecifier import ArticulationSpecifier
 
 
 class MusicContributionSpecifier(Specifier, TypedList):

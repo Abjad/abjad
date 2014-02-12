@@ -3,8 +3,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 from abjad.tools.topleveltools import new
 from scoremanager.specifiers.MusicContributionSpecifier \
     import MusicContributionSpecifier
-from scoremanager.specifiers.Specifier \
-    import Specifier
+from scoremanager.specifiers.Specifier import Specifier
 
 
 class MusicSpecifier(Specifier, TypedList):
