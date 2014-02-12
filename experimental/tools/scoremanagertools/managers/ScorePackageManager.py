@@ -25,14 +25,12 @@ class ScorePackageManager(PackageManager):
             score_package_path=packagesystem_path, 
             session=self.session,
             )
-        #package_path = '{}.instrumentation'.format(self.package_path)
         instrumentation_module_file_path = os.path.join(
             self.filesystem_path,
             'instrumentation.py',
             )
         self._instrumentation_module_manager = \
             scoremanagertools.managers.FileManager(
-            #package_path,
             instrumentation_module_file_path,
             session=self.session,
             )
@@ -470,7 +468,6 @@ class ScorePackageManager(PackageManager):
             self.session.is_backtracking_locally = True
 
     def interactively_view_instrumentation_module(self):
-        #return self.instrumentation_module_manager.interactively_view()
         return self.instrumentation_module_manager.interactively_edit()
 
     def interactively_view_score(self, pending_user_input=None):
