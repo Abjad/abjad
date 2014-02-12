@@ -3,8 +3,7 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from scoremanagertools import iotools
-from scoremanagertools.editors.InteractiveEditor \
-    import InteractiveEditor
+from scoremanagertools.editors.InteractiveEditor import InteractiveEditor
 
 
 class ListEditor(InteractiveEditor):

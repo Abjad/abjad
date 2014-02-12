@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import markuptools
 from scoremanagertools import getters
-from scoremanagertools.editors.InteractiveEditor \
-    import InteractiveEditor
+from scoremanagertools.editors.InteractiveEditor import InteractiveEditor
 
 
 class MarkupEditor(InteractiveEditor):

@@ -4,10 +4,8 @@ from abjad.tools import markuptools
 from scoremanagertools import getters
 from scoremanagertools.editors.ObjectInventoryEditor \
     import ObjectInventoryEditor
-from scoremanagertools.editors.MarkupEditor \
-    import MarkupEditor
-from scoremanagertools.iotools.UserInputGetter \
-    import UserInputGetter
+from scoremanagertools.editors.MarkupEditor import MarkupEditor
+from scoremanagertools.iotools.UserInputGetter import UserInputGetter
 
 
 class MarkupInventoryEditor(ObjectInventoryEditor):

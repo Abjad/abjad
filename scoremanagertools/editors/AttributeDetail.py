@@ -1,10 +1,7 @@
 # -*- encoding: utf-8 -*-
 import types
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from scoremanagertools.editors.InteractiveEditor \
-    import InteractiveEditor
-from scoremanagertools.iotools.Selector import Selector
-from scoremanagertools.wizards.Wizard import Wizard
+from scoremanagertools.editors.InteractiveEditor import InteractiveEditor
 
 
 class AttributeDetail(AbjadObject):
@@ -68,6 +65,8 @@ class AttributeDetail(AbjadObject):
         session=None, 
         **kwargs
         ):
+        from scoremanagertools import iotools
+        from scoremanagertools import wizards
         if isinstance(self.editor_callable, types.FunctionType) and \
             self.editor_callable.__name__.startswith('make_'):
             editor = self.editor_callable(session=session, **kwargs)
@@ -85,9 +84,9 @@ class AttributeDetail(AbjadObject):
                 target=prepopulated_value, 
                 **kwargs
                 )
-        elif issubclass(self.editor_callable, Selector):
+        elif issubclass(self.editor_callable, iotools.Selector):
             editor = self.editor_callable(session=session, **kwargs)
-        elif issubclass(self.editor_callable, Wizard):
+        elif issubclass(self.editor_callable, wizards.Wizard):
             editor = self.editor_callable(
                 session=session, target=prepopulated_value, **kwargs)
         else:

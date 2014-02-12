@@ -2,8 +2,7 @@
 from abjad.tools import instrumenttools
 from scoremanagertools import getters
 from scoremanagertools import wizards
-from scoremanagertools.editors.ListEditor \
-    import ListEditor
+from scoremanagertools.editors.ListEditor import ListEditor
 from scoremanagertools.editors.PerformerEditor \
     import PerformerEditor
 

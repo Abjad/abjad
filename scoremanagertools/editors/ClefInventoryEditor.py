@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import indicatortools
 from scoremanagertools import iotools
-from scoremanagertools.editors.ClefEditor \
-    import ClefEditor
+from scoremanagertools.editors.ClefEditor import ClefEditor
 from scoremanagertools.editors.ObjectInventoryEditor \
     import ObjectInventoryEditor
 

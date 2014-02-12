@@ -3,8 +3,7 @@ from abjad.tools import instrumenttools
 from scoremanagertools import getters
 from scoremanagertools import iotools
 from scoremanagertools import wizards
-from scoremanagertools.editors.InteractiveEditor \
-    import InteractiveEditor
+from scoremanagertools.editors.InteractiveEditor import InteractiveEditor
 
 
 class InstrumentEditor(InteractiveEditor):
