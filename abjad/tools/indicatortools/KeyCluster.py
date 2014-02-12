@@ -16,13 +16,14 @@ class KeyCluster(AbjadObject):
 
         >>> print format(chord)
         \once \override Accidental.stencil = ##f
+        \once \override AccidentalCautionary.stencil = ##f
         \once \override Arpeggio.X-offset = #-2
         \once \override NoteHead.stencil = #ly:text-interface::print
         \once \override NoteHead.text = \markup {
             \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
         }
         <c' e' g' b' d'' f''>8
-            ^ \markup {
+            \markup {
                 \center-align
                     \concat
                         {
@@ -38,6 +39,7 @@ class KeyCluster(AbjadObject):
     __slots__ = (
         '_include_black_keys',
         '_include_white_keys',
+        '_markup_direction',
         '_suppress_markup',
         )
 
@@ -47,11 +49,14 @@ class KeyCluster(AbjadObject):
         self,
         include_black_keys=True,
         include_white_keys=True,
+        markup_direction=None,
         suppress_markup=False,
         ):
         assert include_black_keys or include_white_keys
         self._include_black_keys = bool(include_black_keys)
         self._include_white_keys = bool(include_white_keys)
+        assert markup_direction in (None, Up, Down)
+        self._markup_direction = markup_direction
         self._suppress_markup = bool(suppress_markup)
 
     ### SPECIAL METHODS ###
@@ -79,6 +84,7 @@ class KeyCluster(AbjadObject):
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
         lilypond_format_bundle.grob_overrides.append(
             '\\once \\override Accidental.stencil = ##f\n'
+            '\\once \\override AccidentalCautionary.stencil = ##f\n'
             '\\once \\override Arpeggio.X-offset = #-2\n'
             '\\once \\override NoteHead.stencil = #ly:text-interface::print\n'
             '\\once \\override NoteHead.text = \markup {\n'
@@ -92,7 +98,10 @@ class KeyCluster(AbjadObject):
                 string = r'\center-align \flat'
             else:
                 string = r'\center-align \natural'
-            markup = markuptools.Markup(string, direction=Up)
+            markup = markuptools.Markup(
+                string,
+                direction=self.markup_direction,
+                )
             markup_format_pieces = markup._get_format_pieces()
             lilypond_format_bundle.right.markup.extend(markup_format_pieces)
         return lilypond_format_bundle
@@ -114,6 +123,14 @@ class KeyCluster(AbjadObject):
         Returns boolean.
         '''
         return self._include_white_keys
+
+    @property
+    def markup_direction(self):
+        r'''Gets markup direction.
+
+        Returns ordinal constant or none.
+        '''
+        return self._markup_direction
 
     @property
     def suppress_markup(self):
