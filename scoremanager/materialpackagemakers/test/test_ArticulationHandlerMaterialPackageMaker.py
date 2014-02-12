@@ -22,6 +22,7 @@ def test_ArticulationHandlerMaterialPackageMaker_01():
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
+            'illustration_builder.py',
             'output_material.py', 
             ]
         handler = handlertools.ReiteratedArticulationHandler(

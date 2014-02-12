@@ -19,6 +19,7 @@ def test_ListMaterialPackageMaker_01():
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
+            'illustration_builder.py',
             'output_material.py',
             ]
         assert mpp.output_material == [17, 'foo']

@@ -20,6 +20,7 @@ def test_TempoInventoryMaterialPackageMaker_01():
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
+            'illustration_builder.py',
             'output_material.py', 
             ]
         inventory = indicatortools.TempoInventory([((1, 4), 60), ((1, 4), 90)])

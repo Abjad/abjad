@@ -51,6 +51,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_02():
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
+            'illustration_builder.py',
             'output_material.py',
             ]
         pitch_range_inventory = pitchtools.PitchRangeInventory([

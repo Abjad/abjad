@@ -21,6 +21,7 @@ def test_MarkupInventoryMaterialPackageMaker_01():
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
+            'illustration_builder.py',
             'output_material.py',
             ]
         inventory = markuptools.MarkupInventory([
