@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
-from scoremanager.wizards.HandlerCreationWizard \
-    import HandlerCreationWizard
+from scoremanager.wizards.HandlerCreationWizard import HandlerCreationWizard
 
 
 class RhythmMakerCreationWizard(HandlerCreationWizard):
@@ -18,7 +17,6 @@ class RhythmMakerCreationWizard(HandlerCreationWizard):
             session=session,
             target=target,
             )
-
         selector = Selector.make_rhythm_maker_class_name_selector(
             session=self.session,
             )

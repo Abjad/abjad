@@ -1,9 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import instrumenttools
-from abjad.tools.instrumenttools.Instrument import Instrument
 from scoremanager import iotools
-from scoremanager.wizards.InstrumentCreationWizard \
-    import InstrumentCreationWizard
 from scoremanager.wizards.Wizard import Wizard
 
 
@@ -24,6 +21,7 @@ class InstrumentSelectionWizard(Wizard):
         head=None,
         pending_user_input=None,
         ):
+        from scoremanager import wizards
         self.session.io_manager._assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
@@ -37,14 +35,14 @@ class InstrumentSelectionWizard(Wizard):
                 self.session.pop_breadcrumb()
                 self.session.restore_breadcrumbs(cache=cache)
                 return
-            if isinstance(result, Instrument):
+            if isinstance(result, instrumenttools.Instrument):
                 self.session.pop_breadcrumb()
                 self.session.restore_breadcrumbs(cache=cache)
                 self.target = result
                 return self.target
             elif not result == 'other':
                 raise ValueError
-        wizard = InstrumentCreationWizard(session=self.session)
+        wizard = wizards.InstrumentCreationWizard(session=self.session)
         with self.backtracking:
             result = wizard._run()
         if self.session.backtrack():

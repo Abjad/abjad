@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
-from scoremanager.core.ScoreManagerObject \
-    import ScoreManagerObject
+from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
 # TODO: extend repr to show target, if any

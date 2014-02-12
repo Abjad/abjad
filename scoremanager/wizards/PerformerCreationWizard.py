@@ -2,8 +2,6 @@
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from scoremanager import iotools
-from scoremanager.wizards.InstrumentCreationWizard \
-    import InstrumentCreationWizard
 from scoremanager.wizards.Wizard import Wizard
 
 
@@ -95,6 +93,7 @@ class PerformerCreationWizard(Wizard):
         clear=True,
         pending_user_input=None,
         ):
+        from scoremanager import wizards
         self.session.io_manager._assign_user_input(pending_user_input)
         menu = self.make_performer_configuration_menu(performer)
         while True:
@@ -111,7 +110,7 @@ class PerformerCreationWizard(Wizard):
                 break
             elif result in ('more', ['more']):
                 with self.backtracking:
-                    wizard = InstrumentCreationWizard(
+                    wizard = wizards.InstrumentCreationWizard(
                         session=self.session, is_ranged=True)
                     instruments = wizard._run()
                 if self.session.backtrack():
