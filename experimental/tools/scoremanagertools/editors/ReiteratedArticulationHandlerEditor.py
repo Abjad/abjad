@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 from experimental.tools import handlertools
 from experimental.tools.scoremanagertools import getters
-from experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor \
-    import ArticulationHandlerEditor
+from experimental.tools.scoremanagertools.editors.InteractiveEditor \
+    import InteractiveEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest \
     import TargetManifest
 
 
-class ReiteratedArticulationHandlerEditor(ArticulationHandlerEditor):
+class ReiteratedArticulationHandlerEditor(InteractiveEditor):
 
     ### CLASS VARIABLES ###
 
