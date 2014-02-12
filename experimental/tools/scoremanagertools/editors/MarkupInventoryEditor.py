@@ -4,8 +4,6 @@ from abjad.tools import markuptools
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
     import ObjectInventoryEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
 from experimental.tools.scoremanagertools.editors.MarkupEditor \
     import MarkupEditor
 from experimental.tools.scoremanagertools.iotools.UserInputGetter \
@@ -28,7 +26,7 @@ class MarkupInventoryEditor(ObjectInventoryEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
+        return self.TargetManifest(
             markuptools.MarkupInventory,
             ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
             target_name_attribute='inventory name',

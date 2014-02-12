@@ -147,6 +147,11 @@ class InteractiveEditor(ScoreManagerObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def TargetManifest(self):
+        from experimental.tools import scoremanagertools
+        return scoremanagertools.editors.TargetManifest
+
+    @property
     def attributes_in_memory(self):
         return self._attributes_in_memory
 

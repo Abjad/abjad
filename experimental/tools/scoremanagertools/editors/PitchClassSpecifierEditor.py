@@ -6,8 +6,6 @@ from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor \
     import ParameterSpecifierEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest \
     import TargetManifest
-from experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier \
-    import PitchClassSpecifier
 
 
 class PitchClassSpecifierEditor(ParameterSpecifierEditor):
@@ -16,7 +14,8 @@ class PitchClassSpecifierEditor(ParameterSpecifierEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
+        from scoremanagertools import specifiers
+        return self.TargetManifest(
             PitchClassSpecifier,
             ('custom_identifier', 'id', getters.get_string),
             ('description', 'ds', getters.get_string),

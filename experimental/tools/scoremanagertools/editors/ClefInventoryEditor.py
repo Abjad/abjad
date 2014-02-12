@@ -5,10 +5,6 @@ from experimental.tools.scoremanagertools.editors.ClefEditor \
     import ClefEditor
 from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
     import ObjectInventoryEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
-from experimental.tools.scoremanagertools.editors.TempoEditor \
-    import TempoEditor
 
 
 class ClefInventoryEditor(ObjectInventoryEditor):
@@ -27,7 +23,7 @@ class ClefInventoryEditor(ObjectInventoryEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
+        return self.TargetManifest(
             indicatortools.ClefInventory,
             target_name_attribute='name',
             )

@@ -3,8 +3,6 @@ from abjad.tools import indicatortools
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools.editors.InteractiveEditor \
     import InteractiveEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
 
 
 class ClefEditor(InteractiveEditor):
@@ -13,7 +11,7 @@ class ClefEditor(InteractiveEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
+        return self.TargetManifest(
             indicatortools.Clef,
             ('clef_name', 'nm', getters.get_string),
             )

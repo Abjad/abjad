@@ -5,8 +5,6 @@ from abjad.tools import stringtools
 from experimental.tools.scoremanagertools import iotools
 from experimental.tools.scoremanagertools.editors.InteractiveEditor \
     import InteractiveEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
 
 
 class ListEditor(InteractiveEditor):
@@ -88,7 +86,7 @@ class ListEditor(InteractiveEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(list,)
+        return self.TargetManifest(list,)
 
     @property
     def target_summary_lines(self):

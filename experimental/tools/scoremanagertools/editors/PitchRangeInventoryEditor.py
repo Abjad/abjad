@@ -6,8 +6,6 @@ from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
     import ObjectInventoryEditor
 from experimental.tools.scoremanagertools.editors.PitchRangeEditor \
     import PitchRangeEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
 from experimental.tools.scoremanagertools.iotools.UserInputGetter \
     import UserInputGetter
 
@@ -29,7 +27,7 @@ class PitchRangeInventoryEditor(ObjectInventoryEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
+        return self.TargetManifest(
             pitchtools.PitchRangeInventory,
             target_name_attribute='name',
             )

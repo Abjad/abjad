@@ -3,10 +3,6 @@ from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools import iotools
 from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor \
     import ParameterSpecifierEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
-from experimental.tools.scoremanagertools.specifiers.DynamicSpecifier \
-    import DynamicSpecifier
 
 
 class DynamicSpecifierEditor(ParameterSpecifierEditor):
@@ -15,8 +11,9 @@ class DynamicSpecifierEditor(ParameterSpecifierEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
-            DynamicSpecifier,
+        from scoremanagertools import specifiers
+        return self.TargetManifest(
+            specifiers.DynamicSpecifier,
             ('custom_identifier', 'id', getters.get_string),
             ('description', 'ds', getters.get_string),
             (),

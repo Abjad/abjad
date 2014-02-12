@@ -1,22 +1,19 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
-from abjad.tools.instrumenttools.Instrument import Instrument
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools import wizards
 from experimental.tools.scoremanagertools.editors.ListEditor \
     import ListEditor
 from experimental.tools.scoremanagertools.editors.InstrumentEditor \
     import InstrumentEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
 
 
 class PerformerEditor(ListEditor):
 
     ### CLASS VARIABLES ###
 
-    item_class = Instrument
+    item_class = instrumenttools.Instrument
 
     item_creator_class = wizards.InstrumentCreationWizard
 
@@ -34,7 +31,7 @@ class PerformerEditor(ListEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
+        return self.TargetManifest(
             instrumenttools.Performer,
             ('name', 'nm', getters.get_string),
             target_attribute_name='name',

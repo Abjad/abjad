@@ -5,8 +5,6 @@ from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
     import ObjectInventoryEditor
 from experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor \
     import MusicContributionSpecifierEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
 
 
 class MusicSpecifierEditor(ObjectInventoryEditor):
@@ -25,6 +23,7 @@ class MusicSpecifierEditor(ObjectInventoryEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
+        from scoremanagertools import specifiers
+        return self.TargetManifest(
             specifiers.MusicSpecifier,
             )

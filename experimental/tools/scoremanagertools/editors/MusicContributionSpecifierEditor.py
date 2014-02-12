@@ -4,8 +4,6 @@ from experimental.tools.scoremanagertools import specifiers
 from experimental.tools.scoremanagertools import wizards
 from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
     import ObjectInventoryEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
 
 
 class MusicContributionSpecifierEditor(ObjectInventoryEditor):
@@ -15,16 +13,6 @@ class MusicContributionSpecifierEditor(ObjectInventoryEditor):
     item_class = specifiers.ParameterSpecifier
 
     item_creator_class = wizards.ParameterSpecifierCreationWizard
-
-    @staticmethod
-    def item_editor_class(target=None, session=None):
-        from experimental.tools import scoremanagertools
-        if target:
-            wizard = \
-                scoremanagertools.wizards.ParameterSpecifierCreationWizard()
-            target_editor = wizard.get_target_editor(
-                target.__class__.__name__, target=target)
-            return target_editor
 
     item_identifier = 'parameter specifier'
 
@@ -40,7 +28,8 @@ class MusicContributionSpecifierEditor(ObjectInventoryEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
+        from scoremanagertools import specifiers
+        return self.TargetManifest(
             specifiers.MusicContributionSpecifier,
             ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
             ('description', 'ds', getters.get_string),
@@ -48,6 +37,16 @@ class MusicContributionSpecifierEditor(ObjectInventoryEditor):
             )
 
     ### PUBLIC METHODS ###
+
+    @staticmethod
+    def item_editor_class(target=None, session=None):
+        from experimental.tools import scoremanagertools
+        if target:
+            wizard = \
+                scoremanagertools.wizards.ParameterSpecifierCreationWizard()
+            target_editor = wizard.get_target_editor(
+                target.__class__.__name__, target=target)
+            return target_editor
 
     def menu_key_to_delegated_editor_kwargs(self, menu_key):
         kwargs = {}

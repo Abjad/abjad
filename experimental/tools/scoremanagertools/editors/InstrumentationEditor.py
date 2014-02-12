@@ -6,8 +6,6 @@ from experimental.tools.scoremanagertools.editors.ListEditor \
     import ListEditor
 from experimental.tools.scoremanagertools.editors.PerformerEditor \
     import PerformerEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
 
 
 class InstrumentationEditor(ListEditor):
@@ -38,7 +36,7 @@ class InstrumentationEditor(ListEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
+        return self.TargetManifest(
             instrumenttools.InstrumentationSpecifier,
             )
 

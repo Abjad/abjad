@@ -1,11 +1,8 @@
 # -*- encoding: utf-8 -*-
 from experimental.tools.scoremanagertools import getters
-from experimental.tools.scoremanagertools import specifiers
 from experimental.tools.scoremanagertools import wizards
 from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor \
-    import ParameterSpecifierEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
+    import ParameterSpecifierEditor 
 
 
 class InstrumentSpecifierEditor(ParameterSpecifierEditor):
@@ -14,7 +11,8 @@ class InstrumentSpecifierEditor(ParameterSpecifierEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
+        from scoremanagertools import specifiers
+        return self.TargetManifest(
             specifiers.InstrumentSpecifier,
             ('custom_identifier', 'id', getters.get_string),
             ('instrument', 'st', wizards.InstrumentSelectionWizard),

@@ -1,15 +1,10 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import instrumenttools
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools import iotools
 from experimental.tools.scoremanagertools import wizards
-from abjad.tools.instrumenttools.Instrument import Instrument
-from abjad.tools import instrumenttools
-from experimental.tools.scoremanagertools.editors.ClefInventoryEditor \
-    import ClefInventoryEditor
 from experimental.tools.scoremanagertools.editors.InteractiveEditor \
     import InteractiveEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
 
 
 class InstrumentEditor(InteractiveEditor):
@@ -18,8 +13,9 @@ class InstrumentEditor(InteractiveEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
-            Instrument,
+        from scoremanagertools import editors
+        return self.TargetManifest(
+            instrumenttools.Instrument,
             (
                 'instrument_name', 
                 'instrument name', 
@@ -61,7 +57,7 @@ class InstrumentEditor(InteractiveEditor):
                 'allowable clefs',
                 'clefs', 
                 'cf', 
-                ClefInventoryEditor,
+                editors.ClefInventoryEditor,
                 False,
                 ),
             )

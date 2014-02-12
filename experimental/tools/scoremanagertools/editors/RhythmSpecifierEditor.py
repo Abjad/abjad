@@ -3,8 +3,6 @@ from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools import iotools
 from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor \
     import ParameterSpecifierEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
 from experimental.tools.scoremanagertools.specifiers.RhythmSpecifier \
     import RhythmSpecifier
 
@@ -15,7 +13,7 @@ class RhythmSpecifierEditor(ParameterSpecifierEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
+        return self.TargetManifest(
             RhythmSpecifier,
             ('custom_identifier', 'id', getters.get_string),
             ('description', 'ds', getters.get_string),

@@ -5,8 +5,6 @@ from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
     import ObjectInventoryEditor
 from experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor \
     import OctaveTranspositionMappingEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
 
 
 class OctaveTranspositionMappingInventoryEditor(ObjectInventoryEditor):
@@ -25,7 +23,7 @@ class OctaveTranspositionMappingInventoryEditor(ObjectInventoryEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
+        return self.TargetManifest(
             pitchtools.OctaveTranspositionMappingInventory,
             ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
             target_attribute_name='name',

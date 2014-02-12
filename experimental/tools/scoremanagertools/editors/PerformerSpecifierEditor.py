@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor \
     import ParameterSpecifierEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
 from experimental.tools.scoremanagertools.specifiers.PerformerSpecifier \
     import PerformerSpecifier
 from experimental.tools.scoremanagertools import iotools
@@ -14,7 +12,7 @@ class PerformerSpecifierEditor(ParameterSpecifierEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
+        return self.TargetManifest(
             PerformerSpecifier,
             ('performer', 'pf', iotools.Selector.make_performer_selector,)
             )

@@ -3,8 +3,6 @@ from abjad.tools import indicatortools
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
     import ObjectInventoryEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
 from experimental.tools.scoremanagertools.editors.TempoEditor \
     import TempoEditor
 from experimental.tools.scoremanagertools.iotools.UserInputGetter \
@@ -27,7 +25,7 @@ class TempoInventoryEditor(ObjectInventoryEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
+        return self.TargetManifest(
             indicatortools.TempoInventory,
             ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
             target_name_attribute='inventory name',

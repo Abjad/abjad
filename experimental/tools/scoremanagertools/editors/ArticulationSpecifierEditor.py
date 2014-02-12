@@ -2,10 +2,6 @@
 from experimental.tools.scoremanagertools import iotools
 from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor \
     import ParameterSpecifierEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest \
-    import TargetManifest
-from experimental.tools.scoremanagertools.specifiers.ArticulationSpecifier \
-    import ArticulationSpecifier
 
 
 class ArticulationSpecifierEditor(ParameterSpecifierEditor):
@@ -14,8 +10,9 @@ class ArticulationSpecifierEditor(ParameterSpecifierEditor):
 
     @property
     def target_manifest(self):
-        return TargetManifest(
-            ArticulationSpecifier,
+        from scoremanagertools import specifiers
+        return self.TargetManifest(
+            specifiers.ArticulationSpecifier,
             (
                 'articulation_handler_name', 
                 'articulation handler',
