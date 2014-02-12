@@ -3,8 +3,8 @@ import abc
 import os
 import readline
 import types
-from abjad.tools import systemtools
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -20,6 +20,24 @@ class IOManager(AbjadObject):
     @property
     def session(self):
         return self._session
+
+    ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _is_score_string(string):
+        if isinstance(string, str):
+            if 3 <= len(string):
+                if 'score'.startswith(string):
+                    return True
+        return False
+
+    @staticmethod
+    def _is_home_string(string):
+        if isinstance(string, str):
+            if 3 <= len(string):
+                if 'home'.startswith(string):
+                    return True
+        return False
 
     ### PUBLIC METHODS ###
 
@@ -101,8 +119,8 @@ class IOManager(AbjadObject):
         elif key == 'here':
             self.interactively_edit_calling_code()
         elif key == 'log':
-            self.interactively_exec_statement(
-                'systemtools.IOManager.view_last_log()')
+            statement = 'systemtools.IOManager.view_last_log()'
+            self.interactively_exec_statement(statement)
         elif key == 'next':
             self.session.is_navigating_to_next_score = True
             self.session.is_backtracking_to_score_manager = True
@@ -114,12 +132,9 @@ class IOManager(AbjadObject):
 #        # TODO: make this redraw!
 #        elif key == 'r':
 #            pass
-        elif isinstance(key, str) and \
-            3 <= len(key) and 'score'.startswith(key):
-            if self.session.is_in_score:
-                self.session.is_backtracking_to_score = True
-        elif isinstance(key, str) and \
-            3 <= len(key) and 'home'.startswith(key):
+        elif self._is_score_string(key):
+            self.session.is_backtracking_to_score = True
+        elif self._is_home_string(key):
             self.session.is_backtracking_to_score_manager = True
         elif key == 'twt':
             self.session.enable_where = not self.session.enable_where

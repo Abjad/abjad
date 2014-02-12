@@ -20,7 +20,7 @@ def test_InstrumentEditor_select_instrument_01():
 
     editor = scoremanagertools.editors.InstrumentEditor()
     editor._run(pending_user_input='score q')
-    assert editor.session.io_transcript.signature == (4, (0, 2))
+    assert editor.session.io_transcript.signature == (2,)
 
     editor = scoremanagertools.editors.InstrumentEditor()
     editor._run(pending_user_input='foo q')
