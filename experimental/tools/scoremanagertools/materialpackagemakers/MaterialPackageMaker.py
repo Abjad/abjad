@@ -153,7 +153,7 @@ class MaterialPackageMaker(MaterialPackageManager):
         include_newline=True,
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         number = int(number)
         if self.user_input_wrapper_in_memory is None:
             return
@@ -195,7 +195,7 @@ class MaterialPackageMaker(MaterialPackageManager):
         self,
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         self.user_input_module_manager.interactively_view()
 
     def load_user_input_wrapper_demo_values(self, prompt=False):

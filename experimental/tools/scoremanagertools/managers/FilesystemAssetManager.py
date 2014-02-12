@@ -201,7 +201,7 @@ class FilesystemAssetManager(ScoreManagerObject):
             self._filesystem_path = new_path
 
     def _run(self, cache=False, clear=True, pending_user_input=None):
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.session.push_breadcrumb(self._breadcrumb)
@@ -258,7 +258,7 @@ class FilesystemAssetManager(ScoreManagerObject):
 
         Returns none.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
         result = getter._run()
         if self.session.backtrack():
@@ -283,7 +283,7 @@ class FilesystemAssetManager(ScoreManagerObject):
 
         Returns none.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         message = '{} will be removed.'
         message = message.format(self.filesystem_path)
         self.session.io_manager.display([message, ''])
@@ -315,7 +315,7 @@ class FilesystemAssetManager(ScoreManagerObject):
 
         Returns none.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
         getter.include_newlines = False
         result = getter._run()
@@ -339,7 +339,7 @@ class FilesystemAssetManager(ScoreManagerObject):
 
         Returns none.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_file_name('name of boilerplate asset')
         with self.backtracking:

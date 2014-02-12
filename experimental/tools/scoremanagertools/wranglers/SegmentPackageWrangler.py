@@ -81,7 +81,7 @@ class SegmentPackageWrangler(PackageWrangler):
         self,
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         parts = (self.session.current_score_directory_path,)
         parts += self.score_package_asset_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
@@ -116,7 +116,7 @@ class SegmentPackageWrangler(PackageWrangler):
         self,
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         parts = (self.session.current_score_directory_path,)
         parts += self.score_package_asset_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
@@ -149,7 +149,7 @@ class SegmentPackageWrangler(PackageWrangler):
         self,
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         parts = (self.session.current_score_directory_path,)
         parts += self.score_package_asset_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)

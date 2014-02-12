@@ -125,7 +125,7 @@ class Menu(ScoreManagerObject):
         self.session.hide_next_redraw = False
         io_manager = self.session.io_manager
         directive = \
-            io_manager.handle_hidden_menu_section_return_value(directive)
+            io_manager._handle_hidden_menu_section_return_value(directive)
         if directive is None and user_entered_lone_return:
             return 'user entered lone return'
         elif directive is None and not user_entered_lone_return:
@@ -261,7 +261,7 @@ class Menu(ScoreManagerObject):
         predetermined_user_input=None, 
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         clear, hide_current_run = clear, False
         while True:
             self.should_clear_terminal = clear

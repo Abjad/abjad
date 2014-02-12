@@ -120,7 +120,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.indent_level = 1

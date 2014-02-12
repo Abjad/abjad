@@ -119,7 +119,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
         Returns none.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             asset_package_path = \
                 self.interactively_select_asset_packagesystem_path(
@@ -141,7 +141,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
         Returns string.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.session.push_breadcrumb(

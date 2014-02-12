@@ -156,7 +156,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         Returns none.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         manager = self._asset_manager_class(
             filesystem_path=filesystem_path, 
             session=self.session,
@@ -205,7 +205,7 @@ class StylesheetFileWrangler(FileWrangler):
         Returns none.
         '''
         from experimental.tools import scoremanagertools
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             storehouse_path = \
                 self.interactively_select_asset_storehouse_filesystem_path(

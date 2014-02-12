@@ -205,7 +205,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         rollback=None, 
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
@@ -235,7 +235,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self,
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         view_inventory = self._read_view_inventory_from_disk()
         if view_inventory is None:
             message = 'no views found.'
@@ -308,7 +308,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
         Returns none.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         getter = self.session.io_manager.make_getter(where=self._where)
         asset_section = self._main_menu._asset_section
         getter.append_menu_section_range(
@@ -344,7 +344,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
         Returns none.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             asset_filesystem_path = \
                 self.interactively_select_asset_filesystem_path()
@@ -363,7 +363,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
         Returns string.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         menu = self._make_asset_selection_menu()
         while True:
@@ -395,7 +395,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
         Returns string.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         menu = self.session.io_manager.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
@@ -425,7 +425,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self,
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         view_inventory = self._read_view_inventory_from_disk()
         if view_inventory is None:
             message = 'no views found.'

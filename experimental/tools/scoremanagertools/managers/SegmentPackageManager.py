@@ -168,7 +168,7 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         self.segment_definition_module_manager.interactively_edit()
 
     def interactively_list_versions_directory(self):

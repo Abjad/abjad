@@ -121,7 +121,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
         Returns none.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_material_package_maker_class_name(
             'material manager name')

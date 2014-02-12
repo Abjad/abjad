@@ -133,7 +133,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
                 self._prompt_index += 1
                 break
             user_input = \
-                self.session.io_manager.handle_hidden_menu_section_return_value(
+                self.session.io_manager._handle_hidden_menu_section_return_value(
                 user_input)
             if self.session.backtrack():
                 self._current_prompt_is_done = True
@@ -174,7 +174,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         clear_terminal=False,
         include_chevron=True,
         ):
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             self._present_prompts_and_evaluate_user_input(
                 clear_terminal=clear_terminal,

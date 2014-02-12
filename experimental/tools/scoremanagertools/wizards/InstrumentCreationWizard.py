@@ -33,7 +33,7 @@ class InstrumentCreationWizard(Wizard):
         head=None,
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
         selector = iotools.Selector(session=self.session)

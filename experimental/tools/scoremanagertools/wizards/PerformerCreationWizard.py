@@ -31,7 +31,7 @@ class PerformerCreationWizard(Wizard):
         pending_user_input=None,
         ):
         from experimental.tools.scoremanagertools.iotools import Selector
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         try_again = False
         performers = []
@@ -95,7 +95,7 @@ class PerformerCreationWizard(Wizard):
         clear=True,
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager._assign_user_input(pending_user_input)
         menu = self.make_performer_configuration_menu(performer)
         while True:
             self.session.push_breadcrumb(performer.name)

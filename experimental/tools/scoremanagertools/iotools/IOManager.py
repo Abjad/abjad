@@ -28,25 +28,7 @@ class IOManager(IOManager):
 
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _is_score_string(string):
-        if isinstance(string, str):
-            if 3 <= len(string):
-                if 'score'.startswith(string):
-                    return True
-        return False
-
-    @staticmethod
-    def _is_home_string(string):
-        if isinstance(string, str):
-            if 3 <= len(string):
-                if 'home'.startswith(string):
-                    return True
-        return False
-
-    ### PUBLIC METHODS ###
-
-    def assign_user_input(self, pending_user_input=None):
+    def _assign_user_input(self, pending_user_input=None):
         if pending_user_input is not None:
             if self.session.pending_user_input:
                 self.session.pending_user_input = \
@@ -54,53 +36,6 @@ class IOManager(IOManager):
                     self.session.pending_user_input
             else:
                 self.session.pending_user_input = pending_user_input
-
-    def clear_terminal(self):
-        if not self.session.hide_next_redraw:
-            if self.session.is_displayable:
-                superclass = super(IOManager, self)
-                superclass.clear_terminal()
-
-    def confirm(
-        self, 
-        prompt_string='ok?', 
-        clear_terminal=False,
-        include_chevron=False,
-        ):
-        getter = self.make_getter(where=None)
-        getter.append_yes_no_string(prompt_string)
-        getter.include_newlines = False
-        result = getter._run(
-            clear_terminal=clear_terminal,
-            include_chevron=include_chevron,
-            )
-        if self.session.backtrack():
-            return
-        return 'yes'.startswith(result.lower())
-
-    def display(
-        self, 
-        lines, 
-        capitalize_first_character=True,
-        clear_terminal=False,
-        ):
-        assert isinstance(lines, (str, list))
-        if isinstance(lines, str):
-            lines = [lines]
-        if not self.session.hide_next_redraw:
-            if capitalize_first_character:
-                lines = [
-                    stringtools.capitalize_string_start(line) 
-                    for line in lines
-                    ]
-            if lines:
-                if self.session.transcribe_next_command:
-                    self.session.io_transcript.append_lines(lines)
-            if self.session.is_displayable:
-                if clear_terminal:
-                    self.clear_terminal()
-                for line in lines:
-                    print line
 
     @staticmethod
     def _get_one_line_menuing_summary(expr):
@@ -113,7 +48,7 @@ class IOManager(IOManager):
         else:
             return repr(expr)
 
-    def handle_hidden_menu_section_return_value(self, directive):
+    def _handle_hidden_menu_section_return_value(self, directive):
         if isinstance(directive, list) and len(directive) == 1:
             key = directive[0]
         else:
@@ -146,118 +81,23 @@ class IOManager(IOManager):
         else:
             return directive
 
-    def handle_raw_input(
-        self, 
-        prompt_string, 
-        include_chevron=True, 
-        include_newline=True, 
-        prompt_character='>',
-        capitalize_prompt=True,
-        ):
-        if capitalize_prompt:
-            prompt_string = stringtools.capitalize_string_start(prompt_string)
-        if include_chevron:
-            prompt_string = prompt_string + prompt_character + ' '
-        else:
-            prompt_string = prompt_string + ' '
-        if self.session.is_displayable:
-            user_input = raw_input(prompt_string)
-            if include_newline:
-                if not user_input == 'help':
-                    print ''
-        else:
-            user_input = self.pop_from_pending_user_input()
-        if self.session.transcribe_next_command:
-            self.session.command_history.append(user_input)
-        if user_input == '.':
-            last_semantic_command = self.session.last_semantic_command
-            user_input = last_semantic_command
-        if self.session.transcribe_next_command:
-            menu_chunk = []
-            menu_chunk.append('{}{}'.format(prompt_string, user_input))
-            if include_newline:
-                if not user_input == 'help':
-                    menu_chunk.append('')
-            self.session.io_transcript.append_lines(menu_chunk)
-        return user_input
+    @staticmethod
+    def _is_score_string(string):
+        if isinstance(string, str):
+            if 3 <= len(string):
+                if 'score'.startswith(string):
+                    return True
+        return False
 
-    def handle_raw_input_with_default(
-        self, 
-        prompt_string, 
-        default_value=None, 
-        include_chevron=True, 
-        include_newline=True,
-        prompt_character='>', 
-        capitalize_prompt=True,
-        ):
-        if default_value in (None, 'None'):
-            default_value = ''
-        readline.set_startup_hook(lambda: readline.insert_text(default_value))
-        try:
-            return self.handle_raw_input(
-                prompt_string, 
-                include_chevron=include_chevron,
-                include_newline=include_newline, 
-                prompt_character=prompt_character,
-                capitalize_prompt=capitalize_prompt,
-                )
-        finally:
-            readline.set_startup_hook()
+    @staticmethod
+    def _is_home_string(string):
+        if isinstance(string, str):
+            if 3 <= len(string):
+                if 'home'.startswith(string):
+                    return True
+        return False
 
-    def interactively_exec_statement(self, statement=None):
-        lines = []
-        is_interactive = True
-        if statement is None:
-            statement = self.handle_raw_input('XCF', include_newline=False)
-        else:
-            is_interactive = False
-        command = 'from abjad import *'
-        exec(command)
-        try:
-            result = None
-            command = 'result = {}'.format(statement)
-            exec(command)
-            lines.append('{!r}'.format(result))
-        except:
-            lines.append('expression not executable.')
-        lines.append('')
-        if is_interactive:
-            self.display(lines)
-        self.session.hide_next_redraw = True
-
-    def make_getter(self, where=None):
-        from experimental.tools import scoremanagertools
-        getter = scoremanagertools.iotools.UserInputGetter(
-            where=where, 
-            session=self.session,
-            )
-        return getter
-
-    def make_menu(self, where=None):
-        from experimental.tools import scoremanagertools
-        menu = scoremanagertools.iotools.Menu(
-            where=where, 
-            session=self.session,
-            )
-        return menu
-
-    def make_selector(self, where=None):
-        from experimental.tools import scoremanagertools
-        selector = scoremanagertools.iotools.Selector(
-            where=where,
-            session=self.session,
-            )
-        return selector
-
-    def make_view(self, tokens, custom_identifier=None):
-        from experimental.tools import scoremanagertools
-        view = scoremanagertools.iotools.View(
-            tokens=tokens,
-            custom_identifier=custom_identifier,
-            )
-        return view
-
-    def pop_from_pending_user_input(self):
+    def _pop_from_pending_user_input(self):
         self.session.last_command_was_composite = False
         if self.session.pending_user_input is None:
             return None
@@ -284,11 +124,214 @@ class IOManager(IOManager):
         self.session.pending_user_input = pending_user_input
         return user_input
 
+    ### PUBLIC METHODS ###
+
+    def clear_terminal(self):
+        r'''Clears terminal.
+
+        Only clears terminal is session is displayable.
+
+        Returns none.
+        '''
+        if not self.session.hide_next_redraw:
+            if self.session.is_displayable:
+                superclass = super(IOManager, self)
+                superclass.clear_terminal()
+
+    def confirm(
+        self, 
+        prompt_string='ok?', 
+        clear_terminal=False,
+        include_chevron=False,
+        ):
+        r'''Prompts user to confirm.
+
+        Returns boolean.
+        '''
+        getter = self.make_getter(where=None)
+        getter.append_yes_no_string(prompt_string)
+        getter.include_newlines = False
+        result = getter._run(
+            clear_terminal=clear_terminal,
+            include_chevron=include_chevron,
+            )
+        if self.session.backtrack():
+            return
+        return 'yes'.startswith(result.lower())
+
+    def display(
+        self, 
+        lines, 
+        capitalize_first_character=True,
+        clear_terminal=False,
+        ):
+        r'''Displays `lines`.
+
+        Clears terminal first.
+
+        Returns none.
+        '''
+        assert isinstance(lines, (str, list))
+        if isinstance(lines, str):
+            lines = [lines]
+        if not self.session.hide_next_redraw:
+            if capitalize_first_character:
+                lines = [
+                    stringtools.capitalize_string_start(line) 
+                    for line in lines
+                    ]
+            if lines:
+                if self.session.transcribe_next_command:
+                    self.session.io_transcript.append_lines(lines)
+            if self.session.is_displayable:
+                if clear_terminal:
+                    self.clear_terminal()
+                for line in lines:
+                    print line
+
+    def handle_raw_input_with_default(
+        self, 
+        prompt_string, 
+        default_value=None, 
+        include_chevron=True, 
+        include_newline=True,
+        prompt_character='>', 
+        capitalize_prompt=True,
+        ):
+        r'''Handles raw input.
+
+        Appends input to command history.
+
+        Appends input to IO transscript.
+
+        Returns processed user input.
+        '''
+        if default_value in (None, 'None'):
+            default_value = ''
+        readline.set_startup_hook(lambda: readline.insert_text(default_value))
+        try:
+            if capitalize_prompt:
+                prompt_string = stringtools.capitalize_string_start(
+                    prompt_string)
+            if include_chevron:
+                prompt_string = prompt_string + prompt_character + ' '
+            else:
+                prompt_string = prompt_string + ' '
+            if self.session.is_displayable:
+                user_input = raw_input(prompt_string)
+                if include_newline:
+                    if not user_input == 'help':
+                        print ''
+            else:
+                user_input = self._pop_from_pending_user_input()
+            if self.session.transcribe_next_command:
+                self.session.command_history.append(user_input)
+            if user_input == '.':
+                last_semantic_command = self.session.last_semantic_command
+                user_input = last_semantic_command
+            if self.session.transcribe_next_command:
+                menu_chunk = []
+                menu_chunk.append('{}{}'.format(prompt_string, user_input))
+                if include_newline:
+                    if not user_input == 'help':
+                        menu_chunk.append('')
+                self.session.io_transcript.append_lines(menu_chunk)
+            return user_input
+        finally:
+            readline.set_startup_hook()
+
+    def interactively_exec_statement(self, statement=None):
+        r'''Interactively executes `statement`.
+
+        Hides next redraw.
+
+        Returns none.
+        '''
+        lines = []
+        is_interactive = True
+        if statement is None:
+            statement = self.handle_raw_input_with_default('XCF', include_newline=False)
+        else:
+            is_interactive = False
+        command = 'from abjad import *'
+        exec(command)
+        try:
+            result = None
+            command = 'result = {}'.format(statement)
+            exec(command)
+            lines.append('{!r}'.format(result))
+        except:
+            lines.append('expression not executable.')
+        lines.append('')
+        if is_interactive:
+            self.display(lines)
+        self.session.hide_next_redraw = True
+
+    def make_getter(self, where=None):
+        r'''Makes getter.
+
+        Returns getter.
+        '''
+        from experimental.tools import scoremanagertools
+        getter = scoremanagertools.iotools.UserInputGetter(
+            where=where, 
+            session=self.session,
+            )
+        return getter
+
+    def make_menu(self, where=None):
+        r'''Makes menu.
+
+        Returns menu.
+        '''
+        from experimental.tools import scoremanagertools
+        menu = scoremanagertools.iotools.Menu(
+            where=where, 
+            session=self.session,
+            )
+        return menu
+
+    def make_selector(self, where=None):
+        r'''Makes selector.
+
+        Returns selector.
+        '''
+        from experimental.tools import scoremanagertools
+        selector = scoremanagertools.iotools.Selector(
+            where=where,
+            session=self.session,
+            )
+        return selector
+
+    def make_view(self, tokens, custom_identifier=None):
+        r'''Makes view.
+
+        Returns view.
+        '''
+        from experimental.tools import scoremanagertools
+        view = scoremanagertools.iotools.View(
+            tokens=tokens,
+            custom_identifier=custom_identifier,
+            )
+        return view
+
     def print_not_yet_implemented(self):
+        r'''Prints not-yet-implemented message.
+
+        Prompts user to proceed.
+
+        Returns none.
+        '''
         self.display(['not yet implemented', ''])
         self.proceed()
 
     def proceed(self, lines=None, is_interactive=True):
+        r'''Prompts user to proceed.
+
+        Clears terminal.
+
+        Returns none.
+        '''
         assert isinstance(lines, (tuple, list, str, type(None)))
         if not is_interactive:
             return
@@ -300,7 +343,7 @@ class IOManager(IOManager):
             if lines != ['']:
                 lines.append('')
             self.display(lines)
-        self.handle_raw_input(
+        self.handle_raw_input_with_default(
             'press return to continue.', 
             include_chevron=False,
             )
