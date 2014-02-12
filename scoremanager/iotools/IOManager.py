@@ -65,7 +65,7 @@ class IOManager(IOManager):
             self.session.is_navigating_to_next_score = True
             self.session.is_backtracking_to_score_manager = True
         elif key == 'prev':
-            self.session.is_navigating_to_prev_score = True
+            self.session.is_navigating_to_previous_score = True
             self.session.is_backtracking_to_score_manager = True
         elif key in ('q', 'quit'):
             self.session.user_specified_quit = True

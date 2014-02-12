@@ -108,7 +108,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             prompt_string = stringtools.capitalize_string_start(prompt_string)
         self._prompt_strings.append(prompt_string)
 
-    def _move_to_prev_prompt(self):
+    def _move_to_previous_prompt(self):
         self._evaluated_user_input.pop()
         self._prompt_index = self._prompt_index - 1
 
@@ -143,7 +143,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             elif user_input == 'help':
                 self._display_help()
             elif user_input == 'prev':
-                self._move_to_prev_prompt()
+                self._move_to_previous_prompt()
                 break
             elif user_input == 'skip':
                 break

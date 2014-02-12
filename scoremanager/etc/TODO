@@ -165,6 +165,3 @@
     And remove empty ...
         .../materialpackagemakers/user_input.py
     ... module, too.
-
-43. Search for _prev_ and replace with _previous_.
-    Search for _cur_ and replace with _current_.

@@ -67,7 +67,7 @@ class Session(abctools.AbjadObject):
         self.is_backtracking_to_score_manager = False
         self.is_first_run = True
         self.is_navigating_to_next_score = False
-        self.is_navigating_to_prev_score = False
+        self.is_navigating_to_previous_score = False
         self.is_test = False
         self.last_command_was_composite = False
         self.menu_header_width = 80
@@ -515,7 +515,7 @@ class Session(abctools.AbjadObject):
         '''
         if self.is_navigating_to_next_score:
             return True
-        if self.is_navigating_to_prev_score:
+        if self.is_navigating_to_previous_score:
             return True
         return False
 

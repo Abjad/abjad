@@ -59,7 +59,7 @@ class ScoreManager(ScoreManagerObject):
         next_index = (index + 1) % len(score_package_names)
         return score_package_names[next_index]
 
-    def _get_prev_score_package_name(self):
+    def _get_previous_score_package_name(self):
         score_package_names = self.score_package_wrangler.list_asset_names()
         if self.session.snake_case_current_score_name is None:
             return score_package_names[-1]
@@ -168,10 +168,10 @@ class ScoreManager(ScoreManagerObject):
                 self.session.is_navigating_to_next_score = False
                 self.session.is_backtracking_to_score_manager = False
                 result = self._get_next_score_package_name()
-            elif self.session.is_navigating_to_prev_score:
-                self.session.is_navigating_to_prev_score = False
+            elif self.session.is_navigating_to_previous_score:
+                self.session.is_navigating_to_previous_score = False
                 self.session.is_backtracking_to_score_manager = False
-                result = self._get_prev_score_package_name()
+                result = self._get_previous_score_package_name()
             elif not result:
                 self.session.pop_breadcrumb()
                 continue
