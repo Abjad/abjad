@@ -13,8 +13,15 @@ def test_SegmentSpecification__set_rhythm_from_parseable_string_01():
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
-    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
-    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
+    systemtools.TestManager.write_test_output(
+        score,
+        __file__,
+        current_function_name,
+        )
+    assert format(score) == systemtools.TestManager.read_test_output(
+        __file__,
+        current_function_name,
+        )
 
 
 def test_SegmentSpecification__set_rhythm_from_parseable_string_02():
@@ -31,5 +38,12 @@ def test_SegmentSpecification__set_rhythm_from_parseable_string_02():
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()
-    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
-    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
+    systemtools.TestManager.write_test_output(
+        score,
+        __file__,
+        current_function_name,
+        )
+    assert format(score) == systemtools.TestManager.read_test_output(
+        __file__,
+        current_function_name,
+        )

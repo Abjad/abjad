@@ -58,24 +58,16 @@ class PhrasingSlur(Spanner):
         new._direction = self.direction
 
     def _get_lilypond_format_bundle(self, leaf):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        if self._is_my_first_leaf(leaf):
-            contributions = override(self)._list_format_contributions(
-                'override',
-                is_once=False,
-                )
-            lilypond_format_bundle.grob_overrides.extend(contributions)
+        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        if self._is_my_only_leaf(leaf):
+            pass
+        elif self._is_my_first_leaf(leaf):
             if self.direction is not None:
                 string = '{} \('.format(self.direction)
             else:
                 string = '\('
             lilypond_format_bundle.right.spanner_starts.append(string)
-        if self._is_my_last_leaf(leaf):
-            contributions = override(self)._list_format_contributions(
-                'revert',
-                )
-            lilypond_format_bundle.grob_reverts.extend(contributions)
+        elif self._is_my_last_leaf(leaf):
             string = '\)'
             lilypond_format_bundle.right.spanner_stops.append(string)
         return lilypond_format_bundle

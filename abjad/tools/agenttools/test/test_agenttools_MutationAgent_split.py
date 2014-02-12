@@ -638,7 +638,7 @@ def test_agenttools_MutationAgent_split_10():
                 \time 2/8
                 c'8 [ (
                 d'32. ~ )
-                d'32. ~ ( )
+                d'32. ~
                 d'32 ] (
             }
             {
@@ -695,7 +695,7 @@ def test_agenttools_MutationAgent_split_11():
         \new Staff {
             {
                 \time 2/8
-                c'16. ~ [ ( )
+                c'16. ~ [
                 c'32 (
                 d'16 ~ )
                 d'16 ] (
@@ -704,7 +704,7 @@ def test_agenttools_MutationAgent_split_11():
                 e'32 ~ ) [
                 e'16. (
                 f'16. ~ )
-                f'32 ] ( )
+                f'32 ]
             }
         }
         '''
@@ -757,7 +757,7 @@ def test_agenttools_MutationAgent_split_12():
         \new Staff {
             {
                 \time 3/32
-                c'16. [ ] ( )
+                c'16. [ ]
             }
             {
                 c'32 [ (
@@ -823,7 +823,7 @@ def test_agenttools_MutationAgent_split_13():
         \new Staff {
             {
                 \time 3/32
-                c'16. [ ] ( )
+                c'16. [ ]
             }
             {
                 c'32 [ (
@@ -839,14 +839,14 @@ def test_agenttools_MutationAgent_split_13():
             }
             {
                 \time 3/32
-                e'16. [ ] ( )
+                e'16. [ ]
             }
             {
-                f'16. [ ] ( )
+                f'16. [ ]
             }
             {
                 \time 1/32
-                f'32 [ ] ( )
+                f'32 [ ]
             }
         }
         '''
@@ -995,8 +995,8 @@ def test_agenttools_MutationAgent_split_16():
                 \time 2/8
                 c'8 [ (
                 d'32 ~ )
-                d'32 ~ ( )
-                d'32 ~ ( )
+                d'32 ~
+                d'32 ~
                 d'32 ] (
             }
             {
@@ -1054,7 +1054,7 @@ def test_agenttools_MutationAgent_split_17():
         \new Staff {
             {
                 \time 2/8
-                c'16 ~ [ ( )
+                c'16 ~ [
                 c'16 (
                 d'16 ~ )
                 d'16 ] (
@@ -1063,7 +1063,7 @@ def test_agenttools_MutationAgent_split_17():
                 e'16 ~ ) [
                 e'16 (
                 f'16 ~ )
-                f'16 ] ( )
+                f'16 ]
             }
         }
         '''
@@ -1116,13 +1116,13 @@ def test_agenttools_MutationAgent_split_18():
         \new Staff {
             {
                 \time 1/16
-                c'16 ~ [ ] ( )
+                c'16 ~ [ ]
             }
             {
-                c'16 [ ] ( )
+                c'16 [ ]
             }
             {
-                d'16 ~ [ ] ( )
+                d'16 ~ [ ]
             }
             {
                 d'16 [ ] (
@@ -1183,7 +1183,7 @@ def test_agenttools_MutationAgent_split_19():
         \new Staff {
             {
                 \time 3/32
-                c'16. ~ [ ] ( )
+                c'16. ~ [ ]
             }
             {
                 c'32 [ (
@@ -1199,14 +1199,14 @@ def test_agenttools_MutationAgent_split_19():
             }
             {
                 \time 3/32
-                e'16. [ ] ( )
+                e'16. [ ]
             }
             {
-                f'16. ~ [ ] ( )
+                f'16. ~ [ ]
             }
             {
                 \time 1/32
-                f'32 [ ] ( )
+                f'32 [ ]
             }
         }
         '''
@@ -1395,11 +1395,11 @@ def test_agenttools_MutationAgent_split_22():
         \new Staff {
             {
                 \time 1/32
-                c'32 [ ] ( )
+                c'32 [ ]
             }
             {
                 \time 3/32
-                c'16. [ ] ( )
+                c'16. [ ]
             }
             {
                 \time 4/32
@@ -1462,11 +1462,11 @@ def test_agenttools_MutationAgent_split_23():
         \new Staff {
             {
                 \time 1/32
-                c'32 [ ] ( )
+                c'32 [ ]
             }
             {
                 \time 3/32
-                c'16. [ ] ( )
+                c'16. [ ]
             }
             {
                 \time 4/32
@@ -2346,7 +2346,7 @@ def test_agenttools_MutationAgent_split_37():
         \new Staff {
             {
                 \time 1/8
-                c'8 [ ] ( )
+                c'8 [ ]
             }
             {
                 d'8 [ ] (
@@ -2400,10 +2400,10 @@ def test_agenttools_MutationAgent_split_38():
         \new Staff {
             {
                 \time 3/16
-                c'8. [ ] ( )
+                c'8. [ ]
             }
             {
-                d'8. [ ] ( )
+                d'8. [ ]
             }
         }
         '''
@@ -2572,7 +2572,7 @@ def test_agenttools_MutationAgent_split_41():
         r'''
         \new Voice {
             {
-                c'8 [ ] ( )
+                c'8 [ ]
             }
             {
                 d'8 [ (
@@ -2580,7 +2580,7 @@ def test_agenttools_MutationAgent_split_41():
                 f'8 ] )
             }
             {
-                g'8 [ ] ( )
+                g'8 [ ]
             }
             {
                 a'8 [ (
@@ -2631,16 +2631,16 @@ def test_agenttools_MutationAgent_split_42():
         r'''
         \new Voice {
             {
-                c'8 [ ] ( )
+                c'8 [ ]
             }
             {
-                d'8 [ ] ( )
+                d'8 [ ]
             }
             {
-                e'8 [ ] ( )
+                e'8 [ ]
             }
             {
-                f'8 [ ] ( )
+                f'8 [ ]
             }
         }
         '''
@@ -2857,7 +2857,7 @@ def test_agenttools_MutationAgent_split_46():
         r'''
         \new Voice {
             {
-                c'8 [ ] ( )
+                c'8 [ ]
             }
             {
                 d'8 [ (
