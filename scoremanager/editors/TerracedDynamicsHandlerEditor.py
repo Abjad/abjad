@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from experimental.tools import handlertools
 from scoremanager import getters
-from scoremanager.editors.DynamicHandlerEditor import DynamicHandlerEditor
+from scoremanager.editors.InteractiveEditor import InteractiveEditor
 
 
-class TerracedDynamicsHandlerEditor(DynamicHandlerEditor):
+class TerracedDynamicsHandlerEditor(InteractiveEditor):
 
     ### PUBLIC PROPERTIES ###
 
