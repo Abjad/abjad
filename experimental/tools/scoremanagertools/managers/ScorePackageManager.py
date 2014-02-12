@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 import os
-from experimental.tools.scoremanagertools.managers.PackageManager \
-    import PackageManager
+#from experimental.tools.scoremanagertools.managers.PackageManager \
+#    import PackageManager
+from scoremanagertools.managers.PackageManager import PackageManager
 
 
 class ScorePackageManager(PackageManager):
