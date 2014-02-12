@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from scoremanager import iotools
-from scoremanager.editors.ParameterSpecifierEditor \
-    import ParameterSpecifierEditor
+from scoremanager.editors.SpecifierEditor \
+    import SpecifierEditor
 
 
-class ClefSpecifierEditor(ParameterSpecifierEditor):
+class ClefSpecifierEditor(SpecifierEditor):
 
     ### CLASS VARIABLES ###
 

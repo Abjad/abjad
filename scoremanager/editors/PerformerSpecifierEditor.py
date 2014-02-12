@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
-from scoremanager.editors.ParameterSpecifierEditor \
-    import ParameterSpecifierEditor
+from scoremanager.editors.SpecifierEditor \
+    import SpecifierEditor
 from scoremanager.specifiers.PerformerSpecifier \
     import PerformerSpecifier
 from scoremanager import iotools
 
 
-class PerformerSpecifierEditor(ParameterSpecifierEditor):
+class PerformerSpecifierEditor(SpecifierEditor):
 
     ### PUBLIC PROPERTIES ###
 

@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from scoremanager import getters
 from scoremanager import wizards
-from scoremanager.editors.ParameterSpecifierEditor \
-    import ParameterSpecifierEditor 
+from scoremanager.editors.SpecifierEditor \
+    import SpecifierEditor 
 
 
-class InstrumentSpecifierEditor(ParameterSpecifierEditor):
+class InstrumentSpecifierEditor(SpecifierEditor):
 
     ### CLASS VARIABLES ###
 
@@ -27,7 +27,7 @@ class InstrumentSpecifierEditor(ParameterSpecifierEditor):
         session=None,
         target=None,
         ):
-        ParameterSpecifierEditor.__init__(
+        SpecifierEditor.__init__(
             self, 
             session=session,
             target=target,

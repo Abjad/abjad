@@ -3,7 +3,7 @@ from scoremanager.editors.InteractiveEditor \
     import InteractiveEditor
 
 
-class ParameterSpecifierEditor(InteractiveEditor):
+class SpecifierEditor(InteractiveEditor):
 
     ### PUBLIC PROPERTIES ###
 

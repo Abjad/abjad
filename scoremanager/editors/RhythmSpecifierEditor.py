@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 from scoremanager import getters
 from scoremanager import iotools
-from scoremanager.editors.ParameterSpecifierEditor \
-    import ParameterSpecifierEditor
+from scoremanager.editors.SpecifierEditor \
+    import SpecifierEditor
 from scoremanager.specifiers.RhythmSpecifier \
     import RhythmSpecifier
 
 
-class RhythmSpecifierEditor(ParameterSpecifierEditor):
+class RhythmSpecifierEditor(SpecifierEditor):
 
     ### PUBLIC PROPERTIES ###
 

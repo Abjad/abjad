@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from scoremanager import getters
 from scoremanager import iotools
-from scoremanager.editors.ParameterSpecifierEditor \
-    import ParameterSpecifierEditor
+from scoremanager.editors.SpecifierEditor \
+    import SpecifierEditor
 
 
-class DynamicSpecifierEditor(ParameterSpecifierEditor):
+class DynamicSpecifierEditor(SpecifierEditor):
 
     ### PUBLIC PROPERTIES ###
 
