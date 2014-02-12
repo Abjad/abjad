@@ -4,11 +4,10 @@ import os
 import readline
 import types
 from abjad.tools import stringtools
-from abjad.tools import systemtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.systemtools.IOManager import IOManager
 
 
-class IOManager(AbjadObject):
+class IOManager(IOManager):
 
     ### INITIALIZER ###
 
@@ -53,7 +52,8 @@ class IOManager(AbjadObject):
     def clear_terminal(self):
         if not self.session.hide_next_redraw:
             if self.session.is_displayable:
-                systemtools.IOManager.clear_terminal()
+                superclass = super(IOManager, self)
+                superclass.clear_terminal()
 
     def confirm(
         self, 
@@ -92,7 +92,7 @@ class IOManager(AbjadObject):
                     self.session.io_transcript.append_lines(lines)
             if self.session.is_displayable:
                 if clear_terminal:
-                    systemtools.IOManager.clear_terminal()
+                    self.clear_terminal()
                 for line in lines:
                     print line
 
@@ -119,8 +119,7 @@ class IOManager(AbjadObject):
         elif key == 'here':
             self.interactively_edit_calling_code()
         elif key == 'log':
-            statement = 'systemtools.IOManager.view_last_log()'
-            self.interactively_exec_statement(statement)
+            self.view_last_log()
         elif key == 'next':
             self.session.is_navigating_to_next_score = True
             self.session.is_backtracking_to_score_manager = True
@@ -320,5 +319,4 @@ class IOManager(AbjadObject):
             'press return to continue.', 
             include_chevron=False,
             )
-        if self.session.is_displayable:
-            systemtools.IOManager.clear_terminal()
+        self.clear_terminal()

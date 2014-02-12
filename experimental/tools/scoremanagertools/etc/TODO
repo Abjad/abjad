@@ -74,31 +74,28 @@
 
 24. Finish the docstrings for all io classes.
 
-25. Make scoremanagertools.iotools.IOManager inherit from 
-    systemtools.IOManager.
-
-26. Audit all '*_file_name' variables in the system.
+25. Audit all '*_file_name' variables in the system.
     Most are probably file path variables and should be renamed.
     Just run "abjad-ack _file_name" and inspect the output
     for score manager source files.
 
-27. Beautify the code all of score manager and music expression test files.
+26. Beautify the code all of score manager and music expression test files.
 
-28. Refactor scoremanagertools.editors to contain as few classes as possible.
+27. Refactor scoremanagertools.editors to contain as few classes as possible.
 
-29. Refactor score manager wizard classes to use instance attributes in place
+28. Refactor score manager wizard classes to use instance attributes in place
     of class attributes.
 
-30. Refactor score manager material package maker classes to instance
+29. Refactor score manager material package maker classes to instance
     attributes in place of class attributes.
 
-31. Implement a Session.display_variables() method to print the current value
+30. Implement a Session.display_variables() method to print the current value
     of all session variables to the terminal for user inspection.
 
-32. Figure out the correct ajv replace regex to change tratiettore/music
+31. Figure out the correct ajv replace regex to change tratiettore/music
     to just traiettorie.
 
-33. Find a way to get rid of the ...
+32. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -114,49 +111,49 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-34. Bug exists when making handmade material packages.
+33. Bug exists when making handmade material packages.
     Create the packge. Then [mde] to edit the material definition module.
     The last line in file reads like this:
         /Users/trevorbaca/Documents/scores/temporary/materials/foo = None
 
-35. Move score/instrumentation.py module to score/materials packages.
+34. Move score/instrumentation.py module to score/materials packages.
 
-36. Change ...
+35. Change ...
         from abjad.tools import indicatortools
         from abjad.tools import durationtools
     ... to just ...
         from abjad import *
     ... at the end of material output modules.
 
-37. Include two blank lines after headers in material output modules.
+36. Include two blank lines after headers in material output modules.
 
-38. Make material package illustration work again.
+37. Make material package illustration work again.
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
-39. Make tempo inventory editor (score > materials > tempo inventory) display
+38. Make tempo inventory editor (score > materials > tempo inventory) display
     custom identifier of tempo inventory when custom identifier has been
     defined; alternatively, remove custom_identifier from TempoInventory
     entirely; use user-given package name instead.
 
-40. Right now (e) gives you a single key that will allow you to edit
+39. Right now (e) gives you a single key that will allow you to edit
     a segment definition module; the command uses 'vim +G' to open to the
     last line in file. IWBN if there were a (hidden) variant like (E) that
     opened to the first line in file.
 
-41. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
+40. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
     within a score. Maybe the commands should be (U), (K), (M), (G), (S), (T)
     and (Y) for clarity.
 
-42. There also needs to be a single command to just view the global stylesheet
+41. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (YV) or equivalent.
 
-43. There also needs to be a one-key command equal to (score). Something like
+42. There also needs to be a one-key command equal to (score). Something like
     (S) or equivalent.
 
-44. Enforce .ily stylesheet extension in score manager.
+43. Enforce .ily stylesheet extension in score manager.
     Enforce hypens instead of underscores in stylesheet files in score manager.
 
-45. I don't understand the relationship between MaterialPackageManager and
+44. I don't understand the relationship between MaterialPackageManager and
     MaterialPackageMaker. The current relationship is that MaterialPackageMaker
     inherits from MaterialPackageManager. But I don't understand why this
     should be the case. Maybe the correct way to look at things is that the
@@ -172,7 +169,7 @@
     then be possible to aggregate a UserInputWrapperManager reference into
     MaterialPackageManager and remove MaterialPackageMaker altogether.
 
-46. Stop sprinkling empty __metadata__.py moudles in directories:
+45. Stop sprinkling empty __metadata__.py moudles in directories:
         .../materialpackagemakers/stylesheets/__metadata__.py
         .../materialpackagemakers/test/__metadata__.py
     And remove empty ...
