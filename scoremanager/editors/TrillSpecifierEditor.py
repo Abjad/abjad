@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
-from scoremanager.editors.ParameterSpecifierEditor \
-    import ParameterSpecifierEditor
+from scoremanager.editors.SpecifierEditor import SpecifierEditor
 
 
-class TrillSpecifierEditor(ParameterSpecifierEditor):
+class TrillSpecifierEditor(SpecifierEditor):
 
     pass

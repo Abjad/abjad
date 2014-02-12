@@ -3,10 +3,8 @@ from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from scoremanager import getters
 from scoremanager import wizards
-from scoremanager.editors.ListEditor \
-    import ListEditor
-from scoremanager.editors.InstrumentEditor \
-    import InstrumentEditor
+from scoremanager.editors.ListEditor import ListEditor
+from scoremanager.editors.InstrumentEditor import InstrumentEditor
 
 
 class PerformerEditor(ListEditor):

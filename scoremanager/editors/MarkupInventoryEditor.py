@@ -2,8 +2,7 @@
 from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from scoremanager import getters
-from scoremanager.editors.ObjectInventoryEditor \
-    import ObjectInventoryEditor
+from scoremanager.editors.ObjectInventoryEditor import ObjectInventoryEditor
 from scoremanager.editors.MarkupEditor import MarkupEditor
 from scoremanager.iotools.UserInputGetter import UserInputGetter
 

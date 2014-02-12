@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import pytest
-from experimental import *
+from abjad import *
+import scoremanager
 
 
 def test_TargetManifest_change_retrievable_attribute_name_to_initializer_argument_name_01():

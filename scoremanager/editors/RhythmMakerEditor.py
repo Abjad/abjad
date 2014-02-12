@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
-from scoremanager.editors.InteractiveEditor \
-    import InteractiveEditor
+from scoremanager.editors.InteractiveEditor import InteractiveEditor
 
 
 class RhythmMakerEditor(InteractiveEditor):

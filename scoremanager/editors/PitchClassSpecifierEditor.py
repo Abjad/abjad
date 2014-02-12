@@ -2,13 +2,11 @@
 from scoremanager import getters
 from scoremanager import iotools
 from scoremanager import wizards
-from scoremanager.editors.ParameterSpecifierEditor \
-    import ParameterSpecifierEditor
-from scoremanager.editors.TargetManifest \
-    import TargetManifest
+from scoremanager.editors.SpecifierEditor import SpecifierEditor
+from scoremanager.editors.TargetManifest import TargetManifest
 
 
-class PitchClassSpecifierEditor(ParameterSpecifierEditor):
+class PitchClassSpecifierEditor(SpecifierEditor):
 
     ### PUBLIC PROPERTIES ###
 

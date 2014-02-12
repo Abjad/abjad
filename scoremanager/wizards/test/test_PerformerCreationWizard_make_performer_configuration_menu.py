@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
-from experimental import *
+from abjad import *
+import scoremanager
 
 
 def test_PerformerCreationWizard_make_performer_configuration_menu_01():

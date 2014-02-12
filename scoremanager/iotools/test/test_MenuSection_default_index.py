@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import pytest
-from experimental import *
+from abjad import *
+import scoremanager
 
 
 def test_MenuSection_default_index_01():

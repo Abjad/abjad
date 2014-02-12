@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import pytest
-from experimental import *
+from abjad import *
+import scoremanager
 
 
 def test_Menu_allow_ascii_access_to_unicode_key_01():

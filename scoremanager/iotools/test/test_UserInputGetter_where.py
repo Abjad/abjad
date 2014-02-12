@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import pytest
-from experimental import *
+from abjad import *
+import scoremanager
 pytest.skip('unskip after where automatically toggles where-tracking.')
 
 

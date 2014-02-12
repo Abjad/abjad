@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
-from experimental import *
+from abjad import *
+import scoremanager
 
 
 def test_FileManager_rename_01():

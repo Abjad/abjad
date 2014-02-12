@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
-from experimental import *
+from abjad import *
+import scoremanager
 
 
 def test_ScorePackageManager_interactively_edit_forces_tagline_01():

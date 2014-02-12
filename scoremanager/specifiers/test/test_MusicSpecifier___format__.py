@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
+from abjad import *
+import scoremanager
 from scoremanager import specifiers
-from experimental import *
 
 
 def test_MusicSpecifier___format___01():

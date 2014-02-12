@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 from scoremanager import iotools
-from scoremanager.editors.ParameterSpecifierEditor \
-    import ParameterSpecifierEditor
+from scoremanager.editors.SpecifierEditor import SpecifierEditor
 
 
-class ArticulationSpecifierEditor(ParameterSpecifierEditor):
+class ArticulationSpecifierEditor(SpecifierEditor):
 
     ### PUBLIC PROPERTIES ###
 

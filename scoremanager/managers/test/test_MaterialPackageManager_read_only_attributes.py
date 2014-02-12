@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
-from experimental import *
+from abjad import *
+import scoremanager
 
 
 def test_MaterialPackageManager_read_only_attributes_01():

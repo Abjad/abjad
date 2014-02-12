@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from scoremanager.predicates import predicates
+import scoremanager
 
 
 def test_predicates_01():
