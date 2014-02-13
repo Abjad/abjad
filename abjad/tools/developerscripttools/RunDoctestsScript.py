@@ -70,6 +70,12 @@ class RunDoctestsScript(DirectoryScript):
             globs.update(importlib.import_module('experimental').__dict__)
             globs.update(
                 importlib.import_module('experimental.demos').__dict__)
+        # TODO: fix naked except
+        except:
+            pass
+        try:
+            globs.update(importlib.import_module('scoremanager').__dict__)
+        # TODO: fix naked except
         except:
             pass
         optionflags = (
