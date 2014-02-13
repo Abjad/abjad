@@ -24,6 +24,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         'core': 'Core composition packages',
         'demos': 'Demos and example packages',
         'internals': 'Abjad internal packages',
+        'score manager': 'Score manager packages',
         'unstable': 'Unstable packages (load manually)',
     }
 
@@ -96,24 +97,39 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                 documentation_sections[section].append(payload)
 
         for section in sorted(documentation_sections):
-            documenters = sorted(documentation_sections[section],
-                key=lambda x: x[0].module_name)
+            documenters = sorted(
+                documentation_sections[section],
+                key=lambda x: x[0].module_name,
+                )
+            text=self._package_descriptions.get(
+                section,
+                'Undefined documentation section',
+                )
             section_heading = documentationtools.ReSTHeading(
                 level=1,
-                text=self._package_descriptions.get(section,
-                    'Undefined documentation section'),
+                text=text,
                 )
             document.append(section_heading)
             for payload in documenters:
-                tools_package_documenter, code_path, docs_path, package_prefix = \
-                    payload
-                document.extend(
-                    tools_package_documenter.create_api_toc_section())
-                self._write_document(tools_package_documenter,
-                    code_path, docs_path, package_prefix)
+                tools_package_documenter = payload[0]
+                code_path = payload[1]
+                docs_path = payload[2]
+                package_prefix = payload[3]
+                result = tools_package_documenter.create_api_toc_section()
+                document.extend(result)
+                self._write_document(
+                    tools_package_documenter,
+                    code_path, 
+                    docs_path, 
+                    package_prefix,
+                    )
                 for documenter in tools_package_documenter.all_documenters:
-                    self._write_document(documenter,
-                        code_path, docs_path, package_prefix)
+                    self._write_document(
+                        documenter,
+                        code_path, 
+                        docs_path, 
+                        package_prefix,
+                        )
                 
         documentationtools.Documenter.write(
             self.docs_api_index_path,
