@@ -7,4 +7,4 @@ systemtools.ImportManager.import_structured_package(
     globals(),
     )
 
-_documentation_section = 'unstable'
+_documentation_section = 'score manager'
