@@ -338,7 +338,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         lines.append('from foo import make_illustration_from_output_material')
         lines.append('from scoremanager.materialpackagemanagers.MaterialPackageManager import MaterialPackageManager')
         lines.append('from scoremanager.editors.UserInputWrapper import UserInputWrapper')
-        lines.append('from experimental.tools import scoremanager')
+        lines.append('import scoremanager')
         lines.append('')
         lines.append('')
         lines.append('class {}(MaterialPackageManager):'.format(package_name))
