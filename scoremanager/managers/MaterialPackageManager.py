@@ -724,7 +724,7 @@ class MaterialPackageManager(PackageManager):
             # rename package
             command = 'svn mv {} {}'
             command = command.format(self.filesystem_path, new_directory_path)
-            systemtools.IOManager.spawn_subprocess(command)
+            self.session.io_manager.spawn_subprocess(command)
             # replace output material variable name
             new_output_material_module_name = os.path.join(
                 new_directory_path,
@@ -750,12 +750,12 @@ class MaterialPackageManager(PackageManager):
                 commit_message,
                 parent_directory_path,
                 )
-            systemtools.IOManager.spawn_subprocess(command)
+            self.session.io_manager.spawn_subprocess(command)
         else:
             # rename package
             command = 'mv {} {}'
             command = command.format(self.filesystem_path, new_directory_path)
-            systemtools.IOManager.spawn_subprocess(command)
+            self.session.io_manager.spawn_subprocess(command)
             # replace output material variable name
             new_output_material_module_name = os.path.join(
                 new_directory_path,

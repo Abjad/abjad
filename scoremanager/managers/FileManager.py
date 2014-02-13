@@ -56,7 +56,7 @@ class FileManager(FilesystemAssetManager):
 
     def _interpret_in_external_process(self):
         command = 'python {}'.format(self.filesystem_path)
-        result = systemtools.IOManager.spawn_subprocess(command)
+        result = self.session.io_manager.spawn_subprocess(command)
         if result != 0:
             self.session.io_manager.display('')
             self.session.io_manager.proceed()
@@ -101,13 +101,13 @@ class FileManager(FilesystemAssetManager):
 
     def _run_abjad(self, prompt=True):
         command = 'abjad {}'.format(self.filesystem_path)
-        systemtools.IOManager.spawn_subprocess(command)
+        self.session.io_manager.spawn_subprocess(command)
         message = 'file executed.'
         self.session.io_manager.proceed(message, is_interactive=prompt)
 
     def _run_python(self, prompt=True):
         command = 'python {}'.format(self.filesystem_path)
-        systemtools.IOManager.spawn_subprocess(command)
+        self.session.io_manager.spawn_subprocess(command)
         message = 'file executed.'
         self.session.io_manager.proceed(message, is_interactive=prompt)
 
@@ -123,9 +123,9 @@ class FileManager(FilesystemAssetManager):
 
         Returns none.
         '''
-        if systemtools.IOManager.find_executable('lily'):
+        if self.session.io_manager.find_executable('lily'):
             executable = 'lily'
-        elif systemtools.IOManager.find_executable('lilypond'):
+        elif self.session.io_manager.find_executable('lilypond'):
             executable = 'lilypond'
         else:
             message = 'Cannot find LilyPond executable.'
@@ -136,7 +136,7 @@ class FileManager(FilesystemAssetManager):
             )
         input_directory = os.path.dirname(self.filesystem_path)
         with systemtools.TemporaryDirectoryChange(input_directory):
-            systemtools.IOManager.spawn_subprocess(command)
+            self.session.io_manager.spawn_subprocess(command)
         self.session.io_manager.proceed('', is_interactive=prompt)
 
     def interactively_edit(self, line_number=None):
@@ -148,14 +148,14 @@ class FileManager(FilesystemAssetManager):
             command = 'vim + {}'.format(self.filesystem_path)
         else:
             command = 'vim +{} {}'.format(line_number, self.filesystem_path)
-        systemtools.IOManager.spawn_subprocess(command)
+        self.session.io_manager.spawn_subprocess(command)
 
     def interactively_open(self):
         r'''Interactively opens file.
 
         Returns none.
         '''
-        systemtools.IOManager.open_file(self.filesystem_path)
+        self.session.io_manager.open_file(self.filesystem_path)
 
     def interactively_typeset_tex_file(self, prompt=True):
         r'''Interactively typesets TeX file.
@@ -174,11 +174,11 @@ class FileManager(FilesystemAssetManager):
             input_file_name_stem,
             )
         with systemtools.TemporaryDirectoryChange(input_directory):
-            systemtools.IOManager.spawn_subprocess(command)
+            self.session.io_manager.spawn_subprocess(command)
             command = 'rm {}/*.aux'.format(output_directory)
-            systemtools.IOManager.spawn_subprocess(command)
+            self.session.io_manager.spawn_subprocess(command)
             command = 'rm {}/*.log'.format(output_directory)
-            systemtools.IOManager.spawn_subprocess(command)
+            self.session.io_manager.spawn_subprocess(command)
         self.session.io_manager.proceed('', is_interactive=prompt)
 
     def interactively_view(self):
@@ -190,7 +190,7 @@ class FileManager(FilesystemAssetManager):
             command = 'open {}'.format(self.filesystem_path)
         else:
             command = 'vim -R {}'.format(self.filesystem_path)
-        systemtools.IOManager.spawn_subprocess(command)
+        self.session.io_manager.spawn_subprocess(command)
 
     ### UI MANIFEST ###
 

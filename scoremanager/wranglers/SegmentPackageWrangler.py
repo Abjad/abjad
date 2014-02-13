@@ -165,7 +165,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 output_pdf_file_paths.append(output_pdf_file_path)
         command = ' '.join(output_pdf_file_paths)
         command = 'open ' + command
-        systemtools.IOManager.spawn_subprocess(command)
+        self.session.io_manager.spawn_subprocess(command)
 
     def list_asset_filesystem_paths(
         self,

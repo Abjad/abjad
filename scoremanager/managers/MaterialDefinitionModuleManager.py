@@ -32,7 +32,7 @@ class MaterialDefinitionModuleManager(FileManager):
             columns = len(self.material_package_name) + 3
             command = "vim + -c'norm {}l' {}"
             command = command.format(columns, self.filesystem_path)
-        systemtools.IOManager.spawn_subprocess(command)
+        self.session.io_manager.spawn_subprocess(command)
 
     def write_stub_data_material_definition_to_disk(self):
         lines = []
