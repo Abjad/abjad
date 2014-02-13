@@ -2,8 +2,7 @@
 import os
 from abjad.tools import systemtools
 from abjad.tools import stringtools
-from scoremanager.managers.DirectoryManager \
-    import DirectoryManager
+from scoremanager.managers.DirectoryManager import DirectoryManager
 
 
 class PackageManager(DirectoryManager):

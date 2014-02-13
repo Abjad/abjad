@@ -3,8 +3,7 @@ import collections
 import os
 from abjad.tools import stringtools
 from scoremanager import predicates
-from scoremanager.wranglers.PackageWrangler \
-    import PackageWrangler
+from scoremanager.wranglers.PackageWrangler import PackageWrangler
 
 
 class MaterialPackageWrangler(PackageWrangler):

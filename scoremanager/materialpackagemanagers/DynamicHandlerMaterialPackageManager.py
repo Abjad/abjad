@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
-from scoremanager.managers.MaterialPackageManager \
-    import MaterialPackageManager
+from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
 from scoremanager.wizards.DynamicHandlerCreationWizard \
     import DynamicHandlerCreationWizard
 
@@ -22,14 +21,14 @@ class DynamicHandlerMaterialPackageManager(MaterialPackageManager):
 
     @staticmethod
     def output_material_checker(expr):
-        from experimental.tools import scoremanager
-        return isinstance(expr, scoremanager.handlers.DynamicHandler)
+        from experimental.tools import handlertools
+        return isinstance(expr, handlertools.DynamicHandler)
 
     @staticmethod
     def output_material_editor(target=None, session=None):
-        from experimental.tools import scoremanager
+        from scoremanager import wizards
         if target:
-            wizard = scoremanager.wizards.DynamicHandlerCreationWizard()
+            wizard = wizards.DynamicHandlerCreationWizard()
             # TODO: generalize get_handler_editor to get_target_editor?
             dynamic_handler_editor = wizard.get_handler_editor(
                 target.__class__.__name__, target=target)

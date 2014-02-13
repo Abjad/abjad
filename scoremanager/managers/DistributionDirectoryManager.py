@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
-from scoremanager.managers.DirectoryManager \
-    import DirectoryManager
+from scoremanager.managers.DirectoryManager import DirectoryManager
 
 
 class DistributionDirectoryManager(DirectoryManager):

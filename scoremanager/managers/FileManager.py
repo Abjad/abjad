@@ -2,13 +2,11 @@
 import os
 from abjad.tools import stringtools
 from abjad.tools import systemtools
-from scoremanager.managers.FilesystemAssetManager \
-    import FilesystemAssetManager
+from scoremanager.managers.FilesystemAssetManager import FilesystemAssetManager
 
 
 class FileManager(FilesystemAssetManager):
     r'''File manager.
-
     '''
 
     ### CLASS VARIABLES ###

@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad.tools import systemtools
-from scoremanager.managers.FileManager \
-    import FileManager
+from scoremanager.managers.FileManager import FileManager
 
 
 class MaterialDefinitionModuleManager(FileManager):

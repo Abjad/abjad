@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
-from scoremanager.iotools.UserInputGetter \
-	import UserInputGetter
+from scoremanager.iotools.UserInputGetter import UserInputGetter
 
 
 def get_articulation(space_delimited_attribute_name, session=None, prepopulated_value=None, allow_none=True):

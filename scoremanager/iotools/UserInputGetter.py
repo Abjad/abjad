@@ -2,11 +2,8 @@
 import types
 from abjad.tools import stringtools
 from scoremanager import predicates
-from scoremanager.core.ScoreManagerObject \
-    import ScoreManagerObject
-from scoremanager.iotools.Menu import Menu
-from scoremanager.iotools.PromptMakerMixin \
-    import PromptMakerMixin
+from scoremanager.core.ScoreManagerObject import ScoreManagerObject
+from scoremanager.iotools.PromptMakerMixin import PromptMakerMixin
 
 
 class UserInputGetter(ScoreManagerObject, PromptMakerMixin):

@@ -3,10 +3,7 @@ import os
 from abjad.tools import mathtools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
-from scoremanager.core.ScoreManagerObject \
-    import ScoreManagerObject
-from scoremanager.iotools.MenuSection \
-    import MenuSection
+from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
 class Menu(ScoreManagerObject):
@@ -200,10 +197,10 @@ class Menu(ScoreManagerObject):
         menu_entries=None,
         return_value_attribute='display_string',
         ):
-        from experimental import scoremanager
+        from scoremanager import iotools
         assert not (is_numbered and self._has_numbered_section)
         assert not (is_ranged and self._has_ranged_section)
-        menu_section = scoremanager.iotools.MenuSection(
+        menu_section = iotools.MenuSection(
             is_hidden=is_hidden,
             is_numbered=is_numbered,
             is_ranged=is_ranged,

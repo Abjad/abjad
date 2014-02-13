@@ -13,7 +13,6 @@ class RhythmMakerMaterialPackageManager(MaterialPackageManager):
 
     generic_output_name = 'time-menu_entry maker'
 
-
     output_material_maker = RhythmMakerCreationWizard
 
     output_material_module_import_statements = [

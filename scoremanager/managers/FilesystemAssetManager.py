@@ -4,13 +4,11 @@ import os
 import shutil
 import subprocess
 from abjad.tools import stringtools
-from scoremanager.core.ScoreManagerObject \
-    import ScoreManagerObject
+from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
 class FilesystemAssetManager(ScoreManagerObject):
     r'''Filesystem asset manager.
-
     '''
 
     ### CLASS VARIABLES ###

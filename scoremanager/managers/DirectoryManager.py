@@ -2,8 +2,7 @@
 import os
 import subprocess
 from abjad.tools import sequencetools
-from scoremanager.managers.FilesystemAssetManager \
-    import FilesystemAssetManager
+from scoremanager.managers.FilesystemAssetManager import FilesystemAssetManager
 
 
 class DirectoryManager(FilesystemAssetManager):
@@ -11,13 +10,13 @@ class DirectoryManager(FilesystemAssetManager):
     ### INITIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
-        from experimental.tools import scoremanager
+        from scoremanager import managers
         superclass = super(DirectoryManager, self)
         superclass.__init__(
             filesystem_path=filesystem_path,
             session=session,
             )
-        self._asset_manager_class = scoremanager.managers.FileManager
+        self._asset_manager_class = managers.FileManager
 
     ### PRIVATE PROPERTIES ###
 
@@ -28,8 +27,8 @@ class DirectoryManager(FilesystemAssetManager):
     ### PRIVATE METHODS ###
 
     def _get_file_manager(self, file_path):
-        from experimental.tools import scoremanager
-        file_manager = scoremanager.managers.FileManager(
+        from scoremanager import managers
+        file_manager = managers.FileManager(
             file_path,
             session=self.session,
             )

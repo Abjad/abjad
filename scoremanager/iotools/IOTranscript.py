@@ -3,19 +3,15 @@ import datetime
 import os
 import time
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from scoremanager.core.ScoreManagerConfiguration \
-    import ScoreManagerConfiguration
 
 
 class IOTranscript(AbjadObject):
 
-    ### CLASS VARIABLES ###
-
-    configuration = ScoreManagerConfiguration()
-
     ### INITIALIZER ###
 
     def __init__(self):
+        from scoremanager import core
+        self._configuration = core.ScoreManagerConfiguration()
         self._entries = []
         self._start_time = self.current_time
 
@@ -25,6 +21,10 @@ class IOTranscript(AbjadObject):
         return self.entries.__getitem__(expr)
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def configuration(self):
+        return self._configuration
 
     @property
     def current_time(self):

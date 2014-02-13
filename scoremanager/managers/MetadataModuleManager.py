@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 import collections
 import os
-from scoremanager.managers.FileManager \
-    import FileManager
+from scoremanager.managers.FileManager import FileManager
 
 
 class MetadataModuleManager(FileManager):

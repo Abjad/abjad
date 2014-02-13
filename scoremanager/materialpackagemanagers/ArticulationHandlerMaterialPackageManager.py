@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 from experimental.tools.handlertools.ArticulationHandler \
     import ArticulationHandler
-from scoremanager.managers.MaterialPackageManager \
-    import MaterialPackageManager
+from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
 from scoremanager.wizards.ArticulationHandlerCreationWizard \
     import ArticulationHandlerCreationWizard
 

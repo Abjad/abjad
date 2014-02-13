@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from scoremanager.managers.FileManager \
-    import FileManager
+from scoremanager.managers.FileManager import FileManager
 
 
 class UserInputModuleManager(FileManager):

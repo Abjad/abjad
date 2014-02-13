@@ -2,10 +2,9 @@
 import os
 import shutil
 import subprocess
-from abjad.tools import systemtools
 from abjad.tools import sequencetools
-from scoremanager.managers.DirectoryManager \
-    import DirectoryManager
+from abjad.tools import systemtools
+from scoremanager.managers.DirectoryManager import DirectoryManager
 
 
 class BuildDirectoryManager(DirectoryManager):
