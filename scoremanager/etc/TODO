@@ -144,3 +144,9 @@
 38. There should be a command to re-render the output.ly for a given segment,
     not by re-executing the associated segment maker, but simply by running
     LilyPond.
+
+39. These four classes can all be collapsed into one:
+        wizards.HandlerCreationWizard
+        wizards.ArticulationHandlerCreationWizard
+        wizards.DynamicHandlerCreationWizard
+        wizards.RhythmMakerCreationWizard
