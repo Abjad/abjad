@@ -48,7 +48,7 @@ class ScoreManagerConfiguration(Configuration):
             'specifiers',
             )
         self.built_in_stylesheets_directory_path = os.path.join(
-            self.score_manager_tools_directory_path,
+            self.abjad_configuration.abjad_directory_path,
             'stylesheets',
             )
 

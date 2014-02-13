@@ -10,7 +10,7 @@ def test_StylesheetFileWrangler_interactively_make_asset_01():
     configuration = score_manager.configuration
     filesystem_path = os.path.join(
         configuration.user_asset_library_stylesheets_directory_path,
-        'test-stylesheet.ly',
+        'test-stylesheet.ily',
         )
 
     assert not os.path.exists(filesystem_path)

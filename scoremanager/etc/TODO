@@ -172,3 +172,7 @@
         ])
 
     ... instead.
+
+41. Reformat ScoreManagerConfiguration to better follow the implementation
+    pattern of AbjadConfiguration. Make built_in_editors_directory_path
+    and so on into full-fledged public properties with doc strings.
