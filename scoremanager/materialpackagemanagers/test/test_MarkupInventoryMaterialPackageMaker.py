@@ -16,7 +16,7 @@ def test_MarkupInventoryMaterialPackageMaker_01():
             "add arg r'\\italic~{~presto~}' name presto done done default q"
             )
         string = 'scoremanager.materialpackages.testmarkupinventory'
-        mpp = scoremanager.materialpackagemakers.ArticulationHandlerMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 

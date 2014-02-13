@@ -15,7 +15,7 @@ def test_TempoInventoryMaterialPackageMaker_01():
             'q '
             )
         string = 'scoremanager.materialpackages.testtempoinventory'
-        mpp = scoremanager.materialpackagemakers.TempoInventoryMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.TempoInventoryMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 

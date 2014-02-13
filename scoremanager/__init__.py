@@ -5,9 +5,8 @@ import exceptions
 import getters
 import iotools
 import managers
-import materialpackagemakers
+import materialpackagemanagers
 import predicates
-import specifiers
 import wizards
 import wranglers
 

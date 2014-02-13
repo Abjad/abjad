@@ -17,7 +17,7 @@ def test_DynamicHandlerMaterialPackageMaker_01():
             'q '
             )
         string = 'scoremanager.materialpackages.testdynamichandler'
-        mpp = scoremanager.materialpackagemakers.DynamicHandlerMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.DynamicHandlerMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 

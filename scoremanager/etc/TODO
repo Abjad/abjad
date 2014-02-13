@@ -160,8 +160,8 @@
     classes collapse and MaterialPackageMaker be removed entirely.
 
 42. Stop sprinkling empty __metadata__.py moudles in directories:
-        .../materialpackagemakers/stylesheets/__metadata__.py
-        .../materialpackagemakers/test/__metadata__.py
+        .../materialpackagemanagers/stylesheets/__metadata__.py
+        .../materialpackagemanagers/test/__metadata__.py
     And remove empty ...
-        .../materialpackagemakers/user_input.py
+        .../materialpackagemanagers/user_input.py
     ... module, too.

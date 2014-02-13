@@ -16,7 +16,7 @@ def test_SargassoMeasureMaterialPackageMaker_01():
             'q'
             )
         string = 'scoremanager.materialpackages.testsargasso'
-        mpp = scoremanager.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -56,7 +56,7 @@ def test_SargassoMeasureMaterialPackageMaker_02():
             'q'
             )
         string = 'scoremanager.materialpackages.testsargasso'
-        mpp = scoremanager.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -95,7 +95,7 @@ def test_SargassoMeasureMaterialPackageMaker_03():
             'q'
             )
         string = 'scoremanager.materialpackages.testsargasso'
-        mpp = scoremanager.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -134,7 +134,7 @@ def test_SargassoMeasureMaterialPackageMaker_04():
             'q'
             )
         string = 'scoremanager.materialpackages.testsargasso'
-        mpp = scoremanager.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -174,7 +174,7 @@ def test_SargassoMeasureMaterialPackageMaker_05():
             'q'
             )
         string = 'scoremanager.materialpackages.testsargasso'
-        mpp = scoremanager.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -214,7 +214,7 @@ def test_SargassoMeasureMaterialPackageMaker_06():
             'q'
             )
         string = 'scoremanager.materialpackages.testsargasso'
-        mpp = scoremanager.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -253,7 +253,7 @@ def test_SargassoMeasureMaterialPackageMaker_07():
             'q'
             )
         string = 'scoremanager.materialpackages.testsargasso'
-        mpp = scoremanager.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -292,7 +292,7 @@ def test_SargassoMeasureMaterialPackageMaker_08():
             'q'
             )
         string = 'scoremanager.materialpackages.testsargasso'
-        mpp = scoremanager.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 

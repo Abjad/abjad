@@ -18,7 +18,7 @@ def test_RhythmMakerMaterialPackageMaker_01():
             'q '
             )
         string = 'scoremanager.materialpackages.testrhythmmaker'
-        mpp = scoremanager.materialpackagemakers.RhythmMakerMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.RhythmMakerMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 

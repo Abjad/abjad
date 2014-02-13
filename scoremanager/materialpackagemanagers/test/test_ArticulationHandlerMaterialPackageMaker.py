@@ -17,7 +17,7 @@ def test_ArticulationHandlerMaterialPackageMaker_01():
             'q '
             )
         string = 'scoremanager.materialpackages.testarticulationhandler'
-        manager = scoremanager.materialpackagemakers.ArticulationHandlerMaterialPackageMaker(
+        manager = scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageMaker(
             string)
         assert manager._list_directory() == [
             '__init__.py', 

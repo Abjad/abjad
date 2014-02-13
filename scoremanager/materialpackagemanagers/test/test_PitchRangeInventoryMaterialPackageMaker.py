@@ -16,7 +16,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_01():
             'q'
             )
         string = 'scoremanager.materialpackages.testpir'
-        mpp = scoremanager.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.PitchRangeInventoryMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -46,7 +46,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_02():
             'q'
             )
         string = 'scoremanager.materialpackages.testpir'
-        mpp = scoremanager.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.PitchRangeInventoryMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 

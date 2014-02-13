@@ -16,7 +16,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_01():
             'q'
             )
         string = 'scoremanager.materialpackages.testoctavetrans'
-        mpp = scoremanager.materialpackagemakers.OctaveTranspositionMappingInventoryMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.OctaveTranspositionMappingInventoryMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -46,7 +46,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_02():
             'add add source [A0, C8] target -18 done done done default q'
             )
         string = 'scoremanager.materialpackages.testoctavetrans'
-        mpp = scoremanager.materialpackagemakers.OctaveTranspositionMappingInventoryMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.OctaveTranspositionMappingInventoryMaterialPackageMaker(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 

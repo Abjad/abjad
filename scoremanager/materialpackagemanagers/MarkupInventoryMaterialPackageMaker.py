@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from scoremanager.materialpackagemakers.InventoryMaterialPackageMaker \
+from scoremanager.materialpackagemanagers.InventoryMaterialPackageMaker \
     import InventoryMaterialPackageMaker
 from scoremanager.editors.MarkupInventoryEditor import MarkupInventoryEditor
 

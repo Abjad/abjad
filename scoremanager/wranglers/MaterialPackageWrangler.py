@@ -71,7 +71,7 @@ class MaterialPackageWrangler(PackageWrangler):
                 )
         else:
             command = 'material_package_manager = '
-            command += 'scoremanager.materialpackagemakers.{}'
+            command += 'scoremanager.materialpackagemanagers.{}'
             command += '(material_package_path, session=self.session)'
             command = command.format(material_package_maker_class_name)
             try:
@@ -409,7 +409,7 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns none.
         '''
         tags = tags or {}
-        command = 'from scoremanager.materialpackagemakers '
+        command = 'from scoremanager.materialpackagemanagers '
         command += 'import {} as material_package_maker_class'.format(
             material_package_maker_class_name)
         try:
