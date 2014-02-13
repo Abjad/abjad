@@ -36,7 +36,6 @@ def test_MaterialPackageManager_read_only_attributes_01():
     assert manager.material_definition_module_file_path == file_path
     string = 'scoremanager.materialpackages.red_numbers.material_definition'
     assert manager.material_definition_packagesystem_path == string
-    assert manager.material_definition_module_manager is not None
     directory_path = os.path.join(
         manager.configuration.built_in_material_packages_directory_path, 
         'red_numbers',
@@ -111,7 +110,6 @@ def test_MaterialPackageManager_read_only_attributes_02():
     assert manager.is_makermade
     assert manager.material_definition_module_file_path is None
     assert manager.material_definition_packagesystem_path is None
-    assert manager.material_definition_module_manager is None
     file_path = os.path.join(
         manager.configuration.built_in_material_packages_directory_path, 
         'red_sargasso_measures',
@@ -203,7 +201,6 @@ def test_MaterialPackageManager_read_only_attributes_03():
     assert manager.material_definition_module_file_path == file_path
     string = 'scoremanager.materialpackages.red_notes.material_definition'
     assert manager.material_definition_packagesystem_path == string
-    assert manager.material_definition_module_manager is not None
     file_path = os.path.join(
         manager.configuration.built_in_material_packages_directory_path, 
         'red_notes',

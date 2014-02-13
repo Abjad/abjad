@@ -419,15 +419,6 @@ class MaterialPackageManager(PackageManager):
             return os.path.join(self.filesystem_path, 'material_definition.py')
 
     @property
-    def material_definition_module_manager(self):
-        from scoremanager import managers
-        if self.should_have_material_definition_module:
-            return managers.MaterialDefinitionModuleManager(
-                self.material_definition_module_file_path,
-                session=self.session,
-                )
-
-    @property
     def material_definition_packagesystem_path(self):
         if self.should_have_material_definition_module:
             return '.'.join([self.package_path, 'material_definition'])
@@ -627,7 +618,7 @@ class MaterialPackageManager(PackageManager):
         ):
         if not self._get_metadatum('material_package_manager_class_name'):
             is_data_only = not self._get_metadatum('should_have_illustration')
-            self.material_definition_module_manager._write_stub_to_disk(
+            self._write_stub_material_definition_module_to_disk(
                 is_data_only, 
                 is_interactive=is_interactive,
                 )
@@ -972,6 +963,49 @@ class MaterialPackageManager(PackageManager):
         message = 'output material written to disk.'
         self.session.io_manager.proceed(message, is_interactive=prompt)
 
+    def _write_stub_material_definition_module_to_disk(
+        self, 
+        is_data_only, 
+        is_interactive=True,
+        ):
+        if is_data_only:
+            self.write_stub_data_material_definition_to_disk()
+        else:
+            self.write_stub_music_material_definition_to_disk()
+        message = 'stub material definition written to disk.'
+        self.session.io_manager.proceed(message, is_interactive=is_interactive)
+
+    def write_stub_data_material_definition_to_disk(self):
+        lines = []
+        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append('from abjad import *\n')
+        lines.append('\n\n')
+        #line = '{} = None'.format(self.material_package_name)
+        line = '{} = None'.format(self.package_root_name)
+        lines.append(line)
+        lines = ''.join(lines)
+        #file_pointer = file(self.filesystem_path, 'w')
+        file_pointer = file(self.material_definition_module_file_path, 'w')
+        file_pointer.write(lines)
+        file_pointer.close()
+
+    def write_stub_music_material_definition_to_disk(self):
+        lines = []
+        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append('from abjad import *\n')
+        line = 'output_material_module_import_statements'
+        line += " = ['from abjad import *']\n"
+        lines.append(line)
+        lines.append('\n\n')
+        #line = '{} = None'.format(self.material_package_name)
+        line = '{} = None'.format(self.package_root_name)
+        lines.append(line)
+        lines = ''.join(lines)
+        #file_pointer = file(self.filesystem_path, 'w')
+        file_pointer = file(self.material_definition_module_file_path, 'w')
+        file_pointer.write(lines)
+        file_pointer.close()
+
     def write_stub_illustration_builder_module_to_disk(
         self,
         material_package_path,
@@ -1007,7 +1041,7 @@ class MaterialPackageManager(PackageManager):
                 'w',
                 ) as file_pointer:
                 file_pointer.write('')
-            self.material_definition_module_manager._write_stub_to_disk(
+            self._write_stub_material_definition_module_to_disk(
                 self.is_data_only, 
                 is_interactive=True,
                 )
