@@ -68,7 +68,7 @@ class PackageManager(DirectoryManager):
         hidden_section = main_menu.make_command_section(is_hidden=True)
         return main_menu, hidden_section
 
-    def _make_main_menu_section_for_initializer(
+    def _make_initializer_menu_section(
         self, 
         main_menu, 
         hidden_section,

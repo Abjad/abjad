@@ -75,20 +75,20 @@ class MaterialPackageManager(PackageManager):
         superclass = super(MaterialPackageManager, self)
         where = self._where
         main_menu, hidden_section = superclass._make_main_menu(where=where)
-        self._make_main_menu_section_for_initializer(
+        self._make_initializer_menu_section(
             main_menu, hidden_section)
         if self.should_have_user_input_module:
             self._make_main_menu_sections_with_user_input_wrapper(
                 main_menu, hidden_section)
         else:
             self._make_main_menu_sections(main_menu, hidden_section)
-        self._make_main_menu_section_for_illustration_ly(hidden_section)
-        self._make_main_menu_section_for_illustration_pdf(
+        self._make_illystration_ly_menu_section(hidden_section)
+        self._make_illustration_pdf_menu_section(
             main_menu, hidden_section)
-        self._make_main_menu_section_for_hidden_entries(main_menu)
+        self._make_hidden_entries_menu_section(main_menu)
         return main_menu
 
-    def _make_main_menu_section_for_hidden_entries(self, main_menu):
+    def _make_hidden_entries_menu_section(self, main_menu):
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('remove package', 'rm'))
         hidden_section.append(('list package', 'ls'))
@@ -96,7 +96,7 @@ class MaterialPackageManager(PackageManager):
         hidden_section.append(('manage stylesheets', 'stl'))
         hidden_section.append(('manage metadata', 'metadata'))
 
-    def _make_main_menu_section_for_illustration_builder(
+    def _make_illustration_builder_menu_section(
         self,
         main_menu,
         hidden_section,
@@ -129,7 +129,7 @@ class MaterialPackageManager(PackageManager):
                 hidden_section.append(
                     ('source stylesheet - edit', 'ssm'))
 
-    def _make_main_menu_section_for_illustration_ly(self, hidden_section):
+    def _make_illystration_ly_menu_section(self, hidden_section):
         if self.has_output_material:
             if self.has_illustration_builder_module or \
                 self.has_material_package_manager:
@@ -138,7 +138,7 @@ class MaterialPackageManager(PackageManager):
             hidden_section.append(('output ly - delete', 'lyd'))
             hidden_section.append(('output ly - view', 'ly'))
 
-    def _make_main_menu_section_for_illustration_pdf(
+    def _make_illustration_pdf_menu_section(
         self,
         main_menu,
         hidden_section,
@@ -157,7 +157,7 @@ class MaterialPackageManager(PackageManager):
             hidden_section.append(('output pdf - delete', 'pdfd'))
             command_section.append(('output pdf - view', 'pdfv'))
 
-    def _make_main_menu_section_for_material_definition(self,
+    def _make_material_definition_menu_section(self,
         main_menu, hidden_section):
         if not self.has_initializer:
             return
@@ -182,7 +182,7 @@ class MaterialPackageManager(PackageManager):
             command_section.append(
                 ('material definition - stub', 'mdstub'))
 
-    def _make_main_menu_section_for_output_material(
+    def _make_output_material_menu_section(
         self,
         main_menu,
         hidden_section,
@@ -221,11 +221,11 @@ class MaterialPackageManager(PackageManager):
             ('output material - copy canned module', 'omcanned'))
 
     def _make_main_menu_sections(self, menu, hidden_section):
-        self._make_main_menu_section_for_material_definition(
+        self._make_material_definition_menu_section(
             menu, hidden_section)
-        self._make_main_menu_section_for_output_material(
+        self._make_output_material_menu_section(
             menu, hidden_section)
-        self._make_main_menu_section_for_illustration_builder(
+        self._make_illustration_builder_menu_section(
             menu, hidden_section)
 
     ### PUBLIC PROPERTIES ###
@@ -1104,7 +1104,7 @@ class MaterialPackageManager(PackageManager):
             user_input_wrapper = self.initialize_empty_user_input_wrapper()
         return user_input_wrapper
 
-    def _make_main_menu_section_for_user_input_module(self,
+    def _make_user_input_module_menu_section(self,
         main_menu, hidden_section):
         menu_entries = self.user_input_wrapper_in_memory.editable_lines
         numbered_section = main_menu.make_numbered_section()
@@ -1121,9 +1121,9 @@ class MaterialPackageManager(PackageManager):
     def _make_main_menu_sections_with_user_input_wrapper(
         self, menu, hidden_section):
         if not self.has_output_material_editor:
-            self._make_main_menu_section_for_user_input_module(
+            self._make_user_input_module_menu_section(
                 menu, hidden_section)
-        self._make_main_menu_section_for_output_material(menu, hidden_section)
+        self._make_output_material_menu_section(menu, hidden_section)
 
     ### PUBLIC PROPERTIES ###
 
