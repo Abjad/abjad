@@ -169,6 +169,6 @@ Follow the basics of ``ini`` syntax when editing the Abjad configuration file.
 
 Background information is available at http://en.wikipedia.org/wiki/INI_file.
 
-Under MacOs you might want to set you ``midi_player`` to iTunes. Under Linux
+Under MacOS you might want to set you ``midi_player`` to iTunes. Under Linux
 you might want to set your ``pdf_viewer`` to evince and your ``midi_player``
 to tiMIDIty, and so on.
