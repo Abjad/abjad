@@ -76,7 +76,7 @@ class StaffLinesSpanner(Spanner):
 
     def _format_after_leaf(self, leaf):
         result = []
-        if self._is_my_last_leaf(leaf):
+        if self._is_my_last_leaf(leaf) and leaf._get_leaf(1) is not None:
             result.append(r'\stopStaff')
             result.append(r'\startStaff')
         return result
