@@ -3,12 +3,12 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialPackageMakerWrangler_read_only_attributes_01():
+def test_MaterialPackageManagerWrangler_read_only_attributes_01():
 
     score_manager = scoremanager.core.ScoreManager()
     wrangler = score_manager.material_package_maker_wrangler
 
-    assert wrangler._breadcrumb == 'material package makers'
+    assert wrangler._breadcrumb == 'material package managers'
     string = 'scoremanager.materialpackagemanagers'
     assert wrangler._current_storehouse_packagesystem_path == string
 

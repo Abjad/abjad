@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_PitchRangeInventoryMaterialPackageMaker_01():
+def test_PitchRangeInventoryMaterialPackageManager_01():
     r'''Stub material package.
     '''
 
@@ -16,7 +16,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_01():
             'q'
             )
         string = 'scoremanager.materialpackages.testpir'
-        mpp = scoremanager.materialpackagemanagers.PitchRangeInventoryMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.PitchRangeInventoryMaterialPackageManager(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -31,7 +31,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_01():
             score_manager.configuration.packagesystem_path_exists(string)
 
 
-def test_PitchRangeInventoryMaterialPackageMaker_02():
+def test_PitchRangeInventoryMaterialPackageManager_02():
     r'''Populate output material module.
     '''
 
@@ -46,7 +46,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_02():
             'q'
             )
         string = 'scoremanager.materialpackages.testpir'
-        mpp = scoremanager.materialpackagemanagers.PitchRangeInventoryMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.PitchRangeInventoryMaterialPackageManager(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 

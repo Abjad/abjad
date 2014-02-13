@@ -25,7 +25,7 @@ def test_ScorePackageManager_read_only_attributes_01():
         )
     assert isinstance(
         package_manager.material_package_maker_wrangler,
-        scoremanager.wranglers.MaterialPackageMakerWrangler,
+        scoremanager.wranglers.MaterialPackageManagerWrangler,
         )
     assert isinstance(
         package_manager.material_package_wrangler,

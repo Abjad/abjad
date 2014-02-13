@@ -5,7 +5,7 @@ from scoremanager.wizards.DynamicHandlerCreationWizard \
     import DynamicHandlerCreationWizard
 
 
-class DynamicHandlerMaterialPackageMaker(MaterialPackageManager):
+class DynamicHandlerMaterialPackageManager(MaterialPackageManager):
 
     ### CLASS VARIABLES ###
 

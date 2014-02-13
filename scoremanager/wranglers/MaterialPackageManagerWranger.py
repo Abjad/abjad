@@ -8,15 +8,15 @@ from scoremanager.wranglers.PackageWrangler \
     import PackageWrangler
 
 
-class MaterialPackageMakerWrangler(PackageWrangler):
-    r'''Material package maker wrangler.
+class MaterialPackageManagerWrangler(PackageWrangler):
+    r'''Material package manager wrangler.
 
     ::
 
         >>> score_manager = scoremanager.core.ScoreManager()
         >>> wrangler = score_manager.material_package_maker_wrangler
         >>> wrangler
-        MaterialPackageMakerWrangler()
+        MaterialPackageManagerWrangler()
 
     '''
 
@@ -26,8 +26,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         PackageWrangler.configuration.built_in_material_package_makers_package_path
 
     forbidden_directory_entries = (
-        'InventoryMaterialPackageMaker.py',
-        'MaterialPackageMaker.py',
+        'InventoryMaterialPackageManager.py',
+        'MaterialPackageManager.py',
         )
 
     score_package_asset_storehouse_path_infix_parts = None
@@ -39,7 +39,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     @property
     def _breadcrumb(self):
-        return 'material package makers'
+        return 'material package managers'
 
     ### PRIVATE METHODS ###
 
@@ -108,7 +108,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         asset_menu_entries = self._make_asset_menu_entries(head=head)
         asset_section.menu_entries = asset_menu_entries
         command_section = main_menu.make_command_section()
-        command_section.append(('new material package maker', 'new'))
+        command_section.append(('new material package manager', 'new'))
         return main_menu
 
     ### PUBLIC METHODS ###
@@ -150,7 +150,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ):
         r'''Lists asset filesystem paths.
 
-        Example. List built-in material package maker filesystem paths:
+        Example. List built-in material package manager filesystem paths:
 
         ::
 
@@ -158,19 +158,19 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            '.../materialpackagemanagers/ArticulationHandlerMaterialPackageMaker.py'
-            '.../materialpackagemanagers/DynamicHandlerMaterialPackageMaker.py'
-            '.../materialpackagemanagers/ListMaterialPackageMaker.py'
-            '.../materialpackagemanagers/MarkupInventoryMaterialPackageMaker.py'
-            '.../materialpackagemanagers/OctaveTranspositionMappingInventoryMaterialPackageMaker.py'
-            '.../materialpackagemanagers/PitchRangeInventoryMaterialPackageMaker.py'
-            '.../materialpackagemanagers/RhythmMakerMaterialPackageMaker.py'
-            '.../materialpackagemanagers/SargassoMeasureMaterialPackageMaker.py'
-            '.../materialpackagemanagers/TempoInventoryMaterialPackageMaker.py'
+            '.../materialpackagemanagers/ArticulationHandlerMaterialPackageManager.py'
+            '.../materialpackagemanagers/DynamicHandlerMaterialPackageManager.py'
+            '.../materialpackagemanagers/ListMaterialPackageManager.py'
+            '.../materialpackagemanagers/MarkupInventoryMaterialPackageManager.py'
+            '.../materialpackagemanagers/OctaveTranspositionMappingInventoryMaterialPackageManager.py'
+            '.../materialpackagemanagers/PitchRangeInventoryMaterialPackageManager.py'
+            '.../materialpackagemanagers/RhythmMakerMaterialPackageManager.py'
+            '.../materialpackagemanagers/SargassoMeasureMaterialPackageManager.py'
+            '.../materialpackagemanagers/TempoInventoryMaterialPackageManager.py'
 
         Returns list.
         '''
-        superclass = super(MaterialPackageMakerWrangler, self)
+        superclass = super(MaterialPackageManagerWrangler, self)
         return superclass.list_asset_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
@@ -189,7 +189,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ):
         r'''Lists asset managers.
 
-        Example. List built-in material package maker managers:
+        Example. List built-in material package manager managers:
 
         ::
 
@@ -197,19 +197,19 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            ArticulationHandlerMaterialPackageMaker('.../materialpackagemanagers/ArticulationHandlerMaterialPackageMaker')
-            DynamicHandlerMaterialPackageMaker('.../materialpackagemanagers/DynamicHandlerMaterialPackageMaker')
-            ListMaterialPackageMaker('.../materialpackagemanagers/ListMaterialPackageMaker')
-            MarkupInventoryMaterialPackageMaker('.../materialpackagemanagers/MarkupInventoryMaterialPackageMaker')
-            OctaveTranspositionMappingInventoryMaterialPackageMaker('.../materialpackagemanagers/OctaveTranspositionMappingInventoryMaterialPackageMaker')
-            PitchRangeInventoryMaterialPackageMaker('.../materialpackagemanagers/PitchRangeInventoryMaterialPackageMaker')
-            RhythmMakerMaterialPackageMaker('.../materialpackagemanagers/RhythmMakerMaterialPackageMaker')
-            SargassoMeasureMaterialPackageMaker('.../materialpackagemanagers/SargassoMeasureMaterialPackageMaker')
-            TempoInventoryMaterialPackageMaker('.../materialpackagemanagers/TempoInventoryMaterialPackageMaker')
+            ArticulationHandlerMaterialPackageManager('.../materialpackagemanagers/ArticulationHandlerMaterialPackageManager')
+            DynamicHandlerMaterialPackageManager('.../materialpackagemanagers/DynamicHandlerMaterialPackageManager')
+            ListMaterialPackageManager('.../materialpackagemanagers/ListMaterialPackageManager')
+            MarkupInventoryMaterialPackageManager('.../materialpackagemanagers/MarkupInventoryMaterialPackageManager')
+            OctaveTranspositionMappingInventoryMaterialPackageManager('.../materialpackagemanagers/OctaveTranspositionMappingInventoryMaterialPackageManager')
+            PitchRangeInventoryMaterialPackageManager('.../materialpackagemanagers/PitchRangeInventoryMaterialPackageManager')
+            RhythmMakerMaterialPackageManager('.../materialpackagemanagers/RhythmMakerMaterialPackageManager')
+            SargassoMeasureMaterialPackageManager('.../materialpackagemanagers/SargassoMeasureMaterialPackageManager')
+            TempoInventoryMaterialPackageManager('.../materialpackagemanagers/TempoInventoryMaterialPackageManager')
 
         Returns list.
         '''
-        superclass = super(MaterialPackageMakerWrangler, self)
+        superclass = super(MaterialPackageManagerWrangler, self)
         return superclass.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
@@ -228,7 +228,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ):
         r'''Lists asset names.
 
-        Example. List built-in material package maker names:
+        Example. List built-in material package manager names:
 
         ::
 
@@ -236,19 +236,19 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            'articulation handler material package maker'
-            'dynamic handler material package maker'
-            'list material package maker'
-            'markup inventory material package maker'
-            'octave transposition mapping inventory material package maker'
-            'pitch range inventory material package maker'
-            'rhythm maker material package maker'
-            'sargasso measure material package maker'
-            'tempo inventory material package maker'
+            'articulation handler material package manager'
+            'dynamic handler material package manager'
+            'list material package manager'
+            'markup inventory material package manager'
+            'octave transposition mapping inventory material package manager'
+            'pitch range inventory material package manager'
+            'rhythm maker material package manager'
+            'sargasso measure material package manager'
+            'tempo inventory material package manager'
 
         Returns list.
         '''
-        superclass = super(MaterialPackageMakerWrangler, self)
+        superclass = super(MaterialPackageManagerWrangler, self)
         return superclass.list_asset_names(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
@@ -267,7 +267,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ):
         r'''Lists asset packagesystem_paths.
 
-        Example. List built-in material package maker package paths:
+        Example. List built-in material package manager package paths:
 
         ::
 
@@ -275,19 +275,19 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            'scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageMaker'
-            'scoremanager.materialpackagemanagers.DynamicHandlerMaterialPackageMaker'
-            'scoremanager.materialpackagemanagers.ListMaterialPackageMaker'
-            'scoremanager.materialpackagemanagers.MarkupInventoryMaterialPackageMaker'
-            'scoremanager.materialpackagemanagers.OctaveTranspositionMappingInventoryMaterialPackageMaker'
-            'scoremanager.materialpackagemanagers.PitchRangeInventoryMaterialPackageMaker'
-            'scoremanager.materialpackagemanagers.RhythmMakerMaterialPackageMaker'
-            'scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageMaker'
-            'scoremanager.materialpackagemanagers.TempoInventoryMaterialPackageMaker'
+            'scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageManager'
+            'scoremanager.materialpackagemanagers.DynamicHandlerMaterialPackageManager'
+            'scoremanager.materialpackagemanagers.ListMaterialPackageManager'
+            'scoremanager.materialpackagemanagers.MarkupInventoryMaterialPackageManager'
+            'scoremanager.materialpackagemanagers.OctaveTranspositionMappingInventoryMaterialPackageManager'
+            'scoremanager.materialpackagemanagers.PitchRangeInventoryMaterialPackageManager'
+            'scoremanager.materialpackagemanagers.RhythmMakerMaterialPackageManager'
+            'scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager'
+            'scoremanager.materialpackagemanagers.TempoInventoryMaterialPackageManager'
 
         Returns list.
         '''
-        superclass = super(MaterialPackageMakerWrangler, self)
+        superclass = super(MaterialPackageManagerWrangler, self)
         return superclass.list_asset_packagesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
@@ -305,7 +305,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ):
         r'''Lists asset storehouse filesystem paths.
 
-        Example. List built-in material package maker storehouses:
+        Example. List built-in material package manager storehouses:
 
         ::
 
@@ -317,7 +317,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
         Returns list.
         '''
-        superclass = super(MaterialPackageMakerWrangler, self)
+        superclass = super(MaterialPackageManagerWrangler, self)
         return superclass.list_asset_storehouse_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
@@ -338,15 +338,15 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         lines = []
         lines.append('from foo import foo')
         lines.append('from foo import make_illustration_from_output_material')
-        lines.append('from scoremanager.materialpackagemanagers.MaterialPackageMaker import MaterialPackageMaker')
+        lines.append('from scoremanager.materialpackagemanagers.MaterialPackageManager import MaterialPackageManager')
         lines.append('from scoremanager.editors.UserInputWrapper import UserInputWrapper')
         lines.append('from experimental.tools import scoremanager')
         lines.append('')
         lines.append('')
-        lines.append('class {}(MaterialPackageMaker):'.format(package_name))
+        lines.append('class {}(MaterialPackageManager):'.format(package_name))
         lines.append('')
         lines.append('    def __init__(self, package_path=None, session=None):')
-        lines.append('        MaterialPackageMaker.__init__(')
+        lines.append('        MaterialPackageManager.__init__(')
         lines.append('            self, package_path=package_path, session=seession')
         lines.append('')
         lines.append('    ### PUBLIC PROPERTIES ###')

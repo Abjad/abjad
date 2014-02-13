@@ -46,7 +46,7 @@ class MaterialPackageWrangler(PackageWrangler):
         from experimental.tools import scoremanager
         PackageWrangler.__init__(self, session=session)
         self._material_package_maker_wrangler = \
-            scoremanager.wranglers.MaterialPackageMakerWrangler(
+            scoremanager.wranglers.MaterialPackageManagerWrangler(
                 session=self.session)
 
     ### PRIVATE PROPERTIES ###
@@ -250,14 +250,14 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            MarkupInventoryMaterialPackageMaker('.../scoremanager/materialpackages/red_directives')
-            DynamicHandlerMaterialPackageMaker('.../scoremanager/materialpackages/red_forte')
-            ArticulationHandlerMaterialPackageMaker('.../scoremanager/materialpackages/red_marcati')
+            MarkupInventoryMaterialPackageManager('.../scoremanager/materialpackages/red_directives')
+            DynamicHandlerMaterialPackageManager('.../scoremanager/materialpackages/red_forte')
+            ArticulationHandlerMaterialPackageManager('.../scoremanager/materialpackages/red_marcati')
             MaterialPackageManager('.../scoremanager/materialpackages/red_notes')
             MaterialPackageManager('.../scoremanager/materialpackages/red_numbers')
-            SargassoMeasureMaterialPackageMaker('.../scoremanager/materialpackages/red_sargasso_measures')
+            SargassoMeasureMaterialPackageManager('.../scoremanager/materialpackages/red_sargasso_measures')
             MaterialPackageManager('.../scoremanager/materialpackages/sargasso_multipliers')
-            TempoInventoryMaterialPackageMaker('.../scoremanager/scorepackages/red_example_score/materials/tempo_inventory')
+            TempoInventoryMaterialPackageManager('.../scoremanager/scorepackages/red_example_score/materials/tempo_inventory')
 
         Returns list.
         '''

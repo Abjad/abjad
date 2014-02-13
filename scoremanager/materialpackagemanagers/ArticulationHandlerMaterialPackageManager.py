@@ -7,7 +7,7 @@ from scoremanager.wizards.ArticulationHandlerCreationWizard \
     import ArticulationHandlerCreationWizard
 
 
-class ArticulationHandlerMaterialPackageMaker(MaterialPackageManager):
+class ArticulationHandlerMaterialPackageManager(MaterialPackageManager):
 
     ### CLASS VARIABLES ###
 

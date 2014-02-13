@@ -4,7 +4,7 @@ from experimental import *
 import scoremanager
 
 
-def test_ArticulationHandlerMaterialPackageMaker_01():
+def test_ArticulationHandlerMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testarticulationhandler'
@@ -17,7 +17,7 @@ def test_ArticulationHandlerMaterialPackageMaker_01():
             'q '
             )
         string = 'scoremanager.materialpackages.testarticulationhandler'
-        manager = scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageMaker(
+        manager = scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageManager(
             string)
         assert manager._list_directory() == [
             '__init__.py', 

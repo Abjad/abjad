@@ -65,7 +65,7 @@ As of r10,249 it takes 6,658 function calls to initialize the score manager ...
         6    0.000    0.000    0.008    0.001 packagesystem_path_to_filesystem_path.py:4(packagesystem_path_to_filesystem_path)
         6    0.000    0.000    0.007    0.001 ScoreManagerConfiguration.py:22(__init__)
         6    0.000    0.000    0.007    0.001 Configuration.py:16(__init__)
-        2    0.000    0.000    0.003    0.001 MaterialPackageMakerWrangler.py:12(__init__)
+        2    0.000    0.000    0.003    0.001 MaterialPackageManagerWrangler.py:12(__init__)
         1    0.000    0.000    0.003    0.003 MaterialPackageWrangler.py:37(__init__)
      12/6    0.000    0.000    0.002    0.000 configobj.py:1187(__init__)
      12/6    0.000    0.000    0.002    0.000 configobj.py:1245(_load)

@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_TempoInventoryMaterialPackageMaker_01():
+def test_TempoInventoryMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testtempoinventory'
@@ -15,7 +15,7 @@ def test_TempoInventoryMaterialPackageMaker_01():
             'q '
             )
         string = 'scoremanager.materialpackages.testtempoinventory'
-        mpp = scoremanager.materialpackagemanagers.TempoInventoryMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.TempoInventoryMaterialPackageManager(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 

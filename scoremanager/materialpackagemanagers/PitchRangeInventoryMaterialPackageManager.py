@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from scoremanager.materialpackagemanagers.InventoryMaterialPackageMaker \
-    import InventoryMaterialPackageMaker
+from scoremanager.materialpackagemanagers.InventoryMaterialPackageManager \
+    import InventoryMaterialPackageManager
 from scoremanager.editors.PitchRangeInventoryEditor \
     import PitchRangeInventoryEditor
 
 
-class PitchRangeInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
+class PitchRangeInventoryMaterialPackageManager(InventoryMaterialPackageManager):
 
     ### CLASS VARIABLES ###
 

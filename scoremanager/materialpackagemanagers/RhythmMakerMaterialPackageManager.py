@@ -7,7 +7,7 @@ from scoremanager.wizards.RhythmMakerCreationWizard \
     import RhythmMakerCreationWizard
 
 
-class RhythmMakerMaterialPackageMaker(MaterialPackageManager):
+class RhythmMakerMaterialPackageManager(MaterialPackageManager):
 
     ### CLASS VARIABLES ###
 

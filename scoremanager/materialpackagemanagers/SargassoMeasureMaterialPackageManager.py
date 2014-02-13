@@ -7,7 +7,7 @@ from scoremanager.managers.MaterialPackageManager \
     import MaterialPackageManager
 
 
-class SargassoMeasureMaterialPackageMaker(MaterialPackageManager):
+class SargassoMeasureMaterialPackageManager(MaterialPackageManager):
 
     ### CLASS VARIABLES ###
 
@@ -158,10 +158,10 @@ class SargassoMeasureMaterialPackageMaker(MaterialPackageManager):
             for measure_index, multiplied_measure_numerator in \
                 enumerate(multiplied_measure_numerators):
                 possible_multipliers = \
-                    SargassoMeasureMaterialPackageMaker.get_possible_meter_multipliers(
+                    SargassoMeasureMaterialPackageManager.get_possible_meter_multipliers(
                     multiplied_measure_numerator)
                 meter_multiplier = \
-                    SargassoMeasureMaterialPackageMaker.select_meter_multiplier(
+                    SargassoMeasureMaterialPackageManager.select_meter_multiplier(
                     possible_multipliers, measure_index)
                 meter_multipliers.append(meter_multiplier)
             #print meter_multipliers
@@ -211,7 +211,7 @@ class SargassoMeasureMaterialPackageMaker(MaterialPackageManager):
 
         if measures_are_shuffled:
             divided_measure_tokens = \
-                SargassoMeasureMaterialPackageMaker.permute_divided_measure_tokens(
+                SargassoMeasureMaterialPackageManager.permute_divided_measure_tokens(
                 divided_measure_tokens)
 
         meter_tokens = []

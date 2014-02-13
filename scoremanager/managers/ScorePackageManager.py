@@ -40,7 +40,7 @@ class ScorePackageManager(PackageManager):
             session=self.session,
             )
         self._material_package_maker_wrangler = \
-            scoremanager.wranglers.MaterialPackageMakerWrangler(
+            scoremanager.wranglers.MaterialPackageManagerWrangler(
             session=self.session,
             )
         filesystem_path = os.path.join(self.filesystem_path, 'score_templates')
@@ -126,7 +126,7 @@ class ScorePackageManager(PackageManager):
         wrangler = self.material_package_wrangler
         for manager in wrangler.list_asset_managers(head=self.package_path):
             class_name = manager._get_metadata('material_package_maker_class_name')
-            if class_name == 'TempoInventoryMaterialPackageMaker':
+            if class_name == 'TempoInventoryMaterialPackageManager':
                 return manager.output_material
 
     def _get_title(self):

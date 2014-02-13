@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_01():
+def test_OctaveTranspositionMappingInventoryMaterialPackageManager_01():
     r'''Stub material package.
     '''
 
@@ -16,7 +16,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_01():
             'q'
             )
         string = 'scoremanager.materialpackages.testoctavetrans'
-        mpp = scoremanager.materialpackagemanagers.OctaveTranspositionMappingInventoryMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.OctaveTranspositionMappingInventoryMaterialPackageManager(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -31,7 +31,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_01():
             score_manager.configuration.packagesystem_path_exists(string)
 
 
-def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_02():
+def test_OctaveTranspositionMappingInventoryMaterialPackageManager_02():
     r'''Populate output material module.
     '''
 
@@ -46,7 +46,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_02():
             'add add source [A0, C8] target -18 done done done default q'
             )
         string = 'scoremanager.materialpackages.testoctavetrans'
-        mpp = scoremanager.materialpackagemanagers.OctaveTranspositionMappingInventoryMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.OctaveTranspositionMappingInventoryMaterialPackageManager(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 

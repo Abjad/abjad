@@ -4,7 +4,7 @@ from scoremanager.editors.ListEditor import ListEditor
 from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
 
 
-class ListMaterialPackageMaker(MaterialPackageManager):
+class ListMaterialPackageManager(MaterialPackageManager):
 
     ### CLASS VARIABLES ###
 

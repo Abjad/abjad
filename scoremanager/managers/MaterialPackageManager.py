@@ -779,7 +779,7 @@ class MaterialPackageManager(PackageManager):
     def interactively_select_material_package_maker(self, prompt=True):
         from experimental.tools import scoremanager
         material_manager_wrangler = \
-            scoremanager.wranglers.MaterialPackageMakerWrangler(
+            scoremanager.wranglers.MaterialPackageManagerWrangler(
                 session=self.session)
         with self.backtracking:
             material_package_maker = \

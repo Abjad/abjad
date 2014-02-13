@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_ListMaterialPackageMaker_01():
+def test_ListMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testlist'
@@ -15,7 +15,7 @@ def test_ListMaterialPackageMaker_01():
             )
         string = 'scoremanager.materialpackages.testlist'
         mpp = \
-            scoremanager.materialpackagemanagers.ListMaterialPackageMaker(string)
+            scoremanager.materialpackagemanagers.ListMaterialPackageManager(string)
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',

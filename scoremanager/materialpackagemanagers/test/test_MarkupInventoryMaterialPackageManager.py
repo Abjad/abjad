@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_MarkupInventoryMaterialPackageMaker_01():
+def test_MarkupInventoryMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testmarkupinventory'
@@ -16,7 +16,7 @@ def test_MarkupInventoryMaterialPackageMaker_01():
             "add arg r'\\italic~{~presto~}' name presto done done default q"
             )
         string = 'scoremanager.materialpackages.testmarkupinventory'
-        mpp = scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageManager(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 

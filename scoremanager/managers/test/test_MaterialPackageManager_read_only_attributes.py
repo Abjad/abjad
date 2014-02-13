@@ -77,7 +77,7 @@ def test_MaterialPackageManager_read_only_attributes_02():
 
     string = 'scoremanager.materialpackages.red_sargasso_measures'
     manager = \
-        scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageMaker(
+        scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
             string
             )
     assert manager._breadcrumb == 'red sargasso measures'
@@ -118,9 +118,9 @@ def test_MaterialPackageManager_read_only_attributes_02():
         'red_sargasso_measures',
         )
     assert manager.material_package_directory == file_path
-    maker = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageMaker
+    maker = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager
     assert manager.material_package_maker is maker
-    string = 'SargassoMeasureMaterialPackageMaker'
+    string = 'SargassoMeasureMaterialPackageManager'
     assert manager.material_package_maker_class_name == string
     assert manager.material_package_name == 'red_sargasso_measures'
     string = 'red sargasso measures'

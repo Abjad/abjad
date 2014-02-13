@@ -5,7 +5,7 @@ import scoremanager
 pytest.skip('unskip once it is possible to edit composite objects.')
 
 
-def test_RhythmMakerMaterialPackageMaker_01():
+def test_RhythmMakerMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testrhythmmaker'
@@ -18,7 +18,7 @@ def test_RhythmMakerMaterialPackageMaker_01():
             'q '
             )
         string = 'scoremanager.materialpackages.testrhythmmaker'
-        mpp = scoremanager.materialpackagemanagers.RhythmMakerMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.RhythmMakerMaterialPackageManager(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 

@@ -46,7 +46,7 @@
     Will involve making pending_user_input='... rm ...' work with named 
     arguments instead of just numeric arguments.
 
-18. Make MaterialPackageMaker classes stop creating materials in 
+18. Make MaterialPackageManager classes stop creating materials in 
     scoremanager.materialpackages.
     Those classes should create material packages in the user asset 
     library material packages directory.

@@ -26,7 +26,7 @@ class ScoreManager(ScoreManagerObject):
             scoremanager.wranglers.SegmentPackageWrangler(
             session=self.session)
         self._material_package_maker_wrangler = \
-            scoremanager.wranglers.MaterialPackageMakerWrangler(
+            scoremanager.wranglers.MaterialPackageManagerWrangler(
             session=self.session)
         self._material_package_wrangler = \
             scoremanager.wranglers.MaterialPackageWrangler(
@@ -195,7 +195,7 @@ class ScoreManager(ScoreManagerObject):
         ::
 
             >>> score_manager.material_package_maker_wrangler
-            MaterialPackageMakerWrangler()
+            MaterialPackageManagerWrangler()
 
         Returns material package maker wrangler.
         '''

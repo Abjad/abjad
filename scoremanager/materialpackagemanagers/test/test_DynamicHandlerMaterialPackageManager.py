@@ -4,7 +4,7 @@ from experimental import *
 import scoremanager
 
 
-def test_DynamicHandlerMaterialPackageMaker_01():
+def test_DynamicHandlerMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testdynamichandler'
@@ -17,7 +17,7 @@ def test_DynamicHandlerMaterialPackageMaker_01():
             'q '
             )
         string = 'scoremanager.materialpackages.testdynamichandler'
-        mpp = scoremanager.materialpackagemanagers.DynamicHandlerMaterialPackageMaker(
+        mpp = scoremanager.materialpackagemanagers.DynamicHandlerMaterialPackageManager(
             string)
         assert mpp._list_directory() == [
             '__init__.py', 

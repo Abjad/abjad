@@ -1,38 +1,39 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from scoremanager.materialpackagemanagers.InventoryMaterialPackageMaker \
-    import InventoryMaterialPackageMaker
-from scoremanager.editors.OctaveTranspositionMappingInventoryEditor \
-    import OctaveTranspositionMappingInventoryEditor
+from scoremanager.materialpackagemanagers.InventoryMaterialPackageManager \
+    import InventoryMaterialPackageManager
+from scoremanager.editors.TempoInventoryEditor \
+    import TempoInventoryEditor
 
 
-class OctaveTranspositionMappingInventoryMaterialPackageMaker(
-    InventoryMaterialPackageMaker):
+class TempoInventoryMaterialPackageManager(InventoryMaterialPackageManager):
 
     ### CLASS VARIABLES ###
 
-    generic_output_name = 'octave transposition mapping inventory'
+    generic_output_name = 'tempo inventory'
 
-    output_material_checker = staticmethod(lambda x: isinstance(x,
-        pitchtools.OctaveTranspositionMappingInventory))
+    output_material_checker = staticmethod(
+        lambda x: isinstance(x, indicatortools.TempoInventory))
 
-    output_material_editor = OctaveTranspositionMappingInventoryEditor
+    output_material_editor = TempoInventoryEditor
 
-    output_material_maker = pitchtools.OctaveTranspositionMappingInventory
+    output_material_maker = indicatortools.TempoInventory
 
     output_material_module_import_statements = [
-        'from abjad.tools import pitchtools',
+        'from abjad.tools import indicatortools',
+        'from abjad.tools import durationtools',
         ]
 
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def illustration_builder(
-        octave_transposition_mapping_inventory, **kwargs):
+    def illustration_builder(tempo_inventory, **kwargs):
         notes = []
-        for octave_transposition_mapping in \
-            octave_transposition_mapping_inventory:
+        for tempo in tempo_inventory:
             note = Note("c'4")
+            tempo = indicatortools.Tempo(
+                tempo, scope=Staff)
+            tempo(note)
             notes.append(note)
         staff = scoretools.Staff(notes)
         staff.context_name = 'RhythmicStaff'

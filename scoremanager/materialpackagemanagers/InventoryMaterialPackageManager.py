@@ -3,7 +3,7 @@ import abc
 from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
 
 
-class InventoryMaterialPackageMaker(MaterialPackageManager):
+class InventoryMaterialPackageManager(MaterialPackageManager):
 
     ### CLASS ATRIBUTES ###
 
