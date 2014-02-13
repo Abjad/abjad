@@ -589,12 +589,12 @@ class MaterialPackageManager(PackageManager):
     def stylesheet_file_manager(self):
         from scoremanager import managers
         return managers.FileManager(
-            self.stylesheet_file_name,
+            self.stylesheet_file_path,
             session=self.session,
             )
 
     @property
-    def stylesheet_file_name_on_disk(self):
+    def stylesheet_file_path_on_disk(self):
         if self.has_illustration_ly:
             for line in self.illustration_ly_file_manager.read_lines():
                 if line.startswith(r'\include') and 'stylesheets' in line:
@@ -793,11 +793,11 @@ class MaterialPackageManager(PackageManager):
         stylesheet_file_wrangler = wranglers.StylesheetFileWrangler(
             session=self.session)
         with self.backtracking:
-            stylesheet_file_name = \
+            stylesheet_file_path = \
                 stylesheet_file_wrangler.interactively_select_asset_filesystem_path()
         if self.session.backtrack():
             return
-        self.stylesheet_file_path_in_memory = stylesheet_file_name
+        self.stylesheet_file_path_in_memory = stylesheet_file_path
         self.session.io_manager.proceed(
             'stylesheet selected.', 
             is_interactive=prompt,

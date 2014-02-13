@@ -415,11 +415,11 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             layouttools.make_spacing_vector(0, 0, 12, 0)
         stylesheet.paper_block.system_system_spacing = \
             layouttools.make_spacing_vector(0, 0, 10, 0)
-        stylesheet_file_name = os.path.join(
+        stylesheet_file_path = os.path.join(
             self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
             package_name, 
             'stylesheet.ly')
-        stylesheet_file_pointer = file(stylesheet_file_name, 'w')
+        stylesheet_file_pointer = file(stylesheet_file_path, 'w')
         stylesheet_file_pointer.write(stylesheet.format)
         stylesheet_file_pointer.close()
 

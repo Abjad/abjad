@@ -223,17 +223,17 @@ class StylesheetFileWrangler(FileWrangler):
             return
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('stylesheet name')
-        stylesheet_file_name = getter._run()
+        stylesheet_file_path = getter._run()
         if self.session.backtrack():
             return
-        stylesheet_file_name = \
+        stylesheet_file_path = \
             stringtools.string_to_accent_free_snake_case(
-            stylesheet_file_name)
-        if not stylesheet_file_name.endswith('.ily'):
-            stylesheet_file_name = stylesheet_file_name + '.ily'
+            stylesheet_file_path)
+        if not stylesheet_file_path.endswith('.ily'):
+            stylesheet_file_path = stylesheet_file_path + '.ily'
         stylesheet_file_path = os.path.join(
             storehouse_path,
-            stylesheet_file_name,
+            stylesheet_file_path,
             )
         manager = managers.FileManager(
             stylesheet_file_path, 

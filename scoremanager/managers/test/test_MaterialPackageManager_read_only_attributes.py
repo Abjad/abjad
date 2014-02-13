@@ -65,7 +65,7 @@ def test_MaterialPackageManager_read_only_attributes_01():
     assert manager.should_have_material_definition_module
     assert manager.should_have_output_material_module
     assert not manager.should_have_user_input_module
-    assert manager.stylesheet_file_name_on_disk is None
+    assert manager.stylesheet_file_path_on_disk is None
     assert manager.user_input_module_file_path is None
     assert manager.user_input_module_packagesystem_path is None
     assert manager.user_input_module_manager is None
