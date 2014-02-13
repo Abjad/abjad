@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 import os
 from abjad.tools import systemtools
 from abjad.tools import stringtools
@@ -51,13 +52,14 @@ class PackageManager(DirectoryManager):
         return metadatum
 
     def _get_metadata(self):
-        from collections import OrderedDict
-        self.metadata_module_manager._make_empty_asset()
-        file_pointer = open(self.metadata_module_name, 'r')
-        file_contents_string = file_pointer.read()
-        file_pointer.close()
-        exec(file_contents_string)
-        metadata = locals().get('metadata') or OrderedDict([])
+        metadata = None
+        if os.path.isfile(self.metadata_module_name):
+            file_pointer = open(self.metadata_module_name, 'r')
+            file_contents_string = file_pointer.read()
+            file_pointer.close()
+            exec(file_contents_string)
+            metadata = locals().get('metadata')
+        metadata = metadata or collections.OrderedDict()
         return metadata
 
     def _make_metadata_menu_entries(self):
@@ -72,6 +74,42 @@ class PackageManager(DirectoryManager):
         metadata = self._get_metadata()
         del(metadata[metadatum_name])
         self.write_metadata_to_disk(metadata)
+
+    @staticmethod
+    def _make_metadata_lines(metadata):
+        if metadata:
+            lines = []
+            for key, value in sorted(metadata.iteritems()):
+                key = repr(key)
+                if hasattr(value, '_get_multiline_repr'):
+                    repr_lines = \
+                        value._get_multiline_repr(include_tools_package=True)
+                    value = '\n    '.join(repr_lines)
+                    lines.append('({}, {})'.format(key, value))
+                else:
+                    if hasattr(value, '_storage_format_specification'):
+                        string = format(value)
+                    else:
+                        string = repr(value)
+                    lines.append('({}, {})'.format(key, string))
+            lines = ',\n    '.join(lines)
+            result = 'metadata = collections.OrderedDict([\n    {},\n    ])'
+            result = result.format(lines)
+        else:
+            result = 'metadata = collections.OrderedDict([])'
+        return result
+
+    def _write_metadata_to_disk(self, metadata):
+        lines = []
+        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append('import collections\n')
+        lines.append('\n\n')
+        metadata_lines = self._make_metadata_lines(metadata) 
+        lines.extend(metadata_lines)
+        lines = ''.join(lines)
+        file_pointer = file(self.metadata_module_name, 'w')
+        file_pointer.write(lines)
+        file_pointer.close()
 
     ### PUBLIC PROPERTIES ###
 
@@ -100,16 +138,6 @@ class PackageManager(DirectoryManager):
     def initializer_file_name(self):
         if self.filesystem_path is not None:
             return os.path.join(self.filesystem_path, '__init__.py')
-
-    @property
-    def metadata_module_manager(self):
-        from scoremanager import managers
-        if not self.has_metadata_module:
-            metadata_module = open(self.metadata_module_name, 'w')
-            metadata_module.write('')
-            metadata_module.close()
-        return managers.MetadataModuleManager(
-            self.metadata_module_name, session=self.session)
 
     @property
     def metadata_module_name(self):
@@ -248,8 +276,10 @@ class PackageManager(DirectoryManager):
         self.initializer_file_manager.interactively_view()
 
     def interactively_view_metadata_module(self):
-        #self.metadata_module_manager.interactively_view()
-        self.metadata_module_manager.interactively_edit()
+        file_path = self.metadata_module_name
+        if os.path.isfile(file_path):
+            command = 'vim -R {}'.format(file_path)
+            self.session.io_manager.spawn_subprocess(command)
 
     def interactively_write_initializer_boilerplate(self):
         self.initializer_file_manager.interactively_write_boilerplate()
@@ -304,7 +334,7 @@ class PackageManager(DirectoryManager):
     def write_metadata_to_disk(self, metadata=None):
         if metadata is None:
             metadata = self._get_metadata()
-        self.metadata_module_manager.write_metadata_to_disk(metadata)
+        self._write_metadata_to_disk(metadata)
 
     ### UI MANIFEST ###
 

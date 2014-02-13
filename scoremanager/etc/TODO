@@ -158,3 +158,8 @@
     LilyPond.
 
 41. Remove FileWrangler and just use FilesystemAssetWrangler instead?
+
+42. Change metadata_module_name to metadata_module_path.
+
+43. Change systemtools.IOManager.spawn_subprocess() to
+    self.session.io_manager.spawn_subprocess().

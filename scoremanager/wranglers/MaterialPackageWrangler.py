@@ -445,14 +445,13 @@ class MaterialPackageWrangler(PackageWrangler):
             package_path)
         assert not os.path.exists(directory_path)
         os.mkdir(directory_path)
-        material_package_manager_class_name = metadata.get(
-            'material_package_manager_class_name')
+        string = 'material_package_manager_class_name'
+        material_package_manager_class_name = metadata.get(string)
         pair = (material_package_manager_class_name, package_path)
         material_package_manager = self._get_appropriate_material_package_manager(
             *pair)
         material_package_manager.initializer_file_manager._write_stub_to_disk()
-        material_package_manager.metadata_module_manager._write_stub_to_disk()
-        material_package_manager.metadata_module_manager.write_metadata_to_disk(metadata)
+        material_package_manager.write_metadata_to_disk(metadata)
         material_package_manager.conditionally_write_stub_material_definition_module_to_disk()
         material_package_manager.conditionally_write_stub_user_input_module_to_disk()
         line = 'material package {!r} created.'.format(package_path)
