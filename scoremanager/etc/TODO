@@ -150,3 +150,12 @@
     LilyPond.
 
 40. Remove FileWrangler and just use FilesystemAssetWrangler instead?
+
+41. Remove FileManager.interactively_view(). Replace with
+    IOManager.interactively_view(file_path).
+    Then the pattern of ...
+        manager = managers.FileManager(self.whatever_file_path)
+        manager.interactively_view()
+    ... can be replaced with ...
+        self.session.io_manager.interactively_view(self.whatever_file_path)
+    ... instead.

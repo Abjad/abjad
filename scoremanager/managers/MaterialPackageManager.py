@@ -4,6 +4,7 @@ import os
 import shutil
 import traceback
 from abjad.tools import mathtools
+from abjad.tools import stringtools
 from abjad.tools import systemtools
 from abjad.tools import topleveltools
 from scoremanager import wizards
@@ -327,8 +328,7 @@ class MaterialPackageManager(PackageManager):
     @property
     def has_user_input_wrapper_on_disk(self):
         if self.should_have_user_input_module:
-            return bool(
-                self.user_input_module_manager.read_user_input_wrapper_from_disk())
+            return bool(self.read_user_input_wrapper_from_disk())
         return False
 
     @property
@@ -607,19 +607,6 @@ class MaterialPackageManager(PackageManager):
             return os.path.join(self.filesystem_path, 'user_input.py')
 
     @property
-    def user_input_module_manager(self):
-        from scoremanager import managers
-        if self.should_have_user_input_module:
-            if not self.has_user_input_module:
-                with file(
-                    self.user_input_module_file_path, 'w') as file_pointer:
-                    file_pointer.write('')
-            return managers.UserInputModuleManager(
-                self.user_input_module_file_path,
-                session=self.session,
-                )
-
-    @property
     def user_input_module_packagesystem_path(self):
         if self.should_have_user_input_module:
             return '.'.join([self.package_path, 'user_input'])
@@ -853,8 +840,10 @@ class MaterialPackageManager(PackageManager):
             self.output_material_module_manager._remove()
 
     def remove_user_input_module(self, prompt=True):
+        from scoremanager import managers
         if self.has_user_input_module:
-            self.user_input_module_manager._remove()
+            manager = managers.FileManager(self.user_input_module_file_path)
+            manager._remove()
 
     @staticmethod
     def replace_in_file(file_path, old, new):
@@ -984,6 +973,39 @@ class MaterialPackageManager(PackageManager):
 
     ### USER INPUT WRAPPER METHODS ###
 
+    def has_complete_user_input_wrapper_on_disk(self):
+        user_input_wrapper = self.read_user_input_wrapper_from_disk()
+        if user_input_wrapper is not None:
+            return user_input_wrapper.is_complete
+        return False
+
+    def read_user_input_wrapper_from_disk(self):
+        from scoremanager import managers
+        manager = managers.FileManager(self.user_input_module_file_path)
+        result = manager._execute_file_lines(
+            file_path=self.user_input_module_file_path,
+            return_attribute_name='user_input_wrapper',
+            )
+        return result
+
+    def write_user_input_wrapper_to_disk(self, wrapper):
+        lines = []
+        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append('from abjad import *\n')
+        import_statements = wrapper.user_input_module_import_statements[:]
+        import_statements = \
+            stringtools.add_terminal_newlines(import_statements)
+        lines.extend(import_statements)
+        lines.append('\n\n')
+        formatted_lines = wrapper.formatted_lines
+        formatted_lines = stringtools.add_terminal_newlines(formatted_lines)
+        lines.extend(formatted_lines)
+        lines = ''.join(lines)
+        #file_pointer = file(self.filesystem_path, 'w')
+        file_pointer = file(self.user_input_module_file_path, 'w')
+        file_pointer.write(lines)
+        file_pointer.close()
+
     def _initialize_user_input_wrapper_in_memory(self):
         from scoremanager import managers
         if not self.should_have_user_input_module:
@@ -1006,11 +1028,11 @@ class MaterialPackageManager(PackageManager):
             )
         if not os.path.exists(user_input_module_file_path):
             file(user_input_module_file_path, 'w').write('')
-        manager = managers.UserInputModuleManager(
-            user_input_module_file_path,
-            session=self.session,
-            )
-        user_input_wrapper = manager.read_user_input_wrapper_from_disk()
+#        manager = managers.UserInputModuleManager(
+#            user_input_module_file_path,
+#            session=self.session,
+#            )
+        user_input_wrapper = self.read_user_input_wrapper_from_disk()
         if user_input_wrapper:
             user_input_wrapper._user_input_module_import_statements = \
                 getattr(self, 'user_input_module_import_statements', [])[:]
@@ -1074,8 +1096,8 @@ class MaterialPackageManager(PackageManager):
                 'user input already empty.', is_interactive=prompt)
         else:
             self.user_input_wrapper_in_memory.clear()
-            self.user_input_module_manager.write_user_input_wrapper_to_disk(
-                self.user_input_wrapper_in_memory)
+            wrapper = self.user_input_wrapper_in_memory
+            self.write_user_input_wrapper_to_disk(wrapper)
             self.session.io_manager.proceed(
                 'user input wrapper cleared and written to disk.',
                 is_interactive=prompt)
@@ -1139,26 +1161,29 @@ class MaterialPackageManager(PackageManager):
         if self.session.backtrack():
             return
         self.user_input_wrapper_in_memory[key] = new_value
-        self.user_input_module_manager.write_user_input_wrapper_to_disk(
-            self.user_input_wrapper_in_memory)
+        wrapper = self.user_input_wrapper_in_memory
+        self.write_user_input_wrapper_to_disk(wrapper)
 
     def interactively_view_user_input_module(
         self,
         pending_user_input=None,
         ):
+        from scoremanager import managers
         self.session.io_manager._assign_user_input(pending_user_input)
-        self.user_input_module_manager.interactively_view()
+        manager = managers.FileManager(self.user_input_module_file_path)
+        manager.interactively_view()
 
     def load_user_input_wrapper_demo_values(self, prompt=False):
         user_input_demo_values = copy.deepcopy(
             type(self).user_input_demo_values)
         for key, value in user_input_demo_values:
             self.user_input_wrapper_in_memory[key] = value
-        self.user_input_module_manager.write_user_input_wrapper_to_disk(
-            self.user_input_wrapper_in_memory)
+        wrapper = self.user_input_wrapper_in_memory
+        self.write_user_input_wrapper_to_disk(wrapper)
         self.session.io_manager.proceed(
             'demo values loaded and written to disk.',
-            is_interactive=prompt)
+            is_interactive=prompt,
+            )
 
     def make_output_material_from_user_input_wrapper_in_memory(self):
         output_material = self.output_material_maker(
@@ -1204,12 +1229,13 @@ class MaterialPackageManager(PackageManager):
         self.session.swap_user_input_values_default_status()
 
     def write_stub_user_input_module_to_disk(self, is_interactive=False):
-        empty_user_input_wrapper = self.initialize_empty_user_input_wrapper()
-        self.user_input_module_manager.write_user_input_wrapper_to_disk(
-            empty_user_input_wrapper)
+        wrapper = self.initialize_empty_user_input_wrapper()
+        self.write_user_input_wrapper_to_disk(wrapper)
         self.session.io_manager.proceed(
             'stub user input module written to disk.',
-            is_interactive=is_interactive)
+            is_interactive=is_interactive,
+            )
+
     ### UI MANIFEST ###
 
     user_input_to_action = PackageManager.user_input_to_action.copy()

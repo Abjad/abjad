@@ -68,7 +68,6 @@ def test_MaterialPackageManager_read_only_attributes_01():
     assert manager.stylesheet_file_path_on_disk is None
     assert manager.user_input_module_file_path is None
     assert manager.user_input_module_packagesystem_path is None
-    assert manager.user_input_module_manager is None
 
 
 def test_MaterialPackageManager_read_only_attributes_02():
@@ -151,7 +150,6 @@ def test_MaterialPackageManager_read_only_attributes_02():
     assert manager.user_input_module_file_path == file_path
     string = 'scoremanager.materialpackages.red_sargasso_measures.user_input'
     assert manager.user_input_module_packagesystem_path == string
-    assert manager.user_input_module_manager is not None
 
 
 def test_MaterialPackageManager_read_only_attributes_03():
@@ -236,4 +234,3 @@ def test_MaterialPackageManager_read_only_attributes_03():
     assert not  manager.should_have_user_input_module
     assert manager.user_input_module_file_path is None
     assert manager.user_input_module_packagesystem_path is None
-    assert manager.user_input_module_manager is None

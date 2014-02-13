@@ -19,9 +19,10 @@ class FileManager(FilesystemAssetManager):
 
     ### PRIVATE METHODS ###
 
-    def _execute_file_lines(self, return_attribute_name=None):
-        if os.path.isfile(self.filesystem_path):
-            file_pointer = open(self.filesystem_path, 'r')
+    def _execute_file_lines(self, file_path=None, return_attribute_name=None):
+        file_path = file_path or self.filesystem_path
+        if os.path.isfile(file_path):
+            file_pointer = open(file_path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
             try:
