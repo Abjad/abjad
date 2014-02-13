@@ -145,11 +145,10 @@ class FileManager(FilesystemAssetManager):
 
         Returns none.
         '''
-        if line_number is None:
-            command = 'vim + {}'.format(self.filesystem_path)
-        else:
-            command = 'vim +{} {}'.format(line_number, self.filesystem_path)
-        self.session.io_manager.spawn_subprocess(command)
+        self.session.io_manager.interactively_edit(
+            self.filesystem_path,
+            line_number=line_number,
+            )
 
     def interactively_open(self):
         r'''Interactively opens file.
@@ -187,11 +186,7 @@ class FileManager(FilesystemAssetManager):
 
         Returns none.
         '''
-        if self.filesystem_path.endswith('.pdf'):
-            command = 'open {}'.format(self.filesystem_path)
-        else:
-            command = 'vim -R {}'.format(self.filesystem_path)
-        self.session.io_manager.spawn_subprocess(command)
+        self.session.io_manager.interactively_view(self.filesystem_path)
 
     ### UI MANIFEST ###
 

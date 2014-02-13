@@ -842,7 +842,10 @@ class MaterialPackageManager(PackageManager):
     def remove_user_input_module(self, prompt=True):
         from scoremanager import managers
         if self.has_user_input_module:
-            manager = managers.FileManager(self.user_input_module_file_path)
+            manager = managers.FileManager(
+                self.user_input_module_file_path,
+                session=self.session,
+                )
             manager._remove()
 
     @staticmethod
@@ -981,7 +984,10 @@ class MaterialPackageManager(PackageManager):
 
     def read_user_input_wrapper_from_disk(self):
         from scoremanager import managers
-        manager = managers.FileManager(self.user_input_module_file_path)
+        manager = managers.FileManager(
+            self.user_input_module_file_path,
+            session=self.session,
+            )
         result = manager._execute_file_lines(
             file_path=self.user_input_module_file_path,
             return_attribute_name='user_input_wrapper',
@@ -1001,7 +1007,6 @@ class MaterialPackageManager(PackageManager):
         formatted_lines = stringtools.add_terminal_newlines(formatted_lines)
         lines.extend(formatted_lines)
         lines = ''.join(lines)
-        #file_pointer = file(self.filesystem_path, 'w')
         file_pointer = file(self.user_input_module_file_path, 'w')
         file_pointer.write(lines)
         file_pointer.close()
@@ -1166,8 +1171,8 @@ class MaterialPackageManager(PackageManager):
         ):
         from scoremanager import managers
         self.session.io_manager._assign_user_input(pending_user_input)
-        manager = managers.FileManager(self.user_input_module_file_path)
-        manager.interactively_view()
+        file_path = self.user_input_module_file_path
+        self.session.io_manager.interactively_view(file_path)
 
     def load_user_input_wrapper_demo_values(self, prompt=False):
         user_input_demo_values = copy.deepcopy(

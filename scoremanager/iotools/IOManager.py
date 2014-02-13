@@ -242,6 +242,19 @@ class IOManager(IOManager):
         finally:
             readline.set_startup_hook()
 
+    def interactively_edit(self, file_path, line_number=None):
+        r'''Interactively edits `file_path`.
+
+        Returns none.
+        '''
+        if not os.path.isfile(file_path):
+            return
+        if line_number is None:
+            command = 'vim + {}'.format(file_path)
+        else:
+            command = 'vim +{} {}'.format(line_number, file_path)
+        self.spawn_subprocess(command)
+
     def interactively_exec_statement(self, statement=None):
         r'''Interactively executes `statement`.
 
@@ -268,6 +281,19 @@ class IOManager(IOManager):
         if is_interactive:
             self.display(lines)
         self.session.hide_next_redraw = True
+
+    def interactively_view(self, file_path):
+        r'''Interactively views `file_path`.
+
+        Returns none.
+        '''
+        if not os.path.isfile(file_path):
+            return
+        if file_path.endswith('.pdf'):
+            command = 'open {}'.format(file_path)
+        else:
+            command = 'vim -R {}'.format(file_path)
+        self.spawn_subprocess(command)
 
     def make_getter(self, where=None):
         r'''Makes getter.
