@@ -147,6 +147,10 @@ class UpdateManager(AbjadObject):
         ):
         if component._is_forbidden_to_update:
             return
+        parentage = component._get_parentage()
+        for parent in parentage:
+            if parent._is_forbidden_to_update:
+                return
         state_flags = UpdateManager._get_score_tree_state_flags(component)
         offsets_are_current = state_flags[0]
         indicators_are_current = state_flags[1]
