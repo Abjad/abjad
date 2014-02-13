@@ -7,7 +7,7 @@ from abjad.tools import stringtools
 from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
-class FilesystemAssetWrangler(ScoreManagerObject):
+class Wrangler(ScoreManagerObject):
     r'''Filesystem asset wrangler.
     '''
 

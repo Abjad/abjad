@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad.tools import sequencetools
-from scoremanager.wranglers.FilesystemAssetWrangler \
-    import FilesystemAssetWrangler
+from scoremanager.wranglers.Wrangler \
+    import Wrangler
 
 
-class PackagesystemAssetWrangler(FilesystemAssetWrangler):
+class PackagesystemAssetWrangler(Wrangler):
 
     ### INITIALIZER ###
 
@@ -20,7 +20,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             asset_storehouse_filesystem_path_in_built_in_asset_library
         self.asset_storehouse_filesystem_path_in_user_asset_library = \
             asset_storehouse_filesystem_path_in_user_asset_library
-        FilesystemAssetWrangler.__init__(self, session=session)
+        Wrangler.__init__(self, session=session)
 
     ### PRIVATE PROPERTIES ###
 
@@ -292,7 +292,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = FilesystemAssetWrangler.user_input_to_action.copy()
+    user_input_to_action = Wrangler.user_input_to_action.copy()
     user_input_to_action.update({
         'missing': make_asset_storehouse_packages,
         'ren': interactively_rename_asset,

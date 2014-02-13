@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from scoremanager.wranglers.FilesystemAssetWrangler \
-    import FilesystemAssetWrangler
+from scoremanager.wranglers.Wrangler \
+    import Wrangler
 
 
-class FileWrangler(FilesystemAssetWrangler):
+class FileWrangler(Wrangler):
 
     ### INITIALIZER ###
 
