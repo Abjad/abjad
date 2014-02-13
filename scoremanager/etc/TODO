@@ -114,12 +114,9 @@
     defined; alternatively, remove custom_identifier from TempoInventory
     entirely; use user-given package name instead.
 
-34. Stop sprinkling empty __metadata__.py moudles in directories:
-        .../materialpackagemanagers/stylesheets/__metadata__.py
-        .../materialpackagemanagers/test/__metadata__.py
-    And remove empty ...
+34. Remove empty ...
         .../materialpackagemanagers/user_input.py
-    ... module, too.
+    ... module.
 
 35. Reformat ScoreManagerConfiguration to better follow the implementation
     pattern of AbjadConfiguration. Make built_in_editors_directory_path
