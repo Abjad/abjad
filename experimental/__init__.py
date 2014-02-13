@@ -8,5 +8,5 @@ from tools import handlertools
 from tools import interpolationtools
 from tools import musicexpressiontools
 from tools import newabjadbooktools
-from tools import scoremanager
+#from tools import scoremanager
 from tools import segmentmakertools
