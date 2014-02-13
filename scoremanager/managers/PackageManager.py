@@ -44,7 +44,7 @@ class PackageManager(DirectoryManager):
         assert stringtools.is_snake_case_string(metadatum_name)
         metadata = self._get_metadata()
         metadata[metadatum_name] = metadatum_value
-        self.write_metadata_to_disk(metadata)
+        self.write_metadata(metadata)
 
     def _get_metadatum(self, metadatum_name):
         metadata = self._get_metadata()
@@ -73,7 +73,7 @@ class PackageManager(DirectoryManager):
     def _remove_metadatum(self, metadatum_name):
         metadata = self._get_metadata()
         del(metadata[metadatum_name])
-        self.write_metadata_to_disk(metadata)
+        self.write_metadata(metadata)
 
     @staticmethod
     def _make_metadata_lines(metadata):
@@ -99,7 +99,7 @@ class PackageManager(DirectoryManager):
             result = 'metadata = collections.OrderedDict([])'
         return result
 
-    def _write_metadata_to_disk(self, metadata):
+    def _write_metadata(self, metadata):
         lines = []
         lines.append('# -*- encoding: utf-8 -*-\n')
         lines.append('import collections\n')
@@ -261,7 +261,7 @@ class PackageManager(DirectoryManager):
         self.session.is_backtracking_locally = True
 
     def interactively_restore_initializer(self):
-        self.initializer_file_manager._write_stub_to_disk()
+        self.initializer_file_manager._write_stub()
         self.session.io_manager.proceed(is_interactive=True)
 
     def interactively_set_package_path(self):
@@ -328,16 +328,16 @@ class PackageManager(DirectoryManager):
     def run_first_time(self, **kwargs):
         self._run(**kwargs)
 
-    def interactively_write_initializer_stub_file_to_disk(self):
-        self.initializer_file_manager._write_stub_to_disk()
+    def interactively_write_initializer_stub_file(self):
+        self.initializer_file_manager._write_stub()
         line = 'stub initializer written.'
         self.session.io_manager.display([line, ''])
         self.session.io_manager.proceed()
 
-    def write_metadata_to_disk(self, metadata=None):
+    def write_metadata(self, metadata=None):
         if metadata is None:
             metadata = self._get_metadata()
-        self._write_metadata_to_disk(metadata)
+        self._write_metadata(metadata)
 
     ### UI MANIFEST ###
 
@@ -345,10 +345,10 @@ class PackageManager(DirectoryManager):
     user_input_to_action.update({
         'incanned': interactively_write_initializer_boilerplate,
         'inr': interactively_restore_initializer,
-        'instub': interactively_write_initializer_stub_file_to_disk,
+        'instub': interactively_write_initializer_stub_file,
         'inv': interactively_view_initializer,
         'mdv': interactively_view_metadata_module,
-        'mdw': write_metadata_to_disk,
+        'mdw': write_metadata,
         'ren': interactively_rename_package,
         'rm': remove_package,
         'metadata': manage_metadata,

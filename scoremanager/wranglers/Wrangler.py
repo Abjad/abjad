@@ -295,7 +295,7 @@ class Wrangler(ScoreManagerObject):
         tokens = editor.target
         self.session.io_manager.display('')
         view = self.session.io_manager.make_view(tokens, custom_identifier=view_name)
-        self.write_view_to_disk(view)
+        self.write_view(view)
 
     # TODO: write test
     def interactively_remove_assets(
@@ -600,9 +600,9 @@ class Wrangler(ScoreManagerObject):
         asset_filesystem_path = os.path.join(
             self._current_storehouse_filesystem_path, asset_name)
         asset_manager = self._initialize_asset_manager(asset_filesystem_path)
-        asset_manager._write_stub_to_disk()
+        asset_manager._write_stub()
 
-    def write_view_to_disk(self, new_view, prompt=True):
+    def write_view(self, new_view, prompt=True):
         view_inventory = self._read_view_inventory_from_disk()
         view_inventory = view_inventory or datastructuretools.TypedList()
         for i, view in enumerate(view_inventory):

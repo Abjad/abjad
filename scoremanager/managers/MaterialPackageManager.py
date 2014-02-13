@@ -106,7 +106,7 @@ class MaterialPackageManager(PackageManager):
                     material_package_path = self.package_path
                     material_package_name = \
                         material_package_path.split('.')[-1]
-                    self.write_stub_illustration_builder_module_to_disk(
+                    self.write_stub_illustration_builder_module(
                         material_package_path,
                         material_package_name,
                         prompt=False,
@@ -612,23 +612,23 @@ class MaterialPackageManager(PackageManager):
 
     ### PUBLIC METHODS ###
 
-    def conditionally_write_stub_material_definition_module_to_disk(
+    def conditionally_write_stub_material_definition_module(
         self,
         is_interactive=False,
         ):
         if not self._get_metadatum('material_package_manager_class_name'):
             is_data_only = not self._get_metadatum('should_have_illustration')
-            self._write_stub_material_definition_module_to_disk(
+            self._write_stub_material_definition_module(
                 is_data_only, 
                 is_interactive=is_interactive,
                 )
 
-    def conditionally_write_stub_user_input_module_to_disk(
+    def conditionally_write_stub_user_input_module(
         self,
         is_interactive=False,
         ):
         if self.should_have_user_input_module:
-            self.write_stub_user_input_module_to_disk(
+            self.write_stub_user_input_module(
                 is_interactive=is_interactive)
 
     def get_tools_package_qualified_repr(self, expr):
@@ -676,7 +676,7 @@ class MaterialPackageManager(PackageManager):
                 target_repr,
                 )
             output_material_module_body_lines = [line]
-        self.write_output_material_to_disk(
+        self.write_output_material(
             output_material_module_import_statements=\
                 output_material_module_import_statements,
             output_material_module_body_lines=\
@@ -900,7 +900,7 @@ class MaterialPackageManager(PackageManager):
             )
         manager._run_python()
 
-    def write_illustration_ly_and_pdf_to_disk(self, prompt=True):
+    def write_illustration_ly_and_pdf(self, prompt=True):
         illustration = self.illustration_with_stylesheet
         topleveltools.persist(illustration).as_pdf(
             self.illustration_pdf_fil_path,
@@ -910,7 +910,7 @@ class MaterialPackageManager(PackageManager):
             is_interactive=prompt,
             )
 
-    def write_illustration_ly_to_disk(self, prompt=True):
+    def write_illustration_ly(self, prompt=True):
         illustration = self.illustration_with_stylesheet
         topleveltools.persist(illustration).as_pdf(
             self.illustration_ly_file_path,
@@ -920,7 +920,7 @@ class MaterialPackageManager(PackageManager):
             is_interactive=prompt,
             )
 
-    def write_illustration_pdf_to_disk(self, prompt=True):
+    def write_illustration_pdf(self, prompt=True):
         illustration = self.illustration_with_stylesheet
         topleveltools.persist(illustration).as_pdf(
             self.illustration_pdf_fil_path,
@@ -929,7 +929,7 @@ class MaterialPackageManager(PackageManager):
             'PDF written to disk.',
             is_interactive=prompt)
 
-    def write_output_material_to_disk(
+    def write_output_material(
         self,
         output_material_module_import_statements=None,
         output_material_module_body_lines=None,
@@ -963,19 +963,19 @@ class MaterialPackageManager(PackageManager):
         message = 'output material written to disk.'
         self.session.io_manager.proceed(message, is_interactive=prompt)
 
-    def _write_stub_material_definition_module_to_disk(
+    def _write_stub_material_definition_module(
         self, 
         is_data_only, 
         is_interactive=True,
         ):
         if is_data_only:
-            self.write_stub_data_material_definition_to_disk()
+            self.write_stub_data_material_definition()
         else:
-            self.write_stub_music_material_definition_to_disk()
+            self.write_stub_music_material_definition()
         message = 'stub material definition written to disk.'
         self.session.io_manager.proceed(message, is_interactive=is_interactive)
 
-    def write_stub_data_material_definition_to_disk(self):
+    def write_stub_data_material_definition(self):
         lines = []
         lines.append('# -*- encoding: utf-8 -*-\n')
         lines.append('from abjad import *\n')
@@ -989,7 +989,7 @@ class MaterialPackageManager(PackageManager):
         file_pointer.write(lines)
         file_pointer.close()
 
-    def write_stub_music_material_definition_to_disk(self):
+    def write_stub_music_material_definition(self):
         lines = []
         lines.append('# -*- encoding: utf-8 -*-\n')
         lines.append('from abjad import *\n')
@@ -1006,7 +1006,7 @@ class MaterialPackageManager(PackageManager):
         file_pointer.write(lines)
         file_pointer.close()
 
-    def write_stub_illustration_builder_module_to_disk(
+    def write_stub_illustration_builder_module(
         self,
         material_package_path,
         material_package_name,
@@ -1034,14 +1034,14 @@ class MaterialPackageManager(PackageManager):
         message = 'stub illustration builder written to disk.'
         self.session.io_manager.proceed(message, is_interactive=prompt)
 
-    def write_stub_material_definition_module_to_disk(self):
+    def write_stub_material_definition_module(self):
         if self.should_have_material_definition_module:
             with file(
                 self.material_definition_module_file_path,
                 'w',
                 ) as file_pointer:
                 file_pointer.write('')
-            self._write_stub_material_definition_module_to_disk(
+            self._write_stub_material_definition_module(
                 self.is_data_only, 
                 is_interactive=True,
                 )
@@ -1066,7 +1066,7 @@ class MaterialPackageManager(PackageManager):
             )
         return result
 
-    def write_user_input_wrapper_to_disk(self, wrapper):
+    def write_user_input_wrapper(self, wrapper):
         lines = []
         lines.append('# -*- encoding: utf-8 -*-\n')
         lines.append('from abjad import *\n')
@@ -1170,7 +1170,7 @@ class MaterialPackageManager(PackageManager):
         else:
             self.user_input_wrapper_in_memory.clear()
             wrapper = self.user_input_wrapper_in_memory
-            self.write_user_input_wrapper_to_disk(wrapper)
+            self.write_user_input_wrapper(wrapper)
             self.session.io_manager.proceed(
                 'user input wrapper cleared and written to disk.',
                 is_interactive=prompt)
@@ -1235,7 +1235,7 @@ class MaterialPackageManager(PackageManager):
             return
         self.user_input_wrapper_in_memory[key] = new_value
         wrapper = self.user_input_wrapper_in_memory
-        self.write_user_input_wrapper_to_disk(wrapper)
+        self.write_user_input_wrapper(wrapper)
 
     def interactively_view_user_input_module(
         self,
@@ -1252,7 +1252,7 @@ class MaterialPackageManager(PackageManager):
         for key, value in user_input_demo_values:
             self.user_input_wrapper_in_memory[key] = value
         wrapper = self.user_input_wrapper_in_memory
-        self.write_user_input_wrapper_to_disk(wrapper)
+        self.write_user_input_wrapper(wrapper)
         self.session.io_manager.proceed(
             'demo values loaded and written to disk.',
             is_interactive=prompt,
@@ -1301,9 +1301,9 @@ class MaterialPackageManager(PackageManager):
     def swap_user_input_values_default_status(self):
         self.session.swap_user_input_values_default_status()
 
-    def write_stub_user_input_module_to_disk(self, is_interactive=False):
+    def write_stub_user_input_module(self, is_interactive=False):
         wrapper = self.initialize_empty_user_input_wrapper()
-        self.write_user_input_wrapper_to_disk(wrapper)
+        self.write_user_input_wrapper(wrapper)
         self.session.io_manager.proceed(
             'stub user input module written to disk.',
             is_interactive=is_interactive,
@@ -1315,24 +1315,24 @@ class MaterialPackageManager(PackageManager):
     user_input_to_action.update({
         'ibd': remove_illustration_builder_module,
         'ibe': interactively_edit_illustration_builder_module,
-        'ibt': write_stub_illustration_builder_module_to_disk,
+        'ibt': write_stub_illustration_builder_module,
         'ibx': run_python_on_illustration_builder_module,
         'ibxi': run_abjad_on_illustration_builder_module,
         'lyd': remove_illustration_ly,
-        'lym': write_illustration_ly_to_disk,
+        'lym': write_illustration_ly,
         'ly': illustration_ly_file_manager,
         'mdcanned': interactively_write_material_definition_module_boilerplate,
         'mde': interactively_edit_material_definition_module,
         'mddelete': remove_material_definition_module,
-        'mdstub': write_stub_material_definition_module_to_disk,
+        'mdstub': write_stub_material_definition_module,
         'mdx': run_python_on_material_definition_module,
         'mdxe': run_abjad_on_material_definition_module,
         'omcanned': interactively_write_output_material_module_boilerplate,
         'omdelete': remove_output_material_module,
-        'omm': write_output_material_to_disk,
+        'omm': write_output_material,
         'omi': interactively_edit_output_material,
         'omv': interactively_view_output_material_module,
-        'pdfm': write_illustration_ly_and_pdf_to_disk,
+        'pdfm': write_illustration_ly_and_pdf,
         'pdfd': remove_illustration_pdf,
         'pdfv': interactively_view_illustration_pdf,
         'ren': interactively_rename_package,

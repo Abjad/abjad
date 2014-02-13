@@ -698,7 +698,7 @@ class Session(abctools.AbjadObject):
 
     def clean_up(self):
         if self.dump_transcript:
-            self.io_transcript.write_to_disk()
+            self.io_transcript.write()
 
     def display_active_scores(self):
         self._scores_to_show = 'active'

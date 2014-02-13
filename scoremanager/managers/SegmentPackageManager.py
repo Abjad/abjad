@@ -379,7 +379,7 @@ class SegmentPackageManager(PackageManager):
             command = 'open {}'.format(output_pdf_file_path)
             self.session.io_manager.spawn_subprocess(command)
 
-    def write_initializer_to_disk(self):
+    def write_initializer(self):
         r'''Writes initializer to disk.
 
         Returns none.
@@ -389,7 +389,7 @@ class SegmentPackageManager(PackageManager):
             file_pointer.write('')
             file_pointer.close()
 
-    def write_segment_definition_module_to_disk(self):
+    def write_segment_definition_module(self):
         r'''Write segment definition module to disk.
 
         Returns none.

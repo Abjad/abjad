@@ -281,7 +281,7 @@ class ScorePackageManager(PackageManager):
         result.append((return_value, None, prepopulated_value, return_value))
         return result
 
-    def _write_instrumentation_to_disk(self, instrumentation):
+    def _write_instrumentation(self, instrumentation):
         assert instrumentation is not None
         lines = []
         lines.append('# -*- encoding: utf-8 -*-\n')
@@ -355,7 +355,7 @@ class ScorePackageManager(PackageManager):
             target=target,
             )
         editor._run()
-        self._write_instrumentation_to_disk(editor.target)
+        self._write_instrumentation(editor.target)
 
     def interactively_edit_title(self):
         getter = self.session.io_manager.make_getter(where=self._where)

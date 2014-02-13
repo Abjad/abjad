@@ -381,8 +381,8 @@ class SegmentPackageWrangler(PackageWrangler):
             packagesystem_path=package_path,
             session=self.session,
             )
-        manager.write_initializer_to_disk()
-        manager.write_segment_definition_module_to_disk()
+        manager.write_initializer()
+        manager.write_segment_definition_module()
         manager.make_versions_directory()
         line = 'package {!r} created.'.format(package_path)
         self.session.io_manager.proceed(line, is_interactive=is_interactive)

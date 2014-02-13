@@ -82,7 +82,7 @@ class IOTranscript(AbjadObject):
             result.append(line)
         return '\n'.join(result)
 
-    def write_to_disk(self, output_directory=None):
+    def write(self, output_directory=None):
         output_directory = output_directory or \
             self.configuration.transcripts_directory_path
         start_time = self.start_time.strftime('%Y-%m-%d-%H-%M-%S')

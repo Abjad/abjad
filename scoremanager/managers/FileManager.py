@@ -112,7 +112,7 @@ class FileManager(Manager):
         message = 'file executed.'
         self.session.io_manager.proceed(message, is_interactive=prompt)
 
-    def _write_stub_to_disk(self):
+    def _write_stub(self):
         file_pointer = open(self.filesystem_path, 'w')
         file_pointer.write('# -*- encoding: utf-8 -*-')
         file_pointer.close()
