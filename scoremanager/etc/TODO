@@ -146,4 +146,3 @@
     LilyPond.
 
 39. Remove FileWrangler and just use Wrangler instead?
-    Remove PackagesystemAssetWrangler and just PackageWrangler instead?

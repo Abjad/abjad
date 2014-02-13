@@ -2,11 +2,10 @@
 import os
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from scoremanager.wranglers.PackagesystemAssetWrangler \
-    import PackagesystemAssetWrangler
+from scoremanager.wranglers.Wrangler import Wrangler
 
 
-class PackageWrangler(PackagesystemAssetWrangler):
+class PackageWrangler(Wrangler):
     r'''Package wrangler.
     '''
 
@@ -14,8 +13,6 @@ class PackageWrangler(PackagesystemAssetWrangler):
 
     def __init__(self, session=None):
         from scoremanager import managers
-#        superclass = super(PackageWrangler, self)
-#        superclass.__init__(session=session)
         asset_storehouse_filesystem_path_in_built_in_asset_library = \
             self.configuration.packagesystem_path_to_filesystem_path(
             self.asset_storehouse_packagesystem_path_in_built_in_asset_library)
@@ -26,89 +23,8 @@ class PackageWrangler(PackagesystemAssetWrangler):
             asset_storehouse_filesystem_path_in_built_in_asset_library
         self.asset_storehouse_filesystem_path_in_user_asset_library = \
             asset_storehouse_filesystem_path_in_user_asset_library
-        #Wrangler.__init__(self, session=session)
-        PackagesystemAssetWrangler.__init__(self, session=session)
+        Wrangler.__init__(self, session=session)
         self._asset_manager_class = managers.PackageManager
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _temporary_asset_name(self):
-        return '__temporary_package'
-
-    ### PRIVATE METHODS ###
-
-    def _handle_main_menu_result(self, result):
-        self.session.io_manager.print_not_yet_implemented()
-
-    def _is_valid_directory_entry(self, expr):
-        superclass = super(PackageWrangler, self)
-        if superclass._is_valid_directory_entry(expr):
-            if '.' not in expr:
-                return True
-        return False
-
-    def _make_main_menu(self, head=None):
-        self.session.io_manager.print_not_yet_implemented()
-
-    ### PUBLIC METHODS ###
-
-    def interactively_get_available_packagesystem_path(
-        self, 
-        pending_user_input=None,
-        ):
-        r'''Interactively gets available packagesystem path.
-
-        Returns string.
-        '''
-        self.session.io_manager._assign_user_input(pending_user_input)
-        while True:
-            getter = self.session.io_manager.make_getter(where=self._where)
-            getter.append_space_delimited_lowercase_string('name')
-            with self.backtracking:
-                package_name = getter._run()
-            if self.session.backtrack():
-                return
-            package_name = \
-                stringtools.string_to_accent_free_snake_case(package_name)
-            package_path = '.'.join([
-                self._current_storehouse_packagesystem_path, 
-                package_name,
-                ])
-            if self.configuration.packagesystem_path_exists(package_path):
-                line = 'Package {!r} already exists.'
-                line = line.format(package_path)
-                self.session.io_manager.display([line, ''])
-            else:
-                return package_path
-
-    def interactively_make_asset(
-        self,
-        pending_user_input=None,
-        ):
-        r'''Interactively makes asset.
-
-        Returns none.
-        '''
-        self.session.io_manager._assign_user_input(pending_user_input)
-        with self.backtracking:
-            package_path = \
-                self.interactively_get_available_packagesystem_path()
-        if self.session.backtrack():
-            return
-        self.make_asset(package_path)
-
-    def make_asset(self, asset_name):
-        r'''Makes asset.
-
-        Returns none.
-        '''
-        assert stringtools.is_snake_case_package_name(asset_name)
-        asset_filesystem_path = os.path.join(
-            self._current_storehouse_filesystem_path, asset_name)
-        os.mkdir(asset_filesystem_path)
-        package_manager = self._initialize_asset_manager(asset_name)
-        package_manager.interactively_fix(is_interactive=False)
 
     ### PRIVATE PROPERTIES ###
 
@@ -128,6 +44,10 @@ class PackageWrangler(PackagesystemAssetWrangler):
             self._temporary_asset_package_path)
 
     @property
+    def _temporary_asset_name(self):
+        return '__temporary_package'
+
+    @property
     def _temporary_asset_package_path(self):
         if self._current_storehouse_packagesystem_path:
             return '.'.join([
@@ -138,6 +58,9 @@ class PackageWrangler(PackagesystemAssetWrangler):
 
     ### PRIVATE METHODS ###
 
+    def _handle_main_menu_result(self, result):
+        self.session.io_manager.print_not_yet_implemented()
+
     def _initialize_asset_manager(self, packagesystem_path):
         if os.path.sep in packagesystem_path:
             pacakgesystem_path = \
@@ -147,6 +70,16 @@ class PackageWrangler(PackagesystemAssetWrangler):
             packagesystem_path=packagesystem_path, 
             session=self.session,
             )
+
+    def _is_valid_directory_entry(self, expr):
+        superclass = super(PackageWrangler, self)
+        if superclass._is_valid_directory_entry(expr):
+            if '.' not in expr:
+                return True
+        return False
+
+    def _make_main_menu(self, head=None):
+        self.session.io_manager.print_not_yet_implemented()
 
     def _make_asset_menu_entries(self, head=None):
         names = self.list_asset_names(head=head)
@@ -197,6 +130,51 @@ class PackageWrangler(PackagesystemAssetWrangler):
         return sorted_entries
 
     ### PUBLIC METHODS ###
+
+    def interactively_get_available_packagesystem_path(
+        self, 
+        pending_user_input=None,
+        ):
+        r'''Interactively gets available packagesystem path.
+
+        Returns string.
+        '''
+        self.session.io_manager._assign_user_input(pending_user_input)
+        while True:
+            getter = self.session.io_manager.make_getter(where=self._where)
+            getter.append_space_delimited_lowercase_string('name')
+            with self.backtracking:
+                package_name = getter._run()
+            if self.session.backtrack():
+                return
+            package_name = \
+                stringtools.string_to_accent_free_snake_case(package_name)
+            package_path = '.'.join([
+                self._current_storehouse_packagesystem_path, 
+                package_name,
+                ])
+            if self.configuration.packagesystem_path_exists(package_path):
+                line = 'Package {!r} already exists.'
+                line = line.format(package_path)
+                self.session.io_manager.display([line, ''])
+            else:
+                return package_path
+
+    def interactively_make_asset(
+        self,
+        pending_user_input=None,
+        ):
+        r'''Interactively makes asset.
+
+        Returns none.
+        '''
+        self.session.io_manager._assign_user_input(pending_user_input)
+        with self.backtracking:
+            package_path = \
+                self.interactively_get_available_packagesystem_path()
+        if self.session.backtrack():
+            return
+        self.make_asset(package_path)
 
     def interactively_rename_asset(
         self, 
@@ -309,7 +287,7 @@ class PackageWrangler(PackagesystemAssetWrangler):
         Returns list.
         '''
         result = []
-        superclass = super(PackagesystemAssetWrangler, self)
+        superclass = super(PackageWrangler, self)
         for filesystem_path in \
             superclass.list_asset_storehouse_filesystem_paths(
             in_built_in_asset_library=True,
@@ -342,6 +320,18 @@ class PackageWrangler(PackagesystemAssetWrangler):
                 ):
                 result.append(asset_manager.package_path)
         return result
+
+    def make_asset(self, asset_name):
+        r'''Makes asset.
+
+        Returns none.
+        '''
+        assert stringtools.is_snake_case_package_name(asset_name)
+        asset_filesystem_path = os.path.join(
+            self._current_storehouse_filesystem_path, asset_name)
+        os.mkdir(asset_filesystem_path)
+        package_manager = self._initialize_asset_manager(asset_name)
+        package_manager.interactively_fix(is_interactive=False)
 
     def make_asset_storehouse_packages(self, is_interactive=False):
         r'''Makes asset storehouse packages.
@@ -380,8 +370,7 @@ class PackageWrangler(PackagesystemAssetWrangler):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = \
-        PackagesystemAssetWrangler.user_input_to_action.copy()
+    user_input_to_action = Wrangler.user_input_to_action.copy()
     user_input_to_action.update({
         'missing': make_asset_storehouse_packages,
         'new': interactively_make_asset,

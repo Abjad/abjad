@@ -8,7 +8,7 @@ from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
 class Wrangler(ScoreManagerObject):
-    r'''Filesystem asset wrangler.
+    r'''A wrangler.
     '''
 
     ### CLASS VARIABLES ###
