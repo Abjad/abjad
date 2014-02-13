@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad.tools import sequencetools
-from scoremanager.wranglers.Wrangler \
-    import Wrangler
+from scoremanager.wranglers.Wrangler import Wrangler
 
 
 class PackagesystemAssetWrangler(Wrangler):
@@ -10,16 +9,16 @@ class PackagesystemAssetWrangler(Wrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        asset_storehouse_filesystem_path_in_built_in_asset_library = \
-            self.configuration.packagesystem_path_to_filesystem_path(
-            self.asset_storehouse_packagesystem_path_in_built_in_asset_library)
-        asset_storehouse_filesystem_path_in_user_asset_library = \
-            self.configuration.packagesystem_path_to_filesystem_path(
-            self.asset_storehouse_packagesystem_path_in_user_asset_library)
-        self.asset_storehouse_filesystem_path_in_built_in_asset_library = \
-            asset_storehouse_filesystem_path_in_built_in_asset_library
-        self.asset_storehouse_filesystem_path_in_user_asset_library = \
-            asset_storehouse_filesystem_path_in_user_asset_library
+#        asset_storehouse_filesystem_path_in_built_in_asset_library = \
+#            self.configuration.packagesystem_path_to_filesystem_path(
+#            self.asset_storehouse_packagesystem_path_in_built_in_asset_library)
+#        asset_storehouse_filesystem_path_in_user_asset_library = \
+#            self.configuration.packagesystem_path_to_filesystem_path(
+#            self.asset_storehouse_packagesystem_path_in_user_asset_library)
+#        self.asset_storehouse_filesystem_path_in_built_in_asset_library = \
+#            asset_storehouse_filesystem_path_in_built_in_asset_library
+#        self.asset_storehouse_filesystem_path_in_user_asset_library = \
+#            asset_storehouse_filesystem_path_in_user_asset_library
         Wrangler.__init__(self, session=session)
 
     ### PRIVATE PROPERTIES ###
@@ -290,10 +289,10 @@ class PackagesystemAssetWrangler(Wrangler):
             file_reference.write('')
             file_reference.close()
 
-    ### UI MANIFEST ###
-
-    user_input_to_action = Wrangler.user_input_to_action.copy()
-    user_input_to_action.update({
-        'missing': make_asset_storehouse_packages,
-        'ren': interactively_rename_asset,
-        })
+#    ### UI MANIFEST ###
+#
+#    user_input_to_action = Wrangler.user_input_to_action.copy()
+#    user_input_to_action.update({
+#        'missing': make_asset_storehouse_packages,
+#        'ren': interactively_rename_asset,
+#        })
