@@ -49,5 +49,5 @@ class AssetOutputProxy(OutputProxy):
         raise NotImplemented
 
     @abc.abstractmethod
-    def write_asset_to_disk(self, document_handler):
+    def write_asset(self, document_handler):
         raise NotImplemented

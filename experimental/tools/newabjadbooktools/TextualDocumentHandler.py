@@ -332,7 +332,7 @@ class TextualDocumentHandler(DocumentHandler):
 
         return new_lines
     
-    def write_rebuilt_document_to_disk(self):
+    def write_rebuilt_document(self):
         assert isinstance(self.document_file_name, str) and \
             self.document_file_name
         assert os.path.exists(self.output_directory_path)

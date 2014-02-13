@@ -45,7 +45,7 @@ def test_TextualDocumentHandler_01():
     rebuilt_document = '\n'.join(document_handler.rebuild_document())
 
     try:
-        document_handler.write_rebuilt_document_to_disk()
+        document_handler.write_rebuilt_document()
         assert os.path.exists(test_document_file_path)
         with open(test_document_file_path, 'r') as f:
             written_document = f.read()

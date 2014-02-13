@@ -123,7 +123,7 @@ class DocumentHandler(AbjadObject):
     def rebuild_document(self):
         raise NotImplemented
 
-    def write_assets_to_disk(self):
+    def write_assets(self):
         from experimental.tools import newabjadbooktools
         assert os.path.exists(self.output_directory_path)
         if self.has_asset_output_proxies:
@@ -138,4 +138,4 @@ class DocumentHandler(AbjadObject):
                 if not isinstance(output_proxy, 
                     newabjadbooktools.AssetOutputProxy):
                     continue
-                output_proxy.write_asset_to_disk(self)
+                output_proxy.write_asset(self)

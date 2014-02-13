@@ -62,7 +62,7 @@ class ImageOutputProxy(AssetOutputProxy):
     def handle_svg_image_format(self, document_handler):
         pass
 
-    def write_asset_to_disk(self, document_handler):
+    def write_asset(self, document_handler):
         from experimental.tools import newabjadbooktools
         image_format = document_handler.image_format
         image_formats = {

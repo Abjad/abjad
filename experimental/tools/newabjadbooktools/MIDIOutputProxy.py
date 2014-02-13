@@ -113,5 +113,5 @@ class MIDIOutputProxy(AssetOutputProxy):
             ]
         return result
 
-    def write_asset_to_disk(self, document_handler):
+    def write_asset(self, document_handler):
         pass
