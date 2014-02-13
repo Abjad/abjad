@@ -72,8 +72,9 @@ class MaterialPackageManager(PackageManager):
             raise ValueError(result)
 
     def _make_main_menu(self):
-        main_menu = self.session.io_manager.make_menu(where=self._where)
-        hidden_section = main_menu.make_command_section(is_hidden=True)
+        superclass = super(MaterialPackageManager, self)
+        where = self._where
+        main_menu, hidden_section = superclass._make_main_menu(where=where)
         self._make_main_menu_section_for_initializer(
             main_menu, hidden_section)
         if self.should_have_user_input_module:
@@ -155,15 +156,6 @@ class MaterialPackageManager(PackageManager):
                 command_section = main_menu.make_command_section()
             hidden_section.append(('output pdf - delete', 'pdfd'))
             command_section.append(('output pdf - view', 'pdfv'))
-
-    def _make_main_menu_section_for_initializer(self,
-        main_menu, hidden_section):
-        if not self.has_initializer:
-            command_section = main_menu.make_command_section()
-            command_section.title = '(Note: package has no initializer.)'
-        hidden_section.append(('initializer - boilerplate', 'inb'))
-        hidden_section.append(('initializer - stub', 'ins'))
-        hidden_section.append(('initializer - view', 'inv'))
 
     def _make_main_menu_section_for_material_definition(self,
         main_menu, hidden_section):

@@ -62,6 +62,25 @@ class PackageManager(DirectoryManager):
         metadatum = metadata.get(metadatum_name, None)
         return metadatum
 
+    def _make_main_menu(self, where=None):
+        where = where or self._where
+        main_menu = self.session.io_manager.make_menu(where=where)
+        hidden_section = main_menu.make_command_section(is_hidden=True)
+        return main_menu, hidden_section
+
+    def _make_main_menu_section_for_initializer(
+        self, 
+        main_menu, 
+        hidden_section,
+        ):
+        if not self.has_initializer:
+            command_section = main_menu.make_command_section()
+            command_section.title = "package has no initializer: use 'ins'."
+        hidden_section.append(('initializer - boilerplate', 'inbp'))
+        hidden_section.append(('initializer - remove', 'inrm'))
+        hidden_section.append(('initializer - stub', 'ins'))
+        hidden_section.append(('initializer - view', 'inv'))
+
     @staticmethod
     def _make_metadata_lines(metadata):
         if metadata:
@@ -312,12 +331,14 @@ class PackageManager(DirectoryManager):
         self.session.pop_breadcrumb()
         self.session.restore_breadcrumbs(cache=cache)
 
-    def remove_initializer(self, is_interactive=True):
+    def interactively_remove_initializer(self, is_interactive=True):
         if self.has_initializer:
             os.remove(self.initializer_file_path)
             line = 'initializer deleted.'
             self.session.io_manager.proceed(
-                line, is_interactive=is_interactive)
+                line, 
+                is_interactive=is_interactive,
+                )
 
     def remove_package(self):
         r'''Removes package.
@@ -339,7 +360,8 @@ class PackageManager(DirectoryManager):
 
     user_input_to_action = DirectoryManager.user_input_to_action.copy()
     user_input_to_action.update({
-        'inb': interactively_write_boilerplate_initializer,
+        'inbp': interactively_write_boilerplate_initializer,
+        'inrm': interactively_remove_initializer,
         'ins': interactively_write_stub_initializer,
         'inv': interactively_view_initializer,
         'mdv': interactively_view_metadata_module,

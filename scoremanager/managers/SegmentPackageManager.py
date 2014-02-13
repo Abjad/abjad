@@ -96,8 +96,9 @@ class SegmentPackageManager(PackageManager):
             self.session.io_manager.spawn_subprocess(command)
         
     def _make_main_menu(self):
-        main_menu = self.session.io_manager.make_menu(where=self._where)
-        hidden_section = main_menu.make_command_section(is_hidden=True)
+        superclass = super(SegmentPackageManager, self)
+        where = self._where
+        main_menu, hidden_section = superclass._make_main_menu(where=where)
         hidden_section.append(('remove package', 'rm'))
         hidden_section.append(('list package', 'ls'))
         hidden_section.append(('rename package', 'ren'))
