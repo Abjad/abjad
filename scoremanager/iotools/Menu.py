@@ -163,10 +163,6 @@ class Menu(ScoreManagerObject):
         return result
 
     def _make_default_hidden_section(self):
-#        from experimental.tools import scoremanager
-#        hidden_section = scoremanager.iotools.MenuSection()
-#        hidden_section.return_value_attribute = 'key'
-#        hidden_section.is_hidden = True
         hidden_section = self._make_section(
             is_hidden=True,
             return_value_attribute='key',
@@ -177,6 +173,7 @@ class Menu(ScoreManagerObject):
         hidden_section.append(('execute statement', 'exec'))
         hidden_section.append(('go back', 'b'))
         hidden_section.append(('go home', 'home'))
+        hidden_section.append(('go home', 'H'))
         hidden_section.append(('go to current score', 'score'))
         hidden_section.append(('go to next score', 'next'))
         hidden_section.append(('go to prev score', 'prev'))
@@ -315,7 +312,7 @@ class Menu(ScoreManagerObject):
         ::
 
                 >>> menu.hidden_section
-                <MenuSection (14)>
+                <MenuSection (15)>
 
         ::
 
@@ -326,6 +323,7 @@ class Menu(ScoreManagerObject):
                 <MenuEntry: 'edit client source'>
                 <MenuEntry: 'execute statement'>
                 <MenuEntry: 'go back'>
+                <MenuEntry: 'go home'>
                 <MenuEntry: 'go home'>
                 <MenuEntry: 'go to current score'>
                 <MenuEntry: 'go to next score'>
@@ -350,7 +348,7 @@ class Menu(ScoreManagerObject):
 
             >>> for menu_section in menu.menu_sections:
             ...     menu_section
-            <MenuSection (14)>
+            <MenuSection (15)>
             <MenuSection (4)>
 
         Returns list.

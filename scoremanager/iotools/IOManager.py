@@ -92,9 +92,10 @@ class IOManager(IOManager):
     @staticmethod
     def _is_home_string(string):
         if isinstance(string, str):
-            if 3 <= len(string):
-                if 'home'.startswith(string):
-                    return True
+            if 3 <= len(string) and 'home'.startswith(string):
+                return True
+            elif string == 'H':
+                return True
         return False
 
     def _pop_from_pending_user_input(self):
