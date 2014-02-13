@@ -10,7 +10,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
         * writes ReST pages for individual classes and functions
         * writes the API index ReST
-        * handles sorting tools packages into composition, manual-loading 
+        * handles sorting tools packages into composition, manual-loading
           and unstable
         * handles ignoring private tools packages
 
@@ -59,8 +59,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             ]
         ignored_directory_names.extend(self._undocumented_packages)
 
-        document = documentationtools.ReSTDocument()
-        document.append(documentationtools.ReSTHeading(
+        api_index_document = documentationtools.ReSTDocument()
+        api_index_document.append(documentationtools.ReSTHeading(
             level=0,
             text=self._api_title,
             ))
@@ -101,7 +101,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                 documentation_sections[section],
                 key=lambda x: x[0].module_name,
                 )
-            text=self._package_descriptions.get(
+            text = self._package_descriptions.get(
                 section,
                 'Undefined documentation section',
                 )
@@ -109,31 +109,32 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                 level=1,
                 text=text,
                 )
-            document.append(section_heading)
+            api_index_document.append(section_heading)
             for payload in documenters:
                 tools_package_documenter = payload[0]
                 code_path = payload[1]
                 docs_path = payload[2]
                 package_prefix = payload[3]
-                result = tools_package_documenter.create_api_toc_section()
-                document.extend(result)
+                tools_package_toc = \
+                    tools_package_documenter.create_api_toc_section()
+                api_index_document.extend(tools_package_toc)
                 self._write_document(
                     tools_package_documenter,
-                    code_path, 
-                    docs_path, 
+                    code_path,
+                    docs_path,
                     package_prefix,
                     )
                 for documenter in tools_package_documenter.all_documenters:
                     self._write_document(
                         documenter,
-                        code_path, 
-                        docs_path, 
+                        code_path,
+                        docs_path,
                         package_prefix,
                         )
-                
+
         documentationtools.Documenter.write(
             self.docs_api_index_path,
-            document.rest_format,
+            api_index_document.rest_format,
             )
 
         if verbose:
@@ -186,13 +187,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     def _write_document(self, documenter, code_path, docs_path, package_prefix):
         from abjad.tools import documentationtools
-#        print
-#        print documenter.module_name
-#        print docs_path
-#        print package_prefix
         parts = documenter.module_name.replace(
             package_prefix, '', 1).split('.')
-#        print parts
         if isinstance(documenter, documentationtools.ToolsPackageDocumenter):
             parts.append('index.rst')
         elif isinstance(documenter, (documentationtools.ClassDocumenter,
@@ -201,7 +197,6 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             parts[-1] += '.rst'
         parts.insert(0, docs_path)
         file_path = os.path.join(*parts)
-#        print file_path
         directory_path = os.path.dirname(file_path)
         if not os.path.exists(directory_path):
             os.makedirs(directory_path)
@@ -215,7 +210,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         '''
         from abjad import abjad_configuration
         return os.path.join(
-            abjad_configuration.abjad_directory_path, 
+            abjad_configuration.abjad_directory_path,
             'docs', 'source', 'api', 'index.rst')
 
     @property
@@ -229,24 +224,42 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         r'''Code path / docs path / package prefix triples.
         '''
         from abjad import abjad_configuration
-        return (
-            (
-                os.path.join(
-                    abjad_configuration.abjad_directory_path, 'tools'),
-                os.path.join(
-                    abjad_configuration.abjad_directory_path, 
-                    'docs', 'source', 'api', 'tools'),
-                'abjad.tools.',
-            ),
-            (
-                os.path.join(
-                    abjad_configuration.abjad_directory_path, 'demos'),
-                os.path.join(
-                    abjad_configuration.abjad_directory_path, 
-                    'docs', 'source', 'api', 'demos'),
-                'abjad.demos.',
-            ),
-        )
+        tools_code_path = os.path.join(
+            abjad_configuration.abjad_directory_path,
+            'tools',
+            )
+        tools_docs_path = os.path.join(
+            abjad_configuration.abjad_directory_path,
+            'docs',
+            'source',
+            'api',
+            'tools',
+            )
+        tools_package_prefix = 'abjad.tools.'
+        tools_triple = (
+            tools_code_path,
+            tools_docs_path,
+            tools_package_prefix,
+            )
+        demos_code_path = os.path.join(
+            abjad_configuration.abjad_directory_path,
+            'demos',
+            )
+        demos_docs_path = os.path.join(
+            abjad_configuration.abjad_directory_path,
+            'docs',
+            'source',
+            'api',
+            'demos',
+            )
+        demos_package_prefix = 'abjad.demos.'
+        demos_triple = (
+            demos_code_path,
+            demos_docs_path,
+            demos_package_prefix,
+            )
+        all_triples = (tools_triple, demos_triple)
+        return all_triples
 
     @property
     def root_package(self):

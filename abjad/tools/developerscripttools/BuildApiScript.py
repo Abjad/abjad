@@ -37,38 +37,44 @@ class BuildApiScript(DeveloperScript):
         @property
         def path_definitions(self):
             from abjad import abjad_configuration
-            return (
-                (
-                    os.path.join(
-                        abjad_configuration.abjad_root_directory_path,
-                        'experimental',
-                        'tools',
-                        ),
-                    os.path.join(
-                        abjad_configuration.abjad_root_directory_path,
-                        'experimental',
-                        'docs',
-                        'source',
-                        'tools',
-                        ),
-                    'experimental.tools.',
-                    ),
-                (
-                    os.path.join(
-                        abjad_configuration.abjad_root_directory_path,
-                        'experimental',
-                        'demos',
-                        ),
-                    os.path.join(
-                        abjad_configuration.abjad_root_directory_path,
-                        'experimental',
-                        'docs',
-                        'source',
-                        'demos',
-                        ),
-                    'experimental.demos.',
-                    ),
+            tools_code_path = os.path.join(
+                abjad_configuration.abjad_root_directory_path,
+                'experimental',
+                'tools',
                 )
+            tools_docs_path = os.path.join(
+                abjad_configuration.abjad_root_directory_path,
+                'experimental',
+                'docs',
+                'source',
+                'tools',
+                )
+            tools_package_prefix = 'experimental.tools.'
+            tools_triple = (
+                tools_code_path,
+                tools_docs_path,
+                tools_package_prefix,
+                )
+            demos_code_path = os.path.join(
+                abjad_configuration.abjad_root_directory_path,
+                'experimental',
+                'demos',
+                )
+            demos_docs_path = os.path.join(
+                abjad_configuration.abjad_root_directory_path,
+                'experimental',
+                'docs',
+                'source',
+                'demos',
+                )
+            demos_package_prefix = 'experimental.demos.'
+            demos_triple = (
+                demos_code_path,
+                demos_docs_path,
+                demos_package_prefix,
+                )
+            all_triples = (tools_triple, demos_triple)
+            return all_triples
 
         @property
         def root_package(self):
@@ -98,21 +104,20 @@ class BuildApiScript(DeveloperScript):
         @property
         def path_definitions(self):
             from abjad import abjad_configuration
-            return (
-                (
-                    os.path.join(
-                        abjad_configuration.abjad_root_directory_path,
-                        'scoremanager',
-                        ),
-                    os.path.join(
-                        abjad_configuration.abjad_root_directory_path,
-                        'scoremanager',
-                        'docs',
-                        'source',
-                        ),
-                    'scoremanager.',
-                    ),
+            code_path = os.path.join(
+                abjad_configuration.abjad_root_directory_path,
+                'scoremanager',
                 )
+            docs_path = os.path.join(
+                abjad_configuration.abjad_root_directory_path,
+                'scoremanager',
+                'docs',
+                'source',
+                )
+            package_prefix = 'scoremanager.'
+            triple = (code_path, docs_path, package_prefix)
+            all_triples = (triple,)
+            return all_triples
 
         @property
         def root_package(self):
