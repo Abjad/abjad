@@ -54,7 +54,7 @@ class Timer(ContextManager):
     def __enter__(self):
         r'''Enters context manager.
 
-        Returns none.
+        Returns context manager.
         '''
         self._stop_time = None
         self._start_time = time.time()
