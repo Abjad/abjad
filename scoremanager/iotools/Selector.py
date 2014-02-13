@@ -155,13 +155,13 @@ class Selector(ScoreManagerObject):
         forbidden_directory_entries=None,
         strip_file_extensions=False,
         ):
-        from experimental.tools import scoremanager
+        from scoremanager import managers
         selector = Selector(session=session)
         storehouse_filesystem_paths = storehouse_filesystem_paths or []
         forbidden_directory_entries = forbidden_directory_entries or []
         items = []
         for directory_path in storehouse_filesystem_paths:
-            manager = scoremanager.managers.DirectoryManager(
+            manager = managers.DirectoryManager(
                 filesystem_path=directory_path,
                 session=session,
                 )

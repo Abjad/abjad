@@ -17,10 +17,10 @@ class PackageWrangler(PackagesystemAssetWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from experimental.tools import scoremanager
+        from scoremanager import managers
         superclass = super(PackageWrangler, self)
         superclass.__init__(session=session)
-        self._asset_manager_class = scoremanager.managers.PackageManager
+        self._asset_manager_class = managers.PackageManager
 
     ### PRIVATE PROPERTIES ###
 

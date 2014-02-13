@@ -2,8 +2,7 @@
 import collections
 import os
 from abjad.tools import systemtools
-from scoremanager.wranglers.PackageWrangler import \
-    PackageWrangler
+from scoremanager.wranglers.PackageWrangler import PackageWrangler
 
 
 class SegmentPackageWrangler(PackageWrangler):
@@ -29,11 +28,10 @@ class SegmentPackageWrangler(PackageWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from experimental.tools import scoremanager
+        from scoremanager import managers
         superclass = super(SegmentPackageWrangler, self)
         superclass.__init__(session=session)
-        self._asset_manager_class = \
-            scoremanager.managers.SegmentPackageManager
+        self._asset_manager_class = managers.SegmentPackageManager
 
     ### PRIVATE PROPERTIES ###
 

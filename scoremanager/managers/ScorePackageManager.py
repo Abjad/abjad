@@ -8,19 +8,20 @@ class ScorePackageManager(PackageManager):
     ### INITIALIZER ###
 
     def __init__(self, packagesystem_path=None, session=None):
-        from experimental.tools import scoremanager
+        from scoremanager import managers
+        from scoremanager import wranglers
         PackageManager.__init__(
             self, 
             packagesystem_path, 
             session=session,
             )
         self._build_directory_manager = \
-            scoremanager.managers.BuildDirectoryManager(
+            managers.BuildDirectoryManager(
             score_package_path=packagesystem_path, 
             session=self.session,
             )
         self._distribution_directory_manager = \
-            scoremanager.managers.DistributionDirectoryManager(
+            managers.DistributionDirectoryManager(
             score_package_path=packagesystem_path, 
             session=self.session,
             )
@@ -29,30 +30,30 @@ class ScorePackageManager(PackageManager):
             'instrumentation.py',
             )
         self._instrumentation_module_manager = \
-            scoremanager.managers.FileManager(
+            managers.FileManager(
             instrumentation_module_file_path,
             session=self.session,
             )
         self._material_package_wrangler = \
-            scoremanager.wranglers.MaterialPackageWrangler(
+            wranglers.MaterialPackageWrangler(
             session=self.session,
             )
         self._material_package_manager_wrangler = \
-            scoremanager.wranglers.MaterialPackageManagerWrangler(
+            wranglers.MaterialPackageManagerWrangler(
             session=self.session,
             )
         filesystem_path = os.path.join(self.filesystem_path, 'score_templates')
         self._score_template_directory_manager = \
-            scoremanager.managers.DirectoryManager(
+            managers.DirectoryManager(
             filesystem_path=filesystem_path,
             session=self.session,
             )
         self._segment_wrangler = \
-            scoremanager.wranglers.SegmentPackageWrangler(
+            wranglers.SegmentPackageWrangler(
             session=self.session,
             )
         self._stylesheet_wrangler = \
-            scoremanager.wranglers.StylesheetFileWrangler(
+            wranglers.StylesheetFileWrangler(
             session=self.session,
             )
 
@@ -193,12 +194,12 @@ class ScorePackageManager(PackageManager):
             raise ValueError(result)
 
     def _import_instrumentation_from_instrumentation_module(self):
-        from experimental.tools import scoremanager
+        from scoremanager import managers
         file_path = os.path.join(
             self.filesystem_path,
             'instrumentation.py',
             )
-        manager = scoremanager.managers.FileManager(
+        manager = managers.FileManager(
             file_path,
             session=self.session,
             )
@@ -346,9 +347,9 @@ class ScorePackageManager(PackageManager):
         self._add_metadata('forces_tagline', result)
 
     def interactively_edit_instrumentation_specifier(self):
-        from experimental.tools import scoremanager
+        from scoremanager import editors
         target = self._get_instrumentation()
-        editor = scoremanager.editors.InstrumentationEditor(
+        editor = editors.InstrumentationEditor(
             session=self.session, 
             target=target,
             )

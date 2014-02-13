@@ -69,8 +69,8 @@ class PackageManager(DirectoryManager):
 
     @property
     def initializer_file_manager(self):
-        from experimental.tools import scoremanager
-        return scoremanager.managers.FileManager(
+        from scoremanager import managers
+        return managers.FileManager(
             self.initializer_file_name,
             session=self.session,
             )
@@ -82,12 +82,12 @@ class PackageManager(DirectoryManager):
 
     @property
     def metadata_module_manager(self):
-        from experimental.tools import scoremanager
+        from scoremanager import managers
         if not self.has_metadata_module:
             metadata_module = open(self.metadata_module_name, 'w')
             metadata_module.write('')
             metadata_module.close()
-        return scoremanager.managers.MetadataModuleManager(
+        return managers.MetadataModuleManager(
             self.metadata_module_name, session=self.session)
 
     @property

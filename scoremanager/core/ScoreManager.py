@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 import subprocess
-from scoremanager.core.ScoreManagerObject \
-    import ScoreManagerObject
+from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
 class ScoreManager(ScoreManagerObject):
@@ -20,23 +19,18 @@ class ScoreManager(ScoreManagerObject):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from experimental.tools import scoremanager
+        from scoremanager import wranglers
         ScoreManagerObject.__init__(self, session=session)
         self._segment_package_wrangler = \
-            scoremanager.wranglers.SegmentPackageWrangler(
-            session=self.session)
+            wranglers.SegmentPackageWrangler(session=self.session)
         self._material_package_manager_wrangler = \
-            scoremanager.wranglers.MaterialPackageManagerWrangler(
-            session=self.session)
+            wranglers.MaterialPackageManagerWrangler(session=self.session)
         self._material_package_wrangler = \
-            scoremanager.wranglers.MaterialPackageWrangler(
-            session=self.session)
+            wranglers.MaterialPackageWrangler(session=self.session)
         self._score_package_wrangler = \
-            scoremanager.wranglers.ScorePackageWrangler(
-            session=self.session)
+            wranglers.ScorePackageWrangler(session=self.session)
         self._stylesheet_file_wrangler = \
-            scoremanager.wranglers.StylesheetFileWrangler(
-            session=self.session)
+            wranglers.StylesheetFileWrangler(session=self.session)
 
     ### PRIVATE PROPERTIES ###
 

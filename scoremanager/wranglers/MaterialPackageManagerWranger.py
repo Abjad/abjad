@@ -49,13 +49,12 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             raise ValueError
 
     def _initialize_asset_manager(self, package_path):
-        from experimental.tools import scoremanager
+        from scoremanager import managers
         if os.path.sep in package_path:
             package_path = \
                 self.configuration.filesystem_path_to_packagesystem_path(
                     package_path)
-        material_package_manager = \
-            scoremanager.managers.MaterialPackageManager(
+        material_package_manager = managers.MaterialPackageManager(
             package_path, session=self.session)
         if 'materialpackagemanagers' in material_package_manager.filesystem_path:
             most, last = os.path.split(

@@ -8,7 +8,7 @@ class FileWrangler(FilesystemAssetWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from experimental.tools import scoremanager
+        from scoremanager import managers
         superclass = super(FileWrangler, self)
         superclass.__init__(session=session)
-        self._asset_manager_class = scoremanager.managers.FileManager
+        self._asset_manager_class = managers.FileManager

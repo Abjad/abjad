@@ -17,10 +17,9 @@ class ArticulationHandlerMaterialPackageManager(MaterialPackageManager):
 
     @staticmethod
     def output_material_editor(target=None, session=None):
-        from experimental.tools import scoremanager
+        from scoremanager import wizards
         if target:
-            wizard = \
-                scoremanager.wizards.ArticulationHandlerCreationWizard()
+            wizard = wizards.ArticulationHandlerCreationWizard()
             articulation_handler_editor = wizard.get_handler_editor(
                 target.__class__.__name__, target=target)
             return articulation_handler_editor

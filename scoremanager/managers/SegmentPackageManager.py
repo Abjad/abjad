@@ -2,8 +2,7 @@
 import itertools
 import os
 from abjad.tools import systemtools
-from scoremanager.managers.PackageManager \
-    import PackageManager
+from scoremanager.managers.PackageManager import PackageManager
 
 
 class SegmentPackageManager(PackageManager):
@@ -145,8 +144,8 @@ class SegmentPackageManager(PackageManager):
 
     @property
     def segment_definition_module_manager(self):
-        from experimental.tools import scoremanager
-        manager = scoremanager.managers.FileManager(
+        from scoremanager import managers
+        manager = managers.FileManager(
             self.segment_definition_module_file_path,
             session=self.session,
             )

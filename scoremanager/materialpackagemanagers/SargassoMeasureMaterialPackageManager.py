@@ -1,10 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from scoremanager import predicates
-from scoremanager.editors.UserInputWrapper \
-    import UserInputWrapper
-from scoremanager.managers.MaterialPackageManager \
-    import MaterialPackageManager
+from scoremanager.editors.UserInputWrapper import UserInputWrapper
+from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
 
 
 class SargassoMeasureMaterialPackageManager(MaterialPackageManager):

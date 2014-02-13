@@ -408,7 +408,7 @@ class MenuSection(AbjadObject):
 
         Returns menu entry.
         '''
-        from experimental.tools import scoremanager
+        from scoremanager import iotools
         assert isinstance(expr, (str, tuple))
         number = None
         if isinstance(expr, str):
@@ -421,6 +421,6 @@ class MenuSection(AbjadObject):
             )
         kwargs = dict(zip(keys, expr))
         kwargs['menu_section'] = self
-        menu_entry = scoremanager.iotools.MenuEntry(**kwargs)
+        menu_entry = iotools.MenuEntry(**kwargs)
         self.menu_entries.append(menu_entry)
         return menu_entry

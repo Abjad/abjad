@@ -2,8 +2,7 @@
 import os
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from scoremanager.wranglers.PackageWrangler \
-    import PackageWrangler
+from scoremanager.wranglers.PackageWrangler import PackageWrangler
 
 
 class ScorePackageWrangler(PackageWrangler):
@@ -45,11 +44,10 @@ class ScorePackageWrangler(PackageWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from experimental.tools import scoremanager
+        from scoremanager import managers
         superclass = super(ScorePackageWrangler, self)
         superclass.__init__(session=session)
-        self._asset_manager_class = \
-            scoremanager.managers.ScorePackageManager
+        self._asset_manager_class = managers.ScorePackageManager
 
     ### PRIVATE PROPERTIES ###
 

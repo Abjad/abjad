@@ -40,8 +40,8 @@ class ScoreManagerObject(object):
 
     @abc.abstractmethod
     def __init__(self, session=None):
-        from experimental.tools import scoremanager
-        self._session = session or scoremanager.core.Session()
+        from scoremanager import core
+        self._session = session or core.Session()
         self.backtracking = ScoreManagerObject.backtracking(self)
 
     ### SPECIAL METHODS ###

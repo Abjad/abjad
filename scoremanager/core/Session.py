@@ -47,14 +47,14 @@ class Session(abctools.AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, pending_user_input=None):
-        from experimental.tools import scoremanager
+        from scoremanager import iotools
         self._backtracking_stack = []
         self._breadcrumb_cache_stack = []
         self._breadcrumb_stack = []
         self._command_history = []
-        self._io_manager = scoremanager.iotools.IOManager(self)
+        self._io_manager = iotools.IOManager(self)
         self._session_once_had_user_input = False
-        self._transcript = scoremanager.iotools.IOTranscript()
+        self._transcript = iotools.IOTranscript()
         self.snake_case_current_score_name = None
         self.display_pitch_ranges_with_numbered_pitches = False
         self.dump_transcript = False
@@ -188,13 +188,13 @@ class Session(abctools.AbjadObject):
 
         Returns string.
         '''
-        from experimental.tools import scoremanager
+        from scoremanager import wranglers
         if self.is_in_score:
             parts = []
             parts.append(self.configuration.user_score_packages_directory_path)
             parts.append(self.snake_case_current_score_name)
             parts.extend(
-                scoremanager.wranglers.MaterialPackageWrangler.score_package_asset_storehouse_path_infix_parts)
+                wranglers.MaterialPackageWrangler.score_package_asset_storehouse_path_infix_parts)
             return os.path.join(*parts)
         else:
             return self.configuration.built_in_material_packages_directory_path
@@ -225,12 +225,12 @@ class Session(abctools.AbjadObject):
 
         Returns string.
         '''
-        from experimental.tools import scoremanager
+        from scoremanager import wranglers
         if self.is_in_score:
             parts = []
             parts.append(self.snake_case_current_score_name)
             parts.extend(
-                scoremanager.wranglers.MaterialPackageWrangler.score_package_asset_storehouse_path_infix_parts)
+                wranglers.MaterialPackageWrangler.score_package_asset_storehouse_path_infix_parts)
             return '.'.join(parts)
         else:
             return self.configuration.built_in_material_packages_package_path
@@ -320,13 +320,13 @@ class Session(abctools.AbjadObject):
 
         Returns string.
         '''
-        from experimental.tools import scoremanager
+        from scoremanager import wranglers
         if self.is_in_score:
             parts = []
             parts.append(self.configuration.user_score_packages_directory_path)
             parts.append(self.snake_case_current_score_name)
             parts.extend(
-                scoremanager.wranglers.SegmentPackageWrangler.score_package_asset_storehouse_path_infix_parts)
+                wranglers.SegmentPackageWrangler.score_package_asset_storehouse_path_infix_parts)
             return os.path.join(*parts)
 
     @property
@@ -349,12 +349,12 @@ class Session(abctools.AbjadObject):
 
         Returns none or string.
         '''
-        from experimental.tools import scoremanager
+        from scoremanager import wranglers
         if self.is_in_score:
             parts = []
             parts.append(self.snake_case_current_score_name)
             parts.extend(
-                scoremanager.wranglers.SegmentPackageWrangler.score_package_asset_storehouse_path_infix_parts)
+                wranglers.SegmentPackageWrangler.score_package_asset_storehouse_path_infix_parts)
             return '.'.join(parts)
 
     @apply

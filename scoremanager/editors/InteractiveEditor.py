@@ -147,8 +147,8 @@ class InteractiveEditor(ScoreManagerObject):
 
     @property
     def TargetManifest(self):
-        from experimental.tools import scoremanager
-        return scoremanager.editors.TargetManifest
+        from scoremanager import editors
+        return editors.TargetManifest
 
     @property
     def attributes_in_memory(self):

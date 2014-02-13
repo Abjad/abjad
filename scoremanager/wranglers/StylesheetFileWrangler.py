@@ -39,7 +39,7 @@ class StylesheetFileWrangler(FileWrangler):
     ### PRIVATE METHODS ###
 
     def _filesystem_path_to_annotation(self, filesystem_path):
-        from experimental.tools import scoremanager
+        from scoremanager import managers
         annotation = None
         if filesystem_path.startswith(
             self.configuration.built_in_score_packages_directory_path) or \
@@ -50,7 +50,7 @@ class StylesheetFileWrangler(FileWrangler):
             packagesystem_path = \
                 self.configuration.filesystem_path_to_packagesystem_path(
                 score_filesystem_path)
-            score_package_manager = scoremanager.managers.ScorePackageManager(
+            score_package_manager = managers.ScorePackageManager(
                 packagesystem_path=packagesystem_path)
             annotation = score_package_manager._get_title()
         elif filesystem_path.startswith(
@@ -209,7 +209,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         Returns none.
         '''
-        from experimental.tools import scoremanager
+        from scoremanager import managers
         self.session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             storehouse_path = \
@@ -235,8 +235,10 @@ class StylesheetFileWrangler(FileWrangler):
             storehouse_path,
             stylesheet_file_name,
             )
-        manager = scoremanager.managers.FileManager(
-            stylesheet_file_path, session=self.session)
+        manager = managers.FileManager(
+            stylesheet_file_path, 
+            session=self.session,
+            )
         if self.session.is_test:
             manager._make_empty_asset()
         else:

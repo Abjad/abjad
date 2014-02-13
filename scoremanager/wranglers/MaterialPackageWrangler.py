@@ -42,10 +42,10 @@ class MaterialPackageWrangler(PackageWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from experimental.tools import scoremanager
+        from scoremanager import wranglers
         PackageWrangler.__init__(self, session=session)
         self._material_package_manager_wrangler = \
-            scoremanager.wranglers.MaterialPackageManagerWrangler(
+            wranglers.MaterialPackageManagerWrangler(
                 session=self.session)
 
     ### PRIVATE PROPERTIES ###
@@ -61,10 +61,11 @@ class MaterialPackageWrangler(PackageWrangler):
         material_package_manager_class_name, 
         material_package_path,
         ):
-        from experimental.tools import scoremanager
+        import scoremanager
+        from scoremanager import managers
         if material_package_manager_class_name is None:
             material_package_manager = \
-                scoremanager.managers.MaterialPackageManager(
+                managers.MaterialPackageManager(
                 material_package_path, 
                 session=self.session,
                 )

@@ -82,11 +82,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             return directory_path
 
     def _get_current_package_manager(self):
-        from experimental.tools import scoremanager
+        from scoremanager import managers
         directory_path = self._get_current_directory_path_of_interest()
         if directory_path is None:
             return
-        manager = scoremanager.managers.PackageManager(
+        manager = managers.PackageManager(
             directory_path,
             session=self.session,
             )
@@ -102,9 +102,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             return file_path
 
     def _get_current_view_module_manager(self):
-        from experimental.tools import scoremanager
+        from scoremanager import managers
         file_path = self._get_current_view_file_path()
-        manager = scoremanager.managers.FileManager(
+        manager = managers.FileManager(
             file_path,
             session=self.session,
             )
@@ -157,12 +157,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         in_built_in_score_packages=True,
         in_user_score_packages=True,
         ):
-        from experimental.tools import scoremanager
+        from scoremanager import wranglers
         keys, display_strings = [], []
         keys.append(
             self.asset_storehouse_filesystem_path_in_user_asset_library)
         display_strings.append('My {}'.format(self._breadcrumb))
-        wrangler = scoremanager.wranglers.ScorePackageWrangler(
+        wrangler = wranglers.ScorePackageWrangler(
             session=self.session)
         for manager in wrangler.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
@@ -183,11 +183,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         pass
 
     def _read_view_inventory_from_disk(self):
-        from experimental.tools import scoremanager
+        from scoremanager import managers
         view_file_path = self._get_current_view_file_path()
         if view_file_path is None:
             return
-        manager = scoremanager.managers.FileManager(
+        manager = managers.FileManager(
             view_file_path,
             session=self.session,
             )
@@ -271,7 +271,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self,
         pending_user_input=None,
         ):
-        from experimental.tools import scoremanager
+        from scoremanager import editors
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('view name')
         with self.backtracking:
@@ -281,7 +281,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         head = self.session.current_score_package_path
         menu_entries = self._make_asset_menu_entries(head=head)
         display_strings = [x[0] for x in menu_entries]
-        editor = scoremanager.editors.ListEditor(
+        editor = editors.ListEditor(
             session=self.session,
             target=display_strings,
             )

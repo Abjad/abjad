@@ -274,8 +274,8 @@ class IOManager(IOManager):
 
         Returns getter.
         '''
-        from experimental.tools import scoremanager
-        getter = scoremanager.iotools.UserInputGetter(
+        from scoremanager import iotools
+        getter = iotools.UserInputGetter(
             where=where, 
             session=self.session,
             )
@@ -286,8 +286,8 @@ class IOManager(IOManager):
 
         Returns menu.
         '''
-        from experimental.tools import scoremanager
-        menu = scoremanager.iotools.Menu(
+        from scoremanager import iotools
+        menu = iotools.Menu(
             where=where, 
             session=self.session,
             )
@@ -298,8 +298,8 @@ class IOManager(IOManager):
 
         Returns selector.
         '''
-        from experimental.tools import scoremanager
-        selector = scoremanager.iotools.Selector(
+        from scoremanager import iotools
+        selector = iotools.Selector(
             where=where,
             session=self.session,
             )
@@ -310,8 +310,8 @@ class IOManager(IOManager):
 
         Returns view.
         '''
-        from experimental.tools import scoremanager
-        view = scoremanager.iotools.View(
+        from scoremanager import iotools
+        view = iotools.View(
             tokens=tokens,
             custom_identifier=custom_identifier,
             )

@@ -2,8 +2,7 @@
 from abjad import *
 from scoremanager.materialpackagemanagers.InventoryMaterialPackageManager \
     import InventoryMaterialPackageManager
-from scoremanager.editors.TempoInventoryEditor \
-    import TempoInventoryEditor
+from scoremanager.editors.TempoInventoryEditor import TempoInventoryEditor
 
 
 class TempoInventoryMaterialPackageManager(InventoryMaterialPackageManager):
