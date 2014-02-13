@@ -373,7 +373,7 @@ class ScorePackageWrangler(PackageWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head,
             ):
-            is_mothballed = asset_manager._get_metadata('is_mothballed')
+            is_mothballed = asset_manager._get_metadatum('is_mothballed')
             if scores_to_show == 'all':
                 result.append(asset_manager)
             elif scores_to_show == 'active' and not is_mothballed:
@@ -425,7 +425,7 @@ class ScorePackageWrangler(PackageWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head,
             ):
-            tags = asset_manager._get_metadatas()
+            tags = asset_manager._get_metadata()
             is_mothballed = tags.get('is_mothballed', False)
             if scores_to_show == 'all' or \
                 (scores_to_show == 'active' and not is_mothballed) or \

@@ -15,7 +15,7 @@ def test_PackageManager_read_only_attributes_01():
         'red_sargasso_measures',
         )
     assert package_manager.filesystem_path == file_path
-    assert package_manager._get_metadata('foo') is None
+    assert package_manager._get_metadatum('foo') is None
     file_path = os.path.join(
         package_manager.configuration.built_in_material_packages_directory_path,
         'red_sargasso_measures','__init__.py',

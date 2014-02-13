@@ -43,13 +43,13 @@ def test_ScorePackageManager_03():
     red_example_score = scoremanager.managers.ScorePackageManager(string)
     red_example_score.session.pending_user_input = 'add foo bar q'
     red_example_score.manage_metadata()
-    assert red_example_score._get_metadata('foo') == 'bar'
+    assert red_example_score._get_metadatum('foo') == 'bar'
 
     string = 'scoremanager.scorepackages.red_example_score'
     red_example_score = scoremanager.managers.ScorePackageManager(string)
     red_example_score.session.pending_user_input = 'del foo q'
     red_example_score.manage_metadata()
-    assert red_example_score._get_metadata('foo') is None
+    assert red_example_score._get_metadatum('foo') is None
 
 
 def test_ScorePackageManager_04():

@@ -33,10 +33,10 @@ def test_ScorePackageManager_interactively_edit_forces_tagline_02():
         score_manager._run(pending_user_input=string)
         path = 'scoremanager.scorepackages.red_example_score'
         manager = scoremanager.managers.ScorePackageManager(path)
-        assert manager._get_metadata('forces_tagline') == 'for foo bar'
+        assert manager._get_metadatum('forces_tagline') == 'for foo bar'
     finally:
         string = 'red~example~score score~setup tagline for~six~players q'
         score_manager._run(pending_user_input=string)
         path = 'scoremanager.scorepackages.red_example_score'
         manager = scoremanager.managers.ScorePackageManager(path)
-        assert manager._get_metadata('forces_tagline') == 'for six players'
+        assert manager._get_metadatum('forces_tagline') == 'for six players'

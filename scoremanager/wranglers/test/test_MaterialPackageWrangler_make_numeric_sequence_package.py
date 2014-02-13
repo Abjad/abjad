@@ -19,8 +19,8 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_01():
             '__metadata__.py',
             'material_definition.py', 
             ]
-        assert mpp._get_metadata('is_numeric_sequence')
-        assert mpp._get_metadata('is_material_package')
+        assert mpp._get_metadatum('is_numeric_sequence')
+        assert mpp._get_metadatum('is_material_package')
     finally:
         mpp.remove()
         assert not wrangler.configuration.packagesystem_path_exists(string)
@@ -45,8 +45,8 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_02():
             '__metadata__.py',
             'material_definition.py', 
             ]
-        assert mpp._get_metadata('is_numeric_sequence')
-        assert mpp._get_metadata('is_material_package')
+        assert mpp._get_metadatum('is_numeric_sequence')
+        assert mpp._get_metadatum('is_material_package')
     finally:
         mpp.remove()
         assert not wrangler.configuration.packagesystem_path_exists(string)

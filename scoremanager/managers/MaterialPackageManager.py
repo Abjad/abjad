@@ -459,7 +459,7 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def material_package_manager_class_name(self):
-        return self._get_metadata('material_package_manager_class_name')
+        return self._get_metadatum('material_package_manager_class_name')
 
     @property
     def material_package_name(self):
@@ -548,7 +548,7 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def should_have_illustration(self):
-        return self._get_metadata('should_have_illustration')
+        return self._get_metadatum('should_have_illustration')
 
     @property
     def should_have_illustration_builder_module(self):
@@ -630,8 +630,8 @@ class MaterialPackageManager(PackageManager):
         self,
         is_interactive=False,
         ):
-        if not self._get_metadata('material_package_manager_class_name'):
-            is_data_only = not self._get_metadata('should_have_illustration')
+        if not self._get_metadatum('material_package_manager_class_name'):
+            is_data_only = not self._get_metadatum('should_have_illustration')
             self.material_definition_module_manager._write_stub_to_disk(
                 is_data_only, is_interactive=is_interactive)
 
@@ -916,7 +916,7 @@ class MaterialPackageManager(PackageManager):
         output_material_module_body_lines=None,
         prompt=True,
         ):
-        if self._get_metadata('is_static'):
+        if self._get_metadatum('is_static'):
             source_path = self.material_definition_module_file_path
             target_path = self.output_material_module_file_path
             shutil.copy(source_path, target_path)

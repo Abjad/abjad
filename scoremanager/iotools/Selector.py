@@ -39,7 +39,7 @@ class Selector(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_metadata_from_directory_path(self, directory_path, tag_name):
+    def _get_metadata_from_directory_path(self, directory_path, metadatum_name):
         metadata_module_name = os.path.join(directory_path, '__metadata__.py')
         if os.path.isfile(metadata_module_name):
             metadata_module = open(metadata_module_name, 'r')
@@ -47,7 +47,7 @@ class Selector(ScoreManagerObject):
             metadata_module.close()
             exec(metadata_module_string)
             result = locals().get('tags') or OrderedDict([])
-            return result.get(tag_name)
+            return result.get(metadatum_name)
 
     def _make_main_menu(self, head=None):
         main_menu = self.session.io_manager.make_menu(where=self._where)

@@ -34,6 +34,6 @@ def test_ScorePackageManager_read_only_attributes_01():
 
     assert package_manager._get_annotated_title() == 'Red Example Score (2013)'
     assert package_manager._breadcrumb == 'Red Example Score (2013)'
-    assert package_manager._get_metadata('composer') is None
-    assert package_manager._get_metadata('title') == 'Red Example Score'
-    assert package_manager._get_metadata('year_of_completion') == 2013
+    assert package_manager._get_metadatum('composer') is None
+    assert package_manager._get_metadatum('title') == 'Red Example Score'
+    assert package_manager._get_metadatum('year_of_completion') == 2013

@@ -70,7 +70,7 @@ class ScorePackageManager(PackageManager):
     ### PRIVATE METHODS ###
 
     def _get_annotated_title(self):
-        if isinstance(self._get_metadata('year_of_completion'), int):
+        if isinstance(self._get_metadatum('year_of_completion'), int):
             return self._get_title_with_year()
         else:
             return self._get_title()
@@ -124,19 +124,19 @@ class ScorePackageManager(PackageManager):
     def _get_tempo_inventory(self):
         wrangler = self.material_package_wrangler
         for manager in wrangler.list_asset_managers(head=self.package_path):
-            class_name = manager._get_metadata('material_package_manager_class_name')
+            class_name = manager._get_metadatum('material_package_manager_class_name')
             if class_name == 'TempoInventoryMaterialPackageManager':
                 return manager.output_material
 
     def _get_title(self):
-        return self._get_metadata('title') or '(untitled score)'
+        return self._get_metadatum('title') or '(untitled score)'
 
     def _get_title_with_year(self):
-        if self._get_metadata('year_of_completion'):
+        if self._get_metadatum('year_of_completion'):
             result = '{} ({})'
             result = result.format(
                 self._get_title(), 
-                self._get_metadata('year_of_completion')
+                self._get_metadatum('year_of_completion')
                 )
             return result
         else:
@@ -261,7 +261,7 @@ class ScorePackageManager(PackageManager):
         prepopulated_value = None
         prepopulated_value = self._get_title() or None
         result.append((return_value, None, prepopulated_value, return_value))
-        forces_tagline = self._get_metadata('forces_tagline')
+        forces_tagline = self._get_metadatum('forces_tagline')
         prepopulated_value = None
         return_value = 'tagline'
         if forces_tagline:
@@ -269,11 +269,11 @@ class ScorePackageManager(PackageManager):
         result.append((return_value, None, prepopulated_value, return_value))
         return_value = 'year'
         prepopulated_value = None
-        year_of_completion = self._get_metadata('year_of_completion')
+        year_of_completion = self._get_metadatum('year_of_completion')
         if year_of_completion:
             prepopulated_value = str(year_of_completion)
         result.append((return_value, None, prepopulated_value, return_value))
-        catalog_number = self._get_metadata('catalog_number')
+        catalog_number = self._get_metadatum('catalog_number')
         prepopulated_value = None
         return_value = 'catalog number'
         if catalog_number:

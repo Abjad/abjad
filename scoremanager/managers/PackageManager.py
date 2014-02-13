@@ -39,17 +39,38 @@ class PackageManager(DirectoryManager):
 
     ### PRIVATE METHODS ###
 
-    def _make_tags_menu_entries(self):
+    def _add_metadata(self, metadatum_name, metadatum_value):
+        assert stringtools.is_snake_case_string(metadatum_name)
+        tags = self._get_metadata()
+        tags[metadatum_name] = metadatum_value
+        self.write_metadata_to_disk(tags)
+
+    def _get_metadatum(self, metadatum_name):
+        tags = self._get_metadata()
+        tag = tags.get(metadatum_name, None)
+        return tag
+
+    def _get_metadata(self):
+        from collections import OrderedDict
+        self.metadata_module_manager._make_empty_asset()
+        file_pointer = open(self.metadata_module_name, 'r')
+        file_contents_string = file_pointer.read()
+        file_pointer.close()
+        exec(file_contents_string)
+        tags = locals().get('tags') or OrderedDict([])
+        return tags
+
+    def _make_metadata_menu_entries(self):
         result = []
-        tags = self._get_metadatas()
+        tags = self._get_metadata()
         for key in sorted(tags):
             display_string = key.replace('_', ' ')
             result.append((display_string, None, tags[key], key))
         return result
 
-    def _remove_metadata(self, tag_name):
-        tags = self._get_metadatas()
-        del(tags[tag_name])
+    def _remove_metadatum(self, metadatum_name):
+        tags = self._get_metadata()
+        del(tags[metadatum_name])
         self.write_metadata_to_disk(tags)
 
     ### PUBLIC PROPERTIES ###
@@ -114,27 +135,6 @@ class PackageManager(DirectoryManager):
 
     ### PUBLIC METHODS ###
 
-    def _add_metadata(self, tag_name, tag_value):
-        assert stringtools.is_snake_case_string(tag_name)
-        tags = self._get_metadatas()
-        tags[tag_name] = tag_value
-        self.write_metadata_to_disk(tags)
-
-    def _get_metadata(self, tag_name):
-        tags = self._get_metadatas()
-        tag = tags.get(tag_name, None)
-        return tag
-
-    def _get_metadatas(self):
-        from collections import OrderedDict
-        self.metadata_module_manager._make_empty_asset()
-        file_pointer = open(self.metadata_module_name, 'r')
-        file_contents_string = file_pointer.read()
-        file_pointer.close()
-        exec(file_contents_string)
-        tags = locals().get('tags') or OrderedDict([])
-        return tags
-
     def handle_tags_menu_result(self, result):
         if result == 'add':
             self.interactively_add_metadata()
@@ -144,9 +144,9 @@ class PackageManager(DirectoryManager):
             self.interactively_get_metadata()
         return False
 
-    def has_tag(self, tag_name):
-        tags = self._get_metadatas()
-        return bool(tag_name in tags)
+    def has_tag(self, metadatum_name):
+        tags = self._get_metadata()
+        return bool(metadatum_name in tags)
 
     def interactively_add_metadata(self):
         getter = self.session.io_manager.make_getter(where=self._where)
@@ -156,8 +156,8 @@ class PackageManager(DirectoryManager):
         if self.session.backtrack():
             return
         if result:
-            tag_name, tag_value = result
-            self._add_metadata(tag_name, tag_value)
+            metadatum_name, metadatum_value = result
+            self._add_metadata(metadatum_name, metadatum_value)
 
     def interactively_get_metadata(self):
         getter = self.session.io_manager.make_getter(where=self._where)
@@ -165,7 +165,7 @@ class PackageManager(DirectoryManager):
         result = getter._run()
         if self.session.backtrack():
             return
-        tag = self._get_metadata(result)
+        tag = self._get_metadatum(result)
         line = '{!r}'.format(tag)
         self.session.io_manager.proceed(line)
 
@@ -176,8 +176,8 @@ class PackageManager(DirectoryManager):
         if self.session.backtrack():
             return
         if result:
-            tag_name = result
-            self._remove_metadata(tag_name)
+            metadatum_name = result
+            self._remove_metadatum(metadatum_name)
 
     def interactively_rename_package(self):
         r'''Interactively renames package.
@@ -257,7 +257,7 @@ class PackageManager(DirectoryManager):
     def make_tags_menu(self):
         tags_menu = self.session.io_manager.make_menu(where=self._where)
         attribute_section = tags_menu.make_attribute_section()
-        menu_entries = self._make_tags_menu_entries()
+        menu_entries = self._make_metadata_menu_entries()
         attribute_section.menu_entries = menu_entries
         command_section = tags_menu.make_command_section()
         command_section.append(('add tag', 'add'))
@@ -303,7 +303,7 @@ class PackageManager(DirectoryManager):
 
     def write_metadata_to_disk(self, tags=None):
         if tags is None:
-            tags = self._get_metadatas()
+            tags = self._get_metadata()
         self.metadata_module_manager.write_metadata_to_disk(tags)
 
     ### UI MANIFEST ###

@@ -71,7 +71,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             entries = sequencetools.zip_sequences(sequences, cyclic=True)
             package_manager = self._get_current_package_manager()
             if package_manager:
-                view_name = package_manager._get_metadata('view_name')
+                view_name = package_manager._get_metadatum('view_name')
                 if view_name:
                     view_inventory = self._read_view_inventory_from_disk()
                     if view_inventory:
