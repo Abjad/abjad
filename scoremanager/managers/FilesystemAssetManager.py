@@ -9,7 +9,6 @@ from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 class FilesystemAssetManager(ScoreManagerObject):
     r'''Filesystem asset manager.
-
     '''
 
     ### CLASS VARIABLES ###

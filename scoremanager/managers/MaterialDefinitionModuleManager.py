@@ -37,7 +37,7 @@ class MaterialDefinitionModuleManager(FileManager):
     def write_stub_data_material_definition_to_disk(self):
         lines = []
         lines.append('# -*- encoding: utf-8 -*-\n')
-        lines.append('from abjad.tools import sequencetools\n')
+        lines.append('from abjad import *\n')
         lines.append('\n\n')
         line = '{} = None'.format(self.material_package_name)
         lines.append(line)
