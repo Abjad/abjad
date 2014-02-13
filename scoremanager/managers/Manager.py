@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import abc
 import os
 import shutil
 import subprocess
@@ -7,13 +6,11 @@ from abjad.tools import stringtools
 from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
-class FilesystemAssetManager(ScoreManagerObject):
+class Manager(ScoreManagerObject):
     r'''Filesystem asset manager.
     '''
 
     ### CLASS VARIABLES ###
-
-    __metaclass__ = abc.ABCMeta
 
     _generic_class_name = 'filesystem asset'
 

@@ -2,10 +2,10 @@
 import os
 import subprocess
 from abjad.tools import sequencetools
-from scoremanager.managers.FilesystemAssetManager import FilesystemAssetManager
+from scoremanager.managers.Manager import Manager
 
 
-class DirectoryManager(FilesystemAssetManager):
+class DirectoryManager(Manager):
 
     ### INITIALIZER ###
 
@@ -164,7 +164,7 @@ class DirectoryManager(FilesystemAssetManager):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = FilesystemAssetManager.user_input_to_action.copy()
+    user_input_to_action = Manager.user_input_to_action.copy()
     user_input_to_action.update({
         'ls': interactively_list_directory,
         'pytest': interactively_run_tests,

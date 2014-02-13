@@ -2,10 +2,10 @@
 import os
 from abjad.tools import stringtools
 from abjad.tools import systemtools
-from scoremanager.managers.FilesystemAssetManager import FilesystemAssetManager
+from scoremanager.managers.Manager import Manager
 
 
-class FileManager(FilesystemAssetManager):
+class FileManager(Manager):
     r'''File manager.
     '''
 
@@ -190,7 +190,7 @@ class FileManager(FilesystemAssetManager):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = FilesystemAssetManager.user_input_to_action.copy()
+    user_input_to_action = Manager.user_input_to_action.copy()
     user_input_to_action.update({
         'e': interactively_edit,
         'ts': interactively_typeset_tex_file,

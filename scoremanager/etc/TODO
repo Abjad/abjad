@@ -35,63 +35,59 @@
 
 14. Author ScorePackageManager docstrings.
 
-15. Add PackageystemAssetManager to superclass ModuleManager and 
-    PackageManager. PackagesystemAssetManager will parallel 
-    PacakagesystemAssetWrangler.
-
-16. Harmonize user input strings with method names in 
+15. Harmonize user input strings with method names in 
     MaterialPackageManager.user_input_to_action dictionary.
 
-17. Author StylesheetFileWrangler.interactively_remove_assets() test.
+16. Author StylesheetFileWrangler.interactively_remove_assets() test.
     Will involve making pending_user_input='... rm ...' work with named 
     arguments instead of just numeric arguments.
 
-18. Make MaterialPackageManager classes stop creating materials in 
+17. Make MaterialPackageManager classes stop creating materials in 
     scoremanager.materialpackages.
     Those classes should create material packages in the user asset 
     library material packages directory.
     Or in user score packages. But no material packages should ever 
     be created in the built-in asset library material packages directory.
 
-19. Implement material methods to move material packages 
+18. Implement material methods to move material packages 
     from one location to another.
 
-20. Find a way to include metadata management in hidden menu 
+19. Find a way to include metadata management in hidden menu 
     of every package manager.
 
-21. Finish the docstrings for all io classes.
+20. Finish the docstrings for all io classes.
 
-22. Beautify the code all of score manager and music expression test files.
+21. Beautify the code all of score manager and music expression test files.
 
-23. Refactor scoremanager.editors to contain as few classes as possible.
+22. Refactor scoremanager.editors to contain as few classes as possible.
 
-24. Refactor score manager wizard classes to use instance attributes in place
+23. Refactor score manager wizard classes to use instance attributes in place
     of class attributes.
 
-25. Refactor score manager material package maker classes to use instance
+24. Refactor score manager material package maker classes to use instance
     attributes in place of class attributes.
 
-26. Implement a Session.display_variables() method to print the current value
+25. Implement a Session.display_variables() method to print the current value
     of all session variables to the terminal for user inspection.
 
-27. Figure out the correct ajv replace regex to change tratiettore/music
+26. Figure out the correct ajv replace regex to change tratiettore/music
     to just traiettorie.
 
-28. Bug exists when making handmade material packages.
+27. Bug exists when making handmade material packages.
     Create the packge. Then [mde] to edit the material definition module.
     The last line in file reads like this:
         /Users/trevorbaca/Documents/scores/temporary/materials/foo = None
 
-29. Move score/instrumentation.py module to score/materials packages.
+28. Move score/instrumentation.py module to score/materials packages.
 
-30. Change ...
+29. Change ...
         from abjad.tools import indicatortools
         from abjad.tools import durationtools
     ... to just ...
         from abjad import *
     ... at the end of material output modules.
 
-31. Include two blank lines after headers in material output modules.
+30. Include two blank lines after headers in material output modules.
     So that  ...
 
         # -*- encoding: utf-8 -*-
@@ -106,30 +102,30 @@
 
     ... instead.
 
-32. Make material package illustration work again.
+31. Make material package illustration work again.
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
-33. Make tempo inventory editor (score > materials > tempo inventory) display
+32. Make tempo inventory editor (score > materials > tempo inventory) display
     custom identifier of tempo inventory when custom identifier has been
     defined; alternatively, remove custom_identifier from TempoInventory
     entirely; use user-given package name instead.
 
-34. Remove empty ...
+33. Remove empty ...
         .../materialpackagemanagers/user_input.py
     ... module.
 
-35. Reformat ScoreManagerConfiguration to better follow the implementation
+34. Reformat ScoreManagerConfiguration to better follow the implementation
     pattern of AbjadConfiguration. Make built_in_editors_directory_path
     and so on into full-fledged public properties with doc strings.
 
-36. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
+35. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
     within a score. Maybe the commands should be (U), (K), (M), (G), (S), (T)
     and (Y) for clarity.
 
-37. There also needs to be a single command to just view the global stylesheet
+36. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (YV) or equivalent.
 
-38. Find a way to get rid of the ...
+37. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -145,8 +141,8 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-39. There should be a command to re-render the output.ly for a given segment,
+38. There should be a command to re-render the output.ly for a given segment,
     not by re-executing the associated segment maker, but simply by running
     LilyPond.
 
-40. Remove FileWrangler and just use FilesystemAssetWrangler instead?
+39. Remove FileWrangler and just use FilesystemAssetWrangler instead?
