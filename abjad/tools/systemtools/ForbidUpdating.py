@@ -3,8 +3,19 @@ import time
 from abjad.tools.abctools import ContextManager
 
 
-class Timer(ContextManager):
+class ForbidUpdating(ContextManager):
     r'''A context manager for forbidding score updates.
+
+    ..  container:: example
+
+        ::
+
+            >>> staff = Staff("c'32 d'2.. ~ d'16 e'32")
+            >>> with systemtools.ForbidUpdating(component=staff):
+            ...     for x in staff[:]:
+            ...         mutate(x).replace(Chord(x))
+            ...
+
     '''
 
     ### CLASS VARIABLES ###
@@ -32,9 +43,7 @@ class Timer(ContextManager):
         Returns context manager.
         '''
         if self.component is not None:
-            self.component._update_now(
-                offsets=True,
-                )
+            self.component._update_now(offsets=True)
             self.component._is_forbidden_to_update = True
         return self
 

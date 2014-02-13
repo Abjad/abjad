@@ -2,6 +2,7 @@
 from AbjadConfiguration import AbjadConfiguration
 from BenchmarkScoreMaker import BenchmarkScoreMaker
 from Configuration import Configuration
+from ForbidUpdating import ForbidUpdating
 from IOManager import IOManager
 from ImportManager import ImportManager
 from LilyPondFormatBundle import LilyPondFormatBundle
