@@ -46,11 +46,6 @@ class PackageManager(DirectoryManager):
         metadata[metadatum_name] = metadatum_value
         self.write_metadata(metadata)
 
-    def _get_metadatum(self, metadatum_name):
-        metadata = self._get_metadata()
-        metadatum = metadata.get(metadatum_name, None)
-        return metadatum
-
     def _get_metadata(self):
         metadata = None
         if os.path.isfile(self.metadata_module_path):
@@ -62,18 +57,10 @@ class PackageManager(DirectoryManager):
         metadata = metadata or collections.OrderedDict()
         return metadata
 
-    def _make_metadata_menu_entries(self):
-        result = []
+    def _get_metadatum(self, metadatum_name):
         metadata = self._get_metadata()
-        for key in sorted(metadata):
-            display_string = key.replace('_', ' ')
-            result.append((display_string, None, metadata[key], key))
-        return result
-
-    def _remove_metadatum(self, metadatum_name):
-        metadata = self._get_metadata()
-        del(metadata[metadatum_name])
-        self.write_metadata(metadata)
+        metadatum = metadata.get(metadatum_name, None)
+        return metadatum
 
     @staticmethod
     def _make_metadata_lines(metadata):
@@ -98,6 +85,19 @@ class PackageManager(DirectoryManager):
         else:
             result = 'metadata = collections.OrderedDict([])'
         return result
+
+    def _make_metadata_menu_entries(self):
+        result = []
+        metadata = self._get_metadata()
+        for key in sorted(metadata):
+            display_string = key.replace('_', ' ')
+            result.append((display_string, None, metadata[key], key))
+        return result
+
+    def _remove_metadatum(self, metadatum_name):
+        metadata = self._get_metadata()
+        del(metadata[metadatum_name])
+        self.write_metadata(metadata)
 
     def _write_metadata(self, metadata):
         lines = []
@@ -260,10 +260,6 @@ class PackageManager(DirectoryManager):
         self._path = new_directory_path
         self.session.is_backtracking_locally = True
 
-    def interactively_restore_initializer(self):
-        self.initializer_file_manager._write_stub()
-        self.session.io_manager.proceed(is_interactive=True)
-
     def interactively_set_package_path(self):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('package name')
@@ -281,8 +277,14 @@ class PackageManager(DirectoryManager):
             command = 'vim -R {}'.format(file_path)
             self.session.io_manager.spawn_subprocess(command)
 
-    def interactively_write_initializer_boilerplate(self):
+    def interactively_write_boilerplate_initializer(self):
         self.initializer_file_manager.interactively_write_boilerplate()
+
+    def interactively_write_stub_initializer(self):
+        self.initializer_file_manager._write_stub()
+        line = 'stub initializer written.'
+        self.session.io_manager.display([line, ''])
+        self.session.io_manager.proceed()
 
     def make_metadata_menu(self):
         metadata_menu = self.session.io_manager.make_menu(where=self._where)
@@ -328,12 +330,6 @@ class PackageManager(DirectoryManager):
     def run_first_time(self, **kwargs):
         self._run(**kwargs)
 
-    def interactively_write_initializer_stub_file(self):
-        self.initializer_file_manager._write_stub()
-        line = 'stub initializer written.'
-        self.session.io_manager.display([line, ''])
-        self.session.io_manager.proceed()
-
     def write_metadata(self, metadata=None):
         if metadata is None:
             metadata = self._get_metadata()
@@ -343,9 +339,8 @@ class PackageManager(DirectoryManager):
 
     user_input_to_action = DirectoryManager.user_input_to_action.copy()
     user_input_to_action.update({
-        'incanned': interactively_write_initializer_boilerplate,
-        'inr': interactively_restore_initializer,
-        'instub': interactively_write_initializer_stub_file,
+        'inb': interactively_write_boilerplate_initializer,
+        'ins': interactively_write_stub_initializer,
         'inv': interactively_view_initializer,
         'mdv': interactively_view_metadata_module,
         'mdw': write_metadata,

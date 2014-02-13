@@ -73,7 +73,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    try:
 #        score_manager._run(pending_user_input=
 #            'm m testsargasso default default '
-#            'testsargasso incanned canned_exception.py default q')
+#            'testsargasso incanned boilerplate_exception.py default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
@@ -99,7 +99,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    try:
 #        score_manager._run(pending_user_input=
 #            'm m testsargasso default default '
-#            'testsargasso incanned canned_exception.py default '
+#            'testsargasso incanned boilerplate_exception.py default '
 #            'inr yes yes default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
@@ -125,7 +125,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    try:
 #        score_manager._run(pending_user_input=
 #            'm m testsargasso default default '
-#            'testsargasso mdcanned canned_testsargasso_material_definition.py default '
+#            'testsargasso mdcanned boilerplate_testsargasso_material_definition.py default '
 #            'omm default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
@@ -204,7 +204,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    try:
 #        score_manager._run(pending_user_input=
 #            'm m testsargasso default default '
-#            'testsargasso mdcanned canned_testsargasso_material_definition.py default '
+#            'testsargasso mdcanned boilerplate_testsargasso_material_definition.py default '
 #            'omm default '
 #            'omdelete default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
@@ -232,7 +232,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    try:
 #        score_manager._run(pending_user_input=
 #            'm m testsargasso default default '
-#            'testsargasso mdcanned canned_exception.py default q')
+#            'testsargasso mdcanned boilerplate_exception.py default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
@@ -257,9 +257,9 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    try:
 #        score_manager._run(pending_user_input=
 #            'm m testsargasso default default '
-#            'testsargasso mdcanned canned_testsargasso_material_definition.py default '
+#            'testsargasso mdcanned boilerplate_testsargasso_material_definition.py default '
 #            'omm default '
-#            'omcanned canned_exception.py default q')
+#            'omcanned boilerplate_exception.py default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
@@ -285,7 +285,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    try:
 #        score_manager._run(pending_user_input=
 #            'm m testsargasso default default '
-#            'testsargasso mdcanned canned_testsargasso_material_definition.py default '
+#            'testsargasso mdcanned boilerplate_testsargasso_material_definition.py default '
 #            'omm default '
 #            'pdfm default '
 #            'q')

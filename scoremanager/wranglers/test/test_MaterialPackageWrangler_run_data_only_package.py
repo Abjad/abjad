@@ -42,7 +42,7 @@ def test_MaterialPackageWrangler_run_data_only_package_02():
     try:
         score_manager._run(pending_user_input=
             'm d testnumbers default '
-            'testnumbers incanned canned_exception.py default q')
+            'testnumbers incanned boilerplate_exception.py default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp.is_data_only
@@ -72,7 +72,7 @@ def test_MaterialPackageWrangler_run_data_only_package_03():
     try:
         score_manager._run(pending_user_input=
             'm d testnumbers default '
-            'testnumbers incanned canned_exception.py default '
+            'testnumbers incanned boilerplate_exception.py default '
             'inr yes no default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
@@ -103,7 +103,7 @@ def test_MaterialPackageWrangler_run_data_only_package_04():
     try:
         score_manager._run(pending_user_input=
             'm d testnumbers default '
-            'testnumbers mdcanned canned_testnumbers_material_definition.py default '
+            'testnumbers mdcanned boilerplate_testnumbers_material_definition.py default '
             'omm default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
@@ -194,7 +194,7 @@ def test_MaterialPackageWrangler_run_data_only_package_07():
     try:
         score_manager._run(pending_user_input=
             'm d testnumbers default '
-            'testnumbers mdcanned canned_testnumbers_material_definition.py '
+            'testnumbers mdcanned boilerplate_testnumbers_material_definition.py '
             'default '
             'omm default '
             'omdelete default q')
@@ -228,7 +228,7 @@ def test_MaterialPackageWrangler_run_data_only_package_08():
         score_manager._run(pending_user_input=
             'm d testnumbers default'
             ' testnumbers mdcanned'
-            ' canned_testnumbers_material_definition_with_exception.py'
+            ' boilerplate_testnumbers_material_definition_with_exception.py'
             ' default q'
             )
         assert score_manager.configuration.packagesystem_path_exists(name)
@@ -261,10 +261,10 @@ def test_MaterialPackageWrangler_run_data_only_package_09():
     try:
         score_manager._run(pending_user_input=
             'm d testnumbers default'
-            ' testnumbers mdcanned canned_testnumbers_material_definition.py'
+            ' testnumbers mdcanned boilerplate_testnumbers_material_definition.py'
             ' default'
             ' omm default'
-            ' omcanned canned_exception.py default q'
+            ' omcanned boilerplate_exception.py default q'
             )
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)

@@ -17,7 +17,7 @@ def test_FileManager_write_boilerplate_asset_01():
     assert not os.path.exists(filesystem_path)
 
     try:
-        string = 'canned_testnumbers_material_definition.py'
+        string = 'boilerplate_testnumbers_material_definition.py'
         boilerplate_file_built_in_asset_name = string
         file_manager._write_boilerplate(boilerplate_file_built_in_asset_name)
         file_path = os.path.join(

@@ -44,7 +44,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
     try:
         score_manager._run(pending_user_input=
             'm h testnotes default default '
-            'testnotes incanned canned_exception.py default q')
+            'testnotes incanned boilerplate_exception.py default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp._list_directory() == [
@@ -74,7 +74,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
     try:
         score_manager._run(pending_user_input=
             'm h testnotes default default '
-            'testnotes incanned canned_exception.py default '
+            'testnotes incanned boilerplate_exception.py default '
             'inr yes yes default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
@@ -106,7 +106,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
     try:
         score_manager._run(pending_user_input=
             'm h testnotes default default '
-            'testnotes mdcanned canned_testnotes_material_definition.py default '
+            'testnotes mdcanned boilerplate_testnotes_material_definition.py default '
             'omm default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
@@ -203,7 +203,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
     try:
         score_manager._run(pending_user_input=
             'm h testnotes default default '
-            'testnotes mdcanned canned_testnotes_material_definition.py '
+            'testnotes mdcanned boilerplate_testnotes_material_definition.py '
             'default '
             'omm default '
             'omdelete default q')
@@ -238,7 +238,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
     try:
         score_manager._run(pending_user_input=
             'm h testnotes default default '
-            'testnotes mdcanned canned_exception.py default q')
+            'testnotes mdcanned boilerplate_exception.py default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp.is_handmade and not mpp.is_data_only
@@ -270,9 +270,9 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
     try:
         score_manager._run(pending_user_input=
             'm h testnotes default default '
-            'testnotes mdcanned canned_testnotes_material_definition.py default '
+            'testnotes mdcanned boilerplate_testnotes_material_definition.py default '
             'omm default '
-            'omcanned canned_exception.py default q')
+            'omcanned boilerplate_exception.py default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp.is_handmade and not mpp.is_data_only
@@ -307,7 +307,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
     try:
         score_manager._run(pending_user_input=
             'm h testnotes default default '
-            'testnotes mdcanned canned_testnotes_material_definition.py default '
+            'testnotes mdcanned boilerplate_testnotes_material_definition.py default '
             'omm default '
             'pdfm default '
             'q')
