@@ -178,7 +178,4 @@
     not by re-executing the associated segment maker, but simply by running
     LilyPond.
 
-42. Remove 'import scoremanager' from experimental/__init__.py.
-    Probably just grep for 'experimental' in all of scoremanager and remove.
-
-43. Remove FileWrangler and just use FilesystemAssetWrangler instead?
+42. Remove FileWrangler and just use FilesystemAssetWrangler instead?
