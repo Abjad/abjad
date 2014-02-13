@@ -67,15 +67,15 @@ class RunDoctestsScript(DirectoryScript):
         import doctest
         globs = importlib.import_module('abjad').__dict__.copy()
         try:
-            globs.update(importlib.import_module('experimental').__dict__)
-            globs.update(
-                importlib.import_module('experimental.demos').__dict__)
-        # TODO: fix naked except
+            experimental_module = importlib.import_module('experimental')
+            experimental_demos_module = importlib.import_module('experimental')
+            globs.update(experimental_module.__dict__)
+            globs.update(experimental_demos_module.__dict__)
         except:
             pass
         try:
-            globs.update(importlib.import_module('scoremanager').__dict__)
-        # TODO: fix naked except
+            scoremanager_module = importlib.import_module('scoremanager')
+            globs['scoremanager'] = scoremanager_module
         except:
             pass
         optionflags = (
