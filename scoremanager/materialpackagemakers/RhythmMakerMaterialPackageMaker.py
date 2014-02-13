@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad import *
-from scoremanager.materialpackagemakers.MaterialPackageMaker \
-    import MaterialPackageMaker
+from scoremanager.managers.MaterialPackageManager \
+    import MaterialPackageManager
 from scoremanager.wizards.RhythmMakerCreationWizard \
     import RhythmMakerCreationWizard
 
 
-class RhythmMakerMaterialPackageMaker(MaterialPackageMaker):
+class RhythmMakerMaterialPackageMaker(MaterialPackageManager):
 
     ### CLASS VARIABLES ###
 

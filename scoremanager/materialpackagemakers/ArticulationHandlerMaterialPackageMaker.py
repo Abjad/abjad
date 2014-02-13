@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 from experimental.tools.handlertools.ArticulationHandler \
     import ArticulationHandler
-from scoremanager.materialpackagemakers.MaterialPackageMaker \
-    import MaterialPackageMaker
+from scoremanager.managers.MaterialPackageManager \
+    import MaterialPackageManager
 from scoremanager.wizards.ArticulationHandlerCreationWizard \
     import ArticulationHandlerCreationWizard
 
 
-class ArticulationHandlerMaterialPackageMaker(MaterialPackageMaker):
+class ArticulationHandlerMaterialPackageMaker(MaterialPackageManager):
 
     ### CLASS VARIABLES ###
 

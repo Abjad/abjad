@@ -3,11 +3,11 @@ from abjad import *
 from scoremanager import predicates
 from scoremanager.editors.UserInputWrapper \
     import UserInputWrapper
-from scoremanager.materialpackagemakers.MaterialPackageMaker \
-    import MaterialPackageMaker
+from scoremanager.managers.MaterialPackageManager \
+    import MaterialPackageManager
 
 
-class SargassoMeasureMaterialPackageMaker(MaterialPackageMaker):
+class SargassoMeasureMaterialPackageMaker(MaterialPackageManager):
 
     ### CLASS VARIABLES ###
 

@@ -2,8 +2,7 @@
 from abjad import *
 from scoremanager.materialpackagemakers.InventoryMaterialPackageMaker \
     import InventoryMaterialPackageMaker
-from scoremanager.editors.MarkupInventoryEditor \
-    import MarkupInventoryEditor
+from scoremanager.editors.MarkupInventoryEditor import MarkupInventoryEditor
 
 
 class MarkupInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):

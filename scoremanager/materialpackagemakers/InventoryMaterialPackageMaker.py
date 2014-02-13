@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 import abc
-from scoremanager.materialpackagemakers.MaterialPackageMaker \
-    import MaterialPackageMaker
+from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
 
 
-class InventoryMaterialPackageMaker(MaterialPackageMaker):
+class InventoryMaterialPackageMaker(MaterialPackageManager):
 
     ### CLASS ATRIBUTES ###
 
