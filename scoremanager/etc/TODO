@@ -82,37 +82,21 @@
 28. Figure out the correct ajv replace regex to change tratiettore/music
     to just traiettorie.
 
-29. Find a way to get rid of the ...
-
-    if __name__ == '__main__':
-        segment = Segment()
-        lilypond_file = segment()
-        current_directory_path = os.path.dirname(__file__)
-        systemtools.log_render_lilypond_input(
-            lilypond_file,
-            output_directory_path=current_directory_path,
-            output_file_name_root='output',
-            )
-
-    ... at the bottom of each segment definition file.
-    There should be a way to call a prebuilt external script
-    that does exactly the same thing.
-
-30. Bug exists when making handmade material packages.
+29. Bug exists when making handmade material packages.
     Create the packge. Then [mde] to edit the material definition module.
     The last line in file reads like this:
         /Users/trevorbaca/Documents/scores/temporary/materials/foo = None
 
-31. Move score/instrumentation.py module to score/materials packages.
+30. Move score/instrumentation.py module to score/materials packages.
 
-32. Change ...
+31. Change ...
         from abjad.tools import indicatortools
         from abjad.tools import durationtools
     ... to just ...
         from abjad import *
     ... at the end of material output modules.
 
-33. Include two blank lines after headers in material output modules.
+32. Include two blank lines after headers in material output modules.
     So that  ...
 
         # -*- encoding: utf-8 -*-
@@ -127,35 +111,22 @@
 
     ... instead.
 
-34. Make material package illustration work again.
+33. Make material package illustration work again.
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
-35. Make tempo inventory editor (score > materials > tempo inventory) display
+34. Make tempo inventory editor (score > materials > tempo inventory) display
     custom identifier of tempo inventory when custom identifier has been
     defined; alternatively, remove custom_identifier from TempoInventory
     entirely; use user-given package name instead.
 
-36. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
-    within a score. Maybe the commands should be (U), (K), (M), (G), (S), (T)
-    and (Y) for clarity.
-
-37. There also needs to be a single command to just view the global stylesheet
-    for the entire score. Something like (YV) or equivalent.
-
-38. There also needs to be a one-key command equal to (score). Something like
-    (S) or equivalent.
-
-39. Enforce .ily stylesheet extension in score manager.
-    Enforce hypens instead of underscores in stylesheet files in score manager.
-
-40. Stop sprinkling empty __metadata__.py moudles in directories:
+35. Stop sprinkling empty __metadata__.py moudles in directories:
         .../materialpackagemanagers/stylesheets/__metadata__.py
         .../materialpackagemanagers/test/__metadata__.py
     And remove empty ...
         .../materialpackagemanagers/user_input.py
     ... module, too.
 
-41. Change __metadata__ OrderedDict formatting from ...
+36. Change __metadata__ OrderedDict formatting from ...
 
     tags = collections.OrderedDict([
         ('generic_output_name', 'list'),
@@ -175,3 +146,30 @@
         ])
 
     ... instead.
+
+37. Reformat ScoreManagerConfiguration to better follow the implementation
+    pattern of AbjadConfiguration. Make built_in_editors_directory_path
+    and so on into full-fledged public properties with doc strings.
+
+38. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
+    within a score. Maybe the commands should be (U), (K), (M), (G), (S), (T)
+    and (Y) for clarity.
+
+39. There also needs to be a single command to just view the global stylesheet
+    for the entire score. Something like (YV) or equivalent.
+
+40. Find a way to get rid of the ...
+
+    if __name__ == '__main__':
+        segment = Segment()
+        lilypond_file = segment()
+        current_directory_path = os.path.dirname(__file__)
+        systemtools.log_render_lilypond_input(
+            lilypond_file,
+            output_directory_path=current_directory_path,
+            output_file_name_root='output',
+            )
+
+    ... at the bottom of each segment definition file.
+    There should be a way to call a prebuilt external script
+    that does exactly the same thing.

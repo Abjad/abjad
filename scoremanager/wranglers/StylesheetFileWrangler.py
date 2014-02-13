@@ -2,8 +2,7 @@
 import os
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from scoremanager.wranglers.FileWrangler import \
-    FileWrangler
+from scoremanager.wranglers.FileWrangler import FileWrangler
 
 
 class StylesheetFileWrangler(FileWrangler):
@@ -18,10 +17,6 @@ class StylesheetFileWrangler(FileWrangler):
     '''
 
     ### CLASS VARIABLES ###
-
-#    asset_storehouse_filesystem_path_in_built_in_asset_library = os.path.join(
-#        FileWrangler.configuration.score_manager_tools_directory_path, 
-#        'stylesheets')
 
     asset_storehouse_filesystem_path_in_built_in_asset_library = \
         FileWrangler.configuration.abjad_configuration.abjad_stylesheets_directory_path
@@ -39,7 +34,7 @@ class StylesheetFileWrangler(FileWrangler):
 
     @property
     def _temporary_asset_name(self):
-        return '__temporary_stylesheet.ly'
+        return '__temporary_stylesheet.ily'
 
     ### PRIVATE METHODS ###
 
@@ -60,7 +55,10 @@ class StylesheetFileWrangler(FileWrangler):
             annotation = score_package_manager._get_title()
         elif filesystem_path.startswith(
             self.configuration.built_in_stylesheets_directory_path):
-            annotation = 'built-in'
+            annotation = 'Abjad'
+        elif filesystem_path.startswith(
+            self.configuration.user_asset_library_stylesheets_directory_path):
+            annotation = 'library'
         return annotation
 
     def _get_current_directory(self):
@@ -72,7 +70,7 @@ class StylesheetFileWrangler(FileWrangler):
     def _get_header_stylesheet_file_path(self):
         for directory_entry in sorted(os.listdir(
             self._get_current_directory())):
-            if directory_entry.endswith('header.ly'):
+            if directory_entry.endswith('header.ily'):
                 file_path = os.path.join(
                     self._get_current_directory(),
                     directory_entry,
@@ -82,7 +80,7 @@ class StylesheetFileWrangler(FileWrangler):
     def _get_layout_stylesheet_file_path(self):
         for directory_entry in sorted(os.listdir(
             self._get_current_directory())):
-            if directory_entry.endswith('layout.ly'):
+            if directory_entry.endswith('layout.ily'):
                 file_path = os.path.join(
                     self._get_current_directory(),
                     directory_entry,
@@ -92,7 +90,7 @@ class StylesheetFileWrangler(FileWrangler):
     def _get_paper_stylesheet_file_path(self):
         for directory_entry in sorted(os.listdir(
             self._get_current_directory())):
-            if directory_entry.endswith('paper.ly'):
+            if directory_entry.endswith('paper.ily'):
                 file_path = os.path.join(
                     self._get_current_directory(),
                     directory_entry,
@@ -104,6 +102,13 @@ class StylesheetFileWrangler(FileWrangler):
             self.user_input_to_action[result](self)
         else:
             self.interactively_edit_asset(result)
+
+    def _is_valid_directory_entry(self, directory_entry):
+        superclass = super(StylesheetFileWrangler, self)
+        if superclass._is_valid_directory_entry(directory_entry):
+            if directory_entry.endswith('.ily'):
+                return True
+        return False
 
     def _make_asset_menu_entries(self, head=None, include_extension=False):
         filesystem_paths = self.list_asset_filesystem_paths(head=head)
@@ -224,8 +229,8 @@ class StylesheetFileWrangler(FileWrangler):
         stylesheet_file_name = \
             stringtools.string_to_accent_free_snake_case(
             stylesheet_file_name)
-        if not stylesheet_file_name.endswith('.ly'):
-            stylesheet_file_name = stylesheet_file_name + '.ly'
+        if not stylesheet_file_name.endswith('.ily'):
+            stylesheet_file_name = stylesheet_file_name + '.ily'
         stylesheet_file_path = os.path.join(
             storehouse_path,
             stylesheet_file_name,

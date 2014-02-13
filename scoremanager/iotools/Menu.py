@@ -175,6 +175,7 @@ class Menu(ScoreManagerObject):
         hidden_section.append(('go home', 'home'))
         hidden_section.append(('go home', 'H'))
         hidden_section.append(('go to current score', 'score'))
+        hidden_section.append(('go to current score', 'S'))
         hidden_section.append(('go to next score', 'next'))
         hidden_section.append(('go to prev score', 'prev'))
         hidden_section.append(('quit', 'q'))
@@ -312,7 +313,7 @@ class Menu(ScoreManagerObject):
         ::
 
                 >>> menu.hidden_section
-                <MenuSection (15)>
+                <MenuSection (16)>
 
         ::
 
@@ -325,6 +326,7 @@ class Menu(ScoreManagerObject):
                 <MenuEntry: 'go back'>
                 <MenuEntry: 'go home'>
                 <MenuEntry: 'go home'>
+                <MenuEntry: 'go to current score'>
                 <MenuEntry: 'go to current score'>
                 <MenuEntry: 'go to next score'>
                 <MenuEntry: 'go to prev score'>
@@ -348,7 +350,7 @@ class Menu(ScoreManagerObject):
 
             >>> for menu_section in menu.menu_sections:
             ...     menu_section
-            <MenuSection (15)>
+            <MenuSection (16)>
             <MenuSection (4)>
 
         Returns list.
