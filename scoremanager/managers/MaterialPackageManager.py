@@ -1028,10 +1028,6 @@ class MaterialPackageManager(PackageManager):
             )
         if not os.path.exists(user_input_module_file_path):
             file(user_input_module_file_path, 'w').write('')
-#        manager = managers.UserInputModuleManager(
-#            user_input_module_file_path,
-#            session=self.session,
-#            )
         user_input_wrapper = self.read_user_input_wrapper_from_disk()
         if user_input_wrapper:
             user_input_wrapper._user_input_module_import_statements = \
