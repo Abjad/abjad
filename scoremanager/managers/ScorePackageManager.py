@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-#from scoremanager.managers.PackageManager \
-#    import PackageManager
 from scoremanager.managers.PackageManager import PackageManager
 
 
@@ -480,7 +478,8 @@ class ScorePackageManager(PackageManager):
         self.build_directory_manager._run()
 
     def manage_makers(self):
-        self.maker_module_wrangler._run(head=self.package_path)
+        self.session.io_manager.print_not_yet_implemented()
+        #self.maker_module_wrangler._run(head=self.package_path)
 
     def manage_materials(self):
         self.material_package_wrangler._run(head=self.package_path)

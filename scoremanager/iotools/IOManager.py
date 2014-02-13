@@ -84,9 +84,10 @@ class IOManager(IOManager):
     @staticmethod
     def _is_score_string(string):
         if isinstance(string, str):
-            if 3 <= len(string):
-                if 'score'.startswith(string):
-                    return True
+            if 3 <= len(string) and 'score'.startswith(string):
+                return True
+            elif string == 'S':
+                return True
         return False
 
     @staticmethod
