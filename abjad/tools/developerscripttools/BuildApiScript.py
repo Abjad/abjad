@@ -18,6 +18,8 @@ class BuildApiScript(DeveloperScript):
     ### CLASS VARIABLES ###
 
     class ExperimentalAPIGenerator(AbjadAPIGenerator):
+        r'''API generator for the experimental package.
+        '''
 
         _api_title = 'Abjad Experimental API'
 
@@ -77,6 +79,8 @@ class BuildApiScript(DeveloperScript):
             return 2
 
     class ScoreManagerAPIGenerator(AbjadAPIGenerator):
+        r'''API generator for the score manager package.
+        '''
 
         _api_title = 'Abjad Score Manager API'
 
