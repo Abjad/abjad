@@ -101,7 +101,7 @@ class SegmentPackageManager(PackageManager):
         hidden_section.append(('remove package', 'rm'))
         hidden_section.append(('list package', 'ls'))
         hidden_section.append(('rename package', 'ren'))
-        hidden_section.append(('manage tags', 'tags'))
+        hidden_section.append(('manage metadata', 'metadata'))
         command_section = main_menu.make_command_section()
         command_section.append(('segment definition module - edit', 'e'))
         command_section = main_menu.make_command_section()

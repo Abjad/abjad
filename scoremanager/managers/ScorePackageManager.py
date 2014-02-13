@@ -227,7 +227,7 @@ class ScorePackageManager(PackageManager):
         hidden_section.append(('fix package structure', 'fix'))
         hidden_section.append(('list directory contents', 'ls'))
         hidden_section.append(('manage repository', 'rep'))
-        hidden_section.append(('manage tags', 'tags'))
+        hidden_section.append(('manage metadata', 'metadata'))
         hidden_section.append(('profile package structure', 'profile'))
         hidden_section.append(('run pytest', 'pytest'))
         hidden_section.append(('remove score package', 'removescore'))
@@ -404,7 +404,7 @@ class ScorePackageManager(PackageManager):
                 metadata_module.write('import collections\n')
                 metadata_module.write('\n')
                 metadata_module.write('\n')
-                metadata_module.write('tags = collections.OrderedDict([])\n')
+                metadata_module.write('metadata = collections.OrderedDict([])\n')
                 metadata_module.close()
         if not os.path.exists(self._get_materials_directory_path()):
             result = False

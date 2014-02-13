@@ -2,7 +2,7 @@
 import collections
 
 
-tags = collections.OrderedDict([
+metadata = collections.OrderedDict([
     ('generic_output_name', 'tempo inventory'),
     ('is_material_package', True),
     ('material_package_manager_class_name', 'TempoInventoryMaterialPackageManager'),

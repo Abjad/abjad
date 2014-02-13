@@ -2,7 +2,7 @@
 import collections
 
 
-tags = collections.OrderedDict([
+metadata = collections.OrderedDict([
     ('generic_output_name', 'articulation handler'),
     ('is_material_package', True),
     ('material_package_manager_class_name', 'ArticulationHandlerMaterialPackageManager'),

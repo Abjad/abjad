@@ -2,5 +2,5 @@
 import collections
 
 
-tags = collections.OrderedDict([
+metadata = collections.OrderedDict([
     ('view_name', 'reverse order')])

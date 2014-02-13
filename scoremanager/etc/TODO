@@ -126,39 +126,18 @@
         .../materialpackagemanagers/user_input.py
     ... module, too.
 
-36. Change __metadata__ OrderedDict formatting from ...
-
-    tags = collections.OrderedDict([
-        ('generic_output_name', 'list'),
-        ('is_material_package', True),
-        ('material_package_manager_class_name', 'ListMaterialPackageManager'),
-        ('should_have_illustration', True),
-        ('should_have_user_input_module', False)])
-
-    ... to ...
-
-    tags = collections.OrderedDict([
-        ('generic_output_name', 'list'),
-        ('is_material_package', True),
-        ('material_package_manager_class_name', 'ListMaterialPackageManager'),
-        ('should_have_illustration', True),
-        ('should_have_user_input_module', False),
-        ])
-
-    ... instead.
-
-37. Reformat ScoreManagerConfiguration to better follow the implementation
+36. Reformat ScoreManagerConfiguration to better follow the implementation
     pattern of AbjadConfiguration. Make built_in_editors_directory_path
     and so on into full-fledged public properties with doc strings.
 
-38. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
+37. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
     within a score. Maybe the commands should be (U), (K), (M), (G), (S), (T)
     and (Y) for clarity.
 
-39. There also needs to be a single command to just view the global stylesheet
+38. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (YV) or equivalent.
 
-40. Find a way to get rid of the ...
+39. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -174,8 +153,8 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-41. There should be a command to re-render the output.ly for a given segment,
+40. There should be a command to re-render the output.ly for a given segment,
     not by re-executing the associated segment maker, but simply by running
     LilyPond.
 
-42. Remove FileWrangler and just use FilesystemAssetWrangler instead?
+41. Remove FileWrangler and just use FilesystemAssetWrangler instead?

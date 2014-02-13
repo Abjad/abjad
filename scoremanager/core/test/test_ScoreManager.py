@@ -14,11 +14,11 @@ def test_ScoreManager_01():
 
 
 def test_ScoreManager_02():
-    r'''Main menu to score menu to tags menu.
+    r'''Main menu to score menu to metadata menu.
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='red~example~score tags q')
+    score_manager._run(pending_user_input='red~example~score metadata q')
     assert score_manager.session.io_transcript.signature == (6,)
 
 

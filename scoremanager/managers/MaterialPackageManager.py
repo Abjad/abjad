@@ -92,7 +92,7 @@ class MaterialPackageManager(PackageManager):
         hidden_section.append(('list package', 'ls'))
         hidden_section.append(('rename package', 'ren'))
         hidden_section.append(('manage stylesheets', 'stl'))
-        hidden_section.append(('manage tags', 'tags'))
+        hidden_section.append(('manage metadata', 'metadata'))
 
     def _make_main_menu_section_for_illustration_builder(
         self,

@@ -26,10 +26,10 @@ class MetadataModuleManager(FileManager):
                         string = repr(value)
                     lines.append('({}, {})'.format(key, string))
             lines = ',\n    '.join(lines)
-            result = 'tags = collections.OrderedDict([\n    {},\n    ])'
+            result = 'metadata = collections.OrderedDict([\n    {},\n    ])'
             result = result.format(lines)
         else:
-            result = 'tags = collections.OrderedDict([])'
+            result = 'metadata = collections.OrderedDict([])'
         return result
 
     def write_metadata_to_disk(self, metadata):

@@ -65,7 +65,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_03():
 
 
 def test_MaterialPackageWrangler_make_handmade_material_package_04():
-    r'''With custom tags.
+    r'''With custom metadata.
     '''
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
@@ -73,8 +73,8 @@ def test_MaterialPackageWrangler_make_handmade_material_package_04():
     assert not wrangler.configuration.packagesystem_path_exists(string)
 
     try:
-        tags = {'color': 'red', 'is_colored': True}
-        wrangler.make_handmade_material_package(string, tags=tags)
+        metadata = {'color': 'red', 'is_colored': True}
+        wrangler.make_handmade_material_package(string, metadata=metadata)
         assert wrangler.configuration.packagesystem_path_exists(string)
         mpp = scoremanager.managers.MaterialPackageManager(string)
         assert mpp._get_metadatum('color') == 'red'

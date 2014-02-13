@@ -46,7 +46,7 @@ class Selector(ScoreManagerObject):
             metadata_module_string = metadata_module.read()
             metadata_module.close()
             exec(metadata_module_string)
-            result = locals().get('tags') or OrderedDict([])
+            result = locals().get('metadata') or OrderedDict([])
             return result.get(metadatum_name)
 
     def _make_main_menu(self, head=None):
@@ -248,11 +248,11 @@ class Selector(ScoreManagerObject):
             path = selector.session.current_materials_directory_path
             paths = list_public_directory_paths_with_initializers(path)
             for directory_path in paths:
-                tag = selector._get_metadata_from_directory_path(
+                metadatum = selector._get_metadata_from_directory_path(
                     directory_path, 
                     'generic_output_name',
                     )
-                if tag == generic_output_name:
+                if metadatum == generic_output_name:
                     result.append(directory_path)
             return result
         items = []

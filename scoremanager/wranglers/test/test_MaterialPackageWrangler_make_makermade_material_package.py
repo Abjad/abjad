@@ -74,11 +74,11 @@ def test_MaterialPackageWrangler_make_makermade_material_package_04():
     assert not wrangler.configuration.packagesystem_path_exists(string)
 
     try:
-        tags = {'color': 'red', 'is_colored': True}
+        metadata = {'color': 'red', 'is_colored': True}
         wrangler.make_makermade_material_package(
             string, 
             'SargassoMeasureMaterialPackageManager', 
-            tags=tags,
+            metadata=metadata,
             )
         assert wrangler.configuration.packagesystem_path_exists(string)
         mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(string)

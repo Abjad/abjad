@@ -365,13 +365,13 @@ class SegmentPackageWrangler(PackageWrangler):
         self, 
         package_path, 
         is_interactive=False, 
-        tags=None,
+        metadata=None,
         ):
         r'''Makes package.
 
         Returns none.
         '''
-        tags = collections.OrderedDict(tags or {})
+        metadata = collections.OrderedDict(metadata or {})
         directory_path = \
             self.configuration.packagesystem_path_to_filesystem_path(
             package_path)

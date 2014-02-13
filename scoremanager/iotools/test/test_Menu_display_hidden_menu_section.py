@@ -69,7 +69,7 @@ def test_Menu_display_hidden_menu_section_02():
         '     fix package structure (fix)',
         '     list directory contents (ls)',
         '     manage repository (rep)',
-        '     manage tags (tags)',
+        '     manage metadata (metadata)',
         '     profile package structure (profile)',
         '     run pytest (pytest)',
         '     remove score package (removescore)',

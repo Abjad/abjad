@@ -120,7 +120,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
     def interactively_make_data_package(
         self, 
-        tags=None, 
+        metadata=None, 
         pending_user_input=None,
         ):
         r'''Interactively makes data package.
@@ -133,7 +133,7 @@ class MaterialPackageWrangler(PackageWrangler):
                 self.interactively_get_available_packagesystem_path()
         if self.session.backtrack():
             return
-        self.make_data_package(material_package_path, tags=tags)
+        self.make_data_package(material_package_path, metadata=metadata)
 
     def interactively_make_handmade_material_package(
         self, 
@@ -188,9 +188,9 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        tags = {'is_numeric_sequence': True}
+        metadata = {'is_numeric_sequence': True}
         self.interactively_make_data_package(
-            tags=tags, 
+            metadata=metadata, 
             pending_user_input=pending_user_input,
             )
 
@@ -377,38 +377,38 @@ class MaterialPackageWrangler(PackageWrangler):
             in_user_score_packages=in_user_score_packages,
             )
 
-    def make_data_package(self, material_package_path, tags=None):
+    def make_data_package(self, material_package_path, metadata=None):
         r'''Makes data package.
 
         Returns none.
         '''
-        tags = tags or {}
-        tags['material_package_manager_class_name'] = None
-        tags['should_have_illustration'] = False
-        tags['should_have_user_input_module'] = False
-        self.make_material_package(material_package_path, tags=tags)
+        metadata = metadata or {}
+        metadata['material_package_manager_class_name'] = None
+        metadata['should_have_illustration'] = False
+        metadata['should_have_user_input_module'] = False
+        self.make_material_package(material_package_path, metadata=metadata)
 
-    def make_handmade_material_package(self, material_package_path, tags=None):
+    def make_handmade_material_package(self, material_package_path, metadata=None):
         r'''Makes handmade material package.
 
         Returns none.
         '''
-        tags = tags or {}
-        tags['material_package_manager_class_name'] = None
-        tags['should_have_illustration'] = True
-        tags['should_have_user_input_module'] = False
-        self.make_material_package(material_package_path, tags=tags)
+        metadata = metadata or {}
+        metadata['material_package_manager_class_name'] = None
+        metadata['should_have_illustration'] = True
+        metadata['should_have_user_input_module'] = False
+        self.make_material_package(material_package_path, metadata=metadata)
 
     def make_makermade_material_package(self,
         material_package_path, 
         material_package_manager_class_name, 
-        tags=None,
+        metadata=None,
         ):
         r'''Makes makermade material package.
 
         Returns none.
         '''
-        tags = tags or {}
+        metadata = metadata or {}
         command = 'from scoremanager.materialpackagemanagers '
         command += 'import {} as material_package_manager_class'.format(
             material_package_manager_class_name)
@@ -423,36 +423,36 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_manager_class, 'should_have_user_input_module', True)
         should_have_illustration = hasattr(
             material_package_manager_class, 'illustration_builder')
-        tags['material_package_manager_class_name'] = material_package_manager_class_name
-        tags['should_have_illustration'] = should_have_illustration
-        tags['should_have_user_input_module'] = should_have_user_input_module
-        self.make_material_package(material_package_path, tags=tags)
+        metadata['material_package_manager_class_name'] = material_package_manager_class_name
+        metadata['should_have_illustration'] = should_have_illustration
+        metadata['should_have_user_input_module'] = should_have_user_input_module
+        self.make_material_package(material_package_path, metadata=metadata)
 
     def make_material_package(
         self, 
         package_path, 
         is_interactive=False, 
-        tags=None,
+        metadata=None,
         ):
         r'''Makes material package.
 
         Returns none.
         '''
-        tags = collections.OrderedDict(tags or {})
-        tags['is_material_package'] = True
+        metadata = collections.OrderedDict(metadata or {})
+        metadata['is_material_package'] = True
         directory_path = \
             self.configuration.packagesystem_path_to_filesystem_path(
             package_path)
         assert not os.path.exists(directory_path)
         os.mkdir(directory_path)
-        material_package_manager_class_name = tags.get(
+        material_package_manager_class_name = metadata.get(
             'material_package_manager_class_name')
         pair = (material_package_manager_class_name, package_path)
         material_package_manager = self._get_appropriate_material_package_manager(
             *pair)
         material_package_manager.initializer_file_manager._write_stub_to_disk()
         material_package_manager.metadata_module_manager._write_stub_to_disk()
-        material_package_manager.metadata_module_manager.write_metadata_to_disk(tags)
+        material_package_manager.metadata_module_manager.write_metadata_to_disk(metadata)
         material_package_manager.conditionally_write_stub_material_definition_module_to_disk()
         material_package_manager.conditionally_write_stub_user_input_module_to_disk()
         line = 'material package {!r} created.'.format(package_path)
@@ -463,8 +463,8 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        tags = {'is_numeric_sequence': True}
-        self.make_data_package(package_path, tags=tags)
+        metadata = {'is_numeric_sequence': True}
+        self.make_data_package(package_path, metadata=metadata)
 
     ### UI MANIFEST ###
 

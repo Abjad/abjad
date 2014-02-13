@@ -25,7 +25,7 @@ def test_ScorePackageManager_01():
 
 
 def test_ScorePackageManager_02():
-    r'''Manage tags menu.
+    r'''Manage metadata menu.
     '''
 
     string = 'scoremanager.scorepackages.red_example_score'
@@ -36,7 +36,7 @@ def test_ScorePackageManager_02():
 
 
 def test_ScorePackageManager_03():
-    r'''Add and delete tag interactively.
+    r'''Add and delete metadatum interactively.
     '''
 
     string = 'scoremanager.scorepackages.red_example_score'
