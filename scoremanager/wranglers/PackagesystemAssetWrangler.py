@@ -284,9 +284,9 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             package_path)
         if not os.path.exists(directory_path):
             os.mkdir(directory_path)
-            initializer_file_name = os.path.join(
+            initializer_file_path = os.path.join(
                 directory_path, '__init__.py')
-            file_reference = file(initializer_file_name, 'w')
+            file_reference = file(initializer_file_path, 'w')
             file_reference.write('')
             file_reference.close()
 

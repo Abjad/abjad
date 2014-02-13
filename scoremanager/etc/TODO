@@ -61,42 +61,37 @@
 
 21. Finish the docstrings for all io classes.
 
-22. Audit all '*_file_name' variables in the system.
-    Most are probably file path variables and should be renamed.
-    Just run "abjad-ack _file_name" and inspect the output
-    for score manager source files.
+22. Beautify the code all of score manager and music expression test files.
 
-23. Beautify the code all of score manager and music expression test files.
+23. Refactor scoremanager.editors to contain as few classes as possible.
 
-24. Refactor scoremanager.editors to contain as few classes as possible.
-
-25. Refactor score manager wizard classes to use instance attributes in place
+24. Refactor score manager wizard classes to use instance attributes in place
     of class attributes.
 
-26. Refactor score manager material package maker classes to use instance
+25. Refactor score manager material package maker classes to use instance
     attributes in place of class attributes.
 
-27. Implement a Session.display_variables() method to print the current value
+26. Implement a Session.display_variables() method to print the current value
     of all session variables to the terminal for user inspection.
 
-28. Figure out the correct ajv replace regex to change tratiettore/music
+27. Figure out the correct ajv replace regex to change tratiettore/music
     to just traiettorie.
 
-29. Bug exists when making handmade material packages.
+28. Bug exists when making handmade material packages.
     Create the packge. Then [mde] to edit the material definition module.
     The last line in file reads like this:
         /Users/trevorbaca/Documents/scores/temporary/materials/foo = None
 
-30. Move score/instrumentation.py module to score/materials packages.
+29. Move score/instrumentation.py module to score/materials packages.
 
-31. Change ...
+30. Change ...
         from abjad.tools import indicatortools
         from abjad.tools import durationtools
     ... to just ...
         from abjad import *
     ... at the end of material output modules.
 
-32. Include two blank lines after headers in material output modules.
+31. Include two blank lines after headers in material output modules.
     So that  ...
 
         # -*- encoding: utf-8 -*-
@@ -111,33 +106,33 @@
 
     ... instead.
 
-33. Make material package illustration work again.
+32. Make material package illustration work again.
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
-34. Make tempo inventory editor (score > materials > tempo inventory) display
+33. Make tempo inventory editor (score > materials > tempo inventory) display
     custom identifier of tempo inventory when custom identifier has been
     defined; alternatively, remove custom_identifier from TempoInventory
     entirely; use user-given package name instead.
 
-35. Stop sprinkling empty __metadata__.py moudles in directories:
+34. Stop sprinkling empty __metadata__.py moudles in directories:
         .../materialpackagemanagers/stylesheets/__metadata__.py
         .../materialpackagemanagers/test/__metadata__.py
     And remove empty ...
         .../materialpackagemanagers/user_input.py
     ... module, too.
 
-36. Reformat ScoreManagerConfiguration to better follow the implementation
+35. Reformat ScoreManagerConfiguration to better follow the implementation
     pattern of AbjadConfiguration. Make built_in_editors_directory_path
     and so on into full-fledged public properties with doc strings.
 
-37. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
+36. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
     within a score. Maybe the commands should be (U), (K), (M), (G), (S), (T)
     and (Y) for clarity.
 
-38. There also needs to be a single command to just view the global stylesheet
+37. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (YV) or equivalent.
 
-39. Find a way to get rid of the ...
+38. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -153,8 +148,8 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-40. There should be a command to re-render the output.ly for a given segment,
+39. There should be a command to re-render the output.ly for a given segment,
     not by re-executing the associated segment maker, but simply by running
     LilyPond.
 
-41. Remove FileWrangler and just use FilesystemAssetWrangler instead?
+40. Remove FileWrangler and just use FilesystemAssetWrangler instead?

@@ -377,8 +377,8 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        if not os.path.exists(self.initializer_file_name):
-            file_pointer = file(self.initializer_file_name, 'w')
+        if not os.path.exists(self.initializer_file_path):
+            file_pointer = file(self.initializer_file_path, 'w')
             file_pointer.write('')
             file_pointer.close()
 

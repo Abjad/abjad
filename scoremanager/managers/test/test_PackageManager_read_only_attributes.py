@@ -20,7 +20,7 @@ def test_PackageManager_read_only_attributes_01():
         package_manager.configuration.built_in_material_packages_directory_path,
         'red_sargasso_measures','__init__.py',
         )
-    assert package_manager.initializer_file_name == file_path
+    assert package_manager.initializer_file_path == file_path
     string = 'scoremanager.materialpackages.red_sargasso_measures'
     assert package_manager.package_path == string
     string = 'red sargasso measures'

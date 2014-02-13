@@ -115,8 +115,8 @@ class PackageManager(DirectoryManager):
 
     @property
     def has_initializer(self):
-        if self.initializer_file_name is not None:
-            return os.path.isfile(self.initializer_file_name)
+        if self.initializer_file_path is not None:
+            return os.path.isfile(self.initializer_file_path)
 
     @property
     def has_metadata_module(self):
@@ -130,12 +130,12 @@ class PackageManager(DirectoryManager):
     def initializer_file_manager(self):
         from scoremanager import managers
         return managers.FileManager(
-            self.initializer_file_name,
+            self.initializer_file_path,
             session=self.session,
             )
 
     @property
-    def initializer_file_name(self):
+    def initializer_file_path(self):
         if self.filesystem_path is not None:
             return os.path.join(self.filesystem_path, '__init__.py')
 
@@ -312,7 +312,7 @@ class PackageManager(DirectoryManager):
 
     def remove_initializer(self, is_interactive=True):
         if self.has_initializer:
-            os.remove(self.initializer_file_name)
+            os.remove(self.initializer_file_path)
             line = 'initializer deleted.'
             self.session.io_manager.proceed(
                 line, is_interactive=is_interactive)

@@ -386,11 +386,11 @@ class ScorePackageManager(PackageManager):
                 if not is_interactive or \
                     self.session.io_manager.confirm(prompt):
                     os.mkdir(path)
-        if not os.path.exists(self.initializer_file_name):
+        if not os.path.exists(self.initializer_file_path):
             result = False
-            prompt = 'create {}? '.format(self.initializer_file_name)
+            prompt = 'create {}? '.format(self.initializer_file_path)
             if not is_interactive or self.session.io_manager.confirm(prompt):
-                initializer = file(self.initializer_file_name, 'w')
+                initializer = file(self.initializer_file_path, 'w')
                 initializer.write('')
                 initializer.close()
         lines = []

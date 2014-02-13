@@ -385,12 +385,12 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
         Returns none.
         '''
-        initializer_file_name = os.path.join(
+        initializer_file_path = os.path.join(
             self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
             package_name, 
             '__init__.py',
             )
-        initializer = file(initializer_file_name, 'w')
+        initializer = file(initializer_file_path, 'w')
         line = 'from abjad.tools import systemtools\n'
         initializer.write(line)
         initializer.write('\n')

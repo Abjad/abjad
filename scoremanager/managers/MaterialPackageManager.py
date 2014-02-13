@@ -50,7 +50,7 @@ class MaterialPackageManager(PackageManager):
         self._user_input_wrapper_in_memory = \
             self._initialize_user_input_wrapper_in_memory()
         self._generic_output_name = None
-        self.stylesheet_file_name_in_memory = None
+        self.stylesheet_file_path_in_memory = None
 
     ### PRIVATE PROPERTIES ###
 
@@ -258,19 +258,19 @@ class MaterialPackageManager(PackageManager):
     @property
     def has_illustration_ly(self):
         if self.should_have_illustration_ly:
-            return os.path.exists(self.illustration_ly_file_name)
+            return os.path.exists(self.illustration_ly_file_path)
         return False
 
     @property
     def has_illustration_pdf(self):
         if self.should_have_illustration_pdf:
-            return os.path.exists(self.illustration_pdf_file_name)
+            return os.path.exists(self.illustration_pdf_fil_path)
         return False
 
     @property
     def has_initializer(self):
         if self.should_have_initializer:
-            return os.path.exists(self.initializer_file_name)
+            return os.path.exists(self.initializer_file_path)
         return False
 
     @property
@@ -360,7 +360,7 @@ class MaterialPackageManager(PackageManager):
         return manager
 
     @property
-    def illustration_ly_file_name(self):
+    def illustration_ly_file_path(self):
         if self.should_have_illustration_ly:
             return os.path.join(self.filesystem_path, 'illustration.ly')
 
@@ -375,16 +375,16 @@ class MaterialPackageManager(PackageManager):
         return manager
 
     @property
-    def illustration_pdf_file_name(self):
+    def illustration_pdf_fil_path(self):
         if self.should_have_illustration_pdf:
             return os.path.join(self.filesystem_path, 'illustration.pdf')
 
     @property
     def illustration_with_stylesheet(self):
         illustration = self.illustration
-        if illustration and self.stylesheet_file_name_in_memory:
+        if illustration and self.stylesheet_file_path_in_memory:
             illustration.file_initial_user_includes.append(
-                self.stylesheet_file_name_in_memory)
+                self.stylesheet_file_path_in_memory)
         return illustration
 
     @property
@@ -797,7 +797,7 @@ class MaterialPackageManager(PackageManager):
                 stylesheet_file_wrangler.interactively_select_asset_filesystem_path()
         if self.session.backtrack():
             return
-        self.stylesheet_file_name_in_memory = stylesheet_file_name
+        self.stylesheet_file_path_in_memory = stylesheet_file_name
         self.session.io_manager.proceed(
             'stylesheet selected.', 
             is_interactive=prompt,
@@ -884,7 +884,7 @@ class MaterialPackageManager(PackageManager):
     def write_illustration_ly_and_pdf_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
         topleveltools.persist(illustration).as_pdf(
-            self.illustration_pdf_file_name,
+            self.illustration_pdf_fil_path,
             )
         self.session.io_manager.proceed(
             'PDF and LilyPond file written to disk.',
@@ -894,7 +894,7 @@ class MaterialPackageManager(PackageManager):
     def write_illustration_ly_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
         topleveltools.persist(illustration).as_pdf(
-            self.illustration_ly_file_name,
+            self.illustration_ly_file_path,
             )
         self.session.io_manager.proceed(
             'LilyPond file written to disk.',
@@ -904,7 +904,7 @@ class MaterialPackageManager(PackageManager):
     def write_illustration_pdf_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
         topleveltools.persist(illustration).as_pdf(
-            self.illustration_pdf_file_name,
+            self.illustration_pdf_fil_path,
             )
         self.session.io_manager.proceed(
             'PDF written to disk.',
