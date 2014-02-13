@@ -103,6 +103,13 @@ class StylesheetFileWrangler(FileWrangler):
         else:
             self.interactively_edit_asset(result)
 
+    def _is_valid_directory_entry(self, directory_entry):
+        superclass = super(StylesheetFileWrangler, self)
+        if superclass._is_valid_directory_entry(directory_entry):
+            if directory_entry.endswith('.ily'):
+                return True
+        return False
+
     def _make_asset_menu_entries(self, head=None, include_extension=False):
         filesystem_paths = self.list_asset_filesystem_paths(head=head)
         display_strings = []

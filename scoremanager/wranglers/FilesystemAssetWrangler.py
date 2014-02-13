@@ -4,8 +4,7 @@ import os
 from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from scoremanager.core.ScoreManagerObject \
-    import ScoreManagerObject
+from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
 class FilesystemAssetWrangler(ScoreManagerObject):
@@ -453,7 +452,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def interactively_view_views_module(self):
         manager = self._get_current_view_module_manager()
-        #manager.interactively_view()
         manager.interactively_edit()
 
     def list_asset_filesystem_paths(
