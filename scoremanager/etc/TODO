@@ -113,6 +113,19 @@
     ... at the end of material output modules.
 
 33. Include two blank lines after headers in material output modules.
+    So that  ...
+
+        # -*- encoding: utf-8 -*-
+        fancy_list = ['foo', 'bar', 'blah', 17]
+
+    ... becomes ...
+
+        # -*- encoding: utf-8 -*-
+
+        
+        fancy_list = ['foo', 'bar', 'blah', 17]
+
+    ... instead.
 
 34. Make material package illustration work again.
     (score > materials > tempo inventory > pdfm) is the command sequence.
@@ -146,3 +159,24 @@
     And remove empty ...
         .../materialpackagemanagers/user_input.py
     ... module, too.
+
+42. Change __metadata__ OrderedDict formatting from ...
+
+    tags = collections.OrderedDict([
+        ('generic_output_name', 'list'),
+        ('is_material_package', True),
+        ('material_package_manager_class_name', 'ListMaterialPackageManager'),
+        ('should_have_illustration', True),
+        ('should_have_user_input_module', False)])
+
+    ... to ...
+
+    tags = collections.OrderedDict([
+        ('generic_output_name', 'list'),
+        ('is_material_package', True),
+        ('material_package_manager_class_name', 'ListMaterialPackageManager'),
+        ('should_have_illustration', True),
+        ('should_have_user_input_module', False),
+        ])
+
+    ... instead.

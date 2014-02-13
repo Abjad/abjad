@@ -80,7 +80,7 @@ class Menu(ScoreManagerObject):
     def _change_user_input_to_directive(self, user_input):
         user_input = stringtools.strip_diacritics_from_binary_string(
             user_input)
-        user_input = user_input.lower()
+        #user_input = user_input.lower()
         if self._user_enters_nothing(user_input):
             default_value = None
             for menu_section in self.menu_sections:
