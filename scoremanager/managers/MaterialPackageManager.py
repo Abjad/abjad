@@ -161,10 +161,10 @@ class MaterialPackageManager(PackageManager):
         if not self.has_initializer:
             command_section = main_menu.make_command_section()
             command_section.title = '(Note: package has no initializer.)'
+        hidden_section.append(('initializer - copy canned', 'incanned'))
         hidden_section.append(('initializer - restore', 'inr'))
-        hidden_section.append(('view package initializer', 'inv'))
-        hidden_section.append(('copy canned package initializer', 'incanned'))
-        hidden_section.append(('write stub package initializer', 'instub'))
+        hidden_section.append(('initializer - view', 'inv'))
+        hidden_section.append(('initializer - write stub', 'instub'))
 
     def _make_main_menu_section_for_material_definition(self,
         main_menu, hidden_section):

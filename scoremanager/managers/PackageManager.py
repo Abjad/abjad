@@ -328,8 +328,11 @@ class PackageManager(DirectoryManager):
     def run_first_time(self, **kwargs):
         self._run(**kwargs)
 
-    def write_initializer_stub_file_to_disk(self):
-        self.initializer_file_manager.write_stub_file_to_disk(prompt=True)
+    def interactively_write_initializer_stub_file_to_disk(self):
+        self.initializer_file_manager._write_stub_to_disk()
+        line = 'stub initializer written.'
+        self.session.io_manager.display([line, ''])
+        self.session.io_manager.proceed()
 
     def write_metadata_to_disk(self, metadata=None):
         if metadata is None:
@@ -342,7 +345,7 @@ class PackageManager(DirectoryManager):
     user_input_to_action.update({
         'incanned': interactively_write_initializer_boilerplate,
         'inr': interactively_restore_initializer,
-        'instub': write_initializer_stub_file_to_disk,
+        'instub': interactively_write_initializer_stub_file_to_disk,
         'inv': interactively_view_initializer,
         'mdv': interactively_view_metadata_module,
         'mdw': write_metadata_to_disk,

@@ -114,7 +114,7 @@ class FileManager(Manager):
 
     def _write_stub_to_disk(self):
         file_pointer = open(self.filesystem_path, 'w')
-        file_pointer.write('')
+        file_pointer.write('# -*- encoding: utf-8 -*-')
         file_pointer.close()
 
     ### PUBLIC METHODS ###
