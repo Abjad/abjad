@@ -301,6 +301,9 @@ class PackageManager(DirectoryManager):
     def write_initializer_stub_file_to_disk(self):
         self.initializer_file_manager.write_stub_file_to_disk(prompt=True)
 
+    def write_metadata_module(self):
+        self.session.io_manager.print_not_yet_implemented()
+
     ### UI MANIFEST ###
 
     user_input_to_action = DirectoryManager.user_input_to_action.copy()
@@ -309,7 +312,8 @@ class PackageManager(DirectoryManager):
         'inr': interactively_restore_initializer,
         'instub': write_initializer_stub_file_to_disk,
         'inv': interactively_view_initializer,
-        'metadata': interactively_view_metadata_module,
+        'mdv': interactively_view_metadata_module,
+        'mdw': write_metadata_module,
         'ren': interactively_rename_package,
         'rm': remove_package,
         'tags': manage_metadata,

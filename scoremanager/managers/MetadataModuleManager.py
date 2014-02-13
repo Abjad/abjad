@@ -26,7 +26,8 @@ class MetadataModuleManager(FileManager):
                         string = repr(value)
                     lines.append('({}, {})'.format(key, string))
             lines = ',\n    '.join(lines)
-            result = 'tags = collections.OrderedDict([\n    {}])'.format(lines)
+            result = 'tags = collections.OrderedDict([\n    {},\n    ])'
+            result = result.format(lines)
         else:
             result = 'tags = collections.OrderedDict([])'
         return result

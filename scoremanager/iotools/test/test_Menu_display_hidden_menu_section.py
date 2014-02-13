@@ -75,5 +75,6 @@ def test_Menu_display_hidden_menu_section_02():
         '     remove score package (removescore)',
         '     view initializer (inv)',
         '     view instrumentation (instrumentation)',
-        '     view metadata (metadata)',
+        '     metadata - view (mdv)',
+        '     metadata - write (mdw)',
         '']

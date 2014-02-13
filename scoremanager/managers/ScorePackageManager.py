@@ -233,7 +233,8 @@ class ScorePackageManager(PackageManager):
         hidden_section.append(('remove score package', 'removescore'))
         hidden_section.append(('view initializer', 'inv'))
         hidden_section.append(('view instrumentation', 'instrumentation'))
-        hidden_section.append(('view metadata', 'metadata'))
+        hidden_section.append(('metadata - view', 'mdv'))
+        hidden_section.append(('metadata - write', 'mdw'))
         return main_menu
 
     def _make_repository_menu(self):
