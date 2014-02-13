@@ -401,9 +401,13 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def material_definition(self):
+        from scoremanager import managers
         if not self.has_material_definition_module:
             return
-        manager = self.material_definition_module_manager
+        manager = managers.FileManager(
+            self.material_definition_module_file_path,
+            session=self.session,
+            )
         result = manager._execute_file_lines(
             return_attribute_name=self.material_package_name,
             )
@@ -489,13 +493,17 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def output_material_module_import_statements_and_material_definition(self):
+        from scoremanager import managers
         if not self.should_have_material_definition_module:
             return
-        manager = self.material_definition_module_manager
         return_attribute_name = [
             'output_material_module_import_statements',
             self.material_package_name,
             ]
+        manager = managers.FileManager(
+            self.material_definition_module_file_path,
+            session=self.session,
+            )
         result = manager._execute_file_lines(
             return_attribute_name=return_attribute_name,
             )
@@ -620,7 +628,9 @@ class MaterialPackageManager(PackageManager):
         if not self._get_metadatum('material_package_manager_class_name'):
             is_data_only = not self._get_metadatum('should_have_illustration')
             self.material_definition_module_manager._write_stub_to_disk(
-                is_data_only, is_interactive=is_interactive)
+                is_data_only, 
+                is_interactive=is_interactive,
+                )
 
     def conditionally_write_stub_user_input_module_to_disk(
         self,
@@ -641,7 +651,8 @@ class MaterialPackageManager(PackageManager):
         self.illustration_builder_module_manager.interactively_edit()
 
     def interactively_edit_material_definition_module(self):
-        self.material_definition_module_manager.interactively_edit()
+        file_path = self.material_definition_module_file_path
+        self.session.io_manager.interactively_edit(file_path)
 
     def interactively_edit_output_material(self):
         if not self.has_output_material_editor:
@@ -800,10 +811,20 @@ class MaterialPackageManager(PackageManager):
         self.output_material_module_manager.interactively_view()
 
     def interactively_write_material_definition_module_boilerplate(self):
-        self.material_definition_module_manager.interactively_write_boilerplate()
+        from scoremanager import managers
+        manager = managers.FileManager(
+            self.material_definition_module_file_path,
+            session=self.session,
+            )
+        manager.interactively_write_boilerplate()
 
     def interactively_write_output_material_module_boilerplate(self):
-        self.output_material_module_manager.interactively_write_boilerplate()
+        from scoremanager import managers
+        manager = managers.FileManager(
+            self.output_material_module_file_path,
+            session=self.session,
+            )
+        manager.interactively_write_boilerplate()
 
     def manage_stylesheets(self):
         from scoremanager import wranglers
@@ -829,10 +850,15 @@ class MaterialPackageManager(PackageManager):
             self.illustration_pdf_file_manager._remove()
 
     def remove_material_definition_module(self, prompt=True):
+        from scoremanager import managers
         self.remove_output_material_module(prompt=False)
         self.remove_illustration_builder_module(prompt=False)
         if self.has_material_definition_module:
-            self.material_definition_module_manager._remove()
+            manager = managers.FileManager(
+                self.material_definition_module_file_path,
+                session=self.session,
+                )
+            manager._remove()
 
     def remove_output_material_module(self, prompt=True):
         self.remove_illustration_builder_module(prompt=False)
@@ -862,7 +888,12 @@ class MaterialPackageManager(PackageManager):
         self.illustration_builder_module_manager._run_abjad(prompt=True)
 
     def run_abjad_on_material_definition_module(self):
-        self.material_definition_module_manager._run_abjad()
+        from scoremanager import managers
+        manager = managers.FileManager(
+            self.material_definition_module_file_path,
+            session=self.session,
+            )
+        manager._run_abjad()
 
     def run_first_time(self):
         self._run(pending_user_input='omi')
@@ -871,7 +902,12 @@ class MaterialPackageManager(PackageManager):
         self.illustration_builder_module_manager._run_python(prompt=True)
 
     def run_python_on_material_definition_module(self):
-        self.material_definition_module_manager._run_python()
+        from scoremanager import managers
+        manager = managers.FileManager(
+            self.material_definition_module_file_path,
+            session=self.session,
+            )
+        manager._run_python()
 
     def write_illustration_ly_and_pdf_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
@@ -972,7 +1008,9 @@ class MaterialPackageManager(PackageManager):
                 ) as file_pointer:
                 file_pointer.write('')
             self.material_definition_module_manager._write_stub_to_disk(
-                self.is_data_only, is_interactive=True)
+                self.is_data_only, 
+                is_interactive=True,
+                )
 
     ### USER INPUT WRAPPER METHODS ###
 
