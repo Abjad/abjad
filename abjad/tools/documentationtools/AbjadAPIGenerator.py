@@ -101,7 +101,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             section_heading = documentationtools.ReSTHeading(
                 level=1,
                 text=self._package_descriptions.get(section,
-                    'Undefinited documentation section'),
+                    'Undefined documentation section'),
                 )
             document.append(section_heading)
             for payload in documenters:
