@@ -50,7 +50,7 @@ class PackageManager(DirectoryManager):
     def _remove_metadata(self, tag_name):
         tags = self._get_metadatas()
         del(tags[tag_name])
-        self.metadata_module_manager.write_metadata_to_disk(tags)
+        self.write_metadata_to_disk(tags)
 
     ### PUBLIC PROPERTIES ###
 
@@ -118,7 +118,7 @@ class PackageManager(DirectoryManager):
         assert stringtools.is_snake_case_string(tag_name)
         tags = self._get_metadatas()
         tags[tag_name] = tag_value
-        self.metadata_module_manager.write_metadata_to_disk(tags)
+        self.write_metadata_to_disk(tags)
 
     def _get_metadata(self, tag_name):
         tags = self._get_metadatas()
@@ -301,8 +301,10 @@ class PackageManager(DirectoryManager):
     def write_initializer_stub_file_to_disk(self):
         self.initializer_file_manager.write_stub_file_to_disk(prompt=True)
 
-    def write_metadata_module(self):
-        self.session.io_manager.print_not_yet_implemented()
+    def write_metadata_to_disk(self, tags=None):
+        if tags is None:
+            tags = self._get_metadatas()
+        self.metadata_module_manager.write_metadata_to_disk(tags)
 
     ### UI MANIFEST ###
 
@@ -313,7 +315,7 @@ class PackageManager(DirectoryManager):
         'instub': write_initializer_stub_file_to_disk,
         'inv': interactively_view_initializer,
         'mdv': interactively_view_metadata_module,
-        'mdw': write_metadata_module,
+        'mdw': write_metadata_to_disk,
         'ren': interactively_rename_package,
         'rm': remove_package,
         'tags': manage_metadata,

@@ -910,11 +910,6 @@ class MaterialPackageManager(PackageManager):
             'PDF written to disk.',
             is_interactive=prompt)
 
-    def write_metadata_to_disk(self):
-        self._add_metadata('is_material_package', True)
-        if hasattr(self, 'generic_output_name'):
-            self._add_metadata('generic_output_name', self.generic_output_name)
-
     def write_output_material_to_disk(
         self,
         output_material_module_import_statements=None,
@@ -943,7 +938,9 @@ class MaterialPackageManager(PackageManager):
         manager = self.output_material_module_manager
         with file(manager.filesystem_path, 'w') as file_pointer:
             file_pointer.write(lines)
-        self.write_metadata_to_disk()
+        self._add_metadata('is_material_package', True)
+        if hasattr(self, 'generic_output_name'):
+            self._add_metadata('generic_output_name', self.generic_output_name)
         message = 'output material written to disk.'
         self.session.io_manager.proceed(message, is_interactive=prompt)
 
