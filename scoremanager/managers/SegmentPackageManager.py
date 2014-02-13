@@ -189,14 +189,21 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         versions_directory_path = self._get_versions_directory_path()
+        if not os.path.exists(versions_directory_path):
+            line = 'no versions found.'
+            self.session.io_manager.display([line, ''])
+            self.session.io_manager.proceed()
+            return
         file_names = []
         for directory_entry in os.listdir(versions_directory_path):
             if directory_entry[0].isdigit():
                 file_names.append(directory_entry)
+        lines = []
         for x in itertools.groupby(file_names, key=lambda x: x[:4]):
             key, file_names = x
-            string = ' '.join(file_names)
-            print string
+            line = ' '.join(file_names)
+            lines.append(line)
+        self.session.io_manager.display(lines)
         self.session.io_manager.proceed('')
 
     def interactively_make_asset_pdf(
