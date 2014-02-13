@@ -2,10 +2,10 @@
 import os
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from scoremanager.wranglers.FileWrangler import FileWrangler
+from scoremanager.wranglers.Wrangler import Wrangler
 
 
-class StylesheetFileWrangler(FileWrangler):
+class StylesheetFileWrangler(Wrangler):
     r'''Stylesheet file wrangler.
 
     ::
@@ -19,12 +19,20 @@ class StylesheetFileWrangler(FileWrangler):
     ### CLASS VARIABLES ###
 
     asset_storehouse_filesystem_path_in_built_in_asset_library = \
-        FileWrangler.configuration.abjad_configuration.abjad_stylesheets_directory_path
+        Wrangler.configuration.abjad_configuration.abjad_stylesheets_directory_path
 
     score_package_asset_storehouse_path_infix_parts = ('stylesheets',)
 
     asset_storehouse_filesystem_path_in_user_asset_library = \
-        FileWrangler.configuration.user_asset_library_stylesheets_directory_path
+        Wrangler.configuration.user_asset_library_stylesheets_directory_path
+
+    ### INITIALIZER ###
+
+    def __init__(self, session=None):
+        from scoremanager import managers
+        superclass = super(StylesheetFileWrangler, self)
+        superclass.__init__(session=session)
+        self._asset_manager_class = managers.FileManager
 
     ### PRIVATE PROPERTIES ###
 
@@ -386,7 +394,7 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = FileWrangler.user_input_to_action.copy()
+    user_input_to_action = Wrangler.user_input_to_action.copy()
     user_input_to_action.update({
         'h': interactively_edit_header_stylesheet,
         'l': interactively_edit_layout_stylesheet,
