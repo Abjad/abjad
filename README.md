@@ -23,13 +23,6 @@ Type the following to check the version of Python installed on your computer:
 
     python --version
 
-You must also have the following Python packages installed:
-
-    * configobj
-    * ply
-    * pytest
-    * Sphinx
-
 You can download different versions of Python at http://www.python.org.
 
 Note that Abjad does not yet support the Python 3.x series of releases.
