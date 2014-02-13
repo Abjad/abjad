@@ -95,8 +95,7 @@ class ComplexTrillSpanner(Spanner):
         from abjad.tools import lilypondnametools
         from abjad.tools import markuptools
         from abjad.tools import scoretools
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
         prototype = (
             scoretools.Rest,
             scoretools.MultimeasureRest,
@@ -141,17 +140,6 @@ class ComplexTrillSpanner(Spanner):
                 else:
                     string = r'\stopTrillSpan'
                     lilypond_format_bundle.right.spanner_stops.append(string)
-        if self._is_my_first_leaf(leaf):
-            contributions = override(self)._list_format_contributions(
-                'override',
-                is_once=False,
-                )
-            lilypond_format_bundle.grob_overrides.extend(contributions)
-        if self._is_my_last_leaf(leaf):
-            contributions = override(self)._list_format_contributions(
-                'revert',
-                )
-            lilypond_format_bundle.grob_reverts.extend(contributions)
         return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
