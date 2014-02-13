@@ -173,3 +173,7 @@
     ... at the bottom of each segment definition file.
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
+
+41. There should be a command to re-render the output.ly for a given segment,
+    not by re-executing the associated segment maker, but simply by running
+    LilyPond.
