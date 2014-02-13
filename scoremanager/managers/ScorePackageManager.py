@@ -394,11 +394,11 @@ class ScorePackageManager(PackageManager):
                 initializer.write('')
                 initializer.close()
         lines = []
-        if not os.path.exists(self.metadata_module_name):
+        if not os.path.exists(self.metadata_module_path):
             result = False
-            prompt = 'create {}? '.format(self.metadata_module_name)
+            prompt = 'create {}? '.format(self.metadata_module_path)
             if not is_interactive or self.session.io_manager.confirm(prompt):
-                metadata_module = file(self.metadata_module_name, 'w')
+                metadata_module = file(self.metadata_module_path, 'w')
                 metadata_module.write('# -*- encoding: utf-8 -*-\n')
                 metadata_module.write('from abjad import *\n')
                 metadata_module.write('import collections\n')

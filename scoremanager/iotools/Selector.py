@@ -40,9 +40,9 @@ class Selector(ScoreManagerObject):
     ### PRIVATE METHODS ###
 
     def _get_metadata_from_directory_path(self, directory_path, metadatum_name):
-        metadata_module_name = os.path.join(directory_path, '__metadata__.py')
-        if os.path.isfile(metadata_module_name):
-            metadata_module = open(metadata_module_name, 'r')
+        metadata_module_path = os.path.join(directory_path, '__metadata__.py')
+        if os.path.isfile(metadata_module_path):
+            metadata_module = open(metadata_module_path, 'r')
             metadata_module_string = metadata_module.read()
             metadata_module.close()
             exec(metadata_module_string)

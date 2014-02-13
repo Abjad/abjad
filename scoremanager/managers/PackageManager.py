@@ -53,8 +53,8 @@ class PackageManager(DirectoryManager):
 
     def _get_metadata(self):
         metadata = None
-        if os.path.isfile(self.metadata_module_name):
-            file_pointer = open(self.metadata_module_name, 'r')
+        if os.path.isfile(self.metadata_module_path):
+            file_pointer = open(self.metadata_module_path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
             exec(file_contents_string)
@@ -107,7 +107,7 @@ class PackageManager(DirectoryManager):
         metadata_lines = self._make_metadata_lines(metadata) 
         lines.extend(metadata_lines)
         lines = ''.join(lines)
-        file_pointer = file(self.metadata_module_name, 'w')
+        file_pointer = file(self.metadata_module_path, 'w')
         file_pointer.write(lines)
         file_pointer.close()
 
@@ -120,7 +120,7 @@ class PackageManager(DirectoryManager):
 
     @property
     def has_metadata_module(self):
-        return os.path.isfile(self.metadata_module_name)
+        return os.path.isfile(self.metadata_module_path)
 
     @property
     def imported_package(self):
@@ -140,7 +140,7 @@ class PackageManager(DirectoryManager):
             return os.path.join(self.filesystem_path, '__init__.py')
 
     @property
-    def metadata_module_name(self):
+    def metadata_module_path(self):
         file_path = os.path.join(self.filesystem_path, '__metadata__.py')
         return file_path
 
@@ -276,7 +276,7 @@ class PackageManager(DirectoryManager):
         self.initializer_file_manager.interactively_view()
 
     def interactively_view_metadata_module(self):
-        file_path = self.metadata_module_name
+        file_path = self.metadata_module_path
         if os.path.isfile(file_path):
             command = 'vim -R {}'.format(file_path)
             self.session.io_manager.spawn_subprocess(command)
