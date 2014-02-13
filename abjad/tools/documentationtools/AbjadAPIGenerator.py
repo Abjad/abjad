@@ -173,6 +173,9 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                 elif not [x for x in os.listdir(code_directory_path)
                     if x.endswith('.py')]:
                     should_delete = True
+                # sphinx seems to want a docs/source/_static directory
+                if code_directory_path.endswith('_static'):
+                    should_delete = False
                 if should_delete:
                     docs_directory_path = os.path.join(
                         directory_path,
