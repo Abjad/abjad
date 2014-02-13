@@ -352,6 +352,10 @@ class Wrangler(ScoreManagerObject):
         asset_manager = self._initialize_asset_manager(asset_filesystem_path)
         asset_manager.interactively_rename()
 
+    def interactively_remove_initializer(self):
+        manager = self._get_current_package_manager()
+        manager.interactively_remove_initializer()
+
     def interactively_select_asset_filesystem_path(
         self, 
         clear=True, 
@@ -453,6 +457,14 @@ class Wrangler(ScoreManagerObject):
     def interactively_view_views_module(self):
         manager = self._get_current_view_module_manager()
         manager.interactively_edit()
+
+    def interactively_write_boilerplate_initializer(self):
+        manager = self._get_current_package_manager()
+        manager.interactively_write_boilerplate_initializer()
+
+    def interactively_write_stub_initializer(self):
+        manager = self._get_current_package_manager()
+        manager.interactively_write_stub_initializer()
 
     def list_asset_filesystem_paths(
         self,
@@ -630,7 +642,10 @@ class Wrangler(ScoreManagerObject):
     ### UI MANIFEST ###
 
     user_input_to_action = {
-        'initializer': interactively_view_initializer,
+        'inbp': interactively_write_boilerplate_initializer,
+        'inrm': interactively_remove_initializer,
+        'ins': interactively_write_stub_initializer,
+        'inv': interactively_view_initializer,
         'ls': interactively_list_directory,
         'metadata': interactively_view_metadata_module,
         'ren': interactively_rename_asset,

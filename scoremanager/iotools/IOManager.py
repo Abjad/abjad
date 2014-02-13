@@ -99,6 +99,20 @@ class IOManager(IOManager):
                 return True
         return False
 
+    def _make_initializer_menu_section(
+        self, 
+        main_menu, 
+        hidden_section,
+        has_initializer=True,
+        ):
+        if not has_initializer:
+            command_section = main_menu.make_command_section()
+            command_section.title = "package has no initializer: use 'ins'."
+        hidden_section.append(('initializer - boilerplate', 'inbp'))
+        hidden_section.append(('initializer - remove', 'inrm'))
+        hidden_section.append(('initializer - stub', 'ins'))
+        hidden_section.append(('initializer - view', 'inv'))
+
     def _pop_from_pending_user_input(self):
         self.session.last_command_was_composite = False
         if self.session.pending_user_input is None:

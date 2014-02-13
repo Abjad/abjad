@@ -63,8 +63,16 @@ class SegmentPackageWrangler(PackageWrangler):
         command_section.append(('new segment', 'new'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('list', 'ls'))
+        
         hidden_section = main_menu.make_command_section(is_hidden=True)
-        hidden_section.append(('initializer - view', 'inv'))
+        self.session.io_manager._make_initializer_menu_section(
+            main_menu,
+            hidden_section,
+            has_initializer=True,
+            )
+
+        hidden_section = main_menu.make_command_section(is_hidden=True)
+        #hidden_section.append(('initializer - view', 'inv'))
         hidden_section.append(('metadata - view', 'mdv'))
         hidden_section.append(('views - view', 'views'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
