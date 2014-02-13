@@ -16,7 +16,7 @@ def test_MaterialPackageManager_read_only_attributes_01():
     assert not manager.has_illustration_pdf
     assert manager.has_material_definition
     assert manager.has_material_definition_module
-    assert not manager.has_material_package_maker
+    assert not manager.has_material_package_manager
     assert manager.has_output_material
     assert manager.has_output_material_module
     assert not manager.has_user_input_module
@@ -42,8 +42,8 @@ def test_MaterialPackageManager_read_only_attributes_01():
         'red_numbers',
         )
     assert manager.material_package_directory == directory_path
-    assert manager.material_package_maker is None
-    assert manager.material_package_maker_class_name is None
+    assert manager.material_package_manager is None
+    assert manager.material_package_manager_class_name is None
     assert manager.material_package_name == 'red_numbers'
     assert manager.space_delimited_material_package_name == 'red numbers'
     assert manager.material_package_name == 'red_numbers'
@@ -86,7 +86,7 @@ def test_MaterialPackageManager_read_only_attributes_02():
     assert manager.has_illustration_pdf
     assert not manager.has_material_definition
     assert not manager.has_material_definition_module
-    assert manager.has_material_package_maker
+    assert manager.has_material_package_manager
     assert manager.has_output_material
     assert manager.has_output_material_module
     assert manager.has_user_input_module
@@ -119,9 +119,9 @@ def test_MaterialPackageManager_read_only_attributes_02():
         )
     assert manager.material_package_directory == file_path
     maker = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager
-    assert manager.material_package_maker is maker
+    assert manager.material_package_manager is maker
     string = 'SargassoMeasureMaterialPackageManager'
-    assert manager.material_package_maker_class_name == string
+    assert manager.material_package_manager_class_name == string
     assert manager.material_package_name == 'red_sargasso_measures'
     string = 'red sargasso measures'
     assert manager.space_delimited_material_package_name == string
@@ -166,7 +166,7 @@ def test_MaterialPackageManager_read_only_attributes_03():
     assert manager.has_illustration_pdf
     assert manager.has_material_definition
     assert manager.has_material_definition_module
-    assert not manager.has_material_package_maker
+    assert not manager.has_material_package_manager
     assert manager.has_output_material
     assert manager.has_output_material_module
     assert not manager.has_user_input_module
@@ -211,8 +211,8 @@ def test_MaterialPackageManager_read_only_attributes_03():
         'red_notes',
         )
     assert manager.material_package_directory == file_path
-    assert manager.material_package_maker is None
-    assert manager.material_package_maker_class_name is None
+    assert manager.material_package_manager is None
+    assert manager.material_package_manager_class_name is None
     assert manager.material_package_name == 'red_notes'
     assert manager.space_delimited_material_package_name == 'red notes'
     assert manager.material_package_name == 'red_notes'

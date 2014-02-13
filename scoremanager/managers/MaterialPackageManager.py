@@ -130,7 +130,7 @@ class MaterialPackageManager(PackageManager):
     def _make_main_menu_section_for_illustration_ly(self, hidden_section):
         if self.has_output_material:
             if self.has_illustration_builder_module or \
-                self.has_material_package_maker:
+                self.has_material_package_manager:
                 hidden_section.append(('output ly - make', 'lym'))
         if self.has_illustration_ly:
             hidden_section.append(('output ly - delete', 'lyd'))
@@ -144,7 +144,7 @@ class MaterialPackageManager(PackageManager):
         has_illustration_pdf_section = False
         if self.has_output_material:
             if self.has_illustration_builder_module or \
-                (self.has_material_package_maker and
+                (self.has_material_package_manager and
                 getattr(self, 'illustration_builder', None)):
                 command_section = main_menu.make_command_section()
                 command_section.append(('output pdf - make', 'pdfm'))
@@ -184,7 +184,7 @@ class MaterialPackageManager(PackageManager):
                 ('material definition - stub', 'mdstub'))
             hidden_section.append(
                 ('material definition - execute & edit', 'mdxe'))
-        elif self.material_package_maker_class_name is None:
+        elif self.material_package_manager_class_name is None:
             command_section = main_menu.make_command_section()
             command_section.return_value_attribute = 'key'
             command_section.append(
@@ -287,8 +287,8 @@ class MaterialPackageManager(PackageManager):
         return False
 
     @property
-    def has_material_package_maker(self):
-        return bool(self.material_package_maker_class_name)
+    def has_material_package_manager(self):
+        return bool(self.material_package_manager_class_name)
 
     @property
     def has_output_material(self):
@@ -394,11 +394,11 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def is_handmade(self):
-        return not(self.has_material_package_maker)
+        return not(self.has_material_package_manager)
 
     @property
     def is_makermade(self):
-        return self.has_material_package_maker
+        return self.has_material_package_manager
 
     @property
     def material_definition(self):
@@ -439,29 +439,29 @@ class MaterialPackageManager(PackageManager):
                     self.material_package_name)
 
     @property
-    def material_package_maker(self):
-        if self.material_package_maker_class_name is None:
+    def material_package_manager(self):
+        if self.material_package_manager_class_name is None:
             return
         directory_path = \
-            self.configuration.built_in_material_package_makers_directory_path
+            self.configuration.built_in_material_package_managers_directory_path
         package_path = \
             self.configuration.filesystem_path_to_packagesystem_path(
             directory_path)
         import_statement = 'from {} import {}'
         import_statement = import_statement.format(
             package_path,
-            self.material_package_maker_class_name,
+            self.material_package_manager_class_name,
             )
         try:
             exec(import_statement)
         except:
             return
-        result = locals()[self.material_package_maker_class_name]
+        result = locals()[self.material_package_manager_class_name]
         return result
 
     @property
-    def material_package_maker_class_name(self):
-        return self._get_metadata('material_package_maker_class_name')
+    def material_package_manager_class_name(self):
+        return self._get_metadata('material_package_manager_class_name')
 
     @property
     def material_package_name(self):
@@ -510,7 +510,7 @@ class MaterialPackageManager(PackageManager):
             pair = \
                 self.output_material_module_import_statements_and_material_definition
             output_material_module_import_statements, output_material = pair
-        elif self.has_material_package_maker:
+        elif self.has_material_package_manager:
             output_material_module_import_statements = \
                 self.output_material_module_import_statements
             output_material = \
@@ -556,7 +556,7 @@ class MaterialPackageManager(PackageManager):
     @property
     def should_have_illustration_builder_module(self):
         if self.should_have_illustration:
-            if self.material_package_maker_class_name is None:
+            if self.material_package_manager_class_name is None:
                 return True
         return False
 
@@ -574,7 +574,7 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def should_have_material_definition_module(self):
-        return self.material_package_maker_class_name is None
+        return self.material_package_manager_class_name is None
 
     @property
     def should_have_output_material_module(self):
@@ -634,7 +634,7 @@ class MaterialPackageManager(PackageManager):
         self,
         is_interactive=False,
         ):
-        if not self._get_metadata('material_package_maker_class_name'):
+        if not self._get_metadata('material_package_manager_class_name'):
             is_data_only = not self._get_metadata('should_have_illustration')
             self.material_definition_module_manager._write_stub_to_disk(
                 is_data_only, is_interactive=is_interactive)
@@ -776,19 +776,19 @@ class MaterialPackageManager(PackageManager):
         self._path = new_directory_path
         self.session.is_backtracking_locally = True
 
-    def interactively_select_material_package_maker(self, prompt=True):
+    def interactively_select_material_package_manager(self, prompt=True):
         from experimental.tools import scoremanager
         material_manager_wrangler = \
             scoremanager.wranglers.MaterialPackageManagerWrangler(
                 session=self.session)
         with self.backtracking:
-            material_package_maker = \
+            material_package_manager = \
                 material_manager_wrangler.select_material_manager_class_name_interactively()
         if self.session.backtrack():
             return
         self._add_metadata(
-            'material_package_maker',
-            material_package_maker.class_name,
+            'material_package_manager',
+            material_package_manager.class_name,
             )
         line = 'user input handler selected.'
         self.session.io_manager.proceed(line, is_interactive=prompt)

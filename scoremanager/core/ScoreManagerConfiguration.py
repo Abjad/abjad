@@ -35,7 +35,7 @@ class ScoreManagerConfiguration(Configuration):
             self.score_manager_tools_directory_path,
             'editors',
             )
-        self.built_in_material_package_makers_directory_path = os.path.join(
+        self.built_in_material_package_managers_directory_path = os.path.join(
             self.score_manager_tools_directory_path,
             'materialpackagemanagers',
             )
@@ -58,7 +58,7 @@ class ScoreManagerConfiguration(Configuration):
             self.score_manager_tools_package_path,
             'editors',
             ])
-        self.built_in_material_package_makers_package_path = '.'.join([
+        self.built_in_material_package_managers_package_path = '.'.join([
             self.score_manager_tools_package_path,
             'materialpackagemanagers',
             ])
@@ -81,10 +81,10 @@ class ScoreManagerConfiguration(Configuration):
             self.user_asset_library_directory_path,
             'editors',
             )
-        self.user_asset_library_material_package_makers_directory_path = \
+        self.user_asset_library_material_package_managers_directory_path = \
             os.path.join(
             self.user_asset_library_directory_path,
-            'material_package_makers',
+            'material_package_managers',
             )
         self.user_asset_library_material_packages_directory_path = \
             os.path.join(
@@ -107,10 +107,10 @@ class ScoreManagerConfiguration(Configuration):
             self.user_asset_library_package_path,
             'editors',
             ])
-        self.user_asset_library_material_package_makers_package_path = \
+        self.user_asset_library_material_package_managers_package_path = \
             '.'.join([
             self.user_asset_library_package_path,
-            'material_package_makers',
+            'material_package_managers',
             ])
         self.user_asset_library_material_packages_package_path = '.'.join([
             self.user_asset_library_package_path,
@@ -152,7 +152,7 @@ class ScoreManagerConfiguration(Configuration):
         for directory_path in (
             self.user_asset_library_directory_path,
             self.user_asset_library_editors_directory_path,
-            self.user_asset_library_material_package_makers_directory_path,
+            self.user_asset_library_material_package_managers_directory_path,
             self.user_asset_library_material_packages_directory_path,
             self.user_asset_library_specifiers_directory_path,
             ):
@@ -351,12 +351,12 @@ class ScoreManagerConfiguration(Configuration):
                 result = self.user_asset_library_material_packages_package_path
             return result
         elif filesystem_path.startswith(
-            self.user_asset_library_material_package_makers_directory_path):
+            self.user_asset_library_material_package_managers_directory_path):
             return '.'.join([
-                self.user_asset_library_material_package_makers_package_path,
+                self.user_asset_library_material_package_managers_package_path,
                 os.path.basename(filesystem_path)])
         elif filesystem_path.startswith(
-            self.built_in_material_package_makers_directory_path):
+            self.built_in_material_package_managers_directory_path):
             prefix_length = \
                 len(self.abjad_configuration.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(

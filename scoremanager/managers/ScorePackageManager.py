@@ -39,7 +39,7 @@ class ScorePackageManager(PackageManager):
             scoremanager.wranglers.MaterialPackageWrangler(
             session=self.session,
             )
-        self._material_package_maker_wrangler = \
+        self._material_package_manager_wrangler = \
             scoremanager.wranglers.MaterialPackageManagerWrangler(
             session=self.session,
             )
@@ -125,7 +125,7 @@ class ScorePackageManager(PackageManager):
     def _get_tempo_inventory(self):
         wrangler = self.material_package_wrangler
         for manager in wrangler.list_asset_managers(head=self.package_path):
-            class_name = manager._get_metadata('material_package_maker_class_name')
+            class_name = manager._get_metadata('material_package_manager_class_name')
             if class_name == 'TempoInventoryMaterialPackageManager':
                 return manager.output_material
 
@@ -310,8 +310,8 @@ class ScorePackageManager(PackageManager):
         return self._instrumentation_module_manager
 
     @property
-    def material_package_maker_wrangler(self):
-        return self._material_package_maker_wrangler
+    def material_package_manager_wrangler(self):
+        return self._material_package_manager_wrangler
 
     @property
     def material_package_wrangler(self):

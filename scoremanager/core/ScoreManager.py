@@ -25,7 +25,7 @@ class ScoreManager(ScoreManagerObject):
         self._segment_package_wrangler = \
             scoremanager.wranglers.SegmentPackageWrangler(
             session=self.session)
-        self._material_package_maker_wrangler = \
+        self._material_package_manager_wrangler = \
             scoremanager.wranglers.MaterialPackageManagerWrangler(
             session=self.session)
         self._material_package_wrangler = \
@@ -189,17 +189,17 @@ class ScoreManager(ScoreManagerObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def material_package_maker_wrangler(self):
+    def material_package_manager_wrangler(self):
         r'''Score manager material package maker wrangler:
 
         ::
 
-            >>> score_manager.material_package_maker_wrangler
+            >>> score_manager.material_package_manager_wrangler
             MaterialPackageManagerWrangler()
 
         Returns material package maker wrangler.
         '''
-        return self._material_package_maker_wrangler
+        return self._material_package_manager_wrangler
 
     @property
     def material_package_wrangler(self):

@@ -13,7 +13,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
     ::
 
         >>> score_manager = scoremanager.core.ScoreManager()
-        >>> wrangler = score_manager.material_package_maker_wrangler
+        >>> wrangler = score_manager.material_package_manager_wrangler
         >>> wrangler
         MaterialPackageManagerWrangler()
 
@@ -22,7 +22,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
     ### CLASS VARIABLES ###
 
     asset_storehouse_packagesystem_path_in_built_in_asset_library = \
-        PackageWrangler.configuration.built_in_material_package_makers_package_path
+        PackageWrangler.configuration.built_in_material_package_managers_package_path
 
     forbidden_directory_entries = (
         'InventoryMaterialPackageManager.py',
@@ -32,7 +32,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
     score_package_asset_storehouse_path_infix_parts = None
 
     asset_storehouse_packagesystem_path_in_user_asset_library = \
-        PackageWrangler.configuration.user_asset_library_material_package_makers_package_path
+        PackageWrangler.configuration.user_asset_library_material_package_managers_package_path
 
     ### PRIVATE PROPERTIES ###
 
@@ -60,25 +60,25 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         if 'materialpackagemanagers' in material_package_manager.filesystem_path:
             most, last = os.path.split(
                 material_package_manager.filesystem_path)
-            material_package_maker_class_name = last
+            material_package_manager_class_name = last
         else:
-            material_package_maker_class_name = \
-                material_package_manager.material_package_maker_class_name
-        if material_package_maker_class_name is not None:
-            material_package_maker_class = None
+            material_package_manager_class_name = \
+                material_package_manager.material_package_manager_class_name
+        if material_package_manager_class_name is not None:
+            material_package_manager_class = None
             command = 'from scoremanager'
             command += '.materialpackagemanagers '
-            command += 'import {} as material_package_maker_class'
-            command = command.format(material_package_maker_class_name)
+            command += 'import {} as material_package_manager_class'
+            command = command.format(material_package_manager_class_name)
             try:
                 exec(command)
             except ImportError:
-                command = 'from {} import {} as material_package_maker_class'
+                command = 'from {} import {} as material_package_manager_class'
                 command = command.format(
-                    self.configuration.user_asset_library_material_package_makers_package_path,
-                    material_package_maker_class_name)
+                    self.configuration.user_asset_library_material_package_managers_package_path,
+                    material_package_manager_class_name)
                 exec(command)
-            material_package_manager = material_package_maker_class(
+            material_package_manager = material_package_manager_class(
                 package_path, session=self.session)
         return material_package_manager
 
@@ -122,22 +122,22 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         '''
         self.session.io_manager._assign_user_input(pending_user_input)
         getter = self.session.io_manager.make_getter(where=self._where)
-        getter.append_material_package_maker_class_name(
+        getter.append_material_package_manager_class_name(
             'material manager name')
         getter.append_space_delimited_lowercase_string(
             'generic output product')
         result = getter._run()
         if self.session.backtrack():
             return
-        material_package_maker_class_name, generic_output_product_name = result
-        material_package_maker_directory = os.path.join(
+        material_package_manager_class_name, generic_output_product_name = result
+        material_package_manager_directory = os.path.join(
             self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
-            material_package_maker_class_name)
-        os.mkdir(material_package_maker_directory)
-        self.make_asset_initializer(material_package_maker_class_name)
+            material_package_manager_class_name)
+        os.mkdir(material_package_manager_directory)
+        self.make_asset_initializer(material_package_manager_class_name)
         self.make_asset_class_file(
-            material_package_maker_class_name, generic_output_product_name)
-        self.make_asset_stylesheet(material_package_maker_class_name)
+            material_package_manager_class_name, generic_output_product_name)
+        self.make_asset_stylesheet(material_package_manager_class_name)
 
     def list_asset_filesystem_paths(
         self,
