@@ -123,7 +123,7 @@ class ComplexTrillSpanner(Spanner):
                     lilypond_format_bundle.grob_overrides.append(string)
                 if self.interval is not None:
                     string = r'\pitchedTrill'
-                    lilypond_format_bundle.before.spanners.append(string)
+                    lilypond_format_bundle.opening.spanners.append(string)
                     if hasattr(leaf, 'written_pitch'):
                         written_pitch = leaf.written_pitch
                     elif hasattr(leaf, 'written_pitches'):

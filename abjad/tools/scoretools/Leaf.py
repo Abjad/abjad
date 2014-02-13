@@ -269,8 +269,8 @@ class Leaf(Component):
         result.append(('comments', bundle.opening.comments))
         result.append(('indicators', bundle.opening.indicators))
         result.append(('commands', bundle.opening.commands))
-        result.append(('spanners', bundle.opening.spanners))
         result.append(leaf._format_after_grace_opening())
+        result.append(('spanners', bundle.opening.spanners))
         return result
 
     def _get_leaf(self, n=0):

@@ -70,7 +70,7 @@ class TrillSpanner(Spanner):
             lilypond_format_bundle.right.spanner_starts.append(string)
             if self.pitch is not None:
                 string = r'\pitchedTrill'
-                lilypond_format_bundle.before.commands.append(string)
+                lilypond_format_bundle.opening.spanners.append(string)
                 string = str(self.pitch)
                 lilypond_format_bundle.right.spanner_starts.append(string)
         if self._is_my_last_leaf(leaf):

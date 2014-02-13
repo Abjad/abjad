@@ -171,97 +171,26 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def _populate_spanner_format_contributions(component, bundle):
-        from abjad.tools import scoretools
         from abjad.tools import spannertools
-        from abjad.tools.topleveltools.override import override
         pairs = []
         for spanner in component._get_parentage()._get_spanners():
             spanner_bundle = spanner._get_lilypond_format_bundle(component)
             pair = (spanner, spanner_bundle)
             pairs.append(pair)
+        prototype = (
+            spannertools.ComplexTrillSpanner,
+            spannertools.TrillSpanner,
+            )
         pairs.sort(key=lambda x: type(x[0]).__name__)
+        trill_pairs, nontrill_pairs = [], []
+        for pair in pairs:
+            if isinstance(pair[0], prototype):
+                trill_pairs.append(pair)
+            else:
+                nontrill_pairs.append(pair)
+        pairs = nontrill_pairs + trill_pairs
         for spanner, spanner_bundle in pairs:
             bundle.update(spanner_bundle)
-        return
-        result = {
-            'after': [],
-            'before': [],
-            'closing': [],
-            'opening': [],
-            'right': [],
-            }
-        if isinstance(component, scoretools.Container):
-            before_contributions = result['before']
-            after_contributions = result['after']
-        else:
-            before_contributions = result['opening']
-            after_contributions = result['closing']
-        stop_contributions = []
-        other_contributions = []
-        for spanner in component._get_parentage()._get_spanners():
-            # override contributions (in before slot)
-            if spanner._is_my_first_leaf(component):
-                contributions = override(spanner)._list_format_contributions(
-                    'override',
-                    is_once=False,
-                    )
-                for contribution in contributions:
-                    before_contributions.append((spanner, contribution, None))
-            # contributions for before slot
-            for contribution in spanner._format_before_leaf(component):
-                before_contributions.append((spanner, contribution, None))
-            # contributions for after slot
-            contributions = spanner._format_after_leaf(component)
-            for contribution in contributions:
-                after_contributions.append((spanner, contribution, None))
-            # revert contributions (in after slot)
-            if spanner._is_my_last_leaf(component):
-                manager = override(spanner)
-                contributions = manager._list_format_contributions('revert')
-                for contribution in contributions:
-                    triple = (spanner, contribution, None)
-                    if triple not in after_contributions:
-                        after_contributions.append(triple)
-            # contributions for right slot
-            contributions = spanner._format_right_of_leaf(component)
-            if contributions:
-                if spanner._is_my_last_leaf(component):
-                    for contribution in contributions:
-                        triple = (spanner, contribution, None)
-                        stop_contributions.append(triple)
-                else:
-                    for contribution in contributions:
-                        triple = (spanner, contribution, None)
-                        other_contributions.append(triple)
-        result['right'] = stop_contributions + other_contributions
-        for key in result.keys():
-            if not result[key]:
-                del(result[key])
-            else:
-                result[key].sort(key=lambda x: x[0].__class__.__name__)
-                if key == 'right':
-                    trill_contributions = []
-                    for triple in result[key][:]:
-                        prototype = (
-                            spannertools.ComplexTrillSpanner,
-                            spannertools.TrillSpanner,
-                            )
-                        if isinstance(triple[0], prototype):
-                            trill_contributions.append(triple)
-                            result[key].remove(triple)
-                    result[key].extend(trill_contributions)
-                result[key] = [x[1] for x in result[key]]
-        for format_slot, contributions in result.iteritems():
-            # contributions can now be any of these:
-            # 1 contribution: (')',)
-            # 2 contributions: ('[', '(')
-            # 3 contributions: ('[', '(', '~')
-            # 4 contributions: ('[', ']', '(', ')')
-            # and so on such that no length constraint can be assumed
-            if isinstance(contributions, list):
-                contributions = tuple(contributions)
-            assert isinstance(contributions, tuple), repr(contributions)
-            bundle.get(format_slot).spanners[:] = contributions
 
     ### PUBLIC METHODS ###
 
