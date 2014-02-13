@@ -3,7 +3,7 @@ import time
 from abjad.tools.abctools import ContextManager
 
 
-class ForbidUpdating(ContextManager):
+class ForbidUpdate(ContextManager):
     r'''A context manager for forbidding score updates.
 
     ..  container:: example
@@ -11,7 +11,7 @@ class ForbidUpdating(ContextManager):
         ::
 
             >>> staff = Staff("c'32 d'2.. ~ d'16 e'32")
-            >>> with systemtools.ForbidUpdating(component=staff):
+            >>> with systemtools.ForbidUpdate(component=staff):
             ...     for x in staff[:]:
             ...         mutate(x).replace(Chord(x))
             ...
