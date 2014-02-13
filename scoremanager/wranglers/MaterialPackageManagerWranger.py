@@ -4,8 +4,7 @@ from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from abjad.tools import layouttools
 from abjad.tools import lilypondfiletools
-from scoremanager.wranglers.PackageWrangler \
-    import PackageWrangler
+from scoremanager.wranglers.PackageWrangler import PackageWrangler
 
 
 class MaterialPackageManagerWrangler(PackageWrangler):

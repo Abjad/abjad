@@ -996,7 +996,7 @@ class MaterialPackageManager(PackageManager):
         from experimental.tools import scoremanager
         if not self.should_have_user_input_module:
             return
-        if self.package_path.endswith('PackageMaker'):
+        if self.package_path.endswith('PackageManager'):
             parts = self.package_path.split('.')
             parts = parts[:-1]
             parent_package_path = '.'.join(parts)
