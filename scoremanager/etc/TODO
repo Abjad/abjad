@@ -9,8 +9,7 @@
 
 5.  Define range inventories for all scores.
 
-6.  Make user input handler creation work.
-
+6.  Make user input handler creation work.  
 7.  Find a way dynamically to present default notice 
     with default menu entries.
 
@@ -114,18 +113,27 @@
         .../materialpackagemanagers/user_input.py
     ... module.
 
-34. Reformat ScoreManagerConfiguration to better follow the implementation
+34. These four classes can all be collapsed into one:
+        wizards.HandlerCreationWizard
+        wizards.ArticulationHandlerCreationWizard
+        wizards.DynamicHandlerCreationWizard
+        wizards.RhythmMakerCreationWizard
+
+35. Clean up MaterialPackageManager. It's by far the biggest component and the
+    most complex.
+
+36. Reformat ScoreManagerConfiguration to better follow the implementation
     pattern of AbjadConfiguration. Make built_in_editors_directory_path
     and so on into full-fledged public properties with doc strings.
 
-35. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
+37. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
     within a score. Maybe the commands should be (U), (K), (M), (G), (S), (T)
     and (Y) for clarity.
 
-36. There also needs to be a single command to just view the global stylesheet
+38. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (YV) or equivalent.
 
-37. Find a way to get rid of the ...
+39. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -141,12 +149,6 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-38. There should be a command to re-render the output.ly for a given segment,
+40. There should be a command to re-render the output.ly for a given segment,
     not by re-executing the associated segment maker, but simply by running
     LilyPond.
-
-39. These four classes can all be collapsed into one:
-        wizards.HandlerCreationWizard
-        wizards.ArticulationHandlerCreationWizard
-        wizards.DynamicHandlerCreationWizard
-        wizards.RhythmMakerCreationWizard
