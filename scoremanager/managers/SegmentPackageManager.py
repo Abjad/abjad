@@ -117,6 +117,7 @@ class SegmentPackageManager(PackageManager):
         if self._is_populated_directory(versions_directory_path):
             command_section.append(('versioned pdfs - view', 'vv'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section.append(('segment definition module - edit at top', 'E'))
         if os.path.isfile(self._get_output_lilypond_file_path()):
             hidden_section.append(('current output ly - view', 'ly'))
             hidden_section.append(('versioned output ly - view', 'lyver'))
@@ -170,6 +171,18 @@ class SegmentPackageManager(PackageManager):
         '''
         self.session.io_manager._assign_user_input(pending_user_input)
         self.segment_definition_module_manager.interactively_edit()
+
+    def interactively_edit_asset_definition_module_from_top(
+        self,
+        pending_user_input=None,
+        ):
+        r'''Interactively edits asset definition module.
+
+        Returns none.
+        '''
+        self.session.io_manager._assign_user_input(pending_user_input)
+        self.segment_definition_module_manager.interactively_edit(
+            line_number=1)
 
     def interactively_list_versions_directory(self):
         r'''Interactively lists versions directory.
@@ -386,6 +399,7 @@ class SegmentPackageManager(PackageManager):
 
     user_input_to_action = PackageManager.user_input_to_action.copy()
     user_input_to_action.update({
+        'E': interactively_edit_asset_definition_module_from_top,
         'e': interactively_edit_asset_definition_module,
         'ly': interactively_view_current_output_ly,
         'lyver': interactively_view_versioned_output_ly,

@@ -26,10 +26,13 @@ class MaterialDefinitionModuleManager(FileManager):
 
     ### PUBLIC METHODS ###
 
-    def interactively_edit(self):
-        columns = len(self.material_package_name) + 3
-        command = "vim + -c'norm {}l' {}"
-        command = command.format(columns, self.filesystem_path)
+    def interactively_edit(self, line_number=None):
+        if line_number is not None:
+            command = 'vim + {}'.format(line_number)
+        else:
+            columns = len(self.material_package_name) + 3
+            command = "vim + -c'norm {}l' {}"
+            command = command.format(columns, self.filesystem_path)
         systemtools.IOManager.spawn_subprocess(command)
 
     def write_stub_data_material_definition_to_disk(self):

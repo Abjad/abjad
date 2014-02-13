@@ -141,12 +141,15 @@ class FileManager(FilesystemAssetManager):
             systemtools.IOManager.spawn_subprocess(command)
         self.session.io_manager.proceed('', is_interactive=prompt)
 
-    def interactively_edit(self):
+    def interactively_edit(self, line_number=None):
         r'''Interactively edits file.
 
         Returns none.
         '''
-        command = 'vim + {}'.format(self.filesystem_path)
+        if line_number is None:
+            command = 'vim + {}'.format(self.filesystem_path)
+        else:
+            command = 'vim +{} {}'.format(line_number, self.filesystem_path)
         systemtools.IOManager.spawn_subprocess(command)
 
     def interactively_open(self):
