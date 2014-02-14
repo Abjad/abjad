@@ -1948,26 +1948,49 @@ class TaleaRhythmMaker(RhythmMaker):
         '''
         from abjad.tools import rhythmmakertools
         talea = self.talea.reverse()
-        extra_counts_per_division = self.extra_counts_per_division
-        if extra_counts_per_division is not None:
-            extra_counts_per_division = tuple(reversed(extra_counts_per_division))
+        extra_counts_per_division = \
+            self._reverse_tuple(self.extra_counts_per_division)
         burnish_specifier = self.burnish_specifier
         if burnish_specifier is None:
             burnish_specifier = rhythmmakertools.BurnishSpecifier()
         burnish_specifier = burnish_specifier.reverse()
-        split_divisions_by_counts = self.split_divisions_by_counts
-        if split_divisions_by_counts is not None:
-            split_divisions_by_counts = tuple(reversed(split_divisions_by_counts))
-        specifier = self.duration_spelling_specifier
-        if specifier is None:
-            specifier = rhythmmakertools.DurationSpellingSpecifier()
-        specifier = specifier.reverse()
+        split_divisions_by_counts = \
+            self._reverse_tuple(self.split_divisions_by_counts)
+        duration_spelling_specifier = self.duration_spelling_specifier
+        if duration_spelling_specifier is None:
+            duration_spelling_specifier = \
+                rhythmmakertools.DurationSpellingSpecifier()
+        duration_spelling_specifier = duration_spelling_specifier.reverse()
         maker = new(
             self,
-            talea=talea,
+            burnish_specifier=burnish_specifier,
+            duration_spelling_specifier=duration_spelling_specifier,
             extra_counts_per_division=extra_counts_per_division,
             split_divisions_by_counts=split_divisions_by_counts,
+            talea=talea,
+            )
+        return maker
+
+    def rotate(self, n=0):
+        r'''Rotates talea rhythm-maker.
+
+        Returns newly constructed rhythm-maker.
+        '''
+        from abjad.tools import rhythmmakertools
+        talea = self.talea.rotate(n)
+        extra_counts_per_division = \
+            self._rotate_tuple(self.extra_counts_per_division, n)
+        burnish_specifier = self.burnish_specifier
+        if burnish_specifier is None:
+            burnish_specifier = rhythmmakertools.BurnishSpecifier()
+        burnish_specifier = burnish_specifier.rotate(n)
+        split_divisions_by_counts = \
+            self._rotate_tuple(self.split_divisions_by_counts, n)
+        maker = new(
+            self,
             burnish_specifier=burnish_specifier,
-            duration_spelling_specifier=specifier,
+            extra_counts_per_division=extra_counts_per_division,
+            split_divisions_by_counts=split_divisions_by_counts,
+            talea=talea,
             )
         return maker
