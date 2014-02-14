@@ -1,4 +1,4 @@
-\include "../../../../../../abjad/stylesheets/time-signature-context.ily"
+\include "../../../../../abjad/stylesheets/time-signature-context.ily"
 
 #(set-default-paper-size "letter" 'portrait)
 #(set-global-staff-size 14)

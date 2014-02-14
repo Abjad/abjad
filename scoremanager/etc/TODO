@@ -160,24 +160,26 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-42. There should be a command to re-render the output.ly for a given segment,
-    not by re-executing the associated segment maker, but simply by running
-    LilyPond.
-
-43. Add TypedOrderedDictionary.
+42. Add TypedOrderedDictionary.
     This will be the data type for the view inventory house in __views__.py.
     And probably for many more inventories. This will allow the removal
     of View.custom_identifier.
 
-44. Eliminate unqualified test files like test_ScorePackageManager.py.
+43. Eliminate unqualified test files like test_ScorePackageManager.py.
 
-45. Remove bug that allows for creation of ...
+44. Remove bug that allows for creation of ...
         metadata = collections.OrderedDict([
             ('', ''),
             ])
     ... without allowing for removal.
 
-46. Reimplement repository interface as flat collection of hidden commands.
+45. Reimplement repository interface as flat collection of hidden commands.
     Remove repository menu.
 
-47. Make 'here' work again. Or remove.
+46. Make 'here' work again. Or remove.
+
+47. Find a way to force all view commands to allow edit. For developer
+    debugging.
+
+48. Add other commands to 'ls'. Commands should include ls variants to show
+    time of modification and size. Probably other filesystem commands, too.

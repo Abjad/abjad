@@ -121,6 +121,7 @@ class SegmentPackageManager(PackageManager):
         hidden_section.append(('segment definition module - edit at top', 'E'))
         if os.path.isfile(self._get_output_lilypond_file_path()):
             hidden_section = main_menu.make_command_section(is_hidden=True)
+            hidden_section.append(('output ly - rerender', 'lyrr'))
             hidden_section.append(('output ly - view', 'lyv'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('versioned output ly - view', 'lyver'))
@@ -229,6 +230,20 @@ class SegmentPackageManager(PackageManager):
             new_modification_time = os.path.getmtime(output_pdf_file_path)
         if modification_time < new_modification_time and view_asset_pdf:
             self.view_output_pdf()
+
+    def interactively_rerender_current_output_ly(self):
+        r'''Interactively rerenders current output LilyPond file.
+
+        Returns none.
+        '''
+        file_path = self._get_output_lilypond_file_path()
+        if os.path.isfile(file_path):
+            result = self.session.io_manager.run_lilypond(file_path)
+            if result:
+                message = 'rerendered: {!r}.'
+                message = message.format(file_path)
+                self.session.io_manager.proceed(message)
+                self.view_output_pdf()
 
     def interactively_save_to_versions_directory(
         self,
@@ -411,6 +426,7 @@ class SegmentPackageManager(PackageManager):
     user_input_to_action.update({
         'E': interactively_edit_asset_definition_module_from_top,
         'e': interactively_edit_asset_definition_module,
+        'lyrr': interactively_rerender_current_output_ly,
         'lyv': interactively_view_current_output_ly,
         'lyver': interactively_view_versioned_output_ly,
         'pdfv': view_output_pdf,
