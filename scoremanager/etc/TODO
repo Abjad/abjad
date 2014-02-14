@@ -179,3 +179,5 @@
 
 46. Reimplement repository interface as flat collection of hidden commands.
     Remove repository menu.
+
+47. Make 'here' work again. Or remove.

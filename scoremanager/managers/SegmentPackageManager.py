@@ -35,6 +35,8 @@ class SegmentPackageManager(PackageManager):
 
     def _get_last_version_number(self):
         versions_directory_path = self._get_versions_directory_path()
+        if not os.path.exists(versions_directory_path):
+            return
         file_names = sorted(os.listdir(versions_directory_path))
         if not file_names:
             return
@@ -102,7 +104,6 @@ class SegmentPackageManager(PackageManager):
         hidden_section.append(('remove package', 'rm'))
         hidden_section.append(('list package', 'ls'))
         hidden_section.append(('rename package', 'ren'))
-        hidden_section.append(('manage metadata', 'metadata'))
         command_section = main_menu.make_command_section()
         command_section.append(('segment definition module - edit', 'e'))
         command_section = main_menu.make_command_section()
@@ -119,8 +120,10 @@ class SegmentPackageManager(PackageManager):
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('segment definition module - edit at top', 'E'))
         if os.path.isfile(self._get_output_lilypond_file_path()):
-            hidden_section.append(('current output ly - view', 'ly'))
-            hidden_section.append(('versioned output ly - view', 'lyver'))
+            hidden_section = main_menu.make_command_section(is_hidden=True)
+            hidden_section.append(('output ly - view', 'lyv'))
+        hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section.append(('versioned output ly - view', 'lyver'))
         hidden_section.append(('versioned output pdf - view', 'pdfv'))
         display_string = 'versioned segment definition module - view'
         hidden_section.append((display_string, 'pyver'))
@@ -408,7 +411,7 @@ class SegmentPackageManager(PackageManager):
     user_input_to_action.update({
         'E': interactively_edit_asset_definition_module_from_top,
         'e': interactively_edit_asset_definition_module,
-        'ly': interactively_view_current_output_ly,
+        'lyv': interactively_view_current_output_ly,
         'lyver': interactively_view_versioned_output_ly,
         'pdfv': view_output_pdf,
         'pdfm': interactively_make_asset_pdf,

@@ -368,5 +368,4 @@ class PackageManager(DirectoryManager):
         'mdw': interactively_write_metadata,
         'ren': interactively_rename_package,
         'rm': remove_package,
-        #'metadata': manage_metadata,
         })

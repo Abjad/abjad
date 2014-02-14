@@ -79,6 +79,7 @@ class MaterialPackageManager(PackageManager):
             main_menu, 
             has_initializer=self.has_initializer,
             )
+        self.session.io_manager._make_metadata_menu_section(main_menu)
         if self.should_have_user_input_module:
             self._make_main_menu_sections_with_user_input_wrapper(
                 main_menu, hidden_section)
@@ -96,7 +97,6 @@ class MaterialPackageManager(PackageManager):
         hidden_section.append(('list package', 'ls'))
         hidden_section.append(('rename package', 'ren'))
         hidden_section.append(('manage stylesheets', 'stl'))
-        hidden_section.append(('manage metadata', 'metadata'))
 
     def _make_illustration_builder_menu_section(
         self,
