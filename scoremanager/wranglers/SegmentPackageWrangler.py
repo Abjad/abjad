@@ -72,13 +72,13 @@ class SegmentPackageWrangler(PackageWrangler):
             )
 
         hidden_section = main_menu.make_command_section(is_hidden=True)
-        #hidden_section.append(('initializer - view', 'inv'))
         hidden_section.append(('metadata - view', 'mdv'))
         hidden_section.append(('views - view', 'views'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('views - list', 'vwl'))
         hidden_section.append(('views - new', 'vwn'))
         hidden_section.append(('views - select', 'vws'))
+        hidden_section.append(('views - view', 'vwv'))
         return main_menu
 
     ### PUBLIC METHODS ###

@@ -126,14 +126,25 @@
     pattern of AbjadConfiguration. Make built_in_editors_directory_path
     and so on into full-fledged public properties with doc strings.
 
-37. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
+37. Consider having ScoreManagerConfiguration inherit from AbjadConfiguration.
+    This will parallel score manager IOManager inheriting from mainline
+    IOManager.
+
+38. See if ...
+        Red Example Score (2013) - segments - edit forward view
+    ... can be changed to ...
+        Red Example Score (2013) - segments - views - forward - edit
+    ... instead.
+    This will involve breadcrumb management.
+
+39. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
     within a score. Maybe the commands should be (U), (K), (M), (G), (S), (T)
     and (Y) for clarity.
 
-38. There also needs to be a single command to just view the global stylesheet
+40. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (YV) or equivalent.
 
-39. Find a way to get rid of the ...
+41. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -149,6 +160,11 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-40. There should be a command to re-render the output.ly for a given segment,
+42. There should be a command to re-render the output.ly for a given segment,
     not by re-executing the associated segment maker, but simply by running
     LilyPond.
+
+43. Add TypedOrderedDictionary.
+    This will be the data type for the view inventory house in __views__.py.
+    And probably for many more inventories. This will allow the removal
+    of View.custom_identifier.

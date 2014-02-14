@@ -97,7 +97,7 @@ class PackageWrangler(Wrangler):
                     view_inventory = self._read_view_inventory_from_disk()
                     if view_inventory:
                         for view in view_inventory:
-                            if view.name == view_name:
+                            if view.custom_identifier == view_name:
                                 correct_view = view
                                 break
                         else:

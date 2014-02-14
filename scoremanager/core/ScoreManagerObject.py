@@ -41,6 +41,7 @@ class ScoreManagerObject(object):
     @abc.abstractmethod
     def __init__(self, session=None):
         from scoremanager import core
+        self._configuration = core.ScoreManagerConfiguration()
         self._session = session or core.Session()
         self.backtracking = ScoreManagerObject.backtracking(self)
 
@@ -59,13 +60,6 @@ class ScoreManagerObject(object):
     def _backtracking_source(self):
         return
 
-#    @property
-#    def _keyword_argument_names(self):
-#        result = []
-#        result.extend(AbjadObject._keyword_argument_names.fget(self))
-#        result.remove('session')
-#        return tuple(result)
-
     @property
     def _space_delimited_lowercase_class_name(self):
         return stringtools.string_to_space_delimited_lowercase(
@@ -83,9 +77,17 @@ class ScoreManagerObject(object):
 
     ### PUBLIC PROPERTIES ###
 
+#    @property
+#    def configuration(self):
+#        r'''Gets configuration of score manager object.
+#
+#        Returns score manager configuration.
+#        '''
+#        return self._configuration
+
     @property
     def session(self):
-        '''Session of score manager object.
+        '''Gets session of score manager object.
 
         Returns session.
         '''

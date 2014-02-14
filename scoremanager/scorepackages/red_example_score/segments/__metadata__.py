@@ -3,4 +3,5 @@ import collections
 
 
 metadata = collections.OrderedDict([
-    ('view_name', 'reverse order')])
+    ('view_name', 'backward'),
+    ])

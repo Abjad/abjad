@@ -241,7 +241,7 @@ class Wrangler(ScoreManagerObject):
             self.session.io_manager.proceed(message)
             return
         lines = []
-        names = [x.name for x in view_inventory]
+        names = [x.custom_identifier for x in view_inventory]
         view_count = len(view_inventory)
         view_string = 'view'
         if view_count != 1:
@@ -250,7 +250,9 @@ class Wrangler(ScoreManagerObject):
         message = message.format(view_count, view_string)
         lines.append(message)
         lines.append('')
-        names = ['\t' + x for x in names]
+        tab_width = self.configuration.abjad_configuration.get_tab_width()
+        tab = tab_width * ' '
+        names = [tab + x for x in names]
         lines.extend(names)
         lines.append('')
         self.session.io_manager.display(lines)
@@ -435,7 +437,7 @@ class Wrangler(ScoreManagerObject):
             self.session.io_manager.proceed(message)
             return
         lines = []
-        view_names = [x.name for x in view_inventory]
+        view_names = [x.custom_identifier for x in view_inventory]
         selector = self.session.io_manager.make_selector(where=self._where)
         selector.explicit_breadcrumb = 'select view'
         selector.items = view_names
@@ -618,7 +620,7 @@ class Wrangler(ScoreManagerObject):
         view_inventory = self._read_view_inventory_from_disk()
         view_inventory = view_inventory or datastructuretools.TypedList()
         for i, view in enumerate(view_inventory):
-            if view.name == new_view.name:
+            if view.custom_identifier == new_view.custom_identifier:
                 view_inventory[i] = new_view
                 break
         else:
@@ -650,8 +652,8 @@ class Wrangler(ScoreManagerObject):
         'metadata': interactively_view_metadata_module,
         'ren': interactively_rename_asset,
         'rm': interactively_remove_assets,
-        'views': interactively_view_views_module,
         'vwl': interactively_list_views,
         'vwn': interactively_make_view,
         'vws': interactively_select_view,
+        'vwv': interactively_view_views_module,
         }
