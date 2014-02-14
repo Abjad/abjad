@@ -243,10 +243,15 @@ class InciseSpecifier(AbjadObject):
 
         Returns new incision specifier.
         '''
-        prefix_lengths = self._reverse_tuple(self.prefix_lengths)
-        prefix_talea = self._reverse_tuple(self.prefix_talea)
-        suffix_lengths = self._reverse_tuple(self.suffix_lengths)
-        suffix_talea = self._reverse_tuple(self.suffix_talea)
+        from abjad.tools import rhythmmakertools
+        prefix_lengths = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.prefix_lengths)
+        prefix_talea = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.prefix_talea)
+        suffix_lengths = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.suffix_lengths)
+        suffix_talea = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.suffix_talea)
         maker = new(
             self,
             prefix_lengths=prefix_lengths,
@@ -290,10 +295,15 @@ class InciseSpecifier(AbjadObject):
 
         Returns new incision specifier.
         '''
-        prefix_lengths = self._rotate_tuple(self.prefix_lengths, n)
-        prefix_talea = self._rotate_tuple(self.prefix_talea, n)
-        suffix_lengths = self._rotate_tuple(self.suffix_lengths, n)
-        suffix_talea = self._rotate_tuple(self.suffix_talea, n)
+        from abjad.tools import rhythmmakertools
+        prefix_lengths = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.prefix_lengths, n)
+        prefix_talea = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.prefix_talea, n)
+        suffix_lengths = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.suffix_lengths, n)
+        suffix_talea = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.suffix_talea, n)
         maker = new(
             self,
             prefix_lengths=prefix_lengths,

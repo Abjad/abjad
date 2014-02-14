@@ -208,6 +208,16 @@ class RhythmMaker(AbjadObject):
         assert isinstance(expr, tuple), expr
         return expr
 
+    @staticmethod
+    def _reverse_tuple(expr):
+        if expr is not None:
+            return tuple(reversed(expr))
+
+    @staticmethod
+    def _rotate_tuple(expr, n):
+        if expr is not None:
+            return tuple(sequencetools.rotate_sequence(expr, n))
+
     def _scale_taleas(self, duration_pairs, talea_denominator, taleas):
         dummy_duration_pair = (1, talea_denominator)
         duration_pairs.append(dummy_duration_pair)

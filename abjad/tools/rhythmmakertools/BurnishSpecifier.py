@@ -305,16 +305,6 @@ class BurnishSpecifier(AbjadObject):
         return False
 
     @staticmethod
-    def _reverse_tuple(expr):
-        if expr is not None:
-            return tuple(reversed(expr))
-
-    @staticmethod
-    def _rotate_tuple(expr, n):
-        if expr is not None:
-            return tuple(sequencetools.rotate_sequence(expr, n))
-
-    @staticmethod
     def _to_tuple(expr):
         if isinstance(expr, list):
             expr = tuple(expr)
@@ -503,11 +493,17 @@ class BurnishSpecifier(AbjadObject):
 
         Returns new burnish specification.
         '''
-        lefts = self._reverse_tuple(self.lefts)
-        middles = self._reverse_tuple(self.middles)
-        rights = self._reverse_tuple(self.rights)
-        left_lengths = self._reverse_tuple(self.left_lengths)
-        right_lengths = self._reverse_tuple(self.right_lengths)
+        from abjad.tools import rhythmmakertools
+        lefts = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.lefts)
+        middles = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.middles)
+        rights = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.rights)
+        left_lengths = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.left_lengths)
+        right_lengths = rhythmmakertools.RhythmMaker._reverse_tuple(
+            self.right_lengths)
         result = new(
             self,
             lefts=lefts,
@@ -550,11 +546,17 @@ class BurnishSpecifier(AbjadObject):
 
         Returns new burnish specification.
         '''
-        lefts = self._rotate_tuple(self.lefts, n)
-        middles = self._rotate_tuple(self.middles, n)
-        rights = self._rotate_tuple(self.rights, n)
-        left_lengths = self._rotate_tuple(self.left_lengths, n)
-        right_lengths = self._rotate_tuple(self.right_lengths, n)
+        from abjad.tools import rhythmmakertools
+        lefts = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.lefts, n)
+        middles = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.middles, n)
+        rights = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.rights, n)
+        left_lengths = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.left_lengths, n)
+        right_lengths = rhythmmakertools.RhythmMaker._rotate_tuple(
+            self.right_lengths, n)
         return new(
             self,
             lefts=lefts,
