@@ -66,7 +66,7 @@ class InciseSpecifier(AbjadObject):
         if all(isinstance(x, int) for x in expr):
             return True
         return False
-        
+
     @staticmethod
     def _is_length_tuple(expr):
         if expr is None:
@@ -75,6 +75,16 @@ class InciseSpecifier(AbjadObject):
             if isinstance(expr, tuple):
                 return True
         return False
+
+    @staticmethod
+    def _reverse_tuple(expr):
+        if expr is not None:
+            return tuple(reversed(expr))
+
+    @staticmethod
+    def _rotate_tuple(expr, n):
+        if expr is not None:
+            return tuple(sequencetools.rotate_sequence(expr, n))
 
     @staticmethod
     def _to_tuple(expr):
@@ -233,23 +243,62 @@ class InciseSpecifier(AbjadObject):
 
         Returns new incision specifier.
         '''
-        prefix_talea = self.prefix_talea
-        if prefix_talea is not None:
-            prefix_talea = tuple(reversed(prefix_talea))
-        prefix_lengths = self.prefix_lengths
-        if prefix_lengths is not None:
-            prefix_lengths = tuple(reversed(prefix_lengths))
-        suffix_talea = self.suffix_talea
-        if suffix_talea is not None:
-            suffix_talea = tuple(reversed(suffix_talea))
-        suffix_lengths = self.suffix_lengths
-        if suffix_lengths is not None:
-            suffix_lengths = tuple(reversed(suffix_lengths))
+        prefix_lengths = self._reverse_tuple(self.prefix_lengths)
+        prefix_talea = self._reverse_tuple(self.prefix_talea)
+        suffix_lengths = self._reverse_tuple(self.suffix_lengths)
+        suffix_talea = self._reverse_tuple(self.suffix_talea)
         maker = new(
             self,
-            prefix_talea=prefix_talea,
             prefix_lengths=prefix_lengths,
-            suffix_talea=suffix_talea,
+            prefix_talea=prefix_talea,
             suffix_lengths=suffix_lengths,
+            suffix_talea=suffix_talea,
+            )
+        return maker
+
+    def rotate(self, n=0):
+        r'''Rotates incision specifier.
+
+        ..  container:: example
+
+            ::
+
+                >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+                ...     incise_divisions=True,
+                ...     prefix_talea=(-1,),
+                ...     prefix_lengths=(0, 2, 1),
+                ...     suffix_talea=(-1, 1),
+                ...     suffix_lengths=(1, 0, 0),
+                ...     talea_denominator=16,
+                ...     body_ratio=(1, 1),
+                ...     )
+
+            ::
+
+                >>> print format(incise_specifier.rotate(1))
+                rhythmmakertools.InciseSpecifier(
+                    incise_divisions=True,
+                    incise_output=False,
+                    prefix_talea=(-1,),
+                    prefix_lengths=(1, 0, 2),
+                    suffix_talea=(1, -1),
+                    suffix_lengths=(0, 1, 0),
+                    talea_denominator=16,
+                    body_ratio=mathtools.Ratio(1, 1),
+                    fill_with_notes=True,
+                    )
+
+        Returns new incision specifier.
+        '''
+        prefix_lengths = self._rotate_tuple(self.prefix_lengths, n)
+        prefix_talea = self._rotate_tuple(self.prefix_talea, n)
+        suffix_lengths = self._rotate_tuple(self.suffix_lengths, n)
+        suffix_talea = self._rotate_tuple(self.suffix_talea, n)
+        maker = new(
+            self,
+            prefix_lengths=prefix_lengths,
+            prefix_talea=prefix_talea,
+            suffix_lengths=suffix_lengths,
+            suffix_talea=suffix_talea,
             )
         return maker

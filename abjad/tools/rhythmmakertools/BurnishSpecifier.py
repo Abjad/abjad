@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
+from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import new
 
@@ -53,7 +54,7 @@ class BurnishSpecifier(AbjadObject):
 
     ..  container:: example
 
-        Force the first leaf of every even-numbered division to be a rest; 
+        Force the first leaf of every even-numbered division to be a rest;
         force the first leaf of every odd-numbered division to be a note.
 
         ::
@@ -65,7 +66,7 @@ class BurnishSpecifier(AbjadObject):
 
     ..  container:: example
 
-        Force the last leaf of every even-numbered division to be a rest; 
+        Force the last leaf of every even-numbered division to be a rest;
         force the last leaf of every odd-numbered division to be a note.
 
         ::
@@ -77,7 +78,7 @@ class BurnishSpecifier(AbjadObject):
 
     ..  container:: example
 
-        Force the first leaf of every even-numbered division to be a rest; 
+        Force the first leaf of every even-numbered division to be a rest;
         leave the first leaf of every odd-numbered division unchanged.
 
         ::
@@ -89,7 +90,7 @@ class BurnishSpecifier(AbjadObject):
 
     ..  container:: example
 
-        Force the last leaf of every even-numbered division to be a rest; 
+        Force the last leaf of every even-numbered division to be a rest;
         leave the last leaf of every odd-numbered division unchanged.
 
         ::
@@ -120,10 +121,10 @@ class BurnishSpecifier(AbjadObject):
         self,
         burnish_divisions=False,
         burnish_output=False,
-        lefts=None, 
-        middles=None, 
-        rights=None, 
-        left_lengths=None, 
+        lefts=None,
+        middles=None,
+        rights=None,
+        left_lengths=None,
         right_lengths=None,
         ):
         assert isinstance(burnish_divisions, bool)
@@ -290,9 +291,9 @@ class BurnishSpecifier(AbjadObject):
     def _is_length_tuple(expr):
         if expr is None:
             return True
-        if mathtools.all_are_nonnegative_integer_equivalent_numbers(
-            expr) and isinstance(expr, tuple):
-            return True
+        if mathtools.all_are_nonnegative_integer_equivalent_numbers(expr):
+            if isinstance(expr, tuple):
+                return True
         return False
 
     @staticmethod
@@ -302,11 +303,16 @@ class BurnishSpecifier(AbjadObject):
         if isinstance(expr, tuple):
             return all(x in (-1, 0, 1) for x in expr)
         return False
-        
+
     @staticmethod
     def _reverse_tuple(expr):
         if expr is not None:
             return tuple(reversed(expr))
+
+    @staticmethod
+    def _rotate_tuple(expr, n):
+        if expr is not None:
+            return tuple(sequencetools.rotate_sequence(expr, n))
 
     @staticmethod
     def _to_tuple(expr):
@@ -329,7 +335,7 @@ class BurnishSpecifier(AbjadObject):
 
     @property
     def burnish_output(self):
-        r'''Is true when rhythm-maker should burnish first and last division 
+        r'''Is true when rhythm-maker should burnish first and last division
         in output. Otherwise false.
 
         Defaults to false.
@@ -504,8 +510,6 @@ class BurnishSpecifier(AbjadObject):
         right_lengths = self._reverse_tuple(self.right_lengths)
         result = new(
             self,
-            burnish_divisions=self.burnish_divisions,
-            burnish_output=self.burnish_output,
             lefts=lefts,
             middles=middles,
             rights=rights,
@@ -513,3 +517,49 @@ class BurnishSpecifier(AbjadObject):
             right_lengths=right_lengths,
             )
         return result
+
+    def rotate(self, n=0):
+        r'''Rotates burnish specification.
+
+        ..  container:: example
+
+            ::
+
+                >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
+                ...     burnish_divisions=True,
+                ...     burnish_output=False,
+                ...     lefts=(-1, 0),
+                ...     middles=(0,),
+                ...     rights=(-1, -1, 0),
+                ...     left_lengths=(2,),
+                ...     right_lengths=(1, 2, 3),
+                ...     )
+
+            ::
+
+                >>> print format(burnish_specifier.rotate(1))
+                rhythmmakertools.BurnishSpecifier(
+                    burnish_divisions=True,
+                    burnish_output=False,
+                    lefts=(0, -1),
+                    middles=(0,),
+                    rights=(0, -1, -1),
+                    left_lengths=(2,),
+                    right_lengths=(3, 1, 2),
+                    )
+
+        Returns new burnish specification.
+        '''
+        lefts = self._rotate_tuple(self.lefts, n)
+        middles = self._rotate_tuple(self.middles, n)
+        rights = self._rotate_tuple(self.rights, n)
+        left_lengths = self._rotate_tuple(self.left_lengths, n)
+        right_lengths = self._rotate_tuple(self.right_lengths, n)
+        return new(
+            self,
+            lefts=lefts,
+            middles=middles,
+            rights=rights,
+            left_lengths=left_lengths,
+            right_lengths=right_lengths,
+            )
