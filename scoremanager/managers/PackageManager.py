@@ -351,6 +351,8 @@ class PackageManager(DirectoryManager):
         'inrm': interactively_remove_initializer,
         'ins': interactively_write_stub_initializer,
         'inv': interactively_view_initializer,
+        'mda': interactively_add_metadata,
+        'mdrm': interactively_remove_metadata,
         'mdv': interactively_view_metadata_module,
         'mdw': write_metadata,
         'ren': interactively_rename_package,
