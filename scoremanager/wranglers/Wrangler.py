@@ -649,7 +649,7 @@ class Wrangler(ScoreManagerObject):
         'ins': interactively_write_stub_initializer,
         'inv': interactively_view_initializer,
         'ls': interactively_list_directory,
-        'metadata': interactively_view_metadata_module,
+        'mdv': interactively_view_metadata_module,
         'ren': interactively_rename_asset,
         'rm': interactively_remove_assets,
         'vwl': interactively_list_views,
