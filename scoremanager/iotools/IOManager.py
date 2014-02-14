@@ -99,15 +99,11 @@ class IOManager(IOManager):
                 return True
         return False
 
-    def _make_initializer_menu_section(
-        self, 
-        main_menu, 
-        hidden_section,
-        has_initializer=True,
-        ):
+    def _make_initializer_menu_section(self, main_menu, has_initializer=True):
         if not has_initializer:
             command_section = main_menu.make_command_section()
             command_section.title = "package has no initializer: use 'ins'."
+        hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('initializer - boilerplate', 'inbp'))
         hidden_section.append(('initializer - remove', 'inrm'))
         hidden_section.append(('initializer - stub', 'ins'))
@@ -120,6 +116,14 @@ class IOManager(IOManager):
         hidden_section.append(('metadata - remove', 'mdrm'))
         hidden_section.append(('metadata - view', 'mdv'))
         hidden_section.append(('metadata - write', 'mdw'))
+        return hidden_section
+
+    def _make_views_menu_section(self, main_menu):
+        hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section.append(('views - list', 'vwl'))
+        hidden_section.append(('views - new', 'vwn'))
+        hidden_section.append(('views - select', 'vws'))
+        hidden_section.append(('views - view', 'vwv'))
         return hidden_section
 
     def _pop_from_pending_user_input(self):

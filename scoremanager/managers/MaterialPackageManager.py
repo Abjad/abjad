@@ -77,7 +77,6 @@ class MaterialPackageManager(PackageManager):
         main_menu, hidden_section = superclass._make_main_menu(where=where)
         self.session.io_manager._make_initializer_menu_section(
             main_menu, 
-            hidden_section,
             has_initializer=self.has_initializer,
             )
         if self.should_have_user_input_module:

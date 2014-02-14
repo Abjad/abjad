@@ -168,9 +168,3 @@
     This will be the data type for the view inventory house in __views__.py.
     And probably for many more inventories. This will allow the removal
     of View.custom_identifier.
-
-44. Implement IOManager._make_view_menu_section().
-    Remove view menu-making code from other classes.
-
-45. Implement IOManager._make_metadata_menu_section().
-    Remove metadata menu-making code from other classes.
