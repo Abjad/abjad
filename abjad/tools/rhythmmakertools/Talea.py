@@ -6,6 +6,16 @@ from abjad.tools.abctools import AbjadObject
 
 class Talea(AbjadObject):
     '''Talea.
+
+    ..  container:: example
+
+        ::
+
+            >>> talea = rhythmmakertools.Talea(
+            ...    counts=(2, 1, 3, 2, 4, 1, 1),
+            ...    denominator=16,
+            ...    )
+
     '''
 
     ### CLASS VARIABLES ###
@@ -80,9 +90,43 @@ class Talea(AbjadObject):
     def reverse(self):
         r'''Reverses talea.
 
+        ..  container:: example
+
+            ::
+
+                >>> reversed_talea = talea.reverse()
+                >>> print format(reversed_talea)
+                rhythmmakertools.Talea(
+                    counts=(1, 1, 4, 2, 3, 1, 2),
+                    denominator=16,
+                    )
+
         Returns new talea.
         '''
         counts = tuple(reversed(self.counts))
+        result = type(self)(
+            counts=counts,
+            denominator=self.denominator,
+            )
+        return result
+
+    def rotate(self, n=0):
+        r'''Rotates talea by `n`.
+
+        ..  container:: example
+
+            ::
+
+                >>> rotated_talea = talea.rotate(1)
+                >>> print format(rotated_talea)
+                rhythmmakertools.Talea(
+                    counts=(1, 2, 1, 3, 2, 4, 1),
+                    denominator=16,
+                    )
+
+        Returns new talea.
+        '''
+        counts = tuple(sequencetools.rotate_sequence(self.counts, n))
         result = type(self)(
             counts=counts,
             denominator=self.denominator,
