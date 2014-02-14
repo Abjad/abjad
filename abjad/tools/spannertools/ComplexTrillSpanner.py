@@ -102,12 +102,12 @@ class ComplexTrillSpanner(Spanner):
             scoretools.Skip,
             )
         if not isinstance(leaf, prototype):
-            leaf_ids = [id(x) for x in self._leaves]
             logical_tie = inspect_(leaf).get_logical_tie()
             if leaf is logical_tie.head:
                 previous_leaf = leaf._get_leaf(-1)
-                if id(previous_leaf) in leaf_ids and \
-                    not isinstance(previous_leaf, prototype):
+                if previous_leaf is not None and \
+                    not isinstance(previous_leaf, prototype) and \
+                    inspect_(previous_leaf).get_spanners(type(self)):
                     grob_override = lilypondnametools.LilyPondGrobOverride(
                         grob_name='TrillSpanner',
                         is_once=True,
