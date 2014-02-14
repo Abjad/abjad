@@ -113,6 +113,15 @@ class IOManager(IOManager):
         hidden_section.append(('initializer - stub', 'ins'))
         hidden_section.append(('initializer - view', 'inv'))
 
+    def _make_metadata_menu_section(self, main_menu):
+        hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section.append(('metadata - manage', 'metadata'))
+        hidden_section.append(('metadata - add', 'mda'))
+        hidden_section.append(('metadata - remove', 'mdrm'))
+        hidden_section.append(('metadata - view', 'mdv'))
+        hidden_section.append(('metadata - write', 'mdw'))
+        return hidden_section
+
     def _pop_from_pending_user_input(self):
         self.session.last_command_was_composite = False
         if self.session.pending_user_input is None:

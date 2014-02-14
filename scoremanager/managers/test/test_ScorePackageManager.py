@@ -36,23 +36,6 @@ def test_ScorePackageManager_02():
 
 
 def test_ScorePackageManager_03():
-    r'''Add and delete metadatum interactively.
-    '''
-
-    string = 'scoremanager.scorepackages.red_example_score'
-    red_example_score = scoremanager.managers.ScorePackageManager(string)
-    red_example_score.session.pending_user_input = 'add foo bar q'
-    red_example_score.manage_metadata()
-    assert red_example_score._get_metadatum('foo') == 'bar'
-
-    string = 'scoremanager.scorepackages.red_example_score'
-    red_example_score = scoremanager.managers.ScorePackageManager(string)
-    red_example_score.session.pending_user_input = 'del foo q'
-    red_example_score.manage_metadata()
-    assert red_example_score._get_metadatum('foo') is None
-
-
-def test_ScorePackageManager_04():
     r'''User 'home' input results in return home.
     '''
 
@@ -68,7 +51,7 @@ def test_ScorePackageManager_04():
     assert score_manager.session.io_transcript[4][1][0] == string
 
 
-def test_ScorePackageManager_05():
+def test_ScorePackageManager_04():
     r'''User 'home' input terminates execution (when score not managed 
     from home).
     '''
@@ -83,7 +66,7 @@ def test_ScorePackageManager_05():
     assert red_example_score.session.io_transcript[1][1][0] == '> home'
 
 
-def test_ScorePackageManager_06():
+def test_ScorePackageManager_05():
     r'''User 'b' input returns home.
     '''
 
@@ -99,7 +82,7 @@ def test_ScorePackageManager_06():
     assert score_manager.session.io_transcript[4][1][0] == string
 
 
-def test_ScorePackageManager_07():
+def test_ScorePackageManager_06():
     r'''Shared session.
     '''
 

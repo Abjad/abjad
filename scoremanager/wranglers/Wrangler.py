@@ -226,6 +226,10 @@ class Wrangler(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
+    def interactively_add_metadata(self):
+        manager = self._get_current_package_manager()
+        manager.interactively_add_metadata()
+
     def interactively_list_directory(self):
         manager = self._get_current_package_manager()
         manager.interactively_list_directory()
@@ -296,7 +300,10 @@ class Wrangler(ScoreManagerObject):
             return
         tokens = editor.target
         self.session.io_manager.display('')
-        view = self.session.io_manager.make_view(tokens, custom_identifier=view_name)
+        view = self.session.io_manager.make_view(
+            tokens, 
+            custom_identifier=view_name,
+            )
         self.write_view(view)
 
     # TODO: write test
@@ -357,6 +364,10 @@ class Wrangler(ScoreManagerObject):
     def interactively_remove_initializer(self):
         manager = self._get_current_package_manager()
         manager.interactively_remove_initializer()
+
+    def interactively_remove_metadata(self):
+        manager = self._get_current_package_manager()
+        manager.interactively_remove_metadata()
 
     def interactively_select_asset_filesystem_path(
         self, 
@@ -463,6 +474,10 @@ class Wrangler(ScoreManagerObject):
     def interactively_write_boilerplate_initializer(self):
         manager = self._get_current_package_manager()
         manager.interactively_write_boilerplate_initializer()
+
+    def interactively_write_metadata(self):
+        manager = self._get_current_package_manager()
+        manager.interactively_write_metadata()
 
     def interactively_write_stub_initializer(self):
         manager = self._get_current_package_manager()
@@ -649,7 +664,10 @@ class Wrangler(ScoreManagerObject):
         'ins': interactively_write_stub_initializer,
         'inv': interactively_view_initializer,
         'ls': interactively_list_directory,
+        'mda': interactively_add_metadata,
+        'mdrm': interactively_remove_metadata,
         'mdv': interactively_view_metadata_module,
+        'mdw': interactively_write_metadata,
         'ren': interactively_rename_asset,
         'rm': interactively_remove_assets,
         'vwl': interactively_list_views,
