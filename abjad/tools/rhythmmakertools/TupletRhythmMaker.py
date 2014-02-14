@@ -146,7 +146,8 @@ class TupletRhythmMaker(RhythmMaker):
         from abjad.tools import rhythmmakertools
         prototype = (rhythmmakertools.TupletSpellingSpecifier, type(None))
         assert isinstance(tuplet_spelling_specifier, prototype)
-        tuplet_ratios = tuple(mathtools.Ratio(x) for x in tuplet_ratios)
+        if tuplet_ratios is not None:
+            tuplet_ratios = tuple(mathtools.Ratio(x) for x in tuplet_ratios)
         self._tuplet_ratios = tuplet_ratios
         self._tuplet_spelling_specifier = tuplet_spelling_specifier
 
@@ -218,7 +219,7 @@ class TupletRhythmMaker(RhythmMaker):
             ratio = tuplet_ratios[duration_index]
             duration = durationtools.Duration(duration_pair)
             tuplet = self._make_tuplet(
-                duration, 
+                duration,
                 ratio,
                 avoid_dots=tuplet_spelling_specifier.avoid_dots,
                 is_diminution=tuplet_spelling_specifier.is_diminution,
@@ -234,9 +235,9 @@ class TupletRhythmMaker(RhythmMaker):
         return selections
 
     def _make_tuplet(
-        self, 
-        duration, 
-        ratio, 
+        self,
+        duration,
+        ratio,
         avoid_dots=False,
         is_diminution=True,
         ):
@@ -424,5 +425,85 @@ class TupletRhythmMaker(RhythmMaker):
             self,
             tuplet_ratios=tuplet_ratios,
             duration_spelling_specifier=specifier,
+            )
+        return maker
+
+    def rotate(self, n=0):
+        r'''Rotates tuplet rhythm-maker.
+
+        ..  container:: example
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(2, 3), (1, -2, 1), (1, 2, 3)],
+                ...     )
+                >>> rotated_maker = maker.rotate(n=1)
+
+            ::
+
+                >>> print format(rotated_maker)
+                rhythmmakertools.TupletRhythmMaker(
+                    tuplet_ratios=(
+                        mathtools.Ratio(3, 1, 2),
+                        mathtools.Ratio(3, 2),
+                        mathtools.Ratio(1, 1, -2),
+                        ),
+                    )
+
+            ::
+
+                >>> divisions = [(1, 2), (3, 8), (5, 16)]
+                >>> music = rotated_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 1/2
+                        \times 2/3 {
+                            c'4.
+                            c'8
+                            c'4
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'4.
+                            c'4
+                        }
+                    }
+                    {
+                        \time 5/16
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 5/6 {
+                            c'16. [
+                            c'16. ]
+                            r8.
+                        }
+                    }
+                }
+
+        Returns new tuplet rhythm-maker.
+        '''
+        from abjad.tools import rhythmmakertools
+        tuplet_ratios = []
+        for ratio in sequencetools.rotate_sequence(self.tuplet_ratios, n):
+            ratio = sequencetools.rotate_sequence(ratio, n)
+            ratio = mathtools.Ratio(ratio)
+            tuplet_ratios.append(ratio)
+        tuplet_ratios = tuple(tuplet_ratios)
+        maker = new(
+            self,
+            tuplet_ratios=tuplet_ratios,
             )
         return maker
