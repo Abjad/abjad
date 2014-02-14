@@ -168,3 +168,14 @@
     This will be the data type for the view inventory house in __views__.py.
     And probably for many more inventories. This will allow the removal
     of View.custom_identifier.
+
+44. Eliminate unqualified test files like test_ScorePackageManager.py.
+
+45. Remove bug that allows for creation of ...
+        metadata = collections.OrderedDict([
+            ('', ''),
+            ])
+    ... without allowing for removal.
+
+46. Reimplement repository interface as flat collection of hidden commands.
+    Remove repository menu.

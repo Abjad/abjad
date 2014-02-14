@@ -317,31 +317,31 @@ class PackageManager(DirectoryManager):
         self.session.io_manager.display([line, ''])
         self.session.io_manager.proceed()
 
-    def make_metadata_menu(self):
-        metadata_menu = self.session.io_manager.make_menu(where=self._where)
-        attribute_section = metadata_menu.make_attribute_section()
-        menu_entries = self._make_metadata_menu_entries()
-        attribute_section.menu_entries = menu_entries
-        command_section = metadata_menu.make_command_section()
-        command_section.append(('add metadatum', 'add'))
-        command_section.append(('delete metadatum', 'rm'))
-        command_section.append(('get metadatum', 'get'))
-        return metadata_menu
+#    def make_metadata_menu(self):
+#        metadata_menu = self.session.io_manager.make_menu(where=self._where)
+#        attribute_section = metadata_menu.make_attribute_section()
+#        menu_entries = self._make_metadata_menu_entries()
+#        attribute_section.menu_entries = menu_entries
+#        command_section = metadata_menu.make_command_section()
+#        command_section.append(('add metadatum', 'add'))
+#        command_section.append(('delete metadatum', 'rm'))
+#        command_section.append(('get metadatum', 'get'))
+#        return metadata_menu
 
-    def manage_metadata(self, clear=True, cache=False):
-        self.session.cache_breadcrumbs(cache=cache)
-        while True:
-            self.session.push_breadcrumb('metadata')
-            menu = self.make_metadata_menu()
-            result = menu._run(clear=clear)
-            if self.session.backtrack():
-                break
-            self.handle_metadata_menu_result(result)
-            if self.session.backtrack():
-                break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+#    def manage_metadata(self, clear=True, cache=False):
+#        self.session.cache_breadcrumbs(cache=cache)
+#        while True:
+#            self.session.push_breadcrumb('metadata')
+#            menu = self.make_metadata_menu()
+#            result = menu._run(clear=clear)
+#            if self.session.backtrack():
+#                break
+#            self.handle_metadata_menu_result(result)
+#            if self.session.backtrack():
+#                break
+#            self.session.pop_breadcrumb()
+#        self.session.pop_breadcrumb()
+#        self.session.restore_breadcrumbs(cache=cache)
 
     def remove_package(self):
         r'''Removes package.
@@ -368,5 +368,5 @@ class PackageManager(DirectoryManager):
         'mdw': interactively_write_metadata,
         'ren': interactively_rename_package,
         'rm': remove_package,
-        'metadata': manage_metadata,
+        #'metadata': manage_metadata,
         })

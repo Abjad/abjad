@@ -75,7 +75,6 @@ def test_Menu_display_hidden_menu_section_02():
         '     view initializer (inv)',
         '     view instrumentation (instrumentation)',
         '',
-        '     metadata - manage (metadata)',
         '     metadata - add (mda)',
         '     metadata - remove (mdrm)',
         '     metadata - view (mdv)',

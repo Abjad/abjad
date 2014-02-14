@@ -14,15 +14,6 @@ def test_ScoreManager_01():
 
 
 def test_ScoreManager_02():
-    r'''Main menu to score menu to metadata menu.
-    '''
-
-    score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='red~example~score metadata q')
-    assert score_manager.session.io_transcript.signature == (6,)
-
-
-def test_ScoreManager_03():
     r'''Main menu to repository menu.
     '''
 
@@ -31,7 +22,7 @@ def test_ScoreManager_03():
     assert score_manager.session.io_transcript.signature == (4,)
 
 
-def test_ScoreManager_04():
+def test_ScoreManager_03():
     r'''Main menu header is the same even after state change to secondary menu.
     '''
 
@@ -49,7 +40,7 @@ def test_ScoreManager_04():
         'Score manager - active scores'
 
 
-def test_ScoreManager_05():
+def test_ScoreManager_04():
     r'''Junk works.
     '''
 
@@ -61,7 +52,7 @@ def test_ScoreManager_05():
     assert score_manager.session.io_transcript.signature == (6, (0, 2, 4))
 
 
-def test_ScoreManager_06():
+def test_ScoreManager_05():
     r'''Back is handled correctly.
     '''
 
@@ -70,7 +61,7 @@ def test_ScoreManager_06():
     assert score_manager.session.io_transcript.signature == (4, (0, 2))
 
 
-def test_ScoreManager_07():
+def test_ScoreManager_06():
     r'''Exec works.
     '''
 
@@ -83,7 +74,7 @@ def test_ScoreManager_07():
     assert score_manager.session.io_transcript[4][1] == ['> q', '']
 
 
-def test_ScoreManager_08():
+def test_ScoreManager_07():
     r'''Exec protects against senseless input.
     '''
 
@@ -97,7 +88,7 @@ def test_ScoreManager_08():
     assert score_manager.session.io_transcript[4][1] == ['> q', '']
 
 
-def test_ScoreManager_09():
+def test_ScoreManager_08():
     r'''Shared session.
     '''
 
@@ -107,7 +98,7 @@ def test_ScoreManager_09():
         score_manager.score_package_wrangler.session
 
 
-def test_ScoreManager_10():
+def test_ScoreManager_09():
     r'''Backtracking stu* shortcut.
     '''
 
@@ -122,7 +113,7 @@ def test_ScoreManager_10():
     assert ts_1 == ts_2
 
 
-def test_ScoreManager_11():
+def test_ScoreManager_10():
     r'''Backtracking sco* shortcut.
     '''
     pytest.skip('TODO: make sco shortcut work again.')

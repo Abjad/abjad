@@ -111,7 +111,6 @@ class IOManager(IOManager):
 
     def _make_metadata_menu_section(self, main_menu):
         hidden_section = main_menu.make_command_section(is_hidden=True)
-        hidden_section.append(('metadata - manage', 'metadata'))
         hidden_section.append(('metadata - add', 'mda'))
         hidden_section.append(('metadata - remove', 'mdrm'))
         hidden_section.append(('metadata - view', 'mdv'))
