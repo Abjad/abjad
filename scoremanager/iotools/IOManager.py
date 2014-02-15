@@ -104,17 +104,19 @@ class IOManager(IOManager):
             command_section = main_menu.make_command_section()
             command_section.title = "package has no initializer: use 'ins'."
         hidden_section = main_menu.make_command_section(is_hidden=True)
-        hidden_section.append(('initializer - boilerplate', 'inbp'))
-        hidden_section.append(('initializer - remove', 'inrm'))
-        hidden_section.append(('initializer - stub', 'ins'))
-        hidden_section.append(('initializer - view', 'inv'))
+        hidden_section.append(('initializer module - boilerplate', 'INbp'))
+        hidden_section.append(('initializer module - remove', 'INrm'))
+        hidden_section.append(('initializer module - stub', 'INs'))
+        hidden_section.append(('initializer module - view', 'INv'))
 
     def _make_metadata_menu_section(self, main_menu):
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('metadata - add', 'mda'))
+        hidden_section.append(('metadata - get', 'mdg'))
         hidden_section.append(('metadata - remove', 'mdrm'))
-        hidden_section.append(('metadata - view', 'mdv'))
-        hidden_section.append(('metadata - write', 'mdw'))
+        hidden_section.append(('metadata module - remove', 'MDrm'))
+        hidden_section.append(('metadata module - rewrite', 'MDrw'))
+        hidden_section.append(('metadata module - view', 'MDv'))
         return hidden_section
 
     def _make_views_menu_section(self, main_menu):

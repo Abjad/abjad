@@ -76,7 +76,9 @@ def test_Menu_display_hidden_menu_section_02():
         '     view instrumentation (instrumentation)',
         '',
         '     metadata - add (mda)',
+        '     metadata - get (mdg)',
         '     metadata - remove (mdrm)',
-        '     metadata - view (mdv)',
-        '     metadata - write (mdw)',
+        '     metadata module - remove (MDrm)',
+        '     metadata module - rewrite (MDrw)',
+        '     metadata module - view (MDv)',
         '']

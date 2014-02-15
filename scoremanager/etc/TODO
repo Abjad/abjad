@@ -183,3 +183,6 @@
 
 48. Add other commands to 'ls'. Commands should include ls variants to show
     time of modification and size. Probably other filesystem commands, too.
+
+49. Replace the self.has_whatever_module properties (or methods)
+    with just os.path.isfile(self.whatever_file_path) instead.

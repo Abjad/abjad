@@ -226,9 +226,13 @@ class Wrangler(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def interactively_add_metadata(self):
+    def interactively_add_metadatum(self):
         manager = self._get_current_package_manager()
-        manager.interactively_add_metadata()
+        manager.interactively_add_metadatum()
+
+    def interactively_get_metadatum(self):
+        manager = self._get_current_package_manager()
+        manager.interactively_get_metadatum()
 
     def interactively_list_directory(self):
         manager = self._get_current_package_manager()
@@ -361,13 +365,13 @@ class Wrangler(ScoreManagerObject):
         asset_manager = self._initialize_asset_manager(asset_filesystem_path)
         asset_manager.interactively_rename()
 
-    def interactively_remove_initializer(self):
+    def interactively_remove_initializer_module(self):
         manager = self._get_current_package_manager()
-        manager.interactively_remove_initializer()
+        manager.interactively_remove_initializer_module()
 
-    def interactively_remove_metadata(self):
+    def interactively_remove_metadatum(self):
         manager = self._get_current_package_manager()
-        manager.interactively_remove_metadata()
+        manager.interactively_remove_metadatum()
 
     def interactively_remove_views_module(self):
         manager = self._get_current_package_manager()
@@ -463,9 +467,9 @@ class Wrangler(ScoreManagerObject):
         manager = self._get_current_package_manager()
         manager._add_metadata('view_name', view_name)
 
-    def interactively_view_initializer(self):
+    def interactively_view_initializer_module(self):
         manager = self._get_current_package_manager()
-        manager.interactively_view_initializer()
+        manager.interactively_view_initializer_module()
 
     def interactively_view_metadata_module(self):
         manager = self._get_current_package_manager()
@@ -475,17 +479,17 @@ class Wrangler(ScoreManagerObject):
         manager = self._get_current_view_module_manager()
         manager.interactively_edit()
 
-    def interactively_write_boilerplate_initializer(self):
+    def interactively_write_boilerplate_initializer_module(self):
         manager = self._get_current_package_manager()
-        manager.interactively_write_boilerplate_initializer()
+        manager.interactively_write_boilerplate_initializer_module()
 
-    def interactively_write_metadata(self):
+    def interactively_rewrite_metadata_module(self):
         manager = self._get_current_package_manager()
-        manager.interactively_write_metadata()
+        manager.interactively_rewrite_metadata_module()
 
-    def interactively_write_stub_initializer(self):
+    def interactively_write_stub_initializer_module(self):
         manager = self._get_current_package_manager()
-        manager.interactively_write_stub_initializer()
+        manager.interactively_write_stub_initializer_module()
 
     def list_asset_filesystem_paths(
         self,
@@ -663,20 +667,21 @@ class Wrangler(ScoreManagerObject):
     ### UI MANIFEST ###
 
     user_input_to_action = {
-        'inbp': interactively_write_boilerplate_initializer,
-        'inrm': interactively_remove_initializer,
-        'ins': interactively_write_stub_initializer,
-        'inv': interactively_view_initializer,
+        'INbp': interactively_write_boilerplate_initializer_module,
+        'INrm': interactively_remove_initializer_module,
+        'INs': interactively_write_stub_initializer_module,
+        'INv': interactively_view_initializer_module,
         'ls': interactively_list_directory,
-        'mda': interactively_add_metadata,
-        'mdrm': interactively_remove_metadata,
-        'mdv': interactively_view_metadata_module,
-        'mdw': interactively_write_metadata,
+        'mda': interactively_add_metadatum,
+        'mdg': interactively_get_metadatum,
+        'mdrm': interactively_remove_metadatum,
+        'MDv': interactively_view_metadata_module,
+        'MDrw': interactively_rewrite_metadata_module,
         'ren': interactively_rename_asset,
         'rm': interactively_remove_assets,
         'vwl': interactively_list_views,
         'vwn': interactively_make_view,
+        'vws': interactively_select_view,
         'VWrm': interactively_remove_views_module,
         'VWv': interactively_view_views_module,
-        'vws': interactively_select_view,
         }
