@@ -122,7 +122,8 @@ class IOManager(IOManager):
         hidden_section.append(('views - list', 'vwl'))
         hidden_section.append(('views - new', 'vwn'))
         hidden_section.append(('views - select', 'vws'))
-        hidden_section.append(('views - view', 'vwv'))
+        hidden_section.append(('views module - remove', 'VWrm'))
+        hidden_section.append(('views module - view', 'VWv'))
         return hidden_section
 
     def _pop_from_pending_user_input(self):

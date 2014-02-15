@@ -369,6 +369,10 @@ class Wrangler(ScoreManagerObject):
         manager = self._get_current_package_manager()
         manager.interactively_remove_metadata()
 
+    def interactively_remove_views_module(self):
+        manager = self._get_current_package_manager()
+        manager.interactively_remove_views_module()
+
     def interactively_select_asset_filesystem_path(
         self, 
         clear=True, 
@@ -672,6 +676,7 @@ class Wrangler(ScoreManagerObject):
         'rm': interactively_remove_assets,
         'vwl': interactively_list_views,
         'vwn': interactively_make_view,
+        'VWrm': interactively_remove_views_module,
+        'VWv': interactively_view_views_module,
         'vws': interactively_select_view,
-        'vwv': interactively_view_views_module,
         }

@@ -223,6 +223,19 @@ class PackageManager(DirectoryManager):
                 is_interactive=is_interactive,
                 )
 
+    def interactively_remove_views_module(self, is_interactive=True):
+        if self.has_initializer:
+            if is_interactive:
+                message = 'remove views module?'
+                if not self.session.io_manager.confirm(message):
+                    return
+            os.remove(self.views_module_file_path)
+            line = 'views module removed.'
+            self.session.io_manager.proceed(
+                line, 
+                is_interactive=is_interactive,
+                )
+
     def interactively_remove_metadata(self):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
@@ -316,32 +329,6 @@ class PackageManager(DirectoryManager):
         line = 'stub initializer written.'
         self.session.io_manager.display([line, ''])
         self.session.io_manager.proceed()
-
-#    def make_metadata_menu(self):
-#        metadata_menu = self.session.io_manager.make_menu(where=self._where)
-#        attribute_section = metadata_menu.make_attribute_section()
-#        menu_entries = self._make_metadata_menu_entries()
-#        attribute_section.menu_entries = menu_entries
-#        command_section = metadata_menu.make_command_section()
-#        command_section.append(('add metadatum', 'add'))
-#        command_section.append(('delete metadatum', 'rm'))
-#        command_section.append(('get metadatum', 'get'))
-#        return metadata_menu
-
-#    def manage_metadata(self, clear=True, cache=False):
-#        self.session.cache_breadcrumbs(cache=cache)
-#        while True:
-#            self.session.push_breadcrumb('metadata')
-#            menu = self.make_metadata_menu()
-#            result = menu._run(clear=clear)
-#            if self.session.backtrack():
-#                break
-#            self.handle_metadata_menu_result(result)
-#            if self.session.backtrack():
-#                break
-#            self.session.pop_breadcrumb()
-#        self.session.pop_breadcrumb()
-#        self.session.restore_breadcrumbs(cache=cache)
 
     def remove_package(self):
         r'''Removes package.
