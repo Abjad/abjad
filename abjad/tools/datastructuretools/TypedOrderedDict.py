@@ -8,7 +8,7 @@ from abjad.tools.topleveltools import new
 class TypedOrderedDict(TypedCollection):
     r'''A typed ordered dictionary.
 
-    ..  note:: doctests not included because class is used as an abstract
+    ..  note:: Doctests not included because class is used as a 
         base class. Doctests here would put weird examples in child classes.
         See child classes for doctests.
 
@@ -62,7 +62,6 @@ class TypedOrderedDict(TypedCollection):
 
         Returns none.
         '''
-        self._on_removal(self._collection[i])
         del(self._collection[i])
 
     def __getitem__(self, i):
@@ -89,18 +88,6 @@ class TypedOrderedDict(TypedCollection):
         '''
         expr = type(self)(expr)
         return self._collection.__gt__(expr._collection)
-
-    def __hash__(self):
-        r'''Hashes typed ordered dictionary.
-
-        Returns integer.
-        '''
-        return hash((
-            type(self), 
-            self._collection,
-            self.item_class,
-            self.name,
-            ))
 
     def __le__(self, expr):
         r'''Is true when typed ordered dictionary is less than or equal 
@@ -143,7 +130,6 @@ class TypedOrderedDict(TypedCollection):
         new_item = self._item_callable(expr)
         self._collection[i] = new_item
 
-
     ### PUBLIC METHODS ###
 
     def clear(self):
@@ -166,18 +152,88 @@ class TypedOrderedDict(TypedCollection):
             )
 
     def get(self, i, default=None):
-        r'''Alias OrderedDict.get().
+        r'''Aliases OrderedDict.get().
 
         Returns item or raises key error.
         '''
         return self._collection.get(i, default)
 
+    def has_key(self, key):
+        r'''Aliases OrderdDict.has_key().
+
+        Returns boolean.
+        '''
+        return self._collection.has_key(key)
+
     def items(self):
-        r'''Alias OrderedDict.items().
+        r'''Aliases OrderedDict.items().
 
         Returns list.
         '''
         return self._collection.items()
+
+    def iteritems(self):
+        r'''Aliases OrderedDict.iteritems().
+
+        Returns generator.
+        '''
+        return self._collection.iteritems()
+
+    def iterkeys(self):
+        r'''Aliases OrderedDict.iterkeys().
+
+        Returns generator.
+        '''
+        return self._collection.iterkeys()
+
+    def itervalues(self):
+        r'''Aliases OrderedDict.itervalues().
+
+        Returns generator.
+        '''
+        return self._collection.itervalues()
+
+    def keys(self):
+        r'''Aliases OrderedDict.keys().
+
+        Returns list.
+        '''
+        return self._collection.keys()
+
+    def pop(self, key, default=None):
+        r'''Aliases OrderedDict.pop().
+
+        Returns items.
+        '''
+        return self._collection.pop(key, default)
+
+    def popitem(self):
+        r'''Aliases OrderedDict.popitem().
+
+        Returns generator.
+        '''
+        return self._collection.popitem()
+
+    def setdefault(self, key, default=None):
+        r'''Aliases OrderedDict.setdefault().
+
+        Returns items.
+        '''
+        return self._collection.setdefault(key, default)
+
+    def update(self, *args, **kwargs):
+        r'''Aliases OrderedDict.update().
+
+        Returns none.
+        '''
+        return self._collection.update(*args, **kwargs)
+
+    def values(self):
+        r'''Aliases OrderedDict.values().
+
+        Returns list.
+        '''
+        return self._collection.values()
 
 
 collections.MutableMapping.register(TypedOrderedDict)

@@ -227,3 +227,110 @@ def test_datastructuretools_TypedOrderedDict_12():
     assert dictionary.get('soprano') == Clef('treble')
     assert dictionary.get('foo') is None
     assert dictionary.get('foo', 'bar') == 'bar'
+
+
+def test_datastructuretools_TypedOrderedDict_13():
+    r'''Implements has_key().
+    '''
+    
+    dictionary = datastructuretools.TypedOrderedDict(item_class=Clef)
+    dictionary['soprano'] = 'treble'
+    dictionary['alto'] = 'alto'
+    dictionary['tenor'] = 'tenor'
+    dictionary['bass'] = 'bass'
+
+    assert dictionary.has_key('soprano')
+    assert not dictionary.has_key('treble')
+    assert not dictionary.has_key('foo')
+
+
+def test_datastructuretools_TypedOrderedDict_14():
+    r'''Implements items().
+    '''
+    
+    dictionary = datastructuretools.TypedOrderedDict(item_class=Clef)
+    dictionary['soprano'] = 'treble'
+    dictionary['alto'] = 'alto'
+    dictionary['tenor'] = 'tenor'
+    dictionary['bass'] = 'bass'
+
+    assert dictionary.items() == [
+        ('soprano', Clef('treble')), 
+        ('alto', Clef('alto')),
+        ('tenor', Clef('tenor')),
+        ('bass', Clef('bass')),
+        ]
+
+
+def test_datastructuretools_TypedOrderedDict_15():
+    r'''Implements keys().
+    '''
+    
+    dictionary = datastructuretools.TypedOrderedDict(item_class=Clef)
+    dictionary['soprano'] = 'treble'
+    dictionary['alto'] = 'alto'
+    dictionary['tenor'] = 'tenor'
+    dictionary['bass'] = 'bass'
+
+    assert dictionary.keys() == ['soprano', 'alto', 'tenor', 'bass']
+
+
+def test_datastructuretools_TypedOrderedDict_16():
+    r'''Implements pop().
+    '''
+    
+    dictionary_1 = datastructuretools.TypedOrderedDict(item_class=Clef)
+    dictionary_1['soprano'] = 'treble'
+    dictionary_1['alto'] = 'alto'
+    dictionary_1['tenor'] = 'tenor'
+    dictionary_1['bass'] = 'bass'
+
+    dictionary_2 = datastructuretools.TypedOrderedDict(item_class=Clef)
+    dictionary_2['alto'] = 'alto'
+    dictionary_2['tenor'] = 'tenor'
+    dictionary_2['bass'] = 'bass'
+
+    assert dictionary_1.pop('soprano') == Clef('treble')
+    assert dictionary_1 == dictionary_2
+
+
+#def test_datastructuretools_TypedOrderedDict_17():
+#    r'''Implements popitem().
+#    '''
+#    
+#    dictionary_1 = datastructuretools.TypedOrderedDict(item_class=Clef)
+#    dictionary_1['soprano'] = 'treble'
+#    dictionary_1['alto'] = 'alto'
+#    dictionary_1['tenor'] = 'tenor'
+#    dictionary_1['bass'] = 'bass'
+#
+#    dictionary_2 = datastructuretools.TypedOrderedDict(item_class=Clef)
+#    dictionary_2['alto'] = 'alto'
+#    dictionary_2['tenor'] = 'tenor'
+#    dictionary_2['bass'] = 'bass'
+#
+#    item = dictionary_1.popitem('soprano')
+#    assert item == ('soprano', Clef('treble'))
+#    assert dictionary_1 == dictionary_2
+
+
+def test_datastructuretools_TypedOrderedDict_18():
+    r'''Implements update().
+    '''
+    
+    dictionary_1 = datastructuretools.TypedOrderedDict(item_class=Clef)
+    dictionary_1['soprano'] = 'treble'
+    dictionary_1['alto'] = 'alto'
+
+    dictionary_2 = datastructuretools.TypedOrderedDict(item_class=Clef)
+    dictionary_2['tenor'] = 'tenor'
+    dictionary_2['bass'] = 'bass'
+
+    dictionary_3 = datastructuretools.TypedOrderedDict(item_class=Clef)
+    dictionary_3['soprano'] = 'treble'
+    dictionary_3['alto'] = 'alto'
+    dictionary_3['tenor'] = 'tenor'
+    dictionary_3['bass'] = 'bass'
+
+    dictionary_1.update(dictionary_2)
+    assert dictionary_1 == dictionary_3
