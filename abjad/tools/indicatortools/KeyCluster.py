@@ -55,7 +55,7 @@ class KeyCluster(AbjadObject):
         assert include_black_keys or include_white_keys
         self._include_black_keys = bool(include_black_keys)
         self._include_white_keys = bool(include_white_keys)
-        assert markup_direction in (None, Up, Down)
+        assert markup_direction in (None, Up, Center, Down)
         self._markup_direction = markup_direction
         self._suppress_markup = bool(suppress_markup)
 
