@@ -64,7 +64,6 @@ class TypedFrozenset(TypedCollection):
             type(self), 
             self._collection,
             self.item_class,
-            self.name,
             ))
 
     def __le__(self, expr):

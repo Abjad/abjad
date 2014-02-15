@@ -66,6 +66,7 @@ class VerticalMoment(SimultaneousSelection):
         if music is None:
             self._offset = offset
             self._components = ()
+            self._governors = ()
             return
         governors, components = self._from_expr_and_offset(music, offset)
         offset = durationtools.Offset(offset)
