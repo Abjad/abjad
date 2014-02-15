@@ -71,7 +71,8 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         time_signature=None,
         use_full_measure=None
         ):
-        QSchemaItem.__init__(self,
+        QSchemaItem.__init__(
+            self,
             search_tree=search_tree,
             tempo=tempo,
             )

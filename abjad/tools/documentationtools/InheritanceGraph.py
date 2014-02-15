@@ -105,7 +105,8 @@ class InheritanceGraph(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self,
+    def __init__(
+        self,
         addresses=('abjad',),
         lineage_addresses=None,
         lineage_prune_distance=None,

@@ -24,7 +24,8 @@ class QGridLeaf(RhythmTreeNode):
 
     ### INITIALIZER ###
 
-    def __init__(self,
+    def __init__(
+        self,
         preprolated_duration=1, q_event_proxies=None, is_divisible=True):
         from abjad.tools import quantizationtools
         RhythmTreeNode.__init__(self, preprolated_duration)

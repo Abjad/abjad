@@ -57,7 +57,8 @@ class BeatwiseQSchemaItem(QSchemaItem):
         tempo=None,
         ):
         from abjad.tools import quantizationtools
-        QSchemaItem.__init__(self,
+        QSchemaItem.__init__(
+            self,
             search_tree=search_tree,
             tempo=tempo,
             )

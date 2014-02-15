@@ -17,7 +17,8 @@ class GraphvizSubgraph(GraphvizGraph):
         name=None,
         node_attributes=None
         ):
-        GraphvizGraph.__init__(self,
+        GraphvizGraph.__init__(
+            self,
             attributes=attributes,
             children=children,
             edge_attributes=edge_attributes,

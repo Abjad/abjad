@@ -22,7 +22,8 @@ class StorageFormatSpecification(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self,
+    def __init__(
+        self,
         instance=None,
         body_text=None,
         is_bracketed=False,

@@ -21,7 +21,8 @@ class ModuleCrawler(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self,
+    def __init__(
+        self,
         code_root=None,
         ignored_directory_names=(
             '__pycache__',

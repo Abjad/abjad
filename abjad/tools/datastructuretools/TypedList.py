@@ -85,7 +85,8 @@ class TypedList(TypedCollection):
         keep_sorted=None,
         custom_identifier=None,
         ):
-        TypedCollection.__init__(self,
+        TypedCollection.__init__(
+            self,
             item_class=item_class,
             custom_identifier=custom_identifier,
             tokens=tokens,

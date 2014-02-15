@@ -22,7 +22,8 @@ class QSchemaItem(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self,
+    def __init__(
+        self,
         search_tree=None,
         tempo=None,
         ):
