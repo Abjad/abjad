@@ -81,34 +81,49 @@ def test_datastructuretools_TypedOrderedDict_05():
     r'''Implements __format__().
     '''
     
-    dictionary = datastructuretools.TypedOrderedDict(item_class=Clef)
-    dictionary['soprano'] = 'treble'
-    dictionary['alto'] = 'alto'
-    dictionary['tenor'] = 'tenor'
-    dictionary['bass'] = 'bass'
+    dictionary_1 = datastructuretools.TypedOrderedDict(item_class=Clef)
+    dictionary_1['soprano'] = 'treble'
+    dictionary_1['alto'] = 'alto'
+    dictionary_1['tenor'] = 'tenor'
+    dictionary_1['bass'] = 'bass'
 
     assert systemtools.TestManager.compare(
-        format(dictionary),
+        format(dictionary_1),
         r'''
         datastructuretools.TypedOrderedDict(
-            {
-                'soprano': indicatortools.Clef(
-                    name='treble',
+            [
+                (
+                    'soprano',
+                    indicatortools.Clef(
+                        name='treble',
+                        ),
                     ),
-                'alto': indicatortools.Clef(
-                    name='alto',
+                (
+                    'alto',
+                    indicatortools.Clef(
+                        name='alto',
+                        ),
                     ),
-                'tenor': indicatortools.Clef(
-                    name='tenor',
+                (
+                    'tenor',
+                    indicatortools.Clef(
+                        name='tenor',
+                        ),
                     ),
-                'bass': indicatortools.Clef(
-                    name='bass',
+                (
+                    'bass',
+                    indicatortools.Clef(
+                        name='bass',
+                        ),
                     ),
-                },
+                ],
             item_class=indicatortools.Clef,
             )
         '''
         )
+
+    dictionary_2 = eval(format(dictionary_1))
+    assert dictionary_1 == dictionary_2
 
 
 def test_datastructuretools_TypedOrderedDict_06():

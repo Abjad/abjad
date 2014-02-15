@@ -30,20 +30,32 @@ class ContextMap(AbjadObject):
                 cello_count=3,
                 contrabass_count=2,
                 ),
-            settings={
-                'Contrabass 1 Voice': {
-                    'color': 'yellow',
-                    },
-                'Contrabass Staff Group': {
-                    'color': 'green',
-                    },
-                'String Orchestra Score': {
-                    'color': 'red',
-                    },
-                'Violin Staff Group': {
-                    'color': 'blue',
-                    },
-                },
+            settings=[
+                (
+                    'Contrabass 1 Voice',
+                    [
+                        ('color', 'yellow'),
+                        ],
+                    ),
+                (
+                    'Contrabass Staff Group',
+                    [
+                        ('color', 'green'),
+                        ],
+                    ),
+                (
+                    'String Orchestra Score',
+                    [
+                        ('color', 'red'),
+                        ],
+                    ),
+                (
+                    'Violin Staff Group',
+                    [
+                        ('color', 'blue'),
+                        ],
+                    ),
+                ],
             )
 
     ::
@@ -129,20 +141,32 @@ class ContextMap(AbjadObject):
                     cello_count=3,
                     contrabass_count=2,
                     ),
-                settings={
-                    'Contrabass 1 Voice': {
-                        'color': 'yellow',
-                        },
-                    'Contrabass Staff Group': {
-                        'color': 'green',
-                        },
-                    'String Orchestra Score': {
-                        'color': 'red',
-                        },
-                    'Violin Staff Group': {
-                        'color': 'blue',
-                        },
-                    },
+                settings=[
+                    (
+                        'Contrabass 1 Voice',
+                        [
+                            ('color', 'yellow'),
+                            ],
+                        ),
+                    (
+                        'Contrabass Staff Group',
+                        [
+                            ('color', 'green'),
+                            ],
+                        ),
+                    (
+                        'String Orchestra Score',
+                        [
+                            ('color', 'red'),
+                            ],
+                        ),
+                    (
+                        'Violin Staff Group',
+                        [
+                            ('color', 'blue'),
+                            ],
+                        ),
+                    ],
                 )
 
         '''
@@ -172,14 +196,20 @@ class ContextMap(AbjadObject):
             >>> print format(context_map_one)
             datastructuretools.ContextMap(
                 score_template=templatetools.StringQuartetScoreTemplate(),
-                settings={
-                    'Cello Voice': {
-                        'one': 1,
-                        },
-                    'Viola Voice': {
-                        'foo': 'bar',
-                        },
-                    },
+                settings=[
+                    (
+                        'Cello Voice',
+                        [
+                            ('one', 1),
+                            ],
+                        ),
+                    (
+                        'Viola Voice',
+                        [
+                            ('foo', 'bar'),
+                            ],
+                        ),
+                    ],
                 )
 
         ::
@@ -187,14 +217,23 @@ class ContextMap(AbjadObject):
             >>> print format(context_map_two)
             datastructuretools.ContextMap(
                 score_template=templatetools.StringQuartetScoreTemplate(),
-                settings={
-                    'Cello Voice': {
-                        'one': 'a',
-                        },
-                    'String Quartet Score': {
-                        'baz': (1, 2, 3),
-                        },
-                    },
+                settings=[
+                    (
+                        'Cello Voice',
+                        [
+                            ('one', 'a'),
+                            ],
+                        ),
+                    (
+                        'String Quartet Score',
+                        [
+                            (
+                                'baz',
+                                (1, 2, 3),
+                                ),
+                            ],
+                        ),
+                    ],
                 )
 
         ::
@@ -203,18 +242,31 @@ class ContextMap(AbjadObject):
             >>> print format(context_map_one)
             datastructuretools.ContextMap(
                 score_template=templatetools.StringQuartetScoreTemplate(),
-                settings={
-                    'Cello Voice': {
-                        'one': 'a',
-                        },
-                    'String Quartet Score': {
-                        'baz': (1, 2, 3),
-                        },
-                    'Viola Voice': {
-                        'foo': 'bar',
-                        },
-                    },
+                settings=[
+                    (
+                        'Cello Voice',
+                        [
+                            ('one', 'a'),
+                            ],
+                        ),
+                    (
+                        'String Quartet Score',
+                        [
+                            (
+                                'baz',
+                                (1, 2, 3),
+                                ),
+                            ],
+                        ),
+                    (
+                        'Viola Voice',
+                        [
+                            ('foo', 'bar'),
+                            ],
+                        ),
+                    ],
                 )
+
 
         Operates in place and returns none.
         '''

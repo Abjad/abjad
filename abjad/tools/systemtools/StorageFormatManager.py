@@ -68,8 +68,8 @@ class StorageFormatManager(object):
             result.extend(pieces)
         elif isinstance(value, (list, tuple)):
             # just return the repr, if all contents are builtin types
-            if all(isinstance(x, (bool, int, float, str, type(None)))
-                for x in value):
+            prototype = (bool, int, float, str, type(None))
+            if all(isinstance(x, prototype) for x in value):
                 piece = repr(value)
                 if len(piece) < 50:
                     return [repr(value)]
@@ -93,6 +93,20 @@ class StorageFormatManager(object):
                 else:
                     result[-1] = result[-1].rstrip()
             result.append('{}{}'.format(prefix, braces[1]))
+        elif isinstance(value, collections.OrderedDict):
+            result.append('[{}'.format(infix))
+            for item in value.items():
+                item_pieces = StorageFormatManager.format_one_value(
+                    item,
+                    as_storage_format=as_storage_format,
+                    is_indented=is_indented,
+                    )
+                for x in item_pieces:
+                    result.append('{}{}'.format(prefix, x))
+                result[-1] = '{}{}'.format(result[-1], suffix)
+            if not is_indented:
+                result[-1] = result[-1].rstrip(suffix) + infix
+            result.append('{}]'.format(prefix))
         elif isinstance(value, dict):
             result.append('{{{}'.format(infix))
             items = value.items()
