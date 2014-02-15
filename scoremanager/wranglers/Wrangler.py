@@ -369,6 +369,10 @@ class Wrangler(ScoreManagerObject):
         manager = self._get_current_package_manager()
         manager.interactively_remove_initializer_module()
 
+    def interactively_remove_metadata_module(self):
+        manager = self._get_current_package_manager()
+        manager.interactively_remove_metadata_module()
+
     def interactively_remove_metadatum(self):
         manager = self._get_current_package_manager()
         manager.interactively_remove_metadatum()
@@ -376,6 +380,10 @@ class Wrangler(ScoreManagerObject):
     def interactively_remove_views_module(self):
         manager = self._get_current_package_manager()
         manager.interactively_remove_views_module()
+
+    def interactively_rewrite_metadata_module(self):
+        manager = self._get_current_package_manager()
+        manager.interactively_rewrite_metadata_module()
 
     def interactively_select_asset_filesystem_path(
         self, 
@@ -482,10 +490,6 @@ class Wrangler(ScoreManagerObject):
     def interactively_write_boilerplate_initializer_module(self):
         manager = self._get_current_package_manager()
         manager.interactively_write_boilerplate_initializer_module()
-
-    def interactively_rewrite_metadata_module(self):
-        manager = self._get_current_package_manager()
-        manager.interactively_rewrite_metadata_module()
 
     def interactively_write_stub_initializer_module(self):
         manager = self._get_current_package_manager()
@@ -675,8 +679,9 @@ class Wrangler(ScoreManagerObject):
         'mda': interactively_add_metadatum,
         'mdg': interactively_get_metadatum,
         'mdrm': interactively_remove_metadatum,
-        'MDv': interactively_view_metadata_module,
+        'MDrm': interactively_remove_metadata_module,
         'MDrw': interactively_rewrite_metadata_module,
+        'MDv': interactively_view_metadata_module,
         'ren': interactively_rename_asset,
         'rm': interactively_remove_assets,
         'vwl': interactively_list_views,

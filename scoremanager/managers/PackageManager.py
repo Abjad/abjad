@@ -237,12 +237,12 @@ class PackageManager(DirectoryManager):
                 )
 
     def interactively_remove_metadata_module(self, is_interactive=True):
-        if os.path.isfile(self.metadata_module_file_path):
+        if os.path.isfile(self.metadata_module_path):
             if is_interactive:
                 message = 'remove metadata module?'
                 if not self.session.io_manager.confirm(message):
                     return
-            os.remove(self.metadata_module_file_path)
+            os.remove(self.metadata_module_path)
             line = 'metadata module removed.'
             self.session.io_manager.proceed(
                 line, 
