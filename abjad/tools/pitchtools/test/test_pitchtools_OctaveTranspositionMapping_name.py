@@ -2,10 +2,11 @@
 from abjad import *
 
 
+# TODO: remove test file
 def test_pitchtools_OctaveTranspositionMapping_name_01():
 
     mapping = pitchtools.OctaveTranspositionMapping()
-    assert mapping.custom_identifier is None
+#    assert mapping.custom_identifier is None
 
-    mapping.custom_identifier = 'lower register mapping #2'
-    assert mapping.custom_identifier == 'lower register mapping #2'
+#    mapping.custom_identifier = 'lower register mapping #2'
+#    assert mapping.custom_identifier == 'lower register mapping #2'

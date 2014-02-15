@@ -103,7 +103,7 @@ class PitchClassSet(Set):
         cls, 
         selection, 
         item_class=None, 
-        custom_identifier=None,
+#        custom_identifier=None,
         ):
         r'''Makes pitch-class set from `selection`.
 
@@ -122,7 +122,7 @@ class PitchClassSet(Set):
         return cls(
             tokens=pitch_segment,
             item_class=item_class,
-            custom_identifier=custom_identifier,
+#            custom_identifier=custom_identifier,
             )
 
     def invert(self):

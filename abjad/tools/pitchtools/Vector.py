@@ -18,7 +18,8 @@ class Vector(TypedCounter):
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, item_class=None, custom_identifier=None):
+    #def __init__(self, tokens=None, item_class=None, custom_identifier=None):
+    def __init__(self, tokens=None, item_class=None):
         from abjad.tools import datastructuretools
         from abjad.tools import pitchtools
         if isinstance(tokens, str):
@@ -53,7 +54,7 @@ class Vector(TypedCounter):
             self,
             tokens=tokens,
             item_class=item_class,
-            custom_identifier=custom_identifier,
+#            custom_identifier=custom_identifier,
             )
 
     ### SPECIAL METHODS ###
@@ -102,7 +103,7 @@ class Vector(TypedCounter):
         cls, 
         selection, 
         item_class=None, 
-        custom_identifier=None,
+#        custom_identifier=None,
         ):
         r'''Makes vector from `selection`.
 

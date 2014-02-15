@@ -11,7 +11,7 @@ def test_MarkupInventoryMaterialPackageManager_01():
     try:
         score_manager._run(pending_user_input=
             "materials maker markup testmarkupinventory "
-            "omi name test~markup~inventory "
+            "omi "
             "add arg r'\\italic~{~serenamente~}' name serenamente done "
             "add arg r'\\italic~{~presto~}' name presto done done default q"
             )
@@ -34,7 +34,7 @@ def test_MarkupInventoryMaterialPackageManager_01():
                 markup_name='presto'
                 )
             ],
-            custom_identifier='test markup inventory'
+#            custom_identifier='test markup inventory'
             )
         assert mpp.output_material == inventory
     finally:

@@ -28,7 +28,7 @@ def test_pitchtools_OctaveTranspositionMapping___init___03():
 
     mapping_1 = pitchtools.OctaveTranspositionMapping(
         [('[A0, C4)', 15), ('[C4, C8)', 27)],
-        custom_identifier='foo')
+        )
     mapping_2 = pitchtools.OctaveTranspositionMapping(mapping_1)
 
     assert isinstance(mapping_1, pitchtools.OctaveTranspositionMapping)

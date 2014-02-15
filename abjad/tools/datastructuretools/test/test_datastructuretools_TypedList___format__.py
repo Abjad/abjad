@@ -22,30 +22,6 @@ def test_datastructuretools_TypedList___format___01():
         )
 
 
-def test_datastructuretools_TypedList___format___02():
-    r'''Empty inventory. With keywords.
-    '''
-
-    inventory = datastructuretools.TypedList(custom_identifier='foo')
-
-    assert systemtools.TestManager.compare(
-        repr(inventory),
-        r'''
-        TypedList([], custom_identifier='foo')
-        ''',
-        )
-
-    assert systemtools.TestManager.compare(
-        format(inventory),
-        r'''
-        datastructuretools.TypedList(
-            [],
-            custom_identifier='foo',
-            )
-        ''',
-        )
-
-
 def test_datastructuretools_TypedList___format___03():
     r'''Populated inventory. Without keywords.
     '''
@@ -106,7 +82,6 @@ def test_datastructuretools_TypedList___format___04():
         'bar',
         pitchtools.PitchRange('[A0, C8]'),
         'blah'],
-        custom_identifier='foo',
         )
 
     assert systemtools.TestManager.compare(
@@ -141,8 +116,7 @@ def test_datastructuretools_TypedList___format___04():
                     '[A0, C8]'
                     ),
                 'blah',
-                ],
-            custom_identifier='foo',
+                ]
             )
-        ''',
+        '''
         )

@@ -48,13 +48,13 @@ class PitchSegment(Segment):
         self,
         tokens=(-2, -1.5, 6, 7, -1.5, 7),
         item_class=None,
-        custom_identifier=None,
+#        custom_identifier=None,
         ):
         Segment.__init__(
             self,
             tokens=tokens,
             item_class=item_class,
-            custom_identifier=custom_identifier,
+#            custom_identifier=custom_identifier,
             )
 
     ### SPECIAL METHODS ###
@@ -116,7 +116,7 @@ class PitchSegment(Segment):
         cls, 
         selection, 
         item_class=None, 
-        custom_identifier=None,
+#        custom_identifier=None,
         ):
         r'''Makes pitch segment from `selection`.
 
@@ -151,7 +151,7 @@ class PitchSegment(Segment):
         return cls(
             tokens=named_pitches,
             item_class=item_class,
-            custom_identifier=custom_identifier,
+#            custom_identifier=custom_identifier,
             )
 
     def invert(self, axis):

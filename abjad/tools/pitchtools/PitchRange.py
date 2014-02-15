@@ -514,7 +514,7 @@ class PitchRange(AbjadObject):
         result = ''.join(result)
         return result
 
-    # TODO: change to custom_identifier
+    # TODO: change to custom_identifier or remove altogether
     @property
     def pitch_range_name(self):
         r'''Name of pitch range.
@@ -528,7 +528,7 @@ class PitchRange(AbjadObject):
         '''
         return self._pitch_range_name
             
-    # TODO: change to custom_identifier_markup
+    # TODO: change to custom_identifier_markup or remove altogether
     @property
     def pitch_range_name_markup(self):
         r'''Pitch range name markup.

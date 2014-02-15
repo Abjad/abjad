@@ -9,4 +9,5 @@ class ObjectInventoryEditor(ListEditor):
     @property
     def target_name(self):
         if self.target is not None:
-            return self.target.custom_identifier
+#            return self.target.custom_identifier
+            return 'flamingo'

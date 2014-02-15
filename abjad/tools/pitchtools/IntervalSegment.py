@@ -61,7 +61,7 @@ class IntervalSegment(Segment):
         cls, 
         selection, 
         item_class=None, 
-        custom_identifier=None,
+#        custom_identifier=None,
         ):
         r'''Makes interval segment from component `selection`.
 
@@ -80,7 +80,7 @@ class IntervalSegment(Segment):
         return cls(
             tokens=intervals,
             item_class=item_class,
-            custom_identifier=custom_identifier,
+#            custom_identifier=custom_identifier,
             )
 
     def rotate(self, n):

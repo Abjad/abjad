@@ -3,13 +3,14 @@ import pytest
 from abjad import *
 
 
+# TODO: remove test file
 def test_pitchtools_PitchRangeInventory_name_01():
 
     inventory = pitchtools.PitchRangeInventory(['[A0, C8]'])
-    assert inventory.custom_identifier is None
+#    assert inventory.custom_identifier is None
 
-    inventory.custom_identifier = 'blue inventory'
-    assert inventory.custom_identifier == 'blue inventory'
+#    inventory.custom_identifier = 'blue inventory'
+#    assert inventory.custom_identifier == 'blue inventory'
 
 
 def test_pitchtools_PitchRangeInventory_name_02():

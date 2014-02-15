@@ -23,7 +23,8 @@ def test_MarkupInventoryEditor_run_01():
 def test_MarkupInventoryEditor_run_02():
 
     editor = scoremanager.editors.MarkupInventoryEditor()
-    string = "name test~inventory add"
+#    string = "name test~inventory add"
+    string = "add"
     string += " arg r'\\italic~{~serenamente~possibile~}'"
     string += " direction up name serenamente done"
     string += " add arg r'\\italic~{~presto~}' name presto done done"
@@ -40,7 +41,7 @@ def test_MarkupInventoryEditor_run_02():
             markup_name='presto'
             )
         ],
-        custom_identifier='test inventory'
+#        custom_identifier='test inventory'
         )
 
     assert editor.target == inventory

@@ -13,7 +13,8 @@ class IntervalSet(Set):
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, item_class=None, custom_identifier=None):
+    #def __init__(self, tokens=None, item_class=None, custom_identifier=None):
+    def __init__(self, tokens=None, item_class=None):
         from abjad.tools import pitchtools
         prototype = (
             pitchtools.PitchClassSegment,
@@ -30,7 +31,7 @@ class IntervalSet(Set):
             self,
             tokens=tokens,
             item_class=item_class,
-            custom_identifier=custom_identifier,
+#            custom_identifier=custom_identifier,
             )
 
     ### PRIVATE PROPERTIES ###
@@ -53,7 +54,8 @@ class IntervalSet(Set):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(cls, selection, item_class=None, custom_identifier=None):
+    #def from_selection(cls, selection, item_class=None, custom_identifier=None):
+    def from_selection(cls, selection, item_class=None):
         r'''Initialize interval set from component selection:
 
         ::
@@ -94,5 +96,5 @@ class IntervalSet(Set):
         return cls(
             tokens=intervals,
             item_class=item_class,
-            custom_identifier=custom_identifier,
+#            custom_identifier=custom_identifier,
             )
