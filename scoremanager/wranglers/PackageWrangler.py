@@ -96,12 +96,7 @@ class PackageWrangler(Wrangler):
                 if view_name:
                     view_inventory = self._read_view_inventory_from_disk()
                     if view_inventory:
-                        for view in view_inventory:
-                            if view.custom_identifier == view_name:
-                                correct_view = view
-                                break
-                        else:
-                            correct_view = None
+                        correct_view = view_inventory.get(view_name)
                         if correct_view:
                             entries = \
                                 self._sort_asset_menu_entries_by_view(
