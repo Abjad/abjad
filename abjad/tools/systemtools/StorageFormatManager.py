@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
+import collections
 import types
 
 
@@ -94,7 +95,10 @@ class StorageFormatManager(object):
             result.append('{}{}'.format(prefix, braces[1]))
         elif isinstance(value, dict):
             result.append('{{{}'.format(infix))
-            for key, value in sorted(value.items()):
+            items = value.items()
+            if not isinstance(value, collections.OrderedDict):
+                items = sorted(items)
+            for key, value in items:
                 key_pieces = StorageFormatManager.format_one_value(
                     key,
                     as_storage_format=as_storage_format,

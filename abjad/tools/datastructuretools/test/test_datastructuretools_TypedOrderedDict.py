@@ -92,22 +92,22 @@ def test_datastructuretools_TypedOrderedDict_05():
         r'''
         datastructuretools.TypedOrderedDict(
             {
-                'alto': indicatortools.Clef(
-                    name='alto',
-                    ),
-                'bass': indicatortools.Clef(
-                    name='bass',
-                    ),
                 'soprano': indicatortools.Clef(
                     name='treble',
+                    ),
+                'alto': indicatortools.Clef(
+                    name='alto',
                     ),
                 'tenor': indicatortools.Clef(
                     name='tenor',
                     ),
+                'bass': indicatortools.Clef(
+                    name='bass',
+                    ),
                 },
             item_class=indicatortools.Clef,
             )
-                '''
+        '''
         )
 
 
