@@ -75,9 +75,10 @@ class MaterialPackageManager(PackageManager):
         superclass = super(MaterialPackageManager, self)
         where = self._where
         main_menu, hidden_section = superclass._make_main_menu(where=where)
+        has_initializer = os.path.isfile(self.initializer_file_path)
         self.session.io_manager._make_initializer_menu_section(
             main_menu, 
-            has_initializer=self.has_initializer,
+            has_initializer=has_initializer,
             )
         self.session.io_manager._make_metadata_menu_section(main_menu)
         if self.should_have_user_input_module:
@@ -159,9 +160,12 @@ class MaterialPackageManager(PackageManager):
             hidden_section.append(('output pdf - delete', 'pdfd'))
             command_section.append(('output pdf - view', 'pdfv'))
 
-    def _make_material_definition_menu_section(self,
-        main_menu, hidden_section):
-        if not self.has_initializer:
+    def _make_material_definition_menu_section(
+        self,
+        main_menu, 
+        hidden_section,
+        ):
+        if not os.path.isfile(self.initializer_file_path):
             return
         if self.has_material_definition_module:
             command_section = main_menu.make_command_section()
@@ -189,7 +193,7 @@ class MaterialPackageManager(PackageManager):
         main_menu,
         hidden_section,
         ):
-        if not self.has_initializer:
+        if not os.path.isfile(self.initializer_file_path):
             return
         has_output_material_section = False
         if self.has_material_definition_module or \
@@ -259,12 +263,6 @@ class MaterialPackageManager(PackageManager):
     def has_illustration_pdf(self):
         if self.should_have_illustration_pdf:
             return os.path.exists(self.illustration_pdf_fil_path)
-        return False
-
-    @property
-    def has_initializer(self):
-        if self.should_have_initializer:
-            return os.path.exists(self.initializer_file_path)
         return False
 
     @property

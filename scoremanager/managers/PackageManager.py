@@ -131,11 +131,6 @@ class PackageManager(DirectoryManager):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def has_initializer(self):
-        if self.initializer_file_path is not None:
-            return os.path.isfile(self.initializer_file_path)
-
-    @property
     def has_metadata_module(self):
         return os.path.isfile(self.metadata_module_path)
 

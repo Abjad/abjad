@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import os
 import pytest
 from abjad import *
 import scoremanager
@@ -23,7 +24,7 @@ def test_MaterialPackageWrangler_make_makermade_material_package_01():
             '__metadata__.py',
             'user_input.py',
             ]
-        assert mpp.has_initializer
+        assert os.path.isfile(mpp.initializer_file_path)
         assert not mpp.has_output_material_module
         assert mpp.has_user_input_module
         assert mpp.output_material is None
