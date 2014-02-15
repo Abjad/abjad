@@ -23,8 +23,8 @@ class TypedFrozenset(TypedCollection):
             tokens=tokens,
             )
         tokens = tokens or []
-        self._collection = frozenset(self._item_callable(token) 
-            for token in tokens)
+        tokens = [self._item_callable(_) for _ in tokens]
+        self._collection = frozenset(tokens)
 
     ### SPECIAL METHODS ###
 
@@ -85,7 +85,8 @@ class TypedFrozenset(TypedCollection):
         return self._collection.__lt__(expr._collection)
 
     def __ne__(self, expr):
-        r'''Is true when typed frozen set is not equal to `expr`. Otherwise false.
+        r'''Is true when typed frozen set is not equal to `expr`. Otherwise 
+        false.
 
         Returns boolean.
         '''
@@ -161,7 +162,8 @@ class TypedFrozenset(TypedCollection):
         return self._collection.isdisjoint(expr._collection)
 
     def issubset(self, expr):
-        r'''Is true when typed frozen set is a subset of `expr`. Otherwise false.
+        r'''Is true when typed frozen set is a subset of `expr`. Otherwise 
+        false.
 
         Returns boolean.
         '''

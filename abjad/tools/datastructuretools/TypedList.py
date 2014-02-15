@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
 class TypedList(TypedCollection):
-    '''A typed list.
+    r'''A typed list.
     
     Ordered collection of objects, which optionally coerces its contents
     to the same type:
@@ -105,18 +105,22 @@ class TypedList(TypedCollection):
     ### SPECIAL METHODS ###
 
     def __delitem__(self, i):
-        '''Aliases list.__delitem__().
+        r'''Aliases list.__delitem__().
+
+        Returns none.
         '''
         self._on_removal(self._collection[i])
         del(self._collection[i])
 
     def __getitem__(self, i):
-        '''Aliases list.__getitem__().
+        r'''Aliases list.__getitem__().
+
+        Returns item.
         '''
         return self._collection[i]
 
     def __iadd__(self, expr):
-        '''Changes tokens in `expr` to items and extends.
+        r'''Changes tokens in `expr` to items and extends.
 
         ::
 
@@ -155,12 +159,14 @@ class TypedList(TypedCollection):
         return self
 
     def __reversed__(self):
-        '''Aliases list.__reversed__().
+        r'''Aliases list.__reversed__().
+
+        Returns generator.
         '''
         return self._collection.__reversed__()
 
     def __setitem__(self, i, expr):
-        '''Changes tokens in `expr` to items and sets.
+        r'''Changes tokens in `expr` to items and sets.
 
         ::
 
@@ -194,6 +200,7 @@ class TypedList(TypedCollection):
                 item_class=pitchtools.NamedPitch,
                 )
 
+        Returns none.
         '''
         if isinstance(i, int):
             new_item = self._item_callable(expr)
