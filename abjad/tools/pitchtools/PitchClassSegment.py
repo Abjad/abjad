@@ -40,13 +40,11 @@ class PitchClassSegment(Segment):
         self,
         tokens=(-2, -1.5, 6, 7, -1.5, 7),
         item_class=None,
-#        custom_identifier=None,
         ):
         Segment.__init__(
             self,
             tokens=tokens,
             item_class=item_class,
-#            custom_identifier=custom_identifier,
             )
 
     ### PRIVATE PROPERTIES ###
@@ -102,7 +100,6 @@ class PitchClassSegment(Segment):
         return new(self, tokens=numbers)
 
     @classmethod
-    #def from_selection(cls, selection, item_class=None, custom_identifier=None):
     def from_selection(cls, selection, item_class=None):
         r'''Initialize pitch-class segment from component selection:
 
@@ -121,7 +118,6 @@ class PitchClassSegment(Segment):
         return cls(
             tokens=pitch_segment,
             item_class=item_class,
-#            custom_identifier=custom_identifier,
             )
 
     def invert(self):

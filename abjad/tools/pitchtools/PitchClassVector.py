@@ -29,7 +29,6 @@ class PitchClassVector(Vector):
         cls, 
         selection, 
         item_class=None, 
-#        custom_identifier=None,
         ):
         r'''Makes pitch-class vector from `selection`.
 
@@ -40,5 +39,4 @@ class PitchClassVector(Vector):
         return cls(
             pitch_segment,
             item_class=item_class,
-#            custom_identifier=custom_identifier,
             )

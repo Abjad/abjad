@@ -12,5 +12,4 @@ red_directives = markuptools.MarkupInventory([
 		markup_name='serenamente'
 		)
 	],
-	custom_identifier='red directives'
 	)

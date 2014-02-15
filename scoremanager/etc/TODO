@@ -104,47 +104,42 @@
 31. Make material package illustration work again.
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
-32. Make tempo inventory editor (score > materials > tempo inventory) display
-    custom identifier of tempo inventory when custom identifier has been
-    defined; alternatively, remove custom_identifier from TempoInventory
-    entirely; use user-given package name instead.
-
-33. Remove empty ...
+32. Remove empty ...
         .../materialpackagemanagers/user_input.py
     ... module.
 
-34. These four classes can all be collapsed into one:
+33. These four classes can all be collapsed into one:
         wizards.HandlerCreationWizard
         wizards.ArticulationHandlerCreationWizard
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-35. Clean up MaterialPackageManager. It's by far the biggest component and the
+34. Clean up MaterialPackageManager. It's by far the biggest component and the
     most complex.
 
-36. Reformat ScoreManagerConfiguration to better follow the implementation
+35. Reformat ScoreManagerConfiguration to better follow the implementation
     pattern of AbjadConfiguration. Make built_in_editors_directory_path
     and so on into full-fledged public properties with doc strings.
 
-37. Consider having ScoreManagerConfiguration inherit from AbjadConfiguration.
+36. Consider having ScoreManagerConfiguration inherit from AbjadConfiguration.
     This will parallel score manager IOManager inheriting from mainline
     IOManager.
 
-38. See if ...
+37. See if ...
         Red Example Score (2013) - segments - edit forward view
     ... can be changed to ...
         Red Example Score (2013) - segments - views - forward - edit
     ... instead.
     This will involve breadcrumb management.
 
-39. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
+38. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
     within a score. Maybe the commands should be (U), (K), (M), (G), (S), (T)
     and (Y) for clarity.
 
-40. There also needs to be a single command to just view the global stylesheet
+39. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (YV) or equivalent.
 
-41. Find a way to get rid of the ...
+40. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -160,29 +155,24 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-42. Add TypedOrderedDictionary.
-    This will be the data type for the view inventory house in __views__.py.
-    And probably for many more inventories. This will allow the removal
-    of View.custom_identifier.
+41. Eliminate unqualified test files like test_ScorePackageManager.py.
 
-43. Eliminate unqualified test files like test_ScorePackageManager.py.
-
-44. Remove bug that allows for creation of ...
+42. Remove bug that allows for creation of ...
         metadata = collections.OrderedDict([
             ('', ''),
             ])
     ... without allowing for removal.
 
-45. Reimplement repository interface as flat collection of hidden commands.
+43. Reimplement repository interface as flat collection of hidden commands.
     Remove repository menu.
 
-46. Make 'here' work again. Or remove.
+44. Make 'here' work again. Or remove.
 
-47. Find a way to force all view commands to allow edit. For developer
+45. Find a way to force all view commands to allow edit. For developer
     debugging.
 
-48. Add other commands to 'ls'. Commands should include ls variants to show
+46. Add other commands to 'ls'. Commands should include ls variants to show
     time of modification and size. Probably other filesystem commands, too.
 
-49. Replace the self.has_whatever_module properties (or methods)
+47. Replace the self.has_whatever_module properties (or methods)
     with just os.path.isfile(self.whatever_file_path) instead.

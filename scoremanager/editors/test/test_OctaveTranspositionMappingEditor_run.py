@@ -29,21 +29,6 @@ def test_OctaveTranspositionMappingEditor_run_02():
 
     mapping = pitchtools.OctaveTranspositionMapping(
             [('[A0, F#4]', 22), ('(F#4, C8]', 26)],
-#            custom_identifier='piccolo second octave',
             )
 
     assert editor.target == mapping
-
-
-# TODO: remove test
-#def test_OctaveTranspositionMappingEditor_run_03():
-#    r'''Name only.
-#    '''
-#
-#    editor = scoremanager.editors.OctaveTranspositionMappingEditor()
-#    editor._run(pending_user_input='id piccolo~second~octave done')
-#
-#    mapping = pitchtools.OctaveTranspositionMapping(
-#        custom_identifier='piccolo second octave',
-#        )
-#    assert editor.target == mapping

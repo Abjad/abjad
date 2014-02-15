@@ -41,7 +41,6 @@ def test_MarkupInventoryEditor_run_02():
             markup_name='presto'
             )
         ],
-#        custom_identifier='test inventory'
         )
 
     assert editor.target == inventory

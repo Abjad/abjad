@@ -15,11 +15,9 @@ class TypedTuple(TypedCollection):
 
     ### INITIALIZER ###
 
-    #def __init__(self, tokens=None, item_class=None, custom_identifier=None):
     def __init__(self, tokens=None, item_class=None):
         TypedCollection.__init__(self, 
             item_class=item_class, 
-#            custom_identifier=custom_identifier,
             tokens=tokens,
             )
         tokens = tokens or []
@@ -77,7 +75,6 @@ class TypedTuple(TypedCollection):
             type(self), 
             self._collection,
             self.item_class,
-            #self.custom_identifier,
             ))
 
     def __mul__(self, expr):

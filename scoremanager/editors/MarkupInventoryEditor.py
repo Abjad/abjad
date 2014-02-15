@@ -25,7 +25,6 @@ class MarkupInventoryEditor(ObjectInventoryEditor):
     def target_manifest(self):
         return self.TargetManifest(
             markuptools.MarkupInventory,
-#            ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
             target_name_attribute='inventory name',
             )
 

@@ -360,7 +360,7 @@ class IOManager(IOManager):
             )
         return selector
 
-    def make_view(self, tokens, custom_identifier=None):
+    def make_view(self, tokens):
         r'''Makes view.
 
         Returns view.
@@ -368,7 +368,6 @@ class IOManager(IOManager):
         from scoremanager import iotools
         view = iotools.View(
             tokens=tokens,
-            custom_identifier=custom_identifier,
             )
         return view
 

@@ -18,7 +18,6 @@ class Set(TypedFrozenset):
 
     ### INITIALIZER ###
 
-    #def __init__(self, tokens=None, item_class=None, custom_identifier=None):
     def __init__(self, tokens=None, item_class=None):
         if isinstance(tokens, str):
             tokens = tokens.split()
@@ -47,7 +46,6 @@ class Set(TypedFrozenset):
             self,
             tokens=tokens,
             item_class=item_class,
-#            custom_identifier=custom_identifier,
             )
 
     ### SPECIAL METHODS ###
@@ -109,7 +107,6 @@ class Set(TypedFrozenset):
         cls, 
         selection, 
         item_class=None, 
-#        custom_identifier=None,
         ):
         r'''Makes set from `selection`.
 

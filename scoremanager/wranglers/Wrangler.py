@@ -305,7 +305,6 @@ class Wrangler(ScoreManagerObject):
         self.session.io_manager.display('')
         view = self.session.io_manager.make_view(
             tokens, 
-            custom_identifier=view_name,
             )
         self.write_view(view_name, view)
 

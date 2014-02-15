@@ -31,7 +31,6 @@ class TwelveToneRow(PitchClassSegment):
     def __init__(
         self, 
         tokens=(0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8), 
-#        custom_identifier=None,
         ):
         from abjad.tools import pitchtools
         assert tokens is not None
@@ -39,7 +38,6 @@ class TwelveToneRow(PitchClassSegment):
             self,
             tokens=tokens,
             item_class=pitchtools.NumberedPitchClass,
-#            custom_identifier=custom_identifier,
             )
         self._validate_pitch_classes(self)
 
@@ -55,7 +53,6 @@ class TwelveToneRow(PitchClassSegment):
         return PitchClassSegment(
             tokens=tokens,
             item_class=pitchtools.NumberedPitchClass,
-#            custom_identifier=self.custom_identifier,
             )
 
     def __mul__(self, expr):
@@ -96,7 +93,6 @@ class TwelveToneRow(PitchClassSegment):
         cls, 
         selection, 
         item_class=None, 
-#        custom_identifier=None,
         ):
         r'''Makes twelve-tone row from `selection`.
 

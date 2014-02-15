@@ -21,7 +21,6 @@ class Segment(TypedTuple):
         self, 
         tokens=None, 
         item_class=None, 
-#        custom_identifier=None,
         ):
         from abjad.tools import datastructuretools
         from abjad.tools import pitchtools 
@@ -52,7 +51,6 @@ class Segment(TypedTuple):
             self,
             tokens=tokens,
             item_class=item_class,
-#            custom_identifier=custom_identifier,
             )
 
     ### SPECIAL METHODS ###
@@ -108,7 +106,6 @@ class Segment(TypedTuple):
         cls, 
         selection, 
         item_class=None, 
-#        custom_identifier=None,
         ):
         r'''Makes segment from `selection`.
 

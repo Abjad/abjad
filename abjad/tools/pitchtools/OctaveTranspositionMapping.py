@@ -105,7 +105,6 @@ class OctaveTranspositionMapping(TypedList):
 
     @property
     def _one_line_menuing_summary(self):
-#        name = self.custom_identifier or 'mapping'
         name = 'mapping'
         contents = []
         for mapping_component in self:
@@ -124,8 +123,6 @@ class OctaveTranspositionMapping(TypedList):
                 )
             input_argument_tokens.append(token)
         keyword_argument_names = []
-#        if self.custom_identifier is not None:
-#            keyword_argument_names.append('custom_identifier')
         return systemtools.StorageFormatSpecification(
             self,
             is_indented=False,

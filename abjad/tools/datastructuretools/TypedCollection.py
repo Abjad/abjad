@@ -11,20 +11,15 @@ class TypedCollection(AbjadObject):
 
     __slots__ = (
         '_collection',
-        #'_custom_identifier',
         '_item_class',
         )
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    #def __init__(self, tokens=None, item_class=None, custom_identifier=None):
     def __init__(self, tokens=None, item_class=None):
         assert isinstance(item_class, (type(None), type))
         self._item_class = item_class
-#        if isinstance(tokens, type(self)):
-#            custom_identifier = tokens.custom_identifier or custom_identifier
-#        self._custom_identifier = custom_identifier
 
     ### SPECIAL METHODS ###
 
@@ -70,7 +65,6 @@ class TypedCollection(AbjadObject):
 
         Returns tuple.
         '''
-        #return (self._collection, self.item_class, self.custom_identifier)
         return (self._collection, self.item_class)
 
     def __iter__(self):
@@ -157,19 +151,6 @@ class TypedCollection(AbjadObject):
             )
 
     ### PUBLIC PROPERTIES ###
-
-#    @property
-#    def custom_identifier(self):
-#        r'''Gets and sets custom identifier of typed collection.
-#
-#        Returns string or none.
-#        '''
-#        return self._custom_identifier
-#
-#    @custom_identifier.setter
-#    def custom_identifier(self, custom_identifier):
-#        assert isinstance(custom_identifier, (str, type(None)))
-#        self._custom_identifier = custom_identifier
 
     @property
     def item_class(self):

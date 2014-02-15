@@ -40,7 +40,6 @@ class IntervalClassSegment(Segment):
     ### PUBLIC METHODS ###
 
     @classmethod
-    #def from_selection(cls, selection, item_class=None, custom_identifier=None):
     def from_selection(cls, selection, item_class=None):
         r'''Initialize interval-class segment from component selection:
 
@@ -60,7 +59,6 @@ class IntervalClassSegment(Segment):
         return cls(
             tokens=intervals,
             item_class=item_class,
-#            custom_identifier=custom_identifier,
             )
 
     ### PUBLIC PROPERTIES ###

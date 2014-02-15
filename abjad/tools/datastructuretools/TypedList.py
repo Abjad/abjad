@@ -83,12 +83,10 @@ class TypedList(TypedCollection):
         tokens=None,
         item_class=None,
         keep_sorted=None,
-#        custom_identifier=None,
         ):
         TypedCollection.__init__(
             self,
             item_class=item_class,
-#            custom_identifier=custom_identifier,
             tokens=tokens,
             )
         self._collection = []
