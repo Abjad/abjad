@@ -178,6 +178,11 @@ class PackageManager(DirectoryManager):
                 result.append(imported_package_vars[key])
         return result
 
+    @property
+    def views_module_path(self):
+        file_path = os.path.join(self.filesystem_path, '__views__.py')
+        return file_path
+        
     ### PUBLIC METHODS ###
 
     def handle_metadata_menu_result(self, result):
@@ -215,7 +220,7 @@ class PackageManager(DirectoryManager):
         self.session.io_manager.proceed(line)
 
     def interactively_remove_initializer_module(self, is_interactive=True):
-        if self.has_initializer:
+        if os.path.isfile(self.initializer_file_path):
             os.remove(self.initializer_file_path)
             line = 'initializer deleted.'
             self.session.io_manager.proceed(
@@ -224,12 +229,12 @@ class PackageManager(DirectoryManager):
                 )
 
     def interactively_remove_views_module(self, is_interactive=True):
-        if self.has_initializer:
+        if os.path.isfile(self.views_module_path):
             if is_interactive:
                 message = 'remove views module?'
                 if not self.session.io_manager.confirm(message):
                     return
-            os.remove(self.views_module_file_path)
+            os.remove(self.views_module_path)
             line = 'views module removed.'
             self.session.io_manager.proceed(
                 line, 
