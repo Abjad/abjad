@@ -69,9 +69,6 @@ class IOManager(IOManager):
             self.session.is_backtracking_to_score_manager = True
         elif key in ('q', 'quit'):
             self.session.user_specified_quit = True
-#        # TODO: make this redraw!
-#        elif key == 'r':
-#            pass
         elif self._is_score_string(key):
             self.session.is_backtracking_to_score = True
         elif self._is_home_string(key):

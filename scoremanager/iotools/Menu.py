@@ -73,8 +73,6 @@ class Menu(ScoreManagerObject):
         else:
             for menu_section in self.menu_sections:
                 for menu_entry in menu_section.menu_entries:
-                    if menu_entry.display_string == 'redraw':
-                        continue
                     if menu_entry.matches(user_input):
                         return self._enclose_in_list(menu_entry.return_value)
 
@@ -168,7 +166,6 @@ class Menu(ScoreManagerObject):
         hidden_section.append(('go to next score', 'next'))
         hidden_section.append(('go to prev score', 'prev'))
         hidden_section.append(('quit', 'q'))
-        hidden_section.append(('redraw', 'r'))
         hidden_section.append(('toggle menu commands', 'tmc'))
         hidden_section.append(('toggle where-tracking', 'twt'))
         hidden_section.append(('view LilyPond log', 'log'))
@@ -302,7 +299,7 @@ class Menu(ScoreManagerObject):
         ::
 
                 >>> menu.hidden_section
-                <MenuSection (16)>
+                <MenuSection (15)>
 
         ::
 
@@ -320,7 +317,6 @@ class Menu(ScoreManagerObject):
                 <MenuEntry: 'go to next score'>
                 <MenuEntry: 'go to prev score'>
                 <MenuEntry: 'quit'>
-                <MenuEntry: 'redraw'>
                 <MenuEntry: 'toggle menu commands'>
                 <MenuEntry: 'toggle where-tracking'>
                 <MenuEntry: 'view LilyPond log'>
@@ -339,7 +335,7 @@ class Menu(ScoreManagerObject):
 
             >>> for menu_section in menu.menu_sections:
             ...     menu_section
-            <MenuSection (16)>
+            <MenuSection (15)>
             <MenuSection (4)>
 
         Returns list.
