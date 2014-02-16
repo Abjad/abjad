@@ -10,3 +10,10 @@ class ObjectInventoryEditor(ListEditor):
     def target_name(self):
         if self.target is not None:
             return 'flamingo'
+
+    @property
+    def target_summary_lines(self):
+        result = []
+        for item in self.target:
+            result.append(repr(item))
+        return result

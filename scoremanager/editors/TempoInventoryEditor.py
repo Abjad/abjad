@@ -26,11 +26,3 @@ class TempoInventoryEditor(ObjectInventoryEditor):
             indicatortools.TempoInventory,
             target_name_attribute='inventory name',
             )
-
-    # TODO: abstract up to ObjectInventoryEditor?
-    @property
-    def target_summary_lines(self):
-        result = []
-        for item in self.target:
-            result.append(repr(item))
-        return result
