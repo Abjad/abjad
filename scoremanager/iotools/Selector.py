@@ -171,7 +171,6 @@ class Selector(ScoreManagerObject):
                     entry = os.path.splitext(entry)[0]
                 if entry not in forbidden_directory_entries:
                     items.append(entry)
-            items.extend(entries)
         selector.items = items
         return selector
 

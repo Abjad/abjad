@@ -46,9 +46,10 @@ class DirectoryManager(Manager):
             return result
         if public_entries_only:
             for directory_entry in sorted(os.listdir(self.filesystem_path)):
-                if directory_entry[0].isalpha() and \
-                    not directory_entry.endswith('.pyc'):
-                    result.append(directory_entry)
+                if directory_entry[0].isalpha():
+                    if not directory_entry.endswith('.pyc'):
+                        if not directory_entry in ('test',):
+                            result.append(directory_entry)
         else:
             for directory_entry in sorted(os.listdir(self.filesystem_path)):
                 if not directory_entry.startswith('.') and \
