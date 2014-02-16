@@ -126,7 +126,10 @@ class ComplexTrillSpanner(Spanner):
                     if hasattr(leaf, 'written_pitch'):
                         written_pitch = leaf.written_pitch
                     elif hasattr(leaf, 'written_pitches'):
-                        written_pitch = leaf.written_pitches[0]
+                        if 0 < self.interval.semitones:
+                            written_pitch = max(leaf.written_pitches)
+                        elif self.interval.semitones < 0:
+                            written_pitch = min(leaf.written_pitches)
                     trill_pitch = written_pitch.transpose(self.interval)
                     string = r'\startTrillSpan {!s}'.format(trill_pitch)
                 else:
