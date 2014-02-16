@@ -20,7 +20,7 @@ class ArticulationHandlerMaterialPackageManager(MaterialPackageManager):
         from scoremanager import wizards
         if target:
             wizard = wizards.ArticulationHandlerCreationWizard()
-            articulation_handler_editor = wizard.get_handler_editor(
+            articulation_handler_editor = wizard._get_target_editor(
                 target.__class__.__name__, target=target)
             return articulation_handler_editor
 

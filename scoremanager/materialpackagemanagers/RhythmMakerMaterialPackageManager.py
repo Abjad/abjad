@@ -29,7 +29,7 @@ class RhythmMakerMaterialPackageManager(MaterialPackageManager):
     def output_material_editor(target=None, session=None):
         if target:
             wizard = RhythmMakerCreationWizard()
-            rhythm_maker_editor = wizard.get_handler_editor(
+            rhythm_maker_editor = wizard._get_target_editor(
                 target.__class__.__name__, target=target)
             return rhythm_maker_editor
 

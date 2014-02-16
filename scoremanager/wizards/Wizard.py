@@ -26,6 +26,19 @@ class Wizard(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
+    def _get_target_editor(self, target_class_name, target=None):
+        target_editor_class_name = target_class_name
+        target_editor_class_name += self.target_editor_class_name_suffix
+        command = 'from scoremanager.editors'
+        command += ' import {} as target_editor_class'
+        command = command.format(target_editor_class_name)
+        exec(command)
+        target_editor = target_editor_class(
+            session=self.session, 
+            target=target,
+            )
+        return target_editor
+
     @abc.abstractmethod
     def _run(
         self,
