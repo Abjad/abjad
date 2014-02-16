@@ -32,8 +32,6 @@ class PitchRangeInventoryMaterialPackageManager(InventoryMaterialPackageManager)
             chord = Chord(
                 (pitch_range.start_pitch, pitch_range.stop_pitch), 
                 Duration(1))
-            if pitch_range.pitch_range_name_markup:
-                markuptools.Markup(pitch_range.pitch_range_name_markup)(chord)
             chords.append(chord)
         score, treble_staff, bass_staff = \
             scoretools.make_piano_score_from_leaves(chords)

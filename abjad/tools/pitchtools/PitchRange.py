@@ -15,15 +15,10 @@ class PitchRange(AbjadObject):
 
     ::
 
-        >>> pitch_range = pitchtools.PitchRange(-12, 36,
-        ...     pitch_range_name='four-octave range')
+        >>> pitch_range = pitchtools.PitchRange(-12, 36)
         >>> print format(pitch_range)
         pitchtools.PitchRange(
-            '[C3, C7]',
-            pitch_range_name='four-octave range',
-            pitch_range_name_markup=markuptools.Markup(
-                contents=('four-octave range',),
-                ),
+            '[C3, C7]'
             )
 
     ::
@@ -67,8 +62,6 @@ class PitchRange(AbjadObject):
     __slots__ = (
         '_start',
         '_stop',
-        '_pitch_range_name',
-        '_pitch_range_name_markup',
         )
 
     ### INITIALIZER ###
@@ -139,10 +132,6 @@ class PitchRange(AbjadObject):
                 pitch = pitchtools.NamedPitch(pitch)
                 stop = (pitch, containment)
             self._stop = stop
-        pitch_range_name = kwargs.get('pitch_range_name')
-        self._pitch_range_name = pitch_range_name
-        pitch_range_name_markup = kwargs.get('pitch_range_name_markup')
-        self._pitch_range_name_markup = pitch_range_name_markup
 
     ### SPECIAL METHODS ###
 
@@ -368,10 +357,6 @@ class PitchRange(AbjadObject):
         return systemtools.StorageFormatSpecification(
             self,
             is_indented=False,
-            keyword_argument_names=(
-                'pitch_range_name',
-                'pitch_range_name_markup',
-                ),
             positional_argument_values=(
                 self.one_line_named_pitch_repr,
                 ),
@@ -382,10 +367,6 @@ class PitchRange(AbjadObject):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(
             self,
-            keyword_argument_names=(
-                'pitch_range_name',
-                'pitch_range_name_markup',
-                ),
             positional_argument_values=(
                 self.one_line_named_pitch_repr,
                 ),
@@ -513,41 +494,6 @@ class PitchRange(AbjadObject):
         result.append(self._close_bracket_string)
         result = ''.join(result)
         return result
-
-    # TODO: change to custom_identifier or remove altogether
-    @property
-    def pitch_range_name(self):
-        r'''Name of pitch range.
-
-        ::
-
-            >>> pitch_range.pitch_range_name
-            'four-octave range'
-
-        Returns string or none.
-        '''
-        return self._pitch_range_name
-            
-    # TODO: change to custom_identifier_markup or remove altogether
-    @property
-    def pitch_range_name_markup(self):
-        r'''Pitch range name markup.
-
-        ::
-
-            >>> pitch_range.pitch_range_name_markup
-            Markup(contents=('four-octave range',))
-
-        Default to `pitch_range_name` when `pitch_range_name_markup`
-        not set explicitly.
-
-        Returns markup or none.
-        '''
-        from abjad.tools import markuptools
-        if self._pitch_range_name_markup:
-            return self._pitch_range_name_markup
-        elif self.pitch_range_name:
-            return markuptools.Markup(self.pitch_range_name)
 
     @property
     def start_pitch(self):

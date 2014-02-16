@@ -176,5 +176,3 @@
 
 47. Replace the self.has_whatever_module properties (or methods)
     with just os.path.isfile(self.whatever_file_path) instead.
-
-48. Remove Markup.markup_name entirely.
