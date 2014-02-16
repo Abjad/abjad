@@ -110,7 +110,7 @@ class Editor(ScoreManagerObject):
                 is_first_pass = False
             elif is_first_pass and is_autostarting:
                 menu = self._make_main_menu()
-                result = menu._first_nonhidden_return_value_in_menu
+                result = menu._get_first_nonhidden_return_value_in_menu()
                 menu._run(
                     clear=clear, 
                     predetermined_user_input=result,

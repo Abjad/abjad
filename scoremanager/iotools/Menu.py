@@ -52,26 +52,6 @@ class Menu(ScoreManagerObject):
         '''
         return '<{} ({})>'.format(type(self).__name__, len(self))
 
-    ### PRIVATE PROPERTIES ###
-
-    # TODO: make into method
-    @property
-    def _first_nonhidden_return_value_in_menu(self):
-        for menu_section in self.menu_sections:
-            if not menu_section.is_hidden:
-                if menu_section._menu_entry_return_values:
-                    return menu_section._menu_entry_return_values[0]
-
-    # TODO: make into method
-    @property
-    def _has_numbered_section(self):
-        return any(x.is_numbered for x in self.menu_sections)
-
-    # TODO: make into method
-    @property
-    def _has_ranged_section(self):
-        return any(x.is_ranged for x in self.menu_sections)
-
     ### PRIVATE METHODS ###
 
     def _change_user_input_to_directive(self, user_input):
@@ -137,13 +117,19 @@ class Menu(ScoreManagerObject):
             return directive
 
     def _enclose_in_list(self, expr):
-        if self._has_ranged_section:
+        if self._has_ranged_section():
             return [expr]
         else:
             return expr
 
+    def _get_first_nonhidden_return_value_in_menu(self):
+        for menu_section in self.menu_sections:
+            if not menu_section.is_hidden:
+                if menu_section._menu_entry_return_values:
+                    return menu_section._menu_entry_return_values[0]
+
     def _handle_argument_range_user_input(self, user_input):
-        if not self._has_ranged_section:
+        if not self._has_ranged_section():
             return
         for menu_section in self.menu_sections:
             if menu_section.is_ranged:
@@ -158,6 +144,12 @@ class Menu(ScoreManagerObject):
             entry = ranged_section._menu_entry_return_values[i]
             result.append(entry)
         return result
+
+    def _has_numbered_section(self):
+        return any(x.is_numbered for x in self.menu_sections)
+
+    def _has_ranged_section(self):
+        return any(x.is_ranged for x in self.menu_sections)
 
     def _make_default_hidden_section(self):
         hidden_section = self._make_section(
@@ -198,8 +190,8 @@ class Menu(ScoreManagerObject):
         return_value_attribute='display_string',
         ):
         from scoremanager import iotools
-        assert not (is_numbered and self._has_numbered_section)
-        assert not (is_ranged and self._has_ranged_section)
+        assert not (is_numbered and self._has_numbered_section())
+        assert not (is_ranged and self._has_ranged_section())
         menu_section = iotools.MenuSection(
             is_hidden=is_hidden,
             is_numbered=is_numbered,
