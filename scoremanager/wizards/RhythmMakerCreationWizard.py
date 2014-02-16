@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from scoremanager.wizards.HandlerCreationWizard import HandlerCreationWizard
+from scoremanager.wizards.Wizard import Wizard
 
 
-class RhythmMakerCreationWizard(HandlerCreationWizard):
+class RhythmMakerCreationWizard(Wizard):
 
     ### CLASS VARIABLES ###
 
@@ -12,7 +12,7 @@ class RhythmMakerCreationWizard(HandlerCreationWizard):
 
     def __init__(self, session=None, target=None):
         from scoremanager.iotools import Selector
-        HandlerCreationWizard.__init__(
+        Wizard.__init__(
             self,
             session=session,
             target=target,
