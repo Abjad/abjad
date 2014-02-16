@@ -14,5 +14,4 @@ class MarkupEditor(Editor):
             markuptools.Markup,
             ('arg', 'contents_string', 'arg', 'ag', getters.get_string, True),
             ('direction', 'direction', 'dr', getters.get_direction_string, False),
-            ('markup_name', 'name', 'nm', getters.get_string, False),
             )

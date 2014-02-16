@@ -70,8 +70,7 @@ def test_markuptools_Markup___init___06():
     r'''Preserve all keywords when initializing from other markup instance.
     '''
 
-    markup_1 = markuptools.Markup(
-        'foo contents string', direction=Up, markup_name='foo')
+    markup_1 = markuptools.Markup('foo contents string', direction=Up)
     markup_2 = markuptools.Markup(markup_1)
 
     assert markup_1 is not markup_2
@@ -85,11 +84,9 @@ def test_markuptools_Markup___init___07():
     but also overwrite keywords specified anew.
     '''
 
-    markup_1 = markuptools.Markup(
-        'foo contents string', direction=Up, markup_name='foo')
+    markup_1 = markuptools.Markup('foo contents string', direction=Up)
     markup_2 = markuptools.Markup(markup_1, direction=Down)
 
     assert markup_1 is not markup_2
     assert markup_2.contents == ('foo contents string',)
     assert markup_2.direction is Down
-    assert markup_2.markup_name == 'foo'

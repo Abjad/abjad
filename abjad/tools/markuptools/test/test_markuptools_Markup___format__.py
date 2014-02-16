@@ -25,7 +25,6 @@ def test_markuptools_Markup___format___02():
 
     markup = markuptools.Markup(
         r'\bold { allegro ma non troppo }',
-        markup_name='non troppo',
         )
 
     assert systemtools.TestManager.compare(
@@ -38,7 +37,6 @@ def test_markuptools_Markup___format___02():
                     ['allegro', 'ma', 'non', 'troppo']
                     ),
                 ),
-            markup_name='non troppo',
             )
         '''
         )

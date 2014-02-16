@@ -82,12 +82,11 @@ class Markup(AbjadObject):
         '_contents',
         '_direction',
         '_format_slot',
-        '_markup_name',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, contents=None, direction=None, markup_name=None):
+    def __init__(self, contents=None, direction=None):
         from abjad.tools import lilypondparsertools
         from abjad.tools import markuptools
         if contents is None:
@@ -103,7 +102,6 @@ class Markup(AbjadObject):
             new_contents = (contents,)
         elif isinstance(contents, type(self)):
             direction = direction or contents._direction
-            markup_name = markup_name or contents._markup_name
             new_contents = tuple(contents._contents)
         elif isinstance(contents, (list, tuple)) and 0 < len(contents):
             new_contents = []
@@ -117,7 +115,6 @@ class Markup(AbjadObject):
             new_contents = (str(contents),)
         self._contents = new_contents
         self._format_slot = 'right'
-        self._markup_name = markup_name
         direction = \
             stringtools.arg_to_tridirectional_ordinal_constant(direction)
         self._direction = direction
@@ -142,7 +139,6 @@ class Markup(AbjadObject):
         return type(self)(
             self._contents,
             direction=self._direction,
-            markup_name=self._markup_name,
             )
 
     def __eq__(self, expr):
@@ -330,24 +326,3 @@ class Markup(AbjadObject):
         Returns up, down, center or none.
         '''
         return self._direction
-
-    @property
-    def markup_name(self):
-        r'''Gets markup name of markup.
-
-        ..  container:: example
-
-            ::
-
-                >>> string = r'\bold { allegro ma non troppo }'
-                >>> markup = Markup(string, markup_name='non troppo')
-                >>> show(markup) # doctest: +SKIP
-
-            ::
-
-                >>> markup.markup_name
-                'non troppo'
-
-        Returns string or none.
-        '''
-        return self._markup_name

@@ -12,8 +12,8 @@ def test_MarkupInventoryMaterialPackageManager_01():
         score_manager._run(pending_user_input=
             "materials maker markup testmarkupinventory "
             "omi "
-            "add arg r'\\italic~{~serenamente~}' name serenamente done "
-            "add arg r'\\italic~{~presto~}' name presto done done default q"
+            "add arg r'\\italic~{~serenamente~}' done "
+            "add arg r'\\italic~{~presto~}' done done default q"
             )
         string = 'scoremanager.materialpackages.testmarkupinventory'
         mpp = scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageManager(
@@ -27,11 +27,9 @@ def test_MarkupInventoryMaterialPackageManager_01():
         inventory = markuptools.MarkupInventory([
             markuptools.Markup(
                 '\\italic { serenamente }',
-                markup_name='serenamente'
                 ),
             markuptools.Markup(
                 '\\italic { presto }',
-                markup_name='presto'
                 )
             ],
             )
