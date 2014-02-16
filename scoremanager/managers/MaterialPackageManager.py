@@ -1104,8 +1104,11 @@ class MaterialPackageManager(PackageManager):
             user_input_wrapper = self.initialize_empty_user_input_wrapper()
         return user_input_wrapper
 
-    def _make_user_input_module_menu_section(self,
-        main_menu, hidden_section):
+    def _make_user_input_module_menu_section(
+        self,
+        main_menu, 
+        hidden_section,
+        ):
         menu_entries = self.user_input_wrapper_in_memory.editable_lines
         numbered_section = main_menu.make_numbered_section()
         numbered_section.menu_entries = menu_entries

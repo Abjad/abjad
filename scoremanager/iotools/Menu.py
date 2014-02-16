@@ -77,7 +77,6 @@ class Menu(ScoreManagerObject):
     def _change_user_input_to_directive(self, user_input):
         user_input = stringtools.strip_diacritics_from_binary_string(
             user_input)
-        #user_input = user_input.lower()
         if self._user_enters_nothing(user_input):
             default_value = None
             for menu_section in self.menu_sections:
@@ -89,14 +88,15 @@ class Menu(ScoreManagerObject):
             return self._handle_argument_range_user_input(user_input)
         elif user_input == 'r':
             return 'r'
+        elif 3 <= len(user_input) and 'score'.startswith(user_input):
+            return 'score'
         else:
             for menu_section in self.menu_sections:
                 for menu_entry in menu_section.menu_entries:
                     if menu_entry.display_string == 'redraw':
                         continue
                     if menu_entry.matches(user_input):
-                        return self._enclose_in_list(
-                            menu_entry.return_value)
+                        return self._enclose_in_list(menu_entry.return_value)
 
     def _clear_terminal(self):
         if self.should_clear_terminal:

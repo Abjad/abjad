@@ -28,16 +28,16 @@ def test_ScoreManager_03():
 
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='q')
-    assert score_manager.session.io_transcript[-2][1][0] == \
-        'Score manager - active scores'
+    string = 'Score manager - active scores'
+    assert score_manager.session.io_transcript[-2][1][0] == string
 
     score_manager._run(pending_user_input='rep q')
-    assert score_manager.session.io_transcript[-2][1][0] == \
-        'Score manager - active scores - repository commands'
+    string = 'Score manager - active scores - repository commands'
+    assert score_manager.session.io_transcript[-2][1][0] == string
 
     score_manager._run(pending_user_input='rep b q')
-    assert score_manager.session.io_transcript[-2][1][0] == \
-        'Score manager - active scores'
+    string = 'Score manager - active scores'
+    assert score_manager.session.io_transcript[-2][1][0] == string
 
 
 def test_ScoreManager_04():
@@ -83,8 +83,8 @@ def test_ScoreManager_07():
 
     assert score_manager.session.io_transcript[1][1] == ['> exec', '']
     assert score_manager.session.io_transcript[2][1] == ['XCF> foo']
-    assert score_manager.session.io_transcript[3][1] == \
-        ['Expression not executable.', '']
+    entry = ['Expression not executable.', '']
+    assert score_manager.session.io_transcript[3][1] == entry
     assert score_manager.session.io_transcript[4][1] == ['> q', '']
 
 
@@ -93,9 +93,9 @@ def test_ScoreManager_08():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
+    wrangler = score_manager.score_package_wrangler
 
-    assert score_manager.session is \
-        score_manager.score_package_wrangler.session
+    assert score_manager.session is wrangler.session
 
 
 def test_ScoreManager_09():
@@ -103,27 +103,30 @@ def test_ScoreManager_09():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='Mon instrumentation home q')
-    ts_1 = score_manager.session.io_transcript.signature
+    string = 'red~example~score instrumentation home q'
+    score_manager._run(pending_user_input=string)
+    signature_1 = score_manager.session.io_transcript.signature
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='Mon instrumentation home q')
-    ts_2 = score_manager.session.io_transcript.signature
+    string = 'red~example~score instrumentation home q'
+    score_manager._run(pending_user_input=string)
+    signature_2 = score_manager.session.io_transcript.signature
 
-    assert ts_1 == ts_2
+    assert signature_1 == signature_2
 
 
 def test_ScoreManager_10():
     r'''Backtracking sco* shortcut.
     '''
-    pytest.skip('TODO: make sco shortcut work again.')
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='Mon score~setup score q')
-    ts_1 = score_manager.session.io_transcript.signature
+    string = 'red~example~score score~setup score q'
+    score_manager._run(pending_user_input=string)
+    signature_1 = score_manager.session.io_transcript.signature
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='Mon score~setup sco q')
-    ts_2 = score_manager.session.io_transcript.signature
+    string = 'red~example~score score~setup sco q'
+    score_manager._run(pending_user_input=string)
+    signature_2 = score_manager.session.io_transcript.signature
 
-    assert ts_1 == ts_2
+    assert signature_1 == signature_2

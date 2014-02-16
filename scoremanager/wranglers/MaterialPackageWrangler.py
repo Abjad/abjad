@@ -399,7 +399,8 @@ class MaterialPackageWrangler(PackageWrangler):
         metadata['should_have_user_input_module'] = False
         self.make_material_package(material_package_path, metadata=metadata)
 
-    def make_makermade_material_package(self,
+    def make_makermade_material_package(
+        self,
         material_package_path, 
         material_package_manager_class_name, 
         metadata=None,

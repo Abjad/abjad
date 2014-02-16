@@ -43,10 +43,10 @@ class ScoreManagerConfiguration(Configuration):
             self.score_manager_tools_directory_path,
             'materialpackages',
             )
-        self.built_in_specifiers_directory_path = os.path.join(
-            self.score_manager_tools_directory_path,
-            'specifiers',
-            )
+#        self.built_in_specifiers_directory_path = os.path.join(
+#            self.score_manager_tools_directory_path,
+#            'specifiers',
+#            )
         self.built_in_stylesheets_directory_path = os.path.join(
             self.abjad_configuration.abjad_directory_path,
             'stylesheets',
@@ -66,10 +66,10 @@ class ScoreManagerConfiguration(Configuration):
             self.score_manager_tools_package_path,
             'materialpackages',
             ])
-        self.built_in_specifiers_package_path = '.'.join([
-            self.score_manager_tools_package_path,
-            'specifiers',
-            ])
+#        self.built_in_specifiers_package_path = '.'.join([
+#            self.score_manager_tools_package_path,
+#            'specifiers',
+#            ])
 
         # user asset library directory paths
 
@@ -228,13 +228,39 @@ class ScoreManagerConfiguration(Configuration):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def built_in_score_package_names(self):
+        r'''Gete built-in score package names.
+
+        ..  container:: example
+
+            ::
+
+                >>> for x in configuration.built_in_score_package_names:
+                ...     x
+                'blue_example_score'
+                'green_example_score'
+                'red_example_score'
+
+        Returns tuple of strings.
+        '''
+        return (
+            'blue_example_score',
+            'green_example_score',
+            'red_example_score',
+            )
+
+    @property
     def configuration_directory_path(self):
-        r'''Configuration directory path.
+        r'''Gets configuration directory path.
 
-        ::
+        ..  container:: example
 
-            >>> configuration.configuration_directory_path
-            '.../.score_manager'
+            ::
+
+                >>> configuration.configuration_directory_path
+                '.../.score_manager'
+
+        Defaults to path of hidden ``.score_manager`` directory.
 
         Returns string.
         '''
@@ -453,7 +479,10 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.exists(filesystem_path)
 
     def packagesystem_path_to_filesystem_path(
-        self, packagesystem_path, is_module=False):
+        self, 
+        packagesystem_path, 
+        is_module=False,
+        ):
         r'''Changes `packagesystem_path` to filesystem path.
 
         Returns string.
@@ -481,6 +510,10 @@ class ScoreManagerConfiguration(Configuration):
             directory_parts = []
             directory_parts.append(self.user_asset_library_directory_path)
             directory_parts.extend(trimmed_packagesystem_path.split('.'))
+        elif packagesystem_path_parts[-1] in self.built_in_score_package_names:
+            directory_parts = []
+            directory_parts.append(self.built_in_score_packages_directory_path)
+            directory_parts.append(packagesystem_path_parts[-1])
         else:
             directory_parts = \
                 [self.user_score_packages_directory_path] + \
