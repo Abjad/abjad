@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import types
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from scoremanager.editors.InteractiveEditor import InteractiveEditor
+from scoremanager.editors.Editor import Editor
 
 
 class AttributeDetail(AbjadObject):
@@ -78,7 +78,7 @@ class AttributeDetail(AbjadObject):
                 allow_none=self.allow_none, 
                 **kwargs
                 )
-        elif issubclass(self.editor_callable, InteractiveEditor):
+        elif issubclass(self.editor_callable, Editor):
             editor = self.editor_callable(
                 session=session, 
                 target=prepopulated_value, 

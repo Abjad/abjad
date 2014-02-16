@@ -3,7 +3,7 @@ from abjad.tools import stringtools
 from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
-class InteractiveEditor(ScoreManagerObject):
+class Editor(ScoreManagerObject):
 
     ### INITIALIZER ###
 

@@ -3,10 +3,10 @@ from abjad.tools import instrumenttools
 from scoremanager import getters
 from scoremanager import iotools
 from scoremanager import wizards
-from scoremanager.editors.InteractiveEditor import InteractiveEditor
+from scoremanager.editors.Editor import Editor
 
 
-class InstrumentEditor(InteractiveEditor):
+class InstrumentEditor(Editor):
 
     ### PUBLIC PROPERTIES ###
 

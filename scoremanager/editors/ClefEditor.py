@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import indicatortools
 from scoremanager import getters
-from scoremanager.editors.InteractiveEditor import InteractiveEditor
+from scoremanager.editors.Editor import Editor
 
 
-class ClefEditor(InteractiveEditor):
+class ClefEditor(Editor):
 
     ### PUBLIC PROPERTIES ###
 

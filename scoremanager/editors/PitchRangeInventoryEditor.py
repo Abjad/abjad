@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import pitchtools
-from scoremanager.editors.InteractiveEditor import InteractiveEditor
+from scoremanager.editors.Editor import Editor
 from scoremanager.editors.ObjectInventoryEditor import ObjectInventoryEditor
 from scoremanager.editors.PitchRangeEditor import PitchRangeEditor
 from scoremanager.iotools.UserInputGetter import UserInputGetter

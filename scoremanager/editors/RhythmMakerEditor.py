@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from scoremanager.editors.InteractiveEditor import InteractiveEditor
+from scoremanager.editors.Editor import Editor
 
 
-class RhythmMakerEditor(InteractiveEditor):
+class RhythmMakerEditor(Editor):
 
     ### PUBLIC PROPERTIES ###
 
@@ -12,5 +12,5 @@ class RhythmMakerEditor(InteractiveEditor):
         if self.target:
             result.append(self.target.__class__.__name__)
             result.append('')
-            result.extend(InteractiveEditor.target_summary_lines.fget(self))
+            result.extend(Editor.target_summary_lines.fget(self))
         return result

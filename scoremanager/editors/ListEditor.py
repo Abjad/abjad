@@ -3,10 +3,10 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from scoremanager import iotools
-from scoremanager.editors.InteractiveEditor import InteractiveEditor
+from scoremanager.editors.Editor import Editor
 
 
-class ListEditor(InteractiveEditor):
+class ListEditor(Editor):
     r'''List editor.
 
     ::

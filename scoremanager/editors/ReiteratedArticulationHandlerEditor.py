@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from experimental.tools import handlertools
 from scoremanager import getters
-from scoremanager.editors.InteractiveEditor import InteractiveEditor
+from scoremanager.editors.Editor import Editor
 
 
-class ReiteratedArticulationHandlerEditor(InteractiveEditor):
+class ReiteratedArticulationHandlerEditor(Editor):
 
     ### PUBLIC PROPERTIES ###
 

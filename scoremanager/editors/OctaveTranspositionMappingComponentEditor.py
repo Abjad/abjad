@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import pitchtools
 from scoremanager import getters
-from scoremanager.editors.InteractiveEditor import InteractiveEditor
+from scoremanager.editors.Editor import Editor
 
 
-class OctaveTranspositionMappingComponentEditor(InteractiveEditor):
+class OctaveTranspositionMappingComponentEditor(Editor):
 
     ### PUBLIC PROPERTIES ###
 
