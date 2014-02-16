@@ -43,7 +43,7 @@ class Arpeggio(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, direction=None):
-        assert direction in (Up, Down, None)
+        assert direction in (Up, Down, Center, None)
         self._direction = direction
 
     ### SPECIAL METHODS ###
@@ -70,7 +70,7 @@ class Arpeggio(AbjadObject):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
         lilypond_format_bundle.right.articulations.append(r'\arpeggio')
-        if self.direction is not None:
+        if self.direction in (Up, Down):
             if self.direction is Up:
                 command = r'\arpeggioArrowUp'
             else:
