@@ -57,7 +57,7 @@ class IntervalClassSegment(Segment):
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
         intervals = mathtools.difference_series(pitch_segment)
         return cls(
-            tokens=intervals,
+            items=intervals,
             item_class=item_class,
             )
 
@@ -95,7 +95,7 @@ class IntervalClassSegment(Segment):
         ::
 
             >>> interval_class_segment = pitchtools.IntervalClassSegment(
-            ...     tokens=[('major', 3), ('minor', 6), ('major', 6)],
+            ...     items=[('major', 3), ('minor', 6), ('major', 6)],
             ...     item_class=pitchtools.NamedIntervalClass,
             ...     )
             >>> interval_class_segment.is_tertian

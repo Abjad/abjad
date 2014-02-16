@@ -80,25 +80,25 @@ class TypedList(TypedCollection):
 
     def __init__(
         self,
-        tokens=None,
+        items=None,
         item_class=None,
         keep_sorted=None,
         ):
         TypedCollection.__init__(
             self,
             item_class=item_class,
-            tokens=tokens,
+            items=items,
             )
         self._collection = []
         if keep_sorted:
             self._keep_sorted = True
         else:
             self._keep_sorted = None
-        tokens = tokens or []
-        items = []
-        for token in tokens:
-            items.append(self._item_callable(token))
-        self.extend(items)
+        items = items or []
+        the_items = []
+        for item in items:
+            the_items.append(self._item_callable(item))
+        self.extend(the_items)
 
     ### SPECIAL METHODS ###
 
@@ -118,7 +118,7 @@ class TypedList(TypedCollection):
         return self._collection[i]
 
     def __iadd__(self, expr):
-        r'''Changes tokens in `expr` to items and extends.
+        r'''Changes items in `expr` to items and extends.
 
         ::
 
@@ -164,7 +164,7 @@ class TypedList(TypedCollection):
         return self._collection.__reversed__()
 
     def __setitem__(self, i, expr):
-        r'''Changes tokens in `expr` to items and sets.
+        r'''Changes items in `expr` to items and sets.
 
         ::
 
@@ -207,7 +207,7 @@ class TypedList(TypedCollection):
             self._on_insertion(new_item)
             self._collection[i] = new_item
         elif isinstance(i, slice):
-            new_items = [self._item_callable(token) for token in expr]
+            new_items = [self._item_callable(item) for item in expr]
             old_items = self._collection[i]
             for old_item in old_items:
                 self._on_removal(old_item)
@@ -219,8 +219,8 @@ class TypedList(TypedCollection):
 
     ### PUBLIC METHODS ###
 
-    def append(self, token):
-        r'''Changes `token` to item and appends.
+    def append(self, item):
+        r'''Changes `item` to item and appends.
 
         ::
 
@@ -239,19 +239,19 @@ class TypedList(TypedCollection):
 
         Returns none.
         '''
-        item = self._item_callable(token)
+        item = self._item_callable(item)
         self._on_insertion(item)
         self._collection.append(item)
         if self.keep_sorted:
             self.sort()
 
-    def count(self, token):
-        r'''Changes `token` to item and returns count.
+    def count(self, item):
+        r'''Changes `item` to item and returns count.
 
         ::
 
             >>> integer_collection = datastructuretools.TypedList(
-            ...     tokens=[0, 0., '0', 99],
+            ...     items=[0, 0., '0', 99],
             ...     item_class=int)
             >>> integer_collection[:]
             [0, 0, 0, 99]
@@ -263,11 +263,11 @@ class TypedList(TypedCollection):
 
         Returns count.
         '''
-        item = self._item_callable(token)
+        item = self._item_callable(item)
         return self._collection.count(item)
 
-    def extend(self, tokens):
-        r'''Changes `tokens` to items and extends.
+    def extend(self, items):
+        r'''Changes `items` to items and extends.
 
         ::
 
@@ -279,29 +279,29 @@ class TypedList(TypedCollection):
 
         Returns none.
         '''
-        for token in tokens:
-            self.append(token)
+        for item in items:
+            self.append(item)
         if self.keep_sorted:
             self.sort()
 
-    def index(self, token):
-        r'''Changes `token` to item and returns index.
+    def index(self, item):
+        r'''Changes `item` to item and returns index.
 
         ::
 
             >>> pitch_collection = datastructuretools.TypedList(
-            ...     tokens=('cqf', "as'", 'b,', 'dss'),
+            ...     items=('cqf', "as'", 'b,', 'dss'),
             ...     item_class=NamedPitch)
             >>> pitch_collection.index("as'")
             1
 
         Returns index.
         '''
-        item = self._item_callable(token)
+        item = self._item_callable(item)
         return self._collection.index(item)
 
-    def insert(self, i, token):
-        r'''Changes `token` to item and inserts.
+    def insert(self, i, item):
+        r'''Changes `item` to item and inserts.
 
         ::
 
@@ -325,7 +325,7 @@ class TypedList(TypedCollection):
 
         Returns none.
         '''
-        item = self._item_callable(token)
+        item = self._item_callable(item)
         self._on_insertion(item)
         result = self._collection.insert(i, item)
         if self.keep_sorted:
@@ -341,8 +341,8 @@ class TypedList(TypedCollection):
             self.sort()
         return result
 
-    def remove(self, token):
-        r'''Changes `token` to item and removes.
+    def remove(self, item):
+        r'''Changes `item` to item and removes.
 
         ::
 
@@ -360,7 +360,7 @@ class TypedList(TypedCollection):
 
         Returns none.
         '''
-        item = self._item_callable(token)
+        item = self._item_callable(item)
         index = self._collection.index(item)
         item = self._collection[index]
         self._on_removal(item)

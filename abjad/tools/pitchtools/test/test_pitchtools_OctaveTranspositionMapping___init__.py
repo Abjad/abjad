@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_pitchtools_OctaveTranspositionMapping___init___01():
-    r'''Initialize from tokens.
+    r'''Initialize from items.
     '''
 
     mapping = pitchtools.OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])

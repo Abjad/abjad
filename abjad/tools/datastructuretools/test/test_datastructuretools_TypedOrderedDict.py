@@ -138,7 +138,7 @@ def test_datastructuretools_TypedOrderedDict_06():
         ]
     dictionary_1 = datastructuretools.TypedOrderedDict(
         item_class=Clef, 
-        tokens=items,
+        items=items,
         )
 
     dictionary_2 = datastructuretools.TypedOrderedDict(item_class=Clef)

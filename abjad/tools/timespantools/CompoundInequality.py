@@ -62,11 +62,11 @@ class CompoundInequality(TypedList):
 
     def __init__(
         self, 
-        tokens=None, 
+        items=None, 
         logical_operator='and', 
         ):
         TypedList.__init__(self, 
-            tokens=tokens, 
+            items=items, 
             )
         self._logical_operator = logical_operator
 

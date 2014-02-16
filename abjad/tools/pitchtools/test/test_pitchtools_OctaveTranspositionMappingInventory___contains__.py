@@ -11,7 +11,7 @@ def test_pitchtools_OctaveTranspositionMappingInventory___contains___01():
 
 
 def test_pitchtools_OctaveTranspositionMappingInventory___contains___02():
-    r'''Work with mapping tokens.
+    r'''Work with mapping items.
     '''
 
     inventory = pitchtools.OctaveTranspositionMappingInventory([[('[A0, C8]', -18)]])

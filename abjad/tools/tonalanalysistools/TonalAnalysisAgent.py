@@ -99,7 +99,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             ordered_npcs = ordered_npcs.rotate(1)
             segment = \
                 pitchtools.IntervalClassSegment(
-                    tokens=mathtools.difference_series(ordered_npcs),
+                    items=mathtools.difference_series(ordered_npcs),
                     item_class=pitchtools.NamedInversionEquivalentIntervalClass,
                     )
             if segment.is_tertian:
@@ -125,7 +125,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         npcset = pitchtools.PitchClassSet(
             pitches, item_class=pitchtools.NamedPitchClass)
         dicv = pitchtools.IntervalClassVector(
-            tokens=npcset,
+            items=npcset,
             item_class=pitchtools.NamedInversionEquivalentIntervalClass,
             )
         # TODO: eliminate code duplication #
@@ -268,7 +268,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
     def _make_dicv(*named_pitch_classes):
         pitch_set = pitchtools.PitchSet(named_pitch_classes)
         return pitchtools.IntervalClassVector(
-            tokens=pitch_set,
+            items=pitch_set,
             item_class=pitchtools.NamedInversionEquivalentIntervalClass,
             )
 

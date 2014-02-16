@@ -11,7 +11,7 @@ class PitchSegment(Segment):
     ::
 
         >>> numbered_pitch_segment = pitchtools.PitchSegment(
-        ...     tokens=[-2, -1.5, 6, 7, -1.5, 7],
+        ...     items=[-2, -1.5, 6, 7, -1.5, 7],
         ...     item_class=pitchtools.NumberedPitch,
         ...     )
         >>> numbered_pitch_segment
@@ -46,12 +46,12 @@ class PitchSegment(Segment):
 
     def __init__(
         self,
-        tokens=(-2, -1.5, 6, 7, -1.5, 7),
+        items=(-2, -1.5, 6, 7, -1.5, 7),
         item_class=None,
         ):
         Segment.__init__(
             self,
-            tokens=tokens,
+            items=items,
             item_class=item_class,
             )
 
@@ -146,7 +146,7 @@ class PitchSegment(Segment):
             elif hasattr(component, 'written_pitch'):
                 named_pitches.append(component.written_pitch)
         return cls(
-            tokens=named_pitches,
+            items=named_pitches,
             item_class=item_class,
             )
 
@@ -155,8 +155,8 @@ class PitchSegment(Segment):
 
         Returns new pitch segment.
         '''
-        tokens = (pitch.invert(axis) for pitch in self)
-        return new(self, tokens=tokens)
+        items = (pitch.invert(axis) for pitch in self)
+        return new(self, items=items)
 
     def is_equivalent_under_transposition(self, expr):
         r'''True if pitch segment is equivalent to `expr` under transposition.
@@ -172,7 +172,7 @@ class PitchSegment(Segment):
         difference = -(pitchtools.NamedPitch(expr[0], 4) -
             pitchtools.NamedPitch(self[0], 4))
         new_pitches = (x + difference for x in self)
-        new_pitches = new(self, tokens=new_pitch)
+        new_pitches = new(self, items=new_pitch)
         return expr == new_pitches
 
     def make_notes(self, n=None, written_duration=None):
@@ -253,7 +253,7 @@ class PitchSegment(Segment):
 
         Returns new pitch segment.
         '''
-        return new(self, tokens=reversed(self))
+        return new(self, items=reversed(self))
 
     def rotate(self, n):
         r'''Rotates pitch segment.
@@ -281,16 +281,16 @@ class PitchSegment(Segment):
         Returns new pitch segment.
         '''
         from abjad.tools import sequencetools
-        tokens = sequencetools.rotate_sequence(self._collection, n)
-        return new(self, tokens=tokens)
+        items = sequencetools.rotate_sequence(self._collection, n)
+        return new(self, items=items)
 
     def transpose(self, expr):
         r'''Transposes pitch segment by `expr`.
 
         Returns new pitch segment.
         '''
-        tokens = (pitch.transpose(expr) for pitch in self)
-        return new(self, tokens=tokens)
+        items = (pitch.transpose(expr) for pitch in self)
+        return new(self, items=items)
 
     ### PUBLIC PROPERTIES ###
 
@@ -301,7 +301,7 @@ class PitchSegment(Segment):
         ::
 
             >>> pitch_class_segment = pitchtools.PitchSegment(
-            ...     tokens=[-2, -1.5, 6, 7, -1.5, 7],
+            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
             ...     )
             >>> pitch_class_segment.has_duplicates
             True
@@ -309,7 +309,7 @@ class PitchSegment(Segment):
         ::
 
             >>> pitch_class_segment = pitchtools.PitchSegment(
-            ...     tokens="c d e f g a b",
+            ...     items="c d e f g a b",
             ...     )
             >>> pitch_class_segment.has_duplicates
             False

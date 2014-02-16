@@ -14,7 +14,7 @@ class IntervalSet(Set):
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, item_class=None):
+    def __init__(self, items=None, item_class=None):
         from abjad.tools import pitchtools
         prototype = (
             pitchtools.PitchClassSegment,
@@ -22,14 +22,14 @@ class IntervalSet(Set):
             pitchtools.PitchSegment,
             pitchtools.PitchSet,
             )
-        if isinstance(tokens, prototype):
-            tokens = list(tokens)
+        if isinstance(items, prototype):
+            items = list(items)
             pairs = sequencetools.yield_all_unordered_pairs_of_sequence(
-                tokens)
-            tokens = [second - first for first, second in pairs]
+                items)
+            items = [second - first for first, second in pairs]
         Set.__init__(
             self,
-            tokens=tokens,
+            items=items,
             item_class=item_class,
             )
 
@@ -92,6 +92,6 @@ class IntervalSet(Set):
             pitch_segment)
         intervals = (second - first for first, second in pairs)
         return cls(
-            tokens=intervals,
+            items=intervals,
             item_class=item_class,
             )

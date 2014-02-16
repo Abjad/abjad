@@ -9,10 +9,10 @@ class IntervalClassVector(Vector):
     ::
 
         >>> pitch_segment = pitchtools.PitchSegment(
-        ...     tokens=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
+        ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
         ...     )
         >>> numbered_interval_class_vector = pitchtools.IntervalClassVector(
-        ...     tokens=pitch_segment,
+        ...     items=pitch_segment,
         ...     item_class=pitchtools.NumberedInversionEquivalentIntervalClass,
         ...     )
         >>> for interval, count in numbered_interval_class_vector.iteritems():
@@ -29,9 +29,9 @@ class IntervalClassVector(Vector):
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, item_class=None):
+    def __init__(self, items=None, item_class=None):
         from abjad.tools import pitchtools
-        if isinstance(tokens, (
+        if isinstance(items, (
             pitchtools.PitchSegment, 
             pitchtools.PitchSet,
             pitchtools.PitchClassSegment,
@@ -40,12 +40,12 @@ class IntervalClassVector(Vector):
             intervals = []
             for first, second in \
                 sequencetools.yield_all_unordered_pairs_of_sequence(
-                    tuple(tokens)):
+                    tuple(items)):
                 intervals.append(second - first)
-            tokens = intervals
+            items = intervals
         Vector.__init__(
             self,
-            tokens=tokens,
+            items=items,
             item_class=item_class,
             )
 

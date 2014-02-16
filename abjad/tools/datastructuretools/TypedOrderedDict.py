@@ -23,20 +23,20 @@ class TypedOrderedDict(TypedCollection):
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, item_class=None):
+    def __init__(self, items=None, item_class=None):
         TypedCollection.__init__(
             self,
             item_class=item_class,
-            tokens=tokens,
+            items=items,
             )
-        tokens = tokens or []
-        items = []
-        for token in tokens:
-            assert len(token) == 2, repr(token)
-            key = token[0]
-            value = self._item_callable(token[1])
-            item = (key, value)
-            items.append(item)
+        items = items or []
+        the_items = []
+        for item in items:
+            assert len(item) == 2, repr(item)
+            key = item[0]
+            value = self._item_callable(item[1])
+            the_item = (key, value)
+            the_items.append(the_item)
         self._collection = collections.OrderedDict(items)
 
     ### SPECIAL METHODS ###
@@ -123,7 +123,7 @@ class TypedOrderedDict(TypedCollection):
         return self._collection.__reversed__()
 
     def __setitem__(self, i, expr):
-        r'''Changes tokens in `expr` to items and sets.
+        r'''Changes items in `expr` to items and sets.
 
         Returns none.
         '''
@@ -148,7 +148,7 @@ class TypedOrderedDict(TypedCollection):
         items = ordered_dictionary.items()
         return type(self)(
             item_class=self.item_class,
-            tokens=items,
+            items=items,
             )
 
     def get(self, i, default=None):

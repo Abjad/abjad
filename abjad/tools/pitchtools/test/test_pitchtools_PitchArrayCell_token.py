@@ -13,10 +13,10 @@ def test_pitchtools_PitchArrayCell_token_01():
     [             ] [] []
     '''
 
-    assert array[0].cells[0].token == ('c', 4)
-    assert array[0].cells[1].token == ([('d', 4), ('e', 4)], 2)
-    assert array[0].cells[2].token == 1
+    assert array[0].cells[0].item == ('c', 4)
+    assert array[0].cells[1].item == ([('d', 4), ('e', 4)], 2)
+    assert array[0].cells[2].item == 1
 
-    assert array[1].cells[0].token == 2
-    assert array[1].cells[1].token == 1
-    assert array[1].cells[2].token == 1
+    assert array[1].cells[0].item == 2
+    assert array[1].cells[1].item == 1
+    assert array[1].cells[2].item == 1

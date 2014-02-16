@@ -30,13 +30,13 @@ class TwelveToneRow(PitchClassSegment):
 
     def __init__(
         self, 
-        tokens=(0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8), 
+        items=(0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8), 
         ):
         from abjad.tools import pitchtools
-        assert tokens is not None
+        assert items is not None
         PitchClassSegment.__init__(
             self,
-            tokens=tokens,
+            items=items,
             item_class=pitchtools.NumberedPitchClass,
             )
         self._validate_pitch_classes(self)
@@ -49,9 +49,9 @@ class TwelveToneRow(PitchClassSegment):
         Returns pitch-class segment.
         '''
         from abjad.tools import pitchtools
-        tokens = self._collection[start:stop]
+        items = self._collection[start:stop]
         return PitchClassSegment(
-            tokens=tokens,
+            items=items,
             item_class=pitchtools.NumberedPitchClass,
             )
 

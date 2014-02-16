@@ -10,7 +10,7 @@ class NoteHeadInventory(TypedList):
         >>> chord = Chord([0, 1, 4], (1, 4))
         >>> inventory = scoretools.NoteHeadInventory(
         ...     client=chord,
-        ...     tokens=[11, 10, 9],
+        ...     items=[11, 10, 9],
         ...     )
 
     ::
@@ -48,7 +48,7 @@ class NoteHeadInventory(TypedList):
 
     def __init__(
         self,
-        tokens=None,
+        items=None,
         client=None,
         ):
         from abjad.tools import scoretools
@@ -57,7 +57,7 @@ class NoteHeadInventory(TypedList):
             self,
             item_class=scoretools.NoteHead,
             keep_sorted=True,
-            tokens=tokens,
+            items=items,
             )
 
     ### PRIVATE METHODS ###

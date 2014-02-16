@@ -82,7 +82,7 @@ class RootlessChordClass(IntervalSegment):
             intervals, inversion)
         IntervalSegment.__init__(
             self,
-            tokens=intervals,
+            items=intervals,
             item_class=pitchtools.NamedInterval,
             )
         self._quality_string = quality_string

@@ -98,7 +98,7 @@ class Mode(AbjadObject):
             message = message.format(mode_name)
             raise ValueError(message)
         return pitchtools.IntervalSegment(
-            tokens=mdi_segment,
+            items=mdi_segment,
             item_class=pitchtools.NamedInterval,
             )
 

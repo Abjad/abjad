@@ -9,7 +9,7 @@ class PitchSet(Set):
     ::
 
         >>> numbered_pitch_set = pitchtools.PitchSet(
-        ...     tokens=[-2, -1.5, 6, 7, -1.5, 7],
+        ...     items=[-2, -1.5, 6, 7, -1.5, 7],
         ...     item_class=pitchtools.NumberedPitch,
         ...     )
         >>> numbered_pitch_set
@@ -56,17 +56,17 @@ class PitchSet(Set):
 
     @property
     def _repr_specification(self):
-        tokens = []
+        items = []
         if self.item_class.__name__.startswith('Named'):
-            tokens = [str(x) for x in sorted(self)]
+            items = [str(x) for x in sorted(self)]
         else:
-            tokens = sorted([x.pitch_number for x in self])
+            items = sorted([x.pitch_number for x in self])
         return new(
             self._storage_format_specification,
             is_indented=False,
             keyword_argument_names=(),
             positional_argument_values=(
-                tokens,
+                items,
                 ),
             )
 
@@ -93,7 +93,7 @@ class PitchSet(Set):
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
         return cls(
-            tokens=pitch_segment,
+            items=pitch_segment,
             item_class=item_class,
             )
 
@@ -102,8 +102,8 @@ class PitchSet(Set):
 
         Returns new pitch set.
         '''
-        tokens = (pitch.invert(axis) for pitch in self)
-        return new(self, tokens=tokens)
+        items = (pitch.invert(axis) for pitch in self)
+        return new(self, items=items)
 
     def is_equivalent_under_transposition(self, expr):
         r'''True if pitch set is equivalent to `expr` under transposition.
@@ -119,7 +119,7 @@ class PitchSet(Set):
         difference = -(pitchtools.NamedPitch(expr[0], 4) -
             pitchtools.NamedPitch(self[0], 4))
         new_pitches = (x + difference for x in self)
-        new_pitches = new(self, tokens=new_pitch)
+        new_pitches = new(self, items=new_pitch)
         return expr == new_pitches
 
     def transpose(self, expr):
@@ -128,8 +128,8 @@ class PitchSet(Set):
         Returns new pitch set.
         '''
         from abjad.tools import pitchtools
-        tokens = (pitch.transpose(expr) for pitch in self)
-        return new(self, tokens=tokens)
+        items = (pitch.transpose(expr) for pitch in self)
+        return new(self, items=items)
 
     ### PUBLIC PROPERTIES ###
 

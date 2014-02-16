@@ -22,18 +22,18 @@ class NumberedIntervalClass(IntervalClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, token=None):
+    def __init__(self, item=None):
         from abjad.tools import pitchtools
-        if isinstance(token, numbers.Number):
-            sign = mathtools.sign(token)
-            abs_token = abs(token)
+        if isinstance(item, numbers.Number):
+            sign = mathtools.sign(item)
+            abs_token = abs(item)
             if abs_token % 12 == 0 and 12 <= abs_token:
                 number = 12
             else:
                 number = abs_token % 12
             number *= sign
-        elif isinstance(token, pitchtools.Interval):
-            number = token.semitones
+        elif isinstance(item, pitchtools.Interval):
+            number = item.semitones
             sign = mathtools.sign(number)
             abs_number = abs(number)
             if abs_number % 12 == 0 and 12 <= abs_number:
@@ -41,8 +41,8 @@ class NumberedIntervalClass(IntervalClass):
             else:
                 number = abs_number % 12
             number *= sign
-        elif isinstance(token, pitchtools.IntervalClass):
-            number = token.number
+        elif isinstance(item, pitchtools.IntervalClass):
+            number = item.number
             sign = mathtools.sign(number)
             abs_number = abs(number)
             if abs_number % 12 == 0 and 12 <= abs_number:
@@ -50,11 +50,11 @@ class NumberedIntervalClass(IntervalClass):
             else:
                 number = abs_number % 12
             number *= sign
-        elif token is None:
+        elif item is None:
             number = 0
         else:
             message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, token)
+            message = message.format(type(self).__name__, item)
             raise ValueError(message)
         self._number = number
 

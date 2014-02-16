@@ -18,40 +18,40 @@ class Vector(TypedCounter):
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, item_class=None):
+    def __init__(self, items=None, item_class=None):
         from abjad.tools import datastructuretools
         from abjad.tools import pitchtools
-        if isinstance(tokens, str):
-            tokens = tokens.split()
-        elif isinstance(tokens, (
+        if isinstance(items, str):
+            items = items.split()
+        elif isinstance(items, (
             collections.Iterator,
             types.GeneratorType,
             )):
-            tokens = [token for token in tokens]
-        if isinstance(tokens, (TypedCounter, collections.Counter)):
+            items = [item for item in items]
+        if isinstance(items, (TypedCounter, collections.Counter)):
             new_tokens = []
-            for token, count in tokens.iteritems():
-                new_tokens.extend([token] * count)
-            tokens = new_tokens
+            for item, count in items.iteritems():
+                new_tokens.extend(count * [item])
+            items = new_tokens
         if item_class is None:
             item_class = self._named_item_class
-            if tokens is not None:
-                if isinstance(tokens, datastructuretools.TypedCollection) and \
-                    issubclass(tokens.item_class, self._parent_item_class):
-                    item_class = tokens.item_class
-                elif len(tokens):
-                    if isinstance(tokens, collections.Set):
-                        tokens = tuple(tokens)
-                    if isinstance(tokens[0], str):
+            if items is not None:
+                if isinstance(items, datastructuretools.TypedCollection) and \
+                    issubclass(items.item_class, self._parent_item_class):
+                    item_class = items.item_class
+                elif len(items):
+                    if isinstance(items, collections.Set):
+                        items = tuple(items)
+                    if isinstance(items[0], str):
                         item_class = self._named_item_class
-                    elif isinstance(tokens[0], (int, float)):
+                    elif isinstance(items[0], (int, float)):
                         item_class = self._numbered_item_class
-                    elif isinstance(tokens[0], self._parent_item_class):
-                        item_class = type(tokens[0])
+                    elif isinstance(items[0], self._parent_item_class):
+                        item_class = type(items[0])
         assert issubclass(item_class, self._parent_item_class)
         TypedCounter.__init__(
             self,
-            tokens=tokens,
+            items=items,
             item_class=item_class,
             )
 
@@ -82,15 +82,15 @@ class Vector(TypedCounter):
 
     @property
     def _repr_specification(self):
-        tokens = {}
+        items = {}
         for key, value in self:
-            tokens[str(key)] = value
+            items[str(key)] = value
         return new(
             self._storage_format_specification,
             is_indented=False,
             keyword_argument_names=(),
             positional_argument_values=(
-                tokens,
+                items,
                 ),
             )
 

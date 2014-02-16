@@ -177,11 +177,11 @@ class PitchArrayColumn(AbjadObject):
 
     @property
     def cell_tokens(self):
-        r'''Cells tokens of pitch array column.
+        r'''Cells items of pitch array column.
 
         Returns tuple.
         '''
-        return tuple([cell.token for cell in self.cells])
+        return tuple([cell.item for cell in self.cells])
 
     @property
     def cell_widths(self):

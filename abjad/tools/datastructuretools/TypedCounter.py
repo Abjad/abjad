@@ -28,23 +28,24 @@ class TypedCounter(TypedCollection):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
     def __init__(
         self, 
-        tokens=None, 
+        items=None, 
         item_class=None, 
         **kwargs
         ):
         TypedCollection.__init__(
             self,
             item_class=item_class,
-            tokens=tokens,
+            items=items,
             )
         self._collection = collections.Counter()
-        self.update(tokens, **kwargs)
+        self.update(items, **kwargs)
 
     ### SPECIAL METHODS ###
 
@@ -82,24 +83,24 @@ class TypedCounter(TypedCollection):
         result._collection = self._collection & expr._collection
         return result
 
-    def __delitem__(self, token):
-        r'''Deletes `token` from typed counter.
+    def __delitem__(self, item):
+        r'''Deletes `item` from typed counter.
 
         Returns none.
         '''
-        item = self._item_callable(token)
+        item = self._item_callable(item)
         if item in self._collection:
             dict.__delitem__(self._collection, item)
 
-    def __getitem__(self, token):
-        r'''Gets `token` from typed counter.
+    def __getitem__(self, item):
+        r'''Gets `item` from typed counter.
 
         Returns item.
         '''
-        item = self._item_callable(token)
+        item = self._item_callable(item)
         return self._collection[item]
 
-    def __missing__(self, token):
+    def __missing__(self, item):
         r'''Returns zero.
 
         Returns zero.
@@ -125,12 +126,12 @@ class TypedCounter(TypedCollection):
         '''
         return type(self), (dict(self._collection),)
 
-    def __setitem__(self, token, value):
-        r'''Sets typed counter `token` to `value`.
+    def __setitem__(self, item, value):
+        r'''Sets typed counter `item` to `value`.
 
         Returns none.
         '''
-        item = self._item_callable(token)
+        item = self._item_callable(item)
         self._collection.__setitem__(item, value)
 
     def __sub__(self, expr):
@@ -147,25 +148,25 @@ class TypedCounter(TypedCollection):
 
     ### PRIVATE METHODS ###
 
-    def _coerce_arguments(self, tokens=None, **kwargs):
-        def _coerce_mapping(tokens):
-            items = {}
-            for token, count in tokens.iteritems():
-                item = self._item_callable(token)
-                if item not in items:
-                    items[item] = 0
-                items[item] += count
-            return items
-        items = []
-        if tokens is not None:
-            if isinstance(tokens, collections.Mapping):
-                items = _coerce_mapping(tokens)
+    def _coerce_arguments(self, items=None, **kwargs):
+        def _coerce_mapping(items):
+            the_items = {}
+            for item, count in items.iteritems():
+                item = self._item_callable(item)
+                if item not in the_items:
+                    the_items[item] = 0
+                the_items[item] += count
+            return the_items
+        the_items = []
+        if items is not None:
+            if isinstance(items, collections.Mapping):
+                items = _coerce_mapping(items)
             else:
-                items = []
-                for token in tokens:
-                    items.append(self._item_callable(token))
+                the_items = []
+                for item in items:
+                    the_items.append(self._item_callable(item))
         itemdict = _coerce_mapping(kwargs)
-        return items, itemdict
+        return the_items, itemdict
 
     ### PUBLIC METHODS ###
 

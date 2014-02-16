@@ -15,15 +15,15 @@ class TypedFrozenset(TypedCollection):
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, item_class=None):
+    def __init__(self, items=None, item_class=None):
         TypedCollection.__init__(
             self, 
             item_class=item_class, 
-            tokens=tokens,
+            items=items,
             )
-        tokens = tokens or []
-        tokens = [self._item_callable(_) for _ in tokens]
-        self._collection = frozenset(tokens)
+        items = items or []
+        items = [self._item_callable(_) for _ in items]
+        self._collection = frozenset(items)
 
     ### SPECIAL METHODS ###
 

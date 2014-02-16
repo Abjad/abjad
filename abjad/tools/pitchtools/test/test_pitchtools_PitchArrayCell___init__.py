@@ -31,7 +31,7 @@ def test_pitchtools_PitchArrayCell___init___03():
 
 
 def test_pitchtools_PitchArrayCell___init___04():
-    r'''Initialize with list of pitch tokens.
+    r'''Initialize with list of pitch items.
     '''
 
     cell = pitchtools.PitchArrayCell([0, 2, 4])
@@ -58,7 +58,7 @@ def test_pitchtools_PitchArrayCell___init___06():
 
 
 def test_pitchtools_PitchArrayCell___init___07():
-    r'''Initialize with pitch token, width pair.
+    r'''Initialize with pitch item, width pair.
     '''
 
     cell = pitchtools.PitchArrayCell((0, 2))
@@ -76,7 +76,7 @@ def test_pitchtools_PitchArrayCell___init___08():
 
 
 def test_pitchtools_PitchArrayCell___init___09():
-    r'''Initialize with pitch token list, width pair.
+    r'''Initialize with pitch item list, width pair.
     '''
 
     cell = pitchtools.PitchArrayCell(([0, 2, 4], 2))

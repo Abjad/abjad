@@ -40,17 +40,17 @@ class IntervalSegment(Segment):
 
     @property
     def _repr_specification(self):
-        tokens = []
+        items = []
         if self.item_class.__name__.startswith('Named'):
-            tokens = [str(x) for x in self]
+            items = [str(x) for x in self]
         else:
-            tokens = [x.number for x in self]
+            items = [x.number for x in self]
         return new(
             self._storage_format_specification,
             is_indented=False,
             keyword_argument_names=(),
             positional_argument_values=(
-                tokens,
+                items,
                 ),
             )
 
@@ -77,7 +77,7 @@ class IntervalSegment(Segment):
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
         intervals = (-x for x in mathtools.difference_series(pitch_segment))
         return cls(
-            tokens=intervals,
+            items=intervals,
             item_class=item_class,
             )
 

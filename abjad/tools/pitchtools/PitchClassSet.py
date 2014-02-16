@@ -9,7 +9,7 @@ class PitchClassSet(Set):
     ::
 
         >>> numbered_pitch_class_set = pitchtools.PitchClassSet(
-        ...     tokens=[-2, -1.5, 6, 7, -1.5, 7],
+        ...     items=[-2, -1.5, 6, 7, -1.5, 7],
         ...     item_class=pitchtools.NumberedPitchClass,
         ...     )
         >>> numbered_pitch_class_set
@@ -18,7 +18,7 @@ class PitchClassSet(Set):
     ::
 
         >>> named_pitch_class_set = pitchtools.PitchClassSet(
-        ...     tokens=['c', 'ef', 'bqs,', 'd'],
+        ...     items=['c', 'ef', 'bqs,', 'd'],
         ...     item_class=pitchtools.NamedPitchClass,
         ...     )
         >>> named_pitch_class_set
@@ -72,22 +72,22 @@ class PitchClassSet(Set):
 
     @property
     def _repr_specification(self):
-        tokens = []
+        items = []
         if self.item_class.__name__.startswith('Named'):
-            tokens = [
+            items = [
                 str(x) 
                 for x in sorted(self, key=lambda x: x.pitch_class_number)
                 ]
         elif hasattr(self.item_class, 'pitch_number'):
-            tokens = sorted([x.pitch_number for x in self])
+            items = sorted([x.pitch_number for x in self])
         elif hasattr(self.item_class, 'pitch_class_number'):
-            tokens = sorted([x.pitch_class_number for x in self])
+            items = sorted([x.pitch_class_number for x in self])
         elif hasattr(self.item_class, '__abs__'):
-            tokens = sorted([abs(x) for x in self])
+            items = sorted([abs(x) for x in self])
         else:
             raise ValueError
         positional_argument_values=(
-            tokens,
+            items,
             )
         return new(
             self._storage_format_specification,
@@ -119,7 +119,7 @@ class PitchClassSet(Set):
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
         return cls(
-            tokens=pitch_segment,
+            items=pitch_segment,
             item_class=item_class,
             )
 
@@ -199,8 +199,8 @@ class PitchClassSet(Set):
 
         Returns new pitch-class set.
         '''
-        tokens = (pitch_class.multiply(n) for pitch_class in self)
-        return new(self, tokens=tokens)
+        items = (pitch_class.multiply(n) for pitch_class in self)
+        return new(self, items=items)
 
     def order_by(self, pitch_class_segment):
         r'''Orders pitch-class set by `pitch_class_segment`.
@@ -210,7 +210,7 @@ class PitchClassSet(Set):
         from abjad.tools import pitchtools
         from abjad.tools import sequencetools
         if not len(self) == len(pitch_class_segment):
-            messaege = 'set and segment must be on equal length.'
+            message = 'set and segment must be on equal length.'
             raise ValueError(message)
         for pitch_classes in sequencetools.yield_all_permutations_of_sequence(
             tuple(self)):
@@ -221,7 +221,7 @@ class PitchClassSet(Set):
                 return candidate_pitch_class_segment
         message = 'named pitch-class set {} can not order by '
         message += 'named pitch-class segment {}.'
-        message = message.format(self, pitch_class_semgent)
+        message = message.format(self, pitch_class_segment)
         raise ValueError(message)
 
     def transpose(self, expr):
@@ -229,5 +229,5 @@ class PitchClassSet(Set):
 
         Returns new pitch-class set.
         '''
-        tokens = (pitch_class + expr for pitch_class in self)
-        return new(self, tokens=tokens)
+        items = (pitch_class + expr for pitch_class in self)
+        return new(self, items=items)

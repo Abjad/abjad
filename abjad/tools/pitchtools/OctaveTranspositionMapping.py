@@ -117,11 +117,11 @@ class OctaveTranspositionMapping(TypedList):
         from abjad.tools import systemtools
         input_argument_tokens = []
         for mapping_component in self:
-            token = (
+            item = (
                 mapping_component.source_pitch_range.one_line_named_pitch_repr,
                 mapping_component.target_octave_start_pitch.pitch_number
                 )
-            input_argument_tokens.append(token)
+            input_argument_tokens.append(item)
         keyword_argument_names = []
         return systemtools.StorageFormatSpecification(
             self,

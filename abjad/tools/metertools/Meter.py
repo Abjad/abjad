@@ -804,7 +804,7 @@ class Meter(AbjadObject):
         else:
             start_offset = durationtools.Offset(starting_offset)
         meter_inventory = datastructuretools.TypedTuple(
-            tokens=meters,
+            items=meters,
             item_class=metertools.Meter,
             )
         longest_hierarchy = sorted(meter_inventory,

@@ -48,7 +48,7 @@ class Scale(PitchClassSegment):
             npcs.append(named_pitch_class)
         PitchClassSegment.__init__(
             self, 
-            tokens=npcs,
+            items=npcs,
             item_class=pitchtools.NamedPitchClass,
             )
         self._key_signature = key_signature
@@ -147,7 +147,7 @@ class Scale(PitchClassSegment):
             dic = left - right
             dics.append(dic)
         dicg = pitchtools.IntervalClassSegment(
-            tokens=dics,
+            items=dics,
             item_class=pitchtools.NamedInversionEquivalentIntervalClass,
             )
         return dicg
@@ -207,7 +207,7 @@ class Scale(PitchClassSegment):
                     pitches.append(pitch)
             octave += 1
         return pitchtools.PitchSet(
-            tokens=pitches,
+            items=pitches,
             item_class=pitchtools.NamedPitch,
             )
 

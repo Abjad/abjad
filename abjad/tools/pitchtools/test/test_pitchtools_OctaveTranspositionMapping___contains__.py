@@ -11,7 +11,7 @@ def test_pitchtools_OctaveTranspositionMapping___contains___01():
 
 
 def test_pitchtools_OctaveTranspositionMapping___contains___02():
-    r'''Works with component tokens.
+    r'''Works with component items.
     '''
 
     mapping = pitchtools.OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])

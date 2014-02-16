@@ -31,7 +31,7 @@ def list_named_pitches_in_expr(expr):
     try:
         result = pitchtools.get_named_pitch_from_pitch_carrier(expr)
         return pitchtools.PitchSegment(
-            tokens=(result,),
+            items=(result,),
             item_class=pitchtools.NamedPitch,
             )
     except (TypeError, ValueError):
@@ -60,6 +60,6 @@ def list_named_pitches_in_expr(expr):
                 elif hasattr(leaf, 'written_pitches'):
                     result.extend(leaf.written_pitches)
         return pitchtools.PitchSegment(
-            tokens=result,
+            items=result,
             item_class=pitchtools.NamedPitch,
             )

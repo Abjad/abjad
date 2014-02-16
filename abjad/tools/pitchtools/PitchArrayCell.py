@@ -73,7 +73,7 @@ class PitchArrayCell(AbjadObject):
 
     ::
 
-        >>> cell.token
+        >>> cell.item
         2
 
     ::
@@ -85,10 +85,10 @@ class PitchArrayCell(AbjadObject):
 
     ### INTIALIZER ###
 
-    def __init__(self, token=None):
+    def __init__(self, item=None):
         self._parent_row = None
         self._pitches = []
-        pitches, width = self._parse_cell_token(token)
+        pitches, width = self._parse_cell_token(item)
         self._pitches.extend(pitches)
         self._width = width
 
@@ -187,7 +187,7 @@ class PitchArrayCell(AbjadObject):
             if 0 < cell_token:
                 pitches, width = [], cell_token
             else:
-                message = 'integer width token must be positive.'
+                message = 'integer width item must be positive.'
                 raise ValueError(message)
         elif isinstance(cell_token, NamedPitch):
             pitches, width = [cell_token], 1
@@ -196,7 +196,7 @@ class PitchArrayCell(AbjadObject):
             pitches = self._parse_pitch_token(pitch_token)
         elif isinstance(cell_token, tuple):
             if not len(cell_token) == 2:
-                message = 'tuple token must be of length two.'
+                message = 'tuple item must be of length two.'
                 raise ValueError(message)
             if isinstance(cell_token[0], str):
                 pitches = self._parse_pitch_token(cell_token)
@@ -207,7 +207,7 @@ class PitchArrayCell(AbjadObject):
         elif isinstance(cell_token, PitchArrayCell):
             pitches, width = cell_token.pitches, cell_token.width
         else:
-            message = 'cell token must be integer width, pitch or pair.'
+            message = 'cell item must be integer width, pitch or pair.'
             raise TypeError(message)
         return pitches, width
 
@@ -223,7 +223,7 @@ class PitchArrayCell(AbjadObject):
                 pitch = NamedPitch(element)
                 pitches.append(pitch)
         else:
-            message = 'pitch token must be number, pitch or list.'
+            message = 'pitch item must be number, pitch or list.'
             raise TypeError(message)
         return pitches
 
@@ -373,7 +373,7 @@ class PitchArrayCell(AbjadObject):
         return None
 
     @property
-    def token(self):
+    def item(self):
         r'''Token of pitch array cell.
         '''
         if not self.pitches:

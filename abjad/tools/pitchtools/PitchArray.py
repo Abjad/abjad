@@ -237,7 +237,7 @@ class PitchArray(AbjadObject):
 
     @property
     def cell_tokens_by_row(self):
-        r'''Cells tokens of pitch array by row.
+        r'''Cells items of pitch array by row.
 
         Returns tuple.
         '''
@@ -579,14 +579,14 @@ class PitchArray(AbjadObject):
         array_width = len(time_intervals)
         array_depth = len(score)
         pitch_array = PitchArray(array_depth, array_width)
-        tokens = scoretools.make_multiplied_quarter_notes(
+        items = scoretools.make_multiplied_quarter_notes(
             [0], time_intervals)
         for leaf_iterable, pitch_array_row in \
             zip(score, pitch_array.rows):
             durations = []
             for leaf in iterate(leaf_iterable).by_class(scoretools.Leaf):
                 durations.append(leaf._get_duration())
-            parts = mutate(tokens).split(
+            parts = mutate(items).split(
                 durations,
                 cyclic=False,
                 fracture_spanners=False,

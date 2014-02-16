@@ -15,14 +15,14 @@ class TypedTuple(TypedCollection):
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, item_class=None):
+    def __init__(self, items=None, item_class=None):
         TypedCollection.__init__(self, 
             item_class=item_class, 
-            tokens=tokens,
+            items=items,
             )
-        tokens = tokens or []
+        items = items or []
         self._collection = tuple(
-            self._item_callable(token) for token in tokens)
+            self._item_callable(item) for item in items)
 
     ### SPECIAL METHODS ###
 
@@ -32,22 +32,22 @@ class TypedTuple(TypedCollection):
         Returns new typed tuple.
         '''
         if isinstance(expr, type(self)):
-            tokens = expr._collection
-            return new(self, tokens=self._collection[:] + tokens)
+            items = expr._collection
+            return new(self, items=self._collection[:] + items)
 
         elif isinstance(expr, type(self._collection)):
-            tokens = expr[:]
-            return new(self, tokens=self._collection[:] + tokens)
+            items = expr[:]
+            return new(self, items=self._collection[:] + items)
         raise NotImplementedError
 
-    def __contains__(self, token):
-        r'''Change `token` to item and return true if item exists in
+    def __contains__(self, item):
+        r'''Change `item` to item and return true if item exists in
         collection.
 
         Returns none.
         '''
         try:
-            item = self._item_callable(token)
+            item = self._item_callable(item)
         except ValueError:
             return False
         return self._collection.__contains__(item)
@@ -64,7 +64,7 @@ class TypedTuple(TypedCollection):
 
         Returns new typed tuple.
         '''
-        return new(self, tokens=self._collection[start:stop])
+        return new(self, items=self._collection[start:stop])
 
     def __hash__(self):
         r'''Hashes typed tuple.
@@ -82,8 +82,8 @@ class TypedTuple(TypedCollection):
 
         Returns new typed tuple.
         '''
-        tokens = self._collection * expr
-        return new(self, tokens=tokens)
+        items = self._collection * expr
+        return new(self, items=items)
 
     def __rmul__(self, expr):
         r'''Multiplies `expr` by typed tuple.
@@ -94,20 +94,20 @@ class TypedTuple(TypedCollection):
 
     ### PUBLIC METHODS ###
 
-    def count(self, token):
-        r'''Changes `token` to item.
+    def count(self, item):
+        r'''Changes `item` to item.
         
         Returns count in collection.
         '''
-        item = self._item_callable(token)
+        item = self._item_callable(item)
         return self._collection.count(item)
 
-    def index(self, token):
-        r'''Changes `token` to item.
+    def index(self, item):
+        r'''Changes `item` to item.
         
         Returns index in collection.
         '''
-        item = self._item_callable(token)
+        item = self._item_callable(item)
         return self._collection.index(item)
 
 

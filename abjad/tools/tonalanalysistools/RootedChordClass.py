@@ -76,7 +76,7 @@ class RootedChordClass(PitchClassSet):
         bass = npcs[0]
         PitchClassSet.__init__(
             self,
-            tokens=npcs,
+            items=npcs,
             item_class=pitchtools.NamedPitchClass,
             )
         self._root = root

@@ -17,20 +17,20 @@ class TypedCollection(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, tokens=None, item_class=None):
+    def __init__(self, items=None, item_class=None):
         assert isinstance(item_class, (type(None), type))
         self._item_class = item_class
 
     ### SPECIAL METHODS ###
 
-    def __contains__(self, token):
-        r'''Is true when typed collection container `token`.
+    def __contains__(self, item):
+        r'''Is true when typed collection container `item`.
         Otherwise false.
 
         Returns boolean.
         '''
         try:
-            item = self._item_callable(token)
+            item = self._item_callable(item)
         except ValueError:
             return False
         return self._collection.__contains__(item)
@@ -119,8 +119,8 @@ class TypedCollection(AbjadObject):
         manager = systemtools.StorageFormatManager
         names =  manager.get_signature_keyword_argument_names(self)
         keyword_argument_names = list(names)
-        if 'tokens' in keyword_argument_names:
-            keyword_argument_names.remove('tokens')
+        if 'items' in keyword_argument_names:
+            keyword_argument_names.remove('items')
         keyword_argument_names = tuple(keyword_argument_names)
         positional_argument_values=(
             self._collection,
@@ -138,8 +138,8 @@ class TypedCollection(AbjadObject):
         manager = systemtools.StorageFormatManager
         names = manager.get_signature_keyword_argument_names(self)
         keyword_argument_names = list(names)
-        if 'tokens' in keyword_argument_names:
-            keyword_argument_names.remove('tokens')
+        if 'items' in keyword_argument_names:
+            keyword_argument_names.remove('items')
         keyword_argument_names = tuple(keyword_argument_names)
         positional_argument_values=(
             self._collection,
@@ -154,12 +154,12 @@ class TypedCollection(AbjadObject):
 
     @property
     def item_class(self):
-        r'''Item class to coerce tokens into.
+        r'''Item class to coerce items into.
         '''
         return self._item_class
 
     @property
-    def tokens(self):
-        r'''Gets collection tokens.
+    def items(self):
+        r'''Gets collection items.
         '''
         return [x for x in self]
