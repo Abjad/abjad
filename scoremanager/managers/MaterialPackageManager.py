@@ -940,11 +940,14 @@ class MaterialPackageManager(PackageManager):
             pair = self.output_material_module_import_statements_and_output_material_module_body_lines
             output_material_module_import_statements = pair[0]
             output_material_module_body_lines = pair[1]
+        if output_material_module_import_statements is None:
+            output_material_module_import_statements = []
         output_material_module_import_statements = [
             x + '\n'
             for x in output_material_module_import_statements
             ]
         lines.extend(output_material_module_import_statements)
+        lines.extend(['\n', '\n'])
         lines.extend(output_material_module_body_lines)
         lines = ''.join(lines)
         manager = self.output_material_module_manager
