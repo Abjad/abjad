@@ -10,7 +10,7 @@ def test_ListMaterialPackageManager_01():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials maker list testlist '
+            'materials manager list testlist '
             "17 foo done b default q "
             )
         string = 'scoremanager.materialpackages.testlist'

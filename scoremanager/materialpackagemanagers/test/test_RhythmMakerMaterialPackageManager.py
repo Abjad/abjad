@@ -12,7 +12,7 @@ def test_RhythmMakerMaterialPackageManager_01():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials maker rhythm testrhythmmaker default '
+            'materials manager rhythm testrhythmmaker default '
             'testrhythmmaker omi talearhythmmaker '
             '(-1, 2, -3, 4) 16 (2, 3) (6,) b default '
             'q '

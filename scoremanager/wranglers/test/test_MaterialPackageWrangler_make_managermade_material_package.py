@@ -5,20 +5,20 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialPackageWrangler_make_makermade_material_package_01():
+def test_MaterialPackageWrangler_make_managermade_material_package_01():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.testsargasso'
     assert not wrangler.configuration.packagesystem_path_exists(string)
 
     try:
-        wrangler.make_makermade_material_package(
+        wrangler.make_managermade_material_package(
             string, 
             'SargassoMeasureMaterialPackageManager',
             )
         assert wrangler.configuration.packagesystem_path_exists(string)
         mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(string)
-        assert mpp.is_makermade
+        assert mpp.is_managermade
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -33,18 +33,18 @@ def test_MaterialPackageWrangler_make_makermade_material_package_01():
         assert not wrangler.configuration.packagesystem_path_exists(string)
 
 
-def test_MaterialPackageWrangler_make_makermade_material_package_02():
+def test_MaterialPackageWrangler_make_managermade_material_package_02():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.red_numbers'
     assert wrangler.configuration.packagesystem_path_exists(string)
-    statement = "wrangler.make_makermade_material_package("
+    statement = "wrangler.make_managermade_material_package("
     statement += "'scoremanager.materialpackages.red_sargasso_measures"
     statement += "'SargassoMeasureMaterialPackageManager')"
     assert pytest.raises(Exception, statement)
 
 
-def test_MaterialPackageWrangler_make_makermade_material_package_03():
+def test_MaterialPackageWrangler_make_managermade_material_package_03():
     r'''Interactively.
     '''
 
@@ -53,11 +53,11 @@ def test_MaterialPackageWrangler_make_makermade_material_package_03():
     assert not wrangler.configuration.packagesystem_path_exists(string)
 
     try:
-        wrangler.interactively_make_makermade_material_package(
+        wrangler.interactively_make_managermade_material_package(
             pending_user_input='sargasso testsargasso q')
         assert wrangler.configuration.packagesystem_path_exists(string)
         mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(string)
-        assert mpp.is_makermade
+        assert mpp.is_managermade
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -68,7 +68,7 @@ def test_MaterialPackageWrangler_make_makermade_material_package_03():
         assert not wrangler.configuration.packagesystem_path_exists(string)
 
 
-def test_MaterialPackageWrangler_make_makermade_material_package_04():
+def test_MaterialPackageWrangler_make_managermade_material_package_04():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.testsargasso'
@@ -76,14 +76,14 @@ def test_MaterialPackageWrangler_make_makermade_material_package_04():
 
     try:
         metadata = {'color': 'red', 'is_colored': True}
-        wrangler.make_makermade_material_package(
+        wrangler.make_managermade_material_package(
             string, 
             'SargassoMeasureMaterialPackageManager', 
             metadata=metadata,
             )
         assert wrangler.configuration.packagesystem_path_exists(string)
         mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(string)
-        assert mpp.is_makermade
+        assert mpp.is_managermade
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',

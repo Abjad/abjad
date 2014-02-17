@@ -21,6 +21,8 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     ### CLASS VARIABLES ###
 
+    _human_readable_target_name = 'material package manager'
+
     asset_storehouse_packagesystem_path_in_built_in_asset_library = \
         PackageWrangler.configuration.built_in_material_package_managers_package_path
 

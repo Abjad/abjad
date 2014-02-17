@@ -5,8 +5,8 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialPackageWrangler_run_makermade_package_01():
-    r'''Make makermade package. Delete package.
+def test_MaterialPackageWrangler_run_managermade_package_01():
+    r'''Make managermade package. Delete package.
     '''
 
     score_manager = scoremanager.core.ScoreManager()
@@ -18,7 +18,7 @@ def test_MaterialPackageWrangler_run_makermade_package_01():
         score_manager._run(pending_user_input=string)
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(name)
-        assert mpp.is_makermade
+        assert mpp.is_managermade
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -34,8 +34,8 @@ def test_MaterialPackageWrangler_run_makermade_package_01():
         assert not score_manager.configuration.packagesystem_path_exists(name)
 
 
-def test_MaterialPackageWrangler_run_makermade_package_02():
-    r'''Make score-resident makermade package. Delete package.
+def test_MaterialPackageWrangler_run_managermade_package_02():
+    r'''Make score-resident managermade package. Delete package.
     '''
 
     score_manager = scoremanager.core.ScoreManager()
@@ -47,7 +47,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
         score_manager._run(pending_user_input=string)
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(name)
-        assert mpp.is_makermade
+        assert mpp.is_managermade
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -63,8 +63,8 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
         assert not score_manager.configuration.packagesystem_path_exists(name)
 
 
-#def test_MaterialPackageWrangler_run_makermade_package_03():
-#    r'''Make makermade package. Corrupt initializer.
+#def test_MaterialPackageWrangler_run_managermade_package_03():
+#    r'''Make managermade package. Corrupt initializer.
 #    Verify invalid initializer. Remove package.
 #    '''
 #
@@ -77,7 +77,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #            'testsargasso incanned boilerplate_exception.py default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
-#        assert mpp.is_makermade and not mpp.is_data_only
+#        assert mpp.is_managermade and not mpp.is_data_only
 #        assert mpp._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
@@ -89,8 +89,8 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert not score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #
 #
-#def test_MaterialPackageWrangler_run_makermade_package_04():
-#    r'''Make makermade package. Corrupt initializer. Restore initializer.
+#def test_MaterialPackageWrangler_run_managermade_package_04():
+#    r'''Make managermade package. Corrupt initializer. Restore initializer.
 #    Verify initializer. Remove package.
 #    '''
 #
@@ -104,7 +104,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #            'inr yes yes default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
-#        assert mpp.is_makermade and not mpp.is_data_only
+#        assert mpp.is_managermade and not mpp.is_data_only
 #        assert mpp._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
@@ -115,8 +115,8 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert not score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #
 #
-#def test_MaterialPackageWrangler_run_makermade_package_05():
-#    r'''Make makermade package. Create output material.
+#def test_MaterialPackageWrangler_run_managermade_package_05():
+#    r'''Make managermade package. Create output material.
 #    Delete package."
 #    '''
 #
@@ -130,7 +130,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #            'omm default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
-#        assert mpp.is_makermade and not mpp.is_data_only
+#        assert mpp.is_managermade and not mpp.is_data_only
 #        assert mpp._list_directory() == ['__init__.py',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
 #        assert mpp.has_illustration_builder_module
@@ -143,8 +143,8 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert not score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #
 #
-#def test_MaterialPackageWrangler_run_makermade_package_06():
-#    r'''Make makermade package. Delete material definition module.
+#def test_MaterialPackageWrangler_run_managermade_package_06():
+#    r'''Make managermade package. Delete material definition module.
 #    Remove package.
 #    '''
 #
@@ -157,7 +157,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #            'testsargasso mddelete default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
-#        assert mpp.is_makermade and not mpp.is_data_only
+#        assert mpp.is_managermade and not mpp.is_data_only
 #        assert mpp._list_directory() == ['__init__.py']
 #        assert not mpp.has_material_definition_module
 #        assert not mpp.has_output_material_module
@@ -169,8 +169,8 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert not score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #
 #
-#def test_MaterialPackageWrangler_run_makermade_package_07():
-#    r'''Make makermade package. Overwrite material definition module with stub.
+#def test_MaterialPackageWrangler_run_managermade_package_07():
+#    r'''Make managermade package. Overwrite material definition module with stub.
 #    Delete package.
 #    '''
 #
@@ -183,7 +183,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #            'testsargasso mdstub default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
-#        assert mpp.is_makermade and not mpp.is_data_only
+#        assert mpp.is_managermade and not mpp.is_data_only
 #        assert mpp._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
@@ -194,8 +194,8 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert not score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #
 #
-#def test_MaterialPackageWrangler_run_makermade_package_08():
-#    r'''Make makermade package. Copy canned material definition. Make output material. Remove output material.
+#def test_MaterialPackageWrangler_run_managermade_package_08():
+#    r'''Make managermade package. Copy canned material definition. Make output material. Remove output material.
 #    Remove package.
 #    '''
 #
@@ -210,7 +210,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #            'omdelete default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
-#        assert mpp.is_makermade and not mpp.is_data_only
+#        assert mpp.is_managermade and not mpp.is_data_only
 #        assert mpp._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
@@ -222,8 +222,8 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert not score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #
 #
-#def test_MaterialPackageWrangler_run_makermade_package_09():
-#    r'''Make makermade package. Copy canned material definition with exception.
+#def test_MaterialPackageWrangler_run_managermade_package_09():
+#    r'''Make managermade package. Copy canned material definition with exception.
 #    Examine package state. Remove package.
 #    '''
 #
@@ -236,7 +236,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #            'testsargasso mdcanned boilerplate_exception.py default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
-#        assert mpp.is_makermade and not mpp.is_data_only
+#        assert mpp.is_managermade and not mpp.is_data_only
 #        assert mpp._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
@@ -247,8 +247,8 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert not score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #
 #
-#def test_MaterialPackageWrangler_run_makermade_package_10():
-#    r'''Make makermade package. Copy canned material definition module. Make output data. Corrupt output data.
+#def test_MaterialPackageWrangler_run_managermade_package_10():
+#    r'''Make managermade package. Copy canned material definition module. Make output data. Corrupt output data.
 #    Verify invalid output material module. Remove package.
 #    '''
 #
@@ -263,7 +263,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #            'omcanned boilerplate_exception.py default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
-#        assert mpp.is_makermade and not mpp.is_data_only
+#        assert mpp.is_managermade and not mpp.is_data_only
 #        assert mpp._list_directory() == ['__init__.py',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
 #        assert mpp.has_illustration_builder_module
@@ -275,8 +275,8 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert not score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #
 #
-#def test_MaterialPackageWrangler_run_makermade_package_11():
-#    r'''Make makermade package. Copy canned material definition module.
+#def test_MaterialPackageWrangler_run_managermade_package_11():
+#    r'''Make managermade package. Copy canned material definition module.
 #    Make output data. Make PDF. Remove package.
 #    '''
 #
@@ -292,7 +292,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #            'q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
-#        assert mpp.is_makermade and not mpp.is_data_only
+#        assert mpp.is_managermade and not mpp.is_data_only
 #        assert mpp._list_directory() == [
 #            '__init__.py', 'illustration.ly', 'illustration.pdf',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']

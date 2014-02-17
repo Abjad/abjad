@@ -109,7 +109,7 @@ class MaterialPackageWrangler(PackageWrangler):
         command_section = main_menu.make_command_section()
         command_section.append(('data-only', 'd'))
         command_section.append(('handmade', 'h'))
-        command_section.append(('maker-made', 'm'))
+        command_section.append(('manager-made', 'm'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('create numeric sequence', 's'))
         hidden_section.append(('create missing packages', 'missing'))
@@ -151,11 +151,11 @@ class MaterialPackageWrangler(PackageWrangler):
             return
         self.make_handmade_material_package(package_path)
 
-    def interactively_make_makermade_material_package(
+    def interactively_make_managermade_material_package(
         self, 
         pending_user_input=None,
         ):
-        r'''Interactively makes makermade material package.
+        r'''Interactively makes managermade material package.
 
         Returns none.
         '''
@@ -174,7 +174,7 @@ class MaterialPackageWrangler(PackageWrangler):
                 self.interactively_get_available_packagesystem_path()
         if self.session.backtrack():
             return
-        self.make_makermade_material_package(
+        self.make_managermade_material_package(
             material_package_path, material_package_manager_class_name)
         manager = self._get_appropriate_material_package_manager(
             material_package_manager_class_name, material_package_path)
@@ -399,13 +399,13 @@ class MaterialPackageWrangler(PackageWrangler):
         metadata['should_have_user_input_module'] = False
         self.make_material_package(material_package_path, metadata=metadata)
 
-    def make_makermade_material_package(
+    def make_managermade_material_package(
         self,
         material_package_path, 
         material_package_manager_class_name, 
         metadata=None,
         ):
-        r'''Makes makermade material package.
+        r'''Makes managermade material package.
 
         Returns none.
         '''
@@ -471,7 +471,7 @@ class MaterialPackageWrangler(PackageWrangler):
     user_input_to_action = PackageWrangler.user_input_to_action.copy()
     user_input_to_action.update({
         'd': interactively_make_data_package,
-        's': interactively_make_numeric_sequence_package,
         'h': interactively_make_handmade_material_package,
-        'm': interactively_make_makermade_material_package,
+        'm': interactively_make_managermade_material_package,
+        's': interactively_make_numeric_sequence_package,
         })

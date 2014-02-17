@@ -120,19 +120,22 @@ class Wrangler(ScoreManagerObject):
 
     def _make_asset_selection_breadcrumb(
         self, 
+        human_readable_target_name=None,
         infinitival_phrase=None, 
         is_storehouse=False,
         ):
+        if human_readable_target_name is None:
+            generic_class_name = self._asset_manager_class._generic_class_name
+            human_readable_target_name = generic_class_name
         if infinitival_phrase:
             return 'select {} {}:'.format(
-                self._asset_manager_class._generic_class_name, 
-                infinitival_phrase)
+                human_readable_target_name,
+                infinitival_phrase,
+                )
         elif is_storehouse:
-            return 'select {} storehouse:'.format(
-                self._asset_manager_class._generic_class_name)
+            return 'select {} storehouse:'.format(human_readable_target_name)
         else:
-            return 'select {}:'.format(
-                self._asset_manager_class._generic_class_name)
+            return 'select {}:'.format(human_readable_target_name)
 
     def _make_asset_selection_menu(self, head=None):
         menu = self.session.io_manager.make_menu(where=self._where)

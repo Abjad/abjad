@@ -205,9 +205,13 @@ class PackageWrangler(Wrangler):
         self.session.io_manager._assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
-            self.session.push_breadcrumb(
-                self._make_asset_selection_breadcrumb(
-                infinitival_phrase=infinitival_phrase))
+            name = '_human_readable_target_name'
+            human_readable_target_name = getattr(self, name, None)
+            breadcrumb = self._make_asset_selection_breadcrumb(
+                human_readable_target_name=human_readable_target_name,
+                infinitival_phrase=infinitival_phrase,
+                )
+            self.session.push_breadcrumb(breadcrumb)
             menu = self._make_asset_selection_menu(head=head)
             result = menu._run(clear=clear)
             if self.session.backtrack():

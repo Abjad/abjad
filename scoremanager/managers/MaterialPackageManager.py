@@ -26,6 +26,8 @@ class MaterialPackageManager(PackageManager):
 
     ### CLASS VARIABLES ###
 
+    _generic_class_name = 'material package manager'
+
     generic_output_name = None
 
     illustration_builder = None
@@ -387,7 +389,7 @@ class MaterialPackageManager(PackageManager):
         return not(self.has_material_package_manager)
 
     @property
-    def is_makermade(self):
+    def is_managermade(self):
         return self.has_material_package_manager
 
     @property
