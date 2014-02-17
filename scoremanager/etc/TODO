@@ -79,52 +79,45 @@
 
 28. Move score/instrumentation.py module to score/materials packages.
 
-29. Change ...
-        from abjad.tools import indicatortools
-        from abjad.tools import durationtools
-    ... to just ...
-        from abjad import *
-    ... at the end of material output modules.
-
-30. Make material package illustration work again.
+29. Make material package illustration work again.
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
-31. Remove empty ...
+30. Remove empty ...
         .../materialpackagemanagers/user_input.py
     ... module.
 
-32. These four classes can all be collapsed into one:
+31. These four classes can all be collapsed into one:
         wizards.HandlerCreationWizard
         wizards.ArticulationHandlerCreationWizard
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-33. Clean up MaterialPackageManager. It's by far the biggest component and the
+32. Clean up MaterialPackageManager. It's by far the biggest component and the
     most complex.
 
-34. Reformat ScoreManagerConfiguration to better follow the implementation
+33. Reformat ScoreManagerConfiguration to better follow the implementation
     pattern of AbjadConfiguration. Make built_in_editors_directory_path
     and so on into full-fledged public properties with doc strings.
 
-35. Consider having ScoreManagerConfiguration inherit from AbjadConfiguration.
+34. Consider having ScoreManagerConfiguration inherit from AbjadConfiguration.
     This will parallel score manager IOManager inheriting from mainline
     IOManager.
 
-36. See if ...
+35. See if ...
         Red Example Score (2013) - segments - edit forward view
     ... can be changed to ...
         Red Example Score (2013) - segments - views - forward - edit
     ... instead.
     This will involve breadcrumb management.
 
-37. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
+36. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
     within a score. Maybe the commands should be (U), (K), (M), (G), (S), (T)
     and (Y) for clarity.
 
-38. There also needs to be a single command to just view the global stylesheet
+37. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (YV) or equivalent.
 
-39. Find a way to get rid of the ...
+38. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -140,27 +133,27 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-40. Eliminate unqualified test files like test_ScorePackageManager.py.
+39. Eliminate unqualified test files like test_ScorePackageManager.py.
 
-41. Remove bug that allows for creation of ...
+40. Remove bug that allows for creation of ...
         metadata = collections.OrderedDict([
             ('', ''),
             ])
     ... without allowing for removal.
 
-42. Reimplement repository interface as flat collection of hidden commands.
+41. Reimplement repository interface as flat collection of hidden commands.
     Remove repository menu.
 
-43. Make 'here' work again. Or remove.
+42. Make 'here' work again. Or remove.
 
-44. Find a way to force all view commands to allow edit. For developer
+43. Find a way to force all view commands to allow edit. For developer
     debugging.
 
-45. Add other commands to 'ls'. Commands should include ls variants to show
+44. Add other commands to 'ls'. Commands should include ls variants to show
     time of modification and size. Probably other filesystem commands, too.
 
-46. Replace the self.has_whatever_module properties (or methods)
+45. Replace the self.has_whatever_module properties (or methods)
     with just os.path.isfile(self.whatever_file_path) instead.
 
-47. Figure out why so many tests are commented-out at the bottom of
+46. Figure out why so many tests are commented-out at the bottom of
     test_MaterialPackageWrangler_run_managermade_package.

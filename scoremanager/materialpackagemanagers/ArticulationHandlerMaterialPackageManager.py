@@ -27,7 +27,6 @@ class ArticulationHandlerMaterialPackageManager(MaterialPackageManager):
     output_material_maker = ArticulationHandlerCreationWizard
 
     output_material_module_import_statements = [
-        'from abjad.tools import durationtools',
-        'from abjad.tools import pitchtools',
+        'from abjad import *',
         'from experimental.tools import handlertools',
         ]

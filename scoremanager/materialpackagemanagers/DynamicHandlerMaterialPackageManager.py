@@ -13,7 +13,7 @@ class DynamicHandlerMaterialPackageManager(MaterialPackageManager):
     output_material_maker = DynamicHandlerCreationWizard
 
     output_material_module_import_statements = [
-        'from abjad.tools import durationtools',
+        'from abjad import *',
         'from experimental.tools import handlertools',
         ]
 

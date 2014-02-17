@@ -21,7 +21,7 @@ class OctaveTranspositionMappingInventoryMaterialPackageManager(
     output_material_maker = pitchtools.OctaveTranspositionMappingInventory
 
     output_material_module_import_statements = [
-        'from abjad.tools import pitchtools',
+        'from abjad import *',
         ]
 
     ### PUBLIC METHODS ###

@@ -16,7 +16,8 @@ class SargassoMeasureMaterialPackageManager(MaterialPackageManager):
         for x in output))
 
     output_material_module_import_statements = [
-        'from abjad.tools import scoretools']
+        'from abjad import *',
+        ]
 
     should_have_user_input_module = True
 
@@ -32,7 +33,8 @@ class SargassoMeasureMaterialPackageManager(MaterialPackageManager):
         ]
 
     user_input_module_import_statements = [
-        'from abjad.tools import durationtools']
+        'from abjad import *',
+        ]
 
     user_input_tests = [
         ('measure_denominator', 

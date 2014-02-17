@@ -19,7 +19,7 @@ class MarkupInventoryMaterialPackageManager(InventoryMaterialPackageManager):
     output_material_maker = markuptools.MarkupInventory
 
     output_material_module_import_statements = [
-        'from abjad.tools import markuptools',
+        'from abjad import *',
         ]
 
     ### PUBLIC METHODS ###

@@ -20,7 +20,7 @@ class PitchRangeInventoryMaterialPackageManager(InventoryMaterialPackageManager)
     output_material_maker = pitchtools.PitchRangeInventory
 
     output_material_module_import_statements = [
-        'from abjad.tools import pitchtools',
+        'from abjad import *',
         ]
 
     ### PUBLIC METHODS ###

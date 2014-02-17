@@ -19,8 +19,7 @@ class TempoInventoryMaterialPackageManager(InventoryMaterialPackageManager):
     output_material_maker = indicatortools.TempoInventory
 
     output_material_module_import_statements = [
-        'from abjad.tools import indicatortools',
-        'from abjad.tools import durationtools',
+        'from abjad import *',
         ]
 
     ### PUBLIC METHODS ###

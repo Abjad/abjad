@@ -16,7 +16,7 @@ class RhythmMakerMaterialPackageManager(MaterialPackageManager):
     output_material_maker = RhythmMakerCreationWizard
 
     output_material_module_import_statements = [
-        'from abjad.tools import rhythmmakertools',
+        'from abjad import *',
         ]
 
     ### STATIC METHODS ###
