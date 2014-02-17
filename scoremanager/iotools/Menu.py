@@ -13,8 +13,7 @@ class Menu(ScoreManagerObject):
 
         ::
 
-            >>> score_manager = scoremanager.core.ScoreManager()
-            >>> menu = score_manager._make_repository_menu()
+            >>> menu = scoremanager.iotools.Menu()
             >>> menu
             <Menu (2)>
 
@@ -105,6 +104,8 @@ class Menu(ScoreManagerObject):
             return 'user entered lone return'
         elif directive is None and not user_entered_lone_return:
             return
+        elif directive == 'here':
+            self.interactively_edit_calling_code()
         elif directive == 'hidden':
             self.display_hidden_menu_section()
         elif directive == 'tmc':
@@ -154,9 +155,14 @@ class Menu(ScoreManagerObject):
             is_hidden=True,
             return_value_attribute='key',
             )
-        hidden_section.append(('display calling code', 'where'))
+        hidden_section.append(('code location - edit', 'here'))
+        hidden_section.append(('code location - where', 'where'))
+        hidden_section.append(('where-tracking - toggle', 'wtt'))
+        hidden_section = self._make_section(
+            is_hidden=True,
+            return_value_attribute='key',
+            )
         hidden_section.append(('display hidden menu', 'hidden'))
-        hidden_section.append(('edit client source', 'here'))
         hidden_section.append(('execute statement', 'exec'))
         hidden_section.append(('go back', 'b'))
         hidden_section.append(('go home', 'home'))
@@ -167,7 +173,6 @@ class Menu(ScoreManagerObject):
         hidden_section.append(('go to prev score', 'prev'))
         hidden_section.append(('quit', 'q'))
         hidden_section.append(('toggle menu commands', 'tmc'))
-        hidden_section.append(('toggle where-tracking', 'twt'))
         hidden_section.append(('view LilyPond log', 'log'))
         return hidden_section
 
@@ -299,27 +304,15 @@ class Menu(ScoreManagerObject):
         ::
 
                 >>> menu.hidden_section
-                <MenuSection (15)>
+                <MenuSection (3)>
 
         ::
 
                 >>> for menu_entry in menu.hidden_section.menu_entries:
                 ...     menu_entry
-                <MenuEntry: 'display calling code'>
-                <MenuEntry: 'display hidden menu'>
-                <MenuEntry: 'edit client source'>
-                <MenuEntry: 'execute statement'>
-                <MenuEntry: 'go back'>
-                <MenuEntry: 'go home'>
-                <MenuEntry: 'go home'>
-                <MenuEntry: 'go to current score'>
-                <MenuEntry: 'go to current score'>
-                <MenuEntry: 'go to next score'>
-                <MenuEntry: 'go to prev score'>
-                <MenuEntry: 'quit'>
-                <MenuEntry: 'toggle menu commands'>
-                <MenuEntry: 'toggle where-tracking'>
-                <MenuEntry: 'view LilyPond log'>
+                <MenuEntry: 'code location - edit'>
+                <MenuEntry: 'code location - where'>
+                <MenuEntry: 'where-tracking - toggle'>
 
         Returns menu section or none.
         '''
@@ -335,8 +328,8 @@ class Menu(ScoreManagerObject):
 
             >>> for menu_section in menu.menu_sections:
             ...     menu_section
-            <MenuSection (15)>
-            <MenuSection (4)>
+            <MenuSection (3)>
+            <MenuSection (12)>
 
         Returns list.
         '''
@@ -431,7 +424,7 @@ class Menu(ScoreManagerObject):
         else:
             lines = []
             message = 'where-tracking not enabled.'
-            message += " Use 'twt' to toggle where-tracking."
+            message += " Use 'wtt' for where-tracking toggle."
             lines.append(message)
             lines.append('')
             self.session.io_manager.display(lines)

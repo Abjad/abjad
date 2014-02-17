@@ -9,8 +9,7 @@ class MenuSection(AbjadObject):
 
     ::
 
-        >>> score_manager = scoremanager.core.ScoreManager()
-        >>> menu = score_manager._make_repository_menu()
+        >>> menu = scoremanager.iotools.Menu()
         >>> menu
         <Menu (2)>
 
@@ -19,16 +18,24 @@ class MenuSection(AbjadObject):
 
         >>> menu_section = menu.menu_sections[1]
         >>> menu_section
-        <MenuSection (4)>
+        <MenuSection (12)>
 
     ::
 
         >>> for menu_entry in menu_section.menu_entries:
         ...     menu_entry
-        <MenuEntry: 'add'>
-        <MenuEntry: 'commit'>
-        <MenuEntry: 'status'>
-        <MenuEntry: 'update'>
+        <MenuEntry: 'display hidden menu'>
+        <MenuEntry: 'execute statement'>
+        <MenuEntry: 'go back'>
+        <MenuEntry: 'go home'>
+        <MenuEntry: 'go home'>
+        <MenuEntry: 'go to current score'>
+        <MenuEntry: 'go to current score'>
+        <MenuEntry: 'go to next score'>
+        <MenuEntry: 'go to prev score'>
+        <MenuEntry: 'quit'>
+        <MenuEntry: 'toggle menu commands'>
+        <MenuEntry: 'view LilyPond log'>
 
     '''
 
@@ -265,7 +272,7 @@ class MenuSection(AbjadObject):
             ::
 
                 >>> menu_section.is_hidden
-                False
+                True
 
             Returns boolean.
             '''
@@ -322,10 +329,19 @@ class MenuSection(AbjadObject):
 
                 >>> for menu_entry in menu_section.menu_entries:
                 ...     menu_entry
-                <MenuEntry: 'add'>
-                <MenuEntry: 'commit'>
-                <MenuEntry: 'status'>
-                <MenuEntry: 'update'>
+                <MenuEntry: 'display hidden menu'>
+                <MenuEntry: 'execute statement'>
+                <MenuEntry: 'go back'>
+                <MenuEntry: 'go home'>
+                <MenuEntry: 'go home'>
+                <MenuEntry: 'go to current score'>
+                <MenuEntry: 'go to current score'>
+                <MenuEntry: 'go to next score'>
+                <MenuEntry: 'go to prev score'>
+                <MenuEntry: 'quit'>
+                <MenuEntry: 'toggle menu commands'>
+                <MenuEntry: 'view LilyPond log'>
+
 
             Returns list.
             '''
@@ -400,10 +416,18 @@ class MenuSection(AbjadObject):
 
             >>> for menu_entry in menu_section.menu_entries:
             ...     menu_entry
-            <MenuEntry: 'add'>
-            <MenuEntry: 'commit'>
-            <MenuEntry: 'status'>
-            <MenuEntry: 'update'>
+            <MenuEntry: 'display hidden menu'>
+            <MenuEntry: 'execute statement'>
+            <MenuEntry: 'go back'>
+            <MenuEntry: 'go home'>
+            <MenuEntry: 'go home'>
+            <MenuEntry: 'go to current score'>
+            <MenuEntry: 'go to current score'>
+            <MenuEntry: 'go to next score'>
+            <MenuEntry: 'go to prev score'>
+            <MenuEntry: 'quit'>
+            <MenuEntry: 'toggle menu commands'>
+            <MenuEntry: 'view LilyPond log'>
             <MenuEntry: 'mkdir'>
 
         Returns menu entry.

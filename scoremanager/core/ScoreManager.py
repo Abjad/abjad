@@ -108,15 +108,6 @@ class ScoreManager(ScoreManagerObject):
         hidden_section.append(('tests - py.test', 'tpy'))
         return menu
 
-    def _make_repository_menu(self):
-        menu = self.session.io_manager.make_menu(where=self._where)
-        command_section = menu.make_command_section()
-        command_section.append(('add', 'add'))
-        command_section.append(('commit', 'ci'))
-        command_section.append(('status', 'st'))
-        command_section.append(('update', 'up'))
-        return menu
-
     def _make_score_selection_menu(self):
         if self.session.is_first_run:
             if hasattr(self, 'start_menu_entries'):

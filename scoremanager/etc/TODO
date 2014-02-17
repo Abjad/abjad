@@ -122,25 +122,23 @@
 33. Reimplement repository interface as flat collection of hidden commands.
     Remove repository menu.
 
-34. Make 'here' work again. Or remove.
-
-35. Add other commands to 'ls'. Commands should include ls variants to show
+34. Add other commands to 'ls'. Commands should include ls variants to show
     time of modification and size. Probably other filesystem commands, too.
 
-36. Replace the self.has_whatever_module properties (or methods)
+35. Replace the self.has_whatever_module properties (or methods)
     with just os.path.isfile(self.whatever_file_path) instead.
 
-37. Figure out why so many tests are commented-out at the bottom of
+36. Figure out why so many tests are commented-out at the bottom of
     test_MaterialPackageWrangler_run_managermade_package.
 
-38. Removed MarkupInventoryMaterialPackageManager.illustration_builder().
+37. Removed MarkupInventoryMaterialPackageManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
 
-39. Write test for (ren) to rename, for example, red_markup to red_markup.
+38. Write test for (ren) to rename, for example, red_markup to red_markup.
     Currently fails. Reproduce failure by creating a material package that
     is managed by MarkupInventoryMaterialPackageManager.
 
-41. Rename built-in material packages from ...
+40. Rename built-in material packages from ...
         red_forte
         red_marcati
         red_markup
@@ -159,7 +157,7 @@
     This will reduce confusion with Red Example Score.
     Red Example Score is unrelated to example material packages.
 
-41. Write test to make sure that ...
+40. Write test to make sure that ...
         # -*- encoding: utf-8 -*-
         from abjad import *
         output_material_module_import_statements = []
@@ -169,12 +167,12 @@
     ... shows up as the exact file contents in response to (materials) > (nmh)
     > ... > (mde).
 
-42. Change 'score segments (g)', 'score setup (s)' and 'score templates (t)'
+41. Change 'score segments (g)', 'score setup (s)' and 'score templates (t)'
     to just 'segments (g)', 'setup (s)' and 'templates (t)'.
 
-43. Change menu command display strings to 'direct object - verb' pervasively.
+42. Change menu command display strings to 'direct object - verb' pervasively.
 
-44. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+43. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument.
     Maker sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.

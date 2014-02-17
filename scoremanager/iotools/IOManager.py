@@ -70,8 +70,6 @@ class IOManager(IOManager):
             self.session.is_backtracking_locally = True
         elif key == 'exec':
             self.interactively_exec_statement()
-        elif key == 'here':
-            self.interactively_edit_calling_code()
         elif key == 'log':
             self.view_last_log()
         elif key == 'next':
@@ -88,7 +86,7 @@ class IOManager(IOManager):
             directive = None
         elif self._is_home_string(key):
             self.session.is_backtracking_to_score_manager = True
-        elif key == 'twt':
+        elif key == 'wtt':
             self.session.enable_where = not self.session.enable_where
         else:
             return directive

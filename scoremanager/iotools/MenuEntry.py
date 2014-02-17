@@ -6,25 +6,32 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class MenuEntry(AbjadObject):
     r'''Menu entry.
 
-        >>> score_manager = scoremanager.core.ScoreManager()
-        >>> menu = score_manager._make_repository_menu()
+        >>> menu = scoremanager.iotools.Menu()
         >>> menu
         <Menu (2)>
 
         >>> menu_section = menu.menu_sections[1]
         >>> menu_section
-        <MenuSection (4)>
+        <MenuSection (12)>
 
         >>> for menu_entry in menu_section.menu_entries:
         ...     menu_entry
-        <MenuEntry: 'add'>
-        <MenuEntry: 'commit'>
-        <MenuEntry: 'status'>
-        <MenuEntry: 'update'>
+        <MenuEntry: 'display hidden menu'>
+        <MenuEntry: 'execute statement'>
+        <MenuEntry: 'go back'>
+        <MenuEntry: 'go home'>
+        <MenuEntry: 'go home'>
+        <MenuEntry: 'go to current score'>
+        <MenuEntry: 'go to current score'>
+        <MenuEntry: 'go to next score'>
+        <MenuEntry: 'go to prev score'>
+        <MenuEntry: 'quit'>
+        <MenuEntry: 'toggle menu commands'>
+        <MenuEntry: 'view LilyPond log'>
 
         >>> menu_entry = menu_section.menu_entries[-1]
         >>> menu_entry
-        <MenuEntry: 'update'>
+        <MenuEntry: 'view LilyPond log'>
 
     '''
 
@@ -62,7 +69,7 @@ class MenuEntry(AbjadObject):
         ::
 
             >>> menu_entry.display_string
-            'update'
+            'view LilyPond log'
 
         Returns string.
         '''
@@ -88,7 +95,7 @@ class MenuEntry(AbjadObject):
         ::
 
             >>> menu_entry.key
-            'up'
+            'log'
 
         Returns string without spaces or none.
         '''
@@ -136,7 +143,7 @@ class MenuEntry(AbjadObject):
         ::
 
             >>> menu_entry.return_value
-            'up'
+            'log'
 
         Returns arbitrary value.
         '''
@@ -162,12 +169,7 @@ class MenuEntry(AbjadObject):
 
         ::
 
-            >>> menu_entry.matches('update')
-            True
-
-        ::
-
-            >>> menu_entry.matches('up')
+            >>> menu_entry.matches('log')
             True
 
         Otherwise false:
