@@ -38,10 +38,13 @@ class Tuning(AbjadObject):
         ):
         from abjad.tools import pitchtools
         if pitches is not None:
-            pitches = pitchtools.PitchSegment(
-                items=pitches,
-                item_class=pitchtools.NamedPitch,
-                )
+            if isinstance(pitches, type(self)):
+                pitches = pitches.pitches
+            else:
+                pitches = pitchtools.PitchSegment(
+                    items=pitches,
+                    item_class=pitchtools.NamedPitch,
+                    )
         self._pitches = pitches
 
     ### PUBLIC PROPERTIES ###
