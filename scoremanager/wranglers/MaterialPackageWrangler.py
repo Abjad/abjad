@@ -107,7 +107,6 @@ class MaterialPackageWrangler(PackageWrangler):
         asset_menu_entries = self._make_asset_menu_entries(head=head)
         asset_section.menu_entries = asset_menu_entries
         command_section = main_menu.make_command_section()
-        command_section.append(('data-only', 'd'))
         command_section.append(('handmade', 'h'))
         command_section.append(('manager-made', 'm'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
