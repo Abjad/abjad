@@ -168,11 +168,10 @@ class IOManager(IOManager):
         return user_input
 
     def _write_cache(self, prompt=True):
-        cache_file_path = os.path.join(
-                self.configuration.configuration_directory_path, 
-                'cache.py',
-                )
+        cache_file_path = self.configuration.cache_file_path
         cache_file_pointer = file(cache_file_path, 'w')
+        cache_file_pointer.write('# -*- encoding: utf-8 -*-\n')
+        cache_file_pointer.write('\n\n')
         cache_file_pointer.write('start_menu_entries = [\n')
         menu_entries = self._score_package_wrangler._make_asset_menu_entries()
         for menu_entry in menu_entries:

@@ -27,16 +27,19 @@ def test_Menu_display_hidden_menu_section_01():
         '     toggle where-tracking (twt)',
         '     view LilyPond log (log)',
         '',
-        '     tests - doctest (tdoc)',
-        '     tests - py.test (tpy)',
+        '     cache - view (cv)',
+        '     cache - write (cw)',
+        '',
+        '     work with repository (rep)',
         '',
         '     scores - show all (ssl)',
         '     scores - show active (ssv)',
         '     scores - show mothballed (ssmb)',
         '',
-        '     work with repository (rep)',
-        '     cache - write (cw)',
-        '']
+        '     tests - doctest (tdoc)',
+        '     tests - py.test (tpy)',
+        '',
+        ]
 
 
 def test_Menu_display_hidden_menu_section_02():
@@ -77,4 +80,5 @@ def test_Menu_display_hidden_menu_section_02():
         '     metadata module - remove (MDrm)',
         '     metadata module - rewrite (MDrw)',
         '     metadata module - view (MDv)',
-        '']
+        '',
+        ]

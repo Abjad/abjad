@@ -92,15 +92,17 @@ class ScoreManager(ScoreManagerObject):
         command_section.append(('stylesheets', 'y'))
         command_section.append(('new score', 'new'))
         hidden_section = menu.make_command_section(is_hidden=True)
-        hidden_section.append(('tests - doctest', 'tdoc'))
-        hidden_section.append(('tests - py.test', 'tpy'))
+        hidden_section.append(('cache - view', 'cv'))
+        hidden_section.append(('cache - write', 'cw'))
+        hidden_section = menu.make_command_section(is_hidden=True)
+        hidden_section.append(('work with repository', 'rep'))
         hidden_section = menu.make_command_section(is_hidden=True)
         hidden_section.append(('scores - show all', 'ssl'))
         hidden_section.append(('scores - show active', 'ssv'))
         hidden_section.append(('scores - show mothballed', 'ssmb'))
         hidden_section = menu.make_command_section(is_hidden=True)
-        hidden_section.append(('work with repository', 'rep'))
-        hidden_section.append(('cache - write', 'cw'))
+        hidden_section.append(('tests - doctest', 'tdoc'))
+        hidden_section.append(('tests - py.test', 'tpy'))
         return menu
 
     def _make_repository_menu(self):
@@ -323,12 +325,20 @@ class ScoreManager(ScoreManagerObject):
             rollback=True, 
             )
 
+    def view_cache(self):
+        file_path = self.configuration.cache_file_path
+        if os.path.isfile(file_path):
+            command = 'vi -R {}'.format(file_path)
+            self.session.io_manager.spawn_subprocess(command)
+
     def write_cache(self, prompt=True):
         self.session.io_manager._write_cache(prompt=prompt)
+
 
     ### UI MANIFEST ###
 
     user_input_to_action = {
+        'cv': view_cache,
         'cw': write_cache,
         'm': manage_materials,
         'new': interactively_make_new_score,

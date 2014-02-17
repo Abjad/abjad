@@ -29,6 +29,11 @@ class ScoreManagerConfiguration(Configuration):
             self.abjad_configuration.score_manager_directory_path
         self._score_manager_tools_package_path = 'scoremanager'
 
+        self._cache_file_path = os.path.join(
+                self.configuration_directory_path, 
+                'cache.py',
+                )
+
         # built-in asset library directory paths
 
         self.built_in_editors_directory_path = os.path.join(
@@ -43,10 +48,6 @@ class ScoreManagerConfiguration(Configuration):
             self.score_manager_tools_directory_path,
             'materialpackages',
             )
-#        self.built_in_specifiers_directory_path = os.path.join(
-#            self.score_manager_tools_directory_path,
-#            'specifiers',
-#            )
         self.built_in_stylesheets_directory_path = os.path.join(
             self.abjad_configuration.abjad_directory_path,
             'stylesheets',
@@ -66,10 +67,6 @@ class ScoreManagerConfiguration(Configuration):
             self.score_manager_tools_package_path,
             'materialpackages',
             ])
-#        self.built_in_specifiers_package_path = '.'.join([
-#            self.score_manager_tools_package_path,
-#            'specifiers',
-#            ])
 
         # user asset library directory paths
 
@@ -248,6 +245,14 @@ class ScoreManagerConfiguration(Configuration):
             'green_example_score',
             'red_example_score',
             )
+
+    @property
+    def cache_file_path(self):
+        r'''Gets cache file path.
+
+        Returns string.
+        '''
+        return self._cache_file_path
 
     @property
     def configuration_directory_path(self):
