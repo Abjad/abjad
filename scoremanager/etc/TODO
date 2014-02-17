@@ -1,123 +1,102 @@
 1.  Edit instrument transposition.
 
-2.  Edit instrument clefs.
-
-3.  Make user input getter defaults work like menu defaults.
+2.  Make user input getter defaults work like menu defaults.
     Implement default value on user input getter.
 
-4.  Fix IOManager.handle_user_input() default handling.
+3.  Fix IOManager.handle_user_input() default handling.
 
-5.  Define range inventories for all scores.
-
-6.  Make user input handler creation work.  
-7.  Find a way dynamically to present default notice 
+4.  Find a way dynamically to present default notice 
     with default menu entries.
 
-8.  Distinguish positional editor parameters from keyword editor parameters.
+5.  Distinguish positional editor parameters from keyword editor parameters.
 
-9.  Implement something to tour all materials everywhere 
+6.  Implement navigation to tour all materials everywhere 
     and examine in sequence.
 
-10. Audit the UI of the entire materials management system by hand.
+7.  Audit the UI of the entire materials management system by hand.
 
-11. Implement example_score_i.materials.divisions to import 
+8. Harmonize user input strings with method names in 
+    MaterialPackageManager.user_input_to_action dictionary.
+
+9.  Implement example_score_i.materials.divisions to import 
     example_score_i.materials.time_signatures.
     This will implement an intrapackage material import.
     Implement example_score_ii.materials.divisions to 
     import example_score_i.materials.time_signatures.
     This will implement an interpackage material import.
 
-12. Replace all _read_only_attributes.py and _public_attributes.py 
+10. Replace all _read_only_attributes.py and _public_attributes.py 
     test files with doctests.
 
-13. Sweep inline scoremanager TODO items.
+11. Sweep inline scoremanager TODO items.
 
-14. Author ScorePackageManager docstrings.
+12. Author ScorePackageManager docstrings.
 
-15. Harmonize user input strings with method names in 
-    MaterialPackageManager.user_input_to_action dictionary.
-
-16. Author StylesheetFileWrangler.interactively_remove_assets() test.
+13. Author StylesheetFileWrangler.interactively_remove_assets() test.
     Will involve making pending_user_input='... rm ...' work with named 
     arguments instead of just numeric arguments.
 
-17. Make MaterialPackageManager classes stop creating materials in 
-    scoremanager.materialpackages.
+14. Make MaterialPackageManager classes stop creating materials in 
+    the scoremanager/materialpackages/ directory.
     Those classes should create material packages in the user asset 
     library material packages directory.
     Or in user score packages. But no material packages should ever 
-    be created in the built-in asset library material packages directory.
+    be created in the scoremanager/materialpackages/ directory.
 
-18. Implement material methods to move material packages 
+15. Implement material methods to move material packages 
     from one location to another.
 
-19. Find a way to include metadata management in hidden menu 
-    of every package manager.
+16. Finish the docstrings for all io classes.
 
-20. Finish the docstrings for all io classes.
+17. Refactor scoremanager.editors to contain as few classes as possible.
 
-21. Beautify the code all of score manager and music expression test files.
-
-22. Refactor scoremanager.editors to contain as few classes as possible.
-
-23. Refactor score manager wizard classes to use instance attributes in place
+18. Refactor score manager wizard classes to use instance attributes in place
     of class attributes.
 
-24. Refactor score manager material package maker classes to use instance
+19. Refactor material package maker classes to use instance
     attributes in place of class attributes.
 
-25. Implement a Session.display_variables() method to print the current value
+20. Implement a Session.display_variables() method to print the current value
     of all session variables to the terminal for user inspection.
 
-26. Figure out the correct ajv replace regex to change tratiettore/music
+21. Figure out the correct ajv replace regex to change tratiettore/music
     to just traiettorie.
 
-27. Bug exists when making handmade material packages.
-    Create the packge. Then [mde] to edit the material definition module.
-    The last line in file reads like this:
-        /Users/trevorbaca/Documents/scores/temporary/materials/foo = None
+22. Move score/instrumentation.py module to score/materials packages.
+    Maybe easiest to do this by creating an
+    InstrumentationSpecifierMaterialPackageManager.
 
-28. Move score/instrumentation.py module to score/materials packages.
-
-29. Make material package illustration work again.
+23. Make material package illustration work again.
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
-30. Remove empty ...
+24. Remove empty ...
         .../materialpackagemanagers/user_input.py
     ... module.
 
-31. These four classes can all be collapsed into one:
+25. These four classes can all be collapsed into one:
         wizards.HandlerCreationWizard
         wizards.ArticulationHandlerCreationWizard
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-32. Clean up MaterialPackageManager. It's by far the biggest component and the
+26. Clean up MaterialPackageManager. It's by far the biggest component and the
     most complex.
 
-33. Reformat ScoreManagerConfiguration to better follow the implementation
+27. Reformat ScoreManagerConfiguration to better follow the implementation
     pattern of AbjadConfiguration. Make built_in_editors_directory_path
     and so on into full-fledged public properties with doc strings.
-
-34. Consider having ScoreManagerConfiguration inherit from AbjadConfiguration.
+    Consider having ScoreManagerConfiguration inherit from AbjadConfiguration.
     This will parallel score manager IOManager inheriting from mainline
     IOManager.
 
-35. See if ...
-        Red Example Score (2013) - segments - edit forward view
-    ... can be changed to ...
-        Red Example Score (2013) - segments - views - forward - edit
-    ... instead.
-    This will involve breadcrumb management.
+28. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
+    within a score. Leave the commands lowercase. Add (s) and (h) to the list,
+    too.
 
-36. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
-    within a score. Maybe the commands should be (U), (K), (M), (G), (S), (T)
-    and (Y) for clarity.
+29. There also needs to be a single command to just view the global stylesheet
+    for the entire score. Something like (Y) or equivalent.
 
-37. There also needs to be a single command to just view the global stylesheet
-    for the entire score. Something like (YV) or equivalent.
-
-38. Find a way to get rid of the ...
+30. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -133,38 +112,75 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-39. Eliminate unqualified test files like test_ScorePackageManager.py.
+31. Eliminate unqualified test files like test_ScorePackageManager.py.
 
-40. Remove bug that allows for creation of ...
+32. Remove bug that allows for creation of ...
         metadata = collections.OrderedDict([
             ('', ''),
             ])
     ... without allowing for removal.
 
-41. Reimplement repository interface as flat collection of hidden commands.
+33. Reimplement repository interface as flat collection of hidden commands.
     Remove repository menu.
 
-42. Make 'here' work again. Or remove.
+34. Make 'here' work again. Or remove.
 
-43. Find a way to force all view commands to allow edit. For developer
+35. Find a way to force all view commands to allow edit. For developer
     debugging.
 
-44. Add other commands to 'ls'. Commands should include ls variants to show
+36. Add other commands to 'ls'. Commands should include ls variants to show
     time of modification and size. Probably other filesystem commands, too.
 
-45. Replace the self.has_whatever_module properties (or methods)
+37. Replace the self.has_whatever_module properties (or methods)
     with just os.path.isfile(self.whatever_file_path) instead.
 
-46. Figure out why so many tests are commented-out at the bottom of
+38. Figure out why so many tests are commented-out at the bottom of
     test_MaterialPackageWrangler_run_managermade_package.
 
-47. Removed MarkupInventoryMaterialPackageManager.illustration_builder().
+39. Removed MarkupInventoryMaterialPackageManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
 
-48. Write test for (ren) to rename, for example, red_markup to red_markup.
+40. Write test for (ren) to rename, for example, red_markup to red_markup.
     Currently fails. Reproduce failure by creating a material package that
     is managed by MarkupInventoryMaterialPackageManager.
 
-49. Make (materials) > (profile) work. Add test.
+41. Make (materials) > (profile) work. Add test.
 
-50. Flatten repository management menu. Make available everywhere.
+42. Rename built-in material packages from ...
+        red_forte
+        red_marcati
+        red_markup
+        red_notes
+        red_numbers
+        red_sargasso_measures
+        sargasso_multipliers (remove)
+    ... to ...
+        example_dynamic_inventory
+        example_articulation_inventory
+        example_markup_inventory
+        example_notes
+        example_numbers
+        example_sargasso_measures
+    ... which will also be an opportunity to fix and secure rename code.
+    This will reduce confusion with Red Example Score.
+    Red Example Score is unrelated to example material packages.
+
+43. Write test to make sure that ...
+        # -*- encoding: utf-8 -*-
+        from abjad import *
+        output_material_module_import_statements = []
+
+
+        some_material = None
+    ... shows up as the exact file contents in response to (materials) > (nmh)
+    > ... > (mde).
+
+44. Change 'score segments (g)', 'score setup (s)' and 'score templates (t)'
+    to just 'segments (g)', 'setup (s)' and 'templates (t)'.
+
+45. Change menu command display strings to 'direct object - verb' pervasively.
+
+46. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+    Instrument.
+    Maker sure that editing instrumentation doesn't reset
+    sounding_pitch_of_written_middle_c to C4.
