@@ -160,3 +160,7 @@
 
 47. Removed MarkupInventoryMaterialPackageManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
+
+48. Write test for (ren) to rename, for example, red_markup to red_markup.
+    Currently fails. Reproduce failure by creating a material package that
+    is managed by MarkupInventoryMaterialPackageManager.

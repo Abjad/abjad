@@ -211,9 +211,9 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            '.../scoremanager/materialpackages/red_directives'
             '.../scoremanager/materialpackages/red_forte'
             '.../scoremanager/materialpackages/red_marcati'
+            '.../scoremanager/materialpackages/red_markup'
             '.../scoremanager/materialpackages/red_notes'
             '.../scoremanager/materialpackages/red_numbers'
             '.../scoremanager/materialpackages/red_sargasso_measures'
@@ -249,9 +249,9 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            MarkupInventoryMaterialPackageManager('.../scoremanager/materialpackages/red_directives')
             DynamicHandlerMaterialPackageManager('.../scoremanager/materialpackages/red_forte')
             ArticulationHandlerMaterialPackageManager('.../scoremanager/materialpackages/red_marcati')
+            MarkupInventoryMaterialPackageManager('.../scoremanager/materialpackages/red_markup')
             MaterialPackageManager('.../scoremanager/materialpackages/red_notes')
             MaterialPackageManager('.../scoremanager/materialpackages/red_numbers')
             SargassoMeasureMaterialPackageManager('.../scoremanager/materialpackages/red_sargasso_measures')
@@ -286,9 +286,9 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_asset_names(
             ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
-            'red directives'
             'red forte'
             'red marcati'
+            'red markup'
             'red notes'
             'red numbers'
             'red sargasso measures'
@@ -324,9 +324,9 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            'scoremanager.materialpackages.red_directives'
             'scoremanager.materialpackages.red_forte'
             'scoremanager.materialpackages.red_marcati'
+            'scoremanager.materialpackages.red_markup'
             'scoremanager.materialpackages.red_notes'
             'scoremanager.materialpackages.red_numbers'
             'scoremanager.materialpackages.red_sargasso_measures'

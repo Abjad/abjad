@@ -2,7 +2,7 @@
 from abjad.tools import markuptools
 
 
-red_directives = markuptools.MarkupInventory([
+red_markup = markuptools.MarkupInventory([
 	markuptools.Markup(
 		'\\bold { staccatissimo luminoso }',
 		),
