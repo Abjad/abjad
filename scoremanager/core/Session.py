@@ -70,7 +70,7 @@ class Session(abctools.AbjadObject):
         self.is_navigating_to_previous_score = False
         self.is_test = False
         self.last_command_was_composite = False
-        self.menu_header_width = 80
+        self.menu_header_width = 160
         self.nonnumbered_menu_sections_are_hidden = False
         self.transcribe_next_command = True
         self.use_current_user_input_values_as_default = False
