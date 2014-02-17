@@ -69,8 +69,10 @@ class IOManager(IOManager):
             self.session.is_backtracking_to_score_manager = True
         elif key in ('q', 'quit'):
             self.session.user_specified_quit = True
-        elif self._is_score_string(key):
+        elif self._is_score_string(key) and self.session.is_in_score:
             self.session.is_backtracking_to_score = True
+        elif self._is_score_string(key) and not self.session.is_in_score:
+            directive = None
         elif self._is_home_string(key):
             self.session.is_backtracking_to_score_manager = True
         elif key == 'twt':

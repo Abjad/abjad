@@ -18,9 +18,8 @@ def test_MaterialPackageManager_run_01():
     score_manager._run(pending_user_input='m sargasso home q')
     assert score_manager.session.io_transcript.signature == (8, (0, 6))
 
-    # TODO: make this work by causing score backtracking to be ignored
-    #score_manager._run(pending_user_input='m sargasso score q')
-    #assert score_manager.session.io_transcript.signature == (8, (4, 6))
+    score_manager._run(pending_user_input='m sargasso score q')
+    assert score_manager.session.io_transcript.signature == (8, (4, 6))
 
     score_manager._run(pending_user_input='m sargasso foo q')
     assert score_manager.session.io_transcript.signature == (8, (4, 6))
