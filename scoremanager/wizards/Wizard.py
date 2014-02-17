@@ -3,7 +3,6 @@ import abc
 from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
-# TODO: extend repr to show target, if any
 class Wizard(ScoreManagerObject):
     r'''Wizard.
     '''

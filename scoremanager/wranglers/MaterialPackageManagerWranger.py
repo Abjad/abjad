@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 import os
-from abjad.tools import sequencetools
-from abjad.tools import stringtools
 from abjad.tools import layouttools
 from abjad.tools import lilypondfiletools
+from abjad.tools import sequencetools
+from abjad.tools import stringtools
 from scoremanager.wranglers.PackageWrangler import PackageWrangler
 
 
@@ -112,33 +112,6 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         return main_menu
 
     ### PUBLIC METHODS ###
-
-    def interactively_make_asset(
-        self,
-        pending_user_input=None,
-        ):
-        r'''Interactively makes asset.
-
-        Returns none.
-        '''
-        self.session.io_manager._assign_user_input(pending_user_input)
-        getter = self.session.io_manager.make_getter(where=self._where)
-        getter.append_material_package_manager_class_name(
-            'material manager name')
-        getter.append_space_delimited_lowercase_string(
-            'generic output product')
-        result = getter._run()
-        if self.session.backtrack():
-            return
-        material_package_manager_class_name, generic_output_product_name = result
-        material_package_manager_directory = os.path.join(
-            self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
-            material_package_manager_class_name)
-        os.mkdir(material_package_manager_directory)
-        self.make_asset_initializer(material_package_manager_class_name)
-        self.make_asset_class_file(
-            material_package_manager_class_name, generic_output_product_name)
-        self.make_asset_stylesheet(material_package_manager_class_name)
 
     def list_asset_filesystem_paths(
         self,
@@ -325,109 +298,8 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             in_user_score_packages=in_user_score_packages,
             )
 
-    # TODO: change to boilerplate
-    def make_asset_class_file(self, package_name, generic_output_name):
-        r'''Makes asset class file.
-
-        Returns none.
-        '''
-        class_file_name = os.path.join(
-            self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
-            package_name, package_name + '.py')
-        class_file = file(class_file_name, 'w')
-        lines = []
-        lines.append('from foo import foo')
-        lines.append('from foo import make_illustration_from_output_material')
-        lines.append('from scoremanager.materialpackagemanagers.MaterialPackageManager import MaterialPackageManager')
-        lines.append('from scoremanager.editors.UserInputWrapper import UserInputWrapper')
-        lines.append('import scoremanager')
-        lines.append('')
-        lines.append('')
-        lines.append('class {}(MaterialPackageManager):'.format(package_name))
-        lines.append('')
-        lines.append('    def __init__(self, package_path=None, session=None):')
-        lines.append('        MaterialPackageManager.__init__(')
-        lines.append('            self, package_path=package_path, session=seession')
-        lines.append('')
-        lines.append('    ### PUBLIC PROPERTIES ###')
-        lines.append('')
-        lines.append('    generic_output_name = {!r}'.format(generic_output_name))
-        lines.append('')
-        lines.append('    illustration_builder = staticmethod(make_illustration_from_output_material)')
-        lines.append('')
-        lines.append('    output_material_checker = staticmethod(scoretools.all_are_components)')
-        lines.append('')
-        lines.append('    output_material_maker = staticmethod(foo)')
-        lines.append('')
-        lines.append('    output_material_module_import_statements = [')
-        lines.append('        ]')
-        lines.append('')
-        lines.append('    user_input_demo_values = [')
-        lines.append('        ]')
-        lines.append('')
-        lines.append('    user_input_module_import_statements = [')
-        lines.append('        ]')
-        lines.append('')
-        lines.append('    user_input_tests = [')
-        lines.append('        ]')
-        lines.append('')
-        lines.append('    ### PUBLIC METHODS ###')
-        lines.append('')
-        lines.append('    @property')
-        lines.append('    def output_material_module_body_lines(self):')
-        lines.append('        lines = []')
-        lines.append('        output_material = self.output_material')
-        lines.append("        lines.append('{} = {!r}'.format(self.material_package_name, output_material)")
-        class_file.write('\n'.join(lines))
-        class_file.close()
-
-    # TODO: change to boilerplate
-    def make_asset_initializer(self, package_name):
-        r'''Makes asset initializer.
-
-        Returns none.
-        '''
-        initializer_file_path = os.path.join(
-            self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
-            package_name, 
-            '__init__.py',
-            )
-        initializer = file(initializer_file_path, 'w')
-        line = 'from abjad.tools import systemtools\n'
-        initializer.write(line)
-        initializer.write('\n')
-        initializer.write(
-            "systemtools.ImportManager.import_structured_package(__path__[0], globals())\n")
-        initializer.close()
-
-    # TODO: change to boilerplate
-    def make_asset_stylesheet(self, package_name):
-        r'''Makes asset stylesheet.
-
-        Returns none.
-        '''
-        stylesheet = lilypondfiletools.make_basic_lilypond_file()
-        stylesheet.pop()
-        stylesheet.file_initial_system_comments = []
-        stylesheet.default_paper_size = 'letter', 'portrait'
-        stylesheet.global_staff_size = 14
-        stylesheet.layout_block.indent = 0
-        stylesheet.layout_block.ragged_right = True
-        stylesheet.paper_block.markup_system_spacing = \
-            layouttools.make_spacing_vector(0, 0, 12, 0)
-        stylesheet.paper_block.system_system_spacing = \
-            layouttools.make_spacing_vector(0, 0, 10, 0)
-        stylesheet_file_path = os.path.join(
-            self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
-            package_name, 
-            'stylesheet.ly')
-        stylesheet_file_pointer = file(stylesheet_file_path, 'w')
-        stylesheet_file_pointer.write(stylesheet.format)
-        stylesheet_file_pointer.close()
-
     ### UI MANIFEST ###
 
     user_input_to_action = PackageWrangler.user_input_to_action.copy()
     user_input_to_action.update({
-        'new': interactively_make_asset,
         })

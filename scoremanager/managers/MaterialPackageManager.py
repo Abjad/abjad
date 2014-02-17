@@ -303,11 +303,6 @@ class MaterialPackageManager(PackageManager):
             return os.path.exists(self.output_material_module_file_path)
         return False
 
-    # TODO: impelement
-    @property
-    def has_stylesheet(self):
-        return False
-
     @property
     def has_user_input_module(self):
         if self.should_have_user_input_module:
