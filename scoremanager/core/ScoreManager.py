@@ -93,7 +93,9 @@ class ScoreManager(ScoreManagerObject):
         command_section.append(('new score', 'new'))
         hidden_section = menu.make_command_section(is_hidden=True)
         hidden_section.append(('scores - fix', 'fix'))
-        hidden_section.append(('scores - test', 'test'))
+        hidden_section = menu.make_command_section(is_hidden=True)
+        hidden_section.append(('tests - doctest', 'tdoc'))
+        hidden_section.append(('tests - py.test', 'tpy'))
         hidden_section = menu.make_command_section(is_hidden=True)
         hidden_section.append(('scores - show all', 'ssl'))
         hidden_section.append(('scores - show active', 'ssv'))
@@ -271,15 +273,31 @@ class ScoreManager(ScoreManagerObject):
     def interactively_make_new_score(self):
         self.score_package_wrangler.interactively_make_asset(rollback=True)
 
-    def interactively_run_tests_on_all_user_scores(self, prompt=True):
-        command = 'pytest {}'.format(
-            self.configuration.user_score_packages_directory_path)
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        lines = [line.strip() for line in proc.stdout.readlines()]
+    def interactively_run_doctest_on_all_user_scores(self, prompt=True):
+        path = self.configuration.user_score_packages_directory_path
+        command = 'ajv doctest {}'.format(path)
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in process.stdout.readlines()]
+        if lines:
+            lines.append('')
+            self.session.io_manager.display(
+                lines, 
+                capitalize_first_character=False,
+                )
+        line = 'doctest complete.'
+        self.session.io_manager.proceed(line, is_interactive=prompt)
+
+    def interactively_run_pytest_on_all_user_scores(self, prompt=True):
+        path = self.configuration.user_score_packages_directory_path
+        command = 'py.test -rf {}'.format(path)
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
             self.session.io_manager.display(
-                lines, capitalize_first_character=False)
-        line = 'tests complete.'
+                lines, 
+                capitalize_first_character=False,
+                )
+        line = 'py.test complete.'
         self.session.io_manager.proceed(line, is_interactive=prompt)
 
     def manage_materials(self):
@@ -331,7 +349,8 @@ class ScoreManager(ScoreManagerObject):
         'ssl': display_all_scores,
         'ssv': display_active_scores,
         'ssmb': display_mothballed_scores,
-        'test': interactively_run_tests_on_all_user_scores,
+        'tdoc': interactively_run_doctest_on_all_user_scores,
+        'tpy': interactively_run_pytest_on_all_user_scores,
         'y': manage_stylesheets,
         'wc': write_cache,
         }

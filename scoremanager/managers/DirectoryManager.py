@@ -156,8 +156,8 @@ class DirectoryManager(Manager):
         Returns none.
         '''
         command = 'pytest {}'.format(self.filesystem_path)
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        lines = [line.strip() for line in proc.stdout.readlines()]
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
             self.session.io_manager.display(lines)
         line = 'tests run.'
