@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
-from scoremanager.core.ScoreManagerObject \
-    import ScoreManagerObject
+from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
 class Selector(ScoreManagerObject):
@@ -125,7 +124,8 @@ class Selector(ScoreManagerObject):
         ):
         selector = Selector.make_handler_class_name_selector(
             session=session,
-            forbidden_directory_entries=['ArticulationHandler'],
+            base_class_names=('ArticulationHandler',),
+            forbidden_class_names=('ArticulationHandler',),
             )
         return selector
 
@@ -178,14 +178,10 @@ class Selector(ScoreManagerObject):
     def make_dynamic_handler_class_name_selector(
         session=None, 
         ):
-        forbidden_directory_entries = [
-            'Handler',
-            'DynamicHandler',
-            'test',
-            ]
         selector = Selector.make_handler_class_name_selector(
             session=session,
-            forbidden_directory_entries=forbidden_directory_entries,
+            base_class_names=('DynamicHandler', 'DynamicsHandler'),
+            forbidden_class_names=('DynamicHandler',)
             )
         return selector
 
@@ -202,17 +198,23 @@ class Selector(ScoreManagerObject):
     @staticmethod
     def make_handler_class_name_selector(
         session=None, 
-        forbidden_directory_entries=None,
+        base_class_names=None,
+        forbidden_class_names=None,
         ):
-        forbidden_directory_entries = forbidden_directory_entries or []
-        handler_tools_directory_path = \
-            Selector.configuration.handler_tools_directory_path
-        selector = Selector.make_directory_content_selector(
-            session=session,
-            storehouse_filesystem_paths=[handler_tools_directory_path],
-            forbidden_directory_entries=forbidden_directory_entries,
-            strip_file_extensions=True,
-            )
+        selector = Selector(session=session)
+        base_class_names = base_class_names or ()
+        forbidden_class_names = forbidden_class_names or ()
+        directory_path = Selector.configuration.handler_tools_directory_path
+        class_names = []
+        for entry in os.listdir(directory_path):
+            if entry.endswith('.py'):
+                for base_class_name in base_class_names:
+                    if base_class_name in entry:
+                        class_name, extension = os.path.splitext(entry)
+                        if class_name not in forbidden_class_names:
+                            class_names.append(class_name)
+                        continue
+        selector.items = class_names
         return selector
 
     @staticmethod
