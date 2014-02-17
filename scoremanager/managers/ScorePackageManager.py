@@ -164,18 +164,18 @@ class ScorePackageManager(PackageManager):
             message = message.format(result)
             raise ValueError(message)
 
-    def _handle_repository_menu_result(self, result):
-        if result == 'add':
-            self.repository_add(is_interactive=True)
-        elif result == 'ci':
-            self.repository_ci(is_interactive=True)
-            return True
-        elif result == 'st':
-            self.repository_st(is_interactive=True)
-        elif result == 'up':
-            self.repository_up(is_interactive=True)
-        else:
-            raise ValueError(result)
+#    def _handle_repository_menu_result(self, result):
+#        if result == 'add':
+#            self.repository_add(is_interactive=True)
+#        elif result == 'ci':
+#            self.repository_ci(is_interactive=True)
+#            return True
+#        elif result == 'st':
+#            self.repository_st(is_interactive=True)
+#        elif result == 'up':
+#            self.repository_up(is_interactive=True)
+#        else:
+#            raise ValueError(result)
 
     def _handle_setup_menu_result(self, result):
         assert isinstance(result, str)
@@ -227,7 +227,6 @@ class ScorePackageManager(PackageManager):
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('fix package structure', 'fix'))
         hidden_section.append(('list directory contents', 'ls'))
-        hidden_section.append(('manage repository', 'rep'))
         hidden_section.append(('run pytest', 'pytest'))
         hidden_section.append(('remove score package', 'removescore'))
         hidden_section.append(('view initializer', 'inv'))
@@ -235,14 +234,14 @@ class ScorePackageManager(PackageManager):
         self.session.io_manager._make_metadata_menu_section(main_menu)
         return main_menu
 
-    def _make_repository_menu(self):
-        menu = self.session.io_manager.make_menu(where=self._where)
-        command_section = menu.make_command_section()
-        command_section.append(('add', 'add'))
-        command_section.append(('commit', 'ci'))
-        command_section.append(('status', 'st'))
-        command_section.append(('update', 'up'))
-        return menu
+#    def _make_repository_menu(self):
+#        menu = self.session.io_manager.make_menu(where=self._where)
+#        command_section = menu.make_command_section()
+#        command_section.append(('add', 'add'))
+#        command_section.append(('commit', 'ci'))
+#        command_section.append(('status', 'st'))
+#        command_section.append(('update', 'up'))
+#        return menu
 
     def _make_setup_menu(self):
         menu = self.session.io_manager.make_menu(where=self._where)
@@ -517,7 +516,6 @@ class ScorePackageManager(PackageManager):
         'm': manage_materials,
         'pdfv': interactively_view_score,
         'removescore': interactively_remove,
-        'rep': manage_repository,
         's': manage_setup,
         't': manage_score_templates,
         'u': manage_build_directory,

@@ -14,15 +14,6 @@ def test_ScoreManager_01():
 
 
 def test_ScoreManager_02():
-    r'''Main menu to repository menu.
-    '''
-
-    score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='rep q')
-    assert score_manager.session.io_transcript.signature == (4,)
-
-
-def test_ScoreManager_03():
     r'''Main menu header is the same even after state change to secondary menu.
     '''
 
@@ -31,16 +22,8 @@ def test_ScoreManager_03():
     string = 'Score manager - active scores'
     assert score_manager.session.io_transcript[-2][1][0] == string
 
-    score_manager._run(pending_user_input='rep q')
-    string = 'Score manager - active scores - repository commands'
-    assert score_manager.session.io_transcript[-2][1][0] == string
 
-    score_manager._run(pending_user_input='rep b q')
-    string = 'Score manager - active scores'
-    assert score_manager.session.io_transcript[-2][1][0] == string
-
-
-def test_ScoreManager_04():
+def test_ScoreManager_03():
     r'''Junk works.
     '''
 
@@ -52,7 +35,7 @@ def test_ScoreManager_04():
     assert score_manager.session.io_transcript.signature == (6, (0, 2, 4))
 
 
-def test_ScoreManager_05():
+def test_ScoreManager_04():
     r'''Back is handled correctly.
     '''
 
@@ -61,7 +44,7 @@ def test_ScoreManager_05():
     assert score_manager.session.io_transcript.signature == (4, (0, 2))
 
 
-def test_ScoreManager_06():
+def test_ScoreManager_05():
     r'''Exec works.
     '''
 
@@ -74,7 +57,7 @@ def test_ScoreManager_06():
     assert score_manager.session.io_transcript[4][1] == ['> q', '']
 
 
-def test_ScoreManager_07():
+def test_ScoreManager_06():
     r'''Exec protects against senseless input.
     '''
 
@@ -88,7 +71,7 @@ def test_ScoreManager_07():
     assert score_manager.session.io_transcript[4][1] == ['> q', '']
 
 
-def test_ScoreManager_08():
+def test_ScoreManager_07():
     r'''Shared session.
     '''
 
@@ -98,7 +81,7 @@ def test_ScoreManager_08():
     assert score_manager.session is wrangler.session
 
 
-def test_ScoreManager_09():
+def test_ScoreManager_08():
     r'''Backtracking stu* shortcut.
     '''
 
@@ -115,7 +98,7 @@ def test_ScoreManager_09():
     assert signature_1 == signature_2
 
 
-def test_ScoreManager_10():
+def test_ScoreManager_09():
     r'''Backtracking sco* shortcut.
     '''
 

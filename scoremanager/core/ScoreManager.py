@@ -95,7 +95,10 @@ class ScoreManager(ScoreManagerObject):
         hidden_section.append(('cache - view', 'cv'))
         hidden_section.append(('cache - write', 'cw'))
         hidden_section = menu.make_command_section(is_hidden=True)
-        hidden_section.append(('work with repository', 'rep'))
+        hidden_section.append(('repository - add', 'radd'))
+        hidden_section.append(('repository - commit', 'rci'))
+        hidden_section.append(('repository - status', 'rst'))
+        hidden_section.append(('repository - update', 'rup'))
         hidden_section = menu.make_command_section(is_hidden=True)
         hidden_section.append(('scores - show all', 'ssl'))
         hidden_section.append(('scores - show active', 'ssv'))
@@ -325,6 +328,18 @@ class ScoreManager(ScoreManagerObject):
             rollback=True, 
             )
 
+    def repository_add_assets(self, prompt=True):
+        self.score_package_wrangler.repository_add_assets()
+
+    def repository_ci_assets(self, prompt=True):
+        self.score_package_wrangler.repository_ci_assets()
+
+    def repository_st_assets(self, prompt=True):
+        self.score_package_wrangler.repository_st_assets()
+
+    def repository_up_assets(self, prompt=True):
+        self.score_package_wrangler.repository_up_assets()
+
     def view_cache(self):
         file_path = self.configuration.cache_file_path
         if os.path.isfile(file_path):
@@ -334,7 +349,6 @@ class ScoreManager(ScoreManagerObject):
     def write_cache(self, prompt=True):
         self.session.io_manager._write_cache(prompt=prompt)
 
-
     ### UI MANIFEST ###
 
     user_input_to_action = {
@@ -342,7 +356,10 @@ class ScoreManager(ScoreManagerObject):
         'cw': write_cache,
         'm': manage_materials,
         'new': interactively_make_new_score,
-        'rep': manage_repository,
+        'radd': repository_add_assets,
+        'rci': repository_ci_assets,
+        'rst': repository_st_assets,
+        'rup': repository_up_assets,
         'ssl': display_all_scores,
         'ssv': display_active_scores,
         'ssmb': display_mothballed_scores,
