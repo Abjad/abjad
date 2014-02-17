@@ -110,7 +110,6 @@ class MaterialPackageWrangler(PackageWrangler):
         command_section.append(('new material - by hand', 'nmh'))
         command_section.append(('new material - with manager', 'nmm'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
-        hidden_section.append(('create numeric sequence', 's'))
         hidden_section.append(('create missing packages', 'missing'))
         hidden_section.append(('profile packages', 'profile'))
         return main_menu
@@ -178,20 +177,6 @@ class MaterialPackageWrangler(PackageWrangler):
         manager = self._get_appropriate_material_package_manager(
             material_package_manager_class_name, material_package_path)
         manager.run_first_time()
-
-    def interactively_make_numeric_sequence_package(
-        self, 
-        pending_user_input=None,
-        ):
-        r'''Interactively makes numeric sequence package.
-
-        Returns none.
-        '''
-        metadata = {'is_numeric_sequence': True}
-        self.interactively_make_data_package(
-            metadata=metadata, 
-            pending_user_input=pending_user_input,
-            )
 
     def list_asset_filesystem_paths(
         self,
@@ -457,14 +442,6 @@ class MaterialPackageWrangler(PackageWrangler):
         line = 'material package {!r} created.'.format(package_path)
         self.session.io_manager.proceed(line, is_interactive=is_interactive)
 
-    def make_numeric_sequence_package(self, package_path):
-        r'''Makes numeric sequence package.
-
-        Returns none.
-        '''
-        metadata = {'is_numeric_sequence': True}
-        self.make_data_package(package_path, metadata=metadata)
-
     ### UI MANIFEST ###
 
     user_input_to_action = PackageWrangler.user_input_to_action.copy()
@@ -472,5 +449,4 @@ class MaterialPackageWrangler(PackageWrangler):
         'd': interactively_make_data_package,
         'nmh': interactively_make_handmade_material_package,
         'nmm': interactively_make_managermade_material_package,
-        's': interactively_make_numeric_sequence_package,
         })
