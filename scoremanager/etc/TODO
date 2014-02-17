@@ -5,8 +5,7 @@
 
 3.  Fix IOManager.handle_user_input() default handling.
 
-4.  Find a way dynamically to present default notice 
-    with default menu entries.
+4.  Find a way dynamically to present default notice with default menu entries.
 
 5.  Distinguish positional editor parameters from keyword editor parameters.
 
@@ -125,28 +124,25 @@
 
 34. Make 'here' work again. Or remove.
 
-35. Find a way to force all view commands to allow edit. For developer
-    debugging.
-
-36. Add other commands to 'ls'. Commands should include ls variants to show
+35. Add other commands to 'ls'. Commands should include ls variants to show
     time of modification and size. Probably other filesystem commands, too.
 
-37. Replace the self.has_whatever_module properties (or methods)
+36. Replace the self.has_whatever_module properties (or methods)
     with just os.path.isfile(self.whatever_file_path) instead.
 
-38. Figure out why so many tests are commented-out at the bottom of
+37. Figure out why so many tests are commented-out at the bottom of
     test_MaterialPackageWrangler_run_managermade_package.
 
-39. Removed MarkupInventoryMaterialPackageManager.illustration_builder().
+38. Removed MarkupInventoryMaterialPackageManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
 
-40. Write test for (ren) to rename, for example, red_markup to red_markup.
+39. Write test for (ren) to rename, for example, red_markup to red_markup.
     Currently fails. Reproduce failure by creating a material package that
     is managed by MarkupInventoryMaterialPackageManager.
 
-41. Make (materials) > (profile) work. Add test.
+40. Make (materials) > (profile) work. Add test.
 
-42. Rename built-in material packages from ...
+41. Rename built-in material packages from ...
         red_forte
         red_marcati
         red_markup
@@ -165,7 +161,7 @@
     This will reduce confusion with Red Example Score.
     Red Example Score is unrelated to example material packages.
 
-43. Write test to make sure that ...
+42. Write test to make sure that ...
         # -*- encoding: utf-8 -*-
         from abjad import *
         output_material_module_import_statements = []
@@ -175,12 +171,12 @@
     ... shows up as the exact file contents in response to (materials) > (nmh)
     > ... > (mde).
 
-44. Change 'score segments (g)', 'score setup (s)' and 'score templates (t)'
+43. Change 'score segments (g)', 'score setup (s)' and 'score templates (t)'
     to just 'segments (g)', 'setup (s)' and 'templates (t)'.
 
-45. Change menu command display strings to 'direct object - verb' pervasively.
+44. Change menu command display strings to 'direct object - verb' pervasively.
 
-46. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+45. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument.
     Maker sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
