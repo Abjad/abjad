@@ -989,15 +989,11 @@ class MaterialPackageManager(PackageManager):
         lines = []
         lines.append('# -*- encoding: utf-8 -*-\n')
         lines.append('from abjad import *\n')
-        line = 'output_material_module_import_statements'
-        line += " = ['from abjad import *']\n"
-        lines.append(line)
-        lines.append('\n\n')
-        #line = '{} = None'.format(self.material_package_name)
-        line = '{} = None'.format(self.package_root_name)
+        lines.append('output_material_module_import_statements = []')
+        lines.append('\n\n\n')
+        line = '{} = None'.format(self.material_package_name)
         lines.append(line)
         lines = ''.join(lines)
-        #file_pointer = file(self.filesystem_path, 'w')
         file_pointer = file(self.material_definition_module_file_path, 'w')
         file_pointer.write(lines)
         file_pointer.close()
