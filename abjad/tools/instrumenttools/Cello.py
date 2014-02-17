@@ -34,7 +34,9 @@ class Cello(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        '_default_tuning',
+        )
 
     ### INITIALIZER ###
 
@@ -45,6 +47,7 @@ class Cello(Instrument):
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=('bass', 'tenor', 'treble'),
+        default_tuning=('C2', 'G2', 'D3', 'A3'),
         pitch_range='[C2, G5]',
         sounding_pitch_of_written_middle_c=None,
         ):
@@ -65,6 +68,7 @@ class Cello(Instrument):
             ])
         self._starting_clefs = indicatortools.ClefInventory(['bass'])
         self._is_primary_instrument = True
+        self._default_tuning = indicatortools.Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
 
@@ -86,6 +90,19 @@ class Cello(Instrument):
         Returns clef inventory.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def default_tuning(self):
+        r'''Gets cello's default tuning.
+
+        ..  container:: example
+
+            >>> cello.default_tuning
+            Tuning(pitches=PitchSegment(['c,', 'g,', 'd', 'a']))
+
+        Returns tuning.
+        '''
+        return self._default_tuning
 
     @property
     def instrument_name(self):

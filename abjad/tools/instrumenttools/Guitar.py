@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import indicatortools
-from abjad.tools import markuptools
-from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
@@ -31,7 +29,9 @@ class Guitar(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        '_default_tuning',
+        )
 
     ### INITIALIZER ###
 
@@ -42,6 +42,7 @@ class Guitar(Instrument):
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=None,
+        default_tuning=('E2', 'A2', 'D3', 'G3', 'B3', 'E4'),
         pitch_range='[E2, E5]',
         sounding_pitch_of_written_middle_c='C3',
         ):
@@ -61,6 +62,7 @@ class Guitar(Instrument):
             'guitarist',
             ])
         self._is_primary_instrument = True
+        self._default_tuning = indicatortools.Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
 
@@ -82,6 +84,21 @@ class Guitar(Instrument):
         Returns clef inventory.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def default_tuning(self):
+        r'''Gets guitar's default tuning.
+
+        ..  container:: example
+
+            ::
+
+                >>> guitar.default_tuning
+                Tuning(pitches=PitchSegment(['e,', 'a,', 'd', 'g', 'b', "e'"]))
+
+        Returns tuning.
+        '''
+        return self._default_tuning
 
     @property
     def instrument_name(self):

@@ -97,6 +97,19 @@ class InstrumentationSpecifier(AbjadObject):
                                                 ),
                                             ]
                                         ),
+                                    default_tuning=indicatortools.Tuning(
+                                        pitches=pitchtools.PitchSegment(
+                                            (
+                                                pitchtools.NamedPitch('e,'),
+                                                pitchtools.NamedPitch('a,'),
+                                                pitchtools.NamedPitch('d'),
+                                                pitchtools.NamedPitch('g'),
+                                                pitchtools.NamedPitch('b'),
+                                                pitchtools.NamedPitch("e'"),
+                                                ),
+                                            item_class=pitchtools.NamedPitch,
+                                            ),
+                                        ),
                                     pitch_range=pitchtools.PitchRange(
                                         '[E2, E5]'
                                         ),
@@ -281,6 +294,19 @@ class InstrumentationSpecifier(AbjadObject):
                                                 name='treble',
                                                 ),
                                             ]
+                                        ),
+                                    default_tuning=indicatortools.Tuning(
+                                        pitches=pitchtools.PitchSegment(
+                                            (
+                                                pitchtools.NamedPitch('e,'),
+                                                pitchtools.NamedPitch('a,'),
+                                                pitchtools.NamedPitch('d'),
+                                                pitchtools.NamedPitch('g'),
+                                                pitchtools.NamedPitch('b'),
+                                                pitchtools.NamedPitch("e'"),
+                                                ),
+                                            item_class=pitchtools.NamedPitch,
+                                            ),
                                         ),
                                     pitch_range=pitchtools.PitchRange(
                                         '[E2, E5]'

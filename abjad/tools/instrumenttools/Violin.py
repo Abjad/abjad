@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import indicatortools
-from abjad.tools import markuptools
-from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
@@ -31,7 +29,9 @@ class Violin(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        '_default_tuning',
+        )
 
     ### INITIALIZER ###
 
@@ -42,6 +42,7 @@ class Violin(Instrument):
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=None,
+        default_tuning=('G3', 'D4', 'A4', 'E5'),
         pitch_range='[G3, G7]',
         sounding_pitch_of_written_middle_c=None,
         ):
@@ -61,6 +62,7 @@ class Violin(Instrument):
             'violinist',
             ])
         self._is_primary_instrument = True
+        self._default_tuning = indicatortools.Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
 
@@ -82,6 +84,19 @@ class Violin(Instrument):
         Returns clef inventory.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def default_tuning(self):
+        r'''Gets violin's default tuning.
+
+        ..  container:: example
+
+            >>> violin.default_tuning
+            Tuning(pitches=PitchSegment(['g', "d'", "a'", "e''"]))
+
+        Returns tuning.
+        ''' 
+        return self._default_tuning
 
     @property
     def instrument_name(self):

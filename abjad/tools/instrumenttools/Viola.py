@@ -34,7 +34,9 @@ class Viola(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        '_default_tuning',
+        )
 
     ### INITIALIZER ###
 
@@ -45,6 +47,7 @@ class Viola(Instrument):
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=('alto', 'treble'),
+        default_tuning=('C3', 'G3', 'D4', 'A4'),
         pitch_range='[C3, D6]',
         sounding_pitch_of_written_middle_c=None,
         ):
@@ -65,6 +68,7 @@ class Viola(Instrument):
             ])
         self._is_primary_instrument = True
         self._starting_clefs = indicatortools.ClefInventory(['alto'])
+        self._default_tuning = indicatortools.Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
 
@@ -86,6 +90,19 @@ class Viola(Instrument):
         Returns clef inventory.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def default_tuning(self):
+        r'''Gets viola's default tuning.
+
+        ..  container:: example
+
+            >>> viola.default_tuning
+            Tuning(pitches=PitchSegment(['c', 'g', "d'", "a'"]))
+
+        Returns tuning.
+        '''
+        return self._default_tuning
 
     @property
     def instrument_name(self):
