@@ -94,3 +94,15 @@ def test_MaterialPackageWrangler_make_managermade_material_package_04():
     finally:
         mpp.remove()
         assert not wrangler.configuration.packagesystem_path_exists(string)
+
+
+def test_MaterialPackageWrangler_make_managermade_material_package_05():
+    r'''Make manager selector breadcrumb is correct.
+    '''
+
+    score_manager = scoremanager.core.ScoreManager()
+    score_manager._run(pending_user_input='materials manager q')
+
+    transcript = score_manager.session.io_transcript
+    string = 'Select material package manager:'
+    assert transcript.last_menu_lines[0] == string
