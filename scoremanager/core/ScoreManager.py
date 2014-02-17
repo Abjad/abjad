@@ -95,9 +95,9 @@ class ScoreManager(ScoreManagerObject):
         hidden_section.append(('scores - fix', 'fix'))
         hidden_section.append(('scores - test', 'test'))
         hidden_section = menu.make_command_section(is_hidden=True)
-        hidden_section.append(('show - active scores', 'active'))
-        hidden_section.append(('show - all score', 'all'))
-        hidden_section.append(('show - mothballed scores', 'mothballed'))
+        hidden_section.append(('scores - show all', 'ssl'))
+        hidden_section.append(('scores - show active', 'ssv'))
+        hidden_section.append(('scores - show mothballed', 'ssmb'))
         hidden_section = menu.make_command_section(is_hidden=True)
         hidden_section.append(('work with repository', 'rep'))
         hidden_section.append(('write cache', 'wc'))
@@ -324,13 +324,13 @@ class ScoreManager(ScoreManagerObject):
     ### UI MANIFEST ###
 
     user_input_to_action = {
-        'active': display_active_scores,
-        'all': display_all_scores,
         'fix': fix_visible_scores,
         'm': manage_materials,
-        'mothballed': display_mothballed_scores,
         'new': interactively_make_new_score,
         'rep': manage_repository,
+        'ssl': display_all_scores,
+        'ssv': display_active_scores,
+        'ssmb': display_mothballed_scores,
         'test': interactively_run_tests_on_all_user_scores,
         'y': manage_stylesheets,
         'wc': write_cache,
