@@ -92,8 +92,6 @@ class ScoreManager(ScoreManagerObject):
         command_section.append(('stylesheets', 'y'))
         command_section.append(('new score', 'new'))
         hidden_section = menu.make_command_section(is_hidden=True)
-        hidden_section.append(('scores - fix', 'fix'))
-        hidden_section = menu.make_command_section(is_hidden=True)
         hidden_section.append(('tests - doctest', 'tdoc'))
         hidden_section.append(('tests - py.test', 'tpy'))
         hidden_section = menu.make_command_section(is_hidden=True)
@@ -259,9 +257,6 @@ class ScoreManager(ScoreManagerObject):
     def display_mothballed_scores(self):
         self.session.display_mothballed_scores()
 
-    def fix_visible_scores(self):
-        self.score_package_wrangler.fix_visible_assets()
-
     def interactively_edit_score(self, score_package_path):
         manager = self.score_package_wrangler._initialize_asset_manager(
             score_package_path)
@@ -342,7 +337,6 @@ class ScoreManager(ScoreManagerObject):
     ### UI MANIFEST ###
 
     user_input_to_action = {
-        'fix': fix_visible_scores,
         'm': manage_materials,
         'new': interactively_make_new_score,
         'rep': manage_repository,

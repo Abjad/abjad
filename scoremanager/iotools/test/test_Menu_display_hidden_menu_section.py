@@ -27,8 +27,6 @@ def test_Menu_display_hidden_menu_section_01():
         '     toggle where-tracking (twt)',
         '     view LilyPond log (log)',
         '',
-        '     scores - fix (fix)',
-        '',
         '     tests - doctest (tdoc)',
         '     tests - py.test (tpy)',
         '',
