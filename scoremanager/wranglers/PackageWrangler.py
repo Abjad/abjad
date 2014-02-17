@@ -332,23 +332,6 @@ class PackageWrangler(Wrangler):
         package_manager = self._initialize_asset_manager(asset_name)
         package_manager.interactively_fix(is_interactive=False)
 
-    def make_asset_storehouse_packages(self, is_interactive=False):
-        r'''Makes asset storehouse packages.
-
-        Returns none.
-        '''
-        for package_path in self.list_asset_storehouse_packagesystem_paths(
-            in_built_in_asset_library=True,
-            in_user_asset_library=True,
-            in_built_in_score_packages=True,
-            in_user_score_packages=True,
-            ):
-            self.make_empty_package(package_path)
-        self.session.io_manager.proceed(
-            'missing packages created.', 
-            is_interactive=is_interactive,
-            )
-
     def make_empty_package(self, package_path):
         r'''Makes empty package.
 
@@ -371,7 +354,6 @@ class PackageWrangler(Wrangler):
 
     user_input_to_action = Wrangler.user_input_to_action.copy()
     user_input_to_action.update({
-        'missing': make_asset_storehouse_packages,
         'new': interactively_make_asset,
         'ren': interactively_rename_asset,
         })

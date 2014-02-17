@@ -111,8 +111,6 @@ class MaterialPackageWrangler(PackageWrangler):
         command_section = main_menu.make_command_section()
         command_section.append(('new material - by hand', 'nmh'))
         command_section.append(('new material - with manager', 'nmm'))
-        hidden_section = main_menu.make_command_section(is_hidden=True)
-        hidden_section.append(('create missing packages', 'missing'))
         return main_menu
 
     ### PUBLIC METHODS ###
