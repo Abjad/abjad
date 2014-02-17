@@ -11,7 +11,7 @@ def test_ArticulationHandlerMaterialPackageManager_01():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials manager articulation testarticulationhandler default '
+            'materials nmm articulation testarticulationhandler default '
             'testarticulationhandler omi reiterated '
             "['^', '.'] (1, 64) (1, 4) c c'''' done default "
             'q '

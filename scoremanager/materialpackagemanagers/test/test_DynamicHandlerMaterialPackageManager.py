@@ -11,7 +11,7 @@ def test_DynamicHandlerMaterialPackageManager_01():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials manager dynamic testdynamichandler default '
+            'materials nmm dynamic testdynamichandler default '
             'testdynamichandler omi reiterateddynamic '
             'f (1, 16) done default '
             'q '

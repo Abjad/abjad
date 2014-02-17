@@ -107,8 +107,8 @@ class MaterialPackageWrangler(PackageWrangler):
         asset_menu_entries = self._make_asset_menu_entries(head=head)
         asset_section.menu_entries = asset_menu_entries
         command_section = main_menu.make_command_section()
-        command_section.append(('handmade', 'h'))
-        command_section.append(('manager-made', 'm'))
+        command_section.append(('new material - by hand', 'nmh'))
+        command_section.append(('new material - with manager', 'nmm'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('create numeric sequence', 's'))
         hidden_section.append(('create missing packages', 'missing'))
@@ -470,7 +470,7 @@ class MaterialPackageWrangler(PackageWrangler):
     user_input_to_action = PackageWrangler.user_input_to_action.copy()
     user_input_to_action.update({
         'd': interactively_make_data_package,
-        'h': interactively_make_handmade_material_package,
-        'm': interactively_make_managermade_material_package,
+        'nmh': interactively_make_handmade_material_package,
+        'nmm': interactively_make_managermade_material_package,
         's': interactively_make_numeric_sequence_package,
         })

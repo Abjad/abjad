@@ -12,7 +12,7 @@ def test_SargassoMeasureMaterialPackageManager_01():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials manager sargasso testsargasso default '
+            'materials nmm sargasso testsargasso default '
             'q'
             )
         string = 'scoremanager.materialpackages.testsargasso'
@@ -51,7 +51,7 @@ def test_SargassoMeasureMaterialPackageManager_02():
 
     try:
         score_manager._run(pending_user_input=
-            'materials manager sargasso testsargasso default '
+            'materials nmm sargasso testsargasso default '
             'testsargasso uil '
             'q'
             )
@@ -90,7 +90,7 @@ def test_SargassoMeasureMaterialPackageManager_03():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials manager sargasso testsargasso default '
+            'materials nmm sargasso testsargasso default '
             'testsargasso uil uic '
             'q'
             )
@@ -129,7 +129,7 @@ def test_SargassoMeasureMaterialPackageManager_04():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials manager sargasso testsargasso default '
+            'materials nmm sargasso testsargasso default '
             'testsargasso 3 16 '
             'q'
             )
@@ -168,7 +168,7 @@ def test_SargassoMeasureMaterialPackageManager_05():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials manager sargasso testsargasso default '
+            'materials nmm sargasso testsargasso default '
             'testsargasso uip 5 '
             'Duration(11, 2) False True True 4 [2, 2, 2, 2, 1, 1, 4, 4] 16 [1, 1, 2, 3, 4] '
             'q'
@@ -208,7 +208,7 @@ def test_SargassoMeasureMaterialPackageManager_06():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials manager sargasso testsargasso default '
+            'materials nmm sargasso testsargasso default '
             'testsargasso uip 1 '
             '4 [2, 2, 3, 3] 16 [1, 1, 1, 1, 6, 6] b '
             'q'
@@ -248,7 +248,7 @@ def test_SargassoMeasureMaterialPackageManager_07():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials manager sargasso testsargasso default '
+            'materials nmm sargasso testsargasso default '
             'testsargasso uil 6 None 7 None 8 None '
             'q'
             )
@@ -287,7 +287,7 @@ def test_SargassoMeasureMaterialPackageManager_08():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials manager sargasso testsargasso default '
+            'materials nmm sargasso testsargasso default '
             'testsargasso uil omm default '
             'q'
             )

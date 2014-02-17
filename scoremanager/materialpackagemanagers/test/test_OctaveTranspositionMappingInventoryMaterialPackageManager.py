@@ -12,7 +12,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageManager_01():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials manager octave testoctavetrans default '
+            'materials nmm octave testoctavetrans default '
             'q'
             )
         string = 'scoremanager.materialpackages.testoctavetrans'
@@ -40,7 +40,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageManager_02():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials manager octave testoctavetrans '
+            'materials nmm octave testoctavetrans '
             'testoctavetrans omi add add source [A0, C4) target 15 done '
             'add source [C4, C8) target 27 done done '
             'add add source [A0, C8] target -18 done done done default q'

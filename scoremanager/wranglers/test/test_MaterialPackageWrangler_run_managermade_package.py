@@ -14,7 +14,7 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
     assert not score_manager.configuration.packagesystem_path_exists(name)
 
     try:
-        string = 'm m sargasso testsargasso default q'
+        string = 'm nmm sargasso testsargasso default q'
         score_manager._run(pending_user_input=string)
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(name)
@@ -43,7 +43,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
     assert not score_manager.configuration.packagesystem_path_exists(name)
 
     try:
-        string = 'red~example~score m m sargasso testsargasso default q'
+        string = 'red~example~score m nmm sargasso testsargasso default q'
         score_manager._run(pending_user_input=string)
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(name)
@@ -73,7 +73,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #
 #    try:
 #        score_manager._run(pending_user_input=
-#            'm m testsargasso default default '
+#            'm nmm testsargasso default default '
 #            'testsargasso incanned boilerplate_exception.py default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
@@ -98,7 +98,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #
 #    try:
 #        score_manager._run(pending_user_input=
-#            'm m testsargasso default default '
+#            'm nmm testsargasso default default '
 #            'testsargasso incanned boilerplate_exception.py default '
 #            'inr yes yes default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
@@ -123,7 +123,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #
 #    try:
 #        score_manager._run(pending_user_input=
-#            'm m testsargasso default default '
+#            'm nmm testsargasso default default '
 #            'testsargasso mdcanned boilerplate_testsargasso_material_definition.py default '
 #            'omm default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
@@ -150,7 +150,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #
 #    try:
 #        score_manager._run(pending_user_input=
-#            'm m testsargasso default default '
+#            'm nmm testsargasso default default '
 #            'testsargasso mddelete default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
@@ -175,7 +175,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #
 #    try:
 #        score_manager._run(pending_user_input=
-#            'm m testsargasso default default '
+#            'm nmm testsargasso default default '
 #            'testsargasso mdstub default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
@@ -199,7 +199,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #
 #    try:
 #        score_manager._run(pending_user_input=
-#            'm m testsargasso default default '
+#            'm nmm testsargasso default default '
 #            'testsargasso mdcanned boilerplate_testsargasso_material_definition.py default '
 #            'omm default '
 #            'omdelete default q')
@@ -226,7 +226,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #
 #    try:
 #        score_manager._run(pending_user_input=
-#            'm m testsargasso default default '
+#            'm nmm testsargasso default default '
 #            'testsargasso mdcanned boilerplate_exception.py default q')
 #        assert score_manager.configuration.packagesystem_path_exists('scoremanager.materialpackages.testsargasso')
 #        mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
@@ -250,7 +250,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #
 #    try:
 #        score_manager._run(pending_user_input=
-#            'm m testsargasso default default '
+#            'm nmm testsargasso default default '
 #            'testsargasso mdcanned boilerplate_testsargasso_material_definition.py default '
 #            'omm default '
 #            'omcanned boilerplate_exception.py default q')
@@ -277,7 +277,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #
 #    try:
 #        score_manager._run(pending_user_input=
-#            'm m testsargasso default default '
+#            'm nmm testsargasso default default '
 #            'testsargasso mdcanned boilerplate_testsargasso_material_definition.py default '
 #            'omm default '
 #            'pdfm default '

@@ -10,7 +10,7 @@ def test_TempoInventoryMaterialPackageManager_01():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials manager tempo testtempoinventory default '
+            'materials nmm tempo testtempoinventory default '
             'testtempoinventory omi add ((1, 4), 60) add ((1, 4), 90) b default '
             'q '
             )

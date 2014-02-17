@@ -161,3 +161,6 @@
 
 46. Replace the self.has_whatever_module properties (or methods)
     with just os.path.isfile(self.whatever_file_path) instead.
+
+47. Figure out why so many tests are commented-out at the bottom of
+    test_MaterialPackageWrangler_run_managermade_package.
