@@ -104,8 +104,6 @@ class ScorePackageWrangler(PackageWrangler):
                 is_interactive=False,
                 )
             results.append(result)
-            if is_interactive:
-                asset_manager.interactively_profile(prompt=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)
         return results
 
@@ -474,15 +472,6 @@ class ScorePackageWrangler(PackageWrangler):
             packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
             result.append(packagesystem_path)
         return result
-
-    def profile_visible_assets(self):
-        r'''Profiles visible assets.
-
-        Returns none.
-        '''
-        for asset_manager in self.list_visible_asset_managers():
-            asset_manager.interactively_profile(prompt=False)
-        self.session.io_manager.proceed()
 
     def repository_add_assets(self, is_interactive=True):
         r'''Adds assets to repository.

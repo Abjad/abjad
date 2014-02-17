@@ -95,11 +95,13 @@ class MaterialPackageWrangler(PackageWrangler):
             self.user_input_to_action[result](self)
         else:
             material_package_manager = self._initialize_asset_manager(result)
-            material_package_manager._run()
+            if os.path.exists(material_package_manager.filesystem_path):
+                material_package_manager._run()
 
     def _initialize_asset_manager(self, package_path):
-        return self._material_package_manager_wrangler._initialize_asset_manager(
-            package_path)
+        wrangler = self._material_package_manager_wrangler
+        manager = wrangler._initialize_asset_manager(package_path)
+        return manager
 
     def _make_main_menu(self, head=None):
         main_menu = self.session.io_manager.make_menu(where=self._where)
@@ -111,7 +113,6 @@ class MaterialPackageWrangler(PackageWrangler):
         command_section.append(('new material - with manager', 'nmm'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('create missing packages', 'missing'))
-        hidden_section.append(('profile packages', 'profile'))
         return main_menu
 
     ### PUBLIC METHODS ###

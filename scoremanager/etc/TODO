@@ -140,8 +140,6 @@
     Currently fails. Reproduce failure by creating a material package that
     is managed by MarkupInventoryMaterialPackageManager.
 
-40. Make (materials) > (profile) work. Add test.
-
 41. Rename built-in material packages from ...
         red_forte
         red_marcati
@@ -161,7 +159,7 @@
     This will reduce confusion with Red Example Score.
     Red Example Score is unrelated to example material packages.
 
-42. Write test to make sure that ...
+41. Write test to make sure that ...
         # -*- encoding: utf-8 -*-
         from abjad import *
         output_material_module_import_statements = []
@@ -171,12 +169,12 @@
     ... shows up as the exact file contents in response to (materials) > (nmh)
     > ... > (mde).
 
-43. Change 'score segments (g)', 'score setup (s)' and 'score templates (t)'
+42. Change 'score segments (g)', 'score setup (s)' and 'score templates (t)'
     to just 'segments (g)', 'setup (s)' and 'templates (t)'.
 
-44. Change menu command display strings to 'direct object - verb' pervasively.
+43. Change menu command display strings to 'direct object - verb' pervasively.
 
-45. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+44. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument.
     Maker sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.

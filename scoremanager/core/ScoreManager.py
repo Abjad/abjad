@@ -93,7 +93,6 @@ class ScoreManager(ScoreManagerObject):
         command_section.append(('new score', 'new'))
         hidden_section = menu.make_command_section(is_hidden=True)
         hidden_section.append(('scores - fix', 'fix'))
-        hidden_section.append(('scores - profile', 'profile'))
         hidden_section.append(('scores - test', 'test'))
         hidden_section = menu.make_command_section(is_hidden=True)
         hidden_section.append(('show - active scores', 'active'))
@@ -311,9 +310,6 @@ class ScoreManager(ScoreManagerObject):
             rollback=True, 
             )
 
-    def profile_visible_scores(self):
-        self.score_package_wrangler.profile_visible_assets()
-
     def write_cache(self):
         cache_file_path = os.path.join(
                 self.configuration.configuration_directory_path, 'cache.py')
@@ -328,15 +324,14 @@ class ScoreManager(ScoreManagerObject):
     ### UI MANIFEST ###
 
     user_input_to_action = {
-        'active':       display_active_scores,
-        'all':          display_all_scores,
-        'fix':          fix_visible_scores,
-        'm':            manage_materials,
-        'mothballed':   display_mothballed_scores,
-        'new':          interactively_make_new_score,
-        'profile':      profile_visible_scores,
-        'rep':          manage_repository,
-        'test':         interactively_run_tests_on_all_user_scores,
-        'y':            manage_stylesheets,
-        'wc':           write_cache,
+        'active': display_active_scores,
+        'all': display_all_scores,
+        'fix': fix_visible_scores,
+        'm': manage_materials,
+        'mothballed': display_mothballed_scores,
+        'new': interactively_make_new_score,
+        'rep': manage_repository,
+        'test': interactively_run_tests_on_all_user_scores,
+        'y': manage_stylesheets,
+        'wc': write_cache,
         }

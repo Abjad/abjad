@@ -227,7 +227,6 @@ class ScorePackageManager(PackageManager):
         hidden_section.append(('fix package structure', 'fix'))
         hidden_section.append(('list directory contents', 'ls'))
         hidden_section.append(('manage repository', 'rep'))
-        hidden_section.append(('profile package structure', 'profile'))
         hidden_section.append(('run pytest', 'pytest'))
         hidden_section.append(('remove score package', 'removescore'))
         hidden_section.append(('view initializer', 'inv'))
@@ -423,32 +422,6 @@ class ScorePackageManager(PackageManager):
         self.session.io_manager.proceed(message, is_interactive=is_interactive)
         return result
 
-    def interactively_profile(self, prompt=True):
-        if not os.path.exists(self.filesystem_path):
-            message = 'directory {!r} does not exist.'
-            message = message.format(self.filesystem_path)
-            raise OSError(message)
-        lines = []
-        for directory_path in self._get_top_level_directory_paths():
-            if os.path.exists(directory_path):
-                result = 'exists'
-            else:
-                result = "doesn't exist"
-            line = '{} {}.'
-            directory_path = directory_path.replace(
-                self.configuration.user_score_packages_directory_path,
-                '...',
-                )
-            directory_path = directory_path.replace(
-                self.configuration.built_in_score_packages_directory_path,
-                '...',
-                )
-            line = line.format(directory_path, result)
-            lines.append(line)
-        lines.append('')
-        self.session.io_manager.display(lines)
-        self.session.io_manager.proceed(is_interactive=prompt)
-
     def interactively_remove(self):
         line = 'WARNING! Score package {!r} will be completely removed.'
         line = line.format(self.package_path)
@@ -541,7 +514,6 @@ class ScorePackageManager(PackageManager):
         'k': manage_makers,
         'm': manage_materials,
         'pdfv': interactively_view_score,
-        'profile': interactively_profile,
         'removescore': interactively_remove,
         'rep': manage_repository,
         's': manage_setup,
