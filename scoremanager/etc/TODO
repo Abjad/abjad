@@ -157,3 +157,6 @@
 
 46. Figure out why so many tests are commented-out at the bottom of
     test_MaterialPackageWrangler_run_managermade_package.
+
+47. Removed MarkupInventoryMaterialPackageManager.illustration_builder().
+    Use MarkupInventory.__ilustrate__() instead.

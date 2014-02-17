@@ -9,7 +9,7 @@ class ObjectInventoryEditor(ListEditor):
     @property
     def target_name(self):
         if self.target is not None:
-            return 'flamingo'
+            return 'edit'
 
     @property
     def target_summary_lines(self):
