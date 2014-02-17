@@ -11,7 +11,7 @@ class Session(abctools.AbjadObject):
 
     ..  container:: example
 
-        **Example 1.** Session outside of score:
+        Session outside of score:
 
         ::
 
@@ -21,7 +21,7 @@ class Session(abctools.AbjadObject):
 
     ..  container:: example
 
-        **Example 2.** Session in score:
+        Session in score:
 
         ::
 
@@ -36,6 +36,7 @@ class Session(abctools.AbjadObject):
 
     configuration = ScoreManagerConfiguration()
 
+    # TODO: this can probably be removed now
     # this is a temporary hack to avoid constantly reading from disk;
     # this will eventually be replaced with something more robust.
     cache_of_built_in_score_names = (

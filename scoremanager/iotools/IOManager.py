@@ -14,9 +14,22 @@ class IOManager(IOManager):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
+        from scoremanager import wranglers
+        from scoremanager import core
         self._session = session
+        self._configuration = core.ScoreManagerConfiguration()
+        self._score_package_wrangler = \
+            wranglers.ScorePackageWrangler(session=self.session)
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def configuration(self):
+        r'''Gets configuration of IO manager.
+
+        Returns configuration.
+        '''
+        return self._configuration
 
     @property
     def session(self):
@@ -153,6 +166,22 @@ class IOManager(IOManager):
         user_input = user_input.replace('~', ' ')
         self.session.pending_user_input = pending_user_input
         return user_input
+
+    def _write_cache(self, prompt=True):
+        cache_file_path = os.path.join(
+                self.configuration.configuration_directory_path, 
+                'cache.py',
+                )
+        cache_file_pointer = file(cache_file_path, 'w')
+        cache_file_pointer.write('start_menu_entries = [\n')
+        menu_entries = self._score_package_wrangler._make_asset_menu_entries()
+        for menu_entry in menu_entries:
+            cache_file_pointer.write('{},\n'.format(menu_entry))
+        cache_file_pointer.write(']\n')
+        cache_file_pointer.close()
+        if prompt:
+            message = 'cache written.'
+            self.proceed(message)
 
     ### PUBLIC METHODS ###
 

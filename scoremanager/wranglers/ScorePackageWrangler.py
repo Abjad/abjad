@@ -132,8 +132,9 @@ class ScorePackageWrangler(PackageWrangler):
             return
         title, score_package_name, year = result
         self.make_asset(score_package_name)
-        score_package_manager = self._initialize_asset_manager(score_package_name)
-        score_package_manager._add_metadata('title', title)
+        score_package_manager = self._initialize_asset_manager(
+            score_package_name)
+        score_package_manager._add_metadatum('title', title)
         score_package_manager.year_of_completion = year
         self.session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
 
@@ -430,7 +431,10 @@ class ScorePackageWrangler(PackageWrangler):
                 (scores_to_show == 'mothballed' and is_mothballed):
                 year_of_completion = metadata.get('year_of_completion')
                 if year_of_completion:
-                    title_with_year = '{} ({})'.format(metadata['title'], year_of_completion)
+                    title_with_year = '{} ({})'.format(
+                        metadata['title'], 
+                        year_of_completion,
+                        )
                 else:
                     title_with_year = '{}'.format(metadata['title'])
                 result.append((asset_manager.package_path, title_with_year))

@@ -40,7 +40,7 @@ class PackageManager(DirectoryManager):
 
     ### PRIVATE METHODS ###
 
-    def _add_metadata(self, metadatum_name, metadatum_value):
+    def _add_metadatum(self, metadatum_name, metadatum_value):
         assert stringtools.is_snake_case_string(metadatum_name)
         metadata = self._get_metadata()
         metadata[metadatum_name] = metadatum_value
@@ -198,7 +198,7 @@ class PackageManager(DirectoryManager):
             return
         if result:
             metadatum_name, metadatum_value = result
-            self._add_metadata(metadatum_name, metadatum_value)
+            self._add_metadatum(metadatum_name, metadatum_value)
 
     def interactively_get_metadatum(self):
         getter = self.session.io_manager.make_getter(where=self._where)

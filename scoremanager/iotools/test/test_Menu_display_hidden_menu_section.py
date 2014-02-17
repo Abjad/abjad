@@ -35,7 +35,7 @@ def test_Menu_display_hidden_menu_section_01():
         '     scores - show mothballed (ssmb)',
         '',
         '     work with repository (rep)',
-        '     write cache (wc)',
+        '     cache - write (cw)',
         '']
 
 

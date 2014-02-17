@@ -754,7 +754,7 @@ class MaterialPackageManager(PackageManager):
                 material_manager_wrangler.select_material_manager_class_name_interactively()
         if self.session.backtrack():
             return
-        self._add_metadata(
+        self._add_metadatum(
             'material_package_manager',
             material_package_manager.class_name,
             )
@@ -944,9 +944,9 @@ class MaterialPackageManager(PackageManager):
         manager = self.output_material_module_manager
         with file(manager.filesystem_path, 'w') as file_pointer:
             file_pointer.write(lines)
-        self._add_metadata('is_material_package', True)
+        self._add_metadatum('is_material_package', True)
         if hasattr(self, 'generic_output_name'):
-            self._add_metadata('generic_output_name', self.generic_output_name)
+            self._add_metadatum('generic_output_name', self.generic_output_name)
         message = 'output material written to disk.'
         self.session.io_manager.proceed(message, is_interactive=prompt)
 

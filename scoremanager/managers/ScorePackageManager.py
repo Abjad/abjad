@@ -124,7 +124,8 @@ class ScorePackageManager(PackageManager):
     def _get_tempo_inventory(self):
         wrangler = self.material_package_wrangler
         for manager in wrangler.list_asset_managers(head=self.package_path):
-            class_name = manager._get_metadatum('material_package_manager_class_name')
+            string = 'material_package_manager_class_name'
+            class_name = manager._get_metadatum(string)
             if class_name == 'TempoInventoryMaterialPackageManager':
                 return manager.output_material
 
@@ -334,7 +335,7 @@ class ScorePackageManager(PackageManager):
         result = getter._run()
         if self.session.backtrack():
             return
-        self._add_metadata('catalog_number', result)
+        self._add_metadatum('catalog_number', result)
 
     def interactively_edit_forces_tagline(self):
         getter = self.session.io_manager.make_getter(where=self._where)
@@ -342,7 +343,7 @@ class ScorePackageManager(PackageManager):
         result = getter._run()
         if self.session.backtrack():
             return
-        self._add_metadata('forces_tagline', result)
+        self._add_metadatum('forces_tagline', result)
 
     def interactively_edit_instrumentation_specifier(self):
         from scoremanager import editors
@@ -360,7 +361,8 @@ class ScorePackageManager(PackageManager):
         result = getter._run()
         if self.session.backtrack():
             return
-        self._add_metadata('title', result)
+        self._add_metadatum('title', result)
+        self.session.io_manager._write_cache()
 
     def interactively_edit_year_of_completion(self):
         getter = self.session.io_manager.make_getter(where=self._where)
@@ -372,7 +374,7 @@ class ScorePackageManager(PackageManager):
         result = getter._run()
         if self.session.backtrack():
             return
-        self._add_metadata('year_of_completion', result)
+        self._add_metadatum('year_of_completion', result)
 
     def interactively_fix(self, is_interactive=True):
         result = True

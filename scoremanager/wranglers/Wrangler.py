@@ -474,7 +474,7 @@ class Wrangler(ScoreManagerObject):
         if self.session.backtrack():
             return
         manager = self._get_current_package_manager()
-        manager._add_metadata('view_name', view_name)
+        manager._add_metadatum('view_name', view_name)
 
     def interactively_view_initializer_module(self):
         manager = self._get_current_package_manager()

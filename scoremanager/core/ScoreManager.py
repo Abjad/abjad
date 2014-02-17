@@ -100,7 +100,7 @@ class ScoreManager(ScoreManagerObject):
         hidden_section.append(('scores - show mothballed', 'ssmb'))
         hidden_section = menu.make_command_section(is_hidden=True)
         hidden_section.append(('work with repository', 'rep'))
-        hidden_section.append(('write cache', 'wc'))
+        hidden_section.append(('cache - write', 'cw'))
         return menu
 
     def _make_repository_menu(self):
@@ -117,7 +117,7 @@ class ScoreManager(ScoreManagerObject):
             if hasattr(self, 'start_menu_entries'):
                 menu_entries = self.start_menu_entries
             else:
-                self.write_cache()
+                self.session.io_manager._write_cache()
                 menu_entries = \
                     self.score_package_wrangler._make_asset_menu_entries()
             self.session.is_first_run = False
@@ -323,20 +323,13 @@ class ScoreManager(ScoreManagerObject):
             rollback=True, 
             )
 
-    def write_cache(self):
-        cache_file_path = os.path.join(
-                self.configuration.configuration_directory_path, 'cache.py')
-        cache_file_pointer = file(cache_file_path, 'w')
-        cache_file_pointer.write('start_menu_entries = [\n')
-        menu_entries = self.score_package_wrangler._make_asset_menu_entries()
-        for menu_entry in menu_entries:
-            cache_file_pointer.write('{},\n'.format(menu_entry))
-        cache_file_pointer.write(']\n')
-        cache_file_pointer.close()
+    def write_cache(self, prompt=True):
+        self.session.io_manager._write_cache(prompt=prompt)
 
     ### UI MANIFEST ###
 
     user_input_to_action = {
+        'cw': write_cache,
         'm': manage_materials,
         'new': interactively_make_new_score,
         'rep': manage_repository,
@@ -346,5 +339,4 @@ class ScoreManager(ScoreManagerObject):
         'tdoc': interactively_run_doctest_on_all_user_scores,
         'tpy': interactively_run_pytest_on_all_user_scores,
         'y': manage_stylesheets,
-        'wc': write_cache,
         }
