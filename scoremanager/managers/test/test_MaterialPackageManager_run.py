@@ -33,38 +33,41 @@ def test_MaterialPackageManager_run_02():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='m sargasso q')
     string = 'Score manager - materials - sargasso multipliers'
-    assert score_manager.session.io_transcript[-2][1][0] == string
+    assert score_manager.session.io_transcript.last_menu_lines[0] == string
 
 
 def test_MaterialPackageManager_run_03():
     r'''Score materials: quit, back, home, score & junk all work.
     '''
-    pytest.skip('TODO: add Red Example Score time signatures.')
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='all red_example_score m 2 q')
-    assert score_manager.session.io_transcript.signature == (10,)
+    string = 'red~example~score m tempo~inventory q'
+    score_manager._run(pending_user_input=string)
+    assert score_manager.session.io_transcript.signature == (8,)
 
-    score_manager._run(pending_user_input='all red_example_score m 2 b q')
-    assert score_manager.session.io_transcript.signature == (12, (6, 10))
+    string = 'red~example~score m tempo~inventory b q'
+    score_manager._run(pending_user_input=string)
+    assert score_manager.session.io_transcript.signature == (10, (4, 8))
 
-    score_manager._run(pending_user_input='all red_example_score m 2 home q')
-    assert score_manager.session.io_transcript.signature == (12, (2, 10))
+    string = 'red~example~score m tempo~inventory home q'
+    score_manager._run(pending_user_input=string)
+    assert score_manager.session.io_transcript.signature == (10, (0, 8))
 
-    score_manager._run(pending_user_input='all red_example_score m 2 score q')
-    assert score_manager.session.io_transcript.signature == (12, (4, 10))
+    string = 'red~example~score m tempo~inventory score q'
+    score_manager._run(pending_user_input=string)
+    assert score_manager.session.io_transcript.signature == (10, (2, 8))
 
-    score_manager._run(pending_user_input='all red_example_score m 2 foo q')
-    assert score_manager.session.io_transcript.signature == (12, (8, 10))
+    string = 'red~example~score m tempo~inventory foo q'
+    score_manager._run(pending_user_input=string)
+    assert score_manager.session.io_transcript.signature == (10, (6, 8))
 
 
 def test_MaterialPackageManager_run_04():
     r'''Score materials: breadcrumbs work.
     '''
-    pytest.skip('TODO: add Red Example Score time signatures.')
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'all red_example_score m time_signatures q'
+    string = 'red~example~score m tempo~inventory q'
     score_manager._run(pending_user_input=string)
-    string = 'Red Example Score - materials - time signatures'
-    assert score_manager.session.io_transcript[-2][1][0] == string
+    string = 'Red Example Score (2013) - materials - tempo inventory'
+    assert score_manager.session.io_transcript.last_menu_lines[0] == string

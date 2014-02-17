@@ -7,52 +7,26 @@ import scoremanager
 def test_MaterialPackageManager_screenscrapes_01():
     r'''Score material run from home.
     '''
-    pytest.skip('TODO: add Red Example Score time signatures.')
-
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='all red_example_score m black q')
+    string = 'red~example~score m tempo~inventory q'
+    score_manager._run(pending_user_input=string)
 
-    assert score_manager.io_transcript[-2] == \
-    ['Red Example Score (2013) - materials - time signatures',
-      '',
-      '     material definition - edit (mde)',
-      '     material definition - execute (mdx)',
-      '',
-      '     output material - make (omm)',
-      '     output material - view (omv)',
-      '',
-      '     illustration builder - edit (ibe)',
-      '     illustration builder - execute (ibx)',
-      '     score stylesheet - select (sss)',
-      '',
-      '     output pdf - make (pdfm)',
-      '     output pdf - view (pdfv)',
-      '']
-
-
-def test_MaterialPackageManager_screenscrapes_02():
-    r'''Score material run independently.
-    '''
-    pytest.skip('TODO: add Red Example Score time signatures.')
-
-    material_manager = scoremanager.managers.MaterialPackageManager(
-        'red_example_score.materials.time_signatures')
-    material_manager._run(pending_user_input='q')
-
-    assert material_manager.io_transcript[-2] == \
-    ['Time signatures',
-      '',
-      '     material definition - edit (mde)',
-      '     material definition - execute (mdx)',
-      '',
-      '     output material - make (omm)',
-      '     output material - view (omv)',
-      '',
-      '     illustration builder - edit (ibe)',
-      '     illustration builder - execute (ibx)',
-      '     score stylesheet - select (sss)',
-      '',
-      '     output pdf - make (pdfm)',
-      '     output pdf - view (pdfv)',
-      '']
+    assert score_manager.session.io_transcript.last_menu_lines == [
+        'Red Example Score (2013) - materials - tempo inventory', 
+        '', 
+        '     Tempo(Duration(1, 8), 72)', 
+        '     Tempo(Duration(1, 8), 108)', 
+        '     Tempo(Duration(1, 8), 90)', 
+        '     Tempo(Duration(1, 8), 135)', 
+        '', 
+        '     output material - interact (omi)', 
+        '     output material - view (omv)', 
+        '', 
+        '     illustration builder - edit (ibe)', 
+        '     illustration builder - execute (ibx)', 
+        '     score stylesheet - select (sss)', 
+        '', 
+        '     output pdf - make (pdfm)', 
+        '',
+        ]
