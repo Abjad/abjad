@@ -14,7 +14,6 @@ def test_MaterialPackageWrangler_make_data_package_01():
         wrangler.make_data_package(string)
         assert wrangler.configuration.packagesystem_path_exists(string)
         mpp = scoremanager.managers.MaterialPackageManager(string)
-        assert mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -49,7 +48,6 @@ def test_MaterialPackageWrangler_make_data_package_03():
         wrangler.interactively_make_data_package(pending_user_input='testnumbers q')
         assert wrangler.configuration.packagesystem_path_exists(string)
         mpp = scoremanager.managers.MaterialPackageManager(string)
-        assert mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',

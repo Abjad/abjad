@@ -15,7 +15,6 @@ def test_MaterialPackageWrangler_make_handmade_material_package_01():
         wrangler.make_handmade_material_package(string)
         assert wrangler.configuration.packagesystem_path_exists(string)
         mpp = scoremanager.managers.MaterialPackageManager(string)
-        assert mpp.is_handmade and not mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -53,7 +52,6 @@ def test_MaterialPackageWrangler_make_handmade_material_package_03():
             pending_user_input='testnotes q')
         assert wrangler.configuration.packagesystem_path_exists(string)
         mpp = scoremanager.managers.MaterialPackageManager(string)
-        assert mpp.is_handmade and not mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',

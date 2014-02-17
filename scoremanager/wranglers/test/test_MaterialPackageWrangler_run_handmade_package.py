@@ -16,7 +16,6 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
         score_manager._run(pending_user_input='m h testnotes default default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp.is_handmade and not mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -78,7 +77,6 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
             'inr yes yes default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp.is_handmade and not mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -110,7 +108,6 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
             'omm default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp.is_handmade and not mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py',
             '__metadata__.py',
@@ -144,7 +141,6 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
             'testnotes mddelete default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp.is_handmade and not mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -175,7 +171,6 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
             'testnotes mdstub default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp.is_handmade and not mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -209,7 +204,6 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
             'omdelete default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp.is_handmade and not mpp.is_data_only
         assert mpp._list_directory() == [
                 '__init__.py', 
                 '__metadata__.py',
@@ -241,7 +235,6 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
             'testnotes mdcanned boilerplate_exception.py default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp.is_handmade and not mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -275,7 +268,6 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
             'omcanned boilerplate_exception.py default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp.is_handmade and not mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py',
             '__metadata__.py',
@@ -313,7 +305,6 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
             'q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp.is_handmade and not mpp.is_data_only
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',

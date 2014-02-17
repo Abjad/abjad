@@ -383,10 +383,6 @@ class MaterialPackageManager(PackageManager):
         return illustration
 
     @property
-    def is_data_only(self):
-        return not self.should_have_illustration
-
-    @property
     def is_handmade(self):
         return not(self.has_material_package_manager)
 
@@ -612,9 +608,7 @@ class MaterialPackageManager(PackageManager):
         is_interactive=False,
         ):
         if not self._get_metadatum('material_package_manager_class_name'):
-            is_data_only = not self._get_metadatum('should_have_illustration')
             self._write_stub_material_definition_module(
-                is_data_only, 
                 is_interactive=is_interactive,
                 )
 
@@ -961,29 +955,10 @@ class MaterialPackageManager(PackageManager):
         message = 'output material written to disk.'
         self.session.io_manager.proceed(message, is_interactive=prompt)
 
-    def _write_stub_material_definition_module(
-        self, 
-        is_data_only, 
-        is_interactive=True,
-        ):
-        if is_data_only:
-            self.write_stub_data_material_definition()
-        else:
-            self.write_stub_music_material_definition()
+    def _write_stub_material_definition_module(self, is_interactive=True):
+        self.write_stub_music_material_definition()
         message = 'stub material definition written to disk.'
         self.session.io_manager.proceed(message, is_interactive=is_interactive)
-
-    def write_stub_data_material_definition(self):
-        lines = []
-        lines.append('# -*- encoding: utf-8 -*-\n')
-        lines.append('from abjad import *\n')
-        lines.append('\n\n')
-        line = '{} = None'.format(self.material_package_name)
-        lines.append(line)
-        lines = ''.join(lines)
-        file_pointer = file(self.material_definition_module_file_path, 'w')
-        file_pointer.write(lines)
-        file_pointer.close()
 
     def write_stub_music_material_definition(self):
         lines = []
@@ -1033,10 +1008,7 @@ class MaterialPackageManager(PackageManager):
                 'w',
                 ) as file_pointer:
                 file_pointer.write('')
-            self._write_stub_material_definition_module(
-                self.is_data_only, 
-                is_interactive=True,
-                )
+            self._write_stub_material_definition_module(is_interactive=True)
 
     ### USER INPUT WRAPPER METHODS ###
 
