@@ -16,7 +16,7 @@ def test_InstrumentationEditor_add_performers_01():
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (12, (6, 10))
 
-    string = 'red~example~score score~setup instrumentation add home q'
+    string = 'red~example~score score~setup instrumentation add h q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (12, (0, 10))
 

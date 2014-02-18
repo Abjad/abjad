@@ -10,7 +10,7 @@ def test_Menu_allow_mixed_case_key_01():
     pytest.skip('remove custom score name.')
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input="L'arch home q")
+    score_manager._run(pending_user_input="L'arch h q")
     assert score_manager.session.io_transcript.signature == (6, (0, 4))
 
     score_manager._run(pending_user_input="L'arch HOME q")

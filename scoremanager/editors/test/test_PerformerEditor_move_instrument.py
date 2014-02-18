@@ -19,7 +19,7 @@ def test_PerformerEditor_move_instrument_01():
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (13, (8, 11))
 
-    string = "l'arch score~setup instrumentation flutist move home q"
+    string = "l'arch score~setup instrumentation flutist move h q"
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (13, (0, 11))
 

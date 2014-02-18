@@ -12,7 +12,7 @@ def test_PerformerCreationWizard_run_01():
     assert wizard._run(pending_user_input='b') is None
 
     wizard = scoremanager.wizards.PerformerCreationWizard()
-    assert wizard._run(pending_user_input='home') is None
+    assert wizard._run(pending_user_input='h') is None
 
 
 def test_PerformerCreationWizard_run_02():

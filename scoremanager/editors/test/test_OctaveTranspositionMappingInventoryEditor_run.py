@@ -20,5 +20,5 @@ def test_OctaveTranspositionMappingInventoryEditor_run_01():
     assert editor.target == pitchtools.OctaveTranspositionMappingInventory()
 
     editor = scoremanager.editors.OctaveTranspositionMappingInventoryEditor()
-    editor._run(pending_user_input='home')
+    editor._run(pending_user_input='h')
     assert editor.target == pitchtools.OctaveTranspositionMappingInventory()

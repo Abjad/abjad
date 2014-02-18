@@ -17,7 +17,7 @@ def test_PerformerEditor_name_01():
     assert score_manager.session.io_transcript.signature == (13, (8, 11))
 
     string = 'red~example~score score~setup instrumentation'
-    string += ' hornist name home q'
+    string += ' hornist name h q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (13, (0, 11))
 

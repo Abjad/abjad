@@ -20,7 +20,7 @@ def test_InstrumentEditor_add_untuned_percussion_01():
     assert editor.session.io_transcript.signature == (6, (2, 4))
 
     editor = scoremanager.editors.InstrumentEditor()
-    editor._run(pending_user_input='untuned home')
+    editor._run(pending_user_input='untuned h')
     assert editor.session.io_transcript.signature == (4,)
 
     editor = scoremanager.editors.InstrumentEditor()

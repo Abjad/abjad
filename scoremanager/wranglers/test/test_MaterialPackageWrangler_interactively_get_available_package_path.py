@@ -40,5 +40,5 @@ def test_MaterialPackageWrangler_interactively_get_available_package_path_03():
     assert result is None
 
     result = wrangler.interactively_get_available_packagesystem_path(
-        pending_user_input='home')
+        pending_user_input='h')
     assert result is None

@@ -86,12 +86,12 @@ def test_ScoreManager_08():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score instrumentation home q'
+    string = 'red~example~score instrumentation h q'
     score_manager._run(pending_user_input=string)
     signature_1 = score_manager.session.io_transcript.signature
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score instrumentation home q'
+    string = 'red~example~score instrumentation h q'
     score_manager._run(pending_user_input=string)
     signature_2 = score_manager.session.io_transcript.signature
 

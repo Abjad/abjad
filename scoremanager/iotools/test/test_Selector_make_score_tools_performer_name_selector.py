@@ -15,7 +15,7 @@ def test_Selector_make_score_tools_performer_name_selector_01():
 
     selector = scoremanager.iotools.Selector
     selector = selector.make_score_tools_performer_name_selector()
-    assert selector._run(pending_user_input='home') is None
+    assert selector._run(pending_user_input='h') is None
 
 
 def test_Selector_make_score_tools_performer_name_selector_02():

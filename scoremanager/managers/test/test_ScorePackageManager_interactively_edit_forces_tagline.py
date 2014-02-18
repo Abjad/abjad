@@ -20,7 +20,7 @@ def test_ScorePackageManager_interactively_edit_forces_tagline_01():
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (9, (2, 7))
 
-    string = 'red~example~score score~setup tagline home q'
+    string = 'red~example~score score~setup tagline h q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (9, (0, 7))
 
