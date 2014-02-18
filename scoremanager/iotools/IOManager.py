@@ -86,7 +86,7 @@ class IOManager(IOManager):
             directive = None
         elif self._is_home_string(key):
             self.session.is_backtracking_to_score_manager = True
-        elif key == 'wtt':
+        elif key == 'ltt':
             self.session.enable_where = not self.session.enable_where
         else:
             return directive

@@ -104,13 +104,13 @@ class Menu(ScoreManagerObject):
             return 'user entered lone return'
         elif directive is None and not user_entered_lone_return:
             return
-        elif directive == 'here':
+        elif directive == 'sce':
             self.interactively_edit_calling_code()
         elif directive == 'hidden':
             self.display_hidden_menu_section()
         elif directive == 'tmc':
             self.toggle_menu_commands()
-        elif directive == 'where':
+        elif directive == 'scl':
             self.display_calling_code_line_number()
         else:
             return directive
@@ -155,9 +155,9 @@ class Menu(ScoreManagerObject):
             is_hidden=True,
             return_value_attribute='key',
             )
-        hidden_section.append(('code location - edit', 'here'))
-        hidden_section.append(('code location - where', 'where'))
-        hidden_section.append(('where-tracking - toggle', 'wtt'))
+        hidden_section.append(('code location - edit', 'sce'))
+        hidden_section.append(('code location - where', 'scl'))
+        hidden_section.append(('location-tracking - toggle', 'ltt'))
         hidden_section = self._make_section(
             is_hidden=True,
             return_value_attribute='key',
@@ -310,7 +310,7 @@ class Menu(ScoreManagerObject):
                 ...     menu_entry
                 <MenuEntry: 'code location - edit'>
                 <MenuEntry: 'code location - where'>
-                <MenuEntry: 'where-tracking - toggle'>
+                <MenuEntry: 'location-tracking - toggle'>
 
         Returns menu section or none.
         '''
@@ -422,7 +422,7 @@ class Menu(ScoreManagerObject):
         else:
             lines = []
             message = 'where-tracking not enabled.'
-            message += " Use 'wtt' for where-tracking toggle."
+            message += " Use 'ltt' for location-tracking toggle."
             lines.append(message)
             lines.append('')
             self.session.io_manager.display(lines)
