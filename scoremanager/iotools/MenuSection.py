@@ -18,7 +18,7 @@ class MenuSection(AbjadObject):
 
         >>> menu_section = menu.menu_sections[1]
         >>> menu_section
-        <MenuSection (10)>
+        <MenuSection (11)>
 
     ::
 
@@ -32,8 +32,9 @@ class MenuSection(AbjadObject):
         <MenuEntry: 'go to next score'>
         <MenuEntry: 'go to prev score'>
         <MenuEntry: 'quit'>
-        <MenuEntry: 'toggle menu commands'>
-        <MenuEntry: 'view LilyPond log'>
+        <MenuEntry: 'developer commands - toggle'>
+        <MenuEntry: 'menu commands - toggle'>
+        <MenuEntry: 'LilyPond log - view'>
 
     '''
 
@@ -53,10 +54,10 @@ class MenuSection(AbjadObject):
         return_value_attribute='display_string',
         default_index=None,
         indent_level=1,
+        is_developer=False,
         is_hidden=False,
         is_numbered=False,
         is_ranged=False,
-        #display_prepopulated_values=True,
         display_prepopulated_values=False,
         title=None,
         ):
@@ -66,6 +67,7 @@ class MenuSection(AbjadObject):
         self.return_value_attribute = return_value_attribute
         self.default_index = default_index
         self.indent_level = indent_level
+        self.is_developer = is_developer
         self.is_hidden = is_hidden
         self.is_numbered = is_numbered
         self.is_ranged = is_ranged
@@ -335,9 +337,9 @@ class MenuSection(AbjadObject):
                 <MenuEntry: 'go to next score'>
                 <MenuEntry: 'go to prev score'>
                 <MenuEntry: 'quit'>
-                <MenuEntry: 'toggle menu commands'>
-                <MenuEntry: 'view LilyPond log'>
-
+                <MenuEntry: 'developer commands - toggle'>
+                <MenuEntry: 'menu commands - toggle'>
+                <MenuEntry: 'LilyPond log - view'>
 
             Returns list.
             '''
@@ -420,8 +422,9 @@ class MenuSection(AbjadObject):
             <MenuEntry: 'go to next score'>
             <MenuEntry: 'go to prev score'>
             <MenuEntry: 'quit'>
-            <MenuEntry: 'toggle menu commands'>
-            <MenuEntry: 'view LilyPond log'>
+            <MenuEntry: 'developer commands - toggle'>
+            <MenuEntry: 'menu commands - toggle'>
+            <MenuEntry: 'LilyPond log - view'>
             <MenuEntry: 'mkdir'>
 
         Returns menu entry.

@@ -70,7 +70,7 @@ class IOManager(IOManager):
             self.session.is_backtracking_locally = True
         elif key == 'exec':
             self.interactively_exec_statement()
-        elif key == 'log':
+        elif key == 'llv':
             self.view_last_log()
         elif key == 'next':
             self.session.is_navigating_to_next_score = True

@@ -6,7 +6,7 @@ import scoremanager
 def test_Menu_toggle_menu_commands_01():
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='tmc q')
+    score_manager._run(pending_user_input='mct default q')
 
     starting_menu_lines = score_manager.session.io_transcript[0][1]
     modified_menu_lines = score_manager.session.io_transcript[2][1]

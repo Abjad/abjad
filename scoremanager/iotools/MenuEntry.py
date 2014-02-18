@@ -12,7 +12,7 @@ class MenuEntry(AbjadObject):
 
         >>> menu_section = menu.menu_sections[1]
         >>> menu_section
-        <MenuSection (10)>
+        <MenuSection (11)>
 
         >>> for menu_entry in menu_section.menu_entries:
         ...     menu_entry
@@ -24,12 +24,13 @@ class MenuEntry(AbjadObject):
         <MenuEntry: 'go to next score'>
         <MenuEntry: 'go to prev score'>
         <MenuEntry: 'quit'>
-        <MenuEntry: 'toggle menu commands'>
-        <MenuEntry: 'view LilyPond log'>
+        <MenuEntry: 'developer commands - toggle'>
+        <MenuEntry: 'menu commands - toggle'>
+        <MenuEntry: 'LilyPond log - view'>
 
         >>> menu_entry = menu_section.menu_entries[-1]
         >>> menu_entry
-        <MenuEntry: 'view LilyPond log'>
+        <MenuEntry: 'LilyPond log - view'>
 
     '''
 
@@ -67,7 +68,7 @@ class MenuEntry(AbjadObject):
         ::
 
             >>> menu_entry.display_string
-            'view LilyPond log'
+            'LilyPond log - view'
 
         Returns string.
         '''
@@ -93,7 +94,7 @@ class MenuEntry(AbjadObject):
         ::
 
             >>> menu_entry.key
-            'log'
+            'llv'
 
         Returns string without spaces or none.
         '''
@@ -141,7 +142,7 @@ class MenuEntry(AbjadObject):
         ::
 
             >>> menu_entry.return_value
-            'log'
+            'llv'
 
         Returns arbitrary value.
         '''
@@ -167,7 +168,7 @@ class MenuEntry(AbjadObject):
 
         ::
 
-            >>> menu_entry.matches('log')
+            >>> menu_entry.matches('llv')
             True
 
         Otherwise false:

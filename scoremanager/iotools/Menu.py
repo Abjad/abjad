@@ -30,7 +30,7 @@ class Menu(ScoreManagerObject):
         ):
         ScoreManagerObject.__init__(self, session=session)
         self._menu_sections = []
-        self._make_default_hidden_section()
+        self._make_default_hidden_sections()
         self.should_clear_terminal = should_clear_terminal
         self.title = title
         self.where = where
@@ -108,7 +108,9 @@ class Menu(ScoreManagerObject):
             self.interactively_edit_calling_code()
         elif directive == 'hidden':
             self.display_hidden_menu_section()
-        elif directive == 'tmc':
+        elif directive == 'dct':
+            self.toggle_developer_commands()
+        elif directive == 'mct':
             self.toggle_menu_commands()
         elif directive == 'scl':
             self.display_calling_code_line_number()
@@ -150,14 +152,15 @@ class Menu(ScoreManagerObject):
     def _has_ranged_section(self):
         return any(x.is_ranged for x in self.menu_sections)
 
-    def _make_default_hidden_section(self):
+    def _make_default_hidden_sections(self):
         hidden_section = self._make_section(
+            is_developer=True,
             is_hidden=True,
             return_value_attribute='key',
             )
+        hidden_section.append(('location-tracking - toggle', 'ltt'))
         hidden_section.append(('code location - edit', 'sce'))
         hidden_section.append(('code location - where', 'scl'))
-        hidden_section.append(('location-tracking - toggle', 'ltt'))
         hidden_section = self._make_section(
             is_hidden=True,
             return_value_attribute='key',
@@ -170,8 +173,9 @@ class Menu(ScoreManagerObject):
         hidden_section.append(('go to next score', 'next'))
         hidden_section.append(('go to prev score', 'prev'))
         hidden_section.append(('quit', 'q'))
-        hidden_section.append(('toggle menu commands', 'tmc'))
-        hidden_section.append(('view LilyPond log', 'log'))
+        hidden_section.append(('developer commands - toggle', 'dct'))
+        hidden_section.append(('menu commands - toggle', 'mct'))
+        hidden_section.append(('LilyPond log - view', 'llv'))
         return hidden_section
 
     def _make_menu_lines(self):
@@ -182,6 +186,7 @@ class Menu(ScoreManagerObject):
 
     def _make_section(
         self, 
+        is_developer=False,
         is_hidden=False, 
         is_numbered=False, 
         is_ranged=False, 
@@ -193,6 +198,7 @@ class Menu(ScoreManagerObject):
         assert not (is_numbered and self._has_numbered_section())
         assert not (is_ranged and self._has_ranged_section())
         menu_section = iotools.MenuSection(
+            is_developer=is_developer,
             is_hidden=is_hidden,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
@@ -308,9 +314,9 @@ class Menu(ScoreManagerObject):
 
                 >>> for menu_entry in menu.hidden_section.menu_entries:
                 ...     menu_entry
+                <MenuEntry: 'location-tracking - toggle'>
                 <MenuEntry: 'code location - edit'>
                 <MenuEntry: 'code location - where'>
-                <MenuEntry: 'location-tracking - toggle'>
 
         Returns menu section or none.
         '''
@@ -327,7 +333,7 @@ class Menu(ScoreManagerObject):
             >>> for menu_section in menu.menu_sections:
             ...     menu_section
             <MenuSection (3)>
-            <MenuSection (10)>
+            <MenuSection (11)>
 
         Returns list.
         '''
@@ -397,14 +403,18 @@ class Menu(ScoreManagerObject):
         menu_lines.append(title)
         menu_lines.append('')
         for menu_section in self.menu_sections:
-            if menu_section.is_hidden:
-                for menu_entry in menu_section.menu_entries:
-                    key = menu_entry.key
-                    display_string = menu_entry.display_string
-                    menu_line = self._make_tab(1) + ' '
-                    menu_line += '{} ({})'.format(display_string, key)
-                    menu_lines.append(menu_line)
-                menu_lines.append('')
+            if not menu_section.is_hidden:
+                continue
+            if menu_section.is_developer and \
+                self.session.developer_menu_sections_are_hidden:
+                continue
+            for menu_entry in menu_section.menu_entries:
+                key = menu_entry.key
+                display_string = menu_entry.display_string
+                menu_line = self._make_tab(1) + ' '
+                menu_line += '{} ({})'.format(display_string, key)
+                menu_lines.append(menu_line)
+            menu_lines.append('')
         self.session.io_manager.display(
             menu_lines, 
             capitalize_first_character=False,
@@ -481,8 +491,20 @@ class Menu(ScoreManagerObject):
             )
         return numbered_section
 
+    def toggle_developer_commands(self):
+        if self.session.developer_menu_sections_are_hidden:
+            self.session.developer_menu_sections_are_hidden = False
+            message = 'developer commands on.'
+        else:
+            self.session.developer_menu_sections_are_hidden = True
+            message = 'developer commands off.'
+        self.session.io_manager.proceed(message)
+
     def toggle_menu_commands(self):
         if self.session.nonnumbered_menu_sections_are_hidden:
             self.session.nonnumbered_menu_sections_are_hidden = False
+            message = 'menu commands on.'
         else:
             self.session.nonnumbered_menu_sections_are_hidden = True
+            message = 'menu commands off.'
+        self.session.io_manager.proceed(message)
