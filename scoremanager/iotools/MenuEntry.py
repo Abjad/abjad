@@ -184,11 +184,12 @@ class MenuEntry(AbjadObject):
             return True
         if self.menu_section.is_numbered and user_input == str(self.number):
             return True
-        if 3 <= len(user_input):
-            normalized_display_string = \
-                stringtools.strip_diacritics_from_binary_string(
-                self.display_string)
-            normalized_display_string = normalized_display_string.lower()
-            if normalized_display_string.startswith(user_input):
-                return True
+        if self.menu_section.match_on_display_string:
+            if 3 <= len(user_input):
+                normalized_display_string = \
+                    stringtools.strip_diacritics_from_binary_string(
+                    self.display_string)
+                normalized_display_string = normalized_display_string.lower()
+                if normalized_display_string.startswith(user_input):
+                    return True
         return False 

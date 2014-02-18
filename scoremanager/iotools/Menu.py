@@ -156,11 +156,12 @@ class Menu(ScoreManagerObject):
         hidden_section = self._make_section(
             is_developer=True,
             is_hidden=True,
+            match_on_display_string=False,
             return_value_attribute='key',
             )
         hidden_section.append(('location-tracking - toggle', 'ltt'))
-        hidden_section.append(('code location - edit', 'sce'))
-        hidden_section.append(('code location - where', 'scl'))
+        hidden_section.append(('source code - edit', 'sce'))
+        hidden_section.append(('source code - location', 'scl'))
         hidden_section = self._make_section(
             is_hidden=True,
             return_value_attribute='key',
@@ -191,6 +192,7 @@ class Menu(ScoreManagerObject):
         is_numbered=False, 
         is_ranged=False, 
         display_prepopulated_values=False,
+        match_on_display_string=True,
         menu_entries=None,
         return_value_attribute='display_string',
         ):
@@ -203,6 +205,7 @@ class Menu(ScoreManagerObject):
             is_numbered=is_numbered,
             is_ranged=is_ranged,
             display_prepopulated_values=display_prepopulated_values,
+            match_on_display_string=match_on_display_string,
             return_value_attribute=return_value_attribute,
             )
         menu_section.menu_entries = menu_entries
@@ -315,8 +318,8 @@ class Menu(ScoreManagerObject):
                 >>> for menu_entry in menu.hidden_section.menu_entries:
                 ...     menu_entry
                 <MenuEntry: 'location-tracking - toggle'>
-                <MenuEntry: 'code location - edit'>
-                <MenuEntry: 'code location - where'>
+                <MenuEntry: 'source code - edit'>
+                <MenuEntry: 'source code - location'>
 
         Returns menu section or none.
         '''

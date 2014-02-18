@@ -59,6 +59,7 @@ class MenuSection(AbjadObject):
         is_numbered=False,
         is_ranged=False,
         display_prepopulated_values=False,
+        match_on_display_string=True,
         title=None,
         ):
         AbjadObject.__init__(self)
@@ -72,6 +73,7 @@ class MenuSection(AbjadObject):
         self.is_numbered = is_numbered
         self.is_ranged = is_ranged
         self.display_prepopulated_values = display_prepopulated_values
+        self.match_on_display_string = match_on_display_string
         self.title = title
 
     ### SPECIAL METHODS ###
