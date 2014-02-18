@@ -15,7 +15,7 @@ class Menu(ScoreManagerObject):
 
             >>> menu = scoremanager.iotools.Menu()
             >>> menu
-            <Menu (4)>
+            <Menu (3)>
 
     '''
 
@@ -107,7 +107,7 @@ class Menu(ScoreManagerObject):
         elif directive == 'sce':
             self.interactively_edit_calling_code()
         elif directive == 'hct':
-            self.display_hidden_menu_section()
+            self.toggle_hidden_commands()
         elif directive == 'dct':
             self.toggle_developer_commands()
         elif directive == 'mct':
@@ -159,6 +159,8 @@ class Menu(ScoreManagerObject):
             match_on_display_string=False,
             return_value_attribute='key',
             )
+        hidden_section.append(('LilyPond log - view', 'llv'))
+        hidden_section.append(('Python prompt - interact', 'ppi'))
         hidden_section.append(('source code - edit', 'sce'))
         hidden_section.append(('source code - location', 'scl'))
         hidden_section.append(('source code - track', 'sct'))
@@ -169,12 +171,6 @@ class Menu(ScoreManagerObject):
         hidden_section.append(('developer commands - toggle', 'dct'))
         hidden_section.append(('hidden commands - toggle', 'hct'))
         hidden_section.append(('menu commands - toggle', 'mct'))
-        hidden_section = self._make_section(
-            is_hidden=True,
-            return_value_attribute='key',
-            )
-        hidden_section.append(('LilyPond log - view', 'llv'))
-        hidden_section.append(('Python prompt - interact', 'ppi'))
         hidden_section = self._make_section(
             is_hidden=True,
             return_value_attribute='key',
@@ -222,15 +218,24 @@ class Menu(ScoreManagerObject):
 
     def _make_section_lines(self):
         menu_lines = []
-        for menu_section in self.menu_sections:
-            section_menu_lines = menu_section._make_menu_lines()
-            if not menu_section.is_hidden:
-                if not self.session.nonnumbered_menu_sections_are_hidden or \
-                    menu_section.is_numbered:
-                    menu_lines.extend(section_menu_lines)
+
 #        for menu_section in self.menu_sections:
 #            section_menu_lines = menu_section._make_menu_lines()
-#            menu_lines.extend(section_menu_lines)
+#            if not menu_section.is_hidden:
+#                if not self.session.nonnumbered_menu_sections_are_hidden or \
+#                    menu_section.is_numbered:
+#                    menu_lines.extend(section_menu_lines)
+
+        for menu_section in self.menu_sections:
+            hide = self.session.hidden_menu_sections_are_hidden
+            if hide and menu_section.is_hidden:
+                continue
+            developer = self.session.developer_menu_sections_are_hidden
+            if developer and menu_section.is_developer:
+                continue
+            section_menu_lines = menu_section._make_menu_lines()
+            menu_lines.extend(section_menu_lines)
+
         if self.hide_current_run:
             menu_lines = []
         return menu_lines
@@ -322,12 +327,14 @@ class Menu(ScoreManagerObject):
         ::
 
                 >>> menu.hidden_section
-                <MenuSection (3)>
+                <MenuSection (5)>
 
         ::
 
                 >>> for menu_entry in menu.hidden_section.menu_entries:
                 ...     menu_entry
+                <MenuEntry: 'LilyPond log - view'>
+                <MenuEntry: 'Python prompt - interact'>
                 <MenuEntry: 'source code - edit'>
                 <MenuEntry: 'source code - location'>
                 <MenuEntry: 'source code - track'>
@@ -346,9 +353,8 @@ class Menu(ScoreManagerObject):
 
             >>> for menu_section in menu.menu_sections:
             ...     menu_section
+            <MenuSection (5)>
             <MenuSection (3)>
-            <MenuSection (3)>
-            <MenuSection (2)>
             <MenuSection (6)>
 
         Returns list.
@@ -515,6 +521,12 @@ class Menu(ScoreManagerObject):
             self.session.developer_menu_sections_are_hidden = True
             message = 'developer commands off.'
         self.session.io_manager.proceed(message)
+
+    def toggle_hidden_commands(self):
+        if self.session.hidden_menu_sections_are_hidden:
+            self.session.hidden_menu_sections_are_hidden = False
+        else:
+            self.session.hidden_menu_sections_are_hidden = True
 
     def toggle_menu_commands(self):
         if self.session.nonnumbered_menu_sections_are_hidden:

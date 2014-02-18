@@ -61,6 +61,7 @@ class Session(abctools.AbjadObject):
         self.display_pitch_ranges_with_numbered_pitches = False
         self.dump_transcript = False
         self.enable_where = False
+        self.hidden_menu_sections_are_hidden = True
         self.hide_next_redraw = False
         self.initial_user_input = pending_user_input
         self.is_autoadding = False
@@ -360,6 +361,16 @@ class Session(abctools.AbjadObject):
             return '.'.join(parts)
 
     @apply
+    def developer_menu_sections_are_developer():
+        def fget(self):
+            return self._developer_menu_sections_are_developer
+        def fset(self, developer_menu_sections_are_developer):
+            assert isinstance(developer_menu_sections_are_developer, bool)
+            self._developer_menu_sections_are_developer = \
+                developer_menu_sections_are_developer
+        return property(**locals())
+
+    @apply
     def dump_transcript():
         r'''Set to true to dump transcript at end of session.
 
@@ -392,6 +403,16 @@ class Session(abctools.AbjadObject):
             else:
                 result.append(command)
         return result
+
+    @apply
+    def hidden_menu_sections_are_hidden():
+        def fget(self):
+            return self._hidden_menu_sections_are_hidden
+        def fset(self, hidden_menu_sections_are_hidden):
+            assert isinstance(hidden_menu_sections_are_hidden, bool)
+            self._hidden_menu_sections_are_hidden = \
+                hidden_menu_sections_are_hidden
+        return property(**locals())
 
     @apply
     def hide_next_redraw():

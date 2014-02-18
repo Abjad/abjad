@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
+import pytest
 from abjad import *
 import scoremanager
+pytest.skip('unskip and reimplement after finalizing hidden menu.')
 
 
 

@@ -11,7 +11,7 @@ class MenuSection(AbjadObject):
 
         >>> menu = scoremanager.iotools.Menu()
         >>> menu
-        <Menu (4)>
+        <Menu (3)>
 
 
     ::

@@ -8,7 +8,7 @@ class MenuEntry(AbjadObject):
 
         >>> menu = scoremanager.iotools.Menu()
         >>> menu
-        <Menu (4)>
+        <Menu (3)>
 
         >>> menu_section = menu.menu_sections[1]
         >>> menu_section
