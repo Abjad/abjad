@@ -24,7 +24,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageManager_01():
             ]
         assert mpp.output_material is None
     finally:
-        string = 'm testoctavetrans del remove default q'
+        string = 'mlm testoctavetrans del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testoctavetrans'
         assert not \
@@ -67,7 +67,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageManager_02():
             ])
         assert mpp.output_material == inventory
     finally:
-        string = 'm testoctavetrans del remove default q'
+        string = 'mlm testoctavetrans del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testoctavetrans'
         assert not \

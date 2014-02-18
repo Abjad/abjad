@@ -52,7 +52,10 @@ class MaterialPackageWrangler(PackageWrangler):
 
     @property
     def _breadcrumb(self):
-        return 'materials'
+        if self.session.is_in_score:
+            return 'materials'
+        else:
+            return 'material library'
 
     ### PRIVATE METHODS ###
 

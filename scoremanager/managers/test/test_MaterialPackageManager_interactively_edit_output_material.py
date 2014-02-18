@@ -12,5 +12,5 @@ def test_MaterialPackageManager_interactively_edit_output_material_01():
     score_manager._run(pending_user_input=string)
     transcript = score_manager.session.io_transcript
 
-    string = 'Score manager - materials - red markup - edit'
+    string = 'Score manager - material library - red markup - edit'
     assert transcript.last_menu_lines[0] == string

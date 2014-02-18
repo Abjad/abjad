@@ -88,8 +88,8 @@ class ScoreManager(ScoreManagerObject):
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
         command_section = menu.make_command_section()
-        command_section.append(('materials', 'm'))
-        command_section.append(('stylesheets', 'y'))
+        command_section.append(('materials library - manage', 'mlm'))
+        command_section.append(('stylesheets library - manage', 'ylm'))
         command_section.append(('new score', 'new'))
         hidden_section = menu.make_command_section(is_hidden=True)
         hidden_section.append(('cache - view', 'cv'))
@@ -123,6 +123,8 @@ class ScoreManager(ScoreManagerObject):
         menu = self.session.io_manager.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
         asset_section.menu_entries = menu_entries
+        menu.menu_sections.remove(asset_section)
+        menu.menu_sections.insert(0, asset_section)
         return menu
 
     def _run(
@@ -345,7 +347,7 @@ class ScoreManager(ScoreManagerObject):
     user_input_to_action = {
         'cv': view_cache,
         'cw': write_cache,
-        'm': manage_materials,
+        'mlm': manage_materials,
         'new': interactively_make_new_score,
         'radd': repository_add_assets,
         'rci': repository_ci_assets,
@@ -356,5 +358,5 @@ class ScoreManager(ScoreManagerObject):
         'ssmb': display_mothballed_scores,
         'tdoc': interactively_run_doctest_on_all_user_scores,
         'tpy': interactively_run_pytest_on_all_user_scores,
-        'y': manage_stylesheets,
+        'ylm': manage_stylesheets,
         }

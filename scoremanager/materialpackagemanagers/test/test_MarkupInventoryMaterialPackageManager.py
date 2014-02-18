@@ -35,7 +35,7 @@ def test_MarkupInventoryMaterialPackageManager_01():
             )
         assert mpp.output_material == inventory
     finally:
-        string = 'm testmarkupinventory del remove default q'
+        string = 'mlm testmarkupinventory del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testmarkupinventory'
         assert not \

@@ -159,9 +159,9 @@ class Menu(ScoreManagerObject):
             match_on_display_string=False,
             return_value_attribute='key',
             )
-        hidden_section.append(('location-tracking - toggle', 'ltt'))
         hidden_section.append(('source code - edit', 'sce'))
         hidden_section.append(('source code - location', 'scl'))
+        hidden_section.append(('source code - track', 'sct'))
         hidden_section = self._make_section(
             is_hidden=True,
             return_value_attribute='key',
@@ -228,6 +228,9 @@ class Menu(ScoreManagerObject):
                 if not self.session.nonnumbered_menu_sections_are_hidden or \
                     menu_section.is_numbered:
                     menu_lines.extend(section_menu_lines)
+#        for menu_section in self.menu_sections:
+#            section_menu_lines = menu_section._make_menu_lines()
+#            menu_lines.extend(section_menu_lines)
         if self.hide_current_run:
             menu_lines = []
         return menu_lines
@@ -325,9 +328,9 @@ class Menu(ScoreManagerObject):
 
                 >>> for menu_entry in menu.hidden_section.menu_entries:
                 ...     menu_entry
-                <MenuEntry: 'location-tracking - toggle'>
                 <MenuEntry: 'source code - edit'>
                 <MenuEntry: 'source code - location'>
+                <MenuEntry: 'source code - track'>
 
         Returns menu section or none.
         '''
@@ -445,7 +448,7 @@ class Menu(ScoreManagerObject):
         else:
             lines = []
             message = 'where-tracking not enabled.'
-            message += " Use 'ltt' for location-tracking toggle."
+            message += " Use 'sct' for source code tracking."
             lines.append(message)
             lines.append('')
             self.session.io_manager.display(lines)

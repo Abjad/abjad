@@ -8,19 +8,19 @@ def test_MaterialPackageWrangler_run_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='m q')
+    score_manager._run(pending_user_input='mlm q')
     assert score_manager.session.io_transcript.signature == (4,)
 
-    score_manager._run(pending_user_input='m b q')
+    score_manager._run(pending_user_input='mlm b q')
     assert score_manager.session.io_transcript.signature == (6, (0, 4))
 
-    score_manager._run(pending_user_input='m h q')
+    score_manager._run(pending_user_input='mlm h q')
     assert score_manager.session.io_transcript.signature == (6, (0, 4))
 
-    score_manager._run(pending_user_input='m s q')
+    score_manager._run(pending_user_input='mlm s q')
     assert score_manager.session.io_transcript.signature == (6, (2, 4))
 
-    score_manager._run(pending_user_input='m asdf q')
+    score_manager._run(pending_user_input='mlm asdf q')
     assert score_manager.session.io_transcript.signature == (6, (2, 4))
 
 
@@ -29,8 +29,8 @@ def test_MaterialPackageWrangler_run_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='m q')
-    title_line = 'Score manager - materials'
+    score_manager._run(pending_user_input='mlm q')
+    title_line = 'Score manager - material library'
     assert score_manager.session.io_transcript[-2][1][0] == title_line
 
 
@@ -39,6 +39,6 @@ def test_MaterialPackageWrangler_run_03():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='m q')
+    score_manager._run(pending_user_input='mlm q')
     menu_lines = score_manager.session.io_transcript[-2][1]
     assert any(x.endswith('red sargasso measures') for x in menu_lines)

@@ -38,7 +38,10 @@ class StylesheetFileWrangler(Wrangler):
 
     @property
     def _breadcrumb(self):
-        return 'stylesheets'
+        if self.session.is_in_score:
+            return 'stylesheets'
+        else:
+            return 'stylesheet library'
 
     @property
     def _temporary_asset_name(self):

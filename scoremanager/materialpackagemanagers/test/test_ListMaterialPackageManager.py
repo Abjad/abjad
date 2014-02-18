@@ -24,7 +24,7 @@ def test_ListMaterialPackageManager_01():
             ]
         assert mpp.output_material == [17, 'foo']
     finally:
-        string = 'm testlist del remove default q'
+        string = 'mlm testlist del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testlist'
         assert not \

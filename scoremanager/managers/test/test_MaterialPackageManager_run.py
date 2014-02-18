@@ -9,19 +9,19 @@ def test_MaterialPackageManager_run_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='m sargasso q')
+    score_manager._run(pending_user_input='mlm sargasso q')
     assert score_manager.session.io_transcript.signature == (6,)
 
-    score_manager._run(pending_user_input='m sargasso b q')
+    score_manager._run(pending_user_input='mlm sargasso b q')
     assert score_manager.session.io_transcript.signature == (8, (2, 6))
 
-    score_manager._run(pending_user_input='m sargasso h q')
+    score_manager._run(pending_user_input='mlm sargasso h q')
     assert score_manager.session.io_transcript.signature == (8, (0, 6))
 
-    score_manager._run(pending_user_input='m sargasso s q')
+    score_manager._run(pending_user_input='mlm sargasso s q')
     assert score_manager.session.io_transcript.signature == (8, (4, 6))
 
-    score_manager._run(pending_user_input='m sargasso foo q')
+    score_manager._run(pending_user_input='mlm sargasso foo q')
     assert score_manager.session.io_transcript.signature == (8, (4, 6))
 
 
@@ -30,8 +30,8 @@ def test_MaterialPackageManager_run_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='m sargasso q')
-    string = 'Score manager - materials - sargasso multipliers'
+    score_manager._run(pending_user_input='mlm sargasso q')
+    string = 'Score manager - material library - sargasso multipliers'
     assert score_manager.session.io_transcript.last_menu_lines[0] == string
 
 
