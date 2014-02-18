@@ -216,7 +216,7 @@ class ScorePackageManager(PackageManager):
         command_section.append(('makers', 'k'))
         command_section.append(('materials', 'm'))
         command_section.append(('score segments', 'g'))
-        command_section.append(('score setup', 's'))
+        command_section.append(('score setup', 'p'))
         command_section.append(('score templates', 't'))
         command_section.append(('stylesheets', 'y'))
         manager = self.build_directory_manager
@@ -233,15 +233,6 @@ class ScorePackageManager(PackageManager):
         hidden_section.append(('view instrumentation', 'instrumentation'))
         self.session.io_manager._make_metadata_menu_section(main_menu)
         return main_menu
-
-#    def _make_repository_menu(self):
-#        menu = self.session.io_manager.make_menu(where=self._where)
-#        command_section = menu.make_command_section()
-#        command_section.append(('add', 'add'))
-#        command_section.append(('commit', 'ci'))
-#        command_section.append(('status', 'st'))
-#        command_section.append(('update', 'up'))
-#        return menu
 
     def _make_setup_menu(self):
         menu = self.session.io_manager.make_menu(where=self._where)
@@ -514,9 +505,9 @@ class ScorePackageManager(PackageManager):
         'instrumentation': interactively_view_instrumentation_module,
         'k': manage_makers,
         'm': manage_materials,
+        'p': manage_setup,
         'pdfv': interactively_view_score,
         'removescore': interactively_remove,
-        's': manage_setup,
         't': manage_score_templates,
         'u': manage_build_directory,
         'y': manage_stylesheets,

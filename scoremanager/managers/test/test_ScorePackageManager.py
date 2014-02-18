@@ -18,7 +18,7 @@ def test_ScorePackageManager_01():
       '     makers (k)',
       '     materials (m)',
       '     score segments (g)',
-      '     score setup (s)',
+      '     score setup (p)',
       '     score templates (t)',
       '     stylesheets (y)',
       '']
