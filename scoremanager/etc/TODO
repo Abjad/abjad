@@ -181,6 +181,3 @@
 
 45. Clean what Menu.hidden_section returns. There are multiple hidden sections.
     So maybe it makes sense to remove the property.
-
-46. Create custom (not system) objects for Menu, MenuSection, MenuEntry
-    docstrings.

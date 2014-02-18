@@ -6,23 +6,25 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class MenuEntry(AbjadObject):
     r'''Menu entry.
 
-        >>> menu = scoremanager.iotools.Menu()
-        >>> menu
-        <Menu (3)>
+    ..  container:: example
 
-        >>> menu_section = menu.menu_sections[1]
-        >>> menu_section
-        <MenuSection (3)>
+        ::
 
-        >>> for menu_entry in menu_section.menu_entries:
-        ...     menu_entry
-        <MenuEntry: 'developer commands - toggle'>
-        <MenuEntry: 'hidden commands - toggle'>
-        <MenuEntry: 'menu commands - toggle'>
+            >>> menu = scoremanager.iotools.Menu(
+            ...     include_default_hidden_sections=False,
+            ...     )
+            >>> section = menu.make_command_section()
+            >>> entry = section.append(('foo - add', 'add'))
+            >>> entry = section.append(('foo - delete', 'delete'))
+            >>> entry = section.append(('foo - modify', 'modify'))
 
-        >>> menu_entry = menu_section.menu_entries[-1]
-        >>> menu_entry
-        <MenuEntry: 'menu commands - toggle'>
+        ::
+
+            >>> for entry in section.menu_entries:
+            ...     entry
+            <MenuEntry: 'foo - add'>
+            <MenuEntry: 'foo - delete'>
+            <MenuEntry: 'foo - modify'>
 
     '''
 
@@ -59,8 +61,8 @@ class MenuEntry(AbjadObject):
 
         ::
 
-            >>> menu_entry.display_string
-            'menu commands - toggle'
+            >>> entry.display_string
+            'foo - modify'
 
         Returns string.
         '''
@@ -72,7 +74,7 @@ class MenuEntry(AbjadObject):
 
         ::
 
-            >>> menu_entry.explicit_return_value is None
+            >>> entry.explicit_return_value is None
             True
 
         Returns arbitrary value or none.
@@ -85,8 +87,8 @@ class MenuEntry(AbjadObject):
 
         ::
 
-            >>> menu_entry.key
-            'mct'
+            >>> entry.key
+            'modify'
 
         Returns string without spaces or none.
         '''
@@ -106,7 +108,7 @@ class MenuEntry(AbjadObject):
 
         ::
 
-            >>> menu_entry.number is None
+            >>> entry.number is None
             True
     
         Returns nonnegative integer or none.
@@ -120,7 +122,7 @@ class MenuEntry(AbjadObject):
 
         ::
 
-            >>> menu_entry.prepopulated_value is None
+            >>> entry.prepopulated_value is None
             True
 
         Returns arbitrary value or none.
@@ -133,8 +135,8 @@ class MenuEntry(AbjadObject):
 
         ::
 
-            >>> menu_entry.return_value
-            'mct'
+            >>> entry.return_value
+            'modify'
 
         Returns arbitrary value.
         '''
@@ -160,14 +162,14 @@ class MenuEntry(AbjadObject):
 
         ::
 
-            >>> menu_entry.matches('mct')
+            >>> entry.matches('modify')
             True
 
         Otherwise false:
 
         ::
 
-            >>> menu_entry.matches('foo')
+            >>> entry.matches('asdf')
             False
 
         Returns boolean.

@@ -7,26 +7,22 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class MenuSection(AbjadObject):
     r'''Menu section.
 
-    ::
+    ..  container:: example
 
-        >>> menu = scoremanager.iotools.Menu()
-        >>> menu
-        <Menu (3)>
+        ::
 
+            >>> menu = scoremanager.iotools.Menu(
+            ...     include_default_hidden_sections=False,
+            ...     )
+            >>> menu_section = menu.make_command_section()
+            >>> entry = menu_section.append(('foo - add', 'add'))
+            >>> entry = menu_section.append(('foo - delete', 'delete'))
+            >>> entry = menu_section.append(('foo - modify', 'modify'))
 
-    ::
+        ::
 
-        >>> menu_section = menu.menu_sections[1]
-        >>> menu_section
-        <MenuSection (3)>
-
-    ::
-
-        >>> for menu_entry in menu_section.menu_entries:
-        ...     menu_entry
-        <MenuEntry: 'developer commands - toggle'>
-        <MenuEntry: 'hidden commands - toggle'>
-        <MenuEntry: 'menu commands - toggle'>
+            >>> menu_section
+            <MenuSection (3)>
 
     '''
 
@@ -213,8 +209,7 @@ class MenuSection(AbjadObject):
                     message = 'default index must be positive integer.'
                     raise ValueError(message)
                 if count <= default_index:
-                    message = 'only {} menu entry menu_entries '
-                    message += 'in menu_section.'
+                    message = 'only {} menu entries in menu section.'
                     message = message.format(count)
                     raise ValueError(message)
             self._default_index = default_index
@@ -266,7 +261,7 @@ class MenuSection(AbjadObject):
             ::
 
                 >>> menu_section.is_hidden
-                True
+                False
 
             Returns boolean.
             '''
@@ -323,9 +318,9 @@ class MenuSection(AbjadObject):
 
                 >>> for menu_entry in menu_section.menu_entries:
                 ...     menu_entry
-                <MenuEntry: 'developer commands - toggle'>
-                <MenuEntry: 'hidden commands - toggle'>
-                <MenuEntry: 'menu commands - toggle'>
+                <MenuEntry: 'foo - add'>
+                <MenuEntry: 'foo - delete'>
+                <MenuEntry: 'foo - modify'>
 
             Returns list.
             '''
@@ -393,17 +388,17 @@ class MenuSection(AbjadObject):
 
         ::
 
-            >>> menu_section.append(('mkdir', 'mkdir'))
-            <MenuEntry: 'mkdir'>
+            >>> menu_section.append(('foo - stub', 'stub'))
+            <MenuEntry: 'foo - stub'>
 
         ::
 
             >>> for menu_entry in menu_section.menu_entries:
             ...     menu_entry
-            <MenuEntry: 'developer commands - toggle'>
-            <MenuEntry: 'hidden commands - toggle'>
-            <MenuEntry: 'menu commands - toggle'>
-            <MenuEntry: 'mkdir'>
+            <MenuEntry: 'foo - add'>
+            <MenuEntry: 'foo - delete'>
+            <MenuEntry: 'foo - modify'>
+            <MenuEntry: 'foo - stub'>
 
         Returns menu entry.
         '''

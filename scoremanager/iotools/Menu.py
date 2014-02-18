@@ -13,9 +13,18 @@ class Menu(ScoreManagerObject):
 
         ::
 
-            >>> menu = scoremanager.iotools.Menu()
+            >>> menu = scoremanager.iotools.Menu(
+            ...     include_default_hidden_sections=False,
+            ...     )
+            >>> section = menu.make_command_section()
+            >>> entry = section.append(('foo - add', 'add'))
+            >>> entry = section.append(('foo - delete', 'delete'))
+            >>> entry = section.append(('foo - modify', 'modify'))
+
+        ::
+
             >>> menu
-            <Menu (3)>
+            <Menu (1)>
 
     '''
 
@@ -112,8 +121,6 @@ class Menu(ScoreManagerObject):
             self.toggle_hidden_commands()
         elif directive == 'dct':
             self.toggle_developer_commands()
-        elif directive == 'mct':
-            self.toggle_menu_commands()
         elif directive == 'scl':
             self.display_calling_code_line_number()
         else:
@@ -182,7 +189,6 @@ class Menu(ScoreManagerObject):
             )
         section.append(('developer commands - toggle', 'dct'))
         section.append(('hidden commands - toggle', 'hct'))
-        section.append(('menu commands - toggle', 'mct'))
         return section
 
     def _make_navigation_menu_section(self):
@@ -341,18 +347,8 @@ class Menu(ScoreManagerObject):
 
         ::
 
-                >>> menu.hidden_section
-                <MenuSection (5)>
-
-        ::
-
-                >>> for menu_entry in menu.hidden_section.menu_entries:
-                ...     menu_entry
-                <MenuEntry: 'LilyPond log - view'>
-                <MenuEntry: 'Python prompt - interact'>
-                <MenuEntry: 'source code - edit'>
-                <MenuEntry: 'source code - location'>
-                <MenuEntry: 'source code - track'>
+            >>> menu.hidden_section is None
+            True
 
         Returns menu section or none.
         '''
@@ -368,9 +364,7 @@ class Menu(ScoreManagerObject):
 
             >>> for menu_section in menu.menu_sections:
             ...     menu_section
-            <MenuSection (5)>
             <MenuSection (3)>
-            <MenuSection (6)>
 
         Returns list.
         '''
@@ -542,12 +536,3 @@ class Menu(ScoreManagerObject):
             self.session.hidden_menu_sections_are_hidden = False
         else:
             self.session.hidden_menu_sections_are_hidden = True
-
-    def toggle_menu_commands(self):
-        if self.session.nonnumbered_menu_sections_are_hidden:
-            self.session.nonnumbered_menu_sections_are_hidden = False
-            message = 'menu commands on.'
-        else:
-            self.session.nonnumbered_menu_sections_are_hidden = True
-            message = 'menu commands off.'
-        self.session.io_manager.proceed(message)
