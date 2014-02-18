@@ -12,7 +12,7 @@ class MenuEntry(AbjadObject):
 
         >>> menu_section = menu.menu_sections[1]
         >>> menu_section
-        <MenuSection (11)>
+        <MenuSection (10)>
 
         >>> for menu_entry in menu_section.menu_entries:
         ...     menu_entry
@@ -20,7 +20,6 @@ class MenuEntry(AbjadObject):
         <MenuEntry: 'execute statement'>
         <MenuEntry: 'go back'>
         <MenuEntry: 'go home'>
-        <MenuEntry: 'go to current score'>
         <MenuEntry: 'go to current score'>
         <MenuEntry: 'go to next score'>
         <MenuEntry: 'go to prev score'>

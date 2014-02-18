@@ -79,37 +79,3 @@ def test_ScoreManager_07():
     wrangler = score_manager.score_package_wrangler
 
     assert score_manager.session is wrangler.session
-
-
-def test_ScoreManager_08():
-    r'''Backtracking stu* shortcut.
-    '''
-
-    score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score instrumentation h q'
-    score_manager._run(pending_user_input=string)
-    signature_1 = score_manager.session.io_transcript.signature
-
-    score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score instrumentation h q'
-    score_manager._run(pending_user_input=string)
-    signature_2 = score_manager.session.io_transcript.signature
-
-    assert signature_1 == signature_2
-
-
-def test_ScoreManager_09():
-    r'''Backtracking sco* shortcut.
-    '''
-
-    score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score score~setup score q'
-    score_manager._run(pending_user_input=string)
-    signature_1 = score_manager.session.io_transcript.signature
-
-    score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score score~setup sco q'
-    score_manager._run(pending_user_input=string)
-    signature_2 = score_manager.session.io_transcript.signature
-
-    assert signature_1 == signature_2

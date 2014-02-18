@@ -18,7 +18,7 @@ class MenuSection(AbjadObject):
 
         >>> menu_section = menu.menu_sections[1]
         >>> menu_section
-        <MenuSection (11)>
+        <MenuSection (10)>
 
     ::
 
@@ -28,7 +28,6 @@ class MenuSection(AbjadObject):
         <MenuEntry: 'execute statement'>
         <MenuEntry: 'go back'>
         <MenuEntry: 'go home'>
-        <MenuEntry: 'go to current score'>
         <MenuEntry: 'go to current score'>
         <MenuEntry: 'go to next score'>
         <MenuEntry: 'go to prev score'>
@@ -333,7 +332,6 @@ class MenuSection(AbjadObject):
                 <MenuEntry: 'go back'>
                 <MenuEntry: 'go home'>
                 <MenuEntry: 'go to current score'>
-                <MenuEntry: 'go to current score'>
                 <MenuEntry: 'go to next score'>
                 <MenuEntry: 'go to prev score'>
                 <MenuEntry: 'quit'>
@@ -418,7 +416,6 @@ class MenuSection(AbjadObject):
             <MenuEntry: 'execute statement'>
             <MenuEntry: 'go back'>
             <MenuEntry: 'go home'>
-            <MenuEntry: 'go to current score'>
             <MenuEntry: 'go to current score'>
             <MenuEntry: 'go to next score'>
             <MenuEntry: 'go to prev score'>

@@ -24,7 +24,7 @@ def test_PerformerEditor_interactively_set_initial_configuration_01():
     assert score_manager.session.io_transcript.signature == (14, (0, 12))
 
     string = 'red~example~score score~setup instrumentation'
-    string += ' add accordionist score q'
+    string += ' add accordionist s q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (14, (2, 12))
 

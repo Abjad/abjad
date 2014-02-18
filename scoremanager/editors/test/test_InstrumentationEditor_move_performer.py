@@ -20,7 +20,7 @@ def test_InstrumentationEditor_move_performer_01():
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (11, (0, 9))
 
-    string = 'red~example~score score~setup instrumentation move score q'
+    string = 'red~example~score score~setup instrumentation move s q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (11, (2, 9))
 

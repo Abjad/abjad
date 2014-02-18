@@ -21,7 +21,7 @@ def test_PerformerEditor_add_instruments_01():
     assert score_manager.session.io_transcript.signature == (14, (0, 12))
 
     string = 'red~example~score score~setup instrumentation'
-    string += ' hornist add score q'
+    string += ' hornist add s q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (14, (2, 12))
 

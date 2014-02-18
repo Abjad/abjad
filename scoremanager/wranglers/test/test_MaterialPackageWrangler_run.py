@@ -17,7 +17,7 @@ def test_MaterialPackageWrangler_run_01():
     score_manager._run(pending_user_input='m h q')
     assert score_manager.session.io_transcript.signature == (6, (0, 4))
 
-    score_manager._run(pending_user_input='m score q')
+    score_manager._run(pending_user_input='m s q')
     assert score_manager.session.io_transcript.signature == (6, (2, 4))
 
     score_manager._run(pending_user_input='m asdf q')

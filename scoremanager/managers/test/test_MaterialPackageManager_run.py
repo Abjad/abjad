@@ -18,7 +18,7 @@ def test_MaterialPackageManager_run_01():
     score_manager._run(pending_user_input='m sargasso h q')
     assert score_manager.session.io_transcript.signature == (8, (0, 6))
 
-    score_manager._run(pending_user_input='m sargasso score q')
+    score_manager._run(pending_user_input='m sargasso s q')
     assert score_manager.session.io_transcript.signature == (8, (4, 6))
 
     score_manager._run(pending_user_input='m sargasso foo q')
@@ -52,7 +52,7 @@ def test_MaterialPackageManager_run_03():
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (10, (0, 8))
 
-    string = 'red~example~score m tempo~inventory score q'
+    string = 'red~example~score m tempo~inventory s q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (10, (2, 8))
 
