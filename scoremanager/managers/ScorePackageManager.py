@@ -449,24 +449,6 @@ class ScorePackageManager(PackageManager):
     def manage_materials(self):
         self.material_package_wrangler._run(head=self.package_path)
 
-    def manage_repository(self, clear=True, cache=False):
-        self.session.cache_breadcrumbs(cache=cache)
-        while True:
-            self.session.push_breadcrumb('repository commands')
-            menu = self._make_repository_menu()
-            result = menu._run(clear=clear)
-            if self.session.backtrack():
-                break
-            elif not result:
-                self.session.pop_breadcrumb()
-                continue
-            self._handle_repository_menu_result(result)
-            if self.session.backtrack():
-                break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
-
     def manage_score_templates(self):
         self.score_template_directory_manager._run()
 

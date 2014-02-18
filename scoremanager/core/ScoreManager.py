@@ -87,25 +87,21 @@ class ScoreManager(ScoreManagerObject):
 
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
-        command_section = menu.make_command_section()
-        command_section.append(('materials library - manage', 'mlm'))
-        command_section.append(('stylesheets library - manage', 'ylm'))
-        command_section.append(('new score', 'new'))
-        hidden_section = menu.make_command_section(is_hidden=True)
-        hidden_section.append(('cache - view', 'cv'))
-        hidden_section.append(('cache - write', 'cw'))
-        hidden_section = menu.make_command_section(is_hidden=True)
-        hidden_section.append(('repository - add', 'radd'))
-        hidden_section.append(('repository - commit', 'rci'))
-        hidden_section.append(('repository - status', 'rst'))
-        hidden_section.append(('repository - update', 'rup'))
-        hidden_section = menu.make_command_section(is_hidden=True)
-        hidden_section.append(('scores - show all', 'ssl'))
-        hidden_section.append(('scores - show active', 'ssv'))
-        hidden_section.append(('scores - show mothballed', 'ssmb'))
-        hidden_section = menu.make_command_section(is_hidden=True)
-        hidden_section.append(('tests - doctest', 'tdoc'))
-        hidden_section.append(('tests - py.test', 'tpy'))
+        section = menu.make_command_section()
+        section.append(('new score', 'new'))
+        section = menu.make_command_section()
+        section.append(('new score', 'new'))
+        section.append(('materials library - manage', 'mlm'))
+        section.append(('stylesheets library - manage', 'ylm'))
+        section = menu.make_command_section(is_hidden=True)
+        section.append(('cache - view', 'cv'))
+        section.append(('cache - write', 'cw'))
+        self.session.io_manager._make_repository_menu_section(menu)
+        section = menu.make_command_section(is_hidden=True)
+        section.append(('scores - show all', 'ssl'))
+        section.append(('scores - show active', 'ssv'))
+        section.append(('scores - show mothballed', 'ssmb'))
+        self.session.io_manager._make_tests_menu_section(menu)
         return menu
 
     def _make_score_selection_menu(self):
@@ -298,23 +294,6 @@ class ScoreManager(ScoreManagerObject):
             rollback=True, 
             head=self.configuration.built_in_material_packages_package_path,
             )
-
-    def manage_repository(self, clear=True):
-        while True:
-            self.session.push_breadcrumb('repository commands')
-            menu = self._make_repository_menu()
-            result = menu._run(clear=clear)
-            if self.session.is_backtracking_to_score:
-                self.session.is_backtracking_to_score = False
-                self.session.pop_breadcrumb()
-                continue
-            elif self.session.backtrack():
-                break
-            self._handle_repository_menu_result(result)
-            if self.session.backtrack():
-                break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
 
     def manage_stylesheets(self):
         self.stylesheet_file_wrangler._run(

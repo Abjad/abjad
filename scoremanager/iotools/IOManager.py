@@ -109,34 +109,48 @@ class IOManager(IOManager):
                 return True
         return False
 
-    def _make_initializer_menu_section(self, main_menu, has_initializer=True):
+    def _make_initializer_menu_section(self, menu, has_initializer=True):
         if not has_initializer:
-            command_section = main_menu.make_command_section()
+            command_section = menu.make_command_section()
             command_section.title = "package has no initializer: use 'ins'."
-        hidden_section = main_menu.make_command_section(is_hidden=True)
-        hidden_section.append(('initializer module - boilerplate', 'INbp'))
-        hidden_section.append(('initializer module - remove', 'INrm'))
-        hidden_section.append(('initializer module - stub', 'INs'))
-        hidden_section.append(('initializer module - view', 'INv'))
+        section = menu.make_command_section(is_hidden=True)
+        section.append(('initializer module - boilerplate', 'INbp'))
+        section.append(('initializer module - remove', 'INrm'))
+        section.append(('initializer module - stub', 'INs'))
+        section.append(('initializer module - view', 'INv'))
 
-    def _make_metadata_menu_section(self, main_menu):
-        hidden_section = main_menu.make_command_section(is_hidden=True)
-        hidden_section.append(('metadata - add', 'mda'))
-        hidden_section.append(('metadata - get', 'mdg'))
-        hidden_section.append(('metadata - remove', 'mdrm'))
-        hidden_section.append(('metadata module - remove', 'MDrm'))
-        hidden_section.append(('metadata module - rewrite', 'MDrw'))
-        hidden_section.append(('metadata module - view', 'MDv'))
-        return hidden_section
+    def _make_metadata_menu_section(self, menu):
+        section = menu.make_command_section(is_hidden=True)
+        section.append(('metadata - add', 'mda'))
+        section.append(('metadata - get', 'mdg'))
+        section.append(('metadata - remove', 'mdrm'))
+        section.append(('metadata module - remove', 'MDrm'))
+        section.append(('metadata module - rewrite', 'MDrw'))
+        section.append(('metadata module - view', 'MDv'))
+        return section
 
-    def _make_views_menu_section(self, main_menu):
-        hidden_section = main_menu.make_command_section(is_hidden=True)
-        hidden_section.append(('views - list', 'vwl'))
-        hidden_section.append(('views - new', 'vwn'))
-        hidden_section.append(('views - select', 'vws'))
-        hidden_section.append(('views module - remove', 'VWrm'))
-        hidden_section.append(('views module - view', 'VWv'))
-        return hidden_section
+    def _make_repository_menu_section(self, menu):
+        section = menu.make_command_section(is_hidden=True)
+        section.append(('repository - add', 'radd'))
+        section.append(('repository - commit', 'rci'))
+        section.append(('repository - status', 'rst'))
+        section.append(('repository - update', 'rup'))
+        return section
+
+    def _make_tests_menu_section(self, menu):
+        section = menu.make_command_section(is_hidden=True)
+        section.append(('tests - doctest', 'tdoc'))
+        section.append(('tests - py.test', 'tpy'))
+        return section
+
+    def _make_views_menu_section(self, menu):
+        section = menu.make_command_section(is_hidden=True)
+        section.append(('views - list', 'vwl'))
+        section.append(('views - new', 'vwn'))
+        section.append(('views - select', 'vws'))
+        section.append(('views module - remove', 'VWrm'))
+        section.append(('views module - view', 'VWv'))
+        return section
 
     def _pop_from_pending_user_input(self):
         self.session.last_command_was_composite = False
