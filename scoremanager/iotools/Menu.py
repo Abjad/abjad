@@ -25,12 +25,14 @@ class Menu(ScoreManagerObject):
         self, 
         session=None, 
         where=None,
+        include_default_hidden_sections=True,
         should_clear_terminal=False,
         title=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
         self._menu_sections = []
-        self._make_default_hidden_sections()
+        if include_default_hidden_sections:
+            self._make_default_hidden_sections()
         self.should_clear_terminal = should_clear_terminal
         self.title = title
         self.where = where
@@ -153,35 +155,48 @@ class Menu(ScoreManagerObject):
         return any(x.is_ranged for x in self.menu_sections)
 
     def _make_default_hidden_sections(self):
-        hidden_section = self._make_section(
+        sections = []
+        sections.append(self._make_developer_menu_section())
+        sections.append(self._make_display_option_menu_section())
+        sections.append(self._make_navigation_menu_section())
+        return sections
+
+    def _make_developer_menu_section(self):
+        section = self._make_section(
             is_developer=True,
             is_hidden=True,
             match_on_display_string=False,
             return_value_attribute='key',
             )
-        hidden_section.append(('LilyPond log - view', 'llv'))
-        hidden_section.append(('Python prompt - interact', 'ppi'))
-        hidden_section.append(('source code - edit', 'sce'))
-        hidden_section.append(('source code - location', 'scl'))
-        hidden_section.append(('source code - track', 'sct'))
-        hidden_section = self._make_section(
+        section.append(('LilyPond log - view', 'llv'))
+        section.append(('Python prompt - interact', 'ppi'))
+        section.append(('source code - edit', 'sce'))
+        section.append(('source code - location', 'scl'))
+        section.append(('source code - track', 'sct'))
+        return section
+
+    def _make_display_option_menu_section(self):
+        section = self._make_section(
             is_hidden=True,
             return_value_attribute='key',
             )
-        hidden_section.append(('developer commands - toggle', 'dct'))
-        hidden_section.append(('hidden commands - toggle', 'hct'))
-        hidden_section.append(('menu commands - toggle', 'mct'))
-        hidden_section = self._make_section(
+        section.append(('developer commands - toggle', 'dct'))
+        section.append(('hidden commands - toggle', 'hct'))
+        section.append(('menu commands - toggle', 'mct'))
+        return section
+
+    def _make_navigation_menu_section(self):
+        section = self._make_section(
             is_hidden=True,
             return_value_attribute='key',
             )
-        hidden_section.append(('back - go', 'b'))
-        hidden_section.append(('home - go', 'h'))
-        hidden_section.append(('current score - go', 's'))
-        hidden_section.append(('next score - go', 'next'))
-        hidden_section.append(('previous score - go', 'prev'))
-        hidden_section.append(('quit', 'q'))
-        return hidden_section
+        section.append(('back - go', 'b'))
+        section.append(('home - go', 'h'))
+        section.append(('current score - go', 's'))
+        section.append(('next score - go', 'next'))
+        section.append(('previous score - go', 'prev'))
+        section.append(('quit', 'q'))
+        return section
 
     def _make_menu_lines(self):
         result = []

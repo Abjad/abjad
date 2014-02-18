@@ -375,7 +375,7 @@ class IOManager(IOManager):
             )
         return getter
 
-    def make_menu(self, where=None):
+    def make_menu(self, where=None, include_default_hidden_sections=True):
         r'''Makes menu.
 
         Returns menu.
@@ -384,6 +384,7 @@ class IOManager(IOManager):
         menu = iotools.Menu(
             where=where, 
             session=self.session,
+            include_default_hidden_sections=include_default_hidden_sections,
             )
         return menu
 

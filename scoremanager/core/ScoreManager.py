@@ -90,7 +90,6 @@ class ScoreManager(ScoreManagerObject):
         section = menu.make_command_section()
         section.append(('new score', 'new'))
         section = menu.make_command_section()
-        section.append(('new score', 'new'))
         section.append(('materials library - manage', 'mlm'))
         section.append(('stylesheets library - manage', 'ylm'))
         section = menu.make_command_section(is_hidden=True)
@@ -102,6 +101,7 @@ class ScoreManager(ScoreManagerObject):
         section.append(('scores - show active', 'ssv'))
         section.append(('scores - show mothballed', 'ssmb'))
         self.session.io_manager._make_tests_menu_section(menu)
+        menu._make_default_hidden_sections()
         return menu
 
     def _make_score_selection_menu(self):
@@ -116,7 +116,10 @@ class ScoreManager(ScoreManagerObject):
         else:
             menu_entries = \
                 self.score_package_wrangler._make_asset_menu_entries()
-        menu = self.session.io_manager.make_menu(where=self._where)
+        menu = self.session.io_manager.make_menu(
+            where=self._where,
+            include_default_hidden_sections=False,
+            )
         asset_section = menu.make_asset_section()
         asset_section.menu_entries = menu_entries
         menu.menu_sections.remove(asset_section)
