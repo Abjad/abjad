@@ -105,7 +105,7 @@ class IOManager(IOManager):
         if isinstance(string, str):
             if 3 <= len(string) and 'home'.startswith(string):
                 return True
-            elif string == 'H':
+            elif string == 'h':
                 return True
         return False
 

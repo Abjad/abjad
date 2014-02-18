@@ -87,6 +87,17 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                                         ),
                                     ]
                                 ),
+                            default_tuning=indicatortools.Tuning(
+                                pitches=pitchtools.PitchSegment(
+                                    (
+                                        pitchtools.NamedPitch('g'),
+                                        pitchtools.NamedPitch("d'"),
+                                        pitchtools.NamedPitch("a'"),
+                                        pitchtools.NamedPitch("e''"),
+                                        ),
+                                    item_class=pitchtools.NamedPitch,
+                                    ),
+                                ),
                             pitch_range=pitchtools.PitchRange(
                                 '[G3, G7]'
                                 ),
@@ -120,6 +131,17 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                                         name='treble',
                                         ),
                                     ]
+                                ),
+                            default_tuning=indicatortools.Tuning(
+                                pitches=pitchtools.PitchSegment(
+                                    (
+                                        pitchtools.NamedPitch('c,'),
+                                        pitchtools.NamedPitch('g,'),
+                                        pitchtools.NamedPitch('d'),
+                                        pitchtools.NamedPitch('a'),
+                                        ),
+                                    item_class=pitchtools.NamedPitch,
+                                    ),
                                 ),
                             pitch_range=pitchtools.PitchRange(
                                 '[C2, G5]'

@@ -166,7 +166,7 @@ class Menu(ScoreManagerObject):
         hidden_section.append(('execute statement', 'exec'))
         hidden_section.append(('go back', 'b'))
         hidden_section.append(('go home', 'home'))
-        hidden_section.append(('go home', 'H'))
+        hidden_section.append(('go home', 'h'))
         hidden_section.append(('go to current score', 'score'))
         hidden_section.append(('go to current score', 'S'))
         hidden_section.append(('go to next score', 'next'))
