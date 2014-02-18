@@ -168,7 +168,7 @@ class Menu(ScoreManagerObject):
         hidden_section.append(('go home', 'home'))
         hidden_section.append(('go home', 'h'))
         hidden_section.append(('go to current score', 'score'))
-        hidden_section.append(('go to current score', 'S'))
+        hidden_section.append(('go to current score', 's'))
         hidden_section.append(('go to next score', 'next'))
         hidden_section.append(('go to prev score', 'prev'))
         hidden_section.append(('quit', 'q'))

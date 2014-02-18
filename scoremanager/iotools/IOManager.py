@@ -96,7 +96,7 @@ class IOManager(IOManager):
         if isinstance(string, str):
             if 3 <= len(string) and 'score'.startswith(string):
                 return True
-            elif string == 'S':
+            elif string == 's':
                 return True
         return False
 
