@@ -8,29 +8,21 @@ class MenuEntry(AbjadObject):
 
         >>> menu = scoremanager.iotools.Menu()
         >>> menu
-        <Menu (2)>
+        <Menu (4)>
 
         >>> menu_section = menu.menu_sections[1]
         >>> menu_section
-        <MenuSection (11)>
+        <MenuSection (3)>
 
         >>> for menu_entry in menu_section.menu_entries:
         ...     menu_entry
-        <MenuEntry: 'display hidden menu'>
-        <MenuEntry: 'execute statement'>
-        <MenuEntry: 'go back'>
-        <MenuEntry: 'go home'>
-        <MenuEntry: 'go to current score'>
-        <MenuEntry: 'go to next score'>
-        <MenuEntry: 'go to prev score'>
-        <MenuEntry: 'quit'>
         <MenuEntry: 'developer commands - toggle'>
+        <MenuEntry: 'hidden commands - toggle'>
         <MenuEntry: 'menu commands - toggle'>
-        <MenuEntry: 'LilyPond log - view'>
 
         >>> menu_entry = menu_section.menu_entries[-1]
         >>> menu_entry
-        <MenuEntry: 'LilyPond log - view'>
+        <MenuEntry: 'menu commands - toggle'>
 
     '''
 
@@ -68,7 +60,7 @@ class MenuEntry(AbjadObject):
         ::
 
             >>> menu_entry.display_string
-            'LilyPond log - view'
+            'menu commands - toggle'
 
         Returns string.
         '''
@@ -94,7 +86,7 @@ class MenuEntry(AbjadObject):
         ::
 
             >>> menu_entry.key
-            'llv'
+            'mct'
 
         Returns string without spaces or none.
         '''
@@ -142,7 +134,7 @@ class MenuEntry(AbjadObject):
         ::
 
             >>> menu_entry.return_value
-            'llv'
+            'mct'
 
         Returns arbitrary value.
         '''
@@ -168,7 +160,7 @@ class MenuEntry(AbjadObject):
 
         ::
 
-            >>> menu_entry.matches('llv')
+            >>> menu_entry.matches('mct')
             True
 
         Otherwise false:

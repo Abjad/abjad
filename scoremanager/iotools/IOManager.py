@@ -68,7 +68,7 @@ class IOManager(IOManager):
             key = directive
         if key in ('b', 'back'):
             self.session.is_backtracking_locally = True
-        elif key == 'exec':
+        elif key == 'ppi':
             self.interactively_exec_statement()
         elif key == 'llv':
             self.view_last_log()
@@ -319,7 +319,7 @@ class IOManager(IOManager):
         lines = []
         is_interactive = True
         if statement is None:
-            statement = self.handle_user_input('XCF', include_newline=False)
+            statement = self.handle_user_input('>>', include_newline=False)
         else:
             is_interactive = False
         command = 'from abjad import *'

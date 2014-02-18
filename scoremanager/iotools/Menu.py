@@ -15,7 +15,7 @@ class Menu(ScoreManagerObject):
 
             >>> menu = scoremanager.iotools.Menu()
             >>> menu
-            <Menu (2)>
+            <Menu (4)>
 
     '''
 
@@ -106,7 +106,7 @@ class Menu(ScoreManagerObject):
             return
         elif directive == 'sce':
             self.interactively_edit_calling_code()
-        elif directive == 'hidden':
+        elif directive == 'hct':
             self.display_hidden_menu_section()
         elif directive == 'dct':
             self.toggle_developer_commands()
@@ -166,17 +166,25 @@ class Menu(ScoreManagerObject):
             is_hidden=True,
             return_value_attribute='key',
             )
-        hidden_section.append(('display hidden menu', 'hidden'))
-        hidden_section.append(('execute statement', 'exec'))
-        hidden_section.append(('go back', 'b'))
-        hidden_section.append(('go home', 'h'))
-        hidden_section.append(('go to current score', 's'))
-        hidden_section.append(('go to next score', 'next'))
-        hidden_section.append(('go to prev score', 'prev'))
-        hidden_section.append(('quit', 'q'))
         hidden_section.append(('developer commands - toggle', 'dct'))
+        hidden_section.append(('hidden commands - toggle', 'hct'))
         hidden_section.append(('menu commands - toggle', 'mct'))
+        hidden_section = self._make_section(
+            is_hidden=True,
+            return_value_attribute='key',
+            )
         hidden_section.append(('LilyPond log - view', 'llv'))
+        hidden_section.append(('Python prompt - interact', 'ppi'))
+        hidden_section = self._make_section(
+            is_hidden=True,
+            return_value_attribute='key',
+            )
+        hidden_section.append(('back - go', 'b'))
+        hidden_section.append(('home - go', 'h'))
+        hidden_section.append(('current score - go', 's'))
+        hidden_section.append(('next score - go', 'next'))
+        hidden_section.append(('previous score - go', 'prev'))
+        hidden_section.append(('quit', 'q'))
         return hidden_section
 
     def _make_menu_lines(self):
@@ -336,7 +344,9 @@ class Menu(ScoreManagerObject):
             >>> for menu_section in menu.menu_sections:
             ...     menu_section
             <MenuSection (3)>
-            <MenuSection (11)>
+            <MenuSection (3)>
+            <MenuSection (2)>
+            <MenuSection (6)>
 
         Returns list.
         '''

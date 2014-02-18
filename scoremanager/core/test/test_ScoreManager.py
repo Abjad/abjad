@@ -45,27 +45,27 @@ def test_ScoreManager_04():
 
 
 def test_ScoreManager_05():
-    r'''Exec works.
+    r'''Python prompt works.
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='exec 2**30 q')
+    score_manager._run(pending_user_input='ppi 2**30 q')
 
-    assert score_manager.session.io_transcript[1][1] == ['> exec', '']
-    assert score_manager.session.io_transcript[2][1] == ['XCF> 2**30']
+    assert score_manager.session.io_transcript[1][1] == ['> ppi', '']
+    assert score_manager.session.io_transcript[2][1] == ['>>> 2**30']
     assert score_manager.session.io_transcript[3][1] == ['1073741824', '']
     assert score_manager.session.io_transcript[4][1] == ['> q', '']
 
 
 def test_ScoreManager_06():
-    r'''Exec protects against senseless input.
+    r'''Python prompt protects against senseless input.
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='exec foo q')
+    score_manager._run(pending_user_input='ppi foo q')
 
-    assert score_manager.session.io_transcript[1][1] == ['> exec', '']
-    assert score_manager.session.io_transcript[2][1] == ['XCF> foo']
+    assert score_manager.session.io_transcript[1][1] == ['> ppi', '']
+    assert score_manager.session.io_transcript[2][1] == ['>>> foo']
     entry = ['Expression not executable.', '']
     assert score_manager.session.io_transcript[3][1] == entry
     assert score_manager.session.io_transcript[4][1] == ['> q', '']
