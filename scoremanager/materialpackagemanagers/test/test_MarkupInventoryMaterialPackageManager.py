@@ -10,7 +10,7 @@ def test_MarkupInventoryMaterialPackageManager_01():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            "materials nmm markup testmarkupinventory "
+            "lmm nmm markup testmarkupinventory "
             "omi "
             "add arg r'\\italic~{~serenamente~}' done "
             "add arg r'\\italic~{~presto~}' done done default q"
@@ -35,7 +35,7 @@ def test_MarkupInventoryMaterialPackageManager_01():
             )
         assert mpp.output_material == inventory
     finally:
-        string = 'mlm testmarkupinventory del remove default q'
+        string = 'lmm testmarkupinventory del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testmarkupinventory'
         assert not \

@@ -11,7 +11,7 @@ def test_DynamicHandlerMaterialPackageManager_01():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials nmm dynamic testdynamichandler default '
+            'lmm nmm dynamic testdynamichandler default '
             'testdynamichandler omi reiterateddynamic '
             'f (1, 16) done default '
             'q '
@@ -31,7 +31,7 @@ def test_DynamicHandlerMaterialPackageManager_01():
             )
         assert mpp.output_material == handler
     finally:
-        string = 'mlm testdynamichandler del remove default q'
+        string = 'lmm testdynamichandler del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testdynamichandler'
         assert not \

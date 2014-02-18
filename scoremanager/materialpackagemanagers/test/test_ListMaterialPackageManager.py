@@ -10,7 +10,7 @@ def test_ListMaterialPackageManager_01():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials nmm list testlist '
+            'lmm nmm list testlist '
             "17 foo done b default q "
             )
         string = 'scoremanager.materialpackages.testlist'
@@ -24,7 +24,7 @@ def test_ListMaterialPackageManager_01():
             ]
         assert mpp.output_material == [17, 'foo']
     finally:
-        string = 'mlm testlist del remove default q'
+        string = 'lmm testlist del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testlist'
         assert not \

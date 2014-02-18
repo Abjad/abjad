@@ -13,7 +13,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
     assert not score_manager.configuration.packagesystem_path_exists(name)
 
     try:
-        string = 'mlm nmh testnotes default default q'
+        string = 'lmm nmh testnotes default default q'
         score_manager._run(pending_user_input=string)
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
@@ -27,7 +27,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        string = 'mlm testnotes del remove default q'
+        string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager.configuration.packagesystem_path_exists(name)
 
@@ -43,7 +43,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
 
     try:
         score_manager._run(pending_user_input=
-            'mlm nmh testnotes default default '
+            'lmm nmh testnotes default default '
             'testnotes incanned boilerplate_exception.py default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
@@ -57,7 +57,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        string = 'mlm testnotes del remove default q'
+        string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager.configuration.packagesystem_path_exists(name)
 
@@ -73,7 +73,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
 
     try:
         score_manager._run(pending_user_input=
-            'mlm nmh testnotes default default '
+            'lmm nmh testnotes default default '
             'testnotes incanned boilerplate_exception.py default '
             'inr yes yes default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
@@ -88,7 +88,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        string = 'mlm testnotes del remove default q'
+        string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager.configuration.packagesystem_path_exists(name)
 
@@ -104,7 +104,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
 
     try:
         score_manager._run(pending_user_input=
-            'mlm nmh testnotes default default '
+            'lmm nmh testnotes default default '
             'testnotes mdcanned boilerplate_testnotes_material_definition.py default '
             'omm default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
@@ -122,7 +122,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
         assert mpp.output_material and \
             all(isinstance(x, Note) for x in mpp.output_material)
     finally:
-        string = 'mlm testnotes del remove default q'
+        string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager.configuration.packagesystem_path_exists(name)
 
@@ -138,7 +138,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
 
     try:
         score_manager._run(pending_user_input=
-            'mlm nmh testnotes default default '
+            'lmm nmh testnotes default default '
             'testnotes mddelete default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
@@ -152,7 +152,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        string = 'mlm testnotes del remove default q'
+        string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager.configuration.packagesystem_path_exists(name)
 
@@ -168,7 +168,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
 
     try:
         score_manager._run(pending_user_input=
-            'mlm nmh testnotes default '
+            'lmm nmh testnotes default '
             'testnotes mdstub default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
@@ -182,7 +182,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        string = 'mlm testnotes del remove default q'
+        string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager.configuration.packagesystem_path_exists(name)
 
@@ -198,7 +198,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
 
     try:
         score_manager._run(pending_user_input=
-            'mlm nmh testnotes default default '
+            'lmm nmh testnotes default default '
             'testnotes mdcanned boilerplate_testnotes_material_definition.py '
             'default '
             'omm default '
@@ -216,7 +216,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
             all(isinstance(x, Note) for x in mpp.material_definition)
         assert mpp.output_material is None
     finally:
-        string = 'mlm testnotes del remove default q'
+        string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager.configuration.packagesystem_path_exists(name)
 
@@ -232,7 +232,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
 
     try:
         score_manager._run(pending_user_input=
-            'mlm nmh testnotes default default '
+            'lmm nmh testnotes default default '
             'testnotes mdcanned boilerplate_exception.py default q')
         assert score_manager.configuration.packagesystem_path_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
@@ -246,7 +246,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        string = 'mlm testnotes del remove default q'
+        string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager.configuration.packagesystem_path_exists(name)
 
@@ -263,7 +263,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
 
     try:
         score_manager._run(pending_user_input=
-            'mlm nmh testnotes default default '
+            'lmm nmh testnotes default default '
             'testnotes mdcanned boilerplate_testnotes_material_definition.py default '
             'omm default '
             'omcanned boilerplate_exception.py default q')
@@ -281,7 +281,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
             all(isinstance(x, Note) for x in mpp.material_definition)
         assert mpp.output_material is None
     finally:
-        string = 'mlm testnotes del remove default q'
+        string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager.configuration.packagesystem_path_exists(name)
 
@@ -299,7 +299,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
 
     try:
         score_manager._run(pending_user_input=
-            'mlm nmh testnotes default default '
+            'lmm nmh testnotes default default '
             'testnotes mdcanned boilerplate_testnotes_material_definition.py default '
             'omm default '
             'pdfm default '
@@ -323,6 +323,6 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
             all(isinstance(x, Note) for x in mpp.output_material)
             
     finally:
-        string = 'mlm testnotes del remove default q'
+        string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager.configuration.packagesystem_path_exists(name)

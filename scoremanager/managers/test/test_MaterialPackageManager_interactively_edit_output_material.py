@@ -8,7 +8,7 @@ def test_MaterialPackageManager_interactively_edit_output_material_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'materials red~markup omi q'
+    string = 'lmm red~markup omi q'
     score_manager._run(pending_user_input=string)
     transcript = score_manager.session.io_transcript
 

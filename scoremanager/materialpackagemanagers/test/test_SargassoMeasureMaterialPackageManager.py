@@ -12,7 +12,7 @@ def test_SargassoMeasureMaterialPackageManager_01():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials nmm sargasso testsargasso default '
+            'lmm nmm sargasso testsargasso default '
             'q'
             )
         string = 'scoremanager.materialpackages.testsargasso'
@@ -34,7 +34,7 @@ def test_SargassoMeasureMaterialPackageManager_01():
             ('measures_are_shuffled', None)])
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'mlm testsargasso del remove default q'
+        string = 'lmm testsargasso del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
         assert not \
@@ -51,7 +51,7 @@ def test_SargassoMeasureMaterialPackageManager_02():
 
     try:
         score_manager._run(pending_user_input=
-            'materials nmm sargasso testsargasso default '
+            'lmm nmm sargasso testsargasso default '
             'testsargasso uil '
             'q'
             )
@@ -74,7 +74,7 @@ def test_SargassoMeasureMaterialPackageManager_02():
             ('measures_are_shuffled', True)])
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'mlm testsargasso del remove default q'
+        string = 'lmm testsargasso del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
         assert not score_manager.configuration.packagesystem_path_exists(
@@ -90,7 +90,7 @@ def test_SargassoMeasureMaterialPackageManager_03():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials nmm sargasso testsargasso default '
+            'lmm nmm sargasso testsargasso default '
             'testsargasso uil uic '
             'q'
             )
@@ -113,7 +113,7 @@ def test_SargassoMeasureMaterialPackageManager_03():
             ('measures_are_shuffled', None)])
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'mlm testsargasso del remove default q'
+        string = 'lmm testsargasso del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
         assert not \
@@ -129,7 +129,7 @@ def test_SargassoMeasureMaterialPackageManager_04():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials nmm sargasso testsargasso default '
+            'lmm nmm sargasso testsargasso default '
             'testsargasso 3 16 '
             'q'
             )
@@ -152,7 +152,7 @@ def test_SargassoMeasureMaterialPackageManager_04():
             ('measures_are_shuffled', None)])
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'mlm testsargasso del remove default q'
+        string = 'lmm testsargasso del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
         assert not score_manager.configuration.packagesystem_path_exists(
@@ -168,7 +168,7 @@ def test_SargassoMeasureMaterialPackageManager_05():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials nmm sargasso testsargasso default '
+            'lmm nmm sargasso testsargasso default '
             'testsargasso uip 5 '
             'Duration(11, 2) False True True 4 [2, 2, 2, 2, 1, 1, 4, 4] 16 [1, 1, 2, 3, 4] '
             'q'
@@ -192,7 +192,7 @@ def test_SargassoMeasureMaterialPackageManager_05():
             ('measures_are_shuffled', True)])
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'mlm testsargasso del remove default q'
+        string = 'lmm testsargasso del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
         assert not score_manager.configuration.packagesystem_path_exists(
@@ -208,7 +208,7 @@ def test_SargassoMeasureMaterialPackageManager_06():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials nmm sargasso testsargasso default '
+            'lmm nmm sargasso testsargasso default '
             'testsargasso uip 1 '
             '4 [2, 2, 3, 3] 16 [1, 1, 1, 1, 6, 6] b '
             'q'
@@ -232,7 +232,7 @@ def test_SargassoMeasureMaterialPackageManager_06():
             ('measures_are_shuffled', None)])
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'mlm testsargasso del remove default q'
+        string = 'lmm testsargasso del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
         assert not \
@@ -248,7 +248,7 @@ def test_SargassoMeasureMaterialPackageManager_07():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials nmm sargasso testsargasso default '
+            'lmm nmm sargasso testsargasso default '
             'testsargasso uil 6 None 7 None 8 None '
             'q'
             )
@@ -271,7 +271,7 @@ def test_SargassoMeasureMaterialPackageManager_07():
             ('measures_are_shuffled', None)])
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'mlm testsargasso del remove default q'
+        string = 'lmm testsargasso del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
         assert not \
@@ -287,7 +287,7 @@ def test_SargassoMeasureMaterialPackageManager_08():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials nmm sargasso testsargasso default '
+            'lmm nmm sargasso testsargasso default '
             'testsargasso uil omm default '
             'q'
             )
@@ -328,7 +328,7 @@ def test_SargassoMeasureMaterialPackageManager_08():
         assert format(Staff(mpp.output_material))
         assert format(Staff(mpp.output_material)) == format(Staff(measures))
     finally:
-        string = 'mlm testsargasso del remove default q'
+        string = 'lmm testsargasso del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
         assert not \

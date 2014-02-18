@@ -12,7 +12,7 @@ def test_PitchRangeInventoryMaterialPackageManager_01():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials nmm pitch testpir default '
+            'lmm nmm pitch testpir default '
             'q'
             )
         string = 'scoremanager.materialpackages.testpir'
@@ -24,7 +24,7 @@ def test_PitchRangeInventoryMaterialPackageManager_01():
             ]
         assert mpp.output_material is None
     finally:
-        string = 'mlm testpir del remove default q'
+        string = 'lmm testpir del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testpir'
         assert not \
@@ -40,7 +40,7 @@ def test_PitchRangeInventoryMaterialPackageManager_02():
     assert not score_manager.configuration.packagesystem_path_exists(string)
     try:
         score_manager._run(pending_user_input=
-            'materials nmm pitch testpir default '
+            'lmm nmm pitch testpir default '
             'testpir omi add [A0, C8] add [C2, F#5] add [C2, G5] '
             'rm 1 move 1 2 b default '
             'q'
@@ -60,7 +60,7 @@ def test_PitchRangeInventoryMaterialPackageManager_02():
             ])
         assert mpp.output_material == pitch_range_inventory
     finally:
-        string = 'mlm testpir del remove default q'
+        string = 'lmm testpir del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testpir'
         assert not \
