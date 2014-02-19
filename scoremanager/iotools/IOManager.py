@@ -178,17 +178,6 @@ class IOManager(IOManager):
         section.append(('metadata module - view', 'mdmv'))
         return section
 
-    def _make_repository_menu_section(self, menu):
-        section = menu.make_command_section(
-            is_secondary=True,
-            match_on_display_string=False,
-            )
-        section.append(('repository - add', 'radd'))
-        section.append(('repository - commit', 'rci'))
-        section.append(('repository - status', 'rst'))
-        section.append(('repository - update', 'rup'))
-        return section
-
     def _make_views_menu_section(self, menu):
         section = menu.make_command_section(
             is_secondary=True,

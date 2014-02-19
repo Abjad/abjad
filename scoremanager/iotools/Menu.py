@@ -182,6 +182,7 @@ class Menu(ScoreManagerObject):
         sections.append(self._make_example_score_menu_section())
         sections.append(self._make_lilypond_menu_section())
         sections.append(self._make_python_menu_section())
+        sections.append(self._make_repository_menu_section())
         sections.append(self._make_scores_tour_menu_section())
         sections.append(self._make_session_menu_section())
         sections.append(self._make_source_code_menu_section())
@@ -228,9 +229,21 @@ class Menu(ScoreManagerObject):
             match_on_display_string=False,
             return_value_attribute='key',
             )
-        section.append(('Python - doctests', 'pyd'))
+        section.append(('Python - doctest', 'pyd'))
         section.append(('Python - interact', 'pyi'))
-        section.append(('Python - tests', 'pyt'))
+        section.append(('Python - test', 'pyt'))
+        return section
+
+    def _make_repository_menu_section(self):
+        section = self._make_section(
+            is_navigation=True,
+            match_on_display_string=False,
+            return_value_attribute='key',
+            )
+        section.append(('repository - add', 'radd'))
+        section.append(('repository - commit', 'rci'))
+        section.append(('repository - status', 'rst'))
+        section.append(('repository - update', 'rup'))
         return section
 
     def _make_scores_tour_menu_section(self):

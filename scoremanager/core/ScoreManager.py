@@ -71,20 +71,20 @@ class ScoreManager(ScoreManagerObject):
             if result in wrangler.list_visible_asset_packagesystem_paths():
                 self.interactively_edit_score(result)
 
-    def _handle_repository_menu_result(self, result):
-        r'''Returns true to exit the repository menu.
-        '''
-        this_result = False
-        if result == 'add':
-            self.score_package_wrangler.repository_add_assets()
-        elif result == 'ci':
-            self.score_package_wrangler.repository_ci_assets()
-        elif result == 'st':
-            self.score_package_wrangler.repository_st_assets()
-        elif result == 'up':
-            self.score_package_wrangler.repository_up_assets()
-            return True
-        return this_result
+#    def _handle_repository_menu_result(self, result):
+#        r'''Returns true to exit the repository menu.
+#        '''
+#        this_result = False
+#        if result == 'add':
+#            self.score_package_wrangler.repository_add_assets()
+#        elif result == 'ci':
+#            self.score_package_wrangler.repository_ci_assets()
+#        elif result == 'st':
+#            self.score_package_wrangler.repository_st_assets()
+#        elif result == 'up':
+#            self.score_package_wrangler.repository_up_assets()
+#            return True
+#        return this_result
 
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
@@ -96,7 +96,6 @@ class ScoreManager(ScoreManagerObject):
         section = menu.make_command_section(is_secondary=True)
         section.append(('library - manage materials', 'lmm'))
         section.append(('library - manage stylesheets', 'lmy'))
-        self.session.io_manager._make_repository_menu_section(menu)
         section = menu.make_command_section(is_secondary=True)
         section.append(('scores - show all', 'ssl'))
         section.append(('scores - show active', 'ssv'))
