@@ -71,10 +71,10 @@ class DirectoryManager(Manager):
             menu_entries = sequencetools.zip_sequences(sequences, cyclic=True)
         return menu_entries
 
-    def _make_empty_asset(self, is_interactive=False):
+    def _make_empty_asset(self, prompt=False):
         if not self.exists():
             os.mkdir(self.filesystem_path)
-        self.session.io_manager.proceed(is_interactive=is_interactive)
+        self.session.io_manager.proceed(prompt=prompt)
 
     def _make_main_menu(self):
         main_menu = self.session.io_manager.make_menu(where=self._where)
@@ -161,7 +161,7 @@ class DirectoryManager(Manager):
         if lines:
             self.session.io_manager.display(lines)
         line = 'tests run.'
-        self.session.io_manager.proceed(line, is_interactive=prompt)
+        self.session.io_manager.proceed(line, prompt=prompt)
 
     ### UI MANIFEST ###
 

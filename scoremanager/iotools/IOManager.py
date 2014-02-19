@@ -357,11 +357,11 @@ class IOManager(IOManager):
         Returns none.
         '''
         lines = []
-        is_interactive = True
+        prompt = True
         if statement is None:
             statement = self.handle_user_input('>>', include_newline=False)
         else:
-            is_interactive = False
+            prompt = False
         command = 'from abjad import *'
         exec(command)
         try:
@@ -372,7 +372,7 @@ class IOManager(IOManager):
         except:
             lines.append('expression not executable.')
         lines.append('')
-        if is_interactive:
+        if prompt:
             self.display(lines)
         self.session.hide_next_redraw = True
 
@@ -447,7 +447,7 @@ class IOManager(IOManager):
         self.display(['not yet implemented', ''])
         self.proceed()
 
-    def proceed(self, lines=None, is_interactive=True):
+    def proceed(self, lines=None, prompt=True):
         r'''Prompts user to proceed.
 
         Clears terminal.
@@ -455,7 +455,7 @@ class IOManager(IOManager):
         Returns none.
         '''
         assert isinstance(lines, (tuple, list, str, type(None)))
-        if not is_interactive:
+        if not prompt:
             return
         if isinstance(lines, str):
             lines = [lines]

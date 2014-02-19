@@ -132,7 +132,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 session=self.session,
                 )
             version_number = manager.interactively_save_to_versions_directory(
-                is_interactive=False,
+                prompt=False,
                 )
             if version_number is not None:
                 message = 'segment {} version {} written to disk.'
@@ -362,7 +362,7 @@ class SegmentPackageWrangler(PackageWrangler):
     def make_asset(
         self, 
         package_path, 
-        is_interactive=False, 
+        prompt=False, 
         metadata=None,
         ):
         r'''Makes package.
@@ -383,7 +383,7 @@ class SegmentPackageWrangler(PackageWrangler):
         manager.write_segment_definition_module()
         manager.make_versions_directory()
         line = 'package {!r} created.'.format(package_path)
-        self.session.io_manager.proceed(line, is_interactive=is_interactive)
+        self.session.io_manager.proceed(line, prompt=prompt)
 
     ### UI MANIFEST ###
 

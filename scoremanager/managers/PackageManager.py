@@ -210,18 +210,18 @@ class PackageManager(DirectoryManager):
         line = '{!r}'.format(metadatum)
         self.session.io_manager.proceed(line)
 
-    def interactively_remove_initializer_module(self, is_interactive=True):
+    def interactively_remove_initializer_module(self, prompt=True):
         if os.path.isfile(self.initializer_file_path):
             os.remove(self.initializer_file_path)
             line = 'initializer deleted.'
             self.session.io_manager.proceed(
                 line, 
-                is_interactive=is_interactive,
+                prompt=prompt,
                 )
 
-    def interactively_remove_views_module(self, is_interactive=True):
+    def interactively_remove_views_module(self, prompt=True):
         if os.path.isfile(self.views_module_path):
-            if is_interactive:
+            if prompt:
                 message = 'remove views module?'
                 if not self.session.io_manager.confirm(message):
                     return
@@ -229,12 +229,12 @@ class PackageManager(DirectoryManager):
             line = 'views module removed.'
             self.session.io_manager.proceed(
                 line, 
-                is_interactive=is_interactive,
+                prompt=prompt,
                 )
 
-    def interactively_remove_metadata_module(self, is_interactive=True):
+    def interactively_remove_metadata_module(self, prompt=True):
         if os.path.isfile(self.metadata_module_path):
-            if is_interactive:
+            if prompt:
                 message = 'remove metadata module?'
                 if not self.session.io_manager.confirm(message):
                     return
@@ -242,7 +242,7 @@ class PackageManager(DirectoryManager):
             line = 'metadata module removed.'
             self.session.io_manager.proceed(
                 line, 
-                is_interactive=is_interactive,
+                prompt=prompt,
                 )
 
     def interactively_remove_metadatum(self):
@@ -331,7 +331,7 @@ class PackageManager(DirectoryManager):
     def interactively_rewrite_metadata_module(
         self, 
         metadata=None, 
-        is_interactive=True,
+        prompt=True,
         ):
         if metadata is None:
             metadata = self._get_metadata()

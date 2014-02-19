@@ -93,7 +93,7 @@ class ScorePackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def fix_visible_assets(self, is_interactive=True):
+    def fix_visible_assets(self, prompt=True):
         r'''Fixes visible assets.
 
         Returns result list.
@@ -101,10 +101,10 @@ class ScorePackageWrangler(PackageWrangler):
         results = []
         for asset_manager in self.list_visible_asset_managers():
             result = asset_manager.interactively_fix(
-                is_interactive=False,
+                prompt=False,
                 )
             results.append(result)
-        self.session.io_manager.proceed(is_interactive=is_interactive)
+        self.session.io_manager.proceed(prompt=prompt)
         return results
 
     def interactively_make_asset(
@@ -477,7 +477,7 @@ class ScorePackageWrangler(PackageWrangler):
             result.append(packagesystem_path)
         return result
 
-    def repository_add_assets(self, is_interactive=True):
+    def repository_add_assets(self, prompt=True):
         r'''Adds assets to repository.
 
         Returns none.
@@ -492,10 +492,10 @@ class ScorePackageWrangler(PackageWrangler):
                 in_user_score_packages=True,
                 )
         for manager in managers:
-            manager.repository_add(is_interactive=False)
-        self.session.io_manager.proceed(is_interactive=is_interactive)
+            manager.repository_add(prompt=False)
+        self.session.io_manager.proceed(prompt=prompt)
 
-    def repository_ci_assets(self, is_interactive=True):
+    def repository_ci_assets(self, prompt=True):
         r'''Commits assets to repository.
 
         Returns none.
@@ -521,11 +521,11 @@ class ScorePackageWrangler(PackageWrangler):
         for manager in managers:
             manager.repository_ci(
                 commit_message=commit_message, 
-                is_interactive=False,
+                prompt=False,
                 )
-        self.session.io_manager.proceed(is_interactive=is_interactive)
+        self.session.io_manager.proceed(prompt=prompt)
 
-    def repository_st_assets(self, is_interactive=True):
+    def repository_st_assets(self, prompt=True):
         r'''Check asset status in repository.
 
         Returns none.
@@ -540,10 +540,10 @@ class ScorePackageWrangler(PackageWrangler):
                 in_user_score_packages=True,
                 )
         for manager in managers:
-            manager.repository_st(is_interactive=False)
-        self.session.io_manager.proceed(is_interactive=is_interactive)
+            manager.repository_st(prompt=False)
+        self.session.io_manager.proceed(prompt=prompt)
 
-    def repository_up_assets(self, is_interactive=True):
+    def repository_up_assets(self, prompt=True):
         r'''Updates assets from repository.
 
         Returns none.
@@ -558,5 +558,5 @@ class ScorePackageWrangler(PackageWrangler):
                 in_user_score_packages=True,
                 )
         for manager in managers:
-            manager.repository_up(is_interactive=False)
-        self.session.io_manager.proceed(is_interactive=is_interactive)
+            manager.repository_up(prompt=False)
+        self.session.io_manager.proceed(prompt=prompt)

@@ -418,7 +418,7 @@ class MaterialPackageWrangler(PackageWrangler):
     def make_material_package(
         self, 
         package_path, 
-        is_interactive=False, 
+        prompt=False, 
         metadata=None,
         ):
         r'''Makes material package.
@@ -442,7 +442,7 @@ class MaterialPackageWrangler(PackageWrangler):
         material_package_manager.conditionally_write_stub_material_definition_module()
         material_package_manager.conditionally_write_stub_user_input_module()
         line = 'material package {!r} created.'.format(package_path)
-        self.session.io_manager.proceed(line, is_interactive=is_interactive)
+        self.session.io_manager.proceed(line, prompt=prompt)
 
     ### UI MANIFEST ###
 

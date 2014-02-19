@@ -330,7 +330,7 @@ class PackageWrangler(Wrangler):
             self._current_storehouse_filesystem_path, asset_name)
         os.mkdir(asset_filesystem_path)
         package_manager = self._initialize_asset_manager(asset_name)
-        package_manager.interactively_fix(is_interactive=False)
+        package_manager.interactively_fix(prompt=False)
 
     def make_empty_package(self, package_path):
         r'''Makes empty package.

@@ -287,7 +287,7 @@ class ScoreManager(ScoreManagerObject):
                 capitalize_first_character=False,
                 )
         line = 'doctest complete.'
-        self.session.io_manager.proceed(line, is_interactive=prompt)
+        self.session.io_manager.proceed(line, prompt=prompt)
 
     def interactively_run_pytest_on_all_user_scores(self, prompt=True):
         path = self.configuration.user_score_packages_directory_path
@@ -300,7 +300,7 @@ class ScoreManager(ScoreManagerObject):
                 capitalize_first_character=False,
                 )
         line = 'py.test complete.'
-        self.session.io_manager.proceed(line, is_interactive=prompt)
+        self.session.io_manager.proceed(line, prompt=prompt)
 
     def manage_materials(self):
         self.material_package_wrangler._run(

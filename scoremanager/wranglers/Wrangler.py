@@ -666,7 +666,7 @@ class Wrangler(ScoreManagerObject):
         file_pointer.write(lines)
         file_pointer.close()
         message = 'view written to disk.'
-        self.session.io_manager.proceed(message, is_interactive=prompt)
+        self.session.io_manager.proceed(message, prompt=prompt)
 
     ### UI MANIFEST ###
 

@@ -247,7 +247,7 @@ class SegmentPackageManager(PackageManager):
 
     def interactively_save_to_versions_directory(
         self,
-        is_interactive=True
+        prompt=True
         ):
         r'''Interactively saves asset definition module,
         output PDF and output LilyPond file to versions directory.
@@ -261,7 +261,7 @@ class SegmentPackageManager(PackageManager):
             message = 'can not find asset definition module.'
             self.session.io_manager.proceed(
                 message,
-                is_interactive=is_interactive,
+                prompt=prompt,
                 )
             return
         output_pdf_file_path = self._get_output_pdf_file_path()
@@ -269,7 +269,7 @@ class SegmentPackageManager(PackageManager):
             message = 'can not find output PDF.'
             self.session.io_manager.proceed(
                 message,
-                is_interactive=is_interactive,
+                prompt=prompt,
                 )
             return
         output_lilypond_file_path = self._get_output_lilypond_file_path()
@@ -277,7 +277,7 @@ class SegmentPackageManager(PackageManager):
             message = 'can not find output LilyPond file.'
             self.session.io_manager.proceed(
                 message,
-                is_interactive=is_interactive,
+                prompt=prompt,
                 )
             return
         next_output_file_name = systemtools.IOManager.get_next_output_file_name(
@@ -320,7 +320,7 @@ class SegmentPackageManager(PackageManager):
         message = message.format(version_number)
         self.session.io_manager.proceed(
             message,
-            is_interactive=is_interactive,
+            prompt=prompt,
             )
         return version_number
 

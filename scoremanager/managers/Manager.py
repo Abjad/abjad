@@ -348,7 +348,7 @@ class Manager(ScoreManagerObject):
             message = message.format(boilerplate_file_built_in_asset_name)
             self.session.io_manager.proceed(message)
 
-    def repository_add(self, is_interactive=False):
+    def repository_add(self, prompt=False):
         r'''Interactively adds unversioned filesystem assets to repository.
 
         Returns none.
@@ -364,9 +364,9 @@ class Manager(ScoreManagerObject):
         lines = [line.strip() for line in process.stdout.readlines()]
         lines.append('')
         self.session.io_manager.display(lines)
-        self.session.io_manager.proceed(is_interactive=is_interactive)
+        self.session.io_manager.proceed(prompt=prompt)
 
-    def repository_ci(self, commit_message=None, is_interactive=True):
+    def repository_ci(self, commit_message=None, prompt=True):
         r'''Interactively commits unversioned filesystem assets to repository.
 
         Returns none.
@@ -398,9 +398,9 @@ class Manager(ScoreManagerObject):
             lines, 
             capitalize_first_character=False,
             )
-        self.session.io_manager.proceed(is_interactive=is_interactive)
+        self.session.io_manager.proceed(prompt=prompt)
 
-    def repository_st(self, is_interactive=True):
+    def repository_st(self, prompt=True):
         r'''Intearctively displays repository status of filesystem assets.
     
         Returns none.
@@ -423,9 +423,9 @@ class Manager(ScoreManagerObject):
             clean_lines.append(clean_line)
         clean_lines.append('')
         self.session.io_manager.display(clean_lines)
-        self.session.io_manager.proceed(is_interactive=is_interactive)
+        self.session.io_manager.proceed(prompt=prompt)
 
-    def repository_up(self, is_interactive=True):
+    def repository_up(self, prompt=True):
         r'''Interactively updates versioned filesystem assets.
 
         Returns none.
@@ -442,7 +442,7 @@ class Manager(ScoreManagerObject):
         lines = [line.strip() for line in process.stdout.readlines()]
         lines.append('')
         self.session.io_manager.display(lines)
-        self.session.io_manager.proceed(is_interactive=is_interactive)
+        self.session.io_manager.proceed(prompt=prompt)
 
     ### UI MANIFEST ###
 

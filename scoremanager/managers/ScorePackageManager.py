@@ -166,14 +166,14 @@ class ScorePackageManager(PackageManager):
 
 #    def _handle_repository_menu_result(self, result):
 #        if result == 'add':
-#            self.repository_add(is_interactive=True)
+#            self.repository_add(prompt=True)
 #        elif result == 'ci':
-#            self.repository_ci(is_interactive=True)
+#            self.repository_ci(prompt=True)
 #            return True
 #        elif result == 'st':
-#            self.repository_st(is_interactive=True)
+#            self.repository_st(prompt=True)
 #        elif result == 'up':
-#            self.repository_up(is_interactive=True)
+#            self.repository_up(prompt=True)
 #        else:
 #            raise ValueError(result)
 
@@ -366,19 +366,19 @@ class ScorePackageManager(PackageManager):
             return
         self._add_metadatum('year_of_completion', result)
 
-    def interactively_fix(self, is_interactive=True):
+    def interactively_fix(self, prompt=True):
         result = True
         for path in self._get_top_level_directory_paths():
             if not os.path.exists(path):
                 result = False
                 prompt = 'create {!r}? '.format(path)
-                if not is_interactive or \
+                if not prompt or \
                     self.session.io_manager.confirm(prompt):
                     os.mkdir(path)
         if not os.path.exists(self.initializer_file_path):
             result = False
             prompt = 'create {}? '.format(self.initializer_file_path)
-            if not is_interactive or self.session.io_manager.confirm(prompt):
+            if not prompt or self.session.io_manager.confirm(prompt):
                 initializer = file(self.initializer_file_path, 'w')
                 initializer.write('')
                 initializer.close()
@@ -386,7 +386,7 @@ class ScorePackageManager(PackageManager):
         if not os.path.exists(self.metadata_module_path):
             result = False
             prompt = 'create {}? '.format(self.metadata_module_path)
-            if not is_interactive or self.session.io_manager.confirm(prompt):
+            if not prompt or self.session.io_manager.confirm(prompt):
                 metadata_module = file(self.metadata_module_path, 'w')
                 metadata_module.write('# -*- encoding: utf-8 -*-\n')
                 metadata_module.write('from abjad import *\n')
@@ -398,20 +398,20 @@ class ScorePackageManager(PackageManager):
         if not os.path.exists(self._get_materials_directory_path()):
             result = False
             prompt = 'create {}'.format(self._get_materials_directory_path())
-            if not is_interactive or self.session.io_manager.confirm(prompt):
+            if not prompt or self.session.io_manager.confirm(prompt):
                 os.mkdir(self._get_materials_directory_path())
         if not os.path.exists(self._get_segments_directory_path()):
             result = False
             prompt = 'create {}'.format(self._get_segments_directory_path())
-            if not is_interactive or self.session.io_manager.confirm(prompt):
+            if not prompt or self.session.io_manager.confirm(prompt):
                 os.mkdir(self._get_segments_directory_path())
         if not os.path.exists(self._get_stylesheets_directory_path()):
             result = False
             prompt = 'create {}'.format(self._get_stylesheets_directory_path())
-            if not is_interactive or self.session.io_manager.confirm(prompt):
+            if not prompt or self.session.io_manager.confirm(prompt):
                 os.mkdir(self._get_stylesheets_directory_path())
         message = 'packaged structure fixed.'
-        self.session.io_manager.proceed(message, is_interactive=is_interactive)
+        self.session.io_manager.proceed(message, prompt=prompt)
         return result
 
     def interactively_remove(self):

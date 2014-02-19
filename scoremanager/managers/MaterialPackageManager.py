@@ -600,20 +600,20 @@ class MaterialPackageManager(PackageManager):
 
     def conditionally_write_stub_material_definition_module(
         self,
-        is_interactive=False,
+        prompt=False,
         ):
         if not self._get_metadatum('material_package_manager_class_name'):
             self._write_stub_material_definition_module(
-                is_interactive=is_interactive,
+                prompt=prompt,
                 )
 
     def conditionally_write_stub_user_input_module(
         self,
-        is_interactive=False,
+        prompt=False,
         ):
         if self.should_have_user_input_module:
             self.write_stub_user_input_module(
-                is_interactive=is_interactive)
+                prompt=prompt)
 
     def get_tools_package_qualified_repr(self, expr):
         if hasattr(expr, '_make_storage_format_with_overrides'):
@@ -759,7 +759,7 @@ class MaterialPackageManager(PackageManager):
             material_package_manager.class_name,
             )
         line = 'user input handler selected.'
-        self.session.io_manager.proceed(line, is_interactive=prompt)
+        self.session.io_manager.proceed(line, prompt=prompt)
 
     def interactively_select_stylesheet(self, prompt=True):
         from scoremanager import wranglers
@@ -773,7 +773,7 @@ class MaterialPackageManager(PackageManager):
         self.stylesheet_file_path_in_memory = stylesheet_file_path
         self.session.io_manager.proceed(
             'stylesheet selected.', 
-            is_interactive=prompt,
+            prompt=prompt,
             )
 
     def interactively_view_illustration_ly(self):
@@ -891,7 +891,7 @@ class MaterialPackageManager(PackageManager):
             )
         self.session.io_manager.proceed(
             'PDF and LilyPond file written to disk.',
-            is_interactive=prompt,
+            prompt=prompt,
             )
 
     def write_illustration_ly(self, prompt=True):
@@ -901,7 +901,7 @@ class MaterialPackageManager(PackageManager):
             )
         self.session.io_manager.proceed(
             'LilyPond file written to disk.',
-            is_interactive=prompt,
+            prompt=prompt,
             )
 
     def write_illustration_pdf(self, prompt=True):
@@ -911,7 +911,7 @@ class MaterialPackageManager(PackageManager):
             )
         self.session.io_manager.proceed(
             'PDF written to disk.',
-            is_interactive=prompt)
+            prompt=prompt)
 
     def write_output_material(
         self,
@@ -948,12 +948,12 @@ class MaterialPackageManager(PackageManager):
         if hasattr(self, 'generic_output_name'):
             self._add_metadatum('generic_output_name', self.generic_output_name)
         message = 'output material written to disk.'
-        self.session.io_manager.proceed(message, is_interactive=prompt)
+        self.session.io_manager.proceed(message, prompt=prompt)
 
-    def _write_stub_material_definition_module(self, is_interactive=True):
+    def _write_stub_material_definition_module(self, prompt=True):
         self.write_stub_music_material_definition()
         message = 'stub material definition written to disk.'
-        self.session.io_manager.proceed(message, is_interactive=is_interactive)
+        self.session.io_manager.proceed(message, prompt=prompt)
 
     def write_stub_music_material_definition(self):
         lines = []
@@ -994,7 +994,7 @@ class MaterialPackageManager(PackageManager):
         with file(file_path, 'w') as file_pointer:
             file_pointer.write(''.join(lines))
         message = 'stub illustration builder written to disk.'
-        self.session.io_manager.proceed(message, is_interactive=prompt)
+        self.session.io_manager.proceed(message, prompt=prompt)
 
     def write_stub_material_definition_module(self):
         if self.should_have_material_definition_module:
@@ -1003,7 +1003,7 @@ class MaterialPackageManager(PackageManager):
                 'w',
                 ) as file_pointer:
                 file_pointer.write('')
-            self._write_stub_material_definition_module(is_interactive=True)
+            self._write_stub_material_definition_module(prompt=True)
 
     ### USER INPUT WRAPPER METHODS ###
 
@@ -1128,14 +1128,14 @@ class MaterialPackageManager(PackageManager):
     def clear_user_input_wrapper(self, prompt=False):
         if self.user_input_wrapper_in_memory.is_empty:
             self.session.io_manager.proceed(
-                'user input already empty.', is_interactive=prompt)
+                'user input already empty.', prompt=prompt)
         else:
             self.user_input_wrapper_in_memory.clear()
             wrapper = self.user_input_wrapper_in_memory
             self.write_user_input_wrapper(wrapper)
             self.session.io_manager.proceed(
                 'user input wrapper cleared and written to disk.',
-                is_interactive=prompt)
+                prompt=prompt)
 
     def display_user_input_demo_values(self, prompt=True):
         lines = []
@@ -1144,7 +1144,7 @@ class MaterialPackageManager(PackageManager):
             lines.append(line)
         lines.append('')
         self.session.io_manager.display(lines)
-        self.session.io_manager.proceed(is_interactive=prompt)
+        self.session.io_manager.proceed(prompt=prompt)
 
     def initialize_empty_user_input_wrapper(self):
         from scoremanager import editors
@@ -1217,7 +1217,7 @@ class MaterialPackageManager(PackageManager):
         self.write_user_input_wrapper(wrapper)
         self.session.io_manager.proceed(
             'demo values loaded and written to disk.',
-            is_interactive=prompt,
+            prompt=prompt,
             )
 
     def make_output_material_from_user_input_wrapper_in_memory(self):
@@ -1263,12 +1263,12 @@ class MaterialPackageManager(PackageManager):
     def swap_user_input_values_default_status(self):
         self.session.swap_user_input_values_default_status()
 
-    def write_stub_user_input_module(self, is_interactive=False):
+    def write_stub_user_input_module(self, prompt=False):
         wrapper = self.initialize_empty_user_input_wrapper()
         self.write_user_input_wrapper(wrapper)
         self.session.io_manager.proceed(
             'stub user input module written to disk.',
-            is_interactive=is_interactive,
+            prompt=prompt,
             )
 
     ### UI MANIFEST ###

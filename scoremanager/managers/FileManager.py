@@ -67,12 +67,12 @@ class FileManager(Manager):
             return True
         return False
 
-    def _make_empty_asset(self, is_interactive=False):
+    def _make_empty_asset(self, prompt=False):
         if not os.path.exists(self.filesystem_path):
             file_reference = file(self.filesystem_path, 'w')
             file_reference.write('')
             file_reference.close()
-        self.session.io_manager.proceed(is_interactive=is_interactive)
+        self.session.io_manager.proceed(prompt=prompt)
 
     def _make_main_menu(self):
         main_menu = self.session.io_manager.make_menu(where=self._where)
@@ -104,13 +104,13 @@ class FileManager(Manager):
         command = 'abjad {}'.format(self.filesystem_path)
         self.session.io_manager.spawn_subprocess(command)
         message = 'file executed.'
-        self.session.io_manager.proceed(message, is_interactive=prompt)
+        self.session.io_manager.proceed(message, prompt=prompt)
 
     def _run_python(self, prompt=True):
         command = 'python {}'.format(self.filesystem_path)
         self.session.io_manager.spawn_subprocess(command)
         message = 'file executed.'
-        self.session.io_manager.proceed(message, is_interactive=prompt)
+        self.session.io_manager.proceed(message, prompt=prompt)
 
     def _write_stub(self):
         file_pointer = open(self.filesystem_path, 'w')
@@ -138,7 +138,7 @@ class FileManager(Manager):
         input_directory = os.path.dirname(self.filesystem_path)
         with systemtools.TemporaryDirectoryChange(input_directory):
             self.session.io_manager.spawn_subprocess(command)
-        self.session.io_manager.proceed('', is_interactive=prompt)
+        self.session.io_manager.proceed('', prompt=prompt)
 
     def interactively_edit(self, line_number=None):
         r'''Interactively edits file.
@@ -179,7 +179,7 @@ class FileManager(Manager):
             self.session.io_manager.spawn_subprocess(command)
             command = 'rm {}/*.log'.format(output_directory)
             self.session.io_manager.spawn_subprocess(command)
-        self.session.io_manager.proceed('', is_interactive=prompt)
+        self.session.io_manager.proceed('', prompt=prompt)
 
     def interactively_view(self):
         r'''Interactively views file.
