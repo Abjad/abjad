@@ -14,12 +14,12 @@ def test_ScorePackageManager_01():
     assert red_example_score.session.io_transcript[-2][1] == \
     ['Red Example Score (2013)',
       '',
-      '     build directory (u)',
+      '     build (u)',
       '     makers (k)',
       '     materials (m)',
-      '     score segments (g)',
-      '     score setup (p)',
-      '     score templates (t)',
+      '     segments (g)',
+      '     setup (p)',
+      '     templates (t)',
       '     stylesheets (y)',
       '']
 

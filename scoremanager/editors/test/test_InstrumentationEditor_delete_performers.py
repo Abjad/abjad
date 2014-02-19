@@ -8,23 +8,23 @@ def test_InstrumentationEditor_delete_performers_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score score~setup instrumentation rm q'
+    string = 'red~example~score setup instrumentation rm q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (9,)
 
-    string = 'red~example~score score~setup instrumentation rm b q'
+    string = 'red~example~score setup instrumentation rm b q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (11, (6, 9))
 
-    string = 'red~example~score score~setup instrumentation rm h q'
+    string = 'red~example~score setup instrumentation rm h q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (11, (0, 9))
 
-    string = 'red~example~score score~setup instrumentation rm s q'
+    string = 'red~example~score setup instrumentation rm s q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (11, (2, 9))
 
-    string = 'red~example~score score~setup instrumentation rm foo q'
+    string = 'red~example~score setup instrumentation rm foo q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (11, (6, 9))
 

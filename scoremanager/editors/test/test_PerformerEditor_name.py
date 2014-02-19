@@ -8,15 +8,15 @@ def test_PerformerEditor_name_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score score~setup instrumentation hornist name q'
+    string = 'red~example~score setup instrumentation hornist name q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (11,)
 
-    string = 'red~example~score score~setup instrumentation hornist name b q'
+    string = 'red~example~score setup instrumentation hornist name b q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (13, (8, 11))
 
-    string = 'red~example~score score~setup instrumentation'
+    string = 'red~example~score setup instrumentation'
     string += ' hornist name h q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (13, (0, 11))
@@ -27,7 +27,7 @@ def test_PerformerEditor_name_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score score~setup instrumentation hornist name -99 q'
+    string = 'red~example~score setup instrumentation hornist name -99 q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (13,)
 

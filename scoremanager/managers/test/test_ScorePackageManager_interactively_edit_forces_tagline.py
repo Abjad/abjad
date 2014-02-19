@@ -8,19 +8,19 @@ def test_ScorePackageManager_interactively_edit_forces_tagline_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score score~setup tagline q'
+    string = 'red~example~score setup tagline q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (7,)
 
-    string = 'red~example~score score~setup tagline b q'
+    string = 'red~example~score setup tagline b q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (9, (4, 7))
 
-    string = 'red~example~score score~setup tagline s q'
+    string = 'red~example~score setup tagline s q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (9, (2, 7))
 
-    string = 'red~example~score score~setup tagline h q'
+    string = 'red~example~score setup tagline h q'
     score_manager._run(pending_user_input=string)
     assert score_manager.session.io_transcript.signature == (9, (0, 7))
 
@@ -29,13 +29,13 @@ def test_ScorePackageManager_interactively_edit_forces_tagline_02():
 
     try:
         score_manager = scoremanager.core.ScoreManager()
-        string = 'red~example~score score~setup tagline for~foo~bar q'
+        string = 'red~example~score setup tagline for~foo~bar q'
         score_manager._run(pending_user_input=string)
         path = 'scoremanager.scorepackages.red_example_score'
         manager = scoremanager.managers.ScorePackageManager(path)
         assert manager._get_metadatum('forces_tagline') == 'for foo bar'
     finally:
-        string = 'red~example~score score~setup tagline for~six~players q'
+        string = 'red~example~score setup tagline for~six~players q'
         score_manager._run(pending_user_input=string)
         path = 'scoremanager.scorepackages.red_example_score'
         manager = scoremanager.managers.ScorePackageManager(path)

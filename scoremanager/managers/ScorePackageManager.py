@@ -212,12 +212,12 @@ class ScorePackageManager(PackageManager):
     def _make_main_menu(self):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
-        command_section.append(('build directory', 'u'))
+        command_section.append(('build', 'u'))
         command_section.append(('makers', 'k'))
         command_section.append(('materials', 'm'))
-        command_section.append(('score segments', 'g'))
-        command_section.append(('score setup', 'p'))
-        command_section.append(('score templates', 't'))
+        command_section.append(('segments', 'g'))
+        command_section.append(('setup', 'p'))
+        command_section.append(('templates', 't'))
         command_section.append(('stylesheets', 'y'))
         manager = self.build_directory_manager
         if manager._get_file_path_ending_with('score.pdf'):
