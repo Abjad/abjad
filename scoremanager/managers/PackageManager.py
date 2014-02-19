@@ -65,7 +65,7 @@ class PackageManager(DirectoryManager):
     def _make_main_menu(self, where=None):
         where = where or self._where
         main_menu = self.session.io_manager.make_menu(where=where)
-        hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section = main_menu.make_command_section(is_secondary=True)
         return main_menu, hidden_section
 
     @staticmethod

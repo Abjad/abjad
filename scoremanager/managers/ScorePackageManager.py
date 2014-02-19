@@ -224,7 +224,7 @@ class ScorePackageManager(PackageManager):
             command_section = main_menu.make_command_section()
             command_section.append(('score pdf - view', 'pdfv'))
             command_section.default_index = len(command_section) - 1
-        hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section = main_menu.make_command_section(is_secondary=True)
         hidden_section.append(('fix package structure', 'fix'))
         hidden_section.append(('list directory contents', 'ls'))
         hidden_section.append(('run pytest', 'pytest'))

@@ -66,7 +66,7 @@ class ListEditor(Editor):
             command_section.append(('move elements', 'mv'))
         if 0 < len(self.items):
             command_section.append(('remove elements', 'rm'))
-        hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section = main_menu.make_command_section(is_secondary=True)
         hidden_section.append(('done', 'done'))
         return main_menu
 

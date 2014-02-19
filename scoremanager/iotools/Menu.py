@@ -134,7 +134,7 @@ class Menu(ScoreManagerObject):
 
     def _get_first_nonhidden_return_value_in_menu(self):
         for menu_section in self.menu_sections:
-            if menu_section.is_hidden:
+            if menu_section.is_secondary:
                 continue
             if menu_section.is_navigation:
                 continue
@@ -169,8 +169,8 @@ class Menu(ScoreManagerObject):
             is_navigation=True,
             return_value_attribute='key',
             )
-        section.append(('commands - more', 'o'))
         section.append(('commands - navigation', 'n'))
+        section.append(('commands - secondary', 'o'))
         return section
 
     def _make_default_hidden_sections(self):
@@ -241,7 +241,7 @@ class Menu(ScoreManagerObject):
     def _make_section(
         self, 
         is_developer=False,
-        is_hidden=False, 
+        is_secondary=False, 
         is_navigation=False,
         is_numbered=False, 
         is_ranged=False, 
@@ -255,7 +255,7 @@ class Menu(ScoreManagerObject):
         assert not (is_ranged and self._has_ranged_section())
         menu_section = iotools.MenuSection(
             is_developer=is_developer,
-            is_hidden=is_hidden,
+            is_secondary=is_secondary,
             is_navigation=is_navigation,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
@@ -271,7 +271,7 @@ class Menu(ScoreManagerObject):
         menu_lines = []
         for menu_section in self.menu_sections:
             hide = self.session.hidden_menu_sections_are_hidden
-            if hide and menu_section.is_hidden:
+            if hide and menu_section.is_secondary:
                 continue
             if menu_section.is_navigation:
                 continue
@@ -396,7 +396,6 @@ class Menu(ScoreManagerObject):
         Returns menu section or none.
         '''
         for menu_section in self.menu_sections:
-            #if menu_section.is_hidden:
             if menu_section.is_navigation:
                 return menu_section
 
@@ -478,7 +477,7 @@ class Menu(ScoreManagerObject):
         menu_lines.append(title)
         menu_lines.append('')
         for menu_section in self.menu_sections:
-            if not menu_section.is_hidden:
+            if not menu_section.is_secondary:
                 continue
             if menu_section.is_developer and \
                 self.session.developer_menu_sections_are_hidden:
@@ -555,12 +554,12 @@ class Menu(ScoreManagerObject):
 
     def make_command_section(
         self,
-        is_hidden=False,
+        is_secondary=False,
         match_on_display_string=True,
         menu_entries=None,
         ):
         command_section = self._make_section(
-            is_hidden=is_hidden,
+            is_secondary=is_secondary,
             match_on_display_string=match_on_display_string,
             return_value_attribute='key',
             )

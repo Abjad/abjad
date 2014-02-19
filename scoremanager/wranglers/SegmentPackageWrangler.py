@@ -71,7 +71,7 @@ class SegmentPackageWrangler(PackageWrangler):
         command_section.append((string, 'pdfv'))
         command_section = main_menu.make_command_section()
         command_section.append(('new segment', 'new'))
-        hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section = main_menu.make_command_section(is_secondary=True)
         hidden_section.append(('list', 'ls'))
         self.session.io_manager._make_initializer_menu_section(
             main_menu,

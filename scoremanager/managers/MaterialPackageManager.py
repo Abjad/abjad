@@ -98,7 +98,7 @@ class MaterialPackageManager(PackageManager):
         return main_menu
 
     def _make_hidden_entries_menu_section(self, main_menu):
-        hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section = main_menu.make_command_section(is_secondary=True)
         hidden_section.append(('remove package', 'rm'))
         hidden_section.append(('list package', 'ls'))
         hidden_section.append(('rename package', 'ren'))

@@ -117,15 +117,15 @@ class SegmentPackageManager(PackageManager):
         versions_directory_path = self._get_versions_directory_path()
         if self._is_populated_directory(versions_directory_path):
             command_section.append(('versioned pdfs - view', 'vv'))
-        hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section = main_menu.make_command_section(is_secondary=True)
         hidden_section.append(('segment definition module - edit at top', 'E'))
         if os.path.isfile(self._get_output_lilypond_file_path()):
-            hidden_section = main_menu.make_command_section(is_hidden=True)
+            hidden_section = main_menu.make_command_section(is_secondary=True)
             string = 'current lilypond file - reinterpret'
             hidden_section.append((string, 'lyri'))
             string = 'current lilypond file - view'
             hidden_section.append((string, 'lyv'))
-        hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section = main_menu.make_command_section(is_secondary=True)
         hidden_section.append(('versioned output ly - view', 'lyver'))
         hidden_section.append(('versioned output pdf - view', 'pdfv'))
         display_string = 'versioned segment definition module - view'

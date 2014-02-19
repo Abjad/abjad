@@ -156,7 +156,7 @@ class BuildDirectoryManager(DirectoryManager):
         command_section.append(('front cover - manage', 'fc'))
         command_section.append(('preface - manage', 'pf'))
         command_section.append(('score - manage', 'sc'))
-        hidden_section = menu.make_command_section(is_hidden=True)
+        hidden_section = menu.make_command_section(is_secondary=True)
         hidden_section.append(('list directory', 'ls'))
         return menu
 

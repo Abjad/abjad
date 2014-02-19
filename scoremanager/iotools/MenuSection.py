@@ -43,7 +43,7 @@ class MenuSection(AbjadObject):
         default_index=None,
         indent_level=1,
         is_developer=False,
-        is_hidden=False,
+        is_secondary=False,
         is_navigation=False,
         is_numbered=False,
         is_ranged=False,
@@ -58,7 +58,7 @@ class MenuSection(AbjadObject):
         self.default_index = default_index
         self.indent_level = indent_level
         self.is_developer = is_developer
-        self.is_hidden = is_hidden
+        self.is_secondary = is_secondary
         self.is_navigation = is_navigation
         self.is_numbered = is_numbered
         self.is_ranged = is_ranged
@@ -255,22 +255,22 @@ class MenuSection(AbjadObject):
         return property(**locals())
 
     @apply
-    def is_hidden():
+    def is_secondary():
         def fget(self):
             r'''Is true when menu section is hidden. 
             Otherwise false:
 
             ::
 
-                >>> menu_section.is_hidden
+                >>> menu_section.is_secondary
                 False
 
             Returns boolean.
             '''
-            return self._is_hidden
+            return self._is_secondary
         def fset(self, expr):
             if not self.menu_entries:
-                self._is_hidden = expr
+                self._is_secondary = expr
         return property(**locals())
 
     @apply
