@@ -44,6 +44,7 @@ class MenuSection(AbjadObject):
         indent_level=1,
         is_developer=False,
         is_hidden=False,
+        is_navigation=False,
         is_numbered=False,
         is_ranged=False,
         display_prepopulated_values=False,
@@ -58,6 +59,7 @@ class MenuSection(AbjadObject):
         self.indent_level = indent_level
         self.is_developer = is_developer
         self.is_hidden = is_hidden
+        self.is_navigation = is_navigation
         self.is_numbered = is_numbered
         self.is_ranged = is_ranged
         self.display_prepopulated_values = display_prepopulated_values
