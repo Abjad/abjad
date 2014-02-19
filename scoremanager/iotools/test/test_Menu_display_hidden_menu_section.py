@@ -35,8 +35,8 @@ def test_Menu_display_hidden_menu_section_01():
         '     metadata - add (mda)',
         '     metadata - get (mdg)',
         '     metadata - remove (mdrm)',
-        '     metadata module - remove (MDrm)',
-        '     metadata module - rewrite (MDrw)',
-        '     metadata module - view (MDv)',
+        '     metadata module - remove (mdmrm)',
+        '     metadata module - rewrite (mdmrw)',
+        '     metadata module - view (mdmv)',
         '',
         ]

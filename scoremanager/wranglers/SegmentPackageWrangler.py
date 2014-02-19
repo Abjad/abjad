@@ -68,7 +68,9 @@ class SegmentPackageWrangler(PackageWrangler):
             has_initializer=True,
             )
         self.session.io_manager._make_metadata_menu_section(main_menu)
+        self.session.io_manager._make_metadata_module_menu_section(main_menu)
         self.session.io_manager._make_views_menu_section(main_menu)
+        self.session.io_manager._make_views_module_menu_section(main_menu)
         return main_menu
 
     ### PUBLIC METHODS ###

@@ -358,16 +358,16 @@ class PackageManager(DirectoryManager):
 
     user_input_to_action = DirectoryManager.user_input_to_action.copy()
     user_input_to_action.update({
-        'INbp': interactively_write_boilerplate_initializer_module,
-        'INrm': interactively_remove_initializer_module,
-        'INs': interactively_write_stub_initializer_module,
-        'INv': interactively_view_initializer_module,
+        'inbp': interactively_write_boilerplate_initializer_module,
+        'inrm': interactively_remove_initializer_module,
+        'ins': interactively_write_stub_initializer_module,
+        'inv': interactively_view_initializer_module,
         'mda': interactively_add_metadatum,
         'mdg': interactively_get_metadatum,
         'mdrm': interactively_remove_metadatum,
-        'MDv': interactively_view_metadata_module,
-        'MDrm': interactively_remove_metadata_module,
-        'MDrw': interactively_rewrite_metadata_module,
+        'mdmv': interactively_view_metadata_module,
+        'mdmrm': interactively_remove_metadata_module,
+        'mdmrw': interactively_rewrite_metadata_module,
         'ren': interactively_rename_package,
         'rm': remove_package,
         })

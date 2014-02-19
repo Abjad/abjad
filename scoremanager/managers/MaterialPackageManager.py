@@ -85,6 +85,7 @@ class MaterialPackageManager(PackageManager):
             has_initializer=has_initializer,
             )
         self.session.io_manager._make_metadata_menu_section(main_menu)
+        self.session.io_manager._make_metadata_module_menu_section(main_menu)
         if self.should_have_user_input_module:
             self._make_main_menu_sections_with_user_input_wrapper(
                 main_menu, hidden_section)

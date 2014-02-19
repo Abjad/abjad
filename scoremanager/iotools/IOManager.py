@@ -139,24 +139,40 @@ class IOManager(IOManager):
         if not has_initializer:
             command_section = menu.make_command_section()
             command_section.title = "package has no initializer: use 'ins'."
-        section = menu.make_command_section(is_hidden=True)
-        section.append(('initializer module - boilerplate', 'INbp'))
-        section.append(('initializer module - remove', 'INrm'))
-        section.append(('initializer module - stub', 'INs'))
-        section.append(('initializer module - view', 'INv'))
+        section = menu.make_command_section(
+            is_hidden=True,
+            match_on_display_string=False,
+            )
+        section.append(('initializer module - boilerplate', 'inbp'))
+        section.append(('initializer module - remove', 'inrm'))
+        section.append(('initializer module - stub', 'ins'))
+        section.append(('initializer module - view', 'inv'))
 
     def _make_metadata_menu_section(self, menu):
-        section = menu.make_command_section(is_hidden=True)
+        section = menu.make_command_section(
+            is_hidden=True,
+            match_on_display_string=False,
+            )
         section.append(('metadata - add', 'mda'))
         section.append(('metadata - get', 'mdg'))
         section.append(('metadata - remove', 'mdrm'))
-        section.append(('metadata module - remove', 'MDrm'))
-        section.append(('metadata module - rewrite', 'MDrw'))
-        section.append(('metadata module - view', 'MDv'))
+        return section
+
+    def _make_metadata_module_menu_section(self, menu):
+        section = menu.make_command_section(
+            is_hidden=True,
+            match_on_display_string=False,
+            )
+        section.append(('metadata module - remove', 'mdmrm'))
+        section.append(('metadata module - rewrite', 'mdmrw'))
+        section.append(('metadata module - view', 'mdmv'))
         return section
 
     def _make_repository_menu_section(self, menu):
-        section = menu.make_command_section(is_hidden=True)
+        section = menu.make_command_section(
+            is_hidden=True,
+            match_on_display_string=False,
+            )
         section.append(('repository - add', 'radd'))
         section.append(('repository - commit', 'rci'))
         section.append(('repository - status', 'rst'))
@@ -164,18 +180,31 @@ class IOManager(IOManager):
         return section
 
     def _make_tests_menu_section(self, menu):
-        section = menu.make_command_section(is_hidden=True)
+        section = menu.make_command_section(
+            is_hidden=True,
+            match_on_display_string=False,
+            )
         section.append(('tests - doctest', 'tdoc'))
         section.append(('tests - py.test', 'tpy'))
         return section
 
     def _make_views_menu_section(self, menu):
-        section = menu.make_command_section(is_hidden=True)
+        section = menu.make_command_section(
+            is_hidden=True,
+            match_on_display_string=False,
+            )
         section.append(('views - list', 'vwl'))
         section.append(('views - new', 'vwn'))
         section.append(('views - select', 'vws'))
-        section.append(('views module - remove', 'VWrm'))
-        section.append(('views module - view', 'VWv'))
+        return section
+
+    def _make_views_module_menu_section(self, menu):
+        section = menu.make_command_section(
+            is_hidden=True,
+            match_on_display_string=False,
+            )
+        section.append(('views module - remove', 'vwmrm'))
+        section.append(('views module - view', 'vwmv'))
         return section
 
     def _pop_from_pending_user_input(self):

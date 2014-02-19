@@ -232,6 +232,7 @@ class ScorePackageManager(PackageManager):
         hidden_section.append(('view initializer', 'inv'))
         hidden_section.append(('view instrumentation', 'instrumentation'))
         self.session.io_manager._make_metadata_menu_section(main_menu)
+        self.session.io_manager._make_metadata_module_menu_section(main_menu)
         return main_menu
 
     def _make_setup_menu(self):

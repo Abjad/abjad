@@ -556,10 +556,12 @@ class Menu(ScoreManagerObject):
     def make_command_section(
         self,
         is_hidden=False,
+        match_on_display_string=True,
         menu_entries=None,
         ):
         command_section = self._make_section(
             is_hidden=is_hidden,
+            match_on_display_string=match_on_display_string,
             return_value_attribute='key',
             )
         return command_section
