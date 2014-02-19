@@ -196,6 +196,7 @@ class Manager(ScoreManagerObject):
             self._filesystem_path = new_path
 
     def _run(self, cache=False, clear=True, pending_user_input=None):
+        self.session._current_wrangler_or_manager = self
         self.session.io_manager._assign_user_input(pending_user_input)
         self.session._cache_breadcrumbs(cache=cache)
         while True:

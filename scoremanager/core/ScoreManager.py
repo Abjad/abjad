@@ -144,8 +144,10 @@ class ScoreManager(ScoreManagerObject):
         show_example_scores=True,
         ):
         type(self).__init__(self)
+        self.session._current_wrangler_or_manager = self
         self.session.io_manager._assign_user_input(
-            pending_user_input=pending_user_input)
+            pending_user_input=pending_user_input,
+            )
         self.session._cache_breadcrumbs(cache=cache)
         self.session._push_breadcrumb(self._breadcrumb)
         if is_test:

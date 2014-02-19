@@ -73,6 +73,7 @@ class Session(abctools.AbjadObject):
         self._breadcrumb_cache_stack = []
         self._breadcrumb_stack = []
         self._command_history = []
+        self._current_wrangler_or_manager = None
         self._io_manager = iotools.IOManager(self)
         self._score_manager = None
         self._session_once_had_user_input = False
@@ -386,21 +387,12 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.current_wrangler_or_manager
-
-
-        ..  container:: example
-
-            ::
-
-                >>> session.current_wrangler_or_manager
+                >>> session.current_wrangler_or_manager is None
+                True
 
         Returns wrangler or manager.
         '''
-        if not self.is_in_score:
-            return self.score_manager
-        else:
-            return 'IMPLEMENT ME'
+        return self._current_wrangler_or_manager
 
     @apply
     def dump_transcript():
