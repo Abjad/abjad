@@ -144,7 +144,7 @@ class ScoreManager(ScoreManagerObject):
         show_example_scores=True,
         ):
         type(self).__init__(self)
-        self.session._current_wrangler_or_manager = self
+        self.session._push_controller(self)
         self.session.io_manager._assign_user_input(
             pending_user_input=pending_user_input,
             )
@@ -185,6 +185,7 @@ class ScoreManager(ScoreManagerObject):
             elif self.session.is_navigating_to_sibling_score:
                 run_main_menu = False
             self.session._pop_breadcrumb()
+        self.session._pop_controller()
         self.session._pop_breadcrumb()
         self.session._restore_breadcrumbs(cache=cache)
 

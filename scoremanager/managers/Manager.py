@@ -196,7 +196,7 @@ class Manager(ScoreManagerObject):
             self._filesystem_path = new_path
 
     def _run(self, cache=False, clear=True, pending_user_input=None):
-        self.session._current_wrangler_or_manager = self
+        self.session._push_controller(self)
         self.session.io_manager._assign_user_input(pending_user_input)
         self.session._cache_breadcrumbs(cache=cache)
         while True:
@@ -212,6 +212,7 @@ class Manager(ScoreManagerObject):
             if self.session._backtrack(source=self._backtracking_source):
                 break
             self.session._pop_breadcrumb()
+        self.session._pop_controller()
         self.session._pop_breadcrumb()
         self.session._restore_breadcrumbs(cache=cache)
 

@@ -38,11 +38,12 @@ class Session(abctools.AbjadObject):
 
     _variables_to_display = (
         'breadcrumb_stack',
+        'controller_stack',
+        'current_controller',
         'current_materials_directory_path',
         'current_score_directory_path',
         'current_score_package_manager',
         'current_segments_directory_path',
-        'current_wrangler_or_manager',
         'dump_transcript',
         'hidden_menu_sections_are_hidden',
         'hide_next_redraw',
@@ -54,6 +55,7 @@ class Session(abctools.AbjadObject):
         'is_in_score',
         'is_navigating_to_sibling_score',
         'is_quitting',
+        'last_controller',
         'nonnumbered_menu_sections_are_hidden',
         'score_manager',
         'scores_to_show',
@@ -73,8 +75,9 @@ class Session(abctools.AbjadObject):
         self._breadcrumb_cache_stack = []
         self._breadcrumb_stack = []
         self._command_history = []
-        self._current_wrangler_or_manager = None
+        self._controller_stack = []
         self._io_manager = iotools.IOManager(self)
+        self._last_controller = None
         self._score_manager = None
         self._session_once_had_user_input = False
         self._transcript = iotools.IOTranscript()
@@ -181,12 +184,19 @@ class Session(abctools.AbjadObject):
         if rollback:
             return self._breadcrumb_stack.pop()
 
+    def _pop_controller(self):
+        return self.controller_stack.pop()
+
     def _push_backtrack(self):
         if self._backtracking_stack:
             last_number = self._backtracking_stack[-1]
             self._backtracking_stack.append(last_number + 1)
         else:
             self._backtracking_stack.append(0)
+
+    def _push_controller(self, controller):
+        self.controller_stack.append(controller)
+        self._last_controller = controller
 
     def _push_breadcrumb(self, breadcrumb, rollback=True):
         if rollback:
@@ -245,6 +255,37 @@ class Session(abctools.AbjadObject):
         Returns string.
         '''
         return ' '.join(self.explicit_command_history)
+
+    @property
+    def controller_stack(self):
+        r'''Gets session controller stack.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.controller_stack
+                []
+
+        Returns list of objects all of which are either wranglers or managers.
+        '''
+        return self._controller_stack
+
+    @property
+    def current_controller(self):
+        r'''Gets current controller of session.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.current_controller is None
+                True
+
+        Returns wrangler or manager.
+        '''
+        if self.controller_stack:
+            return self.controller_stack[-1]
 
     @property
     def current_materials_directory_path(self):
@@ -378,21 +419,6 @@ class Session(abctools.AbjadObject):
             parts.extend(
                 wranglers.SegmentPackageWrangler.score_package_asset_storehouse_path_infix_parts)
             return os.path.join(*parts)
-
-    @property
-    def current_wrangler_or_manager(self):
-        r'''Gets current wrangler or manager of session.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.current_wrangler_or_manager is None
-                True
-
-        Returns wrangler or manager.
-        '''
-        return self._current_wrangler_or_manager
 
     @apply
     def dump_transcript():
@@ -692,6 +718,23 @@ class Session(abctools.AbjadObject):
         for command in reversed(self.command_history):
             if not command.startswith('.'):
                 return command
+
+    @property
+    def last_controller(self):
+        r'''Gets last controller of session.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.last_controller is None
+                True
+
+        Useful for autopsy work after session ends.
+
+        Returns wrangler, manager or none.
+        '''
+        return self._last_controller
 
     @property
     def menu_header(self):

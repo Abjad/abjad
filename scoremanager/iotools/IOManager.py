@@ -95,12 +95,12 @@ class IOManager(IOManager):
         elif key == 'pyd':
             message = 'running doctest ...'
             self.display([message, ''])
-            controller = self.session.current_wrangler_or_manager
+            controller = self.session.current_controller
             controller.interactively_run_doctest()
         elif key == 'pyt':
             message = 'running py.test ...'
             self.display([message, ''])
-            controller = self.session.current_wrangler_or_manager
+            controller = self.session.current_controller
             controller.interactively_run_pytest()
         elif key == 'pyi':
             self.interactively_exec_statement()

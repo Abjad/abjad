@@ -199,7 +199,7 @@ class Wrangler(ScoreManagerObject):
         rollback=None, 
         pending_user_input=None,
         ):
-        self.session._current_wrangler_or_manager = self
+        self.session._push_controller(self)
         self.session.io_manager._assign_user_input(pending_user_input)
         breadcrumb = self.session._pop_breadcrumb(rollback=rollback)
         self.session._cache_breadcrumbs(cache=cache)
@@ -216,6 +216,7 @@ class Wrangler(ScoreManagerObject):
             if self.session._backtrack():
                 break
             self.session._pop_breadcrumb()
+        self.session._pop_controller()
         self.session._pop_breadcrumb()
         self.session._push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
         self.session._restore_breadcrumbs(cache=cache)
