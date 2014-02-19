@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
 import os
+import subprocess
 from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
@@ -386,6 +387,34 @@ class Wrangler(ScoreManagerObject):
     def interactively_rewrite_metadata_module(self):
         manager = self._get_current_package_manager()
         manager.interactively_rewrite_metadata_module()
+
+    def interactively_run_doctest(self, prompt=True):
+        path = self._get_current_directory_path_of_interest()
+        command = 'ajv doctest {}'.format(path)
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in process.stdout.readlines()]
+        if lines:
+            if lines[0] == '':
+                lines.remove('')
+            lines.append('')
+            self.session.io_manager.display(
+                lines, 
+                capitalize_first_character=False,
+                )
+        self.session.io_manager.proceed(prompt=prompt)
+
+    def interactively_run_pytest(self, prompt=True):
+        path = self._get_current_directory_path_of_interest()
+        command = 'py.test -rf {}'.format(path)
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in process.stdout.readlines()]
+        if lines:
+            lines.append('')
+            self.session.io_manager.display(
+                lines, 
+                capitalize_first_character=False,
+                )
+        self.session.io_manager.proceed(prompt=prompt)
 
     def interactively_select_asset_filesystem_path(
         self, 

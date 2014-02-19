@@ -150,23 +150,37 @@ class DirectoryManager(Manager):
         self.session.io_manager.display('')
         self.session.hide_next_redraw = True
 
-    def interactively_run_tests(self, prompt=True):
-        r'''Interactively runs tests.
+    def interactively_run_doctest(self, prompt=True):
+        r'''Interactively runs doctest.
 
         Returns none.
         '''
-        command = 'pytest {}'.format(self.filesystem_path)
+        command = 'ajv doctest {}'.format(self.filesystem_path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
+            if lines[0] == '':
+                lines.remove('')
+            lines.append('')
             self.session.io_manager.display(lines)
-        message = 'tests run.'
-        self.session.io_manager.proceed(message=message, prompt=prompt)
+        self.session.io_manager.proceed(prompt=prompt)
+
+    def interactively_run_pytest(self, prompt=True):
+        r'''Interactively runs pytest.
+
+        Returns none.
+        '''
+        command = 'py.test -rf {}'.format(self.filesystem_path)
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in process.stdout.readlines()]
+        if lines:
+            lines.append('')
+            self.session.io_manager.display(lines)
+        self.session.io_manager.proceed(prompt=prompt)
 
     ### UI MANIFEST ###
 
     user_input_to_action = Manager.user_input_to_action.copy()
     user_input_to_action.update({
         'ls': interactively_list_directory,
-        'pytest': interactively_run_tests,
         })

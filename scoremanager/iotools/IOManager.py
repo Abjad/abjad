@@ -93,7 +93,15 @@ class IOManager(IOManager):
         if key in ('b', 'back'):
             self.session.is_backtracking_locally = True
         elif key == 'pyd':
-            self.interactively_run_pytest()
+            message = 'running doctest ...'
+            self.display([message, ''])
+            controller = self.session.current_wrangler_or_manager
+            controller.interactively_run_doctest()
+        elif key == 'pyt':
+            message = 'running py.test ...'
+            self.display([message, ''])
+            controller = self.session.current_wrangler_or_manager
+            controller.interactively_run_pytest()
         elif key == 'pyi':
             self.interactively_exec_statement()
         elif key == 'lvl':
@@ -397,19 +405,6 @@ class IOManager(IOManager):
         if prompt:
             self.display(lines)
         self.session.hide_next_redraw = True
-
-    def interactively_run_pytest(self, prompt=True):
-        path = self.configuration.user_score_packages_directory_path
-        command = 'py.test -rf {}'.format(path)
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        if lines:
-            self.session.io_manager.display(
-                lines, 
-                capitalize_first_character=False,
-                )
-        message = 'py.test complete.'
-        self.session.io_manager.proceed(message=message, prompt=prompt)
 
     def interactively_view(self, file_path):
         r'''Interactively views `file_path`.

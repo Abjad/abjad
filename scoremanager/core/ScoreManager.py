@@ -277,7 +277,7 @@ class ScoreManager(ScoreManagerObject):
     def interactively_make_new_score(self):
         self.score_package_wrangler.interactively_make_asset(rollback=True)
 
-    def interactively_run_doctest_on_all_user_scores(self, prompt=True):
+    def interactively_run_doctest(self, prompt=True):
         path = self.configuration.user_score_packages_directory_path
         command = 'ajv doctest {}'.format(path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
@@ -288,21 +288,20 @@ class ScoreManager(ScoreManagerObject):
                 lines, 
                 capitalize_first_character=False,
                 )
-        message = 'doctest complete.'
-        self.session.io_manager.proceed(message=message, prompt=prompt)
+        self.session.io_manager.proceed(prompt=prompt)
 
-    def interactively_run_pytest_on_all_user_scores(self, prompt=True):
+    def interactively_run_pytest(self, prompt=True):
         path = self.configuration.user_score_packages_directory_path
         command = 'py.test -rf {}'.format(path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
+            lines.append('')
             self.session.io_manager.display(
                 lines, 
                 capitalize_first_character=False,
                 )
-        message = 'py.test complete.'
-        self.session.io_manager.proceed(message=message, prompt=prompt)
+        self.session.io_manager.proceed(prompt=prompt)
 
     def manage_materials(self):
         self.material_package_wrangler._run(
@@ -350,7 +349,5 @@ class ScoreManager(ScoreManagerObject):
         'ssl': display_all_scores,
         'ssv': display_active_scores,
         'ssmb': display_mothballed_scores,
-        'tdoc': interactively_run_doctest_on_all_user_scores,
-        'tpy': interactively_run_pytest_on_all_user_scores,
         'lmy': manage_stylesheets,
         }
