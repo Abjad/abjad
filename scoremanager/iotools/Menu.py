@@ -118,7 +118,7 @@ class Menu(ScoreManagerObject):
         elif directive == 'o':
             self.toggle_hidden_commands()
         elif directive == 'n':
-            self.display_navigation_menu_section()
+            self.display_hidden_menu_sections()
         elif directive == 'sce':
             self.interactively_edit_calling_code()
         elif directive == 'sdv':
@@ -138,7 +138,7 @@ class Menu(ScoreManagerObject):
         for menu_section in self.menu_sections:
             if menu_section.is_secondary:
                 continue
-            if menu_section.is_navigation:
+            if menu_section.is_hidden:
                 continue
             if menu_section._menu_entry_return_values:
                 return menu_section._menu_entry_return_values[0]
@@ -168,10 +168,10 @@ class Menu(ScoreManagerObject):
 
     def _make_command_display_menu_section(self):
         section = self._make_section(
-            is_navigation=True,
+            is_hidden=True,
             return_value_attribute='key',
             )
-        section.append(('commands - navigation', 'n'))
+        section.append(('commands - hidden', 'n'))
         section.append(('commands - secondary', 'o'))
         return section
 
@@ -191,7 +191,7 @@ class Menu(ScoreManagerObject):
 
     def _make_example_score_menu_section(self):
         section = self._make_section(
-            is_navigation=True,
+            is_hidden=True,
             match_on_display_string=False,
             return_value_attribute='key',
             )
@@ -200,7 +200,7 @@ class Menu(ScoreManagerObject):
 
     def _make_lilypond_menu_section(self):
         section = self._make_section(
-            is_navigation=True,
+            is_hidden=True,
             match_on_display_string=False,
             return_value_attribute='key',
             )
@@ -215,7 +215,7 @@ class Menu(ScoreManagerObject):
 
     def _make_navigation_menu_section(self):
         section = self._make_section(
-            is_navigation=True,
+            is_hidden=True,
             return_value_attribute='key',
             )
         section.append(('back - go', 'b'))
@@ -225,7 +225,7 @@ class Menu(ScoreManagerObject):
 
     def _make_python_menu_section(self):
         section = self._make_section(
-            is_navigation=True,
+            is_hidden=True,
             match_on_display_string=False,
             return_value_attribute='key',
             )
@@ -236,7 +236,7 @@ class Menu(ScoreManagerObject):
 
     def _make_repository_menu_section(self):
         section = self._make_section(
-            is_navigation=True,
+            is_hidden=True,
             match_on_display_string=False,
             return_value_attribute='key',
             )
@@ -248,7 +248,7 @@ class Menu(ScoreManagerObject):
 
     def _make_scores_tour_menu_section(self):
         section = self._make_section(
-            is_navigation=True,
+            is_hidden=True,
             match_on_display_string=False,
             return_value_attribute='key',
             )
@@ -259,7 +259,7 @@ class Menu(ScoreManagerObject):
     def _make_section(
         self, 
         is_secondary=False, 
-        is_navigation=False,
+        is_hidden=False,
         is_numbered=False, 
         is_ranged=False, 
         display_prepopulated_values=False,
@@ -272,7 +272,7 @@ class Menu(ScoreManagerObject):
         assert not (is_ranged and self._has_ranged_section())
         menu_section = iotools.MenuSection(
             is_secondary=is_secondary,
-            is_navigation=is_navigation,
+            is_hidden=is_hidden,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
             display_prepopulated_values=display_prepopulated_values,
@@ -289,7 +289,7 @@ class Menu(ScoreManagerObject):
             hide = self.session.hidden_menu_sections_are_hidden
             if hide and menu_section.is_secondary:
                 continue
-            if menu_section.is_navigation:
+            if menu_section.is_hidden:
                 continue
             section_menu_lines = menu_section._make_menu_lines()
             menu_lines.extend(section_menu_lines)
@@ -299,7 +299,7 @@ class Menu(ScoreManagerObject):
 
     def _make_session_menu_section(self):
         section = self._make_section(
-            is_navigation=True,
+            is_hidden=True,
             match_on_display_string=False,
             return_value_attribute='key',
             )
@@ -308,7 +308,7 @@ class Menu(ScoreManagerObject):
 
     def _make_source_code_menu_section(self):
         section = self._make_section(
-            is_navigation=True,
+            is_hidden=True,
             match_on_display_string=False,
             return_value_attribute='key',
             )
@@ -319,7 +319,7 @@ class Menu(ScoreManagerObject):
 
     def _make_system_menu_section(self):
         section = self._make_section(
-            is_navigation=True,
+            is_hidden=True,
             match_on_display_string=False,
             return_value_attribute='key',
             )
@@ -418,7 +418,7 @@ class Menu(ScoreManagerObject):
         Returns menu section or none.
         '''
         for menu_section in self.menu_sections:
-            if menu_section.is_navigation:
+            if menu_section.is_hidden:
                 return menu_section
 
     @property
@@ -516,15 +516,15 @@ class Menu(ScoreManagerObject):
         self.session.hide_next_redraw = True
         self.session._pop_breadcrumb()
 
-    def display_navigation_menu_section(self):
-        self.session._push_breadcrumb('navigation commands')
+    def display_hidden_menu_sections(self):
+        self.session._push_breadcrumb('hidden commands')
         menu_lines = []
         title = self.session.menu_header
         title = stringtools.capitalize_string_start(title)
         menu_lines.append(title)
         menu_lines.append('')
         for menu_section in self.menu_sections:
-            if not menu_section.is_navigation:
+            if not menu_section.is_hidden:
                 continue
             for menu_entry in menu_section.menu_entries:
                 key = menu_entry.key
