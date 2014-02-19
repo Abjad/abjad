@@ -42,6 +42,7 @@ class Session(abctools.AbjadObject):
         'current_score_directory_path',
         'current_score_package_manager',
         'current_segments_directory_path',
+        'current_wrangler_or_manager',
         'dump_transcript',
         'hidden_menu_sections_are_hidden',
         'hide_next_redraw',
@@ -52,7 +53,9 @@ class Session(abctools.AbjadObject):
         'is_displayable',
         'is_in_score',
         'is_navigating_to_sibling_score',
+        'is_quitting',
         'nonnumbered_menu_sections_are_hidden',
+        'score_manager',
         'scores_to_show',
         'session_once_had_user_input',
         'show_example_scores',
@@ -60,7 +63,6 @@ class Session(abctools.AbjadObject):
         'transcribe_next_command',
         'use_current_user_input_values_as_default',
         'user_input_is_consumed',
-        'is_quitting',
         )
 
     ### INITIALIZER ###
@@ -72,6 +74,7 @@ class Session(abctools.AbjadObject):
         self._breadcrumb_stack = []
         self._command_history = []
         self._io_manager = iotools.IOManager(self)
+        self._score_manager = None
         self._session_once_had_user_input = False
         self._transcript = iotools.IOTranscript()
         self.current_score_snake_case_name = None
@@ -374,6 +377,30 @@ class Session(abctools.AbjadObject):
             parts.extend(
                 wranglers.SegmentPackageWrangler.score_package_asset_storehouse_path_infix_parts)
             return os.path.join(*parts)
+
+    @property
+    def current_wrangler_or_manager(self):
+        r'''Gets current wrangler or manager of session.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.current_wrangler_or_manager
+
+
+        ..  container:: example
+
+            ::
+
+                >>> session.current_wrangler_or_manager
+
+        Returns wrangler or manager.
+        '''
+        if not self.is_in_score:
+            return self.score_manager
+        else:
+            return 'IMPLEMENT ME'
 
     @apply
     def dump_transcript():
@@ -731,6 +758,20 @@ class Session(abctools.AbjadObject):
             if isinstance(pending_user_input, str):
                 self._session_once_had_user_input = True
         return property(**locals())
+
+    @property
+    def score_manager(self):
+        r'''Gets session score manager.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.score_manager
+
+        Returns score manager or none.
+        '''
+        return self._score_manager
 
     @property
     def scores_to_show(self):

@@ -21,6 +21,7 @@ class ScoreManager(ScoreManagerObject):
     def __init__(self, session=None):
         from scoremanager import wranglers
         ScoreManagerObject.__init__(self, session=session)
+        self.session._score_manager = self
         self._segment_package_wrangler = \
             wranglers.SegmentPackageWrangler(session=self.session)
         self._material_package_manager_wrangler = \
