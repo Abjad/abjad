@@ -207,8 +207,8 @@ class PackageManager(DirectoryManager):
         if self.session._backtrack():
             return
         metadatum = self._get_metadatum(result)
-        line = '{!r}'.format(metadatum)
-        self.session.io_manager.proceed(line)
+        message = '{!r}'.format(metadatum)
+        self.session.io_manager.proceed(message=message)
 
     def interactively_remove_initializer_module(self, prompt=True):
         if os.path.isfile(self.initializer_file_path):

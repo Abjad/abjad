@@ -150,8 +150,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 view_output_pdf=False,
                 )
         message = 'press return to view PDF(s).'
-        lines = [message]
-        self.session.io_manager.proceed(lines=lines, prompt=prompt)
+        self.session.io_manager.proceed(message=message, prompt=prompt)
         if view_output_pdfs:
             self.interactively_view_asset_pdfs()
 
@@ -429,8 +428,8 @@ class SegmentPackageWrangler(PackageWrangler):
         manager.write_initializer()
         manager.write_segment_definition_module()
         manager.make_versions_directory()
-        line = 'package {!r} created.'.format(package_path)
-        self.session.io_manager.proceed(line, prompt=prompt)
+        message = 'package {!r} created.'.format(package_path)
+        self.session.io_manager.proceed(message=message, prompt=prompt)
 
     ### UI MANIFEST ###
 

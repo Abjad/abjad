@@ -441,8 +441,8 @@ class MaterialPackageWrangler(PackageWrangler):
         material_package_manager.interactively_rewrite_metadata_module(metadata)
         material_package_manager.conditionally_write_stub_material_definition_module()
         material_package_manager.conditionally_write_stub_user_input_module()
-        line = 'material package {!r} created.'.format(package_path)
-        self.session.io_manager.proceed(line, prompt=prompt)
+        message = 'material package {!r} created.'.format(package_path)
+        self.session.io_manager.proceed(message=message, prompt=prompt)
 
     ### UI MANIFEST ###
 

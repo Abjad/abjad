@@ -262,10 +262,10 @@ class SegmentPackageManager(PackageManager):
         lines.append('')
         self.session.io_manager.display(lines)
         lines = []
+        message = None
         if view_output_pdf:
             message = 'press return to view PDF.'
-            lines.append(message)
-        self.session.io_manager.proceed(lines=lines, prompt=prompt)
+        self.session.io_manager.proceed(message=message, prompt=prompt)
         if view_output_pdf:
             self.view_output_pdf()
 

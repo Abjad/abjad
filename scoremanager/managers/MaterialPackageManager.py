@@ -759,8 +759,8 @@ class MaterialPackageManager(PackageManager):
             'material_package_manager',
             material_package_manager.class_name,
             )
-        line = 'user input handler selected.'
-        self.session.io_manager.proceed(line, prompt=prompt)
+        message = 'user input handler selected.'
+        self.session.io_manager.proceed(message=message, prompt=prompt)
 
     def interactively_select_stylesheet(self, prompt=True):
         from scoremanager import wranglers

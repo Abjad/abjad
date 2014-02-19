@@ -476,26 +476,19 @@ class IOManager(IOManager):
         self.display(['not yet implemented', ''])
         self.proceed()
 
-    def proceed(self, lines=None, prompt=True):
+    def proceed(self, message=None, prompt=True):
         r'''Prompts user to proceed.
 
         Clears terminal.
 
         Returns none.
         '''
-        assert isinstance(lines, (tuple, list, str, type(None)))
+        message = message or 'press return to continue.'
+        assert isinstance(message, str)
         if not prompt:
             return
-        if isinstance(lines, str):
-            lines = [lines]
-        elif lines is None:
-            lines = []
-        if lines:
-            if lines != ['']:
-                lines.append('')
-            self.display(lines)
         self.handle_user_input(
-            'press return to continue.', 
+            message,
             include_chevron=False,
             )
         self.clear_terminal()

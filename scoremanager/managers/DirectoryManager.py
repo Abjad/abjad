@@ -160,8 +160,8 @@ class DirectoryManager(Manager):
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
             self.session.io_manager.display(lines)
-        line = 'tests run.'
-        self.session.io_manager.proceed(line, prompt=prompt)
+        message = 'tests run.'
+        self.session.io_manager.proceed(message=message, prompt=prompt)
 
     ### UI MANIFEST ###
 
