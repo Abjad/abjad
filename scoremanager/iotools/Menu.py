@@ -258,7 +258,6 @@ class Menu(ScoreManagerObject):
 
     def _make_section(
         self, 
-        is_developer=False,
         is_secondary=False, 
         is_navigation=False,
         is_numbered=False, 
@@ -272,7 +271,6 @@ class Menu(ScoreManagerObject):
         assert not (is_numbered and self._has_numbered_section())
         assert not (is_ranged and self._has_ranged_section())
         menu_section = iotools.MenuSection(
-            is_developer=is_developer,
             is_secondary=is_secondary,
             is_navigation=is_navigation,
             is_numbered=is_numbered,
@@ -292,9 +290,6 @@ class Menu(ScoreManagerObject):
             if hide and menu_section.is_secondary:
                 continue
             if menu_section.is_navigation:
-                continue
-            developer = self.session.developer_menu_sections_are_hidden
-            if developer and menu_section.is_developer:
                 continue
             section_menu_lines = menu_section._make_menu_lines()
             menu_lines.extend(section_menu_lines)
@@ -506,9 +501,6 @@ class Menu(ScoreManagerObject):
         for menu_section in self.menu_sections:
             if not menu_section.is_secondary:
                 continue
-            if menu_section.is_developer and \
-                self.session.developer_menu_sections_are_hidden:
-                continue
             for menu_entry in menu_section.menu_entries:
                 key = menu_entry.key
                 display_string = menu_entry.display_string
@@ -618,15 +610,6 @@ class Menu(ScoreManagerObject):
             return_value_attribute='number',
             )
         return numbered_section
-
-    def toggle_developer_commands(self):
-        if self.session.developer_menu_sections_are_hidden:
-            self.session.developer_menu_sections_are_hidden = False
-            message = 'developer commands on.'
-        else:
-            self.session.developer_menu_sections_are_hidden = True
-            message = 'developer commands off.'
-        self.session.io_manager.proceed(message)
 
     def toggle_hidden_commands(self):
         if self.session.hidden_menu_sections_are_hidden:

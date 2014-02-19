@@ -42,7 +42,6 @@ class MenuSection(AbjadObject):
         return_value_attribute='display_string',
         default_index=None,
         indent_level=1,
-        is_developer=False,
         is_secondary=False,
         is_navigation=False,
         is_numbered=False,
@@ -57,7 +56,6 @@ class MenuSection(AbjadObject):
         self.return_value_attribute = return_value_attribute
         self.default_index = default_index
         self.indent_level = indent_level
-        self.is_developer = is_developer
         self.is_secondary = is_secondary
         self.is_navigation = is_navigation
         self.is_numbered = is_numbered
