@@ -121,6 +121,8 @@ class Menu(ScoreManagerObject):
             self.display_navigation_menu_section()
         elif directive == 'sce':
             self.interactively_edit_calling_code()
+        elif directive == 'sda':
+            self.session.display_attributes()
         elif directive == 'scl':
             self.display_calling_code_line_number()
         else:
@@ -181,6 +183,7 @@ class Menu(ScoreManagerObject):
         sections.append(self._make_lilypond_menu_section())
         sections.append(self._make_python_menu_section())
         sections.append(self._make_scores_tour_menu_section())
+        sections.append(self._make_session_menu_section())
         sections.append(self._make_source_code_menu_section())
         sections.append(self._make_system_menu_section())
         return sections
@@ -225,7 +228,9 @@ class Menu(ScoreManagerObject):
             match_on_display_string=False,
             return_value_attribute='key',
             )
+        section.append(('Python - doctests', 'pyd'))
         section.append(('Python - interact', 'pyi'))
+        section.append(('Python - tests', 'pyt'))
         return section
 
     def _make_scores_tour_menu_section(self):
@@ -283,6 +288,15 @@ class Menu(ScoreManagerObject):
         if self.hide_current_run:
             menu_lines = []
         return menu_lines
+
+    def _make_session_menu_section(self):
+        section = self._make_section(
+            is_navigation=True,
+            match_on_display_string=False,
+            return_value_attribute='key',
+            )
+        section.append(('session - display attributes', 'sda'))
+        return section
 
     def _make_source_code_menu_section(self):
         section = self._make_section(

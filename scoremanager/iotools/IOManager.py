@@ -92,6 +92,8 @@ class IOManager(IOManager):
             key = directive
         if key in ('b', 'back'):
             self.session.is_backtracking_locally = True
+        elif key == 'pyd':
+            self.interactively_run_pytest()
         elif key == 'pyi':
             self.interactively_exec_statement()
         elif key == 'lvl':
@@ -103,7 +105,7 @@ class IOManager(IOManager):
             self.session.is_navigating_to_previous_score = True
             self.session.is_backtracking_to_score_manager = True
         elif key in ('q', 'quit'):
-            self.session.user_specified_quit = True
+            self.session.is_quitting = True
         elif self._is_score_string(key) and self.session.is_in_score:
             self.session.is_backtracking_to_score = True
         elif self._is_score_string(key) and not self.session.is_in_score:
@@ -177,15 +179,6 @@ class IOManager(IOManager):
         section.append(('repository - commit', 'rci'))
         section.append(('repository - status', 'rst'))
         section.append(('repository - update', 'rup'))
-        return section
-
-    def _make_tests_menu_section(self, menu):
-        section = menu.make_command_section(
-            is_secondary=True,
-            match_on_display_string=False,
-            )
-        section.append(('tests - doctest', 'tdoc'))
-        section.append(('tests - py.test', 'tpy'))
         return section
 
     def _make_views_menu_section(self, menu):
@@ -404,6 +397,19 @@ class IOManager(IOManager):
         if prompt:
             self.display(lines)
         self.session.hide_next_redraw = True
+
+    def interactively_run_pytest(self, prompt=True):
+        path = self.configuration.user_score_packages_directory_path
+        command = 'py.test -rf {}'.format(path)
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in process.stdout.readlines()]
+        if lines:
+            self.session.io_manager.display(
+                lines, 
+                capitalize_first_character=False,
+                )
+        message = 'py.test complete.'
+        self.session.io_manager.proceed(message=message, prompt=prompt)
 
     def interactively_view(self, file_path):
         r'''Interactively views `file_path`.

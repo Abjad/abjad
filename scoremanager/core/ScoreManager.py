@@ -100,7 +100,6 @@ class ScoreManager(ScoreManagerObject):
         section.append(('scores - show all', 'ssl'))
         section.append(('scores - show active', 'ssv'))
         section.append(('scores - show mothballed', 'ssmb'))
-        self.session.io_manager._make_tests_menu_section(menu)
         menu._make_default_hidden_sections()
         return menu
 

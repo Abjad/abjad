@@ -36,6 +36,36 @@ class Session(abctools.AbjadObject):
 
     configuration = ScoreManagerConfiguration()
 
+    _attributes_to_display = (
+        'breadcrumb_stack',
+        'current_materials_directory_path',
+        'current_materials_package_path',
+        'current_score_directory_path',
+        'current_score_package_manager',
+        'current_score_package_path',
+        'current_segments_directory_path',
+        'current_segments_package_path',
+        'dump_transcript',
+        'hidden_menu_sections_are_hidden',
+        'hide_next_redraw',
+        'is_backtracking_locally',
+        'is_backtracking_to_score',
+        'is_backtracking_to_score_manager',
+        'is_complete',
+        'is_displayable',
+        'is_in_score',
+        'is_navigating_to_sibling_score',
+        'nonnumbered_menu_sections_are_hidden',
+        'scores_to_show',
+        'session_once_had_user_input',
+        'show_example_scores',
+        'snake_case_current_score_name',
+        'transcribe_next_command',
+        'use_current_user_input_values_as_default',
+        'user_input_is_consumed',
+        'is_quitting',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, pending_user_input=None):
@@ -70,7 +100,7 @@ class Session(abctools.AbjadObject):
         self.show_example_scores = True
         self.transcribe_next_command = True
         self.use_current_user_input_values_as_default = False
-        self.user_specified_quit = False
+        self.is_quitting = False
         self.display_active_scores()
 
     ### SPECIAL METHODS ###
@@ -552,7 +582,7 @@ class Session(abctools.AbjadObject):
     @apply
     def is_autoadding():
         def fget(self):
-            r'''Is true when session is currently autoadding. Otherwise false.
+            r'''Is true when session is autoadding. Otherwise false.
 
             ..  container:: example
 
@@ -572,7 +602,7 @@ class Session(abctools.AbjadObject):
     @apply
     def is_backtracking_locally():
         def fget(self):
-            r'''Is true when session is currently backtracking locally. 
+            r'''Is true when session is backtracking locally. 
             Otherwise false.
 
             ..  container:: example
@@ -593,7 +623,7 @@ class Session(abctools.AbjadObject):
     @apply
     def is_backtracking_to_score():
         def fget(self):
-            r'''Is true when session is currently backtracking to score. 
+            r'''Is true when session is backtracking to score. 
             Otherwise false.
 
             ..  container:: example
@@ -614,7 +644,7 @@ class Session(abctools.AbjadObject):
     @apply
     def is_backtracking_to_score_manager():
         def fget(self):
-            r'''Is true when session is currently backtracking to score manager. 
+            r'''Is true when session is backtracking to score manager. 
             Otherwise false.
 
             ..  container:: example
@@ -646,7 +676,7 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self.user_specified_quit
+        return self.is_quitting
 
     @property
     def is_displayable(self):
@@ -697,6 +727,26 @@ class Session(abctools.AbjadObject):
         if self.is_navigating_to_previous_score:
             return True
         return False
+
+    @apply
+    def is_quitting():
+        def fget(self):
+            r'''Gets and sets flag that user specified quit.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.is_quitting
+                    False
+
+            Returns boolean.
+            '''
+            return self._is_quitting
+        def fset(self, is_quitting):
+            assert isinstance(is_quitting, bool)
+            self._is_quitting = is_quitting
+        return property(**locals())
 
     @property
     def last_semantic_command(self):
@@ -932,26 +982,6 @@ class Session(abctools.AbjadObject):
                 return True
         return False
 
-    @apply
-    def user_specified_quit():
-        def fget(self):
-            r'''Gets and sets flag that user specified quit.
-
-            ..  container:: example
-
-                ::
-
-                    >>> session.user_specified_quit
-                    False
-
-            Returns boolean.
-            '''
-            return self._user_specified_quit
-        def fset(self, user_specified_quit):
-            assert isinstance(user_specified_quit, bool)
-            self._user_specified_quit = user_specified_quit
-        return property(**locals())
-
     ### PUBLIC METHODS ###
 
     def display_active_scores(self):
@@ -967,6 +997,21 @@ class Session(abctools.AbjadObject):
         Returns none.
         '''
         self._scores_to_show = 'all'
+
+    def display_attributes(self):
+        r'''Displays attributes.
+
+        Returns none.
+        '''
+        lines = []
+        for attribute_name in sorted(self._attributes_to_display):
+            attribute_value = getattr(self, attribute_name)
+            line = '{}: {!r}'
+            line = line.format(attribute_name, attribute_value)
+            lines.append(line)
+        lines.append('')
+        self.io_manager.display(lines, capitalize_first_character=False)
+        self.io_manager.proceed()
 
     def display_mothballed_scores(self):
         r'''Sets scores to show to ``'mothballed'``.
