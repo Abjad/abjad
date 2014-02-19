@@ -115,7 +115,7 @@ class Menu(ScoreManagerObject):
             return 'user entered lone return'
         elif directive is None and not user_entered_lone_return:
             return
-        elif directive == 'hidden':
+        elif directive == 'o':
             self.toggle_hidden_commands()
         elif directive == 'nav':
             self.display_navigation_menu_section()
@@ -169,7 +169,7 @@ class Menu(ScoreManagerObject):
             is_navigation=True,
             return_value_attribute='key',
             )
-        section.append(('commands - hidden', 'hidden'))
+        section.append(('commands - more', 'o'))
         section.append(('commands - navigation', 'nav'))
         return section
 
