@@ -112,6 +112,8 @@ class IOManager(IOManager):
             self.session.is_backtracking_to_score_manager = True
         elif key == 'sct':
             self.toggle_location_tracking()
+        elif key == 'xst':
+            self.toggle_example_score_visibility()
         else:
             return directive
 
@@ -468,6 +470,15 @@ class IOManager(IOManager):
             include_chevron=False,
             )
         self.clear_terminal()
+
+    def toggle_example_score_visibility(self):
+        if self.session.show_example_scores:
+            self.session.show_example_scores = False
+            message = 'example scores hidden.'
+        else:
+            self.session.show_example_scores = True
+            message = 'example scores visible.'
+        self.session.io_manager.proceed(message)
 
     def toggle_location_tracking(self):
         if self.session.enable_where:

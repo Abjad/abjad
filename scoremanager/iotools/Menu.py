@@ -164,16 +164,35 @@ class Menu(ScoreManagerObject):
     def _has_ranged_section(self):
         return any(x.is_ranged for x in self.menu_sections)
 
+    def _make_command_display_menu_section(self):
+        section = self._make_section(
+            is_navigation=True,
+            return_value_attribute='key',
+            )
+        section.append(('commands - hidden', 'hidden'))
+        section.append(('commands - navigation', 'nav'))
+        return section
+
     def _make_default_hidden_sections(self):
         sections = []
         sections.append(self._make_navigation_menu_section())
         sections.append(self._make_command_display_menu_section())
+        sections.append(self._make_example_score_menu_section())
         sections.append(self._make_lilypond_menu_section())
         sections.append(self._make_python_menu_section())
         sections.append(self._make_scores_tour_menu_section())
         sections.append(self._make_source_code_menu_section())
         sections.append(self._make_system_menu_section())
         return sections
+
+    def _make_example_score_menu_section(self):
+        section = self._make_section(
+            is_navigation=True,
+            match_on_display_string=False,
+            return_value_attribute='key',
+            )
+        section.append(('example scores - toggle', 'xst'))
+        return section
 
     def _make_lilypond_menu_section(self):
         section = self._make_section(
@@ -182,24 +201,6 @@ class Menu(ScoreManagerObject):
             return_value_attribute='key',
             )
         section.append(('LilyPond - view log', 'lvl'))
-        return section
-
-    def _make_python_menu_section(self):
-        section = self._make_section(
-            is_navigation=True,
-            match_on_display_string=False,
-            return_value_attribute='key',
-            )
-        section.append(('Python - interact', 'pyi'))
-        return section
-
-    def _make_command_display_menu_section(self):
-        section = self._make_section(
-            is_navigation=True,
-            return_value_attribute='key',
-            )
-        section.append(('commands - hidden', 'hidden'))
-        section.append(('commands - navigation', 'nav'))
         return section
 
     def _make_menu_lines(self):
@@ -218,13 +219,13 @@ class Menu(ScoreManagerObject):
         section.append(('score - go', 's'))
         return section
 
-    def _make_system_menu_section(self):
+    def _make_python_menu_section(self):
         section = self._make_section(
             is_navigation=True,
             match_on_display_string=False,
             return_value_attribute='key',
             )
-        section.append(('system - quit', 'q'))
+        section.append(('Python - interact', 'pyi'))
         return section
 
     def _make_scores_tour_menu_section(self):
@@ -292,6 +293,15 @@ class Menu(ScoreManagerObject):
         section.append(('source code - edit', 'sce'))
         section.append(('source code - location', 'scl'))
         section.append(('source code - track', 'sct'))
+        return section
+
+    def _make_system_menu_section(self):
+        section = self._make_section(
+            is_navigation=True,
+            match_on_display_string=False,
+            return_value_attribute='key',
+            )
+        section.append(('system - quit', 'q'))
         return section
 
     def _make_tab(self, n):
