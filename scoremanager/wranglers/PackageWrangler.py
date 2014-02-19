@@ -32,7 +32,10 @@ class PackageWrangler(Wrangler):
     def _current_storehouse_packagesystem_path(self):
         if self.session.is_in_score:
             parts = []
-            parts.append(self.session.current_score_package_path)
+            current_score_package_path = \
+                self.configuration.filesystem_path_to_packagesystem_path(
+                    self.session.current_score_directory_path)
+            parts.append(current_score_package_path)
             parts.extend(self.score_package_asset_storehouse_path_infix_parts)
             return '.'.join(parts)
         else:

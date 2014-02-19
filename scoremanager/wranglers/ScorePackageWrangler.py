@@ -58,7 +58,7 @@ class ScorePackageWrangler(PackageWrangler):
     @property
     def _current_storehouse_filesystem_path(self):
         if self.session.is_in_score:
-            if self.session.snake_case_current_score_name in \
+            if self.session.current_score_snake_case_name in \
                     sorted(os.listdir(
                 self.configuration.built_in_score_packages_directory_path)):
                 return \

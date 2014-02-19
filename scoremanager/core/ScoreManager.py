@@ -46,19 +46,19 @@ class ScoreManager(ScoreManagerObject):
 
     def _get_next_score_package_name(self):
         score_package_names = self.score_package_wrangler.list_asset_names()
-        if self.session.snake_case_current_score_name is None:
+        if self.session.current_score_snake_case_name is None:
             return score_package_names[0]
         index = score_package_names.index(
-            self.session.snake_case_current_score_name)
+            self.session.current_score_snake_case_name)
         next_index = (index + 1) % len(score_package_names)
         return score_package_names[next_index]
 
     def _get_previous_score_package_name(self):
         score_package_names = self.score_package_wrangler.list_asset_names()
-        if self.session.snake_case_current_score_name is None:
+        if self.session.current_score_snake_case_name is None:
             return score_package_names[-1]
         index = score_package_names.index(
-            self.session.snake_case_current_score_name)
+            self.session.current_score_snake_case_name)
         prev_index = (index - 1) % len(score_package_names)
         return score_package_names[prev_index]
 
@@ -267,9 +267,9 @@ class ScoreManager(ScoreManagerObject):
         manager = self.score_package_wrangler._initialize_asset_manager(
             score_package_path)
         score_package_name = score_package_path.split('.')[-1]
-        manager.session.snake_case_current_score_name = score_package_name
+        manager.session.current_score_snake_case_name = score_package_name
         manager._run(cache=True)
-        self.session.snake_case_current_score_name = None
+        self.session.current_score_snake_case_name = None
 
     def interactively_make_new_score(self):
         self.score_package_wrangler.interactively_make_asset(rollback=True)

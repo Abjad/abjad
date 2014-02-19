@@ -26,7 +26,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session_in_score = scoremanager.core.Session()
-            >>> session_in_score.snake_case_current_score_name = 'foo'
+            >>> session_in_score.current_score_snake_case_name = 'foo'
             >>> session_in_score
             Session()
 
@@ -36,15 +36,12 @@ class Session(abctools.AbjadObject):
 
     configuration = ScoreManagerConfiguration()
 
-    _attributes_to_display = (
+    _variables_to_display = (
         'breadcrumb_stack',
         'current_materials_directory_path',
-        'current_materials_package_path',
         'current_score_directory_path',
         'current_score_package_manager',
-        'current_score_package_path',
         'current_segments_directory_path',
-        'current_segments_package_path',
         'dump_transcript',
         'hidden_menu_sections_are_hidden',
         'hide_next_redraw',
@@ -59,7 +56,7 @@ class Session(abctools.AbjadObject):
         'scores_to_show',
         'session_once_had_user_input',
         'show_example_scores',
-        'snake_case_current_score_name',
+        'current_score_snake_case_name',
         'transcribe_next_command',
         'use_current_user_input_values_as_default',
         'user_input_is_consumed',
@@ -77,7 +74,7 @@ class Session(abctools.AbjadObject):
         self._io_manager = iotools.IOManager(self)
         self._session_once_had_user_input = False
         self._transcript = iotools.IOTranscript()
-        self.snake_case_current_score_name = None
+        self.current_score_snake_case_name = None
         self.developer_menu_sections_are_hidden = True
         self.display_pitch_ranges_with_numbered_pitches = False
         self.dump_transcript = False
@@ -275,46 +272,12 @@ class Session(abctools.AbjadObject):
         if self.is_in_score:
             parts = []
             parts.append(self.configuration.user_score_packages_directory_path)
-            parts.append(self.snake_case_current_score_name)
+            parts.append(self.current_score_snake_case_name)
             parts.extend(
                 wranglers.MaterialPackageWrangler.score_package_asset_storehouse_path_infix_parts)
             return os.path.join(*parts)
         else:
             return self.configuration.built_in_material_packages_directory_path
-
-    @property
-    def current_materials_package_path(self):
-        r'''Gets session current materials package path.
-
-        ..  container:: example
-
-            Current materials package path of session out of score:
-
-            ::
-
-                >>> session.current_materials_package_path
-                'scoremanager.materialpackages'
-
-        ..  container:: example
-
-            Current materials package path of session in score:
-
-            ::
-
-                >>> session_in_score.current_materials_package_path
-                'foo.materials'
-
-        Returns string.
-        '''
-        from scoremanager import wranglers
-        if self.is_in_score:
-            parts = []
-            parts.append(self.snake_case_current_score_name)
-            parts.extend(
-                wranglers.MaterialPackageWrangler.score_package_asset_storehouse_path_infix_parts)
-            return '.'.join(parts)
-        else:
-            return self.configuration.built_in_material_packages_package_path
 
     @property
     def current_score_directory_path(self):
@@ -336,16 +299,16 @@ class Session(abctools.AbjadObject):
 
         Returns string or none.
         '''
-        if self.snake_case_current_score_name:
-            if self.snake_case_current_score_name in \
+        if self.current_score_snake_case_name:
+            if self.current_score_snake_case_name in \
                 self.configuration.built_in_score_package_names:
                 return os.path.join(
                     self.configuration.built_in_score_packages_directory_path,
-                    self.snake_case_current_score_name)
+                    self.current_score_snake_case_name)
             else:
                 return os.path.join(
                     self.configuration.user_score_packages_directory_path,
-                    self.snake_case_current_score_name)
+                    self.current_score_snake_case_name)
 
     @property
     def current_score_package_manager(self):
@@ -370,40 +333,14 @@ class Session(abctools.AbjadObject):
         Returns score package manager or none.
         '''
         from scoremanager import managers
+        packagesystem_path = \
+            self.configuration.filesystem_path_to_packagesystem_path(
+            self.current_score_directory_path)
         if self.is_in_score:
             return managers.ScorePackageManager(
-                packagesystem_path=self.current_score_package_path,
+                packagesystem_path=packagesystem_path,
                 session=self,
                 )
-
-    @property
-    def current_score_package_path(self):
-        r'''Gets session current score package path.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.current_score_package_path is None
-                True
-
-        ..  container:: example
-
-            ::
-
-                >>> session_in_score.current_score_package_path
-                'foo'
-
-        Returns string.
-        '''
-        if self.snake_case_current_score_name:
-            if self.snake_case_current_score_name in \
-                self.configuration.built_in_score_package_names:
-                return '.'.join([
-                    self.configuration.built_in_score_packages_package_path,
-                    self.snake_case_current_score_name])
-            else:
-                return self.snake_case_current_score_name
 
     @property
     def current_segments_directory_path(self):
@@ -433,38 +370,10 @@ class Session(abctools.AbjadObject):
         if self.is_in_score:
             parts = []
             parts.append(self.configuration.user_score_packages_directory_path)
-            parts.append(self.snake_case_current_score_name)
+            parts.append(self.current_score_snake_case_name)
             parts.extend(
                 wranglers.SegmentPackageWrangler.score_package_asset_storehouse_path_infix_parts)
             return os.path.join(*parts)
-
-    @property
-    def current_segments_package_path(self):
-        r'''Gets session current segments package path.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.current_segments_package_path is None
-                True
-
-        ..  container:: example
-
-            ::
-
-                >>> session_in_score.current_segments_package_path
-                'foo.segments'
-
-        Returns none or string.
-        '''
-        from scoremanager import wranglers
-        if self.is_in_score:
-            parts = []
-            parts.append(self.snake_case_current_score_name)
-            parts.extend(
-                wranglers.SegmentPackageWrangler.score_package_asset_storehouse_path_infix_parts)
-            return '.'.join(parts)
 
     @apply
     def dump_transcript():
@@ -706,7 +615,7 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self.snake_case_current_score_name is not None
+        return self.current_score_snake_case_name is not None
 
     @property
     def is_navigating_to_sibling_score(self):
@@ -874,7 +783,7 @@ class Session(abctools.AbjadObject):
         return property(**locals())
 
     @apply
-    def snake_case_current_score_name():
+    def current_score_snake_case_name():
         def fget(self):
             r'''Gets and sets snake-case current score name of session.
 
@@ -882,24 +791,24 @@ class Session(abctools.AbjadObject):
 
                 ::
 
-                    >>> session.snake_case_current_score_name is None
+                    >>> session.current_score_snake_case_name is None
                     True
 
             ..  container:: example
 
                 ::
 
-                    >>> session_in_score.snake_case_current_score_name
+                    >>> session_in_score.current_score_snake_case_name
                     'foo'
 
             Returns string or none.
             '''
             return self._snake_case_current_score_name
-        def fset(self, snake_case_current_score_name):
-            assert isinstance(snake_case_current_score_name, (str, type(None)))
-            if isinstance(snake_case_current_score_name, str):
-                assert '.' not in snake_case_current_score_name
-            self._snake_case_current_score_name = snake_case_current_score_name
+        def fset(self, current_score_snake_case_name):
+            assert isinstance(current_score_snake_case_name, (str, type(None)))
+            if isinstance(current_score_snake_case_name, str):
+                assert '.' not in current_score_snake_case_name
+            self._snake_case_current_score_name = current_score_snake_case_name
         return property(**locals())
 
     @property
@@ -998,16 +907,16 @@ class Session(abctools.AbjadObject):
         '''
         self._scores_to_show = 'all'
 
-    def display_attributes(self):
-        r'''Displays attributes.
+    def display_variables(self):
+        r'''Displays session variables.
 
         Returns none.
         '''
         lines = []
-        for attribute_name in sorted(self._attributes_to_display):
-            attribute_value = getattr(self, attribute_name)
+        for variable_name in sorted(self._variables_to_display):
+            variable_value = getattr(self, variable_name)
             line = '{}: {!r}'
-            line = line.format(attribute_name, attribute_value)
+            line = line.format(variable_name, variable_value)
             lines.append(line)
         lines.append('')
         self.io_manager.display(lines, capitalize_first_character=False)

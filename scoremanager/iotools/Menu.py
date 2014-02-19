@@ -121,8 +121,8 @@ class Menu(ScoreManagerObject):
             self.display_navigation_menu_section()
         elif directive == 'sce':
             self.interactively_edit_calling_code()
-        elif directive == 'sda':
-            self.session.display_attributes()
+        elif directive == 'sdv':
+            self.session.display_variables()
         elif directive == 'scl':
             self.display_calling_code_line_number()
         else:
@@ -295,7 +295,7 @@ class Menu(ScoreManagerObject):
             match_on_display_string=False,
             return_value_attribute='key',
             )
-        section.append(('session - display attributes', 'sda'))
+        section.append(('session - display variables', 'sdv'))
         return section
 
     def _make_source_code_menu_section(self):
