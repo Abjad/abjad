@@ -107,11 +107,11 @@ class SegmentPackageManager(PackageManager):
         command_section = main_menu.make_command_section()
         command_section.append(('segment definition module - edit', 'e'))
         command_section = main_menu.make_command_section()
-        command_section.append(('output pdf - make', 'pdfm'))
+        command_section.append(('current pdf - make', 'pdfm'))
         if os.path.isfile(self._get_output_pdf_file_path()):
-            command_section.append(('output pdf - save', 'pdfs'))
+            command_section.append(('current pdf - version', 'pdfs'))
         if os.path.isfile(self._get_output_pdf_file_path()):
-            command_section.append(('output pdf - view', 'pdfv'))
+            command_section.append(('current pdf - view', 'pdfv'))
             command_section.default_index = len(command_section) - 1
         command_section = main_menu.make_command_section()
         versions_directory_path = self._get_versions_directory_path()
@@ -121,8 +121,10 @@ class SegmentPackageManager(PackageManager):
         hidden_section.append(('segment definition module - edit at top', 'E'))
         if os.path.isfile(self._get_output_lilypond_file_path()):
             hidden_section = main_menu.make_command_section(is_hidden=True)
-            hidden_section.append(('output ly - rerender', 'lyrr'))
-            hidden_section.append(('output ly - view', 'lyv'))
+            string = 'current lilypond file - reinterpret'
+            hidden_section.append((string, 'lyri'))
+            string = 'current lilypond file - view'
+            hidden_section.append((string, 'lyv'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('versioned output ly - view', 'lyver'))
         hidden_section.append(('versioned output pdf - view', 'pdfv'))
@@ -231,23 +233,41 @@ class SegmentPackageManager(PackageManager):
         if modification_time < new_modification_time and view_asset_pdf:
             self.view_output_pdf()
 
-    def interactively_rerender_current_output_ly(
+    def interactively_reinterpret_current_lilypond_file(
         self, 
         view_output_pdf=True,
+        prompt=True,
         ):
-        r'''Interactively rerenders current output LilyPond file.
+        r'''Interactively reinterprets current LilyPond file.
+
+        Opens resulting PDF when `view_output_pdf` is true.
 
         Returns none.
         '''
         file_path = self._get_output_lilypond_file_path()
-        if os.path.isfile(file_path):
-            result = self.session.io_manager.run_lilypond(file_path)
-            if result:
-                message = 'rerendered: {!r}.'
-                message = message.format(self.package_path)
-                self.session.io_manager.display(message)
-                if view_output_pdf:
-                    self.view_output_pdf()
+        if not os.path.isfile(file_path):
+            return
+        result = self.session.io_manager.run_lilypond(file_path)
+        if not result:
+            return
+        lines = []
+        lilypond_file_path = self._get_output_lilypond_file_path()
+        message = 'reinterpreted {!r}.'
+        message = message.format(lilypond_file_path)
+        lines.append(message)
+        pdf_file_path = self._get_output_pdf_file_path()
+        message = 'wrote {!r}.'
+        message = message.format(pdf_file_path)
+        lines.append(message)
+        lines.append('')
+        self.session.io_manager.display(lines)
+        lines = []
+        if view_output_pdf:
+            message = 'press return to view PDF.'
+            lines.append(message)
+        self.session.io_manager.proceed(lines=lines, prompt=prompt)
+        if view_output_pdf:
+            self.view_output_pdf()
 
     def interactively_save_to_versions_directory(
         self,
@@ -430,7 +450,7 @@ class SegmentPackageManager(PackageManager):
     user_input_to_action.update({
         'E': interactively_edit_asset_definition_module_from_top,
         'e': interactively_edit_asset_definition_module,
-        'lyrr': interactively_rerender_current_output_ly,
+        'lyri': interactively_reinterpret_current_lilypond_file,
         'lyv': interactively_view_current_output_ly,
         'lyver': interactively_view_versioned_output_ly,
         'pdfv': view_output_pdf,

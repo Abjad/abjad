@@ -58,14 +58,17 @@ class SegmentPackageWrangler(PackageWrangler):
         command_section = main_menu.make_command_section(
             match_on_display_string=False,
             )
-        string = 'all segments - rerender current ly file & pdf'
-        command_section.append((string, 'mm'))
-        string = 'all segments - rerender current pdf'
-        command_section.append((string, 'rr'))
-        string = 'all segments - version current pdf'
-        command_section.append((string, 'ss'))
-        string = 'all segments - view current pdf'
-        command_section.append((string, 'vv'))
+        string = 'all segments - current lilypond file - reinterpret'
+        command_section.append((string, 'lyri'))
+        command_section = main_menu.make_command_section(
+            match_on_display_string=False,
+            )
+        string = 'all segments - current pdf - make'
+        command_section.append((string, 'pdfm'))
+        string = 'all segments - current pdf - version'
+        command_section.append((string, 'pdfs'))
+        string = 'all segments - current pdf - view'
+        command_section.append((string, 'pdfv'))
         command_section = main_menu.make_command_section()
         command_section.append(('new segment', 'new'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
@@ -117,7 +120,7 @@ class SegmentPackageWrangler(PackageWrangler):
         self.interactively_view_asset_pdfs()
         self.session.io_manager.proceed()
 
-    def interactively_rerender_all_current_output_ly_files(
+    def interactively_reinterpret_all_current_lilypond_files(
         self,
         pending_user_input=None,
         prompt=True,
@@ -142,11 +145,13 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_path,
                 session=self.session,
                 )
-            manager.interactively_rerender_current_output_ly(
+            manager.interactively_reinterpret_current_lilypond_file(
+                prompt=False,
                 view_output_pdf=False,
                 )
-        self.session.io_manager.display('')
-        self.session.io_manager.proceed(prompt=prompt)
+        message = 'press return to view PDF(s).'
+        lines = [message]
+        self.session.io_manager.proceed(lines=lines, prompt=prompt)
         if view_output_pdfs:
             self.interactively_view_asset_pdfs()
 
@@ -431,8 +436,8 @@ class SegmentPackageWrangler(PackageWrangler):
 
     user_input_to_action = PackageWrangler.user_input_to_action.copy()
     user_input_to_action.update({
-        'mm': interactively_make_asset_pdfs,
-        'vv': interactively_view_asset_pdfs,
-        'rr': interactively_rerender_all_current_output_ly_files,
-        'ss': interactively_version_all_assets,
+        'lyri': interactively_reinterpret_all_current_lilypond_files,
+        'pdfm': interactively_make_asset_pdfs,
+        'pdfs': interactively_version_all_assets,
+        'pdfv': interactively_view_asset_pdfs,
         })
