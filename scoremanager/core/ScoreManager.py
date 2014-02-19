@@ -105,26 +105,34 @@ class ScoreManager(ScoreManagerObject):
         return menu
 
     def _make_score_selection_menu(self):
+        wrangler = self.score_package_wrangler
         if self.session.is_first_run:
             if hasattr(self, 'start_menu_entries'):
                 menu_entries = self.start_menu_entries
             else:
                 self.session.io_manager._write_cache()
-                menu_entries = \
-                    self.score_package_wrangler._make_asset_menu_entries()
+                menu_entries = wrangler._make_asset_menu_entries()
             self.session.is_first_run = False
         else:
-            menu_entries = \
-                self.score_package_wrangler._make_asset_menu_entries()
+            menu_entries = wrangler._make_asset_menu_entries()
+        if not self.session.show_example_scores:
+            menu_entries = self._remove_example_score_menu_entries(
+                menu_entries)
         menu = self.session.io_manager.make_menu(
             where=self._where,
             include_default_hidden_sections=False,
             )
         asset_section = menu.make_asset_section()
         asset_section.menu_entries = menu_entries
-        menu.menu_sections.remove(asset_section)
-        menu.menu_sections.insert(0, asset_section)
         return menu
+
+    def _remove_example_score_menu_entries(self, menu_entries):
+        result = []
+        for menu_entry in menu_entries:
+            if 'Example Score' in menu_entry[0]:
+                continue
+            result.append(menu_entry)
+        return result
 
     def _run(
         self, 
@@ -133,6 +141,7 @@ class ScoreManager(ScoreManagerObject):
         cache=False, 
         is_test=False, 
         dump_transcript=False,
+        show_example_scores=True,
         ):
         type(self).__init__(self)
         self.session.io_manager._assign_user_input(
@@ -142,6 +151,7 @@ class ScoreManager(ScoreManagerObject):
         if is_test:
             self.session.is_test = True
         self.session.dump_transcript = dump_transcript
+        self.session.show_example_scores = show_example_scores
         run_main_menu = True
         while True:
             self.session._push_breadcrumb(self._score_status_string)

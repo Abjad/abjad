@@ -92,9 +92,9 @@ class IOManager(IOManager):
             key = directive
         if key in ('b', 'back'):
             self.session.is_backtracking_locally = True
-        elif key == 'ppi':
+        elif key == 'pyi':
             self.interactively_exec_statement()
-        elif key == 'llv':
+        elif key == 'lvl':
             self.view_last_log()
         elif key == 'next':
             self.session.is_navigating_to_next_score = True
