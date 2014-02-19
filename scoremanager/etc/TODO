@@ -172,6 +172,3 @@
     sounding_pitch_of_written_middle_c to C4.
 
 42. Make (next) and (prev) work again.
-
-43. Clean what Menu.hidden_section returns. There are multiple hidden sections.
-    So maybe it makes sense to remove the property.
