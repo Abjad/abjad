@@ -55,10 +55,17 @@ class SegmentPackageWrangler(PackageWrangler):
         asset_section = main_menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries(head=head)
         asset_section.menu_entries = asset_menu_entries
-        command_section = main_menu.make_command_section()
-        command_section.append(('all pdfs - make', 'mm'))
-        command_section.append(('all pdfs - save', 'ss'))
-        command_section.append(('all pdfs - view', 'vv'))
+        command_section = main_menu.make_command_section(
+            match_on_display_string=False,
+            )
+        string = 'all segments - rerender current ly file & pdf'
+        command_section.append((string, 'mm'))
+        string = 'all segments - rerender current pdf'
+        command_section.append((string, 'rr'))
+        string = 'all segments - version current pdf'
+        command_section.append((string, 'ss'))
+        string = 'all segments - view current pdf'
+        command_section.append((string, 'vv'))
         command_section = main_menu.make_command_section()
         command_section.append(('new segment', 'new'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
@@ -109,6 +116,39 @@ class SegmentPackageWrangler(PackageWrangler):
         self.session.io_manager.display('')
         self.interactively_view_asset_pdfs()
         self.session.io_manager.proceed()
+
+    def interactively_rerender_all_current_output_ly_files(
+        self,
+        pending_user_input=None,
+        prompt=True,
+        view_output_pdfs=True,
+        ):
+        self.session.io_manager._assign_user_input(pending_user_input)
+        parts = (self.session.current_score_directory_path,)
+        parts += self.score_package_asset_storehouse_path_infix_parts
+        segments_directory_path = os.path.join(*parts)
+        for directory_entry in sorted(os.listdir(segments_directory_path)):
+            if not directory_entry[0].isalpha():
+                continue
+            segment_package_name = directory_entry
+            segment_package_directory_path = os.path.join(
+                segments_directory_path,
+                segment_package_name,
+                )
+            segment_package_path = \
+                self.configuration.filesystem_path_to_packagesystem_path(
+                segment_package_directory_path)
+            manager = self._asset_manager_class(
+                segment_package_path,
+                session=self.session,
+                )
+            manager.interactively_rerender_current_output_ly(
+                view_output_pdf=False,
+                )
+        self.session.io_manager.display('')
+        self.session.io_manager.proceed(prompt=prompt)
+        if view_output_pdfs:
+            self.interactively_view_asset_pdfs()
 
     def interactively_version_all_assets(
         self,
@@ -393,5 +433,6 @@ class SegmentPackageWrangler(PackageWrangler):
     user_input_to_action.update({
         'mm': interactively_make_asset_pdfs,
         'vv': interactively_view_asset_pdfs,
+        'rr': interactively_rerender_all_current_output_ly_files,
         'ss': interactively_version_all_assets,
         })

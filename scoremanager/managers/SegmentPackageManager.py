@@ -231,7 +231,10 @@ class SegmentPackageManager(PackageManager):
         if modification_time < new_modification_time and view_asset_pdf:
             self.view_output_pdf()
 
-    def interactively_rerender_current_output_ly(self):
+    def interactively_rerender_current_output_ly(
+        self, 
+        view_output_pdf=True,
+        ):
         r'''Interactively rerenders current output LilyPond file.
 
         Returns none.
@@ -241,9 +244,10 @@ class SegmentPackageManager(PackageManager):
             result = self.session.io_manager.run_lilypond(file_path)
             if result:
                 message = 'rerendered: {!r}.'
-                message = message.format(file_path)
-                self.session.io_manager.proceed(message)
-                self.view_output_pdf()
+                message = message.format(self.package_path)
+                self.session.io_manager.display(message)
+                if view_output_pdf:
+                    self.view_output_pdf()
 
     def interactively_save_to_versions_directory(
         self,
