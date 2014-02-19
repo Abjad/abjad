@@ -137,22 +137,22 @@ class ScoreManager(ScoreManagerObject):
         type(self).__init__(self)
         self.session.io_manager._assign_user_input(
             pending_user_input=pending_user_input)
-        self.session.cache_breadcrumbs(cache=cache)
-        self.session.push_breadcrumb(self._breadcrumb)
+        self.session._cache_breadcrumbs(cache=cache)
+        self.session._push_breadcrumb(self._breadcrumb)
         if is_test:
             self.session.is_test = True
         self.session.dump_transcript = dump_transcript
         run_main_menu = True
         while True:
-            self.session.push_breadcrumb(self._score_status_string)
+            self.session._push_breadcrumb(self._score_status_string)
             if run_main_menu:
                 menu = self._make_main_menu()
                 result = menu._run(clear=clear)
             else:
                 run_main_menu = True
-            if self.session.backtrack(source='home'):
-                self.session.pop_breadcrumb()
-                self.session.clean_up()
+            if self.session._backtrack(source='home'):
+                self.session._pop_breadcrumb()
+                self.session._clean_up()
                 break
             elif self.session.is_navigating_to_next_score:
                 self.session.is_navigating_to_next_score = False
@@ -163,18 +163,18 @@ class ScoreManager(ScoreManagerObject):
                 self.session.is_backtracking_to_score_manager = False
                 result = self._get_previous_score_package_name()
             elif not result:
-                self.session.pop_breadcrumb()
+                self.session._pop_breadcrumb()
                 continue
             self._handle_main_menu_result(result)
-            if self.session.backtrack(source='home'):
-                self.session.pop_breadcrumb()
-                self.session.clean_up()
+            if self.session._backtrack(source='home'):
+                self.session._pop_breadcrumb()
+                self.session._clean_up()
                 break
             elif self.session.is_navigating_to_sibling_score:
                 run_main_menu = False
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+            self.session._pop_breadcrumb()
+        self.session._pop_breadcrumb()
+        self.session._restore_breadcrumbs(cache=cache)
 
     ### PUBLIC PROPERTIES ###
 

@@ -23,21 +23,21 @@ class InstrumentSelectionWizard(Wizard):
         ):
         from scoremanager import wizards
         self.session.io_manager._assign_user_input(pending_user_input)
-        self.session.cache_breadcrumbs(cache=cache)
-        self.session.push_breadcrumb(self._breadcrumb)
+        self.session._cache_breadcrumbs(cache=cache)
+        self.session._push_breadcrumb(self._breadcrumb)
         if self.session.is_in_score:
             selector = iotools.Selector.make_score_instrument_selector(
                 session=self.session,
                 )
             with self.backtracking:
                 result = selector._run(clear=clear)
-            if self.session.backtrack():
-                self.session.pop_breadcrumb()
-                self.session.restore_breadcrumbs(cache=cache)
+            if self.session._backtrack():
+                self.session._pop_breadcrumb()
+                self.session._restore_breadcrumbs(cache=cache)
                 return
             if isinstance(result, instrumenttools.Instrument):
-                self.session.pop_breadcrumb()
-                self.session.restore_breadcrumbs(cache=cache)
+                self.session._pop_breadcrumb()
+                self.session._restore_breadcrumbs(cache=cache)
                 self.target = result
                 return self.target
             elif not result == 'other':
@@ -45,11 +45,11 @@ class InstrumentSelectionWizard(Wizard):
         wizard = wizards.InstrumentCreationWizard(session=self.session)
         with self.backtracking:
             result = wizard._run()
-        if self.session.backtrack():
-            self.session.pop_breadcrumb()
-            self.session.restore_breadcrumbs(cache=cache)
+        if self.session._backtrack():
+            self.session._pop_breadcrumb()
+            self.session._restore_breadcrumbs(cache=cache)
             return
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+        self.session._pop_breadcrumb()
+        self.session._restore_breadcrumbs(cache=cache)
         self.target = result
         return self.target

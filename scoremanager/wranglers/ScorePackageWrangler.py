@@ -117,7 +117,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns none.
         '''
         self.session.io_manager._assign_user_input(pending_user_input)
-        breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
+        breadcrumb = self.session._pop_breadcrumb(rollback=rollback)
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.indent_level = 1
         getter.prompt_character = ':'
@@ -128,7 +128,7 @@ class ScorePackageWrangler(PackageWrangler):
         getter.append_snake_case_package_name('package name')
         getter.append_integer_in_range('year', start=1, allow_none=True)
         result = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         title, score_package_name, year = result
         self.make_asset(score_package_name)
@@ -136,7 +136,7 @@ class ScorePackageWrangler(PackageWrangler):
             score_package_name)
         score_package_manager._add_metadatum('title', title)
         score_package_manager.year_of_completion = year
-        self.session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
+        self.session._push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
 
     def list_asset_filesystem_paths(
         self,
@@ -503,7 +503,7 @@ class ScorePackageWrangler(PackageWrangler):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('commit message')
         commit_message = getter._run(clear_terminal=False)
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         line = 'commit message will be: "{}"\n'.format(commit_message)
         self.session.io_manager.display(line)

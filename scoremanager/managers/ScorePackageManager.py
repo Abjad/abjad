@@ -323,7 +323,7 @@ class ScorePackageManager(PackageManager):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('Catalog number')
         result = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         self._add_metadatum('catalog_number', result)
 
@@ -331,7 +331,7 @@ class ScorePackageManager(PackageManager):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('Forces tagline')
         result = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         self._add_metadatum('forces_tagline', result)
 
@@ -349,7 +349,7 @@ class ScorePackageManager(PackageManager):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('new title')
         result = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         self._add_metadatum('title', result)
         self.session.io_manager._write_cache()
@@ -362,7 +362,7 @@ class ScorePackageManager(PackageManager):
             allow_none=True,
             )
         result = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         self._add_metadatum('year_of_completion', result)
 
@@ -422,12 +422,12 @@ class ScorePackageManager(PackageManager):
         getter.append_string("type 'clobberscore' to proceed")
         with self.backtracking:
             should_clobber = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         if should_clobber == 'clobberscore':
             with self.backtracking:
                 self._remove()
-            if self.session.backtrack():
+            if self.session._backtrack():
                 return
             self.session.is_backtracking_locally = True
 
@@ -456,24 +456,24 @@ class ScorePackageManager(PackageManager):
         self.segment_wrangler._run(head=self.package_path)
 
     def manage_setup(self, clear=True, cache=True):
-        self.session.cache_breadcrumbs(cache=cache)
+        self.session._cache_breadcrumbs(cache=cache)
         while True:
             annotated_title = self._get_annotated_title()
             breadcrumb = '{} - setup'.format(annotated_title)
-            self.session.push_breadcrumb(breadcrumb)
+            self.session._push_breadcrumb(breadcrumb)
             setup_menu = self._make_setup_menu()
             result = setup_menu._run(clear=clear)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
             elif not result:
-                self.session.pop_breadcrumb()
+                self.session._pop_breadcrumb()
                 continue
             self._handle_setup_menu_result(result)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+            self.session._pop_breadcrumb()
+        self.session._pop_breadcrumb()
+        self.session._restore_breadcrumbs(cache=cache)
 
     def manage_stylesheets(self):
         self.stylesheet_wrangler._run(head=self.package_path)

@@ -21,10 +21,10 @@ class ReservoirStartHelperCreationWizard(Wizard):
         pending_user_input=None,
         ):
         self.session.io_manager._assign_user_input(pending_user_input)
-        self.session.cache_breadcrumbs(cache=cache)
+        self.session._cache_breadcrumbs(cache=cache)
         while True:
             function_application_pairs = []
-            self.session.push_breadcrumb(self._breadcrumb)
+            self.session._push_breadcrumb(self._breadcrumb)
             selector = iotools.Selector(session=self.session)
             items = []
             items.append('start at index 0')
@@ -33,22 +33,22 @@ class ReservoirStartHelperCreationWizard(Wizard):
             selector.items = items
             with self.backtracking:
                 function_name = selector._run(clear=clear)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
             elif not function_name:
-                self.session.pop_breadcrumb()
+                self.session._pop_breadcrumb()
                 continue
             function_arguments = self.get_function_arguments(function_name)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
             elif function_arguments is None:
-                self.session.pop_breadcrumb()
+                self.session._pop_breadcrumb()
                 continue
             function_application_pairs.append(
                 (function_name, function_arguments))
             break
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+        self.session._pop_breadcrumb()
+        self.session._restore_breadcrumbs(cache=cache)
         self.target = function_application_pairs
         return self.target
 
@@ -60,7 +60,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
             getter = self.session.io_manager.make_getter(where=self._where)
             getter.append_integer('index')
             result = getter._run()
-            if self.session.backtrack():
+            if self.session._backtrack():
                 return
             arguments.append(result)
         return tuple(arguments)

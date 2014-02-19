@@ -34,17 +34,17 @@ class InstrumentCreationWizard(Wizard):
         pending_user_input=None,
         ):
         self.session.io_manager._assign_user_input(pending_user_input)
-        self.session.cache_breadcrumbs(cache=cache)
-        self.session.push_breadcrumb(self._breadcrumb)
+        self.session._cache_breadcrumbs(cache=cache)
+        self.session._push_breadcrumb(self._breadcrumb)
         selector = iotools.Selector(session=self.session)
         items = instrumenttools.Instrument._list_instrument_names()
         selector.items = items
         selector.is_ranged = self.is_ranged
         with self.backtracking:
             result = selector._run()
-        if self.session.backtrack():
-            self.session.pop_breadcrumb()
-            self.session.restore_breadcrumbs(cache=cache)
+        if self.session._backtrack():
+            self.session._pop_breadcrumb()
+            self.session._restore_breadcrumbs(cache=cache)
             return
         if isinstance(result, list):
             instrument_names = result
@@ -60,8 +60,8 @@ class InstrumentCreationWizard(Wizard):
             result = instruments[:]
         else:
             result = instruments[0]
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+        self.session._pop_breadcrumb()
+        self.session._restore_breadcrumbs(cache=cache)
         self.target = result
         return self.target
 
@@ -90,7 +90,7 @@ class InstrumentCreationWizard(Wizard):
             selector.items = items
             with self.backtracking:
                 instrument_name = selector._run()
-            if self.session.backtrack():
+            if self.session._backtrack():
                 return
             instrument = new(
                 instrument,

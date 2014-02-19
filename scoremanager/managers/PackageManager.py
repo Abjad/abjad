@@ -194,7 +194,7 @@ class PackageManager(DirectoryManager):
         getter.append_string('metadatum name')
         getter.append_expr('metadatum value')
         result = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         if result:
             metadatum_name, metadatum_value = result
@@ -204,7 +204,7 @@ class PackageManager(DirectoryManager):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
         result = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         metadatum = self._get_metadatum(result)
         line = '{!r}'.format(metadatum)
@@ -249,7 +249,7 @@ class PackageManager(DirectoryManager):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
         result = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         if result:
             metadatum_name = result
@@ -266,7 +266,7 @@ class PackageManager(DirectoryManager):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('new name')
         new_package_name = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         lines = []
         line = 'current name: {}'.format(base_name)
@@ -312,7 +312,7 @@ class PackageManager(DirectoryManager):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('package name')
         result = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         self.package_path = result
 

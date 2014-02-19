@@ -36,15 +36,6 @@ class Session(abctools.AbjadObject):
 
     configuration = ScoreManagerConfiguration()
 
-    # TODO: this can probably be removed now
-    # this is a temporary hack to avoid constantly reading from disk;
-    # this will eventually be replaced with something more robust.
-    cache_of_built_in_score_names = (
-        'red_example_score',
-        'green_example_score',
-        'blue_example_score',
-        )
-
     ### INITIALIZER ###
 
     def __init__(self, pending_user_input=None):
@@ -86,6 +77,13 @@ class Session(abctools.AbjadObject):
     def __repr__(self):
         r'''Gets interpreter representation of session.
 
+        ..  container:: example
+
+            ::
+
+                >>> session
+                Session()
+
         Returns string.
         '''
         summary = []
@@ -98,42 +96,89 @@ class Session(abctools.AbjadObject):
         summary = ', '.join(summary)
         return '{}({})'.format(type(self).__name__, summary)
 
+    ### PRIVATE METHODS ###
+
+    def _backtrack(self, source=None):
+        if self.is_complete:
+            return True
+        elif self.is_backtracking_to_score_manager and source == 'home':
+            self.is_backtracking_to_score_manager = False
+            return False
+        elif self.is_backtracking_to_score_manager and not source == 'home':
+            return True
+        elif self.is_backtracking_to_score and source in ('score', 'home'):
+            self.is_backtracking_to_score = False
+            return False
+        elif self.is_backtracking_to_score and not source in ('score', 'home'):
+            return True
+        elif self.is_backtracking_locally and not source == 'home' and \
+            self._backtracking_stack:
+            return True
+        elif self.is_backtracking_locally and not source == 'home' and \
+            not self._backtracking_stack:
+            self.is_backtracking_locally = False
+            return True
+
+    def _cache_breadcrumbs(self, cache=False):
+        if cache:
+            self._breadcrumb_cache_stack.append(self._breadcrumb_stack[:])
+            self._breadcrumb_stack[:] = []
+
+    def _clean_up(self):
+        if self.dump_transcript:
+            self.io_transcript.write()
+
+    def _format_breadcrumb_stack(self):
+        if not self._breadcrumb_stack:
+            return ''
+        result_lines = [self._breadcrumb_stack[0]]
+        hanging_indent_width = 5
+        for breadcrumb in self._breadcrumb_stack[1:]:
+            candidate_line = result_lines[-1] + ' - ' + breadcrumb
+            if len(candidate_line) <= self.menu_header_width:
+                result_lines[-1] = candidate_line
+            else:
+                result_line = hanging_indent_width * ' ' + breadcrumb
+                result_lines.append(result_line)
+        return result_lines
+
+    def _pop_backtrack(self):
+        return self._backtracking_stack.pop()
+
+    def _pop_breadcrumb(self, rollback=True):
+        if rollback:
+            return self._breadcrumb_stack.pop()
+
+    def _push_backtrack(self):
+        if self._backtracking_stack:
+            last_number = self._backtracking_stack[-1]
+            self._backtracking_stack.append(last_number + 1)
+        else:
+            self._backtracking_stack.append(0)
+
+    def _push_breadcrumb(self, breadcrumb, rollback=True):
+        if rollback:
+            self._breadcrumb_stack.append(breadcrumb)
+
+    def _restore_breadcrumbs(self, cache=False):
+        if cache:
+            self._breadcrumb_stack[:] = self._breadcrumb_cache_stack.pop()
+
+    def _reinitialize(self):
+        type(self).__init__(self)
+
     ### PUBLIC PROPERTIES ###
 
     @property
-    def backtracking_stack(self):
-        r'''Session backtracking stack.
-
-        ::
-
-            >>> session.backtracking_stack
-            []
-
-        Returns list.
-        '''
-        return self._backtracking_stack
-
-    @property
-    def breadcrumb_cache_stack(self):
-        r'''Session breadcrumb cache stack.
-
-        ::
-
-            >>> session._breadcrumb_cache_stack
-            []
-
-        Returns list.
-        '''
-        return self._breadcrumb_cache_stack
-
-    @property
     def breadcrumb_stack(self):
-        r'''Session breadcrumb stack.
+        r'''Gets session breadcrumb stack.
 
-        ::
+        ..  container:: example
 
-            >>> session._breadcrumb_stack
-            []
+            ::
+
+                >>> session._breadcrumb_stack
+                []
 
         Returns list.
         '''
@@ -141,12 +186,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def command_history(self):
-        r'''Session command history.
+        r'''Gets session command history.
 
-        ::
+        ..  container:: example
 
-            >>> session.command_history
-            []
+            ::
+
+                >>> session.command_history
+                []
 
         Returns list.
         '''
@@ -154,12 +201,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def command_history_string(self):
-        r'''Session command history string.
+        r'''Gets session command history string.
 
-        ::
+        ..  container:: example
 
-            >>> session.command_history_string
-            ''
+            ::
+
+                >>> session.command_history_string
+                ''
 
         Returns string.
         '''
@@ -167,11 +216,11 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_materials_directory_path(self):
-        r'''Session current materials directory path.
+        r'''Gets session current materials directory path.
 
         ..  container:: example
 
-            **Example 1.** Materials directory path of session outside score:
+            Materials directory path of session outside score:
 
             ::
 
@@ -180,7 +229,7 @@ class Session(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Materials directory path of session in score:
+            Materials directory path of session in score:
 
             ::
 
@@ -204,12 +253,11 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_materials_package_path(self):
-        r'''Session current materials package path.
+        r'''Gets session current materials package path.
 
         ..  container:: example
 
-            **Example 1.** Currents materials package path of session 
-            out of score:
+            Current materials package path of session out of score:
 
             ::
 
@@ -218,8 +266,7 @@ class Session(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Current materials package path of session
-            in score:
+            Current materials package path of session in score:
 
             ::
 
@@ -240,15 +287,27 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_score_directory_path(self):
-        r'''Session current score directory path.
+        r'''Gets session current score directory path.
 
-        .. note:: add example.
+        ..  container:: example
 
-        Returns string.
+            ::
+
+                >>> session.current_score_directory_path is None
+                True
+
+        ..  container:: example
+
+            ::
+
+                >>> session_in_score.current_score_directory_path
+                '.../foo'
+
+        Returns string or none.
         '''
         if self.snake_case_current_score_name:
             if self.snake_case_current_score_name in \
-                self.cache_of_built_in_score_names:
+                self.configuration.built_in_score_package_names:
                 return os.path.join(
                     self.configuration.built_in_score_packages_directory_path,
                     self.snake_case_current_score_name)
@@ -259,42 +318,56 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_score_package_manager(self):
-        r'''Session current score package manager.
+        r'''Gets session current score package manager.
 
-        ::
+        ..  container:: example:
 
-            >>> session.current_score_package_manager is None
-            True
+            ::
 
-        Session in score:
+                >>> session.current_score_package_manager is None
+                True
 
-        ::
+        ..  container:: example
 
-            >>> session_in_score.current_score_package_manager
-            ScorePackageManager('.../foo')
+            ::
+
+                >>> session_in_score.current_score_package_manager
+                ScorePackageManager('.../foo')
 
         (Ouput will vary according to configuration.)
 
         Returns score package manager or none.
         '''
-        from scoremanager.managers.ScorePackageManager \
-            import ScorePackageManager
+        from scoremanager import managers
         if self.is_in_score:
-            return ScorePackageManager(
+            return managers.ScorePackageManager(
                 packagesystem_path=self.current_score_package_path,
-                session=self)
+                session=self,
+                )
 
     @property
     def current_score_package_path(self):
-        r'''Session current score package path.
+        r'''Gets session current score package path.
 
-        .. note:: add example.
+        ..  container:: example
+
+            ::
+
+                >>> session.current_score_package_path is None
+                True
+
+        ..  container:: example
+
+            ::
+
+                >>> session_in_score.current_score_package_path
+                'foo'
 
         Returns string.
         '''
         if self.snake_case_current_score_name:
             if self.snake_case_current_score_name in \
-                self.cache_of_built_in_score_names:
+                self.configuration.built_in_score_package_names:
                 return '.'.join([
                     self.configuration.built_in_score_packages_package_path,
                     self.snake_case_current_score_name])
@@ -303,23 +376,25 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_segments_directory_path(self):
-        r'''Session current segments directory path.
+        r'''Gets session current segments directory path.
 
-        ::
+        ..  container:: example
 
-            >>> session.current_segments_directory_path is None
-            True
+            ::
 
-        (Output will vary according to configuration.)
+                >>> session.current_segments_directory_path is None
+                True
 
-        Session in score:
+            (Output will vary according to configuration.)
 
-        ::
+        ..  container:: example
 
-            >>> session_in_score.current_segments_directory_path
-            '.../foo/segments'
+            ::
 
-        (Output will vary according to configuration.)
+                >>> session_in_score.current_segments_directory_path
+                '.../foo/segments'
+
+            (Output will vary according to configuration.)
 
         Returns string.
         '''
@@ -334,21 +409,21 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_segments_package_path(self):
-        r'''Session current segments package path.
+        r'''Gets session current segments package path.
 
-        Session out of score:
+        ..  container:: example
 
-        ::
+            ::
 
-            >>> session.current_segments_package_path is None
-            True
+                >>> session.current_segments_package_path is None
+                True
 
-        Session in score:
+        ..  container:: example
 
-        ::
+            ::
 
-            >>> session_in_score.current_segments_package_path
-            'foo.segments'
+                >>> session_in_score.current_segments_package_path
+                'foo.segments'
 
         Returns none or string.
         '''
@@ -361,24 +436,19 @@ class Session(abctools.AbjadObject):
             return '.'.join(parts)
 
     @apply
-    def developer_menu_sections_are_developer():
-        def fget(self):
-            return self._developer_menu_sections_are_developer
-        def fset(self, developer_menu_sections_are_developer):
-            assert isinstance(developer_menu_sections_are_developer, bool)
-            self._developer_menu_sections_are_developer = \
-                developer_menu_sections_are_developer
-        return property(**locals())
-
-    @apply
     def dump_transcript():
-        r'''Set to true to dump transcript at end of session.
-
-        .. note:: add example.
-
-        Returns boolean.
-        '''
         def fget(self):
+            r'''Gets and sets flag to dump transcript at end of session.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.dump_transcript
+                    False
+
+            Returns boolean.
+            '''
             return self._dump_transcript
         def fset(self, dump_transcript):
             assert isinstance(dump_transcript, bool)
@@ -387,12 +457,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def explicit_command_history(self):
-        r'''Session explicit command history.
+        r'''Gets session explicit command history.
 
-        ::
+        ..  container:: example
 
-            >>> session.explicit_command_history
-            []
+            ::
+
+                >>> session.explicit_command_history
+                []
 
         Returns list.
         '''
@@ -407,6 +479,18 @@ class Session(abctools.AbjadObject):
     @apply
     def hidden_menu_sections_are_hidden():
         def fget(self):
+            r'''Gets and sets flag indicating that hidden menu sections
+            are hidden.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.hidden_menu_sections_are_hidden
+                    True
+
+            Returns boolean.
+            '''
             return self._hidden_menu_sections_are_hidden
         def fset(self, hidden_menu_sections_are_hidden):
             assert isinstance(hidden_menu_sections_are_hidden, bool)
@@ -416,11 +500,18 @@ class Session(abctools.AbjadObject):
 
     @apply
     def hide_next_redraw():
-        r'''Set to true to hide next redraw.
-
-        Returns boolean.
-        '''
         def fget(self):
+            r'''Gets and sets flag to hide next redraw.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.hide_next_redraw
+                    False
+
+            Returns boolean.
+            '''
             return self._hide_next_redraw
         def fset(self, hide_next_redraw):
             assert isinstance(hide_next_redraw, bool)
@@ -429,7 +520,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def io_manager(self):
-        r'''Session IO manager.
+        r'''Gets session IO manager.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.io_manager
+                IOManager()
 
         Returns IO manager.
         '''
@@ -437,12 +535,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def io_transcript(self):
-        r'''Session IO transcript.
+        r'''Gets session IO transcript.
 
-        ::
+        ..  container:: example
 
-            >>> session.io_transcript
-            IOTranscript()
+            ::
+
+                >>> session.io_transcript
+                IOTranscript()
 
         Returns IO transcript.
         '''
@@ -451,6 +551,17 @@ class Session(abctools.AbjadObject):
     @apply
     def is_autoadding():
         def fget(self):
+            r'''Is true when session is currently autoadding. Otherwise false.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.is_autoadding
+                    False
+
+            Returns boolean.
+            '''
             return self._is_autoadding
         def fset(self, is_autoadding):
             assert isinstance(is_autoadding, bool)
@@ -460,6 +571,18 @@ class Session(abctools.AbjadObject):
     @apply
     def is_backtracking_locally():
         def fget(self):
+            r'''Is true when session is currently backtracking locally. 
+            Otherwise false.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.is_backtracking_locally
+                    False
+
+            Returns boolean.
+            '''
             return self._is_backtracking_locally
         def fset(self, is_backtracking_locally):
             assert isinstance(is_backtracking_locally, bool)
@@ -469,6 +592,18 @@ class Session(abctools.AbjadObject):
     @apply
     def is_backtracking_to_score():
         def fget(self):
+            r'''Is true when session is currently backtracking to score. 
+            Otherwise false.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.is_backtracking_to_score
+                    False
+
+            Returns boolean.
+            '''
             return self._is_backtracking_to_score
         def fset(self, is_backtracking_to_score):
             assert isinstance(is_backtracking_to_score, bool)
@@ -478,6 +613,18 @@ class Session(abctools.AbjadObject):
     @apply
     def is_backtracking_to_score_manager():
         def fget(self):
+            r'''Is true when session is currently backtracking to score manager. 
+            Otherwise false.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.is_backtracking_to_score_manager
+                    False
+
+            Returns boolean.
+            '''
             return self._is_backtracking_to_score_manager
         def fset(self, is_backtracking_to_score_manager):
             assert isinstance(is_backtracking_to_score_manager, bool)
@@ -489,10 +636,12 @@ class Session(abctools.AbjadObject):
     def is_complete(self):
         r'''Is true when session is complete. Otherwise false:
 
-        ::
+        ..  container:: example
 
-            >>> session.is_complete
-            False
+            ::
+
+                >>> session.is_complete
+                False
 
         Returns boolean.
         '''
@@ -502,10 +651,12 @@ class Session(abctools.AbjadObject):
     def is_displayable(self):
         r'''Is true when session is displayable. Otherwise false:
 
-        ::
+        ..  container:: example
 
-            >>> session.is_displayable
-            True
+            ::
+
+                >>> session.is_displayable
+                True
 
         Returns boolean.
         '''
@@ -515,10 +666,12 @@ class Session(abctools.AbjadObject):
     def is_in_score(self):
         r'''Is true when session is in score. Otherwise false:
 
-        ::
+        ..  container:: example
 
-            >>> session.is_in_score
-            False
+            ::
+
+                >>> session.is_in_score
+                False
 
         Returns boolean.
         '''
@@ -529,10 +682,12 @@ class Session(abctools.AbjadObject):
         r'''Is true when session is navigating to sibling score.
         Otherwise false:
 
-        ::
+        ..  container:: example
 
-            >>> session.is_navigating_to_sibling_score
-            False
+            ::
+
+                >>> session.is_navigating_to_sibling_score
+                False
 
         Returns boolean.
         '''
@@ -544,12 +699,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def last_semantic_command(self):
-        r'''Session last semantic command.
+        r'''Gets session last semantic command.
 
-        ::
+        ..  container:: example
 
-            >>> session.last_semantic_command is None
-            True
+            ::
+
+                >>> session.last_semantic_command is None
+                True
 
         Returns string or none.
         '''
@@ -559,20 +716,33 @@ class Session(abctools.AbjadObject):
 
     @property
     def menu_header(self):
-        r'''Session menu header.
+        r'''Gets session menu header.
 
-        ::
+        ..  container:: example
 
-            >>> session.menu_header
-            ''
+            ::
+
+                >>> session.menu_header
+                ''
 
         Returns string.
         '''
-        return '\n'.join(self.format_breadcrumb_stack())
+        return '\n'.join(self._format_breadcrumb_stack())
 
     @apply
     def nonnumbered_menu_sections_are_hidden():
         def fget(self):
+            r'''Gets and sets flag that nonnumbered menu sections are hidden.
+
+            ..  container:: example:
+
+                ::
+
+                    >>> session.nonnumbered_menu_sections_are_hidden
+                    False
+
+            Returns boolean.
+            '''
             return self._nonnumbered_menu_sections_are_hidden
         def fset(self, nonnumbered_menu_sections_are_hidden):
             assert isinstance(nonnumbered_menu_sections_are_hidden, bool)
@@ -583,6 +753,17 @@ class Session(abctools.AbjadObject):
     @apply
     def pending_user_input():
         def fget(self):
+            r'''Gets and sets pending user input.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.pending_user_input is None
+                    True
+
+            Returns string.
+            '''
             return self._pending_user_input
         def fset(self, pending_user_input):
             assert isinstance(pending_user_input, (str, type(None)))
@@ -593,12 +774,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def scores_to_show(self):
-        r'''Session scores to show.
+        r'''Gets session scores to show.
 
-        ::
+        ..  container:: example
 
-            >>> session.scores_to_show
-            'active'
+            ::
+
+                >>> session.scores_to_show
+                'active'
 
         Returns string.
         '''
@@ -608,10 +791,12 @@ class Session(abctools.AbjadObject):
     def session_once_had_user_input(self):
         r'''Is true when session once had user input. Otherwise false:
 
-        ::
+        ..  container:: example
 
-            >>> session.session_once_had_user_input
-            False
+            ::
+
+                >>> session.session_once_had_user_input
+                False
 
         Returns boolean.
         '''
@@ -620,6 +805,24 @@ class Session(abctools.AbjadObject):
     @apply
     def snake_case_current_score_name():
         def fget(self):
+            r'''Gets and sets snake-case current score name of session.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.snake_case_current_score_name is None
+                    True
+
+            ..  container:: example
+
+                ::
+
+                    >>> session_in_score.snake_case_current_score_name
+                    'foo'
+
+            Returns string or none.
+            '''
             return self._snake_case_current_score_name
         def fset(self, snake_case_current_score_name):
             assert isinstance(snake_case_current_score_name, (str, type(None)))
@@ -630,12 +833,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def testable_command_history_string(self):
-        r'''Session testable command history string.
+        r'''Gets session testable command history string.
 
-        ::
+        ..  container:: example
 
-            >>> session.testable_command_history_string
-            ''
+            ::
+
+                >>> session.testable_command_history_string
+                ''
 
         Returns string.
         '''
@@ -649,6 +854,17 @@ class Session(abctools.AbjadObject):
     @apply
     def transcribe_next_command():
         def fget(self):
+            r'''Gets and sets flag to transcribe next command.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.transcribe_next_command
+                    True
+
+            Returns boolean.
+            '''
             return self._transcribe_next_command
         def fset(self, transcribe_next_command):
             assert isinstance(transcribe_next_command, bool)
@@ -658,6 +874,17 @@ class Session(abctools.AbjadObject):
     @apply
     def use_current_user_input_values_as_default():
         def fget(self):
+            r'''Gets and sets flag to use current user input values as default.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.use_current_user_input_values_as_default
+                    False
+
+            Returns boolean.
+            '''
             return self._use_current_user_input_values_as_default
         def fset(self, use_current_user_input_values_as_default):
             assert isinstance(use_current_user_input_values_as_default, bool)
@@ -670,10 +897,12 @@ class Session(abctools.AbjadObject):
         r'''Is true when session user input is consumed.
         Otherwise false:
 
-        ::
+        ..  container:: example
 
-            >>> session.user_input_is_consumed
-            False
+            ::
+
+                >>> session.user_input_is_consumed
+                False
 
         Returns boolean.
         '''
@@ -685,6 +914,17 @@ class Session(abctools.AbjadObject):
     @apply
     def user_specified_quit():
         def fget(self):
+            r'''Gets and sets flag that user specified quit.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.user_specified_quit
+                    False
+
+            Returns boolean.
+            '''
             return self._user_specified_quit
         def fset(self, user_specified_quit):
             assert isinstance(user_specified_quit, bool)
@@ -693,84 +933,31 @@ class Session(abctools.AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def backtrack(self, source=None):
-        if self.is_complete:
-            return True
-        elif self.is_backtracking_to_score_manager and source == 'home':
-            self.is_backtracking_to_score_manager = False
-            return False
-        elif self.is_backtracking_to_score_manager and not source == 'home':
-            return True
-        elif self.is_backtracking_to_score and source in ('score', 'home'):
-            self.is_backtracking_to_score = False
-            return False
-        elif self.is_backtracking_to_score and not source in ('score', 'home'):
-            return True
-        elif self.is_backtracking_locally and not source == 'home' and \
-            self.backtracking_stack:
-            return True
-        elif self.is_backtracking_locally and not source == 'home' and \
-            not self.backtracking_stack:
-            self.is_backtracking_locally = False
-            return True
-
-    def cache_breadcrumbs(self, cache=False):
-        if cache:
-            self._breadcrumb_cache_stack.append(self._breadcrumb_stack[:])
-            self._breadcrumb_stack[:] = []
-
-    def clean_up(self):
-        if self.dump_transcript:
-            self.io_transcript.write()
-
     def display_active_scores(self):
+        r'''Sets scores to show to ``'active'``.
+
+        Returns none.
+        '''
         self._scores_to_show = 'active'
 
     def display_all_scores(self):
+        r'''Sets scores to show to ``'all'``.
+
+        Returns none.
+        '''
         self._scores_to_show = 'all'
 
     def display_mothballed_scores(self):
+        r'''Sets scores to show to ``'mothballed'``.
+
+        Returns none.
+        '''
         self._scores_to_show = 'mothballed'
 
-    def format_breadcrumb_stack(self):
-        if not self._breadcrumb_stack:
-            return ''
-        result_lines = [self._breadcrumb_stack[0]]
-        hanging_indent_width = 5
-        for breadcrumb in self._breadcrumb_stack[1:]:
-            candidate_line = result_lines[-1] + ' - ' + breadcrumb
-            if len(candidate_line) <= self.menu_header_width:
-                result_lines[-1] = candidate_line
-            else:
-                result_line = hanging_indent_width * ' ' + breadcrumb
-                result_lines.append(result_line)
-        return result_lines
-
-    def pop_backtrack(self):
-        return self.backtracking_stack.pop()
-
-    def pop_breadcrumb(self, rollback=True):
-        if rollback:
-            return self._breadcrumb_stack.pop()
-
-    def push_backtrack(self):
-        if self.backtracking_stack:
-            last_number = self.backtracking_stack[-1]
-            self.backtracking_stack.append(last_number + 1)
-        else:
-            self.backtracking_stack.append(0)
-
-    def push_breadcrumb(self, breadcrumb, rollback=True):
-        if rollback:
-            self._breadcrumb_stack.append(breadcrumb)
-
-    def reinitialize(self):
-        type(self).__init__(self)
-
-    def restore_breadcrumbs(self, cache=False):
-        if cache:
-            self._breadcrumb_stack[:] = self._breadcrumb_cache_stack.pop()
-
     def swap_user_input_values_default_status(self):
+        r'''Swaps boolean value of `use_current_user_input_values_as_default`.
+
+        Returns none.
+        '''
         current = self.use_current_user_input_values_as_default
         self.use_current_user_input_values_as_default = not current

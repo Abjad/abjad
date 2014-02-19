@@ -117,7 +117,7 @@ class ListEditor(Editor):
                 )
             with self.backtracking:
                 result = item_creator._run()
-            if self.session.backtrack():
+            if self.session._backtrack():
                 return
             if result == 'done':
                 self.session.is_autoadding = False
@@ -128,7 +128,7 @@ class ListEditor(Editor):
             self.item_getter_configuration_method(getter, self.item_identifier)
             with self.backtracking:
                 item_initialization_token = getter._run()
-            if self.session.backtrack():
+            if self.session._backtrack():
                 return
             if item_initialization_token == 'done':
                 self.session.is_autoadding = False
@@ -172,7 +172,7 @@ class ListEditor(Editor):
         getter.append_integer_in_range('old number', 1, len(self.items))
         getter.append_integer_in_range('new number', 1, len(self.items))
         result = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         old_number, new_number = result
         old_index, new_index = old_number - 1, new_number - 1
@@ -185,7 +185,7 @@ class ListEditor(Editor):
         getter.append_menu_section_range(
             self.items_identifier, self._numbered_section)
         argument_range = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         indices = [argument_number - 1 for argument_number in argument_range]
         indices = list(reversed(sorted(set(indices))))

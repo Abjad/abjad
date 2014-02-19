@@ -298,88 +298,88 @@ class BuildDirectoryManager(DirectoryManager):
 
         Returns none.
         '''
-        self.session.cache_breadcrumbs(cache=cache)
+        self.session._cache_breadcrumbs(cache=cache)
         while True:
-            self.session.push_breadcrumb('back cover')
+            self.session._push_breadcrumb('back cover')
             menu = self._make_back_cover_menu()
             result = menu._run(clear=clear)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
             elif not result:
-                self.session.pop_breadcrumb()
+                self.session._pop_breadcrumb()
                 continue
             self._handle_back_cover_menu_result(result)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+            self.session._pop_breadcrumb()
+        self.session._pop_breadcrumb()
+        self.session._restore_breadcrumbs(cache=cache)
 
     def manage_front_cover(self, clear=True, cache=False):
         r'''Manages front cover.
 
         Returns none.
         '''
-        self.session.cache_breadcrumbs(cache=cache)
+        self.session._cache_breadcrumbs(cache=cache)
         while True:
-            self.session.push_breadcrumb('front cover')
+            self.session._push_breadcrumb('front cover')
             menu = self._make_front_cover_menu()
             result = menu._run(clear=clear)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
             elif not result:
-                self.session.pop_breadcrumb()
+                self.session._pop_breadcrumb()
                 continue
             self._handle_front_cover_menu_result(result)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+            self.session._pop_breadcrumb()
+        self.session._pop_breadcrumb()
+        self.session._restore_breadcrumbs(cache=cache)
 
     def manage_preface(self, clear=True, cache=False):
         r'''Manages preface.
 
         Returns none.
         '''
-        self.session.cache_breadcrumbs(cache=cache)
+        self.session._cache_breadcrumbs(cache=cache)
         while True:
-            self.session.push_breadcrumb('preface')
+            self.session._push_breadcrumb('preface')
             menu = self._make_preface_menu()
             result = menu._run(clear=clear)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
             elif not result:
-                self.session.pop_breadcrumb()
+                self.session._pop_breadcrumb()
                 continue
             self._handle_preface_menu_result(result)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+            self.session._pop_breadcrumb()
+        self.session._pop_breadcrumb()
+        self.session._restore_breadcrumbs(cache=cache)
 
     def manage_score(self, clear=True, cache=False):
         r'''Manages score.
 
         Returns none.
         '''
-        self.session.cache_breadcrumbs(cache=cache)
+        self.session._cache_breadcrumbs(cache=cache)
         while True:
-            self.session.push_breadcrumb('score')
+            self.session._push_breadcrumb('score')
             menu = self._make_score_menu()
             result = menu._run(clear=clear)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
             elif not result:
-                self.session.pop_breadcrumb()
+                self.session._pop_breadcrumb()
                 continue
             self._handle_score_menu_result(result)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+            self.session._pop_breadcrumb()
+        self.session._pop_breadcrumb()
+        self.session._restore_breadcrumbs(cache=cache)
 
     ### UI MANIFEST ###
 

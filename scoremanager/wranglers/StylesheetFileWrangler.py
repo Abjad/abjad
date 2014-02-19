@@ -230,12 +230,12 @@ class StylesheetFileWrangler(Wrangler):
                 in_built_in_score_packages=False,
                 in_user_score_packages=False,
                 )
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('stylesheet name')
         stylesheet_file_path = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         stylesheet_file_path = \
             stringtools.string_to_accent_free_snake_case(

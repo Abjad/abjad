@@ -121,7 +121,7 @@ class DirectoryManager(Manager):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('directory path')
         result = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         self.filesystem_path = result
 

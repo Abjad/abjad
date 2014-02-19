@@ -131,7 +131,7 @@ class MaterialPackageWrangler(PackageWrangler):
         with self.backtracking:
             material_package_path = \
                 self.interactively_get_available_packagesystem_path()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         self.make_data_package(material_package_path, metadata=metadata)
 
@@ -147,7 +147,7 @@ class MaterialPackageWrangler(PackageWrangler):
         with self.backtracking:
             package_path = \
                 self.interactively_get_available_packagesystem_path()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         self.make_handmade_material_package(package_path)
 
@@ -164,7 +164,7 @@ class MaterialPackageWrangler(PackageWrangler):
             wrangler = self._material_package_manager_wrangler
             result = wrangler.interactively_select_asset_packagesystem_path(
                 cache=True, clear=False)
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         material_package_manager_package_path = result
         material_package_manager_class_name = \
@@ -172,7 +172,7 @@ class MaterialPackageWrangler(PackageWrangler):
         with self.backtracking:
             material_package_path = \
                 self.interactively_get_available_packagesystem_path()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         self.make_managermade_material_package(
             material_package_path, material_package_manager_class_name)

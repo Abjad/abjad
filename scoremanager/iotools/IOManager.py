@@ -9,6 +9,14 @@ from abjad.tools.systemtools.IOManager import IOManager
 
 class IOManager(IOManager):
     r'''Manages Abjad IO.
+
+    ..  container:: example
+
+        ::
+
+            >>> score_manager = scoremanager.core.ScoreManager()
+            >>> io_manager = score_manager.session.io_manager
+
     '''
 
     ### INITIALIZER ###
@@ -20,6 +28,22 @@ class IOManager(IOManager):
         self._configuration = core.ScoreManagerConfiguration()
         self._score_package_wrangler = \
             wranglers.ScorePackageWrangler(session=self.session)
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        r'''Gets interpreter representation of IO manager.
+
+        ..  container:: example
+
+            ::
+
+                >>> io_manager
+                IOManager()
+
+        Returns string.
+        '''
+        return '{}()'.format(type(self).__name__)
 
     ### PUBLIC PROPERTIES ###
 
@@ -225,7 +249,7 @@ class IOManager(IOManager):
             clear_terminal=clear_terminal,
             include_chevron=include_chevron,
             )
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         return 'yes'.startswith(result.lower())
 

@@ -199,24 +199,24 @@ class Wrangler(ScoreManagerObject):
         pending_user_input=None,
         ):
         self.session.io_manager._assign_user_input(pending_user_input)
-        breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
-        self.session.cache_breadcrumbs(cache=cache)
+        breadcrumb = self.session._pop_breadcrumb(rollback=rollback)
+        self.session._cache_breadcrumbs(cache=cache)
         while True:
-            self.session.push_breadcrumb(self._breadcrumb)
+            self.session._push_breadcrumb(self._breadcrumb)
             menu = self._make_main_menu(head=head)
             result = menu._run(clear=clear)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
             elif not result:
-                self.session.pop_breadcrumb()
+                self.session._pop_breadcrumb()
                 continue
             self._handle_main_menu_result(result)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
-        self.session.restore_breadcrumbs(cache=cache)
+            self.session._pop_breadcrumb()
+        self.session._pop_breadcrumb()
+        self.session._push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
+        self.session._restore_breadcrumbs(cache=cache)
 
     ### PUBLIC PROPERTIES ###
 
@@ -288,7 +288,7 @@ class Wrangler(ScoreManagerObject):
         getter.append_string('view name')
         with self.backtracking:
             view_name = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         head = self.session.current_score_package_path
         menu_entries = self._make_asset_menu_entries(head=head)
@@ -302,7 +302,7 @@ class Wrangler(ScoreManagerObject):
         editor.explicit_breadcrumb = breadcrumb
         with self.backtracking:
             editor._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         tokens = editor.target
         self.session.io_manager.display('')
@@ -329,7 +329,7 @@ class Wrangler(ScoreManagerObject):
             asset_section,
             )
         result = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         asset_indices = [asset_number - 1 for asset_number in result]
         total_assets_removed = 0
@@ -361,7 +361,7 @@ class Wrangler(ScoreManagerObject):
         with self.backtracking:
             asset_filesystem_path = \
                 self.interactively_select_asset_filesystem_path()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         asset_manager = self._initialize_asset_manager(asset_filesystem_path)
         asset_manager.interactively_rename()
@@ -397,21 +397,21 @@ class Wrangler(ScoreManagerObject):
         Returns string.
         '''
         self.session.io_manager._assign_user_input(pending_user_input)
-        self.session.cache_breadcrumbs(cache=cache)
+        self.session._cache_breadcrumbs(cache=cache)
         menu = self._make_asset_selection_menu()
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb()
-            self.session.push_breadcrumb(breadcrumb)
+            self.session._push_breadcrumb(breadcrumb)
             result = menu._run(clear=clear)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
             elif not result:
-                self.session.pop_breadcrumb()
+                self.session._pop_breadcrumb()
                 continue
             else:
                 break
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+        self.session._pop_breadcrumb()
+        self.session._restore_breadcrumbs(cache=cache)
         return result
 
     def interactively_select_asset_storehouse_filesystem_path(
@@ -429,7 +429,7 @@ class Wrangler(ScoreManagerObject):
         Returns string.
         '''
         self.session.io_manager._assign_user_input(pending_user_input)
-        self.session.cache_breadcrumbs(cache=cache)
+        self.session._cache_breadcrumbs(cache=cache)
         menu = self.session.io_manager.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
         menu_entries = self._make_asset_storehouse_menu_entries(
@@ -441,17 +441,17 @@ class Wrangler(ScoreManagerObject):
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb(
                 is_storehouse=True)
-            self.session.push_breadcrumb(breadcrumb)
+            self.session._push_breadcrumb(breadcrumb)
             result = menu._run(clear=clear)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
             elif not result:
-                self.session.pop_breadcrumb()
+                self.session._pop_breadcrumb()
                 continue
             else:
                 break
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+        self.session._pop_breadcrumb()
+        self.session._restore_breadcrumbs(cache=cache)
         return result
 
     def interactively_select_view(
@@ -471,7 +471,7 @@ class Wrangler(ScoreManagerObject):
         selector.items = view_names
         with self.backtracking:
             view_name = selector._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         manager = self._get_current_package_manager()
         manager._add_metadatum('view_name', view_name)

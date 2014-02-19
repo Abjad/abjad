@@ -32,9 +32,9 @@ class ScoreManagerObject(object):
         def __init__(self, client):
             self.client = client
         def __enter__(self):
-            self.client.session.push_backtrack()
+            self.client.session._push_backtrack()
         def __exit__(self, exg_type, exc_value, trackeback):
-            self.client.session.pop_backtrack()
+            self.client.session._pop_backtrack()
 
     ### INITIALIZER ###
 

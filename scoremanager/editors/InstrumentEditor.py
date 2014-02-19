@@ -91,7 +91,7 @@ class InstrumentEditor(Editor):
                     is_ranged=True, 
                     session=self.session)
                 instruments = wizard._run()
-            if self.session.backtrack():
+            if self.session._backtrack():
                 return
             if instruments:
                 self.target = instruments[0]

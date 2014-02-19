@@ -643,7 +643,7 @@ class MaterialPackageManager(PackageManager):
         output_material_handler = output_material_handler_callable(
             target=output_material, session=self.session)
         output_material_handler._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         output_material_module_import_statements = \
             self.output_material_module_import_statements
@@ -680,7 +680,7 @@ class MaterialPackageManager(PackageManager):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('new name')
         new_package_name = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         lines = []
         lines.append('current name: {}'.format(base_name))
@@ -752,7 +752,7 @@ class MaterialPackageManager(PackageManager):
         with self.backtracking:
             material_package_manager = \
                 material_manager_wrangler.select_material_manager_class_name_interactively()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         self._add_metadatum(
             'material_package_manager',
@@ -768,7 +768,7 @@ class MaterialPackageManager(PackageManager):
         with self.backtracking:
             stylesheet_file_path = \
                 stylesheet_file_wrangler.interactively_select_asset_filesystem_path()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         self.stylesheet_file_path_in_memory = stylesheet_file_path
         self.session.io_manager.proceed(
@@ -1193,7 +1193,7 @@ class MaterialPackageManager(PackageManager):
         getter.include_newlines = include_newline
         getter.allow_none = True
         new_value = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         self.user_input_wrapper_in_memory[key] = new_value
         wrapper = self.user_input_wrapper_in_memory
@@ -1244,7 +1244,7 @@ class MaterialPackageManager(PackageManager):
             'start at element number', 1, total_elements, default_value=1)
         with self.backtracking:
             start_element_number = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         current_element_number = start_element_number
         current_element_index = current_element_number - 1
@@ -1252,7 +1252,7 @@ class MaterialPackageManager(PackageManager):
             with self.backtracking:
                 self.interactively_edit_user_input_wrapper_at_number(
                     current_element_number, include_newline=False)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 return
             current_element_index += 1
             current_element_index %= total_elements

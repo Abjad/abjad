@@ -140,7 +140,7 @@ class PackageWrangler(Wrangler):
             getter.append_space_delimited_lowercase_string('name')
             with self.backtracking:
                 package_name = getter._run()
-            if self.session.backtrack():
+            if self.session._backtrack():
                 return
             package_name = \
                 stringtools.string_to_accent_free_snake_case(package_name)
@@ -167,7 +167,7 @@ class PackageWrangler(Wrangler):
         with self.backtracking:
             package_path = \
                 self.interactively_get_available_packagesystem_path()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         self.make_asset(package_path)
 
@@ -185,7 +185,7 @@ class PackageWrangler(Wrangler):
             asset_package_path = \
                 self.interactively_select_asset_packagesystem_path(
                 head=head, infinitival_phrase='to rename')
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         asset_manager = self._initialize_asset_manager(asset_package_path)
         asset_manager.interactively_rename()
@@ -203,7 +203,7 @@ class PackageWrangler(Wrangler):
         Returns string.
         '''
         self.session.io_manager._assign_user_input(pending_user_input)
-        self.session.cache_breadcrumbs(cache=cache)
+        self.session._cache_breadcrumbs(cache=cache)
         while True:
             name = '_human_readable_target_name'
             human_readable_target_name = getattr(self, name, None)
@@ -211,18 +211,18 @@ class PackageWrangler(Wrangler):
                 human_readable_target_name=human_readable_target_name,
                 infinitival_phrase=infinitival_phrase,
                 )
-            self.session.push_breadcrumb(breadcrumb)
+            self.session._push_breadcrumb(breadcrumb)
             menu = self._make_asset_selection_menu(head=head)
             result = menu._run(clear=clear)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
             elif not result:
-                self.session.pop_breadcrumb()
+                self.session._pop_breadcrumb()
                 continue
             else:
                 break
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+        self.session._pop_breadcrumb()
+        self.session._restore_breadcrumbs(cache=cache)
         return result
 
     def list_asset_managers(

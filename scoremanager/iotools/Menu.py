@@ -428,7 +428,7 @@ class Menu(ScoreManagerObject):
             self.session.enable_where = True
 
     def display_hidden_menu_section(self):
-        self.session.push_breadcrumb('hidden commands')
+        self.session._push_breadcrumb('hidden commands')
         menu_lines = []
         title = self.session.menu_header
         title = stringtools.capitalize_string_start(title)
@@ -453,10 +453,10 @@ class Menu(ScoreManagerObject):
             clear_terminal=True,
             )
         self.session.hide_next_redraw = True
-        self.session.pop_breadcrumb()
+        self.session._pop_breadcrumb()
 
     def display_navigation_menu_section(self):
-        self.session.push_breadcrumb('navigation commands')
+        self.session._push_breadcrumb('navigation commands')
         menu_lines = []
         title = self.session.menu_header
         title = stringtools.capitalize_string_start(title)
@@ -478,7 +478,7 @@ class Menu(ScoreManagerObject):
             clear_terminal=True,
             )
         self.session.hide_next_redraw = True
-        self.session.pop_breadcrumb()
+        self.session._pop_breadcrumb()
 
     def interactively_edit_calling_code(self):
         if self.where is not None:

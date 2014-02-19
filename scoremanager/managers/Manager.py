@@ -197,22 +197,22 @@ class Manager(ScoreManagerObject):
 
     def _run(self, cache=False, clear=True, pending_user_input=None):
         self.session.io_manager._assign_user_input(pending_user_input)
-        self.session.cache_breadcrumbs(cache=cache)
+        self.session._cache_breadcrumbs(cache=cache)
         while True:
-            self.session.push_breadcrumb(self._breadcrumb)
+            self.session._push_breadcrumb(self._breadcrumb)
             menu = self._make_main_menu()
             result = menu._run(clear=clear)
-            if self.session.backtrack(source=self._backtracking_source):
+            if self.session._backtrack(source=self._backtracking_source):
                 break
             elif not result:
-                self.session.pop_breadcrumb()
+                self.session._pop_breadcrumb()
                 continue
             self._handle_main_menu_result(result)
-            if self.session.backtrack(source=self._backtracking_source):
+            if self.session._backtrack(source=self._backtracking_source):
                 break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+            self.session._pop_breadcrumb()
+        self.session._pop_breadcrumb()
+        self.session._restore_breadcrumbs(cache=cache)
 
     def _space_delimited_lowercase_name_to_asset_name(
         self, space_delimited_lowercase_name):
@@ -256,7 +256,7 @@ class Manager(ScoreManagerObject):
         self.session.io_manager._assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
         result = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         new_asset_name = \
             self._space_delimited_lowercase_name_to_asset_name(result)
@@ -285,7 +285,7 @@ class Manager(ScoreManagerObject):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string("type 'remove' to proceed")
         result = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         if not result == 'remove':
             return
@@ -314,7 +314,7 @@ class Manager(ScoreManagerObject):
         getter = self._initialize_file_name_getter()
         getter.include_newlines = False
         result = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         parent_directory_path = os.path.dirname(self.filesystem_path)
         new_path = os.path.join(parent_directory_path, result)
@@ -339,7 +339,7 @@ class Manager(ScoreManagerObject):
         getter.append_snake_case_file_name('name of boilerplate asset')
         with self.backtracking:
             boilerplate_file_built_in_asset_name = getter._run()
-        if self.session.backtrack():
+        if self.session._backtrack():
             return
         if self._write_boilerplate(boilerplate_file_built_in_asset_name):
             self.session.io_manager.proceed('boilerplate asset copied.')
@@ -375,7 +375,7 @@ class Manager(ScoreManagerObject):
             getter = self.session.io_manager.make_getter(where=self._where)
             getter.append_string('commit message')
             commit_message = getter._run(clear_terminal=False)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 return
             line = 'commit message will be: "{}"\n'.format(commit_message)
             self.session.io_manager.display(line)

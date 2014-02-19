@@ -52,7 +52,7 @@ class Editor(ScoreManagerObject):
             )
         if editor is not None:
             result = editor._run()
-            if self.session.backtrack():
+            if self.session._backtrack():
                 self.is_autoadvancing = False
                 return
             if hasattr(editor, 'target'):
@@ -83,13 +83,13 @@ class Editor(ScoreManagerObject):
         pending_user_input=None,
         ):
         self.session.io_manager._assign_user_input(pending_user_input)
-        self.session.cache_breadcrumbs(cache=cache)
-        self.session.push_breadcrumb(self._breadcrumb)
+        self.session._cache_breadcrumbs(cache=cache)
+        self.session._push_breadcrumb(self._breadcrumb)
         with self.backtracking:
             self.initialize_target()
-        self.session.pop_breadcrumb()
-        if self.session.backtrack():
-            self.session.restore_breadcrumbs(cache=cache)
+        self.session._pop_breadcrumb()
+        if self.session._backtrack():
+            self.session._restore_breadcrumbs(cache=cache)
             return
         result = None
         entry_point = None
@@ -99,7 +99,7 @@ class Editor(ScoreManagerObject):
             self.session.is_autoadding = True
         while True:
             breadcrumb = breadcrumb or self._breadcrumb
-            self.session.push_breadcrumb(breadcrumb=breadcrumb)
+            self.session._push_breadcrumb(breadcrumb=breadcrumb)
             if self.session.is_autoadding:
                 menu = self._make_main_menu()
                 result = 'add'
@@ -122,25 +122,25 @@ class Editor(ScoreManagerObject):
                     result)
                 if result == entry_point:
                     self.is_autoadvancing = False
-                    self.session.pop_breadcrumb()
+                    self.session._pop_breadcrumb()
                     continue
             else:
                 menu = self._make_main_menu()
                 result = menu._run(clear=clear)
-                if self.session.backtrack():
+                if self.session._backtrack():
                     break
                 elif not result:
-                    self.session.pop_breadcrumb()
+                    self.session._pop_breadcrumb()
                     continue
             if result == 'done':
                 break
             self._handle_main_menu_result(result)
-            if self.session.backtrack():
+            if self.session._backtrack():
                 break
-            self.session.pop_breadcrumb()
+            self.session._pop_breadcrumb()
         self.session.is_autoadding = False
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+        self.session._pop_breadcrumb()
+        self.session._restore_breadcrumbs(cache=cache)
         self.clean_up_attributes_in_memory()
 
     ### PUBLIC PROPERTIES ###
