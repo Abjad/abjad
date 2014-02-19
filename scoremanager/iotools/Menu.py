@@ -117,7 +117,7 @@ class Menu(ScoreManagerObject):
             return
         elif directive == 'o':
             self.toggle_hidden_commands()
-        elif directive == 'nav':
+        elif directive == 'n':
             self.display_navigation_menu_section()
         elif directive == 'sce':
             self.interactively_edit_calling_code()
@@ -170,7 +170,7 @@ class Menu(ScoreManagerObject):
             return_value_attribute='key',
             )
         section.append(('commands - more', 'o'))
-        section.append(('commands - navigation', 'nav'))
+        section.append(('commands - navigation', 'n'))
         return section
 
     def _make_default_hidden_sections(self):
