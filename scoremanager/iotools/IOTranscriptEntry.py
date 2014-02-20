@@ -25,23 +25,11 @@ class IOTranscriptEntry(AbjadObject):
         self._lines = lines[:]
         self._terminal_was_cleared = terminal_was_cleared
 
-    ### SPECIAL METHODS ###
-
-    def __getitem__(self, expr):
-        if expr == 0:
-            raise Exception
-        elif expr in (1, -2):
-            return self.lines
-        elif expr in (2, -1):
-            return self.terminal_was_cleared
-        else:
-            raise ValueError(expr)
-
     ### PUBLIC PROPERTIES ###
 
     @property
     def current_time(self):
-        r'''Current time of entry.
+        r'''Gets current time of entry.
 
         Returns datetime.
         '''
@@ -49,7 +37,7 @@ class IOTranscriptEntry(AbjadObject):
 
     @property
     def lines(self):
-        r'''Entry lines.
+        r'''Gets entry lines.
 
         Returns list.
         '''
@@ -62,3 +50,11 @@ class IOTranscriptEntry(AbjadObject):
         Returns boolean.
         '''
         return self._terminal_was_cleared
+
+    @property
+    def title(self):
+        r'''Gets title of entry.
+
+        Returns string.
+        '''
+        return self.lines[0]

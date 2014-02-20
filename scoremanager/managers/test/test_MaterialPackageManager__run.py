@@ -32,7 +32,7 @@ def test_MaterialPackageManager__run_02():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='lmm red~sargasso~measures q')
     string = 'Score manager - material library - red sargasso measures'
-    assert score_manager.session.io_transcript.last_menu_lines[0] == string
+    assert score_manager.session.io_transcript.last_menu_title == string
 
 
 def test_MaterialPackageManager__run_03():
@@ -69,4 +69,4 @@ def test_MaterialPackageManager__run_04():
     string = 'red~example~score m tempo~inventory q'
     score_manager._run(pending_user_input=string)
     string = 'Red Example Score (2013) - materials - tempo inventory'
-    assert score_manager.session.io_transcript.last_menu_lines[0] == string
+    assert score_manager.session.io_transcript.last_menu_title == string

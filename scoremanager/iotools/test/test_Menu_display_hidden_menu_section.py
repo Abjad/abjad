@@ -10,7 +10,7 @@ def test_Menu_display_hidden_menu_section_01():
 
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='hidden q')
-    assert score_manager.session.io_transcript[-2][1] == \
+    assert score_manager.session.io_transcriptlast_menu_lines == \
         ['Score manager - active scores - hidden commands',
         '',
         '     hidden commands - toggle (hct)',

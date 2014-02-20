@@ -31,7 +31,7 @@ def test_MaterialPackageWrangler__run_02():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='lmm q')
     title_line = 'Score manager - material library'
-    assert score_manager.session.io_transcript[-2][1][0] == title_line
+    assert score_manager.session.io_transcript.last_menu_title == title_line
 
 
 def test_MaterialPackageWrangler__run_03():
@@ -40,5 +40,5 @@ def test_MaterialPackageWrangler__run_03():
 
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='lmm q')
-    menu_lines = score_manager.session.io_transcript[-2][1]
+    menu_lines = score_manager.session.io_transcript.last_menu_lines
     assert any(x.endswith('red sargasso measures') for x in menu_lines)

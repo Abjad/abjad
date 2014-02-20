@@ -36,7 +36,7 @@ class IOTranscript(AbjadObject):
 
     @property
     def last_menu_lines(self):
-        return self[-2][1]
+        return self[-2].lines
 
     @property
     def last_menu_title(self):
@@ -45,7 +45,7 @@ class IOTranscript(AbjadObject):
     @property
     def signature(self):
         result = []
-        short_transcript = [entry[1] for entry in self.entries]
+        short_transcript = [entry.lines for entry in self.entries]
         result.append(len(short_transcript))
         indices_already_encountered = set([])
         for i in range(len(short_transcript)):
