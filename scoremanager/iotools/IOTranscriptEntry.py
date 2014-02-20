@@ -29,7 +29,7 @@ class IOTranscriptEntry(AbjadObject):
 
     def __getitem__(self, expr):
         if expr == 0:
-            return self.current_time
+            raise Exception
         elif expr in (1, -2):
             return self.lines
         elif expr in (2, -1):

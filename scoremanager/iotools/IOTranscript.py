@@ -77,10 +77,10 @@ class IOTranscript(AbjadObject):
 
     def format_entry(self, entry):
         result = []
-        result.append(str(entry[0]))
-        if entry[2]:
+        result.append(str(entry.current_time))
+        if entry.terminal_was_cleared:
             result.append('clear_terminal=True')
-        for line in entry[1]:
+        for line in entry.lines:
             result.append(line)
         return '\n'.join(result)
 
