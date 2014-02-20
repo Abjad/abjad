@@ -38,6 +38,7 @@ class Session(abctools.AbjadObject):
 
     _variables_to_display = (
         'breadcrumb_stack',
+        'command_history',
         'controller_stack',
         'current_controller',
         'current_materials_directory_path',

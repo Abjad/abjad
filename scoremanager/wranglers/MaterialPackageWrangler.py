@@ -204,7 +204,6 @@ class MaterialPackageWrangler(PackageWrangler):
             '.../scoremanager/materialpackages/red_notes'
             '.../scoremanager/materialpackages/red_numbers'
             '.../scoremanager/materialpackages/red_sargasso_measures'
-            '.../scoremanager/materialpackages/sargasso_multipliers'
             '.../scorepackages/red_example_score/materials/tempo_inventory'
 
         Returns list.
@@ -242,7 +241,6 @@ class MaterialPackageWrangler(PackageWrangler):
             MaterialPackageManager('.../scoremanager/materialpackages/red_notes')
             MaterialPackageManager('.../scoremanager/materialpackages/red_numbers')
             SargassoMeasureMaterialPackageManager('.../scoremanager/materialpackages/red_sargasso_measures')
-            MaterialPackageManager('.../scoremanager/materialpackages/sargasso_multipliers')
             TempoInventoryMaterialPackageManager('.../scoremanager/scorepackages/red_example_score/materials/tempo_inventory')
 
         Returns list.
@@ -279,7 +277,6 @@ class MaterialPackageWrangler(PackageWrangler):
             'red notes'
             'red numbers'
             'red sargasso measures'
-            'sargasso multipliers'
             'tempo inventory'
 
         Returns list.
@@ -317,7 +314,6 @@ class MaterialPackageWrangler(PackageWrangler):
             'scoremanager.materialpackages.red_notes'
             'scoremanager.materialpackages.red_numbers'
             'scoremanager.materialpackages.red_sargasso_measures'
-            'scoremanager.materialpackages.sargasso_multipliers'
             'scoremanager.scorepackages.red_example_score.materials.tempo_inventory'
 
         Returns list.

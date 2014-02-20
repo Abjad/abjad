@@ -179,7 +179,6 @@ class Menu(ScoreManagerObject):
         sections = []
         sections.append(self._make_navigation_menu_section())
         sections.append(self._make_command_display_menu_section())
-        sections.append(self._make_example_score_menu_section())
         sections.append(self._make_lilypond_menu_section())
         sections.append(self._make_python_menu_section())
         sections.append(self._make_repository_menu_section())
@@ -188,15 +187,6 @@ class Menu(ScoreManagerObject):
         sections.append(self._make_source_code_menu_section())
         sections.append(self._make_system_menu_section())
         return sections
-
-    def _make_example_score_menu_section(self):
-        section = self._make_section(
-            is_hidden=True,
-            match_on_display_string=False,
-            return_value_attribute='key',
-            )
-        section.append(('example scores - toggle', 'xst'))
-        return section
 
     def _make_lilypond_menu_section(self):
         section = self._make_section(

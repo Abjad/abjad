@@ -9,19 +9,19 @@ def test_MaterialPackageManager__run_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='lmm sargasso q')
+    score_manager._run(pending_user_input='lmm red~sargasso~measures q')
     assert score_manager.session.io_transcript.signature == (6,)
 
-    score_manager._run(pending_user_input='lmm sargasso b q')
+    score_manager._run(pending_user_input='lmm red~sargasso~measures b q')
     assert score_manager.session.io_transcript.signature == (8, (2, 6))
 
-    score_manager._run(pending_user_input='lmm sargasso h q')
+    score_manager._run(pending_user_input='lmm red~sargasso~measures h q')
     assert score_manager.session.io_transcript.signature == (8, (0, 6))
 
-    score_manager._run(pending_user_input='lmm sargasso s q')
+    score_manager._run(pending_user_input='lmm red~sargasso~measures s q')
     assert score_manager.session.io_transcript.signature == (8, (4, 6))
 
-    score_manager._run(pending_user_input='lmm sargasso foo q')
+    score_manager._run(pending_user_input='lmm red~sargasso~measures foo q')
     assert score_manager.session.io_transcript.signature == (8, (4, 6))
 
 
@@ -30,8 +30,8 @@ def test_MaterialPackageManager__run_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='lmm sargasso q')
-    string = 'Score manager - material library - sargasso multipliers'
+    score_manager._run(pending_user_input='lmm red~sargasso~measures q')
+    string = 'Score manager - material library - red sargasso measures'
     assert score_manager.session.io_transcript.last_menu_lines[0] == string
 
 

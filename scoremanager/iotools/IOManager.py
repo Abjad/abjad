@@ -122,8 +122,6 @@ class IOManager(IOManager):
             self.session.is_backtracking_to_score_manager = True
         elif key == 'sct':
             self.toggle_location_tracking()
-        elif key == 'xst':
-            self.toggle_example_score_visibility()
         else:
             return directive
 

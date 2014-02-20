@@ -139,7 +139,6 @@
         red_notes
         red_numbers
         red_sargasso_measures
-        sargasso_multipliers (remove)
     ... to ...
         example_dynamic_inventory
         example_articulation_inventory
