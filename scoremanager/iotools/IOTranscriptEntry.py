@@ -32,7 +32,7 @@ class IOTranscriptEntry(AbjadObject):
             return self.current_time
         elif expr in (1, -2):
             return self.lines
-        elif expr == (2, -1):
+        elif expr in (2, -1):
             return self.terminal_was_cleared
         else:
             raise ValueError(expr)

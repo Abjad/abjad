@@ -68,16 +68,14 @@ class IOTranscript(AbjadObject):
     ### PUBLIC METHODS ###
 
     def append_lines(self, lines, clear_terminal=None):
-        assert isinstance(lines, list)
-        assert isinstance(clear_terminal, (bool, type(None)))
-        entry = []
-        entry.append(self.current_time)
-        entry.append(lines[:])
-        entry.append(clear_terminal)
+        from scoremanager import iotools
+        entry = iotools.IOTranscriptEntry(
+            lines,
+            terminal_was_cleared=clear_terminal,
+            )
         self.entries.append(entry)
 
     def format_entry(self, entry):
-        assert len(entry) == 3
         result = []
         result.append(str(entry[0]))
         if entry[2]:
