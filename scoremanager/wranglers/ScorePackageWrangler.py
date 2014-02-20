@@ -376,11 +376,12 @@ class ScorePackageWrangler(PackageWrangler):
             is_example = asset_manager._get_metadatum('is_example')
             if scores_to_show == 'all':
                 result.append(asset_manager)
-            elif scores_to_show == 'active' and not is_mothballed:
+            elif (scores_to_show == 'active' and not is_mothballed and
+                not is_example):
                 result.append(asset_manager)
-            elif scores_to_show == 'example' and is_example:
-                if not is_mothballed:
-                    result.append(asset_manager)
+            elif (scores_to_show == 'example' and is_example and
+                not is_mothballed):
+                result.append(asset_manager)
             elif scores_to_show == 'mothballed' and is_mothballed:
                 result.append(asset_manager)
         return result
