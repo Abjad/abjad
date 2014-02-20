@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 score_manager = scoremanager.core.ScoreManager()
-wrangler = score_manager.score_package_wrangler
+wrangler = score_manager._score_package_wrangler
 
 
 def test_ScorePackageWrangler_read_only_attributes_01():

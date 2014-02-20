@@ -6,7 +6,7 @@ import scoremanager
 def test_SegmentPackageWrangler_read_only_attributes_01():
 
     score_manager = scoremanager.core.ScoreManager()
-    wrangler = score_manager.segment_package_wrangler
+    wrangler = score_manager._segment_package_wrangler
     assert not wrangler.session.is_in_score
 
     assert wrangler._breadcrumb == 'segments'
@@ -21,7 +21,7 @@ def test_SegmentPackageWrangler_read_only_attributes_01():
 def test_SegmentPackageWrangler_read_only_attributes_02():
 
     score_manager = scoremanager.core.ScoreManager()
-    wrangler = score_manager.segment_package_wrangler
+    wrangler = score_manager._segment_package_wrangler
     wrangler.session.current_score_snake_case_name = 'red_example_score'
     assert wrangler.session.is_in_score
 

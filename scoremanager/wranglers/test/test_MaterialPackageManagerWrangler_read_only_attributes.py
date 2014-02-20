@@ -6,7 +6,7 @@ import scoremanager
 def test_MaterialPackageManagerWrangler_read_only_attributes_01():
 
     score_manager = scoremanager.core.ScoreManager()
-    wrangler = score_manager.material_package_manager_wrangler
+    wrangler = score_manager._material_package_manager_wrangler
 
     assert wrangler._breadcrumb == 'material package managers'
     string = 'scoremanager.materialpackagemanagers'

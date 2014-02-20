@@ -13,7 +13,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
     ::
 
         >>> score_manager = scoremanager.core.ScoreManager()
-        >>> wrangler = score_manager.material_package_manager_wrangler
+        >>> wrangler = score_manager._material_package_manager_wrangler
         >>> wrangler
         MaterialPackageManagerWrangler()
 
