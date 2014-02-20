@@ -4,15 +4,34 @@ import scoremanager
 
 
 def test_ScoreManager__run_01():
-    r'''Start-up performance.
+    r'''Quit, home & junk all work.
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    statement = "score_manager._run(pending_user_input='q')"
-    count = score_manager.session.io_manager.count_function_calls(
-        statement,
-        global_context=globals(),
-        local_context=locals(),
-        )
+    score_manager._run(pending_user_input='q')
+    assert score_manager.session.io_transcript.signature == (2,)
 
-    assert count < 15000
+    score_manager = scoremanager.core.ScoreManager()
+    score_manager._run(pending_user_input='h q')
+    assert score_manager.session.io_transcript.signature == (4, (0, 2))
+
+    score_manager._run(pending_user_input='foo q')
+    assert score_manager.session.io_transcript.signature == (4, (0, 2))
+
+
+def test_ScoreManager__run_02():
+    r'''Score is handled correctly.
+    '''
+
+    score_manager = scoremanager.core.ScoreManager()
+    score_manager._run(pending_user_input='s q')
+    assert score_manager.session.io_transcript.signature == (4, (0, 2))
+
+
+def test_ScoreManager__run_03():
+    r'''Back is handled correctly.
+    '''
+
+    score_manager = scoremanager.core.ScoreManager()
+    score_manager._run(pending_user_input='b q')
+    assert score_manager.session.io_transcript.signature == (4, (0, 2))
