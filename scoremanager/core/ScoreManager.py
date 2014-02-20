@@ -91,14 +91,10 @@ class ScoreManager(ScoreManagerObject):
     def _make_score_selection_menu(self):
         wrangler = self.score_package_wrangler
         if self.session.is_first_run:
-            #print 'FIRST!'
-            menu_entries = self.session.io_manager._read_cache()
-            if not menu_entries:
-                self.session.io_manager._write_cache()
-                menu_entries = wrangler._make_asset_menu_entries()
             self.session.is_first_run = False
-        else:
-            #print 'NOT FIRST!'
+        menu_entries = self.session.io_manager._read_cache()
+        if not menu_entries:
+            self.session.io_manager._write_cache()
             menu_entries = wrangler._make_asset_menu_entries()
         if not self.session.show_example_scores:
             menu_entries = self._remove_example_score_menu_entries(

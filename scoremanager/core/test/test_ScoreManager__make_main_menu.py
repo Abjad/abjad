@@ -15,4 +15,4 @@ def test_ScoreManager__make_main_menu_01():
         local_context=locals(),
         )
 
-    assert count < 261000
+    assert count < 2000
