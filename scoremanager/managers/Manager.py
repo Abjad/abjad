@@ -415,6 +415,7 @@ class Manager(ScoreManagerObject):
             command,
             shell=True,
             stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
             )
         path = self.filesystem_path
         path = path + os.path.sep
@@ -424,7 +425,31 @@ class Manager(ScoreManagerObject):
             clean_line = clean_line.replace(path, '')
             clean_lines.append(clean_line)
         clean_lines.append('')
-        self.session.io_manager.display(clean_lines)
+        if clean_lines and 'svn: warning' in clean_lines[0]:
+            command = 'git st {}'.format(self.filesystem_path)
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                )
+            path = self.filesystem_path
+            path = path + os.path.sep
+            clean_lines = []
+            for line in process.stdout.readlines():
+                clean_line = line.strip()
+                clean_line = clean_line.replace(path, '')
+                clean_lines.append(clean_line)
+            clean_lines.append('')
+        if clean_lines and 'fatal:' in clean_lines[0]:
+            clean_lines = []
+            message = 'versioned by neither Subversion nor Git'
+            clean_lines.append(message)
+            clean_lines.append('')
+        self.session.io_manager.display(
+            clean_lines, 
+            capitalize_first_character=False,
+            )
         self.session.io_manager.proceed(prompt=prompt)
 
     def repository_up(self, prompt=True):
