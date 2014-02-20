@@ -94,12 +94,14 @@ class ScoreManager(ScoreManagerObject):
     def _make_score_selection_menu(self):
         wrangler = self._score_package_wrangler
         if self._session.rewrite_cache:
-            self._session.io_manager._write_cache(prompt=False)
+            self._session.io_manager.write_cache(prompt=False)
             self._session.rewrite_cache = False
         menu_entries = self._session.io_manager._read_cache()
-        if not menu_entries:
-            self._session.io_manager._write_cache(prompt=False)
-            menu_entries = wrangler._make_asset_menu_entries()
+        if (self._session._scores_to_show == 'example' and
+            not menu_entries[0][0] == 'Blue Example Score (2013)') or \
+            not menu_entries:
+            self._session.io_manager.write_cache(prompt=False)
+            menu_entries = self._session.io_manager._read_cache()
         menu = self._session.io_manager.make_menu(
             where=self._where,
             include_default_hidden_sections=False,
@@ -309,7 +311,7 @@ class ScoreManager(ScoreManagerObject):
 
         Returns none.
         '''
-        self._session.io_manager._write_cache(prompt=prompt)
+        self._session.io_manager.write_cache(prompt=prompt)
 
     ### UI MANIFEST ###
 
