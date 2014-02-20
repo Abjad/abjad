@@ -492,15 +492,6 @@ class IOManager(IOManager):
             )
         self.clear_terminal()
 
-    def toggle_example_score_visibility(self):
-        if self.session.show_example_scores:
-            self.session.show_example_scores = False
-            message = 'example scores hidden.'
-        else:
-            self.session.show_example_scores = True
-            message = 'example scores visible.'
-        self.session.io_manager.proceed(message)
-
     def toggle_location_tracking(self):
         if self.session.enable_where:
             self.session.enable_where = False

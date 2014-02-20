@@ -48,21 +48,20 @@ class Session(abctools.AbjadObject):
         'dump_transcript',
         'hidden_menu_sections_are_hidden',
         'hide_next_redraw',
-        'is_backtracking_locally',
-        'is_backtracking_to_score',
-        'is_backtracking_to_score_manager',
-        'is_complete',
+        #'is_backtracking_locally',
+        #'is_backtracking_to_score',
+        #'is_backtracking_to_score_manager',
+        #'is_complete',
         'is_displayable',
         'is_in_score',
         'is_navigating_to_sibling_score',
-        'is_quitting',
+        #'is_quitting',
         'last_controller',
         'nonnumbered_menu_sections_are_hidden',
         'rewrite_cache',
         'score_manager',
         'scores_to_show',
         'session_once_had_user_input',
-        'show_example_scores',
         'current_score_snake_case_name',
         'transcribe_next_command',
         'use_current_user_input_values_as_default',
@@ -102,7 +101,6 @@ class Session(abctools.AbjadObject):
         self.nonnumbered_menu_sections_are_hidden = False
         self.pending_user_input = pending_user_input
         self.rewrite_cache = False
-        self.show_example_scores = True
         self.transcribe_next_command = True
         self.use_current_user_input_values_as_default = False
         self.is_quitting = False
@@ -857,26 +855,6 @@ class Session(abctools.AbjadObject):
         def fset(self, expr):
             assert isinstance(expr, bool)
             self._rewrite_cache = expr
-        return property(**locals())
-
-    @apply
-    def show_example_scores():
-        def fget(self):
-            r'''Gets and sets flag to show example scores.
-
-            ..  container:: example
-
-                ::
-
-                    >>> session.show_example_scores
-                    True
-
-            Returns boolean.
-            '''
-            return self._show_example_scores
-        def fset(self, expr):
-            assert isinstance(expr, bool)
-            self._show_example_scores = expr
         return property(**locals())
 
     @apply

@@ -3,10 +3,10 @@ from abjad import *
 import scoremanager
 
 
-def test_ScoreManager_display_active_scores_01():
+def test_ScoreManager_manage_stylesheet_library_01():
     
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='ssv q')
+    score_manager._run(pending_user_input='lmy q')
 
-    string = 'Score manager - active scores'
+    string = 'Score manager - stylesheet library'
     assert score_manager.session.io_transcript.last_menu_title == string

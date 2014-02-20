@@ -280,13 +280,13 @@ class ScoreManager(ScoreManagerObject):
                 )
         self.session.io_manager.proceed(prompt=prompt)
 
-    def manage_materials(self):
+    def manage_material_library(self):
         self.material_package_wrangler._run(
             rollback=True, 
             head=self.configuration.built_in_material_packages_package_path,
             )
 
-    def manage_stylesheets(self):
+    def manage_stylesheet_library(self):
         self.stylesheet_file_wrangler._run(
             rollback=True, 
             )
@@ -304,12 +304,20 @@ class ScoreManager(ScoreManagerObject):
         self.score_package_wrangler.repository_up_assets()
 
     def view_cache(self):
+        r'''Views cache.
+
+        Returns none.
+        '''
         file_path = self.configuration.cache_file_path
         if os.path.isfile(file_path):
             command = 'vi -R {}'.format(file_path)
             self.session.io_manager.spawn_subprocess(command)
 
     def write_cache(self, prompt=True):
+        r'''Writes cache.
+
+        Returns none.
+        '''
         self.session.io_manager._write_cache(prompt=prompt)
 
     ### UI MANIFEST ###
@@ -317,7 +325,7 @@ class ScoreManager(ScoreManagerObject):
     user_input_to_action = {
         'cv': view_cache,
         'cw': write_cache,
-        'lmm': manage_materials,
+        'lmm': manage_material_library,
         'new': interactively_make_new_score,
         'radd': repository_add_assets,
         'rci': repository_ci_assets,
@@ -327,5 +335,5 @@ class ScoreManager(ScoreManagerObject):
         'ssv': display_active_scores,
         'ssmb': display_mothballed_scores,
         'ssx': display_example_scores,
-        'lmy': manage_stylesheets,
+        'lmy': manage_stylesheet_library,
         }
