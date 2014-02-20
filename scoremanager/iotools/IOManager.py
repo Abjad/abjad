@@ -224,6 +224,17 @@ class IOManager(IOManager):
         self.session.pending_user_input = pending_user_input
         return user_input
 
+    def _read_cache(self):
+        start_menu_entries = []
+        if os.path.exists(self.configuration.cache_file_path):
+            with file(self.configuration.cache_file_path, 'r') as file_pointer:
+                cache_lines = file_pointer.read()
+            try:
+                exec(cache_lines)
+            except SyntaxError:
+                pass
+        return start_menu_entries
+
     def _write_cache(self, prompt=True):
         cache_file_path = self.configuration.cache_file_path
         cache_file_pointer = file(cache_file_path, 'w')

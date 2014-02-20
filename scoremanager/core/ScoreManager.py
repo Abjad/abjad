@@ -92,9 +92,8 @@ class ScoreManager(ScoreManagerObject):
         wrangler = self.score_package_wrangler
         if self.session.is_first_run:
             #print 'FIRST!'
-            if hasattr(self, 'start_menu_entries'):
-                menu_entries = self.start_menu_entries
-            else:
+            menu_entries = self.session.io_manager._read_cache()
+            if not menu_entries:
                 self.session.io_manager._write_cache()
                 menu_entries = wrangler._make_asset_menu_entries()
             self.session.is_first_run = False

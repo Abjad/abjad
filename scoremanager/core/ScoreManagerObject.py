@@ -16,14 +16,6 @@ class ScoreManagerObject(object):
 
     configuration = ScoreManagerConfiguration()
 
-    if os.path.exists(configuration.cache_file_path):
-        with file(configuration.cache_file_path, 'r') as cache_file_pointer:
-            cache_lines = cache_file_pointer.read()
-        try:
-            exec(cache_lines)
-        except SyntaxError:
-            start_menu_entries = []
-
     ### CONTEXT MANAGER ###
 
     class backtracking(ContextManager):
