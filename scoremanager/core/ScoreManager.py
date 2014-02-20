@@ -7,13 +7,14 @@ from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 class ScoreManager(ScoreManagerObject):
     r'''Score manager.
 
-    ::
+    ..  container:: example
 
-        >>> score_manager = scoremanager.core.ScoreManager()
-        >>> score_manager
-        ScoreManager()
+        ::
 
-    Returns score manager.
+            >>> score_manager = scoremanager.core.ScoreManager()
+            >>> score_manager
+            ScoreManager()
+
     '''
 
     ### INITIALIZER ###
@@ -69,7 +70,7 @@ class ScoreManager(ScoreManagerObject):
         else:
             wrangler = self.score_package_wrangler
             if result in wrangler.list_visible_asset_packagesystem_paths():
-                self.interactively_edit_score(result)
+                self.manage_score(result)
 
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
@@ -166,12 +167,14 @@ class ScoreManager(ScoreManagerObject):
 
     @property
     def material_package_manager_wrangler(self):
-        r'''Score manager material package maker wrangler:
+        r'''Gets score manager material package maker wrangler.
 
-        ::
+        ..  container:: example
 
-            >>> score_manager.material_package_manager_wrangler
-            MaterialPackageManagerWrangler()
+            ::
+
+                >>> score_manager.material_package_manager_wrangler
+                MaterialPackageManagerWrangler()
 
         Returns material package maker wrangler.
         '''
@@ -179,12 +182,14 @@ class ScoreManager(ScoreManagerObject):
 
     @property
     def material_package_wrangler(self):
-        r'''Score manager material package wrangler:
+        r'''Gets score manager material package wrangler.
 
-        ::
+        ..  container:: example
 
-            >>> score_manager.material_package_wrangler
-            MaterialPackageWrangler()
+            ::
+
+                >>> score_manager.material_package_wrangler
+                MaterialPackageWrangler()
 
         Returns material package wrangler.
         '''
@@ -192,12 +197,14 @@ class ScoreManager(ScoreManagerObject):
 
     @property
     def score_package_wrangler(self):
-        r'''Score manager score package wrangler:
+        r'''Gets score manager score package wrangler.
 
-        ::
+        ..  container:: example
 
-            >>> score_manager.score_package_wrangler
-            ScorePackageWrangler()
+            ::
+
+                >>> score_manager.score_package_wrangler
+                ScorePackageWrangler()
 
         Returns score package wrangler.
         '''
@@ -205,12 +212,14 @@ class ScoreManager(ScoreManagerObject):
 
     @property
     def segment_package_wrangler(self):
-        r'''Score manager segment package wrangler:
+        r'''Gets score manager segment package wrangler.
 
-        ::
+        ..  container:: example
 
-            >>> score_manager.segment_package_wrangler
-            SegmentPackageWrangler()
+            ::
+
+                >>> score_manager.segment_package_wrangler
+                SegmentPackageWrangler()
 
         Returns segment package wrangler.
         '''
@@ -218,12 +227,14 @@ class ScoreManager(ScoreManagerObject):
 
     @property
     def stylesheet_file_wrangler(self):
-        r'''Score manager stylesheet file wrangler:
+        r'''Gets score manager stylesheet file wrangler.
 
-        ::
+        ..  container:: example
 
-            >>> score_manager.stylesheet_file_wrangler
-            StylesheetFileWrangler()
+            ::
+
+                >>> score_manager.stylesheet_file_wrangler
+                StylesheetFileWrangler()
 
         Returns stylesheet file wrangler.
         '''
@@ -231,19 +242,77 @@ class ScoreManager(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
+    def add_assets_to_repository(self, prompt=True):
+        r'''Adds assets to repository.
+
+        Returns none.
+        '''
+        self.score_package_wrangler.add_assets_to_repository()
+
+    def commit_assets_to_repository(self, prompt=True):
+        r'''Commits assets to repository.
+
+        Returns none.
+        '''
+        self.score_package_wrangler.commit_assets_to_repository()
+
     def display_active_scores(self):
+        r'''Displays active scores.
+
+        Returns none.
+        '''
         self.session.display_active_scores()
 
     def display_all_scores(self):
+        r'''Displays all scores.
+
+        Returns none.
+        '''
         self.session.display_all_scores()
 
     def display_example_scores(self):
+        r'''Displays example scores.
+
+        Returns none.
+        '''
         self.session.display_example_scores()
 
     def display_mothballed_scores(self):
+        r'''Displays mothballed scores.
+
+        Returns none.
+        '''
         self.session.display_mothballed_scores()
 
-    def interactively_edit_score(self, score_package_path):
+    def display_repository_status(self, prompt=True):
+        r'''Displays status of repository assets.
+        
+        Returns none.
+        '''
+        self.score_package_wrangler.display_repository_status()
+
+    def make_new_score(self):
+        r'''Makes new score.
+
+        Returns none.
+        '''
+        self.score_package_wrangler.interactively_make_asset(rollback=True)
+
+    def manage_material_library(self):
+        r'''Manages material library.
+
+        Returns none.
+        '''
+        self.material_package_wrangler._run(
+            rollback=True, 
+            head=self.configuration.built_in_material_packages_package_path,
+            )
+
+    def manage_score(self, score_package_path):
+        r'''Manages score.
+
+        Returns none.
+        '''
         manager = self.score_package_wrangler._initialize_asset_manager(
             score_package_path)
         score_package_name = score_package_path.split('.')[-1]
@@ -251,10 +320,20 @@ class ScoreManager(ScoreManagerObject):
         manager._run(cache=True)
         self.session.current_score_snake_case_name = None
 
-    def interactively_make_new_score(self):
-        self.score_package_wrangler.interactively_make_asset(rollback=True)
+    def manage_stylesheet_library(self):
+        r'''Manages stylesheet library.
 
-    def interactively_run_doctest(self, prompt=True):
+        Returns none.
+        '''
+        self.stylesheet_file_wrangler._run(
+            rollback=True, 
+            )
+
+    def run_doctest(self, prompt=True):
+        r'''Runs doctest.
+
+        Returns none.
+        '''
         path = self.configuration.user_score_packages_directory_path
         command = 'ajv doctest {}'.format(path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
@@ -267,7 +346,11 @@ class ScoreManager(ScoreManagerObject):
                 )
         self.session.io_manager.proceed(prompt=prompt)
 
-    def interactively_run_pytest(self, prompt=True):
+    def run_pytest(self, prompt=True):
+        r'''Runs py.test.
+
+        Returns none.
+        '''
         path = self.configuration.user_score_packages_directory_path
         command = 'py.test -rf {}'.format(path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
@@ -280,28 +363,12 @@ class ScoreManager(ScoreManagerObject):
                 )
         self.session.io_manager.proceed(prompt=prompt)
 
-    def manage_material_library(self):
-        self.material_package_wrangler._run(
-            rollback=True, 
-            head=self.configuration.built_in_material_packages_package_path,
-            )
+    def update_from_repository(self, prompt=True):
+        r'''Updates repository assets.
 
-    def manage_stylesheet_library(self):
-        self.stylesheet_file_wrangler._run(
-            rollback=True, 
-            )
-
-    def repository_add_assets(self, prompt=True):
-        self.score_package_wrangler.repository_add_assets()
-
-    def repository_ci_assets(self, prompt=True):
-        self.score_package_wrangler.repository_ci_assets()
-
-    def repository_st_assets(self, prompt=True):
-        self.score_package_wrangler.repository_st_assets()
-
-    def repository_up_assets(self, prompt=True):
-        self.score_package_wrangler.repository_up_assets()
+        Returns none.
+        '''
+        self.score_package_wrangler.update_from_repository()
 
     def view_cache(self):
         r'''Views cache.
@@ -326,11 +393,11 @@ class ScoreManager(ScoreManagerObject):
         'cv': view_cache,
         'cw': write_cache,
         'lmm': manage_material_library,
-        'new': interactively_make_new_score,
-        'radd': repository_add_assets,
-        'rci': repository_ci_assets,
-        'rst': repository_st_assets,
-        'rup': repository_up_assets,
+        'new': make_new_score,
+        'radd': add_assets_to_repository,
+        'rci': commit_assets_to_repository,
+        'rst': display_repository_status,
+        'rup': update_from_repository,
         'ssl': display_all_scores,
         'ssv': display_active_scores,
         'ssmb': display_mothballed_scores,

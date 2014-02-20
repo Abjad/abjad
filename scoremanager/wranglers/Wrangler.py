@@ -389,7 +389,7 @@ class Wrangler(ScoreManagerObject):
         manager = self._get_current_package_manager()
         manager.interactively_rewrite_metadata_module()
 
-    def interactively_run_doctest(self, prompt=True):
+    def run_doctest(self, prompt=True):
         path = self._get_current_directory_path_of_interest()
         command = 'ajv doctest {}'.format(path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
@@ -404,7 +404,7 @@ class Wrangler(ScoreManagerObject):
                 )
         self.session.io_manager.proceed(prompt=prompt)
 
-    def interactively_run_pytest(self, prompt=True):
+    def run_pytest(self, prompt=True):
         path = self._get_current_directory_path_of_interest()
         command = 'py.test -rf {}'.format(path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)

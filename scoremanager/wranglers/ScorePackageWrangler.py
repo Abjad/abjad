@@ -486,7 +486,7 @@ class ScorePackageWrangler(PackageWrangler):
             result.append(packagesystem_path)
         return result
 
-    def repository_add_assets(self, prompt=True):
+    def add_assets_to_repository(self, prompt=True):
         r'''Adds assets to repository.
 
         Returns none.
@@ -504,7 +504,7 @@ class ScorePackageWrangler(PackageWrangler):
             manager.repository_add(prompt=False)
         self.session.io_manager.proceed(prompt=prompt)
 
-    def repository_ci_assets(self, prompt=True):
+    def commit_assets_to_repository(self, prompt=True):
         r'''Commits assets to repository.
 
         Returns none.
@@ -534,7 +534,7 @@ class ScorePackageWrangler(PackageWrangler):
                 )
         self.session.io_manager.proceed(prompt=prompt)
 
-    def repository_st_assets(self, prompt=True):
+    def display_repository_status(self, prompt=True):
         r'''Check asset status in repository.
 
         Returns none.
@@ -552,7 +552,7 @@ class ScorePackageWrangler(PackageWrangler):
             manager.repository_st(prompt=False)
         self.session.io_manager.proceed(prompt=prompt)
 
-    def repository_up_assets(self, prompt=True):
+    def update_from_repository(self, prompt=True):
         r'''Updates assets from repository.
 
         Returns none.

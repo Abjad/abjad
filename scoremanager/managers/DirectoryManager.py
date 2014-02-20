@@ -150,7 +150,7 @@ class DirectoryManager(Manager):
         self.session.io_manager.display('')
         self.session.hide_next_redraw = True
 
-    def interactively_run_doctest(self, prompt=True):
+    def run_doctest(self, prompt=True):
         r'''Interactively runs doctest.
 
         Returns none.
@@ -165,7 +165,7 @@ class DirectoryManager(Manager):
             self.session.io_manager.display(lines)
         self.session.io_manager.proceed(prompt=prompt)
 
-    def interactively_run_pytest(self, prompt=True):
+    def run_pytest(self, prompt=True):
         r'''Interactively runs pytest.
 
         Returns none.
