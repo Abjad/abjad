@@ -57,7 +57,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
                 self.configuration.filesystem_path_to_packagesystem_path(
                     package_path)
         material_package_manager = managers.MaterialPackageManager(
-            package_path, _session=self._session)
+            package_path, session=self._session)
         if 'materialpackagemanagers' in material_package_manager.filesystem_path:
             most, last = os.path.split(
                 material_package_manager.filesystem_path)
@@ -80,7 +80,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
                     material_package_manager_class_name)
                 exec(command)
             material_package_manager = material_package_manager_class(
-                package_path, _session=self._session)
+                package_path, session=self._session)
         return material_package_manager
 
     def _is_valid_directory_entry(self, directory_entry):

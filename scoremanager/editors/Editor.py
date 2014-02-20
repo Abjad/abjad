@@ -7,8 +7,8 @@ class Editor(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, _session=None, target=None):
-        ScoreManagerObject.__init__(self, _session=_session)
+    def __init__(self, session=None, target=None):
+        ScoreManagerObject.__init__(self, session=session)
         if target is not None:
             assert isinstance(target, self.target_class)
         self.target = target
@@ -46,7 +46,7 @@ class Editor(ScoreManagerObject):
         kwargs = self.menu_key_to_delegated_editor_kwargs(result)
         editor = self.target_manifest.menu_key_to_editor(
             result, 
-            _session=self._session, 
+            session=self._session, 
             prepopulated_value=prepopulated_value, 
             **kwargs
             )

@@ -22,8 +22,8 @@ class Wrangler(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, _session=None):
-        ScoreManagerObject.__init__(self, _session=_session)
+    def __init__(self, session=None):
+        ScoreManagerObject.__init__(self, session=session)
 
     ### SPECIAL METHODS ###
 
@@ -89,7 +89,7 @@ class Wrangler(ScoreManagerObject):
             return
         manager = managers.PackageManager(
             directory_path,
-            _session=self._session,
+            session=self._session,
             )
         return manager
 
@@ -98,7 +98,7 @@ class Wrangler(ScoreManagerObject):
         file_path = self.views_module_path
         manager = managers.FileManager(
             file_path,
-            _session=self._session,
+            session=self._session,
             )
         return manager
 
@@ -110,7 +110,7 @@ class Wrangler(ScoreManagerObject):
         assert os.path.sep in filesystem_path, repr(filesystem_path)
         return self._asset_manager_class(
             filesystem_path=filesystem_path, 
-            _session=self._session,
+            session=self._session,
             )
 
     def _is_valid_directory_entry(self, directory_entry):
@@ -158,7 +158,7 @@ class Wrangler(ScoreManagerObject):
             self.asset_storehouse_filesystem_path_in_user_asset_library)
         display_strings.append('My {}'.format(self._breadcrumb))
         wrangler = wranglers.ScorePackageWrangler(
-            _session=self._session)
+            session=self._session)
         for manager in wrangler.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
@@ -184,7 +184,7 @@ class Wrangler(ScoreManagerObject):
             return
         manager = managers.FileManager(
             view_file_path,
-            _session=self._session,
+            session=self._session,
             )
         view_inventory = manager._execute_file_lines(
             return_attribute_name='view_inventory',
@@ -297,7 +297,7 @@ class Wrangler(ScoreManagerObject):
         menu_entries = self._make_asset_menu_entries(head=head)
         display_strings = [x[0] for x in menu_entries]
         editor = editors.ListEditor(
-            _session=self._session,
+            session=self._session,
             target=display_strings,
             )
         breadcrumb = 'edit {} view'

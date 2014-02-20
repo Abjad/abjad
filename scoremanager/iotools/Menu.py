@@ -32,13 +32,13 @@ class Menu(ScoreManagerObject):
 
     def __init__(
         self, 
-        _session=None, 
+        session=None, 
         where=None,
         include_default_hidden_sections=True,
         should_clear_terminal=False,
         title=None,
         ):
-        ScoreManagerObject.__init__(self, _session=_session)
+        ScoreManagerObject.__init__(self, session=session)
         self._menu_sections = []
         if include_default_hidden_sections:
             self._make_default_hidden_sections()

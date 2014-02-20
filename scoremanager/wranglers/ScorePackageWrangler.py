@@ -43,10 +43,10 @@ class ScorePackageWrangler(PackageWrangler):
 
     ### INITIALIZER ###
 
-    def __init__(self, _session=None):
+    def __init__(self, session=None):
         from scoremanager import managers
         superclass = super(ScorePackageWrangler, self)
-        superclass.__init__(_session=_session)
+        superclass.__init__(session=session)
         self._asset_manager_class = managers.ScorePackageManager
 
     ### PRIVATE PROPERTIES ###

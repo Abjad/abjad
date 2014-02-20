@@ -7,7 +7,7 @@ class DistributionDirectoryManager(DirectoryManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, score_package_path=None, _session=None):
+    def __init__(self, score_package_path=None, session=None):
         score_directory_path = \
             self.configuration.packagesystem_path_to_filesystem_path(
             score_package_path)
@@ -15,4 +15,4 @@ class DistributionDirectoryManager(DirectoryManager):
         DirectoryManager.__init__(
             self,
             filesystem_path=filesystem_path,
-            _session=_session)
+            session=session)

@@ -11,7 +11,7 @@ class PackageWrangler(Wrangler):
 
     ### INITIALIZER ###
 
-    def __init__(self, _session=None):
+    def __init__(self, session=None):
         from scoremanager import managers
         asset_storehouse_filesystem_path_in_built_in_asset_library = \
             self.configuration.packagesystem_path_to_filesystem_path(
@@ -23,7 +23,7 @@ class PackageWrangler(Wrangler):
             asset_storehouse_filesystem_path_in_built_in_asset_library
         self.asset_storehouse_filesystem_path_in_user_asset_library = \
             asset_storehouse_filesystem_path_in_user_asset_library
-        Wrangler.__init__(self, _session=_session)
+        Wrangler.__init__(self, session=session)
         self._asset_manager_class = managers.PackageManager
 
     ### PRIVATE PROPERTIES ###
@@ -71,7 +71,7 @@ class PackageWrangler(Wrangler):
             packagesystem_path)
         return self._asset_manager_class(
             packagesystem_path=packagesystem_path, 
-            _session=self._session,
+            session=self._session,
             )
 
     def _is_valid_directory_entry(self, expr):

@@ -9,12 +9,12 @@ class DirectoryManager(Manager):
 
     ### INITIALIZER ###
 
-    def __init__(self, filesystem_path=None, _session=None):
+    def __init__(self, filesystem_path=None, session=None):
         from scoremanager import managers
         superclass = super(DirectoryManager, self)
         superclass.__init__(
             filesystem_path=filesystem_path,
-            _session=_session,
+            session=session,
             )
         self._asset_manager_class = managers.FileManager
 
@@ -30,7 +30,7 @@ class DirectoryManager(Manager):
         from scoremanager import managers
         file_manager = managers.FileManager(
             file_path,
-            _session=self._session,
+            session=self._session,
             )
         return file_manager
 
@@ -91,7 +91,7 @@ class DirectoryManager(Manager):
         ):
         manager = self._asset_manager_class(
             filesystem_path=filesystem_path,
-            _session=self._session,
+            session=self._session,
             )
         manager._run()
 
@@ -109,7 +109,7 @@ class DirectoryManager(Manager):
         self._session.io_manager._assign_user_input(pending_user_input)
         manager = self._asset_manager_class(
             filesystem_path=filesystem_path,
-            _session=self._session,
+            session=self._session,
             )
         manager.interactively_edit()
 

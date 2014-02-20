@@ -25,7 +25,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
         while True:
             function_application_pairs = []
             self._session._push_breadcrumb(self._breadcrumb)
-            selector = iotools.Selector(_session=self._session)
+            selector = iotools.Selector(session=self._session)
             items = []
             items.append('start at index 0')
             items.append('start at index n')

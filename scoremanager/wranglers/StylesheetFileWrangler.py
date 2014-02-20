@@ -28,10 +28,10 @@ class StylesheetFileWrangler(Wrangler):
 
     ### INITIALIZER ###
 
-    def __init__(self, _session=None):
+    def __init__(self, session=None):
         from scoremanager import managers
         superclass = super(StylesheetFileWrangler, self)
-        superclass.__init__(_session=_session)
+        superclass.__init__(session=session)
         self._asset_manager_class = managers.FileManager
 
     ### PRIVATE PROPERTIES ###
@@ -175,7 +175,7 @@ class StylesheetFileWrangler(Wrangler):
         self._session.io_manager._assign_user_input(pending_user_input)
         manager = self._asset_manager_class(
             filesystem_path=filesystem_path, 
-            _session=self._session,
+            session=self._session,
             )
         manager.interactively_edit()
 
@@ -248,7 +248,7 @@ class StylesheetFileWrangler(Wrangler):
             )
         manager = managers.FileManager(
             stylesheet_file_path, 
-            _session=self._session,
+            session=self._session,
             )
         if self._session.is_test:
             manager._make_empty_asset()

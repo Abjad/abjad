@@ -112,7 +112,7 @@ class ListEditor(Editor):
     def interactively_add_items(self):
         if self.item_creator_class:
             item_creator = self.item_creator_class(
-                _session=self._session, 
+                session=self._session, 
                 **self.item_creator_class_kwargs
                 )
             with self.backtracking:
@@ -160,7 +160,7 @@ class ListEditor(Editor):
         if item is not None:
             if self.item_editor_class is not None:
                 item_editor = self.item_editor_class(
-                    _session=self._session, 
+                    session=self._session, 
                     target=item,
                     )
                 item_editor._run()

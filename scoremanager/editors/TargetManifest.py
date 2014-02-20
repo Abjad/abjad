@@ -112,7 +112,7 @@ class TargetManifest(AbjadObject):
         self, 
         menu_key, 
         prepopulated_value, 
-        _session=None, 
+        session=None, 
         **kwargs
         ):
         space_delimited_attribute_name = \
@@ -121,7 +121,7 @@ class TargetManifest(AbjadObject):
         editor = attribute_detail.get_editor(
             space_delimited_attribute_name, 
             prepopulated_value, 
-            _session=_session, 
+            session=session, 
             **kwargs
             )
         return editor

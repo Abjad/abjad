@@ -380,7 +380,7 @@ class Session(abctools.AbjadObject):
         if self.is_in_score:
             return managers.ScorePackageManager(
                 packagesystem_path=packagesystem_path,
-                _session=self,
+                session=self,
                 )
 
     @property

@@ -26,7 +26,7 @@ class RhythmMakerMaterialPackageManager(MaterialPackageManager):
         return isinstance(expr, rhythmmakertools.RhythmMaker)
 
     @staticmethod
-    def output_material_editor(target=None, _session=None):
+    def output_material_editor(target=None, session=None):
         if target:
             wizard = RhythmMakerCreationWizard()
             rhythm_maker_editor = wizard._get_target_editor(

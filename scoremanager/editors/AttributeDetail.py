@@ -62,33 +62,33 @@ class AttributeDetail(AbjadObject):
         self, 
         space_delimited_attribute_name, 
         prepopulated_value, 
-        _session=None, 
+        session=None, 
         **kwargs
         ):
         from scoremanager import iotools
         from scoremanager import wizards
         if isinstance(self.editor_callable, types.FunctionType) and \
             self.editor_callable.__name__.startswith('make_'):
-            editor = self.editor_callable(_session=_session, **kwargs)
+            editor = self.editor_callable(session=session, **kwargs)
         elif isinstance(self.editor_callable, types.FunctionType):
             editor = self.editor_callable(
                 space_delimited_attribute_name,
-                _session=_session, 
+                session=session, 
                 prepopulated_value=prepopulated_value, 
                 allow_none=self.allow_none, 
                 **kwargs
                 )
         elif issubclass(self.editor_callable, Editor):
             editor = self.editor_callable(
-                _session=_session, 
+                session=session, 
                 target=prepopulated_value, 
                 **kwargs
                 )
         elif issubclass(self.editor_callable, iotools.Selector):
-            editor = self.editor_callable(_session=_session, **kwargs)
+            editor = self.editor_callable(session=session, **kwargs)
         elif issubclass(self.editor_callable, wizards.Wizard):
             editor = self.editor_callable(
-                _session=_session, target=prepopulated_value, **kwargs)
+                session=session, target=prepopulated_value, **kwargs)
         else:
             message = 'what is {!r}?'
             message = message.format(self.editor_callable)

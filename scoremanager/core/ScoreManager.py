@@ -19,20 +19,20 @@ class ScoreManager(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, _session=None):
+    def __init__(self, session=None):
         from scoremanager import wranglers
-        ScoreManagerObject.__init__(self, _session=_session)
+        ScoreManagerObject.__init__(self, session=session)
         self._session._score_manager = self
-        wrangler = wranglers.SegmentPackageWrangler(_session=self._session)
+        wrangler = wranglers.SegmentPackageWrangler(session=self._session)
         self._segment_package_wrangler = wrangler
         wrangler = wranglers.MaterialPackageManagerWrangler(
-            _session=self._session)
+            session=self._session)
         self._material_package_manager_wrangler = wrangler
-        wrangler = wranglers.MaterialPackageWrangler(_session=self._session)
+        wrangler = wranglers.MaterialPackageWrangler(session=self._session)
         self._material_package_wrangler = wrangler
-        wrangler = wranglers.ScorePackageWrangler(_session=self._session)
+        wrangler = wranglers.ScorePackageWrangler(session=self._session)
         self._score_package_wrangler = wrangler
-        wrangler = wranglers.StylesheetFileWrangler(_session=self._session)
+        wrangler = wranglers.StylesheetFileWrangler(session=self._session)
         self._stylesheet_file_wrangler = wrangler
 
     ### PRIVATE PROPERTIES ###

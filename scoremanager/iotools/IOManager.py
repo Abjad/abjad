@@ -21,13 +21,13 @@ class IOManager(IOManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, _session=None):
+    def __init__(self, session=None):
         from scoremanager import wranglers
         from scoremanager import core
-        self._session = _session
+        self._session = session
         self._configuration = core.ScoreManagerConfiguration()
         self._score_package_wrangler = \
-            wranglers.ScorePackageWrangler(_session=self._session)
+            wranglers.ScorePackageWrangler(session=self._session)
 
     ### SPECIAL METHODS ###
 
@@ -417,7 +417,7 @@ class IOManager(IOManager):
         from scoremanager import iotools
         getter = iotools.UserInputGetter(
             where=where, 
-            _session=self._session,
+            session=self._session,
             )
         return getter
 
@@ -429,7 +429,7 @@ class IOManager(IOManager):
         from scoremanager import iotools
         menu = iotools.Menu(
             where=where, 
-            _session=self._session,
+            session=self._session,
             include_default_hidden_sections=include_default_hidden_sections,
             )
         return menu
@@ -442,7 +442,7 @@ class IOManager(IOManager):
         from scoremanager import iotools
         selector = iotools.Selector(
             where=where,
-            _session=self._session,
+            session=self._session,
             )
         return selector
 

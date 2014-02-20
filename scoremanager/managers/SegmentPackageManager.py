@@ -13,12 +13,12 @@ class SegmentPackageManager(PackageManager):
         self, 
         packagesystem_path=None, 
         score_template=None, 
-        _session=None,
+        session=None,
         ):
         PackageManager.__init__(
             self, 
             packagesystem_path=packagesystem_path, 
-            _session=_session,
+            session=session,
             )
         self.score_template = score_template
 
@@ -154,7 +154,7 @@ class SegmentPackageManager(PackageManager):
         from scoremanager import managers
         manager = managers.FileManager(
             self.segment_definition_module_file_path,
-            _session=self._session,
+            session=self._session,
             )
         return manager
 

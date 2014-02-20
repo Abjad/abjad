@@ -9,8 +9,8 @@ class PerformerCreationWizard(Wizard):
 
     ### INITIALIZER ###
 
-    def __init__(self, is_ranged=False, _session=None, target=None):
-        Wizard.__init__(self, _session=_session, target=target)
+    def __init__(self, is_ranged=False, session=None, target=None):
+        Wizard.__init__(self, session=session, target=target)
         self.is_ranged = is_ranged
 
     ### PRIVATE PROPERTIES ###
@@ -36,7 +36,7 @@ class PerformerCreationWizard(Wizard):
         while True:
             self._session._push_breadcrumb(self._breadcrumb)
             selector = Selector.make_score_tools_performer_name_selector(
-                _session=self._session,
+                session=self._session,
                 )
             selector.is_ranged=self.is_ranged
             with self.backtracking:
@@ -111,7 +111,7 @@ class PerformerCreationWizard(Wizard):
             elif result in ('more', ['more']):
                 with self.backtracking:
                     wizard = wizards.InstrumentCreationWizard(
-                        _session=self._session, is_ranged=True)
+                        session=self._session, is_ranged=True)
                     instruments = wizard._run()
                 if self._session._backtrack():
                     break

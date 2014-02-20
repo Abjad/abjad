@@ -27,10 +27,10 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### INITIALIZER ###
 
-    def __init__(self, _session=None):
+    def __init__(self, session=None):
         from scoremanager import managers
         superclass = super(SegmentPackageWrangler, self)
-        superclass.__init__(_session=_session)
+        superclass.__init__(session=session)
         self._asset_manager_class = managers.SegmentPackageManager
 
     ### PRIVATE PROPERTIES ###
@@ -106,7 +106,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_directory_path)
             manager = self._asset_manager_class(
                 segment_package_path,
-                _session=self._session,
+                session=self._session,
                 )
             manager.interactively_make_asset_pdf(
                 view_asset_pdf=False,
@@ -143,7 +143,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_directory_path)
             manager = self._asset_manager_class(
                 segment_package_path,
-                _session=self._session,
+                session=self._session,
                 )
             manager.interactively_reinterpret_current_lilypond_file(
                 prompt=False,
@@ -175,7 +175,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_directory_path)
             manager = self._asset_manager_class(
                 segment_package_path,
-                _session=self._session,
+                session=self._session,
                 )
             version_number = manager.interactively_save_to_versions_directory(
                 prompt=False,
@@ -423,7 +423,7 @@ class SegmentPackageWrangler(PackageWrangler):
         os.mkdir(directory_path)
         manager = self._asset_manager_class(
             packagesystem_path=package_path,
-            _session=self._session,
+            session=self._session,
             )
         manager.write_initializer()
         manager.write_segment_definition_module()

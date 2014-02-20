@@ -46,11 +46,11 @@ class MaterialPackageManager(PackageManager):
 
     ### INTIALIZER ###
 
-    def __init__(self, packagesystem_path=None, _session=None):
+    def __init__(self, packagesystem_path=None, session=None):
         PackageManager.__init__(
             self,
             packagesystem_path=packagesystem_path,
-            _session=_session,
+            session=session,
             )
         self._user_input_wrapper_in_memory = \
             self._initialize_user_input_wrapper_in_memory()
@@ -215,7 +215,7 @@ class MaterialPackageManager(PackageManager):
                 if self.has_output_material:
                     output_material_editor = self.output_material_editor(
                         target=self.output_material,
-                        _session=self._session)
+                        session=self._session)
                     target_summary_lines = \
                         output_material_editor.target_summary_lines
                     if target_summary_lines:
@@ -332,7 +332,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         return managers.FileManager(
             self.illustration_builder_module_file_path,
-            _session=self._session,
+            session=self._session,
             )
 
     @property
@@ -346,7 +346,7 @@ class MaterialPackageManager(PackageManager):
         file_path = os.path.join(self.filesystem_path, 'illustration.ly')
         manager = managers.FileManager(
             file_path,
-            _session=self._session,
+            session=self._session,
             )
         return manager
 
@@ -361,7 +361,7 @@ class MaterialPackageManager(PackageManager):
         file_path = os.path.join(self.filesystem_path, 'illustration.pdf')
         manager = managers.FileManager(
             file_path,
-            _session=self._session,
+            session=self._session,
             )
         return manager
 
@@ -393,7 +393,7 @@ class MaterialPackageManager(PackageManager):
             return
         manager = managers.FileManager(
             self.material_definition_module_file_path,
-            _session=self._session,
+            session=self._session,
             )
         result = manager._execute_file_lines(
             return_attribute_name=self.material_package_name,
@@ -480,7 +480,7 @@ class MaterialPackageManager(PackageManager):
             ]
         manager = managers.FileManager(
             self.material_definition_module_file_path,
-            _session=self._session,
+            session=self._session,
             )
         result = manager._execute_file_lines(
             return_attribute_name=return_attribute_name,
@@ -524,7 +524,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         return managers.FileManager(
             self.output_material_module_file_path,
-            _session=self._session,
+            session=self._session,
             )
 
     @property
@@ -576,7 +576,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         return managers.FileManager(
             self.stylesheet_file_path,
-            _session=self._session,
+            session=self._session,
             )
 
     @property
@@ -642,7 +642,7 @@ class MaterialPackageManager(PackageManager):
         else:
             output_material_handler_callable = self.output_material_editor
         output_material_handler = output_material_handler_callable(
-            target=output_material, _session=self._session)
+            target=output_material, session=self._session)
         output_material_handler._run()
         if self._session._backtrack():
             return
@@ -749,7 +749,7 @@ class MaterialPackageManager(PackageManager):
     def interactively_select_material_package_manager(self, prompt=True):
         from scoremanager import wranglers
         material_manager_wrangler = wranglers.MaterialPackageManagerWrangler(
-            _session=self._session)
+            session=self._session)
         with self.backtracking:
             material_package_manager = \
                 material_manager_wrangler.select_material_manager_class_name_interactively()
@@ -765,7 +765,7 @@ class MaterialPackageManager(PackageManager):
     def interactively_select_stylesheet(self, prompt=True):
         from scoremanager import wranglers
         stylesheet_file_wrangler = wranglers.StylesheetFileWrangler(
-            _session=self._session)
+            session=self._session)
         with self.backtracking:
             stylesheet_file_path = \
                 stylesheet_file_wrangler.interactively_select_asset_filesystem_path()
@@ -790,7 +790,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         manager = managers.FileManager(
             self.material_definition_module_file_path,
-            _session=self._session,
+            session=self._session,
             )
         manager.interactively_write_boilerplate()
 
@@ -798,14 +798,14 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         manager = managers.FileManager(
             self.output_material_module_file_path,
-            _session=self._session,
+            session=self._session,
             )
         manager.interactively_write_boilerplate()
 
     def manage_stylesheets(self):
         from scoremanager import wranglers
         stylesheet_file_wrangler = wranglers.StylesheetFileWrangler(
-            _session=self._session)
+            session=self._session)
         stylesheet_file_wrangler._run()
 
     def remove(self):
@@ -832,7 +832,7 @@ class MaterialPackageManager(PackageManager):
         if self.has_material_definition_module:
             manager = managers.FileManager(
                 self.material_definition_module_file_path,
-                _session=self._session,
+                session=self._session,
                 )
             manager._remove()
 
@@ -846,7 +846,7 @@ class MaterialPackageManager(PackageManager):
         if self.has_user_input_module:
             manager = managers.FileManager(
                 self.user_input_module_file_path,
-                _session=self._session,
+                session=self._session,
                 )
             manager._remove()
 
@@ -867,7 +867,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         manager = managers.FileManager(
             self.material_definition_module_file_path,
-            _session=self._session,
+            session=self._session,
             )
         manager._run_abjad()
 
@@ -881,7 +881,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         manager = managers.FileManager(
             self.material_definition_module_file_path,
-            _session=self._session,
+            session=self._session,
             )
         manager._run_python()
 
@@ -1018,7 +1018,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         manager = managers.FileManager(
             self.user_input_module_file_path,
-            _session=self._session,
+            session=self._session,
             )
         result = manager._execute_file_lines(
             file_path=self.user_input_module_file_path,

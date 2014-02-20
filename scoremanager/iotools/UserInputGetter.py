@@ -15,8 +15,8 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
 
     ### INITIALIZER ###
 
-    def __init__(self, _session=None, where=None):
-        ScoreManagerObject.__init__(self, _session=_session)
+    def __init__(self, session=None, where=None):
+        ScoreManagerObject.__init__(self, session=session)
         PromptMakerMixin.__init__(self)
         self._prompts = []
         self.allow_none = False

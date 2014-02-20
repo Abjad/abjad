@@ -15,8 +15,8 @@ class Wizard(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, _session=None, target=None):
-        ScoreManagerObject.__init__(self, _session=_session)
+    def __init__(self, session=None, target=None):
+        ScoreManagerObject.__init__(self, session=session)
         self.target = target
 
     ### PRIVATE PROPERTIES ###
@@ -35,7 +35,7 @@ class Wizard(ScoreManagerObject):
         command = command.format(target_editor_class_name)
         exec(command)
         target_editor = target_editor_class(
-            _session=self._session, 
+            session=self._session, 
             target=target,
             )
         return target_editor
@@ -53,7 +53,7 @@ class Wizard(ScoreManagerObject):
         if hasattr(self, 'selector'):
             selector = self.selector
         else:
-            selector = self.handler_class_name_selector(_session=self._session)
+            selector = self.handler_class_name_selector(session=self._session)
         handler_class_name = selector._run()
         if not self._session._backtrack():
             handler_editor = self._get_target_editor(handler_class_name)

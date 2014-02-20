@@ -27,7 +27,7 @@ class PitchClassTransformCreationWizard(Wizard):
             breadcrumb = self.function_application_pairs_to_breadcrumb(
                 function_application_pairs)
             self._session._push_breadcrumb(breadcrumb=breadcrumb)
-            selector = iotools.Selector(_session=self._session)
+            selector = iotools.Selector(session=self._session)
             items = []
             items.append('transpose')
             items.append('invert')

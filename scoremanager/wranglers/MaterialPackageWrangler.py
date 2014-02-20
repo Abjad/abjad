@@ -41,12 +41,12 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### INITIALIZER ###
 
-    def __init__(self, _session=None):
+    def __init__(self, session=None):
         from scoremanager import wranglers
-        PackageWrangler.__init__(self, _session=_session)
+        PackageWrangler.__init__(self, session=session)
         self._material_package_manager_wrangler = \
             wranglers.MaterialPackageManagerWrangler(
-                _session=self._session)
+                session=self._session)
 
     ### PRIVATE PROPERTIES ###
 
@@ -70,12 +70,12 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_manager = \
                 managers.MaterialPackageManager(
                 material_package_path, 
-                _session=self._session,
+                session=self._session,
                 )
         else:
             command = 'material_package_manager = '
             command += 'scoremanager.materialpackagemanagers.{}'
-            command += '(material_package_path, _session=self._session)'
+            command += '(material_package_path, session=self._session)'
             command = command.format(material_package_manager_class_name)
             try:
                 exec(command)
@@ -89,7 +89,7 @@ class MaterialPackageWrangler(PackageWrangler):
                 exec(command)
                 material_package_manager = material_package_manager_class(
                     material_package_path, 
-                    _session=self._session,
+                    session=self._session,
                     )
         return material_package_manager
 

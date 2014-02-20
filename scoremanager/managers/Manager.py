@@ -21,10 +21,10 @@ class Manager(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, filesystem_path=None, _session=None):
+    def __init__(self, filesystem_path=None, session=None):
         assert filesystem_path is None or os.path.sep in filesystem_path
         self._filesystem_path = filesystem_path
-        ScoreManagerObject.__init__(self, _session=_session)
+        ScoreManagerObject.__init__(self, session=session)
 
     ### SPECIAL METHODS ###
 

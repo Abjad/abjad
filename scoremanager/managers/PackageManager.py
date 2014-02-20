@@ -10,7 +10,7 @@ class PackageManager(DirectoryManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, packagesystem_path=None, _session=None):
+    def __init__(self, packagesystem_path=None, session=None):
         if packagesystem_path is None or \
             os.path.sep not in packagesystem_path:
             filesystem_path = \
@@ -21,7 +21,7 @@ class PackageManager(DirectoryManager):
         assert '.' not in filesystem_path, repr(filesystem_path)
         DirectoryManager.__init__(self,
             filesystem_path=filesystem_path,
-            _session=_session,
+            session=session,
             )
         packagesystem_path = \
             self.configuration.filesystem_path_to_packagesystem_path(
@@ -139,7 +139,7 @@ class PackageManager(DirectoryManager):
         from scoremanager import managers
         return managers.FileManager(
             self.initializer_file_path,
-            _session=self._session,
+            session=self._session,
             )
 
     @property
