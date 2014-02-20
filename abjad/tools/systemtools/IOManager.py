@@ -261,20 +261,27 @@ class IOManager(object):
     def open_file(file_path, application=None):
         r'''Opens `file_path`.
         
-        Uses operating system-specific file-opener when `application` is none.
-
         Uses `application` when `application` is not none.
+
+        Uses Abjad configuration file `text_editor` when
+        `application` is none.
+
+        Takes best guess at operating system-specific file opener when both
+        `application` and Abjad configuration file `text_editor` are none. 
 
         Returns none.
         '''
+        from abjad import abjad_configuration
         if os.name == 'nt':
             os.startfile(file_path)
             return
         if sys.platform.lower() == 'linux2':
             viewer = application or 'xdg-open'
         else:
-            viewer = application or 'open'
-        command = '{} {} &'.format(viewer, file_path)
+            viewer = application
+            viewer = viewer or abjad_configuration['text_editor']
+            viewer = viewer or open
+        command = '{} {}'.format(viewer, file_path)
         IOManager.spawn_subprocess(command)
 
     @staticmethod
