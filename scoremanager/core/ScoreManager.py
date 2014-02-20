@@ -84,17 +84,19 @@ class ScoreManager(ScoreManagerObject):
         section = menu.make_command_section(is_secondary=True)
         section.append(('scores - show all', 'ssl'))
         section.append(('scores - show active', 'ssv'))
+        section.append(('scores - show examples', 'ssx'))
         section.append(('scores - show mothballed', 'ssmb'))
         menu._make_default_hidden_sections()
         return menu
 
     def _make_score_selection_menu(self):
         wrangler = self.score_package_wrangler
-        if self.session.is_first_run:
-            self.session.is_first_run = False
+        if self.session.rewrite_cache:
+            self.session.io_manager._write_cache(prompt=False)
+            self.session.rewrite_cache = False
         menu_entries = self.session.io_manager._read_cache()
         if not menu_entries:
-            self.session.io_manager._write_cache()
+            self.session.io_manager._write_cache(prompt=False)
             menu_entries = wrangler._make_asset_menu_entries()
         if not self.session.show_example_scores:
             menu_entries = self._remove_example_score_menu_entries(
@@ -245,6 +247,9 @@ class ScoreManager(ScoreManagerObject):
     def display_all_scores(self):
         self.session.display_all_scores()
 
+    def display_example_scores(self):
+        self.session.display_example_scores()
+
     def display_mothballed_scores(self):
         self.session.display_mothballed_scores()
 
@@ -331,5 +336,6 @@ class ScoreManager(ScoreManagerObject):
         'ssl': display_all_scores,
         'ssv': display_active_scores,
         'ssmb': display_mothballed_scores,
+        'ssx': display_example_scores,
         'lmy': manage_stylesheets,
         }

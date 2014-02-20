@@ -57,6 +57,7 @@ class Session(abctools.AbjadObject):
         'is_quitting',
         'last_controller',
         'nonnumbered_menu_sections_are_hidden',
+        'rewrite_cache',
         'score_manager',
         'scores_to_show',
         'session_once_had_user_input',
@@ -92,7 +93,7 @@ class Session(abctools.AbjadObject):
         self.is_backtracking_locally = False
         self.is_backtracking_to_score = False
         self.is_backtracking_to_score_manager = False
-        self.is_first_run = True
+        #self.is_first_run = True
         self.is_navigating_to_next_score = False
         self.is_navigating_to_previous_score = False
         self.is_test = False
@@ -100,6 +101,7 @@ class Session(abctools.AbjadObject):
         self.menu_header_width = 160
         self.nonnumbered_menu_sections_are_hidden = False
         self.pending_user_input = pending_user_input
+        self.rewrite_cache = False
         self.show_example_scores = True
         self.transcribe_next_command = True
         self.use_current_user_input_values_as_default = False
@@ -838,6 +840,26 @@ class Session(abctools.AbjadObject):
         return self._session_once_had_user_input
 
     @apply
+    def rewrite_cache():
+        def fget(self):
+            r'''Gets and sets flag to rewrite cache.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.rewrite_cache
+                    True
+
+            Returns boolean.
+            '''
+            return self._rewrite_cache
+        def fset(self, expr):
+            assert isinstance(expr, bool)
+            self._rewrite_cache = expr
+        return property(**locals())
+
+    @apply
     def show_example_scores():
         def fget(self):
             r'''Gets and sets flag to show example scores.
@@ -974,6 +996,7 @@ class Session(abctools.AbjadObject):
         Returns none.
         '''
         self._scores_to_show = 'active'
+        self.rewrite_cache = True
 
     def display_all_scores(self):
         r'''Sets scores to show to ``'all'``.
@@ -981,6 +1004,23 @@ class Session(abctools.AbjadObject):
         Returns none.
         '''
         self._scores_to_show = 'all'
+        self.rewrite_cache = True
+
+    def display_example_scores(self):
+        r'''Sets scores to show to ``'example'``.
+
+        Returns none.
+        '''
+        self._scores_to_show = 'example'
+        self.rewrite_cache = True
+
+    def display_mothballed_scores(self):
+        r'''Sets scores to show to ``'mothballed'``.
+
+        Returns none.
+        '''
+        self._scores_to_show = 'mothballed'
+        self.rewrite_cache = True
 
     def display_variables(self):
         r'''Displays session variables.
@@ -996,13 +1036,6 @@ class Session(abctools.AbjadObject):
         lines.append('')
         self.io_manager.display(lines, capitalize_first_character=False)
         self.io_manager.proceed()
-
-    def display_mothballed_scores(self):
-        r'''Sets scores to show to ``'mothballed'``.
-
-        Returns none.
-        '''
-        self._scores_to_show = 'mothballed'
 
     def swap_user_input_values_default_status(self):
         r'''Swaps boolean value of `use_current_user_input_values_as_default`.
