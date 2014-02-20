@@ -263,7 +263,7 @@ class Wrangler(ScoreManagerObject):
         message = message.format(view_count, view_string)
         lines.append(message)
         lines.append('')
-        tab_width = self.configuration.abjad_configuration.get_tab_width()
+        tab_width = self.configuration.get_tab_width()
         tab = tab_width * ' '
         names = [tab + x for x in names]
         lines.extend(names)

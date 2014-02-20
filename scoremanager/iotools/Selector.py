@@ -293,7 +293,7 @@ class Selector(ScoreManagerObject):
         session=None,
         ):
         rhythm_maker_tools_directory_path = os.path.join(
-            Selector.configuration.abjad_configuration.abjad_directory_path, 
+            Selector.configuration.abjad_directory_path, 
             'tools', 
             'rhythmmakertools',
             )

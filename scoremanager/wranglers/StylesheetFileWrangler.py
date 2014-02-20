@@ -19,7 +19,7 @@ class StylesheetFileWrangler(Wrangler):
     ### CLASS VARIABLES ###
 
     asset_storehouse_filesystem_path_in_built_in_asset_library = \
-        Wrangler.configuration.abjad_configuration.abjad_stylesheets_directory_path
+        Wrangler.configuration.abjad_stylesheets_directory_path
 
     score_package_asset_storehouse_path_infix_parts = ('stylesheets',)
 

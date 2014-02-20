@@ -17,10 +17,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     '''
 
-    ### CLASS VARIABLES ###
-
-    abjad_configuration = AbjadConfiguration()
-
     ### INITIALIZER ###
 
     def __init__(self):
@@ -50,7 +46,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             'materialpackages',
             )
         self.built_in_stylesheets_directory_path = os.path.join(
-            self.abjad_configuration.abjad_directory_path,
+            self.abjad_directory_path,
             'stylesheets',
             )
 
@@ -172,7 +168,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         # other directory paths
 
         self._handler_tools_directory_path = os.path.join(
-            self.abjad_configuration.abjad_experimental_directory_path,
+            self.abjad_experimental_directory_path,
             'tools',
             'handlertools',
             )
@@ -354,8 +350,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             filesystem_path = filesystem_path[:-3]
         if filesystem_path.startswith(
             self.built_in_score_packages_directory_path):
-            prefix_length = \
-                len(self.abjad_configuration.abjad_root_directory_path) + 1
+            prefix_length = len(self.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(
             self.user_asset_library_material_packages_directory_path):
             prefix_length = \
@@ -376,12 +371,10 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 os.path.basename(filesystem_path)])
         elif filesystem_path.startswith(
             self.built_in_material_package_managers_directory_path):
-            prefix_length = \
-                len(self.abjad_configuration.abjad_root_directory_path) + 1
+            prefix_length = len(self.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(
             self.built_in_material_packages_directory_path):
-            prefix_length = \
-                len(self.abjad_configuration.abjad_root_directory_path) + 1
+            prefix_length = len(self.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(
             self.score_manager_directory_path):
             prefix_length = \
@@ -394,10 +387,8 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             prefix_length = \
                 len(os.path.dirname(
                 self.user_asset_library_stylesheets_directory_path)) + 1
-        elif filesystem_path.startswith(
-            self.abjad_configuration.abjad_stylesheets_directory_path):
-            prefix_length = \
-                len(self.abjad_configuration.abjad_root_directory_path) + 1
+        elif filesystem_path.startswith(self.abjad_stylesheets_directory_path):
+            prefix_length = len(self.abjad_root_directory_path) + 1
         else:
             message = 'can not change filesystem path'
             message += ' to packagesystem path: {!r}.'
