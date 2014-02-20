@@ -16,24 +16,15 @@ class ScoreManagerObject(object):
 
     configuration = ScoreManagerConfiguration()
 
-    ### CONTEXT MANAGER ###
-
-    class backtracking(ContextManager):
-        def __init__(self, client):
-            self.client = client
-        def __enter__(self):
-            self.client.session._push_backtrack()
-        def __exit__(self, exg_type, exc_value, trackeback):
-            self.client.session._pop_backtrack()
-
     ### INITIALIZER ###
 
     @abc.abstractmethod
     def __init__(self, session=None):
         from scoremanager import core
+        from scoremanager import iotools
         self._configuration = core.ScoreManagerConfiguration()
         self._session = session or core.Session()
-        self.backtracking = ScoreManagerObject.backtracking(self)
+        self.backtracking = iotools.Backtracking(self)
 
     ### SPECIAL METHODS ###
 
