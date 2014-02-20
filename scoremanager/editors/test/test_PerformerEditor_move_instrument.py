@@ -10,24 +10,24 @@ def test_PerformerEditor_move_instrument_01():
     score_manager = scoremanager.core.ScoreManager()
     string = 'green~example~score setup instrumentation flutist move q'
     score_manager._run(pending_user_input=string)
-    assert score_manager.session.io_transcript.signature == (11,)
+    assert score_manager._session.io_transcript.signature == (11,)
 
     string = 'green~example~score setup instrumentation flutist move b q'
     score_manager._run(pending_user_input=string)
-    assert score_manager.session.io_transcript.signature == (13, (8, 11))
+    assert score_manager._session.io_transcript.signature == (13, (8, 11))
 
     string = 'green~example~score setup instrumentation flutist move h q'
     score_manager._run(pending_user_input=string)
-    assert score_manager.session.io_transcript.signature == (13, (0, 11))
+    assert score_manager._session.io_transcript.signature == (13, (0, 11))
 
     string = 'green~example~score setup instrumentation flutist move s q'
     score_manager._run(pending_user_input=string)
-    assert score_manager.session.io_transcript.signature == (13, (2, 11))
+    assert score_manager._session.io_transcript.signature == (13, (2, 11))
 
     string = 'green~example~score setup instrumentation'
     string += ' flutist move foo q'
     score_manager._run(pending_user_input=string)
-    assert score_manager.session.io_transcript.signature == (13,)
+    assert score_manager._session.io_transcript.signature == (13,)
 
 
 def test_PerformerEditor_move_instrument_02():

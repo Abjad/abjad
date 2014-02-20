@@ -9,8 +9,8 @@ def test_InstrumentEditor_base_states_01():
 
     editor = scoremanager.editors.InstrumentEditor()
     editor._run(pending_user_input='1 q')
-    assert editor.session.io_transcript.signature == (4,)
-    assert editor.session.io_transcript.last_menu_lines == \
+    assert editor._session.io_transcript.signature == (4,)
+    assert editor._session.io_transcript.last_menu_lines == \
     ['Accordion',
       '',
       "     1: instrument name (in): accordion",
@@ -27,7 +27,7 @@ def test_InstrumentEditor_base_states_02():
     '''
 
     editor = scoremanager.editors.InstrumentEditor()
-    assert isinstance(editor.session, scoremanager.core.Session)
+    assert isinstance(editor._session, scoremanager.core.Session)
     assert editor.target is None
 
 
@@ -40,5 +40,5 @@ def test_InstrumentEditor_base_states_03():
         short_instrument_name='acc. I',
         )
     editor = scoremanager.editors.InstrumentEditor(target=accordion)
-    assert isinstance(editor.session, scoremanager.core.Session)
+    assert isinstance(editor._session, scoremanager.core.Session)
     assert editor.target is accordion

@@ -88,7 +88,7 @@ class IOTranscript(AbjadObject):
         output_directory = output_directory or \
             self.configuration.transcripts_directory_path
         start_time = self.start_time.strftime('%Y-%m-%d-%H-%M-%S')
-        file_name = 'session-{}.txt'.format(start_time)
+        file_name = '_session-{}.txt'.format(start_time)
         file_path = os.path.join(output_directory, file_name)
         output = file(file_path, 'w')
         for entry in self.entries:

@@ -15,8 +15,8 @@ class Wizard(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, session=None, target=None):
-        ScoreManagerObject.__init__(self, session=session)
+    def __init__(self, _session=None, target=None):
+        ScoreManagerObject.__init__(self, _session=_session)
         self.target = target
 
     ### PRIVATE PROPERTIES ###
@@ -35,7 +35,7 @@ class Wizard(ScoreManagerObject):
         command = command.format(target_editor_class_name)
         exec(command)
         target_editor = target_editor_class(
-            session=self.session, 
+            _session=self._session, 
             target=target,
             )
         return target_editor
@@ -47,17 +47,17 @@ class Wizard(ScoreManagerObject):
         head=None,
         pending_user_input=None,
         ):
-        self.session.io_manager._assign_user_input(pending_user_input)
-        self.session._cache_breadcrumbs(cache=cache)
-        self.session._push_breadcrumb(self._breadcrumb)
+        self._session.io_manager._assign_user_input(pending_user_input)
+        self._session._cache_breadcrumbs(cache=cache)
+        self._session._push_breadcrumb(self._breadcrumb)
         if hasattr(self, 'selector'):
             selector = self.selector
         else:
-            selector = self.handler_class_name_selector(session=self.session)
+            selector = self.handler_class_name_selector(_session=self._session)
         handler_class_name = selector._run()
-        if not self.session._backtrack():
+        if not self._session._backtrack():
             handler_editor = self._get_target_editor(handler_class_name)
             handler_editor._run(is_autoadvancing=True, is_autostarting=True)
             self.target = handler_editor.target
-        self.session._pop_breadcrumb()
-        self.session._restore_breadcrumbs(cache=cache)
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)

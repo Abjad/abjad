@@ -13,10 +13,10 @@ class Selector(ScoreManagerObject):
         is_ranged=False, 
         items=None, 
         return_value_attribute='explicit',
-        session=None,
+        _session=None,
         where=None,
         ):
-        ScoreManagerObject.__init__(self, session=session)
+        ScoreManagerObject.__init__(self, _session=_session)
         self.is_numbered = is_numbered
         self.is_ranged = is_ranged
         self.items = items or []
@@ -49,7 +49,7 @@ class Selector(ScoreManagerObject):
             return result.get(metadatum_name)
 
     def _make_main_menu(self, head=None):
-        main_menu = self.session.io_manager.make_menu(where=self._where)
+        main_menu = self._session.io_manager.make_menu(where=self._where)
         menu_section = main_menu._make_section(
             return_value_attribute=self.return_value_attribute,
             is_numbered=self.is_numbered,
@@ -69,21 +69,21 @@ class Selector(ScoreManagerObject):
         head=None,
         pending_user_input=None,
         ):
-        self.session.io_manager._assign_user_input(pending_user_input)
-        self.session._cache_breadcrumbs(cache=cache)
+        self._session.io_manager._assign_user_input(pending_user_input)
+        self._session._cache_breadcrumbs(cache=cache)
         while True:
-            self.session._push_breadcrumb(self._breadcrumb)
+            self._session._push_breadcrumb(self._breadcrumb)
             menu = self._make_main_menu(head=head)
             result = menu._run(clear=clear)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
             elif not result:
-                self.session._pop_breadcrumb()
+                self._session._pop_breadcrumb()
                 continue
             else:
                 break
-        self.session._pop_breadcrumb()
-        self.session._restore_breadcrumbs(cache=cache)
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
         return result
 
     ### PUBLIC PROPERTIES ###
@@ -103,7 +103,7 @@ class Selector(ScoreManagerObject):
 
     def change_expr_to_menu_entry(self, expr):
         return (
-            self.session.io_manager._get_one_line_menuing_summary(expr),
+            self._session.io_manager._get_one_line_menuing_summary(expr),
             None,
             None,
             expr,
@@ -120,10 +120,10 @@ class Selector(ScoreManagerObject):
 
     @staticmethod
     def make_articulation_handler_class_name_selector(
-        session=None, 
+        _session=None, 
         ):
         selector = Selector.make_handler_class_name_selector(
-            session=session,
+            _session=_session,
             base_class_names=('ArticulationHandler',),
             forbidden_class_names=('ArticulationHandler',),
             )
@@ -131,39 +131,39 @@ class Selector(ScoreManagerObject):
 
     @staticmethod
     def make_articulation_handler_selector(
-        session=None,
+        _session=None,
         ):
         selector = Selector.make_material_package_selector(
-            session=session,
+            _session=_session,
             generic_output_name='articulation handler',
             )
         return selector
 
     @staticmethod
     def make_clef_name_selector(
-        session=None, 
+        _session=None, 
         ):
         from abjad.tools import indicatortools
-        selector = Selector(session=session)
+        selector = Selector(_session=_session)
         selector.items = indicatortools.Clef._list_clef_names()
         return selector
 
     @staticmethod
     def make_directory_content_selector(
-        session=None, 
+        _session=None, 
         storehouse_filesystem_paths=None,
         forbidden_directory_entries=None,
         strip_file_extensions=False,
         ):
         from scoremanager import managers
-        selector = Selector(session=session)
+        selector = Selector(_session=_session)
         storehouse_filesystem_paths = storehouse_filesystem_paths or []
         forbidden_directory_entries = forbidden_directory_entries or []
         items = []
         for directory_path in storehouse_filesystem_paths:
             manager = managers.DirectoryManager(
                 filesystem_path=directory_path,
-                session=session,
+                _session=_session,
                 )
             entries = manager._list_directory(public_entries_only=True)
             for entry in entries:
@@ -176,10 +176,10 @@ class Selector(ScoreManagerObject):
 
     @staticmethod
     def make_dynamic_handler_class_name_selector(
-        session=None, 
+        _session=None, 
         ):
         selector = Selector.make_handler_class_name_selector(
-            session=session,
+            _session=_session,
             base_class_names=('DynamicHandler', 'DynamicsHandler'),
             forbidden_class_names=('DynamicHandler',)
             )
@@ -187,21 +187,21 @@ class Selector(ScoreManagerObject):
 
     @staticmethod
     def make_dynamic_handler_package_selector(
-        session=None,
+        _session=None,
         ):
         selector = Selector.make_material_package_selector(
-            session=session,
+            _session=_session,
             generic_output_name='dynamic handler',
             )
         return selector
 
     @staticmethod
     def make_handler_class_name_selector(
-        session=None, 
+        _session=None, 
         base_class_names=None,
         forbidden_class_names=None,
         ):
-        selector = Selector(session=session)
+        selector = Selector(_session=_session)
         base_class_names = base_class_names or ()
         forbidden_class_names = forbidden_class_names or ()
         directory_path = Selector.configuration.handler_tools_directory_path
@@ -219,10 +219,10 @@ class Selector(ScoreManagerObject):
 
     @staticmethod
     def make_material_package_selector(
-        session=None,
+        _session=None,
         generic_output_name='',
         ):
-        selector = Selector(session=session)
+        selector = Selector(_session=_session)
         def list_public_directory_paths(subtree_path):
             result = []
             for triple in os.walk(subtree_path):
@@ -246,7 +246,7 @@ class Selector(ScoreManagerObject):
             return result
         def list_current_material_directory_paths():
             result = []
-            path = selector.session.current_materials_directory_path
+            path = selector._session.current_materials_directory_path
             paths = list_public_directory_paths_with_initializers(path)
             for directory_path in paths:
                 metadatum = selector._get_metadata_from_directory_path(
@@ -267,11 +267,11 @@ class Selector(ScoreManagerObject):
 
     @staticmethod
     def make_performer_selector(
-        session=None,
+        _session=None,
         ):
-        selector = Selector(session=session)
+        selector = Selector(_session=_session)
         items = []
-        manager = selector.session.current_score_package_manager
+        manager = selector._session.current_score_package_manager
         if hasattr(manager, '_get_instrumentation'):
             instrumentation = manager._get_instrumentation()
             items.extend(instrumentation.performers)
@@ -280,17 +280,17 @@ class Selector(ScoreManagerObject):
 
     @staticmethod
     def make_pitch_class_reservoir_selector(
-        session=None,
+        _session=None,
         ):
         selector = Selector.make_material_package_selector(
-            session=session,
+            _session=_session,
             generic_output_name='pitch class reservoir',
             )
         return selector
 
     @staticmethod
     def make_rhythm_maker_class_name_selector(
-        session=None,
+        _session=None,
         ):
         rhythm_maker_tools_directory_path = os.path.join(
             Selector.configuration.abjad_directory_path, 
@@ -298,7 +298,7 @@ class Selector(ScoreManagerObject):
             'rhythmmakertools',
             )
         selector = Selector.make_directory_content_selector(
-            session=session,
+            _session=_session,
             storehouse_filesystem_paths=[rhythm_maker_tools_directory_path],
             strip_file_extensions=True,
             )
@@ -306,22 +306,22 @@ class Selector(ScoreManagerObject):
 
     @staticmethod
     def make_rhythm_maker_package_selector(
-        session=None,
+        _session=None,
         ):
         selector = Selector.make_material_package_selector(
-            session=session,
+            _session=_session,
             generic_output_name='rhythm-maker',
             )
         return selector
 
     @staticmethod
     def make_score_instrument_selector(
-        session=None,
+        _session=None,
         ):
-        selector = Selector(session=session)
+        selector = Selector(_session=_session)
         items = []
-        if selector.session.is_in_score:
-            manager = selector.session.current_score_package_manager
+        if selector._session.is_in_score:
+            manager = selector._session.current_score_package_manager
             instrumentation = manager._get_instrumentation()
             items.extend(instrumentation.instruments)
             items.append('other')
@@ -330,10 +330,10 @@ class Selector(ScoreManagerObject):
 
     @staticmethod
     def make_score_tools_performer_name_selector(
-        session=None,
+        _session=None,
         ):
         from abjad.tools import instrumenttools
-        selector = Selector(session=session)
+        selector = Selector(_session=_session)
         selector.return_value_attribute = 'display_string'
         performer_pairs = instrumenttools.Performer.list_primary_performer_names()
         performer_pairs.append(('percussionist', 'perc.'))
@@ -349,11 +349,11 @@ class Selector(ScoreManagerObject):
 
     @staticmethod
     def make_tempo_selector(
-        session=None,
+        _session=None,
         ):
-        selector = Selector(session=session)
+        selector = Selector(_session=_session)
         items = []
-        manager = selector.session.current_score_package_manager
+        manager = selector._session.current_score_package_manager
         if hasattr(manager, '_get_tempo_inventory'):
             items = manager._get_tempo_inventory()
         selector.items = items

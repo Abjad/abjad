@@ -11,7 +11,7 @@ class BuildDirectoryManager(DirectoryManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, score_package_path=None, session=None):
+    def __init__(self, score_package_path=None, _session=None):
         score_directory_path = \
             self.configuration.packagesystem_path_to_filesystem_path(
             score_package_path)
@@ -19,7 +19,7 @@ class BuildDirectoryManager(DirectoryManager):
         DirectoryManager.__init__(
             self,
             filesystem_path=filesystem_path,
-            session=session,
+            _session=_session,
             )
 
     ### PRIVATE PROPERTIES ###
@@ -40,7 +40,7 @@ class BuildDirectoryManager(DirectoryManager):
         if result == 'e':
             self._interactively_edit_file_ending_with('back-cover.tex')
         elif result == 'g':
-            self.session.io_manager.print_not_yet_implemented()
+            self._session.io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
             self._interactively_open_file_ending_with('back-cover.pdf')
         elif result == 'ts':
@@ -50,7 +50,7 @@ class BuildDirectoryManager(DirectoryManager):
         if result == 'e':
             self._interactively_edit_file_ending_with('front-cover.tex')
         elif result == 'g':
-            self.session.io_manager.print_not_yet_implemented()
+            self._session.io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
             self._interactively_open_file_ending_with('front-cover.pdf')
         elif result == 'ts':
@@ -60,7 +60,7 @@ class BuildDirectoryManager(DirectoryManager):
         if result == 'e':
             self._interactively_edit_file_ending_with('preface.tex')
         elif result == 'g':
-            self.session.io_manager.print_not_yet_implemented()
+            self._session.io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
             self._interactively_open_file_ending_with('preface.pdf')
         elif result == 'ts':
@@ -70,7 +70,7 @@ class BuildDirectoryManager(DirectoryManager):
         if result == 'e':
             self._interactively_edit_file_ending_with('score.tex')
         elif result == 'g':
-            self.session.io_manager.print_not_yet_implemented()
+            self._session.io_manager.print_not_yet_implemented()
         elif result == 'lycp':
             self.interactively_copy_segment_lilypond_files()
         elif result == 'pdfcp':
@@ -95,7 +95,7 @@ class BuildDirectoryManager(DirectoryManager):
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
-            self.session.io_manager.proceed(message)
+            self._session.io_manager.proceed(message)
 
     def _interactively_edit_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
@@ -105,7 +105,7 @@ class BuildDirectoryManager(DirectoryManager):
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
-            self.session.io_manager.proceed(message)
+            self._session.io_manager.proceed(message)
 
     def _interactively_open_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
@@ -115,7 +115,7 @@ class BuildDirectoryManager(DirectoryManager):
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
-            self.session.io_manager.proceed(message)
+            self._session.io_manager.proceed(message)
 
     def _interactively_typeset_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
@@ -125,10 +125,10 @@ class BuildDirectoryManager(DirectoryManager):
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
-            self.session.io_manager.proceed(message)
+            self._session.io_manager.proceed(message)
 
     def _make_back_cover_menu(self):
-        menu = self.session.io_manager.make_menu(where=self._where)
+        menu = self._session.io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
         command_section.append(('source - edit', 'e'))
         command_section.append(('source - generate', 'g'))
@@ -139,7 +139,7 @@ class BuildDirectoryManager(DirectoryManager):
         return menu
 
     def _make_front_cover_menu(self):
-        menu = self.session.io_manager.make_menu(where=self._where)
+        menu = self._session.io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
         command_section.append(('source - edit', 'e'))
         command_section.append(('source - generate', 'g'))
@@ -150,7 +150,7 @@ class BuildDirectoryManager(DirectoryManager):
         return menu
 
     def _make_main_menu(self):
-        menu = self.session.io_manager.make_menu(where=self._where)
+        menu = self._session.io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
         command_section.append(('back cover - manage', 'bc'))
         command_section.append(('front cover - manage', 'fc'))
@@ -161,7 +161,7 @@ class BuildDirectoryManager(DirectoryManager):
         return menu
 
     def _make_preface_menu(self):
-        menu = self.session.io_manager.make_menu(where=self._where)
+        menu = self._session.io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
         command_section.append(('source - edit', 'e'))
         command_section.append(('source - generate', 'g'))
@@ -172,7 +172,7 @@ class BuildDirectoryManager(DirectoryManager):
         return menu
 
     def _make_score_menu(self):
-        menu = self.session.io_manager.make_menu(where=self._where)
+        menu = self._session.io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
         command_section.append(('segment lys - copy', 'lycp'))
         command_section.append(('segment pdfs - copy', 'pdfcp'))
@@ -221,8 +221,8 @@ class BuildDirectoryManager(DirectoryManager):
 
         Returns none.
         '''
-        self.session.io_manager._assign_user_input(pending_user_input)
-        segments_directory_path = self.session.current_segments_directory_path
+        self._session.io_manager._assign_user_input(pending_user_input)
+        segments_directory_path = self._session.current_segments_directory_path
         for directory_entry in sorted(os.listdir(segments_directory_path)):
             segment_directory_path = os.path.join(
                 segments_directory_path,
@@ -236,7 +236,7 @@ class BuildDirectoryManager(DirectoryManager):
                 )
             if not os.path.isfile(source_file_path):
                 continue
-            score_package_path = self.session.current_score_package_path
+            score_package_path = self._session.current_score_package_path
             score_name = score_package_path.replace('_', '-')
             directory_entry = directory_entry.replace('_', '-')
             target_file_name = '{}-segment-{}.ly'
@@ -252,8 +252,8 @@ class BuildDirectoryManager(DirectoryManager):
             self._trim_lilypond_file(target_file_path)
             message = 'Segment {} LilyPond file copied & trimmed.'
             message = message.format(directory_entry)
-            self.session.io_manager.display(message)
-        self.session.io_manager.proceed('')
+            self._session.io_manager.display(message)
+        self._session.io_manager.proceed('')
 
     def interactively_copy_segment_pdfs(self, pending_user_input=None):
         r'''Interactively copies segment PDFs from segment
@@ -261,8 +261,8 @@ class BuildDirectoryManager(DirectoryManager):
 
         Returns none.
         '''
-        self.session.io_manager._assign_user_input(pending_user_input)
-        segments_directory_path = self.session.current_segments_directory_path
+        self._session.io_manager._assign_user_input(pending_user_input)
+        segments_directory_path = self._session.current_segments_directory_path
         for directory_entry in sorted(os.listdir(segments_directory_path)):
             segment_directory_path = os.path.join(
                 segments_directory_path,
@@ -276,7 +276,7 @@ class BuildDirectoryManager(DirectoryManager):
                 )
             if not os.path.isfile(source_file_path):
                 continue
-            score_package_path = self.session.current_score_package_path
+            score_package_path = self._session.current_score_package_path
             directory_entry = directory_entry.replace('_', '-')
             target_file_name = '{}-segment-{}.pdf'
             target_file_name = target_file_name.format(
@@ -290,96 +290,96 @@ class BuildDirectoryManager(DirectoryManager):
             shutil.copyfile(source_file_path, target_file_path)
             message = 'Segment {} PDF copied.'
             message = message.format(directory_entry)
-            self.session.io_manager.display(message)
-        self.session.io_manager.proceed('')
+            self._session.io_manager.display(message)
+        self._session.io_manager.proceed('')
 
     def manage_back_cover(self, clear=True, cache=False):
         r'''Manages back cover.
 
         Returns none.
         '''
-        self.session._cache_breadcrumbs(cache=cache)
+        self._session._cache_breadcrumbs(cache=cache)
         while True:
-            self.session._push_breadcrumb('back cover')
+            self._session._push_breadcrumb('back cover')
             menu = self._make_back_cover_menu()
             result = menu._run(clear=clear)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
             elif not result:
-                self.session._pop_breadcrumb()
+                self._session._pop_breadcrumb()
                 continue
             self._handle_back_cover_menu_result(result)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
-            self.session._pop_breadcrumb()
-        self.session._pop_breadcrumb()
-        self.session._restore_breadcrumbs(cache=cache)
+            self._session._pop_breadcrumb()
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
 
     def manage_front_cover(self, clear=True, cache=False):
         r'''Manages front cover.
 
         Returns none.
         '''
-        self.session._cache_breadcrumbs(cache=cache)
+        self._session._cache_breadcrumbs(cache=cache)
         while True:
-            self.session._push_breadcrumb('front cover')
+            self._session._push_breadcrumb('front cover')
             menu = self._make_front_cover_menu()
             result = menu._run(clear=clear)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
             elif not result:
-                self.session._pop_breadcrumb()
+                self._session._pop_breadcrumb()
                 continue
             self._handle_front_cover_menu_result(result)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
-            self.session._pop_breadcrumb()
-        self.session._pop_breadcrumb()
-        self.session._restore_breadcrumbs(cache=cache)
+            self._session._pop_breadcrumb()
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
 
     def manage_preface(self, clear=True, cache=False):
         r'''Manages preface.
 
         Returns none.
         '''
-        self.session._cache_breadcrumbs(cache=cache)
+        self._session._cache_breadcrumbs(cache=cache)
         while True:
-            self.session._push_breadcrumb('preface')
+            self._session._push_breadcrumb('preface')
             menu = self._make_preface_menu()
             result = menu._run(clear=clear)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
             elif not result:
-                self.session._pop_breadcrumb()
+                self._session._pop_breadcrumb()
                 continue
             self._handle_preface_menu_result(result)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
-            self.session._pop_breadcrumb()
-        self.session._pop_breadcrumb()
-        self.session._restore_breadcrumbs(cache=cache)
+            self._session._pop_breadcrumb()
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
 
     def manage_score(self, clear=True, cache=False):
         r'''Manages score.
 
         Returns none.
         '''
-        self.session._cache_breadcrumbs(cache=cache)
+        self._session._cache_breadcrumbs(cache=cache)
         while True:
-            self.session._push_breadcrumb('score')
+            self._session._push_breadcrumb('score')
             menu = self._make_score_menu()
             result = menu._run(clear=clear)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
             elif not result:
-                self.session._pop_breadcrumb()
+                self._session._pop_breadcrumb()
                 continue
             self._handle_score_menu_result(result)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
-            self.session._pop_breadcrumb()
-        self.session._pop_breadcrumb()
-        self.session._restore_breadcrumbs(cache=cache)
+            self._session._pop_breadcrumb()
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
 
     ### UI MANIFEST ###
 

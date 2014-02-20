@@ -27,10 +27,10 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### INITIALIZER ###
 
-    def __init__(self, session=None):
+    def __init__(self, _session=None):
         from scoremanager import managers
         superclass = super(SegmentPackageWrangler, self)
-        superclass.__init__(session=session)
+        superclass.__init__(_session=_session)
         self._asset_manager_class = managers.SegmentPackageManager
 
     ### PRIVATE PROPERTIES ###
@@ -51,7 +51,7 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_manager._run()
 
     def _make_main_menu(self, head=None):
-        main_menu = self.session.io_manager.make_menu(where=self._where)
+        main_menu = self._session.io_manager.make_menu(where=self._where)
         asset_section = main_menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries(head=head)
         asset_section.menu_entries = asset_menu_entries
@@ -73,14 +73,14 @@ class SegmentPackageWrangler(PackageWrangler):
         command_section.append(('new segment', 'new'))
         hidden_section = main_menu.make_command_section(is_secondary=True)
         hidden_section.append(('list', 'ls'))
-        self.session.io_manager._make_initializer_menu_section(
+        self._session.io_manager._make_initializer_menu_section(
             main_menu,
             has_initializer=True,
             )
-        self.session.io_manager._make_metadata_menu_section(main_menu)
-        self.session.io_manager._make_metadata_module_menu_section(main_menu)
-        self.session.io_manager._make_views_menu_section(main_menu)
-        self.session.io_manager._make_views_module_menu_section(main_menu)
+        self._session.io_manager._make_metadata_menu_section(main_menu)
+        self._session.io_manager._make_metadata_module_menu_section(main_menu)
+        self._session.io_manager._make_views_menu_section(main_menu)
+        self._session.io_manager._make_views_module_menu_section(main_menu)
         return main_menu
 
     ### PUBLIC METHODS ###
@@ -89,8 +89,8 @@ class SegmentPackageWrangler(PackageWrangler):
         self,
         pending_user_input=None,
         ):
-        self.session.io_manager._assign_user_input(pending_user_input)
-        parts = (self.session.current_score_directory_path,)
+        self._session.io_manager._assign_user_input(pending_user_input)
+        parts = (self._session.current_score_directory_path,)
         parts += self.score_package_asset_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
         for directory_entry in sorted(os.listdir(segments_directory_path)):
@@ -106,7 +106,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_directory_path)
             manager = self._asset_manager_class(
                 segment_package_path,
-                session=self.session,
+                _session=self._session,
                 )
             manager.interactively_make_asset_pdf(
                 view_asset_pdf=False,
@@ -115,10 +115,10 @@ class SegmentPackageWrangler(PackageWrangler):
             if os.path.isfile(output_pdf_file_path):
                 message = 'segment {} PDF created.'
                 message = message.format(segment_package_name)
-                self.session.io_manager.display(message)
-        self.session.io_manager.display('')
+                self._session.io_manager.display(message)
+        self._session.io_manager.display('')
         self.interactively_view_asset_pdfs()
-        self.session.io_manager.proceed()
+        self._session.io_manager.proceed()
 
     def interactively_reinterpret_all_current_lilypond_files(
         self,
@@ -126,8 +126,8 @@ class SegmentPackageWrangler(PackageWrangler):
         prompt=True,
         view_output_pdfs=True,
         ):
-        self.session.io_manager._assign_user_input(pending_user_input)
-        parts = (self.session.current_score_directory_path,)
+        self._session.io_manager._assign_user_input(pending_user_input)
+        parts = (self._session.current_score_directory_path,)
         parts += self.score_package_asset_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
         for directory_entry in sorted(os.listdir(segments_directory_path)):
@@ -143,14 +143,14 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_directory_path)
             manager = self._asset_manager_class(
                 segment_package_path,
-                session=self.session,
+                _session=self._session,
                 )
             manager.interactively_reinterpret_current_lilypond_file(
                 prompt=False,
                 view_output_pdf=False,
                 )
         message = 'press return to view PDF(s).'
-        self.session.io_manager.proceed(message=message, prompt=prompt)
+        self._session.io_manager.proceed(message=message, prompt=prompt)
         if view_output_pdfs:
             self.interactively_view_asset_pdfs()
 
@@ -158,8 +158,8 @@ class SegmentPackageWrangler(PackageWrangler):
         self,
         pending_user_input=None,
         ):
-        self.session.io_manager._assign_user_input(pending_user_input)
-        parts = (self.session.current_score_directory_path,)
+        self._session.io_manager._assign_user_input(pending_user_input)
+        parts = (self._session.current_score_directory_path,)
         parts += self.score_package_asset_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
         for directory_entry in sorted(os.listdir(segments_directory_path)):
@@ -175,7 +175,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_directory_path)
             manager = self._asset_manager_class(
                 segment_package_path,
-                session=self.session,
+                _session=self._session,
                 )
             version_number = manager.interactively_save_to_versions_directory(
                 prompt=False,
@@ -183,16 +183,16 @@ class SegmentPackageWrangler(PackageWrangler):
             if version_number is not None:
                 message = 'segment {} version {} written to disk.'
                 message = message.format(segment_package_name, version_number)
-                self.session.io_manager.display(message)
-        self.session.io_manager.display('')
-        self.session.io_manager.proceed()
+                self._session.io_manager.display(message)
+        self._session.io_manager.display('')
+        self._session.io_manager.proceed()
 
     def interactively_view_asset_pdfs(
         self,
         pending_user_input=None,
         ):
-        self.session.io_manager._assign_user_input(pending_user_input)
-        parts = (self.session.current_score_directory_path,)
+        self._session.io_manager._assign_user_input(pending_user_input)
+        parts = (self._session.current_score_directory_path,)
         parts += self.score_package_asset_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
         output_pdf_file_paths = []
@@ -209,7 +209,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 output_pdf_file_paths.append(output_pdf_file_path)
         command = ' '.join(output_pdf_file_paths)
         command = 'open ' + command
-        self.session.io_manager.spawn_subprocess(command)
+        self._session.io_manager.spawn_subprocess(command)
 
     def list_asset_filesystem_paths(
         self,
@@ -423,13 +423,13 @@ class SegmentPackageWrangler(PackageWrangler):
         os.mkdir(directory_path)
         manager = self._asset_manager_class(
             packagesystem_path=package_path,
-            session=self.session,
+            _session=self._session,
             )
         manager.write_initializer()
         manager.write_segment_definition_module()
         manager.make_versions_directory()
         message = 'package {!r} created.'.format(package_path)
-        self.session.io_manager.proceed(message=message, prompt=prompt)
+        self._session.io_manager.proceed(message=message, prompt=prompt)
 
     ### UI MANIFEST ###
 

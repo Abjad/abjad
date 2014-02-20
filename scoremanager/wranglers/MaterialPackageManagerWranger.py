@@ -57,7 +57,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
                 self.configuration.filesystem_path_to_packagesystem_path(
                     package_path)
         material_package_manager = managers.MaterialPackageManager(
-            package_path, session=self.session)
+            package_path, _session=self._session)
         if 'materialpackagemanagers' in material_package_manager.filesystem_path:
             most, last = os.path.split(
                 material_package_manager.filesystem_path)
@@ -80,7 +80,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
                     material_package_manager_class_name)
                 exec(command)
             material_package_manager = material_package_manager_class(
-                package_path, session=self.session)
+                package_path, _session=self._session)
         return material_package_manager
 
     def _is_valid_directory_entry(self, directory_entry):
@@ -103,7 +103,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         return sequencetools.zip_sequences(sequences, cyclic=True)
 
     def _make_main_menu(self, head=None):
-        main_menu = self.session.io_manager.make_menu(where=self._where)
+        main_menu = self._session.io_manager.make_menu(where=self._where)
         asset_section = main_menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries(head=head)
         asset_section.menu_entries = asset_menu_entries

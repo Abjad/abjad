@@ -28,17 +28,17 @@ class StylesheetFileWrangler(Wrangler):
 
     ### INITIALIZER ###
 
-    def __init__(self, session=None):
+    def __init__(self, _session=None):
         from scoremanager import managers
         superclass = super(StylesheetFileWrangler, self)
-        superclass.__init__(session=session)
+        superclass.__init__(_session=_session)
         self._asset_manager_class = managers.FileManager
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
-        if self.session.is_in_score:
+        if self._session.is_in_score:
             return 'stylesheets'
         else:
             return 'stylesheet library'
@@ -73,8 +73,8 @@ class StylesheetFileWrangler(Wrangler):
         return annotation
 
     def _get_current_directory(self):
-        if self.session.current_score_directory_path:
-            parts = (self.session.current_score_directory_path,)
+        if self._session.current_score_directory_path:
+            parts = (self._session.current_score_directory_path,)
             parts += self.score_package_asset_storehouse_path_infix_parts
             return os.path.join(*parts)
     
@@ -137,7 +137,7 @@ class StylesheetFileWrangler(Wrangler):
         return menu_entries
 
     def _make_main_menu(self, head=None):
-        main_menu = self.session.io_manager.make_menu(where=self._where)
+        main_menu = self._session.io_manager.make_menu(where=self._where)
         self._main_menu = main_menu
         asset_section = main_menu.make_asset_section()
         main_menu._asset_section = asset_section
@@ -146,7 +146,7 @@ class StylesheetFileWrangler(Wrangler):
             include_extension=True,
             )
         asset_section.menu_entries = menu_entries
-        if self.session.current_score_directory_path:
+        if self._session.current_score_directory_path:
             command_section = main_menu.make_command_section()
             if self._get_header_stylesheet_file_path():
                 command_section.append(('header stylesheet - edit', 'h'))
@@ -172,10 +172,10 @@ class StylesheetFileWrangler(Wrangler):
 
         Returns none.
         '''
-        self.session.io_manager._assign_user_input(pending_user_input)
+        self._session.io_manager._assign_user_input(pending_user_input)
         manager = self._asset_manager_class(
             filesystem_path=filesystem_path, 
-            session=self.session,
+            _session=self._session,
             )
         manager.interactively_edit()
 
@@ -221,7 +221,7 @@ class StylesheetFileWrangler(Wrangler):
         Returns none.
         '''
         from scoremanager import managers
-        self.session.io_manager._assign_user_input(pending_user_input)
+        self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             storehouse_path = \
                 self.interactively_select_asset_storehouse_filesystem_path(
@@ -230,12 +230,12 @@ class StylesheetFileWrangler(Wrangler):
                 in_built_in_score_packages=False,
                 in_user_score_packages=False,
                 )
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
-        getter = self.session.io_manager.make_getter(where=self._where)
+        getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('stylesheet name')
         stylesheet_file_path = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         stylesheet_file_path = \
             stringtools.string_to_accent_free_snake_case(
@@ -248,9 +248,9 @@ class StylesheetFileWrangler(Wrangler):
             )
         manager = managers.FileManager(
             stylesheet_file_path, 
-            session=self.session,
+            _session=self._session,
             )
-        if self.session.is_test:
+        if self._session.is_test:
             manager._make_empty_asset()
         else:
             manager.interactively_edit()

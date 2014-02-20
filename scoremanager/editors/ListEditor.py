@@ -54,7 +54,7 @@ class ListEditor(Editor):
             super(ListEditor, self)._handle_main_menu_result(result)
 
     def _make_main_menu(self):
-        main_menu = self.session.io_manager.make_menu(where=self._where)
+        main_menu = self._session.io_manager.make_menu(where=self._where)
         keyed_attribute_section = main_menu.make_keyed_attribute_section()
         keyed_attribute_section.menu_entries = self.target_attribute_tokens
         numbered_section = main_menu.make_numbered_section()
@@ -92,7 +92,7 @@ class ListEditor(Editor):
         result = []
         for item in self.items:
             result.append(
-                self.session.io_manager._get_one_line_menuing_summary(item))
+                self._session.io_manager._get_one_line_menuing_summary(item))
         return result
 
     ### PUBLIC METHODS ###
@@ -112,26 +112,26 @@ class ListEditor(Editor):
     def interactively_add_items(self):
         if self.item_creator_class:
             item_creator = self.item_creator_class(
-                session=self.session, 
+                _session=self._session, 
                 **self.item_creator_class_kwargs
                 )
             with self.backtracking:
                 result = item_creator._run()
-            if self.session._backtrack():
+            if self._session._backtrack():
                 return
             if result == 'done':
-                self.session.is_autoadding = False
+                self._session.is_autoadding = False
                 return
             result = result or item_creator.target
         elif self.item_getter_configuration_method:
-            getter = self.session.io_manager.make_getter(where=self._where)
+            getter = self._session.io_manager.make_getter(where=self._where)
             self.item_getter_configuration_method(getter, self.item_identifier)
             with self.backtracking:
                 item_initialization_token = getter._run()
-            if self.session._backtrack():
+            if self._session._backtrack():
                 return
             if item_initialization_token == 'done':
-                self.session.is_autoadding = False
+                self._session.is_autoadding = False
                 return
             if self.item_class:
                 if isinstance(item_initialization_token, str):
@@ -160,7 +160,7 @@ class ListEditor(Editor):
         if item is not None:
             if self.item_editor_class is not None:
                 item_editor = self.item_editor_class(
-                    session=self.session, 
+                    _session=self._session, 
                     target=item,
                     )
                 item_editor._run()
@@ -168,11 +168,11 @@ class ListEditor(Editor):
                 self.items[item_index] = item_editor.target
 
     def interactively_move_item(self):
-        getter = self.session.io_manager.make_getter(where=self._where)
+        getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_integer_in_range('old number', 1, len(self.items))
         getter.append_integer_in_range('new number', 1, len(self.items))
         result = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         old_number, new_number = result
         old_index, new_index = old_number - 1, new_number - 1
@@ -181,11 +181,11 @@ class ListEditor(Editor):
         self.items.insert(new_index, item)
 
     def interactively_remove_items(self):
-        getter = self.session.io_manager.make_getter(where=self._where)
+        getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_menu_section_range(
             self.items_identifier, self._numbered_section)
         argument_range = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         indices = [argument_number - 1 for argument_number in argument_range]
         indices = list(reversed(sorted(set(indices))))

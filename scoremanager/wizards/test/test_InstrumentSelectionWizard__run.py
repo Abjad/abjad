@@ -6,7 +6,7 @@ import scoremanager
 def test_InstrumentSelectionWizard__run_01():
 
     wizard = scoremanager.wizards.InstrumentSelectionWizard()
-    wizard.session.current_score_snake_case_name = 'red_example_score'
+    wizard._session.current_score_snake_case_name = 'red_example_score'
 
     assert wizard._run(pending_user_input='hor') == \
         instrumenttools.FrenchHorn()
@@ -17,7 +17,7 @@ def test_InstrumentSelectionWizard__run_01():
 def test_InstrumentSelectionWizard__run_02():
 
     wizard = scoremanager.wizards.InstrumentSelectionWizard()
-    wizard.session.current_score_snake_case_name = 'red_example_score'
+    wizard._session.current_score_snake_case_name = 'red_example_score'
     whistle = instrumenttools.UntunedPercussion(
         instrument_name='whistle',
         short_instrument_name='whistle',

@@ -9,8 +9,8 @@ class PerformerCreationWizard(Wizard):
 
     ### INITIALIZER ###
 
-    def __init__(self, is_ranged=False, session=None, target=None):
-        Wizard.__init__(self, session=session, target=target)
+    def __init__(self, is_ranged=False, _session=None, target=None):
+        Wizard.__init__(self, _session=_session, target=target)
         self.is_ranged = is_ranged
 
     ### PRIVATE PROPERTIES ###
@@ -29,19 +29,19 @@ class PerformerCreationWizard(Wizard):
         pending_user_input=None,
         ):
         from scoremanager.iotools import Selector
-        self.session.io_manager._assign_user_input(pending_user_input)
-        self.session._cache_breadcrumbs(cache=cache)
+        self._session.io_manager._assign_user_input(pending_user_input)
+        self._session._cache_breadcrumbs(cache=cache)
         try_again = False
         performers = []
         while True:
-            self.session._push_breadcrumb(self._breadcrumb)
+            self._session._push_breadcrumb(self._breadcrumb)
             selector = Selector.make_score_tools_performer_name_selector(
-                session=self.session,
+                _session=self._session,
                 )
             selector.is_ranged=self.is_ranged
             with self.backtracking:
                 result = selector._run()
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
             if isinstance(result, list):
                 performer_names = result
@@ -49,14 +49,14 @@ class PerformerCreationWizard(Wizard):
                 performer_names = [result]
             performers = []
             for performer_name in performer_names:
-                self.session._push_breadcrumb(self._breadcrumb)
+                self._session._push_breadcrumb(self._breadcrumb)
                 with self.backtracking:
                     performer = instrumenttools.Performer(performer_name)
                     self.interactively_initialize_performer(performer)
-                self.session._pop_breadcrumb()
+                self._session._pop_breadcrumb()
                 was_backtracking_locally = \
-                    self.session.is_backtracking_locally
-                if self.session._backtrack():
+                    self._session.is_backtracking_locally
+                if self._session._backtrack():
                     if was_backtracking_locally:
                         try_again = True
                     else:
@@ -68,7 +68,7 @@ class PerformerCreationWizard(Wizard):
                 break
             else:
                 try_again = False
-                self.session._pop_breadcrumb()
+                self._session._pop_breadcrumb()
         if self.is_ranged and performers:
             final_result = performers[:]
         elif self.is_ranged and not performers:
@@ -79,8 +79,8 @@ class PerformerCreationWizard(Wizard):
             final_result = None
         else:
             raise ValueError
-        self.session._pop_breadcrumb()
-        self.session._restore_breadcrumbs(cache=cache)
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
         self.target = final_result
         return self.target
 
@@ -94,26 +94,26 @@ class PerformerCreationWizard(Wizard):
         pending_user_input=None,
         ):
         from scoremanager import wizards
-        self.session.io_manager._assign_user_input(pending_user_input)
+        self._session.io_manager._assign_user_input(pending_user_input)
         menu = self.make_performer_configuration_menu(performer)
         while True:
-            self.session._push_breadcrumb(performer.name)
+            self._session._push_breadcrumb(performer.name)
             result = menu._run(clear=clear)
-            if self.session._backtrack():
-                self.session._pop_breadcrumb()
-                self.session._restore_breadcrumbs(cache=cache)
+            if self._session._backtrack():
+                self._session._pop_breadcrumb()
+                self._session._restore_breadcrumbs(cache=cache)
                 return
             elif not result:
-                self.session._pop_breadcrumb()
+                self._session._pop_breadcrumb()
                 continue
             if result in ('skip', ['skip']):
                 break
             elif result in ('more', ['more']):
                 with self.backtracking:
                     wizard = wizards.InstrumentCreationWizard(
-                        session=self.session, is_ranged=True)
+                        _session=self._session, is_ranged=True)
                     instruments = wizard._run()
-                if self.session._backtrack():
+                if self._session._backtrack():
                     break
                 if instruments is not None:
                     for instrument in instruments:
@@ -129,12 +129,12 @@ class PerformerCreationWizard(Wizard):
                 break
             else:
                 raise ValueError("how'd we get here?")
-            self.session._pop_breadcrumb()
-        self.session._pop_breadcrumb()
-        self.session._restore_breadcrumbs(cache=cache)
+            self._session._pop_breadcrumb()
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
 
     def make_performer_configuration_menu(self, performer):
-        menu = self.session.io_manager.make_menu(where=self._where)
+        menu = self._session.io_manager.make_menu(where=self._where)
         numbered_list_section = menu.make_numbered_list_section()
         numbered_list_section.title = 'select instruments'
         command_section = menu.make_command_section()

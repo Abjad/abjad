@@ -7,7 +7,7 @@ from scoremanager.core.ScoreManagerConfiguration \
 
 
 class Session(abctools.AbjadObject):
-    r'''Score manager session.
+    r'''Score manager _session.
 
     ..  container:: example
 
@@ -15,8 +15,8 @@ class Session(abctools.AbjadObject):
 
         ::
 
-            >>> session = scoremanager.core.Session()
-            >>> session
+            >>> _session = scoremanager.core.Session()
+            >>> _session
             Session()
 
     ..  container:: example
@@ -106,13 +106,13 @@ class Session(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Gets interpreter representation of session.
+        r'''Gets interpreter representation of _session.
 
         ..  container:: example
 
             ::
 
-                >>> session
+                >>> _session
                 Session()
 
         Returns string.
@@ -209,13 +209,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def breadcrumb_stack(self):
-        r'''Gets session breadcrumb stack.
+        r'''Gets _session breadcrumb stack.
 
         ..  container:: example
 
             ::
 
-                >>> session._breadcrumb_stack
+                >>> _session._breadcrumb_stack
                 []
 
         Returns list.
@@ -224,13 +224,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def command_history(self):
-        r'''Gets session command history.
+        r'''Gets _session command history.
 
         ..  container:: example
 
             ::
 
-                >>> session.command_history
+                >>> _session.command_history
                 []
 
         Returns list.
@@ -239,13 +239,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def command_history_string(self):
-        r'''Gets session command history string.
+        r'''Gets _session command history string.
 
         ..  container:: example
 
             ::
 
-                >>> session.command_history_string
+                >>> _session.command_history_string
                 ''
 
         Returns string.
@@ -254,13 +254,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def controller_stack(self):
-        r'''Gets session controller stack.
+        r'''Gets _session controller stack.
 
         ..  container:: example
 
             ::
 
-                >>> session.controller_stack
+                >>> _session.controller_stack
                 []
 
         Returns list of objects all of which are either wranglers or managers.
@@ -269,13 +269,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_controller(self):
-        r'''Gets current controller of session.
+        r'''Gets current controller of _session.
 
         ..  container:: example
 
             ::
 
-                >>> session.current_controller is None
+                >>> _session.current_controller is None
                 True
 
         Returns wrangler or manager.
@@ -285,20 +285,20 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_materials_directory_path(self):
-        r'''Gets session current materials directory path.
+        r'''Gets _session current materials directory path.
 
         ..  container:: example
 
-            Materials directory path of session outside score:
+            Materials directory path of _session outside score:
 
             ::
 
-                >>> session.current_materials_directory_path
+                >>> _session.current_materials_directory_path
                 '.../scoremanager/materialpackages'
 
         ..  container:: example
 
-            Materials directory path of session in score:
+            Materials directory path of _session in score:
 
             ::
 
@@ -322,13 +322,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_score_directory_path(self):
-        r'''Gets session current score directory path.
+        r'''Gets _session current score directory path.
 
         ..  container:: example
 
             ::
 
-                >>> session.current_score_directory_path is None
+                >>> _session.current_score_directory_path is None
                 True
 
         ..  container:: example
@@ -353,13 +353,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_score_package_manager(self):
-        r'''Gets session current score package manager.
+        r'''Gets _session current score package manager.
 
         ..  container:: example:
 
             ::
 
-                >>> session.current_score_package_manager is None
+                >>> _session.current_score_package_manager is None
                 True
 
         ..  container:: example
@@ -380,18 +380,18 @@ class Session(abctools.AbjadObject):
         if self.is_in_score:
             return managers.ScorePackageManager(
                 packagesystem_path=packagesystem_path,
-                session=self,
+                _session=self,
                 )
 
     @property
     def current_segments_directory_path(self):
-        r'''Gets session current segments directory path.
+        r'''Gets _session current segments directory path.
 
         ..  container:: example
 
             ::
 
-                >>> session.current_segments_directory_path is None
+                >>> _session.current_segments_directory_path is None
                 True
 
             (Output will vary according to configuration.)
@@ -419,13 +419,13 @@ class Session(abctools.AbjadObject):
     @apply
     def dump_transcript():
         def fget(self):
-            r'''Gets and sets flag to dump transcript at end of session.
+            r'''Gets and sets flag to dump transcript at end of _session.
 
             ..  container:: example
 
                 ::
 
-                    >>> session.dump_transcript
+                    >>> _session.dump_transcript
                     False
 
             Returns boolean.
@@ -438,13 +438,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def explicit_command_history(self):
-        r'''Gets session explicit command history.
+        r'''Gets _session explicit command history.
 
         ..  container:: example
 
             ::
 
-                >>> session.explicit_command_history
+                >>> _session.explicit_command_history
                 []
 
         Returns list.
@@ -467,7 +467,7 @@ class Session(abctools.AbjadObject):
 
                 ::
 
-                    >>> session.hidden_menu_sections_are_hidden
+                    >>> _session.hidden_menu_sections_are_hidden
                     True
 
             Returns boolean.
@@ -488,7 +488,7 @@ class Session(abctools.AbjadObject):
 
                 ::
 
-                    >>> session.hide_next_redraw
+                    >>> _session.hide_next_redraw
                     False
 
             Returns boolean.
@@ -501,13 +501,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def io_manager(self):
-        r'''Gets session IO manager.
+        r'''Gets _session IO manager.
 
         ..  container:: example
 
             ::
 
-                >>> session.io_manager
+                >>> _session.io_manager
                 IOManager()
 
         Returns IO manager.
@@ -516,13 +516,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def io_transcript(self):
-        r'''Gets session IO transcript.
+        r'''Gets _session IO transcript.
 
         ..  container:: example
 
             ::
 
-                >>> session.io_transcript
+                >>> _session.io_transcript
                 IOTranscript()
 
         Returns IO transcript.
@@ -532,13 +532,13 @@ class Session(abctools.AbjadObject):
     @apply
     def is_autoadding():
         def fget(self):
-            r'''Is true when session is autoadding. Otherwise false.
+            r'''Is true when _session is autoadding. Otherwise false.
 
             ..  container:: example
 
                 ::
 
-                    >>> session.is_autoadding
+                    >>> _session.is_autoadding
                     False
 
             Returns boolean.
@@ -552,14 +552,14 @@ class Session(abctools.AbjadObject):
     @apply
     def is_backtracking_locally():
         def fget(self):
-            r'''Is true when session is backtracking locally. 
+            r'''Is true when _session is backtracking locally. 
             Otherwise false.
 
             ..  container:: example
 
                 ::
 
-                    >>> session.is_backtracking_locally
+                    >>> _session.is_backtracking_locally
                     False
 
             Returns boolean.
@@ -573,14 +573,14 @@ class Session(abctools.AbjadObject):
     @apply
     def is_backtracking_to_score():
         def fget(self):
-            r'''Is true when session is backtracking to score. 
+            r'''Is true when _session is backtracking to score. 
             Otherwise false.
 
             ..  container:: example
 
                 ::
 
-                    >>> session.is_backtracking_to_score
+                    >>> _session.is_backtracking_to_score
                     False
 
             Returns boolean.
@@ -594,14 +594,14 @@ class Session(abctools.AbjadObject):
     @apply
     def is_backtracking_to_score_manager():
         def fget(self):
-            r'''Is true when session is backtracking to score manager. 
+            r'''Is true when _session is backtracking to score manager. 
             Otherwise false.
 
             ..  container:: example
 
                 ::
 
-                    >>> session.is_backtracking_to_score_manager
+                    >>> _session.is_backtracking_to_score_manager
                     False
 
             Returns boolean.
@@ -615,13 +615,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_complete(self):
-        r'''Is true when session is complete. Otherwise false:
+        r'''Is true when _session is complete. Otherwise false:
 
         ..  container:: example
 
             ::
 
-                >>> session.is_complete
+                >>> _session.is_complete
                 False
 
         Returns boolean.
@@ -630,13 +630,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_displayable(self):
-        r'''Is true when session is displayable. Otherwise false:
+        r'''Is true when _session is displayable. Otherwise false:
 
         ..  container:: example
 
             ::
 
-                >>> session.is_displayable
+                >>> _session.is_displayable
                 True
 
         Returns boolean.
@@ -645,13 +645,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_in_score(self):
-        r'''Is true when session is in score. Otherwise false:
+        r'''Is true when _session is in score. Otherwise false:
 
         ..  container:: example
 
             ::
 
-                >>> session.is_in_score
+                >>> _session.is_in_score
                 False
 
         Returns boolean.
@@ -660,14 +660,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_navigating_to_sibling_score(self):
-        r'''Is true when session is navigating to sibling score.
+        r'''Is true when _session is navigating to sibling score.
         Otherwise false:
 
         ..  container:: example
 
             ::
 
-                >>> session.is_navigating_to_sibling_score
+                >>> _session.is_navigating_to_sibling_score
                 False
 
         Returns boolean.
@@ -687,7 +687,7 @@ class Session(abctools.AbjadObject):
 
                 ::
 
-                    >>> session.is_quitting
+                    >>> _session.is_quitting
                     False
 
             Returns boolean.
@@ -700,16 +700,16 @@ class Session(abctools.AbjadObject):
 
     @property
     def last_controller(self):
-        r'''Gets last controller of session.
+        r'''Gets last controller of _session.
 
         ..  container:: example
 
             ::
 
-                >>> session.last_controller is None
+                >>> _session.last_controller is None
                 True
 
-        Useful for autopsy work after session ends.
+        Useful for autopsy work after _session ends.
 
         Returns wrangler, manager or none.
         '''
@@ -717,16 +717,16 @@ class Session(abctools.AbjadObject):
 
     @property
     def last_line(self):
-        r'''Gets last line of session.
+        r'''Gets last line of _session.
 
         ..  container:: example
 
             ::
 
-                >>> session.last_line
+                >>> _session.last_line
                 ''
 
-        Useful for autopsy work after session ends.
+        Useful for autopsy work after _session ends.
 
         Returns string.
         '''
@@ -734,13 +734,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def last_semantic_command(self):
-        r'''Gets session last semantic command.
+        r'''Gets _session last semantic command.
 
         ..  container:: example
 
             ::
 
-                >>> session.last_semantic_command is None
+                >>> _session.last_semantic_command is None
                 True
 
         Returns string or none.
@@ -751,13 +751,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def menu_header(self):
-        r'''Gets session menu header.
+        r'''Gets _session menu header.
 
         ..  container:: example
 
             ::
 
-                >>> session.menu_header
+                >>> _session.menu_header
                 ''
 
         Returns string.
@@ -773,7 +773,7 @@ class Session(abctools.AbjadObject):
 
                 ::
 
-                    >>> session.nonnumbered_menu_sections_are_hidden
+                    >>> _session.nonnumbered_menu_sections_are_hidden
                     False
 
             Returns boolean.
@@ -794,7 +794,7 @@ class Session(abctools.AbjadObject):
 
                 ::
 
-                    >>> session.pending_user_input is None
+                    >>> _session.pending_user_input is None
                     True
 
             Returns string.
@@ -809,13 +809,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def score_manager(self):
-        r'''Gets session score manager.
+        r'''Gets _session score manager.
 
         ..  container:: example
 
             ::
 
-                >>> session.score_manager
+                >>> _session.score_manager
 
         Returns score manager or none.
         '''
@@ -823,13 +823,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def scores_to_show(self):
-        r'''Gets session scores to show.
+        r'''Gets _session scores to show.
 
         ..  container:: example
 
             ::
 
-                >>> session.scores_to_show
+                >>> _session.scores_to_show
                 'example'
 
         Returns string.
@@ -838,13 +838,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def session_once_had_user_input(self):
-        r'''Is true when session once had user input. Otherwise false:
+        r'''Is true when _session once had user input. Otherwise false:
 
         ..  container:: example
 
             ::
 
-                >>> session.session_once_had_user_input
+                >>> _session.session_once_had_user_input
                 False
 
         Returns boolean.
@@ -860,7 +860,7 @@ class Session(abctools.AbjadObject):
 
                 ::
 
-                    >>> session.rewrite_cache
+                    >>> _session.rewrite_cache
                     True
 
             Returns boolean.
@@ -874,13 +874,13 @@ class Session(abctools.AbjadObject):
     @apply
     def current_score_snake_case_name():
         def fget(self):
-            r'''Gets and sets snake-case current score name of session.
+            r'''Gets and sets snake-case current score name of _session.
 
             ..  container:: example
 
                 ::
 
-                    >>> session.current_score_snake_case_name is None
+                    >>> _session.current_score_snake_case_name is None
                     True
 
             ..  container:: example
@@ -902,13 +902,13 @@ class Session(abctools.AbjadObject):
 
     @property
     def testable_command_history_string(self):
-        r'''Gets session testable command history string.
+        r'''Gets _session testable command history string.
 
         ..  container:: example
 
             ::
 
-                >>> session.testable_command_history_string
+                >>> _session.testable_command_history_string
                 ''
 
         Returns string.
@@ -929,7 +929,7 @@ class Session(abctools.AbjadObject):
 
                 ::
 
-                    >>> session.transcribe_next_command
+                    >>> _session.transcribe_next_command
                     True
 
             Returns boolean.
@@ -949,7 +949,7 @@ class Session(abctools.AbjadObject):
 
                 ::
 
-                    >>> session.use_current_user_input_values_as_default
+                    >>> _session.use_current_user_input_values_as_default
                     False
 
             Returns boolean.
@@ -963,14 +963,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def user_input_is_consumed(self):
-        r'''Is true when session user input is consumed.
+        r'''Is true when _session user input is consumed.
         Otherwise false:
 
         ..  container:: example
 
             ::
 
-                >>> session.user_input_is_consumed
+                >>> _session.user_input_is_consumed
                 False
 
         Returns boolean.
@@ -1015,7 +1015,7 @@ class Session(abctools.AbjadObject):
         self.rewrite_cache = True
 
     def display_variables(self):
-        r'''Displays session variables.
+        r'''Displays _session variables.
 
         Returns none.
         '''

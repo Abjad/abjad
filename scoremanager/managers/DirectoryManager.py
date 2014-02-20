@@ -9,12 +9,12 @@ class DirectoryManager(Manager):
 
     ### INITIALIZER ###
 
-    def __init__(self, filesystem_path=None, session=None):
+    def __init__(self, filesystem_path=None, _session=None):
         from scoremanager import managers
         superclass = super(DirectoryManager, self)
         superclass.__init__(
             filesystem_path=filesystem_path,
-            session=session,
+            _session=_session,
             )
         self._asset_manager_class = managers.FileManager
 
@@ -30,7 +30,7 @@ class DirectoryManager(Manager):
         from scoremanager import managers
         file_manager = managers.FileManager(
             file_path,
-            session=self.session,
+            _session=self._session,
             )
         return file_manager
 
@@ -74,10 +74,10 @@ class DirectoryManager(Manager):
     def _make_empty_asset(self, prompt=False):
         if not self.exists():
             os.mkdir(self.filesystem_path)
-        self.session.io_manager.proceed(prompt=prompt)
+        self._session.io_manager.proceed(prompt=prompt)
 
     def _make_main_menu(self):
-        main_menu = self.session.io_manager.make_menu(where=self._where)
+        main_menu = self._session.io_manager.make_menu(where=self._where)
         self._main_menu = main_menu
         asset_section = main_menu.make_asset_section()
         main_menu._asset_section = asset_section
@@ -91,7 +91,7 @@ class DirectoryManager(Manager):
         ):
         manager = self._asset_manager_class(
             filesystem_path=filesystem_path,
-            session=self.session,
+            _session=self._session,
             )
         manager._run()
 
@@ -106,10 +106,10 @@ class DirectoryManager(Manager):
 
         Returns none.
         '''
-        self.session.io_manager._assign_user_input(pending_user_input)
+        self._session.io_manager._assign_user_input(pending_user_input)
         manager = self._asset_manager_class(
             filesystem_path=filesystem_path,
-            session=self.session,
+            _session=self._session,
             )
         manager.interactively_edit()
 
@@ -118,10 +118,10 @@ class DirectoryManager(Manager):
 
         Returns none.
         '''
-        getter = self.session.io_manager.make_getter(where=self._where)
+        getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('directory path')
         result = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         self.filesystem_path = result
 
@@ -143,12 +143,12 @@ class DirectoryManager(Manager):
             else:
                 raise TypeError(directory_entry)
             lines.append(line)
-        self.session.io_manager.display(
+        self._session.io_manager.display(
             lines,
             capitalize_first_character=False,
             )
-        self.session.io_manager.display('')
-        self.session.hide_next_redraw = True
+        self._session.io_manager.display('')
+        self._session.hide_next_redraw = True
 
     def run_doctest(self, prompt=True):
         r'''Interactively runs doctest.
@@ -162,8 +162,8 @@ class DirectoryManager(Manager):
             if lines[0] == '':
                 lines.remove('')
             lines.append('')
-            self.session.io_manager.display(lines)
-        self.session.io_manager.proceed(prompt=prompt)
+            self._session.io_manager.display(lines)
+        self._session.io_manager.proceed(prompt=prompt)
 
     def run_pytest(self, prompt=True):
         r'''Interactively runs pytest.
@@ -175,8 +175,8 @@ class DirectoryManager(Manager):
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
             lines.append('')
-            self.session.io_manager.display(lines)
-        self.session.io_manager.proceed(prompt=prompt)
+            self._session.io_manager.display(lines)
+        self._session.io_manager.proceed(prompt=prompt)
 
     ### UI MANIFEST ###
 

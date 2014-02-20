@@ -89,9 +89,9 @@ class InstrumentEditor(Editor):
             with self.backtracking:
                 wizard = wizards.InstrumentCreationWizard(
                     is_ranged=True, 
-                    session=self.session)
+                    _session=self._session)
                 instruments = wizard._run()
-            if self.session._backtrack():
+            if self._session._backtrack():
                 return
             if instruments:
                 self.target = instruments[0]
@@ -99,10 +99,10 @@ class InstrumentEditor(Editor):
                 self.target = None
 
     def toggle_pitch_range_display(self):
-        if self.session.display_pitch_ranges_with_numbered_pitches:
-            self.session.display_pitch_ranges_with_numbered_pitches = False
+        if self._session.display_pitch_ranges_with_numbered_pitches:
+            self._session.display_pitch_ranges_with_numbered_pitches = False
         else:
-            self.session.display_pitch_ranges_with_numbered_pitches = True
+            self._session.display_pitch_ranges_with_numbered_pitches = True
 
     ### UI MANIFEST ###
 

@@ -19,7 +19,7 @@ def test_MaterialPackageWrangler_interactively_get_available_package_path_01():
 def test_MaterialPackageWrangler_interactively_get_available_package_path_02():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    wrangler.session._snake_case_current_score_name = 'red_example_score'
+    wrangler._session._snake_case_current_score_name = 'red_example_score'
 
     result = wrangler.interactively_get_available_packagesystem_path(
         pending_user_input='foo')

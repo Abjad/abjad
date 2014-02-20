@@ -7,23 +7,23 @@ class ScorePackageManager(PackageManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, packagesystem_path=None, session=None):
+    def __init__(self, packagesystem_path=None, _session=None):
         from scoremanager import managers
         from scoremanager import wranglers
         PackageManager.__init__(
             self, 
             packagesystem_path, 
-            session=session,
+            _session=_session,
             )
         self._build_directory_manager = \
             managers.BuildDirectoryManager(
             score_package_path=packagesystem_path, 
-            session=self.session,
+            _session=self._session,
             )
         self._distribution_directory_manager = \
             managers.DistributionDirectoryManager(
             score_package_path=packagesystem_path, 
-            session=self.session,
+            _session=self._session,
             )
         instrumentation_module_file_path = os.path.join(
             self.filesystem_path,
@@ -32,29 +32,29 @@ class ScorePackageManager(PackageManager):
         self._instrumentation_module_manager = \
             managers.FileManager(
             instrumentation_module_file_path,
-            session=self.session,
+            _session=self._session,
             )
         self._material_package_wrangler = \
             wranglers.MaterialPackageWrangler(
-            session=self.session,
+            _session=self._session,
             )
         self._material_package_manager_wrangler = \
             wranglers.MaterialPackageManagerWrangler(
-            session=self.session,
+            _session=self._session,
             )
         filesystem_path = os.path.join(self.filesystem_path, 'score_templates')
         self._score_template_directory_manager = \
             managers.DirectoryManager(
             filesystem_path=filesystem_path,
-            session=self.session,
+            _session=self._session,
             )
         self._segment_wrangler = \
             wranglers.SegmentPackageWrangler(
-            session=self.session,
+            _session=self._session,
             )
         self._stylesheet_wrangler = \
             wranglers.StylesheetFileWrangler(
-            session=self.session,
+            _session=self._session,
             )
 
     ### PRIVATE PROPERTIES ###
@@ -202,7 +202,7 @@ class ScorePackageManager(PackageManager):
             )
         manager = managers.FileManager(
             file_path,
-            session=self.session,
+            _session=self._session,
             )
         instrumentation = manager._execute_file_lines(
             return_attribute_name='instrumentation',
@@ -210,7 +210,7 @@ class ScorePackageManager(PackageManager):
         return instrumentation
     
     def _make_main_menu(self):
-        main_menu = self.session.io_manager.make_menu(where=self._where)
+        main_menu = self._session.io_manager.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
         command_section.append(('build', 'u'))
         command_section.append(('makers', 'k'))
@@ -231,12 +231,12 @@ class ScorePackageManager(PackageManager):
         hidden_section.append(('remove score package', 'removescore'))
         hidden_section.append(('view initializer', 'inv'))
         hidden_section.append(('view instrumentation', 'instrumentation'))
-        self.session.io_manager._make_metadata_menu_section(main_menu)
-        self.session.io_manager._make_metadata_module_menu_section(main_menu)
+        self._session.io_manager._make_metadata_menu_section(main_menu)
+        self._session.io_manager._make_metadata_module_menu_section(main_menu)
         return main_menu
 
     def _make_setup_menu(self):
-        menu = self.session.io_manager.make_menu(where=self._where)
+        menu = self._session.io_manager.make_menu(where=self._where)
         attribute_section = menu.make_attribute_section()
         menu_entries = self._make_setup_menu_entries()
         attribute_section.menu_entries = menu_entries
@@ -321,18 +321,18 @@ class ScorePackageManager(PackageManager):
     ### PUBLIC METHODS ###
 
     def interactively_edit_catalog_number(self):
-        getter = self.session.io_manager.make_getter(where=self._where)
+        getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('Catalog number')
         result = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         self._add_metadatum('catalog_number', result)
 
     def interactively_edit_forces_tagline(self):
-        getter = self.session.io_manager.make_getter(where=self._where)
+        getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('Forces tagline')
         result = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         self._add_metadatum('forces_tagline', result)
 
@@ -340,30 +340,30 @@ class ScorePackageManager(PackageManager):
         from scoremanager import editors
         target = self._get_instrumentation()
         editor = editors.InstrumentationEditor(
-            session=self.session, 
+            _session=self._session, 
             target=target,
             )
         editor._run()
         self._write_instrumentation(editor.target)
 
     def interactively_edit_title(self):
-        getter = self.session.io_manager.make_getter(where=self._where)
+        getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('new title')
         result = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         self._add_metadatum('title', result)
-        self.session.io_manager._write_cache()
+        self._session.io_manager._write_cache()
 
     def interactively_edit_year_of_completion(self):
-        getter = self.session.io_manager.make_getter(where=self._where)
+        getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_integer_in_range(
             'year of completion', 
             start=1, 
             allow_none=True,
             )
         result = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         self._add_metadatum('year_of_completion', result)
 
@@ -374,12 +374,12 @@ class ScorePackageManager(PackageManager):
                 result = False
                 prompt = 'create {!r}? '.format(path)
                 if not prompt or \
-                    self.session.io_manager.confirm(prompt):
+                    self._session.io_manager.confirm(prompt):
                     os.mkdir(path)
         if not os.path.exists(self.initializer_file_path):
             result = False
             prompt = 'create {}? '.format(self.initializer_file_path)
-            if not prompt or self.session.io_manager.confirm(prompt):
+            if not prompt or self._session.io_manager.confirm(prompt):
                 initializer = file(self.initializer_file_path, 'w')
                 initializer.write('')
                 initializer.close()
@@ -387,7 +387,7 @@ class ScorePackageManager(PackageManager):
         if not os.path.exists(self.metadata_module_path):
             result = False
             prompt = 'create {}? '.format(self.metadata_module_path)
-            if not prompt or self.session.io_manager.confirm(prompt):
+            if not prompt or self._session.io_manager.confirm(prompt):
                 metadata_module = file(self.metadata_module_path, 'w')
                 metadata_module.write('# -*- encoding: utf-8 -*-\n')
                 metadata_module.write('from abjad import *\n')
@@ -399,38 +399,38 @@ class ScorePackageManager(PackageManager):
         if not os.path.exists(self._get_materials_directory_path()):
             result = False
             prompt = 'create {}'.format(self._get_materials_directory_path())
-            if not prompt or self.session.io_manager.confirm(prompt):
+            if not prompt or self._session.io_manager.confirm(prompt):
                 os.mkdir(self._get_materials_directory_path())
         if not os.path.exists(self._get_segments_directory_path()):
             result = False
             prompt = 'create {}'.format(self._get_segments_directory_path())
-            if not prompt or self.session.io_manager.confirm(prompt):
+            if not prompt or self._session.io_manager.confirm(prompt):
                 os.mkdir(self._get_segments_directory_path())
         if not os.path.exists(self._get_stylesheets_directory_path()):
             result = False
             prompt = 'create {}'.format(self._get_stylesheets_directory_path())
-            if not prompt or self.session.io_manager.confirm(prompt):
+            if not prompt or self._session.io_manager.confirm(prompt):
                 os.mkdir(self._get_stylesheets_directory_path())
         message = 'packaged structure fixed.'
-        self.session.io_manager.proceed(message, prompt=prompt)
+        self._session.io_manager.proceed(message, prompt=prompt)
         return result
 
     def interactively_remove(self):
         line = 'WARNING! Score package {!r} will be completely removed.'
         line = line.format(self.package_path)
-        self.session.io_manager.display([line, ''])
-        getter = self.session.io_manager.make_getter(where=self._where)
+        self._session.io_manager.display([line, ''])
+        getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string("type 'clobberscore' to proceed")
         with self.backtracking:
             should_clobber = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         if should_clobber == 'clobberscore':
             with self.backtracking:
                 self._remove()
-            if self.session._backtrack():
+            if self._session._backtrack():
                 return
-            self.session.is_backtracking_locally = True
+            self._session.is_backtracking_locally = True
 
     def interactively_view_instrumentation_module(self):
         return self.instrumentation_module_manager.interactively_edit()
@@ -444,7 +444,7 @@ class ScorePackageManager(PackageManager):
         self.build_directory_manager._run()
 
     def manage_makers(self):
-        self.session.io_manager.print_not_yet_implemented()
+        self._session.io_manager.print_not_yet_implemented()
         #self.maker_module_wrangler._run(head=self.package_path)
 
     def manage_materials(self):
@@ -457,24 +457,24 @@ class ScorePackageManager(PackageManager):
         self.segment_wrangler._run(head=self.package_path)
 
     def manage_setup(self, clear=True, cache=True):
-        self.session._cache_breadcrumbs(cache=cache)
+        self._session._cache_breadcrumbs(cache=cache)
         while True:
             annotated_title = self._get_annotated_title()
             breadcrumb = '{} - setup'.format(annotated_title)
-            self.session._push_breadcrumb(breadcrumb)
+            self._session._push_breadcrumb(breadcrumb)
             setup_menu = self._make_setup_menu()
             result = setup_menu._run(clear=clear)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
             elif not result:
-                self.session._pop_breadcrumb()
+                self._session._pop_breadcrumb()
                 continue
             self._handle_setup_menu_result(result)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
-            self.session._pop_breadcrumb()
-        self.session._pop_breadcrumb()
-        self.session._restore_breadcrumbs(cache=cache)
+            self._session._pop_breadcrumb()
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
 
     def manage_stylesheets(self):
         self.stylesheet_wrangler._run(head=self.package_path)

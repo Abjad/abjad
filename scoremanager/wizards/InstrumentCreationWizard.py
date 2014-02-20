@@ -12,10 +12,10 @@ class InstrumentCreationWizard(Wizard):
     def __init__(
         self,
         is_ranged=False,
-        session=None,
+        _session=None,
         target=None,
         ):
-        Wizard.__init__(self, session=session, target=target)
+        Wizard.__init__(self, _session=_session, target=target)
         self.is_ranged = is_ranged
 
     ### PRIVATE PROPERTIES ###
@@ -33,18 +33,18 @@ class InstrumentCreationWizard(Wizard):
         head=None,
         pending_user_input=None,
         ):
-        self.session.io_manager._assign_user_input(pending_user_input)
-        self.session._cache_breadcrumbs(cache=cache)
-        self.session._push_breadcrumb(self._breadcrumb)
-        selector = iotools.Selector(session=self.session)
+        self._session.io_manager._assign_user_input(pending_user_input)
+        self._session._cache_breadcrumbs(cache=cache)
+        self._session._push_breadcrumb(self._breadcrumb)
+        selector = iotools.Selector(_session=self._session)
         items = instrumenttools.Instrument._list_instrument_names()
         selector.items = items
         selector.is_ranged = self.is_ranged
         with self.backtracking:
             result = selector._run()
-        if self.session._backtrack():
-            self.session._pop_breadcrumb()
-            self.session._restore_breadcrumbs(cache=cache)
+        if self._session._backtrack():
+            self._session._pop_breadcrumb()
+            self._session._restore_breadcrumbs(cache=cache)
             return
         if isinstance(result, list):
             instrument_names = result
@@ -60,8 +60,8 @@ class InstrumentCreationWizard(Wizard):
             result = instruments[:]
         else:
             result = instruments[0]
-        self.session._pop_breadcrumb()
-        self.session._restore_breadcrumbs(cache=cache)
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
         self.target = result
         return self.target
 
@@ -85,12 +85,12 @@ class InstrumentCreationWizard(Wizard):
     def name_untuned_percussion(self, instrument):
         from abjad.tools.instrumenttools import UntunedPercussion
         if isinstance(instrument, instrumenttools.UntunedPercussion):
-            selector = iotools.Selector(session=self.session)
+            selector = iotools.Selector(_session=self._session)
             items = UntunedPercussion.known_untuned_percussion[:]
             selector.items = items
             with self.backtracking:
                 instrument_name = selector._run()
-            if self.session._backtrack():
+            if self._session._backtrack():
                 return
             instrument = new(
                 instrument,

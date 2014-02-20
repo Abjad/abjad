@@ -7,7 +7,7 @@ import scoremanager
 def test_MenuSection_default_index_01():
 
     menu = scoremanager.iotools.Menu()
-    menu.session._push_breadcrumb('location')
+    menu._session._push_breadcrumb('location')
     menu_section = menu._make_section()
     menu_section.title = 'section'
     menu_section.append('apple')

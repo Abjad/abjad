@@ -13,12 +13,12 @@ class SegmentPackageManager(PackageManager):
         self, 
         packagesystem_path=None, 
         score_template=None, 
-        session=None,
+        _session=None,
         ):
         PackageManager.__init__(
             self, 
             packagesystem_path=packagesystem_path, 
-            session=session,
+            _session=_session,
             )
         self.score_template = score_template
 
@@ -64,23 +64,23 @@ class SegmentPackageManager(PackageManager):
 
     def _interactively_view_versioned_file(self, extension):
         assert extension in ('.ly', '.pdf', '.py')
-        getter = self.session.io_manager.make_getter(where=self._where)
+        getter = self._session.io_manager.make_getter(where=self._where)
         last_version_number = self._get_last_version_number()
         if last_version_number is None:
             message = 'versions directory empty.'
-            self.session.io_manager.proceed(message)
+            self._session.io_manager.proceed(message)
             return
         prompt = 'version number (0-{})'
         prompt = prompt.format(last_version_number)
         getter.append_integer(prompt)
         version_number = getter._run(clear_terminal=False)
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         if last_version_number < version_number or \
             (version_number < 0 and last_version_number < abs(version_number)):
             message = "version {} doesn't exist yet."
             message = message.format(version_number)
-            self.session.io_manager.proceed(['', message])
+            self._session.io_manager.proceed(['', message])
         if version_number < 0:
             version_number = last_version_number + version_number + 1
         version_string = str(version_number).zfill(4)
@@ -95,7 +95,7 @@ class SegmentPackageManager(PackageManager):
                 command = 'vim -R {}'.format(file_path)
             elif extension == '.pdf':
                 command = 'open {}'.format(file_path)
-            self.session.io_manager.spawn_subprocess(command)
+            self._session.io_manager.spawn_subprocess(command)
         
     def _make_main_menu(self):
         superclass = super(SegmentPackageManager, self)
@@ -154,7 +154,7 @@ class SegmentPackageManager(PackageManager):
         from scoremanager import managers
         manager = managers.FileManager(
             self.segment_definition_module_file_path,
-            session=self.session,
+            _session=self._session,
             )
         return manager
 
@@ -175,7 +175,7 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        self.session.io_manager._assign_user_input(pending_user_input)
+        self._session.io_manager._assign_user_input(pending_user_input)
         self.segment_definition_module_manager.interactively_edit()
 
     def interactively_edit_asset_definition_module_from_top(
@@ -186,7 +186,7 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        self.session.io_manager._assign_user_input(pending_user_input)
+        self._session.io_manager._assign_user_input(pending_user_input)
         self.segment_definition_module_manager.interactively_edit(
             line_number=1)
 
@@ -198,8 +198,8 @@ class SegmentPackageManager(PackageManager):
         versions_directory_path = self._get_versions_directory_path()
         if not os.path.exists(versions_directory_path):
             line = 'no versions found.'
-            self.session.io_manager.display([line, ''])
-            self.session.io_manager.proceed()
+            self._session.io_manager.display([line, ''])
+            self._session.io_manager.proceed()
             return
         file_names = []
         for directory_entry in os.listdir(versions_directory_path):
@@ -210,8 +210,8 @@ class SegmentPackageManager(PackageManager):
             key, file_names = x
             line = ' '.join(file_names)
             lines.append(line)
-        self.session.io_manager.display(lines)
-        self.session.io_manager.proceed('')
+        self._session.io_manager.display(lines)
+        self._session.io_manager.proceed('')
 
     def interactively_make_asset_pdf(
         self,
@@ -247,7 +247,7 @@ class SegmentPackageManager(PackageManager):
         file_path = self._get_output_lilypond_file_path()
         if not os.path.isfile(file_path):
             return
-        result = self.session.io_manager.run_lilypond(file_path)
+        result = self._session.io_manager.run_lilypond(file_path)
         if not result:
             return
         lines = []
@@ -260,12 +260,12 @@ class SegmentPackageManager(PackageManager):
         message = message.format(pdf_file_path)
         lines.append(message)
         lines.append('')
-        self.session.io_manager.display(lines)
+        self._session.io_manager.display(lines)
         lines = []
         message = None
         if view_output_pdf:
             message = 'press return to view PDF.'
-        self.session.io_manager.proceed(message=message, prompt=prompt)
+        self._session.io_manager.proceed(message=message, prompt=prompt)
         if view_output_pdf:
             self.view_output_pdf()
 
@@ -283,7 +283,7 @@ class SegmentPackageManager(PackageManager):
             self._get_asset_definition_module_file_path()
         if not os.path.isfile(asset_definition_module_file_path):
             message = 'can not find asset definition module.'
-            self.session.io_manager.proceed(
+            self._session.io_manager.proceed(
                 message,
                 prompt=prompt,
                 )
@@ -291,7 +291,7 @@ class SegmentPackageManager(PackageManager):
         output_pdf_file_path = self._get_output_pdf_file_path()
         if not os.path.isfile(output_pdf_file_path):
             message = 'can not find output PDF.'
-            self.session.io_manager.proceed(
+            self._session.io_manager.proceed(
                 message,
                 prompt=prompt,
                 )
@@ -299,7 +299,7 @@ class SegmentPackageManager(PackageManager):
         output_lilypond_file_path = self._get_output_lilypond_file_path()
         if not os.path.isfile(output_lilypond_file_path):
             message = 'can not find output LilyPond file.'
-            self.session.io_manager.proceed(
+            self._session.io_manager.proceed(
                 message,
                 prompt=prompt,
                 )
@@ -318,7 +318,7 @@ class SegmentPackageManager(PackageManager):
             asset_definition_module_file_path,
             target_file_path,
             )
-        self.session.io_manager.spawn_subprocess(command)
+        self._session.io_manager.spawn_subprocess(command)
         target_file_name = next_output_file_name_root + '.pdf'
         target_file_path = os.path.join(
             self._get_versions_directory_path(),
@@ -328,7 +328,7 @@ class SegmentPackageManager(PackageManager):
             output_pdf_file_path,
             target_file_path,
             )
-        self.session.io_manager.spawn_subprocess(command)
+        self._session.io_manager.spawn_subprocess(command)
         target_file_name = next_output_file_name_root + '.ly'
         target_file_path = os.path.join(
             self._get_versions_directory_path(),
@@ -338,11 +338,11 @@ class SegmentPackageManager(PackageManager):
             output_lilypond_file_path,
             target_file_path,
             )
-        self.session.io_manager.spawn_subprocess(command)
+        self._session.io_manager.spawn_subprocess(command)
         version_number = int(next_output_file_name_root)
         message = 'version {} written to disk.'
         message = message.format(version_number)
-        self.session.io_manager.proceed(
+        self._session.io_manager.proceed(
             message,
             prompt=prompt,
             )
@@ -367,11 +367,11 @@ class SegmentPackageManager(PackageManager):
             file_paths.append(file_path)
         if not file_paths:
             message = 'version directory empty.'
-            self.session.io_manager.proceed(message)
+            self._session.io_manager.proceed(message)
             return
         file_paths = ' '.join(file_paths)
         command = 'open {}'.format(file_paths)
-        self.session.io_manager.spawn_subprocess(command)
+        self._session.io_manager.spawn_subprocess(command)
 
     def interactively_view_current_output_ly(self):
         r'''Interactively views current output LilyPond file.
@@ -381,7 +381,7 @@ class SegmentPackageManager(PackageManager):
         output_lilypond_file_path = self._get_output_lilypond_file_path()
         if os.path.isfile(output_lilypond_file_path):
             command = 'vim -R {}'.format(output_lilypond_file_path)
-            self.session.io_manager.spawn_subprocess(command)
+            self._session.io_manager.spawn_subprocess(command)
 
     def interactively_view_versioned_output_ly(self):
         r'''Interactively views output LilyPond file.
@@ -420,7 +420,7 @@ class SegmentPackageManager(PackageManager):
         output_pdf_file_path = self._get_output_pdf_file_path()
         if os.path.isfile(output_pdf_file_path):
             command = 'open {}'.format(output_pdf_file_path)
-            self.session.io_manager.spawn_subprocess(command)
+            self._session.io_manager.spawn_subprocess(command)
 
     def write_initializer(self):
         r'''Writes initializer to disk.

@@ -10,7 +10,7 @@ def test_Session_last_controller_01():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='q')
 
-    controller = score_manager.session.last_controller
+    controller = score_manager._session.last_controller
     prototype = scoremanager.core.ScoreManager
     assert isinstance(controller, prototype)
 
@@ -22,7 +22,7 @@ def test_Session_last_controller_02():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='red~example~score q')
 
-    controller = score_manager.session.last_controller
+    controller = score_manager._session.last_controller
     prototype = scoremanager.managers.ScorePackageManager
     assert isinstance(controller, prototype)
 
@@ -34,7 +34,7 @@ def test_Session_last_controller_03():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='red~example~score u q')
 
-    controller = score_manager.session.last_controller
+    controller = score_manager._session.last_controller
     prototype = scoremanager.managers.BuildDirectoryManager
     assert isinstance(controller, prototype)
 
@@ -46,7 +46,7 @@ def test_Session_last_controller_04():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='red~example~score m q')
 
-    controller = score_manager.session.last_controller
+    controller = score_manager._session.last_controller
     prototype = scoremanager.wranglers.MaterialPackageWrangler
     assert isinstance(controller, prototype)
 
@@ -59,7 +59,7 @@ def test_Session_last_controller_05():
     string = 'red~example~score m tempo~inventory q'
     score_manager._run(pending_user_input=string)
 
-    controller = score_manager.session.last_controller
+    controller = score_manager._session.last_controller
     prototype = scoremanager.managers.MaterialPackageManager
     assert isinstance(controller, prototype)
 
@@ -72,7 +72,7 @@ def test_Session_last_controller_06():
     string = 'red~example~score g q'
     score_manager._run(pending_user_input=string)
 
-    controller = score_manager.session.last_controller
+    controller = score_manager._session.last_controller
     prototype = scoremanager.wranglers.SegmentPackageWrangler
     assert isinstance(controller, prototype)
 
@@ -85,7 +85,7 @@ def test_Session_last_controller_07():
     string = 'red~example~score g 1 q'
     score_manager._run(pending_user_input=string)
 
-    controller = score_manager.session.last_controller
+    controller = score_manager._session.last_controller
     prototype = scoremanager.managers.SegmentPackageManager
     assert isinstance(controller, prototype)
 
@@ -98,7 +98,7 @@ def test_Session_last_controller_08():
     string = 'red~example~score g 1 q'
     score_manager._run(pending_user_input=string)
 
-    controller = score_manager.session.last_controller
+    controller = score_manager._session.last_controller
     prototype = scoremanager.managers.SegmentPackageManager
     assert isinstance(controller, prototype)
 
@@ -111,6 +111,6 @@ def test_Session_last_controller_09():
     string = 'red~example~score y q'
     score_manager._run(pending_user_input=string)
 
-    controller = score_manager.session.last_controller
+    controller = score_manager._session.last_controller
     prototype = scoremanager.wranglers.StylesheetFileWrangler
     assert isinstance(controller, prototype)

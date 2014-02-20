@@ -10,15 +10,15 @@ class ArticulationHandlerCreationWizard(Wizard):
 
     ### INITIALIZER ###
 
-    def __init__(self, session=None, target=None):
+    def __init__(self, _session=None, target=None):
         from scoremanager.iotools import Selector
         Wizard.__init__(
             self,
-            session=session,
+            _session=_session,
             target=target,
             )
         selector = Selector.make_articulation_handler_class_name_selector(
-            session=self.session,
+            _session=self._session,
             )
         self.selector = selector
 

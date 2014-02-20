@@ -10,4 +10,4 @@ def test_StylesheetFileWrangler__run_01():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='lmy q')
     line = '     1: clean-letter-14.ily (Abjad)'
-    assert line in score_manager.session.io_transcript.last_menu_lines
+    assert line in score_manager._session.io_transcript.last_menu_lines

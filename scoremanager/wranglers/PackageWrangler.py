@@ -11,7 +11,7 @@ class PackageWrangler(Wrangler):
 
     ### INITIALIZER ###
 
-    def __init__(self, session=None):
+    def __init__(self, _session=None):
         from scoremanager import managers
         asset_storehouse_filesystem_path_in_built_in_asset_library = \
             self.configuration.packagesystem_path_to_filesystem_path(
@@ -23,18 +23,18 @@ class PackageWrangler(Wrangler):
             asset_storehouse_filesystem_path_in_built_in_asset_library
         self.asset_storehouse_filesystem_path_in_user_asset_library = \
             asset_storehouse_filesystem_path_in_user_asset_library
-        Wrangler.__init__(self, session=session)
+        Wrangler.__init__(self, _session=_session)
         self._asset_manager_class = managers.PackageManager
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _current_storehouse_packagesystem_path(self):
-        if self.session.is_in_score:
+        if self._session.is_in_score:
             parts = []
             current_score_package_path = \
                 self.configuration.filesystem_path_to_packagesystem_path(
-                    self.session.current_score_directory_path)
+                    self._session.current_score_directory_path)
             parts.append(current_score_package_path)
             parts.extend(self.score_package_asset_storehouse_path_infix_parts)
             return '.'.join(parts)
@@ -62,7 +62,7 @@ class PackageWrangler(Wrangler):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        self.session.io_manager.print_not_yet_implemented()
+        self._session.io_manager.print_not_yet_implemented()
 
     def _initialize_asset_manager(self, packagesystem_path):
         if os.path.sep in packagesystem_path:
@@ -71,7 +71,7 @@ class PackageWrangler(Wrangler):
             packagesystem_path)
         return self._asset_manager_class(
             packagesystem_path=packagesystem_path, 
-            session=self.session,
+            _session=self._session,
             )
 
     def _is_valid_directory_entry(self, expr):
@@ -82,7 +82,7 @@ class PackageWrangler(Wrangler):
         return False
 
     def _make_main_menu(self, head=None):
-        self.session.io_manager.print_not_yet_implemented()
+        self._session.io_manager.print_not_yet_implemented()
 
     def _make_asset_menu_entries(self, head=None):
         names = self.list_asset_names(head=head)
@@ -137,13 +137,13 @@ class PackageWrangler(Wrangler):
 
         Returns string.
         '''
-        self.session.io_manager._assign_user_input(pending_user_input)
+        self._session.io_manager._assign_user_input(pending_user_input)
         while True:
-            getter = self.session.io_manager.make_getter(where=self._where)
+            getter = self._session.io_manager.make_getter(where=self._where)
             getter.append_space_delimited_lowercase_string('name')
             with self.backtracking:
                 package_name = getter._run()
-            if self.session._backtrack():
+            if self._session._backtrack():
                 return
             package_name = \
                 stringtools.string_to_accent_free_snake_case(package_name)
@@ -154,7 +154,7 @@ class PackageWrangler(Wrangler):
             if self.configuration.packagesystem_path_exists(package_path):
                 line = 'Package {!r} already exists.'
                 line = line.format(package_path)
-                self.session.io_manager.display([line, ''])
+                self._session.io_manager.display([line, ''])
             else:
                 return package_path
 
@@ -166,11 +166,11 @@ class PackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self.session.io_manager._assign_user_input(pending_user_input)
+        self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             package_path = \
                 self.interactively_get_available_packagesystem_path()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         self.make_asset(package_path)
 
@@ -183,12 +183,12 @@ class PackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self.session.io_manager._assign_user_input(pending_user_input)
+        self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             asset_package_path = \
                 self.interactively_select_asset_packagesystem_path(
                 head=head, infinitival_phrase='to rename')
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         asset_manager = self._initialize_asset_manager(asset_package_path)
         asset_manager.interactively_rename()
@@ -205,8 +205,8 @@ class PackageWrangler(Wrangler):
 
         Returns string.
         '''
-        self.session.io_manager._assign_user_input(pending_user_input)
-        self.session._cache_breadcrumbs(cache=cache)
+        self._session.io_manager._assign_user_input(pending_user_input)
+        self._session._cache_breadcrumbs(cache=cache)
         while True:
             name = '_human_readable_target_name'
             human_readable_target_name = getattr(self, name, None)
@@ -214,18 +214,18 @@ class PackageWrangler(Wrangler):
                 human_readable_target_name=human_readable_target_name,
                 infinitival_phrase=infinitival_phrase,
                 )
-            self.session._push_breadcrumb(breadcrumb)
+            self._session._push_breadcrumb(breadcrumb)
             menu = self._make_asset_selection_menu(head=head)
             result = menu._run(clear=clear)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
             elif not result:
-                self.session._pop_breadcrumb()
+                self._session._pop_breadcrumb()
                 continue
             else:
                 break
-        self.session._pop_breadcrumb()
-        self.session._restore_breadcrumbs(cache=cache)
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
         return result
 
     def list_asset_managers(

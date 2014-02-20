@@ -21,10 +21,10 @@ class Manager(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, filesystem_path=None, session=None):
+    def __init__(self, filesystem_path=None, _session=None):
         assert filesystem_path is None or os.path.sep in filesystem_path
         self._filesystem_path = filesystem_path
-        ScoreManagerObject.__init__(self, session=session)
+        ScoreManagerObject.__init__(self, _session=_session)
 
     ### SPECIAL METHODS ###
 
@@ -78,7 +78,7 @@ class Manager(ScoreManagerObject):
         return line
 
     def _initialize_file_name_getter(self):
-        getter = self.session.io_manager.make_getter()
+        getter = self._session.io_manager.make_getter()
         getter.append_snake_case_file_name('new name')
         return getter
 
@@ -196,25 +196,25 @@ class Manager(ScoreManagerObject):
             self._filesystem_path = new_path
 
     def _run(self, cache=False, clear=True, pending_user_input=None):
-        self.session._push_controller(self)
-        self.session.io_manager._assign_user_input(pending_user_input)
-        self.session._cache_breadcrumbs(cache=cache)
+        self._session._push_controller(self)
+        self._session.io_manager._assign_user_input(pending_user_input)
+        self._session._cache_breadcrumbs(cache=cache)
         while True:
-            self.session._push_breadcrumb(self._breadcrumb)
+            self._session._push_breadcrumb(self._breadcrumb)
             menu = self._make_main_menu()
             result = menu._run(clear=clear)
-            if self.session._backtrack(source=self._backtracking_source):
+            if self._session._backtrack(source=self._backtracking_source):
                 break
             elif not result:
-                self.session._pop_breadcrumb()
+                self._session._pop_breadcrumb()
                 continue
             self._handle_main_menu_result(result)
-            if self.session._backtrack(source=self._backtracking_source):
+            if self._session._backtrack(source=self._backtracking_source):
                 break
-            self.session._pop_breadcrumb()
-        self.session._pop_controller()
-        self.session._pop_breadcrumb()
-        self.session._restore_breadcrumbs(cache=cache)
+            self._session._pop_breadcrumb()
+        self._session._pop_controller()
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
 
     def _space_delimited_lowercase_name_to_asset_name(
         self, space_delimited_lowercase_name):
@@ -255,10 +255,10 @@ class Manager(ScoreManagerObject):
 
         Returns none.
         '''
-        self.session.io_manager._assign_user_input(pending_user_input)
+        self._session.io_manager._assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
         result = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         new_asset_name = \
             self._space_delimited_lowercase_name_to_asset_name(result)
@@ -266,11 +266,11 @@ class Manager(ScoreManagerObject):
         new_path = os.path.join(parent_directory_path, new_asset_name)
         message = 'new path will be {}'
         message = message.format(new_path)
-        self.session.io_manager.display(message)
-        if not self.session.io_manager.confirm():
+        self._session.io_manager.display(message)
+        if not self._session.io_manager.confirm():
             return
         shutil.copyfile(self.filesystem_path, new_path)
-        self.session.io_manager.proceed('asset copied.')
+        self._session.io_manager.proceed('asset copied.')
 
     def interactively_remove(
         self, 
@@ -280,21 +280,21 @@ class Manager(ScoreManagerObject):
 
         Returns none.
         '''
-        self.session.io_manager._assign_user_input(pending_user_input)
+        self._session.io_manager._assign_user_input(pending_user_input)
         message = '{} will be removed.'
         message = message.format(self.filesystem_path)
-        self.session.io_manager.display([message, ''])
-        getter = self.session.io_manager.make_getter(where=self._where)
+        self._session.io_manager.display([message, ''])
+        getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string("type 'remove' to proceed")
         result = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         if not result == 'remove':
             return
         if self._remove():
             message = '{} removed.'
             message = message.format(self.filesystem_path)
-            self.session.io_manager.proceed(message)
+            self._session.io_manager.proceed(message)
 
     def interactively_remove_and_backtrack_locally(self):
         r'''Interactively removes filesystem asset and backtracks locally.
@@ -302,7 +302,7 @@ class Manager(ScoreManagerObject):
         Returns none.
         '''
         self.interactively_remove()
-        self.session.is_backtracking_locally = True
+        self._session.is_backtracking_locally = True
 
     def interactively_rename(
         self, 
@@ -312,21 +312,21 @@ class Manager(ScoreManagerObject):
 
         Returns none.
         '''
-        self.session.io_manager._assign_user_input(pending_user_input)
+        self._session.io_manager._assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
         getter.include_newlines = False
         result = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         parent_directory_path = os.path.dirname(self.filesystem_path)
         new_path = os.path.join(parent_directory_path, result)
         message = 'new path name will be: {!r}.'
         message = message.format(new_path)
-        self.session.io_manager.display([message, ''])
-        if not self.session.io_manager.confirm():
+        self._session.io_manager.display([message, ''])
+        if not self._session.io_manager.confirm():
             return
         if self._rename(new_path):
-            self.session.io_manager.proceed('asset renamed.')
+            self._session.io_manager.proceed('asset renamed.')
 
     def interactively_write_boilerplate(
         self, 
@@ -336,19 +336,19 @@ class Manager(ScoreManagerObject):
 
         Returns none.
         '''
-        self.session.io_manager._assign_user_input(pending_user_input)
-        getter = self.session.io_manager.make_getter(where=self._where)
+        self._session.io_manager._assign_user_input(pending_user_input)
+        getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_file_name('name of boilerplate asset')
         with self.backtracking:
             boilerplate_file_built_in_asset_name = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         if self._write_boilerplate(boilerplate_file_built_in_asset_name):
-            self.session.io_manager.proceed('boilerplate asset copied.')
+            self._session.io_manager.proceed('boilerplate asset copied.')
         else:
             message = 'boilerplate asset {!r} does not exist.'
             message = message.format(boilerplate_file_built_in_asset_name)
-            self.session.io_manager.proceed(message)
+            self._session.io_manager.proceed(message)
 
     def repository_add(self, prompt=False):
         r'''Interactively adds unversioned filesystem assets to repository.
@@ -357,7 +357,7 @@ class Manager(ScoreManagerObject):
         '''
         line = self._get_score_package_directory_name()
         line = line + ' ...'
-        self.session.io_manager.display(line, capitalize_first_character=False)
+        self._session.io_manager.display(line, capitalize_first_character=False)
         process = subprocess.Popen(
             self._repository_add_command,
             shell=True,
@@ -365,8 +365,8 @@ class Manager(ScoreManagerObject):
             )
         lines = [line.strip() for line in process.stdout.readlines()]
         lines.append('')
-        self.session.io_manager.display(lines)
-        self.session.io_manager.proceed(prompt=prompt)
+        self._session.io_manager.display(lines)
+        self._session.io_manager.proceed(prompt=prompt)
 
     def repository_ci(self, commit_message=None, prompt=True):
         r'''Interactively commits unversioned filesystem assets to repository.
@@ -374,14 +374,14 @@ class Manager(ScoreManagerObject):
         Returns none.
         '''
         if commit_message is None:
-            getter = self.session.io_manager.make_getter(where=self._where)
+            getter = self._session.io_manager.make_getter(where=self._where)
             getter.append_string('commit message')
             commit_message = getter._run(clear_terminal=False)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 return
             line = 'commit message will be: "{}"\n'.format(commit_message)
-            self.session.io_manager.display(line)
-            if not self.session.io_manager.confirm():
+            self._session.io_manager.display(line)
+            if not self._session.io_manager.confirm():
                 return
         lines = []
         line = self._get_score_package_directory_name()
@@ -396,11 +396,11 @@ class Manager(ScoreManagerObject):
             )
         lines.extend([line.strip() for line in process.stdout.readlines()])
         lines.append('')
-        self.session.io_manager.display(
+        self._session.io_manager.display(
             lines, 
             capitalize_first_character=False,
             )
-        self.session.io_manager.proceed(prompt=prompt)
+        self._session.io_manager.proceed(prompt=prompt)
 
     def repository_st(self, prompt=True):
         r'''Intearctively displays repository status of filesystem assets.
@@ -409,7 +409,7 @@ class Manager(ScoreManagerObject):
         '''
         line = self._get_score_package_directory_name()
         line = line + ' ...'
-        self.session.io_manager.display(line, capitalize_first_character=False)
+        self._session.io_manager.display(line, capitalize_first_character=False)
         command = 'svn st -u {}'.format(self.filesystem_path)
         process = subprocess.Popen(
             command,
@@ -446,11 +446,11 @@ class Manager(ScoreManagerObject):
             message = 'versioned by neither Subversion nor Git'
             clean_lines.append(message)
             clean_lines.append('')
-        self.session.io_manager.display(
+        self._session.io_manager.display(
             clean_lines, 
             capitalize_first_character=False,
             )
-        self.session.io_manager.proceed(prompt=prompt)
+        self._session.io_manager.proceed(prompt=prompt)
 
     def repository_up(self, prompt=True):
         r'''Interactively updates versioned filesystem assets.
@@ -459,7 +459,7 @@ class Manager(ScoreManagerObject):
         '''
         line = self._get_score_package_directory_name()
         line = line + ' ...'
-        self.session.io_manager.display(line, capitalize_first_character=False)
+        self._session.io_manager.display(line, capitalize_first_character=False)
         command = 'svn up {}'.format(self.filesystem_path)
         process = subprocess.Popen(
             command,
@@ -468,8 +468,8 @@ class Manager(ScoreManagerObject):
             )
         lines = [line.strip() for line in process.stdout.readlines()]
         lines.append('')
-        self.session.io_manager.display(lines)
-        self.session.io_manager.proceed(prompt=prompt)
+        self._session.io_manager.display(lines)
+        self._session.io_manager.proceed(prompt=prompt)
 
     ### UI MANIFEST ###
 

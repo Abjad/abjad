@@ -9,13 +9,13 @@ def test_Menu_allow_ascii_access_to_unicode_key_01():
 
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='Étude q')
-    assert score_manager.session.io_transcript.signature == (4,)
+    assert score_manager._session.io_transcript.signature == (4,)
 
     score_manager._run(pending_user_input='étude q')
-    assert score_manager.session.io_transcript.signature == (4,)
+    assert score_manager._session.io_transcript.signature == (4,)
 
     score_manager._run(pending_user_input='Etude q')
-    assert score_manager.session.io_transcript.signature == (4,)
+    assert score_manager._session.io_transcript.signature == (4,)
 
     score_manager._run(pending_user_input='etude q')
-    assert score_manager.session.io_transcript.signature == (4,)
+    assert score_manager._session.io_transcript.signature == (4,)

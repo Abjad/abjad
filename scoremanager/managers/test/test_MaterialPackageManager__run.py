@@ -10,19 +10,19 @@ def test_MaterialPackageManager__run_01():
 
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='lmm red~sargasso~measures q')
-    assert score_manager.session.io_transcript.signature == (6,)
+    assert score_manager._session.io_transcript.signature == (6,)
 
     score_manager._run(pending_user_input='lmm red~sargasso~measures b q')
-    assert score_manager.session.io_transcript.signature == (8, (2, 6))
+    assert score_manager._session.io_transcript.signature == (8, (2, 6))
 
     score_manager._run(pending_user_input='lmm red~sargasso~measures h q')
-    assert score_manager.session.io_transcript.signature == (8, (0, 6))
+    assert score_manager._session.io_transcript.signature == (8, (0, 6))
 
     score_manager._run(pending_user_input='lmm red~sargasso~measures s q')
-    assert score_manager.session.io_transcript.signature == (8, (4, 6))
+    assert score_manager._session.io_transcript.signature == (8, (4, 6))
 
     score_manager._run(pending_user_input='lmm red~sargasso~measures foo q')
-    assert score_manager.session.io_transcript.signature == (8, (4, 6))
+    assert score_manager._session.io_transcript.signature == (8, (4, 6))
 
 
 def test_MaterialPackageManager__run_02():
@@ -32,7 +32,7 @@ def test_MaterialPackageManager__run_02():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='lmm red~sargasso~measures q')
     string = 'Score manager - material library - red sargasso measures'
-    assert score_manager.session.io_transcript.last_menu_title == string
+    assert score_manager._session.io_transcript.last_menu_title == string
 
 
 def test_MaterialPackageManager__run_03():
@@ -42,23 +42,23 @@ def test_MaterialPackageManager__run_03():
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score m tempo~inventory q'
     score_manager._run(pending_user_input=string)
-    assert score_manager.session.io_transcript.signature == (8,)
+    assert score_manager._session.io_transcript.signature == (8,)
 
     string = 'red~example~score m tempo~inventory b q'
     score_manager._run(pending_user_input=string)
-    assert score_manager.session.io_transcript.signature == (10, (4, 8))
+    assert score_manager._session.io_transcript.signature == (10, (4, 8))
 
     string = 'red~example~score m tempo~inventory h q'
     score_manager._run(pending_user_input=string)
-    assert score_manager.session.io_transcript.signature == (10, (0, 8))
+    assert score_manager._session.io_transcript.signature == (10, (0, 8))
 
     string = 'red~example~score m tempo~inventory s q'
     score_manager._run(pending_user_input=string)
-    assert score_manager.session.io_transcript.signature == (10, (2, 8))
+    assert score_manager._session.io_transcript.signature == (10, (2, 8))
 
     string = 'red~example~score m tempo~inventory foo q'
     score_manager._run(pending_user_input=string)
-    assert score_manager.session.io_transcript.signature == (10, (6, 8))
+    assert score_manager._session.io_transcript.signature == (10, (6, 8))
 
 
 def test_MaterialPackageManager__run_04():
@@ -69,4 +69,4 @@ def test_MaterialPackageManager__run_04():
     string = 'red~example~score m tempo~inventory q'
     score_manager._run(pending_user_input=string)
     string = 'Red Example Score (2013) - materials - tempo inventory'
-    assert score_manager.session.io_transcript.last_menu_title == string
+    assert score_manager._session.io_transcript.last_menu_title == string

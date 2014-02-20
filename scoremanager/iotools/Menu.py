@@ -32,13 +32,13 @@ class Menu(ScoreManagerObject):
 
     def __init__(
         self, 
-        session=None, 
+        _session=None, 
         where=None,
         include_default_hidden_sections=True,
         should_clear_terminal=False,
         title=None,
         ):
-        ScoreManagerObject.__init__(self, session=session)
+        ScoreManagerObject.__init__(self, _session=_session)
         self._menu_sections = []
         if include_default_hidden_sections:
             self._make_default_hidden_sections()
@@ -88,27 +88,27 @@ class Menu(ScoreManagerObject):
 
     def _clear_terminal(self):
         if self.should_clear_terminal:
-            self.session.io_manager.clear_terminal()
+            self._session.io_manager.clear_terminal()
 
     def _display(
         self, 
         predetermined_user_input=None,
         ):
         self._clear_terminal()
-        self.session.io_manager.display(
+        self._session.io_manager.display(
             self._make_menu_lines(), 
             capitalize_first_character=False,
             )
         if predetermined_user_input is not None:
             return predetermined_user_input
         user_entered_lone_return = False
-        user_input = self.session.io_manager.handle_user_input('')
+        user_input = self._session.io_manager.handle_user_input('')
         if user_input == '':
             user_entered_lone_return = True
         directive = self._change_user_input_to_directive(user_input)
         directive = self._strip_default_notice_from_strings(directive)
-        self.session.hide_next_redraw = False
-        io_manager = self.session.io_manager
+        self._session.hide_next_redraw = False
+        io_manager = self._session.io_manager
         directive = \
             io_manager._handle_hidden_menu_section_return_value(directive)
         if directive is None and user_entered_lone_return:
@@ -122,7 +122,7 @@ class Menu(ScoreManagerObject):
         elif directive == 'sce':
             self.interactively_edit_calling_code()
         elif directive == 'sdv':
-            self.session.display_variables()
+            self._session.display_variables()
         elif directive == 'scl':
             self.display_calling_code_line_number()
         else:
@@ -276,7 +276,7 @@ class Menu(ScoreManagerObject):
     def _make_section_lines(self):
         menu_lines = []
         for menu_section in self.menu_sections:
-            hide = self.session.hidden_menu_sections_are_hidden
+            hide = self._session.hidden_menu_sections_are_hidden
             if hide and menu_section.is_secondary:
                 continue
             if menu_section.is_hidden:
@@ -293,7 +293,7 @@ class Menu(ScoreManagerObject):
             match_on_display_string=False,
             return_value_attribute='key',
             )
-        section.append(('session - display variables', 'sdv'))
+        section.append(('_session - display variables', 'sdv'))
         return section
 
     def _make_source_code_menu_section(self):
@@ -325,7 +325,7 @@ class Menu(ScoreManagerObject):
             if self.title is not None:
                 title = self.title
             else:
-                title = self.session.menu_header
+                title = self._session.menu_header
             result.append(stringtools.capitalize_string_start(title))
             result.append('')
         return result
@@ -349,7 +349,7 @@ class Menu(ScoreManagerObject):
         predetermined_user_input=None, 
         pending_user_input=None,
         ):
-        self.session.io_manager._assign_user_input(pending_user_input)
+        self._session.io_manager._assign_user_input(pending_user_input)
         clear, hide_current_run = clear, False
         while True:
             self.should_clear_terminal = clear
@@ -358,7 +358,7 @@ class Menu(ScoreManagerObject):
             result = self._display(
                 predetermined_user_input=predetermined_user_input,
                 )
-            if self.session.is_complete:
+            if self._session.is_complete:
                 break
             elif result == 'r':
                 clear, hide_current_run = True, False
@@ -475,16 +475,16 @@ class Menu(ScoreManagerObject):
             line = '{}   line: {}'.format(self._make_tab(1), self.where[2])
             lines.append(line)
             lines.append('')
-            self.session.io_manager.display(
+            self._session.io_manager.display(
                 lines, capitalize_first_character=False)
-            self.session.hide_next_redraw = True
+            self._session.hide_next_redraw = True
         else:
-            self.session.enable_where = True
+            self._session.enable_where = True
 
     def display_hidden_menu_section(self):
-        self.session._push_breadcrumb('hidden commands')
+        self._session._push_breadcrumb('hidden commands')
         menu_lines = []
-        title = self.session.menu_header
+        title = self._session.menu_header
         title = stringtools.capitalize_string_start(title)
         menu_lines.append(title)
         menu_lines.append('')
@@ -498,18 +498,18 @@ class Menu(ScoreManagerObject):
                 menu_line += '{} ({})'.format(display_string, key)
                 menu_lines.append(menu_line)
             menu_lines.append('')
-        self.session.io_manager.display(
+        self._session.io_manager.display(
             menu_lines, 
             capitalize_first_character=False,
             clear_terminal=True,
             )
-        self.session.hide_next_redraw = True
-        self.session._pop_breadcrumb()
+        self._session.hide_next_redraw = True
+        self._session._pop_breadcrumb()
 
     def display_hidden_menu_sections(self):
-        self.session._push_breadcrumb('hidden commands')
+        self._session._push_breadcrumb('hidden commands')
         menu_lines = []
-        title = self.session.menu_header
+        title = self._session.menu_header
         title = stringtools.capitalize_string_start(title)
         menu_lines.append(title)
         menu_lines.append('')
@@ -523,28 +523,28 @@ class Menu(ScoreManagerObject):
                 menu_line += '{} ({})'.format(display_string, key)
                 menu_lines.append(menu_line)
             menu_lines.append('')
-        self.session.io_manager.display(
+        self._session.io_manager.display(
             menu_lines, 
             capitalize_first_character=False,
             clear_terminal=True,
             )
-        self.session.hide_next_redraw = True
-        self.session._pop_breadcrumb()
+        self._session.hide_next_redraw = True
+        self._session._pop_breadcrumb()
 
     def interactively_edit_calling_code(self):
         if self.where is not None:
             file_name = self.where[1]
             line_number = self.where[2]
             command = 'vim +{} {}'.format(line_number, file_name)
-            self.session.io_manager.spawn_subprocess(command)
+            self._session.io_manager.spawn_subprocess(command)
         else:
             lines = []
             message = 'where-tracking not enabled.'
             message += " Use 'sct' for source code tracking."
             lines.append(message)
             lines.append('')
-            self.session.io_manager.display(lines)
-            self.session.hide_next_redraw = True
+            self._session.io_manager.display(lines)
+            self._session.hide_next_redraw = True
 
     def make_asset_section(self, menu_entries=None):
         asset_section = self._make_section(
@@ -602,7 +602,7 @@ class Menu(ScoreManagerObject):
         return numbered_section
 
     def toggle_hidden_commands(self):
-        if self.session.hidden_menu_sections_are_hidden:
-            self.session.hidden_menu_sections_are_hidden = False
+        if self._session.hidden_menu_sections_are_hidden:
+            self._session.hidden_menu_sections_are_hidden = False
         else:
-            self.session.hidden_menu_sections_are_hidden = True
+            self._session.hidden_menu_sections_are_hidden = True

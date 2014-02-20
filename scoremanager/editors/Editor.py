@@ -7,8 +7,8 @@ class Editor(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, session=None, target=None):
-        ScoreManagerObject.__init__(self, session=session)
+    def __init__(self, _session=None, target=None):
+        ScoreManagerObject.__init__(self, _session=_session)
         if target is not None:
             assert isinstance(target, self.target_class)
         self.target = target
@@ -46,13 +46,13 @@ class Editor(ScoreManagerObject):
         kwargs = self.menu_key_to_delegated_editor_kwargs(result)
         editor = self.target_manifest.menu_key_to_editor(
             result, 
-            session=self.session, 
+            _session=self._session, 
             prepopulated_value=prepopulated_value, 
             **kwargs
             )
         if editor is not None:
             result = editor._run()
-            if self.session._backtrack():
+            if self._session._backtrack():
                 self.is_autoadvancing = False
                 return
             if hasattr(editor, 'target'):
@@ -62,7 +62,7 @@ class Editor(ScoreManagerObject):
             self.set_target_attribute(attribute_name, attribute_value)
 
     def _make_main_menu(self):
-        main_menu = self.session.io_manager.make_menu(where=self._where)
+        main_menu = self._session.io_manager.make_menu(where=self._where)
         keyed_attribute_section = \
             main_menu.make_keyed_attribute_section(
             is_numbered=True,
@@ -82,25 +82,25 @@ class Editor(ScoreManagerObject):
         is_autostarting=False, 
         pending_user_input=None,
         ):
-        self.session.io_manager._assign_user_input(pending_user_input)
-        self.session._cache_breadcrumbs(cache=cache)
-        self.session._push_breadcrumb(self._breadcrumb)
+        self._session.io_manager._assign_user_input(pending_user_input)
+        self._session._cache_breadcrumbs(cache=cache)
+        self._session._push_breadcrumb(self._breadcrumb)
         with self.backtracking:
             self.initialize_target()
-        self.session._pop_breadcrumb()
-        if self.session._backtrack():
-            self.session._restore_breadcrumbs(cache=cache)
+        self._session._pop_breadcrumb()
+        if self._session._backtrack():
+            self._session._restore_breadcrumbs(cache=cache)
             return
         result = None
         entry_point = None
         self.is_autoadvancing = is_autoadvancing
         is_first_pass = True
         if is_autoadding:
-            self.session.is_autoadding = True
+            self._session.is_autoadding = True
         while True:
             breadcrumb = breadcrumb or self._breadcrumb
-            self.session._push_breadcrumb(breadcrumb=breadcrumb)
-            if self.session.is_autoadding:
+            self._session._push_breadcrumb(breadcrumb=breadcrumb)
+            if self._session.is_autoadding:
                 menu = self._make_main_menu()
                 result = 'add'
                 menu._run(
@@ -122,25 +122,25 @@ class Editor(ScoreManagerObject):
                     result)
                 if result == entry_point:
                     self.is_autoadvancing = False
-                    self.session._pop_breadcrumb()
+                    self._session._pop_breadcrumb()
                     continue
             else:
                 menu = self._make_main_menu()
                 result = menu._run(clear=clear)
-                if self.session._backtrack():
+                if self._session._backtrack():
                     break
                 elif not result:
-                    self.session._pop_breadcrumb()
+                    self._session._pop_breadcrumb()
                     continue
             if result == 'done':
                 break
             self._handle_main_menu_result(result)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
-            self.session._pop_breadcrumb()
-        self.session.is_autoadding = False
-        self.session._pop_breadcrumb()
-        self.session._restore_breadcrumbs(cache=cache)
+            self._session._pop_breadcrumb()
+        self._session.is_autoadding = False
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
         self.clean_up_attributes_in_memory()
 
     ### PUBLIC PROPERTIES ###
@@ -220,7 +220,7 @@ class Editor(ScoreManagerObject):
             for target_attribute_name in self.target_attribute_names:
                 name = stringtools.string_to_space_delimited_lowercase(
                     target_attribute_name)
-                value = self.session.io_manager._get_one_line_menuing_summary(
+                value = self._session.io_manager._get_one_line_menuing_summary(
                     getattr(self.target, target_attribute_name))
                 result.append('{}: {}'.format(name, value))
         return result
@@ -311,7 +311,7 @@ class Editor(ScoreManagerObject):
             if hasattr(attribute_value, '__len__') and \
                 not len(attribute_value):
                 attribute_value = None
-            prepopulated_value = self.session.io_manager._get_one_line_menuing_summary(
+            prepopulated_value = self._session.io_manager._get_one_line_menuing_summary(
                 attribute_value)
             menu_entry = (display_string, key, prepopulated_value)
             result.append(menu_entry)
@@ -327,7 +327,7 @@ class Editor(ScoreManagerObject):
 
     def set_target_attribute(self, attribute_name, attribute_value):
         if self.target is not None:
-            if not self.session.is_complete:
+            if not self._session.is_complete:
                 # if the attribute is read / write
                 try:
                     setattr(self.target, attribute_name, attribute_value)
@@ -342,7 +342,7 @@ class Editor(ScoreManagerObject):
         result = []
         for arg in getattr(target, 'args', []):
             name = stringtools.string_to_space_delimited_lowercase(arg)
-            value = self.session.io_manager._get_one_line_menuing_summary(getattr(target, arg))
+            value = self._session.io_manager._get_one_line_menuing_summary(getattr(target, arg))
             result.append('{}: {}'.format(name, value))
         return result
 
@@ -350,7 +350,7 @@ class Editor(ScoreManagerObject):
         result = []
         for kwarg in getattr(target, 'kwargs', []):
             name = stringtools.string_to_space_delimited_lowercase(kwarg)
-            value = self.session.io_manager._get_one_line_menuing_summary(
+            value = self._session.io_manager._get_one_line_menuing_summary(
                 getattr(target, kwarg))
             result.append('{}: {}'.format(name, value))
         return result

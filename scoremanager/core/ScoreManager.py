@@ -19,20 +19,20 @@ class ScoreManager(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, session=None):
+    def __init__(self, _session=None):
         from scoremanager import wranglers
-        ScoreManagerObject.__init__(self, session=session)
-        self.session._score_manager = self
-        wrangler = wranglers.SegmentPackageWrangler(session=self.session)
+        ScoreManagerObject.__init__(self, _session=_session)
+        self._session._score_manager = self
+        wrangler = wranglers.SegmentPackageWrangler(_session=self._session)
         self._segment_package_wrangler = wrangler
         wrangler = wranglers.MaterialPackageManagerWrangler(
-            session=self.session)
+            _session=self._session)
         self._material_package_manager_wrangler = wrangler
-        wrangler = wranglers.MaterialPackageWrangler(session=self.session)
+        wrangler = wranglers.MaterialPackageWrangler(_session=self._session)
         self._material_package_wrangler = wrangler
-        wrangler = wranglers.ScorePackageWrangler(session=self.session)
+        wrangler = wranglers.ScorePackageWrangler(_session=self._session)
         self._score_package_wrangler = wrangler
-        wrangler = wranglers.StylesheetFileWrangler(session=self.session)
+        wrangler = wranglers.StylesheetFileWrangler(_session=self._session)
         self._stylesheet_file_wrangler = wrangler
 
     ### PRIVATE PROPERTIES ###
@@ -43,25 +43,25 @@ class ScoreManager(ScoreManagerObject):
 
     @property
     def _score_status_string(self):
-        return '{} scores'.format(self.session.scores_to_show)
+        return '{} scores'.format(self._session.scores_to_show)
 
     ### PRIVATE METHODS ###
 
     def _get_next_score_package_name(self):
         score_package_names = self._score_package_wrangler.list_asset_names()
-        if self.session.current_score_snake_case_name is None:
+        if self._session.current_score_snake_case_name is None:
             return score_package_names[0]
         index = score_package_names.index(
-            self.session.current_score_snake_case_name)
+            self._session.current_score_snake_case_name)
         next_index = (index + 1) % len(score_package_names)
         return score_package_names[next_index]
 
     def _get_previous_score_package_name(self):
         score_package_names = self._score_package_wrangler.list_asset_names()
-        if self.session.current_score_snake_case_name is None:
+        if self._session.current_score_snake_case_name is None:
             return score_package_names[-1]
         index = score_package_names.index(
-            self.session.current_score_snake_case_name)
+            self._session.current_score_snake_case_name)
         prev_index = (index - 1) % len(score_package_names)
         return score_package_names[prev_index]
 
@@ -93,14 +93,14 @@ class ScoreManager(ScoreManagerObject):
 
     def _make_score_selection_menu(self):
         wrangler = self._score_package_wrangler
-        if self.session.rewrite_cache:
-            self.session.io_manager._write_cache(prompt=False)
-            self.session.rewrite_cache = False
-        menu_entries = self.session.io_manager._read_cache()
+        if self._session.rewrite_cache:
+            self._session.io_manager._write_cache(prompt=False)
+            self._session.rewrite_cache = False
+        menu_entries = self._session.io_manager._read_cache()
         if not menu_entries:
-            self.session.io_manager._write_cache(prompt=False)
+            self._session.io_manager._write_cache(prompt=False)
             menu_entries = wrangler._make_asset_menu_entries()
-        menu = self.session.io_manager.make_menu(
+        menu = self._session.io_manager.make_menu(
             where=self._where,
             include_default_hidden_sections=False,
             )
@@ -118,51 +118,51 @@ class ScoreManager(ScoreManagerObject):
         dump_transcript=False,
         ):
         type(self).__init__(self)
-        self.session._push_controller(self)
-        self.session.io_manager._assign_user_input(
+        self._session._push_controller(self)
+        self._session.io_manager._assign_user_input(
             pending_user_input=pending_user_input,
             )
-        self.session._cache_breadcrumbs(cache=cache)
-        self.session._push_breadcrumb(self._breadcrumb)
+        self._session._cache_breadcrumbs(cache=cache)
+        self._session._push_breadcrumb(self._breadcrumb)
         if is_test:
-            self.session.is_test = True
-        self.session.dump_transcript = dump_transcript
+            self._session.is_test = True
+        self._session.dump_transcript = dump_transcript
         if display_active_scores:
-            self.session.display_active_scores()
+            self._session.display_active_scores()
         run_main_menu = True
         while True:
-            self.session._push_breadcrumb(self._score_status_string)
+            self._session._push_breadcrumb(self._score_status_string)
             if run_main_menu:
                 menu = self._make_main_menu()
                 result = menu._run(clear=clear)
             else:
                 run_main_menu = True
-            if self.session._backtrack(source='home'):
-                self.session._pop_breadcrumb()
-                self.session._clean_up()
+            if self._session._backtrack(source='home'):
+                self._session._pop_breadcrumb()
+                self._session._clean_up()
                 break
-            elif self.session.is_navigating_to_next_score:
-                self.session.is_navigating_to_next_score = False
-                self.session.is_backtracking_to_score_manager = False
+            elif self._session.is_navigating_to_next_score:
+                self._session.is_navigating_to_next_score = False
+                self._session.is_backtracking_to_score_manager = False
                 result = self._get_next_score_package_name()
-            elif self.session.is_navigating_to_previous_score:
-                self.session.is_navigating_to_previous_score = False
-                self.session.is_backtracking_to_score_manager = False
+            elif self._session.is_navigating_to_previous_score:
+                self._session.is_navigating_to_previous_score = False
+                self._session.is_backtracking_to_score_manager = False
                 result = self._get_previous_score_package_name()
             elif not result:
-                self.session._pop_breadcrumb()
+                self._session._pop_breadcrumb()
                 continue
             self._handle_main_menu_result(result)
-            if self.session._backtrack(source='home'):
-                self.session._pop_breadcrumb()
-                self.session._clean_up()
+            if self._session._backtrack(source='home'):
+                self._session._pop_breadcrumb()
+                self._session._clean_up()
                 break
-            elif self.session.is_navigating_to_sibling_score:
+            elif self._session.is_navigating_to_sibling_score:
                 run_main_menu = False
-            self.session._pop_breadcrumb()
-        self.session._pop_controller()
-        self.session._pop_breadcrumb()
-        self.session._restore_breadcrumbs(cache=cache)
+            self._session._pop_breadcrumb()
+        self._session._pop_controller()
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
 
     ### PUBLIC METHODS ###
 
@@ -185,28 +185,28 @@ class ScoreManager(ScoreManagerObject):
 
         Returns none.
         '''
-        self.session.display_active_scores()
+        self._session.display_active_scores()
 
     def display_all_scores(self):
         r'''Displays all scores.
 
         Returns none.
         '''
-        self.session.display_all_scores()
+        self._session.display_all_scores()
 
     def display_example_scores(self):
         r'''Displays example scores.
 
         Returns none.
         '''
-        self.session.display_example_scores()
+        self._session.display_example_scores()
 
     def display_mothballed_scores(self):
         r'''Displays mothballed scores.
 
         Returns none.
         '''
-        self.session.display_mothballed_scores()
+        self._session.display_mothballed_scores()
 
     def display_repository_status(self, prompt=True):
         r'''Displays status of repository assets.
@@ -240,9 +240,9 @@ class ScoreManager(ScoreManagerObject):
         manager = self._score_package_wrangler._initialize_asset_manager(
             score_package_path)
         score_package_name = score_package_path.split('.')[-1]
-        manager.session.current_score_snake_case_name = score_package_name
+        manager._session.current_score_snake_case_name = score_package_name
         manager._run(cache=True)
-        self.session.current_score_snake_case_name = None
+        self._session.current_score_snake_case_name = None
 
     def manage_stylesheet_library(self):
         r'''Manages stylesheet library.
@@ -264,11 +264,11 @@ class ScoreManager(ScoreManagerObject):
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
             lines.append('')
-            self.session.io_manager.display(
+            self._session.io_manager.display(
                 lines, 
                 capitalize_first_character=False,
                 )
-        self.session.io_manager.proceed(prompt=prompt)
+        self._session.io_manager.proceed(prompt=prompt)
 
     def run_pytest(self, prompt=True):
         r'''Runs py.test.
@@ -281,11 +281,11 @@ class ScoreManager(ScoreManagerObject):
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
             lines.append('')
-            self.session.io_manager.display(
+            self._session.io_manager.display(
                 lines, 
                 capitalize_first_character=False,
                 )
-        self.session.io_manager.proceed(prompt=prompt)
+        self._session.io_manager.proceed(prompt=prompt)
 
     def update_from_repository(self, prompt=True):
         r'''Updates repository assets.
@@ -302,14 +302,14 @@ class ScoreManager(ScoreManagerObject):
         file_path = self.configuration.cache_file_path
         if os.path.isfile(file_path):
             command = 'vi -R {}'.format(file_path)
-            self.session.io_manager.spawn_subprocess(command)
+            self._session.io_manager.spawn_subprocess(command)
 
     def write_cache(self, prompt=True):
         r'''Writes cache.
 
         Returns none.
         '''
-        self.session.io_manager._write_cache(prompt=prompt)
+        self._session.io_manager._write_cache(prompt=prompt)
 
     ### UI MANIFEST ###
 

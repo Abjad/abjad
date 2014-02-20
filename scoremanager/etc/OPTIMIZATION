@@ -29,9 +29,9 @@ function calls. Optimizing score manager start up should save as much as
 OBSERVATION: Note that the following ...
 
     def make_score_selection_menu(self):
-        #menu, menu_section = self.session.io_manager.make_menu(
+        #menu, menu_section = self._session.io_manager.make_menu(
             where=self._where, is_numbered=True)
-        menu, menu_section = self.session.io_manager.make_menu(
+        menu, menu_section = self._session.io_manager.make_menu(
             where='foo', is_numbered=True)
         menu_section.menu_entries = \
             self.score_package_wrangler._make_asset_menu_entries()

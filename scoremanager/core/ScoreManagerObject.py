@@ -19,11 +19,11 @@ class ScoreManagerObject(object):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, session=None):
+    def __init__(self, _session=None):
         from scoremanager import core
         from scoremanager import iotools
         self._configuration = core.ScoreManagerConfiguration()
-        self._session = session or core.Session()
+        self._session = _session or core.Session()
         self.backtracking = iotools.Backtracking(self)
 
     ### SPECIAL METHODS ###
@@ -53,7 +53,7 @@ class ScoreManagerObject(object):
 
     @property
     def _where(self):
-        if self.session.enable_where:
+        if self._session.enable_where:
             return inspect.stack()[1]
 
     ### PUBLIC PROPERTIES ###
@@ -65,11 +65,3 @@ class ScoreManagerObject(object):
 #        Returns score manager configuration.
 #        '''
 #        return self._configuration
-
-    @property
-    def session(self):
-        '''Gets session of score manager object.
-
-        Returns session.
-        '''
-        return self._session

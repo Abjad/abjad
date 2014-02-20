@@ -25,7 +25,7 @@ class DynamicHandlerMaterialPackageManager(MaterialPackageManager):
         return isinstance(expr, handlertools.DynamicHandler)
 
     @staticmethod
-    def output_material_editor(target=None, session=None):
+    def output_material_editor(target=None, _session=None):
         from scoremanager import wizards
         if target:
             wizard = wizards.DynamicHandlerCreationWizard()

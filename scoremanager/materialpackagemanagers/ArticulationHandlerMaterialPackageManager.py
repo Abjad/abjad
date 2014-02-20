@@ -16,7 +16,7 @@ class ArticulationHandlerMaterialPackageManager(MaterialPackageManager):
         lambda x: isinstance(x, ArticulationHandler))
 
     @staticmethod
-    def output_material_editor(target=None, session=None):
+    def output_material_editor(target=None, _session=None):
         from scoremanager import wizards
         if target:
             wizard = wizards.ArticulationHandlerCreationWizard()

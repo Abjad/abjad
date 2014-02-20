@@ -14,7 +14,7 @@ class Backtracking(ContextManager):
     ### SPECIAL METHODS ###
 
     def __enter__(self):
-        self.client.session._push_backtrack()
+        self.client._session._push_backtrack()
 
     def __exit__(self, exg_type, exc_value, trackeback):
-        self.client.session._pop_backtrack()
+        self.client._session._pop_backtrack()

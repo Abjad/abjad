@@ -46,11 +46,11 @@ class MaterialPackageManager(PackageManager):
 
     ### INTIALIZER ###
 
-    def __init__(self, packagesystem_path=None, session=None):
+    def __init__(self, packagesystem_path=None, _session=None):
         PackageManager.__init__(
             self,
             packagesystem_path=packagesystem_path,
-            session=session,
+            _session=_session,
             )
         self._user_input_wrapper_in_memory = \
             self._initialize_user_input_wrapper_in_memory()
@@ -80,12 +80,12 @@ class MaterialPackageManager(PackageManager):
         where = self._where
         main_menu, hidden_section = superclass._make_main_menu(where=where)
         has_initializer = os.path.isfile(self.initializer_file_path)
-        self.session.io_manager._make_initializer_menu_section(
+        self._session.io_manager._make_initializer_menu_section(
             main_menu, 
             has_initializer=has_initializer,
             )
-        self.session.io_manager._make_metadata_menu_section(main_menu)
-        self.session.io_manager._make_metadata_module_menu_section(main_menu)
+        self._session.io_manager._make_metadata_menu_section(main_menu)
+        self._session.io_manager._make_metadata_module_menu_section(main_menu)
         if self.should_have_user_input_module:
             self._make_main_menu_sections_with_user_input_wrapper(
                 main_menu, hidden_section)
@@ -215,7 +215,7 @@ class MaterialPackageManager(PackageManager):
                 if self.has_output_material:
                     output_material_editor = self.output_material_editor(
                         target=self.output_material,
-                        session=self.session)
+                        _session=self._session)
                     target_summary_lines = \
                         output_material_editor.target_summary_lines
                     if target_summary_lines:
@@ -332,7 +332,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         return managers.FileManager(
             self.illustration_builder_module_file_path,
-            session=self.session,
+            _session=self._session,
             )
 
     @property
@@ -346,7 +346,7 @@ class MaterialPackageManager(PackageManager):
         file_path = os.path.join(self.filesystem_path, 'illustration.ly')
         manager = managers.FileManager(
             file_path,
-            session=self.session,
+            _session=self._session,
             )
         return manager
 
@@ -361,7 +361,7 @@ class MaterialPackageManager(PackageManager):
         file_path = os.path.join(self.filesystem_path, 'illustration.pdf')
         manager = managers.FileManager(
             file_path,
-            session=self.session,
+            _session=self._session,
             )
         return manager
 
@@ -393,7 +393,7 @@ class MaterialPackageManager(PackageManager):
             return
         manager = managers.FileManager(
             self.material_definition_module_file_path,
-            session=self.session,
+            _session=self._session,
             )
         result = manager._execute_file_lines(
             return_attribute_name=self.material_package_name,
@@ -412,10 +412,10 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def material_package_directory(self):
-        if self.session.current_materials_directory_path:
+        if self._session.current_materials_directory_path:
             if self.material_package_name:
                 return os.path.join(
-                    self.session.current_materials_directory_path,
+                    self._session.current_materials_directory_path,
                     self.material_package_name)
 
     @property
@@ -480,7 +480,7 @@ class MaterialPackageManager(PackageManager):
             ]
         manager = managers.FileManager(
             self.material_definition_module_file_path,
-            session=self.session,
+            _session=self._session,
             )
         result = manager._execute_file_lines(
             return_attribute_name=return_attribute_name,
@@ -524,7 +524,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         return managers.FileManager(
             self.output_material_module_file_path,
-            session=self.session,
+            _session=self._session,
             )
 
     @property
@@ -576,7 +576,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         return managers.FileManager(
             self.stylesheet_file_path,
-            session=self.session,
+            _session=self._session,
             )
 
     @property
@@ -628,7 +628,7 @@ class MaterialPackageManager(PackageManager):
 
     def interactively_edit_material_definition_module(self):
         file_path = self.material_definition_module_file_path
-        self.session.io_manager.interactively_edit(file_path)
+        self._session.io_manager.interactively_edit(file_path)
 
     def interactively_edit_output_material(self):
         if not self.has_output_material_editor:
@@ -642,9 +642,9 @@ class MaterialPackageManager(PackageManager):
         else:
             output_material_handler_callable = self.output_material_editor
         output_material_handler = output_material_handler_callable(
-            target=output_material, session=self.session)
+            target=output_material, _session=self._session)
         output_material_handler._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         output_material_module_import_statements = \
             self.output_material_module_import_statements
@@ -677,18 +677,18 @@ class MaterialPackageManager(PackageManager):
     def interactively_rename_package(self):
         base_name = os.path.basename(self.filesystem_path)
         line = 'current name: {}'.format(base_name)
-        self.session.io_manager.display(line)
-        getter = self.session.io_manager.make_getter(where=self._where)
+        self._session.io_manager.display(line)
+        getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('new name')
         new_package_name = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         lines = []
         lines.append('current name: {}'.format(base_name))
         lines.append('new name:     {}'.format(new_package_name))
         lines.append('')
-        self.session.io_manager.display(lines)
-        if not self.session.io_manager.confirm():
+        self._session.io_manager.display(lines)
+        if not self._session.io_manager.confirm():
             return
         new_directory_path = self.filesystem_path.replace(
             base_name,
@@ -698,7 +698,7 @@ class MaterialPackageManager(PackageManager):
             # rename package
             command = 'svn mv {} {}'
             command = command.format(self.filesystem_path, new_directory_path)
-            self.session.io_manager.spawn_subprocess(command)
+            self._session.io_manager.spawn_subprocess(command)
             # replace output material variable name
             new_output_material_module_name = os.path.join(
                 new_directory_path,
@@ -724,12 +724,12 @@ class MaterialPackageManager(PackageManager):
                 commit_message,
                 parent_directory_path,
                 )
-            self.session.io_manager.spawn_subprocess(command)
+            self._session.io_manager.spawn_subprocess(command)
         else:
             # rename package
             command = 'mv {} {}'
             command = command.format(self.filesystem_path, new_directory_path)
-            self.session.io_manager.spawn_subprocess(command)
+            self._session.io_manager.spawn_subprocess(command)
             # replace output material variable name
             new_output_material_module_name = os.path.join(
                 new_directory_path,
@@ -744,35 +744,35 @@ class MaterialPackageManager(PackageManager):
                 )
         # update path name to reflect change
         self._path = new_directory_path
-        self.session.is_backtracking_locally = True
+        self._session.is_backtracking_locally = True
 
     def interactively_select_material_package_manager(self, prompt=True):
         from scoremanager import wranglers
         material_manager_wrangler = wranglers.MaterialPackageManagerWrangler(
-            session=self.session)
+            _session=self._session)
         with self.backtracking:
             material_package_manager = \
                 material_manager_wrangler.select_material_manager_class_name_interactively()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         self._add_metadatum(
             'material_package_manager',
             material_package_manager.class_name,
             )
         message = 'user input handler selected.'
-        self.session.io_manager.proceed(message=message, prompt=prompt)
+        self._session.io_manager.proceed(message=message, prompt=prompt)
 
     def interactively_select_stylesheet(self, prompt=True):
         from scoremanager import wranglers
         stylesheet_file_wrangler = wranglers.StylesheetFileWrangler(
-            session=self.session)
+            _session=self._session)
         with self.backtracking:
             stylesheet_file_path = \
                 stylesheet_file_wrangler.interactively_select_asset_filesystem_path()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         self.stylesheet_file_path_in_memory = stylesheet_file_path
-        self.session.io_manager.proceed(
+        self._session.io_manager.proceed(
             'stylesheet selected.', 
             prompt=prompt,
             )
@@ -790,7 +790,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         manager = managers.FileManager(
             self.material_definition_module_file_path,
-            session=self.session,
+            _session=self._session,
             )
         manager.interactively_write_boilerplate()
 
@@ -798,14 +798,14 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         manager = managers.FileManager(
             self.output_material_module_file_path,
-            session=self.session,
+            _session=self._session,
             )
         manager.interactively_write_boilerplate()
 
     def manage_stylesheets(self):
         from scoremanager import wranglers
         stylesheet_file_wrangler = wranglers.StylesheetFileWrangler(
-            session=self.session)
+            _session=self._session)
         stylesheet_file_wrangler._run()
 
     def remove(self):
@@ -832,7 +832,7 @@ class MaterialPackageManager(PackageManager):
         if self.has_material_definition_module:
             manager = managers.FileManager(
                 self.material_definition_module_file_path,
-                session=self.session,
+                _session=self._session,
                 )
             manager._remove()
 
@@ -846,7 +846,7 @@ class MaterialPackageManager(PackageManager):
         if self.has_user_input_module:
             manager = managers.FileManager(
                 self.user_input_module_file_path,
-                session=self.session,
+                _session=self._session,
                 )
             manager._remove()
 
@@ -867,7 +867,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         manager = managers.FileManager(
             self.material_definition_module_file_path,
-            session=self.session,
+            _session=self._session,
             )
         manager._run_abjad()
 
@@ -881,7 +881,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         manager = managers.FileManager(
             self.material_definition_module_file_path,
-            session=self.session,
+            _session=self._session,
             )
         manager._run_python()
 
@@ -890,7 +890,7 @@ class MaterialPackageManager(PackageManager):
         topleveltools.persist(illustration).as_pdf(
             self.illustration_pdf_fil_path,
             )
-        self.session.io_manager.proceed(
+        self._session.io_manager.proceed(
             'PDF and LilyPond file written to disk.',
             prompt=prompt,
             )
@@ -900,7 +900,7 @@ class MaterialPackageManager(PackageManager):
         topleveltools.persist(illustration).as_pdf(
             self.illustration_ly_file_path,
             )
-        self.session.io_manager.proceed(
+        self._session.io_manager.proceed(
             'LilyPond file written to disk.',
             prompt=prompt,
             )
@@ -910,7 +910,7 @@ class MaterialPackageManager(PackageManager):
         topleveltools.persist(illustration).as_pdf(
             self.illustration_pdf_fil_path,
             )
-        self.session.io_manager.proceed(
+        self._session.io_manager.proceed(
             'PDF written to disk.',
             prompt=prompt)
 
@@ -949,12 +949,12 @@ class MaterialPackageManager(PackageManager):
         if hasattr(self, 'generic_output_name'):
             self._add_metadatum('generic_output_name', self.generic_output_name)
         message = 'output material written to disk.'
-        self.session.io_manager.proceed(message, prompt=prompt)
+        self._session.io_manager.proceed(message, prompt=prompt)
 
     def _write_stub_material_definition_module(self, prompt=True):
         self.write_stub_music_material_definition()
         message = 'stub material definition written to disk.'
-        self.session.io_manager.proceed(message, prompt=prompt)
+        self._session.io_manager.proceed(message, prompt=prompt)
 
     def write_stub_music_material_definition(self):
         lines = []
@@ -995,7 +995,7 @@ class MaterialPackageManager(PackageManager):
         with file(file_path, 'w') as file_pointer:
             file_pointer.write(''.join(lines))
         message = 'stub illustration builder written to disk.'
-        self.session.io_manager.proceed(message, prompt=prompt)
+        self._session.io_manager.proceed(message, prompt=prompt)
 
     def write_stub_material_definition_module(self):
         if self.should_have_material_definition_module:
@@ -1018,7 +1018,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         manager = managers.FileManager(
             self.user_input_module_file_path,
-            session=self.session,
+            _session=self._session,
             )
         result = manager._execute_file_lines(
             file_path=self.user_input_module_file_path,
@@ -1109,8 +1109,8 @@ class MaterialPackageManager(PackageManager):
             self.output_material_module_manager.import_output_material_safely()
         kwargs = {}
         kwargs['title'] = self._space_delimited_lowercase_name
-        if self.session.is_in_score:
-            title = self.session.current_score_package_manager.title
+        if self._session.is_in_score:
+            title = self._session.current_score_package_manager.title
             string = '({})'.format(title)
             kwargs['subtitle'] = string
         illustration = self.illustration_builder(output_material, **kwargs)
@@ -1128,13 +1128,13 @@ class MaterialPackageManager(PackageManager):
 
     def clear_user_input_wrapper(self, prompt=False):
         if self.user_input_wrapper_in_memory.is_empty:
-            self.session.io_manager.proceed(
+            self._session.io_manager.proceed(
                 'user input already empty.', prompt=prompt)
         else:
             self.user_input_wrapper_in_memory.clear()
             wrapper = self.user_input_wrapper_in_memory
             self.write_user_input_wrapper(wrapper)
-            self.session.io_manager.proceed(
+            self._session.io_manager.proceed(
                 'user input wrapper cleared and written to disk.',
                 prompt=prompt)
 
@@ -1144,8 +1144,8 @@ class MaterialPackageManager(PackageManager):
             line = '    {}: {!r}'.format(key.replace('_', ' '), value)
             lines.append(line)
         lines.append('')
-        self.session.io_manager.display(lines)
-        self.session.io_manager.proceed(prompt=prompt)
+        self._session.io_manager.display(lines)
+        self._session.io_manager.proceed(prompt=prompt)
 
     def initialize_empty_user_input_wrapper(self):
         from scoremanager import editors
@@ -1162,7 +1162,7 @@ class MaterialPackageManager(PackageManager):
         include_newline=True,
         pending_user_input=None,
         ):
-        self.session.io_manager._assign_user_input(pending_user_input)
+        self._session.io_manager._assign_user_input(pending_user_input)
         number = int(number)
         if self.user_input_wrapper_in_memory is None:
             return
@@ -1177,11 +1177,11 @@ class MaterialPackageManager(PackageManager):
             setup_statement = test_tuple[2]
         else:
             setup_statement = 'evaluated_user_input = {}'
-        if self.session.use_current_user_input_values_as_default:
+        if self._session.use_current_user_input_values_as_default:
             default_value = current_value
         else:
             default_value = None
-        getter = self.session.io_manager.make_getter()
+        getter = self._session.io_manager.make_getter()
         spaced_attribute_name = key.replace('_', ' ')
         message = "value for '{}' must satisfy " + test.__name__ + '().'
         getter._make_prompt(
@@ -1194,7 +1194,7 @@ class MaterialPackageManager(PackageManager):
         getter.include_newlines = include_newline
         getter.allow_none = True
         new_value = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         self.user_input_wrapper_in_memory[key] = new_value
         wrapper = self.user_input_wrapper_in_memory
@@ -1205,9 +1205,9 @@ class MaterialPackageManager(PackageManager):
         pending_user_input=None,
         ):
         from scoremanager import managers
-        self.session.io_manager._assign_user_input(pending_user_input)
+        self._session.io_manager._assign_user_input(pending_user_input)
         file_path = self.user_input_module_file_path
-        self.session.io_manager.interactively_view(file_path)
+        self._session.io_manager.interactively_view(file_path)
 
     def load_user_input_wrapper_demo_values(self, prompt=False):
         user_input_demo_values = copy.deepcopy(
@@ -1216,7 +1216,7 @@ class MaterialPackageManager(PackageManager):
             self.user_input_wrapper_in_memory[key] = value
         wrapper = self.user_input_wrapper_in_memory
         self.write_user_input_wrapper(wrapper)
-        self.session.io_manager.proceed(
+        self._session.io_manager.proceed(
             'demo values loaded and written to disk.',
             prompt=prompt,
             )
@@ -1240,12 +1240,12 @@ class MaterialPackageManager(PackageManager):
 
     def populate_user_input_wrapper(self, prompt=False):
         total_elements = len(self.user_input_wrapper_in_memory)
-        getter = self.session.io_manager.make_getter(where=self._where)
+        getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_integer_in_range(
             'start at element number', 1, total_elements, default_value=1)
         with self.backtracking:
             start_element_number = getter._run()
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         current_element_number = start_element_number
         current_element_index = current_element_number - 1
@@ -1253,7 +1253,7 @@ class MaterialPackageManager(PackageManager):
             with self.backtracking:
                 self.interactively_edit_user_input_wrapper_at_number(
                     current_element_number, include_newline=False)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 return
             current_element_index += 1
             current_element_index %= total_elements
@@ -1262,12 +1262,12 @@ class MaterialPackageManager(PackageManager):
                 break
 
     def swap_user_input_values_default_status(self):
-        self.session.swap_user_input_values_default_status()
+        self._session.swap_user_input_values_default_status()
 
     def write_stub_user_input_module(self, prompt=False):
         wrapper = self.initialize_empty_user_input_wrapper()
         self.write_user_input_wrapper(wrapper)
-        self.session.io_manager.proceed(
+        self._session.io_manager.proceed(
             'stub user input module written to disk.',
             prompt=prompt,
             )

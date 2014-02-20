@@ -15,19 +15,19 @@ class IOManager(IOManager):
         ::
 
             >>> score_manager = scoremanager.core.ScoreManager()
-            >>> io_manager = score_manager.session.io_manager
+            >>> io_manager = score_manager._session.io_manager
 
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, session=None):
+    def __init__(self, _session=None):
         from scoremanager import wranglers
         from scoremanager import core
-        self._session = session
+        self._session = _session
         self._configuration = core.ScoreManagerConfiguration()
         self._score_package_wrangler = \
-            wranglers.ScorePackageWrangler(session=self.session)
+            wranglers.ScorePackageWrangler(_session=self._session)
 
     ### SPECIAL METHODS ###
 
@@ -55,24 +55,16 @@ class IOManager(IOManager):
         '''
         return self._configuration
 
-    @property
-    def session(self):
-        r'''Gets session.
-
-        Returns session.
-        '''
-        return self._session
-
     ### PRIVATE METHODS ###
 
     def _assign_user_input(self, pending_user_input=None):
         if pending_user_input is not None:
-            if self.session.pending_user_input:
-                self.session.pending_user_input = \
+            if self._session.pending_user_input:
+                self._session.pending_user_input = \
                     pending_user_input + ' ' + \
-                    self.session.pending_user_input
+                    self._session.pending_user_input
             else:
-                self.session.pending_user_input = pending_user_input
+                self._session.pending_user_input = pending_user_input
 
     @staticmethod
     def _get_one_line_menuing_summary(expr):
@@ -91,35 +83,35 @@ class IOManager(IOManager):
         else:
             key = directive
         if key in ('b', 'back'):
-            self.session.is_backtracking_locally = True
+            self._session.is_backtracking_locally = True
         elif key == 'pyd':
             message = 'running doctest ...'
             self.display([message, ''])
-            controller = self.session.current_controller
+            controller = self._session.current_controller
             controller.run_doctest()
         elif key == 'pyt':
             message = 'running py.test ...'
             self.display([message, ''])
-            controller = self.session.current_controller
+            controller = self._session.current_controller
             controller.run_pytest()
         elif key == 'pyi':
             self.interactively_exec_statement()
         elif key == 'lvl':
             self.view_last_log()
         elif key == 'next':
-            self.session.is_navigating_to_next_score = True
-            self.session.is_backtracking_to_score_manager = True
+            self._session.is_navigating_to_next_score = True
+            self._session.is_backtracking_to_score_manager = True
         elif key == 'prev':
-            self.session.is_navigating_to_previous_score = True
-            self.session.is_backtracking_to_score_manager = True
+            self._session.is_navigating_to_previous_score = True
+            self._session.is_backtracking_to_score_manager = True
         elif key in ('q', 'quit'):
-            self.session.is_quitting = True
-        elif self._is_score_string(key) and self.session.is_in_score:
-            self.session.is_backtracking_to_score = True
-        elif self._is_score_string(key) and not self.session.is_in_score:
+            self._session.is_quitting = True
+        elif self._is_score_string(key) and self._session.is_in_score:
+            self._session.is_backtracking_to_score = True
+        elif self._is_score_string(key) and not self._session.is_in_score:
             directive = None
         elif self._is_home_string(key):
-            self.session.is_backtracking_to_score_manager = True
+            self._session.is_backtracking_to_score_manager = True
         elif key == 'sct':
             self.toggle_location_tracking()
         else:
@@ -196,20 +188,20 @@ class IOManager(IOManager):
         return section
 
     def _pop_from_pending_user_input(self):
-        self.session.last_command_was_composite = False
-        if self.session.pending_user_input is None:
+        self._session.last_command_was_composite = False
+        if self._session.pending_user_input is None:
             return None
-        elif self.session.pending_user_input == '':
-            self.session.pending_user_input = None
+        elif self._session.pending_user_input == '':
+            self._session.pending_user_input = None
             return None
-        elif self.session.pending_user_input.startswith('{{'):
-            index = self.session.pending_user_input.find('}}')
-            user_input = self.session.pending_user_input[2:index]
-            pending_user_input = self.session.pending_user_input[index+2:]
+        elif self._session.pending_user_input.startswith('{{'):
+            index = self._session.pending_user_input.find('}}')
+            user_input = self._session.pending_user_input[2:index]
+            pending_user_input = self._session.pending_user_input[index+2:]
             pending_user_input = pending_user_input.strip()
-            self.session.last_command_was_composite = True
+            self._session.last_command_was_composite = True
         else:
-            user_input_parts = self.session.pending_user_input.split(' ')
+            user_input_parts = self._session.pending_user_input.split(' ')
             first_parts, rest_parts = [], []
             for i, part in enumerate(user_input_parts):
                 if not part.endswith((',', '-')):
@@ -219,7 +211,7 @@ class IOManager(IOManager):
             user_input = ' '.join(first_parts)
             pending_user_input = ' '.join(rest_parts)
         user_input = user_input.replace('~', ' ')
-        self.session.pending_user_input = pending_user_input
+        self._session.pending_user_input = pending_user_input
         return user_input
 
     def _read_cache(self):
@@ -253,12 +245,12 @@ class IOManager(IOManager):
     def clear_terminal(self):
         r'''Clears terminal.
 
-        Only clears terminal is session is displayable.
+        Only clears terminal is _session is displayable.
 
         Returns none.
         '''
-        if not self.session.hide_next_redraw:
-            if self.session.is_displayable:
+        if not self._session.hide_next_redraw:
+            if self._session.is_displayable:
                 superclass = super(IOManager, self)
                 superclass.clear_terminal()
 
@@ -279,7 +271,7 @@ class IOManager(IOManager):
             clear_terminal=clear_terminal,
             include_chevron=include_chevron,
             )
-        if self.session._backtrack():
+        if self._session._backtrack():
             return
         return 'yes'.startswith(result.lower())
 
@@ -298,16 +290,16 @@ class IOManager(IOManager):
         assert isinstance(lines, (str, list))
         if isinstance(lines, str):
             lines = [lines]
-        if self.session.hide_next_redraw:
+        if self._session.hide_next_redraw:
             return
         if capitalize_first_character:
             lines = [
                 stringtools.capitalize_string_start(line) 
                 for line in lines
                 ]
-        if lines and self.session.transcribe_next_command:
-            self.session.io_transcript.append_lines(lines)
-        if self.session.is_displayable:
+        if lines and self._session.transcribe_next_command:
+            self._session.io_transcript.append_lines(lines)
+        if self._session.is_displayable:
             if clear_terminal:
                 self.clear_terminal()
             for line in lines:
@@ -341,25 +333,25 @@ class IOManager(IOManager):
                 prompt_string = prompt_string + prompt_character + ' '
             else:
                 prompt_string = prompt_string + ' '
-            if self.session.is_displayable:
+            if self._session.is_displayable:
                 user_input = raw_input(prompt_string)
                 if include_newline:
                     if not user_input == 'help':
                         print ''
             else:
                 user_input = self._pop_from_pending_user_input()
-            if self.session.transcribe_next_command:
-                self.session.command_history.append(user_input)
+            if self._session.transcribe_next_command:
+                self._session.command_history.append(user_input)
             if user_input == '.':
-                last_semantic_command = self.session.last_semantic_command
+                last_semantic_command = self._session.last_semantic_command
                 user_input = last_semantic_command
-            if self.session.transcribe_next_command:
+            if self._session.transcribe_next_command:
                 menu_chunk = []
                 menu_chunk.append('{}{}'.format(prompt_string, user_input))
                 if include_newline:
                     if not user_input == 'help':
                         menu_chunk.append('')
-                self.session.io_transcript.append_lines(menu_chunk)
+                self._session.io_transcript.append_lines(menu_chunk)
             return user_input
         finally:
             readline.set_startup_hook()
@@ -402,7 +394,7 @@ class IOManager(IOManager):
         lines.append('')
         if prompt:
             self.display(lines)
-        self.session.hide_next_redraw = True
+        self._session.hide_next_redraw = True
 
     def interactively_view(self, file_path):
         r'''Interactively views `file_path`.
@@ -425,7 +417,7 @@ class IOManager(IOManager):
         from scoremanager import iotools
         getter = iotools.UserInputGetter(
             where=where, 
-            session=self.session,
+            _session=self._session,
             )
         return getter
 
@@ -437,7 +429,7 @@ class IOManager(IOManager):
         from scoremanager import iotools
         menu = iotools.Menu(
             where=where, 
-            session=self.session,
+            _session=self._session,
             include_default_hidden_sections=include_default_hidden_sections,
             )
         return menu
@@ -450,7 +442,7 @@ class IOManager(IOManager):
         from scoremanager import iotools
         selector = iotools.Selector(
             where=where,
-            session=self.session,
+            _session=self._session,
             )
         return selector
 
@@ -493,10 +485,10 @@ class IOManager(IOManager):
         self.clear_terminal()
 
     def toggle_location_tracking(self):
-        if self.session.enable_where:
-            self.session.enable_where = False
+        if self._session.enable_where:
+            self._session.enable_where = False
             message = 'source code tracking off.'
         else:
-            self.session.enable_where = True
+            self._session.enable_where = True
             message = 'source code tracking on.'
-        self.session.io_manager.proceed(message)
+        self._session.io_manager.proceed(message)

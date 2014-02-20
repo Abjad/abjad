@@ -20,12 +20,12 @@ class ReservoirStartHelperCreationWizard(Wizard):
         head=None,
         pending_user_input=None,
         ):
-        self.session.io_manager._assign_user_input(pending_user_input)
-        self.session._cache_breadcrumbs(cache=cache)
+        self._session.io_manager._assign_user_input(pending_user_input)
+        self._session._cache_breadcrumbs(cache=cache)
         while True:
             function_application_pairs = []
-            self.session._push_breadcrumb(self._breadcrumb)
-            selector = iotools.Selector(session=self.session)
+            self._session._push_breadcrumb(self._breadcrumb)
+            selector = iotools.Selector(_session=self._session)
             items = []
             items.append('start at index 0')
             items.append('start at index n')
@@ -33,22 +33,22 @@ class ReservoirStartHelperCreationWizard(Wizard):
             selector.items = items
             with self.backtracking:
                 function_name = selector._run(clear=clear)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
             elif not function_name:
-                self.session._pop_breadcrumb()
+                self._session._pop_breadcrumb()
                 continue
             function_arguments = self.get_function_arguments(function_name)
-            if self.session._backtrack():
+            if self._session._backtrack():
                 break
             elif function_arguments is None:
-                self.session._pop_breadcrumb()
+                self._session._pop_breadcrumb()
                 continue
             function_application_pairs.append(
                 (function_name, function_arguments))
             break
-        self.session._pop_breadcrumb()
-        self.session._restore_breadcrumbs(cache=cache)
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
         self.target = function_application_pairs
         return self.target
 
@@ -57,10 +57,10 @@ class ReservoirStartHelperCreationWizard(Wizard):
     def get_function_arguments(self, function_name):
         arguments = []
         if function_name in ('start at index n'):
-            getter = self.session.io_manager.make_getter(where=self._where)
+            getter = self._session.io_manager.make_getter(where=self._where)
             getter.append_integer('index')
             result = getter._run()
-            if self.session._backtrack():
+            if self._session._backtrack():
                 return
             arguments.append(result)
         return tuple(arguments)
