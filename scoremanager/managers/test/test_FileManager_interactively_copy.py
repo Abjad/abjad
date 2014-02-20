@@ -8,7 +8,7 @@ def test_FileManager_interactively_copy_01():
 
     score_manager_configuration = scoremanager.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
-        score_manager_configuration.score_manager_tools_directory_path, 
+        score_manager_configuration.score_manager_directory_path, 
         'temporary_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(
@@ -20,7 +20,7 @@ def test_FileManager_interactively_copy_01():
         file_manager._make_empty_asset()
         assert os.path.exists(filesystem_path)
         new_filesystem_path = os.path.join(
-            score_manager_configuration.score_manager_tools_directory_path, 
+            score_manager_configuration.score_manager_directory_path, 
             'new_temporary_file.txt',
             )
         string = 'new_temporary_file.txt y q'

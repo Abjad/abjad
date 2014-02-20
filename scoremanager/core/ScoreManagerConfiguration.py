@@ -1,16 +1,19 @@
 # -*- encoding: utf-8 -*-
 import os
-from abjad.tools.systemtools.Configuration import Configuration
 from abjad.tools.systemtools.AbjadConfiguration import AbjadConfiguration
 
 
-class ScoreManagerConfiguration(Configuration):
+class ScoreManagerConfiguration(AbjadConfiguration):
     r'''Score manager configuration.
 
-        >>> configuration = \
-        ...     scoremanager.core.ScoreManagerConfiguration()
-        >>> configuration
-        ScoreManagerConfiguration()
+    ..  container:: example
+
+        ::
+
+            >>> score_manager = scoremanager.core.ScoreManager()
+            >>> configuration = score_manager.configuration
+            >>> configuration
+            ScoreManagerConfiguration()
 
     '''
 
@@ -21,12 +24,10 @@ class ScoreManagerConfiguration(Configuration):
     ### INITIALIZER ###
 
     def __init__(self):
-        Configuration.__init__(self)
+        AbjadConfiguration.__init__(self)
 
         # score manager tools
 
-        self._score_manager_tools_directory_path = \
-            self.abjad_configuration.score_manager_directory_path
         self._score_manager_tools_package_path = 'scoremanager'
 
         self._cache_file_path = os.path.join(
@@ -37,15 +38,15 @@ class ScoreManagerConfiguration(Configuration):
         # built-in asset library directory paths
 
         self.built_in_editors_directory_path = os.path.join(
-            self.score_manager_tools_directory_path,
+            self.score_manager_directory_path,
             'editors',
             )
         self.built_in_material_package_managers_directory_path = os.path.join(
-            self.score_manager_tools_directory_path,
+            self.score_manager_directory_path,
             'materialpackagemanagers',
             )
         self.built_in_material_packages_directory_path = os.path.join(
-            self.score_manager_tools_directory_path,
+            self.score_manager_directory_path,
             'materialpackages',
             )
         self.built_in_stylesheets_directory_path = os.path.join(
@@ -121,7 +122,7 @@ class ScoreManagerConfiguration(Configuration):
         # built-in score packages
 
         self.built_in_score_packages_directory_path = os.path.join(
-            self.score_manager_tools_directory_path,
+            self.score_manager_directory_path,
             'scorepackages',
             )
         self.built_in_score_packages_package_path = '.'.join([
@@ -326,19 +327,6 @@ class ScoreManagerConfiguration(Configuration):
         return superclass.home_directory_path
 
     @property
-    def score_manager_tools_directory_path(self):
-        r'''Score manager tools directory path.
-
-        ::
-
-            >>> configuration.score_manager_tools_directory_path
-            '.../scoremanager'
-
-        Returns string.
-        '''
-        return self._score_manager_tools_directory_path
-
-    @property
     def score_manager_tools_package_path(self):
         r'''Score manager tools package path.
 
@@ -395,9 +383,9 @@ class ScoreManagerConfiguration(Configuration):
             prefix_length = \
                 len(self.abjad_configuration.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(
-            self.score_manager_tools_directory_path):
+            self.score_manager_directory_path):
             prefix_length = \
-                len(os.path.dirname(self.score_manager_tools_directory_path)) + 1
+                len(os.path.dirname(self.score_manager_directory_path)) + 1
         elif filesystem_path.startswith(
             self.user_score_packages_directory_path):
             prefix_length = len(self.user_score_packages_directory_path) + 1
@@ -497,11 +485,11 @@ class ScoreManagerConfiguration(Configuration):
         assert isinstance(packagesystem_path, str), repr(packagesystem_path)
         packagesystem_path_parts = packagesystem_path.split('.')
         if packagesystem_path_parts[0] == 'scoremanager':
-            directory_parts = [self.score_manager_tools_directory_path] + \
+            directory_parts = [self.score_manager_directory_path] + \
                 packagesystem_path_parts[1:]
         elif packagesystem_path_parts[:3] == \
             ['experimental', 'tools', 'scoremanager']:
-            directory_parts = [self.score_manager_tools_directory_path] + \
+            directory_parts = [self.score_manager_directory_path] + \
                 packagesystem_path_parts[3:]
         elif packagesystem_path_parts[0] == \
             self.built_in_material_packages_package_path:

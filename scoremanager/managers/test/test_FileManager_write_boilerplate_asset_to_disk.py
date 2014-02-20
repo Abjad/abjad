@@ -8,7 +8,7 @@ def test_FileManager_write_boilerplate_asset_to_disk_01():
 
     configuration = scoremanager.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
-        configuration.score_manager_tools_directory_path, 
+        configuration.score_manager_directory_path, 
         'temporary_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(

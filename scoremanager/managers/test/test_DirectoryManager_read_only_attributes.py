@@ -9,6 +9,6 @@ def test_DirectoryManager_read_only_attributes_01():
     '''
 
     score_manager_configuration = scoremanager.core.ScoreManagerConfiguration()
-    directory_path = score_manager_configuration.score_manager_tools_directory_path
+    directory_path = score_manager_configuration.score_manager_directory_path
     directory_manager = scoremanager.managers.DirectoryManager(directory_path)
     assert directory_manager.filesystem_path is not None

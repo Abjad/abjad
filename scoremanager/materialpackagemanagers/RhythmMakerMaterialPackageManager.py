@@ -54,7 +54,7 @@ class RhythmMakerMaterialPackageManager(MaterialPackageManager):
         score_manager_configuration = \
             scoremanager.core.ScoreManagerConfiguration()
         directory_path = \
-            score_manager_configuration.score_manager_tools_directory_path
+            score_manager_configuration.score_manager_directory_path
         stylesheet_file_path = os.path.join(
             directory_path, 'stylesheets', 'rhythm-letter-16.ily')
         illustration.file_initial_user_includes.append(stylesheet_file_path)

@@ -25,7 +25,7 @@ def test_FileManager_public_attributes_02():
     file_name = 'clean-letter-14.ily'
     configuration = scoremanager.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
-        configuration.score_manager_tools_directory_path,
+        configuration.score_manager_directory_path,
         'stylesheets', 
         file_name,
         )

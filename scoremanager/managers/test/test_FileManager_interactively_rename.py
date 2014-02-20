@@ -10,7 +10,7 @@ def test_FileManager_interactively_rename_01():
 
     configuration = scoremanager.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
-        configuration.score_manager_tools_directory_path, 
+        configuration.score_manager_directory_path, 
         'test_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(
@@ -21,7 +21,7 @@ def test_FileManager_interactively_rename_01():
         file_manager._make_empty_asset()
         assert os.path.exists(filesystem_path)
         new_filesystem_path = os.path.join(
-            configuration.score_manager_tools_directory_path, 
+            configuration.score_manager_directory_path, 
             'new_test_file.txt',
             )
         file_manager.interactively_rename(
@@ -41,7 +41,7 @@ def test_FileManager_interactively_rename_02():
 
     configuration = scoremanager.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
-        configuration.score_manager_tools_directory_path, 
+        configuration.score_manager_directory_path, 
         'test_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(
@@ -54,7 +54,7 @@ def test_FileManager_interactively_rename_02():
         file_manager.repository_add()
         assert file_manager._is_versioned()
         new_filesystem_path = os.path.join(
-            configuration.score_manager_tools_directory_path, 
+            configuration.score_manager_directory_path, 
             'new_test_file.txt',
             )
         file_manager.interactively_rename(

@@ -15,7 +15,7 @@ class Manager(ScoreManagerObject):
     _generic_class_name = 'filesystem asset'
 
     boilerplate_directory_path = os.path.join(
-        ScoreManagerObject.configuration.score_manager_tools_directory_path,
+        ScoreManagerObject.configuration.score_manager_directory_path,
         'boilerplate',
         )
 

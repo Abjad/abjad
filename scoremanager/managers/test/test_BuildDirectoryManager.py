@@ -10,7 +10,7 @@ def test_BuildDirectoryManager_01():
     manager = scoremanager.managers.BuildDirectoryManager(string)
 
     assert manager.filesystem_path == os.path.join(
-        manager.configuration.score_manager_tools_directory_path,
+        manager.configuration.score_manager_directory_path,
         'scorepackages', 
         'red_example_score', 
         'build',
