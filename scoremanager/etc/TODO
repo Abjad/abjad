@@ -172,3 +172,7 @@
     sounding_pitch_of_written_middle_c to C4.
 
 42. Make (next) and (prev) work again.
+
+43. Move ScoreManagerObject.backtracking to its own classfile.
+    Change to Backtracking for spelling.
+    Aggregate in a reference to ScoreManagerObject.

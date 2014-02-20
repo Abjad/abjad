@@ -16,10 +16,8 @@ class ScoreManagerObject(object):
 
     configuration = ScoreManagerConfiguration()
 
-    cache_file_path = os.path.join(
-        configuration.configuration_directory_path, 'cache.py')
-    if os.path.exists(cache_file_path):
-        with file(cache_file_path, 'r') as cache_file_pointer:
+    if os.path.exists(configuration.cache_file_path):
+        with file(configuration.cache_file_path, 'r') as cache_file_pointer:
             cache_lines = cache_file_pointer.read()
         try:
             exec(cache_lines)

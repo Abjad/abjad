@@ -71,21 +71,6 @@ class ScoreManager(ScoreManagerObject):
             if result in wrangler.list_visible_asset_packagesystem_paths():
                 self.interactively_edit_score(result)
 
-#    def _handle_repository_menu_result(self, result):
-#        r'''Returns true to exit the repository menu.
-#        '''
-#        this_result = False
-#        if result == 'add':
-#            self.score_package_wrangler.repository_add_assets()
-#        elif result == 'ci':
-#            self.score_package_wrangler.repository_ci_assets()
-#        elif result == 'st':
-#            self.score_package_wrangler.repository_st_assets()
-#        elif result == 'up':
-#            self.score_package_wrangler.repository_up_assets()
-#            return True
-#        return this_result
-
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
         section = menu.make_command_section()
@@ -106,6 +91,7 @@ class ScoreManager(ScoreManagerObject):
     def _make_score_selection_menu(self):
         wrangler = self.score_package_wrangler
         if self.session.is_first_run:
+            #print 'FIRST!'
             if hasattr(self, 'start_menu_entries'):
                 menu_entries = self.start_menu_entries
             else:
@@ -113,6 +99,7 @@ class ScoreManager(ScoreManagerObject):
                 menu_entries = wrangler._make_asset_menu_entries()
             self.session.is_first_run = False
         else:
+            #print 'NOT FIRST!'
             menu_entries = wrangler._make_asset_menu_entries()
         if not self.session.show_example_scores:
             menu_entries = self._remove_example_score_menu_entries(
