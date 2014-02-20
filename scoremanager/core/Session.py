@@ -48,15 +48,11 @@ class Session(abctools.AbjadObject):
         'dump_transcript',
         'hidden_menu_sections_are_hidden',
         'hide_next_redraw',
-        #'is_backtracking_locally',
-        #'is_backtracking_to_score',
-        #'is_backtracking_to_score_manager',
-        #'is_complete',
         'is_displayable',
         'is_in_score',
         'is_navigating_to_sibling_score',
-        #'is_quitting',
         'last_controller',
+        'last_line',
         'nonnumbered_menu_sections_are_hidden',
         'rewrite_cache',
         'score_manager',
@@ -79,6 +75,7 @@ class Session(abctools.AbjadObject):
         self._controller_stack = []
         self._io_manager = iotools.IOManager(self)
         self._last_controller = None
+        self._last_line = ''
         self._score_manager = None
         self._session_once_had_user_input = False
         self._transcript = iotools.IOTranscript()
@@ -702,23 +699,6 @@ class Session(abctools.AbjadObject):
         return property(**locals())
 
     @property
-    def last_semantic_command(self):
-        r'''Gets session last semantic command.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.last_semantic_command is None
-                True
-
-        Returns string or none.
-        '''
-        for command in reversed(self.command_history):
-            if not command.startswith('.'):
-                return command
-
-    @property
     def last_controller(self):
         r'''Gets last controller of session.
 
@@ -734,6 +714,40 @@ class Session(abctools.AbjadObject):
         Returns wrangler, manager or none.
         '''
         return self._last_controller
+
+    @property
+    def last_line(self):
+        r'''Gets last line of session.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.last_line
+                ''
+
+        Useful for autopsy work after session ends.
+
+        Returns string.
+        '''
+        return self._last_line
+
+    @property
+    def last_semantic_command(self):
+        r'''Gets session last semantic command.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.last_semantic_command is None
+                True
+
+        Returns string or none.
+        '''
+        for command in reversed(self.command_history):
+            if not command.startswith('.'):
+                return command
 
     @property
     def menu_header(self):

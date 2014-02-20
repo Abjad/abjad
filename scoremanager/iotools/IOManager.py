@@ -298,20 +298,20 @@ class IOManager(IOManager):
         assert isinstance(lines, (str, list))
         if isinstance(lines, str):
             lines = [lines]
-        if not self.session.hide_next_redraw:
-            if capitalize_first_character:
-                lines = [
-                    stringtools.capitalize_string_start(line) 
-                    for line in lines
-                    ]
-            if lines:
-                if self.session.transcribe_next_command:
-                    self.session.io_transcript.append_lines(lines)
-            if self.session.is_displayable:
-                if clear_terminal:
-                    self.clear_terminal()
-                for line in lines:
-                    print line
+        if self.session.hide_next_redraw:
+            return
+        if capitalize_first_character:
+            lines = [
+                stringtools.capitalize_string_start(line) 
+                for line in lines
+                ]
+        if lines and self.session.transcribe_next_command:
+            self.session.io_transcript.append_lines(lines)
+        if self.session.is_displayable:
+            if clear_terminal:
+                self.clear_terminal()
+            for line in lines:
+                print line
 
     def handle_user_input(
         self, 
