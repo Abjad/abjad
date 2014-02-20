@@ -7,5 +7,5 @@ score_manager = scoremanager.core.ScoreManager()
 score_manager._run(
     dump_transcript=True,
     pending_user_input=' '.join(sys.argv[1:]), 
-    show_example_scores=False,
+    display_example_scores=False,
     )

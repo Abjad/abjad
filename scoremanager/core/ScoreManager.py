@@ -98,9 +98,9 @@ class ScoreManager(ScoreManagerObject):
         if not menu_entries:
             self.session.io_manager._write_cache(prompt=False)
             menu_entries = wrangler._make_asset_menu_entries()
-        if not self.session.show_example_scores:
-            menu_entries = self._remove_example_score_menu_entries(
-                menu_entries)
+#        if not self.session.show_example_scores:
+#            menu_entries = self._remove_example_score_menu_entries(
+#                menu_entries)
         menu = self.session.io_manager.make_menu(
             where=self._where,
             include_default_hidden_sections=False,
@@ -109,13 +109,13 @@ class ScoreManager(ScoreManagerObject):
         asset_section.menu_entries = menu_entries
         return menu
 
-    def _remove_example_score_menu_entries(self, menu_entries):
-        result = []
-        for menu_entry in menu_entries:
-            if 'Example Score' in menu_entry[0]:
-                continue
-            result.append(menu_entry)
-        return result
+#    def _remove_example_score_menu_entries(self, menu_entries):
+#        result = []
+#        for menu_entry in menu_entries:
+#            if 'Example Score' in menu_entry[0]:
+#                continue
+#            result.append(menu_entry)
+#        return result
 
     def _run(
         self, 
@@ -123,8 +123,8 @@ class ScoreManager(ScoreManagerObject):
         clear=True, 
         cache=False, 
         is_test=False, 
+        display_example_scores=True,
         dump_transcript=False,
-        show_example_scores=True,
         ):
         type(self).__init__(self)
         self.session._push_controller(self)
@@ -136,7 +136,8 @@ class ScoreManager(ScoreManagerObject):
         if is_test:
             self.session.is_test = True
         self.session.dump_transcript = dump_transcript
-        self.session.show_example_scores = show_example_scores
+        if display_example_scores:
+            self.session.display_example_scores()
         run_main_menu = True
         while True:
             self.session._push_breadcrumb(self._score_status_string)

@@ -373,10 +373,14 @@ class ScorePackageWrangler(PackageWrangler):
             head=head,
             ):
             is_mothballed = asset_manager._get_metadatum('is_mothballed')
+            is_example = asset_manager._get_metadatum('is_example')
             if scores_to_show == 'all':
                 result.append(asset_manager)
             elif scores_to_show == 'active' and not is_mothballed:
                 result.append(asset_manager)
+            elif scores_to_show == 'example' and is_example:
+                if not is_mothballed:
+                    result.append(asset_manager)
             elif scores_to_show == 'mothballed' and is_mothballed:
                 result.append(asset_manager)
         return result
@@ -425,9 +429,13 @@ class ScorePackageWrangler(PackageWrangler):
             head=head,
             ):
             metadata = asset_manager._get_metadata()
+            is_example = metadata.get('is_example', False)
             is_mothballed = metadata.get('is_mothballed', False)
             if scores_to_show == 'all' or \
-                (scores_to_show == 'active' and not is_mothballed) or \
+                (scores_to_show == 'active' and not is_mothballed
+                    and not is_example) or \
+                (scores_to_show == 'example' and is_example 
+                    and not is_mothballed) or \
                 (scores_to_show == 'mothballed' and is_mothballed):
                 year_of_completion = metadata.get('year_of_completion')
                 if year_of_completion:

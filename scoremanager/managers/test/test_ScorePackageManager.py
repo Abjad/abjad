@@ -32,11 +32,11 @@ def test_ScorePackageManager_02():
     score_manager._run(pending_user_input="red~example~score h q")
 
     assert score_manager.session.io_transcript.signature == (6, (0, 4))
-    string = 'Score manager - active scores'
+    string = 'Score manager - example scores'
     assert score_manager.session.io_transcript[0][1][0] == string
     string = 'Red Example Score (2013)'
     assert score_manager.session.io_transcript[2][1][0] == string
-    string = 'Score manager - active scores'
+    string = 'Score manager - example scores'
     assert score_manager.session.io_transcript[4][1][0] == string
 
 
@@ -63,11 +63,11 @@ def test_ScorePackageManager_04():
     score_manager._run(pending_user_input='red~example~score b q')
 
     assert score_manager.session.io_transcript.signature == (6, (0, 4))
-    string = 'Score manager - active scores'
+    string = 'Score manager - example scores'
     assert score_manager.session.io_transcript[0][1][0] == string
     string = 'Red Example Score (2013)'
     assert score_manager.session.io_transcript[2][1][0] == string
-    string = 'Score manager - active scores'
+    string = 'Score manager - example scores'
     assert score_manager.session.io_transcript[4][1][0] == string
 
 

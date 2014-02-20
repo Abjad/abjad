@@ -93,7 +93,6 @@ class Session(abctools.AbjadObject):
         self.is_backtracking_locally = False
         self.is_backtracking_to_score = False
         self.is_backtracking_to_score_manager = False
-        #self.is_first_run = True
         self.is_navigating_to_next_score = False
         self.is_navigating_to_previous_score = False
         self.is_test = False
@@ -106,7 +105,7 @@ class Session(abctools.AbjadObject):
         self.transcribe_next_command = True
         self.use_current_user_input_values_as_default = False
         self.is_quitting = False
-        self.display_active_scores()
+        self.display_example_scores()
 
     ### SPECIAL METHODS ###
 
@@ -818,7 +817,7 @@ class Session(abctools.AbjadObject):
             ::
 
                 >>> session.scores_to_show
-                'active'
+                'example'
 
         Returns string.
         '''
