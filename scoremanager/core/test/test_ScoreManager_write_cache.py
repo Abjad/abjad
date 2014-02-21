@@ -10,4 +10,4 @@ def test_ScoreManager_write_cache_01():
 
     string = 'Cache written.'
     transcript = score_manager._session.transcript
-    assert transcript[-3].title.startswith(string)
+    assert transcript[2].title.startswith(string)

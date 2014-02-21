@@ -309,13 +309,14 @@ class IOManager(IOManager):
 
         Appends user input to command history.
 
-        Appends user input to IO transscript.
+        Appends user input to IO transcript.
 
         Returns command selected by user.
         '''
         if default_value in (None, 'None'):
             default_value = ''
         readline.set_startup_hook(lambda: readline.insert_text(default_value))
+        found_default_token = False
         try:
             if capitalize_prompt:
                 prompt_string = stringtools.capitalize_string_start(
@@ -331,18 +332,36 @@ class IOManager(IOManager):
                         print ''
             else:
                 user_input = self._pop_from_pending_user_input()
+                if user_input == 'default':
+                    found_default_token = True
+                    #user_input = ''
             if self._session.transcribe_next_command:
-                self._session.command_history.append(user_input)
+                if found_default_token:
+                    self._session.command_history.append('')
+                else:
+                    self._session.command_history.append(user_input)
             if user_input == '.':
                 last_semantic_command = self._session.last_semantic_command
                 user_input = last_semantic_command
             if self._session.transcribe_next_command:
-                menu_chunk = []
-                menu_chunk.append('{}{}'.format(prompt_string, user_input))
-                if include_newline:
-                    if not user_input == 'help':
-                        menu_chunk.append('')
-                self._session.transcript._append_entry(menu_chunk)
+                if found_default_token:
+                    menu_chunk = [prompt_string.strip()]
+                    if include_newline:
+                        if not user_input == 'help':
+                            menu_chunk.append('')
+                    self._session.transcript._append_entry(menu_chunk)
+                    menu_chunk = ['> ']
+                    if include_newline:
+                        if not user_input == 'help':
+                            menu_chunk.append('')
+                    self._session.transcript._append_entry(menu_chunk)
+                else:
+                    menu_chunk = []
+                    menu_chunk.append('{}{}'.format(prompt_string, user_input))
+                    if include_newline:
+                        if not user_input == 'help':
+                            menu_chunk.append('')
+                    self._session.transcript._append_entry(menu_chunk)
             return user_input
         finally:
             readline.set_startup_hook()

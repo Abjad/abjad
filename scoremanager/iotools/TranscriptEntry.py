@@ -60,7 +60,7 @@ class TranscriptEntry(AbjadObject):
 
         Returns boolean.
         '''
-        return self.lines and self.lines[0].startswith('>')
+        return self.lines and '> ' in self.lines[0]
 
     @property
     def lines(self):
