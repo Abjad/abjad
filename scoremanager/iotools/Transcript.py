@@ -100,7 +100,7 @@ class Transcript(AbjadObject):
         for entry in self:
             if entry.is_system_display:
                 result.append(entry)
-        return entry
+        return result
 
     @property
     def user_input_entries(self):
@@ -112,4 +112,4 @@ class Transcript(AbjadObject):
         for entry in self:
             if entry.is_user_input:
                 result.append(entry)
-        return entry
+        return result
