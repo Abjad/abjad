@@ -229,9 +229,12 @@ class ScoreManager(ScoreManagerObject):
 
         Returns none.
         '''
+        path = self.configuration.filesystem_path_to_packagesystem_path(
+            self.configuration.built_in_material_packages_directory_path,
+            )
         self._material_package_wrangler._run(
             rollback=True, 
-            head=self.configuration.built_in_material_packages_package_path,
+            head=path,
             )
 
     def manage_score(self, score_package_path):

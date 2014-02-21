@@ -31,15 +31,14 @@ class ScorePackageWrangler(PackageWrangler):
         PackageWrangler.configuration.built_in_score_packages_directory_path
 
     asset_storehouse_packagesystem_path_in_built_in_asset_library = \
-        PackageWrangler.configuration.built_in_score_packages_package_path
+        'scoremanager.scorepackages'
 
     score_package_asset_storehouse_path_infix_parts = None
 
     asset_storehouse_filesystem_path_in_user_asset_library = \
         PackageWrangler.configuration.user_score_packages_directory_path
 
-    asset_storehouse_packagesystem_path_in_user_asset_library = \
-        PackageWrangler.configuration.user_score_packages_package_path
+    asset_storehouse_packagesystem_path_in_user_asset_library = ''
 
     ### INITIALIZER ###
 
