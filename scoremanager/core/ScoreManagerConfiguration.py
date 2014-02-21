@@ -47,14 +47,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             'stylesheets',
             )
 
-        # user library package paths
-
-        self.user_library_material_package_managers_package_path = \
-            '.'.join([
-                'score_manager_library',
-                'material_package_managers',
-            ])
-
         # built-in score packages
 
         self.built_in_score_packages_directory_path = os.path.join(
@@ -413,20 +405,22 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 remainder = remainder.replace(os.path.sep, '.')
                 result = '{}.{}'.format(
                     self._user_library_directory_name, 
-                    'materialpackages',
+                    'material_packages',
                     remainder,
                     )
             else:
                 result = '.'.join([
                     self._user_library_directory_name,
-                    'materialpackages',
+                    'material_packages',
                     ])
             return result
         elif filesystem_path.startswith(
             self.user_library_material_package_managers_directory_path):
             return '.'.join([
-                self.user_library_material_package_managers_package_path,
-                os.path.basename(filesystem_path)])
+                self._user_library_directory_name,
+                'material_packages',
+                os.path.basename(filesystem_path),
+                ])
         elif filesystem_path.startswith(
             self.built_in_material_package_managers_directory_path):
             prefix_length = len(self.abjad_root_directory_path) + 1

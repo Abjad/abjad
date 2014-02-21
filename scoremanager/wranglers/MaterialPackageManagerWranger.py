@@ -75,9 +75,14 @@ class MaterialPackageManagerWrangler(PackageWrangler):
                 exec(command)
             except ImportError:
                 command = 'from {} import {} as material_package_manager_class'
+                package_path = '.'.join([
+                    self.configuration._user_library_directory_name,
+                    'material_packges',
+                    ])
                 command = command.format(
-                    self.configuration.user_library_material_package_managers_package_path,
-                    material_package_manager_class_name)
+                    package_path,
+                    material_package_manager_class_name,
+                    )
                 exec(command)
             material_package_manager = material_package_manager_class(
                 package_path, session=self._session)

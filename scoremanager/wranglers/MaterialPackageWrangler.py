@@ -81,8 +81,12 @@ class MaterialPackageWrangler(PackageWrangler):
             except AttributeError:
                 command = 'from {0}.{1}.{1}'
                 command += ' import {1} as material_package_manager_class'
+                package_path = '.'.join([
+                    self.configuration._user_library_directory_name,
+                    'material_packages',
+                    ])
                 command = command.format(
-                    self.configuration.user_library_material_package_managers_package_path,
+                    package_path,
                     material_package_manager_class_name,
                     )
                 exec(command)
@@ -392,22 +396,36 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         metadata = metadata or {}
         command = 'from scoremanager.materialpackagemanagers '
-        command += 'import {} as material_package_manager_class'.format(
-            material_package_manager_class_name)
+        command += 'import {} as material_package_manager_class'
+        command = command.format(material_package_manager_class_name)
         try:
             exec(command)
         except ImportError:
-            command = 'from {} import {} as material_package_manager_class'.format(
-                self.configuration.user_library_material_package_managers_package_path,
-                material_package_manager_class_name)
+            command = 'from {} import {} as material_package_manager_class'
+            package_path = '.'.join([
+                self.configuration._user_library_directory_name,
+                'material_packages',
+                ])
+            command = command.format(
+                package_path,
+                material_package_manager_class_name,
+                )
             exec(command)
         should_have_user_input_module = getattr(
-            material_package_manager_class, 'should_have_user_input_module', True)
+            material_package_manager_class, 
+            'should_have_user_input_module', 
+            True,
+            )
         should_have_illustration = hasattr(
-            material_package_manager_class, 'illustration_builder')
-        metadata['material_package_manager_class_name'] = material_package_manager_class_name
-        metadata['should_have_illustration'] = should_have_illustration
-        metadata['should_have_user_input_module'] = should_have_user_input_module
+            material_package_manager_class, 
+            'illustration_builder',
+            )
+        metadata['material_package_manager_class_name'] = \
+            material_package_manager_class_name
+        metadata['should_have_illustration'] = \
+            should_have_illustration
+        metadata['should_have_user_input_module'] = \
+            should_have_user_input_module
         self.make_material_package(material_package_path, metadata=metadata)
 
     def make_material_package(
