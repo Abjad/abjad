@@ -47,7 +47,6 @@ class Session(abctools.AbjadObject):
         'current_score_package_manager',
         'current_segments_directory_path',
         'dump_transcript',
-        'hidden_menu_sections_are_hidden',
         'hide_next_redraw',
         'is_displayable',
         'is_in_score',
@@ -58,6 +57,7 @@ class Session(abctools.AbjadObject):
         'rewrite_cache',
         'score_manager',
         'scores_to_display',
+        'secondary_commands_are_hidden',
         'session_once_had_user_input',
         'current_score_snake_case_name',
         'transcribe_next_command',
@@ -86,7 +86,7 @@ class Session(abctools.AbjadObject):
         self.display_pitch_ranges_with_numbered_pitches = False
         self.dump_transcript = False
         self.enable_where = False
-        self.hidden_menu_sections_are_hidden = True
+        self.secondary_commands_are_hidden = True
         self.hide_next_redraw = False
         self.initial_user_input = pending_user_input
         self.is_autoadding = False
@@ -476,7 +476,7 @@ class Session(abctools.AbjadObject):
         return result
 
     @apply
-    def hidden_menu_sections_are_hidden():
+    def secondary_commands_are_hidden():
         def fget(self):
             r'''Gets and sets flag indicating that hidden menu sections
             are hidden.
@@ -485,16 +485,16 @@ class Session(abctools.AbjadObject):
 
                 ::
 
-                    >>> session.hidden_menu_sections_are_hidden
+                    >>> session.secondary_commands_are_hidden
                     True
 
             Returns boolean.
             '''
-            return self._hidden_menu_sections_are_hidden
-        def fset(self, hidden_menu_sections_are_hidden):
-            assert isinstance(hidden_menu_sections_are_hidden, bool)
-            self._hidden_menu_sections_are_hidden = \
-                hidden_menu_sections_are_hidden
+            return self._secondary_commands_are_hidden
+        def fset(self, secondary_commands_are_hidden):
+            assert isinstance(secondary_commands_are_hidden, bool)
+            self._secondary_commands_are_hidden = \
+                secondary_commands_are_hidden
         return property(**locals())
 
     @apply

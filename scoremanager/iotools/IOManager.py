@@ -113,7 +113,7 @@ class IOManager(IOManager):
         elif self._is_home_string(key):
             self._session.is_backtracking_to_score_manager = True
         elif key == 'sct':
-            self.toggle_location_tracking()
+            self.toggle_source_code_tracking()
         else:
             return directive
 
@@ -485,7 +485,7 @@ class IOManager(IOManager):
             )
         self.clear_terminal()
 
-    def toggle_location_tracking(self):
+    def toggle_source_code_tracking(self):
         if self._session.enable_where:
             self._session.enable_where = False
             message = 'source code tracking off.'

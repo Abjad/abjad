@@ -116,7 +116,7 @@ class Menu(ScoreManagerObject):
         elif directive is None and not user_entered_lone_return:
             return
         elif directive == 'o':
-            self.toggle_hidden_commands()
+            self.toggle_secondary_commands()
         elif directive == 'n':
             self.display_hidden_commands()
         elif directive == 'sce':
@@ -276,7 +276,7 @@ class Menu(ScoreManagerObject):
     def _make_section_lines(self):
         menu_lines = []
         for menu_section in self.menu_sections:
-            hide = self._session.hidden_menu_sections_are_hidden
+            hide = self._session.secondary_commands_are_hidden
             if hide and menu_section.is_secondary:
                 continue
             if menu_section.is_hidden:
@@ -576,8 +576,8 @@ class Menu(ScoreManagerObject):
             )
         return numbered_section
 
-    def toggle_hidden_commands(self):
-        if self._session.hidden_menu_sections_are_hidden:
-            self._session.hidden_menu_sections_are_hidden = False
+    def toggle_secondary_commands(self):
+        if self._session.secondary_commands_are_hidden:
+            self._session.secondary_commands_are_hidden = False
         else:
-            self._session.hidden_menu_sections_are_hidden = True
+            self._session.secondary_commands_are_hidden = True
