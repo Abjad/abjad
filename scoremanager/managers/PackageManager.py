@@ -10,24 +10,24 @@ class PackageManager(DirectoryManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, packagesystem_path=None, session=None):
-        if packagesystem_path is None or \
-            os.path.sep not in packagesystem_path:
+    def __init__(self, package_path=None, session=None):
+        if package_path is None or \
+            os.path.sep not in package_path:
             filesystem_path = \
-                self.configuration.packagesystem_path_to_filesystem_path(
-                    packagesystem_path)
+                self.configuration.package_path_to_filesystem_path(
+                    package_path)
         else:
-            filesystem_path = packagesystem_path
+            filesystem_path = package_path
         assert '.' not in filesystem_path, repr(filesystem_path)
         DirectoryManager.__init__(self,
             filesystem_path=filesystem_path,
             session=session,
             )
-        packagesystem_path = \
-            self.configuration.filesystem_path_to_packagesystem_path(
+        package_path = \
+            self.configuration.filesystem_path_to_package_path(
                 filesystem_path)
-        assert os.path.sep not in packagesystem_path, repr(packagesystem_path)
-        self._package_path = packagesystem_path
+        assert os.path.sep not in package_path, repr(package_path)
+        self._package_path = package_path
 
     ### PRIVATE PROPERTIES ###
 

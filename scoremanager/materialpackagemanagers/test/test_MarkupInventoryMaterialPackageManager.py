@@ -7,7 +7,7 @@ def test_MarkupInventoryMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testmarkupinventory'
-    assert not score_manager.configuration.packagesystem_path_exists(string)
+    assert not score_manager.configuration.package_path_exists(string)
     try:
         score_manager._run(pending_user_input=
             "lmm nmm markup testmarkupinventory "
@@ -39,4 +39,4 @@ def test_MarkupInventoryMaterialPackageManager_01():
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testmarkupinventory'
         assert not \
-            score_manager.configuration.packagesystem_path_exists(string)
+            score_manager.configuration.package_path_exists(string)

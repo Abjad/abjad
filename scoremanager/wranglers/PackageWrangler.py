@@ -14,10 +14,10 @@ class PackageWrangler(Wrangler):
     def __init__(self, session=None):
         from scoremanager import managers
         built_in_storehouse_directory_path = \
-            self.configuration.packagesystem_path_to_filesystem_path(
+            self.configuration.package_path_to_filesystem_path(
             self.built_in_storehouse_package_path)
         user_storehouse_directory_path = \
-            self.configuration.packagesystem_path_to_filesystem_path(
+            self.configuration.package_path_to_filesystem_path(
             self.user_storehouse_package_path)
         self.built_in_storehouse_directory_path = \
             built_in_storehouse_directory_path
@@ -29,11 +29,11 @@ class PackageWrangler(Wrangler):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _current_storehouse_packagesystem_path(self):
+    def _current_storehouse_package_path(self):
         if self._session.is_in_score:
             parts = []
             current_score_package_path = \
-                self.configuration.filesystem_path_to_packagesystem_path(
+                self.configuration.filesystem_path_to_package_path(
                     self._session.current_score_directory_path)
             parts.append(current_score_package_path)
             parts.extend(self.score_package_storehouse_path_infix_parts)
@@ -52,9 +52,9 @@ class PackageWrangler(Wrangler):
 
     @property
     def _temporary_asset_package_path(self):
-        if self._current_storehouse_packagesystem_path:
+        if self._current_storehouse_package_path:
             return '.'.join([
-                self._current_storehouse_packagesystem_path,
+                self._current_storehouse_package_path,
                 self._temporary_asset_name])
         else:
             return self._temporary_asset_name
@@ -64,13 +64,13 @@ class PackageWrangler(Wrangler):
     def _handle_main_menu_result(self, result):
         self._session.io_manager.print_not_yet_implemented()
 
-    def _initialize_asset_manager(self, packagesystem_path):
-        if os.path.sep in packagesystem_path:
+    def _initialize_asset_manager(self, package_path):
+        if os.path.sep in package_path:
             pacakgesystem_path = \
-            self.configuration.filesystem_path_to_packagesystem_path(
-            packagesystem_path)
+            self.configuration.filesystem_path_to_package_path(
+            package_path)
         return self._asset_manager_class(
-            packagesystem_path=packagesystem_path, 
+            package_path=package_path, 
             session=self._session,
             )
 
@@ -88,7 +88,7 @@ class PackageWrangler(Wrangler):
         names = self.list_asset_names(head=head)
         keys = len(names) * [None]
         prepopulated_return_values = len(names) * [None]
-        paths = self.list_visible_asset_packagesystem_paths(head=head)
+        paths = self.list_visible_asset_package_paths(head=head)
         assert len(names) == len(keys) == len(paths)
         if names:
             sequences = (names, [None], [None], paths)
@@ -129,7 +129,7 @@ class PackageWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def interactively_get_available_packagesystem_path(
+    def interactively_get_available_package_path(
         self, 
         pending_user_input=None,
         ):
@@ -148,10 +148,10 @@ class PackageWrangler(Wrangler):
             package_name = \
                 stringtools.string_to_accent_free_snake_case(package_name)
             package_path = '.'.join([
-                self._current_storehouse_packagesystem_path, 
+                self._current_storehouse_package_path, 
                 package_name,
                 ])
-            if self.configuration.packagesystem_path_exists(package_path):
+            if self.configuration.package_path_exists(package_path):
                 line = 'Package {!r} already exists.'
                 line = line.format(package_path)
                 self._session.io_manager.display([line, ''])
@@ -169,7 +169,7 @@ class PackageWrangler(Wrangler):
         self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             package_path = \
-                self.interactively_get_available_packagesystem_path()
+                self.interactively_get_available_package_path()
         if self._session._backtrack():
             return
         self.make_asset(package_path)
@@ -186,14 +186,14 @@ class PackageWrangler(Wrangler):
         self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             asset_package_path = \
-                self.interactively_select_asset_packagesystem_path(
+                self.interactively_select_asset_package_path(
                 head=head, infinitival_phrase='to rename')
         if self._session._backtrack():
             return
         asset_manager = self._initialize_asset_manager(asset_package_path)
         asset_manager.interactively_rename()
 
-    def interactively_select_asset_packagesystem_path(
+    def interactively_select_asset_package_path(
         self,
         clear=True,
         cache=False,
@@ -241,7 +241,7 @@ class PackageWrangler(Wrangler):
         Returns list.
         '''
         result = []
-        for package_path in self.list_asset_packagesystem_paths(
+        for package_path in self.list_asset_package_paths(
             in_built_in_library=in_built_in_library,
             in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
@@ -252,7 +252,7 @@ class PackageWrangler(Wrangler):
             result.append(asset_manager)
         return result
 
-    def list_asset_packagesystem_paths(
+    def list_asset_package_paths(
         self,
         in_built_in_library=True,
         in_user_library=True,
@@ -271,13 +271,13 @@ class PackageWrangler(Wrangler):
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head):
-            packagesystem_path = \
-                self.configuration.filesystem_path_to_packagesystem_path(
+            package_path = \
+                self.configuration.filesystem_path_to_package_path(
                     filesystem_path)
-            result.append(packagesystem_path)
+            result.append(package_path)
         return result
 
-    def list_storehouse_packagesystem_paths(
+    def list_storehouse_package_paths(
         self,
         in_built_in_library=True,
         in_user_library=True,
@@ -297,13 +297,13 @@ class PackageWrangler(Wrangler):
             in_built_in_score_packages=True,
             in_user_score_packages=True,
             ):
-            packagesystem_path = \
-                self.configuration.filesystem_path_to_packagesystem_path(
+            package_path = \
+                self.configuration.filesystem_path_to_package_path(
                 filesystem_path)
-            result.append(packagesystem_path)
+            result.append(package_path)
         return result
 
-    def list_visible_asset_packagesystem_paths(self, head=None):
+    def list_visible_asset_package_paths(self, head=None):
         r'''Lists visible asset packagesystem paths.
 
         Returns list.
@@ -343,7 +343,7 @@ class PackageWrangler(Wrangler):
         if package_path is None:
             return
         directory_path = \
-            self.configuration.packagesystem_path_to_filesystem_path(
+            self.configuration.package_path_to_filesystem_path(
             package_path)
         if not os.path.exists(directory_path):
             os.mkdir(directory_path)

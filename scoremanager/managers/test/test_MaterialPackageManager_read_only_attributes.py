@@ -22,7 +22,7 @@ def test_MaterialPackageManager_read_only_attributes_01():
     assert not manager.has_user_input_module
     assert not manager.has_user_input_wrapper_on_disk
     assert manager.illustration_builder_module_file_path is None
-    assert manager.illustration_builder_packagesystem_path is None
+    assert manager.illustration_builder_package_path is None
     assert manager.illustration_ly_file_path is None
     assert manager.illustration_pdf_fil_path is None
     assert manager.is_handmade
@@ -34,7 +34,7 @@ def test_MaterialPackageManager_read_only_attributes_01():
         )
     assert manager.material_definition_module_file_path == file_path
     string = 'scoremanager.materialpackages.red_numbers.material_definition'
-    assert manager.material_definition_packagesystem_path == string
+    assert manager.material_definition_package_path == string
     directory_path = os.path.join(
         manager.configuration.built_in_material_packages_directory_path, 
         'red_numbers',
@@ -65,7 +65,7 @@ def test_MaterialPackageManager_read_only_attributes_01():
     assert not manager.should_have_user_input_module
     assert manager.stylesheet_file_path_on_disk is None
     assert manager.user_input_module_file_path is None
-    assert manager.user_input_module_packagesystem_path is None
+    assert manager.user_input_module_package_path is None
 
 
 def test_MaterialPackageManager_read_only_attributes_02():
@@ -90,7 +90,7 @@ def test_MaterialPackageManager_read_only_attributes_02():
     assert manager.has_user_input_wrapper_on_disk
     assert manager.has_user_input_wrapper_in_memory
     assert manager.illustration_builder_module_file_path is None
-    assert manager.illustration_builder_packagesystem_path is None
+    assert manager.illustration_builder_package_path is None
     file_path = os.path.join(
         manager.configuration.built_in_material_packages_directory_path, 
         'red_sargasso_measures', 
@@ -107,7 +107,7 @@ def test_MaterialPackageManager_read_only_attributes_02():
     assert not manager.is_handmade
     assert manager.is_managermade
     assert manager.material_definition_module_file_path is None
-    assert manager.material_definition_packagesystem_path is None
+    assert manager.material_definition_package_path is None
     file_path = os.path.join(
         manager.configuration.built_in_material_packages_directory_path, 
         'red_sargasso_measures',
@@ -145,7 +145,7 @@ def test_MaterialPackageManager_read_only_attributes_02():
         )
     assert manager.user_input_module_file_path == file_path
     string = 'scoremanager.materialpackages.red_sargasso_measures.user_input'
-    assert manager.user_input_module_packagesystem_path == string
+    assert manager.user_input_module_package_path == string
 
 
 def test_MaterialPackageManager_read_only_attributes_03():
@@ -172,7 +172,7 @@ def test_MaterialPackageManager_read_only_attributes_03():
         )
     assert manager.illustration_builder_module_file_path == file_path
     string = 'scoremanager.materialpackages.red_notes.illustration_builder'
-    assert manager.illustration_builder_packagesystem_path == string
+    assert manager.illustration_builder_package_path == string
     assert manager.illustration_builder_module_manager is not None
     file_path = os.path.join(
         manager.configuration.built_in_material_packages_directory_path, 
@@ -197,7 +197,7 @@ def test_MaterialPackageManager_read_only_attributes_03():
         )
     assert manager.material_definition_module_file_path == file_path
     string = 'scoremanager.materialpackages.red_notes.material_definition'
-    assert manager.material_definition_packagesystem_path == string
+    assert manager.material_definition_package_path == string
     file_path = os.path.join(
         manager.configuration.built_in_material_packages_directory_path, 
         'red_notes',
@@ -227,4 +227,4 @@ def test_MaterialPackageManager_read_only_attributes_03():
     assert manager.should_have_output_material_module
     assert not  manager.should_have_user_input_module
     assert manager.user_input_module_file_path is None
-    assert manager.user_input_module_packagesystem_path is None
+    assert manager.user_input_module_package_path is None

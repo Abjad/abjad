@@ -7,22 +7,22 @@ class ScorePackageManager(PackageManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, packagesystem_path=None, session=None):
+    def __init__(self, package_path=None, session=None):
         from scoremanager import managers
         from scoremanager import wranglers
         PackageManager.__init__(
             self, 
-            packagesystem_path, 
+            package_path, 
             session=session,
             )
         self._build_directory_manager = \
             managers.BuildDirectoryManager(
-            score_package_path=packagesystem_path, 
+            score_package_path=package_path, 
             session=self._session,
             )
         self._distribution_directory_manager = \
             managers.DistributionDirectoryManager(
-            score_package_path=packagesystem_path, 
+            score_package_path=package_path, 
             session=self._session,
             )
         instrumentation_module_file_path = os.path.join(

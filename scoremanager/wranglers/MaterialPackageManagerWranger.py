@@ -54,7 +54,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         from scoremanager import managers
         if os.path.sep in package_path:
             package_path = \
-                self.configuration.filesystem_path_to_packagesystem_path(
+                self.configuration.filesystem_path_to_package_path(
                     package_path)
         material_package_manager = managers.MaterialPackageManager(
             package_path, session=self._session)
@@ -97,7 +97,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     def _make_asset_menu_entries(self, head=None):
         names = self.list_asset_names(head=head)
-        paths = self.list_asset_packagesystem_paths(head=head)
+        paths = self.list_asset_package_paths(head=head)
         assert len(names) == len(paths)
         sequences = (names, [None], [None], paths)
         return sequencetools.zip_sequences(sequences, cyclic=True)
@@ -230,7 +230,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_packagesystem_paths(
+    def list_asset_package_paths(
         self,
         in_built_in_library=True, 
         in_user_library=True,
@@ -238,13 +238,13 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         in_user_score_packages=True, 
         head=None,
         ):
-        r'''Lists asset packagesystem_paths.
+        r'''Lists asset package_paths.
 
         Example. List built-in material package manager package paths:
 
         ::
 
-            >>> for x in wrangler.list_asset_packagesystem_paths(
+            >>> for x in wrangler.list_asset_package_paths(
             ...     in_user_library=False, 
             ...     in_user_score_packages=False):
             ...     x
@@ -261,7 +261,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialPackageManagerWrangler, self)
-        return superclass.list_asset_packagesystem_paths(
+        return superclass.list_asset_package_paths(
             in_built_in_library=in_built_in_library,
             in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,

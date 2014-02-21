@@ -549,7 +549,7 @@ class Wrangler(ScoreManagerObject):
             if not directory_path:
                 continue
             storehouse_package_path = \
-                self.configuration.filesystem_path_to_packagesystem_path(
+                self.configuration.filesystem_path_to_package_path(
                 directory_path)
             if not os.path.exists(directory_path):
                 continue

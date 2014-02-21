@@ -259,7 +259,7 @@ class Selector(ScoreManagerObject):
         items = []
         configuration = Selector.configuration
         for directory_path in list_current_material_directory_paths():
-            package_path = configuration.filesystem_path_to_packagesystem_path(
+            package_path = configuration.filesystem_path_to_package_path(
                 directory_path)
             items.append(package_path)
         selector.items = items

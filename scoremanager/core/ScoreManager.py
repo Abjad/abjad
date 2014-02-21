@@ -70,7 +70,7 @@ class ScoreManager(ScoreManagerObject):
             self.user_input_to_action[result](self)
         else:
             wrangler = self._score_package_wrangler
-            if result in wrangler.list_visible_asset_packagesystem_paths():
+            if result in wrangler.list_visible_asset_package_paths():
                 self.manage_score(result)
 
     def _make_main_menu(self):
@@ -229,7 +229,7 @@ class ScoreManager(ScoreManagerObject):
 
         Returns none.
         '''
-        path = self.configuration.filesystem_path_to_packagesystem_path(
+        path = self.configuration.filesystem_path_to_package_path(
             self.configuration.built_in_material_packages_directory_path,
             )
         self._material_package_wrangler._run(

@@ -46,10 +46,10 @@ class MaterialPackageManager(PackageManager):
 
     ### INTIALIZER ###
 
-    def __init__(self, packagesystem_path=None, session=None):
+    def __init__(self, package_path=None, session=None):
         PackageManager.__init__(
             self,
-            packagesystem_path=packagesystem_path,
+            package_path=package_path,
             session=session,
             )
         self._user_input_wrapper_in_memory = \
@@ -336,7 +336,7 @@ class MaterialPackageManager(PackageManager):
             )
 
     @property
-    def illustration_builder_packagesystem_path(self):
+    def illustration_builder_package_path(self):
         if self.should_have_illustration_builder_module:
             return '.'.join([self.package_path, 'illustration_builder'])
 
@@ -406,7 +406,7 @@ class MaterialPackageManager(PackageManager):
             return os.path.join(self.filesystem_path, 'material_definition.py')
 
     @property
-    def material_definition_packagesystem_path(self):
+    def material_definition_package_path(self):
         if self.should_have_material_definition_module:
             return '.'.join([self.package_path, 'material_definition'])
 
@@ -425,7 +425,7 @@ class MaterialPackageManager(PackageManager):
         directory_path = \
             self.configuration.built_in_material_package_managers_directory_path
         package_path = \
-            self.configuration.filesystem_path_to_packagesystem_path(
+            self.configuration.filesystem_path_to_package_path(
             directory_path)
         import_statement = 'from {} import {}'
         import_statement = import_statement.format(
@@ -593,7 +593,7 @@ class MaterialPackageManager(PackageManager):
             return os.path.join(self.filesystem_path, 'user_input.py')
 
     @property
-    def user_input_module_packagesystem_path(self):
+    def user_input_module_package_path(self):
         if self.should_have_user_input_module:
             return '.'.join([self.package_path, 'user_input'])
 
@@ -1054,13 +1054,13 @@ class MaterialPackageManager(PackageManager):
             package_path = parent_package_path
         else:
             package_path = self.package_path
-        user_input_module_packagesystem_path = '.'.join([
+        user_input_module_package_path = '.'.join([
             package_path,
             'user_input',
             ])
         user_input_module_file_path = \
-            self.configuration.packagesystem_path_to_filesystem_path(
-            user_input_module_packagesystem_path,
+            self.configuration.package_path_to_filesystem_path(
+            user_input_module_package_path,
             is_module=True,
             )
         if not os.path.exists(user_input_module_file_path):

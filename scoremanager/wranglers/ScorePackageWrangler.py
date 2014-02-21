@@ -68,9 +68,9 @@ class ScorePackageWrangler(PackageWrangler):
             return self.configuration.user_score_packages_directory_path
 
     @property
-    def _current_storehouse_packagesystem_path(self):
+    def _current_storehouse_package_path(self):
         package_path = \
-            self.configuration.filesystem_path_to_packagesystem_path(
+            self.configuration.filesystem_path_to_package_path(
             self._current_storehouse_filesystem_path)
         return package_path
 
@@ -237,7 +237,7 @@ class ScorePackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_packagesystem_paths(
+    def list_asset_package_paths(
         self,
         in_built_in_library=True, 
         in_user_library=True,
@@ -251,7 +251,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_packagesystem_paths(
+            >>> for x in wrangler.list_asset_package_paths(
             ...     in_user_library=False, 
             ...     in_user_score_packages=False):
             ...     x
@@ -262,7 +262,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(ScorePackageWrangler, self)
-        return superclass.list_asset_packagesystem_paths(
+        return superclass.list_asset_package_paths(
             in_built_in_library=in_built_in_library,
             in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
@@ -448,7 +448,7 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append((asset_manager.package_path, title_with_year))
         return result
 
-    def list_visible_asset_packagesystem_paths(
+    def list_visible_asset_package_paths(
         self,
         in_built_in_library=True, 
         in_user_library=True,
@@ -462,7 +462,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_visible_asset_packagesystem_paths(
+            >>> for x in wrangler.list_visible_asset_package_paths(
             ...     in_user_library=False, 
             ...     in_user_score_packages=False,
             ...     ):
@@ -481,8 +481,8 @@ class ScorePackageWrangler(PackageWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head,
             ):
-            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
-            result.append(packagesystem_path)
+            package_path = self.configuration.filesystem_path_to_package_path(filesystem_path)
+            result.append(package_path)
         return result
 
     def add_assets_to_repository(self, prompt=True):

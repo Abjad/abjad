@@ -18,7 +18,7 @@ def test_ScorePackageWrangler_read_only_attributes_02():
     r'''Current storehouse.
     '''
 
-    assert wrangler._current_storehouse_packagesystem_path == ''
+    assert wrangler._current_storehouse_package_path == ''
     assert wrangler._current_storehouse_filesystem_path == \
         wrangler.configuration.user_score_packages_directory_path
 

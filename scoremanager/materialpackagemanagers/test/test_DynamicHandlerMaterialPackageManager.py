@@ -8,7 +8,7 @@ def test_DynamicHandlerMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testdynamichandler'
-    assert not score_manager.configuration.packagesystem_path_exists(string)
+    assert not score_manager.configuration.package_path_exists(string)
     try:
         score_manager._run(pending_user_input=
             'lmm nmm dynamic testdynamichandler default '
@@ -35,4 +35,4 @@ def test_DynamicHandlerMaterialPackageManager_01():
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testdynamichandler'
         assert not \
-            score_manager.configuration.packagesystem_path_exists(string)
+            score_manager.configuration.package_path_exists(string)

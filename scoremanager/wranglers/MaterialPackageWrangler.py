@@ -130,7 +130,7 @@ class MaterialPackageWrangler(PackageWrangler):
         self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             material_package_path = \
-                self.interactively_get_available_packagesystem_path()
+                self.interactively_get_available_package_path()
         if self._session._backtrack():
             return
         self.make_data_package(material_package_path, metadata=metadata)
@@ -146,7 +146,7 @@ class MaterialPackageWrangler(PackageWrangler):
         self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             package_path = \
-                self.interactively_get_available_packagesystem_path()
+                self.interactively_get_available_package_path()
         if self._session._backtrack():
             return
         self.make_handmade_material_package(package_path)
@@ -162,7 +162,7 @@ class MaterialPackageWrangler(PackageWrangler):
         self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             wrangler = self._material_package_manager_wrangler
-            result = wrangler.interactively_select_asset_packagesystem_path(
+            result = wrangler.interactively_select_asset_package_path(
                 cache=True, clear=False)
         if self._session._backtrack():
             return
@@ -171,7 +171,7 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_manager_package_path.split('.')[-1]
         with self.backtracking:
             material_package_path = \
-                self.interactively_get_available_packagesystem_path()
+                self.interactively_get_available_package_path()
         if self._session._backtrack():
             return
         self.make_managermade_material_package(
@@ -290,7 +290,7 @@ class MaterialPackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_packagesystem_paths(
+    def list_asset_package_paths(
         self,
         in_built_in_library=True, 
         in_user_library=True,
@@ -304,7 +304,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_packagesystem_paths(
+            >>> for x in wrangler.list_asset_package_paths(
             ...     in_user_library=False, 
             ...     in_user_score_packages=False):
             ...     x
@@ -319,7 +319,7 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialPackageWrangler, self)
-        return superclass.list_asset_packagesystem_paths(
+        return superclass.list_asset_package_paths(
             in_built_in_library=in_built_in_library,
             in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
@@ -424,7 +424,7 @@ class MaterialPackageWrangler(PackageWrangler):
         metadata = collections.OrderedDict(metadata or {})
         metadata['is_material_package'] = True
         directory_path = \
-            self.configuration.packagesystem_path_to_filesystem_path(
+            self.configuration.package_path_to_filesystem_path(
             package_path)
         assert not os.path.exists(directory_path)
         os.mkdir(directory_path)

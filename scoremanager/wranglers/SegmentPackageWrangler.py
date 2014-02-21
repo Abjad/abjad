@@ -102,7 +102,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_name,
                 )
             segment_package_path = \
-                self.configuration.filesystem_path_to_packagesystem_path(
+                self.configuration.filesystem_path_to_package_path(
                 segment_package_directory_path)
             manager = self._asset_manager_class(
                 segment_package_path,
@@ -139,7 +139,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_name,
                 )
             segment_package_path = \
-                self.configuration.filesystem_path_to_packagesystem_path(
+                self.configuration.filesystem_path_to_package_path(
                 segment_package_directory_path)
             manager = self._asset_manager_class(
                 segment_package_path,
@@ -171,7 +171,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_name,
                 )
             segment_package_path = \
-                self.configuration.filesystem_path_to_packagesystem_path(
+                self.configuration.filesystem_path_to_package_path(
                 segment_package_directory_path)
             manager = self._asset_manager_class(
                 segment_package_path,
@@ -338,7 +338,7 @@ class SegmentPackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_packagesystem_paths(
+    def list_asset_package_paths(
         self,
         in_built_in_library=True, 
         in_user_library=True,
@@ -352,7 +352,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_packagesystem_paths(
+            >>> for x in wrangler.list_asset_package_paths(
             ...     in_user_library=False, 
             ...     in_user_score_packages=False):
             ...     x
@@ -365,7 +365,7 @@ class SegmentPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(SegmentPackageWrangler, self)
-        return superclass.list_asset_packagesystem_paths(
+        return superclass.list_asset_package_paths(
             in_built_in_library=in_built_in_library,
             in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
@@ -417,12 +417,12 @@ class SegmentPackageWrangler(PackageWrangler):
         '''
         metadata = collections.OrderedDict(metadata or {})
         directory_path = \
-            self.configuration.packagesystem_path_to_filesystem_path(
+            self.configuration.package_path_to_filesystem_path(
             package_path)
         assert not os.path.exists(directory_path)
         os.mkdir(directory_path)
         manager = self._asset_manager_class(
-            packagesystem_path=package_path,
+            package_path=package_path,
             session=self._session,
             )
         manager.write_initializer()

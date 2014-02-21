@@ -58,11 +58,11 @@ class StylesheetFileWrangler(Wrangler):
             self.configuration.user_score_packages_directory_path):
             tmp = os.path.join('stylesheets')
             score_filesystem_path = filesystem_path.rpartition(tmp)[0]
-            packagesystem_path = \
-                self.configuration.filesystem_path_to_packagesystem_path(
+            package_path = \
+                self.configuration.filesystem_path_to_package_path(
                 score_filesystem_path)
             score_package_manager = managers.ScorePackageManager(
-                packagesystem_path=packagesystem_path)
+                package_path=package_path)
             annotation = score_package_manager._get_title()
         elif filesystem_path.startswith(
             self.configuration.built_in_stylesheets_directory_path):

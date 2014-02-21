@@ -13,7 +13,7 @@ class BuildDirectoryManager(DirectoryManager):
 
     def __init__(self, score_package_path=None, session=None):
         score_directory_path = \
-            self.configuration.packagesystem_path_to_filesystem_path(
+            self.configuration.package_path_to_filesystem_path(
             score_package_path)
         filesystem_path = os.path.join(score_directory_path, 'build')
         DirectoryManager.__init__(

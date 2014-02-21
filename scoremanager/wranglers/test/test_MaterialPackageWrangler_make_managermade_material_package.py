@@ -9,14 +9,14 @@ def test_MaterialPackageWrangler_make_managermade_material_package_01():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.testsargasso'
-    assert not wrangler.configuration.packagesystem_path_exists(string)
+    assert not wrangler.configuration.package_path_exists(string)
 
     try:
         wrangler.make_managermade_material_package(
             string, 
             'SargassoMeasureMaterialPackageManager',
             )
-        assert wrangler.configuration.packagesystem_path_exists(string)
+        assert wrangler.configuration.package_path_exists(string)
         mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(string)
         assert mpp.is_managermade
         assert mpp._list_directory() == [
@@ -30,14 +30,14 @@ def test_MaterialPackageWrangler_make_managermade_material_package_01():
         assert mpp.output_material is None
     finally:
         mpp.remove()
-        assert not wrangler.configuration.packagesystem_path_exists(string)
+        assert not wrangler.configuration.package_path_exists(string)
 
 
 def test_MaterialPackageWrangler_make_managermade_material_package_02():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.red_numbers'
-    assert wrangler.configuration.packagesystem_path_exists(string)
+    assert wrangler.configuration.package_path_exists(string)
     statement = "wrangler.make_managermade_material_package("
     statement += "'scoremanager.materialpackages.red_sargasso_measures"
     statement += "'SargassoMeasureMaterialPackageManager')"
@@ -50,12 +50,12 @@ def test_MaterialPackageWrangler_make_managermade_material_package_03():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.testsargasso'
-    assert not wrangler.configuration.packagesystem_path_exists(string)
+    assert not wrangler.configuration.package_path_exists(string)
 
     try:
         wrangler.interactively_make_managermade_material_package(
             pending_user_input='sargasso testsargasso q')
-        assert wrangler.configuration.packagesystem_path_exists(string)
+        assert wrangler.configuration.package_path_exists(string)
         mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(string)
         assert mpp.is_managermade
         assert mpp._list_directory() == [
@@ -65,14 +65,14 @@ def test_MaterialPackageWrangler_make_managermade_material_package_03():
             ]
     finally:
         mpp.remove()
-        assert not wrangler.configuration.packagesystem_path_exists(string)
+        assert not wrangler.configuration.package_path_exists(string)
 
 
 def test_MaterialPackageWrangler_make_managermade_material_package_04():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.testsargasso'
-    assert not wrangler.configuration.packagesystem_path_exists(string)
+    assert not wrangler.configuration.package_path_exists(string)
 
     try:
         metadata = {'color': 'red', 'is_colored': True}
@@ -81,7 +81,7 @@ def test_MaterialPackageWrangler_make_managermade_material_package_04():
             'SargassoMeasureMaterialPackageManager', 
             metadata=metadata,
             )
-        assert wrangler.configuration.packagesystem_path_exists(string)
+        assert wrangler.configuration.package_path_exists(string)
         mpp = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(string)
         assert mpp.is_managermade
         assert mpp._list_directory() == [
@@ -93,7 +93,7 @@ def test_MaterialPackageWrangler_make_managermade_material_package_04():
         assert mpp._get_metadatum('is_colored')
     finally:
         mpp.remove()
-        assert not wrangler.configuration.packagesystem_path_exists(string)
+        assert not wrangler.configuration.package_path_exists(string)
 
 
 def test_MaterialPackageWrangler_make_managermade_material_package_05():

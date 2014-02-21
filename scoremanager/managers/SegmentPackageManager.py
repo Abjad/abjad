@@ -11,13 +11,13 @@ class SegmentPackageManager(PackageManager):
 
     def __init__(
         self, 
-        packagesystem_path=None, 
+        package_path=None, 
         score_template=None, 
         session=None,
         ):
         PackageManager.__init__(
             self, 
-            packagesystem_path=packagesystem_path, 
+            package_path=package_path, 
             session=session,
             )
         self.score_template = score_template
@@ -159,7 +159,7 @@ class SegmentPackageManager(PackageManager):
         return manager
 
     @property
-    def segment_definition_module_packagesystem_path(self):
+    def segment_definition_module_package_path(self):
         return '.'.join([
             self.package_path,
             'definition',
