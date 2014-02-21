@@ -84,3 +84,27 @@ class Transcript(AbjadObject):
     @property
     def start_time(self):
         return self._start_time
+
+    @property
+    def system_display_entries(self):
+        r'''Gets system display entries in transcript.
+
+        Returns list.
+        '''
+        result = []
+        for entry in self:
+            if entry.is_system_display:
+                result.append(entry)
+        return entry
+
+    @property
+    def user_input_entries(self):
+        r'''Gets user input entries in transcript.
+
+        Returns list.
+        '''
+        result = []
+        for entry in self:
+            if entry.is_user_input:
+                result.append(entry)
+        return entry

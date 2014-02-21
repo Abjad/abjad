@@ -177,9 +177,16 @@ class Session(abctools.AbjadObject):
                 result_lines.append(result_line)
         return result_lines
 
-    def _print_transcript(self):
+    def _print_transcript(
+        self, 
+        include_user_input=True, 
+        include_system_display=True,
+        ):
         for entry in self.transcript:
-            print entry
+            if entry.is_user_input and include_user_input:
+                print entry
+            elif entry.is_system_display and include_system_display:
+                print entry
 
     def _pop_backtrack(self):
         return self._backtracking_stack.pop()
