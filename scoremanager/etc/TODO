@@ -177,3 +177,6 @@
 44. Implement __format__ on Transcript.
 
 45. Make all session variables read-only.
+
+46. Add something to check the size of the ~/.score_manager/transcripts
+    diretory. Should warn at starting at 9000 and overwrite starting at 10,000.

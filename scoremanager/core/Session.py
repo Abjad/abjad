@@ -46,7 +46,7 @@ class Session(abctools.AbjadObject):
         'current_score_directory_path',
         'current_score_package_manager',
         'current_segments_directory_path',
-        'dump_transcript',
+        'write_transcript',
         'hide_next_redraw',
         'hide_hidden_commands',
         'is_displayable',
@@ -86,7 +86,7 @@ class Session(abctools.AbjadObject):
         self._attempted_to_open_file = False
         self.current_score_snake_case_name = None
         self.display_pitch_ranges_with_numbered_pitches = False
-        self.dump_transcript = False
+        self.write_transcript = False
         self.enable_where = False
         self.hide_secondary_commands = True
         self.hide_next_redraw = False
@@ -160,8 +160,8 @@ class Session(abctools.AbjadObject):
             self._breadcrumb_stack[:] = []
 
     def _clean_up(self):
-        if self.dump_transcript:
-            self.io_transcript.write()
+        if self.write_transcript:
+            self.io_transcript._write()
 
     def _format_breadcrumb_stack(self):
         if not self._breadcrumb_stack:
@@ -437,7 +437,7 @@ class Session(abctools.AbjadObject):
             return os.path.join(*parts)
 
     @apply
-    def dump_transcript():
+    def write_transcript():
         def fget(self):
             r'''Gets and sets flag to dump transcript at end of session.
 
@@ -445,15 +445,15 @@ class Session(abctools.AbjadObject):
 
                 ::
 
-                    >>> session.dump_transcript
+                    >>> session.write_transcript
                     False
 
             Returns boolean.
             '''
-            return self._dump_transcript
-        def fset(self, dump_transcript):
-            assert isinstance(dump_transcript, bool)
-            self._dump_transcript = dump_transcript
+            return self._write_transcript
+        def fset(self, write_transcript):
+            assert isinstance(write_transcript, bool)
+            self._write_transcript = write_transcript
         return property(**locals())
 
     @property

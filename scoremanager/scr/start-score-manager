@@ -5,7 +5,7 @@ import scoremanager
 
 score_manager = scoremanager.core.ScoreManager()
 score_manager._run(
-    dump_transcript=True,
+    write_transcript=True,
     pending_user_input=' '.join(sys.argv[1:]), 
     display_active_scores=True,
     )

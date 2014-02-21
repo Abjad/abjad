@@ -117,7 +117,7 @@ class ScoreManager(ScoreManagerObject):
         cache=False, 
         is_test=False, 
         display_active_scores=False,
-        dump_transcript=False,
+        write_transcript=False,
         ):
         type(self).__init__(self)
         self._session._push_controller(self)
@@ -128,7 +128,7 @@ class ScoreManager(ScoreManagerObject):
         self._session._push_breadcrumb(self._breadcrumb)
         if is_test:
             self._session.is_test = True
-        self._session.dump_transcript = dump_transcript
+        self._session.write_transcript = write_transcript
         if display_active_scores:
             self._session.display_active_scores()
         run_main_menu = True

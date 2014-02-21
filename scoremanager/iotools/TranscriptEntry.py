@@ -25,6 +25,17 @@ class TranscriptEntry(AbjadObject):
         self._lines = lines[:]
         self._terminal_was_cleared = terminal_was_cleared
 
+    ### PRIVATE METHODS ###
+
+    def _format(self):
+        result = []
+        result.append(str(self.current_time))
+        if self.terminal_was_cleared:
+            result.append('terminal_was_cleared=True')
+        for line in self.lines:
+            result.append(line)
+        return '\n'.join(result)
+
     ### PUBLIC PROPERTIES ###
 
     @property
