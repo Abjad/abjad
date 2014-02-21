@@ -161,7 +161,7 @@ class Session(abctools.AbjadObject):
 
     def _clean_up(self):
         if self.write_transcript:
-            self.io_transcript._write()
+            self.transcript._write()
 
     def _format_breadcrumb_stack(self):
         if not self._breadcrumb_stack:
@@ -550,14 +550,14 @@ class Session(abctools.AbjadObject):
         return self._io_manager
 
     @property
-    def io_transcript(self):
+    def transcript(self):
         r'''Gets session IO transcript.
 
         ..  container:: example
 
             ::
 
-                >>> session.io_transcript
+                >>> session.transcript
                 Transcript()
 
         Returns IO transcript.

@@ -11,7 +11,7 @@ def test_ScorePackageManager_01():
     red_example_score = scoremanager.managers.ScorePackageManager(string)
     red_example_score._run(pending_user_input='q')
 
-    assert red_example_score._session.io_transcript.last_menu_lines == \
+    assert red_example_score._session.transcript.last_menu_lines == \
     ['Red Example Score (2013)',
       '',
       '     build (u)',
@@ -31,13 +31,13 @@ def test_ScorePackageManager_02():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input="red~example~score h q")
 
-    assert score_manager._session.io_transcript.signature == (6, (0, 4))
+    assert score_manager._session.transcript.signature == (6, (0, 4))
     string = 'Score manager - example scores'
-    assert score_manager._session.io_transcript[0].title == string
+    assert score_manager._session.transcript[0].title == string
     string = 'Red Example Score (2013)'
-    assert score_manager._session.io_transcript[2].title == string
+    assert score_manager._session.transcript[2].title == string
     string = 'Score manager - example scores'
-    assert score_manager._session.io_transcript[4].title == string
+    assert score_manager._session.transcript[4].title == string
 
 
 def test_ScorePackageManager_03():
@@ -49,10 +49,10 @@ def test_ScorePackageManager_03():
     red_example_score = scoremanager.managers.ScorePackageManager(string)
     red_example_score._run(pending_user_input='h')
 
-    assert red_example_score._session.io_transcript.signature == (2,)
+    assert red_example_score._session.transcript.signature == (2,)
     string = "Red Example Score (2013)"
-    assert red_example_score._session.io_transcript[0].title == string
-    assert red_example_score._session.io_transcript[1].title == '> h'
+    assert red_example_score._session.transcript[0].title == string
+    assert red_example_score._session.transcript[1].title == '> h'
 
 
 def test_ScorePackageManager_04():
@@ -62,13 +62,13 @@ def test_ScorePackageManager_04():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='red~example~score b q')
 
-    assert score_manager._session.io_transcript.signature == (6, (0, 4))
+    assert score_manager._session.transcript.signature == (6, (0, 4))
     string = 'Score manager - example scores'
-    assert score_manager._session.io_transcript[0].title == string
+    assert score_manager._session.transcript[0].title == string
     string = 'Red Example Score (2013)'
-    assert score_manager._session.io_transcript[2].title == string
+    assert score_manager._session.transcript[2].title == string
     string = 'Score manager - example scores'
-    assert score_manager._session.io_transcript[4].title == string
+    assert score_manager._session.transcript[4].title == string
 
 
 def test_ScorePackageManager_05():

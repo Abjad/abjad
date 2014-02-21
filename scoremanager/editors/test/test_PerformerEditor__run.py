@@ -10,16 +10,16 @@ def test_PerformerEditor__run_01():
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score setup instrumentation hornist q'
     score_manager._run(pending_user_input=string)
-    assert score_manager._session.io_transcript.signature == (10,)
+    assert score_manager._session.transcript.signature == (10,)
 
     string = 'red~example~score setup instrumentation hornist b q'
     score_manager._run(pending_user_input=string)
-    assert score_manager._session.io_transcript.signature == (12, (6, 10))
+    assert score_manager._session.transcript.signature == (12, (6, 10))
 
     string = 'red~example~score setup instrumentation hornist h q'
     score_manager._run(pending_user_input=string)
-    assert score_manager._session.io_transcript.signature == (12, (0, 10))
+    assert score_manager._session.transcript.signature == (12, (0, 10))
 
     string = 'red~example~score setup instrumentation hornist foo q'
     score_manager._run(pending_user_input=string)
-    assert score_manager._session.io_transcript.signature == (12, (8, 10))
+    assert score_manager._session.transcript.signature == (12, (8, 10))

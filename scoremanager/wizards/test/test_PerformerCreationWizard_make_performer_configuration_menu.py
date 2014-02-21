@@ -10,7 +10,7 @@ def test_PerformerCreationWizard_make_performer_configuration_menu_01():
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score setup instrumentation add clarinetist q'
     score_manager._run(pending_user_input=string)
-    last_menu_lines = score_manager._session.io_transcript.last_menu_lines
+    last_menu_lines = score_manager._session.transcript.last_menu_lines
 
     end = 'clarinet in B-flat (default)'
     assert len([x for x in last_menu_lines if x.endswith(end)]) == 1

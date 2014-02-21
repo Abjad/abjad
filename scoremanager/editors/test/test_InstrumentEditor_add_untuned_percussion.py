@@ -9,20 +9,20 @@ def test_InstrumentEditor_add_untuned_percussion_01():
 
     editor = scoremanager.editors.InstrumentEditor()
     editor._run(pending_user_input='untuned q')
-    assert editor._session.io_transcript.signature == (4,)
+    assert editor._session.transcript.signature == (4,)
 
     editor = scoremanager.editors.InstrumentEditor()
     editor._run(pending_user_input='untuned b')
-    assert editor._session.io_transcript.signature == (4,)
+    assert editor._session.transcript.signature == (4,)
 
     editor = scoremanager.editors.InstrumentEditor()
     editor._run(pending_user_input='untuned sco q')
-    assert editor._session.io_transcript.signature == (6, (2, 4))
+    assert editor._session.transcript.signature == (6, (2, 4))
 
     editor = scoremanager.editors.InstrumentEditor()
     editor._run(pending_user_input='untuned h')
-    assert editor._session.io_transcript.signature == (4,)
+    assert editor._session.transcript.signature == (4,)
 
     editor = scoremanager.editors.InstrumentEditor()
     editor._run(pending_user_input='untuned foo q')
-    assert editor._session.io_transcript.signature == (6, (2, 4))
+    assert editor._session.transcript.signature == (6, (2, 4))

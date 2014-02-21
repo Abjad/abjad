@@ -289,7 +289,7 @@ class IOManager(IOManager):
                 for line in lines
                 ]
         if lines and self._session.transcribe_next_command:
-            self._session.io_transcript._append_entry(lines)
+            self._session.transcript._append_entry(lines)
         if self._session.is_displayable:
             if clear_terminal:
                 self.clear_terminal()
@@ -342,7 +342,7 @@ class IOManager(IOManager):
                 if include_newline:
                     if not user_input == 'help':
                         menu_chunk.append('')
-                self._session.io_transcript._append_entry(menu_chunk)
+                self._session.transcript._append_entry(menu_chunk)
             return user_input
         finally:
             readline.set_startup_hook()
