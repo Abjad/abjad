@@ -33,6 +33,9 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     score_package_storehouse_path_infix_parts = None
 
+    user_storehouse_directory_path = \
+        PackageWrangler.configuration.user_library_material_package_managers_directory_path
+
     user_storehouse_package_path = \
         PackageWrangler.configuration.user_library_material_package_managers_package_path
 

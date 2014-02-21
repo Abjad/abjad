@@ -23,6 +23,8 @@ class SegmentPackageWrangler(PackageWrangler):
 
     score_package_storehouse_path_infix_parts = ('segments',)
 
+    user_storehouse_directory_path = None
+
     user_storehouse_package_path = None
 
     ### INITIALIZER ###

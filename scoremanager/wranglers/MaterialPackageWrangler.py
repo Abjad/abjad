@@ -36,6 +36,9 @@ class MaterialPackageWrangler(PackageWrangler):
     built_in_storehouse_package_path = \
         'scoremanager.materialpackages'
 
+    user_storehouse_directory_path = \
+        PackageWrangler.configuration.user_library_material_packages_directory_path
+
     user_storehouse_package_path = \
         PackageWrangler.configuration.user_library_material_packages_package_path
 
@@ -45,8 +48,7 @@ class MaterialPackageWrangler(PackageWrangler):
         from scoremanager import wranglers
         PackageWrangler.__init__(self, session=session)
         self._material_package_manager_wrangler = \
-            wranglers.MaterialPackageManagerWrangler(
-                session=self._session)
+            wranglers.MaterialPackageManagerWrangler(session=self._session)
 
     ### PRIVATE PROPERTIES ###
 

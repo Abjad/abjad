@@ -16,13 +16,17 @@ class PackageWrangler(Wrangler):
         built_in_storehouse_directory_path = \
             self.configuration.package_path_to_filesystem_path(
             self.built_in_storehouse_package_path)
-        user_storehouse_directory_path = \
-            self.configuration.package_path_to_filesystem_path(
-            self.user_storehouse_package_path)
+
+#        user_storehouse_directory_path = \
+#            self.configuration.package_path_to_filesystem_path(
+#            self.user_storehouse_package_path)
+
         self.built_in_storehouse_directory_path = \
             built_in_storehouse_directory_path
-        self.user_storehouse_directory_path = \
-            user_storehouse_directory_path
+
+#        self.user_storehouse_directory_path = \
+#            user_storehouse_directory_path
+
         Wrangler.__init__(self, session=session)
         self._asset_manager_class = managers.PackageManager
 
