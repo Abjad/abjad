@@ -177,6 +177,10 @@ class Session(abctools.AbjadObject):
                 result_lines.append(result_line)
         return result_lines
 
+    def _print_transcript(self):
+        for entry in self.transcript:
+            print entry
+
     def _pop_backtrack(self):
         return self._backtracking_stack.pop()
 
