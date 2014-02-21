@@ -183,3 +183,5 @@
 
 47. Add more hidden menu persistence tests.
     Use test_Menu_display_hidden_menu_commands.
+
+48. Uncomment the TODO in Transcript and make the constraint hold.

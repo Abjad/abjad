@@ -30,10 +30,10 @@ class Transcript(AbjadObject):
             terminal_was_cleared=clear_terminal,
             )
         # TODO: uncomment this and make the restriction work
-        #if self.entries:
-        #    if self.entries[-1].is_system_display:
-        #        if entry.is_system_display:
-        #            raise Exception((self.entries, '|||', entry))
+#        if self.entries:
+#            if self.entries[-1].is_system_display:
+#                if entry.is_system_display:
+#                    raise Exception((self.entries, '|||', entry))
         self.entries.append(entry)
 
     def _write(self, output_directory=None):
