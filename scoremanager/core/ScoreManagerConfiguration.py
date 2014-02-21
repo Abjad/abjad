@@ -22,40 +22,40 @@ class ScoreManagerConfiguration(AbjadConfiguration):
     def __init__(self):
         AbjadConfiguration.__init__(self)
 
-        # user asset library directory paths
+        # user library directory paths
 
-        self.user_asset_library_directory_path = \
+        self.user_library_directory_path = \
             os.path.normpath(os.path.expanduser(
-            self._settings['user_asset_library_directory_path']
+            self._settings['user_library_directory_path']
             ))
-        self.user_asset_library_editors_directory_path = os.path.join(
-            self.user_asset_library_directory_path,
+        self.user_library_editors_directory_path = os.path.join(
+            self.user_library_directory_path,
             'editors',
             )
-        self.user_asset_library_material_package_managers_directory_path = \
+        self.user_library_material_package_managers_directory_path = \
             os.path.join(
-            self.user_asset_library_directory_path,
+            self.user_library_directory_path,
             'material_package_managers',
             )
-        self.user_asset_library_material_packages_directory_path = \
+        self.user_library_material_packages_directory_path = \
             os.path.join(
-            self.user_asset_library_directory_path,
+            self.user_library_directory_path,
             'material_packages',
             )
-        self.user_asset_library_stylesheets_directory_path = os.path.join(
-            self.user_asset_library_directory_path,
+        self.user_library_stylesheets_directory_path = os.path.join(
+            self.user_library_directory_path,
             'stylesheets',
             )
 
-        # user asset library package paths
+        # user library package paths
 
-        self.user_asset_library_material_package_managers_package_path = \
+        self.user_library_material_package_managers_package_path = \
             '.'.join([
-                'score_manager_asset_library',
+                'score_manager_library',
                 'material_package_managers',
             ])
-        self.user_asset_library_material_packages_package_path = '.'.join([
-            'score_manager_asset_library',
+        self.user_library_material_packages_package_path = '.'.join([
+            'score_manager_library',
             'material_packages',
             ])
 
@@ -94,17 +94,17 @@ class ScoreManagerConfiguration(AbjadConfiguration):
     @property
     def _option_definitions(self):
         options = {
-            'user_asset_library_directory_path': {
+            'user_library_directory_path': {
                 'comment': [
                     '',
                     'Set to the directory where you'
-                    ' house your user-specific assets.',
-                    'Defaults to $HOME/score_manager_asset_library/.',
+                    ' house your score manager library.',
+                    'Defaults to $HOME/score_manager_library/.',
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(
                         self.home_directory_path,
-                        'score_manager_asset_library',
+                        'score_manager_library',
                         )
                     ),
             },
@@ -129,7 +129,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
     def _make_missing_directories(self):
         directory_paths = (
             self.user_score_packages_directory_path,
-            self.user_asset_library_stylesheets_directory_path,
+            self.user_library_stylesheets_directory_path,
             self.transcripts_directory_path,
             )
         for directory_path in directory_paths:
@@ -138,10 +138,10 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     def _make_missing_packages(self):
         directory_paths = (
-            self.user_asset_library_directory_path,
-            self.user_asset_library_editors_directory_path,
-            self.user_asset_library_material_package_managers_directory_path,
-            self.user_asset_library_material_packages_directory_path,
+            self.user_library_directory_path,
+            self.user_library_editors_directory_path,
+            self.user_library_material_package_managers_directory_path,
+            self.user_library_material_packages_directory_path,
             )
         for directory_path in directory_paths:
             if not os.path.exists(directory_path):
@@ -403,22 +403,22 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             self.built_in_score_packages_directory_path):
             prefix_length = len(self.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(
-            self.user_asset_library_material_packages_directory_path):
+            self.user_library_material_packages_directory_path):
             prefix_length = \
-                len(self.user_asset_library_material_packages_directory_path) + 1
+                len(self.user_library_material_packages_directory_path) + 1
             remainder = filesystem_path[prefix_length:]
             if remainder:
                 remainder = remainder.replace(os.path.sep, '.')
                 result = '{}.{}'.format(
-                    self.user_asset_library_material_packages_package_path, 
+                    self.user_library_material_packages_package_path, 
                     remainder)
             else:
-                result = self.user_asset_library_material_packages_package_path
+                result = self.user_library_material_packages_package_path
             return result
         elif filesystem_path.startswith(
-            self.user_asset_library_material_package_managers_directory_path):
+            self.user_library_material_package_managers_directory_path):
             return '.'.join([
-                self.user_asset_library_material_package_managers_package_path,
+                self.user_library_material_package_managers_package_path,
                 os.path.basename(filesystem_path)])
         elif filesystem_path.startswith(
             self.built_in_material_package_managers_directory_path):
@@ -434,10 +434,10 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             self.user_score_packages_directory_path):
             prefix_length = len(self.user_score_packages_directory_path) + 1
         elif filesystem_path.startswith(
-            self.user_asset_library_stylesheets_directory_path):
+            self.user_library_stylesheets_directory_path):
             prefix_length = \
                 len(os.path.dirname(
-                self.user_asset_library_stylesheets_directory_path)) + 1
+                self.user_library_stylesheets_directory_path)) + 1
         elif filesystem_path.startswith(self.abjad_stylesheets_directory_path):
             prefix_length = len(self.abjad_root_directory_path) + 1
         else:
@@ -534,11 +534,11 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         elif packagesystem_path_parts[0] == 'scoremanager.materialpackages':
             directory_parts = [self.built_in_material_packages_filesystem_path]
             directory_parts += packagesystem_path_parts[1:]
-        elif packagesystem_path.startswith('score_manager_asset_library'):
-            prefix_length = len('score_manager_asset_library')
+        elif packagesystem_path.startswith('score_manager_library'):
+            prefix_length = len('score_manager_library')
             trimmed_packagesystem_path = packagesystem_path[prefix_length:]
             directory_parts = []
-            directory_parts.append(self.user_asset_library_directory_path)
+            directory_parts.append(self.user_library_directory_path)
             directory_parts.extend(trimmed_packagesystem_path.split('.'))
         elif packagesystem_path_parts[-1] in self.built_in_score_package_names:
             directory_parts = []

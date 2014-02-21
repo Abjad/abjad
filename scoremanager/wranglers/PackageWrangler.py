@@ -13,16 +13,16 @@ class PackageWrangler(Wrangler):
 
     def __init__(self, session=None):
         from scoremanager import managers
-        asset_storehouse_filesystem_path_in_built_in_asset_library = \
+        asset_storehouse_filesystem_path_in_built_in_library = \
             self.configuration.packagesystem_path_to_filesystem_path(
-            self.asset_storehouse_packagesystem_path_in_built_in_asset_library)
-        asset_storehouse_filesystem_path_in_user_asset_library = \
+            self.asset_storehouse_packagesystem_path_in_built_in_library)
+        asset_storehouse_filesystem_path_in_user_library = \
             self.configuration.packagesystem_path_to_filesystem_path(
-            self.asset_storehouse_packagesystem_path_in_user_asset_library)
-        self.asset_storehouse_filesystem_path_in_built_in_asset_library = \
-            asset_storehouse_filesystem_path_in_built_in_asset_library
-        self.asset_storehouse_filesystem_path_in_user_asset_library = \
-            asset_storehouse_filesystem_path_in_user_asset_library
+            self.asset_storehouse_packagesystem_path_in_user_library)
+        self.asset_storehouse_filesystem_path_in_built_in_library = \
+            asset_storehouse_filesystem_path_in_built_in_library
+        self.asset_storehouse_filesystem_path_in_user_library = \
+            asset_storehouse_filesystem_path_in_user_library
         Wrangler.__init__(self, session=session)
         self._asset_manager_class = managers.PackageManager
 
@@ -39,7 +39,7 @@ class PackageWrangler(Wrangler):
             parts.extend(self.score_package_asset_storehouse_path_infix_parts)
             return '.'.join(parts)
         else:
-            return self.asset_storehouse_packagesystem_path_in_built_in_asset_library
+            return self.asset_storehouse_packagesystem_path_in_built_in_library
 
     @property
     def _temporary_asset_manager(self):
@@ -230,8 +230,8 @@ class PackageWrangler(Wrangler):
 
     def list_asset_managers(
         self,
-        in_built_in_asset_library=True,
-        in_user_asset_library=True,
+        in_built_in_library=True,
+        in_user_library=True,
         in_built_in_score_packages=True,
         in_user_score_packages=True,
         head=None,
@@ -242,8 +242,8 @@ class PackageWrangler(Wrangler):
         '''
         result = []
         for package_path in self.list_asset_packagesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head,
@@ -254,8 +254,8 @@ class PackageWrangler(Wrangler):
 
     def list_asset_packagesystem_paths(
         self,
-        in_built_in_asset_library=True,
-        in_user_asset_library=True,
+        in_built_in_library=True,
+        in_user_library=True,
         in_built_in_score_packages=True,
         in_user_score_packages=True,
         head=None,
@@ -266,8 +266,8 @@ class PackageWrangler(Wrangler):
         '''
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head):
@@ -279,8 +279,8 @@ class PackageWrangler(Wrangler):
 
     def list_asset_storehouse_packagesystem_paths(
         self,
-        in_built_in_asset_library=True,
-        in_user_asset_library=True,
+        in_built_in_library=True,
+        in_user_library=True,
         in_built_in_score_packages=True,
         in_user_score_packages=True,
         ):
@@ -292,8 +292,8 @@ class PackageWrangler(Wrangler):
         superclass = super(PackageWrangler, self)
         for filesystem_path in \
             superclass.list_asset_storehouse_filesystem_paths(
-            in_built_in_asset_library=True,
-            in_user_asset_library=True,
+            in_built_in_library=True,
+            in_user_library=True,
             in_built_in_score_packages=True,
             in_user_score_packages=True,
             ):
@@ -314,8 +314,8 @@ class PackageWrangler(Wrangler):
                 result.append(asset_manager.package_path)
         else:
             for asset_manager in self.list_asset_managers(
-                in_built_in_asset_library=True,
-                in_user_asset_library=True,
+                in_built_in_library=True,
+                in_user_library=True,
                 in_built_in_score_packages=True,
                 in_user_score_packages=True,
                 head=head,

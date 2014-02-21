@@ -11,11 +11,11 @@ def test_StylesheetFileWrangler_interactively_remove_assets_01():
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager.configuration
     first_filesystem_path = os.path.join(
-        configuration.user_asset_library_stylesheets_directory_path,
+        configuration.user_library_stylesheets_directory_path,
         'aaa.ly',
         )
     second_filesystem_path = os.path.join(
-        configuration.user_asset_library_stylesheets_directory_path,
+        configuration.user_library_stylesheets_directory_path,
         'aab.ly',
         )
 

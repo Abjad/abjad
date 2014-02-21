@@ -19,11 +19,11 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### CLASS VARIABLES ###
 
-    asset_storehouse_packagesystem_path_in_built_in_asset_library = None
+    asset_storehouse_packagesystem_path_in_built_in_library = None
 
     score_package_asset_storehouse_path_infix_parts = ('segments',)
 
-    asset_storehouse_packagesystem_path_in_user_asset_library = None
+    asset_storehouse_packagesystem_path_in_user_library = None
 
     ### INITIALIZER ###
 
@@ -213,8 +213,8 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def list_asset_filesystem_paths(
         self,
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
+        in_built_in_library=True, 
+        in_user_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None,
@@ -226,7 +226,7 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     in_user_asset_library=False, 
+            ...     in_user_library=False, 
             ...     in_user_score_packages=False,
             ...     ):
             ...     x
@@ -240,8 +240,8 @@ class SegmentPackageWrangler(PackageWrangler):
         '''
         superclass = super(SegmentPackageWrangler, self)
         return superclass.list_asset_filesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head,
@@ -249,8 +249,8 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def list_asset_managers(
         self,
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
+        in_built_in_library=True, 
+        in_user_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None,
@@ -262,7 +262,7 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_managers(
-            ...     in_user_asset_library=False, 
+            ...     in_user_library=False, 
             ...     in_user_score_packages=False):
             ...     x
             SegmentPackageManager('.../blue_example_score/segments/segment_01')
@@ -286,8 +286,8 @@ class SegmentPackageWrangler(PackageWrangler):
         '''
         superclass = super(SegmentPackageWrangler, self)
         return superclass.list_asset_managers(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head,
@@ -295,8 +295,8 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def list_asset_names(
         self,
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
+        in_built_in_library=True, 
+        in_user_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None,
@@ -308,7 +308,7 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_names(
-            ...     in_user_asset_library=False, 
+            ...     in_user_library=False, 
             ...     in_user_score_packages=False,
             ...     ):
             ...     x
@@ -331,8 +331,8 @@ class SegmentPackageWrangler(PackageWrangler):
         '''
         superclass = super(SegmentPackageWrangler, self)
         return superclass.list_asset_names(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head,
@@ -340,8 +340,8 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def list_asset_packagesystem_paths(
         self,
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
+        in_built_in_library=True, 
+        in_user_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None,
@@ -353,7 +353,7 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_packagesystem_paths(
-            ...     in_user_asset_library=False, 
+            ...     in_user_library=False, 
             ...     in_user_score_packages=False):
             ...     x
             '....blue_example_score.segments.segment_01'
@@ -366,8 +366,8 @@ class SegmentPackageWrangler(PackageWrangler):
         '''
         superclass = super(SegmentPackageWrangler, self)
         return superclass.list_asset_packagesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head,
@@ -375,8 +375,8 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def list_asset_storehouse_filesystem_paths(
         self,
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
+        in_built_in_library=True, 
+        in_user_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True,
         ):
@@ -387,7 +387,7 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_storehouse_filesystem_paths(
-            ...     in_user_asset_library=False, 
+            ...     in_user_library=False, 
             ...     in_user_score_packages=False,
             ...     ):
             ...     x
@@ -399,8 +399,8 @@ class SegmentPackageWrangler(PackageWrangler):
         '''
         superclass = super(SegmentPackageWrangler, self)
         return superclass.list_asset_storehouse_filesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             )

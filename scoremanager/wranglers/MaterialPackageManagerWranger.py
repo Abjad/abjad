@@ -23,7 +23,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     _human_readable_target_name = 'material package manager'
 
-    asset_storehouse_packagesystem_path_in_built_in_asset_library = \
+    asset_storehouse_packagesystem_path_in_built_in_library = \
         'scoremanager.materialpackagemanagers'
 
     forbidden_directory_entries = (
@@ -33,8 +33,8 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     score_package_asset_storehouse_path_infix_parts = None
 
-    asset_storehouse_packagesystem_path_in_user_asset_library = \
-        PackageWrangler.configuration.user_asset_library_material_package_managers_package_path
+    asset_storehouse_packagesystem_path_in_user_library = \
+        PackageWrangler.configuration.user_library_material_package_managers_package_path
 
     ### PRIVATE PROPERTIES ###
 
@@ -76,7 +76,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             except ImportError:
                 command = 'from {} import {} as material_package_manager_class'
                 command = command.format(
-                    self.configuration.user_asset_library_material_package_managers_package_path,
+                    self.configuration.user_library_material_package_managers_package_path,
                     material_package_manager_class_name)
                 exec(command)
             material_package_manager = material_package_manager_class(
@@ -115,8 +115,8 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     def list_asset_filesystem_paths(
         self,
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
+        in_built_in_library=True, 
+        in_user_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None,
@@ -128,7 +128,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     in_user_asset_library=False, 
+            ...     in_user_library=False, 
             ...     in_user_score_packages=False):
             ...     x
             '.../materialpackagemanagers/ArticulationHandlerMaterialPackageManager.py'
@@ -145,8 +145,8 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageManagerWrangler, self)
         return superclass.list_asset_filesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head,
@@ -154,8 +154,8 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     def list_asset_managers(
         self,
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
+        in_built_in_library=True, 
+        in_user_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None,
@@ -167,7 +167,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_managers(
-            ...     in_user_asset_library=False, 
+            ...     in_user_library=False, 
             ...     in_user_score_packages=False):
             ...     x
             ArticulationHandlerMaterialPackageManager('.../materialpackagemanagers/ArticulationHandlerMaterialPackageManager')
@@ -184,8 +184,8 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageManagerWrangler, self)
         return superclass.list_asset_managers(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head,
@@ -193,8 +193,8 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     def list_asset_names(
         self,
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
+        in_built_in_library=True, 
+        in_user_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None,
@@ -206,7 +206,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_names(
-            ...     in_user_asset_library=False, 
+            ...     in_user_library=False, 
             ...     in_user_score_packages=False):
             ...     x
             'articulation handler material package manager'
@@ -223,8 +223,8 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageManagerWrangler, self)
         return superclass.list_asset_names(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head,
@@ -232,8 +232,8 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     def list_asset_packagesystem_paths(
         self,
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
+        in_built_in_library=True, 
+        in_user_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None,
@@ -245,7 +245,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_packagesystem_paths(
-            ...     in_user_asset_library=False, 
+            ...     in_user_library=False, 
             ...     in_user_score_packages=False):
             ...     x
             'scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageManager'
@@ -262,8 +262,8 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageManagerWrangler, self)
         return superclass.list_asset_packagesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head,
@@ -271,8 +271,8 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     def list_asset_storehouse_filesystem_paths(
         self,
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
+        in_built_in_library=True, 
+        in_user_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True,
         ):
@@ -283,7 +283,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_storehouse_filesystem_paths(
-            ...     in_user_asset_library=False, 
+            ...     in_user_library=False, 
             ...     in_user_score_packages=False):
             ...     x
             '.../scoremanager/materialpackagemanagers'
@@ -292,8 +292,8 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageManagerWrangler, self)
         return superclass.list_asset_storehouse_filesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             )
