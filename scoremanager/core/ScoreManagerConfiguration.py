@@ -21,49 +21,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     def __init__(self):
         AbjadConfiguration.__init__(self)
-
-        # user library directory paths
-
-        self.user_library_directory_path = \
-            os.path.normpath(os.path.expanduser(
-            self._settings['user_library_directory_path']
-            ))
-        self.user_library_editors_directory_path = os.path.join(
-            self.user_library_directory_path,
-            'editors',
-            )
-        self.user_library_material_package_managers_directory_path = \
-            os.path.join(
-            self.user_library_directory_path,
-            'material_package_managers',
-            )
-        self.user_library_material_packages_directory_path = \
-            os.path.join(
-            self.user_library_directory_path,
-            'material_packages',
-            )
-        self.user_library_stylesheets_directory_path = os.path.join(
-            self.user_library_directory_path,
-            'stylesheets',
-            )
-
-        # built-in score packages
-
-        self.built_in_score_packages_directory_path = os.path.join(
-            self.score_manager_directory_path,
-            'scorepackages',
-            )
-
-        # user score packages
-
-        self.user_score_packages_directory_path = \
-            os.path.normpath(os.path.expanduser(
-            self._settings['user_score_packages_directory_path']
-            ))
-
-        # make missing packages and directories
-
-        self._make_missing_packages()
         self._make_missing_directories()
 
     ### PRIVATE PROPERTIES ###
@@ -122,16 +79,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     def _make_missing_directories(self):
         directory_paths = (
-            self.user_score_packages_directory_path,
-            self.user_library_stylesheets_directory_path,
-            self.transcripts_directory_path,
-            )
-        for directory_path in directory_paths:
-            if not os.path.exists(directory_path):
-                os.makedirs(directory_path)
-
-    def _make_missing_packages(self):
-        directory_paths = (
             self.user_library_directory_path,
             self.user_library_editors_directory_path,
             self.user_library_material_package_managers_directory_path,
@@ -142,6 +89,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 os.makedirs(directory_path)
                 file_path = os.path.join(directory_path, '__init__.py')
                 file(file_path, 'w').write('')
+        directory_paths = (
+            self.user_score_packages_directory_path,
+            self.user_library_stylesheets_directory_path,
+            self.transcripts_directory_path,
+            )
+        for directory_path in directory_paths:
+            if not os.path.exists(directory_path):
+                os.makedirs(directory_path)
 
     ### PUBLIC PROPERTIES ###
 
@@ -199,6 +154,25 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         path = os.path.join(
             self.score_manager_directory_path,
             'materialpackages',
+            )
+        return path
+
+    @property
+    def built_in_score_packages_directory_path(self):
+        r'''Gets built-in score packages directory path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.built_in_score_packages_directory_path
+                '.../scoremanager/scorepackages'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.score_manager_directory_path,
+            'scorepackages',
             )
         return path
 
@@ -365,6 +339,118 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             )
         return path
 
+    @property
+    def user_library_directory_path(self):
+        r'''Gets user library directory path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.user_library_directory_path
+                '...'
+
+        Returns string.
+        '''
+        path = self._settings['user_library_directory_path']
+        path = os.path.expanduser(path)
+        path = os.path.normpath(path)
+        return path
+
+    @property
+    def user_library_editors_directory_path(self):
+        r'''Gets user library editors path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.user_library_editors_directory_path
+                '.../editors'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.user_library_directory_path,
+            'editors',
+            )
+        return path
+
+    @property
+    def user_library_material_package_managers_directory_path(self):
+        r'''Gets user library material package managers directory path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.user_library_material_package_managers_directory_path
+                '.../material_package_managers'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.user_library_directory_path,
+            'material_package_managers',
+            )
+        return path
+
+    @property
+    def user_library_material_packages_directory_path(self):
+        r'''Gets user library material packages directory path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.user_library_material_packages_directory_path
+                '.../material_packages'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.user_library_directory_path,
+            'material_packages',
+            )
+        return path
+
+    @property
+    def user_library_stylesheets_directory_path(self):
+        r'''Gets user library stylesheets directory path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.user_library_stylesheets_directory_path
+                '.../stylesheets'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.user_library_directory_path,
+            'stylesheets',
+            )
+        return path
+
+    @property
+    def user_score_packages_directory_path(self):
+        r'''Gets user score packages directory path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.user_score_packages_directory_path
+                '...'
+
+        Returns string.
+        '''
+        path = self._settings['user_score_packages_directory_path']
+        path = os.path.expanduser(path)
+        path = os.path.normpath(path)
+        return path
+
     ### PUBLIC METHODS ###
 
     def filesystem_path_to_package_path(self, filesystem_path):
@@ -442,16 +528,18 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         ):
         r'''Lists score directory paths.
 
-        Example. List built-in score directory paths:
+        ..  container:: example
 
-        ::
+            Lists built-in score directory paths:
 
-            >>> for x in configuration.list_score_directory_paths(
-            ...     built_in=True):
-            ...     x
-            '.../scoremanager/scorepackages/blue_example_score'
-            '.../scoremanager/scorepackages/green_example_score'
-            '.../scoremanager/scorepackages/red_example_score'
+            ::
+
+                >>> for x in configuration.list_score_directory_paths(
+                ...     built_in=True):
+                ...     x
+                '.../scoremanager/scorepackages/blue_example_score'
+                '.../scoremanager/scorepackages/green_example_score'
+                '.../scoremanager/scorepackages/red_example_score'
 
         Returns list.
         '''
@@ -491,11 +579,13 @@ class ScoreManagerConfiguration(AbjadConfiguration):
     def package_path_exists(self, package_path):
         r'''Is true whens `package_path` exists. Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> package_path = 'scoremanager.materialpackages'
-            >>> configuration.package_path_exists(package_path)
-            True
+            ::
+
+                >>> package_path = 'scoremanager.materialpackages'
+                >>> configuration.package_path_exists(package_path)
+                True
 
         Returns boolean.
         '''
