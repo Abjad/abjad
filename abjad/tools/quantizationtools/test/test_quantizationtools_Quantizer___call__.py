@@ -31,6 +31,40 @@ def test_quantizationtools_Quantizer___call___01():
 
 
 def test_quantizationtools_Quantizer___call___02():
+    milliseconds = [750, 750]
+    q_events = quantizationtools.QEventSequence.from_millisecond_durations(
+        milliseconds)
+    quantizer = quantizationtools.Quantizer()
+    optimizer = quantizationtools.MeasurewiseAttackPointOptimizer()
+    result = quantizer(
+        q_events,
+        attack_point_optimizer=optimizer,
+        )
+    staff = scoretools.Staff([result], context_name='RhythmicStaff')
+    score = Score([staff])
+    assert systemtools.TestManager.compare(
+        score,
+        r'''
+        \new Score <<
+            \new RhythmicStaff {
+                \new Voice {
+                    {
+                        \tempo 4=60
+                        \time 4/4
+                        c'8.
+                        c'16 ~
+                        c'8
+                        r8
+                        r2
+                    }
+                }
+            }
+        >>
+        '''
+        ), format(score)
+
+
+def test_quantizationtools_Quantizer___call___03():
 
     milliseconds = [1500, -1000, 1000, 1000, -1000, 1000, -1000, 500]
     sequence = quantizationtools.QEventSequence.from_millisecond_durations(milliseconds)
@@ -78,7 +112,7 @@ def test_quantizationtools_Quantizer___call___02():
         ), format(score)
 
 
-def test_quantizationtools_Quantizer___call___03():
+def test_quantizationtools_Quantizer___call___04():
 
     milliseconds = [250, 1000, 1000, 1000, 750]
     sequence = quantizationtools.QEventSequence.from_millisecond_durations(
@@ -118,7 +152,7 @@ def test_quantizationtools_Quantizer___call___03():
         ), format(score)
 
 
-def test_quantizationtools_Quantizer___call___04():
+def test_quantizationtools_Quantizer___call___05():
 
     q_schema = quantizationtools.BeatwiseQSchema(
         {'search_tree': quantizationtools.UnweightedSearchTree({2: None})},
