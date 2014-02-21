@@ -22,46 +22,18 @@ class ScoreManagerConfiguration(AbjadConfiguration):
     def __init__(self):
         AbjadConfiguration.__init__(self)
 
-        # score manager tools
-
-        self._score_manager_tools_package_path = 'scoremanager'
-
-        self._cache_file_path = os.path.join(
-                self.configuration_directory_path, 
-                'cache.py',
-                )
-
-        # built-in asset library directory paths
-
-        self.built_in_editors_directory_path = os.path.join(
-            self.score_manager_directory_path,
-            'editors',
-            )
-        self.built_in_material_package_managers_directory_path = os.path.join(
-            self.score_manager_directory_path,
-            'materialpackagemanagers',
-            )
-        self.built_in_material_packages_directory_path = os.path.join(
-            self.score_manager_directory_path,
-            'materialpackages',
-            )
-        self.built_in_stylesheets_directory_path = os.path.join(
-            self.abjad_directory_path,
-            'stylesheets',
-            )
-
         # built-in asset library package paths
 
         self.built_in_editors_package_path = '.'.join([
-            self.score_manager_tools_package_path,
+            self.score_manager_package_path,
             'editors',
             ])
         self.built_in_material_package_managers_package_path = '.'.join([
-            self.score_manager_tools_package_path,
+            self.score_manager_package_path,
             'materialpackagemanagers',
             ])
         self.built_in_material_packages_package_path = '.'.join([
-            self.score_manager_tools_package_path,
+            self.score_manager_package_path,
             'materialpackages',
             ])
 
@@ -122,7 +94,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             'scorepackages',
             )
         self.built_in_score_packages_package_path = '.'.join([
-            self.score_manager_tools_package_path,
+            self.score_manager_package_path,
             'scorepackages',
             ])
 
@@ -134,44 +106,8 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             ))
         self.user_score_packages_package_path = ''
 
-        # transcripts directory path
-
-        self.transcripts_directory_path = os.path.join(
-            self.configuration_directory_path,
-            'transcripts',
-            )
-
-        # make missing packages
-
-        for directory_path in (
-            self.user_asset_library_directory_path,
-            self.user_asset_library_editors_directory_path,
-            self.user_asset_library_material_package_managers_directory_path,
-            self.user_asset_library_material_packages_directory_path,
-            self.user_asset_library_specifiers_directory_path,
-            ):
-            if not os.path.exists(directory_path):
-                os.makedirs(directory_path)
-                file_path = os.path.join(directory_path, '__init__.py')
-                file(file_path, 'w').write('')
-
-        # make missing directories
-
-        if not os.path.exists(self.user_score_packages_directory_path):
-            os.makedirs(self.user_score_packages_directory_path)
-        if not os.path.exists(
-            self.user_asset_library_stylesheets_directory_path):
-            os.makedirs(self.user_asset_library_stylesheets_directory_path)
-        if not os.path.exists(self.transcripts_directory_path):
-            os.makedirs(self.transcripts_directory_path)
-
-        # other directory paths
-
-        self._handler_tools_directory_path = os.path.join(
-            self.abjad_experimental_directory_path,
-            'tools',
-            'handlertools',
-            )
+        self._make_missing_packages()
+        self._make_missing_directories()
 
     ### PRIVATE PROPERTIES ###
 
@@ -219,11 +155,113 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         }
         return options
 
+    ### PRIVATE METHODS ###
+
+    def _make_missing_directories(self):
+        directory_paths = (
+            self.user_score_packages_directory_path,
+            self.user_asset_library_stylesheets_directory_path,
+            self.transcripts_directory_path,
+            )
+        for directory_path in directory_paths:
+            if not os.path.exists(directory_path):
+                os.makedirs(directory_path)
+
+    def _make_missing_packages(self):
+        directory_paths = (
+            self.user_asset_library_directory_path,
+            self.user_asset_library_editors_directory_path,
+            self.user_asset_library_material_package_managers_directory_path,
+            self.user_asset_library_material_packages_directory_path,
+            self.user_asset_library_specifiers_directory_path,
+            )
+        for directory_path in directory_paths:
+            if not os.path.exists(directory_path):
+                os.makedirs(directory_path)
+                file_path = os.path.join(directory_path, '__init__.py')
+                file(file_path, 'w').write('')
+
     ### PUBLIC PROPERTIES ###
 
     @property
+    def built_in_editors_directory_path(self):
+        r'''Gets built-in editors directory path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.built_in_editors_directory_path
+                '.../scoremanager/editors'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.score_manager_directory_path,
+            'editors',
+            )
+        return path
+
+    @property
+    def built_in_material_package_managers_directory_path(self):
+        r'''Gets built-in material package managers directory path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.built_in_material_package_managers_directory_path
+                '.../scoremanager/materialpackagemanagers'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.score_manager_directory_path,
+            'materialpackagemanagers',
+            )
+        return path
+
+    @property
+    def built_in_material_packages_directory_path(self):
+        r'''Gets built-in material packages directory path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.built_in_material_packages_directory_path
+                '.../scoremanager/materialpackages'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.score_manager_directory_path,
+            'materialpackages',
+            )
+        return path
+
+    @property
+    def built_in_stylesheets_directory_path(self):
+        r'''Gets built-in stylesheets directory path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.built_in_stylesheets_directory_path
+                '.../abjad/stylesheets'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.abjad_directory_path,
+            'stylesheets',
+            )
+        return path
+
+    @property
     def built_in_score_package_names(self):
-        r'''Gete built-in score package names.
+        r'''Gets built-in score package names.
 
         ..  container:: example
 
@@ -247,9 +285,20 @@ class ScoreManagerConfiguration(AbjadConfiguration):
     def cache_file_path(self):
         r'''Gets cache file path.
 
+        ..  container:: example
+
+            ::
+
+                >>> configuration.cache_file_path
+                '.../.score_manager/cache.py'
+
         Returns string.
         '''
-        return self._cache_file_path
+        file_path = self._cache_file_path = os.path.join(
+            self.configuration_directory_path, 
+            'cache.py',
+            )
+        return file_path
 
     @property
     def configuration_directory_path(self):
@@ -270,12 +319,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def configuration_file_name(self):
-        r'''Configuration file name.
+        r'''Gets configuration file name.
 
-        ::
+        ..  container:: example
 
-            >>> configuration.configuration_file_name
-            'score_manager.cfg'
+            ::
+
+                >>> configuration.configuration_file_name
+                'score_manager.cfg'
 
         Returns string.
         '''
@@ -283,12 +334,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def configuration_file_path(self):
-        r'''Configuration file path.
+        r'''Gets configuration file path.
 
-        ::
+        ..  container:: example
 
-            >>> configuration.configuration_file_path
-            '.../.score_manager/score_manager.cfg'
+            ::
+
+                >>> configuration.configuration_file_path
+                '.../.score_manager/score_manager.cfg'
 
         Returns string.
         '''
@@ -297,25 +350,34 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def handler_tools_directory_path(self):
-        r'''Handler tools directory path.
+        r'''Gets handler tools directory path.
 
-        ::
+        ..  container:: example
 
-            >>> configuration.handler_tools_directory_path
-            '.../experimental/tools/handlertools'
+            ::
+
+                >>> configuration.handler_tools_directory_path
+                '.../experimental/tools/handlertools'
 
         Returns string.
         '''
-        return self._handler_tools_directory_path  
+        path = os.path.join(
+            self.abjad_experimental_directory_path,
+            'tools',
+            'handlertools',
+            )
+        return path
         
     @property
     def home_directory_path(self):
-        r'''Home directory path.
+        r'''Gets home directory path.
 
-        ::
+        ..  container:: example
 
-            >>> configuration.home_directory_path # doctest: +SKIP
-            '/Users/...'
+            ::
+
+                >>> configuration.home_directory_path
+                '...'
 
         Returns string.
         '''
@@ -323,17 +385,38 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return superclass.home_directory_path
 
     @property
-    def score_manager_tools_package_path(self):
-        r'''Score manager tools package path.
+    def score_manager_package_path(self):
+        r'''Gets score manager package path.
 
-        ::
+        ..  container:: example
 
-            >>> configuration.score_manager_tools_package_path
-            'scoremanager'
+            ::
+
+                >>> configuration.score_manager_package_path
+                'scoremanager'
 
         Returns string.
         '''
-        return self._score_manager_tools_package_path
+        return 'scoremanager'
+
+    @property
+    def transcripts_directory_path(self):
+        r'''Gets score manager transcripts directory path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.transcripts_directory_path
+                '.../.score_manager/transcripts'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.configuration_directory_path,
+            'transcripts',
+            )
+        return path
 
     ### PUBLIC METHODS ###
 

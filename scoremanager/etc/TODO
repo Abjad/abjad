@@ -185,3 +185,10 @@
     Use test_Menu_display_hidden_menu_commands.
 
 48. Uncomment the TODO in Transcript and make the constraint hold.
+
+49. Maybe time to change these:
+        materialpackagemanagers > materialmanagers
+        scorepackages > scores
+        materialpackages > materials
+    In scores:
+        score_templates > templates
