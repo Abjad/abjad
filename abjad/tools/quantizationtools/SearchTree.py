@@ -9,15 +9,15 @@ from abjad.tools.abctools import AbjadObject
 
 
 class SearchTree(AbjadObject):
-    r'''Abstract base class from which concrete ``SearchTree`` subclasses 
+    r'''Abstract base class from which concrete ``SearchTree`` subclasses
     inherit.
 
-    ``SearchTrees`` encapsulate strategies for generating collections of 
+    ``SearchTrees`` encapsulate strategies for generating collections of
     ``QGrids``, given a set of ``QEventProxy`` instances as input.
 
     They allow composers to define the degree and quality of nested rhythmic
-    subdivisions in the quantization output.  That is to say, they allow 
-    composers to specify what sorts of tuplets and ratios of pulses may be 
+    subdivisions in the quantization output.  That is to say, they allow
+    composers to specify what sorts of tuplets and ratios of pulses may be
     contained within other tuplets, to arbitrary levels of nesting.
     '''
 
@@ -94,25 +94,24 @@ class SearchTree(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _find_divisible_leaf_indices_and_subdivisions(self, q_grid):
-        # TODO: This should actually check for all QEvents which fall 
+        # TODO: This should actually check for all QEvents which fall
         # within the leaf's duration,
         # including QEvents attached to the next leaf
-        # It may be prudent to actually store QEvents in two lists: 
+        # It may be prudent to actually store QEvents in two lists:
         # before_offset and after_offset
         indices, subdivisions = [], []
-
-        leaves = q_grid.leaves
+        leaves = list(q_grid.leaves)
         i = 0
-        for leaf_one, leaf_two in \
-            sequencetools.iterate_sequence_nwise(leaves):
-            if (leaf_one.succeeding_q_event_proxies or 
-                leaf_two.preceding_q_event_proxies) and \
-                leaf_one.is_divisible:
-                if len(leaf_one.q_event_proxies) == 1 and \
-                    leaf_one.q_event_proxies[0].offset == \
-                        leaf_one.start_offset:
-                    pass # perfect match, don't bother to continue subdivision
-                else:
+        for leaf_one, leaf_two in sequencetools.iterate_sequence_nwise(leaves):
+            if leaf_one.is_divisible:
+                succeeding_proxies = leaf_one.succeeding_q_event_proxies
+                preceding_proxies = leaf_two.preceding_q_event_proxies
+                if not preceding_proxies and \
+                    all(proxy.offset == leaf_one.start_offset
+                        for proxy in succeeding_proxies):
+                    pass  # proxies align perfectly with this leaf
+
+                elif succeeding_proxies or succeeding_proxies:
                     parentage_ratios = leaf_one.parentage_ratios
                     leaf_subdivisions = \
                         self._find_leaf_subdivisions(parentage_ratios)
@@ -131,7 +130,7 @@ class SearchTree(AbjadObject):
             self._find_divisible_leaf_indices_and_subdivisions(q_grid)
         if not indices:
             return ()
-        combinations = [tuple(x) 
+        combinations = [tuple(x)
             for x in sequencetools.yield_outer_product_of_sequences(
             subdivisions)]
         return tuple(tuple(zip(indices, combo)) for combo in combinations)

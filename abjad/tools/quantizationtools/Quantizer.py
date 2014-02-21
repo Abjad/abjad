@@ -124,9 +124,9 @@ class Quantizer(AbjadObject):
 
         >>> show(score) # doctest: +SKIP
 
-    Here we quantize using settings specified by a ``BeatwiseQSchema``, 
-    which keeps the output of the quantizer "flattened", without measures or 
-    explicit time signatures.  The default beat-wise settings of quarter=60 
+    Here we quantize using settings specified by a ``BeatwiseQSchema``,
+    which keeps the output of the quantizer "flattened", without measures or
+    explicit time signatures.  The default beat-wise settings of quarter=60
     persists until the third "beatspan":
 
     ::
@@ -156,22 +156,29 @@ class Quantizer(AbjadObject):
                     d'2
                     ef'4 ~
                     \tempo 4=90
-                    ef'8.
+                    ef'4
                     e'4 ~
-                    e'16 ~
                     \times 2/3 {
                         \tempo 4=30
                         e'32
-                        f'8.
-                        fs'8 ~
-                        fs'32 ~
+                        f'16 ~
                     }
+                    f'16 ~
+                    \times 2/3 {
+                        f'32
+                        fs'16 ~
+                    }
+                    fs'16 ~
                     \times 2/3 {
                         fs'32
-                        g'8.
-                        r8
-                        r32
+                        g'16 ~
                     }
+                    g'16 ~
+                    \times 2/3 {
+                        g'32
+                        r16
+                    }
+                    r16
                 }
             }
         >>
@@ -180,7 +187,7 @@ class Quantizer(AbjadObject):
 
         >>> show(score) # doctest: +SKIP
 
-    Note that ``TieChains`` are generally fused together in the above example, 
+    Note that ``TieChains`` are generally fused together in the above example,
     but break at tempo changes.
 
     Other keyword arguments are:
@@ -195,18 +202,18 @@ class Quantizer(AbjadObject):
           the ``DistanceHeuristic`` class.
 
         * ``job_handler``: a ``JobHandler`` instance controls whether or not
-          parallel processing is used during the quantization process.  
-          Options include the ``SerialJobHandler`` and ``ParallelJobHandler`` 
+          parallel processing is used during the quantization process.
+          Options include the ``SerialJobHandler`` and ``ParallelJobHandler``
           classes.
 
-        * ``attack_point_optimizer``: an ``AttackPointOptimizer`` instance 
-          controls whether and how logical ties are re-notated.  
-          Options currently include ``MeasurewiseAttackPointOptimizer``, 
+        * ``attack_point_optimizer``: an ``AttackPointOptimizer`` instance
+          controls whether and how logical ties are re-notated.
+          Options currently include ``MeasurewiseAttackPointOptimizer``,
           ``NaiveAttackPointOptimizer`` and ``NullAttackPointOptimizer``.
 
-    Refer to the reference pages for ``BeatwiseQSchema`` and 
-    ``MeasurewiseQSchema`` for more information on controlling the 
-    ``Quantizer``'s output, and to the reference on ``SearchTree`` for 
+    Refer to the reference pages for ``BeatwiseQSchema`` and
+    ``MeasurewiseQSchema`` for more information on controlling the
+    ``Quantizer``'s output, and to the reference on ``SearchTree`` for
     information on controlling the rhythmic complexity of that same output.
     '''
 
@@ -217,12 +224,12 @@ class Quantizer(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, 
-        q_event_sequence, 
-        q_schema=None, 
+    def __call__(self,
+        q_event_sequence,
+        q_schema=None,
         grace_handler=None,
-        heuristic=None, 
-        job_handler=None, 
+        heuristic=None,
+        job_handler=None,
         attack_point_optimizer=None,
         attach_tempos=True,
         ):

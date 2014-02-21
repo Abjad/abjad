@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QEventProxy(AbjadObject):
-    r'''Proxies a `QEvent`, mapping that QEvent's offset with the range of 
+    r'''Proxies a `QEvent`, mapping that QEvent's offset with the range of
     its beatspan to the range 0-1.
 
     ::
@@ -33,7 +33,7 @@ class QEventProxy(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_offset', 
+        '_offset',
         '_q_event',
         )
 
@@ -60,12 +60,12 @@ class QEventProxy(AbjadObject):
             message = message.format(type(self).__name__, args)
             raise ValueError(message)
         self._q_event = q_event
-        self._offset = offset
+        self._offset = durationtools.Offset(offset)
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a q-event proxy with offset and q-event 
+        r'''Is true when `expr` is a q-event proxy with offset and q-event
         equal to those of this q-event proxy. Otherwise false.
 
         Returns boolean.

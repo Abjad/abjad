@@ -4,8 +4,8 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QuantizationJob(AbjadObject):
-    r'''A copiable, picklable class for generating all ``QGrids`` which 
-    are valid under a given ``SearchTree`` for a sequence 
+    r'''A copiable, picklable class for generating all ``QGrids`` which
+    are valid under a given ``SearchTree`` for a sequence
     of ``QEventProxies``:
 
     ::
@@ -28,7 +28,7 @@ class QuantizationJob(AbjadObject):
         ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
 
     ``QuantizationJob`` generates ``QGrids`` when called, and stores those
-    ``QGrids`` on its ``q_grids`` attribute, allowing them to be recalled 
+    ``QGrids`` on its ``q_grids`` attribute, allowing them to be recalled
     later, even if pickled:
 
     ::
@@ -42,7 +42,7 @@ class QuantizationJob(AbjadObject):
         (1 (1 1))
         (1 ((1 (1 1)) (1 (1 1))))
 
-    ``QuantizationJob`` is intended to be useful in 
+    ``QuantizationJob`` is intended to be useful in
     multiprocessing-enabled environments.
 
     Return ``QuantizationJob`` instance.
@@ -51,19 +51,19 @@ class QuantizationJob(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_job_id', 
-        '_q_event_proxies', 
-        '_q_grids', 
+        '_job_id',
+        '_q_event_proxies',
+        '_q_grids',
         '_search_tree',
         )
 
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        job_id=1, 
-        search_tree=None, 
-        q_event_proxies=None, 
+        self,
+        job_id=1,
+        search_tree=None,
+        q_event_proxies=None,
         q_grids=None,
         ):
         from abjad.tools import quantizationtools
@@ -75,7 +75,7 @@ class QuantizationJob(AbjadObject):
 
         assert isinstance(search_tree, quantizationtools.SearchTree)
         assert all(
-            isinstance(x, quantizationtools.QEventProxy) 
+            isinstance(x, quantizationtools.QEventProxy)
             for x in q_event_proxies
             )
         self._job_id = job_id
@@ -85,7 +85,7 @@ class QuantizationJob(AbjadObject):
             self._q_grids = ()
         else:
             assert all(
-                isinstance(x, quantizationtools.QGrid) 
+                isinstance(x, quantizationtools.QGrid)
                 for x in q_grids
                 )
             self._q_grids = tuple(q_grids)
@@ -98,14 +98,22 @@ class QuantizationJob(AbjadObject):
         Returns none.
         '''
         from abjad.tools import quantizationtools
+        #print self.q_event_proxies
+
         q_grid = quantizationtools.QGrid()
         q_grid.fit_q_events(self.q_event_proxies)
         old_q_grids = []
         new_q_grids = [q_grid]
+
         while new_q_grids:
             q_grid = new_q_grids.pop()
-            new_q_grids.extend(self.search_tree(q_grid))
+            search_results = self.search_tree(q_grid)
+            #print q_grid.rtm_format
+            #for x in search_results:
+            #    print '\t', x.rtm_format
+            new_q_grids.extend(search_results)
             old_q_grids.append(q_grid)
+
         self._q_grids = tuple(old_q_grids)
 
     def __eq__(self, expr):
@@ -129,9 +137,9 @@ class QuantizationJob(AbjadObject):
         Returns tuple.
         '''
         return (
-            self.job_id, 
-            self.search_tree, 
-            self.q_event_proxies, 
+            self.job_id,
+            self.search_tree,
+            self.q_event_proxies,
             self.q_grids,
             )
 
@@ -145,7 +153,7 @@ class QuantizationJob(AbjadObject):
             '_q_event_proxies': self.q_event_proxies,
             '_q_grids': self.q_grids,
             '_search_tree': self.search_tree,
-        }
+            }
 
     def __setstate__(self, state):
         r'''Sets state.
@@ -175,7 +183,7 @@ class QuantizationJob(AbjadObject):
 
     @property
     def q_event_proxies(self):
-        r'''The ``QEventProxies`` the ``QuantizationJob`` was instantiated 
+        r'''The ``QEventProxies`` the ``QuantizationJob`` was instantiated
         with.
 
         ::

@@ -37,7 +37,7 @@ class BeatwiseQTarget(QTarget):
     ### PRIVATE METHODS ###
 
     def _notate(
-        self, 
+        self,
         attach_tempos=True,
         attack_point_optimizer=None,
         grace_handler=None,

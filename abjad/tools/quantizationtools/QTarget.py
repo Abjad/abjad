@@ -39,7 +39,9 @@ class QTarget(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, q_event_sequence,
+    def __call__(
+        self,
+        q_event_sequence,
         grace_handler=None,
         heuristic=None,
         job_handler=None,
@@ -164,10 +166,6 @@ class QTarget(AbjadObject):
         for leaf in voice.select_leaves():
             if leaf._has_indicator(indicatortools.Annotation):
                 annotation = leaf._get_indicator(indicatortools.Annotation)
-                tempo = None
-                if leaf._has_indicator(indicatortools.Tempo):
-                    tempo = leaf._get_indicator(indicatortools.Tempo)
-                    detach(indicatortools.Tempo, leaf)
                 pitches, grace_container = grace_handler(annotation.value)
                 if not pitches:
                     new_leaf = scoretools.Rest(leaf)
@@ -179,8 +177,6 @@ class QTarget(AbjadObject):
                     new_leaf.written_pitch = pitches[0]
                 if grace_container:
                     attach(grace_container, new_leaf)
-                if tempo:
-                    attach(tempo, new_leaf)
                 tie = spannertools.Tie()
                 attach(tie, new_leaf)
                 mutate(leaf).replace(new_leaf)
@@ -203,6 +199,10 @@ class QTarget(AbjadObject):
                 mutate(leaf).replace(new_leaf)
                 tie = previous_leaf._get_spanner(spannertools.Tie)
                 tie._append(new_leaf)
+            if leaf._has_indicator(indicatortools.Tempo):
+                tempo = leaf._get_indicator(indicatortools.Tempo)
+                detach(indicatortools.Tempo, leaf)
+                attach(tempo, new_leaf)
 
     def _shift_downbeat_q_events_to_next_q_grid(self):
         beats = self.beats
