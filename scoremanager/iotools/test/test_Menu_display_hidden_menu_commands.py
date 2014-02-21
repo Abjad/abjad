@@ -1,0 +1,12 @@
+# -*- encoding: utf-8 -*-
+from abjad import *
+import scoremanager
+
+
+def test_Menu_display_hidden_menu_commands_01():
+
+    score_manager = scoremanager.core.ScoreManager()
+    score_manager._run(pending_user_input='n q')
+
+    string = 'Score manager - example scores - hidden commands'
+    assert score_manager._session.io_transcript.last_menu_title == string

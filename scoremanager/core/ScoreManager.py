@@ -43,7 +43,7 @@ class ScoreManager(ScoreManagerObject):
 
     @property
     def _score_status_string(self):
-        return '{} scores'.format(self._session.scores_to_show)
+        return '{} scores'.format(self._session.scores_to_display)
 
     ### PRIVATE METHODS ###
 
@@ -97,7 +97,7 @@ class ScoreManager(ScoreManagerObject):
             self._session.io_manager.write_cache(prompt=False)
             self._session.rewrite_cache = False
         menu_entries = self._session.io_manager._read_cache()
-        if (self._session._scores_to_show == 'example' and
+        if (self._session._scores_to_display == 'example' and
             not menu_entries[0][0] == 'Blue Example Score (2013)') or \
             not menu_entries:
             self._session.io_manager.write_cache(prompt=False)

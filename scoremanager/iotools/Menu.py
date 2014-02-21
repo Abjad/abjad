@@ -118,7 +118,7 @@ class Menu(ScoreManagerObject):
         elif directive == 'o':
             self.toggle_hidden_commands()
         elif directive == 'n':
-            self.display_hidden_menu_sections()
+            self.display_hidden_commands()
         elif directive == 'sce':
             self.interactively_edit_calling_code()
         elif directive == 'sdv':
@@ -293,7 +293,7 @@ class Menu(ScoreManagerObject):
             match_on_display_string=False,
             return_value_attribute='key',
             )
-        section.append(('_session - display variables', 'sdv'))
+        section.append(('session - display variables', 'sdv'))
         return section
 
     def _make_source_code_menu_section(self):
@@ -481,32 +481,7 @@ class Menu(ScoreManagerObject):
         else:
             self._session.enable_where = True
 
-    def display_hidden_menu_section(self):
-        self._session._push_breadcrumb('hidden commands')
-        menu_lines = []
-        title = self._session.menu_header
-        title = stringtools.capitalize_string_start(title)
-        menu_lines.append(title)
-        menu_lines.append('')
-        for menu_section in self.menu_sections:
-            if not menu_section.is_secondary:
-                continue
-            for menu_entry in menu_section.menu_entries:
-                key = menu_entry.key
-                display_string = menu_entry.display_string
-                menu_line = self._make_tab(1) + ' '
-                menu_line += '{} ({})'.format(display_string, key)
-                menu_lines.append(menu_line)
-            menu_lines.append('')
-        self._session.io_manager.display(
-            menu_lines, 
-            capitalize_first_character=False,
-            clear_terminal=True,
-            )
-        self._session.hide_next_redraw = True
-        self._session._pop_breadcrumb()
-
-    def display_hidden_menu_sections(self):
+    def display_hidden_commands(self):
         self._session._push_breadcrumb('hidden commands')
         menu_lines = []
         title = self._session.menu_header

@@ -57,7 +57,7 @@ class Session(abctools.AbjadObject):
         'nonnumbered_menu_sections_are_hidden',
         'rewrite_cache',
         'score_manager',
-        'scores_to_show',
+        'scores_to_display',
         'session_once_had_user_input',
         'current_score_snake_case_name',
         'transcribe_next_command',
@@ -78,7 +78,7 @@ class Session(abctools.AbjadObject):
         self._last_controller = None
         self._last_line = ''
         self._score_manager = None
-        self._scores_to_show = 'example'
+        self._scores_to_display = 'example'
         self._session_once_had_user_input = False
         self._transcript = iotools.IOTranscript()
         self._attempted_to_open_file = False
@@ -840,19 +840,19 @@ class Session(abctools.AbjadObject):
         return self._score_manager
 
     @property
-    def scores_to_show(self):
+    def scores_to_display(self):
         r'''Gets session scores to show.
 
         ..  container:: example
 
             ::
 
-                >>> session.scores_to_show
+                >>> session.scores_to_display
                 'example'
 
         Returns string.
         '''
-        return self._scores_to_show
+        return self._scores_to_display
 
     @property
     def session_once_had_user_input(self):
@@ -1005,7 +1005,7 @@ class Session(abctools.AbjadObject):
 
         Returns none.
         '''
-        self._scores_to_show = 'active'
+        self._scores_to_display = 'active'
         self.rewrite_cache = True
 
     def display_all_scores(self):
@@ -1013,7 +1013,7 @@ class Session(abctools.AbjadObject):
 
         Returns none.
         '''
-        self._scores_to_show = 'all'
+        self._scores_to_display = 'all'
         self.rewrite_cache = True
 
     def display_example_scores(self):
@@ -1021,7 +1021,7 @@ class Session(abctools.AbjadObject):
 
         Returns none.
         '''
-        self._scores_to_show = 'example'
+        self._scores_to_display = 'example'
         self.rewrite_cache = True
 
     def display_mothballed_scores(self):
@@ -1029,7 +1029,7 @@ class Session(abctools.AbjadObject):
 
         Returns none.
         '''
-        self._scores_to_show = 'mothballed'
+        self._scores_to_display = 'mothballed'
         self.rewrite_cache = True
 
     def display_variables(self):

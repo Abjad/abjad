@@ -363,7 +363,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         result = []
-        scores_to_show = self._session.scores_to_show
+        scores_to_display = self._session.scores_to_display
         for asset_manager in PackageWrangler.list_asset_managers(
             self,
             in_built_in_asset_library=in_built_in_asset_library,
@@ -374,15 +374,15 @@ class ScorePackageWrangler(PackageWrangler):
             ):
             is_mothballed = asset_manager._get_metadatum('is_mothballed')
             is_example = asset_manager._get_metadatum('is_example')
-            if scores_to_show == 'all':
+            if scores_to_display == 'all':
                 result.append(asset_manager)
-            elif (scores_to_show == 'active' and not is_mothballed and
+            elif (scores_to_display == 'active' and not is_mothballed and
                 not is_example):
                 result.append(asset_manager)
-            elif (scores_to_show == 'example' and is_example and
+            elif (scores_to_display == 'example' and is_example and
                 not is_mothballed):
                 result.append(asset_manager)
-            elif scores_to_show == 'mothballed' and is_mothballed:
+            elif scores_to_display == 'mothballed' and is_mothballed:
                 result.append(asset_manager)
         return result
 
@@ -420,7 +420,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         result = []
-        scores_to_show = self._session.scores_to_show
+        scores_to_display = self._session.scores_to_display
         for asset_manager in PackageWrangler.list_asset_managers(
             self,
             in_built_in_asset_library=in_built_in_asset_library,
@@ -432,12 +432,12 @@ class ScorePackageWrangler(PackageWrangler):
             metadata = asset_manager._get_metadata()
             is_example = metadata.get('is_example', False)
             is_mothballed = metadata.get('is_mothballed', False)
-            if scores_to_show == 'all' or \
-                (scores_to_show == 'active' and not is_mothballed
+            if scores_to_display == 'all' or \
+                (scores_to_display == 'active' and not is_mothballed
                     and not is_example) or \
-                (scores_to_show == 'example' and is_example 
+                (scores_to_display == 'example' and is_example 
                     and not is_mothballed) or \
-                (scores_to_show == 'mothballed' and is_mothballed):
+                (scores_to_display == 'mothballed' and is_mothballed):
                 year_of_completion = metadata.get('year_of_completion')
                 if year_of_completion:
                     title_with_year = '{} ({})'.format(
