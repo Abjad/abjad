@@ -44,7 +44,7 @@ class Wrangler(ScoreManagerObject):
             parts.extend(self.score_package_storehouse_path_infix_parts)
             return os.path.join(*parts)
         else:
-            return self.storehouse_filesystem_path_in_built_in_library
+            return self.built_in_storehouse_directory_path
 
     @property
     def _temporary_asset_filesystem_path(self):
@@ -155,7 +155,7 @@ class Wrangler(ScoreManagerObject):
         from scoremanager import wranglers
         keys, display_strings = [], []
         keys.append(
-            self.storehouse_filesystem_path_in_user_library)
+            self.user_storehouse_directory_path)
         display_strings.append('My {}'.format(self._breadcrumb))
         wrangler = wranglers.ScorePackageWrangler(
             session=self._session)
@@ -635,13 +635,13 @@ class Wrangler(ScoreManagerObject):
         '''
         result = []
         if in_built_in_library and \
-            self.storehouse_filesystem_path_in_built_in_library is not None:
+            self.built_in_storehouse_directory_path is not None:
             result.append(
-                self.storehouse_filesystem_path_in_built_in_library)
+                self.built_in_storehouse_directory_path)
         if in_user_library and \
-            self.storehouse_filesystem_path_in_user_library is not None:
+            self.user_storehouse_directory_path is not None:
             result.append(
-                self.storehouse_filesystem_path_in_user_library)
+                self.user_storehouse_directory_path)
         if in_built_in_score_packages and \
             self.score_package_storehouse_path_infix_parts is not None:
             for score_directory_path in \

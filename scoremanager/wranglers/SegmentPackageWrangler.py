@@ -19,11 +19,11 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### CLASS VARIABLES ###
 
-    storehouse_packagesystem_path_in_built_in_library = None
+    built_in_storehouse_package_path = None
 
     score_package_storehouse_path_infix_parts = ('segments',)
 
-    storehouse_packagesystem_path_in_user_library = None
+    user_storehouse_package_path = None
 
     ### INITIALIZER ###
 

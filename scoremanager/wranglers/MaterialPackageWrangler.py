@@ -33,10 +33,10 @@ class MaterialPackageWrangler(PackageWrangler):
 
     score_package_storehouse_path_infix_parts = ('materials',)
 
-    storehouse_packagesystem_path_in_built_in_library = \
+    built_in_storehouse_package_path = \
         'scoremanager.materialpackages'
 
-    storehouse_packagesystem_path_in_user_library = \
+    user_storehouse_package_path = \
         PackageWrangler.configuration.user_library_material_packages_package_path
 
     ### INITIALIZER ###

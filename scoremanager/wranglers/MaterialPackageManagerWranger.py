@@ -23,7 +23,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     _human_readable_target_name = 'material package manager'
 
-    storehouse_packagesystem_path_in_built_in_library = \
+    built_in_storehouse_package_path = \
         'scoremanager.materialpackagemanagers'
 
     forbidden_directory_entries = (
@@ -33,7 +33,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     score_package_storehouse_path_infix_parts = None
 
-    storehouse_packagesystem_path_in_user_library = \
+    user_storehouse_package_path = \
         PackageWrangler.configuration.user_library_material_package_managers_package_path
 
     ### PRIVATE PROPERTIES ###

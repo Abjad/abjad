@@ -27,18 +27,18 @@ class ScorePackageWrangler(PackageWrangler):
 
     ### CLASS VARIABLES ###
 
-    storehouse_filesystem_path_in_built_in_library = \
+    built_in_storehouse_directory_path = \
         PackageWrangler.configuration.built_in_score_packages_directory_path
 
-    storehouse_packagesystem_path_in_built_in_library = \
+    built_in_storehouse_package_path = \
         'scoremanager.scorepackages'
 
     score_package_storehouse_path_infix_parts = None
 
-    storehouse_filesystem_path_in_user_library = \
+    user_storehouse_directory_path = \
         PackageWrangler.configuration.user_score_packages_directory_path
 
-    storehouse_packagesystem_path_in_user_library = ''
+    user_storehouse_package_path = ''
 
     ### INITIALIZER ###
 

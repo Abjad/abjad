@@ -18,12 +18,12 @@ class StylesheetFileWrangler(Wrangler):
 
     ### CLASS VARIABLES ###
 
-    storehouse_filesystem_path_in_built_in_library = \
+    built_in_storehouse_directory_path = \
         Wrangler.configuration.abjad_stylesheets_directory_path
 
     score_package_storehouse_path_infix_parts = ('stylesheets',)
 
-    storehouse_filesystem_path_in_user_library = \
+    user_storehouse_directory_path = \
         Wrangler.configuration.user_library_stylesheets_directory_path
 
     ### INITIALIZER ###
