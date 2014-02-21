@@ -48,6 +48,7 @@ class Session(abctools.AbjadObject):
         'current_segments_directory_path',
         'dump_transcript',
         'hide_next_redraw',
+        'hide_hidden_commands',
         'is_displayable',
         'is_in_score',
         'is_navigating_to_sibling_score',
@@ -57,7 +58,7 @@ class Session(abctools.AbjadObject):
         'rewrite_cache',
         'score_manager',
         'scores_to_display',
-        'secondary_commands_are_hidden',
+        'hide_secondary_commands',
         'session_once_had_user_input',
         'current_score_snake_case_name',
         'transcribe_next_command',
@@ -74,6 +75,7 @@ class Session(abctools.AbjadObject):
         self._breadcrumb_stack = []
         self._command_history = []
         self._controller_stack = []
+        self._hide_hidden_commands = True
         self._io_manager = iotools.IOManager(self)
         self._last_controller = None
         self._last_line = ''
@@ -86,7 +88,7 @@ class Session(abctools.AbjadObject):
         self.display_pitch_ranges_with_numbered_pitches = False
         self.dump_transcript = False
         self.enable_where = False
-        self.secondary_commands_are_hidden = True
+        self.hide_secondary_commands = True
         self.hide_next_redraw = False
         self.initial_user_input = pending_user_input
         self.is_autoadding = False
@@ -476,7 +478,7 @@ class Session(abctools.AbjadObject):
         return result
 
     @apply
-    def secondary_commands_are_hidden():
+    def hide_secondary_commands():
         def fget(self):
             r'''Gets and sets flag indicating that hidden menu sections
             are hidden.
@@ -485,17 +487,32 @@ class Session(abctools.AbjadObject):
 
                 ::
 
-                    >>> session.secondary_commands_are_hidden
+                    >>> session.hide_secondary_commands
                     True
 
             Returns boolean.
             '''
-            return self._secondary_commands_are_hidden
-        def fset(self, secondary_commands_are_hidden):
-            assert isinstance(secondary_commands_are_hidden, bool)
-            self._secondary_commands_are_hidden = \
-                secondary_commands_are_hidden
+            return self._hide_secondary_commands
+        def fset(self, hide_secondary_commands):
+            assert isinstance(hide_secondary_commands, bool)
+            self._hide_secondary_commands = \
+                hide_secondary_commands
         return property(**locals())
+
+    @property
+    def hide_hidden_commands(self):
+        r'''Is true when hidden commands are hidden. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.hide_hidden_commands
+                True
+
+        Returns boolean.
+        '''
+        return self._hide_hidden_commands
 
     @apply
     def hide_next_redraw():

@@ -95,10 +95,14 @@ class Menu(ScoreManagerObject):
         predetermined_user_input=None,
         ):
         self._clear_terminal()
-        self._session.io_manager.display(
-            self._make_menu_lines(), 
-            capitalize_first_character=False,
-            )
+        if not self._session.hide_hidden_commands:
+            self.display_hidden_commands()
+        else:
+            menu_lines = self._make_menu_lines()
+            self._session.io_manager.display(
+                menu_lines,
+                capitalize_first_character=False,
+                )
         if predetermined_user_input is not None:
             return predetermined_user_input
         user_entered_lone_return = False
@@ -118,6 +122,7 @@ class Menu(ScoreManagerObject):
         elif directive == 'o':
             self.toggle_secondary_commands()
         elif directive == 'n':
+            self.toggle_hidden_commands()
             self.display_hidden_commands()
         elif directive == 'sce':
             self.interactively_edit_calling_code()
@@ -276,7 +281,7 @@ class Menu(ScoreManagerObject):
     def _make_section_lines(self):
         menu_lines = []
         for menu_section in self.menu_sections:
-            hide = self._session.secondary_commands_are_hidden
+            hide = self._session.hide_secondary_commands
             if hide and menu_section.is_secondary:
                 continue
             if menu_section.is_hidden:
@@ -503,7 +508,7 @@ class Menu(ScoreManagerObject):
             capitalize_first_character=False,
             clear_terminal=True,
             )
-        self._session.hide_next_redraw = True
+        #self._session.hide_next_redraw = True
         self._session._pop_breadcrumb()
 
     def interactively_edit_calling_code(self):
@@ -576,8 +581,16 @@ class Menu(ScoreManagerObject):
             )
         return numbered_section
 
-    def toggle_secondary_commands(self):
-        if self._session.secondary_commands_are_hidden:
-            self._session.secondary_commands_are_hidden = False
+    # TODO: move to Session
+    def toggle_hidden_commands(self):
+        if self._session._hide_hidden_commands:
+            self._session._hide_hidden_commands = False
         else:
-            self._session.secondary_commands_are_hidden = True
+            self._session._hide_hidden_commands = True
+
+    # TODO: move to Session
+    def toggle_secondary_commands(self):
+        if self._session.hide_secondary_commands:
+            self._session.hide_secondary_commands = False
+        else:
+            self._session.hide_secondary_commands = True
