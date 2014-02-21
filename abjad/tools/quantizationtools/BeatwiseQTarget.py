@@ -36,8 +36,12 @@ class BeatwiseQTarget(QTarget):
 
     ### PRIVATE METHODS ###
 
-    def _notate(self, 
-        grace_handler, attack_point_optimizer, attach_tempos):
+    def _notate(
+        self, 
+        attach_tempos=True,
+        attack_point_optimizer=None,
+        grace_handler=None,
+        ):
         voice = scoretools.Voice()
 
         # generate the first
@@ -64,7 +68,10 @@ class BeatwiseQTarget(QTarget):
             voice.extend(components)
 
         # apply logical ties, pitches, grace containers
-        self._notate_leaves_pairwise(voice, grace_handler)
+        self._notate_leaves(
+            grace_handler=grace_handler,
+            voice=voice,
+            )
 
         # partition logical ties in voice
         attack_point_optimizer(voice)

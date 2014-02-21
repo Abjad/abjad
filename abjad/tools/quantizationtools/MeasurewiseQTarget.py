@@ -43,9 +43,9 @@ class MeasurewiseQTarget(QTarget):
 
     def _notate(
         self,
-        grace_handler,
-        attack_point_optimizer,
-        attach_tempos,
+        attach_tempos=True,
+        attack_point_optimizer=None,
+        grace_handler=None,
         ):
         voice = scoretools.Voice()
 
@@ -72,7 +72,10 @@ class MeasurewiseQTarget(QTarget):
             voice.append(measure)
 
         # apply logical ties, pitches, grace containers
-        self._notate_leaves_pairwise(voice, grace_handler)
+        self._notate_leaves(
+            grace_handler=grace_handler,
+            voice=voice,
+            )
 
         # partition logical ties in each measure
         for measure in voice:

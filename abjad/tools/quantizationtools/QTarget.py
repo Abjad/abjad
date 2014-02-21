@@ -7,6 +7,8 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
+from abjad.tools.topleveltools import mutate
 
 
 class QTarget(AbjadObject):
@@ -102,13 +104,17 @@ class QTarget(AbjadObject):
         # over to the next QGrid's first leaf - the real downbeat
         self._shift_downbeat_q_events_to_next_q_grid()
 
-        # TODO: handle a final QGrid with QEvents attached to its next_downbeat.
-        # TODO: remove a final QGrid with no QEvents
+        #  TODO: handle a final QGrid with QEvents attached to its
+        #        next_downbeat.
+        #  TODO: remove a final QGrid with no QEvents
 
         # convert the QGrid representation into notation,
         # handling grace-note behavior with the GraceHandler
         return self._notate(
-            grace_handler, attack_point_optimizer, attach_tempos)
+            attach_tempos=attach_tempos,
+            attack_point_optimizer=attack_point_optimizer,
+            grace_handler=grace_handler,
+            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -141,69 +147,62 @@ class QTarget(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _copy_leaf_type_and_pitches(self, leaf_one, leaf_two):
-        index = leaf_two._get_parentage().parent.index(leaf_two)
-        duration = leaf_two.written_duration
-        if isinstance(leaf_one, scoretools.Note):
-            new_leaf = scoretools.Note(leaf_one.written_pitch, duration)
-        elif isinstance(leaf_one, scoretools.Chord):
-            new_leaf = scoretools.Chord(leaf_one.written_pitches, duration)
-        else:
-            new_leaf = scoretools.Rest(duration)
-        tempos = leaf_two._get_indicators(indicatortools.Tempo)
-        if tempos:
-            tempo = tempos[0]
-            attach(tempo, new_leaf)
-        leaf_two._get_parentage().parent[index] = new_leaf
-        return new_leaf
-
     @abc.abstractmethod
     def _notate(
-        self, grace_handler, attack_point_optimizer, attach_tempos):
-        raise NotImplementedError
+        self,
+        grace_handler=None,
+        attack_point_optimizer=None,
+        attach_tempos=True,
+        ):
+        pass
 
-    def _notate_leaves_pairwise(self, voice, grace_handler):
-        # check first against second, notating first, tying as necessry
-        # keep track of the leaf index, as we're mutating the 
-        # structure as we go
-        leaves = list(voice.select_leaves())
-        for i in range(len(leaves) - 1):
-            leaf_one, leaf_two = leaves[i], leaves[i + 1]
-            leaf_one = self._notate_one_leaf(leaf_one, grace_handler)
-            leaves[i] = leaf_one
-            if not leaf_two._get_indicators(indicatortools.Annotation):
-                prototype = (spannertools.Tie, )
-                spanner = tuple(leaf_one._get_spanners(prototype))[0]
-                leaf_two = self._copy_leaf_type_and_pitches(leaf_one, leaf_two)
-                leaves[i+1] = leaf_two
-                spanner._append(leaf_two)
-        # notate final leaf, if necessary
-        self._notate_one_leaf(leaves[-1], grace_handler)
-
-    def _notate_one_leaf(self, leaf, grace_handler):
-        leaf_annotations = leaf._get_indicators(indicatortools.Annotation)
-        tempo_indications = leaf._get_indicators(indicatortools.Tempo)
-        if leaf_annotations:
-            pitches, grace_container = grace_handler(leaf_annotations[0].value)
-            if not pitches:
-                new_leaf = scoretools.Rest(leaf)
-            elif 1 < len(pitches):
-                new_leaf = scoretools.Chord(leaf)
-                new_leaf.written_pitches = pitches
+    def _notate_leaves(
+        self,
+        grace_handler=None,
+        voice=None,
+        ):
+        for leaf in voice.select_leaves():
+            if leaf._has_indicator(indicatortools.Annotation):
+                annotation = leaf._get_indicator(indicatortools.Annotation)
+                tempo = None
+                if leaf._has_indicator(indicatortools.Tempo):
+                    tempo = leaf._get_indicator(indicatortools.Tempo)
+                    detach(indicatortools.Tempo, leaf)
+                pitches, grace_container = grace_handler(annotation.value)
+                if not pitches:
+                    new_leaf = scoretools.Rest(leaf)
+                elif 1 < len(pitches):
+                    new_leaf = scoretools.Chord(leaf)
+                    new_leaf.written_pitches = pitches
+                else:
+                    new_leaf = scoretools.Note(leaf)
+                    new_leaf.written_pitch = pitches[0]
+                if grace_container:
+                    attach(grace_container, new_leaf)
+                if tempo:
+                    attach(tempo, new_leaf)
+                tie = spannertools.Tie()
+                attach(tie, new_leaf)
+                mutate(leaf).replace(new_leaf)
             else:
-                new_leaf = scoretools.Note(leaf)
-                new_leaf.written_pitch = pitches[0]
-            if grace_container:
-                attach(grace_container, new_leaf)
-            leaf._get_parentage().parent[
-                leaf._get_parentage().parent.index(leaf)] = new_leaf
-            if tempo_indications:
-                tempo = tempo_indications[0]
-                attach(tempo, new_leaf)
-            tie = spannertools.Tie()
-            attach(tie, new_leaf)
-            return new_leaf
-        return leaf
+                previous_leaf = leaf._get_leaf(-1)
+                if isinstance(previous_leaf, scoretools.Rest):
+                    new_leaf = type(previous_leaf)(
+                        leaf.written_duration,
+                        )
+                elif isinstance(previous_leaf, scoretools.Note):
+                    new_leaf = type(previous_leaf)(
+                        previous_leaf.written_pitch,
+                        leaf.written_duration,
+                        )
+                else:
+                    new_leaf = type(previous_leaf)(
+                        previous_leaf.written_pitch,
+                        leaf.written_duration,
+                        )
+                mutate(leaf).replace(new_leaf)
+                tie = previous_leaf._get_spanner(spannertools.Tie)
+                tie._append(new_leaf)
 
     def _shift_downbeat_q_events_to_next_q_grid(self):
         beats = self.beats
