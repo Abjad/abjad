@@ -347,21 +347,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return superclass.home_directory_path
 
     @property
-    def score_manager_package_path(self):
-        r'''Gets score manager package path.
-
-        ..  container:: example
-
-            ::
-
-                >>> configuration.score_manager_package_path
-                'scoremanager'
-
-        Returns string.
-        '''
-        return 'scoremanager'
-
-    @property
     def transcripts_directory_path(self):
         r'''Gets score manager transcripts directory path.
 
@@ -472,29 +457,34 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         '''
         result = []
         if built_in:
-            for directory_entry in \
-                sorted(os.listdir(
-                    self.built_in_score_packages_directory_path)):
+            scores_directory_path = self.built_in_score_packages_directory_path
+            directory_entries = sorted(os.listdir(scores_directory_path))
+            for directory_entry in directory_entries:
                 if directory_entry[0].isalpha():
-                    package_path = '.'.join([
-                        'scoremanager',
-                        'scorepackages',
+                    directory_path = os.path.join(
+                        scores_directory_path,
                         directory_entry,
-                        ])
+                        )
+                    package_path = self.filesystem_path_to_package_path(
+                        directory_path,
+                        )
                     if head is None or package_path.startswith(head):
                         filesystem_path = os.path.join(
                             self.built_in_score_packages_directory_path,
-                            directory_entry)
+                            directory_entry,
+                            )
                         result.append(filesystem_path)
         if user:
-            for directory_entry in \
-                sorted(os.listdir(self.user_score_packages_directory_path)):
+            scores_directory_path = self.user_score_packages_directory_path
+            directory_entries = sorted(os.listdir(scores_directory_path))
+            for directory_entry in directory_entries:
                 if directory_entry[0].isalpha():
                     package_path = directory_entry
                     if head is None or package_path.startswith(head):
                         filesystem_path = os.path.join(
                             self.user_score_packages_directory_path,
-                            directory_entry)
+                            directory_entry,
+                            )
                         result.append(filesystem_path)
         return result
 
@@ -510,8 +500,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         Returns boolean.
         '''
         assert os.path.sep not in package_path
-        filesystem_path = \
-            self.package_path_to_filesystem_path(package_path)
+        filesystem_path = self.package_path_to_filesystem_path(package_path)
         return os.path.exists(filesystem_path)
 
     def package_path_to_filesystem_path(

@@ -192,3 +192,7 @@
         materialpackages > materials
     In scores:
         score_templates > templates
+
+50. Remove all '.'.join() statements. There should be no by-hand package
+    manipulation. Use self.configuration.filesystem_path_to_package_path()
+    instead.
