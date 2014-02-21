@@ -123,7 +123,7 @@ class Menu(ScoreManagerObject):
             self.toggle_secondary_commands()
         elif directive == 'n':
             self.toggle_hidden_commands()
-            self.display_hidden_commands()
+            #self.display_hidden_commands()
         elif directive == 'sce':
             self.interactively_edit_calling_code()
         elif directive == 'sdv':

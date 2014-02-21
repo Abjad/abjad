@@ -82,7 +82,7 @@ class Session(abctools.AbjadObject):
         self._score_manager = None
         self._scores_to_display = 'example'
         self._session_once_had_user_input = False
-        self._transcript = iotools.IOTranscript()
+        self._transcript = iotools.Transcript()
         self._attempted_to_open_file = False
         self.current_score_snake_case_name = None
         self.display_pitch_ranges_with_numbered_pitches = False
@@ -558,7 +558,7 @@ class Session(abctools.AbjadObject):
             ::
 
                 >>> session.io_transcript
-                IOTranscript()
+                Transcript()
 
         Returns IO transcript.
         '''

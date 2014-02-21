@@ -4,7 +4,7 @@ import time
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class IOTranscriptEntry(AbjadObject):
+class TranscriptEntry(AbjadObject):
     r'''IO transcript entry.
     '''
 

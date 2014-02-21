@@ -5,7 +5,7 @@ import time
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class IOTranscript(AbjadObject):
+class Transcript(AbjadObject):
 
     ### INITIALIZER ###
 
@@ -69,7 +69,7 @@ class IOTranscript(AbjadObject):
 
     def append_lines(self, lines, clear_terminal=None):
         from scoremanager import iotools
-        entry = iotools.IOTranscriptEntry(
+        entry = iotools.TranscriptEntry(
             lines,
             terminal_was_cleared=clear_terminal,
             )
