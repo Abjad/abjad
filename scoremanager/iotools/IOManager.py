@@ -84,6 +84,7 @@ class IOManager(IOManager):
             key = directive
         if key in ('b', 'back'):
             self._session.is_backtracking_locally = True
+            self._session._hide_hidden_commands = True
         elif key == 'pyd':
             message = 'running doctest ...'
             self.display([message, ''])
@@ -101,17 +102,22 @@ class IOManager(IOManager):
         elif key == 'next':
             self._session.is_navigating_to_next_score = True
             self._session.is_backtracking_to_score_manager = True
+            self._session._hide_hidden_commands = True
         elif key == 'prev':
             self._session.is_navigating_to_previous_score = True
             self._session.is_backtracking_to_score_manager = True
+            self._session._hide_hidden_commands = True
         elif key in ('q', 'quit'):
             self._session.is_quitting = True
+            self._session._hide_hidden_commands = True
         elif self._is_score_string(key) and self._session.is_in_score:
             self._session.is_backtracking_to_score = True
+            self._session._hide_hidden_commands = True
         elif self._is_score_string(key) and not self._session.is_in_score:
             directive = None
         elif self._is_home_string(key):
             self._session.is_backtracking_to_score_manager = True
+            self._session._hide_hidden_commands = True
         elif key == 'sct':
             self.toggle_source_code_tracking()
         else:
@@ -485,6 +491,7 @@ class IOManager(IOManager):
             )
         self.clear_terminal()
 
+    # TODO: move to Session?
     def toggle_source_code_tracking(self):
         if self._session.enable_where:
             self._session.enable_where = False
@@ -492,7 +499,8 @@ class IOManager(IOManager):
         else:
             self._session.enable_where = True
             message = 'source code tracking on.'
-        self._session.io_manager.proceed(message)
+        self._session.io_manager.display([message, ''])
+        self._session._hide_next_redraw = True
 
     def view_last_log(self):
         r'''Views last LilyPond log.

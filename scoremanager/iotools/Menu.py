@@ -594,3 +594,4 @@ class Menu(ScoreManagerObject):
             self._session.hide_secondary_commands = False
         else:
             self._session.hide_secondary_commands = True
+        self._session._hide_hidden_commands = True

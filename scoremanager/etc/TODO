@@ -175,3 +175,5 @@
 43. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
 
 44. Implement __format__ on IOTranscript.
+
+45. Make all session variables read-only.
