@@ -23,7 +23,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     _human_readable_target_name = 'material package manager'
 
-    asset_storehouse_packagesystem_path_in_built_in_library = \
+    storehouse_packagesystem_path_in_built_in_library = \
         'scoremanager.materialpackagemanagers'
 
     forbidden_directory_entries = (
@@ -31,9 +31,9 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         'MaterialPackageManager.py',
         )
 
-    score_package_asset_storehouse_path_infix_parts = None
+    score_package_storehouse_path_infix_parts = None
 
-    asset_storehouse_packagesystem_path_in_user_library = \
+    storehouse_packagesystem_path_in_user_library = \
         PackageWrangler.configuration.user_library_material_package_managers_package_path
 
     ### PRIVATE PROPERTIES ###
@@ -269,7 +269,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_storehouse_filesystem_paths(
+    def list_storehouse_filesystem_paths(
         self,
         in_built_in_library=True, 
         in_user_library=True,
@@ -282,7 +282,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_storehouse_filesystem_paths(
+            >>> for x in wrangler.list_storehouse_filesystem_paths(
             ...     in_user_library=False, 
             ...     in_user_score_packages=False):
             ...     x
@@ -291,7 +291,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialPackageManagerWrangler, self)
-        return superclass.list_asset_storehouse_filesystem_paths(
+        return superclass.list_storehouse_filesystem_paths(
             in_built_in_library=in_built_in_library,
             in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,

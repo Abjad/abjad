@@ -31,12 +31,12 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### CLASS VARIABLES ###
 
-    score_package_asset_storehouse_path_infix_parts = ('materials',)
+    score_package_storehouse_path_infix_parts = ('materials',)
 
-    asset_storehouse_packagesystem_path_in_built_in_library = \
+    storehouse_packagesystem_path_in_built_in_library = \
         'scoremanager.materialpackages'
 
-    asset_storehouse_packagesystem_path_in_user_library = \
+    storehouse_packagesystem_path_in_user_library = \
         PackageWrangler.configuration.user_library_material_packages_package_path
 
     ### INITIALIZER ###
@@ -327,7 +327,7 @@ class MaterialPackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_storehouse_filesystem_paths(
+    def list_storehouse_filesystem_paths(
         self,
         in_built_in_library=True, 
         in_user_library=True,
@@ -340,7 +340,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_storehouse_filesystem_paths(
+            >>> for x in wrangler.list_storehouse_filesystem_paths(
             ...     in_user_library=False, 
             ...     in_user_score_packages=False):
             ...     x
@@ -352,7 +352,7 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialPackageWrangler, self)
-        return superclass.list_asset_storehouse_filesystem_paths(
+        return superclass.list_storehouse_filesystem_paths(
             in_built_in_library=in_built_in_library,
             in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,

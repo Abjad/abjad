@@ -18,12 +18,12 @@ class StylesheetFileWrangler(Wrangler):
 
     ### CLASS VARIABLES ###
 
-    asset_storehouse_filesystem_path_in_built_in_library = \
+    storehouse_filesystem_path_in_built_in_library = \
         Wrangler.configuration.abjad_stylesheets_directory_path
 
-    score_package_asset_storehouse_path_infix_parts = ('stylesheets',)
+    score_package_storehouse_path_infix_parts = ('stylesheets',)
 
-    asset_storehouse_filesystem_path_in_user_library = \
+    storehouse_filesystem_path_in_user_library = \
         Wrangler.configuration.user_library_stylesheets_directory_path
 
     ### INITIALIZER ###
@@ -75,7 +75,7 @@ class StylesheetFileWrangler(Wrangler):
     def _get_current_directory(self):
         if self._session.current_score_directory_path:
             parts = (self._session.current_score_directory_path,)
-            parts += self.score_package_asset_storehouse_path_infix_parts
+            parts += self.score_package_storehouse_path_infix_parts
             return os.path.join(*parts)
     
     def _get_header_stylesheet_file_path(self):
@@ -224,7 +224,7 @@ class StylesheetFileWrangler(Wrangler):
         self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             storehouse_path = \
-                self.interactively_select_asset_storehouse_filesystem_path(
+                self.interactively_select_storehouse_filesystem_path(
                 in_built_in_library=False,
                 in_user_library=True,
                 in_built_in_score_packages=False,
@@ -362,7 +362,7 @@ class StylesheetFileWrangler(Wrangler):
             include_extension=include_extension,
             )
 
-    def list_asset_storehouse_filesystem_paths(
+    def list_storehouse_filesystem_paths(
         self,
         in_built_in_library=True, 
         in_user_library=True,
@@ -375,7 +375,7 @@ class StylesheetFileWrangler(Wrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_storehouse_filesystem_paths(
+            >>> for x in wrangler.list_storehouse_filesystem_paths(
             ...     in_user_library=False, 
             ...     in_user_score_packages=False,
             ...     ):
@@ -388,7 +388,7 @@ class StylesheetFileWrangler(Wrangler):
         Returns list.
         '''
         superclass = super(StylesheetFileWrangler, self)
-        return superclass.list_asset_storehouse_filesystem_paths(
+        return superclass.list_storehouse_filesystem_paths(
             in_built_in_library=in_built_in_library,
             in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,

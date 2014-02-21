@@ -346,7 +346,7 @@ class Session(abctools.AbjadObject):
             parts.append(self.configuration.user_score_packages_directory_path)
             parts.append(self.current_score_snake_case_name)
             parts.extend(
-                wranglers.MaterialPackageWrangler.score_package_asset_storehouse_path_infix_parts)
+                wranglers.MaterialPackageWrangler.score_package_storehouse_path_infix_parts)
             return os.path.join(*parts)
         else:
             return self.configuration.built_in_material_packages_directory_path
@@ -444,7 +444,7 @@ class Session(abctools.AbjadObject):
             parts.append(self.configuration.user_score_packages_directory_path)
             parts.append(self.current_score_snake_case_name)
             parts.extend(
-                wranglers.SegmentPackageWrangler.score_package_asset_storehouse_path_infix_parts)
+                wranglers.SegmentPackageWrangler.score_package_storehouse_path_infix_parts)
             return os.path.join(*parts)
 
     @apply

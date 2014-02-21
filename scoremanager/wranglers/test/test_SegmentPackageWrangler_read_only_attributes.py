@@ -13,7 +13,7 @@ def test_SegmentPackageWrangler_read_only_attributes_01():
     assert wrangler._current_storehouse_packagesystem_path is None
 
     parts = ('segments',)
-    assert wrangler.score_package_asset_storehouse_path_infix_parts == parts
+    assert wrangler.score_package_storehouse_path_infix_parts == parts
 
     assert wrangler._temporary_asset_package_path == '__temporary_package'
 
@@ -31,7 +31,7 @@ def test_SegmentPackageWrangler_read_only_attributes_02():
     assert wrangler._current_storehouse_packagesystem_path == string
 
     parts = ('segments',)
-    assert wrangler.score_package_asset_storehouse_path_infix_parts == parts
+    assert wrangler.score_package_storehouse_path_infix_parts == parts
 
     string = 'scoremanager.scorepackages.red_example_score.segments'
     string += '.__temporary_package'
