@@ -494,7 +494,22 @@ class IOManager(IOManager):
             message = 'source code tracking on.'
         self._session.io_manager.proceed(message)
 
+    def view_last_log(self):
+        r'''Views last LilyPond log.
+
+        Returns none.
+        '''
+        from abjad.tools import systemtools
+        self._session._attempted_to_open_file = True
+        if self._session.is_test:
+            return
+        systemtools.IOManager.view_last_log()
+
     def write_cache(self, prompt=True):
+        r'''Writes cache.
+
+        Returns none.
+        '''
         cache_file_path = self.configuration.cache_file_path
         cache_file_pointer = file(cache_file_path, 'w')
         cache_file_pointer.write('# -*- encoding: utf-8 -*-\n')
