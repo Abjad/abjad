@@ -37,6 +37,7 @@ class Session(abctools.AbjadObject):
     configuration = ScoreManagerConfiguration()
 
     _variables_to_display = (
+        'attempted_to_open_file',
         'breadcrumb_stack',
         'command_history',
         'controller_stack',
@@ -80,6 +81,7 @@ class Session(abctools.AbjadObject):
         self._scores_to_show = 'example'
         self._session_once_had_user_input = False
         self._transcript = iotools.IOTranscript()
+        self._attempted_to_open_file = False
         self.current_score_snake_case_name = None
         self.display_pitch_ranges_with_numbered_pitches = False
         self.dump_transcript = False
@@ -206,6 +208,22 @@ class Session(abctools.AbjadObject):
         type(self).__init__(self)
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def attempted_to_open_file(self):
+        r'''Is true when call to ``IOManager.open_file()`` has been made
+        during session. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.attempted_to_open_file
+                False
+
+        Returns boolean.
+        '''
+        return self._attempted_to_open_file
 
     @property
     def breadcrumb_stack(self):

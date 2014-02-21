@@ -302,9 +302,7 @@ class ScoreManager(ScoreManagerObject):
         Returns none.
         '''
         file_path = self.configuration.cache_file_path
-        if os.path.isfile(file_path):
-            command = 'vi -R {}'.format(file_path)
-            self._session.io_manager.spawn_subprocess(command)
+        self._session.io_manager.open_file(file_path)
 
     def write_cache(self, prompt=True):
         r'''Writes cache.

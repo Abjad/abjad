@@ -442,6 +442,22 @@ class IOManager(IOManager):
             )
         return view
 
+    def open_file(self, file_path, application=None):
+        r'''Opens `file_path`.
+
+        Returns none.
+        '''
+        from abjad.tools import systemtools
+        self._session._attempted_to_open_file = True
+        if self._session.is_test:
+            return
+        if not os.path.isfile(file_path):
+            return
+        return systemtools.IOManager.open_file(
+            file_path,
+            application=application,
+            )
+
     def print_not_yet_implemented(self):
         r'''Prints not-yet-implemented message.
 

@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 
-def test_ScoreManager_score_navigation_02():
+def test_ScoreManager_score_navigation_01():
     r'''Session-initial next and prev both work.
     '''
     pytest.skip('FIXME')
@@ -19,7 +19,7 @@ def test_ScoreManager_score_navigation_02():
     assert isinstance(score_manager._session.current_score_snake_case_name, str)
 
 
-def test_ScoreManager_score_navigation_03():
+def test_ScoreManager_score_navigation_02():
     r'''Successive next.
     '''
     pytest.skip('FIXME')
@@ -31,7 +31,7 @@ def test_ScoreManager_score_navigation_03():
     assert isinstance(score_manager._session.current_score_snake_case_name, str)
 
 
-def test_ScoreManager_score_navigation_04():
+def test_ScoreManager_score_navigation_03():
     r'''Successive prev.
     '''
     pytest.skip('FIXME')

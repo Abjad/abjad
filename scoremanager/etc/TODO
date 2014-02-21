@@ -173,3 +173,5 @@
 42. Make (next) and (prev) work again.
 
 43. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
+
+44. Implement __format__ on IOTranscript.
