@@ -54,10 +54,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 'score_manager_library',
                 'material_package_managers',
             ])
-        self.user_library_material_packages_package_path = '.'.join([
-            'score_manager_library',
-            'material_packages',
-            ])
 
         # built-in score packages
 
@@ -123,6 +119,12 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             },
         }
         return options
+
+    @property
+    def _user_library_directory_name(self):
+        directory_path = self.user_library_directory_path
+        directory_name = os.path.split(directory_path)[-1]
+        return directory_name
 
     ### PRIVATE METHODS ###
 
@@ -410,10 +412,15 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             if remainder:
                 remainder = remainder.replace(os.path.sep, '.')
                 result = '{}.{}'.format(
-                    self.user_library_material_packages_package_path, 
-                    remainder)
+                    self._user_library_directory_name, 
+                    'materialpackages',
+                    remainder,
+                    )
             else:
-                result = self.user_library_material_packages_package_path
+                result = '.'.join([
+                    self._user_library_directory_name,
+                    'materialpackages',
+                    ])
             return result
         elif filesystem_path.startswith(
             self.user_library_material_package_managers_directory_path):
@@ -534,8 +541,8 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         elif package_path_parts[0] == 'scoremanager.materialpackages':
             directory_parts = [self.built_in_material_packages_filesystem_path]
             directory_parts += package_path_parts[1:]
-        elif package_path.startswith('score_manager_library'):
-            prefix_length = len('score_manager_library')
+        elif package_path.startswith(self._user_library_directory_name):
+            prefix_length = len(self._user_library_directory_name)
             trimmed_package_path = package_path[prefix_length:]
             directory_parts = []
             directory_parts.append(self.user_library_directory_path)

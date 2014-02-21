@@ -25,8 +25,6 @@ class SegmentPackageWrangler(PackageWrangler):
 
     user_storehouse_directory_path = None
 
-    user_storehouse_package_path = None
-
     ### INITIALIZER ###
 
     def __init__(self, session=None):

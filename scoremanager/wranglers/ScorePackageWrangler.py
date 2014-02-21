@@ -38,8 +38,6 @@ class ScorePackageWrangler(PackageWrangler):
     user_storehouse_directory_path = \
         PackageWrangler.configuration.user_score_packages_directory_path
 
-    user_storehouse_package_path = ''
-
     ### INITIALIZER ###
 
     def __init__(self, session=None):
