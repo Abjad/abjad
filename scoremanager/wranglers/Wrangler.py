@@ -61,6 +61,12 @@ class Wrangler(ScoreManagerObject):
     def _temporary_asset_name(self):
         pass
 
+    @property
+    def _views_module_path(self):
+        directory_path = self._get_current_directory_path_of_interest()
+        file_path = os.path.join(directory_path, '__views__.py')
+        return file_path
+
     ### PRIVATE METHODS ###
 
     def _filesystem_path_to_space_delimited_lowercase_name(
@@ -95,7 +101,7 @@ class Wrangler(ScoreManagerObject):
 
     def _get_current_view_module_manager(self):
         from scoremanager import managers
-        file_path = self.views_module_path
+        file_path = self._views_module_path
         manager = managers.FileManager(
             file_path,
             session=self._session,
@@ -186,7 +192,7 @@ class Wrangler(ScoreManagerObject):
 
     def _read_view_inventory_from_disk(self):
         from scoremanager import managers
-        view_file_path = self.views_module_path
+        view_file_path = self._views_module_path
         if view_file_path is None:
             return
         manager = managers.FileManager(
@@ -225,28 +231,35 @@ class Wrangler(ScoreManagerObject):
             self._session._pop_breadcrumb()
         self._session._pop_controller()
         self._session._pop_breadcrumb()
-        self._session._push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
+        self._session._push_breadcrumb(
+            breadcrumb=breadcrumb, 
+            rollback=rollback,
+            )
         self._session._restore_breadcrumbs(cache=cache)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def views_module_path(self):
-        directory_path = self._get_current_directory_path_of_interest()
-        file_path = os.path.join(directory_path, '__views__.py')
-        return file_path
 
     ### PUBLIC METHODS ###
 
     def add_metadatum(self):
+        r'''Adds metadatum to metadata module.
+
+        Returns none.
+        '''
         manager = self._get_current_package_manager()
         manager.add_metadatum()
 
     def get_metadatum(self):
+        r'''Gets metadatum from metadata module.
+
+        Returns object.
+        '''
         manager = self._get_current_package_manager()
         manager.get_metadatum()
 
     def list_directory(self):
+        r'''List directory of current package manager.
+        
+        Returns none.
+        '''
         manager = self._get_current_package_manager()
         manager.list_directory()
 
@@ -254,6 +267,10 @@ class Wrangler(ScoreManagerObject):
         self,
         pending_user_input=None,
         ):
+        r'''List views in views module.
+
+        Returns none.
+        '''
         self._session.io_manager._assign_user_input(pending_user_input)
         view_inventory = self._read_view_inventory_from_disk()
         if view_inventory is None:
@@ -278,21 +295,14 @@ class Wrangler(ScoreManagerObject):
         self._session.io_manager.display(lines)
         self._session.io_manager.proceed()
 
-    @abc.abstractmethod
-    def make_asset(
-        self,
-        pending_user_input=None,
-        ):
-        r'''Makes asset.
-
-        Returns none.
-        '''
-        pass
-
     def make_view(
         self,
         pending_user_input=None,
         ):
+        r'''Makes view.
+
+        Returns none.
+        '''
         from scoremanager import editors
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('view name')
@@ -321,7 +331,6 @@ class Wrangler(ScoreManagerObject):
             )
         self.write_view(view_name, view)
 
-    # TODO: write test
     def remove_assets(
         self, 
         head=None,
@@ -358,7 +367,6 @@ class Wrangler(ScoreManagerObject):
         message = message.format(total_assets_removed, asset_string)
         self._session.io_manager.proceed(message)
 
-    # TODO: write test
     def rename_asset(
         self,
         pending_user_input=None,
@@ -377,26 +385,50 @@ class Wrangler(ScoreManagerObject):
         asset_manager.rename()
 
     def remove_initializer_module(self):
+        r'''Removes initializer module.
+
+        Returns none.
+        '''
         manager = self._get_current_package_manager()
         manager.remove_initializer_module()
 
     def remove_metadata_module(self):
+        r'''Removes metadata module.
+
+        Returns none.
+        '''
         manager = self._get_current_package_manager()
         manager.remove_metadata_module()
 
     def remove_metadatum(self):
+        r'''Removes metadatum from metadata module.
+
+        Returns none.
+        '''
         manager = self._get_current_package_manager()
         manager.remove_metadatum()
 
     def remove_views_module(self):
+        r'''Removes views module.
+
+        Returns none.
+        '''
         manager = self._get_current_package_manager()
         manager.remove_views_module()
 
     def rewrite_metadata_module(self):
+        r'''Rewrites metadata module.
+
+        Returns none.
+        '''
         manager = self._get_current_package_manager()
         manager.rewrite_metadata_module()
 
     def run_doctest(self, prompt=True):
+        r'''Runs doctest.
+
+        Returns none.
+        '''
         path = self._get_current_directory_path_of_interest()
         command = 'ajv doctest {}'.format(path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
@@ -412,6 +444,10 @@ class Wrangler(ScoreManagerObject):
         self._session.io_manager.proceed(prompt=prompt)
 
     def run_pytest(self, prompt=True):
+        r'''Runs py.test.
+
+        Returns none.
+        '''
         path = self._get_current_directory_path_of_interest()
         command = 'py.test -rf {}'.format(path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
@@ -496,6 +532,12 @@ class Wrangler(ScoreManagerObject):
         self,
         pending_user_input=None,
         ):
+        r'''Selects view.
+
+        Writes view name to metadata module.
+
+        Returns none.
+        '''
         self._session.io_manager._assign_user_input(pending_user_input)
         view_inventory = self._read_view_inventory_from_disk()
         if view_inventory is None:
@@ -515,25 +557,76 @@ class Wrangler(ScoreManagerObject):
         manager._add_metadatum('view_name', view_name)
 
     def view_initializer_module(self):
+        r'''Views initializer module.
+
+        Returns none.
+        '''
         manager = self._get_current_package_manager()
         manager.view_initializer_module()
 
     def view_metadata_module(self):
+        r'''Views metadata module.
+
+        Returns none.
+        '''
         manager = self._get_current_package_manager()
         manager.view_metadata_module()
 
     def view_views_module(self):
+        r'''Views views module.
+
+        Returns none.
+        '''
         manager = self._get_current_view_module_manager()
         manager.edit()
 
     def write_boilerplate_initializer_module(self):
+        r'''Writes boilerplate initializer module.
+
+        Returns none.
+        '''
         manager = self._get_current_package_manager()
         manager.write_boilerplate_initializer_module()
 
     def write_stub_initializer_module(self):
+        r'''Writes stub initializer module.
+
+        Returns none.
+        '''
         manager = self._get_current_package_manager()
         manager.write_stub_initializer_module()
 
+    def write_view(self, view_name, new_view, prompt=True):
+        r'''Writes view to views module.
+
+        Returns none.
+        '''
+        from scoremanager import iotools
+        view_inventory = self._read_view_inventory_from_disk()
+        if view_inventory is None:
+            view_inventory = datastructuretools.TypedOrderedDict(
+                item_class=iotools.View,
+                )
+        view_inventory[view_name] = new_view
+        lines = []
+        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append('from abjad import *\n')
+        line = 'from scoremanager import iotools\n'
+        lines.append(line)
+        lines.append('\n\n')
+        line = 'view_inventory={}'.format(format(view_inventory))
+        lines.append(line)
+        lines = ''.join(lines)
+        view_file_path = self._views_module_path
+        file_pointer = file(view_file_path, 'w')
+        file_pointer.write(lines)
+        file_pointer.close()
+        message = 'view written to disk.'
+        self._session.io_manager.proceed(message, prompt=prompt)
+
+    ### LIST METHODS ###
+
+    # TODO: make private
     def list_asset_filesystem_paths(
         self,
         abjad_library=True, 
@@ -542,10 +635,6 @@ class Wrangler(ScoreManagerObject):
         user_score_packages=True, 
         head=None,
         ):
-        r'''Lists asset filesystem paths.
-
-        Returns list.
-        '''
         result = []
         for directory_path in self.list_storehouse_directory_paths(
             abjad_library=abjad_library,
@@ -575,6 +664,7 @@ class Wrangler(ScoreManagerObject):
                             result.append(filesystem_path)
         return result
 
+    # TODO: make private
     def list_asset_managers(
         self,
         abjad_library=True, 
@@ -583,10 +673,6 @@ class Wrangler(ScoreManagerObject):
         user_score_packages=True, 
         head=None,
         ):
-        r'''Lists asset managers.
-
-        Returns list.
-        '''
         if hasattr(self, 'list_visible_asset_managers'):
             return self.list_visible_asset_managers(head=head)
         result = []
@@ -600,6 +686,7 @@ class Wrangler(ScoreManagerObject):
             result.append(asset_manager)
         return result
 
+    # TODO: make private
     def list_asset_names(
         self,
         abjad_library=True, 
@@ -609,10 +696,6 @@ class Wrangler(ScoreManagerObject):
         head=None, 
         include_extension=False,
         ):
-        r'''Lists asset names.
-
-        Returns list.
-        '''
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(
             abjad_library=abjad_library,
@@ -629,6 +712,7 @@ class Wrangler(ScoreManagerObject):
                         filesystem_path))
         return result
 
+    # TODO: make private
     def list_storehouse_directory_paths(
         self,
         abjad_library=True, 
@@ -636,10 +720,6 @@ class Wrangler(ScoreManagerObject):
         abjad_score_packages=True, 
         user_score_packages=True,
         ):
-        r'''Lists asset storehouse filesystem paths.
-
-        Returns list.
-        '''
         result = []
         if abjad_library and \
             self.abjad_storehouse_directory_path is not None:
@@ -664,30 +744,6 @@ class Wrangler(ScoreManagerObject):
                 filesystem_path = os.path.join(*parts)
                 result.append(filesystem_path)
         return result
-
-    def write_view(self, view_name, new_view, prompt=True):
-        from scoremanager import iotools
-        view_inventory = self._read_view_inventory_from_disk()
-        if view_inventory is None:
-            view_inventory = datastructuretools.TypedOrderedDict(
-                item_class=iotools.View,
-                )
-        view_inventory[view_name] = new_view
-        lines = []
-        lines.append('# -*- encoding: utf-8 -*-\n')
-        lines.append('from abjad import *\n')
-        line = 'from scoremanager import iotools\n'
-        lines.append(line)
-        lines.append('\n\n')
-        line = 'view_inventory={}'.format(format(view_inventory))
-        lines.append(line)
-        lines = ''.join(lines)
-        view_file_path = self.views_module_path
-        file_pointer = file(view_file_path, 'w')
-        file_pointer.write(lines)
-        file_pointer.close()
-        message = 'view written to disk.'
-        self._session.io_manager.proceed(message, prompt=prompt)
 
     ### UI MANIFEST ###
 

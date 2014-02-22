@@ -188,12 +188,12 @@ class PackageManager(DirectoryManager):
                 )
 
     def remove_views_module(self, prompt=True):
-        if os.path.isfile(self.views_module_path):
+        if os.path.isfile(self._views_module_path):
             if prompt:
                 message = 'remove views module?'
                 if not self._session.io_manager.confirm(message):
                     return
-            os.remove(self.views_module_path)
+            os.remove(self._views_module_path)
             line = 'views module removed.'
             self._session.io_manager.proceed(
                 line, 
