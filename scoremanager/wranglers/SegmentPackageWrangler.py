@@ -112,7 +112,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 message = message.format(segment_package_name)
                 self._session.io_manager.display(message)
         self._session.io_manager.display('')
-        self.interactively_view_asset_pdfs()
+        self.view_asset_pdfs()
         self._session.io_manager.proceed()
 
     def interactively_reinterpret_all_current_lilypond_files(
@@ -147,7 +147,7 @@ class SegmentPackageWrangler(PackageWrangler):
         message = 'press return to view PDF(s).'
         self._session.io_manager.proceed(message=message, prompt=prompt)
         if view_output_pdfs:
-            self.interactively_view_asset_pdfs()
+            self.view_asset_pdfs()
 
     def interactively_version_all_assets(
         self,
@@ -182,7 +182,7 @@ class SegmentPackageWrangler(PackageWrangler):
         self._session.io_manager.display('')
         self._session.io_manager.proceed()
 
-    def interactively_view_asset_pdfs(
+    def view_asset_pdfs(
         self,
         pending_user_input=None,
         ):
@@ -443,5 +443,5 @@ class SegmentPackageWrangler(PackageWrangler):
         'lyri': interactively_reinterpret_all_current_lilypond_files,
         'pdfm': interactively_make_asset_pdfs,
         'pdfs': interactively_version_all_assets,
-        'pdfv': interactively_view_asset_pdfs,
+        'pdfv': view_asset_pdfs,
         })

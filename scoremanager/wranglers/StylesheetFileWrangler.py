@@ -221,7 +221,7 @@ class StylesheetFileWrangler(Wrangler):
         self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             storehouse_path = \
-                self.interactively_select_storehouse_directory_path(
+                self.select_storehouse_directory_path(
                 abjad_library=False,
                 user_library=True,
                 abjad_score_packages=False,

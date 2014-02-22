@@ -62,7 +62,7 @@ class SegmentPackageManager(PackageManager):
         elif result == 'user entered lone return':
             self.interactively_edit_asset_definition_module()
 
-    def _interactively_view_versioned_file(self, extension):
+    def _view_versioned_file(self, extension):
         assert extension in ('.ly', '.pdf', '.py')
         getter = self._session.io_manager.make_getter(where=self._where)
         last_version_number = self._get_last_version_number()
@@ -348,7 +348,7 @@ class SegmentPackageManager(PackageManager):
             )
         return version_number
 
-    def interactively_view_all_versioned_pdfs(self):
+    def view_all_versioned_pdfs(self):
         r'''Interactively views all versioend PDFs.
 
         Returns none.
@@ -373,7 +373,7 @@ class SegmentPackageManager(PackageManager):
         command = 'open {}'.format(file_paths)
         self._session.io_manager.spawn_subprocess(command)
 
-    def interactively_view_current_output_ly(self):
+    def view_current_output_ly(self):
         r'''Interactively views current output LilyPond file.
 
         Returns none.
@@ -383,26 +383,26 @@ class SegmentPackageManager(PackageManager):
             command = 'vim -R {}'.format(output_lilypond_file_path)
             self._session.io_manager.spawn_subprocess(command)
 
-    def interactively_view_versioned_output_ly(self):
+    def view_versioned_output_ly(self):
         r'''Interactively views output LilyPond file.
 
         Returns none.
         '''
-        self._interactively_view_versioned_file('.ly')
+        self._view_versioned_file('.ly')
 
-    def interactively_view_versioned_output_pdf(self):
+    def view_versioned_output_pdf(self):
         r'''Interactively views output PDF.
 
         Returns none.
         '''
-        self._interactively_view_versioned_file('.pdf')
+        self._view_versioned_file('.pdf')
 
-    def interactively_view_versioned_segment_definition_module(self):
+    def view_versioned_segment_definition_module(self):
         r'''Interactively views versioned segment definition module.
 
         Returns none.
         '''
-        self._interactively_view_versioned_file('.py')
+        self._view_versioned_file('.py')
 
     def make_versions_directory(self):
         r'''Makes versions directory.
@@ -451,13 +451,13 @@ class SegmentPackageManager(PackageManager):
         'E': interactively_edit_asset_definition_module_from_top,
         'e': interactively_edit_asset_definition_module,
         'lyri': interactively_reinterpret_current_lilypond_file,
-        'lyv': interactively_view_current_output_ly,
-        'lyver': interactively_view_versioned_output_ly,
+        'lyv': view_current_output_ly,
+        'lyver': view_versioned_output_ly,
         'pdfv': view_output_pdf,
         'pdfm': interactively_make_asset_pdf,
-        'vv': interactively_view_all_versioned_pdfs,
-        'pdfver': interactively_view_versioned_output_pdf,
-        'pyver': interactively_view_versioned_segment_definition_module,
+        'vv': view_all_versioned_pdfs,
+        'pdfver': view_versioned_output_pdf,
+        'pyver': view_versioned_segment_definition_module,
         'pdfs': interactively_save_to_versions_directory,
         'vrl': interactively_list_versions_directory,
         })

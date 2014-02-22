@@ -181,12 +181,12 @@ class FileManager(Manager):
             self._session.io_manager.spawn_subprocess(command)
         self._session.io_manager.proceed('', prompt=prompt)
 
-    def interactively_view(self):
+    def view(self):
         r'''Interactively views file.
 
         Returns none.
         '''
-        self._session.io_manager.interactively_view(self._filesystem_path)
+        self._session.io_manager.view(self._filesystem_path)
 
     ### UI MANIFEST ###
 
@@ -194,5 +194,5 @@ class FileManager(Manager):
     _user_input_to_action.update({
         'e': interactively_edit,
         'ts': interactively_typeset_tex_file,
-        'v': interactively_view,
+        'v': view,
         })

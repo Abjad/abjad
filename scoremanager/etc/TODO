@@ -31,7 +31,7 @@
 
 12. Author ScorePackageManager docstrings.
 
-13. Author StylesheetFileWrangler.interactively_remove_assets() test.
+13. Author StylesheetFileWrangler.remove_assets() test.
     Will involve making pending_user_input='... rm ...' work with named 
     arguments instead of just numeric arguments.
 

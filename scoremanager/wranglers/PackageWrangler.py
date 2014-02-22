@@ -181,14 +181,14 @@ class PackageWrangler(Wrangler):
         self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             asset_package_path = \
-                self.interactively_select_asset_package_path(
+                self.select_asset_package_path(
                 head=head, infinitival_phrase='to rename')
         if self._session._backtrack():
             return
         asset_manager = self._initialize_asset_manager(asset_package_path)
         asset_manager.interactively_rename()
 
-    def interactively_select_asset_package_path(
+    def select_asset_package_path(
         self,
         clear=True,
         cache=False,

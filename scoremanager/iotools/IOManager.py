@@ -406,7 +406,7 @@ class IOManager(IOManager):
             self.display(lines)
         self._session.hide_next_redraw = True
 
-    def interactively_view(self, file_path):
+    def view(self, file_path):
         r'''Interactively views `file_path`.
 
         Returns none.

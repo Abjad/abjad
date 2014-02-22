@@ -671,8 +671,8 @@ class MaterialPackageManager(PackageManager):
     def interactively_edit_stylesheet_file(self):
         self.stylesheet_file_manager.interactively_edit()
 
-    def interactively_remove(self):
-        PackageManager.interactively_remove(self)
+    def remove(self):
+        PackageManager.remove(self)
 
     def interactively_rename_package(self):
         base_name = os.path.basename(self._filesystem_path)
@@ -746,7 +746,7 @@ class MaterialPackageManager(PackageManager):
         self._path = new_directory_path
         self._session.is_backtracking_locally = True
 
-    def interactively_select_material_package_manager(self, prompt=True):
+    def select_material_package_manager(self, prompt=True):
         from scoremanager import wranglers
         material_manager_wrangler = wranglers.MaterialPackageManagerWrangler(
             session=self._session)
@@ -762,13 +762,13 @@ class MaterialPackageManager(PackageManager):
         message = 'user input handler selected.'
         self._session.io_manager.proceed(message=message, prompt=prompt)
 
-    def interactively_select_stylesheet(self, prompt=True):
+    def select_stylesheet(self, prompt=True):
         from scoremanager import wranglers
         stylesheet_file_wrangler = wranglers.StylesheetFileWrangler(
             session=self._session)
         with self.backtracking:
             stylesheet_file_path = \
-                stylesheet_file_wrangler.interactively_select_asset_filesystem_path()
+                stylesheet_file_wrangler.select_asset_filesystem_path()
         if self._session._backtrack():
             return
         self.stylesheet_file_path_in_memory = stylesheet_file_path
@@ -777,30 +777,30 @@ class MaterialPackageManager(PackageManager):
             prompt=prompt,
             )
 
-    def interactively_view_illustration_ly(self):
-        self.illustration_ly_file_manager.interactively_view()
+    def view_illustration_ly(self):
+        self.illustration_ly_file_manager.view()
 
-    def interactively_view_illustration_pdf(self):
-        self.illustration_pdf_file_manager.interactively_view()
+    def view_illustration_pdf(self):
+        self.illustration_pdf_file_manager.view()
 
-    def interactively_view_output_material_module(self):
-        self.output_material_module_manager.interactively_view()
+    def view_output_material_module(self):
+        self.output_material_module_manager.view()
 
-    def interactively_write_material_definition_module_boilerplate(self):
+    def write_material_definition_module_boilerplate(self):
         from scoremanager import managers
         manager = managers.FileManager(
             self.material_definition_module_file_path,
             session=self._session,
             )
-        manager.interactively_write_boilerplate()
+        manager.write_boilerplate()
 
-    def interactively_write_output_material_module_boilerplate(self):
+    def write_output_material_module_boilerplate(self):
         from scoremanager import managers
         manager = managers.FileManager(
             self.output_material_module_file_path,
             session=self._session,
             )
-        manager.interactively_write_boilerplate()
+        manager.write_boilerplate()
 
     def manage_stylesheets(self):
         from scoremanager import wranglers
@@ -1197,14 +1197,14 @@ class MaterialPackageManager(PackageManager):
         wrapper = self.user_input_wrapper_in_memory
         self.write_user_input_wrapper(wrapper)
 
-    def interactively_view_user_input_module(
+    def view_user_input_module(
         self,
         pending_user_input=None,
         ):
         from scoremanager import managers
         self._session.io_manager._assign_user_input(pending_user_input)
         file_path = self.user_input_module_file_path
-        self._session.io_manager.interactively_view(file_path)
+        self._session.io_manager.view(file_path)
 
     def load_user_input_wrapper_demo_values(self, prompt=False):
         user_input_demo_values = copy.deepcopy(
@@ -1281,23 +1281,23 @@ class MaterialPackageManager(PackageManager):
         'lyd': remove_illustration_ly,
         'lym': write_illustration_ly,
         'ly': illustration_ly_file_manager,
-        'mdcanned': interactively_write_material_definition_module_boilerplate,
+        'mdcanned': write_material_definition_module_boilerplate,
         'mde': interactively_edit_material_definition_module,
         'mddelete': remove_material_definition_module,
         'mdstub': write_stub_material_definition_module,
         'mdx': run_python_on_material_definition_module,
         'mdxe': run_abjad_on_material_definition_module,
-        'omcanned': interactively_write_output_material_module_boilerplate,
+        'omcanned': write_output_material_module_boilerplate,
         'omdelete': remove_output_material_module,
         'omm': write_output_material,
         'omi': interactively_edit_output_material,
-        'omv': interactively_view_output_material_module,
+        'omv': view_output_material_module,
         'pdfm': write_illustration_ly_and_pdf,
         'pdfd': remove_illustration_pdf,
-        'pdfv': interactively_view_illustration_pdf,
+        'pdfv': view_illustration_pdf,
         'ren': interactively_rename_package,
         'ssm': interactively_edit_stylesheet_file,
-        'sss': interactively_select_stylesheet,
+        'sss': select_stylesheet,
         'stl': manage_stylesheets,
         'uid': remove_user_input_module,
 
@@ -1306,6 +1306,6 @@ class MaterialPackageManager(PackageManager):
         'uip': populate_user_input_wrapper,
         'uis': display_user_input_demo_values,
         'uit': swap_user_input_values_default_status,
-        'uimv': interactively_view_user_input_module,
+        'uimv': view_user_input_module,
 
         })

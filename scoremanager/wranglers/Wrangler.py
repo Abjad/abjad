@@ -315,7 +315,7 @@ class Wrangler(ScoreManagerObject):
         self.write_view(view_name, view)
 
     # TODO: write test
-    def interactively_remove_assets(
+    def remove_assets(
         self, 
         head=None,
         pending_user_input=None,
@@ -363,27 +363,27 @@ class Wrangler(ScoreManagerObject):
         self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             asset_filesystem_path = \
-                self.interactively_select_asset_filesystem_path()
+                self.select_asset_filesystem_path()
         if self._session._backtrack():
             return
         asset_manager = self._initialize_asset_manager(asset_filesystem_path)
         asset_manager.interactively_rename()
 
-    def interactively_remove_initializer_module(self):
+    def remove_initializer_module(self):
         manager = self._get_current_package_manager()
-        manager.interactively_remove_initializer_module()
+        manager.remove_initializer_module()
 
-    def interactively_remove_metadata_module(self):
+    def remove_metadata_module(self):
         manager = self._get_current_package_manager()
-        manager.interactively_remove_metadata_module()
+        manager.remove_metadata_module()
 
-    def interactively_remove_metadatum(self):
+    def remove_metadatum(self):
         manager = self._get_current_package_manager()
-        manager.interactively_remove_metadatum()
+        manager.remove_metadatum()
 
-    def interactively_remove_views_module(self):
+    def remove_views_module(self):
         manager = self._get_current_package_manager()
-        manager.interactively_remove_views_module()
+        manager.remove_views_module()
 
     def interactively_rewrite_metadata_module(self):
         manager = self._get_current_package_manager()
@@ -417,7 +417,7 @@ class Wrangler(ScoreManagerObject):
                 )
         self._session.io_manager.proceed(prompt=prompt)
 
-    def interactively_select_asset_filesystem_path(
+    def select_asset_filesystem_path(
         self, 
         clear=True, 
         cache=False,
@@ -445,7 +445,7 @@ class Wrangler(ScoreManagerObject):
         self._session._restore_breadcrumbs(cache=cache)
         return result
 
-    def interactively_select_storehouse_directory_path(
+    def select_storehouse_directory_path(
         self,
         clear=True, 
         cache=False,
@@ -485,7 +485,7 @@ class Wrangler(ScoreManagerObject):
         self._session._restore_breadcrumbs(cache=cache)
         return result
 
-    def interactively_select_view(
+    def select_view(
         self,
         pending_user_input=None,
         ):
@@ -507,25 +507,25 @@ class Wrangler(ScoreManagerObject):
         manager = self._get_current_package_manager()
         manager._add_metadatum('view_name', view_name)
 
-    def interactively_view_initializer_module(self):
+    def view_initializer_module(self):
         manager = self._get_current_package_manager()
-        manager.interactively_view_initializer_module()
+        manager.view_initializer_module()
 
-    def interactively_view_metadata_module(self):
+    def view_metadata_module(self):
         manager = self._get_current_package_manager()
-        manager.interactively_view_metadata_module()
+        manager.view_metadata_module()
 
-    def interactively_view_views_module(self):
+    def view_views_module(self):
         manager = self._get_current_view_module_manager()
         manager.interactively_edit()
 
-    def interactively_write_boilerplate_initializer_module(self):
+    def write_boilerplate_initializer_module(self):
         manager = self._get_current_package_manager()
-        manager.interactively_write_boilerplate_initializer_module()
+        manager.write_boilerplate_initializer_module()
 
-    def interactively_write_stub_initializer_module(self):
+    def write_stub_initializer_module(self):
         manager = self._get_current_package_manager()
-        manager.interactively_write_stub_initializer_module()
+        manager.write_stub_initializer_module()
 
     def list_asset_filesystem_paths(
         self,
@@ -696,22 +696,22 @@ class Wrangler(ScoreManagerObject):
     ### UI MANIFEST ###
 
     _user_input_to_action = {
-        'inbp': interactively_write_boilerplate_initializer_module,
-        'inrm': interactively_remove_initializer_module,
-        'ins': interactively_write_stub_initializer_module,
-        'inv': interactively_view_initializer_module,
+        'inbp': write_boilerplate_initializer_module,
+        'inrm': remove_initializer_module,
+        'ins': write_stub_initializer_module,
+        'inv': view_initializer_module,
         'ls': interactively_list_directory,
         'mda': interactively_add_metadatum,
         'mdg': interactively_get_metadatum,
-        'mdrm': interactively_remove_metadatum,
-        'mdmrm': interactively_remove_metadata_module,
+        'mdrm': remove_metadatum,
+        'mdmrm': remove_metadata_module,
         'mdmrw': interactively_rewrite_metadata_module,
-        'mdmv': interactively_view_metadata_module,
+        'mdmv': view_metadata_module,
         'ren': interactively_rename_asset,
-        'rm': interactively_remove_assets,
+        'rm': remove_assets,
         'vwl': interactively_list_views,
         'vwn': interactively_make_view,
-        'vws': interactively_select_view,
-        'vwmrm': interactively_remove_views_module,
-        'vwmv': interactively_view_views_module,
+        'vws': select_view,
+        'vwmrm': remove_views_module,
+        'vwmv': view_views_module,
         }

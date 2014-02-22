@@ -180,7 +180,7 @@ class ListEditor(Editor):
         self.items.remove(item)
         self.items.insert(new_index, item)
 
-    def interactively_remove_items(self):
+    def remove_items(self):
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_menu_section_range(
             self.items_identifier, self._numbered_section)
@@ -198,6 +198,6 @@ class ListEditor(Editor):
 
     _user_input_to_action = {
         'add':  interactively_add_items,
-        'rm':   interactively_remove_items,
+        'rm':   remove_items,
         'mv':   interactively_move_item,
     }

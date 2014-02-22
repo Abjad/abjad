@@ -262,7 +262,7 @@ class Manager(ScoreManagerObject):
         shutil.copyfile(self._filesystem_path, new_path)
         self._session.io_manager.proceed('asset copied.')
 
-    def interactively_remove(
+    def remove(
         self, 
         pending_user_input=None,
         ):
@@ -286,12 +286,12 @@ class Manager(ScoreManagerObject):
             message = message.format(self._filesystem_path)
             self._session.io_manager.proceed(message)
 
-    def interactively_remove_and_backtrack_locally(self):
+    def remove_and_backtrack_locally(self):
         r'''Interactively removes filesystem asset and backtracks locally.
 
         Returns none.
         '''
-        self.interactively_remove()
+        self.remove()
         self._session.is_backtracking_locally = True
 
     def interactively_rename(
@@ -318,7 +318,7 @@ class Manager(ScoreManagerObject):
         if self._rename(new_path):
             self._session.io_manager.proceed('asset renamed.')
 
-    def interactively_write_boilerplate(
+    def write_boilerplate(
         self, 
         pending_user_input=None,
         ):
@@ -465,6 +465,6 @@ class Manager(ScoreManagerObject):
 
     _user_input_to_action = {
         'cp': interactively_copy,
-        'rm': interactively_remove_and_backtrack_locally,
+        'rm': remove_and_backtrack_locally,
         'ren': interactively_rename,
         }

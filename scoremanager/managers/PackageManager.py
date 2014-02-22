@@ -178,7 +178,7 @@ class PackageManager(DirectoryManager):
         message = '{!r}'.format(metadatum)
         self._session.io_manager.proceed(message=message)
 
-    def interactively_remove_initializer_module(self, prompt=True):
+    def remove_initializer_module(self, prompt=True):
         if os.path.isfile(self._initializer_file_path):
             os.remove(self._initializer_file_path)
             line = 'initializer deleted.'
@@ -187,7 +187,7 @@ class PackageManager(DirectoryManager):
                 prompt=prompt,
                 )
 
-    def interactively_remove_views_module(self, prompt=True):
+    def remove_views_module(self, prompt=True):
         if os.path.isfile(self.views_module_path):
             if prompt:
                 message = 'remove views module?'
@@ -200,7 +200,7 @@ class PackageManager(DirectoryManager):
                 prompt=prompt,
                 )
 
-    def interactively_remove_metadata_module(self, prompt=True):
+    def remove_metadata_module(self, prompt=True):
         if os.path.isfile(self._metadata_module_path):
             if prompt:
                 message = 'remove metadata module?'
@@ -213,7 +213,7 @@ class PackageManager(DirectoryManager):
                 prompt=prompt,
                 )
 
-    def interactively_remove_metadatum(self):
+    def remove_metadatum(self):
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
         result = getter._run()
@@ -284,17 +284,17 @@ class PackageManager(DirectoryManager):
             return
         self._package_path = result
 
-    def interactively_view_initializer_module(self):
-        self.initializer_file_manager.interactively_view()
+    def view_initializer_module(self):
+        self.initializer_file_manager.view()
 
-    def interactively_view_metadata_module(self):
+    def view_metadata_module(self):
         file_path = self._metadata_module_path
         if os.path.isfile(file_path):
             command = 'vim -R {}'.format(file_path)
             self._session.io_manager.spawn_subprocess(command)
 
-    def interactively_write_boilerplate_initializer_module(self):
-        self.initializer_file_manager.interactively_write_boilerplate()
+    def write_boilerplate_initializer_module(self):
+        self.initializer_file_manager.write_boilerplate()
 
     def interactively_rewrite_metadata_module(
         self, 
@@ -305,7 +305,7 @@ class PackageManager(DirectoryManager):
             metadata = self._get_metadata()
         self._write_metadata(metadata)
 
-    def interactively_write_stub_initializer_module(self):
+    def write_stub_initializer_module(self):
         self.initializer_file_manager._write_stub()
         line = 'stub initializer written.'
         self._session.io_manager.display([line, ''])
@@ -326,15 +326,15 @@ class PackageManager(DirectoryManager):
 
     _user_input_to_action = DirectoryManager._user_input_to_action.copy()
     _user_input_to_action.update({
-        'inbp': interactively_write_boilerplate_initializer_module,
-        'inrm': interactively_remove_initializer_module,
-        'ins': interactively_write_stub_initializer_module,
-        'inv': interactively_view_initializer_module,
+        'inbp': write_boilerplate_initializer_module,
+        'inrm': remove_initializer_module,
+        'ins': write_stub_initializer_module,
+        'inv': view_initializer_module,
         'mda': interactively_add_metadatum,
         'mdg': interactively_get_metadatum,
-        'mdrm': interactively_remove_metadatum,
-        'mdmv': interactively_view_metadata_module,
-        'mdmrm': interactively_remove_metadata_module,
+        'mdrm': remove_metadatum,
+        'mdmv': view_metadata_module,
+        'mdmrm': remove_metadata_module,
         'mdmrw': interactively_rewrite_metadata_module,
         'ren': interactively_rename_package,
         'rm': remove_package,

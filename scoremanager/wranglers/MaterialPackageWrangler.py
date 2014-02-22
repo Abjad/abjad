@@ -162,7 +162,7 @@ class MaterialPackageWrangler(PackageWrangler):
         self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             wrangler = self._material_package_manager_wrangler
-            result = wrangler.interactively_select_asset_package_path(
+            result = wrangler.select_asset_package_path(
                 cache=True, clear=False)
         if self._session._backtrack():
             return

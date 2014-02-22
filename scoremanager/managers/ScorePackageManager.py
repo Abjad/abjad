@@ -177,7 +177,7 @@ class ScorePackageManager(PackageManager):
                 'score.pdf',
                 )
         elif result == 'removescore':
-            self.interactively_remove(),
+            self.remove(),
         elif result == 't':
             self.score_template_directory_manager._run()
         elif result == 'u':
@@ -415,7 +415,7 @@ class ScorePackageManager(PackageManager):
         self._session.io_manager.proceed(message, prompt=prompt)
         return result
 
-    def interactively_remove(self):
+    def remove(self):
         line = 'WARNING! Score package {!r} will be completely removed.'
         line = line.format(self._package_path)
         self._session.io_manager.display([line, ''])
