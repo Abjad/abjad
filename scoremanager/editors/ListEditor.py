@@ -167,7 +167,7 @@ class ListEditor(Editor):
                 item_index = int(item_number) - 1
                 self.items[item_index] = item_editor.target
 
-    def interactively_move_item(self):
+    def move_item(self):
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_integer_in_range('old number', 1, len(self.items))
         getter.append_integer_in_range('new number', 1, len(self.items))
@@ -199,5 +199,5 @@ class ListEditor(Editor):
     _user_input_to_action = {
         'add':  add_items,
         'rm':   remove_items,
-        'mv':   interactively_move_item,
+        'mv':   move_item,
     }

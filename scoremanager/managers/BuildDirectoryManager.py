@@ -42,9 +42,9 @@ class BuildDirectoryManager(DirectoryManager):
         elif result == 'g':
             self._session.io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
-            self._interactively_open_file_ending_with('back-cover.pdf')
+            self._open_file_ending_with('back-cover.pdf')
         elif result == 'ts':
-            self._interactively_typeset_file_ending_with('back-cover.tex')
+            self._typset_file_ending_with('back-cover.tex')
 
     def _handle_front_cover_menu_result(self, result):
         if result == 'e':
@@ -52,9 +52,9 @@ class BuildDirectoryManager(DirectoryManager):
         elif result == 'g':
             self._session.io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
-            self._interactively_open_file_ending_with('front-cover.pdf')
+            self._open_file_ending_with('front-cover.pdf')
         elif result == 'ts':
-            self._interactively_typeset_file_ending_with('front-cover.tex')
+            self._typset_file_ending_with('front-cover.tex')
 
     def _handle_preface_menu_result(self, result):
         if result == 'e':
@@ -62,9 +62,9 @@ class BuildDirectoryManager(DirectoryManager):
         elif result == 'g':
             self._session.io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
-            self._interactively_open_file_ending_with('preface.pdf')
+            self._open_file_ending_with('preface.pdf')
         elif result == 'ts':
-            self._interactively_typeset_file_ending_with('preface.tex')
+            self._typset_file_ending_with('preface.tex')
 
     def _handle_score_menu_result(self, result):
         if result == 'e':
@@ -76,22 +76,22 @@ class BuildDirectoryManager(DirectoryManager):
         elif result == 'pdfcp':
             self.copy_segment_pdfs()
         elif result == 'pdfv':
-            self._interactively_open_file_ending_with('score.pdf')
+            self._open_file_ending_with('score.pdf')
         elif result == 'seged':
             self._edit_file_ending_with('score-segments.ly')
         elif result == 'segly':
-            self._interactively_call_lilypond_on_file_ending_with(
+            self._call_lilypond_on_file_ending_with(
                 'score-segments.ly')
         elif result == 'segv':
-            self._interactively_open_file_ending_with('score-segments.pdf')
+            self._open_file_ending_with('score-segments.pdf')
         elif result == 'ts':
-            self._interactively_typeset_file_ending_with('score.tex')
+            self._typset_file_ending_with('score.tex')
 
-    def _interactively_call_lilypond_on_file_ending_with(self, string):
+    def _call_lilypond_on_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
         if file_path:
             file_manager = self._get_file_manager(file_path)
-            file_manager.interactively_call_lilypond()
+            file_manager.call_lilypond()
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
@@ -107,21 +107,21 @@ class BuildDirectoryManager(DirectoryManager):
             message = message.format(string)
             self._session.io_manager.proceed(message)
 
-    def _interactively_open_file_ending_with(self, string):
+    def _open_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
         if file_path:
             file_manager = self._get_file_manager(file_path)
-            file_manager.interactively_open()
+            file_manager.open()
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
             self._session.io_manager.proceed(message)
 
-    def _interactively_typeset_file_ending_with(self, string):
+    def _typset_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
         if file_path:
             file_manager = self._get_file_manager(file_path)
-            file_manager.interactively_typeset_tex_file()
+            file_manager.typset_tex_file()
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)

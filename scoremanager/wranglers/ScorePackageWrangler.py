@@ -92,7 +92,7 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         results = []
         for asset_manager in self.list_visible_asset_managers():
-            result = asset_manager.interactively_fix(
+            result = asset_manager.fix(
                 prompt=False,
                 )
             results.append(result)

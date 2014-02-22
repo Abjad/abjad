@@ -160,7 +160,7 @@ class ScorePackageManager(PackageManager):
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
         if result == 'fix':
-            self.interactively_fix(),
+            self.fix(),
         elif result == 'g':
             self._segment_package_wrangler._run(head=self._package_path)
         elif result == 'instrumentation':
@@ -173,7 +173,7 @@ class ScorePackageManager(PackageManager):
         elif result == 'p':
             self._manage_setup(),
         elif result == 'pdfv':
-            self._build_directory_manager._interactively_open_file_ending_with(
+            self._build_directory_manager._open_file_ending_with(
                 'score.pdf',
                 )
         elif result == 'removescore':
@@ -367,7 +367,7 @@ class ScorePackageManager(PackageManager):
             return
         self._add_metadatum('year_of_completion', result)
 
-    def interactively_fix(self, prompt=True):
+    def fix(self, prompt=True):
         result = True
         for path in self._get_top_level_directory_paths():
             if not os.path.exists(path):

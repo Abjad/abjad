@@ -276,7 +276,7 @@ class PackageManager(DirectoryManager):
         self._path = new_directory_path
         self._session.is_backtracking_locally = True
 
-    def interactively_set_package_path(self):
+    def set_package_path(self):
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('package name')
         result = getter._run()

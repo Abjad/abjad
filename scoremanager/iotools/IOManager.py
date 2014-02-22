@@ -96,7 +96,7 @@ class IOManager(IOManager):
             controller = self._session.current_controller
             controller.run_pytest()
         elif key == 'pyi':
-            self.interactively_exec_statement()
+            self.exec_statement()
         elif key == 'lvl':
             self.view_last_log()
         elif key == 'next':
@@ -379,7 +379,7 @@ class IOManager(IOManager):
             command = 'vim +{} {}'.format(line_number, file_path)
         self.spawn_subprocess(command)
 
-    def interactively_exec_statement(self, statement=None):
+    def exec_statement(self, statement=None):
         r'''Interactively executes `statement`.
 
         Hides next redraw.
