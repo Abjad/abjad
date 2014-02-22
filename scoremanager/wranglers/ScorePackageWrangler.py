@@ -104,7 +104,7 @@ class ScorePackageWrangler(PackageWrangler):
         rollback=False,
         pending_user_input=None,
         ):
-        r'''Interactively makes asset.
+        r'''Makes asset.
 
         Returns none.
         '''

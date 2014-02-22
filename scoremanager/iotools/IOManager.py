@@ -367,7 +367,7 @@ class IOManager(IOManager):
             readline.set_startup_hook()
 
     def edit(self, file_path, line_number=None):
-        r'''Interactively edits `file_path`.
+        r'''Edits `file_path`.
 
         Returns none.
         '''
@@ -380,7 +380,7 @@ class IOManager(IOManager):
         self.spawn_subprocess(command)
 
     def exec_statement(self, statement=None):
-        r'''Interactively executes `statement`.
+        r'''Executes `statement`.
 
         Hides next redraw.
 
@@ -407,7 +407,7 @@ class IOManager(IOManager):
         self._session.hide_next_redraw = True
 
     def view(self, file_path):
-        r'''Interactively views `file_path`.
+        r'''Views `file_path`.
 
         Returns none.
         '''

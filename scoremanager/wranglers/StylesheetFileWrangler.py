@@ -165,7 +165,7 @@ class StylesheetFileWrangler(Wrangler):
         filesystem_path,
         pending_user_input=None,
         ):
-        r'''Interactively edits asset.
+        r'''Edits asset.
 
         Returns none.
         '''
@@ -180,7 +180,7 @@ class StylesheetFileWrangler(Wrangler):
         self,
         pending_user_input=None,
         ):
-        r'''Interactively edits header stylesheet.
+        r'''Edits header stylesheet.
 
         Returns none.
         '''
@@ -191,7 +191,7 @@ class StylesheetFileWrangler(Wrangler):
         self,
         pending_user_input=None,
         ):
-        r'''Interactively edits layout stylesheet.
+        r'''Edits layout stylesheet.
 
         Returns none.
         '''
@@ -202,7 +202,7 @@ class StylesheetFileWrangler(Wrangler):
         self,
         pending_user_input=None,
         ):
-        r'''Interactively edits paper stylesheet.
+        r'''Edits paper stylesheet.
 
         Returns none.
         '''
@@ -213,7 +213,7 @@ class StylesheetFileWrangler(Wrangler):
         self,
         pending_user_input=None,
         ):
-        r'''Interactively makes asset.
+        r'''Makes asset.
 
         Returns none.
         '''

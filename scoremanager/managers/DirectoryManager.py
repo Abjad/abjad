@@ -102,7 +102,7 @@ class DirectoryManager(Manager):
         filesystem_path,
         pending_user_input=None,
         ):
-        r'''Interactively edits directory asset.
+        r'''Edits directory asset.
 
         Returns none.
         '''
@@ -114,7 +114,7 @@ class DirectoryManager(Manager):
         manager.edit()
 
     def get_filesystem_path(self):
-        r'''Interactively gest filesystem path of directory manager.
+        r'''Gets filesystem path of directory manager.
 
         Returns none.
         '''
@@ -126,7 +126,7 @@ class DirectoryManager(Manager):
         self._filesystem_path = result
 
     def list_directory(self):
-        r'''Interactively lists directory.
+        r'''Lists directory.
 
         Returns none.
         '''
@@ -151,7 +151,7 @@ class DirectoryManager(Manager):
         self._session.hide_next_redraw = True
 
     def run_doctest(self, prompt=True):
-        r'''Interactively runs doctest.
+        r'''Runs doctest.
 
         Returns none.
         '''
@@ -166,7 +166,7 @@ class DirectoryManager(Manager):
         self._session.io_manager.proceed(prompt=prompt)
 
     def run_pytest(self, prompt=True):
-        r'''Interactively runs pytest.
+        r'''runs pytest.
 
         Returns none.
         '''

@@ -171,7 +171,7 @@ class SegmentPackageManager(PackageManager):
         self,
         pending_user_input=None,
         ):
-        r'''Interactively edits asset definition module.
+        r'''Edits asset definition module.
 
         Returns none.
         '''
@@ -182,7 +182,7 @@ class SegmentPackageManager(PackageManager):
         self,
         pending_user_input=None,
         ):
-        r'''Interactively edits asset definition module.
+        r'''Edits asset definition module.
 
         Returns none.
         '''
@@ -191,7 +191,7 @@ class SegmentPackageManager(PackageManager):
             line_number=1)
 
     def list_versions_directory(self):
-        r'''Interactively lists versions directory.
+        r'''Lists versions directory.
 
         Returns none.
         '''
@@ -217,7 +217,7 @@ class SegmentPackageManager(PackageManager):
         self,
         view_asset_pdf=True,
         ):
-        r'''Interactively makes asset PDF.
+        r'''Makes asset PDF.
 
         Returns none.
         '''
@@ -238,7 +238,7 @@ class SegmentPackageManager(PackageManager):
         view_output_pdf=True,
         prompt=True,
         ):
-        r'''Interactively reinterprets current LilyPond file.
+        r'''Reinterprets current LilyPond file.
 
         Opens resulting PDF when `view_output_pdf` is true.
 
@@ -273,7 +273,7 @@ class SegmentPackageManager(PackageManager):
         self,
         prompt=True
         ):
-        r'''Interactively saves asset definition module,
+        r'''Saves asset definition module,
         output PDF and output LilyPond file to versions directory.
 
         Returns none.
@@ -349,7 +349,7 @@ class SegmentPackageManager(PackageManager):
         return version_number
 
     def view_all_versioned_pdfs(self):
-        r'''Interactively views all versioend PDFs.
+        r'''Views all versioend PDFs.
 
         Returns none.
         '''
@@ -374,7 +374,7 @@ class SegmentPackageManager(PackageManager):
         self._session.io_manager.spawn_subprocess(command)
 
     def view_current_output_ly(self):
-        r'''Interactively views current output LilyPond file.
+        r'''Views current output LilyPond file.
 
         Returns none.
         '''
@@ -384,21 +384,21 @@ class SegmentPackageManager(PackageManager):
             self._session.io_manager.spawn_subprocess(command)
 
     def view_versioned_output_ly(self):
-        r'''Interactively views output LilyPond file.
+        r'''Views output LilyPond file.
 
         Returns none.
         '''
         self._view_versioned_file('.ly')
 
     def view_versioned_output_pdf(self):
-        r'''Interactively views output PDF.
+        r'''Views output PDF.
 
         Returns none.
         '''
         self._view_versioned_file('.pdf')
 
     def view_versioned_segment_definition_module(self):
-        r'''Interactively views versioned segment definition module.
+        r'''Views versioned segment definition module.
 
         Returns none.
         '''

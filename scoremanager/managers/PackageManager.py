@@ -224,7 +224,7 @@ class PackageManager(DirectoryManager):
             self._remove_metadatum(metadatum_name)
 
     def rename_package(self):
-        r'''Interactively renames package.
+        r'''Renames package.
 
         Returns none.
         '''

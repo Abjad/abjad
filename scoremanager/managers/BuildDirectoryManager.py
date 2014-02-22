@@ -209,7 +209,7 @@ class BuildDirectoryManager(DirectoryManager):
         self,
         pending_user_input=None,
         ):
-        r'''Interactively copies segment LilyPond files from segment
+        r'''Copies segment LilyPond files from segment
         package directories to build directory.
 
         Trims top-level comments, includes and directives from each LilyPond
@@ -256,7 +256,7 @@ class BuildDirectoryManager(DirectoryManager):
         self._session.io_manager.proceed('')
 
     def copy_segment_pdfs(self, pending_user_input=None):
-        r'''Interactively copies segment PDFs from segment
+        r'''Copies segment PDFs from segment
         package directories to build directory.
 
         Returns none.

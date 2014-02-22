@@ -136,7 +136,7 @@ class PackageWrangler(Wrangler):
         self, 
         pending_user_input=None,
         ):
-        r'''Interactively gets available packagesystem path.
+        r'''Gets available packagesystem path.
 
         Returns string.
         '''
@@ -165,7 +165,7 @@ class PackageWrangler(Wrangler):
         self,
         pending_user_input=None,
         ):
-        r'''Interactively makes asset.
+        r'''Makes asset.
 
         Returns none.
         '''
@@ -182,7 +182,7 @@ class PackageWrangler(Wrangler):
         head=None,
         pending_user_input=None,
         ):
-        r'''Interactively renames asset.
+        r'''Renames asset.
 
         Returns none.
         '''
@@ -204,7 +204,7 @@ class PackageWrangler(Wrangler):
         infinitival_phrase=None,
         pending_user_input=None,
         ):
-        '''Interactively selects asset packagesystem path.
+        '''Selects asset packagesystem path.
 
         Returns string.
         '''

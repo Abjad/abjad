@@ -120,7 +120,7 @@ class FileManager(Manager):
     ### PUBLIC METHODS ###
 
     def call_lilypond(self, prompt=True):
-        r'''Interactively calls LilyPond on file.
+        r'''Calls LilyPond on file.
 
         Returns none.
         '''
@@ -141,7 +141,7 @@ class FileManager(Manager):
         self._session.io_manager.proceed('', prompt=prompt)
 
     def edit(self, line_number=None):
-        r'''Interactively edits file.
+        r'''Edits file.
 
         Returns none.
         '''
@@ -151,14 +151,14 @@ class FileManager(Manager):
             )
 
     def open(self):
-        r'''Interactively opens file.
+        r'''Opens file.
 
         Returns none.
         '''
         self._session.io_manager.open_file(self._filesystem_path)
 
     def typset_tex_file(self, prompt=True):
-        r'''Interactively typesets TeX file.
+        r'''Typesets TeX file.
 
         Returns none.
         '''
@@ -182,7 +182,7 @@ class FileManager(Manager):
         self._session.io_manager.proceed('', prompt=prompt)
 
     def view(self):
-        r'''Interactively views file.
+        r'''Views file.
 
         Returns none.
         '''

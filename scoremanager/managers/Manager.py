@@ -241,7 +241,7 @@ class Manager(ScoreManagerObject):
         self, 
         pending_user_input=None,
         ):
-        r'''Interactively copies filesystem asset.
+        r'''Copies filesystem asset.
 
         Returns none.
         '''
@@ -266,7 +266,7 @@ class Manager(ScoreManagerObject):
         self, 
         pending_user_input=None,
         ):
-        r'''Interactively removes filesystem asset.
+        r'''Removes filesystem asset.
 
         Returns none.
         '''
@@ -287,7 +287,7 @@ class Manager(ScoreManagerObject):
             self._session.io_manager.proceed(message)
 
     def remove_and_backtrack_locally(self):
-        r'''Interactively removes filesystem asset and backtracks locally.
+        r'''Removes filesystem asset and backtracks locally.
 
         Returns none.
         '''
@@ -298,7 +298,7 @@ class Manager(ScoreManagerObject):
         self, 
         pending_user_input=None,
         ):
-        r'''Interactively renames filesystem asset.
+        r'''Renames filesystem asset.
 
         Returns none.
         '''
@@ -322,7 +322,7 @@ class Manager(ScoreManagerObject):
         self, 
         pending_user_input=None,
         ):
-        r'''Interactively writes filesystem asset boilerplate.
+        r'''Writes filesystem asset boilerplate.
 
         Returns none.
         '''
@@ -341,7 +341,7 @@ class Manager(ScoreManagerObject):
             self._session.io_manager.proceed(message)
 
     def add_assets_to_repository(self, prompt=False):
-        r'''Interactively adds unversioned filesystem assets to repository.
+        r'''Adds unversioned filesystem assets to repository.
 
         Returns none.
         '''
@@ -359,7 +359,7 @@ class Manager(ScoreManagerObject):
         self._session.io_manager.proceed(prompt=prompt)
 
     def commit_assets_to_repository(self, commit_message=None, prompt=True):
-        r'''Interactively commits unversioned filesystem assets to repository.
+        r'''Commits unversioned filesystem assets to repository.
 
         Returns none.
         '''
@@ -443,7 +443,7 @@ class Manager(ScoreManagerObject):
         self._session.io_manager.proceed(prompt=prompt)
 
     def update_from_repository(self, prompt=True):
-        r'''Interactively updates versioned filesystem assets.
+        r'''Updates versioned filesystem assets.
 
         Returns none.
         '''

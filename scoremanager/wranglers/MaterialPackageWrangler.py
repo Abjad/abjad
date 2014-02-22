@@ -123,7 +123,7 @@ class MaterialPackageWrangler(PackageWrangler):
         metadata=None, 
         pending_user_input=None,
         ):
-        r'''Interactively makes data package.
+        r'''Makes data package.
 
         Returns none.
         '''
@@ -139,7 +139,7 @@ class MaterialPackageWrangler(PackageWrangler):
         self, 
         pending_user_input=None,
         ):
-        r'''Interactively makes handmade material package.
+        r'''Makes handmade material package.
 
         Returns none.
         '''
@@ -155,7 +155,7 @@ class MaterialPackageWrangler(PackageWrangler):
         self, 
         pending_user_input=None,
         ):
-        r'''Interactively makes managermade material package.
+        r'''Makes managermade material package.
 
         Returns none.
         '''

@@ -283,7 +283,7 @@ class Wrangler(ScoreManagerObject):
         self,
         pending_user_input=None,
         ):
-        r'''Interactively makes asset.
+        r'''Makes asset.
 
         Returns none.
         '''
@@ -327,7 +327,7 @@ class Wrangler(ScoreManagerObject):
         head=None,
         pending_user_input=None,
         ):
-        r'''Interactively removes assets.
+        r'''Removes assets.
 
         Returns none.
         '''
@@ -363,7 +363,7 @@ class Wrangler(ScoreManagerObject):
         self,
         pending_user_input=None,
         ):
-        r'''Interactively renames asset.
+        r'''Renames asset.
 
         Returns none.
         '''
@@ -430,7 +430,7 @@ class Wrangler(ScoreManagerObject):
         cache=False,
         pending_user_input=None,
         ):
-        r'''Interactively selects asset filesystem path.
+        r'''Selects asset filesystem path.
 
         Returns string.
         '''
@@ -462,7 +462,7 @@ class Wrangler(ScoreManagerObject):
         user_score_packages=True,
         pending_user_input=None,
         ):
-        r'''Interactively selects asset storehouse filesystem path.
+        r'''Selects asset storehouse filesystem path.
 
         Returns string.
         '''
