@@ -8,35 +8,26 @@ from scoremanager.wranglers.PackageWrangler import PackageWrangler
 class ScorePackageWrangler(PackageWrangler):
     r'''Score package wrangler.
 
-    ::
+    ..  container:: example
 
-        >>> wrangler = scoremanager.wranglers.ScorePackageWrangler()
-        >>> wrangler
-        ScorePackageWrangler()
+        ::
 
-    ::
+            >>> from scoremanager import wranglers
+            >>> wrangler = wranglers.ScorePackageWrangler()
+            >>> wrangler
+            ScorePackageWrangler()
 
-        >>> wrangler_in_built_in_score = \
-        ...     scoremanager.wranglers.ScorePackageWrangler()
-        >>> _session = wrangler_in_built_in_score._session
-        >>> _session._snake_case_current_score_name = 'red_example_score'
-        >>> wrangler_in_built_in_score
-        ScorePackageWrangler()
+    ..  container:: example
+
+        ::
+
+            >>> wrangler_in_score = wranglers.ScorePackageWrangler()
+            >>> session = wrangler_in_score._session
+            >>> session._snake_case_current_score_name = 'red_example_score'
+            >>> wrangler_in_score
+            ScorePackageWrangler()
 
     '''
-
-    ### CLASS VARIABLES ###
-
-    built_in_storehouse_directory_path = \
-        PackageWrangler.configuration.built_in_score_packages_directory_path
-
-    built_in_storehouse_package_path = \
-        'scoremanager.scorepackages'
-
-    score_package_storehouse_path_infix_parts = None
-
-    user_storehouse_directory_path = \
-        PackageWrangler.configuration.user_score_packages_directory_path
 
     ### INITIALIZER ###
 
@@ -45,6 +36,11 @@ class ScorePackageWrangler(PackageWrangler):
         superclass = super(ScorePackageWrangler, self)
         superclass.__init__(session=session)
         self._asset_manager_class = managers.ScorePackageManager
+        self.built_in_storehouse_directory_path = \
+            self.configuration.built_in_score_packages_directory_path
+        self.user_storehouse_directory_path = \
+            self.configuration.user_score_packages_directory_path
+        self.score_storehouse_path_infix_parts = None
 
     ### PRIVATE PROPERTIES ###
 

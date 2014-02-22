@@ -10,12 +10,12 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
 
     score_manager = scoremanager.core.ScoreManager()
     name = 'scoremanager.materialpackages.testnotes'
-    assert not score_manager.configuration.package_path_exists(name)
+    assert not score_manager.configuration.package_exists(name)
 
     try:
         string = 'lmm nmh testnotes default default q'
         score_manager._run(pending_user_input=string)
-        assert score_manager.configuration.package_path_exists(name)
+        assert score_manager.configuration.package_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -29,7 +29,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
-        assert not score_manager.configuration.package_path_exists(name)
+        assert not score_manager.configuration.package_exists(name)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_02():
@@ -39,13 +39,13 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
 
     score_manager = scoremanager.core.ScoreManager()
     name = 'scoremanager.materialpackages.testnotes'
-    assert not score_manager.configuration.package_path_exists(name)
+    assert not score_manager.configuration.package_exists(name)
 
     try:
         score_manager._run(pending_user_input=
             'lmm nmh testnotes default default '
             'testnotes incanned boilerplate_exception.py default q')
-        assert score_manager.configuration.package_path_exists(name)
+        assert score_manager.configuration.package_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -59,7 +59,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
-        assert not score_manager.configuration.package_path_exists(name)
+        assert not score_manager.configuration.package_exists(name)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_03():
@@ -69,14 +69,14 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
 
     score_manager = scoremanager.core.ScoreManager()
     name = 'scoremanager.materialpackages.testnotes'
-    assert not score_manager.configuration.package_path_exists(name)
+    assert not score_manager.configuration.package_exists(name)
 
     try:
         score_manager._run(pending_user_input=
             'lmm nmh testnotes default default '
             'testnotes incanned boilerplate_exception.py default '
             'inr yes yes default q')
-        assert score_manager.configuration.package_path_exists(name)
+        assert score_manager.configuration.package_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -90,7 +90,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
-        assert not score_manager.configuration.package_path_exists(name)
+        assert not score_manager.configuration.package_exists(name)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_04():
@@ -100,14 +100,14 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
 
     score_manager = scoremanager.core.ScoreManager()
     name = 'scoremanager.materialpackages.testnotes'
-    assert not score_manager.configuration.package_path_exists(name)
+    assert not score_manager.configuration.package_exists(name)
 
     try:
         score_manager._run(pending_user_input=
             'lmm nmh testnotes default default '
             'testnotes mdcanned boilerplate_testnotes_material_definition.py default '
             'omm default q')
-        assert score_manager.configuration.package_path_exists(name)
+        assert score_manager.configuration.package_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp._list_directory() == [
             '__init__.py',
@@ -124,7 +124,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
-        assert not score_manager.configuration.package_path_exists(name)
+        assert not score_manager.configuration.package_exists(name)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_05():
@@ -134,13 +134,13 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
 
     score_manager = scoremanager.core.ScoreManager()
     name = 'scoremanager.materialpackages.testnotes'
-    assert not score_manager.configuration.package_path_exists(name)
+    assert not score_manager.configuration.package_exists(name)
 
     try:
         score_manager._run(pending_user_input=
             'lmm nmh testnotes default default '
             'testnotes mddelete default q')
-        assert score_manager.configuration.package_path_exists(name)
+        assert score_manager.configuration.package_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -154,7 +154,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
-        assert not score_manager.configuration.package_path_exists(name)
+        assert not score_manager.configuration.package_exists(name)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_06():
@@ -164,13 +164,13 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
 
     score_manager = scoremanager.core.ScoreManager()
     name = 'scoremanager.materialpackages.testnotes'
-    assert not score_manager.configuration.package_path_exists(name)
+    assert not score_manager.configuration.package_exists(name)
 
     try:
         score_manager._run(pending_user_input=
             'lmm nmh testnotes default '
             'testnotes mdstub default q')
-        assert score_manager.configuration.package_path_exists(name)
+        assert score_manager.configuration.package_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -184,7 +184,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
-        assert not score_manager.configuration.package_path_exists(name)
+        assert not score_manager.configuration.package_exists(name)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_07():
@@ -194,7 +194,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
 
     score_manager = scoremanager.core.ScoreManager()
     name = 'scoremanager.materialpackages.testnotes'
-    assert not score_manager.configuration.package_path_exists(name)
+    assert not score_manager.configuration.package_exists(name)
 
     try:
         score_manager._run(pending_user_input=
@@ -203,7 +203,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
             'default '
             'omm default '
             'omdelete default q')
-        assert score_manager.configuration.package_path_exists(name)
+        assert score_manager.configuration.package_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp._list_directory() == [
                 '__init__.py', 
@@ -218,7 +218,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
-        assert not score_manager.configuration.package_path_exists(name)
+        assert not score_manager.configuration.package_exists(name)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_08():
@@ -228,13 +228,13 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
 
     score_manager = scoremanager.core.ScoreManager()
     name = 'scoremanager.materialpackages.testnotes'
-    assert not score_manager.configuration.package_path_exists(name)
+    assert not score_manager.configuration.package_exists(name)
 
     try:
         score_manager._run(pending_user_input=
             'lmm nmh testnotes default default '
             'testnotes mdcanned boilerplate_exception.py default q')
-        assert score_manager.configuration.package_path_exists(name)
+        assert score_manager.configuration.package_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -248,7 +248,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
-        assert not score_manager.configuration.package_path_exists(name)
+        assert not score_manager.configuration.package_exists(name)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_09():
@@ -259,7 +259,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
 
     score_manager = scoremanager.core.ScoreManager()
     name = 'scoremanager.materialpackages.testnotes'
-    assert not score_manager.configuration.package_path_exists(name)
+    assert not score_manager.configuration.package_exists(name)
 
     try:
         score_manager._run(pending_user_input=
@@ -267,7 +267,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
             'testnotes mdcanned boilerplate_testnotes_material_definition.py default '
             'omm default '
             'omcanned boilerplate_exception.py default q')
-        assert score_manager.configuration.package_path_exists(name)
+        assert score_manager.configuration.package_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp._list_directory() == [
             '__init__.py',
@@ -283,7 +283,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
-        assert not score_manager.configuration.package_path_exists(name)
+        assert not score_manager.configuration.package_exists(name)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_10():
@@ -295,7 +295,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
 
     score_manager = scoremanager.core.ScoreManager()
     name = 'scoremanager.materialpackages.testnotes'
-    assert not score_manager.configuration.package_path_exists(name)
+    assert not score_manager.configuration.package_exists(name)
 
     try:
         score_manager._run(pending_user_input=
@@ -304,7 +304,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
             'omm default '
             'pdfm default '
             'q')
-        assert score_manager.configuration.package_path_exists(name)
+        assert score_manager.configuration.package_exists(name)
         mpp = scoremanager.managers.MaterialPackageManager(name)
         assert mpp._list_directory() == [
             '__init__.py', 
@@ -325,4 +325,4 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
-        assert not score_manager.configuration.package_path_exists(name)
+        assert not score_manager.configuration.package_exists(name)

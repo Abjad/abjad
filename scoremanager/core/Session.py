@@ -340,14 +340,11 @@ class Session(abctools.AbjadObject):
 
         Returns string.
         '''
-        from scoremanager import wranglers
         if self.is_in_score:
-            parts = []
-            parts.append(self.configuration.user_score_packages_directory_path)
-            parts.append(self.current_score_snake_case_name)
-            parts.extend(
-                wranglers.MaterialPackageWrangler.score_package_storehouse_path_infix_parts)
-            return os.path.join(*parts)
+            manager = self.current_score_package_manager
+            wrangler = manager.material_package_wrangler
+            path = wrangler._get_current_directory_path_of_interest()
+            return path
         else:
             return self.configuration.built_in_material_packages_directory_path
 
@@ -438,14 +435,11 @@ class Session(abctools.AbjadObject):
 
         Returns string.
         '''
-        from scoremanager import wranglers
         if self.is_in_score:
-            parts = []
-            parts.append(self.configuration.user_score_packages_directory_path)
-            parts.append(self.current_score_snake_case_name)
-            parts.extend(
-                wranglers.SegmentPackageWrangler.score_package_storehouse_path_infix_parts)
-            return os.path.join(*parts)
+            manager = self.current_score_package_manager
+            wrangler = manager.segment_wrangler
+            path = wrangler._get_current_directory_path_of_interest()
+            return path
 
     @apply
     def write_transcript():

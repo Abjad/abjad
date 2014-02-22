@@ -18,12 +18,14 @@ class Wrangler(ScoreManagerObject):
 
     forbidden_directory_entries = ()
 
-    score_package_storehouse_path_infix_parts = ()
+    score_storehouse_path_infix_parts = ()
 
     ### INITIALIZER ###
 
     def __init__(self, session=None):
         ScoreManagerObject.__init__(self, session=session)
+        self.built_in_storehouse_directory_path = None
+        self.user_storehouse_directory_path = None
 
     ### SPECIAL METHODS ###
 
@@ -41,7 +43,7 @@ class Wrangler(ScoreManagerObject):
         if self._session.is_in_score:
             parts = []
             parts.append(self._session.current_score_directory_path)
-            parts.extend(self.score_package_storehouse_path_infix_parts)
+            parts.extend(self.score_storehouse_path_infix_parts)
             return os.path.join(*parts)
         else:
             return self.built_in_storehouse_directory_path
@@ -77,7 +79,7 @@ class Wrangler(ScoreManagerObject):
         score_directory_path = self._session.current_score_directory_path
         if score_directory_path is not None:
             parts = (score_directory_path,)
-            parts += self.score_package_storehouse_path_infix_parts
+            parts += self.score_storehouse_path_infix_parts
             directory_path = os.path.join(*parts)
             assert '.' not in directory_path, repr(directory_path)
             return directory_path
@@ -167,7 +169,7 @@ class Wrangler(ScoreManagerObject):
             ):
             display_strings.append(manager._get_title())
             path_parts = (manager.filesystem_path,) + \
-                self.score_package_storehouse_path_infix_parts
+                self.score_storehouse_path_infix_parts
             key = os.path.join(*path_parts)
             keys.append(key)
         sequences = [display_strings, [None], [None], keys]
@@ -643,23 +645,23 @@ class Wrangler(ScoreManagerObject):
             result.append(
                 self.user_storehouse_directory_path)
         if in_built_in_score_packages and \
-            self.score_package_storehouse_path_infix_parts is not None:
+            self.score_storehouse_path_infix_parts is not None:
             for score_directory_path in \
                 self.configuration.list_score_directory_paths(built_in=True):
                 parts = [score_directory_path]
-                if self.score_package_storehouse_path_infix_parts:
+                if self.score_storehouse_path_infix_parts:
                     parts.extend(
-                        self.score_package_storehouse_path_infix_parts)
+                        self.score_storehouse_path_infix_parts)
                 storehouse_filesystem_path = os.path.join(*parts)
                 result.append(storehouse_filesystem_path)
         if in_user_score_packages and \
-            self.score_package_storehouse_path_infix_parts is not None:
+            self.score_storehouse_path_infix_parts is not None:
             for directory_path in \
                 self.configuration.list_score_directory_paths(user=True):
                 parts = [directory_path]
-                if self.score_package_storehouse_path_infix_parts:
+                if self.score_storehouse_path_infix_parts:
                     parts.extend(
-                        self.score_package_storehouse_path_infix_parts)
+                        self.score_storehouse_path_infix_parts)
                 filesystem_path = os.path.join(*parts)
                 result.append(filesystem_path)
         return result

@@ -97,9 +97,9 @@ class ScoreManager(ScoreManagerObject):
             self._session.io_manager.write_cache(prompt=False)
             self._session.rewrite_cache = False
         menu_entries = self._session.io_manager._read_cache()
-        if (self._session._scores_to_display == 'example' and
-            not menu_entries[0][0] == 'Blue Example Score (2013)') or \
-            not menu_entries:
+        if not menu_entries or \
+            (self._session._scores_to_display == 'example' and
+            not menu_entries[0][0] == 'Blue Example Score (2013)'):
             self._session.io_manager.write_cache(prompt=False)
             menu_entries = self._session.io_manager._read_cache()
         menu = self._session.io_manager.make_menu(

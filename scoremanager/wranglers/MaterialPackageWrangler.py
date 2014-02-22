@@ -9,43 +9,42 @@ from scoremanager.wranglers.PackageWrangler import PackageWrangler
 class MaterialPackageWrangler(PackageWrangler):
     r'''Material package wrangler.
 
-    ::
+    ..  container:: example
 
-        >>> wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-        >>> wrangler
-        MaterialPackageWrangler()
+        ::
+
+            >>> from scoremanager import wranglers
+            >>> wrangler = wranglers.MaterialPackageWrangler()
+            >>> wrangler
+            MaterialPackageWrangler()
 
     Wrangler in built-in score:
 
-    ::
+    ..  container:: example
 
-        >>> wrangler_in_built_in_score = \
-        ...     scoremanager.wranglers.MaterialPackageWrangler()
-        >>> _session = wrangler_in_built_in_score._session
-        >>> _session.current_score_snake_case_name = \
-        ...     'red_example_score'
-        >>> wrangler_in_built_in_score
-        MaterialPackageWrangler()
+        ::
+
+            >>> wrangler_in_score = wranglers.MaterialPackageWrangler()
+            >>> session = wrangler_in_score._session
+            >>> session.current_score_snake_case_name = 'red_example_score'
+            >>> wrangler_in_score
+            MaterialPackageWrangler()
 
     '''
-
-    ### CLASS VARIABLES ###
-
-    score_package_storehouse_path_infix_parts = ('materials',)
-
-    built_in_storehouse_package_path = \
-        'scoremanager.materialpackages'
-
-    user_storehouse_directory_path = \
-        PackageWrangler.configuration.user_library_material_packages_directory_path
 
     ### INITIALIZER ###
 
     def __init__(self, session=None):
         from scoremanager import wranglers
-        PackageWrangler.__init__(self, session=session)
+        superclass = super(MaterialPackageWrangler, self)
+        superclass.__init__(session=session)
         self._material_package_manager_wrangler = \
             wranglers.MaterialPackageManagerWrangler(session=self._session)
+        self.built_in_storehouse_directory_path = \
+            self.configuration.built_in_material_packages_directory_path
+        self.user_storehouse_directory_path = \
+            self.configuration.user_library_material_packages_directory_path
+        self.score_storehouse_path_infix_parts = ('materials',)
 
     ### PRIVATE PROPERTIES ###
 

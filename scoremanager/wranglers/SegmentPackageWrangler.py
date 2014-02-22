@@ -8,22 +8,16 @@ from scoremanager.wranglers.PackageWrangler import PackageWrangler
 class SegmentPackageWrangler(PackageWrangler):
     r'''Segment package wrangler.
 
-    ::
+    ..  container:: example
 
-        >>> score_manager = scoremanager.core.ScoreManager()
-        >>> wrangler = score_manager._segment_package_wrangler
-        >>> wrangler
-        SegmentPackageWrangler()
+        ::
+
+            >>> score_manager = scoremanager.core.ScoreManager()
+            >>> wrangler = score_manager._segment_package_wrangler
+            >>> wrangler
+            SegmentPackageWrangler()
 
     '''
-
-    ### CLASS VARIABLES ###
-
-    built_in_storehouse_package_path = None
-
-    score_package_storehouse_path_infix_parts = ('segments',)
-
-    user_storehouse_directory_path = None
 
     ### INITIALIZER ###
 
@@ -32,6 +26,7 @@ class SegmentPackageWrangler(PackageWrangler):
         superclass = super(SegmentPackageWrangler, self)
         superclass.__init__(session=session)
         self._asset_manager_class = managers.SegmentPackageManager
+        self.score_storehouse_path_infix_parts = ('segments',)
 
     ### PRIVATE PROPERTIES ###
 
@@ -91,7 +86,7 @@ class SegmentPackageWrangler(PackageWrangler):
         ):
         self._session.io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
-        parts += self.score_package_storehouse_path_infix_parts
+        parts += self.score_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
         for directory_entry in sorted(os.listdir(segments_directory_path)):
             if not directory_entry[0].isalpha():
@@ -128,7 +123,7 @@ class SegmentPackageWrangler(PackageWrangler):
         ):
         self._session.io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
-        parts += self.score_package_storehouse_path_infix_parts
+        parts += self.score_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
         for directory_entry in sorted(os.listdir(segments_directory_path)):
             if not directory_entry[0].isalpha():
@@ -160,7 +155,7 @@ class SegmentPackageWrangler(PackageWrangler):
         ):
         self._session.io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
-        parts += self.score_package_storehouse_path_infix_parts
+        parts += self.score_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
         for directory_entry in sorted(os.listdir(segments_directory_path)):
             if not directory_entry[0].isalpha():
@@ -193,7 +188,7 @@ class SegmentPackageWrangler(PackageWrangler):
         ):
         self._session.io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
-        parts += self.score_package_storehouse_path_infix_parts
+        parts += self.score_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
         output_pdf_file_paths = []
         for directory_entry in sorted(os.listdir(segments_directory_path)):

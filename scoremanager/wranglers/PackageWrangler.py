@@ -13,13 +13,9 @@ class PackageWrangler(Wrangler):
 
     def __init__(self, session=None):
         from scoremanager import managers
-        built_in_storehouse_directory_path = \
-            self.configuration.package_path_to_filesystem_path(
-            self.built_in_storehouse_package_path)
-        self.built_in_storehouse_directory_path = \
-            built_in_storehouse_directory_path
         Wrangler.__init__(self, session=session)
         self._asset_manager_class = managers.PackageManager
+        #self.score_storehouse_path_infix_parts = ()
 
     ### PRIVATE PROPERTIES ###
 
@@ -29,12 +25,17 @@ class PackageWrangler(Wrangler):
             parts = []
             current_score_package_path = \
                 self.configuration.filesystem_path_to_package_path(
-                    self._session.current_score_directory_path)
+                    self._session.current_score_directory_path,
+                    )
             parts.append(current_score_package_path)
-            parts.extend(self.score_package_storehouse_path_infix_parts)
+            parts.extend(self.score_storehouse_path_infix_parts)
             return '.'.join(parts)
         else:
-            return self.built_in_storehouse_package_path
+            package_path = \
+                self.configuration.filesystem_path_to_package_path(
+                    self.built_in_storehouse_directory_path,
+                    )
+            return package_path
 
     @property
     def _temporary_asset_manager(self):
@@ -146,7 +147,7 @@ class PackageWrangler(Wrangler):
                 self._current_storehouse_package_path, 
                 package_name,
                 ])
-            if self.configuration.package_path_exists(package_path):
+            if self.configuration.package_exists(package_path):
                 line = 'Package {!r} already exists.'
                 line = line.format(package_path)
                 self._session.io_manager.display([line, ''])

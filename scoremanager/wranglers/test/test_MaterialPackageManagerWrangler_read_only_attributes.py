@@ -12,7 +12,7 @@ def test_MaterialPackageManagerWrangler_read_only_attributes_01():
     string = 'scoremanager.materialpackagemanagers'
     assert wrangler._current_storehouse_package_path == string
 
-    assert wrangler.score_package_storehouse_path_infix_parts is None
+    assert wrangler.score_storehouse_path_infix_parts is None
 
     string = 'scoremanager.materialpackagemanagers.__temporary_package'
     assert wrangler._temporary_asset_package_path == string

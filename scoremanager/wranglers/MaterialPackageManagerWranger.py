@@ -10,12 +10,14 @@ from scoremanager.wranglers.PackageWrangler import PackageWrangler
 class MaterialPackageManagerWrangler(PackageWrangler):
     r'''Material package manager wrangler.
 
-    ::
+    ..  container:: example
 
-        >>> score_manager = scoremanager.core.ScoreManager()
-        >>> wrangler = score_manager._material_package_manager_wrangler
-        >>> wrangler
-        MaterialPackageManagerWrangler()
+        ::
+
+            >>> score_manager = scoremanager.core.ScoreManager()
+            >>> wrangler = score_manager._material_package_manager_wrangler
+            >>> wrangler
+            MaterialPackageManagerWrangler()
 
     '''
 
@@ -23,18 +25,22 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     _human_readable_target_name = 'material package manager'
 
-    built_in_storehouse_package_path = \
-        'scoremanager.materialpackagemanagers'
-
     forbidden_directory_entries = (
         'InventoryMaterialPackageManager.py',
         'MaterialPackageManager.py',
         )
 
-    score_package_storehouse_path_infix_parts = None
+    score_storehouse_path_infix_parts = None
 
-    user_storehouse_directory_path = \
-        PackageWrangler.configuration.user_library_material_package_managers_directory_path
+    ### INITIALIZER ###
+
+    def __init__(self, session=None):
+        superclass = super(MaterialPackageManagerWrangler, self)
+        superclass.__init__(session=session)
+        self.built_in_storehouse_directory_path = \
+            self.configuration.built_in_material_package_managers_directory_path
+        self.user_storehouse_directory_path = \
+            self.configuration.user_library_material_package_managers_directory_path
 
     ### PRIVATE PROPERTIES ###
 
@@ -289,7 +295,8 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_storehouse_filesystem_paths(
             ...     in_user_library=False, 
-            ...     in_user_score_packages=False):
+            ...     in_user_score_packages=False,
+            ...     ):
             ...     x
             '.../scoremanager/materialpackagemanagers'
 

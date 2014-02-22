@@ -196,3 +196,5 @@
 50. Remove all '.'.join() statements. There should be no by-hand package
     manipulation. Use self.configuration.filesystem_path_to_package_path()
     instead.
+
+51. Change 'storehouse_filesystem_path' to 'storehouse_directory_path'.

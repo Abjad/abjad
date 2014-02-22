@@ -8,23 +8,15 @@ from scoremanager.wranglers.Wrangler import Wrangler
 class StylesheetFileWrangler(Wrangler):
     r'''Stylesheet file wrangler.
 
-    ::
+    ..  container:: example
 
-        >>> wrangler = scoremanager.wranglers.StylesheetFileWrangler()
-        >>> wrangler
-        StylesheetFileWrangler()
+        ::
+
+            >>> wrangler = scoremanager.wranglers.StylesheetFileWrangler()
+            >>> wrangler
+            StylesheetFileWrangler()
 
     '''
-
-    ### CLASS VARIABLES ###
-
-    built_in_storehouse_directory_path = \
-        Wrangler.configuration.abjad_stylesheets_directory_path
-
-    score_package_storehouse_path_infix_parts = ('stylesheets',)
-
-    user_storehouse_directory_path = \
-        Wrangler.configuration.user_library_stylesheets_directory_path
 
     ### INITIALIZER ###
 
@@ -33,6 +25,11 @@ class StylesheetFileWrangler(Wrangler):
         superclass = super(StylesheetFileWrangler, self)
         superclass.__init__(session=session)
         self._asset_manager_class = managers.FileManager
+        self.built_in_storehouse_directory_path = \
+            self.configuration.abjad_stylesheets_directory_path
+        self.user_storehouse_directory_path = \
+            self.configuration.user_library_stylesheets_directory_path
+        self.score_storehouse_path_infix_parts = ('stylesheets',)
 
     ### PRIVATE PROPERTIES ###
 
@@ -75,7 +72,7 @@ class StylesheetFileWrangler(Wrangler):
     def _get_current_directory(self):
         if self._session.current_score_directory_path:
             parts = (self._session.current_score_directory_path,)
-            parts += self.score_package_storehouse_path_infix_parts
+            parts += self.score_storehouse_path_infix_parts
             return os.path.join(*parts)
     
     def _get_header_stylesheet_file_path(self):

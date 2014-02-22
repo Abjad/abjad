@@ -19,7 +19,7 @@ def is_articulation_token(expr):
 
 def is_available_snake_case_package_name(expr):
     if stringtools.is_snake_case_package_name(expr):
-        return not configuration.package_path_exists(expr)
+        return not configuration.package_exists(expr)
     return False
 
 def is_boolean(expr):
@@ -53,7 +53,7 @@ def is_dynamic_token(expr):
         return False
 
 def is_existing_package_name(expr):
-    return configuration.package_path_exists(expr)
+    return configuration.package_exists(expr)
 
 def is_hairpin_token(expr):
     return spannertools.Hairpin._is_hairpin_token(expr)
