@@ -122,7 +122,7 @@ class ScorePackageManager(PackageManager):
             )
 
     def _get_tempo_inventory(self):
-        wrangler = self.material_package_wrangler
+        wrangler = self._material_package_wrangler
         for manager in wrangler.list_asset_managers(head=self.package_path):
             string = 'material_package_manager_class_name'
             class_name = manager._get_metadatum(string)
@@ -163,19 +163,6 @@ class ScorePackageManager(PackageManager):
             message = 'unknown user input: {!r}.'
             message = message.format(result)
             raise ValueError(message)
-
-#    def _handle_repository_menu_result(self, result):
-#        if result == 'add':
-#            self.repository_add(prompt=True)
-#        elif result == 'ci':
-#            self.repository_ci(prompt=True)
-#            return True
-#        elif result == 'st':
-#            self.repository_st(prompt=True)
-#        elif result == 'up':
-#            self.repository_up(prompt=True)
-#        else:
-#            raise ValueError(result)
 
     def _handle_setup_menu_result(self, result):
         assert isinstance(result, str)
@@ -219,7 +206,7 @@ class ScorePackageManager(PackageManager):
         command_section.append(('setup', 'p'))
         command_section.append(('templates', 't'))
         command_section.append(('stylesheets', 'y'))
-        manager = self.build_directory_manager
+        manager = self._build_directory_manager
         if manager._get_file_path_ending_with('score.pdf'):
             command_section = main_menu.make_command_section()
             command_section.append(('score pdf - view', 'pdfv'))
@@ -283,40 +270,6 @@ class ScorePackageManager(PackageManager):
         file_pointer = file(file_path, 'w')
         file_pointer.write(''.join(lines))
         file_pointer.close()
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def build_directory_manager(self):
-        return self._build_directory_manager
-
-    @property
-    def distribution_directory_manager(self):
-        return self._distribution_directory_manager
-
-    @property
-    def instrumentation_module_manager(self):
-        return self._instrumentation_module_manager
-
-    @property
-    def material_package_manager_wrangler(self):
-        return self._material_package_manager_wrangler
-
-    @property
-    def material_package_wrangler(self):
-        return self._material_package_wrangler
-
-    @property
-    def score_template_directory_manager(self):
-        return self._score_template_directory_manager
-
-    @property
-    def segment_wrangler(self):
-        return self._segment_wrangler
-
-    @property
-    def stylesheet_wrangler(self):
-        return self._stylesheet_wrangler
 
     ### PUBLIC METHODS ###
 
@@ -433,28 +386,28 @@ class ScorePackageManager(PackageManager):
             self._session.is_backtracking_locally = True
 
     def interactively_view_instrumentation_module(self):
-        return self.instrumentation_module_manager.interactively_edit()
+        return self._instrumentation_module_manager.interactively_edit()
 
     def interactively_view_score(self, pending_user_input=None):
-        self.build_directory_manager._interactively_open_file_ending_with(
+        self._build_directory_manager._interactively_open_file_ending_with(
             'score.pdf',
             )
 
     def manage_build_directory(self):
-        self.build_directory_manager._run()
+        self._build_directory_manager._run()
 
     def manage_makers(self):
         self._session.io_manager.print_not_yet_implemented()
         #self.maker_module_wrangler._run(head=self.package_path)
 
     def manage_materials(self):
-        self.material_package_wrangler._run(head=self.package_path)
+        self._material_package_wrangler._run(head=self.package_path)
 
     def manage_score_templates(self):
         self.score_template_directory_manager._run()
 
     def manage_segments(self):
-        self.segment_wrangler._run(head=self.package_path)
+        self._segment_wrangler._run(head=self.package_path)
 
     def manage_setup(self, clear=True, cache=True):
         self._session._cache_breadcrumbs(cache=cache)
@@ -477,7 +430,7 @@ class ScorePackageManager(PackageManager):
         self._session._restore_breadcrumbs(cache=cache)
 
     def manage_stylesheets(self):
-        self.stylesheet_wrangler._run(head=self.package_path)
+        self._stylesheet_wrangler._run(head=self.package_path)
 
     ### UI MANIFEST ###
 

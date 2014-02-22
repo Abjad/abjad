@@ -78,8 +78,8 @@ def test_ScorePackageManager_05():
     string = 'scoremanager.scorepackages.red_example_score'
     manager = scoremanager.managers.ScorePackageManager(string)
 
-    assert manager._session is manager.distribution_directory_manager._session
-    assert manager._session is manager.build_directory_manager._session
-    assert manager._session is manager.segment_wrangler._session
-    assert manager._session is manager.material_package_wrangler._session
-    assert manager._session is manager.material_package_manager_wrangler._session
+    assert manager._session is manager._distribution_directory_manager._session
+    assert manager._session is manager._build_directory_manager._session
+    assert manager._session is manager._segment_wrangler._session
+    assert manager._session is manager._material_package_wrangler._session
+    assert manager._session is manager._material_package_manager_wrangler._session

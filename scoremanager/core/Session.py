@@ -2,8 +2,6 @@
 import os
 from abjad.tools import abctools
 from abjad.tools import stringtools
-from scoremanager.core.ScoreManagerConfiguration \
-    import ScoreManagerConfiguration
 
 
 class Session(abctools.AbjadObject):
@@ -33,8 +31,6 @@ class Session(abctools.AbjadObject):
     '''
 
     ### CLASS VARIABLES ###
-
-    configuration = ScoreManagerConfiguration()
 
     _variables_to_display = (
         'attempted_to_open_file',
@@ -69,11 +65,13 @@ class Session(abctools.AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, pending_user_input=None):
+        from scoremanager import core
         from scoremanager import iotools
         self._backtracking_stack = []
         self._breadcrumb_cache_stack = []
         self._breadcrumb_stack = []
         self._command_history = []
+        self._configuration = core.ScoreManagerConfiguration()
         self._controller_stack = []
         self._hide_hidden_commands = True
         self._io_manager = iotools.IOManager(self)
@@ -284,6 +282,21 @@ class Session(abctools.AbjadObject):
         return ' '.join(self.explicit_command_history)
 
     @property
+    def configuration(self):
+        r'''Gets session configuration.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.configuration
+                ScoreManagerConfiguration()
+
+        Returns score manager configuration.
+        '''
+        return self._configuration
+
+    @property
     def controller_stack(self):
         r'''Gets session controller stack.
 
@@ -342,7 +355,7 @@ class Session(abctools.AbjadObject):
         '''
         if self.is_in_score:
             manager = self.current_score_package_manager
-            wrangler = manager.material_package_wrangler
+            wrangler = manager._material_package_wrangler
             path = wrangler._get_current_directory_path_of_interest()
             return path
         else:
@@ -437,7 +450,7 @@ class Session(abctools.AbjadObject):
         '''
         if self.is_in_score:
             manager = self.current_score_package_manager
-            wrangler = manager.segment_wrangler
+            wrangler = manager._segment_wrangler
             path = wrangler._get_current_directory_path_of_interest()
             return path
 
