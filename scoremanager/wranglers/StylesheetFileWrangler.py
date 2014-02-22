@@ -109,7 +109,7 @@ class StylesheetFileWrangler(Wrangler):
         if result in self._user_input_to_action:
             self._user_input_to_action[result](self)
         else:
-            self.interactively_edit_asset(result)
+            self.edit_asset(result)
 
     def _is_valid_directory_entry(self, directory_entry):
         superclass = super(StylesheetFileWrangler, self)
@@ -160,7 +160,7 @@ class StylesheetFileWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def interactively_edit_asset(
+    def edit_asset(
         self, 
         filesystem_path,
         pending_user_input=None,
@@ -174,9 +174,9 @@ class StylesheetFileWrangler(Wrangler):
             filesystem_path=filesystem_path, 
             session=self._session,
             )
-        manager.interactively_edit()
+        manager.edit()
 
-    def interactively_edit_header_stylesheet(
+    def edit_header_stylesheet(
         self,
         pending_user_input=None,
         ):
@@ -185,9 +185,9 @@ class StylesheetFileWrangler(Wrangler):
         Returns none.
         '''
         file_path = self._get_header_stylesheet_file_path()
-        self.interactively_edit_asset(file_path)
+        self.edit_asset(file_path)
 
-    def interactively_edit_layout_stylesheet(
+    def edit_layout_stylesheet(
         self,
         pending_user_input=None,
         ):
@@ -196,9 +196,9 @@ class StylesheetFileWrangler(Wrangler):
         Returns none.
         '''
         file_path = self._get_layout_stylesheet_file_path()
-        self.interactively_edit_asset(file_path)
+        self.edit_asset(file_path)
 
-    def interactively_edit_paper_stylesheet(
+    def edit_paper_stylesheet(
         self,
         pending_user_input=None,
         ):
@@ -207,7 +207,7 @@ class StylesheetFileWrangler(Wrangler):
         Returns none.
         '''
         file_path = self._get_paper_stylesheet_file_path()
-        self.interactively_edit_asset(file_path)
+        self.edit_asset(file_path)
 
     def interactively_make_asset(
         self,
@@ -250,7 +250,7 @@ class StylesheetFileWrangler(Wrangler):
         if self._session.is_test:
             manager._make_empty_asset()
         else:
-            manager.interactively_edit()
+            manager.edit()
 
     def list_asset_filesystem_paths(
         self,
@@ -396,8 +396,8 @@ class StylesheetFileWrangler(Wrangler):
 
     _user_input_to_action = Wrangler._user_input_to_action.copy()
     _user_input_to_action.update({
-        'h': interactively_edit_header_stylesheet,
-        'l': interactively_edit_layout_stylesheet,
-        'p': interactively_edit_paper_stylesheet,
+        'h': edit_header_stylesheet,
+        'l': edit_layout_stylesheet,
+        'p': edit_paper_stylesheet,
         'new': interactively_make_asset,
         })

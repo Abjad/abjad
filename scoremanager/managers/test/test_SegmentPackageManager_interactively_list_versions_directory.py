@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_SegmentPackageManager_interactively_list_versions_directory_01():
+def test_SegmentPackageManager_list_versions_directory_01():
     r'''Score manager displays informative string when no versions
     directory exists and raises no exceptions.
     '''

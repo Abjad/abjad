@@ -97,7 +97,7 @@ class DirectoryManager(Manager):
 
     ### PUBLIC METHODS ###
 
-    def interactively_edit_asset(
+    def edit_asset(
         self,
         filesystem_path,
         pending_user_input=None,
@@ -111,7 +111,7 @@ class DirectoryManager(Manager):
             filesystem_path=filesystem_path,
             session=self._session,
             )
-        manager.interactively_edit()
+        manager.edit()
 
     def interactively_get_filesystem_path(self):
         r'''Interactively gest filesystem path of directory manager.
@@ -125,7 +125,7 @@ class DirectoryManager(Manager):
             return
         self._filesystem_path = result
 
-    def interactively_list_directory(self):
+    def list_directory(self):
         r'''Interactively lists directory.
 
         Returns none.
@@ -182,5 +182,5 @@ class DirectoryManager(Manager):
 
     _user_input_to_action = Manager._user_input_to_action.copy()
     _user_input_to_action.update({
-        'ls': interactively_list_directory,
+        'ls': list_directory,
         })

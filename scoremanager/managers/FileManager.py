@@ -53,7 +53,7 @@ class FileManager(Manager):
         if result in self._user_input_to_action:
             self._user_input_to_action[result](self)
         elif result == 'user entered lone return':
-            self.interactively_edit()
+            self.edit()
 
     def _interpret_in_external_process(self):
         command = 'python {}'.format(self._filesystem_path)
@@ -140,12 +140,12 @@ class FileManager(Manager):
             self._session.io_manager.spawn_subprocess(command)
         self._session.io_manager.proceed('', prompt=prompt)
 
-    def interactively_edit(self, line_number=None):
+    def edit(self, line_number=None):
         r'''Interactively edits file.
 
         Returns none.
         '''
-        self._session.io_manager.interactively_edit(
+        self._session.io_manager.edit(
             self._filesystem_path,
             line_number=line_number,
             )
@@ -192,7 +192,7 @@ class FileManager(Manager):
 
     _user_input_to_action = Manager._user_input_to_action.copy()
     _user_input_to_action.update({
-        'e': interactively_edit,
+        'e': edit,
         'ts': interactively_typeset_tex_file,
         'v': view,
         })

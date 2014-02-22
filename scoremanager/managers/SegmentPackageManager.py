@@ -60,7 +60,7 @@ class SegmentPackageManager(PackageManager):
         if result in self._user_input_to_action:
             self._user_input_to_action[result](self)
         elif result == 'user entered lone return':
-            self.interactively_edit_asset_definition_module()
+            self.edit_asset_definition_module()
 
     def _view_versioned_file(self, extension):
         assert extension in ('.ly', '.pdf', '.py')
@@ -167,7 +167,7 @@ class SegmentPackageManager(PackageManager):
 
     ### PUBLIC METHODS ###
 
-    def interactively_edit_asset_definition_module(
+    def edit_asset_definition_module(
         self,
         pending_user_input=None,
         ):
@@ -176,9 +176,9 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         self._session.io_manager._assign_user_input(pending_user_input)
-        self.segment_definition_module_manager.interactively_edit()
+        self.segment_definition_module_manager.edit()
 
-    def interactively_edit_asset_definition_module_from_top(
+    def edit_asset_definition_module_from_top(
         self,
         pending_user_input=None,
         ):
@@ -187,10 +187,10 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         self._session.io_manager._assign_user_input(pending_user_input)
-        self.segment_definition_module_manager.interactively_edit(
+        self.segment_definition_module_manager.edit(
             line_number=1)
 
-    def interactively_list_versions_directory(self):
+    def list_versions_directory(self):
         r'''Interactively lists versions directory.
 
         Returns none.
@@ -448,8 +448,8 @@ class SegmentPackageManager(PackageManager):
 
     _user_input_to_action = PackageManager._user_input_to_action.copy()
     _user_input_to_action.update({
-        'E': interactively_edit_asset_definition_module_from_top,
-        'e': interactively_edit_asset_definition_module,
+        'E': edit_asset_definition_module_from_top,
+        'e': edit_asset_definition_module,
         'lyri': interactively_reinterpret_current_lilypond_file,
         'lyv': view_current_output_ly,
         'lyver': view_versioned_output_ly,
@@ -459,5 +459,5 @@ class SegmentPackageManager(PackageManager):
         'pdfver': view_versioned_output_pdf,
         'pyver': view_versioned_segment_definition_module,
         'pdfs': interactively_save_to_versions_directory,
-        'vrl': interactively_list_versions_directory,
+        'vrl': list_versions_directory,
         })

@@ -71,7 +71,7 @@ class PackageManager(DirectoryManager):
         assert stringtools.is_snake_case_string(metadatum_name)
         metadata = self._get_metadata()
         metadata[metadatum_name] = metadatum_value
-        self.interactively_rewrite_metadata_module(metadata)
+        self.rewrite_metadata_module(metadata)
 
     def _get_metadata(self):
         metadata = None
@@ -138,7 +138,7 @@ class PackageManager(DirectoryManager):
             message = message.format(metadatum_name)
             self._session.io_manager.proceed(message)
         if was_removed:
-            self.interactively_rewrite_metadata_module(metadata)
+            self.rewrite_metadata_module(metadata)
             message = 'metadatum removed: {!r}.'
             message = message.format(metadatum_name)
             self._session.io_manager.proceed(message)
@@ -223,7 +223,7 @@ class PackageManager(DirectoryManager):
             metadatum_name = result
             self._remove_metadatum(metadatum_name)
 
-    def interactively_rename_package(self):
+    def rename_package(self):
         r'''Interactively renames package.
 
         Returns none.
@@ -296,7 +296,7 @@ class PackageManager(DirectoryManager):
     def write_boilerplate_initializer_module(self):
         self.initializer_file_manager.write_boilerplate()
 
-    def interactively_rewrite_metadata_module(
+    def rewrite_metadata_module(
         self, 
         metadata=None, 
         prompt=True,
@@ -335,7 +335,7 @@ class PackageManager(DirectoryManager):
         'mdrm': remove_metadatum,
         'mdmv': view_metadata_module,
         'mdmrm': remove_metadata_module,
-        'mdmrw': interactively_rewrite_metadata_module,
-        'ren': interactively_rename_package,
+        'mdmrw': rewrite_metadata_module,
+        'ren': rename_package,
         'rm': remove_package,
         })

@@ -49,7 +49,7 @@ class ListEditor(Editor):
         if result in self._user_input_to_action:
             self._user_input_to_action[result](self)
         elif mathtools.is_integer_equivalent_expr(result):
-            self.interactively_edit_item(result)
+            self.edit_item(result)
         else:
             super(ListEditor, self)._handle_main_menu_result(result)
 
@@ -155,7 +155,7 @@ class ListEditor(Editor):
             items = [result]
         self.items.extend(items)
 
-    def interactively_edit_item(self, item_number):
+    def edit_item(self, item_number):
         item = self.get_item_from_item_number(item_number)
         if item is not None:
             if self.item_editor_class is not None:

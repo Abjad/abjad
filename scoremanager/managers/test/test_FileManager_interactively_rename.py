@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 
-def test_FileManager_interactively_rename_01():
+def test_FileManager_rename_01():
     r'''Nonversioned file.
     '''
 
@@ -24,7 +24,7 @@ def test_FileManager_interactively_rename_01():
             configuration.score_manager_directory_path, 
             'new_test_file.txt',
             )
-        file_manager.interactively_rename(
+        file_manager.rename(
             pending_user_input='new_test_file.txt y q')
         assert file_manager._filesystem_path == new_filesystem_path
         assert not os.path.exists(filesystem_path)
@@ -35,7 +35,7 @@ def test_FileManager_interactively_rename_01():
         assert not os.path.exists(new_filesystem_path)
 
 
-def test_FileManager_interactively_rename_02():
+def test_FileManager_rename_02():
     r'''Versioned file.
     '''
 
@@ -57,7 +57,7 @@ def test_FileManager_interactively_rename_02():
             configuration.score_manager_directory_path, 
             'new_test_file.txt',
             )
-        file_manager.interactively_rename(
+        file_manager.rename(
             pending_user_input='new_test_file.txt y q'
             )
         assert file_manager._filesystem_path == new_filesystem_path

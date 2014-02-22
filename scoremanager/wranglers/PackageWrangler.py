@@ -169,7 +169,7 @@ class PackageWrangler(Wrangler):
             return
         self.make_asset(package_path)
 
-    def interactively_rename_asset(
+    def rename_asset(
         self, 
         head=None,
         pending_user_input=None,
@@ -186,7 +186,7 @@ class PackageWrangler(Wrangler):
         if self._session._backtrack():
             return
         asset_manager = self._initialize_asset_manager(asset_package_path)
-        asset_manager.interactively_rename()
+        asset_manager.rename()
 
     def select_asset_package_path(
         self,
@@ -353,5 +353,5 @@ class PackageWrangler(Wrangler):
     _user_input_to_action = Wrangler._user_input_to_action.copy()
     _user_input_to_action.update({
         'new': interactively_make_asset,
-        'ren': interactively_rename_asset,
+        'ren': rename_asset,
         })

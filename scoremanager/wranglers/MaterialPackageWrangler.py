@@ -448,7 +448,7 @@ class MaterialPackageWrangler(PackageWrangler):
         material_package_manager = self._get_appropriate_material_package_manager(
             *pair)
         material_package_manager._initializer_file_manager._write_stub()
-        material_package_manager.interactively_rewrite_metadata_module(metadata)
+        material_package_manager.rewrite_metadata_module(metadata)
         material_package_manager.conditionally_write_stub_material_definition_module()
         material_package_manager.conditionally_write_stub_user_input_module()
         message = 'material package {!r} created.'.format(package_path)

@@ -239,11 +239,11 @@ class Wrangler(ScoreManagerObject):
         manager = self._get_current_package_manager()
         manager.interactively_get_metadatum()
 
-    def interactively_list_directory(self):
+    def list_directory(self):
         manager = self._get_current_package_manager()
-        manager.interactively_list_directory()
+        manager.list_directory()
 
-    def interactively_list_views(
+    def list_views(
         self,
         pending_user_input=None,
         ):
@@ -352,7 +352,7 @@ class Wrangler(ScoreManagerObject):
         self._session.io_manager.proceed(message)
 
     # TODO: write test
-    def interactively_rename_asset(
+    def rename_asset(
         self,
         pending_user_input=None,
         ):
@@ -367,7 +367,7 @@ class Wrangler(ScoreManagerObject):
         if self._session._backtrack():
             return
         asset_manager = self._initialize_asset_manager(asset_filesystem_path)
-        asset_manager.interactively_rename()
+        asset_manager.rename()
 
     def remove_initializer_module(self):
         manager = self._get_current_package_manager()
@@ -385,9 +385,9 @@ class Wrangler(ScoreManagerObject):
         manager = self._get_current_package_manager()
         manager.remove_views_module()
 
-    def interactively_rewrite_metadata_module(self):
+    def rewrite_metadata_module(self):
         manager = self._get_current_package_manager()
-        manager.interactively_rewrite_metadata_module()
+        manager.rewrite_metadata_module()
 
     def run_doctest(self, prompt=True):
         path = self._get_current_directory_path_of_interest()
@@ -517,7 +517,7 @@ class Wrangler(ScoreManagerObject):
 
     def view_views_module(self):
         manager = self._get_current_view_module_manager()
-        manager.interactively_edit()
+        manager.edit()
 
     def write_boilerplate_initializer_module(self):
         manager = self._get_current_package_manager()
@@ -700,16 +700,16 @@ class Wrangler(ScoreManagerObject):
         'inrm': remove_initializer_module,
         'ins': write_stub_initializer_module,
         'inv': view_initializer_module,
-        'ls': interactively_list_directory,
+        'ls': list_directory,
         'mda': interactively_add_metadatum,
         'mdg': interactively_get_metadatum,
         'mdrm': remove_metadatum,
         'mdmrm': remove_metadata_module,
-        'mdmrw': interactively_rewrite_metadata_module,
+        'mdmrw': rewrite_metadata_module,
         'mdmv': view_metadata_module,
-        'ren': interactively_rename_asset,
+        'ren': rename_asset,
         'rm': remove_assets,
-        'vwl': interactively_list_views,
+        'vwl': list_views,
         'vwn': interactively_make_view,
         'vws': select_view,
         'vwmrm': remove_views_module,

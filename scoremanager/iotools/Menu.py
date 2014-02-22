@@ -124,7 +124,7 @@ class Menu(ScoreManagerObject):
         elif directive == 'n':
             self.toggle_hidden_commands()
         elif directive == 'sce':
-            self.interactively_edit_calling_code()
+            self.edit_calling_code()
         elif directive == 'sdv':
             self._session.display_variables()
         elif directive == 'scl':
@@ -510,7 +510,7 @@ class Menu(ScoreManagerObject):
         #self._session.hide_next_redraw = True
         self._session._pop_breadcrumb()
 
-    def interactively_edit_calling_code(self):
+    def edit_calling_code(self):
         if self.where is not None:
             file_name = self.where[1]
             line_number = self.where[2]

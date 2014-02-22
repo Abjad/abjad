@@ -294,7 +294,7 @@ class Manager(ScoreManagerObject):
         self.remove()
         self._session.is_backtracking_locally = True
 
-    def interactively_rename(
+    def rename(
         self, 
         pending_user_input=None,
         ):
@@ -466,5 +466,5 @@ class Manager(ScoreManagerObject):
     _user_input_to_action = {
         'cp': interactively_copy,
         'rm': remove_and_backtrack_locally,
-        'ren': interactively_rename,
+        'ren': rename,
         }

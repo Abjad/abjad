@@ -38,7 +38,7 @@ class BuildDirectoryManager(DirectoryManager):
 
     def _handle_back_cover_menu_result(self, result):
         if result == 'e':
-            self._interactively_edit_file_ending_with('back-cover.tex')
+            self._edit_file_ending_with('back-cover.tex')
         elif result == 'g':
             self._session.io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
@@ -48,7 +48,7 @@ class BuildDirectoryManager(DirectoryManager):
 
     def _handle_front_cover_menu_result(self, result):
         if result == 'e':
-            self._interactively_edit_file_ending_with('front-cover.tex')
+            self._edit_file_ending_with('front-cover.tex')
         elif result == 'g':
             self._session.io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
@@ -58,7 +58,7 @@ class BuildDirectoryManager(DirectoryManager):
 
     def _handle_preface_menu_result(self, result):
         if result == 'e':
-            self._interactively_edit_file_ending_with('preface.tex')
+            self._edit_file_ending_with('preface.tex')
         elif result == 'g':
             self._session.io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
@@ -68,7 +68,7 @@ class BuildDirectoryManager(DirectoryManager):
 
     def _handle_score_menu_result(self, result):
         if result == 'e':
-            self._interactively_edit_file_ending_with('score.tex')
+            self._edit_file_ending_with('score.tex')
         elif result == 'g':
             self._session.io_manager.print_not_yet_implemented()
         elif result == 'lycp':
@@ -78,7 +78,7 @@ class BuildDirectoryManager(DirectoryManager):
         elif result == 'pdfv':
             self._interactively_open_file_ending_with('score.pdf')
         elif result == 'seged':
-            self._interactively_edit_file_ending_with('score-segments.ly')
+            self._edit_file_ending_with('score-segments.ly')
         elif result == 'segly':
             self._interactively_call_lilypond_on_file_ending_with(
                 'score-segments.ly')
@@ -97,11 +97,11 @@ class BuildDirectoryManager(DirectoryManager):
             message = message.format(string)
             self._session.io_manager.proceed(message)
 
-    def _interactively_edit_file_ending_with(self, string):
+    def _edit_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
         if file_path:
             file_manager = self._get_file_manager(file_path)
-            file_manager.interactively_edit()
+            file_manager.edit()
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)

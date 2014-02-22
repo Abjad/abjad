@@ -366,7 +366,7 @@ class IOManager(IOManager):
         finally:
             readline.set_startup_hook()
 
-    def interactively_edit(self, file_path, line_number=None):
+    def edit(self, file_path, line_number=None):
         r'''Interactively edits `file_path`.
 
         Returns none.

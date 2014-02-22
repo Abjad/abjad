@@ -70,7 +70,7 @@ class MaterialPackageManager(PackageManager):
         if result in self._user_input_to_action:
             self._user_input_to_action[result](self)
         elif mathtools.is_integer_equivalent_expr(result):
-            self.interactively_edit_user_input_wrapper_at_number(
+            self.edit_user_input_wrapper_at_number(
                 result, include_newline=False)
         else:
             raise ValueError(result)
@@ -623,14 +623,14 @@ class MaterialPackageManager(PackageManager):
             return format(expr, 'storage')
         return repr(expr)
 
-    def interactively_edit_illustration_builder_module(self):
-        self.illustration_builder_module_manager.interactively_edit()
+    def edit_illustration_builder_module(self):
+        self.illustration_builder_module_manager.edit()
 
-    def interactively_edit_material_definition_module(self):
+    def edit_material_definition_module(self):
         file_path = self.material_definition_module_file_path
-        self._session.io_manager.interactively_edit(file_path)
+        self._session.io_manager.edit(file_path)
 
-    def interactively_edit_output_material(self):
+    def edit_output_material(self):
         if not self.has_output_material_editor:
             return
         output_material = self.output_material
@@ -668,13 +668,13 @@ class MaterialPackageManager(PackageManager):
                 output_material_module_body_lines,
             )
 
-    def interactively_edit_stylesheet_file(self):
-        self.stylesheet_file_manager.interactively_edit()
+    def edit_stylesheet_file(self):
+        self.stylesheet_file_manager.edit()
 
     def remove(self):
         PackageManager.remove(self)
 
-    def interactively_rename_package(self):
+    def rename_package(self):
         base_name = os.path.basename(self._filesystem_path)
         line = 'current name: {}'.format(base_name)
         self._session.io_manager.display(line)
@@ -1153,7 +1153,7 @@ class MaterialPackageManager(PackageManager):
             user_input_wrapper[user_input_attribute_name] = None
         return user_input_wrapper
 
-    def interactively_edit_user_input_wrapper_at_number(
+    def edit_user_input_wrapper_at_number(
         self,
         number,
         include_newline=True,
@@ -1248,7 +1248,7 @@ class MaterialPackageManager(PackageManager):
         current_element_index = current_element_number - 1
         while True:
             with self.backtracking:
-                self.interactively_edit_user_input_wrapper_at_number(
+                self.edit_user_input_wrapper_at_number(
                     current_element_number, include_newline=False)
             if self._session._backtrack():
                 return
@@ -1274,7 +1274,7 @@ class MaterialPackageManager(PackageManager):
     _user_input_to_action = PackageManager._user_input_to_action.copy()
     _user_input_to_action.update({
         'ibd': remove_illustration_builder_module,
-        'ibe': interactively_edit_illustration_builder_module,
+        'ibe': edit_illustration_builder_module,
         'ibt': write_stub_illustration_builder_module,
         'ibx': run_python_on_illustration_builder_module,
         'ibxi': run_abjad_on_illustration_builder_module,
@@ -1282,7 +1282,7 @@ class MaterialPackageManager(PackageManager):
         'lym': write_illustration_ly,
         'ly': illustration_ly_file_manager,
         'mdcanned': write_material_definition_module_boilerplate,
-        'mde': interactively_edit_material_definition_module,
+        'mde': edit_material_definition_module,
         'mddelete': remove_material_definition_module,
         'mdstub': write_stub_material_definition_module,
         'mdx': run_python_on_material_definition_module,
@@ -1290,13 +1290,13 @@ class MaterialPackageManager(PackageManager):
         'omcanned': write_output_material_module_boilerplate,
         'omdelete': remove_output_material_module,
         'omm': write_output_material,
-        'omi': interactively_edit_output_material,
+        'omi': edit_output_material,
         'omv': view_output_material_module,
         'pdfm': write_illustration_ly_and_pdf,
         'pdfd': remove_illustration_pdf,
         'pdfv': view_illustration_pdf,
-        'ren': interactively_rename_package,
-        'ssm': interactively_edit_stylesheet_file,
+        'ren': rename_package,
+        'ssm': edit_stylesheet_file,
         'sss': select_stylesheet,
         'stl': manage_stylesheets,
         'uid': remove_user_input_module,

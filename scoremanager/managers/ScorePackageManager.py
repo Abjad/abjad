@@ -164,7 +164,7 @@ class ScorePackageManager(PackageManager):
         elif result == 'g':
             self._segment_package_wrangler._run(head=self._package_path)
         elif result == 'instrumentation':
-            self._instrumentation_module_manager.interactively_edit()
+            self._instrumentation_module_manager.edit()
         elif result == 'k':
             self._session.io_manager.print_not_yet_implemented()
             #self._maker_module_wrangler._run(head=self._package_path)
@@ -194,15 +194,15 @@ class ScorePackageManager(PackageManager):
     def _handle_setup_menu_result(self, result):
         assert isinstance(result, str)
         if result == 'catalog number':
-            self.interactively_edit_catalog_number()   
+            self.edit_catalog_number()   
         elif result == 'instr':
-            self.interactively_edit_instrumentation_specifier()
+            self.edit_instrumentation_specifier()
         elif result == 'tagline':
-            self.interactively_edit_forces_tagline()
+            self.edit_forces_tagline()
         elif result == 'title':
-            self.interactively_edit_title()
+            self.edit_title()
         elif result == 'year':
-            self.interactively_edit_year_of_completion()
+            self.edit_year_of_completion()
         elif result == 'user entered lone return':
             pass
         else:
@@ -320,7 +320,7 @@ class ScorePackageManager(PackageManager):
 
     ### PUBLIC METHODS ###
 
-    def interactively_edit_catalog_number(self):
+    def edit_catalog_number(self):
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('Catalog number')
         result = getter._run()
@@ -328,7 +328,7 @@ class ScorePackageManager(PackageManager):
             return
         self._add_metadatum('catalog_number', result)
 
-    def interactively_edit_forces_tagline(self):
+    def edit_forces_tagline(self):
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('Forces tagline')
         result = getter._run()
@@ -336,7 +336,7 @@ class ScorePackageManager(PackageManager):
             return
         self._add_metadatum('forces_tagline', result)
 
-    def interactively_edit_instrumentation_specifier(self):
+    def edit_instrumentation_specifier(self):
         from scoremanager import editors
         target = self._get_instrumentation()
         editor = editors.InstrumentationEditor(
@@ -346,7 +346,7 @@ class ScorePackageManager(PackageManager):
         editor._run()
         self._write_instrumentation(editor.target)
 
-    def interactively_edit_title(self):
+    def edit_title(self):
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('new title')
         result = getter._run()
@@ -355,7 +355,7 @@ class ScorePackageManager(PackageManager):
         self._add_metadatum('title', result)
         self._session.io_manager._write_cache()
 
-    def interactively_edit_year_of_completion(self):
+    def edit_year_of_completion(self):
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_integer_in_range(
             'year of completion', 
