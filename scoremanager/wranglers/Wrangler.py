@@ -695,7 +695,7 @@ class Wrangler(ScoreManagerObject):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = {
+    _user_input_to_action = {
         'inbp': interactively_write_boilerplate_initializer_module,
         'inrm': interactively_remove_initializer_module,
         'ins': interactively_write_stub_initializer_module,

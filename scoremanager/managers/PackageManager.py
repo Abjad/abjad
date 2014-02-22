@@ -324,8 +324,8 @@ class PackageManager(DirectoryManager):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = DirectoryManager.user_input_to_action.copy()
-    user_input_to_action.update({
+    _user_input_to_action = DirectoryManager._user_input_to_action.copy()
+    _user_input_to_action.update({
         'inbp': interactively_write_boilerplate_initializer_module,
         'inrm': interactively_remove_initializer_module,
         'ins': interactively_write_stub_initializer_module,

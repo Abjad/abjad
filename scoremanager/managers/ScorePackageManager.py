@@ -155,8 +155,8 @@ class ScorePackageManager(PackageManager):
 
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
-        if result in self.user_input_to_action:
-            self.user_input_to_action[result](self)
+        if result in self._user_input_to_action:
+            self._user_input_to_action[result]()
         elif result == 'user entered lone return':
             pass
         else:
@@ -195,6 +195,23 @@ class ScorePackageManager(PackageManager):
             return_attribute_name='instrumentation',
             )
         return instrumentation
+
+    def _initialize_user_input_to_action(self):
+        user_input_to_action = PackageManager._user_input_to_action.copy()
+        user_input_to_action.update({
+            'fix': self.interactively_fix,
+            'g': self.manage_segments,
+            'instrumentation': self.interactively_view_instrumentation_module,
+            'k': self.manage_makers,
+            'm': self.manage_materials,
+            'p': self.manage_setup,
+            'pdfv': self.interactively_view_score,
+            'removescore': self.interactively_remove,
+            't': self.manage_score_templates,
+            'u': self.manage_build_directory,
+            'y': self.manage_stylesheets,
+            })
+        self._user_input_to_action = user_input_to_action
     
     def _make_main_menu(self):
         main_menu = self._session.io_manager.make_menu(where=self._where)
@@ -431,20 +448,3 @@ class ScorePackageManager(PackageManager):
 
     def manage_stylesheets(self):
         self._stylesheet_wrangler._run(head=self._package_path)
-
-    ### UI MANIFEST ###
-
-    user_input_to_action = PackageManager.user_input_to_action.copy()
-    user_input_to_action.update({
-        'fix': interactively_fix,
-        'g': manage_segments,
-        'instrumentation': interactively_view_instrumentation_module,
-        'k': manage_makers,
-        'm': manage_materials,
-        'p': manage_setup,
-        'pdfv': interactively_view_score,
-        'removescore': interactively_remove,
-        't': manage_score_templates,
-        'u': manage_build_directory,
-        'y': manage_stylesheets,
-        })

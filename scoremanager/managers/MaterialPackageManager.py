@@ -67,8 +67,8 @@ class MaterialPackageManager(PackageManager):
 
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
-        if result in self.user_input_to_action:
-            self.user_input_to_action[result](self)
+        if result in self._user_input_to_action:
+            self._user_input_to_action[result](self)
         elif mathtools.is_integer_equivalent_expr(result):
             self.interactively_edit_user_input_wrapper_at_number(
                 result, include_newline=False)
@@ -1274,8 +1274,8 @@ class MaterialPackageManager(PackageManager):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = PackageManager.user_input_to_action.copy()
-    user_input_to_action.update({
+    _user_input_to_action = PackageManager._user_input_to_action.copy()
+    _user_input_to_action.update({
         'ibd': remove_illustration_builder_module,
         'ibe': interactively_edit_illustration_builder_module,
         'ibt': write_stub_illustration_builder_module,

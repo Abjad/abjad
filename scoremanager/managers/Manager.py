@@ -25,6 +25,7 @@ class Manager(ScoreManagerObject):
         assert filesystem_path is None or os.path.sep in filesystem_path
         self._filesystem_path = filesystem_path
         ScoreManagerObject.__init__(self, session=session)
+        self._initialize_user_input_to_action()
 
     ### SPECIAL METHODS ###
 
@@ -81,6 +82,9 @@ class Manager(ScoreManagerObject):
         getter = self._session.io_manager.make_getter()
         getter.append_snake_case_file_name('new name')
         return getter
+
+    def _initialize_user_input_to_action(self):
+        pass
 
     def _is_in_svn_parent_directory(self):
         directory_path = os.path.dirname(self._filesystem_path)
@@ -463,7 +467,7 @@ class Manager(ScoreManagerObject):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = {
+    _user_input_to_action = {
         'cp': interactively_copy,
         'rm': interactively_remove_and_backtrack_locally,
         'ren': interactively_rename,

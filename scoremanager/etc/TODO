@@ -15,7 +15,7 @@
 7.  Audit the UI of the entire materials management system by hand.
 
 8. Harmonize user input strings with method names in 
-    MaterialPackageManager.user_input_to_action dictionary.
+    MaterialPackageManager._user_input_to_action dictionary.
 
 9.  Implement example_score_i.materials.divisions to import 
     example_score_i.materials.time_signatures.

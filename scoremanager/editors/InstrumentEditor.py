@@ -64,8 +64,8 @@ class InstrumentEditor(Editor):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        if result in self.user_input_to_action:
-            self.user_input_to_action[result](self)
+        if result in self._user_input_to_action:
+            self._user_input_to_action[result](self)
         else:
             super(InstrumentEditor, self)._handle_main_menu_result(result)
 
@@ -106,6 +106,6 @@ class InstrumentEditor(Editor):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = {
+    _user_input_to_action = {
         'tprd':     toggle_pitch_range_display,
         }

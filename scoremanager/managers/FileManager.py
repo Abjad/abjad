@@ -50,8 +50,8 @@ class FileManager(Manager):
             return name
 
     def _handle_main_menu_result(self, result):
-        if result in self.user_input_to_action:
-            self.user_input_to_action[result](self)
+        if result in self._user_input_to_action:
+            self._user_input_to_action[result](self)
         elif result == 'user entered lone return':
             self.interactively_edit()
 
@@ -190,8 +190,8 @@ class FileManager(Manager):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = Manager.user_input_to_action.copy()
-    user_input_to_action.update({
+    _user_input_to_action = Manager._user_input_to_action.copy()
+    _user_input_to_action.update({
         'e': interactively_edit,
         'ts': interactively_typeset_tex_file,
         'v': interactively_view,

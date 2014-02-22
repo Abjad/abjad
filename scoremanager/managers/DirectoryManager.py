@@ -35,8 +35,8 @@ class DirectoryManager(Manager):
         return file_manager
 
     def _handle_main_menu_result(self, result):
-        if result in self.user_input_to_action:
-            self.user_input_to_action[result](self)
+        if result in self._user_input_to_action:
+            self._user_input_to_action[result](self)
         else:
             self._run_asset_manager(result)
 
@@ -180,7 +180,7 @@ class DirectoryManager(Manager):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = Manager.user_input_to_action.copy()
-    user_input_to_action.update({
+    _user_input_to_action = Manager._user_input_to_action.copy()
+    _user_input_to_action.update({
         'ls': interactively_list_directory,
         })

@@ -46,8 +46,8 @@ class ListEditor(Editor):
     def _handle_main_menu_result(self, result):
         if not isinstance(result, str):
             raise TypeError('result must be string.')
-        if result in self.user_input_to_action:
-            self.user_input_to_action[result](self)
+        if result in self._user_input_to_action:
+            self._user_input_to_action[result](self)
         elif mathtools.is_integer_equivalent_expr(result):
             self.interactively_edit_item(result)
         else:
@@ -196,7 +196,7 @@ class ListEditor(Editor):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = {
+    _user_input_to_action = {
         'add':  interactively_add_items,
         'rm':   interactively_remove_items,
         'mv':   interactively_move_item,

@@ -66,8 +66,8 @@ class ScoreManager(ScoreManagerObject):
         return score_package_names[prev_index]
 
     def _handle_main_menu_result(self, result):
-        if result in self.user_input_to_action:
-            self.user_input_to_action[result](self)
+        if result in self._user_input_to_action:
+            self._user_input_to_action[result](self)
         else:
             wrangler = self._score_package_wrangler
             if result in wrangler.list_visible_asset_package_paths():
@@ -316,7 +316,7 @@ class ScoreManager(ScoreManagerObject):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = {
+    _user_input_to_action = {
         'cv': view_cache,
         'cw': write_cache,
         'lmm': manage_material_library,

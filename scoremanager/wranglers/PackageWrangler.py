@@ -350,8 +350,8 @@ class PackageWrangler(Wrangler):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = Wrangler.user_input_to_action.copy()
-    user_input_to_action.update({
+    _user_input_to_action = Wrangler._user_input_to_action.copy()
+    _user_input_to_action.update({
         'new': interactively_make_asset,
         'ren': interactively_rename_asset,
         })

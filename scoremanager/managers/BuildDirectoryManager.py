@@ -383,8 +383,8 @@ class BuildDirectoryManager(DirectoryManager):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = DirectoryManager.user_input_to_action.copy()
-    user_input_to_action.update({
+    _user_input_to_action = DirectoryManager._user_input_to_action.copy()
+    _user_input_to_action.update({
         'bc': manage_back_cover,
         'fc': manage_front_cover,
         'pf': manage_preface,

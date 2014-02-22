@@ -94,8 +94,8 @@ class MaterialPackageWrangler(PackageWrangler):
         return material_package_manager
 
     def _handle_main_menu_result(self, result):
-        if result in self.user_input_to_action:
-            self.user_input_to_action[result](self)
+        if result in self._user_input_to_action:
+            self._user_input_to_action[result](self)
         else:
             material_package_manager = self._initialize_asset_manager(result)
             if os.path.exists(material_package_manager._filesystem_path):
@@ -456,8 +456,8 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = PackageWrangler.user_input_to_action.copy()
-    user_input_to_action.update({
+    _user_input_to_action = PackageWrangler._user_input_to_action.copy()
+    _user_input_to_action.update({
         'd': interactively_make_data_package,
         'nmh': interactively_make_handmade_material_package,
         'nmm': interactively_make_managermade_material_package,

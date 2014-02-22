@@ -37,8 +37,8 @@ class SegmentPackageWrangler(PackageWrangler):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        if result in self.user_input_to_action:
-            self.user_input_to_action[result](self)
+        if result in self._user_input_to_action:
+            self._user_input_to_action[result](self)
         elif result == 'user entered lone return':
             pass
         else:
@@ -438,8 +438,8 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = PackageWrangler.user_input_to_action.copy()
-    user_input_to_action.update({
+    _user_input_to_action = PackageWrangler._user_input_to_action.copy()
+    _user_input_to_action.update({
         'lyri': interactively_reinterpret_all_current_lilypond_files,
         'pdfm': interactively_make_asset_pdfs,
         'pdfs': interactively_version_all_assets,
