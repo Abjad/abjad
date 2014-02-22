@@ -40,7 +40,6 @@ class ScorePackageWrangler(PackageWrangler):
             self.configuration.built_in_score_packages_directory_path
         self.user_storehouse_directory_path = \
             self.configuration.user_score_packages_directory_path
-        self.score_storehouse_path_infix_parts = None
 
     ### PRIVATE PROPERTIES ###
 
@@ -49,7 +48,7 @@ class ScorePackageWrangler(PackageWrangler):
         return 'scores'
 
     @property
-    def _current_storehouse_filesystem_path(self):
+    def _current_storehouse_directory_path(self):
         if self._session.is_in_score:
             if self._session.current_score_snake_case_name in \
                     sorted(os.listdir(
@@ -65,7 +64,7 @@ class ScorePackageWrangler(PackageWrangler):
     def _current_storehouse_package_path(self):
         package_path = \
             self.configuration.filesystem_path_to_package_path(
-            self._current_storehouse_filesystem_path)
+            self._current_storehouse_directory_path)
         return package_path
 
     ### PRIVATE METHODS ###
@@ -264,7 +263,7 @@ class ScorePackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_storehouse_filesystem_paths(
+    def list_storehouse_directory_paths(
         self,
         in_built_in_library=True, 
         in_user_library=True,
@@ -277,7 +276,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_storehouse_filesystem_paths(
+            >>> for x in wrangler.list_storehouse_directory_paths(
             ...     in_user_library=False, 
             ...     in_user_score_packages=False,
             ...     ):
@@ -287,7 +286,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(ScorePackageWrangler, self)
-        return superclass.list_storehouse_filesystem_paths(
+        return superclass.list_storehouse_directory_paths(
             in_built_in_library=in_built_in_library,
             in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,

@@ -151,16 +151,16 @@ class Selector(ScoreManagerObject):
     @staticmethod
     def make_directory_content_selector(
         session=None, 
-        storehouse_filesystem_paths=None,
+        storehouse_directory_paths=None,
         forbidden_directory_entries=None,
         strip_file_extensions=False,
         ):
         from scoremanager import managers
         selector = Selector(session=session)
-        storehouse_filesystem_paths = storehouse_filesystem_paths or []
+        storehouse_directory_paths = storehouse_directory_paths or []
         forbidden_directory_entries = forbidden_directory_entries or []
         items = []
-        for directory_path in storehouse_filesystem_paths:
+        for directory_path in storehouse_directory_paths:
             manager = managers.DirectoryManager(
                 filesystem_path=directory_path,
                 session=session,
@@ -299,7 +299,7 @@ class Selector(ScoreManagerObject):
             )
         selector = Selector.make_directory_content_selector(
             session=session,
-            storehouse_filesystem_paths=[rhythm_maker_tools_directory_path],
+            storehouse_directory_paths=[rhythm_maker_tools_directory_path],
             strip_file_extensions=True,
             )
         return selector

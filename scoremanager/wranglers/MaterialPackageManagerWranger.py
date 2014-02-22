@@ -21,17 +21,6 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     '''
 
-    ### CLASS VARIABLES ###
-
-    _human_readable_target_name = 'material package manager'
-
-    forbidden_directory_entries = (
-        'InventoryMaterialPackageManager.py',
-        'MaterialPackageManager.py',
-        )
-
-    score_storehouse_path_infix_parts = None
-
     ### INITIALIZER ###
 
     def __init__(self, session=None):
@@ -41,6 +30,11 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             self.configuration.built_in_material_package_managers_directory_path
         self.user_storehouse_directory_path = \
             self.configuration.user_library_material_package_managers_directory_path
+        self._human_readable_target_name = 'material package manager'
+        self.forbidden_directory_entries = (
+            'InventoryMaterialPackageManager.py',
+            'MaterialPackageManager.py',
+            )
 
     ### PRIVATE PROPERTIES ###
 
@@ -280,7 +274,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_storehouse_filesystem_paths(
+    def list_storehouse_directory_paths(
         self,
         in_built_in_library=True, 
         in_user_library=True,
@@ -293,7 +287,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_storehouse_filesystem_paths(
+            >>> for x in wrangler.list_storehouse_directory_paths(
             ...     in_user_library=False, 
             ...     in_user_score_packages=False,
             ...     ):
@@ -303,7 +297,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialPackageManagerWrangler, self)
-        return superclass.list_storehouse_filesystem_paths(
+        return superclass.list_storehouse_directory_paths(
             in_built_in_library=in_built_in_library,
             in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,

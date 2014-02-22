@@ -15,7 +15,6 @@ class PackageWrangler(Wrangler):
         from scoremanager import managers
         Wrangler.__init__(self, session=session)
         self._asset_manager_class = managers.PackageManager
-        #self.score_storehouse_path_infix_parts = ()
 
     ### PRIVATE PROPERTIES ###
 
@@ -287,7 +286,7 @@ class PackageWrangler(Wrangler):
         result = []
         superclass = super(PackageWrangler, self)
         for filesystem_path in \
-            superclass.list_storehouse_filesystem_paths(
+            superclass.list_storehouse_directory_paths(
             in_built_in_library=True,
             in_user_library=True,
             in_built_in_score_packages=True,
@@ -326,7 +325,7 @@ class PackageWrangler(Wrangler):
         '''
         assert stringtools.is_snake_case_package_name(asset_name)
         asset_filesystem_path = os.path.join(
-            self._current_storehouse_filesystem_path, asset_name)
+            self._current_storehouse_directory_path, asset_name)
         os.mkdir(asset_filesystem_path)
         package_manager = self._initialize_asset_manager(asset_name)
         package_manager.interactively_fix(prompt=False)

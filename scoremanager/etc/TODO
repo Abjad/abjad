@@ -197,4 +197,15 @@
     manipulation. Use self.configuration.filesystem_path_to_package_path()
     instead.
 
-51. Change 'storehouse_filesystem_path' to 'storehouse_directory_path'.
+51. Change 'built_in_library' to 'abjad_library'.
+    Change ...
+        in_built_in_library
+        in_user_library
+        in_built_in_score_packages
+        in_user_score_packages
+    ... to ...
+        abjad_library
+        user_library
+        abjad_score_packages
+        user_score_packages
+    ... instead.

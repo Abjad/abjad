@@ -368,7 +368,7 @@ class SegmentPackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_storehouse_filesystem_paths(
+    def list_storehouse_directory_paths(
         self,
         in_built_in_library=True, 
         in_user_library=True,
@@ -381,7 +381,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_storehouse_filesystem_paths(
+            >>> for x in wrangler.list_storehouse_directory_paths(
             ...     in_user_library=False, 
             ...     in_user_score_packages=False,
             ...     ):
@@ -393,7 +393,7 @@ class SegmentPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(SegmentPackageWrangler, self)
-        return superclass.list_storehouse_filesystem_paths(
+        return superclass.list_storehouse_directory_paths(
             in_built_in_library=in_built_in_library,
             in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,

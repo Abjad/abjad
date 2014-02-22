@@ -16,16 +16,14 @@ class Wrangler(ScoreManagerObject):
 
     __metaclass__ = abc.ABCMeta
 
-    forbidden_directory_entries = ()
-
-    score_storehouse_path_infix_parts = ()
-
     ### INITIALIZER ###
 
     def __init__(self, session=None):
         ScoreManagerObject.__init__(self, session=session)
         self.built_in_storehouse_directory_path = None
         self.user_storehouse_directory_path = None
+        self.score_storehouse_path_infix_parts = ()
+        self.forbidden_directory_entries = ()
 
     ### SPECIAL METHODS ###
 
@@ -39,7 +37,7 @@ class Wrangler(ScoreManagerObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _current_storehouse_filesystem_path(self):
+    def _current_storehouse_directory_path(self):
         if self._session.is_in_score:
             parts = []
             parts.append(self._session.current_score_directory_path)
@@ -51,7 +49,7 @@ class Wrangler(ScoreManagerObject):
     @property
     def _temporary_asset_filesystem_path(self):
         return os.path.join(
-            self._current_storehouse_filesystem_path, 
+            self._current_storehouse_directory_path, 
             self._temporary_asset_name)
 
     @property
@@ -447,7 +445,7 @@ class Wrangler(ScoreManagerObject):
         self._session._restore_breadcrumbs(cache=cache)
         return result
 
-    def interactively_select_storehouse_filesystem_path(
+    def interactively_select_storehouse_directory_path(
         self,
         clear=True, 
         cache=False,
@@ -542,7 +540,7 @@ class Wrangler(ScoreManagerObject):
         Returns list.
         '''
         result = []
-        for directory_path in self.list_storehouse_filesystem_paths(
+        for directory_path in self.list_storehouse_directory_paths(
             in_built_in_library=in_built_in_library,
             in_user_library=in_user_library,
             in_built_in_score_packages=in_built_in_score_packages,
@@ -624,7 +622,7 @@ class Wrangler(ScoreManagerObject):
                         filesystem_path))
         return result
 
-    def list_storehouse_filesystem_paths(
+    def list_storehouse_directory_paths(
         self,
         in_built_in_library=True, 
         in_user_library=True,
@@ -638,30 +636,24 @@ class Wrangler(ScoreManagerObject):
         result = []
         if in_built_in_library and \
             self.built_in_storehouse_directory_path is not None:
-            result.append(
-                self.built_in_storehouse_directory_path)
-        if in_user_library and \
-            self.user_storehouse_directory_path is not None:
-            result.append(
-                self.user_storehouse_directory_path)
+            result.append(self.built_in_storehouse_directory_path)
+        if in_user_library and self.user_storehouse_directory_path is not None:
+            result.append(self.user_storehouse_directory_path)
         if in_built_in_score_packages and \
-            self.score_storehouse_path_infix_parts is not None:
+            self.score_storehouse_path_infix_parts:
             for score_directory_path in \
                 self.configuration.list_score_directory_paths(built_in=True):
                 parts = [score_directory_path]
                 if self.score_storehouse_path_infix_parts:
-                    parts.extend(
-                        self.score_storehouse_path_infix_parts)
-                storehouse_filesystem_path = os.path.join(*parts)
-                result.append(storehouse_filesystem_path)
-        if in_user_score_packages and \
-            self.score_storehouse_path_infix_parts is not None:
+                    parts.extend(self.score_storehouse_path_infix_parts)
+                storehouse_directory_path = os.path.join(*parts)
+                result.append(storehouse_directory_path)
+        if in_user_score_packages and self.score_storehouse_path_infix_parts:
             for directory_path in \
                 self.configuration.list_score_directory_paths(user=True):
                 parts = [directory_path]
                 if self.score_storehouse_path_infix_parts:
-                    parts.extend(
-                        self.score_storehouse_path_infix_parts)
+                    parts.extend(self.score_storehouse_path_infix_parts)
                 filesystem_path = os.path.join(*parts)
                 result.append(filesystem_path)
         return result
@@ -673,7 +665,7 @@ class Wrangler(ScoreManagerObject):
         '''
         assert stringtools.is_snake_case_string(asset_name)
         asset_filesystem_path = os.path.join(
-            self._current_storehouse_filesystem_path, asset_name)
+            self._current_storehouse_directory_path, asset_name)
         asset_manager = self._initialize_asset_manager(asset_filesystem_path)
         asset_manager._write_stub()
 
