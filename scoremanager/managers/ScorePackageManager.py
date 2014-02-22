@@ -42,7 +42,10 @@ class ScorePackageManager(PackageManager):
             wranglers.MaterialPackageManagerWrangler(
             session=self._session,
             )
-        filesystem_path = os.path.join(self._filesystem_path, 'score_templates')
+        filesystem_path = os.path.join(
+            self._filesystem_path, 
+            'score_templates',
+            )
         self._score_template_directory_manager = \
             managers.DirectoryManager(
             filesystem_path=filesystem_path,
@@ -56,6 +59,7 @@ class ScorePackageManager(PackageManager):
             wranglers.StylesheetFileWrangler(
             session=self._session,
             )
+        #self._initialize_user_input_to_action()
 
     ### PRIVATE PROPERTIES ###
 
@@ -155,8 +159,31 @@ class ScorePackageManager(PackageManager):
 
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
-        if result in self._user_input_to_action:
-            self._user_input_to_action[result]()
+        if result == 'fix':
+            self.interactively_fix(),
+        elif result == 'g':
+            self._segment_package_wrangler._run(head=self._package_path)
+        elif result == 'instrumentation':
+            self._instrumentation_module_manager.interactively_edit()
+        elif result == 'k':
+            self._session.io_manager.print_not_yet_implemented()
+            #self._maker_module_wrangler._run(head=self._package_path)
+        elif result == 'm':
+            self._material_package_wrangler._run(head=self._package_path)
+        elif result == 'p':
+            self._manage_setup(),
+        elif result == 'pdfv':
+            self._build_directory_manager._interactively_open_file_ending_with(
+                'score.pdf',
+                )
+        elif result == 'removescore':
+            self.interactively_remove(),
+        elif result == 't':
+            self.score_template_directory_manager._run()
+        elif result == 'u':
+            self._build_directory_manager._run()
+        elif result == 'y':
+            self._stylesheet_wrangler._run(head=self._package_path)
         elif result == 'user entered lone return':
             pass
         else:
@@ -196,23 +223,6 @@ class ScorePackageManager(PackageManager):
             )
         return instrumentation
 
-    def _initialize_user_input_to_action(self):
-        user_input_to_action = PackageManager._user_input_to_action.copy()
-        user_input_to_action.update({
-            'fix': self.interactively_fix,
-            'g': self.manage_segments,
-            'instrumentation': self.interactively_view_instrumentation_module,
-            'k': self.manage_makers,
-            'm': self.manage_materials,
-            'p': self.manage_setup,
-            'pdfv': self.interactively_view_score,
-            'removescore': self.interactively_remove,
-            't': self.manage_score_templates,
-            'u': self.manage_build_directory,
-            'y': self.manage_stylesheets,
-            })
-        self._user_input_to_action = user_input_to_action
-    
     def _make_main_menu(self):
         main_menu = self._session.io_manager.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
@@ -273,6 +283,26 @@ class ScorePackageManager(PackageManager):
             prepopulated_value = catalog_number
         result.append((return_value, None, prepopulated_value, return_value))
         return result
+
+    def _manage_setup(self, clear=True, cache=True):
+        self._session._cache_breadcrumbs(cache=cache)
+        while True:
+            annotated_title = self._get_annotated_title()
+            breadcrumb = '{} - setup'.format(annotated_title)
+            self._session._push_breadcrumb(breadcrumb)
+            setup_menu = self._make_setup_menu()
+            result = setup_menu._run(clear=clear)
+            if self._session._backtrack():
+                break
+            elif not result:
+                self._session._pop_breadcrumb()
+                continue
+            self._handle_setup_menu_result(result)
+            if self._session._backtrack():
+                break
+            self._session._pop_breadcrumb()
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
 
     def _write_instrumentation(self, instrumentation):
         assert instrumentation is not None
@@ -401,50 +431,3 @@ class ScorePackageManager(PackageManager):
             if self._session._backtrack():
                 return
             self._session.is_backtracking_locally = True
-
-    def interactively_view_instrumentation_module(self):
-        return self._instrumentation_module_manager.interactively_edit()
-
-    def interactively_view_score(self, pending_user_input=None):
-        self._build_directory_manager._interactively_open_file_ending_with(
-            'score.pdf',
-            )
-
-    def manage_build_directory(self):
-        self._build_directory_manager._run()
-
-    def manage_makers(self):
-        self._session.io_manager.print_not_yet_implemented()
-        #self.maker_module_wrangler._run(head=self._package_path)
-
-    def manage_materials(self):
-        self._material_package_wrangler._run(head=self._package_path)
-
-    def manage_score_templates(self):
-        self.score_template_directory_manager._run()
-
-    def manage_segments(self):
-        self._segment_package_wrangler._run(head=self._package_path)
-
-    def manage_setup(self, clear=True, cache=True):
-        self._session._cache_breadcrumbs(cache=cache)
-        while True:
-            annotated_title = self._get_annotated_title()
-            breadcrumb = '{} - setup'.format(annotated_title)
-            self._session._push_breadcrumb(breadcrumb)
-            setup_menu = self._make_setup_menu()
-            result = setup_menu._run(clear=clear)
-            if self._session._backtrack():
-                break
-            elif not result:
-                self._session._pop_breadcrumb()
-                continue
-            self._handle_setup_menu_result(result)
-            if self._session._backtrack():
-                break
-            self._session._pop_breadcrumb()
-        self._session._pop_breadcrumb()
-        self._session._restore_breadcrumbs(cache=cache)
-
-    def manage_stylesheets(self):
-        self._stylesheet_wrangler._run(head=self._package_path)
