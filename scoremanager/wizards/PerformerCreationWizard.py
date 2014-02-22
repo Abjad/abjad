@@ -52,7 +52,7 @@ class PerformerCreationWizard(Wizard):
                 self._session._push_breadcrumb(self._breadcrumb)
                 with self.backtracking:
                     performer = instrumenttools.Performer(performer_name)
-                    self.interactively_initialize_performer(performer)
+                    self.initialize_performer(performer)
                 self._session._pop_breadcrumb()
                 was_backtracking_locally = \
                     self._session.is_backtracking_locally
@@ -86,7 +86,7 @@ class PerformerCreationWizard(Wizard):
 
     ### PUBLIC METHODS ###
 
-    def interactively_initialize_performer(
+    def initialize_performer(
         self, 
         performer, 
         cache=False, 

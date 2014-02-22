@@ -237,7 +237,7 @@ class Manager(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def interactively_copy(
+    def copy(
         self, 
         pending_user_input=None,
         ):
@@ -464,7 +464,7 @@ class Manager(ScoreManagerObject):
     ### UI MANIFEST ###
 
     _user_input_to_action = {
-        'cp': interactively_copy,
+        'cp': copy,
         'rm': remove_and_backtrack_locally,
         'ren': rename,
         }

@@ -72,9 +72,9 @@ class BuildDirectoryManager(DirectoryManager):
         elif result == 'g':
             self._session.io_manager.print_not_yet_implemented()
         elif result == 'lycp':
-            self.interactively_copy_segment_lilypond_files()
+            self.copy_segment_lilypond_files()
         elif result == 'pdfcp':
-            self.interactively_copy_segment_pdfs()
+            self.copy_segment_pdfs()
         elif result == 'pdfv':
             self._interactively_open_file_ending_with('score.pdf')
         elif result == 'seged':
@@ -205,7 +205,7 @@ class BuildDirectoryManager(DirectoryManager):
 
     ### PUBLIC METHODS ###
 
-    def interactively_copy_segment_lilypond_files(
+    def copy_segment_lilypond_files(
         self,
         pending_user_input=None,
         ):
@@ -255,7 +255,7 @@ class BuildDirectoryManager(DirectoryManager):
             self._session.io_manager.display(message)
         self._session.io_manager.proceed('')
 
-    def interactively_copy_segment_pdfs(self, pending_user_input=None):
+    def copy_segment_pdfs(self, pending_user_input=None):
         r'''Interactively copies segment PDFs from segment
         package directories to build directory.
 

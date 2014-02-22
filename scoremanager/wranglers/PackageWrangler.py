@@ -124,7 +124,7 @@ class PackageWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def interactively_get_available_package_path(
+    def get_available_package_path(
         self, 
         pending_user_input=None,
         ):
@@ -164,7 +164,7 @@ class PackageWrangler(Wrangler):
         self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             package_path = \
-                self.interactively_get_available_package_path()
+                self.get_available_package_path()
         if self._session._backtrack():
             return
         self.make_asset(package_path)

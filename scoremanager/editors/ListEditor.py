@@ -109,7 +109,7 @@ class ListEditor(Editor):
         else:
             self.target = self.target_class([])
 
-    def interactively_add_items(self):
+    def add_items(self):
         if self.item_creator_class:
             item_creator = self.item_creator_class(
                 session=self._session, 
@@ -197,7 +197,7 @@ class ListEditor(Editor):
     ### UI MANIFEST ###
 
     _user_input_to_action = {
-        'add':  interactively_add_items,
+        'add':  add_items,
         'rm':   remove_items,
         'mv':   interactively_move_item,
     }

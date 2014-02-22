@@ -115,7 +115,7 @@ class SegmentPackageWrangler(PackageWrangler):
         self.view_asset_pdfs()
         self._session.io_manager.proceed()
 
-    def interactively_reinterpret_all_current_lilypond_files(
+    def reinterpret_all_current_lilypond_files(
         self,
         pending_user_input=None,
         prompt=True,
@@ -140,7 +140,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_path,
                 session=self._session,
                 )
-            manager.interactively_reinterpret_current_lilypond_file(
+            manager.reinterpret_current_lilypond_file(
                 prompt=False,
                 view_output_pdf=False,
                 )
@@ -149,7 +149,7 @@ class SegmentPackageWrangler(PackageWrangler):
         if view_output_pdfs:
             self.view_asset_pdfs()
 
-    def interactively_version_all_assets(
+    def version_all_assets(
         self,
         pending_user_input=None,
         ):
@@ -172,7 +172,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_path,
                 session=self._session,
                 )
-            version_number = manager.interactively_save_to_versions_directory(
+            version_number = manager.save_to_versions_directory(
                 prompt=False,
                 )
             if version_number is not None:
@@ -440,8 +440,8 @@ class SegmentPackageWrangler(PackageWrangler):
 
     _user_input_to_action = PackageWrangler._user_input_to_action.copy()
     _user_input_to_action.update({
-        'lyri': interactively_reinterpret_all_current_lilypond_files,
+        'lyri': reinterpret_all_current_lilypond_files,
         'pdfm': interactively_make_asset_pdfs,
-        'pdfs': interactively_version_all_assets,
+        'pdfs': version_all_assets,
         'pdfv': view_asset_pdfs,
         })

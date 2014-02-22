@@ -113,7 +113,7 @@ class DirectoryManager(Manager):
             )
         manager.edit()
 
-    def interactively_get_filesystem_path(self):
+    def get_filesystem_path(self):
         r'''Interactively gest filesystem path of directory manager.
 
         Returns none.

@@ -130,7 +130,7 @@ class MaterialPackageWrangler(PackageWrangler):
         self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             material_package_path = \
-                self.interactively_get_available_package_path()
+                self.get_available_package_path()
         if self._session._backtrack():
             return
         self.make_data_package(material_package_path, metadata=metadata)
@@ -146,7 +146,7 @@ class MaterialPackageWrangler(PackageWrangler):
         self._session.io_manager._assign_user_input(pending_user_input)
         with self.backtracking:
             package_path = \
-                self.interactively_get_available_package_path()
+                self.get_available_package_path()
         if self._session._backtrack():
             return
         self.make_handmade_material_package(package_path)
@@ -171,7 +171,7 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_manager_package_path.split('.')[-1]
         with self.backtracking:
             material_package_path = \
-                self.interactively_get_available_package_path()
+                self.get_available_package_path()
         if self._session._backtrack():
             return
         self.make_managermade_material_package(

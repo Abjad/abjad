@@ -233,7 +233,7 @@ class SegmentPackageManager(PackageManager):
         if modification_time < new_modification_time and view_asset_pdf:
             self.view_output_pdf()
 
-    def interactively_reinterpret_current_lilypond_file(
+    def reinterpret_current_lilypond_file(
         self, 
         view_output_pdf=True,
         prompt=True,
@@ -269,7 +269,7 @@ class SegmentPackageManager(PackageManager):
         if view_output_pdf:
             self.view_output_pdf()
 
-    def interactively_save_to_versions_directory(
+    def save_to_versions_directory(
         self,
         prompt=True
         ):
@@ -450,7 +450,7 @@ class SegmentPackageManager(PackageManager):
     _user_input_to_action.update({
         'E': edit_asset_definition_module_from_top,
         'e': edit_asset_definition_module,
-        'lyri': interactively_reinterpret_current_lilypond_file,
+        'lyri': reinterpret_current_lilypond_file,
         'lyv': view_current_output_ly,
         'lyver': view_versioned_output_ly,
         'pdfv': view_output_pdf,
@@ -458,6 +458,6 @@ class SegmentPackageManager(PackageManager):
         'vv': view_all_versioned_pdfs,
         'pdfver': view_versioned_output_pdf,
         'pyver': view_versioned_segment_definition_module,
-        'pdfs': interactively_save_to_versions_directory,
+        'pdfs': save_to_versions_directory,
         'vrl': list_versions_directory,
         })

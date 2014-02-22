@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 
-def test_FileManager_interactively_copy_01():
+def test_FileManager_copy_01():
 
     score_manager_configuration = scoremanager.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
@@ -24,7 +24,7 @@ def test_FileManager_interactively_copy_01():
             'new_temporary_file.txt',
             )
         string = 'new_temporary_file.txt y q'
-        file_manager.interactively_copy(pending_user_input=string)
+        file_manager.copy(pending_user_input=string)
         assert os.path.exists(filesystem_path)
         assert os.path.exists(new_filesystem_path)
         file_manager._remove()

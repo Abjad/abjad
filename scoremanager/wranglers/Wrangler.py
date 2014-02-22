@@ -231,13 +231,13 @@ class Wrangler(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def interactively_add_metadatum(self):
+    def add_metadatum(self):
         manager = self._get_current_package_manager()
-        manager.interactively_add_metadatum()
+        manager.add_metadatum()
 
-    def interactively_get_metadatum(self):
+    def get_metadatum(self):
         manager = self._get_current_package_manager()
-        manager.interactively_get_metadatum()
+        manager.get_metadatum()
 
     def list_directory(self):
         manager = self._get_current_package_manager()
@@ -701,8 +701,8 @@ class Wrangler(ScoreManagerObject):
         'ins': write_stub_initializer_module,
         'inv': view_initializer_module,
         'ls': list_directory,
-        'mda': interactively_add_metadatum,
-        'mdg': interactively_get_metadatum,
+        'mda': add_metadatum,
+        'mdg': get_metadatum,
         'mdrm': remove_metadatum,
         'mdmrm': remove_metadata_module,
         'mdmrw': rewrite_metadata_module,

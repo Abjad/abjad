@@ -157,7 +157,7 @@ class PackageManager(DirectoryManager):
 
     ### PUBLIC METHODS ###
 
-    def interactively_add_metadatum(self):
+    def add_metadatum(self):
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
         getter.append_expr('metadatum value')
@@ -168,7 +168,7 @@ class PackageManager(DirectoryManager):
             metadatum_name, metadatum_value = result
             self._add_metadatum(metadatum_name, metadatum_value)
 
-    def interactively_get_metadatum(self):
+    def get_metadatum(self):
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
         result = getter._run()
@@ -330,8 +330,8 @@ class PackageManager(DirectoryManager):
         'inrm': remove_initializer_module,
         'ins': write_stub_initializer_module,
         'inv': view_initializer_module,
-        'mda': interactively_add_metadatum,
-        'mdg': interactively_get_metadatum,
+        'mda': add_metadatum,
+        'mdg': get_metadatum,
         'mdrm': remove_metadatum,
         'mdmv': view_metadata_module,
         'mdmrm': remove_metadata_module,
