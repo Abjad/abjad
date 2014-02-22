@@ -12,7 +12,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_01():
 
 
     try:
-        wrangler.make_handmade_material_package(string)
+        wrangler._make_handmade_material_package(string)
         assert wrangler.configuration.package_exists(string)
         manager = scoremanager.managers.MaterialPackageManager(string)
         assert manager._list_directory() == [
@@ -34,7 +34,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_02():
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.red_notes'
     assert wrangler.configuration.package_exists(string)
-    statement = 'wrangler.make_handmade_material_package'
+    statement = 'wrangler._make_handmade_material_package'
     statement += "('scoremanager.materialpackages.red_notes')"
     assert pytest.raises(Exception, statement)
 
@@ -48,7 +48,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_03():
     assert not wrangler.configuration.package_exists(string)
 
     try:
-        wrangler.interactively_make_handmade_material_package(
+        wrangler.make_handmade_material_package(
             pending_user_input='testnotes q')
         assert wrangler.configuration.package_exists(string)
         manager = scoremanager.managers.MaterialPackageManager(string)
@@ -72,7 +72,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_04():
 
     try:
         metadata = {'color': 'red', 'is_colored': True}
-        wrangler.make_handmade_material_package(string, metadata=metadata)
+        wrangler._make_handmade_material_package(string, metadata=metadata)
         assert wrangler.configuration.package_exists(string)
         manager = scoremanager.managers.MaterialPackageManager(string)
         assert manager._get_metadatum('color') == 'red'

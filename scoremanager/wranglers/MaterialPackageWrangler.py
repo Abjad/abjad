@@ -118,7 +118,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def interactively_make_data_package(
+    def make_data_package(
         self, 
         metadata=None, 
         pending_user_input=None,
@@ -133,9 +133,9 @@ class MaterialPackageWrangler(PackageWrangler):
                 self.get_available_package_path()
         if self._session._backtrack():
             return
-        self.make_data_package(material_package_path, metadata=metadata)
+        self._make_data_package(material_package_path, metadata=metadata)
 
-    def interactively_make_handmade_material_package(
+    def make_handmade_material_package(
         self, 
         pending_user_input=None,
         ):
@@ -149,9 +149,9 @@ class MaterialPackageWrangler(PackageWrangler):
                 self.get_available_package_path()
         if self._session._backtrack():
             return
-        self.make_handmade_material_package(package_path)
+        self._make_handmade_material_package(package_path)
 
-    def interactively_make_managermade_material_package(
+    def make_managermade_material_package(
         self, 
         pending_user_input=None,
         ):
@@ -174,7 +174,7 @@ class MaterialPackageWrangler(PackageWrangler):
                 self.get_available_package_path()
         if self._session._backtrack():
             return
-        self.make_managermade_material_package(
+        self._make_managermade_material_package(
             material_package_path, material_package_manager_class_name)
         manager = self._get_appropriate_material_package_manager(
             material_package_manager_class_name, material_package_path)
@@ -359,38 +359,26 @@ class MaterialPackageWrangler(PackageWrangler):
             user_score_packages=user_score_packages,
             )
 
-    def make_data_package(self, material_package_path, metadata=None):
-        r'''Makes data package.
-
-        Returns none.
-        '''
+    def _make_data_package(self, material_package_path, metadata=None):
         metadata = metadata or {}
         metadata['material_package_manager_class_name'] = None
         metadata['should_have_illustration'] = False
         metadata['should_have_user_input_module'] = False
-        self.make_material_package(material_package_path, metadata=metadata)
+        self._make_material_package(material_package_path, metadata=metadata)
 
-    def make_handmade_material_package(self, material_package_path, metadata=None):
-        r'''Makes handmade material package.
-
-        Returns none.
-        '''
+    def _make_handmade_material_package(self, material_package_path, metadata=None):
         metadata = metadata or {}
         metadata['material_package_manager_class_name'] = None
         metadata['should_have_illustration'] = True
         metadata['should_have_user_input_module'] = False
-        self.make_material_package(material_package_path, metadata=metadata)
+        self._make_material_package(material_package_path, metadata=metadata)
 
-    def make_managermade_material_package(
+    def _make_managermade_material_package(
         self,
         material_package_path, 
         material_package_manager_class_name, 
         metadata=None,
         ):
-        r'''Makes managermade material package.
-
-        Returns none.
-        '''
         metadata = metadata or {}
         command = 'from scoremanager.materialpackagemanagers '
         command += 'import {} as material_package_manager_class'
@@ -423,18 +411,14 @@ class MaterialPackageWrangler(PackageWrangler):
             should_have_illustration
         metadata['should_have_user_input_module'] = \
             should_have_user_input_module
-        self.make_material_package(material_package_path, metadata=metadata)
+        self._make_material_package(material_package_path, metadata=metadata)
 
-    def make_material_package(
+    def _make_material_package(
         self, 
         package_path, 
         prompt=False, 
         metadata=None,
         ):
-        r'''Makes material package.
-
-        Returns none.
-        '''
         metadata = collections.OrderedDict(metadata or {})
         metadata['is_material_package'] = True
         directory_path = \
@@ -458,7 +442,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
     _user_input_to_action = PackageWrangler._user_input_to_action.copy()
     _user_input_to_action.update({
-        'd': interactively_make_data_package,
-        'nmh': interactively_make_handmade_material_package,
-        'nmm': interactively_make_managermade_material_package,
+        'd': make_data_package,
+        'nmh': make_handmade_material_package,
+        'nmm': make_managermade_material_package,
         })
