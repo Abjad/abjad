@@ -208,21 +208,21 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def list_asset_filesystem_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset filesystem paths.
 
-        Example. List built-in segment package filesystem paths:
+        Lists abjad segment package filesystem paths:
 
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False,
+            ...     user_library=False, 
+            ...     user_score_packages=False,
             ...     ):
             ...     x
             '.../blue_example_score/segments/segment_01'
@@ -235,121 +235,131 @@ class SegmentPackageWrangler(PackageWrangler):
         '''
         superclass = super(SegmentPackageWrangler, self)
         return superclass.list_asset_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_asset_managers(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset managers.
 
-        Example 1. List built-in segment package managers:
+        ..  container:: example
 
-        ::
+            List abjad segment package managers:
 
-            >>> for x in wrangler.list_asset_managers(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False):
-            ...     x
-            SegmentPackageManager('.../blue_example_score/segments/segment_01')
-            SegmentPackageManager('.../blue_example_score/segments/segment_02')
-            SegmentPackageManager('.../red_example_score/segments/segment_01')
-            SegmentPackageManager('.../red_example_score/segments/segment_02')
-            SegmentPackageManager('.../red_example_score/segments/segment_03')
+            ::
 
-        Example 2. List red example score segment package managers:
+                >>> for x in wrangler.list_asset_managers(
+                ...     user_library=False, 
+                ...     user_score_packages=False):
+                ...     x
+                SegmentPackageManager('.../blue_example_score/segments/segment_01')
+                SegmentPackageManager('.../blue_example_score/segments/segment_02')
+                SegmentPackageManager('.../red_example_score/segments/segment_01')
+                SegmentPackageManager('.../red_example_score/segments/segment_02')
+                SegmentPackageManager('.../red_example_score/segments/segment_03')
 
-        ::
+        ..  container:: example
 
-            >>> head = 'scoremanager.scorepackages.red_example_score'
-            >>> for x in wrangler.list_asset_managers(head=head):
-            ...     x
-            SegmentPackageManager('.../red_example_score/segments/segment_01')
-            SegmentPackageManager('.../red_example_score/segments/segment_02')
-            SegmentPackageManager('.../red_example_score/segments/segment_03')
+            List red example score segment package managers:
+
+            ::
+
+                >>> head = 'scoremanager.scorepackages.red_example_score'
+                >>> for x in wrangler.list_asset_managers(head=head):
+                ...     x
+                SegmentPackageManager('.../red_example_score/segments/segment_01')
+                SegmentPackageManager('.../red_example_score/segments/segment_02')
+                SegmentPackageManager('.../red_example_score/segments/segment_03')
 
         Returns list.
         '''
         superclass = super(SegmentPackageWrangler, self)
         return superclass.list_asset_managers(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_asset_names(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset names.
 
-        Example 1. List built-in segment package names:
+        ..  container:: example
 
-        ::
+            List abjad segment package names:
 
-            >>> for x in wrangler.list_asset_names(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False,
-            ...     ):
-            ...     x
-            'segment 01'
-            'segment 02'
-            'segment 01'
-            'segment 02'
-            'segment 03'
+            ::
 
-        Example 2. List red example score segment package names:
+                >>> for x in wrangler.list_asset_names(
+                ...     user_library=False, 
+                ...     user_score_packages=False,
+                ...     ):
+                ...     x
+                'segment 01'
+                'segment 02'
+                'segment 01'
+                'segment 02'
+                'segment 03'
 
-            >>> head = 'scoremanager.scorepackages.red_example_score'
-            >>> for x in wrangler.list_asset_names(head=head):
-            ...     x
-            'segment 01'
-            'segment 02'
-            'segment 03'
+        ..  container:: example
+
+            List red example score segment package names:
+
+            ::
+
+                >>> head = 'scoremanager.scorepackages.red_example_score'
+                >>> for x in wrangler.list_asset_names(head=head):
+                ...     x
+                'segment 01'
+                'segment 02'
+                'segment 03'
 
         Returns list.
         '''
         superclass = super(SegmentPackageWrangler, self)
         return superclass.list_asset_names(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_asset_package_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset packagesystem paths.
 
-        Example. List built-in segment package paths:
+        Lists abjad segment package paths:
 
         ::
 
             >>> for x in wrangler.list_asset_package_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False):
+            ...     user_library=False, 
+            ...     user_score_packages=False):
             ...     x
             '....blue_example_score.segments.segment_01'
             '....blue_example_score.segments.segment_02'
@@ -361,29 +371,29 @@ class SegmentPackageWrangler(PackageWrangler):
         '''
         superclass = super(SegmentPackageWrangler, self)
         return superclass.list_asset_package_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_storehouse_directory_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True,
         ):
         r'''Lists asset storehouse filesystem paths.
 
-        Example. List built-in segment package storehouse filesystem paths:
+        Lists abjad segment package storehouse filesystem paths:
 
         ::
 
             >>> for x in wrangler.list_storehouse_directory_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False,
+            ...     user_library=False, 
+            ...     user_score_packages=False,
             ...     ):
             ...     x
             '.../blue_example_score/segments'
@@ -394,10 +404,10 @@ class SegmentPackageWrangler(PackageWrangler):
         '''
         superclass = super(SegmentPackageWrangler, self)
         return superclass.list_storehouse_directory_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             )
 
     def make_asset(

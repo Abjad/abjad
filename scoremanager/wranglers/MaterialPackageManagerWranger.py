@@ -26,8 +26,8 @@ class MaterialPackageManagerWrangler(PackageWrangler):
     def __init__(self, session=None):
         superclass = super(MaterialPackageManagerWrangler, self)
         superclass.__init__(session=session)
-        self.built_in_storehouse_directory_path = \
-            self.configuration.built_in_material_package_managers_directory_path
+        self.abjad_storehouse_directory_path = \
+            self.configuration.abjad_material_package_managers_directory_path
         self.user_storehouse_directory_path = \
             self.configuration.user_library_material_package_managers_directory_path
         self._human_readable_target_name = 'material package manager'
@@ -120,21 +120,21 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     def list_asset_filesystem_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset filesystem paths.
 
-        Example. List built-in material package manager filesystem paths:
+        Lists abjad material package manager filesystem paths:
 
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False):
+            ...     user_library=False, 
+            ...     user_score_packages=False):
             ...     x
             '.../materialpackagemanagers/ArticulationHandlerMaterialPackageManager.py'
             '.../materialpackagemanagers/DynamicHandlerMaterialPackageManager.py'
@@ -150,30 +150,30 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageManagerWrangler, self)
         return superclass.list_asset_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_asset_managers(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset managers.
 
-        Example. List built-in material package manager managers:
+        Lists abjad material package manager managers:
 
         ::
 
             >>> for x in wrangler.list_asset_managers(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False):
+            ...     user_library=False, 
+            ...     user_score_packages=False):
             ...     x
             ArticulationHandlerMaterialPackageManager('.../materialpackagemanagers/ArticulationHandlerMaterialPackageManager')
             DynamicHandlerMaterialPackageManager('.../materialpackagemanagers/DynamicHandlerMaterialPackageManager')
@@ -189,30 +189,30 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageManagerWrangler, self)
         return superclass.list_asset_managers(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_asset_names(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset names.
 
-        Example. List built-in material package manager names:
+        Lists abjad material package manager names:
 
         ::
 
             >>> for x in wrangler.list_asset_names(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False):
+            ...     user_library=False, 
+            ...     user_score_packages=False):
             ...     x
             'articulation handler material package manager'
             'dynamic handler material package manager'
@@ -228,30 +228,30 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageManagerWrangler, self)
         return superclass.list_asset_names(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_asset_package_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset package_paths.
 
-        Example. List built-in material package manager package paths:
+        Lists abjad material package manager package paths:
 
         ::
 
             >>> for x in wrangler.list_asset_package_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False):
+            ...     user_library=False, 
+            ...     user_score_packages=False):
             ...     x
             'scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageManager'
             'scoremanager.materialpackagemanagers.DynamicHandlerMaterialPackageManager'
@@ -267,29 +267,29 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageManagerWrangler, self)
         return superclass.list_asset_package_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_storehouse_directory_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True,
         ):
         r'''Lists asset storehouse filesystem paths.
 
-        Example. List built-in material package manager storehouses:
+        Lists abjad material package manager storehouses:
 
         ::
 
             >>> for x in wrangler.list_storehouse_directory_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False,
+            ...     user_library=False, 
+            ...     user_score_packages=False,
             ...     ):
             ...     x
             '.../scoremanager/materialpackagemanagers'
@@ -298,10 +298,10 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageManagerWrangler, self)
         return superclass.list_storehouse_directory_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             )
 
     ### UI MANIFEST ###

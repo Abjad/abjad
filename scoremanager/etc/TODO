@@ -79,7 +79,7 @@
     most complex.
 
 26. Reformat ScoreManagerConfiguration to better follow the implementation
-    pattern of AbjadConfiguration. Make built_in_editors_directory_path
+    pattern of AbjadConfiguration. Make abjad_editors_directory_path
     and so on into full-fledged public properties with doc strings.
     Consider having ScoreManagerConfiguration inherit from AbjadConfiguration.
     This will parallel score manager IOManager inheriting from mainline
@@ -132,7 +132,7 @@
     Currently fails. Reproduce failure by creating a material package that
     is managed by MarkupInventoryMaterialPackageManager.
 
-37. Rename built-in material packages from ...
+37. Rename abjad material packages from ...
         red_forte
         red_marcati
         red_markup
@@ -196,16 +196,3 @@
 50. Remove all '.'.join() statements. There should be no by-hand package
     manipulation. Use self.configuration.filesystem_path_to_package_path()
     instead.
-
-51. Change 'built_in_library' to 'abjad_library'.
-    Change ...
-        in_built_in_library
-        in_user_library
-        in_built_in_score_packages
-        in_user_score_packages
-    ... to ...
-        abjad_library
-        user_library
-        abjad_score_packages
-        user_score_packages
-    ... instead.

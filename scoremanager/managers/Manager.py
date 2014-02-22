@@ -67,7 +67,7 @@ class Manager(ScoreManagerObject):
     def _get_score_package_directory_name(self):
         line = self.filesystem_path
         line = line.replace(
-            self.configuration.built_in_score_packages_directory_path,
+            self.configuration.abjad_score_packages_directory_path,
             '',
             )
         line = line.replace(
@@ -222,15 +222,15 @@ class Manager(ScoreManagerObject):
         asset_name = space_delimited_lowercase_name.replace(' ', '_')
         return asset_name
 
-    def _write_boilerplate(self, boilerplate_file_built_in_asset_name):
-        if not os.path.exists(boilerplate_file_built_in_asset_name):
-            boilerplate_file_built_in_asset_name = os.path.join(
+    def _write_boilerplate(self, boilerplate_file_abjad_asset_name):
+        if not os.path.exists(boilerplate_file_abjad_asset_name):
+            boilerplate_file_abjad_asset_name = os.path.join(
                 self.boilerplate_directory_path,
-                boilerplate_file_built_in_asset_name,
+                boilerplate_file_abjad_asset_name,
                 )
-        if os.path.exists(boilerplate_file_built_in_asset_name):
+        if os.path.exists(boilerplate_file_abjad_asset_name):
             shutil.copyfile(
-                boilerplate_file_built_in_asset_name,
+                boilerplate_file_abjad_asset_name,
                 self.filesystem_path,
                 )
             return True
@@ -340,14 +340,14 @@ class Manager(ScoreManagerObject):
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_file_name('name of boilerplate asset')
         with self.backtracking:
-            boilerplate_file_built_in_asset_name = getter._run()
+            boilerplate_file_abjad_asset_name = getter._run()
         if self._session._backtrack():
             return
-        if self._write_boilerplate(boilerplate_file_built_in_asset_name):
+        if self._write_boilerplate(boilerplate_file_abjad_asset_name):
             self._session.io_manager.proceed('boilerplate asset copied.')
         else:
             message = 'boilerplate asset {!r} does not exist.'
-            message = message.format(boilerplate_file_built_in_asset_name)
+            message = message.format(boilerplate_file_abjad_asset_name)
             self._session.io_manager.proceed(message)
 
     def repository_add(self, prompt=False):

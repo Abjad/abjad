@@ -8,7 +8,7 @@ def test_ScorePackageManager_tempo_inventory_01():
 
     configuration = scoremanager.core.ScoreManagerConfiguration()
     directory_path = os.path.join(
-        configuration.built_in_score_packages_directory_path,
+        configuration.abjad_score_packages_directory_path,
         'red_example_score',
         )
         

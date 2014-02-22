@@ -423,7 +423,7 @@ class MaterialPackageManager(PackageManager):
         if self.material_package_manager_class_name is None:
             return
         directory_path = \
-            self.configuration.built_in_material_package_managers_directory_path
+            self.configuration.abjad_material_package_managers_directory_path
         package_path = \
             self.configuration.filesystem_path_to_package_path(
             directory_path)

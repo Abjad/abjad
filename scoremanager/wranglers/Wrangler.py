@@ -20,7 +20,7 @@ class Wrangler(ScoreManagerObject):
 
     def __init__(self, session=None):
         ScoreManagerObject.__init__(self, session=session)
-        self.built_in_storehouse_directory_path = None
+        self.abjad_storehouse_directory_path = None
         self.user_storehouse_directory_path = None
         self.score_storehouse_path_infix_parts = ()
         self.forbidden_directory_entries = ()
@@ -44,7 +44,7 @@ class Wrangler(ScoreManagerObject):
             parts.extend(self.score_storehouse_path_infix_parts)
             return os.path.join(*parts)
         else:
-            return self.built_in_storehouse_directory_path
+            return self.abjad_storehouse_directory_path
 
     @property
     def _temporary_asset_filesystem_path(self):
@@ -147,10 +147,10 @@ class Wrangler(ScoreManagerObject):
 
     def _make_storehouse_menu_entries(
         self,
-        in_built_in_library=True,
-        in_user_library=True,
-        in_built_in_score_packages=True,
-        in_user_score_packages=True,
+        abjad_library=True,
+        user_library=True,
+        abjad_score_packages=True,
+        user_score_packages=True,
         ):
         from scoremanager import wranglers
         keys, display_strings = [], []
@@ -160,10 +160,10 @@ class Wrangler(ScoreManagerObject):
         wrangler = wranglers.ScorePackageWrangler(
             session=self._session)
         for manager in wrangler.list_asset_managers(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             ):
             display_strings.append(manager._get_title())
             path_parts = (manager.filesystem_path,) + \
@@ -449,10 +449,10 @@ class Wrangler(ScoreManagerObject):
         self,
         clear=True, 
         cache=False,
-        in_built_in_library=True,
-        in_user_library=True,
-        in_built_in_score_packages=True,
-        in_user_score_packages=True,
+        abjad_library=True,
+        user_library=True,
+        abjad_score_packages=True,
+        user_score_packages=True,
         pending_user_input=None,
         ):
         r'''Interactively selects asset storehouse filesystem path.
@@ -464,10 +464,10 @@ class Wrangler(ScoreManagerObject):
         menu = self._session.io_manager.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
         menu_entries = self._make_storehouse_menu_entries(
-            in_built_in_library=False,
-            in_user_library=True,
-            in_built_in_score_packages=False,
-            in_user_score_packages=False)
+            abjad_library=False,
+            user_library=True,
+            abjad_score_packages=False,
+            user_score_packages=False)
         asset_section.menu_entries = menu_entries
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb(
@@ -529,10 +529,10 @@ class Wrangler(ScoreManagerObject):
 
     def list_asset_filesystem_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset filesystem paths.
@@ -541,10 +541,10 @@ class Wrangler(ScoreManagerObject):
         '''
         result = []
         for directory_path in self.list_storehouse_directory_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             ):
             if not directory_path:
                 continue
@@ -570,10 +570,10 @@ class Wrangler(ScoreManagerObject):
 
     def list_asset_managers(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset managers.
@@ -584,10 +584,10 @@ class Wrangler(ScoreManagerObject):
             return self.list_visible_asset_managers(head=head)
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head):
             asset_manager = self._initialize_asset_manager(filesystem_path)
             result.append(asset_manager)
@@ -595,10 +595,10 @@ class Wrangler(ScoreManagerObject):
 
     def list_asset_names(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True,
         head=None, 
         include_extension=False,
         ):
@@ -608,10 +608,10 @@ class Wrangler(ScoreManagerObject):
         '''
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             ):
             if include_extension:
@@ -624,31 +624,31 @@ class Wrangler(ScoreManagerObject):
 
     def list_storehouse_directory_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True,
         ):
         r'''Lists asset storehouse filesystem paths.
 
         Returns list.
         '''
         result = []
-        if in_built_in_library and \
-            self.built_in_storehouse_directory_path is not None:
-            result.append(self.built_in_storehouse_directory_path)
-        if in_user_library and self.user_storehouse_directory_path is not None:
+        if abjad_library and \
+            self.abjad_storehouse_directory_path is not None:
+            result.append(self.abjad_storehouse_directory_path)
+        if user_library and self.user_storehouse_directory_path is not None:
             result.append(self.user_storehouse_directory_path)
-        if in_built_in_score_packages and \
+        if abjad_score_packages and \
             self.score_storehouse_path_infix_parts:
             for score_directory_path in \
-                self.configuration.list_score_directory_paths(built_in=True):
+                self.configuration.list_score_directory_paths(abjad=True):
                 parts = [score_directory_path]
                 if self.score_storehouse_path_infix_parts:
                     parts.extend(self.score_storehouse_path_infix_parts)
                 storehouse_directory_path = os.path.join(*parts)
                 result.append(storehouse_directory_path)
-        if in_user_score_packages and self.score_storehouse_path_infix_parts:
+        if user_score_packages and self.score_storehouse_path_infix_parts:
             for directory_path in \
                 self.configuration.list_score_directory_paths(user=True):
                 parts = [directory_path]

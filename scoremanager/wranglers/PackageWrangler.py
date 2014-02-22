@@ -32,7 +32,7 @@ class PackageWrangler(Wrangler):
         else:
             package_path = \
                 self.configuration.filesystem_path_to_package_path(
-                    self.built_in_storehouse_directory_path,
+                    self.abjad_storehouse_directory_path,
                     )
             return package_path
 
@@ -225,10 +225,10 @@ class PackageWrangler(Wrangler):
 
     def list_asset_managers(
         self,
-        in_built_in_library=True,
-        in_user_library=True,
-        in_built_in_score_packages=True,
-        in_user_score_packages=True,
+        abjad_library=True,
+        user_library=True,
+        abjad_score_packages=True,
+        user_score_packages=True,
         head=None,
         ):
         r'''Lists asset managers.
@@ -237,10 +237,10 @@ class PackageWrangler(Wrangler):
         '''
         result = []
         for package_path in self.list_asset_package_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             ):
             asset_manager = self._initialize_asset_manager(package_path)
@@ -249,10 +249,10 @@ class PackageWrangler(Wrangler):
 
     def list_asset_package_paths(
         self,
-        in_built_in_library=True,
-        in_user_library=True,
-        in_built_in_score_packages=True,
-        in_user_score_packages=True,
+        abjad_library=True,
+        user_library=True,
+        abjad_score_packages=True,
+        user_score_packages=True,
         head=None,
         ):
         r'''Lists asset packagesystem paths.
@@ -261,10 +261,10 @@ class PackageWrangler(Wrangler):
         '''
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head):
             package_path = \
                 self.configuration.filesystem_path_to_package_path(
@@ -274,10 +274,10 @@ class PackageWrangler(Wrangler):
 
     def list_storehouse_package_paths(
         self,
-        in_built_in_library=True,
-        in_user_library=True,
-        in_built_in_score_packages=True,
-        in_user_score_packages=True,
+        abjad_library=True,
+        user_library=True,
+        abjad_score_packages=True,
+        user_score_packages=True,
         ):
         r'''Lists asset storehouse packagesystem paths.
 
@@ -287,10 +287,10 @@ class PackageWrangler(Wrangler):
         superclass = super(PackageWrangler, self)
         for filesystem_path in \
             superclass.list_storehouse_directory_paths(
-            in_built_in_library=True,
-            in_user_library=True,
-            in_built_in_score_packages=True,
-            in_user_score_packages=True,
+            abjad_library=True,
+            user_library=True,
+            abjad_score_packages=True,
+            user_score_packages=True,
             ):
             package_path = \
                 self.configuration.filesystem_path_to_package_path(
@@ -309,10 +309,10 @@ class PackageWrangler(Wrangler):
                 result.append(asset_manager.package_path)
         else:
             for asset_manager in self.list_asset_managers(
-                in_built_in_library=True,
-                in_user_library=True,
-                in_built_in_score_packages=True,
-                in_user_score_packages=True,
+                abjad_library=True,
+                user_library=True,
+                abjad_score_packages=True,
+                user_score_packages=True,
                 head=head,
                 ):
                 result.append(asset_manager.package_path)

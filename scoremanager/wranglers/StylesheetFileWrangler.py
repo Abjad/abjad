@@ -25,7 +25,7 @@ class StylesheetFileWrangler(Wrangler):
         superclass = super(StylesheetFileWrangler, self)
         superclass.__init__(session=session)
         self._asset_manager_class = managers.FileManager
-        self.built_in_storehouse_directory_path = \
+        self.abjad_storehouse_directory_path = \
             self.configuration.abjad_stylesheets_directory_path
         self.user_storehouse_directory_path = \
             self.configuration.user_library_stylesheets_directory_path
@@ -50,7 +50,7 @@ class StylesheetFileWrangler(Wrangler):
         from scoremanager import managers
         annotation = None
         if filesystem_path.startswith(
-            self.configuration.built_in_score_packages_directory_path) or \
+            self.configuration.abjad_score_packages_directory_path) or \
             filesystem_path.startswith(
             self.configuration.user_score_packages_directory_path):
             tmp = os.path.join('stylesheets')
@@ -62,7 +62,7 @@ class StylesheetFileWrangler(Wrangler):
                 package_path=package_path)
             annotation = score_package_manager._get_title()
         elif filesystem_path.startswith(
-            self.configuration.built_in_stylesheets_directory_path):
+            self.configuration.abjad_stylesheets_directory_path):
             annotation = 'Abjad'
         elif filesystem_path.startswith(
             self.configuration.user_library_stylesheets_directory_path):
@@ -222,10 +222,10 @@ class StylesheetFileWrangler(Wrangler):
         with self.backtracking:
             storehouse_path = \
                 self.interactively_select_storehouse_directory_path(
-                in_built_in_library=False,
-                in_user_library=True,
-                in_built_in_score_packages=False,
-                in_user_score_packages=False,
+                abjad_library=False,
+                user_library=True,
+                abjad_score_packages=False,
+                user_score_packages=False,
                 )
         if self._session._backtrack():
             return
@@ -254,21 +254,21 @@ class StylesheetFileWrangler(Wrangler):
 
     def list_asset_filesystem_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset filesystem paths.
 
-        Example. List built-in stylesheet filesystem paths:
+        Lists abjad stylesheet filesystem paths:
 
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False,
+            ...     user_library=False, 
+            ...     user_score_packages=False,
             ...     ):
             ...     x
             '.../abjad/stylesheets/clean-letter-14.ily'
@@ -280,30 +280,30 @@ class StylesheetFileWrangler(Wrangler):
         '''
         superclass = super(StylesheetFileWrangler, self)
         return superclass.list_asset_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_asset_managers(
         self, 
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset managers.
 
-        Example. List built-in stylesheet managers:
+        Lists abjad stylesheet managers:
 
         ::
 
             >>> for x in wrangler.list_asset_managers(
-            ...     in_user_library=False, 
-            ...    in_user_score_packages=False):
+            ...     user_library=False, 
+            ...    user_score_packages=False):
             ...     x
             FileManager('.../abjad/stylesheets/clean-letter-14.ily')
             FileManager('.../abjad/stylesheets/clean-letter-16.ily')
@@ -314,31 +314,31 @@ class StylesheetFileWrangler(Wrangler):
         '''
         superclass = super(StylesheetFileWrangler, self)
         return superclass.list_asset_managers(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_asset_names(
         self, 
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None, 
         include_extension=False,
         ):
         r'''Lists asset names.
 
-        Example. List built-in stylesheet names:
+        Lists abjad stylesheet names:
 
         ::
 
             >>> for x in wrangler.list_asset_names(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False, 
+            ...     user_library=False, 
+            ...     user_score_packages=False, 
             ...     include_extension=True):
             ...     x
             'clean-letter-14.ily'
@@ -351,30 +351,30 @@ class StylesheetFileWrangler(Wrangler):
         '''
         superclass = super(StylesheetFileWrangler, self)
         return superclass.list_asset_names(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             include_extension=include_extension,
             )
 
     def list_storehouse_directory_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True,
         ):
         r'''Lists asset storehouse filesystem paths.
 
-        Example. List built-in storehouse filesystem paths:
+        Lists abjad storehouse filesystem paths:
 
         ::
 
             >>> for x in wrangler.list_storehouse_directory_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False,
+            ...     user_library=False, 
+            ...     user_score_packages=False,
             ...     ):
             ...     x
             '.../abjad/stylesheets'
@@ -386,10 +386,10 @@ class StylesheetFileWrangler(Wrangler):
         '''
         superclass = super(StylesheetFileWrangler, self)
         return superclass.list_storehouse_directory_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             )
 
     ### UI MANIFEST ###

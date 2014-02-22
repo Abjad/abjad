@@ -346,7 +346,7 @@ class Session(abctools.AbjadObject):
             path = wrangler._get_current_directory_path_of_interest()
             return path
         else:
-            return self.configuration.built_in_material_packages_directory_path
+            return self.configuration.abjad_material_packages_directory_path
 
     @property
     def current_score_directory_path(self):
@@ -370,9 +370,9 @@ class Session(abctools.AbjadObject):
         '''
         if self.current_score_snake_case_name:
             if self.current_score_snake_case_name in \
-                self.configuration.built_in_score_package_names:
+                self.configuration.abjad_score_package_names:
                 return os.path.join(
-                    self.configuration.built_in_score_packages_directory_path,
+                    self.configuration.abjad_score_packages_directory_path,
                     self.current_score_snake_case_name)
             else:
                 return os.path.join(

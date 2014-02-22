@@ -18,11 +18,11 @@ def test_FileManager_write_boilerplate_asset_to_disk_01():
 
     try:
         string = 'boilerplate_testnumbers_material_definition.py'
-        boilerplate_file_built_in_asset_name = string
-        file_manager._write_boilerplate(boilerplate_file_built_in_asset_name)
+        boilerplate_file_abjad_asset_name = string
+        file_manager._write_boilerplate(boilerplate_file_abjad_asset_name)
         file_path = os.path.join(
             file_manager.boilerplate_directory_path, 
-            boilerplate_file_built_in_asset_name
+            boilerplate_file_abjad_asset_name
             )
         source = open(file_path, 'r')
         target = open(file_manager.filesystem_path)

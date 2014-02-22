@@ -55,7 +55,7 @@ scores environment variable to your scores directory:
 4. Start and stop the score manager. Type start-score-manager from the
 commandline and the score manager should start. What you see here probably
 won't be very interesting because you won't yet have any score manager scores
-created on your system. But you should see three built-in example socres as
+created on your system. But you should see three abjad example scores as
 well as three or four menu options. The menu options will allow you to manage
 materials, stylesheets and scores. If the shell can't find start-score-manager
 then make sure you added the scroremanager/scr/ directory to your PATH. After

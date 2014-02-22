@@ -38,8 +38,8 @@ class MaterialPackageWrangler(PackageWrangler):
         superclass.__init__(session=session)
         self._material_package_manager_wrangler = \
             wranglers.MaterialPackageManagerWrangler(session=self._session)
-        self.built_in_storehouse_directory_path = \
-            self.configuration.built_in_material_packages_directory_path
+        self.abjad_storehouse_directory_path = \
+            self.configuration.abjad_material_packages_directory_path
         self.user_storehouse_directory_path = \
             self.configuration.user_library_material_packages_directory_path
         self.score_storehouse_path_infix_parts = ('materials',)
@@ -182,21 +182,21 @@ class MaterialPackageWrangler(PackageWrangler):
 
     def list_asset_filesystem_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset filesystem paths.
 
-        Example. List built-in material package filesystem paths:
+        Lists abjad material package filesystem paths:
 
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False):
+            ...     user_library=False, 
+            ...     user_score_packages=False):
             ...     x
             '.../scoremanager/materialpackages/red_forte'
             '.../scoremanager/materialpackages/red_marcati'
@@ -210,30 +210,30 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageWrangler, self)
         return superclass.list_asset_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_asset_managers(
         self, 
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset managers.
 
-        Example. List built-in material package managers:
+        Lists abjad material package managers:
 
         ::
 
             >>> for x in wrangler.list_asset_managers(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False):
+            ...     user_library=False, 
+            ...     user_score_packages=False):
             ...     x
             DynamicHandlerMaterialPackageManager('.../scoremanager/materialpackages/red_forte')
             ArticulationHandlerMaterialPackageManager('.../scoremanager/materialpackages/red_marcati')
@@ -247,29 +247,29 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageWrangler, self)
         return superclass.list_asset_managers(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_asset_names(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset names.
 
-        Example. List built-in material package names:
+        Lists abjad material package names:
 
         ::
 
             >>> for x in wrangler.list_asset_names(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     user_library=False, user_score_packages=False):
             ...     x
             'red forte'
             'red marcati'
@@ -283,30 +283,30 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageWrangler, self)
         return superclass.list_asset_names(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_asset_package_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset packagesystem paths.
 
-        Example. List built-in material package paths:
+        Lists abjad material package paths:
 
         ::
 
             >>> for x in wrangler.list_asset_package_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False):
+            ...     user_library=False, 
+            ...     user_score_packages=False):
             ...     x
             'scoremanager.materialpackages.red_forte'
             'scoremanager.materialpackages.red_marcati'
@@ -320,29 +320,29 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageWrangler, self)
         return superclass.list_asset_package_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_storehouse_directory_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True,
         ):
         r'''Lists asset storehouse filesystem paths.
 
-        Example. List built-in material package storehouse filesystem paths:
+        Lists abjad material package storehouse filesystem paths:
 
         ::
 
             >>> for x in wrangler.list_storehouse_directory_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False):
+            ...     user_library=False, 
+            ...     user_score_packages=False):
             ...     x
             '.../scoremanager/materialpackages'
             '.../scoremanager/scorepackages/blue_example_score/materials'
@@ -353,10 +353,10 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageWrangler, self)
         return superclass.list_storehouse_directory_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             )
 
     def make_data_package(self, material_package_path, metadata=None):

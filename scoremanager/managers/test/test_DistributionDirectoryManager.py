@@ -10,7 +10,7 @@ def test_DistributionDirectoryManager_01():
     manager = scoremanager.managers.DistributionDirectoryManager(string)
 
     assert manager.filesystem_path == os.path.join(
-        manager.configuration.built_in_score_packages_directory_path,
+        manager.configuration.abjad_score_packages_directory_path,
         'red_example_score', 
         'distribution',
         )

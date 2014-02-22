@@ -36,8 +36,8 @@ class ScorePackageWrangler(PackageWrangler):
         superclass = super(ScorePackageWrangler, self)
         superclass.__init__(session=session)
         self._asset_manager_class = managers.ScorePackageManager
-        self.built_in_storehouse_directory_path = \
-            self.configuration.built_in_score_packages_directory_path
+        self.abjad_storehouse_directory_path = \
+            self.configuration.abjad_score_packages_directory_path
         self.user_storehouse_directory_path = \
             self.configuration.user_score_packages_directory_path
 
@@ -52,9 +52,9 @@ class ScorePackageWrangler(PackageWrangler):
         if self._session.is_in_score:
             if self._session.current_score_snake_case_name in \
                     sorted(os.listdir(
-                self.configuration.built_in_score_packages_directory_path)):
+                self.configuration.abjad_score_packages_directory_path)):
                 return \
-                    self.configuration.built_in_score_packages_directory_path
+                    self.configuration.abjad_score_packages_directory_path
             else:
                 return self.configuration.user_score_packages_directory_path
         else:
@@ -132,21 +132,21 @@ class ScorePackageWrangler(PackageWrangler):
 
     def list_asset_filesystem_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset filesystem paths.
 
-        Example. List built-in score package filesystem paths:
+        Lists abjad score package filesystem paths:
 
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False):
+            ...     user_library=False, 
+            ...     user_score_packages=False):
             ...     x
             '.../scoremanager/scorepackages/blue_example_score'
             '.../scoremanager/scorepackages/green_example_score'
@@ -156,30 +156,30 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         superclass = super(ScorePackageWrangler, self)
         return superclass.list_asset_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_asset_managers(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset managers.
 
-        Example. List built-in score package managers:
+        Lists abjad score package managers:
 
         ::
 
             >>> for x in wrangler.list_asset_managers(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False,
+            ...     user_library=False, 
+            ...     user_score_packages=False,
             ...     ):
             ...     x
             ScorePackageManager('.../scorepackages/blue_example_score')
@@ -190,30 +190,30 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         superclass = super(ScorePackageWrangler, self)
         return superclass.list_asset_managers(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_asset_names(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset names.
 
-        Example. List built-in score package names:
+        Lists abjad score package names:
 
         ::
 
             >>> for x in wrangler.list_asset_names(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False):
+            ...     user_library=False, 
+            ...     user_score_packages=False):
             ...     x
             'blue example score'
             'green example score'
@@ -223,30 +223,30 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         superclass = super(ScorePackageWrangler, self)
         return superclass.list_asset_names(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_asset_package_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists asset packagesystem paths.
 
-        Example. List built-in score package paths:
+        Lists abjad score package paths:
 
         ::
 
             >>> for x in wrangler.list_asset_package_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False):
+            ...     user_library=False, 
+            ...     user_score_packages=False):
             ...     x
             '...scoremanager.scorepackages.blue_example_score'
             '...scoremanager.scorepackages.green_example_score'
@@ -256,29 +256,29 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         superclass = super(ScorePackageWrangler, self)
         return superclass.list_asset_package_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             )
 
     def list_storehouse_directory_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True,
         ):
         r'''Lists asset storehouse filesystem paths.
 
-        Example. List built-in score storehouse:
+        Lists abjad score storehouse:
 
         ::
 
             >>> for x in wrangler.list_storehouse_directory_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False,
+            ...     user_library=False, 
+            ...     user_score_packages=False,
             ...     ):
             ...     x
             '.../scoremanager/scorepackages'
@@ -287,29 +287,29 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         superclass = super(ScorePackageWrangler, self)
         return superclass.list_storehouse_directory_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             )
 
     def list_visible_asset_filesystem_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists visible asset filesystem paths.
 
-        Example. List visible built-in score package filesystem paths:
+        Lists visible abjad score package filesystem paths:
 
         ::
 
             >>> for x in wrangler.list_visible_asset_filesystem_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False,
+            ...     user_library=False, 
+            ...     user_score_packages=False,
             ...     ):
             ...     x
             '.../scoremanager/scorepackages/blue_example_score'
@@ -320,10 +320,10 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         result = []
         for visible_asset_manager in self.list_visible_asset_managers(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             ):
             result.append(visible_asset_manager.filesystem_path)
@@ -331,21 +331,21 @@ class ScorePackageWrangler(PackageWrangler):
 
     def list_visible_asset_managers(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True,
         head=None,
         ):
         r'''Lists visible asset managers.
 
-        Example. List visible score package managers:
+        Lists visible score package managers:
 
         ::
 
             >>> for x in wrangler.list_visible_asset_managers(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False,
+            ...     user_library=False, 
+            ...     user_score_packages=False,
             ...     ):
             ...     x
             ScorePackageManager('.../scorepackages/blue_example_score')
@@ -358,10 +358,10 @@ class ScorePackageWrangler(PackageWrangler):
         scores_to_display = self._session.scores_to_display
         for asset_manager in PackageWrangler.list_asset_managers(
             self,
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             ):
             is_mothballed = asset_manager._get_metadatum('is_mothballed')
@@ -380,21 +380,21 @@ class ScorePackageWrangler(PackageWrangler):
 
     def list_visible_asset_package_path_and_score_title_pairs(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True,
         head=None,
         ):
         r'''Lists visible asset package path and score title pairs.
 
-        Example. List visible built-in score package path and title pairs:
+        Lists visible abjad score package path and title pairs:
 
         ::
 
             >>> for x in wrangler.list_visible_asset_package_path_and_score_title_pairs(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False,
+            ...     user_library=False, 
+            ...     user_score_packages=False,
             ...     ):
             ...     x[0]
             ...     x[1]
@@ -415,10 +415,10 @@ class ScorePackageWrangler(PackageWrangler):
         scores_to_display = self._session.scores_to_display
         for asset_manager in PackageWrangler.list_asset_managers(
             self,
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             ):
             metadata = asset_manager._get_metadata()
@@ -443,21 +443,21 @@ class ScorePackageWrangler(PackageWrangler):
 
     def list_visible_asset_package_paths(
         self,
-        in_built_in_library=True, 
-        in_user_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
         head=None,
         ):
         r'''Lists visible asset packagesystem paths.
 
-        Example. List visible built-in score package packagesystem paths:
+        Lists visible abjad score package packagesystem paths:
 
         ::
 
             >>> for x in wrangler.list_visible_asset_package_paths(
-            ...     in_user_library=False, 
-            ...     in_user_score_packages=False,
+            ...     user_library=False, 
+            ...     user_score_packages=False,
             ...     ):
             ...     x
             '...scoremanager.scorepackages.blue_example_score'
@@ -468,10 +468,10 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         result = []
         for filesystem_path in self.list_visible_asset_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
             head=head,
             ):
             package_path = self.configuration.filesystem_path_to_package_path(filesystem_path)
@@ -487,10 +487,10 @@ class ScorePackageWrangler(PackageWrangler):
             managers = self.list_visible_asset_managers()
         else:
             managers = self.list_asset_managers(
-                in_built_in_library=True, 
-                in_user_library=True,
-                in_built_in_score_packages=True, 
-                in_user_score_packages=True,
+                abjad_library=True, 
+                user_library=True,
+                abjad_score_packages=True, 
+                user_score_packages=True,
                 )
         for manager in managers:
             manager.repository_add(prompt=False)
@@ -514,10 +514,10 @@ class ScorePackageWrangler(PackageWrangler):
             managers = self.list_visible_asset_managers()
         else:
             managers = self.list_asset_managers(
-                in_built_in_library=True, 
-                in_user_library=True,
-                in_built_in_score_packages=True, 
-                in_user_score_packages=True,
+                abjad_library=True, 
+                user_library=True,
+                abjad_score_packages=True, 
+                user_score_packages=True,
                 )
         for manager in managers:
             manager.repository_ci(
@@ -535,10 +535,10 @@ class ScorePackageWrangler(PackageWrangler):
             managers = self.list_visible_asset_managers()
         else:
             managers = self.list_asset_managers(
-                in_built_in_library=True, 
-                in_user_library=True,
-                in_built_in_score_packages=True, 
-                in_user_score_packages=True,
+                abjad_library=True, 
+                user_library=True,
+                abjad_score_packages=True, 
+                user_score_packages=True,
                 )
         for manager in managers:
             manager.repository_st(prompt=False)
@@ -553,10 +553,10 @@ class ScorePackageWrangler(PackageWrangler):
             managers = self.list_visible_asset_managers()
         else:
             managers = self.list_asset_managers(
-                in_built_in_library=True, 
-                in_user_library=True,
-                in_built_in_score_packages=True, 
-                in_user_score_packages=True,
+                abjad_library=True, 
+                user_library=True,
+                abjad_score_packages=True, 
+                user_score_packages=True,
                 )
         for manager in managers:
             manager.repository_up(prompt=False)
