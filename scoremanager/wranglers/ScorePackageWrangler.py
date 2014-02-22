@@ -493,7 +493,7 @@ class ScorePackageWrangler(PackageWrangler):
                 user_score_packages=True,
                 )
         for manager in managers:
-            manager.repository_add(prompt=False)
+            manager.add_assets_to_repository(prompt=False)
         self._session.io_manager.proceed(prompt=prompt)
 
     def commit_assets_to_repository(self, prompt=True):
@@ -520,7 +520,7 @@ class ScorePackageWrangler(PackageWrangler):
                 user_score_packages=True,
                 )
         for manager in managers:
-            manager.repository_ci(
+            manager.commit_assets_to_repository(
                 commit_message=commit_message, 
                 prompt=False,
                 )
@@ -541,7 +541,7 @@ class ScorePackageWrangler(PackageWrangler):
                 user_score_packages=True,
                 )
         for manager in managers:
-            manager.repository_st(prompt=False)
+            manager.display_repository_status(prompt=False)
         self._session.io_manager.proceed(prompt=prompt)
 
     def update_from_repository(self, prompt=True):
@@ -559,5 +559,5 @@ class ScorePackageWrangler(PackageWrangler):
                 user_score_packages=True,
                 )
         for manager in managers:
-            manager.repository_up(prompt=False)
+            manager.update_from_repository(prompt=False)
         self._session.io_manager.proceed(prompt=prompt)

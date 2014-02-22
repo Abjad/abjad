@@ -350,7 +350,7 @@ class Manager(ScoreManagerObject):
             message = message.format(boilerplate_file_abjad_asset_name)
             self._session.io_manager.proceed(message)
 
-    def repository_add(self, prompt=False):
+    def add_assets_to_repository(self, prompt=False):
         r'''Interactively adds unversioned filesystem assets to repository.
 
         Returns none.
@@ -368,7 +368,7 @@ class Manager(ScoreManagerObject):
         self._session.io_manager.display(lines)
         self._session.io_manager.proceed(prompt=prompt)
 
-    def repository_ci(self, commit_message=None, prompt=True):
+    def commit_assets_to_repository(self, commit_message=None, prompt=True):
         r'''Interactively commits unversioned filesystem assets to repository.
 
         Returns none.
@@ -402,7 +402,7 @@ class Manager(ScoreManagerObject):
             )
         self._session.io_manager.proceed(prompt=prompt)
 
-    def repository_st(self, prompt=True):
+    def display_repository_status(self, prompt=True):
         r'''Intearctively displays repository status of filesystem assets.
     
         Returns none.
@@ -452,7 +452,7 @@ class Manager(ScoreManagerObject):
             )
         self._session.io_manager.proceed(prompt=prompt)
 
-    def repository_up(self, prompt=True):
+    def update_from_repository(self, prompt=True):
         r'''Interactively updates versioned filesystem assets.
 
         Returns none.

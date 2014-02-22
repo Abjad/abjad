@@ -44,7 +44,7 @@ def test_FileManager_remove_02():
     try:
         file_manager._make_empty_asset()
         assert os.path.exists(filesystem_path)
-        file_manager.repository_add()
+        file_manager.add_assets_to_repository()
         assert file_manager._is_versioned()
         file_manager._remove()
         assert not os.path.exists(filesystem_path)

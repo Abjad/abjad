@@ -53,7 +53,7 @@ def test_FileManager_rename_02():
     try:
         file_manager._make_empty_asset()
         assert os.path.exists(filesystem_path)
-        file_manager.repository_add()
+        file_manager.add_assets_to_repository()
         assert file_manager._is_versioned()
         new_filesystem_path = os.path.join(
             configuration.score_manager_directory_path, 
