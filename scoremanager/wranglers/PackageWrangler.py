@@ -76,6 +76,14 @@ class PackageWrangler(Wrangler):
                 return True
         return False
 
+    def _make_asset(self, asset_name):
+        assert stringtools.is_snake_case_package_name(asset_name)
+        asset_filesystem_path = os.path.join(
+            self._current_storehouse_directory_path, asset_name)
+        os.mkdir(asset_filesystem_path)
+        package_manager = self._initialize_asset_manager(asset_name)
+        package_manager.fix(prompt=False)
+
     def _make_main_menu(self, head=None):
         self._session.io_manager.print_not_yet_implemented()
 
@@ -153,7 +161,7 @@ class PackageWrangler(Wrangler):
             else:
                 return package_path
 
-    def interactively_make_asset(
+    def make_asset(
         self,
         pending_user_input=None,
         ):
@@ -167,7 +175,7 @@ class PackageWrangler(Wrangler):
                 self.get_available_package_path()
         if self._session._backtrack():
             return
-        self.make_asset(package_path)
+        self._make_asset(package_path)
 
     def rename_asset(
         self, 
@@ -318,18 +326,6 @@ class PackageWrangler(Wrangler):
                 result.append(asset_manager._package_path)
         return result
 
-    def make_asset(self, asset_name):
-        r'''Makes asset.
-
-        Returns none.
-        '''
-        assert stringtools.is_snake_case_package_name(asset_name)
-        asset_filesystem_path = os.path.join(
-            self._current_storehouse_directory_path, asset_name)
-        os.mkdir(asset_filesystem_path)
-        package_manager = self._initialize_asset_manager(asset_name)
-        package_manager.fix(prompt=False)
-
     def make_empty_package(self, package_path):
         r'''Makes empty package.
 
@@ -352,6 +348,6 @@ class PackageWrangler(Wrangler):
 
     _user_input_to_action = Wrangler._user_input_to_action.copy()
     _user_input_to_action.update({
-        'new': interactively_make_asset,
+        'new': make_asset,
         'ren': rename_asset,
         })

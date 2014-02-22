@@ -209,7 +209,7 @@ class StylesheetFileWrangler(Wrangler):
         file_path = self._get_paper_stylesheet_file_path()
         self.edit_asset(file_path)
 
-    def interactively_make_asset(
+    def make_asset(
         self,
         pending_user_input=None,
         ):
@@ -399,5 +399,5 @@ class StylesheetFileWrangler(Wrangler):
         'h': edit_header_stylesheet,
         'l': edit_layout_stylesheet,
         'p': edit_paper_stylesheet,
-        'new': interactively_make_asset,
+        'new': make_asset,
         })

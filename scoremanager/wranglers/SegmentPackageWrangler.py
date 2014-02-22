@@ -45,6 +45,28 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_manager = self._initialize_asset_manager(result)
             segment_package_manager._run()
 
+    def _make_asset(
+        self, 
+        package_path, 
+        prompt=False, 
+        metadata=None,
+        ):
+        metadata = collections.OrderedDict(metadata or {})
+        directory_path = \
+            self.configuration.package_path_to_filesystem_path(
+            package_path)
+        assert not os.path.exists(directory_path)
+        os.mkdir(directory_path)
+        manager = self._asset_manager_class(
+            package_path=package_path,
+            session=self._session,
+            )
+        manager.write_initializer()
+        manager.write_segment_definition_module()
+        manager.make_versions_directory()
+        message = 'package {!r} created.'.format(package_path)
+        self._session.io_manager.proceed(message=message, prompt=prompt)
+
     def _make_main_menu(self, head=None):
         main_menu = self._session.io_manager.make_menu(where=self._where)
         asset_section = main_menu.make_asset_section()
@@ -80,7 +102,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def interactively_make_asset_pdfs(
+    def make_asset_pdfs(
         self,
         pending_user_input=None,
         ):
@@ -103,7 +125,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_path,
                 session=self._session,
                 )
-            manager.interactively_make_asset_pdf(
+            manager.make_asset_pdf(
                 view_asset_pdf=False,
                 )
             output_pdf_file_path = manager._get_output_pdf_file_path()
@@ -410,38 +432,12 @@ class SegmentPackageWrangler(PackageWrangler):
             user_score_packages=user_score_packages,
             )
 
-    def make_asset(
-        self, 
-        package_path, 
-        prompt=False, 
-        metadata=None,
-        ):
-        r'''Makes package.
-
-        Returns none.
-        '''
-        metadata = collections.OrderedDict(metadata or {})
-        directory_path = \
-            self.configuration.package_path_to_filesystem_path(
-            package_path)
-        assert not os.path.exists(directory_path)
-        os.mkdir(directory_path)
-        manager = self._asset_manager_class(
-            package_path=package_path,
-            session=self._session,
-            )
-        manager.write_initializer()
-        manager.write_segment_definition_module()
-        manager.make_versions_directory()
-        message = 'package {!r} created.'.format(package_path)
-        self._session.io_manager.proceed(message=message, prompt=prompt)
-
     ### UI MANIFEST ###
 
     _user_input_to_action = PackageWrangler._user_input_to_action.copy()
     _user_input_to_action.update({
         'lyri': reinterpret_all_current_lilypond_files,
-        'pdfm': interactively_make_asset_pdfs,
+        'pdfm': make_asset_pdfs,
         'pdfs': version_all_assets,
         'pdfv': view_asset_pdfs,
         })

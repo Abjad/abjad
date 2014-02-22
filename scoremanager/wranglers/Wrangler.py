@@ -119,6 +119,13 @@ class Wrangler(ScoreManagerObject):
                 return True
         return False
 
+    def _make_asset(self, asset_name):
+        assert stringtools.is_snake_case_string(asset_name)
+        asset_filesystem_path = os.path.join(
+            self._current_storehouse_directory_path, asset_name)
+        asset_manager = self._initialize_asset_manager(asset_filesystem_path)
+        asset_manager._write_stub()
+
     def _make_asset_selection_breadcrumb(
         self, 
         human_readable_target_name=None,
@@ -272,7 +279,7 @@ class Wrangler(ScoreManagerObject):
         self._session.io_manager.proceed()
 
     @abc.abstractmethod
-    def interactively_make_asset(
+    def make_asset(
         self,
         pending_user_input=None,
         ):
@@ -282,7 +289,7 @@ class Wrangler(ScoreManagerObject):
         '''
         pass
 
-    def interactively_make_view(
+    def make_view(
         self,
         pending_user_input=None,
         ):
@@ -658,17 +665,6 @@ class Wrangler(ScoreManagerObject):
                 result.append(filesystem_path)
         return result
 
-    def make_asset(self, asset_name):
-        r'''Makes asset.
-
-        Returns none.
-        '''
-        assert stringtools.is_snake_case_string(asset_name)
-        asset_filesystem_path = os.path.join(
-            self._current_storehouse_directory_path, asset_name)
-        asset_manager = self._initialize_asset_manager(asset_filesystem_path)
-        asset_manager._write_stub()
-
     def write_view(self, view_name, new_view, prompt=True):
         from scoremanager import iotools
         view_inventory = self._read_view_inventory_from_disk()
@@ -710,7 +706,7 @@ class Wrangler(ScoreManagerObject):
         'ren': rename_asset,
         'rm': remove_assets,
         'vwl': list_views,
-        'vwn': interactively_make_view,
+        'vwn': make_view,
         'vws': select_view,
         'vwmrm': remove_views_module,
         'vwmv': view_views_module,

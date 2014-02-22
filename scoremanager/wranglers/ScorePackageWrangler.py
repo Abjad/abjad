@@ -99,7 +99,7 @@ class ScorePackageWrangler(PackageWrangler):
         self._session.io_manager.proceed(prompt=prompt)
         return results
 
-    def interactively_make_asset(
+    def make_asset(
         self, 
         rollback=False,
         pending_user_input=None,
@@ -123,7 +123,7 @@ class ScorePackageWrangler(PackageWrangler):
         if self._session._backtrack():
             return
         title, score_package_name, year = result
-        self.make_asset(score_package_name)
+        self._make_asset(score_package_name)
         score_package_manager = self._initialize_asset_manager(
             score_package_name)
         score_package_manager._add_metadatum('title', title)

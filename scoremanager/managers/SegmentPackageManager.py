@@ -213,7 +213,7 @@ class SegmentPackageManager(PackageManager):
         self._session.io_manager.display(lines)
         self._session.io_manager.proceed('')
 
-    def interactively_make_asset_pdf(
+    def make_asset_pdf(
         self,
         view_asset_pdf=True,
         ):
@@ -454,7 +454,7 @@ class SegmentPackageManager(PackageManager):
         'lyv': view_current_output_ly,
         'lyver': view_versioned_output_ly,
         'pdfv': view_output_pdf,
-        'pdfm': interactively_make_asset_pdf,
+        'pdfm': make_asset_pdf,
         'vv': view_all_versioned_pdfs,
         'pdfver': view_versioned_output_pdf,
         'pyver': view_versioned_segment_definition_module,

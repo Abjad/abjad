@@ -222,7 +222,7 @@ class ScoreManager(ScoreManagerObject):
 
         Returns none.
         '''
-        self._score_package_wrangler.interactively_make_asset(rollback=True)
+        self._score_package_wrangler.make_asset(rollback=True)
 
     def manage_material_library(self):
         r'''Manages material library.
