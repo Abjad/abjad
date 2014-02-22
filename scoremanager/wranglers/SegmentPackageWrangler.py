@@ -228,7 +228,7 @@ class SegmentPackageWrangler(PackageWrangler):
         command = 'open ' + command
         self._session.io_manager.spawn_subprocess(command)
 
-    def list_asset_filesystem_paths(
+    def _list_asset_filesystem_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -242,7 +242,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_filesystem_paths(
+            >>> for x in wrangler._list_asset_filesystem_paths(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -256,7 +256,7 @@ class SegmentPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(SegmentPackageWrangler, self)
-        return superclass.list_asset_filesystem_paths(
+        return superclass._list_asset_filesystem_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -264,7 +264,7 @@ class SegmentPackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_managers(
+    def _list_asset_managers(
         self,
         abjad_library=True, 
         user_library=True,
@@ -280,7 +280,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
             ::
 
-                >>> for x in wrangler.list_asset_managers(
+                >>> for x in wrangler._list_asset_managers(
                 ...     user_library=False, 
                 ...     user_score_packages=False):
                 ...     x
@@ -297,7 +297,7 @@ class SegmentPackageWrangler(PackageWrangler):
             ::
 
                 >>> head = 'scoremanager.scorepackages.red_example_score'
-                >>> for x in wrangler.list_asset_managers(head=head):
+                >>> for x in wrangler._list_asset_managers(head=head):
                 ...     x
                 SegmentPackageManager('.../red_example_score/segments/segment_01')
                 SegmentPackageManager('.../red_example_score/segments/segment_02')
@@ -306,7 +306,7 @@ class SegmentPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(SegmentPackageWrangler, self)
-        return superclass.list_asset_managers(
+        return superclass._list_asset_managers(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -314,7 +314,7 @@ class SegmentPackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_names(
+    def _list_asset_names(
         self,
         abjad_library=True, 
         user_library=True,
@@ -330,7 +330,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
             ::
 
-                >>> for x in wrangler.list_asset_names(
+                >>> for x in wrangler._list_asset_names(
                 ...     user_library=False, 
                 ...     user_score_packages=False,
                 ...     ):
@@ -348,7 +348,7 @@ class SegmentPackageWrangler(PackageWrangler):
             ::
 
                 >>> head = 'scoremanager.scorepackages.red_example_score'
-                >>> for x in wrangler.list_asset_names(head=head):
+                >>> for x in wrangler._list_asset_names(head=head):
                 ...     x
                 'segment 01'
                 'segment 02'
@@ -357,7 +357,7 @@ class SegmentPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(SegmentPackageWrangler, self)
-        return superclass.list_asset_names(
+        return superclass._list_asset_names(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -400,7 +400,7 @@ class SegmentPackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_storehouse_directory_paths(
+    def _list_storehouse_directory_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -413,7 +413,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_storehouse_directory_paths(
+            >>> for x in wrangler._list_storehouse_directory_paths(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -425,7 +425,7 @@ class SegmentPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(SegmentPackageWrangler, self)
-        return superclass.list_storehouse_directory_paths(
+        return superclass._list_storehouse_directory_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,

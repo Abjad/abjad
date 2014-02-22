@@ -180,7 +180,7 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_manager_class_name, material_package_path)
         manager.run_first_time()
 
-    def list_asset_filesystem_paths(
+    def _list_asset_filesystem_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -194,7 +194,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_filesystem_paths(
+            >>> for x in wrangler._list_asset_filesystem_paths(
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
@@ -209,7 +209,7 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialPackageWrangler, self)
-        return superclass.list_asset_filesystem_paths(
+        return superclass._list_asset_filesystem_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -217,7 +217,7 @@ class MaterialPackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_managers(
+    def _list_asset_managers(
         self, 
         abjad_library=True, 
         user_library=True,
@@ -231,7 +231,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_managers(
+            >>> for x in wrangler._list_asset_managers(
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
@@ -246,7 +246,7 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialPackageWrangler, self)
-        return superclass.list_asset_managers(
+        return superclass._list_asset_managers(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -254,7 +254,7 @@ class MaterialPackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_names(
+    def _list_asset_names(
         self,
         abjad_library=True, 
         user_library=True,
@@ -268,7 +268,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_names(
+            >>> for x in wrangler._list_asset_names(
             ...     user_library=False, user_score_packages=False):
             ...     x
             'red forte'
@@ -282,7 +282,7 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialPackageWrangler, self)
-        return superclass.list_asset_names(
+        return superclass._list_asset_names(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -327,7 +327,7 @@ class MaterialPackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_storehouse_directory_paths(
+    def _list_storehouse_directory_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -340,7 +340,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_storehouse_directory_paths(
+            >>> for x in wrangler._list_storehouse_directory_paths(
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
@@ -352,7 +352,7 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialPackageWrangler, self)
-        return superclass.list_storehouse_directory_paths(
+        return superclass._list_storehouse_directory_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,

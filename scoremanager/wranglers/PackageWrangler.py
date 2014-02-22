@@ -88,7 +88,7 @@ class PackageWrangler(Wrangler):
         self._session.io_manager.print_not_yet_implemented()
 
     def _make_asset_menu_entries(self, head=None):
-        names = self.list_asset_names(head=head)
+        names = self._list_asset_names(head=head)
         keys = len(names) * [None]
         prepopulated_return_values = len(names) * [None]
         paths = self.list_visible_asset_package_paths(head=head)
@@ -231,7 +231,7 @@ class PackageWrangler(Wrangler):
         self._session._restore_breadcrumbs(cache=cache)
         return result
 
-    def list_asset_managers(
+    def _list_asset_managers(
         self,
         abjad_library=True,
         user_library=True,
@@ -268,7 +268,7 @@ class PackageWrangler(Wrangler):
         Returns list.
         '''
         result = []
-        for filesystem_path in self.list_asset_filesystem_paths(
+        for filesystem_path in self._list_asset_filesystem_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -294,7 +294,7 @@ class PackageWrangler(Wrangler):
         result = []
         superclass = super(PackageWrangler, self)
         for filesystem_path in \
-            superclass.list_storehouse_directory_paths(
+            superclass._list_storehouse_directory_paths(
             abjad_library=True,
             user_library=True,
             abjad_score_packages=True,
@@ -316,7 +316,7 @@ class PackageWrangler(Wrangler):
             for asset_manager in self.list_visible_asset_managers(head=head):
                 result.append(asset_manager._package_path)
         else:
-            for asset_manager in self.list_asset_managers(
+            for asset_manager in self._list_asset_managers(
                 abjad_library=True,
                 user_library=True,
                 abjad_score_packages=True,

@@ -125,6 +125,121 @@ class Wrangler(ScoreManagerObject):
                 return True
         return False
 
+    def _list_asset_filesystem_paths(
+        self,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
+        head=None,
+        ):
+        result = []
+        for directory_path in self._list_storehouse_directory_paths(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            ):
+            if not directory_path:
+                continue
+            storehouse_package_path = \
+                self.configuration.filesystem_path_to_package_path(
+                directory_path)
+            if not os.path.exists(directory_path):
+                continue
+            for directory_entry in sorted(os.listdir(directory_path)):
+                if self._is_valid_directory_entry(directory_entry):
+                    filesystem_path = os.path.join(
+                        directory_path, directory_entry,
+                        )
+                    if head is None:
+                        result.append(filesystem_path)
+                    else:
+                        package_path = '.'.join([
+                            storehouse_package_path, directory_entry,
+                            ])
+                        if package_path.startswith(head):
+                            result.append(filesystem_path)
+        return result
+
+    def _list_asset_managers(
+        self,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
+        head=None,
+        ):
+        if hasattr(self, 'list_visible_asset_managers'):
+            return self.list_visible_asset_managers(head=head)
+        result = []
+        for filesystem_path in self._list_asset_filesystem_paths(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            head=head):
+            asset_manager = self._initialize_asset_manager(filesystem_path)
+            result.append(asset_manager)
+        return result
+
+    def _list_asset_names(
+        self,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True,
+        head=None, 
+        include_extension=False,
+        ):
+        result = []
+        for filesystem_path in self._list_asset_filesystem_paths(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            head=head,
+            ):
+            if include_extension:
+                result.append(os.path.basename(filesystem_path))
+            else:
+                result.append(
+                    self._filesystem_path_to_space_delimited_lowercase_name(
+                        filesystem_path))
+        return result
+
+    def _list_storehouse_directory_paths(
+        self,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True,
+        ):
+        result = []
+        if abjad_library and \
+            self.abjad_storehouse_directory_path is not None:
+            result.append(self.abjad_storehouse_directory_path)
+        if user_library and self.user_storehouse_directory_path is not None:
+            result.append(self.user_storehouse_directory_path)
+        if abjad_score_packages and \
+            self.score_storehouse_path_infix_parts:
+            for score_directory_path in \
+                self.configuration.list_score_directory_paths(abjad=True):
+                parts = [score_directory_path]
+                if self.score_storehouse_path_infix_parts:
+                    parts.extend(self.score_storehouse_path_infix_parts)
+                storehouse_directory_path = os.path.join(*parts)
+                result.append(storehouse_directory_path)
+        if user_score_packages and self.score_storehouse_path_infix_parts:
+            for directory_path in \
+                self.configuration.list_score_directory_paths(user=True):
+                parts = [directory_path]
+                if self.score_storehouse_path_infix_parts:
+                    parts.extend(self.score_storehouse_path_infix_parts)
+                filesystem_path = os.path.join(*parts)
+                result.append(filesystem_path)
+        return result
+
     def _make_asset(self, asset_name):
         assert stringtools.is_snake_case_string(asset_name)
         asset_filesystem_path = os.path.join(
@@ -172,7 +287,7 @@ class Wrangler(ScoreManagerObject):
         display_strings.append('My {}'.format(self._breadcrumb))
         wrangler = wranglers.ScorePackageWrangler(
             session=self._session)
-        for manager in wrangler.list_asset_managers(
+        for manager in wrangler._list_asset_managers(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -623,127 +738,6 @@ class Wrangler(ScoreManagerObject):
         file_pointer.close()
         message = 'view written to disk.'
         self._session.io_manager.proceed(message, prompt=prompt)
-
-    ### LIST METHODS ###
-
-    # TODO: make private
-    def list_asset_filesystem_paths(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        result = []
-        for directory_path in self.list_storehouse_directory_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            ):
-            if not directory_path:
-                continue
-            storehouse_package_path = \
-                self.configuration.filesystem_path_to_package_path(
-                directory_path)
-            if not os.path.exists(directory_path):
-                continue
-            for directory_entry in sorted(os.listdir(directory_path)):
-                if self._is_valid_directory_entry(directory_entry):
-                    filesystem_path = os.path.join(
-                        directory_path, directory_entry,
-                        )
-                    if head is None:
-                        result.append(filesystem_path)
-                    else:
-                        package_path = '.'.join([
-                            storehouse_package_path, directory_entry,
-                            ])
-                        if package_path.startswith(head):
-                            result.append(filesystem_path)
-        return result
-
-    # TODO: make private
-    def list_asset_managers(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        if hasattr(self, 'list_visible_asset_managers'):
-            return self.list_visible_asset_managers(head=head)
-        result = []
-        for filesystem_path in self.list_asset_filesystem_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head):
-            asset_manager = self._initialize_asset_manager(filesystem_path)
-            result.append(asset_manager)
-        return result
-
-    # TODO: make private
-    def list_asset_names(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True,
-        head=None, 
-        include_extension=False,
-        ):
-        result = []
-        for filesystem_path in self.list_asset_filesystem_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            ):
-            if include_extension:
-                result.append(os.path.basename(filesystem_path))
-            else:
-                result.append(
-                    self._filesystem_path_to_space_delimited_lowercase_name(
-                        filesystem_path))
-        return result
-
-    # TODO: make private
-    def list_storehouse_directory_paths(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True,
-        ):
-        result = []
-        if abjad_library and \
-            self.abjad_storehouse_directory_path is not None:
-            result.append(self.abjad_storehouse_directory_path)
-        if user_library and self.user_storehouse_directory_path is not None:
-            result.append(self.user_storehouse_directory_path)
-        if abjad_score_packages and \
-            self.score_storehouse_path_infix_parts:
-            for score_directory_path in \
-                self.configuration.list_score_directory_paths(abjad=True):
-                parts = [score_directory_path]
-                if self.score_storehouse_path_infix_parts:
-                    parts.extend(self.score_storehouse_path_infix_parts)
-                storehouse_directory_path = os.path.join(*parts)
-                result.append(storehouse_directory_path)
-        if user_score_packages and self.score_storehouse_path_infix_parts:
-            for directory_path in \
-                self.configuration.list_score_directory_paths(user=True):
-                parts = [directory_path]
-                if self.score_storehouse_path_infix_parts:
-                    parts.extend(self.score_storehouse_path_infix_parts)
-                filesystem_path = os.path.join(*parts)
-                result.append(filesystem_path)
-        return result
 
     ### UI MANIFEST ###
 

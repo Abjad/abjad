@@ -127,7 +127,7 @@ class ScorePackageManager(PackageManager):
 
     def _get_tempo_inventory(self):
         wrangler = self._material_package_wrangler
-        for manager in wrangler.list_asset_managers(head=self._package_path):
+        for manager in wrangler._list_asset_managers(head=self._package_path):
             string = 'material_package_manager_class_name'
             class_name = manager._get_metadatum(string)
             if class_name == 'TempoInventoryMaterialPackageManager':

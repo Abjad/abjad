@@ -48,7 +48,7 @@ class ScoreManager(ScoreManagerObject):
     ### PRIVATE METHODS ###
 
     def _get_next_score_package_name(self):
-        score_package_names = self._score_package_wrangler.list_asset_names()
+        score_package_names = self._score_package_wrangler._list_asset_names()
         if self._session.current_score_snake_case_name is None:
             return score_package_names[0]
         index = score_package_names.index(
@@ -57,7 +57,7 @@ class ScoreManager(ScoreManagerObject):
         return score_package_names[next_index]
 
     def _get_previous_score_package_name(self):
-        score_package_names = self._score_package_wrangler.list_asset_names()
+        score_package_names = self._score_package_wrangler._list_asset_names()
         if self._session.current_score_snake_case_name is None:
             return score_package_names[-1]
         index = score_package_names.index(

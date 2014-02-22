@@ -130,7 +130,7 @@ class ScorePackageWrangler(PackageWrangler):
         score_package_manager.year_of_completion = year
         self._session._push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
 
-    def list_asset_filesystem_paths(
+    def _list_asset_filesystem_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -144,7 +144,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_filesystem_paths(
+            >>> for x in wrangler._list_asset_filesystem_paths(
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
@@ -155,7 +155,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(ScorePackageWrangler, self)
-        return superclass.list_asset_filesystem_paths(
+        return superclass._list_asset_filesystem_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -163,7 +163,7 @@ class ScorePackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_managers(
+    def _list_asset_managers(
         self,
         abjad_library=True, 
         user_library=True,
@@ -177,7 +177,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_managers(
+            >>> for x in wrangler._list_asset_managers(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -189,7 +189,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(ScorePackageWrangler, self)
-        return superclass.list_asset_managers(
+        return superclass._list_asset_managers(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -197,7 +197,7 @@ class ScorePackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_names(
+    def _list_asset_names(
         self,
         abjad_library=True, 
         user_library=True,
@@ -211,7 +211,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_names(
+            >>> for x in wrangler._list_asset_names(
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
@@ -222,7 +222,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(ScorePackageWrangler, self)
-        return superclass.list_asset_names(
+        return superclass._list_asset_names(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -263,7 +263,7 @@ class ScorePackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_storehouse_directory_paths(
+    def _list_storehouse_directory_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -276,7 +276,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_storehouse_directory_paths(
+            >>> for x in wrangler._list_storehouse_directory_paths(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -286,7 +286,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(ScorePackageWrangler, self)
-        return superclass.list_storehouse_directory_paths(
+        return superclass._list_storehouse_directory_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -356,7 +356,7 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         result = []
         scores_to_display = self._session.scores_to_display
-        for asset_manager in PackageWrangler.list_asset_managers(
+        for asset_manager in PackageWrangler._list_asset_managers(
             self,
             abjad_library=abjad_library,
             user_library=user_library,
@@ -413,7 +413,7 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         result = []
         scores_to_display = self._session.scores_to_display
-        for asset_manager in PackageWrangler.list_asset_managers(
+        for asset_manager in PackageWrangler._list_asset_managers(
             self,
             abjad_library=abjad_library,
             user_library=user_library,
@@ -486,7 +486,7 @@ class ScorePackageWrangler(PackageWrangler):
         if hasattr(self, 'list_visible_asset_managers'):
             managers = self.list_visible_asset_managers()
         else:
-            managers = self.list_asset_managers(
+            managers = self._list_asset_managers(
                 abjad_library=True, 
                 user_library=True,
                 abjad_score_packages=True, 
@@ -513,7 +513,7 @@ class ScorePackageWrangler(PackageWrangler):
         if hasattr(self, 'list_visible_asset_managers'):
             managers = self.list_visible_asset_managers()
         else:
-            managers = self.list_asset_managers(
+            managers = self._list_asset_managers(
                 abjad_library=True, 
                 user_library=True,
                 abjad_score_packages=True, 
@@ -534,7 +534,7 @@ class ScorePackageWrangler(PackageWrangler):
         if hasattr(self, 'list_visible_asset_managers'):
             managers = self.list_visible_asset_managers()
         else:
-            managers = self.list_asset_managers(
+            managers = self._list_asset_managers(
                 abjad_library=True, 
                 user_library=True,
                 abjad_score_packages=True, 
@@ -552,7 +552,7 @@ class ScorePackageWrangler(PackageWrangler):
         if hasattr(self, 'list_visible_asset_managers'):
             managers = self.list_visible_asset_managers()
         else:
-            managers = self.list_asset_managers(
+            managers = self._list_asset_managers(
                 abjad_library=True, 
                 user_library=True,
                 abjad_score_packages=True, 

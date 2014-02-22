@@ -119,7 +119,7 @@ class StylesheetFileWrangler(Wrangler):
         return False
 
     def _make_asset_menu_entries(self, head=None, include_extension=False):
-        filesystem_paths = self.list_asset_filesystem_paths(head=head)
+        filesystem_paths = self._list_asset_filesystem_paths(head=head)
         display_strings = []
         for filesystem_path in filesystem_paths:
             display_string = os.path.basename(filesystem_path)
@@ -252,7 +252,7 @@ class StylesheetFileWrangler(Wrangler):
         else:
             manager.edit()
 
-    def list_asset_filesystem_paths(
+    def _list_asset_filesystem_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -266,7 +266,7 @@ class StylesheetFileWrangler(Wrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_filesystem_paths(
+            >>> for x in wrangler._list_asset_filesystem_paths(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -279,7 +279,7 @@ class StylesheetFileWrangler(Wrangler):
         Returns list.
         '''
         superclass = super(StylesheetFileWrangler, self)
-        return superclass.list_asset_filesystem_paths(
+        return superclass._list_asset_filesystem_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -287,7 +287,7 @@ class StylesheetFileWrangler(Wrangler):
             head=head,
             )
 
-    def list_asset_managers(
+    def _list_asset_managers(
         self, 
         abjad_library=True, 
         user_library=True,
@@ -301,7 +301,7 @@ class StylesheetFileWrangler(Wrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_managers(
+            >>> for x in wrangler._list_asset_managers(
             ...     user_library=False, 
             ...    user_score_packages=False):
             ...     x
@@ -313,7 +313,7 @@ class StylesheetFileWrangler(Wrangler):
         Returns list.
         '''
         superclass = super(StylesheetFileWrangler, self)
-        return superclass.list_asset_managers(
+        return superclass._list_asset_managers(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -321,7 +321,7 @@ class StylesheetFileWrangler(Wrangler):
             head=head,
             )
 
-    def list_asset_names(
+    def _list_asset_names(
         self, 
         abjad_library=True, 
         user_library=True,
@@ -336,7 +336,7 @@ class StylesheetFileWrangler(Wrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_names(
+            >>> for x in wrangler._list_asset_names(
             ...     user_library=False, 
             ...     user_score_packages=False, 
             ...     include_extension=True):
@@ -350,7 +350,7 @@ class StylesheetFileWrangler(Wrangler):
         Returns list.
         '''
         superclass = super(StylesheetFileWrangler, self)
-        return superclass.list_asset_names(
+        return superclass._list_asset_names(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -359,7 +359,7 @@ class StylesheetFileWrangler(Wrangler):
             include_extension=include_extension,
             )
 
-    def list_storehouse_directory_paths(
+    def _list_storehouse_directory_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -372,7 +372,7 @@ class StylesheetFileWrangler(Wrangler):
 
         ::
 
-            >>> for x in wrangler.list_storehouse_directory_paths(
+            >>> for x in wrangler._list_storehouse_directory_paths(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -385,7 +385,7 @@ class StylesheetFileWrangler(Wrangler):
         Returns list.
         '''
         superclass = super(StylesheetFileWrangler, self)
-        return superclass.list_storehouse_directory_paths(
+        return superclass._list_storehouse_directory_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
