@@ -438,7 +438,7 @@ class ScorePackageWrangler(PackageWrangler):
                         )
                 else:
                     title_with_year = '{}'.format(metadata['title'])
-                result.append((asset_manager.package_path, title_with_year))
+                result.append((asset_manager._package_path, title_with_year))
         return result
 
     def list_visible_asset_package_paths(

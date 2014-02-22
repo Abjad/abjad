@@ -79,7 +79,7 @@ class MaterialPackageManager(PackageManager):
         superclass = super(MaterialPackageManager, self)
         where = self._where
         main_menu, hidden_section = superclass._make_main_menu(where=where)
-        has_initializer = os.path.isfile(self.initializer_file_path)
+        has_initializer = os.path.isfile(self._initializer_file_path)
         self._session.io_manager._make_initializer_menu_section(
             main_menu, 
             has_initializer=has_initializer,
@@ -112,7 +112,7 @@ class MaterialPackageManager(PackageManager):
         if self.has_output_material:
             if self.should_have_illustration:
                 if not self.has_illustration_builder_module:
-                    material_package_path = self.package_path
+                    material_package_path = self._package_path
                     material_package_name = \
                         material_package_path.split('.')[-1]
                     self.write_stub_illustration_builder_module(
@@ -170,7 +170,7 @@ class MaterialPackageManager(PackageManager):
         main_menu, 
         hidden_section,
         ):
-        if not os.path.isfile(self.initializer_file_path):
+        if not os.path.isfile(self._initializer_file_path):
             return
         if self.has_material_definition_module:
             command_section = main_menu.make_command_section()
@@ -198,7 +198,7 @@ class MaterialPackageManager(PackageManager):
         main_menu,
         hidden_section,
         ):
-        if not os.path.isfile(self.initializer_file_path):
+        if not os.path.isfile(self._initializer_file_path):
             return
         has_output_material_section = False
         if self.has_material_definition_module or \
@@ -338,7 +338,7 @@ class MaterialPackageManager(PackageManager):
     @property
     def illustration_builder_package_path(self):
         if self.should_have_illustration_builder_module:
-            return '.'.join([self.package_path, 'illustration_builder'])
+            return '.'.join([self._package_path, 'illustration_builder'])
 
     @property
     def illustration_ly_file_manager(self):
@@ -408,7 +408,7 @@ class MaterialPackageManager(PackageManager):
     @property
     def material_definition_package_path(self):
         if self.should_have_material_definition_module:
-            return '.'.join([self.package_path, 'material_definition'])
+            return '.'.join([self._package_path, 'material_definition'])
 
     @property
     def material_package_directory(self):
@@ -530,7 +530,7 @@ class MaterialPackageManager(PackageManager):
     @property
     def output_material_module_path(self):
         if self.should_have_output_material_module:
-            return '{}.output_material'.format(self.package_path)
+            return '{}.output_material'.format(self._package_path)
 
     @property
     def should_have_illustration(self):
@@ -595,7 +595,7 @@ class MaterialPackageManager(PackageManager):
     @property
     def user_input_module_package_path(self):
         if self.should_have_user_input_module:
-            return '.'.join([self.package_path, 'user_input'])
+            return '.'.join([self._package_path, 'user_input'])
 
     ### PUBLIC METHODS ###
 
@@ -1047,13 +1047,13 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         if not self.should_have_user_input_module:
             return
-        if self.package_path.endswith('PackageManager'):
-            parts = self.package_path.split('.')
+        if self._package_path.endswith('PackageManager'):
+            parts = self._package_path.split('.')
             parts = parts[:-1]
             parent_package_path = '.'.join(parts)
             package_path = parent_package_path
         else:
-            package_path = self.package_path
+            package_path = self._package_path
         user_input_module_package_path = '.'.join([
             package_path,
             'user_input',

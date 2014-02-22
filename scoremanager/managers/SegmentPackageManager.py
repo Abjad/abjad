@@ -161,7 +161,7 @@ class SegmentPackageManager(PackageManager):
     @property
     def segment_definition_module_package_path(self):
         return '.'.join([
-            self.package_path,
+            self._package_path,
             'definition',
             ])
 
@@ -427,8 +427,8 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        if not os.path.exists(self.initializer_file_path):
-            file_pointer = file(self.initializer_file_path, 'w')
+        if not os.path.exists(self._initializer_file_path):
+            file_pointer = file(self._initializer_file_path, 'w')
             file_pointer.write('')
             file_pointer.close()
 

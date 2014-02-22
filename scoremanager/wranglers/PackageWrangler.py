@@ -306,7 +306,7 @@ class PackageWrangler(Wrangler):
         result = []
         if hasattr(self, 'list_visible_asset_managers'):
             for asset_manager in self.list_visible_asset_managers(head=head):
-                result.append(asset_manager.package_path)
+                result.append(asset_manager._package_path)
         else:
             for asset_manager in self.list_asset_managers(
                 abjad_library=True,
@@ -315,7 +315,7 @@ class PackageWrangler(Wrangler):
                 user_score_packages=True,
                 head=head,
                 ):
-                result.append(asset_manager.package_path)
+                result.append(asset_manager._package_path)
         return result
 
     def make_asset(self, asset_name):

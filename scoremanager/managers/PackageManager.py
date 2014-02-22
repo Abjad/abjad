@@ -32,11 +32,38 @@ class PackageManager(DirectoryManager):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _initializer_file_manager(self):
+        from scoremanager import managers
+        return managers.FileManager(
+            self._initializer_file_path,
+            session=self._session,
+            )
+
+    @property
+    def _initializer_file_path(self):
+        if self._filesystem_path is not None:
+            return os.path.join(self._filesystem_path, '__init__.py')
+
+    @property
+    def _metadata_module_path(self):
+        file_path = os.path.join(self._filesystem_path, '__metadata__.py')
+        return file_path
+
+    @property
+    def _package_root_name(self):
+        return self._package_path.split('.')[0]
+
+    @property
     def _space_delimited_lowercase_name(self):
         if self._filesystem_path:
             base_name = os.path.basename(self._filesystem_path)
             result = base_name.replace('_', ' ')
             return result
+
+    @property
+    def _views_module_path(self):
+        file_path = os.path.join(self._filesystem_path, '__views__.py')
+        return file_path
 
     ### PRIVATE METHODS ###
 
@@ -48,8 +75,8 @@ class PackageManager(DirectoryManager):
 
     def _get_metadata(self):
         metadata = None
-        if os.path.isfile(self.metadata_module_path):
-            file_pointer = open(self.metadata_module_path, 'r')
+        if os.path.isfile(self._metadata_module_path):
+            file_pointer = open(self._metadata_module_path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
             exec(file_contents_string)
@@ -124,56 +151,10 @@ class PackageManager(DirectoryManager):
         metadata_lines = self._make_metadata_lines(metadata) 
         lines.extend(metadata_lines)
         lines = ''.join(lines)
-        file_pointer = file(self.metadata_module_path, 'w')
+        file_pointer = file(self._metadata_module_path, 'w')
         file_pointer.write(lines)
         file_pointer.close()
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def imported_package(self):
-        return __import__(self.package_path, fromlist=['*'])
-
-    @property
-    def initializer_file_manager(self):
-        from scoremanager import managers
-        return managers.FileManager(
-            self.initializer_file_path,
-            session=self._session,
-            )
-
-    @property
-    def initializer_file_path(self):
-        if self._filesystem_path is not None:
-            return os.path.join(self._filesystem_path, '__init__.py')
-
-    @property
-    def metadata_module_path(self):
-        file_path = os.path.join(self._filesystem_path, '__metadata__.py')
-        return file_path
-
-    @property
-    def package_path(self):
-        return self._package_path
-
-    @property
-    def package_root_name(self):
-        return self.package_path.split('.')[0]
-
-    @property
-    def public_names(self):
-        result = []
-        imported_package_vars = vars(self.imported_package)
-        for key in sorted(imported_package_vars.keys()):
-            if not key.startswith('_'):
-                result.append(imported_package_vars[key])
-        return result
-
-    @property
-    def views_module_path(self):
-        file_path = os.path.join(self._filesystem_path, '__views__.py')
-        return file_path
-        
     ### PUBLIC METHODS ###
 
     def interactively_add_metadatum(self):
@@ -198,8 +179,8 @@ class PackageManager(DirectoryManager):
         self._session.io_manager.proceed(message=message)
 
     def interactively_remove_initializer_module(self, prompt=True):
-        if os.path.isfile(self.initializer_file_path):
-            os.remove(self.initializer_file_path)
+        if os.path.isfile(self._initializer_file_path):
+            os.remove(self._initializer_file_path)
             line = 'initializer deleted.'
             self._session.io_manager.proceed(
                 line, 
@@ -220,12 +201,12 @@ class PackageManager(DirectoryManager):
                 )
 
     def interactively_remove_metadata_module(self, prompt=True):
-        if os.path.isfile(self.metadata_module_path):
+        if os.path.isfile(self._metadata_module_path):
             if prompt:
                 message = 'remove metadata module?'
                 if not self._session.io_manager.confirm(message):
                     return
-            os.remove(self.metadata_module_path)
+            os.remove(self._metadata_module_path)
             line = 'metadata module removed.'
             self._session.io_manager.proceed(
                 line, 
@@ -301,13 +282,13 @@ class PackageManager(DirectoryManager):
         result = getter._run()
         if self._session._backtrack():
             return
-        self.package_path = result
+        self._package_path = result
 
     def interactively_view_initializer_module(self):
         self.initializer_file_manager.interactively_view()
 
     def interactively_view_metadata_module(self):
-        file_path = self.metadata_module_path
+        file_path = self._metadata_module_path
         if os.path.isfile(file_path):
             command = 'vim -R {}'.format(file_path)
             self._session.io_manager.spawn_subprocess(command)

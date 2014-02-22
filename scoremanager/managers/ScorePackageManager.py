@@ -123,7 +123,7 @@ class ScorePackageManager(PackageManager):
 
     def _get_tempo_inventory(self):
         wrangler = self._material_package_wrangler
-        for manager in wrangler.list_asset_managers(head=self.package_path):
+        for manager in wrangler.list_asset_managers(head=self._package_path):
             string = 'material_package_manager_class_name'
             class_name = manager._get_metadatum(string)
             if class_name == 'TempoInventoryMaterialPackageManager':
@@ -329,19 +329,19 @@ class ScorePackageManager(PackageManager):
                 if not prompt or \
                     self._session.io_manager.confirm(prompt):
                     os.mkdir(path)
-        if not os.path.exists(self.initializer_file_path):
+        if not os.path.exists(self._initializer_file_path):
             result = False
-            prompt = 'create {}? '.format(self.initializer_file_path)
+            prompt = 'create {}? '.format(self._initializer_file_path)
             if not prompt or self._session.io_manager.confirm(prompt):
-                initializer = file(self.initializer_file_path, 'w')
+                initializer = file(self._initializer_file_path, 'w')
                 initializer.write('')
                 initializer.close()
         lines = []
-        if not os.path.exists(self.metadata_module_path):
+        if not os.path.exists(self._metadata_module_path):
             result = False
-            prompt = 'create {}? '.format(self.metadata_module_path)
+            prompt = 'create {}? '.format(self._metadata_module_path)
             if not prompt or self._session.io_manager.confirm(prompt):
-                metadata_module = file(self.metadata_module_path, 'w')
+                metadata_module = file(self._metadata_module_path, 'w')
                 metadata_module.write('# -*- encoding: utf-8 -*-\n')
                 metadata_module.write('from abjad import *\n')
                 metadata_module.write('import collections\n')
@@ -370,7 +370,7 @@ class ScorePackageManager(PackageManager):
 
     def interactively_remove(self):
         line = 'WARNING! Score package {!r} will be completely removed.'
-        line = line.format(self.package_path)
+        line = line.format(self._package_path)
         self._session.io_manager.display([line, ''])
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string("type 'clobberscore' to proceed")
@@ -398,16 +398,16 @@ class ScorePackageManager(PackageManager):
 
     def manage_makers(self):
         self._session.io_manager.print_not_yet_implemented()
-        #self.maker_module_wrangler._run(head=self.package_path)
+        #self.maker_module_wrangler._run(head=self._package_path)
 
     def manage_materials(self):
-        self._material_package_wrangler._run(head=self.package_path)
+        self._material_package_wrangler._run(head=self._package_path)
 
     def manage_score_templates(self):
         self.score_template_directory_manager._run()
 
     def manage_segments(self):
-        self._segment_package_wrangler._run(head=self.package_path)
+        self._segment_package_wrangler._run(head=self._package_path)
 
     def manage_setup(self, clear=True, cache=True):
         self._session._cache_breadcrumbs(cache=cache)
@@ -430,7 +430,7 @@ class ScorePackageManager(PackageManager):
         self._session._restore_breadcrumbs(cache=cache)
 
     def manage_stylesheets(self):
-        self._stylesheet_wrangler._run(head=self.package_path)
+        self._stylesheet_wrangler._run(head=self._package_path)
 
     ### UI MANIFEST ###
 

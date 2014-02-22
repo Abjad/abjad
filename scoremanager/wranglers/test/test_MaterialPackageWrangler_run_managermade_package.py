@@ -24,7 +24,7 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
             '__metadata__.py',
             'user_input.py',
             ]
-        assert os.path.isfile(mpp.initializer_file_path)
+        assert os.path.isfile(mpp._initializer_file_path)
         assert not mpp.has_output_material_module
         assert mpp.has_user_input_module
         assert mpp.output_material is None
@@ -53,7 +53,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
             '__metadata__.py',
             'user_input.py',
             ]
-        assert os.path.isfile(mpp.initializer_file_path)
+        assert os.path.isfile(mpp._initializer_file_path)
         assert not mpp.has_output_material_module
         assert mpp.has_user_input_module
         assert mpp.output_material is None
