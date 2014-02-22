@@ -26,7 +26,7 @@ def test_FileManager_interactively_rename_01():
             )
         file_manager.interactively_rename(
             pending_user_input='new_test_file.txt y q')
-        assert file_manager.filesystem_path == new_filesystem_path
+        assert file_manager._filesystem_path == new_filesystem_path
         assert not os.path.exists(filesystem_path)
         assert os.path.exists(new_filesystem_path)
     finally:
@@ -60,7 +60,7 @@ def test_FileManager_interactively_rename_02():
         file_manager.interactively_rename(
             pending_user_input='new_test_file.txt y q'
             )
-        assert file_manager.filesystem_path == new_filesystem_path
+        assert file_manager._filesystem_path == new_filesystem_path
         assert os.path.exists(new_filesystem_path)
     finally:
         file_manager._remove()

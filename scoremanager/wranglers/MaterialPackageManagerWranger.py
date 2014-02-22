@@ -58,9 +58,9 @@ class MaterialPackageManagerWrangler(PackageWrangler):
                     package_path)
         material_package_manager = managers.MaterialPackageManager(
             package_path, session=self._session)
-        if 'materialpackagemanagers' in material_package_manager.filesystem_path:
+        if 'materialpackagemanagers' in material_package_manager._filesystem_path:
             most, last = os.path.split(
-                material_package_manager.filesystem_path)
+                material_package_manager._filesystem_path)
             material_package_manager_class_name = last
         else:
             material_package_manager_class_name = \

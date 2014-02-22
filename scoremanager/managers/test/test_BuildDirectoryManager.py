@@ -9,7 +9,7 @@ def test_BuildDirectoryManager_01():
     string = 'scoremanager.scorepackages.red_example_score'
     manager = scoremanager.managers.BuildDirectoryManager(string)
 
-    assert manager.filesystem_path == os.path.join(
+    assert manager._filesystem_path == os.path.join(
         manager.configuration.score_manager_directory_path,
         'scorepackages', 
         'red_example_score', 

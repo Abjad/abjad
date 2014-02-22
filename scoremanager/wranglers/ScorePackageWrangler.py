@@ -326,7 +326,7 @@ class ScorePackageWrangler(PackageWrangler):
             user_score_packages=user_score_packages,
             head=head,
             ):
-            result.append(visible_asset_manager.filesystem_path)
+            result.append(visible_asset_manager._filesystem_path)
         return result
 
     def list_visible_asset_managers(

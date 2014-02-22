@@ -12,7 +12,7 @@ def test_ScorePackageManager_read_only_attributes_01():
     package_manager = scoremanager.managers.ScorePackageManager(string)
 
     assert isinstance(
-        package_manager._segment_wrangler, 
+        package_manager._segment_package_wrangler, 
         scoremanager.wranglers.SegmentPackageWrangler,
         )
     assert isinstance(

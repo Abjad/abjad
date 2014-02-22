@@ -450,7 +450,7 @@ class Session(abctools.AbjadObject):
         '''
         if self.is_in_score:
             manager = self.current_score_package_manager
-            wrangler = manager._segment_wrangler
+            wrangler = manager._segment_package_wrangler
             path = wrangler._get_current_directory_path_of_interest()
             return path
 

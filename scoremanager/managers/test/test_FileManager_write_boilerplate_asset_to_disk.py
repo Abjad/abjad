@@ -25,7 +25,7 @@ def test_FileManager_write_boilerplate_asset_to_disk_01():
             boilerplate_file_abjad_asset_name
             )
         source = open(file_path, 'r')
-        target = open(file_manager.filesystem_path)
+        target = open(file_manager._filesystem_path)
         assert source.readlines() == target.readlines()
         file_manager._remove()
     finally:

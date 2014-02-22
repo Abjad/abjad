@@ -26,7 +26,7 @@ class ScorePackageManager(PackageManager):
             session=self._session,
             )
         instrumentation_module_file_path = os.path.join(
-            self.filesystem_path,
+            self._filesystem_path,
             'instrumentation.py',
             )
         self._instrumentation_module_manager = \
@@ -42,13 +42,13 @@ class ScorePackageManager(PackageManager):
             wranglers.MaterialPackageManagerWrangler(
             session=self._session,
             )
-        filesystem_path = os.path.join(self.filesystem_path, 'score_templates')
+        filesystem_path = os.path.join(self._filesystem_path, 'score_templates')
         self._score_template_directory_manager = \
             managers.DirectoryManager(
             filesystem_path=filesystem_path,
             session=self._session,
             )
-        self._segment_wrangler = \
+        self._segment_package_wrangler = \
             wranglers.SegmentPackageWrangler(
             session=self._session,
             )
@@ -77,13 +77,13 @@ class ScorePackageManager(PackageManager):
 
     def _get_build_directory_path(self):
         return os.path.join(
-            self.filesystem_path, 
+            self._filesystem_path, 
             'build',
             )
 
     def _get_distribution_directory_path(self):
         return os.path.join(
-            self.filesystem_path, 
+            self._filesystem_path, 
             'distribution',
             )
 
@@ -92,32 +92,32 @@ class ScorePackageManager(PackageManager):
 
     def _get_instrumentation_module_file_path(self):
         file_path = os.path.join(
-            self.filesystem_path,
+            self._filesystem_path,
             'instrumentation.py',
             )
         return file_path
 
     def _get_materials_directory_path(self):
         return os.path.join(
-            self.filesystem_path, 
+            self._filesystem_path, 
             'materials',
             )
 
     def _get_score_templates_directory_path(self):
         return os.path.join(
-            self.filesystem_path, 
+            self._filesystem_path, 
             'score_templates',
             )
 
     def _get_segments_directory_path(self):
         return os.path.join(
-            self.filesystem_path, 
+            self._filesystem_path, 
             'segments',
             )
 
     def _get_stylesheets_directory_path(self):
         return os.path.join(
-            self.filesystem_path, 
+            self._filesystem_path, 
             'stylesheets',
             )
 
@@ -184,7 +184,7 @@ class ScorePackageManager(PackageManager):
     def _import_instrumentation_from_instrumentation_module(self):
         from scoremanager import managers
         file_path = os.path.join(
-            self.filesystem_path,
+            self._filesystem_path,
             'instrumentation.py',
             )
         manager = managers.FileManager(
@@ -407,7 +407,7 @@ class ScorePackageManager(PackageManager):
         self.score_template_directory_manager._run()
 
     def manage_segments(self):
-        self._segment_wrangler._run(head=self.package_path)
+        self._segment_package_wrangler._run(head=self.package_path)
 
     def manage_setup(self, clear=True, cache=True):
         self._session._cache_breadcrumbs(cache=cache)

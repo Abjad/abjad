@@ -61,7 +61,7 @@ def test_FileManager_rename_02():
             )
         file_manager._rename(new_filesystem_path)
         assert os.path.exists(new_filesystem_path)
-        assert file_manager.filesystem_path == new_filesystem_path
+        assert file_manager._filesystem_path == new_filesystem_path
     finally:
         file_manager._remove()
         assert not os.path.exists(filesystem_path)

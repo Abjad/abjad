@@ -31,7 +31,7 @@ class SegmentPackageManager(PackageManager):
     ### PRIVATE METHODS ###
 
     def _get_asset_definition_module_file_path(self):
-        return os.path.join(self.filesystem_path, 'definition.py')
+        return os.path.join(self._filesystem_path, 'definition.py')
 
     def _get_last_version_number(self):
         versions_directory_path = self._get_versions_directory_path()
@@ -48,13 +48,13 @@ class SegmentPackageManager(PackageManager):
         return version_number
 
     def _get_output_lilypond_file_path(self):
-        return os.path.join(self.filesystem_path, 'output.ly')
+        return os.path.join(self._filesystem_path, 'output.ly')
         
     def _get_output_pdf_file_path(self):
-        return os.path.join(self.filesystem_path, 'output.pdf')
+        return os.path.join(self._filesystem_path, 'output.pdf')
 
     def _get_versions_directory_path(self):
-        return os.path.join(self.filesystem_path, 'versions')
+        return os.path.join(self._filesystem_path, 'versions')
         
     def _handle_main_menu_result(self, result):
         if result in self.user_input_to_action:
@@ -86,7 +86,7 @@ class SegmentPackageManager(PackageManager):
         version_string = str(version_number).zfill(4)
         file_name = '{}{}'.format(version_string, extension)
         file_path = os.path.join(
-            self.filesystem_path,
+            self._filesystem_path,
             'versions',
             file_name,
             )
@@ -147,7 +147,7 @@ class SegmentPackageManager(PackageManager):
 
     @property
     def segment_definition_module_file_path(self):
-        return os.path.join(self.filesystem_path, 'definition.py')
+        return os.path.join(self._filesystem_path, 'definition.py')
 
     @property
     def segment_definition_module_manager(self):

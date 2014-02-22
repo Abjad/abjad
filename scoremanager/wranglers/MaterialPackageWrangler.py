@@ -98,7 +98,7 @@ class MaterialPackageWrangler(PackageWrangler):
             self.user_input_to_action[result](self)
         else:
             material_package_manager = self._initialize_asset_manager(result)
-            if os.path.exists(material_package_manager.filesystem_path):
+            if os.path.exists(material_package_manager._filesystem_path):
                 material_package_manager._run()
 
     def _initialize_asset_manager(self, package_path):

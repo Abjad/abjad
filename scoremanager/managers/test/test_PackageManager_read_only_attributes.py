@@ -14,7 +14,7 @@ def test_PackageManager_read_only_attributes_01():
         package_manager.configuration.abjad_material_packages_directory_path, 
         'red_sargasso_measures',
         )
-    assert package_manager.filesystem_path == file_path
+    assert package_manager._filesystem_path == file_path
     assert package_manager._get_metadatum('foo') is None
     file_path = os.path.join(
         package_manager.configuration.abjad_material_packages_directory_path,

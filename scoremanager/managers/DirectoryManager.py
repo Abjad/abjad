@@ -22,7 +22,7 @@ class DirectoryManager(Manager):
 
     @property
     def _repository_add_command(self):
-        return 'cd {} && add'.format(self.filesystem_path)
+        return 'cd {} && add'.format(self._filesystem_path)
 
     ### PRIVATE METHODS ###
 
@@ -42,16 +42,16 @@ class DirectoryManager(Manager):
 
     def _list_directory(self, public_entries_only=False):
         result = []
-        if not os.path.exists(self.filesystem_path):
+        if not os.path.exists(self._filesystem_path):
             return result
         if public_entries_only:
-            for directory_entry in sorted(os.listdir(self.filesystem_path)):
+            for directory_entry in sorted(os.listdir(self._filesystem_path)):
                 if directory_entry[0].isalpha():
                     if not directory_entry.endswith('.pyc'):
                         if not directory_entry in ('test',):
                             result.append(directory_entry)
         else:
-            for directory_entry in sorted(os.listdir(self.filesystem_path)):
+            for directory_entry in sorted(os.listdir(self._filesystem_path)):
                 if not directory_entry.startswith('.') and \
                     not directory_entry.endswith('.pyc'):
                     result.append(directory_entry)
@@ -62,7 +62,7 @@ class DirectoryManager(Manager):
         file_names = [x for x in file_names if x[0].isalpha()]
         file_paths = []
         for file_name in file_names:
-            file_path = os.path.join(self.filesystem_path, file_name)
+            file_path = os.path.join(self._filesystem_path, file_name)
             file_paths.append(file_path)
         display_strings = file_names[:]
         menu_entries = []
@@ -73,7 +73,7 @@ class DirectoryManager(Manager):
 
     def _make_empty_asset(self, prompt=False):
         if not self.exists():
-            os.mkdir(self.filesystem_path)
+            os.mkdir(self._filesystem_path)
         self._session.io_manager.proceed(prompt=prompt)
 
     def _make_main_menu(self):
@@ -123,7 +123,7 @@ class DirectoryManager(Manager):
         result = getter._run()
         if self._session._backtrack():
             return
-        self.filesystem_path = result
+        self._filesystem_path = result
 
     def interactively_list_directory(self):
         r'''Interactively lists directory.
@@ -133,7 +133,7 @@ class DirectoryManager(Manager):
         lines = []
         for directory_entry in self._list_directory():
             filesystem_path = os.path.join(
-                self.filesystem_path, 
+                self._filesystem_path, 
                 directory_entry,
                 )
             if os.path.isdir(filesystem_path):
@@ -155,7 +155,7 @@ class DirectoryManager(Manager):
 
         Returns none.
         '''
-        command = 'ajv doctest {}'.format(self.filesystem_path)
+        command = 'ajv doctest {}'.format(self._filesystem_path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
@@ -170,7 +170,7 @@ class DirectoryManager(Manager):
 
         Returns none.
         '''
-        command = 'py.test -rf {}'.format(self.filesystem_path)
+        command = 'py.test -rf {}'.format(self._filesystem_path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:

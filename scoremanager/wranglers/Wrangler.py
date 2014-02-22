@@ -166,7 +166,7 @@ class Wrangler(ScoreManagerObject):
             user_score_packages=user_score_packages,
             ):
             display_strings.append(manager._get_title())
-            path_parts = (manager.filesystem_path,) + \
+            path_parts = (manager._filesystem_path,) + \
                 self.score_storehouse_path_infix_parts
             key = os.path.join(*path_parts)
             keys.append(key)

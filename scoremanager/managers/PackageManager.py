@@ -33,8 +33,8 @@ class PackageManager(DirectoryManager):
 
     @property
     def _space_delimited_lowercase_name(self):
-        if self.filesystem_path:
-            base_name = os.path.basename(self.filesystem_path)
+        if self._filesystem_path:
+            base_name = os.path.basename(self._filesystem_path)
             result = base_name.replace('_', ' ')
             return result
 
@@ -144,12 +144,12 @@ class PackageManager(DirectoryManager):
 
     @property
     def initializer_file_path(self):
-        if self.filesystem_path is not None:
-            return os.path.join(self.filesystem_path, '__init__.py')
+        if self._filesystem_path is not None:
+            return os.path.join(self._filesystem_path, '__init__.py')
 
     @property
     def metadata_module_path(self):
-        file_path = os.path.join(self.filesystem_path, '__metadata__.py')
+        file_path = os.path.join(self._filesystem_path, '__metadata__.py')
         return file_path
 
     @property
@@ -171,23 +171,10 @@ class PackageManager(DirectoryManager):
 
     @property
     def views_module_path(self):
-        file_path = os.path.join(self.filesystem_path, '__views__.py')
+        file_path = os.path.join(self._filesystem_path, '__views__.py')
         return file_path
         
     ### PUBLIC METHODS ###
-
-    def handle_metadata_menu_result(self, result):
-        if result == 'add':
-            self.interactively_add_metadatum()
-        elif result == 'rm':
-            self.interactively_remove_metadatum()
-        elif result == 'get':
-            self.interactively_get_metadatum()
-        return False
-
-    def has_metadatum(self, metadatum_name):
-        metadata = self._get_metadata()
-        return bool(metadatum_name in metadata)
 
     def interactively_add_metadatum(self):
         getter = self._session.io_manager.make_getter(where=self._where)
@@ -260,7 +247,7 @@ class PackageManager(DirectoryManager):
 
         Returns none.
         '''
-        base_name = os.path.basename(self.filesystem_path)
+        base_name = os.path.basename(self._filesystem_path)
         line = 'current name: {}'.format(base_name)
         self._session.io_manager.display(line)
         getter = self._session.io_manager.make_getter(where=self._where)
@@ -277,14 +264,14 @@ class PackageManager(DirectoryManager):
         self._session.io_manager.display(lines)
         if not self._session.io_manager.confirm():
             return
-        new_directory_path = self.filesystem_path.replace(
+        new_directory_path = self._filesystem_path.replace(
             base_name,
             new_package_name,
             )
         if self._is_versioned():
             # rename package directory
             command = 'svn mv {} {}'
-            command = command.format(self.filesystem_path, new_directory_path)
+            command = command.format(self._filesystem_path, new_directory_path)
             self._session.io_manager.spawn_subprocess(command)
             # commit
             commit_message = 'renamed {} to {}.'
@@ -293,7 +280,7 @@ class PackageManager(DirectoryManager):
                 new_package_name,
                 )
             commit_message = commit_message.replace('_', ' ')
-            parent_directory_path = os.path.dirname(self.filesystem_path)
+            parent_directory_path = os.path.dirname(self._filesystem_path)
             command = 'svn commit -m {!r} {}'
             command = command.format(
                 commit_message,
@@ -302,7 +289,7 @@ class PackageManager(DirectoryManager):
             self._session.io_manager.spawn_subprocess(command)
         else:
             command = 'mv {} {}'
-            command = command.format(self.filesystem_path, new_directory_path)
+            command = command.format(self._filesystem_path, new_directory_path)
             self._session.io_manager.spawn_subprocess(command)
         # update path name to reflect change
         self._path = new_directory_path
