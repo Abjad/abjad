@@ -13,17 +13,17 @@ def test_MaterialPackageWrangler_make_data_package_01():
     try:
         wrangler.make_data_package(string)
         assert wrangler.configuration.package_exists(string)
-        mpp = scoremanager.managers.MaterialPackageManager(string)
-        assert mpp._list_directory() == [
+        manager = scoremanager.managers.MaterialPackageManager(string)
+        assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
             ]
-        assert not mpp.has_output_material_module
-        assert mpp.material_definition is None
-        assert mpp.output_material is None
+        assert not manager.has_output_material_module
+        assert manager.material_definition is None
+        assert manager.output_material is None
     finally:
-        mpp.remove()
+        manager._remove()
         assert not wrangler.configuration.package_exists(string)
 
 
@@ -47,14 +47,14 @@ def test_MaterialPackageWrangler_make_data_package_03():
     try:
         wrangler.interactively_make_data_package(pending_user_input='testnumbers q')
         assert wrangler.configuration.package_exists(string)
-        mpp = scoremanager.managers.MaterialPackageManager(string)
-        assert mpp._list_directory() == [
+        manager = scoremanager.managers.MaterialPackageManager(string)
+        assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
             ]
     finally:
-        mpp.remove()
+        manager._remove()
         assert not wrangler.configuration.package_exists(string)
 
 
@@ -70,9 +70,9 @@ def test_MaterialPackageWrangler_make_data_package_04():
         metadata = {'color': 'red', 'is_colored': True}
         wrangler.make_data_package(string, metadata=metadata)
         assert wrangler.configuration.package_exists(string)
-        mpp = scoremanager.managers.MaterialPackageManager(string)
-        assert mpp._get_metadatum('color') == 'red'
-        assert mpp._get_metadatum('is_colored')
+        manager = scoremanager.managers.MaterialPackageManager(string)
+        assert manager._get_metadatum('color') == 'red'
+        assert manager._get_metadatum('is_colored')
     finally:
-        mpp.remove()
+        manager._remove()
         assert not wrangler.configuration.package_exists(string)

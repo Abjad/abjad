@@ -16,16 +16,16 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
         string = 'lmm nmh testnotes default default q'
         score_manager._run(pending_user_input=string)
         assert score_manager.configuration.package_exists(name)
-        mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp._list_directory() == [
+        manager = scoremanager.managers.MaterialPackageManager(name)
+        assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
             ]
-        assert not mpp.has_output_material_module
-        assert not mpp.has_illustration_builder_module
-        assert mpp.material_definition is None
-        assert mpp.output_material is None
+        assert not manager.has_output_material_module
+        assert not manager.has_illustration_builder_module
+        assert manager.material_definition is None
+        assert manager.output_material is None
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
@@ -46,16 +46,16 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
             'lmm nmh testnotes default default '
             'testnotes incanned boilerplate_exception.py default q')
         assert score_manager.configuration.package_exists(name)
-        mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp._list_directory() == [
+        manager = scoremanager.managers.MaterialPackageManager(name)
+        assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
             ]
-        assert not mpp.has_output_material_module
-        assert not mpp.has_illustration_builder_module
-        assert mpp.material_definition is None
-        assert mpp.output_material is None
+        assert not manager.has_output_material_module
+        assert not manager.has_illustration_builder_module
+        assert manager.material_definition is None
+        assert manager.output_material is None
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
@@ -77,16 +77,16 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
             'testnotes incanned boilerplate_exception.py default '
             'inr yes yes default q')
         assert score_manager.configuration.package_exists(name)
-        mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp._list_directory() == [
+        manager = scoremanager.managers.MaterialPackageManager(name)
+        assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
             ]
-        assert not mpp.has_output_material_module
-        assert not mpp.has_illustration_builder_module
-        assert mpp.material_definition is None
-        assert mpp.output_material is None
+        assert not manager.has_output_material_module
+        assert not manager.has_illustration_builder_module
+        assert manager.material_definition is None
+        assert manager.output_material is None
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
@@ -108,19 +108,19 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
             'testnotes mdcanned boilerplate_testnotes_material_definition.py default '
             'omm default q')
         assert score_manager.configuration.package_exists(name)
-        mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp._list_directory() == [
+        manager = scoremanager.managers.MaterialPackageManager(name)
+        assert manager._list_directory() == [
             '__init__.py',
             '__metadata__.py',
             'illustration_builder.py', 
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert mpp.has_illustration_builder_module
-        assert mpp.material_definition and \
-            all(isinstance(x, Note) for x in mpp.material_definition)
-        assert mpp.output_material and \
-            all(isinstance(x, Note) for x in mpp.output_material)
+        assert manager.has_illustration_builder_module
+        assert manager.material_definition and \
+            all(isinstance(x, Note) for x in manager.material_definition)
+        assert manager.output_material and \
+            all(isinstance(x, Note) for x in manager.output_material)
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
@@ -141,16 +141,16 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
             'lmm nmh testnotes default default '
             'testnotes mddelete default q')
         assert score_manager.configuration.package_exists(name)
-        mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp._list_directory() == [
+        manager = scoremanager.managers.MaterialPackageManager(name)
+        assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             ]
-        assert not mpp.has_material_definition_module
-        assert not mpp.has_output_material_module
-        assert not mpp.has_illustration_builder_module
-        assert mpp.material_definition is None
-        assert mpp.output_material is None
+        assert not manager.has_material_definition_module
+        assert not manager.has_output_material_module
+        assert not manager.has_illustration_builder_module
+        assert manager.material_definition is None
+        assert manager.output_material is None
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
@@ -171,16 +171,16 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
             'lmm nmh testnotes default '
             'testnotes mdstub default q')
         assert score_manager.configuration.package_exists(name)
-        mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp._list_directory() == [
+        manager = scoremanager.managers.MaterialPackageManager(name)
+        assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
             ]
-        assert not mpp.has_output_material_module
-        assert not mpp.has_illustration_builder_module
-        assert mpp.material_definition is None
-        assert mpp.output_material is None
+        assert not manager.has_output_material_module
+        assert not manager.has_illustration_builder_module
+        assert manager.material_definition is None
+        assert manager.output_material is None
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
@@ -204,17 +204,17 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
             'omm default '
             'omdelete default q')
         assert score_manager.configuration.package_exists(name)
-        mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp._list_directory() == [
+        manager = scoremanager.managers.MaterialPackageManager(name)
+        assert manager._list_directory() == [
                 '__init__.py', 
                 '__metadata__.py',
                 'material_definition.py', 
                 ]
-        assert not mpp.has_output_material_module
-        assert not mpp.has_illustration_builder_module
-        assert mpp.material_definition and \
-            all(isinstance(x, Note) for x in mpp.material_definition)
-        assert mpp.output_material is None
+        assert not manager.has_output_material_module
+        assert not manager.has_illustration_builder_module
+        assert manager.material_definition and \
+            all(isinstance(x, Note) for x in manager.material_definition)
+        assert manager.output_material is None
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
@@ -235,16 +235,16 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
             'lmm nmh testnotes default default '
             'testnotes mdcanned boilerplate_exception.py default q')
         assert score_manager.configuration.package_exists(name)
-        mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp._list_directory() == [
+        manager = scoremanager.managers.MaterialPackageManager(name)
+        assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
             ]
-        assert not mpp.has_output_material_module
-        assert not mpp.has_illustration_builder_module
-        assert mpp.material_definition is None
-        assert mpp.output_material is None
+        assert not manager.has_output_material_module
+        assert not manager.has_illustration_builder_module
+        assert manager.material_definition is None
+        assert manager.output_material is None
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
@@ -268,18 +268,18 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
             'omm default '
             'omcanned boilerplate_exception.py default q')
         assert score_manager.configuration.package_exists(name)
-        mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp._list_directory() == [
+        manager = scoremanager.managers.MaterialPackageManager(name)
+        assert manager._list_directory() == [
             '__init__.py',
             '__metadata__.py',
             'illustration_builder.py', 
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert mpp.has_illustration_builder_module
-        assert mpp.material_definition and \
-            all(isinstance(x, Note) for x in mpp.material_definition)
-        assert mpp.output_material is None
+        assert manager.has_illustration_builder_module
+        assert manager.material_definition and \
+            all(isinstance(x, Note) for x in manager.material_definition)
+        assert manager.output_material is None
     finally:
         string = 'lmm testnotes del remove default q'
         score_manager._run(pending_user_input=string)
@@ -305,8 +305,8 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
             'pdfm default '
             'q')
         assert score_manager.configuration.package_exists(name)
-        mpp = scoremanager.managers.MaterialPackageManager(name)
-        assert mpp._list_directory() == [
+        manager = scoremanager.managers.MaterialPackageManager(name)
+        assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'illustration.ly', 
@@ -315,12 +315,12 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert mpp.has_illustration_ly
-        assert mpp.has_illustration_pdf
-        assert mpp.material_definition and \
-            all(isinstance(x, Note) for x in mpp.material_definition)
-        assert mpp.output_material and \
-            all(isinstance(x, Note) for x in mpp.output_material)
+        assert manager.has_illustration_ly
+        assert manager.has_illustration_pdf
+        assert manager.material_definition and \
+            all(isinstance(x, Note) for x in manager.material_definition)
+        assert manager.output_material and \
+            all(isinstance(x, Note) for x in manager.output_material)
             
     finally:
         string = 'lmm testnotes del remove default q'

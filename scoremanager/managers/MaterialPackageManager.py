@@ -808,9 +808,6 @@ class MaterialPackageManager(PackageManager):
             session=self._session)
         stylesheet_file_wrangler._run()
 
-    def remove(self):
-        PackageManager._remove(self)
-
     def remove_illustration_builder_module(self, prompt=True):
         self.remove_illustration_pdf(prompt=False)
         if self.has_illustration_builder_module:
