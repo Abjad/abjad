@@ -49,7 +49,6 @@ class Session(abctools.AbjadObject):
         'is_displayable',
         'is_in_score',
         'is_navigating_to_sibling_score',
-        'last_controller',
         'last_line',
         'nonnumbered_menu_sections_are_hidden',
         'rewrite_cache',
@@ -92,7 +91,6 @@ class Session(abctools.AbjadObject):
         self._is_navigating_to_previous_score = False
         self._is_quitting = False
         self._is_test = False
-        self._last_controller = None
         self._last_line = ''
         self._last_command_was_composite = False
         self._menu_header_width = 160
@@ -186,9 +184,6 @@ class Session(abctools.AbjadObject):
 
     def _pop_controller(self):
         controller = self.controller_stack.pop()
-        assert controller is self._last_controller
-        if self.controller_stack:
-            self._last_controller = self.controller_stack[-1]
 
     def _print_transcript(
         self, 
@@ -216,7 +211,6 @@ class Session(abctools.AbjadObject):
         self.controller_stack.append(controller)
         if controller not in self._controllers_visited:
             self._controllers_visited.append(controller)
-        self._last_controller = controller
 
     def _reinitialize(self):
         type(self).__init__(self)
@@ -802,23 +796,6 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_test
-
-    @property
-    def last_controller(self):
-        r'''Gets last controller of session.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.last_controller is None
-                True
-
-        Useful for autopsy work after session ends.
-
-        Returns wrangler, manager or none.
-        '''
-        return self._last_controller
 
     @property
     def last_line(self):
