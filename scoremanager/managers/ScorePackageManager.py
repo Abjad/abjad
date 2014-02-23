@@ -17,12 +17,12 @@ class ScorePackageManager(PackageManager):
             )
         self._build_directory_manager = \
             managers.BuildDirectoryManager(
-            score_package_path=package_path, 
+            score_directory_path=self._filesystem_path,
             session=self._session,
             )
         self._distribution_directory_manager = \
             managers.DistributionDirectoryManager(
-            score_package_path=package_path, 
+            score_directory_path=self._filesystem_path, 
             session=self._session,
             )
         instrumentation_module_file_path = os.path.join(

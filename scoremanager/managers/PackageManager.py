@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 import collections
 import os
-from abjad.tools import systemtools
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from scoremanager.managers.DirectoryManager import DirectoryManager
 
 
@@ -11,6 +11,11 @@ class PackageManager(DirectoryManager):
     ### INITIALIZER ###
 
     def __init__(self, package_path=None, session=None):
+        DirectoryManager.__init__(
+            self,
+            filesystem_path=None,
+            session=session,
+            )
         if package_path is None or \
             os.path.sep not in package_path:
             filesystem_path = \
@@ -19,11 +24,7 @@ class PackageManager(DirectoryManager):
         else:
             filesystem_path = package_path
         assert '.' not in filesystem_path, repr(filesystem_path)
-        DirectoryManager.__init__(
-            self,
-            filesystem_path=filesystem_path,
-            session=session,
-            )
+        self._filesystem_path = filesystem_path
         package_path = \
             self.configuration.filesystem_path_to_package_path(
                 filesystem_path)
