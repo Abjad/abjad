@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_ScorePackageManager_interactively_edit_forces_tagline_01():
+def test_ScorePackageManager_edit_forces_tagline_01():
     r'''Quit, back, score & home all work.
     '''
 
@@ -25,7 +25,7 @@ def test_ScorePackageManager_interactively_edit_forces_tagline_01():
     assert score_manager._session.transcript.signature == (9, (0, 7))
 
 
-def test_ScorePackageManager_interactively_edit_forces_tagline_02():
+def test_ScorePackageManager_edit_forces_tagline_02():
 
     try:
         score_manager = scoremanager.core.ScoreManager()

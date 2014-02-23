@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 
-def test_StylesheetFileWrangler_interactively_select_asset_filesystem_path_01():
+def test_StylesheetFileWrangler_select_asset_filesystem_path_01():
 
     score_manager = scoremanager.core.ScoreManager()
     wrangler = score_manager._stylesheet_file_wrangler

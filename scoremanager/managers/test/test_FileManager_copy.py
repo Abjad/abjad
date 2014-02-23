@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 
-def test_FileManager_interactively_copy_01():
+def test_FileManager_copy_01():
 
     score_manager_configuration = scoremanager.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(

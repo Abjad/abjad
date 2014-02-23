@@ -11,7 +11,7 @@ def test_FileManager_rename_01():
     configuration = scoremanager.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         configuration.score_manager_directory_path, 
-        'temporary_file.txt',
+        'test_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(
         filesystem_path=filesystem_path)
@@ -22,17 +22,15 @@ def test_FileManager_rename_01():
         assert os.path.exists(filesystem_path)
         new_filesystem_path = os.path.join(
             configuration.score_manager_directory_path, 
-            'new_temporary_file.txt',
+            'new_test_file.txt',
             )
-        file_manager._rename(new_filesystem_path)
+        file_manager.rename(
+            pending_user_input='new_test_file.txt y q')
+        assert file_manager._filesystem_path == new_filesystem_path
         assert not os.path.exists(filesystem_path)
         assert os.path.exists(new_filesystem_path)
-        file_manager._remove()
     finally:
-        if os.path.exists(filesystem_path):
-            os.remove(filesystem_path)
-        if os.path.exists(new_filesystem_path):
-            os.remove(new_filesystem_path)
+        file_manager._remove()
         assert not os.path.exists(filesystem_path)
         assert not os.path.exists(new_filesystem_path)
 
@@ -44,7 +42,7 @@ def test_FileManager_rename_02():
     configuration = scoremanager.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         configuration.score_manager_directory_path, 
-        'temporary_file.txt',
+        'test_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(
         filesystem_path=filesystem_path)
@@ -57,11 +55,13 @@ def test_FileManager_rename_02():
         assert file_manager._is_versioned()
         new_filesystem_path = os.path.join(
             configuration.score_manager_directory_path, 
-            'new_temporary_file.txt',
+            'new_test_file.txt',
             )
-        file_manager._rename(new_filesystem_path)
-        assert os.path.exists(new_filesystem_path)
+        file_manager.rename(
+            pending_user_input='new_test_file.txt y q'
+            )
         assert file_manager._filesystem_path == new_filesystem_path
+        assert os.path.exists(new_filesystem_path)
     finally:
         file_manager._remove()
         assert not os.path.exists(filesystem_path)

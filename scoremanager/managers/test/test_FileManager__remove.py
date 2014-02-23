@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 
-def test_FileManager_interactively_remove_01():
+def test_FileManager__remove_01():
     r'''Nonversioned file.
     '''
 
@@ -20,8 +20,7 @@ def test_FileManager_interactively_remove_01():
     try:
         file_manager._make_empty_asset()
         assert os.path.exists(filesystem_path)
-        file_manager.remove(
-            pending_user_input='remove default q')
+        file_manager._remove()
         assert not os.path.exists(filesystem_path)
     finally:
         if os.path.exists(filesystem_path):
@@ -29,7 +28,7 @@ def test_FileManager_interactively_remove_01():
         assert not os.path.exists(filesystem_path)
 
 
-def test_FileManager_interactively_remove_02():
+def test_FileManager__remove_02():
     r'''Versioned file.
     '''
 
@@ -46,8 +45,8 @@ def test_FileManager_interactively_remove_02():
         file_manager._make_empty_asset()
         assert os.path.exists(filesystem_path)
         file_manager.add_assets_to_repository()
-        file_manager.remove(
-            pending_user_input='remove default q')
+        assert file_manager._is_versioned()
+        file_manager._remove()
         assert not os.path.exists(filesystem_path)
     finally:
         if os.path.exists(filesystem_path):

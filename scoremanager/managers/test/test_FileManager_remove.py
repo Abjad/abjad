@@ -20,7 +20,8 @@ def test_FileManager_remove_01():
     try:
         file_manager._make_empty_asset()
         assert os.path.exists(filesystem_path)
-        file_manager._remove()
+        file_manager.remove(
+            pending_user_input='remove default q')
         assert not os.path.exists(filesystem_path)
     finally:
         if os.path.exists(filesystem_path):
@@ -45,8 +46,8 @@ def test_FileManager_remove_02():
         file_manager._make_empty_asset()
         assert os.path.exists(filesystem_path)
         file_manager.add_assets_to_repository()
-        assert file_manager._is_versioned()
-        file_manager._remove()
+        file_manager.remove(
+            pending_user_input='remove default q')
         assert not os.path.exists(filesystem_path)
     finally:
         if os.path.exists(filesystem_path):

@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialPackageWrangler_interactively_get_available_package_path_01():
+def test_MaterialPackageWrangler_get_available_package_path_01():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
 
@@ -16,7 +16,7 @@ def test_MaterialPackageWrangler_interactively_get_available_package_path_01():
     assert result is None
 
 
-def test_MaterialPackageWrangler_interactively_get_available_package_path_02():
+def test_MaterialPackageWrangler_get_available_package_path_02():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     wrangler._session._current_score_snake_case_name = 'red_example_score'
@@ -27,7 +27,7 @@ def test_MaterialPackageWrangler_interactively_get_available_package_path_02():
     assert result == string
 
 
-def test_MaterialPackageWrangler_interactively_get_available_package_path_03():
+def test_MaterialPackageWrangler_get_available_package_path_03():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
 
