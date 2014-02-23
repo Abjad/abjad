@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 
-def test_FileManager_rename_01():
+def test_FileManager_interactively_rename_01():
     r'''Nonversioned file.
     '''
 
@@ -35,7 +35,7 @@ def test_FileManager_rename_01():
         assert not os.path.exists(new_filesystem_path)
 
 
-def test_FileManager_rename_02():
+def test_FileManager_interactively_rename_02():
     r'''Versioned file.
     '''
 

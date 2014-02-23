@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_PerformerEditor_set_initial_configuration_01():
+def test_PerformerEditor_interactively_set_initial_configuration_01():
     r'''Quit, back, home, score & junk all work.
     '''
 

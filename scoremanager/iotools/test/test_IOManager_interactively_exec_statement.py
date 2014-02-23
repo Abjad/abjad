@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_IOManager_exec_statement_01():
+def test_IOManager_interactively_exec_statement_01():
 
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='pyi 2**30 q')
@@ -14,7 +14,7 @@ def test_IOManager_exec_statement_01():
     assert score_manager._session.transcript[4].lines == ['> q', '']
 
 
-def test_IOManager_exec_statement_02():
+def test_IOManager_interactively_exec_statement_02():
     r'''Protects against senseless input.
     '''
 

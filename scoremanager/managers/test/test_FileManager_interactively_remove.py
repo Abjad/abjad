@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 
-def test_FileManager_remove_01():
+def test_FileManager_interactively_remove_01():
     r'''Nonversioned file.
     '''
 
@@ -29,7 +29,7 @@ def test_FileManager_remove_01():
         assert not os.path.exists(filesystem_path)
 
 
-def test_FileManager_remove_02():
+def test_FileManager_interactively_remove_02():
     r'''Versioned file.
     '''
 

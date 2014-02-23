@@ -454,7 +454,7 @@ class IOManager(IOManager):
             )
         return view
 
-    def open_file(self, file_path, application=None):
+    def open_file(self, file_path, application=None, line_number=None):
         r'''Opens `file_path`.
 
         Returns none.
@@ -468,6 +468,7 @@ class IOManager(IOManager):
         return systemtools.IOManager.open_file(
             file_path,
             application=application,
+            line_number=line_number,
             )
 
     def print_not_yet_implemented(self):

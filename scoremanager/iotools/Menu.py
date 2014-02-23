@@ -511,10 +511,12 @@ class Menu(ScoreManagerObject):
 
     def edit_calling_code(self):
         if self.where is not None:
-            file_name = self.where[1]
+            file_path = self.where[1]
             line_number = self.where[2]
-            command = 'vim +{} {}'.format(line_number, file_name)
-            self._session.io_manager.spawn_subprocess(command)
+            self._session.io_manager.open_file(
+                file_path,
+                line_number=line_number,
+                )
         else:
             lines = []
             message = 'where-tracking not enabled.'

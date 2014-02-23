@@ -258,7 +258,7 @@ class IOManager(object):
         return next_output_file_name
 
     @staticmethod
-    def open_file(file_path, application=None):
+    def open_file(file_path, application=None, line_number=None):
         r'''Opens `file_path`.
         
         Uses `application` when `application` is not none.
@@ -268,6 +268,8 @@ class IOManager(object):
 
         Takes best guess at operating system-specific file opener when both
         `application` and Abjad configuration file `text_editor` are none. 
+
+        Respects `line_number` when `file_path` can be opened with text editor.
 
         Returns none.
         '''
@@ -281,7 +283,10 @@ class IOManager(object):
             viewer = application
             viewer = viewer or abjad_configuration['text_editor']
             viewer = viewer or 'open'
-        command = '{} {}'.format(viewer, file_path)
+        if line_number:
+            command = '{} +{} {}'.format(viewer, line_number, file_path)
+        else:
+            command = '{} {}'.format(viewer, file_path)
         IOManager.spawn_subprocess(command)
 
     @staticmethod
