@@ -76,17 +76,24 @@ class Session(abctools.AbjadObject):
         self._controller_stack = []
         self._current_score_snake_case_name = None
         self._display_pitch_ranges_with_numbered_pitches = False
+        self._enable_where = False
         self._hide_hidden_commands = True
         self._hide_next_redraw = False
         self._hide_secondary_commands = True
+        self._initial_user_input = pending_user_input
         self._io_manager = iotools.IOManager(self)
         self._is_autoadding = False
         self._is_backtracking_locally = False
         self._is_backtracking_to_score = False
         self._is_backtracking_to_score_manager = False
+        self._is_navigating_to_next_score = False
+        self._is_navigating_to_previous_score = False
         self._is_quitting = False
+        self._is_test = False
         self._last_controller = None
         self._last_line = ''
+        self._last_command_was_composite = False
+        self._menu_header_width = 160
         self._nonnumbered_menu_sections_are_hidden = False
         self._pending_user_input = pending_user_input
         self._rewrite_cache = False
@@ -97,13 +104,6 @@ class Session(abctools.AbjadObject):
         self._transcript = iotools.Transcript()
         self._use_current_user_input_values_as_default = False
         self._write_transcript = False
-        self.enable_where = False
-        self.initial_user_input = pending_user_input
-        self.is_navigating_to_next_score = False
-        self.is_navigating_to_previous_score = False
-        self.is_test = False
-        self.last_command_was_composite = False
-        self.menu_header_width = 160
 
     ### SPECIAL METHODS ###
 
@@ -480,6 +480,22 @@ class Session(abctools.AbjadObject):
         return self._display_pitch_ranges_with_numbered_pitches
 
     @property
+    def enable_where(self):
+        r'''Is true when session should enable source code tracking. Otherwise
+        false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.enable_where
+                False
+
+        Returns boolean.
+        '''
+        return self._enable_where
+
+    @property
     def explicit_command_history(self):
         r'''Gets session explicit command history.
 
@@ -560,6 +576,21 @@ class Session(abctools.AbjadObject):
         Returns IO manager.
         '''
         return self._io_manager
+
+    @property
+    def initial_user_input(self):
+        r'''Gets session initial user input.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.initial_user_input is None
+                True
+
+        Returns string or none.
+        '''
+        return self._initial_user_input
 
     @property
     def is_autoadding(self):
@@ -670,6 +701,37 @@ class Session(abctools.AbjadObject):
         return self.current_score_snake_case_name is not None
 
     @property
+    def is_navigating_to_next_score(self):
+        r'''Is true when session is navigating to next score. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_next_score
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_next_score
+
+    @property
+    def is_navigating_to_previous_score(self):
+        r'''Is true when session is navigating to previous score. 
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_previous_score
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_previous_score
+
+    @property
     def is_navigating_to_sibling_score(self):
         r'''Is true when session is navigating to sibling score.
         Otherwise false:
@@ -703,6 +765,21 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_quitting
+
+    @property
+    def is_test(self):
+        r'''Is true when session is test. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_test
+                False
+
+        Returns boolean.
+        '''
+        return self._is_test
 
     @property
     def last_controller(self):
@@ -739,6 +816,21 @@ class Session(abctools.AbjadObject):
         return self._last_line
 
     @property
+    def last_command_was_composite(self):
+        r'''Is true when last command was composite. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.last_command_was_composite
+                False
+
+        Returns boolean.
+        '''
+        return self._last_command_was_composite
+
+    @property
     def last_semantic_command(self):
         r'''Gets session last semantic command.
 
@@ -769,6 +861,21 @@ class Session(abctools.AbjadObject):
         Returns string.
         '''
         return '\n'.join(self._format_breadcrumb_stack())
+
+    @property
+    def menu_header_width(self):
+        r'''Gets session menu header width.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.menu_header_width
+                160
+
+        Returns nonnegative integer.
+        '''
+        return self._menu_header_width
 
     @property
     def nonnumbered_menu_sections_are_hidden(self):
@@ -1007,7 +1114,7 @@ class Session(abctools.AbjadObject):
         self.io_manager.display(lines, capitalize_first_character=False)
         self.io_manager.proceed()
 
-    def swap_user_input_values_default_status(self):
+    def toggle_user_input_values_default_status(self):
         r'''Swaps boolean value of `use_current_user_input_values_as_default`.
 
         Returns none.

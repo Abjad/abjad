@@ -483,7 +483,7 @@ class Menu(ScoreManagerObject):
                 lines, capitalize_first_character=False)
             self._session._hide_next_redraw = True
         else:
-            self._session.enable_where = True
+            self._session._enable_where = True
 
     def display_hidden_commands(self):
         self._session._push_breadcrumb('hidden commands')

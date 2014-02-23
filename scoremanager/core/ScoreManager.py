@@ -127,7 +127,7 @@ class ScoreManager(ScoreManagerObject):
         self._session._cache_breadcrumbs(cache=cache)
         self._session._push_breadcrumb(self._breadcrumb)
         if is_test:
-            self._session.is_test = True
+            self._session._is_test = True
         self._session._write_transcript = write_transcript
         if display_active_scores:
             self._session.display_active_scores()
@@ -144,7 +144,7 @@ class ScoreManager(ScoreManagerObject):
                 self._session._clean_up()
                 break
             elif self._session.is_navigating_to_next_score:
-                self._session.is_navigating_to_next_score = False
+                self._session._is_navigating_to_next_score = False
                 self._session._is_backtracking_to_score_manager = False
                 result = self._get_next_score_package_name()
             elif self._session.is_navigating_to_previous_score:

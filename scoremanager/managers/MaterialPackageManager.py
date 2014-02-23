@@ -1249,8 +1249,8 @@ class MaterialPackageManager(PackageManager):
             if current_element_number == start_element_number:
                 break
 
-    def swap_user_input_values_default_status(self):
-        self._session.swap_user_input_values_default_status()
+    def toggle_user_input_values_default_status(self):
+        self._session.toggle_user_input_values_default_status()
 
     def view_user_input_module(
         self,
@@ -1305,7 +1305,7 @@ class MaterialPackageManager(PackageManager):
         'uil': load_user_input_wrapper_demo_values,
         'uip': populate_user_input_wrapper,
         'uis': display_user_input_demo_values,
-        'uit': swap_user_input_values_default_status,
+        'uit': toggle_user_input_values_default_status,
         'uimv': view_user_input_module,
 
         })

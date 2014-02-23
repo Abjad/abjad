@@ -90,7 +90,7 @@ class IOManager(IOManager):
         elif key == 'lvl':
             self.view_last_log()
         elif key == 'next':
-            self._session.is_navigating_to_next_score = True
+            self._session._is_navigating_to_next_score = True
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
         elif key == 'prev':
@@ -184,7 +184,7 @@ class IOManager(IOManager):
         return section
 
     def _pop_from_pending_user_input(self):
-        self._session.last_command_was_composite = False
+        self._session._last_command_was_composite = False
         if self._session.pending_user_input is None:
             return None
         elif self._session._pending_user_input == '':
@@ -195,7 +195,7 @@ class IOManager(IOManager):
             user_input = self._session.pending_user_input[2:index]
             pending_user_input = self._session.pending_user_input[index+2:]
             pending_user_input = pending_user_input.strip()
-            self._session.last_command_was_composite = True
+            self._session._last_command_was_composite = True
         else:
             user_input_parts = self._session.pending_user_input.split(' ')
             first_parts, rest_parts = [], []
@@ -491,10 +491,10 @@ class IOManager(IOManager):
     # TODO: move to Session?
     def toggle_source_code_tracking(self):
         if self._session.enable_where:
-            self._session.enable_where = False
+            self._session._enable_where = False
             message = 'source code tracking off.'
         else:
-            self._session.enable_where = True
+            self._session._enable_where = True
             message = 'source code tracking on.'
         self._session.io_manager.display([message, ''])
         self._session._hide_next_redraw = True
