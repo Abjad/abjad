@@ -100,9 +100,9 @@ class InstrumentEditor(Editor):
 
     def toggle_pitch_range_display(self):
         if self._session.display_pitch_ranges_with_numbered_pitches:
-            self._session.display_pitch_ranges_with_numbered_pitches = False
+            self._session._display_pitch_ranges_with_numbered_pitches = False
         else:
-            self._session.display_pitch_ranges_with_numbered_pitches = True
+            self._session._display_pitch_ranges_with_numbered_pitches = True
 
     ### UI MANIFEST ###
 

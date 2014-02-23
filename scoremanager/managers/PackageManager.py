@@ -19,7 +19,8 @@ class PackageManager(DirectoryManager):
         else:
             filesystem_path = package_path
         assert '.' not in filesystem_path, repr(filesystem_path)
-        DirectoryManager.__init__(self,
+        DirectoryManager.__init__(
+            self,
             filesystem_path=filesystem_path,
             session=session,
             )

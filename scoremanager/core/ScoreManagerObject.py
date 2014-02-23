@@ -56,8 +56,8 @@ class ScoreManagerObject(object):
         if self._session.enable_where:
             return inspect.stack()[1]
 
-    ### PUBLIC PROPERTIES ###
-
+#    ### PUBLIC PROPERTIES ###
+#
 #    @property
 #    def configuration(self):
 #        r'''Gets configuration of score manager object.

@@ -14,11 +14,6 @@ class Manager(ScoreManagerObject):
 
     _generic_class_name = 'filesystem asset'
 
-    boilerplate_directory_path = os.path.join(
-        ScoreManagerObject.configuration.score_manager_directory_path,
-        'boilerplate',
-        )
-
     ### INITIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
@@ -225,7 +220,7 @@ class Manager(ScoreManagerObject):
     def _write_boilerplate(self, boilerplate_file_abjad_asset_name):
         if not os.path.exists(boilerplate_file_abjad_asset_name):
             boilerplate_file_abjad_asset_name = os.path.join(
-                self.boilerplate_directory_path,
+                self.configuration.boilerplate_directory_path,
                 boilerplate_file_abjad_asset_name,
                 )
         if os.path.exists(boilerplate_file_abjad_asset_name):

@@ -218,6 +218,23 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return path
 
     @property
+    def boilerplate_directory_path(self):
+        r'''Gets boilerplate directory path.
+
+        ..  container:: example
+
+            >>> configuration.boilerplate_directory_path
+            '.../scoremanager/boilerplate'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.score_manager_directory_path,
+            'boilerplate',
+            )
+        return path
+
+    @property
     def cache_file_path(self):
         r'''Gets cache file path.
 

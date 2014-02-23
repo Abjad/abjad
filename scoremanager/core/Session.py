@@ -75,6 +75,7 @@ class Session(abctools.AbjadObject):
         self._configuration = core.ScoreManagerConfiguration()
         self._controller_stack = []
         self._current_score_snake_case_name = None
+        self._display_pitch_ranges_with_numbered_pitches = False
         self._hide_hidden_commands = True
         self._hide_next_redraw = False
         self._hide_secondary_commands = True
@@ -96,7 +97,6 @@ class Session(abctools.AbjadObject):
         self._transcript = iotools.Transcript()
         self._use_current_user_input_values_as_default = False
         self._write_transcript = False
-        self.display_pitch_ranges_with_numbered_pitches = False
         self.enable_where = False
         self.initial_user_input = pending_user_input
         self.is_navigating_to_next_score = False
@@ -477,6 +477,22 @@ class Session(abctools.AbjadObject):
             wrangler = manager._segment_package_wrangler
             path = wrangler._get_current_directory_path_of_interest()
             return path
+
+    @property
+    def display_pitch_ranges_with_numbered_pitches(self):
+        r'''Is true when session should display pitch ranges with numbered
+        pitches. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.display_pitch_ranges_with_numbered_pitches
+                False
+
+        Returns boolean.
+        '''
+        return self._display_pitch_ranges_with_numbered_pitches
 
     @property
     def explicit_command_history(self):

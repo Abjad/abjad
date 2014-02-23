@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 
-def test_FileManager_write_boilerplate_asset_to_disk_01():
+def test_FileManager__write_boilerplate_01():
 
     configuration = scoremanager.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
@@ -21,7 +21,7 @@ def test_FileManager_write_boilerplate_asset_to_disk_01():
         boilerplate_file_abjad_asset_name = string
         file_manager._write_boilerplate(boilerplate_file_abjad_asset_name)
         file_path = os.path.join(
-            file_manager.boilerplate_directory_path, 
+            file_manager.configuration.boilerplate_directory_path, 
             boilerplate_file_abjad_asset_name
             )
         source = open(file_path, 'r')
