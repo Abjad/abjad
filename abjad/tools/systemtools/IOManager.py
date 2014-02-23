@@ -280,7 +280,7 @@ class IOManager(object):
         else:
             viewer = application
             viewer = viewer or abjad_configuration['text_editor']
-            viewer = viewer or open
+            viewer = viewer or 'open'
         command = '{} {}'.format(viewer, file_path)
         IOManager.spawn_subprocess(command)
 
