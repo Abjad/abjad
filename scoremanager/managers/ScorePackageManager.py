@@ -430,4 +430,4 @@ class ScorePackageManager(PackageManager):
                 self._remove()
             if self._session._backtrack():
                 return
-            self._session.is_backtracking_locally = True
+            self._session._is_backtracking_locally = True

@@ -851,7 +851,7 @@ class MaterialPackageManager(PackageManager):
                 )
         # update path name to reflect change
         self._path = new_directory_path
-        self._session.is_backtracking_locally = True
+        self._session._is_backtracking_locally = True
 
     @staticmethod
     def replace_in_file(file_path, old, new):

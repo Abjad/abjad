@@ -24,7 +24,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> wrangler_in_score = wranglers.MaterialPackageWrangler()
             >>> session = wrangler_in_score._session
-            >>> session.current_score_snake_case_name = 'red_example_score'
+            >>> session._current_score_snake_case_name = 'red_example_score'
             >>> wrangler_in_score
             MaterialPackageWrangler()
 

@@ -394,7 +394,7 @@ class Manager(ScoreManagerObject):
         Returns none.
         '''
         self.remove()
-        self._session.is_backtracking_locally = True
+        self._session._is_backtracking_locally = True
 
     def rename(
         self, 

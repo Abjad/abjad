@@ -108,7 +108,7 @@ class ListEditor(Editor):
             if self._session._backtrack():
                 return
             if result == 'done':
-                self._session.is_autoadding = False
+                self._session._is_autoadding = False
                 return
             result = result or item_creator.target
         elif self.item_getter_configuration_method:
@@ -119,7 +119,7 @@ class ListEditor(Editor):
             if self._session._backtrack():
                 return
             if item_initialization_token == 'done':
-                self._session.is_autoadding = False
+                self._session._is_autoadding = False
                 return
             if self.item_class:
                 if isinstance(item_initialization_token, str):

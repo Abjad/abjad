@@ -23,7 +23,7 @@ class ScorePackageWrangler(PackageWrangler):
 
             >>> wrangler_in_score = wranglers.ScorePackageWrangler()
             >>> session = wrangler_in_score._session
-            >>> session._snake_case_current_score_name = 'red_example_score'
+            >>> session._current_score_snake_case_name = 'red_example_score'
             >>> wrangler_in_score
             ScorePackageWrangler()
 

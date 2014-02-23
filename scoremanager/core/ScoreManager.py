@@ -95,7 +95,7 @@ class ScoreManager(ScoreManagerObject):
         wrangler = self._score_package_wrangler
         if self._session.rewrite_cache:
             self._session.io_manager.write_cache(prompt=False)
-            self._session.rewrite_cache = False
+            self._session._rewrite_cache = False
         menu_entries = self._session.io_manager._read_cache()
         if not menu_entries or \
             (self._session._scores_to_display == 'example' and
@@ -128,7 +128,7 @@ class ScoreManager(ScoreManagerObject):
         self._session._push_breadcrumb(self._breadcrumb)
         if is_test:
             self._session.is_test = True
-        self._session.write_transcript = write_transcript
+        self._session._write_transcript = write_transcript
         if display_active_scores:
             self._session.display_active_scores()
         run_main_menu = True
@@ -145,11 +145,11 @@ class ScoreManager(ScoreManagerObject):
                 break
             elif self._session.is_navigating_to_next_score:
                 self._session.is_navigating_to_next_score = False
-                self._session.is_backtracking_to_score_manager = False
+                self._session._is_backtracking_to_score_manager = False
                 result = self._get_next_score_package_name()
             elif self._session.is_navigating_to_previous_score:
                 self._session.is_navigating_to_previous_score = False
-                self._session.is_backtracking_to_score_manager = False
+                self._session._is_backtracking_to_score_manager = False
                 result = self._get_previous_score_package_name()
             elif not result:
                 self._session._pop_breadcrumb()
@@ -245,9 +245,9 @@ class ScoreManager(ScoreManagerObject):
         manager = self._score_package_wrangler._initialize_asset_manager(
             score_package_path)
         score_package_name = score_package_path.split('.')[-1]
-        manager._session.current_score_snake_case_name = score_package_name
+        manager._session._current_score_snake_case_name = score_package_name
         manager._run(cache=True)
-        self._session.current_score_snake_case_name = None
+        self._session._current_score_snake_case_name = None
 
     def manage_stylesheet_library(self):
         r'''Manages stylesheet library.

@@ -111,7 +111,7 @@ class Menu(ScoreManagerObject):
             user_entered_lone_return = True
         directive = self._change_user_input_to_directive(user_input)
         directive = self._strip_default_notice_from_strings(directive)
-        self._session.hide_next_redraw = False
+        self._session._hide_next_redraw = False
         io_manager = self._session.io_manager
         directive = \
             io_manager._handle_hidden_menu_section_return_value(directive)
@@ -481,7 +481,7 @@ class Menu(ScoreManagerObject):
             lines.append('')
             self._session.io_manager.display(
                 lines, capitalize_first_character=False)
-            self._session.hide_next_redraw = True
+            self._session._hide_next_redraw = True
         else:
             self._session.enable_where = True
 
@@ -507,7 +507,6 @@ class Menu(ScoreManagerObject):
             capitalize_first_character=False,
             clear_terminal=True,
             )
-        #self._session.hide_next_redraw = True
         self._session._pop_breadcrumb()
 
     def edit_calling_code(self):
@@ -523,7 +522,7 @@ class Menu(ScoreManagerObject):
             lines.append(message)
             lines.append('')
             self._session.io_manager.display(lines)
-            self._session.hide_next_redraw = True
+            self._session._hide_next_redraw = True
 
     def make_asset_section(self, menu_entries=None):
         asset_section = self._make_section(
@@ -590,7 +589,7 @@ class Menu(ScoreManagerObject):
     # TODO: move to Session
     def toggle_secondary_commands(self):
         if self._session.hide_secondary_commands:
-            self._session.hide_secondary_commands = False
+            self._session._hide_secondary_commands = False
         else:
-            self._session.hide_secondary_commands = True
+            self._session._hide_secondary_commands = True
         self._session._hide_hidden_commands = True

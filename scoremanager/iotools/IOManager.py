@@ -60,11 +60,11 @@ class IOManager(IOManager):
     def _assign_user_input(self, pending_user_input=None):
         if pending_user_input is not None:
             if self._session.pending_user_input:
-                self._session.pending_user_input = \
+                self._session._pending_user_input = \
                     pending_user_input + ' ' + \
                     self._session.pending_user_input
             else:
-                self._session.pending_user_input = pending_user_input
+                self._session._pending_user_input = pending_user_input
 
     @staticmethod
     def _get_one_line_menuing_summary(expr):
@@ -83,7 +83,7 @@ class IOManager(IOManager):
         else:
             key = directive
         if key in ('b', 'back'):
-            self._session.is_backtracking_locally = True
+            self._session._is_backtracking_locally = True
             self._session._hide_hidden_commands = True
         elif key == 'pyd':
             message = 'running doctest ...'
@@ -101,22 +101,22 @@ class IOManager(IOManager):
             self.view_last_log()
         elif key == 'next':
             self._session.is_navigating_to_next_score = True
-            self._session.is_backtracking_to_score_manager = True
+            self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
         elif key == 'prev':
             self._session.is_navigating_to_previous_score = True
-            self._session.is_backtracking_to_score_manager = True
+            self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
         elif key in ('q', 'quit'):
-            self._session.is_quitting = True
+            self._session._is_quitting = True
             self._session._hide_hidden_commands = True
         elif self._is_score_string(key) and self._session.is_in_score:
-            self._session.is_backtracking_to_score = True
+            self._session._is_backtracking_to_score = True
             self._session._hide_hidden_commands = True
         elif self._is_score_string(key) and not self._session.is_in_score:
             directive = None
         elif self._is_home_string(key):
-            self._session.is_backtracking_to_score_manager = True
+            self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
         elif key == 'sct':
             self.toggle_source_code_tracking()
@@ -197,8 +197,8 @@ class IOManager(IOManager):
         self._session.last_command_was_composite = False
         if self._session.pending_user_input is None:
             return None
-        elif self._session.pending_user_input == '':
-            self._session.pending_user_input = None
+        elif self._session._pending_user_input == '':
+            self._session._pending_user_input = None
             return None
         elif self._session.pending_user_input.startswith('{{'):
             index = self._session.pending_user_input.find('}}')
@@ -217,7 +217,7 @@ class IOManager(IOManager):
             user_input = ' '.join(first_parts)
             pending_user_input = ' '.join(rest_parts)
         user_input = user_input.replace('~', ' ')
-        self._session.pending_user_input = pending_user_input
+        self._session._pending_user_input = pending_user_input
         return user_input
 
     def _read_cache(self):
@@ -334,7 +334,7 @@ class IOManager(IOManager):
         lines.append('')
         if prompt:
             self.display(lines)
-        self._session.hide_next_redraw = True
+        self._session._hide_next_redraw = True
 
     def handle_user_input(
         self, 

@@ -239,7 +239,7 @@ class PackageManager(DirectoryManager):
         Returns none.
         '''
         self._remove()
-        self._session.is_backtracking_locally = True
+        self._session._is_backtracking_locally = True
 
     def remove_views_module(self, prompt=True):
         r'''Removes views module.
@@ -309,7 +309,7 @@ class PackageManager(DirectoryManager):
             self._session.io_manager.spawn_subprocess(command)
         # update path name to reflect change
         self._path = new_directory_path
-        self._session.is_backtracking_locally = True
+        self._session._is_backtracking_locally = True
 
     def rewrite_metadata_module(
         self, 

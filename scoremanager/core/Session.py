@@ -24,7 +24,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session_in_score = scoremanager.core.Session()
-            >>> session_in_score.current_score_snake_case_name = 'foo'
+            >>> session_in_score._current_score_snake_case_name = 'foo'
             >>> session_in_score
             Session()
 
@@ -67,43 +67,43 @@ class Session(abctools.AbjadObject):
     def __init__(self, pending_user_input=None):
         from scoremanager import core
         from scoremanager import iotools
+        self._attempted_to_open_file = False
         self._backtracking_stack = []
         self._breadcrumb_cache_stack = []
         self._breadcrumb_stack = []
         self._command_history = []
         self._configuration = core.ScoreManagerConfiguration()
         self._controller_stack = []
+        self._current_score_snake_case_name = None
         self._hide_hidden_commands = True
+        self._hide_next_redraw = False
+        self._hide_secondary_commands = True
         self._io_manager = iotools.IOManager(self)
+        self._is_autoadding = False
+        self._is_backtracking_locally = False
+        self._is_backtracking_to_score = False
+        self._is_backtracking_to_score_manager = False
+        self._is_quitting = False
         self._last_controller = None
         self._last_line = ''
+        self._nonnumbered_menu_sections_are_hidden = False
+        self._pending_user_input = pending_user_input
+        self._rewrite_cache = False
         self._score_manager = None
         self._scores_to_display = 'example'
         self._session_once_had_user_input = False
+        self._transcribe_next_command = True
         self._transcript = iotools.Transcript()
-        self._attempted_to_open_file = False
-        self.current_score_snake_case_name = None
+        self._use_current_user_input_values_as_default = False
+        self._write_transcript = False
         self.display_pitch_ranges_with_numbered_pitches = False
-        self.write_transcript = False
         self.enable_where = False
-        self.hide_secondary_commands = True
-        self.hide_next_redraw = False
         self.initial_user_input = pending_user_input
-        self.is_autoadding = False
-        self.is_backtracking_locally = False
-        self.is_backtracking_to_score = False
-        self.is_backtracking_to_score_manager = False
         self.is_navigating_to_next_score = False
         self.is_navigating_to_previous_score = False
         self.is_test = False
         self.last_command_was_composite = False
         self.menu_header_width = 160
-        self.nonnumbered_menu_sections_are_hidden = False
-        self.pending_user_input = pending_user_input
-        self.rewrite_cache = False
-        self.transcribe_next_command = True
-        self.use_current_user_input_values_as_default = False
-        self.is_quitting = False
 
     ### SPECIAL METHODS ###
 
@@ -135,12 +135,12 @@ class Session(abctools.AbjadObject):
         if self.is_complete:
             return True
         elif self.is_backtracking_to_score_manager and source == 'home':
-            self.is_backtracking_to_score_manager = False
+            self._is_backtracking_to_score_manager = False
             return False
         elif self.is_backtracking_to_score_manager and not source == 'home':
             return True
         elif self.is_backtracking_to_score and source in ('score', 'home'):
-            self.is_backtracking_to_score = False
+            self._is_backtracking_to_score = False
             return False
         elif self.is_backtracking_to_score and not source in ('score', 'home'):
             return True
@@ -149,7 +149,7 @@ class Session(abctools.AbjadObject):
             return True
         elif self.is_backtracking_locally and not source == 'home' and \
             not self._backtracking_stack:
-            self.is_backtracking_locally = False
+            self._is_backtracking_locally = False
             return True
 
     def _cache_breadcrumbs(self, cache=False):
@@ -386,11 +386,13 @@ class Session(abctools.AbjadObject):
                 self.configuration.abjad_score_package_names:
                 return os.path.join(
                     self.configuration.abjad_score_packages_directory_path,
-                    self.current_score_snake_case_name)
+                    self.current_score_snake_case_name,
+                    )
             else:
                 return os.path.join(
                     self.configuration.user_score_packages_directory_path,
-                    self.current_score_snake_case_name)
+                    self.current_score_snake_case_name,
+                    )
 
     @property
     def current_score_package_manager(self):
@@ -424,34 +426,27 @@ class Session(abctools.AbjadObject):
                 session=self,
                 )
 
-    @apply
-    def current_score_snake_case_name():
-        def fget(self):
-            r'''Gets and sets snake-case current score name of session.
+    @property
+    def current_score_snake_case_name(self):
+        r'''Gets and sets snake-case current score name of session.
 
-            ..  container:: example
+        ..  container:: example
 
-                ::
+            ::
 
-                    >>> session.current_score_snake_case_name is None
-                    True
+                >>> session.current_score_snake_case_name is None
+                True
 
-            ..  container:: example
+        ..  container:: example
 
-                ::
+            ::
 
-                    >>> session_in_score.current_score_snake_case_name
-                    'foo'
+                >>> session_in_score.current_score_snake_case_name
+                'foo'
 
-            Returns string or none.
-            '''
-            return self._snake_case_current_score_name
-        def fset(self, current_score_snake_case_name):
-            assert isinstance(current_score_snake_case_name, (str, type(None)))
-            if isinstance(current_score_snake_case_name, str):
-                assert '.' not in current_score_snake_case_name
-            self._snake_case_current_score_name = current_score_snake_case_name
-        return property(**locals())
+        Returns string or none.
+        '''
+        return self._current_score_snake_case_name
 
     @property
     def current_segments_directory_path(self):
@@ -519,47 +514,36 @@ class Session(abctools.AbjadObject):
         '''
         return self._hide_hidden_commands
 
-    @apply
-    def hide_next_redraw():
-        def fget(self):
-            r'''Gets and sets flag to hide next redraw.
+    @property
+    def hide_next_redraw(self):
+        r'''Gets and sets flag to hide next redraw.
 
-            ..  container:: example
+        ..  container:: example
 
-                ::
+            ::
 
-                    >>> session.hide_next_redraw
-                    False
+                >>> session.hide_next_redraw
+                False
 
-            Returns boolean.
-            '''
-            return self._hide_next_redraw
-        def fset(self, hide_next_redraw):
-            assert isinstance(hide_next_redraw, bool)
-            self._hide_next_redraw = hide_next_redraw
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._hide_next_redraw
 
-    @apply
-    def hide_secondary_commands():
-        def fget(self):
-            r'''Gets and sets flag indicating that hidden menu sections
-            are hidden.
+    @property
+    def hide_secondary_commands(self):
+        r'''Gets and sets flag indicating that hidden menu sections
+        are hidden.
 
-            ..  container:: example
+        ..  container:: example
 
-                ::
+            ::
 
-                    >>> session.hide_secondary_commands
-                    True
+                >>> session.hide_secondary_commands
+                True
 
-            Returns boolean.
-            '''
-            return self._hide_secondary_commands
-        def fset(self, hide_secondary_commands):
-            assert isinstance(hide_secondary_commands, bool)
-            self._hide_secondary_commands = \
-                hide_secondary_commands
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._hide_secondary_commands
 
     @property
     def io_manager(self):
@@ -576,89 +560,68 @@ class Session(abctools.AbjadObject):
         '''
         return self._io_manager
 
-    @apply
-    def is_autoadding():
-        def fget(self):
-            r'''Is true when session is autoadding. Otherwise false.
+    @property
+    def is_autoadding(self):
+        r'''Is true when session is autoadding. Otherwise false.
 
-            ..  container:: example
+        ..  container:: example
 
-                ::
+            ::
 
-                    >>> session.is_autoadding
-                    False
+                >>> session.is_autoadding
+                False
 
-            Returns boolean.
-            '''
-            return self._is_autoadding
-        def fset(self, is_autoadding):
-            assert isinstance(is_autoadding, bool)
-            self._is_autoadding = is_autoadding
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._is_autoadding
 
-    @apply
-    def is_backtracking_locally():
-        def fget(self):
-            r'''Is true when session is backtracking locally. 
-            Otherwise false.
+    @property
+    def is_backtracking_locally(self):
+        r'''Is true when session is backtracking locally. 
+        Otherwise false.
 
-            ..  container:: example
+        ..  container:: example
 
-                ::
+            ::
 
-                    >>> session.is_backtracking_locally
-                    False
+                >>> session.is_backtracking_locally
+                False
 
-            Returns boolean.
-            '''
-            return self._is_backtracking_locally
-        def fset(self, is_backtracking_locally):
-            assert isinstance(is_backtracking_locally, bool)
-            self._is_backtracking_locally = is_backtracking_locally
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._is_backtracking_locally
 
-    @apply
-    def is_backtracking_to_score():
-        def fget(self):
-            r'''Is true when session is backtracking to score. 
-            Otherwise false.
+    @property
+    def is_backtracking_to_score(self):
+        r'''Is true when session is backtracking to score. 
+        Otherwise false.
 
-            ..  container:: example
+        ..  container:: example
 
-                ::
+            ::
 
-                    >>> session.is_backtracking_to_score
-                    False
+                >>> session.is_backtracking_to_score
+                False
 
-            Returns boolean.
-            '''
-            return self._is_backtracking_to_score
-        def fset(self, is_backtracking_to_score):
-            assert isinstance(is_backtracking_to_score, bool)
-            self._is_backtracking_to_score = is_backtracking_to_score
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._is_backtracking_to_score
 
-    @apply
-    def is_backtracking_to_score_manager():
-        def fget(self):
-            r'''Is true when session is backtracking to score manager. 
-            Otherwise false.
+    @property
+    def is_backtracking_to_score_manager(self):
+        r'''Is true when session is backtracking to score manager. 
+        Otherwise false.
 
-            ..  container:: example
+        ..  container:: example
 
-                ::
+            ::
 
-                    >>> session.is_backtracking_to_score_manager
-                    False
+                >>> session.is_backtracking_to_score_manager
+                False
 
-            Returns boolean.
-            '''
-            return self._is_backtracking_to_score_manager
-        def fset(self, is_backtracking_to_score_manager):
-            assert isinstance(is_backtracking_to_score_manager, bool)
-            self._is_backtracking_to_score_manager = \
-                is_backtracking_to_score_manager
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._is_backtracking_to_score_manager
 
     @property
     def is_complete(self):
@@ -725,25 +688,20 @@ class Session(abctools.AbjadObject):
             return True
         return False
 
-    @apply
-    def is_quitting():
-        def fget(self):
-            r'''Gets and sets flag that user specified quit.
+    @property
+    def is_quitting(self):
+        r'''Gets and sets flag that user specified quit.
 
-            ..  container:: example
+        ..  container:: example
 
-                ::
+            ::
 
-                    >>> session.is_quitting
-                    False
+                >>> session.is_quitting
+                False
 
-            Returns boolean.
-            '''
-            return self._is_quitting
-        def fset(self, is_quitting):
-            assert isinstance(is_quitting, bool)
-            self._is_quitting = is_quitting
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._is_quitting
 
     @property
     def last_controller(self):
@@ -811,68 +769,50 @@ class Session(abctools.AbjadObject):
         '''
         return '\n'.join(self._format_breadcrumb_stack())
 
-    @apply
-    def nonnumbered_menu_sections_are_hidden():
-        def fget(self):
-            r'''Gets and sets flag that nonnumbered menu sections are hidden.
+    @property
+    def nonnumbered_menu_sections_are_hidden(self):
+        r'''Gets and sets flag that nonnumbered menu sections are hidden.
 
-            ..  container:: example:
+        ..  container:: example:
 
-                ::
+            ::
 
-                    >>> session.nonnumbered_menu_sections_are_hidden
-                    False
+                >>> session.nonnumbered_menu_sections_are_hidden
+                False
 
-            Returns boolean.
-            '''
-            return self._nonnumbered_menu_sections_are_hidden
-        def fset(self, nonnumbered_menu_sections_are_hidden):
-            assert isinstance(nonnumbered_menu_sections_are_hidden, bool)
-            self._nonnumbered_menu_sections_are_hidden = \
-                nonnumbered_menu_sections_are_hidden
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._nonnumbered_menu_sections_are_hidden
 
-    @apply
-    def pending_user_input():
-        def fget(self):
-            r'''Gets and sets pending user input.
+    @property
+    def pending_user_input(self):
+        r'''Gets and sets pending user input.
 
-            ..  container:: example
+        ..  container:: example
 
-                ::
+            ::
 
-                    >>> session.pending_user_input is None
-                    True
+                >>> session.pending_user_input is None
+                True
 
-            Returns string.
-            '''
-            return self._pending_user_input
-        def fset(self, pending_user_input):
-            assert isinstance(pending_user_input, (str, type(None)))
-            self._pending_user_input = pending_user_input
-            if isinstance(pending_user_input, str):
-                self._session_once_had_user_input = True
-        return property(**locals())
+        Returns string.
+        '''
+        return self._pending_user_input
 
-    @apply
-    def rewrite_cache():
-        def fget(self):
-            r'''Gets and sets flag to rewrite cache.
+    @property
+    def rewrite_cache(self):
+        r'''Gets and sets flag to rewrite cache.
 
-            ..  container:: example
+        ..  container:: example
 
-                ::
+            ::
 
-                    >>> session.rewrite_cache
-                    False
+                >>> session.rewrite_cache
+                False
 
-            Returns boolean.
-            '''
-            return self._rewrite_cache
-        def fset(self, expr):
-            assert isinstance(expr, bool)
-            self._rewrite_cache = expr
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._rewrite_cache
 
     @property
     def score_manager(self):
@@ -938,25 +878,20 @@ class Session(abctools.AbjadObject):
             result.append(part)
         return ' '.join(result)
 
-    @apply
-    def transcribe_next_command():
-        def fget(self):
-            r'''Gets and sets flag to transcribe next command.
+    @property
+    def transcribe_next_command(self):
+        r'''Gets and sets flag to transcribe next command.
 
-            ..  container:: example
+        ..  container:: example
 
-                ::
+            ::
 
-                    >>> session.transcribe_next_command
-                    True
+                >>> session.transcribe_next_command
+                True
 
-            Returns boolean.
-            '''
-            return self._transcribe_next_command
-        def fset(self, transcribe_next_command):
-            assert isinstance(transcribe_next_command, bool)
-            self._transcribe_next_command = transcribe_next_command
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._transcribe_next_command
 
     @property
     def transcript(self):
@@ -973,26 +908,20 @@ class Session(abctools.AbjadObject):
         '''
         return self._transcript
 
-    @apply
-    def use_current_user_input_values_as_default():
-        def fget(self):
-            r'''Gets and sets flag to use current user input values as default.
+    @property
+    def use_current_user_input_values_as_default(self):
+        r'''Gets and sets flag to use current user input values as default.
 
-            ..  container:: example
+        ..  container:: example
 
-                ::
+            ::
 
-                    >>> session.use_current_user_input_values_as_default
-                    False
+                >>> session.use_current_user_input_values_as_default
+                False
 
-            Returns boolean.
-            '''
-            return self._use_current_user_input_values_as_default
-        def fset(self, use_current_user_input_values_as_default):
-            assert isinstance(use_current_user_input_values_as_default, bool)
-            self._use_current_user_input_values_as_default = \
-                use_current_user_input_values_as_default
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._use_current_user_input_values_as_default
 
     @property
     def user_input_is_consumed(self):
@@ -1013,25 +942,20 @@ class Session(abctools.AbjadObject):
                 return True
         return False
 
-    @apply
-    def write_transcript():
-        def fget(self):
-            r'''Gets and sets flag to dump transcript at end of session.
+    @property
+    def write_transcript(self):
+        r'''Gets and sets flag to dump transcript at end of session.
 
-            ..  container:: example
+        ..  container:: example
 
-                ::
+            ::
 
-                    >>> session.write_transcript
-                    False
+                >>> session.write_transcript
+                False
 
-            Returns boolean.
-            '''
-            return self._write_transcript
-        def fset(self, write_transcript):
-            assert isinstance(write_transcript, bool)
-            self._write_transcript = write_transcript
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._write_transcript
 
     ### PUBLIC METHODS ###
 
@@ -1041,7 +965,7 @@ class Session(abctools.AbjadObject):
         Returns none.
         '''
         self._scores_to_display = 'active'
-        self.rewrite_cache = True
+        self._rewrite_cache = True
 
     def display_all_scores(self):
         r'''Sets scores to show to ``'all'``.
@@ -1049,7 +973,7 @@ class Session(abctools.AbjadObject):
         Returns none.
         '''
         self._scores_to_display = 'all'
-        self.rewrite_cache = True
+        self._rewrite_cache = True
 
     def display_example_scores(self):
         r'''Sets scores to show to ``'example'``.
@@ -1057,7 +981,7 @@ class Session(abctools.AbjadObject):
         Returns none.
         '''
         self._scores_to_display = 'example'
-        self.rewrite_cache = True
+        self._rewrite_cache = True
 
     def display_mothballed_scores(self):
         r'''Sets scores to show to ``'mothballed'``.
@@ -1065,7 +989,7 @@ class Session(abctools.AbjadObject):
         Returns none.
         '''
         self._scores_to_display = 'mothballed'
-        self.rewrite_cache = True
+        self._rewrite_cache = True
 
     def display_variables(self):
         r'''Displays session variables.
@@ -1088,4 +1012,4 @@ class Session(abctools.AbjadObject):
         Returns none.
         '''
         current = self.use_current_user_input_values_as_default
-        self.use_current_user_input_values_as_default = not current
+        self._use_current_user_input_values_as_default = not current

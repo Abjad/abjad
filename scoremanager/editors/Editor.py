@@ -96,7 +96,7 @@ class Editor(ScoreManagerObject):
         self.is_autoadvancing = is_autoadvancing
         is_first_pass = True
         if is_autoadding:
-            self._session.is_autoadding = True
+            self._session._is_autoadding = True
         while True:
             breadcrumb = breadcrumb or self._breadcrumb
             self._session._push_breadcrumb(breadcrumb=breadcrumb)
@@ -138,7 +138,7 @@ class Editor(ScoreManagerObject):
             if self._session._backtrack():
                 break
             self._session._pop_breadcrumb()
-        self._session.is_autoadding = False
+        self._session._is_autoadding = False
         self._session._pop_breadcrumb()
         self._session._restore_breadcrumbs(cache=cache)
         self.clean_up_attributes_in_memory()

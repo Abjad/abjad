@@ -148,7 +148,7 @@ class DirectoryManager(Manager):
             capitalize_first_character=False,
             )
         self._session.io_manager.display('')
-        self._session.hide_next_redraw = True
+        self._session._hide_next_redraw = True
 
     def run_doctest(self, prompt=True):
         r'''Runs doctest.

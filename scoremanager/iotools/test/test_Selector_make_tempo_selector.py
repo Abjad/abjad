@@ -6,7 +6,7 @@ import scoremanager
 def test_Selector_make_tempo_selector_01():
 
     session = scoremanager.core.Session()
-    session._snake_case_current_score_name = 'red_example_score'
+    session._current_score_snake_case_name = 'red_example_score'
     selector = scoremanager.iotools.Selector
     selector = selector.make_tempo_selector(session=session)
     result = selector._run(pending_user_input='8=72')
