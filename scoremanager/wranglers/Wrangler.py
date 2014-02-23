@@ -448,7 +448,6 @@ class Wrangler(ScoreManagerObject):
 
     def remove_assets(
         self, 
-        head=None,
         pending_user_input=None,
         ):
         r'''Removes assets.
@@ -471,7 +470,8 @@ class Wrangler(ScoreManagerObject):
             asset_index = asset_number - 1
             menu_entry = asset_section.menu_entries[asset_index]
             asset_filesystem_path = menu_entry.return_value
-            asset_manager = self._initialize_asset_manager(asset_filesystem_path)
+            asset_manager = self._initialize_asset_manager(
+                asset_filesystem_path)
             asset_manager._remove()
             total_assets_removed += 1
         if total_assets_removed == 1:

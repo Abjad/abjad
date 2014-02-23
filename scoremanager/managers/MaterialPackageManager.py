@@ -868,7 +868,7 @@ class MaterialPackageManager(PackageManager):
             )
         manager._run_abjad()
 
-    def run_first_time(self):
+    def _run_first_time(self):
         self._run(pending_user_input='omi')
 
     def run_python_on_illustration_builder_module(self):

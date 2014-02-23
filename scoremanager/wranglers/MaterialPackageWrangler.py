@@ -178,7 +178,7 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_path, material_package_manager_class_name)
         manager = self._get_appropriate_material_package_manager(
             material_package_manager_class_name, material_package_path)
-        manager.run_first_time()
+        manager._run_first_time()
 
     def _list_asset_filesystem_paths(
         self,

@@ -143,6 +143,9 @@ class PackageManager(DirectoryManager):
             message = message.format(metadatum_name)
             self._session.io_manager.proceed(message)
 
+    def _run_first_time(self, **kwargs):
+        self._run(**kwargs)
+
     def _write_metadata(self, metadata):
         lines = []
         lines.append('# -*- encoding: utf-8 -*-\n')
@@ -158,6 +161,10 @@ class PackageManager(DirectoryManager):
     ### PUBLIC METHODS ###
 
     def add_metadatum(self):
+        r'''Adds metadatum to metadata module.
+
+        Returns none.
+        '''
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
         getter.append_expr('metadatum value')
@@ -169,6 +176,10 @@ class PackageManager(DirectoryManager):
             self._add_metadatum(metadatum_name, metadatum_value)
 
     def get_metadatum(self):
+        r'''Gets metadatum from metadata module.
+
+        Returns none.
+        '''
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
         result = getter._run()
@@ -179,6 +190,10 @@ class PackageManager(DirectoryManager):
         self._session.io_manager.proceed(message=message)
 
     def remove_initializer_module(self, prompt=True):
+        r'''Removes initializer module.
+
+        Returns none.
+        '''
         if os.path.isfile(self._initializer_file_path):
             os.remove(self._initializer_file_path)
             line = 'initializer deleted.'
@@ -188,6 +203,10 @@ class PackageManager(DirectoryManager):
                 )
 
     def remove_views_module(self, prompt=True):
+        r'''Removes views module.
+
+        Returns none.
+        '''
         if os.path.isfile(self._views_module_path):
             if prompt:
                 message = 'remove views module?'
@@ -201,6 +220,10 @@ class PackageManager(DirectoryManager):
                 )
 
     def remove_metadata_module(self, prompt=True):
+        r'''Removes metadata module.
+
+        Returns none.
+        '''
         if os.path.isfile(self._metadata_module_path):
             if prompt:
                 message = 'remove metadata module?'
@@ -214,6 +237,10 @@ class PackageManager(DirectoryManager):
                 )
 
     def remove_metadatum(self):
+        r'''Removes metadatum from meatdata module.
+
+        Returns none.
+        '''
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
         result = getter._run()
@@ -277,6 +304,10 @@ class PackageManager(DirectoryManager):
         self._session.is_backtracking_locally = True
 
     def set_package_path(self):
+        r'''Sets package path.
+
+        Returns none.
+        '''
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('package name')
         result = getter._run()
@@ -285,15 +316,27 @@ class PackageManager(DirectoryManager):
         self._package_path = result
 
     def view_initializer_module(self):
+        r'''Views initializer module.
+
+        Returns none.
+        '''
         self.initializer_file_manager.view()
 
     def view_metadata_module(self):
+        r'''Views metadata module.
+
+        Returns none.
+        '''
         file_path = self._metadata_module_path
         if os.path.isfile(file_path):
             command = 'vim -R {}'.format(file_path)
             self._session.io_manager.spawn_subprocess(command)
 
     def write_boilerplate_initializer_module(self):
+        r'''Writes boilerplate initializer module.
+
+        Returns none.
+        '''
         self.initializer_file_manager.write_boilerplate()
 
     def rewrite_metadata_module(
@@ -301,11 +344,19 @@ class PackageManager(DirectoryManager):
         metadata=None, 
         prompt=True,
         ):
+        r'''Rewrites metadata module.
+
+        Returns none.
+        '''
         if metadata is None:
             metadata = self._get_metadata()
         self._write_metadata(metadata)
 
     def write_stub_initializer_module(self):
+        r'''Wrties stub initializer module.
+
+        Returns none.
+        '''
         self.initializer_file_manager._write_stub()
         line = 'stub initializer written.'
         self._session.io_manager.display([line, ''])
@@ -318,9 +369,6 @@ class PackageManager(DirectoryManager):
         '''
         self._remove()
         self._session.is_backtracking_locally = True
-
-    def run_first_time(self, **kwargs):
-        self._run(**kwargs)
 
     ### UI MANIFEST ###
 

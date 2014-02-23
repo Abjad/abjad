@@ -166,7 +166,7 @@ class DirectoryManager(Manager):
         self._session.io_manager.proceed(prompt=prompt)
 
     def run_pytest(self, prompt=True):
-        r'''runs pytest.
+        r'''Runs pytest.
 
         Returns none.
         '''
