@@ -120,9 +120,9 @@ class Menu(ScoreManagerObject):
         elif directive is None and not user_entered_lone_return:
             return
         elif directive == 'o':
-            self.toggle_secondary_commands()
+            self._session.toggle_secondary_commands()
         elif directive == 'n':
-            self.toggle_hidden_commands()
+            self._session.toggle_hidden_commands()
         elif directive == 'sce':
             self.edit_calling_code()
         elif directive == 'sdv':
@@ -580,18 +580,3 @@ class Menu(ScoreManagerObject):
             return_value_attribute='number',
             )
         return numbered_section
-
-    # TODO: move to Session
-    def toggle_hidden_commands(self):
-        if self._session._hide_hidden_commands:
-            self._session._hide_hidden_commands = False
-        else:
-            self._session._hide_hidden_commands = True
-
-    # TODO: move to Session
-    def toggle_secondary_commands(self):
-        if self._session.hide_secondary_commands:
-            self._session._hide_secondary_commands = False
-        else:
-            self._session._hide_secondary_commands = True
-        self._session._hide_hidden_commands = True

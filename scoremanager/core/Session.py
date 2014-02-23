@@ -1114,8 +1114,44 @@ class Session(abctools.AbjadObject):
         self.io_manager.display(lines, capitalize_first_character=False)
         self.io_manager.proceed()
 
+    def toggle_hidden_commands(self):
+        r'''Toggles `hide_hidden_commands`.
+
+        Returns none.
+        '''
+        if self._hide_hidden_commands:
+            self._hide_hidden_commands = False
+        else:
+            self._hide_hidden_commands = True
+
+    def toggle_secondary_commands(self):
+        r'''Toggles `hide_secondary_commands`.
+
+        Returns none.
+        '''
+        if self.hide_secondary_commands:
+            self._hide_secondary_commands = False
+        else:
+            self._hide_secondary_commands = True
+        self._hide_hidden_commands = True
+
+    def toggle_source_code_tracking(self, prompt=True):
+        r'''Toggles source code tracking.
+
+        Returns none.
+        '''
+        if self.enable_where:
+            self._enable_where = False
+            message = 'source code tracking off.'
+        else:
+            self._enable_where = True
+            message = 'source code tracking on.'
+        if prompt:
+            self.io_manager.display([message, ''])
+        self._hide_next_redraw = True
+
     def toggle_user_input_values_default_status(self):
-        r'''Swaps boolean value of `use_current_user_input_values_as_default`.
+        r'''Toggles `use_current_user_input_values_as_default`.
 
         Returns none.
         '''

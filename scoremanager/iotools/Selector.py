@@ -38,6 +38,18 @@ class Selector(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
+    def _change_expr_to_menu_entry(self, expr):
+        return (
+            self._session.io_manager._get_one_line_menuing_summary(expr),
+            None,
+            None,
+            expr,
+            )
+
+    def _list_items(self):
+        result = []
+        return result
+
     def _get_metadata_from_directory_path(self, directory_path, metadatum_name):
         metadata_module_path = os.path.join(directory_path, '__metadata__.py')
         if os.path.isfile(metadata_module_path):
@@ -47,6 +59,9 @@ class Selector(ScoreManagerObject):
             exec(metadata_module_string)
             result = locals().get('metadata') or OrderedDict([])
             return result.get(metadatum_name)
+
+    def _make_menu_entries(self, head=None):
+        return [self._change_expr_to_menu_entry(item) for item in self.items]
 
     def _make_main_menu(self, head=None):
         main_menu = self._session.io_manager.make_menu(where=self._where)
@@ -58,7 +73,7 @@ class Selector(ScoreManagerObject):
         if hasattr(self, 'menu_entries'):
             menu_entries = self.menu_entries
         else:
-            menu_entries = self.make_menu_entries(head=head)
+            menu_entries = self._make_menu_entries(head=head)
         menu_section.menu_entries = menu_entries
         return main_menu
 
@@ -94,32 +109,12 @@ class Selector(ScoreManagerObject):
             if self._items:
                 return self._items
             else:
-                return self.list_items()
+                return self._list_items()
         def fset(self, items):
             self._items = items
         return property(**locals())
 
     ### PUBLIC METHODS ###
-
-    # TODO: make private
-    def change_expr_to_menu_entry(self, expr):
-        return (
-            self._session.io_manager._get_one_line_menuing_summary(expr),
-            None,
-            None,
-            expr,
-            )
-
-    # TODO: make private
-    def list_items(self):
-        result = []
-        return result
-
-    # TODO: make private
-    def make_menu_entries(self, head=None):
-        return [self.change_expr_to_menu_entry(item) for item in self.items]
-
-    ### REAL PUBLIC METHODS ###
 
     @staticmethod
     def make_articulation_handler_class_name_selector(

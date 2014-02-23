@@ -109,7 +109,7 @@ class IOManager(IOManager):
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
         elif key == 'sct':
-            self.toggle_source_code_tracking()
+            self._session.toggle_source_code_tracking()
         else:
             return directive
 
@@ -487,17 +487,6 @@ class IOManager(IOManager):
             include_chevron=False,
             )
         self.clear_terminal()
-
-    # TODO: move to Session?
-    def toggle_source_code_tracking(self):
-        if self._session.enable_where:
-            self._session._enable_where = False
-            message = 'source code tracking off.'
-        else:
-            self._session._enable_where = True
-            message = 'source code tracking on.'
-        self._session.io_manager.display([message, ''])
-        self._session._hide_next_redraw = True
 
     def view(self, file_path):
         r'''Views `file_path`.
