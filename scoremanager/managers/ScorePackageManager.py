@@ -25,10 +25,13 @@ class ScorePackageManager(PackageManager):
             score_directory_path=self._filesystem_path, 
             session=self._session,
             )
-        instrumentation_module_file_path = os.path.join(
-            self._filesystem_path,
-            'instrumentation.py',
-            )
+        if self._filesystem_path is not None:
+            instrumentation_module_file_path = os.path.join(
+                self._filesystem_path,
+                'instrumentation.py',
+                )
+        else:
+            instrumentation_module_file_path = None
         self._instrumentation_module_manager = \
             managers.FileManager(
             instrumentation_module_file_path,
@@ -42,10 +45,13 @@ class ScorePackageManager(PackageManager):
             wranglers.MaterialPackageManagerWrangler(
             session=self._session,
             )
-        filesystem_path = os.path.join(
-            self._filesystem_path, 
-            'score_templates',
-            )
+        if self._filesystem_path is not None:
+            filesystem_path = os.path.join(
+                self._filesystem_path, 
+                'score_templates',
+                )
+        else:
+            filesystem_path = None
         self._score_template_directory_manager = \
             managers.DirectoryManager(
             filesystem_path=filesystem_path,

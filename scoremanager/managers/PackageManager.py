@@ -23,12 +23,14 @@ class PackageManager(DirectoryManager):
                     package_path)
         else:
             filesystem_path = package_path
-        assert '.' not in filesystem_path, repr(filesystem_path)
+        if filesystem_path is not None:
+            assert '.' not in filesystem_path, repr(filesystem_path)
         self._filesystem_path = filesystem_path
         package_path = \
             self._configuration.filesystem_path_to_package_path(
                 filesystem_path)
-        assert os.path.sep not in package_path, repr(package_path)
+        if package_path is not None:
+            assert os.path.sep not in package_path, repr(package_path)
         self._package_path = package_path
 
     ### PRIVATE PROPERTIES ###

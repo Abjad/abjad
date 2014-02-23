@@ -75,7 +75,7 @@ class Session(abctools.AbjadObject):
         self._command_history = []
         self._configuration = core.ScoreManagerConfiguration()
         self._controller_stack = []
-        self._controllers_visited = set()
+        self._controllers_visited = []
         self._current_score_snake_case_name = None
         self._display_pitch_ranges_with_numbered_pitches = False
         self._enable_where = False
@@ -214,7 +214,8 @@ class Session(abctools.AbjadObject):
 
     def _push_controller(self, controller):
         self.controller_stack.append(controller)
-        self._controllers_visited.add(controller)
+        if controller not in self._controllers_visited:
+            self._controllers_visited.append(controller)
         self._last_controller = controller
 
     def _reinitialize(self):
@@ -311,9 +312,9 @@ class Session(abctools.AbjadObject):
             ::
 
                 >>> session.controllers_visited
-                set([])
+                []
 
-        Returs set.
+        Returs list.
         '''
         return self._controllers_visited
 
