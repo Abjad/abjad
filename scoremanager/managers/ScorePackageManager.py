@@ -421,12 +421,12 @@ class ScorePackageManager(PackageManager):
         self._session.io_manager.display([line, ''])
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string("type 'clobberscore' to proceed")
-        with self.backtracking:
+        with self._backtracking:
             should_clobber = getter._run()
         if self._session._backtrack():
             return
         if should_clobber == 'clobberscore':
-            with self.backtracking:
+            with self._backtracking:
                 self._remove()
             if self._session._backtrack():
                 return

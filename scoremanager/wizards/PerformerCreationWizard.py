@@ -39,7 +39,7 @@ class PerformerCreationWizard(Wizard):
                 session=self._session,
                 )
             selector.is_ranged=self.is_ranged
-            with self.backtracking:
+            with self._backtracking:
                 result = selector._run()
             if self._session._backtrack():
                 break
@@ -50,7 +50,7 @@ class PerformerCreationWizard(Wizard):
             performers = []
             for performer_name in performer_names:
                 self._session._push_breadcrumb(self._breadcrumb)
-                with self.backtracking:
+                with self._backtracking:
                     performer = instrumenttools.Performer(performer_name)
                     self.initialize_performer(performer)
                 self._session._pop_breadcrumb()
@@ -109,7 +109,7 @@ class PerformerCreationWizard(Wizard):
             if result in ('skip', ['skip']):
                 break
             elif result in ('more', ['more']):
-                with self.backtracking:
+                with self._backtracking:
                     wizard = wizards.InstrumentCreationWizard(
                         session=self._session, is_ranged=True)
                     instruments = wizard._run()

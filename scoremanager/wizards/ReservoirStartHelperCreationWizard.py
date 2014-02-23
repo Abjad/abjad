@@ -31,7 +31,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
             items.append('start at index n')
             items.append('start at next unused index')
             selector.items = items
-            with self.backtracking:
+            with self._backtracking:
                 function_name = selector._run(clear=clear)
             if self._session._backtrack():
                 break

@@ -445,7 +445,7 @@ class Manager(ScoreManagerObject):
         self._session.io_manager._assign_user_input(pending_user_input)
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_file_name('name of boilerplate asset')
-        with self.backtracking:
+        with self._backtracking:
             boilerplate_file_abjad_asset_name = getter._run()
         if self._session._backtrack():
             return

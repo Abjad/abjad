@@ -86,7 +86,7 @@ class InstrumentEditor(Editor):
 
     def initialize_target(self):
         if self.target is None:
-            with self.backtracking:
+            with self._backtracking:
                 wizard = wizards.InstrumentCreationWizard(
                     is_ranged=True, 
                     session=self._session)

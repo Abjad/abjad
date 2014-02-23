@@ -40,7 +40,7 @@ class InstrumentCreationWizard(Wizard):
         items = instrumenttools.Instrument._list_instrument_names()
         selector.items = items
         selector.is_ranged = self.is_ranged
-        with self.backtracking:
+        with self._backtracking:
             result = selector._run()
         if self._session._backtrack():
             self._session._pop_breadcrumb()
@@ -88,7 +88,7 @@ class InstrumentCreationWizard(Wizard):
             selector = iotools.Selector(session=self._session)
             items = UntunedPercussion.known_untuned_percussion[:]
             selector.items = items
-            with self.backtracking:
+            with self._backtracking:
                 instrument_name = selector._run()
             if self._session._backtrack():
                 return

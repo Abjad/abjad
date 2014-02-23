@@ -85,7 +85,7 @@ class Editor(ScoreManagerObject):
         self._session.io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
         self._session._push_breadcrumb(self._breadcrumb)
-        with self.backtracking:
+        with self._backtracking:
             self.initialize_target()
         self._session._pop_breadcrumb()
         if self._session._backtrack():

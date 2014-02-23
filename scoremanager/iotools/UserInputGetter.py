@@ -172,7 +172,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         include_chevron=True,
         ):
         self._session.io_manager._assign_user_input(pending_user_input)
-        with self.backtracking:
+        with self._backtracking:
             self._present_prompts_and_evaluate_user_input(
                 clear_terminal=clear_terminal,
                 include_chevron=include_chevron,

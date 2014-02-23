@@ -421,7 +421,7 @@ class Wrangler(ScoreManagerObject):
         from scoremanager import editors
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_string('view name')
-        with self.backtracking:
+        with self._backtracking:
             view_name = getter._run()
         if self._session._backtrack():
             return
@@ -435,7 +435,7 @@ class Wrangler(ScoreManagerObject):
         breadcrumb = 'edit {} view'
         breadcrumb = breadcrumb.format(view_name)
         editor.explicit_breadcrumb = breadcrumb
-        with self.backtracking:
+        with self._backtracking:
             editor._run()
         if self._session._backtrack():
             return
@@ -523,7 +523,7 @@ class Wrangler(ScoreManagerObject):
         Returns none.
         '''
         self._session.io_manager._assign_user_input(pending_user_input)
-        with self.backtracking:
+        with self._backtracking:
             asset_filesystem_path = \
                 self.select_asset_filesystem_path()
         if self._session._backtrack():
@@ -664,7 +664,7 @@ class Wrangler(ScoreManagerObject):
         selector = self._session.io_manager.make_selector(where=self._where)
         selector.explicit_breadcrumb = 'select view'
         selector.items = view_names
-        with self.backtracking:
+        with self._backtracking:
             view_name = selector._run()
         if self._session._backtrack():
             return

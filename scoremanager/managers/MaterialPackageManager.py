@@ -889,7 +889,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import wranglers
         material_manager_wrangler = wranglers.MaterialPackageManagerWrangler(
             session=self._session)
-        with self.backtracking:
+        with self._backtracking:
             material_package_manager = \
                 material_manager_wrangler.select_material_manager_class_name_interactively()
         if self._session._backtrack():
@@ -905,7 +905,7 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import wranglers
         stylesheet_file_wrangler = wranglers.StylesheetFileWrangler(
             session=self._session)
-        with self.backtracking:
+        with self._backtracking:
             stylesheet_file_path = \
                 stylesheet_file_wrangler.select_asset_filesystem_path()
         if self._session._backtrack():
@@ -1231,14 +1231,14 @@ class MaterialPackageManager(PackageManager):
         getter = self._session.io_manager.make_getter(where=self._where)
         getter.append_integer_in_range(
             'start at element number', 1, total_elements, default_value=1)
-        with self.backtracking:
+        with self._backtracking:
             start_element_number = getter._run()
         if self._session._backtrack():
             return
         current_element_number = start_element_number
         current_element_index = current_element_number - 1
         while True:
-            with self.backtracking:
+            with self._backtracking:
                 self.edit_user_input_wrapper_at_number(
                     current_element_number, include_newline=False)
             if self._session._backtrack():

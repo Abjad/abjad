@@ -359,7 +359,7 @@ class StylesheetFileWrangler(Wrangler):
         '''
         from scoremanager import managers
         self._session.io_manager._assign_user_input(pending_user_input)
-        with self.backtracking:
+        with self._backtracking:
             storehouse_path = \
                 self.select_storehouse_directory_path(
                 abjad_library=False,

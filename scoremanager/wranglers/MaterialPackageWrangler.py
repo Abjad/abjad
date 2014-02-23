@@ -386,7 +386,7 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns none.
         '''
         self._session.io_manager._assign_user_input(pending_user_input)
-        with self.backtracking:
+        with self._backtracking:
             material_package_path = \
                 self.get_available_package_path()
         if self._session._backtrack():
@@ -402,7 +402,7 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns none.
         '''
         self._session.io_manager._assign_user_input(pending_user_input)
-        with self.backtracking:
+        with self._backtracking:
             package_path = \
                 self.get_available_package_path()
         if self._session._backtrack():
@@ -418,7 +418,7 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns none.
         '''
         self._session.io_manager._assign_user_input(pending_user_input)
-        with self.backtracking:
+        with self._backtracking:
             wrangler = self._material_package_manager_wrangler
             result = wrangler.select_asset_package_path(
                 cache=True, clear=False)
@@ -427,7 +427,7 @@ class MaterialPackageWrangler(PackageWrangler):
         material_package_manager_package_path = result
         material_package_manager_class_name = \
             material_package_manager_package_path.split('.')[-1]
-        with self.backtracking:
+        with self._backtracking:
             material_package_path = \
                 self.get_available_package_path()
         if self._session._backtrack():

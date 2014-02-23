@@ -239,7 +239,7 @@ class PackageWrangler(Wrangler):
         while True:
             getter = self._session.io_manager.make_getter(where=self._where)
             getter.append_space_delimited_lowercase_string('name')
-            with self.backtracking:
+            with self._backtracking:
                 package_name = getter._run()
             if self._session._backtrack():
                 return
@@ -265,7 +265,7 @@ class PackageWrangler(Wrangler):
         Returns none.
         '''
         self._session.io_manager._assign_user_input(pending_user_input)
-        with self.backtracking:
+        with self._backtracking:
             package_path = \
                 self.get_available_package_path()
         if self._session._backtrack():
@@ -300,7 +300,7 @@ class PackageWrangler(Wrangler):
         Returns none.
         '''
         self._session.io_manager._assign_user_input(pending_user_input)
-        with self.backtracking:
+        with self._backtracking:
             asset_package_path = \
                 self.select_asset_package_path(
                 head=head, infinitival_phrase='to rename')
