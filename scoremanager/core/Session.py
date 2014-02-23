@@ -184,6 +184,7 @@ class Session(abctools.AbjadObject):
 
     def _pop_controller(self):
         controller = self.controller_stack.pop()
+        self._hide_secondary_commands = True
 
     def _print_transcript(
         self, 
@@ -211,6 +212,7 @@ class Session(abctools.AbjadObject):
         self.controller_stack.append(controller)
         if controller not in self._controllers_visited:
             self._controllers_visited.append(controller)
+        self._hide_secondary_commands = True
 
     def _reinitialize(self):
         type(self).__init__(self)
