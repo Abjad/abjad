@@ -106,80 +106,6 @@ class MaterialPackageWrangler(PackageWrangler):
         manager = wrangler._initialize_asset_manager(package_path)
         return manager
 
-    def _make_main_menu(self, head=None):
-        main_menu = self._session.io_manager.make_menu(where=self._where)
-        asset_section = main_menu.make_asset_section()
-        asset_menu_entries = self._make_asset_menu_entries(head=head)
-        asset_section.menu_entries = asset_menu_entries
-        command_section = main_menu.make_command_section()
-        command_section.append(('new material - by hand', 'nmh'))
-        command_section.append(('new material - with manager', 'nmm'))
-        return main_menu
-
-    ### PUBLIC METHODS ###
-
-    def make_data_package(
-        self, 
-        metadata=None, 
-        pending_user_input=None,
-        ):
-        r'''Makes data package.
-
-        Returns none.
-        '''
-        self._session.io_manager._assign_user_input(pending_user_input)
-        with self.backtracking:
-            material_package_path = \
-                self.get_available_package_path()
-        if self._session._backtrack():
-            return
-        self._make_data_package(material_package_path, metadata=metadata)
-
-    def make_handmade_material_package(
-        self, 
-        pending_user_input=None,
-        ):
-        r'''Makes handmade material package.
-
-        Returns none.
-        '''
-        self._session.io_manager._assign_user_input(pending_user_input)
-        with self.backtracking:
-            package_path = \
-                self.get_available_package_path()
-        if self._session._backtrack():
-            return
-        self._make_handmade_material_package(package_path)
-
-    def make_managermade_material_package(
-        self, 
-        pending_user_input=None,
-        ):
-        r'''Makes managermade material package.
-
-        Returns none.
-        '''
-        self._session.io_manager._assign_user_input(pending_user_input)
-        with self.backtracking:
-            wrangler = self._material_package_manager_wrangler
-            result = wrangler.select_asset_package_path(
-                cache=True, clear=False)
-        if self._session._backtrack():
-            return
-        material_package_manager_package_path = result
-        material_package_manager_class_name = \
-            material_package_manager_package_path.split('.')[-1]
-        with self.backtracking:
-            material_package_path = \
-                self.get_available_package_path()
-        if self._session._backtrack():
-            return
-        self._make_managermade_material_package(
-            material_package_path, material_package_manager_class_name)
-        manager = self._get_appropriate_material_package_manager(
-            material_package_manager_class_name, material_package_path)
-        manager._run_first_time()
-
     def _list_asset_filesystem_paths(
         self,
         abjad_library=True, 
@@ -290,7 +216,7 @@ class MaterialPackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_package_paths(
+    def _list_asset_package_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -304,7 +230,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_package_paths(
+            >>> for x in wrangler._list_asset_package_paths(
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
@@ -319,7 +245,7 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialPackageWrangler, self)
-        return superclass.list_asset_package_paths(
+        return superclass._list_asset_package_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -372,6 +298,16 @@ class MaterialPackageWrangler(PackageWrangler):
         metadata['should_have_illustration'] = True
         metadata['should_have_user_input_module'] = False
         self._make_material_package(material_package_path, metadata=metadata)
+
+    def _make_main_menu(self, head=None):
+        main_menu = self._session.io_manager.make_menu(where=self._where)
+        asset_section = main_menu.make_asset_section()
+        asset_menu_entries = self._make_asset_menu_entries(head=head)
+        asset_section.menu_entries = asset_menu_entries
+        command_section = main_menu.make_command_section()
+        command_section.append(('new material - by hand', 'nmh'))
+        command_section.append(('new material - with manager', 'nmm'))
+        return main_menu
 
     def _make_managermade_material_package(
         self,
@@ -437,6 +373,70 @@ class MaterialPackageWrangler(PackageWrangler):
         material_package_manager.conditionally_write_stub_user_input_module()
         message = 'material package {!r} created.'.format(package_path)
         self._session.io_manager.proceed(message=message, prompt=prompt)
+
+    ### PUBLIC METHODS ###
+
+    def make_data_package(
+        self, 
+        metadata=None, 
+        pending_user_input=None,
+        ):
+        r'''Makes data package.
+
+        Returns none.
+        '''
+        self._session.io_manager._assign_user_input(pending_user_input)
+        with self.backtracking:
+            material_package_path = \
+                self.get_available_package_path()
+        if self._session._backtrack():
+            return
+        self._make_data_package(material_package_path, metadata=metadata)
+
+    def make_handmade_material_package(
+        self, 
+        pending_user_input=None,
+        ):
+        r'''Makes handmade material package.
+
+        Returns none.
+        '''
+        self._session.io_manager._assign_user_input(pending_user_input)
+        with self.backtracking:
+            package_path = \
+                self.get_available_package_path()
+        if self._session._backtrack():
+            return
+        self._make_handmade_material_package(package_path)
+
+    def make_managermade_material_package(
+        self, 
+        pending_user_input=None,
+        ):
+        r'''Makes managermade material package.
+
+        Returns none.
+        '''
+        self._session.io_manager._assign_user_input(pending_user_input)
+        with self.backtracking:
+            wrangler = self._material_package_manager_wrangler
+            result = wrangler.select_asset_package_path(
+                cache=True, clear=False)
+        if self._session._backtrack():
+            return
+        material_package_manager_package_path = result
+        material_package_manager_class_name = \
+            material_package_manager_package_path.split('.')[-1]
+        with self.backtracking:
+            material_package_path = \
+                self.get_available_package_path()
+        if self._session._backtrack():
+            return
+        self._make_managermade_material_package(
+            material_package_path, material_package_manager_class_name)
+        manager = self._get_appropriate_material_package_manager(
+            material_package_manager_class_name, material_package_path)
+        manager._run_first_time()
 
     ### UI MANIFEST ###
 

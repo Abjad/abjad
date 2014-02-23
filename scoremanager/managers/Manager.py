@@ -237,6 +237,58 @@ class Manager(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
+    def add_assets_to_repository(self, prompt=False):
+        r'''Adds unversioned filesystem assets to repository.
+
+        Returns none.
+        '''
+        line = self._get_score_package_directory_name()
+        line = line + ' ...'
+        self._session.io_manager.display(line, capitalize_first_character=False)
+        process = subprocess.Popen(
+            self._repository_add_command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            )
+        lines = [line.strip() for line in process.stdout.readlines()]
+        lines.append('')
+        self._session.io_manager.display(lines)
+        self._session.io_manager.proceed(prompt=prompt)
+
+    def commit_assets_to_repository(self, commit_message=None, prompt=True):
+        r'''Commits unversioned filesystem assets to repository.
+
+        Returns none.
+        '''
+        if commit_message is None:
+            getter = self._session.io_manager.make_getter(where=self._where)
+            getter.append_string('commit message')
+            commit_message = getter._run(clear_terminal=False)
+            if self._session._backtrack():
+                return
+            line = 'commit message will be: "{}"\n'.format(commit_message)
+            self._session.io_manager.display(line)
+            if not self._session.io_manager.confirm():
+                return
+        lines = []
+        line = self._get_score_package_directory_name()
+        line = line + ' ...'
+        lines.append(line)
+        command = 'svn commit -m "{}" {}'
+        command = command.format(commit_message, self._filesystem_path)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            )
+        lines.extend([line.strip() for line in process.stdout.readlines()])
+        lines.append('')
+        self._session.io_manager.display(
+            lines, 
+            capitalize_first_character=False,
+            )
+        self._session.io_manager.proceed(prompt=prompt)
+
     def copy(
         self, 
         pending_user_input=None,
@@ -261,6 +313,56 @@ class Manager(ScoreManagerObject):
             return
         shutil.copyfile(self._filesystem_path, new_path)
         self._session.io_manager.proceed('asset copied.')
+
+    def display_repository_status(self, prompt=True):
+        r'''Intearctively displays repository status of filesystem assets.
+    
+        Returns none.
+        '''
+        line = self._get_score_package_directory_name()
+        line = line + ' ...'
+        self._session.io_manager.display(line, capitalize_first_character=False)
+        command = 'svn st -u {}'.format(self._filesystem_path)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+        path = self._filesystem_path
+        path = path + os.path.sep
+        clean_lines = []
+        for line in process.stdout.readlines():
+            clean_line = line.strip()
+            clean_line = clean_line.replace(path, '')
+            clean_lines.append(clean_line)
+        clean_lines.append('')
+        if clean_lines and 'svn: warning' in clean_lines[0]:
+            command = 'git st {}'.format(self._filesystem_path)
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                )
+            path = self._filesystem_path
+            path = path + os.path.sep
+            clean_lines = []
+            for line in process.stdout.readlines():
+                clean_line = line.strip()
+                clean_line = clean_line.replace(path, '')
+                clean_lines.append(clean_line)
+            clean_lines.append('')
+        if clean_lines and 'fatal:' in clean_lines[0]:
+            clean_lines = []
+            message = 'versioned by neither Subversion nor Git'
+            clean_lines.append(message)
+            clean_lines.append('')
+        self._session.io_manager.display(
+            clean_lines, 
+            capitalize_first_character=False,
+            )
+        self._session.io_manager.proceed(prompt=prompt)
 
     def remove(
         self, 
@@ -318,6 +420,25 @@ class Manager(ScoreManagerObject):
         if self._rename(new_path):
             self._session.io_manager.proceed('asset renamed.')
 
+    def update_from_repository(self, prompt=True):
+        r'''Updates versioned filesystem assets.
+
+        Returns none.
+        '''
+        line = self._get_score_package_directory_name()
+        line = line + ' ...'
+        self._session.io_manager.display(line, capitalize_first_character=False)
+        command = 'svn up {}'.format(self._filesystem_path)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            )
+        lines = [line.strip() for line in process.stdout.readlines()]
+        lines.append('')
+        self._session.io_manager.display(lines)
+        self._session.io_manager.proceed(prompt=prompt)
+
     def write_boilerplate(
         self, 
         pending_user_input=None,
@@ -339,127 +460,6 @@ class Manager(ScoreManagerObject):
             message = 'boilerplate asset {!r} does not exist.'
             message = message.format(boilerplate_file_abjad_asset_name)
             self._session.io_manager.proceed(message)
-
-    def add_assets_to_repository(self, prompt=False):
-        r'''Adds unversioned filesystem assets to repository.
-
-        Returns none.
-        '''
-        line = self._get_score_package_directory_name()
-        line = line + ' ...'
-        self._session.io_manager.display(line, capitalize_first_character=False)
-        process = subprocess.Popen(
-            self._repository_add_command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            )
-        lines = [line.strip() for line in process.stdout.readlines()]
-        lines.append('')
-        self._session.io_manager.display(lines)
-        self._session.io_manager.proceed(prompt=prompt)
-
-    def commit_assets_to_repository(self, commit_message=None, prompt=True):
-        r'''Commits unversioned filesystem assets to repository.
-
-        Returns none.
-        '''
-        if commit_message is None:
-            getter = self._session.io_manager.make_getter(where=self._where)
-            getter.append_string('commit message')
-            commit_message = getter._run(clear_terminal=False)
-            if self._session._backtrack():
-                return
-            line = 'commit message will be: "{}"\n'.format(commit_message)
-            self._session.io_manager.display(line)
-            if not self._session.io_manager.confirm():
-                return
-        lines = []
-        line = self._get_score_package_directory_name()
-        line = line + ' ...'
-        lines.append(line)
-        command = 'svn commit -m "{}" {}'
-        command = command.format(commit_message, self._filesystem_path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            )
-        lines.extend([line.strip() for line in process.stdout.readlines()])
-        lines.append('')
-        self._session.io_manager.display(
-            lines, 
-            capitalize_first_character=False,
-            )
-        self._session.io_manager.proceed(prompt=prompt)
-
-    def display_repository_status(self, prompt=True):
-        r'''Intearctively displays repository status of filesystem assets.
-    
-        Returns none.
-        '''
-        line = self._get_score_package_directory_name()
-        line = line + ' ...'
-        self._session.io_manager.display(line, capitalize_first_character=False)
-        command = 'svn st -u {}'.format(self._filesystem_path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
-        path = self._filesystem_path
-        path = path + os.path.sep
-        clean_lines = []
-        for line in process.stdout.readlines():
-            clean_line = line.strip()
-            clean_line = clean_line.replace(path, '')
-            clean_lines.append(clean_line)
-        clean_lines.append('')
-        if clean_lines and 'svn: warning' in clean_lines[0]:
-            command = 'git st {}'.format(self._filesystem_path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                )
-            path = self._filesystem_path
-            path = path + os.path.sep
-            clean_lines = []
-            for line in process.stdout.readlines():
-                clean_line = line.strip()
-                clean_line = clean_line.replace(path, '')
-                clean_lines.append(clean_line)
-            clean_lines.append('')
-        if clean_lines and 'fatal:' in clean_lines[0]:
-            clean_lines = []
-            message = 'versioned by neither Subversion nor Git'
-            clean_lines.append(message)
-            clean_lines.append('')
-        self._session.io_manager.display(
-            clean_lines, 
-            capitalize_first_character=False,
-            )
-        self._session.io_manager.proceed(prompt=prompt)
-
-    def update_from_repository(self, prompt=True):
-        r'''Updates versioned filesystem assets.
-
-        Returns none.
-        '''
-        line = self._get_score_package_directory_name()
-        line = line + ' ...'
-        self._session.io_manager.display(line, capitalize_first_character=False)
-        command = 'svn up {}'.format(self._filesystem_path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            )
-        lines = [line.strip() for line in process.stdout.readlines()]
-        lines.append('')
-        self._session.io_manager.display(lines)
-        self._session.io_manager.proceed(prompt=prompt)
 
     ### UI MANIFEST ###
 

@@ -102,7 +102,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
     def _make_asset_menu_entries(self, head=None):
         names = self._list_asset_names(head=head)
-        paths = self.list_asset_package_paths(head=head)
+        paths = self._list_asset_package_paths(head=head)
         assert len(names) == len(paths)
         sequences = (names, [None], [None], paths)
         return sequencetools.zip_sequences(sequences, cyclic=True)
@@ -235,7 +235,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_package_paths(
+    def _list_asset_package_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -249,7 +249,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_package_paths(
+            >>> for x in wrangler._list_asset_package_paths(
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
@@ -266,7 +266,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialPackageManagerWrangler, self)
-        return superclass.list_asset_package_paths(
+        return superclass._list_asset_package_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,

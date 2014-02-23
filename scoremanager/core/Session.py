@@ -175,6 +175,16 @@ class Session(abctools.AbjadObject):
                 result_lines.append(result_line)
         return result_lines
 
+    def _pop_backtrack(self):
+        return self._backtracking_stack.pop()
+
+    def _pop_breadcrumb(self, rollback=True):
+        if rollback:
+            return self._breadcrumb_stack.pop()
+
+    def _pop_controller(self):
+        return self.controller_stack.pop()
+
     def _print_transcript(
         self, 
         include_user_input=True, 
@@ -186,16 +196,6 @@ class Session(abctools.AbjadObject):
             elif entry.is_system_display and include_system_display:
                 print entry
 
-    def _pop_backtrack(self):
-        return self._backtracking_stack.pop()
-
-    def _pop_breadcrumb(self, rollback=True):
-        if rollback:
-            return self._breadcrumb_stack.pop()
-
-    def _pop_controller(self):
-        return self.controller_stack.pop()
-
     def _push_backtrack(self):
         if self._backtracking_stack:
             last_number = self._backtracking_stack[-1]
@@ -203,20 +203,20 @@ class Session(abctools.AbjadObject):
         else:
             self._backtracking_stack.append(0)
 
-    def _push_controller(self, controller):
-        self.controller_stack.append(controller)
-        self._last_controller = controller
-
     def _push_breadcrumb(self, breadcrumb, rollback=True):
         if rollback:
             self._breadcrumb_stack.append(breadcrumb)
 
-    def _restore_breadcrumbs(self, cache=False):
-        if cache:
-            self._breadcrumb_stack[:] = self._breadcrumb_cache_stack.pop()
+    def _push_controller(self, controller):
+        self.controller_stack.append(controller)
+        self._last_controller = controller
 
     def _reinitialize(self):
         type(self).__init__(self)
+
+    def _restore_breadcrumbs(self, cache=False):
+        if cache:
+            self._breadcrumb_stack[:] = self._breadcrumb_cache_stack.pop()
 
     ### PUBLIC PROPERTIES ###
 
@@ -424,6 +424,35 @@ class Session(abctools.AbjadObject):
                 session=self,
                 )
 
+    @apply
+    def current_score_snake_case_name():
+        def fget(self):
+            r'''Gets and sets snake-case current score name of session.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.current_score_snake_case_name is None
+                    True
+
+            ..  container:: example
+
+                ::
+
+                    >>> session_in_score.current_score_snake_case_name
+                    'foo'
+
+            Returns string or none.
+            '''
+            return self._snake_case_current_score_name
+        def fset(self, current_score_snake_case_name):
+            assert isinstance(current_score_snake_case_name, (str, type(None)))
+            if isinstance(current_score_snake_case_name, str):
+                assert '.' not in current_score_snake_case_name
+            self._snake_case_current_score_name = current_score_snake_case_name
+        return property(**locals())
+
     @property
     def current_segments_directory_path(self):
         r'''Gets session current segments directory path.
@@ -454,26 +483,6 @@ class Session(abctools.AbjadObject):
             path = wrangler._get_current_directory_path_of_interest()
             return path
 
-    @apply
-    def write_transcript():
-        def fget(self):
-            r'''Gets and sets flag to dump transcript at end of session.
-
-            ..  container:: example
-
-                ::
-
-                    >>> session.write_transcript
-                    False
-
-            Returns boolean.
-            '''
-            return self._write_transcript
-        def fset(self, write_transcript):
-            assert isinstance(write_transcript, bool)
-            self._write_transcript = write_transcript
-        return property(**locals())
-
     @property
     def explicit_command_history(self):
         r'''Gets session explicit command history.
@@ -494,28 +503,6 @@ class Session(abctools.AbjadObject):
             else:
                 result.append(command)
         return result
-
-    @apply
-    def hide_secondary_commands():
-        def fget(self):
-            r'''Gets and sets flag indicating that hidden menu sections
-            are hidden.
-
-            ..  container:: example
-
-                ::
-
-                    >>> session.hide_secondary_commands
-                    True
-
-            Returns boolean.
-            '''
-            return self._hide_secondary_commands
-        def fset(self, hide_secondary_commands):
-            assert isinstance(hide_secondary_commands, bool)
-            self._hide_secondary_commands = \
-                hide_secondary_commands
-        return property(**locals())
 
     @property
     def hide_hidden_commands(self):
@@ -552,6 +539,28 @@ class Session(abctools.AbjadObject):
             self._hide_next_redraw = hide_next_redraw
         return property(**locals())
 
+    @apply
+    def hide_secondary_commands():
+        def fget(self):
+            r'''Gets and sets flag indicating that hidden menu sections
+            are hidden.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.hide_secondary_commands
+                    True
+
+            Returns boolean.
+            '''
+            return self._hide_secondary_commands
+        def fset(self, hide_secondary_commands):
+            assert isinstance(hide_secondary_commands, bool)
+            self._hide_secondary_commands = \
+                hide_secondary_commands
+        return property(**locals())
+
     @property
     def io_manager(self):
         r'''Gets session IO manager.
@@ -566,21 +575,6 @@ class Session(abctools.AbjadObject):
         Returns IO manager.
         '''
         return self._io_manager
-
-    @property
-    def transcript(self):
-        r'''Gets session IO transcript.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.transcript
-                Transcript()
-
-        Returns IO transcript.
-        '''
-        return self._transcript
 
     @apply
     def is_autoadding():
@@ -860,6 +854,26 @@ class Session(abctools.AbjadObject):
                 self._session_once_had_user_input = True
         return property(**locals())
 
+    @apply
+    def rewrite_cache():
+        def fget(self):
+            r'''Gets and sets flag to rewrite cache.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.rewrite_cache
+                    False
+
+            Returns boolean.
+            '''
+            return self._rewrite_cache
+        def fset(self, expr):
+            assert isinstance(expr, bool)
+            self._rewrite_cache = expr
+        return property(**locals())
+
     @property
     def score_manager(self):
         r'''Gets session score manager.
@@ -904,55 +918,6 @@ class Session(abctools.AbjadObject):
         '''
         return self._session_once_had_user_input
 
-    @apply
-    def rewrite_cache():
-        def fget(self):
-            r'''Gets and sets flag to rewrite cache.
-
-            ..  container:: example
-
-                ::
-
-                    >>> session.rewrite_cache
-                    False
-
-            Returns boolean.
-            '''
-            return self._rewrite_cache
-        def fset(self, expr):
-            assert isinstance(expr, bool)
-            self._rewrite_cache = expr
-        return property(**locals())
-
-    @apply
-    def current_score_snake_case_name():
-        def fget(self):
-            r'''Gets and sets snake-case current score name of session.
-
-            ..  container:: example
-
-                ::
-
-                    >>> session.current_score_snake_case_name is None
-                    True
-
-            ..  container:: example
-
-                ::
-
-                    >>> session_in_score.current_score_snake_case_name
-                    'foo'
-
-            Returns string or none.
-            '''
-            return self._snake_case_current_score_name
-        def fset(self, current_score_snake_case_name):
-            assert isinstance(current_score_snake_case_name, (str, type(None)))
-            if isinstance(current_score_snake_case_name, str):
-                assert '.' not in current_score_snake_case_name
-            self._snake_case_current_score_name = current_score_snake_case_name
-        return property(**locals())
-
     @property
     def testable_command_history_string(self):
         r'''Gets session testable command history string.
@@ -993,6 +958,21 @@ class Session(abctools.AbjadObject):
             self._transcribe_next_command = transcribe_next_command
         return property(**locals())
 
+    @property
+    def transcript(self):
+        r'''Gets session IO transcript.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.transcript
+                Transcript()
+
+        Returns IO transcript.
+        '''
+        return self._transcript
+
     @apply
     def use_current_user_input_values_as_default():
         def fget(self):
@@ -1032,6 +1012,26 @@ class Session(abctools.AbjadObject):
             if self.pending_user_input is None:
                 return True
         return False
+
+    @apply
+    def write_transcript():
+        def fget(self):
+            r'''Gets and sets flag to dump transcript at end of session.
+
+            ..  container:: example
+
+                ::
+
+                    >>> session.write_transcript
+                    False
+
+            Returns boolean.
+            '''
+            return self._write_transcript
+        def fset(self, write_transcript):
+            assert isinstance(write_transcript, bool)
+            self._write_transcript = write_transcript
+        return property(**locals())
 
     ### PUBLIC METHODS ###
 

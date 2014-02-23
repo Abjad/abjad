@@ -24,7 +24,7 @@ def test_MaterialPackageManager_read_only_attributes_01():
     assert manager.illustration_builder_module_file_path is None
     assert manager.illustration_builder_package_path is None
     assert manager.illustration_ly_file_path is None
-    assert manager.illustration_pdf_fil_path is None
+    assert manager.illustration_pdf_file_path is None
     assert manager.is_handmade
     assert manager.material_definition == [1, 2, 3, 4, 5]
     file_path = os.path.join(
@@ -103,7 +103,7 @@ def test_MaterialPackageManager_read_only_attributes_02():
         'red_sargasso_measures', 
         'illustration.pdf',
         )
-    assert manager.illustration_pdf_fil_path == file_path
+    assert manager.illustration_pdf_file_path == file_path
     assert not manager.is_handmade
     assert manager.is_managermade
     assert manager.material_definition_module_file_path is None
@@ -186,7 +186,7 @@ def test_MaterialPackageManager_read_only_attributes_03():
         'red_notes', 
         'illustration.pdf',
         )
-    assert manager.illustration_pdf_fil_path == file_path
+    assert manager.illustration_pdf_file_path == file_path
     assert manager.illustration_pdf_file_manager is not None
     assert manager.is_handmade
     assert not manager.is_managermade

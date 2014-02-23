@@ -45,6 +45,210 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_manager = self._initialize_asset_manager(result)
             segment_package_manager._run()
 
+    def _list_asset_filesystem_paths(
+        self,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
+        head=None,
+        ):
+        r'''Lists asset filesystem paths.
+
+        Lists abjad segment package filesystem paths:
+
+        ::
+
+            >>> for x in wrangler._list_asset_filesystem_paths(
+            ...     user_library=False, 
+            ...     user_score_packages=False,
+            ...     ):
+            ...     x
+            '.../blue_example_score/segments/segment_01'
+            '.../blue_example_score/segments/segment_02'
+            '.../red_example_score/segments/segment_01'
+            '.../red_example_score/segments/segment_02'
+            '.../red_example_score/segments/segment_03'
+
+        Returns list.
+        '''
+        superclass = super(SegmentPackageWrangler, self)
+        return superclass._list_asset_filesystem_paths(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            head=head,
+            )
+
+    def _list_asset_managers(
+        self,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
+        head=None,
+        ):
+        r'''Lists asset managers.
+
+        ..  container:: example
+
+            List abjad segment package managers:
+
+            ::
+
+                >>> for x in wrangler._list_asset_managers(
+                ...     user_library=False, 
+                ...     user_score_packages=False):
+                ...     x
+                SegmentPackageManager('.../blue_example_score/segments/segment_01')
+                SegmentPackageManager('.../blue_example_score/segments/segment_02')
+                SegmentPackageManager('.../red_example_score/segments/segment_01')
+                SegmentPackageManager('.../red_example_score/segments/segment_02')
+                SegmentPackageManager('.../red_example_score/segments/segment_03')
+
+        ..  container:: example
+
+            List red example score segment package managers:
+
+            ::
+
+                >>> head = 'scoremanager.scorepackages.red_example_score'
+                >>> for x in wrangler._list_asset_managers(head=head):
+                ...     x
+                SegmentPackageManager('.../red_example_score/segments/segment_01')
+                SegmentPackageManager('.../red_example_score/segments/segment_02')
+                SegmentPackageManager('.../red_example_score/segments/segment_03')
+
+        Returns list.
+        '''
+        superclass = super(SegmentPackageWrangler, self)
+        return superclass._list_asset_managers(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            head=head,
+            )
+
+    def _list_asset_names(
+        self,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
+        head=None,
+        ):
+        r'''Lists asset names.
+
+        ..  container:: example
+
+            List abjad segment package names:
+
+            ::
+
+                >>> for x in wrangler._list_asset_names(
+                ...     user_library=False, 
+                ...     user_score_packages=False,
+                ...     ):
+                ...     x
+                'segment 01'
+                'segment 02'
+                'segment 01'
+                'segment 02'
+                'segment 03'
+
+        ..  container:: example
+
+            List red example score segment package names:
+
+            ::
+
+                >>> head = 'scoremanager.scorepackages.red_example_score'
+                >>> for x in wrangler._list_asset_names(head=head):
+                ...     x
+                'segment 01'
+                'segment 02'
+                'segment 03'
+
+        Returns list.
+        '''
+        superclass = super(SegmentPackageWrangler, self)
+        return superclass._list_asset_names(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            head=head,
+            )
+
+    def _list_asset_package_paths(
+        self,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
+        head=None,
+        ):
+        r'''Lists asset packagesystem paths.
+
+        Lists abjad segment package paths:
+
+        ::
+
+            >>> for x in wrangler._list_asset_package_paths(
+            ...     user_library=False, 
+            ...     user_score_packages=False):
+            ...     x
+            '....blue_example_score.segments.segment_01'
+            '....blue_example_score.segments.segment_02'
+            '....red_example_score.segments.segment_01'
+            '....red_example_score.segments.segment_02'
+            '....red_example_score.segments.segment_03'
+
+        Returns list.
+        '''
+        superclass = super(SegmentPackageWrangler, self)
+        return superclass._list_asset_package_paths(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            head=head,
+            )
+
+    def _list_storehouse_directory_paths(
+        self,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True,
+        ):
+        r'''Lists asset storehouse filesystem paths.
+
+        Lists abjad segment package storehouse filesystem paths:
+
+        ::
+
+            >>> for x in wrangler._list_storehouse_directory_paths(
+            ...     user_library=False, 
+            ...     user_score_packages=False,
+            ...     ):
+            ...     x
+            '.../blue_example_score/segments'
+            '.../green_example_score/segments'
+            '.../red_example_score/segments'
+
+        Returns list.
+        '''
+        superclass = super(SegmentPackageWrangler, self)
+        return superclass._list_storehouse_directory_paths(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            )
+
     def _make_asset(
         self, 
         package_path, 
@@ -227,210 +431,6 @@ class SegmentPackageWrangler(PackageWrangler):
         command = ' '.join(output_pdf_file_paths)
         command = 'open ' + command
         self._session.io_manager.spawn_subprocess(command)
-
-    def _list_asset_filesystem_paths(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset filesystem paths.
-
-        Lists abjad segment package filesystem paths:
-
-        ::
-
-            >>> for x in wrangler._list_asset_filesystem_paths(
-            ...     user_library=False, 
-            ...     user_score_packages=False,
-            ...     ):
-            ...     x
-            '.../blue_example_score/segments/segment_01'
-            '.../blue_example_score/segments/segment_02'
-            '.../red_example_score/segments/segment_01'
-            '.../red_example_score/segments/segment_02'
-            '.../red_example_score/segments/segment_03'
-
-        Returns list.
-        '''
-        superclass = super(SegmentPackageWrangler, self)
-        return superclass._list_asset_filesystem_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            )
-
-    def _list_asset_managers(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset managers.
-
-        ..  container:: example
-
-            List abjad segment package managers:
-
-            ::
-
-                >>> for x in wrangler._list_asset_managers(
-                ...     user_library=False, 
-                ...     user_score_packages=False):
-                ...     x
-                SegmentPackageManager('.../blue_example_score/segments/segment_01')
-                SegmentPackageManager('.../blue_example_score/segments/segment_02')
-                SegmentPackageManager('.../red_example_score/segments/segment_01')
-                SegmentPackageManager('.../red_example_score/segments/segment_02')
-                SegmentPackageManager('.../red_example_score/segments/segment_03')
-
-        ..  container:: example
-
-            List red example score segment package managers:
-
-            ::
-
-                >>> head = 'scoremanager.scorepackages.red_example_score'
-                >>> for x in wrangler._list_asset_managers(head=head):
-                ...     x
-                SegmentPackageManager('.../red_example_score/segments/segment_01')
-                SegmentPackageManager('.../red_example_score/segments/segment_02')
-                SegmentPackageManager('.../red_example_score/segments/segment_03')
-
-        Returns list.
-        '''
-        superclass = super(SegmentPackageWrangler, self)
-        return superclass._list_asset_managers(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            )
-
-    def _list_asset_names(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset names.
-
-        ..  container:: example
-
-            List abjad segment package names:
-
-            ::
-
-                >>> for x in wrangler._list_asset_names(
-                ...     user_library=False, 
-                ...     user_score_packages=False,
-                ...     ):
-                ...     x
-                'segment 01'
-                'segment 02'
-                'segment 01'
-                'segment 02'
-                'segment 03'
-
-        ..  container:: example
-
-            List red example score segment package names:
-
-            ::
-
-                >>> head = 'scoremanager.scorepackages.red_example_score'
-                >>> for x in wrangler._list_asset_names(head=head):
-                ...     x
-                'segment 01'
-                'segment 02'
-                'segment 03'
-
-        Returns list.
-        '''
-        superclass = super(SegmentPackageWrangler, self)
-        return superclass._list_asset_names(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            )
-
-    def list_asset_package_paths(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset packagesystem paths.
-
-        Lists abjad segment package paths:
-
-        ::
-
-            >>> for x in wrangler.list_asset_package_paths(
-            ...     user_library=False, 
-            ...     user_score_packages=False):
-            ...     x
-            '....blue_example_score.segments.segment_01'
-            '....blue_example_score.segments.segment_02'
-            '....red_example_score.segments.segment_01'
-            '....red_example_score.segments.segment_02'
-            '....red_example_score.segments.segment_03'
-
-        Returns list.
-        '''
-        superclass = super(SegmentPackageWrangler, self)
-        return superclass.list_asset_package_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            )
-
-    def _list_storehouse_directory_paths(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True,
-        ):
-        r'''Lists asset storehouse filesystem paths.
-
-        Lists abjad segment package storehouse filesystem paths:
-
-        ::
-
-            >>> for x in wrangler._list_storehouse_directory_paths(
-            ...     user_library=False, 
-            ...     user_score_packages=False,
-            ...     ):
-            ...     x
-            '.../blue_example_score/segments'
-            '.../green_example_score/segments'
-            '.../red_example_score/segments'
-
-        Returns list.
-        '''
-        superclass = super(SegmentPackageWrangler, self)
-        return superclass._list_storehouse_directory_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            )
 
     ### UI MANIFEST ###
 

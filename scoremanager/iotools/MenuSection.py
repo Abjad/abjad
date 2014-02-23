@@ -253,25 +253,6 @@ class MenuSection(AbjadObject):
         return property(**locals())
 
     @apply
-    def is_secondary():
-        def fget(self):
-            r'''Is true when menu section is hidden. 
-            Otherwise false:
-
-            ::
-
-                >>> menu_section.is_secondary
-                False
-
-            Returns boolean.
-            '''
-            return self._is_secondary
-        def fset(self, expr):
-            if not self.menu_entries:
-                self._is_secondary = expr
-        return property(**locals())
-
-    @apply
     def is_numbered():
         def fget(self):
             r'''Is true when menu section is numbered. 
@@ -307,6 +288,25 @@ class MenuSection(AbjadObject):
         def fset(self, expr):
             if not self.menu_entries:
                 self._is_ranged = expr
+        return property(**locals())
+
+    @apply
+    def is_secondary():
+        def fget(self):
+            r'''Is true when menu section is hidden. 
+            Otherwise false:
+
+            ::
+
+                >>> menu_section.is_secondary
+                False
+
+            Returns boolean.
+            '''
+            return self._is_secondary
+        def fset(self, expr):
+            if not self.menu_entries:
+                self._is_secondary = expr
         return property(**locals())
 
     @apply

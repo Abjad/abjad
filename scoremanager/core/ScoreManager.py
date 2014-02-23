@@ -70,7 +70,7 @@ class ScoreManager(ScoreManagerObject):
             self._user_input_to_action[result](self)
         else:
             wrangler = self._score_package_wrangler
-            if result in wrangler.list_visible_asset_package_paths():
+            if result in wrangler._list_visible_asset_package_paths():
                 self.manage_score(result)
 
     def _make_main_menu(self):

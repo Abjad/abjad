@@ -158,6 +158,28 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return path
 
     @property
+    def abjad_score_package_names(self):
+        r'''Gets abjad score package names.
+
+        ..  container:: example
+
+            ::
+
+                >>> for x in configuration.abjad_score_package_names:
+                ...     x
+                'blue_example_score'
+                'green_example_score'
+                'red_example_score'
+
+        Returns tuple of strings.
+        '''
+        return (
+            'blue_example_score',
+            'green_example_score',
+            'red_example_score',
+            )
+
+    @property
     def abjad_score_packages_directory_path(self):
         r'''Gets abjad score packages directory path.
 
@@ -194,28 +216,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             'stylesheets',
             )
         return path
-
-    @property
-    def abjad_score_package_names(self):
-        r'''Gets abjad score package names.
-
-        ..  container:: example
-
-            ::
-
-                >>> for x in configuration.abjad_score_package_names:
-                ...     x
-                'blue_example_score'
-                'green_example_score'
-                'red_example_score'
-
-        Returns tuple of strings.
-        '''
-        return (
-            'blue_example_score',
-            'green_example_score',
-            'red_example_score',
-            )
 
     @property
     def cache_file_path(self):

@@ -72,64 +72,6 @@ class ScorePackageWrangler(PackageWrangler):
     def _handle_main_menu_result(self):
         self._session.io_manager.print_not_yet_implemented()
 
-    def _make_asset_menu_entries(self, head=None):
-        menuing_pairs = \
-            self.list_visible_asset_package_path_and_score_title_pairs()
-        tmp = stringtools.strip_diacritics_from_binary_string
-        menuing_pairs.sort(key=lambda x: tmp(x[1]))
-        menuing_entries = [(x[1], None, None, x[0]) for x in menuing_pairs]
-        return menuing_entries
-
-    def _make_main_menu(self):
-        self._session.io_manager.print_not_yet_implemented()
-
-    ### PUBLIC METHODS ###
-
-    def fix_visible_assets(self, prompt=True):
-        r'''Fixes visible assets.
-
-        Returns result list.
-        '''
-        results = []
-        for asset_manager in self.list_visible_asset_managers():
-            result = asset_manager.fix(
-                prompt=False,
-                )
-            results.append(result)
-        self._session.io_manager.proceed(prompt=prompt)
-        return results
-
-    def make_asset(
-        self, 
-        rollback=False,
-        pending_user_input=None,
-        ):
-        r'''Makes asset.
-
-        Returns none.
-        '''
-        self._session.io_manager._assign_user_input(pending_user_input)
-        breadcrumb = self._session._pop_breadcrumb(rollback=rollback)
-        getter = self._session.io_manager.make_getter(where=self._where)
-        getter.indent_level = 1
-        getter.prompt_character = ':'
-        getter.capitalize_prompts = False
-        getter.include_newlines = False
-        getter.number_prompts = True
-        getter.append_string('score title')
-        getter.append_snake_case_package_name('package name')
-        getter.append_integer_in_range('year', start=1, allow_none=True)
-        result = getter._run()
-        if self._session._backtrack():
-            return
-        title, score_package_name, year = result
-        self._make_asset(score_package_name)
-        score_package_manager = self._initialize_asset_manager(
-            score_package_name)
-        score_package_manager._add_metadatum('title', title)
-        score_package_manager.year_of_completion = year
-        self._session._push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
-
     def _list_asset_filesystem_paths(
         self,
         abjad_library=True, 
@@ -230,7 +172,7 @@ class ScorePackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_package_paths(
+    def _list_asset_package_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -244,7 +186,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_asset_package_paths(
+            >>> for x in wrangler._list_asset_package_paths(
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
@@ -255,7 +197,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(ScorePackageWrangler, self)
-        return superclass.list_asset_package_paths(
+        return superclass._list_asset_package_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -293,7 +235,7 @@ class ScorePackageWrangler(PackageWrangler):
             user_score_packages=user_score_packages,
             )
 
-    def list_visible_asset_filesystem_paths(
+    def _list_visible_asset_filesystem_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -307,7 +249,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_visible_asset_filesystem_paths(
+            >>> for x in wrangler._list_visible_asset_filesystem_paths(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -319,7 +261,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         result = []
-        for visible_asset_manager in self.list_visible_asset_managers(
+        for visible_asset_manager in self._list_visible_asset_managers(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -329,7 +271,7 @@ class ScorePackageWrangler(PackageWrangler):
             result.append(visible_asset_manager._filesystem_path)
         return result
 
-    def list_visible_asset_managers(
+    def _list_visible_asset_managers(
         self,
         abjad_library=True, 
         user_library=True,
@@ -343,7 +285,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_visible_asset_managers(
+            >>> for x in wrangler._list_visible_asset_managers(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -378,7 +320,7 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append(asset_manager)
         return result
 
-    def list_visible_asset_package_path_and_score_title_pairs(
+    def _list_visible_asset_package_path_and_score_title_pairs(
         self,
         abjad_library=True, 
         user_library=True,
@@ -392,7 +334,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_visible_asset_package_path_and_score_title_pairs(
+            >>> for x in wrangler._list_visible_asset_package_path_and_score_title_pairs(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -441,7 +383,7 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append((asset_manager._package_path, title_with_year))
         return result
 
-    def list_visible_asset_package_paths(
+    def _list_visible_asset_package_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -455,7 +397,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.list_visible_asset_package_paths(
+            >>> for x in wrangler._list_visible_asset_package_paths(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -467,7 +409,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         result = []
-        for filesystem_path in self.list_visible_asset_filesystem_paths(
+        for filesystem_path in self._list_visible_asset_filesystem_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -478,13 +420,26 @@ class ScorePackageWrangler(PackageWrangler):
             result.append(package_path)
         return result
 
+    def _make_asset_menu_entries(self, head=None):
+        menuing_pairs = \
+            self._list_visible_asset_package_path_and_score_title_pairs()
+        tmp = stringtools.strip_diacritics_from_binary_string
+        menuing_pairs.sort(key=lambda x: tmp(x[1]))
+        menuing_entries = [(x[1], None, None, x[0]) for x in menuing_pairs]
+        return menuing_entries
+
+    def _make_main_menu(self):
+        self._session.io_manager.print_not_yet_implemented()
+
+    ### PUBLIC METHODS ###
+
     def add_assets_to_repository(self, prompt=True):
         r'''Adds assets to repository.
 
         Returns none.
         '''
-        if hasattr(self, 'list_visible_asset_managers'):
-            managers = self.list_visible_asset_managers()
+        if hasattr(self, '_list_visible_asset_managers'):
+            managers = self._list_visible_asset_managers()
         else:
             managers = self._list_asset_managers(
                 abjad_library=True, 
@@ -510,8 +465,8 @@ class ScorePackageWrangler(PackageWrangler):
         self._session.io_manager.display(line)
         if not self._session.io_manager.confirm():
             return
-        if hasattr(self, 'list_visible_asset_managers'):
-            managers = self.list_visible_asset_managers()
+        if hasattr(self, '_list_visible_asset_managers'):
+            managers = self._list_visible_asset_managers()
         else:
             managers = self._list_asset_managers(
                 abjad_library=True, 
@@ -531,8 +486,8 @@ class ScorePackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        if hasattr(self, 'list_visible_asset_managers'):
-            managers = self.list_visible_asset_managers()
+        if hasattr(self, '_list_visible_asset_managers'):
+            managers = self._list_visible_asset_managers()
         else:
             managers = self._list_asset_managers(
                 abjad_library=True, 
@@ -544,13 +499,58 @@ class ScorePackageWrangler(PackageWrangler):
             manager.display_repository_status(prompt=False)
         self._session.io_manager.proceed(prompt=prompt)
 
+    def fix_visible_assets(self, prompt=True):
+        r'''Fixes visible assets.
+
+        Returns result list.
+        '''
+        results = []
+        for asset_manager in self._list_visible_asset_managers():
+            result = asset_manager.fix(
+                prompt=False,
+                )
+            results.append(result)
+        self._session.io_manager.proceed(prompt=prompt)
+        return results
+
+    def make_asset(
+        self, 
+        rollback=False,
+        pending_user_input=None,
+        ):
+        r'''Makes asset.
+
+        Returns none.
+        '''
+        self._session.io_manager._assign_user_input(pending_user_input)
+        breadcrumb = self._session._pop_breadcrumb(rollback=rollback)
+        getter = self._session.io_manager.make_getter(where=self._where)
+        getter.indent_level = 1
+        getter.prompt_character = ':'
+        getter.capitalize_prompts = False
+        getter.include_newlines = False
+        getter.number_prompts = True
+        getter.append_string('score title')
+        getter.append_snake_case_package_name('package name')
+        getter.append_integer_in_range('year', start=1, allow_none=True)
+        result = getter._run()
+        if self._session._backtrack():
+            return
+        title, score_package_name, year = result
+        self._make_asset(score_package_name)
+        score_package_manager = self._initialize_asset_manager(
+            score_package_name)
+        score_package_manager._add_metadatum('title', title)
+        score_package_manager.year_of_completion = year
+        self._session._push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
+
     def update_from_repository(self, prompt=True):
         r'''Updates assets from repository.
 
         Returns none.
         '''
-        if hasattr(self, 'list_visible_asset_managers'):
-            managers = self.list_visible_asset_managers()
+        if hasattr(self, '_list_visible_asset_managers'):
+            managers = self._list_visible_asset_managers()
         else:
             managers = self._list_asset_managers(
                 abjad_library=True, 

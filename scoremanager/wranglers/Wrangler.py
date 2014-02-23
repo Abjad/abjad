@@ -170,8 +170,8 @@ class Wrangler(ScoreManagerObject):
         user_score_packages=True, 
         head=None,
         ):
-        if hasattr(self, 'list_visible_asset_managers'):
-            return self.list_visible_asset_managers(head=head)
+        if hasattr(self, '_list_visible_asset_managers'):
+            return self._list_visible_asset_managers(head=head)
         result = []
         for filesystem_path in self._list_asset_filesystem_paths(
             abjad_library=abjad_library,
@@ -273,6 +273,10 @@ class Wrangler(ScoreManagerObject):
         asset_section.menu_entries = asset_menu_entries
         return menu
 
+    @abc.abstractmethod
+    def _make_main_menu(self, head=None):
+        pass
+
     def _make_storehouse_menu_entries(
         self,
         abjad_library=True,
@@ -300,10 +304,6 @@ class Wrangler(ScoreManagerObject):
             keys.append(key)
         sequences = [display_strings, [None], [None], keys]
         return sequencetools.zip_sequences(sequences, cyclic=True)
-
-    @abc.abstractmethod
-    def _make_main_menu(self, head=None):
-        pass
 
     def _read_view_inventory_from_disk(self):
         from scoremanager import managers
@@ -482,23 +482,6 @@ class Wrangler(ScoreManagerObject):
         message = message.format(total_assets_removed, asset_string)
         self._session.io_manager.proceed(message)
 
-    def rename_asset(
-        self,
-        pending_user_input=None,
-        ):
-        r'''Renames asset.
-
-        Returns none.
-        '''
-        self._session.io_manager._assign_user_input(pending_user_input)
-        with self.backtracking:
-            asset_filesystem_path = \
-                self.select_asset_filesystem_path()
-        if self._session._backtrack():
-            return
-        asset_manager = self._initialize_asset_manager(asset_filesystem_path)
-        asset_manager.rename()
-
     def remove_initializer_module(self):
         r'''Removes initializer module.
 
@@ -530,6 +513,23 @@ class Wrangler(ScoreManagerObject):
         '''
         manager = self._get_current_package_manager()
         manager.remove_views_module()
+
+    def rename_asset(
+        self,
+        pending_user_input=None,
+        ):
+        r'''Renames asset.
+
+        Returns none.
+        '''
+        self._session.io_manager._assign_user_input(pending_user_input)
+        with self.backtracking:
+            asset_filesystem_path = \
+                self.select_asset_filesystem_path()
+        if self._session._backtrack():
+            return
+        asset_manager = self._initialize_asset_manager(asset_filesystem_path)
+        asset_manager.rename()
 
     def rewrite_metadata_module(self):
         r'''Rewrites metadata module.

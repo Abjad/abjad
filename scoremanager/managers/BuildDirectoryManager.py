@@ -30,6 +30,26 @@ class BuildDirectoryManager(DirectoryManager):
 
     ### PRIVATE METHODS ###
 
+    def _call_lilypond_on_file_ending_with(self, string):
+        file_path = self._get_file_path_ending_with(string)
+        if file_path:
+            file_manager = self._get_file_manager(file_path)
+            file_manager.call_lilypond()
+        else:
+            message = 'file ending in {!r} not found.'
+            message = message.format(string)
+            self._session.io_manager.proceed(message)
+
+    def _edit_file_ending_with(self, string):
+        file_path = self._get_file_path_ending_with(string)
+        if file_path:
+            file_manager = self._get_file_manager(file_path)
+            file_manager.edit()
+        else:
+            message = 'file ending in {!r} not found.'
+            message = message.format(string)
+            self._session.io_manager.proceed(message)
+
     def _get_file_path_ending_with(self, string):
         for file_name in self._list_directory():
             if file_name.endswith(string):
@@ -86,46 +106,6 @@ class BuildDirectoryManager(DirectoryManager):
             self._open_file_ending_with('score-segments.pdf')
         elif result == 'ts':
             self._typset_file_ending_with('score.tex')
-
-    def _call_lilypond_on_file_ending_with(self, string):
-        file_path = self._get_file_path_ending_with(string)
-        if file_path:
-            file_manager = self._get_file_manager(file_path)
-            file_manager.call_lilypond()
-        else:
-            message = 'file ending in {!r} not found.'
-            message = message.format(string)
-            self._session.io_manager.proceed(message)
-
-    def _edit_file_ending_with(self, string):
-        file_path = self._get_file_path_ending_with(string)
-        if file_path:
-            file_manager = self._get_file_manager(file_path)
-            file_manager.edit()
-        else:
-            message = 'file ending in {!r} not found.'
-            message = message.format(string)
-            self._session.io_manager.proceed(message)
-
-    def _open_file_ending_with(self, string):
-        file_path = self._get_file_path_ending_with(string)
-        if file_path:
-            file_manager = self._get_file_manager(file_path)
-            file_manager.open()
-        else:
-            message = 'file ending in {!r} not found.'
-            message = message.format(string)
-            self._session.io_manager.proceed(message)
-
-    def _typset_file_ending_with(self, string):
-        file_path = self._get_file_path_ending_with(string)
-        if file_path:
-            file_manager = self._get_file_manager(file_path)
-            file_manager.typset_tex_file()
-        else:
-            message = 'file ending in {!r} not found.'
-            message = message.format(string)
-            self._session.io_manager.proceed(message)
 
     def _make_back_cover_menu(self):
         menu = self._session.io_manager.make_menu(where=self._where)
@@ -189,6 +169,16 @@ class BuildDirectoryManager(DirectoryManager):
         command_section.default_index = len(command_section) - 1
         return menu
 
+    def _open_file_ending_with(self, string):
+        file_path = self._get_file_path_ending_with(string)
+        if file_path:
+            file_manager = self._get_file_manager(file_path)
+            file_manager.open()
+        else:
+            message = 'file ending in {!r} not found.'
+            message = message.format(string)
+            self._session.io_manager.proceed(message)
+
     def _trim_lilypond_file(self, file_path):
         lines = []
         with open(file_path, 'r') as file_pointer:
@@ -202,6 +192,16 @@ class BuildDirectoryManager(DirectoryManager):
         lines = ''.join(lines)
         with open(file_path, 'w') as file_pointer:
             file_pointer.write(lines)
+
+    def _typset_file_ending_with(self, string):
+        file_path = self._get_file_path_ending_with(string)
+        if file_path:
+            file_manager = self._get_file_manager(file_path)
+            file_manager.typset_tex_file()
+        else:
+            message = 'file ending in {!r} not found.'
+            message = message.format(string)
+            self._session.io_manager.proceed(message)
 
     ### PUBLIC METHODS ###
 

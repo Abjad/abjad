@@ -124,20 +124,20 @@ class IOManager(IOManager):
             return directive
 
     @staticmethod
-    def _is_score_string(string):
-        if isinstance(string, str):
-            if 3 <= len(string) and 'score'.startswith(string):
-                return True
-            elif string == 's':
-                return True
-        return False
-
-    @staticmethod
     def _is_home_string(string):
         if isinstance(string, str):
             if 3 <= len(string) and 'home'.startswith(string):
                 return True
             elif string == 'h':
+                return True
+        return False
+
+    @staticmethod
+    def _is_score_string(string):
+        if isinstance(string, str):
+            if 3 <= len(string) and 'score'.startswith(string):
+                return True
+            elif string == 's':
                 return True
         return False
 
@@ -296,6 +296,46 @@ class IOManager(IOManager):
             for line in lines:
                 print line
 
+    def edit(self, file_path, line_number=None):
+        r'''Edits `file_path`.
+
+        Returns none.
+        '''
+        if not os.path.isfile(file_path):
+            return
+        if line_number is None:
+            command = 'vim + {}'.format(file_path)
+        else:
+            command = 'vim +{} {}'.format(line_number, file_path)
+        self.spawn_subprocess(command)
+
+    def exec_statement(self, statement=None):
+        r'''Executes `statement`.
+
+        Hides next redraw.
+
+        Returns none.
+        '''
+        lines = []
+        prompt = True
+        if statement is None:
+            statement = self.handle_user_input('>>', include_newline=False)
+        else:
+            prompt = False
+        command = 'from abjad import *'
+        exec(command)
+        try:
+            result = None
+            command = 'result = {}'.format(statement)
+            exec(command)
+            lines.append('{!r}'.format(result))
+        except:
+            lines.append('expression not executable.')
+        lines.append('')
+        if prompt:
+            self.display(lines)
+        self._session.hide_next_redraw = True
+
     def handle_user_input(
         self, 
         prompt_string, 
@@ -365,59 +405,6 @@ class IOManager(IOManager):
             return user_input
         finally:
             readline.set_startup_hook()
-
-    def edit(self, file_path, line_number=None):
-        r'''Edits `file_path`.
-
-        Returns none.
-        '''
-        if not os.path.isfile(file_path):
-            return
-        if line_number is None:
-            command = 'vim + {}'.format(file_path)
-        else:
-            command = 'vim +{} {}'.format(line_number, file_path)
-        self.spawn_subprocess(command)
-
-    def exec_statement(self, statement=None):
-        r'''Executes `statement`.
-
-        Hides next redraw.
-
-        Returns none.
-        '''
-        lines = []
-        prompt = True
-        if statement is None:
-            statement = self.handle_user_input('>>', include_newline=False)
-        else:
-            prompt = False
-        command = 'from abjad import *'
-        exec(command)
-        try:
-            result = None
-            command = 'result = {}'.format(statement)
-            exec(command)
-            lines.append('{!r}'.format(result))
-        except:
-            lines.append('expression not executable.')
-        lines.append('')
-        if prompt:
-            self.display(lines)
-        self._session.hide_next_redraw = True
-
-    def view(self, file_path):
-        r'''Views `file_path`.
-
-        Returns none.
-        '''
-        if not os.path.isfile(file_path):
-            return
-        if file_path.endswith('.pdf'):
-            command = 'open {}'.format(file_path)
-        else:
-            command = 'vim -R {}'.format(file_path)
-        self.spawn_subprocess(command)
 
     def make_getter(self, where=None):
         r'''Makes getter.
@@ -520,6 +507,19 @@ class IOManager(IOManager):
             message = 'source code tracking on.'
         self._session.io_manager.display([message, ''])
         self._session._hide_next_redraw = True
+
+    def view(self, file_path):
+        r'''Views `file_path`.
+
+        Returns none.
+        '''
+        if not os.path.isfile(file_path):
+            return
+        if file_path.endswith('.pdf'):
+            command = 'open {}'.format(file_path)
+        else:
+            command = 'vim -R {}'.format(file_path)
+        self.spawn_subprocess(command)
 
     def view_last_log(self):
         r'''Views last LilyPond log.

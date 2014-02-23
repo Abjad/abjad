@@ -202,23 +202,6 @@ class PackageManager(DirectoryManager):
                 prompt=prompt,
                 )
 
-    def remove_views_module(self, prompt=True):
-        r'''Removes views module.
-
-        Returns none.
-        '''
-        if os.path.isfile(self._views_module_path):
-            if prompt:
-                message = 'remove views module?'
-                if not self._session.io_manager.confirm(message):
-                    return
-            os.remove(self._views_module_path)
-            line = 'views module removed.'
-            self._session.io_manager.proceed(
-                line, 
-                prompt=prompt,
-                )
-
     def remove_metadata_module(self, prompt=True):
         r'''Removes metadata module.
 
@@ -249,6 +232,31 @@ class PackageManager(DirectoryManager):
         if result:
             metadatum_name = result
             self._remove_metadatum(metadatum_name)
+
+    def remove_package(self):
+        r'''Removes package.
+
+        Returns none.
+        '''
+        self._remove()
+        self._session.is_backtracking_locally = True
+
+    def remove_views_module(self, prompt=True):
+        r'''Removes views module.
+
+        Returns none.
+        '''
+        if os.path.isfile(self._views_module_path):
+            if prompt:
+                message = 'remove views module?'
+                if not self._session.io_manager.confirm(message):
+                    return
+            os.remove(self._views_module_path)
+            line = 'views module removed.'
+            self._session.io_manager.proceed(
+                line, 
+                prompt=prompt,
+                )
 
     def rename_package(self):
         r'''Renames package.
@@ -303,6 +311,19 @@ class PackageManager(DirectoryManager):
         self._path = new_directory_path
         self._session.is_backtracking_locally = True
 
+    def rewrite_metadata_module(
+        self, 
+        metadata=None, 
+        prompt=True,
+        ):
+        r'''Rewrites metadata module.
+
+        Returns none.
+        '''
+        if metadata is None:
+            metadata = self._get_metadata()
+        self._write_metadata(metadata)
+
     def set_package_path(self):
         r'''Sets package path.
 
@@ -339,19 +360,6 @@ class PackageManager(DirectoryManager):
         '''
         self.initializer_file_manager.write_boilerplate()
 
-    def rewrite_metadata_module(
-        self, 
-        metadata=None, 
-        prompt=True,
-        ):
-        r'''Rewrites metadata module.
-
-        Returns none.
-        '''
-        if metadata is None:
-            metadata = self._get_metadata()
-        self._write_metadata(metadata)
-
     def write_stub_initializer_module(self):
         r'''Wrties stub initializer module.
 
@@ -361,14 +369,6 @@ class PackageManager(DirectoryManager):
         line = 'stub initializer written.'
         self._session.io_manager.display([line, ''])
         self._session.io_manager.proceed()
-
-    def remove_package(self):
-        r'''Removes package.
-
-        Returns none.
-        '''
-        self._remove()
-        self._session.is_backtracking_locally = True
 
     ### UI MANIFEST ###
 

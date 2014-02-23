@@ -75,27 +75,35 @@ class MaterialPackageManager(PackageManager):
         else:
             raise ValueError(result)
 
-    def _make_main_menu(self):
-        superclass = super(MaterialPackageManager, self)
-        where = self._where
-        main_menu, hidden_section = superclass._make_main_menu(where=where)
-        has_initializer = os.path.isfile(self._initializer_file_path)
-        self._session.io_manager._make_initializer_menu_section(
-            main_menu, 
-            has_initializer=has_initializer,
-            )
-        self._session.io_manager._make_metadata_menu_section(main_menu)
-        self._session.io_manager._make_metadata_module_menu_section(main_menu)
-        if self.should_have_user_input_module:
-            self._make_main_menu_sections_with_user_input_wrapper(
-                main_menu, hidden_section)
+    def _initialize_user_input_wrapper_in_memory(self):
+        from scoremanager import managers
+        if not self.should_have_user_input_module:
+            return
+        if self._package_path.endswith('PackageManager'):
+            parts = self._package_path.split('.')
+            parts = parts[:-1]
+            parent_package_path = '.'.join(parts)
+            package_path = parent_package_path
         else:
-            self._make_main_menu_sections(main_menu, hidden_section)
-        self._make_illystration_ly_menu_section(hidden_section)
-        self._make_illustration_pdf_menu_section(
-            main_menu, hidden_section)
-        self._make_hidden_entries_menu_section(main_menu)
-        return main_menu
+            package_path = self._package_path
+        user_input_module_package_path = '.'.join([
+            package_path,
+            'user_input',
+            ])
+        user_input_module_file_path = \
+            self.configuration.package_path_to_filesystem_path(
+            user_input_module_package_path,
+            is_module=True,
+            )
+        if not os.path.exists(user_input_module_file_path):
+            file(user_input_module_file_path, 'w').write('')
+        user_input_wrapper = self.read_user_input_wrapper_from_disk()
+        if user_input_wrapper:
+            user_input_wrapper._user_input_module_import_statements = \
+                getattr(self, 'user_input_module_import_statements', [])[:]
+        else:
+            user_input_wrapper = self.initialize_empty_user_input_wrapper()
+        return user_input_wrapper
 
     def _make_hidden_entries_menu_section(self, main_menu):
         hidden_section = main_menu.make_command_section(is_secondary=True)
@@ -137,7 +145,7 @@ class MaterialPackageManager(PackageManager):
                 hidden_section.append(
                     ('source stylesheet - edit', 'ssm'))
 
-    def _make_illystration_ly_menu_section(self, hidden_section):
+    def _make_illustration_ly_menu_section(self, hidden_section):
         if self.has_output_material:
             if self.has_illustration_builder_module or \
                 self.has_material_package_manager:
@@ -164,6 +172,43 @@ class MaterialPackageManager(PackageManager):
                 command_section = main_menu.make_command_section()
             hidden_section.append(('output pdf - delete', 'pdfd'))
             command_section.append(('output pdf - view', 'pdfv'))
+
+    def _make_main_menu(self):
+        superclass = super(MaterialPackageManager, self)
+        where = self._where
+        main_menu, hidden_section = superclass._make_main_menu(where=where)
+        has_initializer = os.path.isfile(self._initializer_file_path)
+        self._session.io_manager._make_initializer_menu_section(
+            main_menu, 
+            has_initializer=has_initializer,
+            )
+        self._session.io_manager._make_metadata_menu_section(main_menu)
+        self._session.io_manager._make_metadata_module_menu_section(main_menu)
+        if self.should_have_user_input_module:
+            self._make_main_menu_sections_with_user_input_wrapper(
+                main_menu, hidden_section)
+        else:
+            self._make_main_menu_sections(main_menu, hidden_section)
+        self._make_illustration_ly_menu_section(hidden_section)
+        self._make_illustration_pdf_menu_section(
+            main_menu, hidden_section)
+        self._make_hidden_entries_menu_section(main_menu)
+        return main_menu
+
+    def _make_main_menu_sections(self, menu, hidden_section):
+        self._make_material_definition_menu_section(
+            menu, hidden_section)
+        self._make_output_material_menu_section(
+            menu, hidden_section)
+        self._make_illustration_builder_menu_section(
+            menu, hidden_section)
+
+    def _make_main_menu_sections_with_user_input_wrapper(
+        self, menu, hidden_section):
+        if not self.has_output_material_editor:
+            self._make_user_input_module_menu_section(
+                menu, hidden_section)
+        self._make_output_material_menu_section(menu, hidden_section)
 
     def _make_material_definition_menu_section(
         self,
@@ -231,13 +276,30 @@ class MaterialPackageManager(PackageManager):
         hidden_section.append(
             ('output material - copy canned module', 'omcanned'))
 
-    def _make_main_menu_sections(self, menu, hidden_section):
-        self._make_material_definition_menu_section(
-            menu, hidden_section)
-        self._make_output_material_menu_section(
-            menu, hidden_section)
-        self._make_illustration_builder_menu_section(
-            menu, hidden_section)
+    def _make_user_input_module_menu_section(
+        self,
+        main_menu, 
+        hidden_section,
+        ):
+        menu_entries = self.user_input_wrapper_in_memory.editable_lines
+        numbered_section = main_menu.make_numbered_section()
+        numbered_section.menu_entries = menu_entries
+        command_section = main_menu.make_command_section()
+        command_section.append(('user input - clear', 'uic'))
+        command_section.append(('user input - load demo values', 'uil'))
+        command_section.append(('user input - populate', 'uip'))
+        command_section.append(('user input - show demo values', 'uis'))
+        command_section.append(('user input module - view', 'uimv'))
+        hidden_section.append(('user input - toggle default mode', 'uit'))
+        hidden_section.append(('user input module - delete', 'uimdelete'))
+
+    def _run_first_time(self):
+        self._run(pending_user_input='omi')
+
+    def _write_stub_material_definition_module(self, prompt=True):
+        self.write_stub_music_material_definition()
+        message = 'stub material definition written to disk.'
+        self._session.io_manager.proceed(message, prompt=prompt)
 
     ### PUBLIC PROPERTIES ###
 
@@ -267,7 +329,7 @@ class MaterialPackageManager(PackageManager):
     @property
     def has_illustration_pdf(self):
         if self.should_have_illustration_pdf:
-            return os.path.exists(self.illustration_pdf_fil_path)
+            return os.path.exists(self.illustration_pdf_file_path)
         return False
 
     @property
@@ -366,7 +428,7 @@ class MaterialPackageManager(PackageManager):
         return manager
 
     @property
-    def illustration_pdf_fil_path(self):
+    def illustration_pdf_file_path(self):
         if self.should_have_illustration_pdf:
             return os.path.join(self._filesystem_path, 'illustration.pdf')
 
@@ -616,13 +678,6 @@ class MaterialPackageManager(PackageManager):
             self.write_stub_user_input_module(
                 prompt=prompt)
 
-    def get_tools_package_qualified_repr(self, expr):
-        if hasattr(expr, '_make_storage_format_with_overrides'):
-            return expr._make_storage_format_with_overrides()
-        elif hasattr(expr, '_storage_format_specification'):
-            return format(expr, 'storage')
-        return repr(expr)
-
     def edit_illustration_builder_module(self):
         self.illustration_builder_module_manager.edit()
 
@@ -671,8 +726,60 @@ class MaterialPackageManager(PackageManager):
     def edit_stylesheet_file(self):
         self.stylesheet_file_manager.edit()
 
+    def get_tools_package_qualified_repr(self, expr):
+        if hasattr(expr, '_make_storage_format_with_overrides'):
+            return expr._make_storage_format_with_overrides()
+        elif hasattr(expr, '_storage_format_specification'):
+            return format(expr, 'storage')
+        return repr(expr)
+
+    def manage_stylesheets(self):
+        from scoremanager import wranglers
+        stylesheet_file_wrangler = wranglers.StylesheetFileWrangler(
+            session=self._session)
+        stylesheet_file_wrangler._run()
+
     def remove(self):
         PackageManager.remove(self)
+
+    def remove_illustration_builder_module(self, prompt=True):
+        self.remove_illustration_pdf(prompt=False)
+        if self.has_illustration_builder_module:
+            self.illustration_builder_module_manager._remove()
+
+    def remove_illustration_ly(self, prompt=True):
+        if self.has_illustration_ly:
+            self.illustration_ly_file_manager._remove()
+
+    def remove_illustration_pdf(self, prompt=True):
+        self.remove_illustration_ly(prompt=False)
+        if self.has_illustration_pdf:
+            self.illustration_pdf_file_manager._remove()
+
+    def remove_material_definition_module(self, prompt=True):
+        from scoremanager import managers
+        self.remove_output_material_module(prompt=False)
+        self.remove_illustration_builder_module(prompt=False)
+        if self.has_material_definition_module:
+            manager = managers.FileManager(
+                self.material_definition_module_file_path,
+                session=self._session,
+                )
+            manager._remove()
+
+    def remove_output_material_module(self, prompt=True):
+        self.remove_illustration_builder_module(prompt=False)
+        if self.has_output_material_module:
+            self.output_material_module_manager._remove()
+
+    def remove_user_input_module(self, prompt=True):
+        from scoremanager import managers
+        if self.has_user_input_module:
+            manager = managers.FileManager(
+                self.user_input_module_file_path,
+                session=self._session,
+                )
+            manager._remove()
 
     def rename_package(self):
         base_name = os.path.basename(self._filesystem_path)
@@ -746,6 +853,38 @@ class MaterialPackageManager(PackageManager):
         self._path = new_directory_path
         self._session.is_backtracking_locally = True
 
+    @staticmethod
+    def replace_in_file(file_path, old, new):
+        with file(file_path, 'r') as file_pointer:
+            new_file_lines = []
+            for line in file_pointer.readlines():
+                line = line.replace(old, new)
+                new_file_lines.append(line)
+        with file(file_path, 'w') as file_pointer:
+            file_pointer.write(''.join(new_file_lines))
+
+    def run_abjad_on_illustration_builder_module(self):
+        self.illustration_builder_module_manager._run_abjad(prompt=True)
+
+    def run_abjad_on_material_definition_module(self):
+        from scoremanager import managers
+        manager = managers.FileManager(
+            self.material_definition_module_file_path,
+            session=self._session,
+            )
+        manager._run_abjad()
+
+    def run_python_on_illustration_builder_module(self):
+        self.illustration_builder_module_manager._run_python(prompt=True)
+
+    def run_python_on_material_definition_module(self):
+        from scoremanager import managers
+        manager = managers.FileManager(
+            self.material_definition_module_file_path,
+            session=self._session,
+            )
+        manager._run_python()
+
     def select_material_package_manager(self, prompt=True):
         from scoremanager import wranglers
         material_manager_wrangler = wranglers.MaterialPackageManagerWrangler(
@@ -786,112 +925,6 @@ class MaterialPackageManager(PackageManager):
     def view_output_material_module(self):
         self.output_material_module_manager.view()
 
-    def write_material_definition_module_boilerplate(self):
-        from scoremanager import managers
-        manager = managers.FileManager(
-            self.material_definition_module_file_path,
-            session=self._session,
-            )
-        manager.write_boilerplate()
-
-    def write_output_material_module_boilerplate(self):
-        from scoremanager import managers
-        manager = managers.FileManager(
-            self.output_material_module_file_path,
-            session=self._session,
-            )
-        manager.write_boilerplate()
-
-    def manage_stylesheets(self):
-        from scoremanager import wranglers
-        stylesheet_file_wrangler = wranglers.StylesheetFileWrangler(
-            session=self._session)
-        stylesheet_file_wrangler._run()
-
-    def remove_illustration_builder_module(self, prompt=True):
-        self.remove_illustration_pdf(prompt=False)
-        if self.has_illustration_builder_module:
-            self.illustration_builder_module_manager._remove()
-
-    def remove_illustration_ly(self, prompt=True):
-        if self.has_illustration_ly:
-            self.illustration_ly_file_manager._remove()
-
-    def remove_illustration_pdf(self, prompt=True):
-        self.remove_illustration_ly(prompt=False)
-        if self.has_illustration_pdf:
-            self.illustration_pdf_file_manager._remove()
-
-    def remove_material_definition_module(self, prompt=True):
-        from scoremanager import managers
-        self.remove_output_material_module(prompt=False)
-        self.remove_illustration_builder_module(prompt=False)
-        if self.has_material_definition_module:
-            manager = managers.FileManager(
-                self.material_definition_module_file_path,
-                session=self._session,
-                )
-            manager._remove()
-
-    def remove_output_material_module(self, prompt=True):
-        self.remove_illustration_builder_module(prompt=False)
-        if self.has_output_material_module:
-            self.output_material_module_manager._remove()
-
-    def remove_user_input_module(self, prompt=True):
-        from scoremanager import managers
-        if self.has_user_input_module:
-            manager = managers.FileManager(
-                self.user_input_module_file_path,
-                session=self._session,
-                )
-            manager._remove()
-
-    @staticmethod
-    def replace_in_file(file_path, old, new):
-        with file(file_path, 'r') as file_pointer:
-            new_file_lines = []
-            for line in file_pointer.readlines():
-                line = line.replace(old, new)
-                new_file_lines.append(line)
-        with file(file_path, 'w') as file_pointer:
-            file_pointer.write(''.join(new_file_lines))
-
-    def run_abjad_on_illustration_builder_module(self):
-        self.illustration_builder_module_manager._run_abjad(prompt=True)
-
-    def run_abjad_on_material_definition_module(self):
-        from scoremanager import managers
-        manager = managers.FileManager(
-            self.material_definition_module_file_path,
-            session=self._session,
-            )
-        manager._run_abjad()
-
-    def _run_first_time(self):
-        self._run(pending_user_input='omi')
-
-    def run_python_on_illustration_builder_module(self):
-        self.illustration_builder_module_manager._run_python(prompt=True)
-
-    def run_python_on_material_definition_module(self):
-        from scoremanager import managers
-        manager = managers.FileManager(
-            self.material_definition_module_file_path,
-            session=self._session,
-            )
-        manager._run_python()
-
-    def write_illustration_ly_and_pdf(self, prompt=True):
-        illustration = self.illustration_with_stylesheet
-        topleveltools.persist(illustration).as_pdf(
-            self.illustration_pdf_fil_path,
-            )
-        self._session.io_manager.proceed(
-            'PDF and LilyPond file written to disk.',
-            prompt=prompt,
-            )
-
     def write_illustration_ly(self, prompt=True):
         illustration = self.illustration_with_stylesheet
         topleveltools.persist(illustration).as_pdf(
@@ -902,14 +935,32 @@ class MaterialPackageManager(PackageManager):
             prompt=prompt,
             )
 
+    def write_illustration_ly_and_pdf(self, prompt=True):
+        illustration = self.illustration_with_stylesheet
+        topleveltools.persist(illustration).as_pdf(
+            self.illustration_pdf_file_path,
+            )
+        self._session.io_manager.proceed(
+            'PDF and LilyPond file written to disk.',
+            prompt=prompt,
+            )
+
     def write_illustration_pdf(self, prompt=True):
         illustration = self.illustration_with_stylesheet
         topleveltools.persist(illustration).as_pdf(
-            self.illustration_pdf_fil_path,
+            self.illustration_pdf_file_path,
             )
         self._session.io_manager.proceed(
             'PDF written to disk.',
             prompt=prompt)
+
+    def write_material_definition_module_boilerplate(self):
+        from scoremanager import managers
+        manager = managers.FileManager(
+            self.material_definition_module_file_path,
+            session=self._session,
+            )
+        manager.write_boilerplate()
 
     def write_output_material(
         self,
@@ -948,23 +999,13 @@ class MaterialPackageManager(PackageManager):
         message = 'output material written to disk.'
         self._session.io_manager.proceed(message, prompt=prompt)
 
-    def _write_stub_material_definition_module(self, prompt=True):
-        self.write_stub_music_material_definition()
-        message = 'stub material definition written to disk.'
-        self._session.io_manager.proceed(message, prompt=prompt)
-
-    def write_stub_music_material_definition(self):
-        lines = []
-        lines.append('# -*- encoding: utf-8 -*-\n')
-        lines.append('from abjad import *\n')
-        lines.append('output_material_module_import_statements = []')
-        lines.append('\n\n\n')
-        line = '{} = None'.format(self.material_package_name)
-        lines.append(line)
-        lines = ''.join(lines)
-        file_pointer = file(self.material_definition_module_file_path, 'w')
-        file_pointer.write(lines)
-        file_pointer.close()
+    def write_output_material_module_boilerplate(self):
+        from scoremanager import managers
+        manager = managers.FileManager(
+            self.output_material_module_file_path,
+            session=self._session,
+            )
+        manager.write_boilerplate()
 
     def write_stub_illustration_builder_module(
         self,
@@ -1003,6 +1044,19 @@ class MaterialPackageManager(PackageManager):
                 file_pointer.write('')
             self._write_stub_material_definition_module(prompt=True)
 
+    def write_stub_music_material_definition(self):
+        lines = []
+        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append('from abjad import *\n')
+        lines.append('output_material_module_import_statements = []')
+        lines.append('\n\n\n')
+        line = '{} = None'.format(self.material_package_name)
+        lines.append(line)
+        lines = ''.join(lines)
+        file_pointer = file(self.material_definition_module_file_path, 'w')
+        file_pointer.write(lines)
+        file_pointer.close()
+
     ### USER INPUT WRAPPER METHODS ###
 
     def has_complete_user_input_wrapper_on_disk(self):
@@ -1039,60 +1093,6 @@ class MaterialPackageManager(PackageManager):
         file_pointer = file(self.user_input_module_file_path, 'w')
         file_pointer.write(lines)
         file_pointer.close()
-
-    def _initialize_user_input_wrapper_in_memory(self):
-        from scoremanager import managers
-        if not self.should_have_user_input_module:
-            return
-        if self._package_path.endswith('PackageManager'):
-            parts = self._package_path.split('.')
-            parts = parts[:-1]
-            parent_package_path = '.'.join(parts)
-            package_path = parent_package_path
-        else:
-            package_path = self._package_path
-        user_input_module_package_path = '.'.join([
-            package_path,
-            'user_input',
-            ])
-        user_input_module_file_path = \
-            self.configuration.package_path_to_filesystem_path(
-            user_input_module_package_path,
-            is_module=True,
-            )
-        if not os.path.exists(user_input_module_file_path):
-            file(user_input_module_file_path, 'w').write('')
-        user_input_wrapper = self.read_user_input_wrapper_from_disk()
-        if user_input_wrapper:
-            user_input_wrapper._user_input_module_import_statements = \
-                getattr(self, 'user_input_module_import_statements', [])[:]
-        else:
-            user_input_wrapper = self.initialize_empty_user_input_wrapper()
-        return user_input_wrapper
-
-    def _make_user_input_module_menu_section(
-        self,
-        main_menu, 
-        hidden_section,
-        ):
-        menu_entries = self.user_input_wrapper_in_memory.editable_lines
-        numbered_section = main_menu.make_numbered_section()
-        numbered_section.menu_entries = menu_entries
-        command_section = main_menu.make_command_section()
-        command_section.append(('user input - clear', 'uic'))
-        command_section.append(('user input - load demo values', 'uil'))
-        command_section.append(('user input - populate', 'uip'))
-        command_section.append(('user input - show demo values', 'uis'))
-        command_section.append(('user input module - view', 'uimv'))
-        hidden_section.append(('user input - toggle default mode', 'uit'))
-        hidden_section.append(('user input module - delete', 'uimdelete'))
-
-    def _make_main_menu_sections_with_user_input_wrapper(
-        self, menu, hidden_section):
-        if not self.has_output_material_editor:
-            self._make_user_input_module_menu_section(
-                menu, hidden_section)
-        self._make_output_material_menu_section(menu, hidden_section)
 
     ### PUBLIC PROPERTIES ###
 
@@ -1144,15 +1144,6 @@ class MaterialPackageManager(PackageManager):
         self._session.io_manager.display(lines)
         self._session.io_manager.proceed(prompt=prompt)
 
-    def initialize_empty_user_input_wrapper(self):
-        from scoremanager import editors
-        user_input_wrapper = editors.UserInputWrapper()
-        user_input_wrapper._user_input_module_import_statements = \
-            getattr(self, 'user_input_module_import_statements', [])[:]
-        for user_input_attribute_name in self.user_input_attribute_names:
-            user_input_wrapper[user_input_attribute_name] = None
-        return user_input_wrapper
-
     def edit_user_input_wrapper_at_number(
         self,
         number,
@@ -1197,14 +1188,14 @@ class MaterialPackageManager(PackageManager):
         wrapper = self.user_input_wrapper_in_memory
         self.write_user_input_wrapper(wrapper)
 
-    def view_user_input_module(
-        self,
-        pending_user_input=None,
-        ):
-        from scoremanager import managers
-        self._session.io_manager._assign_user_input(pending_user_input)
-        file_path = self.user_input_module_file_path
-        self._session.io_manager.view(file_path)
+    def initialize_empty_user_input_wrapper(self):
+        from scoremanager import editors
+        user_input_wrapper = editors.UserInputWrapper()
+        user_input_wrapper._user_input_module_import_statements = \
+            getattr(self, 'user_input_module_import_statements', [])[:]
+        for user_input_attribute_name in self.user_input_attribute_names:
+            user_input_wrapper[user_input_attribute_name] = None
+        return user_input_wrapper
 
     def load_user_input_wrapper_demo_values(self, prompt=False):
         user_input_demo_values = copy.deepcopy(
@@ -1260,6 +1251,15 @@ class MaterialPackageManager(PackageManager):
 
     def swap_user_input_values_default_status(self):
         self._session.swap_user_input_values_default_status()
+
+    def view_user_input_module(
+        self,
+        pending_user_input=None,
+        ):
+        from scoremanager import managers
+        self._session.io_manager._assign_user_input(pending_user_input)
+        file_path = self.user_input_module_file_path
+        self._session.io_manager.view(file_path)
 
     def write_stub_user_input_module(self, prompt=False):
         wrapper = self.initialize_empty_user_input_wrapper()

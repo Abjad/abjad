@@ -6,6 +6,8 @@ from scoremanager.managers.PackageManager import PackageManager
 
 
 class SegmentPackageManager(PackageManager):
+    r'''Segment package manager.
+    '''
 
     ### INITIALIZER ###
 
@@ -62,41 +64,6 @@ class SegmentPackageManager(PackageManager):
         elif result == 'user entered lone return':
             self.edit_asset_definition_module()
 
-    def _view_versioned_file(self, extension):
-        assert extension in ('.ly', '.pdf', '.py')
-        getter = self._session.io_manager.make_getter(where=self._where)
-        last_version_number = self._get_last_version_number()
-        if last_version_number is None:
-            message = 'versions directory empty.'
-            self._session.io_manager.proceed(message)
-            return
-        prompt = 'version number (0-{})'
-        prompt = prompt.format(last_version_number)
-        getter.append_integer(prompt)
-        version_number = getter._run(clear_terminal=False)
-        if self._session._backtrack():
-            return
-        if last_version_number < version_number or \
-            (version_number < 0 and last_version_number < abs(version_number)):
-            message = "version {} doesn't exist yet."
-            message = message.format(version_number)
-            self._session.io_manager.proceed(['', message])
-        if version_number < 0:
-            version_number = last_version_number + version_number + 1
-        version_string = str(version_number).zfill(4)
-        file_name = '{}{}'.format(version_string, extension)
-        file_path = os.path.join(
-            self._filesystem_path,
-            'versions',
-            file_name,
-            )
-        if os.path.isfile(file_path):
-            if extension in ('.ly', '.py'):
-                command = 'vim -R {}'.format(file_path)
-            elif extension == '.pdf':
-                command = 'open {}'.format(file_path)
-            self._session.io_manager.spawn_subprocess(command)
-        
     def _make_main_menu(self):
         superclass = super(SegmentPackageManager, self)
         where = self._where
@@ -133,6 +100,41 @@ class SegmentPackageManager(PackageManager):
         hidden_section.append(('list versions directory', 'vrl'))
         return main_menu
 
+    def _view_versioned_file(self, extension):
+        assert extension in ('.ly', '.pdf', '.py')
+        getter = self._session.io_manager.make_getter(where=self._where)
+        last_version_number = self._get_last_version_number()
+        if last_version_number is None:
+            message = 'versions directory empty.'
+            self._session.io_manager.proceed(message)
+            return
+        prompt = 'version number (0-{})'
+        prompt = prompt.format(last_version_number)
+        getter.append_integer(prompt)
+        version_number = getter._run(clear_terminal=False)
+        if self._session._backtrack():
+            return
+        if last_version_number < version_number or \
+            (version_number < 0 and last_version_number < abs(version_number)):
+            message = "version {} doesn't exist yet."
+            message = message.format(version_number)
+            self._session.io_manager.proceed(['', message])
+        if version_number < 0:
+            version_number = last_version_number + version_number + 1
+        version_string = str(version_number).zfill(4)
+        file_name = '{}{}'.format(version_string, extension)
+        file_path = os.path.join(
+            self._filesystem_path,
+            'versions',
+            file_name,
+            )
+        if os.path.isfile(file_path):
+            if extension in ('.ly', '.py'):
+                command = 'vim -R {}'.format(file_path)
+            elif extension == '.pdf':
+                command = 'open {}'.format(file_path)
+            self._session.io_manager.spawn_subprocess(command)
+        
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -232,6 +234,14 @@ class SegmentPackageManager(PackageManager):
             new_modification_time = os.path.getmtime(output_pdf_file_path)
         if modification_time < new_modification_time and view_asset_pdf:
             self.view_output_pdf()
+
+    def make_versions_directory(self):
+        r'''Makes versions directory.
+
+        Returns none.
+        '''
+        if not os.path.exists(self._get_versions_directory_path()):
+            os.mkdir(self._get_versions_directory_path())
 
     def reinterpret_current_lilypond_file(
         self, 
@@ -383,6 +393,16 @@ class SegmentPackageManager(PackageManager):
             command = 'vim -R {}'.format(output_lilypond_file_path)
             self._session.io_manager.spawn_subprocess(command)
 
+    def view_output_pdf(self):
+        r'''Views output PDF.
+
+        Returns none.
+        '''
+        output_pdf_file_path = self._get_output_pdf_file_path()
+        if os.path.isfile(output_pdf_file_path):
+            command = 'open {}'.format(output_pdf_file_path)
+            self._session.io_manager.spawn_subprocess(command)
+
     def view_versioned_output_ly(self):
         r'''Views output LilyPond file.
 
@@ -403,24 +423,6 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         self._view_versioned_file('.py')
-
-    def make_versions_directory(self):
-        r'''Makes versions directory.
-
-        Returns none.
-        '''
-        if not os.path.exists(self._get_versions_directory_path()):
-            os.mkdir(self._get_versions_directory_path())
-
-    def view_output_pdf(self):
-        r'''Views output PDF.
-
-        Returns none.
-        '''
-        output_pdf_file_path = self._get_output_pdf_file_path()
-        if os.path.isfile(output_pdf_file_path):
-            command = 'open {}'.format(output_pdf_file_path)
-            self._session.io_manager.spawn_subprocess(command)
 
     def write_initializer(self):
         r'''Writes initializer to disk.

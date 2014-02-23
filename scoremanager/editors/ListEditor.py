@@ -97,18 +97,6 @@ class ListEditor(Editor):
 
     ### PUBLIC METHODS ###
 
-    def get_item_from_item_number(self, item_number):
-        try:
-            return self.items[int(item_number) - 1]
-        except:
-            pass
-
-    def initialize_target(self):
-        if self.target is not None:
-            return
-        else:
-            self.target = self.target_class([])
-
     def add_items(self):
         if self.item_creator_class:
             item_creator = self.item_creator_class(
@@ -166,6 +154,18 @@ class ListEditor(Editor):
                 item_editor._run()
                 item_index = int(item_number) - 1
                 self.items[item_index] = item_editor.target
+
+    def get_item_from_item_number(self, item_number):
+        try:
+            return self.items[int(item_number) - 1]
+        except:
+            pass
+
+    def initialize_target(self):
+        if self.target is not None:
+            return
+        else:
+            self.target = self.target_class([])
 
     def move_item(self):
         getter = self._session.io_manager.make_getter(where=self._where)

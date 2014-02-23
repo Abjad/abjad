@@ -118,140 +118,6 @@ class StylesheetFileWrangler(Wrangler):
                 return True
         return False
 
-    def _make_asset_menu_entries(self, head=None, include_extension=False):
-        filesystem_paths = self._list_asset_filesystem_paths(head=head)
-        display_strings = []
-        for filesystem_path in filesystem_paths:
-            display_string = os.path.basename(filesystem_path)
-            annotation = self._filesystem_path_to_annotation(filesystem_path)
-            if annotation:
-                display_string = '{} ({})'.format(display_string, annotation)
-            display_strings.append(display_string)
-        menu_entries = []
-        if display_strings:
-            sequences = (display_strings, [None], [None], filesystem_paths)
-            menu_entries = sequencetools.zip_sequences(sequences, cyclic=True)
-        return menu_entries
-
-    def _make_main_menu(self, head=None):
-        main_menu = self._session.io_manager.make_menu(where=self._where)
-        self._main_menu = main_menu
-        asset_section = main_menu.make_asset_section()
-        main_menu._asset_section = asset_section
-        menu_entries = self._make_asset_menu_entries(
-            head=head,
-            include_extension=True,
-            )
-        asset_section.menu_entries = menu_entries
-        if self._session.current_score_directory_path:
-            command_section = main_menu.make_command_section()
-            if self._get_header_stylesheet_file_path():
-                command_section.append(('header stylesheet - edit', 'h'))
-            if self._get_layout_stylesheet_file_path():
-                command_section.append(('layout stylesheet - edit', 'l'))
-            if self._get_paper_stylesheet_file_path():
-                command_section.append(('paper stylesheet - edit', 'p'))
-        command_section = main_menu.make_command_section()
-        command_section.append(('new', 'new'))
-        command_section.append(('copy', 'cp'))
-        command_section.append(('rename', 'ren'))
-        command_section.append(('remove', 'rm'))
-        return main_menu
-
-    ### PUBLIC METHODS ###
-
-    def edit_asset(
-        self, 
-        filesystem_path,
-        pending_user_input=None,
-        ):
-        r'''Edits asset.
-
-        Returns none.
-        '''
-        self._session.io_manager._assign_user_input(pending_user_input)
-        manager = self._asset_manager_class(
-            filesystem_path=filesystem_path, 
-            session=self._session,
-            )
-        manager.edit()
-
-    def edit_header_stylesheet(
-        self,
-        pending_user_input=None,
-        ):
-        r'''Edits header stylesheet.
-
-        Returns none.
-        '''
-        file_path = self._get_header_stylesheet_file_path()
-        self.edit_asset(file_path)
-
-    def edit_layout_stylesheet(
-        self,
-        pending_user_input=None,
-        ):
-        r'''Edits layout stylesheet.
-
-        Returns none.
-        '''
-        file_path = self._get_layout_stylesheet_file_path()
-        self.edit_asset(file_path)
-
-    def edit_paper_stylesheet(
-        self,
-        pending_user_input=None,
-        ):
-        r'''Edits paper stylesheet.
-
-        Returns none.
-        '''
-        file_path = self._get_paper_stylesheet_file_path()
-        self.edit_asset(file_path)
-
-    def make_asset(
-        self,
-        pending_user_input=None,
-        ):
-        r'''Makes asset.
-
-        Returns none.
-        '''
-        from scoremanager import managers
-        self._session.io_manager._assign_user_input(pending_user_input)
-        with self.backtracking:
-            storehouse_path = \
-                self.select_storehouse_directory_path(
-                abjad_library=False,
-                user_library=True,
-                abjad_score_packages=False,
-                user_score_packages=False,
-                )
-        if self._session._backtrack():
-            return
-        getter = self._session.io_manager.make_getter(where=self._where)
-        getter.append_string('stylesheet name')
-        stylesheet_file_path = getter._run()
-        if self._session._backtrack():
-            return
-        stylesheet_file_path = \
-            stringtools.string_to_accent_free_snake_case(
-            stylesheet_file_path)
-        if not stylesheet_file_path.endswith('.ily'):
-            stylesheet_file_path = stylesheet_file_path + '.ily'
-        stylesheet_file_path = os.path.join(
-            storehouse_path,
-            stylesheet_file_path,
-            )
-        manager = managers.FileManager(
-            stylesheet_file_path, 
-            session=self._session,
-            )
-        if self._session.is_test:
-            manager._make_empty_asset()
-        else:
-            manager.edit()
-
     def _list_asset_filesystem_paths(
         self,
         abjad_library=True, 
@@ -391,6 +257,140 @@ class StylesheetFileWrangler(Wrangler):
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             )
+
+    def _make_asset_menu_entries(self, head=None, include_extension=False):
+        filesystem_paths = self._list_asset_filesystem_paths(head=head)
+        display_strings = []
+        for filesystem_path in filesystem_paths:
+            display_string = os.path.basename(filesystem_path)
+            annotation = self._filesystem_path_to_annotation(filesystem_path)
+            if annotation:
+                display_string = '{} ({})'.format(display_string, annotation)
+            display_strings.append(display_string)
+        menu_entries = []
+        if display_strings:
+            sequences = (display_strings, [None], [None], filesystem_paths)
+            menu_entries = sequencetools.zip_sequences(sequences, cyclic=True)
+        return menu_entries
+
+    def _make_main_menu(self, head=None):
+        main_menu = self._session.io_manager.make_menu(where=self._where)
+        self._main_menu = main_menu
+        asset_section = main_menu.make_asset_section()
+        main_menu._asset_section = asset_section
+        menu_entries = self._make_asset_menu_entries(
+            head=head,
+            include_extension=True,
+            )
+        asset_section.menu_entries = menu_entries
+        if self._session.current_score_directory_path:
+            command_section = main_menu.make_command_section()
+            if self._get_header_stylesheet_file_path():
+                command_section.append(('header stylesheet - edit', 'h'))
+            if self._get_layout_stylesheet_file_path():
+                command_section.append(('layout stylesheet - edit', 'l'))
+            if self._get_paper_stylesheet_file_path():
+                command_section.append(('paper stylesheet - edit', 'p'))
+        command_section = main_menu.make_command_section()
+        command_section.append(('new', 'new'))
+        command_section.append(('copy', 'cp'))
+        command_section.append(('rename', 'ren'))
+        command_section.append(('remove', 'rm'))
+        return main_menu
+
+    ### PUBLIC METHODS ###
+
+    def edit_asset(
+        self, 
+        filesystem_path,
+        pending_user_input=None,
+        ):
+        r'''Edits asset.
+
+        Returns none.
+        '''
+        self._session.io_manager._assign_user_input(pending_user_input)
+        manager = self._asset_manager_class(
+            filesystem_path=filesystem_path, 
+            session=self._session,
+            )
+        manager.edit()
+
+    def edit_header_stylesheet(
+        self,
+        pending_user_input=None,
+        ):
+        r'''Edits header stylesheet.
+
+        Returns none.
+        '''
+        file_path = self._get_header_stylesheet_file_path()
+        self.edit_asset(file_path)
+
+    def edit_layout_stylesheet(
+        self,
+        pending_user_input=None,
+        ):
+        r'''Edits layout stylesheet.
+
+        Returns none.
+        '''
+        file_path = self._get_layout_stylesheet_file_path()
+        self.edit_asset(file_path)
+
+    def edit_paper_stylesheet(
+        self,
+        pending_user_input=None,
+        ):
+        r'''Edits paper stylesheet.
+
+        Returns none.
+        '''
+        file_path = self._get_paper_stylesheet_file_path()
+        self.edit_asset(file_path)
+
+    def make_asset(
+        self,
+        pending_user_input=None,
+        ):
+        r'''Makes asset.
+
+        Returns none.
+        '''
+        from scoremanager import managers
+        self._session.io_manager._assign_user_input(pending_user_input)
+        with self.backtracking:
+            storehouse_path = \
+                self.select_storehouse_directory_path(
+                abjad_library=False,
+                user_library=True,
+                abjad_score_packages=False,
+                user_score_packages=False,
+                )
+        if self._session._backtrack():
+            return
+        getter = self._session.io_manager.make_getter(where=self._where)
+        getter.append_string('stylesheet name')
+        stylesheet_file_path = getter._run()
+        if self._session._backtrack():
+            return
+        stylesheet_file_path = \
+            stringtools.string_to_accent_free_snake_case(
+            stylesheet_file_path)
+        if not stylesheet_file_path.endswith('.ily'):
+            stylesheet_file_path = stylesheet_file_path + '.ily'
+        stylesheet_file_path = os.path.join(
+            storehouse_path,
+            stylesheet_file_path,
+            )
+        manager = managers.FileManager(
+            stylesheet_file_path, 
+            session=self._session,
+            )
+        if self._session.is_test:
+            manager._make_empty_asset()
+        else:
+            manager.edit()
 
     ### UI MANIFEST ###
 

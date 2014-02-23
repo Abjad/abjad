@@ -76,6 +76,101 @@ class PackageWrangler(Wrangler):
                 return True
         return False
 
+    def _list_asset_managers(
+        self,
+        abjad_library=True,
+        user_library=True,
+        abjad_score_packages=True,
+        user_score_packages=True,
+        head=None,
+        ):
+        r'''Lists asset managers.
+
+        Returns list.
+        '''
+        result = []
+        for package_path in self._list_asset_package_paths(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            head=head,
+            ):
+            asset_manager = self._initialize_asset_manager(package_path)
+            result.append(asset_manager)
+        return result
+
+    def _list_asset_package_paths(
+        self,
+        abjad_library=True,
+        user_library=True,
+        abjad_score_packages=True,
+        user_score_packages=True,
+        head=None,
+        ):
+        r'''Lists asset packagesystem paths.
+
+        Returns list.
+        '''
+        result = []
+        for filesystem_path in self._list_asset_filesystem_paths(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            head=head):
+            package_path = \
+                self.configuration.filesystem_path_to_package_path(
+                    filesystem_path)
+            result.append(package_path)
+        return result
+
+    def _list_storehouse_package_paths(
+        self,
+        abjad_library=True,
+        user_library=True,
+        abjad_score_packages=True,
+        user_score_packages=True,
+        ):
+        r'''Lists asset storehouse packagesystem paths.
+
+        Returns list.
+        '''
+        result = []
+        superclass = super(PackageWrangler, self)
+        for filesystem_path in \
+            superclass._list_storehouse_directory_paths(
+            abjad_library=True,
+            user_library=True,
+            abjad_score_packages=True,
+            user_score_packages=True,
+            ):
+            package_path = \
+                self.configuration.filesystem_path_to_package_path(
+                filesystem_path)
+            result.append(package_path)
+        return result
+
+    def _list_visible_asset_package_paths(self, head=None):
+        r'''Lists visible asset packagesystem paths.
+
+        Returns list.
+        '''
+        result = []
+        if hasattr(self, '_list_visible_asset_managers'):
+            for asset_manager in self._list_visible_asset_managers(head=head):
+                result.append(asset_manager._package_path)
+        else:
+            for asset_manager in self._list_asset_managers(
+                abjad_library=True,
+                user_library=True,
+                abjad_score_packages=True,
+                user_score_packages=True,
+                head=head,
+                ):
+                result.append(asset_manager._package_path)
+        return result
+
     def _make_asset(self, asset_name):
         assert stringtools.is_snake_case_package_name(asset_name)
         asset_filesystem_path = os.path.join(
@@ -84,14 +179,11 @@ class PackageWrangler(Wrangler):
         package_manager = self._initialize_asset_manager(asset_name)
         package_manager.fix(prompt=False)
 
-    def _make_main_menu(self, head=None):
-        self._session.io_manager.print_not_yet_implemented()
-
     def _make_asset_menu_entries(self, head=None):
         names = self._list_asset_names(head=head)
         keys = len(names) * [None]
         prepopulated_return_values = len(names) * [None]
-        paths = self.list_visible_asset_package_paths(head=head)
+        paths = self._list_visible_asset_package_paths(head=head)
         assert len(names) == len(keys) == len(paths)
         if names:
             sequences = (names, [None], [None], paths)
@@ -110,6 +202,9 @@ class PackageWrangler(Wrangler):
                                 correct_view,
                                 )
             return entries
+
+    def _make_main_menu(self, head=None):
+        self._session.io_manager.print_not_yet_implemented()
 
     @staticmethod
     def _sort_asset_menu_entries_by_view(entries, view):
@@ -177,6 +272,24 @@ class PackageWrangler(Wrangler):
             return
         self._make_asset(package_path)
 
+    def make_empty_package(self, package_path):
+        r'''Makes empty package.
+
+        Returns none.
+        '''
+        if package_path is None:
+            return
+        directory_path = \
+            self.configuration.package_path_to_filesystem_path(
+            package_path)
+        if not os.path.exists(directory_path):
+            os.mkdir(directory_path)
+            initializer_file_path = os.path.join(
+                directory_path, '__init__.py')
+            file_reference = file(initializer_file_path, 'w')
+            file_reference.write('')
+            file_reference.close()
+
     def rename_asset(
         self, 
         head=None,
@@ -230,119 +343,6 @@ class PackageWrangler(Wrangler):
         self._session._pop_breadcrumb()
         self._session._restore_breadcrumbs(cache=cache)
         return result
-
-    def _list_asset_managers(
-        self,
-        abjad_library=True,
-        user_library=True,
-        abjad_score_packages=True,
-        user_score_packages=True,
-        head=None,
-        ):
-        r'''Lists asset managers.
-
-        Returns list.
-        '''
-        result = []
-        for package_path in self.list_asset_package_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            ):
-            asset_manager = self._initialize_asset_manager(package_path)
-            result.append(asset_manager)
-        return result
-
-    def list_asset_package_paths(
-        self,
-        abjad_library=True,
-        user_library=True,
-        abjad_score_packages=True,
-        user_score_packages=True,
-        head=None,
-        ):
-        r'''Lists asset packagesystem paths.
-
-        Returns list.
-        '''
-        result = []
-        for filesystem_path in self._list_asset_filesystem_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head):
-            package_path = \
-                self.configuration.filesystem_path_to_package_path(
-                    filesystem_path)
-            result.append(package_path)
-        return result
-
-    def list_storehouse_package_paths(
-        self,
-        abjad_library=True,
-        user_library=True,
-        abjad_score_packages=True,
-        user_score_packages=True,
-        ):
-        r'''Lists asset storehouse packagesystem paths.
-
-        Returns list.
-        '''
-        result = []
-        superclass = super(PackageWrangler, self)
-        for filesystem_path in \
-            superclass._list_storehouse_directory_paths(
-            abjad_library=True,
-            user_library=True,
-            abjad_score_packages=True,
-            user_score_packages=True,
-            ):
-            package_path = \
-                self.configuration.filesystem_path_to_package_path(
-                filesystem_path)
-            result.append(package_path)
-        return result
-
-    def list_visible_asset_package_paths(self, head=None):
-        r'''Lists visible asset packagesystem paths.
-
-        Returns list.
-        '''
-        result = []
-        if hasattr(self, 'list_visible_asset_managers'):
-            for asset_manager in self.list_visible_asset_managers(head=head):
-                result.append(asset_manager._package_path)
-        else:
-            for asset_manager in self._list_asset_managers(
-                abjad_library=True,
-                user_library=True,
-                abjad_score_packages=True,
-                user_score_packages=True,
-                head=head,
-                ):
-                result.append(asset_manager._package_path)
-        return result
-
-    def make_empty_package(self, package_path):
-        r'''Makes empty package.
-
-        Returns none.
-        '''
-        if package_path is None:
-            return
-        directory_path = \
-            self.configuration.package_path_to_filesystem_path(
-            package_path)
-        if not os.path.exists(directory_path):
-            os.mkdir(directory_path)
-            initializer_file_path = os.path.join(
-                directory_path, '__init__.py')
-            file_reference = file(initializer_file_path, 'w')
-            file_reference.write('')
-            file_reference.close()
 
     ### UI MANIFEST ###
 
