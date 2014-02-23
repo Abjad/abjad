@@ -28,7 +28,7 @@ def test_MaterialPackageManager_read_only_attributes_01():
     assert manager.is_handmade
     assert manager.material_definition == [1, 2, 3, 4, 5]
     file_path = os.path.join(
-        manager.configuration.abjad_material_packages_directory_path, 
+        manager._configuration.abjad_material_packages_directory_path, 
         'red_numbers', 
         'material_definition.py',
         )
@@ -36,7 +36,7 @@ def test_MaterialPackageManager_read_only_attributes_01():
     string = 'scoremanager.materialpackages.red_numbers.material_definition'
     assert manager.material_definition_package_path == string
     directory_path = os.path.join(
-        manager.configuration.abjad_material_packages_directory_path, 
+        manager._configuration.abjad_material_packages_directory_path, 
         'red_numbers',
         )
     assert manager.material_package_directory == directory_path
@@ -48,7 +48,7 @@ def test_MaterialPackageManager_read_only_attributes_01():
     result = ['red_numbers = [1, 2, 3, 4, 5]']
     assert manager.output_material_module_body_lines == result
     file_path = os.path.join(
-        manager.configuration.abjad_material_packages_directory_path, 
+        manager._configuration.abjad_material_packages_directory_path, 
         'red_numbers', 
         'output_material.py',
         )
@@ -92,14 +92,14 @@ def test_MaterialPackageManager_read_only_attributes_02():
     assert manager.illustration_builder_module_file_path is None
     assert manager.illustration_builder_package_path is None
     file_path = os.path.join(
-        manager.configuration.abjad_material_packages_directory_path, 
+        manager._configuration.abjad_material_packages_directory_path, 
         'red_sargasso_measures', 
         'illustration.ly',
         )
     assert manager.illustration_ly_file_path == file_path
     assert manager.illustration_ly_file_manager is not None
     file_path = os.path.join(
-        manager.configuration.abjad_material_packages_directory_path, 
+        manager._configuration.abjad_material_packages_directory_path, 
         'red_sargasso_measures', 
         'illustration.pdf',
         )
@@ -109,7 +109,7 @@ def test_MaterialPackageManager_read_only_attributes_02():
     assert manager.material_definition_module_file_path is None
     assert manager.material_definition_package_path is None
     file_path = os.path.join(
-        manager.configuration.abjad_material_packages_directory_path, 
+        manager._configuration.abjad_material_packages_directory_path, 
         'red_sargasso_measures',
         )
     assert manager.material_package_directory == file_path
@@ -123,7 +123,7 @@ def test_MaterialPackageManager_read_only_attributes_02():
     assert manager.material_package_name == 'red_sargasso_measures'
     assert manager.output_material_module_body_lines is None
     file_path = os.path.join(
-        manager.configuration.abjad_material_packages_directory_path, 
+        manager._configuration.abjad_material_packages_directory_path, 
         'red_sargasso_measures', 
         'output_material.py',
         )
@@ -139,7 +139,7 @@ def test_MaterialPackageManager_read_only_attributes_02():
     assert manager.should_have_output_material_module
     assert manager.should_have_user_input_module
     file_path = os.path.join(
-        manager.configuration.abjad_material_packages_directory_path, 
+        manager._configuration.abjad_material_packages_directory_path, 
         'red_sargasso_measures', 
         'user_input.py',
         )
@@ -166,7 +166,7 @@ def test_MaterialPackageManager_read_only_attributes_03():
     assert not manager.has_user_input_module
     assert not manager.has_user_input_wrapper_on_disk
     file_path = os.path.join(
-        manager.configuration.abjad_material_packages_directory_path, 
+        manager._configuration.abjad_material_packages_directory_path, 
         'red_notes', 
         'illustration_builder.py',
         )
@@ -175,14 +175,14 @@ def test_MaterialPackageManager_read_only_attributes_03():
     assert manager.illustration_builder_package_path == string
     assert manager.illustration_builder_module_manager is not None
     file_path = os.path.join(
-        manager.configuration.abjad_material_packages_directory_path, 
+        manager._configuration.abjad_material_packages_directory_path, 
         'red_notes', 
         'illustration.ly',
         )
     assert manager.illustration_ly_file_path == file_path
     assert manager.illustration_ly_file_manager is not None
     file_path = os.path.join(
-        manager.configuration.abjad_material_packages_directory_path, 
+        manager._configuration.abjad_material_packages_directory_path, 
         'red_notes', 
         'illustration.pdf',
         )
@@ -191,7 +191,7 @@ def test_MaterialPackageManager_read_only_attributes_03():
     assert manager.is_handmade
     assert not manager.is_managermade
     file_path = os.path.join(
-        manager.configuration.abjad_material_packages_directory_path, 
+        manager._configuration.abjad_material_packages_directory_path, 
         'red_notes', 
         'material_definition.py',
         )
@@ -199,7 +199,7 @@ def test_MaterialPackageManager_read_only_attributes_03():
     string = 'scoremanager.materialpackages.red_notes.material_definition'
     assert manager.material_definition_package_path == string
     file_path = os.path.join(
-        manager.configuration.abjad_material_packages_directory_path, 
+        manager._configuration.abjad_material_packages_directory_path, 
         'red_notes',
         )
     assert manager.material_package_directory == file_path
@@ -211,7 +211,7 @@ def test_MaterialPackageManager_read_only_attributes_03():
     assert all(isinstance(x, Note) for x in manager.material_definition)
     assert manager.output_material_module_body_lines is not None
     file_path = os.path.join(
-        manager.configuration.abjad_material_packages_directory_path, 
+        manager._configuration.abjad_material_packages_directory_path, 
         'red_notes', 
         'output_material.py',
         )

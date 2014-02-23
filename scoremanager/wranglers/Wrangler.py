@@ -143,7 +143,7 @@ class Wrangler(ScoreManagerObject):
             if not directory_path:
                 continue
             storehouse_package_path = \
-                self.configuration.filesystem_path_to_package_path(
+                self._configuration.filesystem_path_to_package_path(
                 directory_path)
             if not os.path.exists(directory_path):
                 continue
@@ -224,7 +224,7 @@ class Wrangler(ScoreManagerObject):
         if abjad_score_packages and \
             self.score_storehouse_path_infix_parts:
             for score_directory_path in \
-                self.configuration.list_score_directory_paths(abjad=True):
+                self._configuration.list_score_directory_paths(abjad=True):
                 parts = [score_directory_path]
                 if self.score_storehouse_path_infix_parts:
                     parts.extend(self.score_storehouse_path_infix_parts)
@@ -232,7 +232,7 @@ class Wrangler(ScoreManagerObject):
                 result.append(storehouse_directory_path)
         if user_score_packages and self.score_storehouse_path_infix_parts:
             for directory_path in \
-                self.configuration.list_score_directory_paths(user=True):
+                self._configuration.list_score_directory_paths(user=True):
                 parts = [directory_path]
                 if self.score_storehouse_path_infix_parts:
                     parts.extend(self.score_storehouse_path_infix_parts)
@@ -402,7 +402,7 @@ class Wrangler(ScoreManagerObject):
         message = message.format(view_count, view_string)
         lines.append(message)
         lines.append('')
-        tab_width = self.configuration.get_tab_width()
+        tab_width = self._configuration.get_tab_width()
         tab = tab_width * ' '
         names = [tab + x for x in names]
         lines.extend(names)

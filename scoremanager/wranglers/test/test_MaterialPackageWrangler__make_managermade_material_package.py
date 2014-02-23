@@ -10,14 +10,14 @@ def test_MaterialPackageWrangler__make_managermade_material_package_01():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.testsargasso'
-    assert not wrangler.configuration.package_exists(string)
+    assert not wrangler._configuration.package_exists(string)
 
     try:
         wrangler._make_managermade_material_package(
             string, 
             'SargassoMeasureMaterialPackageManager',
             )
-        assert wrangler.configuration.package_exists(string)
+        assert wrangler._configuration.package_exists(string)
         manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(string)
         assert manager.is_managermade
         assert manager._list_directory() == [
@@ -31,14 +31,14 @@ def test_MaterialPackageWrangler__make_managermade_material_package_01():
         assert manager.output_material is None
     finally:
         manager._remove()
-        assert not wrangler.configuration.package_exists(string)
+        assert not wrangler._configuration.package_exists(string)
 
 
 def test_MaterialPackageWrangler__make_managermade_material_package_02():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.red_numbers'
-    assert wrangler.configuration.package_exists(string)
+    assert wrangler._configuration.package_exists(string)
     statement = "wrangler._make_managermade_material_package("
     statement += "'scoremanager.materialpackages.red_sargasso_measures"
     statement += "'SargassoMeasureMaterialPackageManager')"
@@ -49,7 +49,7 @@ def test_MaterialPackageWrangler__make_managermade_material_package_03():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.testsargasso'
-    assert not wrangler.configuration.package_exists(string)
+    assert not wrangler._configuration.package_exists(string)
 
     try:
         metadata = {'color': 'red', 'is_colored': True}
@@ -58,7 +58,7 @@ def test_MaterialPackageWrangler__make_managermade_material_package_03():
             'SargassoMeasureMaterialPackageManager', 
             metadata=metadata,
             )
-        assert wrangler.configuration.package_exists(string)
+        assert wrangler._configuration.package_exists(string)
         manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(string)
         assert manager.is_managermade
         assert manager._list_directory() == [
@@ -70,4 +70,4 @@ def test_MaterialPackageWrangler__make_managermade_material_package_03():
         assert manager._get_metadatum('is_colored')
     finally:
         manager._remove()
-        assert not wrangler.configuration.package_exists(string)
+        assert not wrangler._configuration.package_exists(string)

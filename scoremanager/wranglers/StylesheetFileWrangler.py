@@ -26,9 +26,9 @@ class StylesheetFileWrangler(Wrangler):
         superclass.__init__(session=session)
         self._asset_manager_class = managers.FileManager
         self.abjad_storehouse_directory_path = \
-            self.configuration.abjad_stylesheets_directory_path
+            self._configuration.abjad_stylesheets_directory_path
         self.user_storehouse_directory_path = \
-            self.configuration.user_library_stylesheets_directory_path
+            self._configuration.user_library_stylesheets_directory_path
         self.score_storehouse_path_infix_parts = ('stylesheets',)
 
     ### PRIVATE PROPERTIES ###
@@ -50,22 +50,22 @@ class StylesheetFileWrangler(Wrangler):
         from scoremanager import managers
         annotation = None
         if filesystem_path.startswith(
-            self.configuration.abjad_score_packages_directory_path) or \
+            self._configuration.abjad_score_packages_directory_path) or \
             filesystem_path.startswith(
-            self.configuration.user_score_packages_directory_path):
+            self._configuration.user_score_packages_directory_path):
             tmp = os.path.join('stylesheets')
             score_filesystem_path = filesystem_path.rpartition(tmp)[0]
             package_path = \
-                self.configuration.filesystem_path_to_package_path(
+                self._configuration.filesystem_path_to_package_path(
                 score_filesystem_path)
             score_package_manager = managers.ScorePackageManager(
                 package_path=package_path)
             annotation = score_package_manager._get_title()
         elif filesystem_path.startswith(
-            self.configuration.abjad_stylesheets_directory_path):
+            self._configuration.abjad_stylesheets_directory_path):
             annotation = 'Abjad'
         elif filesystem_path.startswith(
-            self.configuration.user_library_stylesheets_directory_path):
+            self._configuration.user_library_stylesheets_directory_path):
             annotation = 'library'
         return annotation
 

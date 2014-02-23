@@ -11,7 +11,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         ::
 
             >>> score_manager = scoremanager.core.ScoreManager()
-            >>> configuration = score_manager.configuration
+            >>> configuration = score_manager._configuration
             >>> configuration
             ScoreManagerConfiguration()
 

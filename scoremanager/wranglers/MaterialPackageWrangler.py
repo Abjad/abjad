@@ -39,9 +39,9 @@ class MaterialPackageWrangler(PackageWrangler):
         self._material_package_manager_wrangler = \
             wranglers.MaterialPackageManagerWrangler(session=self._session)
         self.abjad_storehouse_directory_path = \
-            self.configuration.abjad_material_packages_directory_path
+            self._configuration.abjad_material_packages_directory_path
         self.user_storehouse_directory_path = \
-            self.configuration.user_library_material_packages_directory_path
+            self._configuration.user_library_material_packages_directory_path
         self.score_storehouse_path_infix_parts = ('materials',)
 
     ### PRIVATE PROPERTIES ###
@@ -79,7 +79,7 @@ class MaterialPackageWrangler(PackageWrangler):
                 command = 'from {0}.{1}.{1}'
                 command += ' import {1} as material_package_manager_class'
                 package_path = '.'.join([
-                    self.configuration._user_library_directory_name,
+                    self._configuration._user_library_directory_name,
                     'material_packages',
                     ])
                 command = command.format(
@@ -324,7 +324,7 @@ class MaterialPackageWrangler(PackageWrangler):
         except ImportError:
             command = 'from {} import {} as material_package_manager_class'
             package_path = '.'.join([
-                self.configuration._user_library_directory_name,
+                self._configuration._user_library_directory_name,
                 'material_packages',
                 ])
             command = command.format(
@@ -358,7 +358,7 @@ class MaterialPackageWrangler(PackageWrangler):
         metadata = collections.OrderedDict(metadata or {})
         metadata['is_material_package'] = True
         directory_path = \
-            self.configuration.package_path_to_filesystem_path(
+            self._configuration.package_path_to_filesystem_path(
             package_path)
         assert not os.path.exists(directory_path)
         os.mkdir(directory_path)

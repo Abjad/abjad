@@ -9,7 +9,7 @@ def test_SargassoMeasureMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testsargasso'
-    assert not score_manager.configuration.package_exists(string)
+    assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
             'lmm nmm sargasso testsargasso default '
@@ -38,7 +38,7 @@ def test_SargassoMeasureMaterialPackageManager_01():
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
         assert not \
-            score_manager.configuration.package_exists(string)
+            score_manager._configuration.package_exists(string)
 
 
 def test_SargassoMeasureMaterialPackageManager_02():
@@ -47,7 +47,7 @@ def test_SargassoMeasureMaterialPackageManager_02():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testsargasso'
-    assert not score_manager.configuration.package_exists(string)
+    assert not score_manager._configuration.package_exists(string)
 
     try:
         score_manager._run(pending_user_input=
@@ -77,7 +77,7 @@ def test_SargassoMeasureMaterialPackageManager_02():
         string = 'lmm testsargasso del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
-        assert not score_manager.configuration.package_exists(
+        assert not score_manager._configuration.package_exists(
             string)
 
 
@@ -87,7 +87,7 @@ def test_SargassoMeasureMaterialPackageManager_03():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testsargasso'
-    assert not score_manager.configuration.package_exists(string)
+    assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
             'lmm nmm sargasso testsargasso default '
@@ -117,7 +117,7 @@ def test_SargassoMeasureMaterialPackageManager_03():
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
         assert not \
-            score_manager.configuration.package_exists(string)
+            score_manager._configuration.package_exists(string)
 
 
 def test_SargassoMeasureMaterialPackageManager_04():
@@ -126,7 +126,7 @@ def test_SargassoMeasureMaterialPackageManager_04():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testsargasso'
-    assert not score_manager.configuration.package_exists(string)
+    assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
             'lmm nmm sargasso testsargasso default '
@@ -155,7 +155,7 @@ def test_SargassoMeasureMaterialPackageManager_04():
         string = 'lmm testsargasso del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
-        assert not score_manager.configuration.package_exists(
+        assert not score_manager._configuration.package_exists(
             string)
 
 
@@ -165,7 +165,7 @@ def test_SargassoMeasureMaterialPackageManager_05():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testsargasso'
-    assert not score_manager.configuration.package_exists(string)
+    assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
             'lmm nmm sargasso testsargasso default '
@@ -195,7 +195,7 @@ def test_SargassoMeasureMaterialPackageManager_05():
         string = 'lmm testsargasso del remove default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
-        assert not score_manager.configuration.package_exists(
+        assert not score_manager._configuration.package_exists(
             string)
 
 
@@ -205,7 +205,7 @@ def test_SargassoMeasureMaterialPackageManager_06():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testsargasso'
-    assert not score_manager.configuration.package_exists(string)
+    assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
             'lmm nmm sargasso testsargasso default '
@@ -236,7 +236,7 @@ def test_SargassoMeasureMaterialPackageManager_06():
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
         assert not \
-            score_manager.configuration.package_exists(string)
+            score_manager._configuration.package_exists(string)
 
 
 def test_SargassoMeasureMaterialPackageManager_07():
@@ -245,7 +245,7 @@ def test_SargassoMeasureMaterialPackageManager_07():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testsargasso'
-    assert not score_manager.configuration.package_exists(string)
+    assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
             'lmm nmm sargasso testsargasso default '
@@ -275,7 +275,7 @@ def test_SargassoMeasureMaterialPackageManager_07():
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
         assert not \
-            score_manager.configuration.package_exists(string)
+            score_manager._configuration.package_exists(string)
 
 
 def test_SargassoMeasureMaterialPackageManager_08():
@@ -284,7 +284,7 @@ def test_SargassoMeasureMaterialPackageManager_08():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testsargasso'
-    assert not score_manager.configuration.package_exists(string)
+    assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
             'lmm nmm sargasso testsargasso default '
@@ -332,4 +332,4 @@ def test_SargassoMeasureMaterialPackageManager_08():
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testsargasso'
         assert not \
-            score_manager.configuration.package_exists(string)
+            score_manager._configuration.package_exists(string)

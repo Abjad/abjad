@@ -62,11 +62,11 @@ class Manager(ScoreManagerObject):
     def _get_score_package_directory_name(self):
         line = self._filesystem_path
         line = line.replace(
-            self.configuration.abjad_score_packages_directory_path,
+            self._configuration.abjad_score_packages_directory_path,
             '',
             )
         line = line.replace(
-            self.configuration.user_score_packages_directory_path,
+            self._configuration.user_score_packages_directory_path,
             '',
             )
         line = line.lstrip(os.path.sep)
@@ -220,7 +220,7 @@ class Manager(ScoreManagerObject):
     def _write_boilerplate(self, boilerplate_file_abjad_asset_name):
         if not os.path.exists(boilerplate_file_abjad_asset_name):
             boilerplate_file_abjad_asset_name = os.path.join(
-                self.configuration.boilerplate_directory_path,
+                self._configuration.boilerplate_directory_path,
                 boilerplate_file_abjad_asset_name,
                 )
         if os.path.exists(boilerplate_file_abjad_asset_name):

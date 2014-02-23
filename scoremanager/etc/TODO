@@ -192,5 +192,5 @@
         score_templates > templates
 
 49. Remove all '.'.join() statements. There should be no by-hand package
-    manipulation. Use self.configuration.filesystem_path_to_package_path()
+    manipulation. Use self._configuration.filesystem_path_to_package_path()
     instead.

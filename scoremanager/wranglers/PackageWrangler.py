@@ -23,7 +23,7 @@ class PackageWrangler(Wrangler):
         if self._session.is_in_score:
             parts = []
             current_score_package_path = \
-                self.configuration.filesystem_path_to_package_path(
+                self._configuration.filesystem_path_to_package_path(
                     self._session.current_score_directory_path,
                     )
             parts.append(current_score_package_path)
@@ -31,7 +31,7 @@ class PackageWrangler(Wrangler):
             return '.'.join(parts)
         else:
             package_path = \
-                self.configuration.filesystem_path_to_package_path(
+                self._configuration.filesystem_path_to_package_path(
                     self.abjad_storehouse_directory_path,
                     )
             return package_path
@@ -62,7 +62,7 @@ class PackageWrangler(Wrangler):
     def _initialize_asset_manager(self, package_path):
         if os.path.sep in package_path:
             pacakgesystem_path = \
-            self.configuration.filesystem_path_to_package_path(
+            self._configuration.filesystem_path_to_package_path(
             package_path)
         return self._asset_manager_class(
             package_path=package_path, 
@@ -120,7 +120,7 @@ class PackageWrangler(Wrangler):
             user_score_packages=user_score_packages,
             head=head):
             package_path = \
-                self.configuration.filesystem_path_to_package_path(
+                self._configuration.filesystem_path_to_package_path(
                     filesystem_path)
             result.append(package_path)
         return result
@@ -146,7 +146,7 @@ class PackageWrangler(Wrangler):
             user_score_packages=True,
             ):
             package_path = \
-                self.configuration.filesystem_path_to_package_path(
+                self._configuration.filesystem_path_to_package_path(
                 filesystem_path)
             result.append(package_path)
         return result
@@ -249,7 +249,7 @@ class PackageWrangler(Wrangler):
                 self._current_storehouse_package_path, 
                 package_name,
                 ])
-            if self.configuration.package_exists(package_path):
+            if self._configuration.package_exists(package_path):
                 line = 'Package {!r} already exists.'
                 line = line.format(package_path)
                 self._session.io_manager.display([line, ''])
@@ -280,7 +280,7 @@ class PackageWrangler(Wrangler):
         if package_path is None:
             return
         directory_path = \
-            self.configuration.package_path_to_filesystem_path(
+            self._configuration.package_path_to_filesystem_path(
             package_path)
         if not os.path.exists(directory_path):
             os.mkdir(directory_path)

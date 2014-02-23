@@ -229,8 +229,8 @@ class ScoreManager(ScoreManagerObject):
 
         Returns none.
         '''
-        path = self.configuration.filesystem_path_to_package_path(
-            self.configuration.abjad_material_packages_directory_path,
+        path = self._configuration.filesystem_path_to_package_path(
+            self._configuration.abjad_material_packages_directory_path,
             )
         self._material_package_wrangler._run(
             rollback=True, 
@@ -263,7 +263,7 @@ class ScoreManager(ScoreManagerObject):
 
         Returns none.
         '''
-        path = self.configuration.user_score_packages_directory_path
+        path = self._configuration.user_score_packages_directory_path
         command = 'ajv doctest {}'.format(path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in process.stdout.readlines()]
@@ -280,7 +280,7 @@ class ScoreManager(ScoreManagerObject):
 
         Returns none.
         '''
-        path = self.configuration.user_score_packages_directory_path
+        path = self._configuration.user_score_packages_directory_path
         command = 'py.test -rf {}'.format(path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in process.stdout.readlines()]
@@ -304,7 +304,7 @@ class ScoreManager(ScoreManagerObject):
 
         Returns none.
         '''
-        file_path = self.configuration.cache_file_path
+        file_path = self._configuration.cache_file_path
         self._session.io_manager.open_file(file_path)
 
     def write_cache(self, prompt=True):

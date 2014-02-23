@@ -282,21 +282,6 @@ class Session(abctools.AbjadObject):
         return ' '.join(self.explicit_command_history)
 
     @property
-    def configuration(self):
-        r'''Gets session configuration.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.configuration
-                ScoreManagerConfiguration()
-
-        Returns score manager configuration.
-        '''
-        return self._configuration
-
-    @property
     def controller_stack(self):
         r'''Gets session controller stack.
 
@@ -359,7 +344,7 @@ class Session(abctools.AbjadObject):
             path = wrangler._get_current_directory_path_of_interest()
             return path
         else:
-            return self.configuration.abjad_material_packages_directory_path
+            return self._configuration.abjad_material_packages_directory_path
 
     @property
     def current_score_directory_path(self):
@@ -383,14 +368,14 @@ class Session(abctools.AbjadObject):
         '''
         if self.current_score_snake_case_name:
             if self.current_score_snake_case_name in \
-                self.configuration.abjad_score_package_names:
+                self._configuration.abjad_score_package_names:
                 return os.path.join(
-                    self.configuration.abjad_score_packages_directory_path,
+                    self._configuration.abjad_score_packages_directory_path,
                     self.current_score_snake_case_name,
                     )
             else:
                 return os.path.join(
-                    self.configuration.user_score_packages_directory_path,
+                    self._configuration.user_score_packages_directory_path,
                     self.current_score_snake_case_name,
                     )
 
@@ -418,7 +403,7 @@ class Session(abctools.AbjadObject):
         '''
         from scoremanager import managers
         package_path = \
-            self.configuration.filesystem_path_to_package_path(
+            self._configuration.filesystem_path_to_package_path(
             self.current_score_directory_path)
         if self.is_in_score:
             return managers.ScorePackageManager(

@@ -9,7 +9,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testoctavetrans'
-    assert not score_manager.configuration.package_exists(string)
+    assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
             'lmm nmm octave testoctavetrans default '
@@ -28,7 +28,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageManager_01():
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testoctavetrans'
         assert not \
-            score_manager.configuration.package_exists(string)
+            score_manager._configuration.package_exists(string)
 
 
 def test_OctaveTranspositionMappingInventoryMaterialPackageManager_02():
@@ -37,7 +37,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageManager_02():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testoctavetrans'
-    assert not score_manager.configuration.package_exists(string)
+    assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
             'lmm nmm octave testoctavetrans '
@@ -71,4 +71,4 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageManager_02():
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testoctavetrans'
         assert not \
-            score_manager.configuration.package_exists(string)
+            score_manager._configuration.package_exists(string)

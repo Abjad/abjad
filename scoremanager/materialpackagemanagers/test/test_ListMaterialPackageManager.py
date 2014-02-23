@@ -7,7 +7,7 @@ def test_ListMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'scoremanager.materialpackages.testlist'
-    assert not score_manager.configuration.package_exists(string)
+    assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
             'lmm nmm list testlist '
@@ -28,4 +28,4 @@ def test_ListMaterialPackageManager_01():
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testlist'
         assert not \
-            score_manager.configuration.package_exists(string)
+            score_manager._configuration.package_exists(string)

@@ -7,7 +7,7 @@ import scoremanager
 def test_StylesheetFileWrangler_make_asset_01():
 
     score_manager = scoremanager.core.ScoreManager()
-    configuration = score_manager.configuration
+    configuration = score_manager._configuration
     filesystem_path = os.path.join(
         configuration.user_library_stylesheets_directory_path,
         'test-stylesheet.ily',

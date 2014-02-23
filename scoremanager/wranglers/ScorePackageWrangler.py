@@ -37,9 +37,9 @@ class ScorePackageWrangler(PackageWrangler):
         superclass.__init__(session=session)
         self._asset_manager_class = managers.ScorePackageManager
         self.abjad_storehouse_directory_path = \
-            self.configuration.abjad_score_packages_directory_path
+            self._configuration.abjad_score_packages_directory_path
         self.user_storehouse_directory_path = \
-            self.configuration.user_score_packages_directory_path
+            self._configuration.user_score_packages_directory_path
 
     ### PRIVATE PROPERTIES ###
 
@@ -52,18 +52,18 @@ class ScorePackageWrangler(PackageWrangler):
         if self._session.is_in_score:
             if self._session.current_score_snake_case_name in \
                     sorted(os.listdir(
-                self.configuration.abjad_score_packages_directory_path)):
+                self._configuration.abjad_score_packages_directory_path)):
                 return \
-                    self.configuration.abjad_score_packages_directory_path
+                    self._configuration.abjad_score_packages_directory_path
             else:
-                return self.configuration.user_score_packages_directory_path
+                return self._configuration.user_score_packages_directory_path
         else:
-            return self.configuration.user_score_packages_directory_path
+            return self._configuration.user_score_packages_directory_path
 
     @property
     def _current_storehouse_package_path(self):
         package_path = \
-            self.configuration.filesystem_path_to_package_path(
+            self._configuration.filesystem_path_to_package_path(
             self._current_storehouse_directory_path)
         return package_path
 
@@ -416,7 +416,7 @@ class ScorePackageWrangler(PackageWrangler):
             user_score_packages=user_score_packages,
             head=head,
             ):
-            package_path = self.configuration.filesystem_path_to_package_path(filesystem_path)
+            package_path = self._configuration.filesystem_path_to_package_path(filesystem_path)
             result.append(package_path)
         return result
 

@@ -27,9 +27,9 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         superclass = super(MaterialPackageManagerWrangler, self)
         superclass.__init__(session=session)
         self.abjad_storehouse_directory_path = \
-            self.configuration.abjad_material_package_managers_directory_path
+            self._configuration.abjad_material_package_managers_directory_path
         self.user_storehouse_directory_path = \
-            self.configuration.user_library_material_package_managers_directory_path
+            self._configuration.user_library_material_package_managers_directory_path
         self._human_readable_target_name = 'material package manager'
         self.forbidden_directory_entries = (
             'InventoryMaterialPackageManager.py',
@@ -54,7 +54,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         from scoremanager import managers
         if os.path.sep in package_path:
             package_path = \
-                self.configuration.filesystem_path_to_package_path(
+                self._configuration.filesystem_path_to_package_path(
                     package_path)
         material_package_manager = managers.MaterialPackageManager(
             package_path, session=self._session)
@@ -76,7 +76,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             except ImportError:
                 command = 'from {} import {} as material_package_manager_class'
                 package_path = '.'.join([
-                    self.configuration._user_library_directory_name,
+                    self._configuration._user_library_directory_name,
                     'material_packges',
                     ])
                 command = command.format(

@@ -12,6 +12,6 @@ def test_StylesheetFileWrangler_select_asset_filesystem_path_01():
     filesystem_path = wrangler.select_asset_filesystem_path()
 
     assert filesystem_path == os.path.join(
-        score_manager.configuration.abjad_stylesheets_directory_path,
+        score_manager._configuration.abjad_stylesheets_directory_path,
         'clean-letter-14.ily',
         )

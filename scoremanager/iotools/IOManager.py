@@ -45,16 +45,6 @@ class IOManager(IOManager):
         '''
         return '{}()'.format(type(self).__name__)
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def configuration(self):
-        r'''Gets configuration of IO manager.
-
-        Returns configuration.
-        '''
-        return self._configuration
-
     ### PRIVATE METHODS ###
 
     def _assign_user_input(self, pending_user_input=None):
@@ -222,8 +212,8 @@ class IOManager(IOManager):
 
     def _read_cache(self):
         start_menu_entries = []
-        if os.path.exists(self.configuration.cache_file_path):
-            with file(self.configuration.cache_file_path, 'r') as file_pointer:
+        if os.path.exists(self._configuration.cache_file_path):
+            with file(self._configuration.cache_file_path, 'r') as file_pointer:
                 cache_lines = file_pointer.read()
             try:
                 exec(cache_lines)
@@ -538,7 +528,7 @@ class IOManager(IOManager):
 
         Returns none.
         '''
-        cache_file_path = self.configuration.cache_file_path
+        cache_file_path = self._configuration.cache_file_path
         cache_file_pointer = file(cache_file_path, 'w')
         cache_file_pointer.write('# -*- encoding: utf-8 -*-\n')
         cache_file_pointer.write('\n\n')

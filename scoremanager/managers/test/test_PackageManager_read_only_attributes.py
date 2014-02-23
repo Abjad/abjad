@@ -11,13 +11,13 @@ def test_PackageManager_read_only_attributes_01():
     string = 'scoremanager.materialpackages.red_sargasso_measures'
     package_manager = scoremanager.managers.PackageManager(string)
     file_path = os.path.join(
-        package_manager.configuration.abjad_material_packages_directory_path, 
+        package_manager._configuration.abjad_material_packages_directory_path, 
         'red_sargasso_measures',
         )
     assert package_manager._filesystem_path == file_path
     assert package_manager._get_metadatum('foo') is None
     file_path = os.path.join(
-        package_manager.configuration.abjad_material_packages_directory_path,
+        package_manager._configuration.abjad_material_packages_directory_path,
         'red_sargasso_measures','__init__.py',
         )
     assert package_manager._initializer_file_path == file_path

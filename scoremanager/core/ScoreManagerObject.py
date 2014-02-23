@@ -51,13 +51,3 @@ class ScoreManagerObject(object):
     def _where(self):
         if self._session.enable_where:
             return inspect.stack()[1]
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def configuration(self):
-        r'''Gets configuration of score manager object.
-
-        Returns score manager configuration.
-        '''
-        return self._configuration

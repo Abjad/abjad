@@ -20,7 +20,7 @@ def test_ScorePackageWrangler_read_only_attributes_02():
 
     assert wrangler._current_storehouse_package_path == ''
     assert wrangler._current_storehouse_directory_path == \
-        wrangler.configuration.user_score_packages_directory_path
+        wrangler._configuration.user_score_packages_directory_path
 
 
 def test_ScorePackageWrangler_read_only_attributes_03():

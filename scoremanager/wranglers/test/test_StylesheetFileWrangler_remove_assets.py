@@ -9,7 +9,7 @@ def test_StylesheetFileWrangler_remove_assets_01():
     pytest.skip('FIXME: user asset library stylesheets should show up here.')
 
     score_manager = scoremanager.core.ScoreManager()
-    configuration = score_manager.configuration
+    configuration = score_manager._configuration
     first_filesystem_path = os.path.join(
         configuration.user_library_stylesheets_directory_path,
         'aaa.ly',
