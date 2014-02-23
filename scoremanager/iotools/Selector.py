@@ -101,6 +101,7 @@ class Selector(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
+    # TODO: make private
     def change_expr_to_menu_entry(self, expr):
         return (
             self._session.io_manager._get_one_line_menuing_summary(expr),
@@ -109,10 +110,12 @@ class Selector(ScoreManagerObject):
             expr,
             )
 
+    # TODO: make private
     def list_items(self):
         result = []
         return result
 
+    # TODO: make private
     def make_menu_entries(self, head=None):
         return [self.change_expr_to_menu_entry(item) for item in self.items]
 
@@ -201,10 +204,12 @@ class Selector(ScoreManagerObject):
         base_class_names=None,
         forbidden_class_names=None,
         ):
+        from scoremanager import core
+        configuration = core.ScoreManagerConfiguration()
         selector = Selector(session=session)
         base_class_names = base_class_names or ()
         forbidden_class_names = forbidden_class_names or ()
-        directory_path = Selector.configuration.handler_tools_directory_path
+        directory_path = configuration.handler_tools_directory_path
         class_names = []
         for entry in os.listdir(directory_path):
             if entry.endswith('.py'):
@@ -222,6 +227,8 @@ class Selector(ScoreManagerObject):
         session=None,
         generic_output_name='',
         ):
+        from scoremanager import core
+        configuration = core.ScoreManagerConfiguration()
         selector = Selector(session=session)
         def list_public_directory_paths(subtree_path):
             result = []
@@ -257,7 +264,6 @@ class Selector(ScoreManagerObject):
                     result.append(directory_path)
             return result
         items = []
-        configuration = Selector.configuration
         for directory_path in list_current_material_directory_paths():
             package_path = configuration.filesystem_path_to_package_path(
                 directory_path)
@@ -292,8 +298,10 @@ class Selector(ScoreManagerObject):
     def make_rhythm_maker_class_name_selector(
         session=None,
         ):
+        from scoremanager import core
+        configuration = core.ScoreManagerConfiguration()
         rhythm_maker_tools_directory_path = os.path.join(
-            Selector.configuration.abjad_directory_path, 
+            configuration.abjad_directory_path, 
             'tools', 
             'rhythmmakertools',
             )

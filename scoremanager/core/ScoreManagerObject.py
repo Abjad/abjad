@@ -4,8 +4,6 @@ import inspect
 import os
 from abjad.tools import stringtools
 from abjad.tools.abctools.ContextManager import ContextManager
-from scoremanager.core.ScoreManagerConfiguration \
-    import ScoreManagerConfiguration
 
 
 class ScoreManagerObject(object):
@@ -13,8 +11,6 @@ class ScoreManagerObject(object):
     ### CLASS VARIABLES ###
 
     __meta__ = abc.ABCMeta
-
-    configuration = ScoreManagerConfiguration()
 
     ### INITIALIZER ###
 
@@ -56,12 +52,12 @@ class ScoreManagerObject(object):
         if self._session.enable_where:
             return inspect.stack()[1]
 
-#    ### PUBLIC PROPERTIES ###
-#
-#    @property
-#    def configuration(self):
-#        r'''Gets configuration of score manager object.
-#
-#        Returns score manager configuration.
-#        '''
-#        return self._configuration
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def configuration(self):
+        r'''Gets configuration of score manager object.
+
+        Returns score manager configuration.
+        '''
+        return self._configuration
