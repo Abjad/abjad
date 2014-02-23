@@ -25,15 +25,6 @@ class Wrangler(ScoreManagerObject):
         self.score_storehouse_path_infix_parts = ()
         self.forbidden_directory_entries = ()
 
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, expr):
-        r'''Is true when types are the same. Otherwise false.
-
-        Returns boolean.
-        '''
-        return type(self) is type(expr)
-
     ### PRIVATE PROPERTIES ###
 
     @property

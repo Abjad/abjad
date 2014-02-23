@@ -37,6 +37,7 @@ class Session(abctools.AbjadObject):
         'breadcrumb_stack',
         'command_history',
         'controller_stack',
+        'controllers_visited',
         'current_controller',
         'current_materials_directory_path',
         'current_score_directory_path',
@@ -74,6 +75,7 @@ class Session(abctools.AbjadObject):
         self._command_history = []
         self._configuration = core.ScoreManagerConfiguration()
         self._controller_stack = []
+        self._controllers_visited = set()
         self._current_score_snake_case_name = None
         self._display_pitch_ranges_with_numbered_pitches = False
         self._enable_where = False
@@ -183,7 +185,10 @@ class Session(abctools.AbjadObject):
             return self._breadcrumb_stack.pop()
 
     def _pop_controller(self):
-        return self.controller_stack.pop()
+        controller = self.controller_stack.pop()
+        assert controller is self._last_controller
+        if self.controller_stack:
+            self._last_controller = self.controller_stack[-1]
 
     def _print_transcript(
         self, 
@@ -209,6 +214,7 @@ class Session(abctools.AbjadObject):
 
     def _push_controller(self, controller):
         self.controller_stack.append(controller)
+        self._controllers_visited.add(controller)
         self._last_controller = controller
 
     def _reinitialize(self):
@@ -295,6 +301,21 @@ class Session(abctools.AbjadObject):
         Returns list of objects all of which are either wranglers or managers.
         '''
         return self._controller_stack
+
+    @property
+    def controllers_visited(self):
+        r'''Gets controllers visited during session.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.controllers_visited
+                set([])
+
+        Returs set.
+        '''
+        return self._controllers_visited
 
     @property
     def current_controller(self):
