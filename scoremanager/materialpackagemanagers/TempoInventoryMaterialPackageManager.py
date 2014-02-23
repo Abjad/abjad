@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from scoremanager.materialpackagemanagers.InventoryMaterialPackageManager \
-    import InventoryMaterialPackageManager
+from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
 from scoremanager.editors.TempoInventoryEditor import TempoInventoryEditor
 
 
-class TempoInventoryMaterialPackageManager(InventoryMaterialPackageManager):
+class TempoInventoryMaterialPackageManager(MaterialPackageManager):
 
     ### CLASS VARIABLES ###
 

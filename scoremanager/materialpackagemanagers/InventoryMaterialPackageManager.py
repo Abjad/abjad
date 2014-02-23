@@ -4,6 +4,8 @@ from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
 
 
 class InventoryMaterialPackageManager(MaterialPackageManager):
+    r'''Inventory material package manager.
+    '''
 
     ### CLASS ATRIBUTES ###
 
