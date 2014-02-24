@@ -297,6 +297,7 @@ def test_SargassoMeasureMaterialPackageManager_08():
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
+            'illustration_builder.py',
             'output_material.py', 
             'user_input.py',
             ]

@@ -179,47 +179,38 @@ class MaterialPackageManager(PackageManager):
     def _make_main_menu(self):
         superclass = super(MaterialPackageManager, self)
         where = self._where
-        main_menu, hidden_section = superclass._make_main_menu(where=where)
+        menu, hidden_section = superclass._make_main_menu(where=where)
+        self._make_illustration_builder_menu_section(menu)
         has_initializer = os.path.isfile(self._initializer_file_path)
         self._session.io_manager._make_initializer_menu_section(
-            main_menu, 
+            menu, 
             has_initializer=has_initializer,
             )
-        self._session.io_manager._make_metadata_menu_section(main_menu)
-        self._session.io_manager._make_metadata_module_menu_section(main_menu)
+        self._make_material_definition_menu_section(menu)
+        self._session.io_manager._make_metadata_menu_section(menu)
+        self._session.io_manager._make_metadata_module_menu_section(menu)
+        self._make_illustration_ly_menu_section(menu)
+        self._make_output_material_menu_section(menu)
+        self._make_illustration_pdf_menu_section(menu)
+        self._make_package_management_menu_section(menu)
+        self._make_stylesheet_menu_section(menu)
         if self.should_have_user_input_module:
-            self._make_main_menu_sections_with_user_input_wrapper(
-                main_menu, hidden_section)
-        else:
-            self._make_illustration_builder_menu_section(main_menu)
-            self._make_material_definition_menu_section(main_menu)
-            self._make_output_material_menu_section(main_menu)
-            self._make_stylesheet_menu_section(main_menu)
-        self._make_illustration_ly_menu_section(main_menu)
-        self._make_illustration_pdf_menu_section(main_menu)
-        self._make_package_management_menu_section(main_menu)
+            if not self.has_output_material_editor:
+                self._make_user_input_module_menu_section(menu)
         try:
-            material_summary_section = main_menu['material summary']
-            main_menu.menu_sections.remove(material_summary_section)
-            main_menu.menu_sections.insert(0, material_summary_section)
+            material_summary_section = menu['material summary']
+            menu.menu_sections.remove(material_summary_section)
+            menu.menu_sections.insert(0, material_summary_section)
         except KeyError:
             pass
-        #print main_menu, 'MMM'
-        #for x in main_menu.menu_sections:
+        #print menu, 'MMM'
+        #for x in menu.menu_sections:
         #    print x
-        return main_menu
+        return menu
 
-#    def _make_main_menu_sections(self, menu, hidden_section):
-#        self._make_illustration_builder_menu_section(menu)
-#        self._make_material_definition_menu_section(menu)
-#        self._make_output_material_menu_section(menu)
-#        self._make_stylesheet_menu_section(menu)
-
-    def _make_main_menu_sections_with_user_input_wrapper(
-        self, menu, hidden_section):
+    def _make_main_menu_sections_with_user_input_wrapper(self, menu):
         if not self.has_output_material_editor:
-            self._make_user_input_module_menu_section(
-                menu, hidden_section)
+            self._make_user_input_module_menu_section(menu)
         self._make_output_material_menu_section(menu)
 
     def _make_material_definition_menu_section(
@@ -307,19 +298,21 @@ class MaterialPackageManager(PackageManager):
     def _make_user_input_module_menu_section(
         self,
         main_menu, 
-        hidden_section,
         ):
         menu_entries = self.user_input_wrapper_in_memory.editable_lines
-        numbered_section = main_menu.make_numbered_section(name='user input')
+        numbered_section = main_menu.make_numbered_section(
+            name='material summary')
         numbered_section.menu_entries = menu_entries
-        command_section = main_menu.make_command_section()
+        command_section = main_menu.make_command_section(name='user input')
         command_section.append(('user input - clear', 'uic'))
         command_section.append(('user input - load demo values', 'uil'))
         command_section.append(('user input - populate', 'uip'))
         command_section.append(('user input - show demo values', 'uis'))
+        command_section.append(('user input - toggle default mode', 'uit'))
+        command_section = main_menu.make_command_section(
+            name='user input module')
+        command_section.append(('user input module - remove', 'uimrm'))
         command_section.append(('user input module - view', 'uimv'))
-        hidden_section.append(('user input - toggle default mode', 'uit'))
-        hidden_section.append(('user input module - delete', 'uimdelete'))
 
     def _run_first_time(self):
         self._run(pending_user_input='omi')
