@@ -40,7 +40,7 @@ class Selector(ScoreManagerObject):
 
     def _change_expr_to_menu_entry(self, expr):
         return (
-            self._session.io_manager._get_one_line_menuing_summary(expr),
+            self._io_manager._get_one_line_menuing_summary(expr),
             None,
             None,
             expr,
@@ -64,7 +64,7 @@ class Selector(ScoreManagerObject):
         return [self._change_expr_to_menu_entry(item) for item in self.items]
 
     def _make_main_menu(self, head=None):
-        main_menu = self._session.io_manager.make_menu(where=self._where)
+        main_menu = self._io_manager.make_menu(where=self._where)
         menu_section = main_menu._make_section(
             return_value_attribute=self.return_value_attribute,
             is_numbered=self.is_numbered,
@@ -84,7 +84,7 @@ class Selector(ScoreManagerObject):
         head=None,
         pending_user_input=None,
         ):
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
         while True:
             self._session._push_breadcrumb(self._breadcrumb)

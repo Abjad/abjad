@@ -57,10 +57,10 @@ class FileManager(Manager):
 
     def _interpret_in_external_process(self):
         command = 'python {}'.format(self._filesystem_path)
-        result = self._session.io_manager.spawn_subprocess(command)
+        result = self._io_manager.spawn_subprocess(command)
         if result != 0:
-            self._session.io_manager.display('')
-            self._session.io_manager.proceed()
+            self._io_manager.display('')
+            self._io_manager.proceed()
 
     def _is_editable(self):
         if self._filesystem_path.endswith(('.tex', '.py')):
@@ -72,10 +72,10 @@ class FileManager(Manager):
             file_reference = file(self._filesystem_path, 'w')
             file_reference.write('')
             file_reference.close()
-        self._session.io_manager.proceed(prompt=prompt)
+        self._io_manager.proceed(prompt=prompt)
 
     def _make_main_menu(self):
-        main_menu = self._session.io_manager.make_menu(where=self._where)
+        main_menu = self._io_manager.make_menu(where=self._where)
         self._main_menu = main_menu
         command_section = main_menu.make_command_section()
         if self._is_editable():
@@ -102,15 +102,15 @@ class FileManager(Manager):
 
     def _run_abjad(self, prompt=True):
         command = 'abjad {}'.format(self._filesystem_path)
-        self._session.io_manager.spawn_subprocess(command)
+        self._io_manager.spawn_subprocess(command)
         message = 'file executed.'
-        self._session.io_manager.proceed(message, prompt=prompt)
+        self._io_manager.proceed(message, prompt=prompt)
 
     def _run_python(self, prompt=True):
         command = 'python {}'.format(self._filesystem_path)
-        self._session.io_manager.spawn_subprocess(command)
+        self._io_manager.spawn_subprocess(command)
         message = 'file executed.'
-        self._session.io_manager.proceed(message, prompt=prompt)
+        self._io_manager.proceed(message, prompt=prompt)
 
     def _write_stub(self):
         file_pointer = open(self._filesystem_path, 'w')
@@ -124,9 +124,9 @@ class FileManager(Manager):
 
         Returns none.
         '''
-        if self._session.io_manager.find_executable('lily'):
+        if self._io_manager.find_executable('lily'):
             executable = 'lily'
-        elif self._session.io_manager.find_executable('lilypond'):
+        elif self._io_manager.find_executable('lilypond'):
             executable = 'lilypond'
         else:
             message = 'Cannot find LilyPond executable.'
@@ -137,15 +137,15 @@ class FileManager(Manager):
             )
         input_directory = os.path.dirname(self._filesystem_path)
         with systemtools.TemporaryDirectoryChange(input_directory):
-            self._session.io_manager.spawn_subprocess(command)
-        self._session.io_manager.proceed('', prompt=prompt)
+            self._io_manager.spawn_subprocess(command)
+        self._io_manager.proceed('', prompt=prompt)
 
     def edit(self, line_number=None):
         r'''Edits file.
 
         Returns none.
         '''
-        self._session.io_manager.edit(
+        self._io_manager.edit(
             self._filesystem_path,
             line_number=line_number,
             )
@@ -155,7 +155,7 @@ class FileManager(Manager):
 
         Returns none.
         '''
-        self._session.io_manager.open_file(self._filesystem_path)
+        self._io_manager.open_file(self._filesystem_path)
 
     def typset_tex_file(self, prompt=True):
         r'''Typesets TeX file.
@@ -174,19 +174,19 @@ class FileManager(Manager):
             input_file_name_stem,
             )
         with systemtools.TemporaryDirectoryChange(input_directory):
-            self._session.io_manager.spawn_subprocess(command)
+            self._io_manager.spawn_subprocess(command)
             command = 'rm {}/*.aux'.format(output_directory)
-            self._session.io_manager.spawn_subprocess(command)
+            self._io_manager.spawn_subprocess(command)
             command = 'rm {}/*.log'.format(output_directory)
-            self._session.io_manager.spawn_subprocess(command)
-        self._session.io_manager.proceed('', prompt=prompt)
+            self._io_manager.spawn_subprocess(command)
+        self._io_manager.proceed('', prompt=prompt)
 
     def view(self):
         r'''Views file.
 
         Returns none.
         '''
-        self._session.io_manager.view(self._filesystem_path)
+        self._io_manager.view(self._filesystem_path)
 
     ### UI MANIFEST ###
 

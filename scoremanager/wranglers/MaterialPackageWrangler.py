@@ -300,7 +300,7 @@ class MaterialPackageWrangler(PackageWrangler):
         self._make_material_package(material_package_path, metadata=metadata)
 
     def _make_main_menu(self, head=None):
-        main_menu = self._session.io_manager.make_menu(where=self._where)
+        main_menu = self._io_manager.make_menu(where=self._where)
         asset_section = main_menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries(head=head)
         asset_section.menu_entries = asset_menu_entries
@@ -375,7 +375,7 @@ class MaterialPackageWrangler(PackageWrangler):
         material_package_manager.conditionally_write_stub_material_definition_module()
         material_package_manager.conditionally_write_stub_user_input_module()
         message = 'material package {!r} created.'.format(package_path)
-        self._session.io_manager.proceed(message=message, prompt=prompt)
+        self._io_manager.proceed(message=message, prompt=prompt)
 
     ### PUBLIC METHODS ###
 
@@ -388,7 +388,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
             material_package_path = \
                 self.get_available_package_path()
@@ -404,7 +404,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
             package_path = \
                 self.get_available_package_path()
@@ -420,7 +420,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
             wrangler = self._material_package_manager_wrangler
             result = wrangler.select_asset_package_path(

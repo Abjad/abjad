@@ -199,8 +199,3 @@
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
-
-51. Think all managers should have a private _io_manager property.
-    Should maintain existing _session property, too.
-    But self._io_manager.whatever() should work. Should no longer be
-    necessary to say self._session.io_manager.whatever().

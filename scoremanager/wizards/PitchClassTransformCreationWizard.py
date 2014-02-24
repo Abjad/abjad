@@ -20,7 +20,7 @@ class PitchClassTransformCreationWizard(Wizard):
         head=None,
         pending_user_input=None,
         ):
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
         function_application_pairs = []
         while True:
@@ -80,7 +80,7 @@ class PitchClassTransformCreationWizard(Wizard):
     def get_function_arguments(self, function_name):
         arguments = []
         if function_name in ('transpose', 'multiply'):
-            getter = self._session.io_manager.make_getter(where=self._where)
+            getter = self._io_manager.make_getter(where=self._where)
             getter.append_integer_in_range('index', start=0, stop=11)
             result = getter._run()
             if self._session._backtrack():

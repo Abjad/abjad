@@ -94,15 +94,15 @@ class ScoreManager(ScoreManagerObject):
     def _make_score_selection_menu(self):
         wrangler = self._score_package_wrangler
         if self._session.rewrite_cache:
-            self._session.io_manager.write_cache(prompt=False)
+            self._io_manager.write_cache(prompt=False)
             self._session._rewrite_cache = False
-        menu_entries = self._session.io_manager._read_cache()
+        menu_entries = self._io_manager._read_cache()
         if not menu_entries or \
             (self._session._scores_to_display == 'example' and
             not menu_entries[0][0] == 'Blue Example Score (2013)'):
-            self._session.io_manager.write_cache(prompt=False)
-            menu_entries = self._session.io_manager._read_cache()
-        menu = self._session.io_manager.make_menu(
+            self._io_manager.write_cache(prompt=False)
+            menu_entries = self._io_manager._read_cache()
+        menu = self._io_manager.make_menu(
             where=self._where,
             include_default_hidden_sections=False,
             )
@@ -121,7 +121,7 @@ class ScoreManager(ScoreManagerObject):
         ):
         type(self).__init__(self)
         self._session._push_controller(self)
-        self._session.io_manager._assign_user_input(
+        self._io_manager._assign_user_input(
             pending_user_input=pending_user_input,
             )
         self._session._cache_breadcrumbs(cache=cache)
@@ -269,11 +269,11 @@ class ScoreManager(ScoreManagerObject):
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
             lines.append('')
-            self._session.io_manager.display(
+            self._io_manager.display(
                 lines, 
                 capitalize_first_character=False,
                 )
-        self._session.io_manager.proceed(prompt=prompt)
+        self._io_manager.proceed(prompt=prompt)
 
     def run_pytest(self, prompt=True):
         r'''Runs py.test.
@@ -286,11 +286,11 @@ class ScoreManager(ScoreManagerObject):
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
             lines.append('')
-            self._session.io_manager.display(
+            self._io_manager.display(
                 lines, 
                 capitalize_first_character=False,
                 )
-        self._session.io_manager.proceed(prompt=prompt)
+        self._io_manager.proceed(prompt=prompt)
 
     def update_from_repository(self, prompt=True):
         r'''Updates repository assets.
@@ -305,14 +305,14 @@ class ScoreManager(ScoreManagerObject):
         Returns none.
         '''
         file_path = self._configuration.cache_file_path
-        self._session.io_manager.open_file(file_path)
+        self._io_manager.open_file(file_path)
 
     def write_cache(self, prompt=True):
         r'''Writes cache.
 
         Returns none.
         '''
-        self._session.io_manager.write_cache(prompt=prompt)
+        self._io_manager.write_cache(prompt=prompt)
 
     ### UI MANIFEST ###
 

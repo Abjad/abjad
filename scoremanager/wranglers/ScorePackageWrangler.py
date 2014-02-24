@@ -70,7 +70,7 @@ class ScorePackageWrangler(PackageWrangler):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self):
-        self._session.io_manager.print_not_yet_implemented()
+        self._io_manager.print_not_yet_implemented()
 
     def _list_asset_filesystem_paths(
         self,
@@ -429,7 +429,7 @@ class ScorePackageWrangler(PackageWrangler):
         return menuing_entries
 
     def _make_main_menu(self):
-        self._session.io_manager.print_not_yet_implemented()
+        self._io_manager.print_not_yet_implemented()
 
     ### PUBLIC METHODS ###
 
@@ -449,21 +449,21 @@ class ScorePackageWrangler(PackageWrangler):
                 )
         for manager in managers:
             manager.add_assets_to_repository(prompt=False)
-        self._session.io_manager.proceed(prompt=prompt)
+        self._io_manager.proceed(prompt=prompt)
 
     def commit_assets_to_repository(self, prompt=True):
         r'''Commits assets to repository.
 
         Returns none.
         '''
-        getter = self._session.io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('commit message')
         commit_message = getter._run(clear_terminal=False)
         if self._session._backtrack():
             return
         line = 'commit message will be: "{}"\n'.format(commit_message)
-        self._session.io_manager.display(line)
-        if not self._session.io_manager.confirm():
+        self._io_manager.display(line)
+        if not self._io_manager.confirm():
             return
         if hasattr(self, '_list_visible_asset_managers'):
             managers = self._list_visible_asset_managers()
@@ -479,7 +479,7 @@ class ScorePackageWrangler(PackageWrangler):
                 commit_message=commit_message, 
                 prompt=False,
                 )
-        self._session.io_manager.proceed(prompt=prompt)
+        self._io_manager.proceed(prompt=prompt)
 
     def display_repository_status(self, prompt=True):
         r'''Check asset status in repository.
@@ -497,7 +497,7 @@ class ScorePackageWrangler(PackageWrangler):
                 )
         for manager in managers:
             manager.display_repository_status(prompt=False)
-        self._session.io_manager.proceed(prompt=prompt)
+        self._io_manager.proceed(prompt=prompt)
 
     def fix_visible_assets(self, prompt=True):
         r'''Fixes visible assets.
@@ -510,7 +510,7 @@ class ScorePackageWrangler(PackageWrangler):
                 prompt=False,
                 )
             results.append(result)
-        self._session.io_manager.proceed(prompt=prompt)
+        self._io_manager.proceed(prompt=prompt)
         return results
 
     def make_asset(
@@ -522,9 +522,9 @@ class ScorePackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         breadcrumb = self._session._pop_breadcrumb(rollback=rollback)
-        getter = self._session.io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter(where=self._where)
         getter.indent_level = 1
         getter.prompt_character = ':'
         getter.capitalize_prompts = False
@@ -560,4 +560,4 @@ class ScorePackageWrangler(PackageWrangler):
                 )
         for manager in managers:
             manager.update_from_repository(prompt=False)
-        self._session.io_manager.proceed(prompt=prompt)
+        self._io_manager.proceed(prompt=prompt)

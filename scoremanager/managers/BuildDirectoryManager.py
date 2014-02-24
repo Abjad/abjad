@@ -38,7 +38,7 @@ class BuildDirectoryManager(DirectoryManager):
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
-            self._session.io_manager.proceed(message)
+            self._io_manager.proceed(message)
 
     def _edit_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
@@ -48,7 +48,7 @@ class BuildDirectoryManager(DirectoryManager):
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
-            self._session.io_manager.proceed(message)
+            self._io_manager.proceed(message)
 
     def _get_file_path_ending_with(self, string):
         for file_name in self._list_directory():
@@ -60,7 +60,7 @@ class BuildDirectoryManager(DirectoryManager):
         if result == 'e':
             self._edit_file_ending_with('back-cover.tex')
         elif result == 'g':
-            self._session.io_manager.print_not_yet_implemented()
+            self._io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
             self._open_file_ending_with('back-cover.pdf')
         elif result == 'ts':
@@ -70,7 +70,7 @@ class BuildDirectoryManager(DirectoryManager):
         if result == 'e':
             self._edit_file_ending_with('front-cover.tex')
         elif result == 'g':
-            self._session.io_manager.print_not_yet_implemented()
+            self._io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
             self._open_file_ending_with('front-cover.pdf')
         elif result == 'ts':
@@ -80,7 +80,7 @@ class BuildDirectoryManager(DirectoryManager):
         if result == 'e':
             self._edit_file_ending_with('preface.tex')
         elif result == 'g':
-            self._session.io_manager.print_not_yet_implemented()
+            self._io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
             self._open_file_ending_with('preface.pdf')
         elif result == 'ts':
@@ -90,7 +90,7 @@ class BuildDirectoryManager(DirectoryManager):
         if result == 'e':
             self._edit_file_ending_with('score.tex')
         elif result == 'g':
-            self._session.io_manager.print_not_yet_implemented()
+            self._io_manager.print_not_yet_implemented()
         elif result == 'lycp':
             self.copy_segment_lilypond_files()
         elif result == 'pdfcp':
@@ -108,7 +108,7 @@ class BuildDirectoryManager(DirectoryManager):
             self._typset_file_ending_with('score.tex')
 
     def _make_back_cover_menu(self):
-        menu = self._session.io_manager.make_menu(where=self._where)
+        menu = self._io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
         command_section.append(('source - edit', 'e'))
         command_section.append(('source - generate', 'g'))
@@ -119,7 +119,7 @@ class BuildDirectoryManager(DirectoryManager):
         return menu
 
     def _make_front_cover_menu(self):
-        menu = self._session.io_manager.make_menu(where=self._where)
+        menu = self._io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
         command_section.append(('source - edit', 'e'))
         command_section.append(('source - generate', 'g'))
@@ -130,7 +130,7 @@ class BuildDirectoryManager(DirectoryManager):
         return menu
 
     def _make_main_menu(self):
-        menu = self._session.io_manager.make_menu(where=self._where)
+        menu = self._io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
         command_section.append(('back cover - manage', 'bc'))
         command_section.append(('front cover - manage', 'fc'))
@@ -141,7 +141,7 @@ class BuildDirectoryManager(DirectoryManager):
         return menu
 
     def _make_preface_menu(self):
-        menu = self._session.io_manager.make_menu(where=self._where)
+        menu = self._io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
         command_section.append(('source - edit', 'e'))
         command_section.append(('source - generate', 'g'))
@@ -152,7 +152,7 @@ class BuildDirectoryManager(DirectoryManager):
         return menu
 
     def _make_score_menu(self):
-        menu = self._session.io_manager.make_menu(where=self._where)
+        menu = self._io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
         command_section.append(('segment lys - copy', 'lycp'))
         command_section.append(('segment pdfs - copy', 'pdfcp'))
@@ -177,7 +177,7 @@ class BuildDirectoryManager(DirectoryManager):
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
-            self._session.io_manager.proceed(message)
+            self._io_manager.proceed(message)
 
     def _trim_lilypond_file(self, file_path):
         lines = []
@@ -201,7 +201,7 @@ class BuildDirectoryManager(DirectoryManager):
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
-            self._session.io_manager.proceed(message)
+            self._io_manager.proceed(message)
 
     ### PUBLIC METHODS ###
 
@@ -221,7 +221,7 @@ class BuildDirectoryManager(DirectoryManager):
 
         Returns none.
         '''
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         segments_directory_path = self._session.current_segments_directory_path
         for directory_entry in sorted(os.listdir(segments_directory_path)):
             segment_directory_path = os.path.join(
@@ -252,8 +252,8 @@ class BuildDirectoryManager(DirectoryManager):
             self._trim_lilypond_file(target_file_path)
             message = 'Segment {} LilyPond file copied & trimmed.'
             message = message.format(directory_entry)
-            self._session.io_manager.display(message)
-        self._session.io_manager.proceed('')
+            self._io_manager.display(message)
+        self._io_manager.proceed('')
 
     def copy_segment_pdfs(self, pending_user_input=None):
         r'''Copies segment PDFs from segment
@@ -261,7 +261,7 @@ class BuildDirectoryManager(DirectoryManager):
 
         Returns none.
         '''
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         segments_directory_path = self._session.current_segments_directory_path
         for directory_entry in sorted(os.listdir(segments_directory_path)):
             segment_directory_path = os.path.join(
@@ -290,8 +290,8 @@ class BuildDirectoryManager(DirectoryManager):
             shutil.copyfile(source_file_path, target_file_path)
             message = 'Segment {} PDF copied.'
             message = message.format(directory_entry)
-            self._session.io_manager.display(message)
-        self._session.io_manager.proceed('')
+            self._io_manager.display(message)
+        self._io_manager.proceed('')
 
     def manage_back_cover(self, clear=True, cache=False):
         r'''Manages back cover.

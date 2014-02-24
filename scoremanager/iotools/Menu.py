@@ -95,7 +95,7 @@ class Menu(ScoreManagerObject):
 
     def _clear_terminal(self):
         if self.should_clear_terminal:
-            self._session.io_manager.clear_terminal()
+            self._io_manager.clear_terminal()
 
     def _display(
         self, 
@@ -106,20 +106,20 @@ class Menu(ScoreManagerObject):
             self.display_hidden_commands()
         else:
             menu_lines = self._make_menu_lines()
-            self._session.io_manager.display(
+            self._io_manager.display(
                 menu_lines,
                 capitalize_first_character=False,
                 )
         if predetermined_user_input is not None:
             return predetermined_user_input
         user_entered_lone_return = False
-        user_input = self._session.io_manager.handle_user_input('')
+        user_input = self._io_manager.handle_user_input('')
         if user_input == '':
             user_entered_lone_return = True
         directive = self._change_user_input_to_directive(user_input)
         directive = self._strip_default_notice_from_strings(directive)
         self._session._hide_next_redraw = False
-        io_manager = self._session.io_manager
+        io_manager = self._io_manager
         directive = \
             io_manager._handle_hidden_menu_section_return_value(directive)
         if directive is None and user_entered_lone_return:
@@ -371,7 +371,7 @@ class Menu(ScoreManagerObject):
         predetermined_user_input=None, 
         pending_user_input=None,
         ):
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         clear, hide_current_run = clear, False
         while True:
             self.should_clear_terminal = clear
@@ -497,7 +497,7 @@ class Menu(ScoreManagerObject):
             line = '{}   line: {}'.format(self._make_tab(1), self.where[2])
             lines.append(line)
             lines.append('')
-            self._session.io_manager.display(
+            self._io_manager.display(
                 lines, capitalize_first_character=False)
             self._session._hide_next_redraw = True
         else:
@@ -520,7 +520,7 @@ class Menu(ScoreManagerObject):
                 menu_line += '{} ({})'.format(display_string, key)
                 menu_lines.append(menu_line)
             menu_lines.append('')
-        self._session.io_manager.display(
+        self._io_manager.display(
             menu_lines, 
             capitalize_first_character=False,
             clear_terminal=True,
@@ -531,7 +531,7 @@ class Menu(ScoreManagerObject):
         if self.where is not None:
             file_path = self.where[1]
             line_number = self.where[2]
-            self._session.io_manager.open_file(
+            self._io_manager.open_file(
                 file_path,
                 line_number=line_number,
                 )
@@ -541,7 +541,7 @@ class Menu(ScoreManagerObject):
             message += " Use 'sct' for source code tracking."
             lines.append(message)
             lines.append('')
-            self._session.io_manager.display(lines)
+            self._io_manager.display(lines)
             self._session._hide_next_redraw = True
 
     def make_asset_section(self, menu_entries=None, name=None):

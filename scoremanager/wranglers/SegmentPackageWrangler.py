@@ -269,10 +269,10 @@ class SegmentPackageWrangler(PackageWrangler):
         manager.write_segment_definition_module()
         manager.make_versions_directory()
         message = 'package {!r} created.'.format(package_path)
-        self._session.io_manager.proceed(message=message, prompt=prompt)
+        self._io_manager.proceed(message=message, prompt=prompt)
 
     def _make_main_menu(self, head=None):
-        main_menu = self._session.io_manager.make_menu(where=self._where)
+        main_menu = self._io_manager.make_menu(where=self._where)
         asset_section = main_menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries(head=head)
         asset_section.menu_entries = asset_menu_entries
@@ -294,14 +294,14 @@ class SegmentPackageWrangler(PackageWrangler):
         command_section.append(('new segment', 'new'))
         hidden_section = main_menu.make_command_section(is_secondary=True)
         hidden_section.append(('list', 'ls'))
-        self._session.io_manager._make_initializer_menu_section(
+        self._io_manager._make_initializer_menu_section(
             main_menu,
             has_initializer=True,
             )
-        self._session.io_manager._make_metadata_menu_section(main_menu)
-        self._session.io_manager._make_metadata_module_menu_section(main_menu)
-        self._session.io_manager._make_views_menu_section(main_menu)
-        self._session.io_manager._make_views_module_menu_section(main_menu)
+        self._io_manager._make_metadata_menu_section(main_menu)
+        self._io_manager._make_metadata_module_menu_section(main_menu)
+        self._io_manager._make_views_menu_section(main_menu)
+        self._io_manager._make_views_module_menu_section(main_menu)
         return main_menu
 
     ### PUBLIC METHODS ###
@@ -310,7 +310,7 @@ class SegmentPackageWrangler(PackageWrangler):
         self,
         pending_user_input=None,
         ):
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
         parts += self.score_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
@@ -336,10 +336,10 @@ class SegmentPackageWrangler(PackageWrangler):
             if os.path.isfile(output_pdf_file_path):
                 message = 'segment {} PDF created.'
                 message = message.format(segment_package_name)
-                self._session.io_manager.display(message)
-        self._session.io_manager.display('')
+                self._io_manager.display(message)
+        self._io_manager.display('')
         self.view_asset_pdfs()
-        self._session.io_manager.proceed()
+        self._io_manager.proceed()
 
     def reinterpret_all_current_lilypond_files(
         self,
@@ -347,7 +347,7 @@ class SegmentPackageWrangler(PackageWrangler):
         prompt=True,
         view_output_pdfs=True,
         ):
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
         parts += self.score_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
@@ -371,7 +371,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 view_output_pdf=False,
                 )
         message = 'press return to view PDF(s).'
-        self._session.io_manager.proceed(message=message, prompt=prompt)
+        self._io_manager.proceed(message=message, prompt=prompt)
         if view_output_pdfs:
             self.view_asset_pdfs()
 
@@ -379,7 +379,7 @@ class SegmentPackageWrangler(PackageWrangler):
         self,
         pending_user_input=None,
         ):
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
         parts += self.score_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
@@ -404,15 +404,15 @@ class SegmentPackageWrangler(PackageWrangler):
             if version_number is not None:
                 message = 'segment {} version {} written to disk.'
                 message = message.format(segment_package_name, version_number)
-                self._session.io_manager.display(message)
-        self._session.io_manager.display('')
-        self._session.io_manager.proceed()
+                self._io_manager.display(message)
+        self._io_manager.display('')
+        self._io_manager.proceed()
 
     def view_asset_pdfs(
         self,
         pending_user_input=None,
         ):
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
         parts += self.score_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
@@ -430,7 +430,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 output_pdf_file_paths.append(output_pdf_file_path)
         command = ' '.join(output_pdf_file_paths)
         command = 'open ' + command
-        self._session.io_manager.spawn_subprocess(command)
+        self._io_manager.spawn_subprocess(command)
 
     ### UI MANIFEST ###
 

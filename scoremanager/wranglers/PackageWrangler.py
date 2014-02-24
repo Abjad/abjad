@@ -57,7 +57,7 @@ class PackageWrangler(Wrangler):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        self._session.io_manager.print_not_yet_implemented()
+        self._io_manager.print_not_yet_implemented()
 
     def _initialize_asset_manager(self, package_path):
         if os.path.sep in package_path:
@@ -204,7 +204,7 @@ class PackageWrangler(Wrangler):
             return entries
 
     def _make_main_menu(self, head=None):
-        self._session.io_manager.print_not_yet_implemented()
+        self._io_manager.print_not_yet_implemented()
 
     @staticmethod
     def _sort_asset_menu_entries_by_view(entries, view):
@@ -235,9 +235,9 @@ class PackageWrangler(Wrangler):
 
         Returns string.
         '''
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         while True:
-            getter = self._session.io_manager.make_getter(where=self._where)
+            getter = self._io_manager.make_getter(where=self._where)
             getter.append_space_delimited_lowercase_string('name')
             with self._backtracking:
                 package_name = getter._run()
@@ -252,7 +252,7 @@ class PackageWrangler(Wrangler):
             if self._configuration.package_exists(package_path):
                 line = 'Package {!r} already exists.'
                 line = line.format(package_path)
-                self._session.io_manager.display([line, ''])
+                self._io_manager.display([line, ''])
             else:
                 return package_path
 
@@ -264,7 +264,7 @@ class PackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
             package_path = \
                 self.get_available_package_path()
@@ -299,7 +299,7 @@ class PackageWrangler(Wrangler):
 
         Returns none.
         '''
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
             asset_package_path = \
                 self.select_asset_package_path(
@@ -321,7 +321,7 @@ class PackageWrangler(Wrangler):
 
         Returns string.
         '''
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
         while True:
             name = '_human_readable_target_name'

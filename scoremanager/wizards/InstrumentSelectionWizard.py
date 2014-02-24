@@ -22,7 +22,7 @@ class InstrumentSelectionWizard(Wizard):
         pending_user_input=None,
         ):
         from scoremanager import wizards
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
         self._session._push_breadcrumb(self._breadcrumb)
         if self._session.is_in_score:

@@ -172,7 +172,7 @@ class ScorePackageManager(PackageManager):
         elif result == 'instrumentation':
             self._instrumentation_module_manager.edit()
         elif result == 'k':
-            self._session.io_manager.print_not_yet_implemented()
+            self._io_manager.print_not_yet_implemented()
             #self._maker_module_wrangler._run(head=self._package_path)
         elif result == 'm':
             self._material_package_wrangler._run(head=self._package_path)
@@ -230,7 +230,7 @@ class ScorePackageManager(PackageManager):
         return instrumentation
 
     def _make_main_menu(self):
-        main_menu = self._session.io_manager.make_menu(where=self._where)
+        main_menu = self._io_manager.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
         command_section.append(('build', 'u'))
         command_section.append(('makers', 'k'))
@@ -251,12 +251,12 @@ class ScorePackageManager(PackageManager):
         hidden_section.append(('remove score package', 'removescore'))
         hidden_section.append(('view initializer', 'inv'))
         hidden_section.append(('view instrumentation', 'instrumentation'))
-        self._session.io_manager._make_metadata_menu_section(main_menu)
-        self._session.io_manager._make_metadata_module_menu_section(main_menu)
+        self._io_manager._make_metadata_menu_section(main_menu)
+        self._io_manager._make_metadata_module_menu_section(main_menu)
         return main_menu
 
     def _make_setup_menu(self):
-        menu = self._session.io_manager.make_menu(where=self._where)
+        menu = self._io_manager.make_menu(where=self._where)
         attribute_section = menu.make_attribute_section()
         menu_entries = self._make_setup_menu_entries()
         attribute_section.menu_entries = menu_entries
@@ -327,7 +327,7 @@ class ScorePackageManager(PackageManager):
     ### PUBLIC METHODS ###
 
     def edit_catalog_number(self):
-        getter = self._session.io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('Catalog number')
         result = getter._run()
         if self._session._backtrack():
@@ -335,7 +335,7 @@ class ScorePackageManager(PackageManager):
         self._add_metadatum('catalog_number', result)
 
     def edit_forces_tagline(self):
-        getter = self._session.io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('Forces tagline')
         result = getter._run()
         if self._session._backtrack():
@@ -353,16 +353,16 @@ class ScorePackageManager(PackageManager):
         self._write_instrumentation(editor.target)
 
     def edit_title(self):
-        getter = self._session.io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('new title')
         result = getter._run()
         if self._session._backtrack():
             return
         self._add_metadatum('title', result)
-        self._session.io_manager._write_cache()
+        self._io_manager._write_cache()
 
     def edit_year_of_completion(self):
-        getter = self._session.io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter(where=self._where)
         getter.append_integer_in_range(
             'year of completion', 
             start=1, 
@@ -380,12 +380,12 @@ class ScorePackageManager(PackageManager):
                 result = False
                 prompt = 'create {!r}? '.format(path)
                 if not prompt or \
-                    self._session.io_manager.confirm(prompt):
+                    self._io_manager.confirm(prompt):
                     os.mkdir(path)
         if not os.path.exists(self._initializer_file_path):
             result = False
             prompt = 'create {}? '.format(self._initializer_file_path)
-            if not prompt or self._session.io_manager.confirm(prompt):
+            if not prompt or self._io_manager.confirm(prompt):
                 initializer = file(self._initializer_file_path, 'w')
                 initializer.write('')
                 initializer.close()
@@ -393,7 +393,7 @@ class ScorePackageManager(PackageManager):
         if not os.path.exists(self._metadata_module_path):
             result = False
             prompt = 'create {}? '.format(self._metadata_module_path)
-            if not prompt or self._session.io_manager.confirm(prompt):
+            if not prompt or self._io_manager.confirm(prompt):
                 metadata_module = file(self._metadata_module_path, 'w')
                 metadata_module.write('# -*- encoding: utf-8 -*-\n')
                 metadata_module.write('from abjad import *\n')
@@ -405,27 +405,27 @@ class ScorePackageManager(PackageManager):
         if not os.path.exists(self._get_materials_directory_path()):
             result = False
             prompt = 'create {}'.format(self._get_materials_directory_path())
-            if not prompt or self._session.io_manager.confirm(prompt):
+            if not prompt or self._io_manager.confirm(prompt):
                 os.mkdir(self._get_materials_directory_path())
         if not os.path.exists(self._get_segments_directory_path()):
             result = False
             prompt = 'create {}'.format(self._get_segments_directory_path())
-            if not prompt or self._session.io_manager.confirm(prompt):
+            if not prompt or self._io_manager.confirm(prompt):
                 os.mkdir(self._get_segments_directory_path())
         if not os.path.exists(self._get_stylesheets_directory_path()):
             result = False
             prompt = 'create {}'.format(self._get_stylesheets_directory_path())
-            if not prompt or self._session.io_manager.confirm(prompt):
+            if not prompt or self._io_manager.confirm(prompt):
                 os.mkdir(self._get_stylesheets_directory_path())
         message = 'packaged structure fixed.'
-        self._session.io_manager.proceed(message, prompt=prompt)
+        self._io_manager.proceed(message, prompt=prompt)
         return result
 
     def remove(self):
         line = 'WARNING! Score package {!r} will be completely removed.'
         line = line.format(self._package_path)
-        self._session.io_manager.display([line, ''])
-        getter = self._session.io_manager.make_getter(where=self._where)
+        self._io_manager.display([line, ''])
+        getter = self._io_manager.make_getter(where=self._where)
         getter.append_string("type 'clobberscore' to proceed")
         with self._backtracking:
             should_clobber = getter._run()

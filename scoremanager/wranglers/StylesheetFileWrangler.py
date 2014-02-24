@@ -274,7 +274,7 @@ class StylesheetFileWrangler(Wrangler):
         return menu_entries
 
     def _make_main_menu(self, head=None):
-        main_menu = self._session.io_manager.make_menu(where=self._where)
+        main_menu = self._io_manager.make_menu(where=self._where)
         self._main_menu = main_menu
         asset_section = main_menu.make_asset_section()
         main_menu._asset_section = asset_section
@@ -309,7 +309,7 @@ class StylesheetFileWrangler(Wrangler):
 
         Returns none.
         '''
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         manager = self._asset_manager_class(
             filesystem_path=filesystem_path, 
             session=self._session,
@@ -358,7 +358,7 @@ class StylesheetFileWrangler(Wrangler):
         Returns none.
         '''
         from scoremanager import managers
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
             storehouse_path = \
                 self.select_storehouse_directory_path(
@@ -369,7 +369,7 @@ class StylesheetFileWrangler(Wrangler):
                 )
         if self._session._backtrack():
             return
-        getter = self._session.io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('stylesheet name')
         stylesheet_file_path = getter._run()
         if self._session._backtrack():

@@ -54,7 +54,7 @@ class ListEditor(Editor):
             super(ListEditor, self)._handle_main_menu_result(result)
 
     def _make_main_menu(self):
-        main_menu = self._session.io_manager.make_menu(where=self._where)
+        main_menu = self._io_manager.make_menu(where=self._where)
         keyed_attribute_section = main_menu.make_keyed_attribute_section()
         keyed_attribute_section.menu_entries = self.target_attribute_tokens
         numbered_section = main_menu.make_numbered_section()
@@ -92,7 +92,7 @@ class ListEditor(Editor):
         result = []
         for item in self.items:
             result.append(
-                self._session.io_manager._get_one_line_menuing_summary(item))
+                self._io_manager._get_one_line_menuing_summary(item))
         return result
 
     ### PUBLIC METHODS ###
@@ -112,7 +112,7 @@ class ListEditor(Editor):
                 return
             result = result or item_creator.target
         elif self.item_getter_configuration_method:
-            getter = self._session.io_manager.make_getter(where=self._where)
+            getter = self._io_manager.make_getter(where=self._where)
             self.item_getter_configuration_method(getter, self.item_identifier)
             with self._backtracking:
                 item_initialization_token = getter._run()
@@ -168,7 +168,7 @@ class ListEditor(Editor):
             self.target = self.target_class([])
 
     def move_item(self):
-        getter = self._session.io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter(where=self._where)
         getter.append_integer_in_range('old number', 1, len(self.items))
         getter.append_integer_in_range('new number', 1, len(self.items))
         result = getter._run()
@@ -181,7 +181,7 @@ class ListEditor(Editor):
         self.items.insert(new_index, item)
 
     def remove_items(self):
-        getter = self._session.io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter(where=self._where)
         getter.append_menu_section_range(
             self.items_identifier, self._numbered_section)
         argument_range = getter._run()

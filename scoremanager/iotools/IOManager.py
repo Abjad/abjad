@@ -26,8 +26,7 @@ class IOManager(IOManager):
         from scoremanager import core
         self._session = session
         self._configuration = core.ScoreManagerConfiguration()
-        self._score_package_wrangler = \
-            wranglers.ScorePackageWrangler(session=self._session)
+        self.__score_package_wrangler = None
 
     ### SPECIAL METHODS ###
 
@@ -44,6 +43,16 @@ class IOManager(IOManager):
         Returns string.
         '''
         return '{}()'.format(type(self).__name__)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _score_package_wrangler(self):
+        from scoremanager import wranglers
+        if self.__score_package_wrangler is None:
+            wrangler = wranglers.ScorePackageWrangler(session=self._session)
+            self.__score_package_wrangler = wrangler
+        return self.__score_package_wrangler
 
     ### PRIVATE METHODS ###
 

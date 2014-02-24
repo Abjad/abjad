@@ -95,7 +95,7 @@ class PackageManager(DirectoryManager):
 
     def _make_main_menu(self, where=None):
         where = where or self._where
-        main_menu = self._session.io_manager.make_menu(where=where)
+        main_menu = self._io_manager.make_menu(where=where)
         hidden_section = main_menu.make_command_section(
             is_secondary=True,
             name='junk drawer',
@@ -143,12 +143,12 @@ class PackageManager(DirectoryManager):
         except KeyError:
             message = 'metadatum not found: {!r}.'
             message = message.format(metadatum_name)
-            self._session.io_manager.proceed(message)
+            self._io_manager.proceed(message)
         if was_removed:
             self.rewrite_metadata_module(metadata, prompt=False)
             message = 'metadatum removed: {!r}.'
             message = message.format(metadatum_name)
-            self._session.io_manager.proceed(message)
+            self._io_manager.proceed(message)
 
     def _run_first_time(self, **kwargs):
         self._run(**kwargs)
@@ -172,7 +172,7 @@ class PackageManager(DirectoryManager):
 
         Returns none.
         '''
-        getter = self._session.io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
         getter.append_expr('metadatum value')
         result = getter._run()
@@ -187,14 +187,14 @@ class PackageManager(DirectoryManager):
 
         Returns none.
         '''
-        getter = self._session.io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
         result = getter._run()
         if self._session._backtrack():
             return
         metadatum = self._get_metadatum(result)
         message = '{!r}'.format(metadatum)
-        self._session.io_manager.proceed(message=message)
+        self._io_manager.proceed(message=message)
 
     def remove_initializer_module(self, prompt=True):
         r'''Removes initializer module.
@@ -204,7 +204,7 @@ class PackageManager(DirectoryManager):
         if os.path.isfile(self._initializer_file_path):
             os.remove(self._initializer_file_path)
             line = 'initializer deleted.'
-            self._session.io_manager.proceed(
+            self._io_manager.proceed(
                 line, 
                 prompt=prompt,
                 )
@@ -217,11 +217,11 @@ class PackageManager(DirectoryManager):
         if os.path.isfile(self._metadata_module_path):
             if prompt:
                 message = 'remove metadata module?'
-                if not self._session.io_manager.confirm(message):
+                if not self._io_manager.confirm(message):
                     return
             os.remove(self._metadata_module_path)
             line = 'metadata module removed.'
-            self._session.io_manager.proceed(
+            self._io_manager.proceed(
                 line, 
                 prompt=prompt,
                 )
@@ -231,7 +231,7 @@ class PackageManager(DirectoryManager):
 
         Returns none.
         '''
-        getter = self._session.io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
         result = getter._run()
         if self._session._backtrack():
@@ -256,11 +256,11 @@ class PackageManager(DirectoryManager):
         if os.path.isfile(self._views_module_path):
             if prompt:
                 message = 'remove views module?'
-                if not self._session.io_manager.confirm(message):
+                if not self._io_manager.confirm(message):
                     return
             os.remove(self._views_module_path)
             line = 'views module removed.'
-            self._session.io_manager.proceed(
+            self._io_manager.proceed(
                 line, 
                 prompt=prompt,
                 )
@@ -272,8 +272,8 @@ class PackageManager(DirectoryManager):
         '''
         base_name = os.path.basename(self._filesystem_path)
         line = 'current name: {}'.format(base_name)
-        self._session.io_manager.display(line)
-        getter = self._session.io_manager.make_getter(where=self._where)
+        self._io_manager.display(line)
+        getter = self._io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('new name')
         new_package_name = getter._run()
         if self._session._backtrack():
@@ -284,8 +284,8 @@ class PackageManager(DirectoryManager):
         line = 'new name:     {}'.format(new_package_name)
         lines.append(line)
         lines.append('')
-        self._session.io_manager.display(lines)
-        if not self._session.io_manager.confirm():
+        self._io_manager.display(lines)
+        if not self._io_manager.confirm():
             return
         new_directory_path = self._filesystem_path.replace(
             base_name,
@@ -295,7 +295,7 @@ class PackageManager(DirectoryManager):
             # rename package directory
             command = 'svn mv {} {}'
             command = command.format(self._filesystem_path, new_directory_path)
-            self._session.io_manager.spawn_subprocess(command)
+            self._io_manager.spawn_subprocess(command)
             # commit
             commit_message = 'renamed {} to {}.'
             commit_message = commit_message.format(
@@ -309,11 +309,11 @@ class PackageManager(DirectoryManager):
                 commit_message,
                 parent_directory_path,
                 )
-            self._session.io_manager.spawn_subprocess(command)
+            self._io_manager.spawn_subprocess(command)
         else:
             command = 'mv {} {}'
             command = command.format(self._filesystem_path, new_directory_path)
-            self._session.io_manager.spawn_subprocess(command)
+            self._io_manager.spawn_subprocess(command)
         # update path name to reflect change
         self._path = new_directory_path
         self._session._is_backtracking_locally = True
@@ -332,14 +332,14 @@ class PackageManager(DirectoryManager):
         self._write_metadata(metadata)
         if prompt:
             message = 'rewrote metadata module.'
-            self._session.io_manager.proceed(message)
+            self._io_manager.proceed(message)
 
     def set_package_path(self):
         r'''Sets package path.
 
         Returns none.
         '''
-        getter = self._session.io_manager.make_getter(where=self._where)
+        getter = self._io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('package name')
         result = getter._run()
         if self._session._backtrack():
@@ -361,7 +361,7 @@ class PackageManager(DirectoryManager):
         file_path = self._metadata_module_path
         if os.path.isfile(file_path):
             command = 'vim -R {}'.format(file_path)
-            self._session.io_manager.spawn_subprocess(command)
+            self._io_manager.spawn_subprocess(command)
 
     def write_boilerplate_initializer_module(self):
         r'''Writes boilerplate initializer module.
@@ -377,8 +377,8 @@ class PackageManager(DirectoryManager):
         '''
         self.initializer_file_manager._write_stub()
         line = 'stub initializer written.'
-        self._session.io_manager.display([line, ''])
-        self._session.io_manager.proceed()
+        self._io_manager.display([line, ''])
+        self._io_manager.proceed()
 
     ### UI MANIFEST ###
 

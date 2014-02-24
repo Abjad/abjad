@@ -62,7 +62,7 @@ class Editor(ScoreManagerObject):
             self.set_target_attribute(attribute_name, attribute_value)
 
     def _make_main_menu(self):
-        main_menu = self._session.io_manager.make_menu(where=self._where)
+        main_menu = self._io_manager.make_menu(where=self._where)
         keyed_attribute_section = \
             main_menu.make_keyed_attribute_section(
             is_numbered=True,
@@ -82,7 +82,7 @@ class Editor(ScoreManagerObject):
         is_autostarting=False, 
         pending_user_input=None,
         ):
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
         self._session._push_breadcrumb(self._breadcrumb)
         with self._backtracking:
@@ -220,7 +220,7 @@ class Editor(ScoreManagerObject):
             for target_attribute_name in self.target_attribute_names:
                 name = stringtools.string_to_space_delimited_lowercase(
                     target_attribute_name)
-                value = self._session.io_manager._get_one_line_menuing_summary(
+                value = self._io_manager._get_one_line_menuing_summary(
                     getattr(self.target, target_attribute_name))
                 result.append('{}: {}'.format(name, value))
         return result
@@ -311,7 +311,7 @@ class Editor(ScoreManagerObject):
             if hasattr(attribute_value, '__len__') and \
                 not len(attribute_value):
                 attribute_value = None
-            prepopulated_value = self._session.io_manager._get_one_line_menuing_summary(
+            prepopulated_value = self._io_manager._get_one_line_menuing_summary(
                 attribute_value)
             menu_entry = (display_string, key, prepopulated_value)
             result.append(menu_entry)
@@ -342,7 +342,7 @@ class Editor(ScoreManagerObject):
         result = []
         for arg in getattr(target, 'args', []):
             name = stringtools.string_to_space_delimited_lowercase(arg)
-            value = self._session.io_manager._get_one_line_menuing_summary(getattr(target, arg))
+            value = self._io_manager._get_one_line_menuing_summary(getattr(target, arg))
             result.append('{}: {}'.format(name, value))
         return result
 
@@ -350,7 +350,7 @@ class Editor(ScoreManagerObject):
         result = []
         for kwarg in getattr(target, 'kwargs', []):
             name = stringtools.string_to_space_delimited_lowercase(kwarg)
-            value = self._session.io_manager._get_one_line_menuing_summary(
+            value = self._io_manager._get_one_line_menuing_summary(
                 getattr(target, kwarg))
             result.append('{}: {}'.format(name, value))
         return result

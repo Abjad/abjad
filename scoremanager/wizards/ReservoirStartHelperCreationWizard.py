@@ -20,7 +20,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
         head=None,
         pending_user_input=None,
         ):
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
         while True:
             function_application_pairs = []
@@ -57,7 +57,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
     def get_function_arguments(self, function_name):
         arguments = []
         if function_name in ('start at index n'):
-            getter = self._session.io_manager.make_getter(where=self._where)
+            getter = self._io_manager.make_getter(where=self._where)
             getter.append_integer('index')
             result = getter._run()
             if self._session._backtrack():

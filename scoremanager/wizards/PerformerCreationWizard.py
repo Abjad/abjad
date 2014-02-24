@@ -29,7 +29,7 @@ class PerformerCreationWizard(Wizard):
         pending_user_input=None,
         ):
         from scoremanager.iotools import Selector
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
         try_again = False
         performers = []
@@ -94,7 +94,7 @@ class PerformerCreationWizard(Wizard):
         pending_user_input=None,
         ):
         from scoremanager import wizards
-        self._session.io_manager._assign_user_input(pending_user_input)
+        self._io_manager._assign_user_input(pending_user_input)
         menu = self.make_performer_configuration_menu(performer)
         while True:
             self._session._push_breadcrumb(performer.name)
@@ -134,7 +134,7 @@ class PerformerCreationWizard(Wizard):
         self._session._restore_breadcrumbs(cache=cache)
 
     def make_performer_configuration_menu(self, performer):
-        menu = self._session.io_manager.make_menu(where=self._where)
+        menu = self._io_manager.make_menu(where=self._where)
         numbered_list_section = menu.make_numbered_list_section()
         numbered_list_section.title = 'select instruments'
         command_section = menu.make_command_section()
