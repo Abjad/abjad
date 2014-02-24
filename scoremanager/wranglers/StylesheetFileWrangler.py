@@ -286,7 +286,7 @@ class StylesheetFileWrangler(Wrangler):
         if self._session.current_score_directory_path:
             command_section = main_menu.make_command_section()
             if self._get_header_stylesheet_file_path():
-                command_section.append(('header stylesheet - edit', 'h'))
+                command_section.append(('header stylesheet - edit', 'hse'))
             if self._get_layout_stylesheet_file_path():
                 command_section.append(('layout stylesheet - edit', 'l'))
             if self._get_paper_stylesheet_file_path():
@@ -396,7 +396,7 @@ class StylesheetFileWrangler(Wrangler):
 
     _user_input_to_action = Wrangler._user_input_to_action.copy()
     _user_input_to_action.update({
-        'h': edit_header_stylesheet,
+        'hse': edit_header_stylesheet,
         'l': edit_layout_stylesheet,
         'p': edit_paper_stylesheet,
         'new': make_asset,
