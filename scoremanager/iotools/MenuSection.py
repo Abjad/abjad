@@ -48,9 +48,11 @@ class MenuSection(AbjadObject):
         is_ranged=False,
         display_prepopulated_values=False,
         match_on_display_string=True,
+        name=None,
         title=None,
         ):
         AbjadObject.__init__(self)
+        self._name = name
         self.menu_entries = []
         assert return_value_attribute in self.return_value_attributes
         self.return_value_attribute = return_value_attribute
@@ -78,7 +80,28 @@ class MenuSection(AbjadObject):
 
         Returns string.
         '''
-        return '<{} ({})>'.format(type(self).__name__, len(self))
+        left_parenthesis = '('
+        right_parenthesis = ')'
+        if self.is_secondary:
+            left_parenthesis = '['
+            right_parenthesis = ']'
+        if self.is_hidden:
+            left_parenthesis = '{'
+            right_parenthesis = '}'
+        if self.name:
+            return '<{} {!r} {}{}{}>'.format(
+                type(self).__name__, 
+                self.name,
+                left_parenthesis,
+                len(self),
+                right_parenthesis,
+                )
+        return '<{} {}{}{}>'.format(
+            type(self).__name__, 
+            left_parenthesis,
+            len(self),
+            right_parenthesis,
+            )
 
     ### PRIVATE PROPERTIES ###
 
@@ -335,6 +358,20 @@ class MenuSection(AbjadObject):
             else:
                 raise TypeError(menu_entries)
         return property(**locals())
+
+    @property
+    def name(self):
+        r'''Gets name of menu section.
+
+        ..  container:: example
+
+            ::
+
+                >>> menu_section.name
+
+        Returns string or none.
+        '''
+        return self._name
 
     @apply
     def return_value_attribute():

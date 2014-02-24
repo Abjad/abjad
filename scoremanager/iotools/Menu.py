@@ -173,6 +173,7 @@ class Menu(ScoreManagerObject):
     def _make_command_display_menu_section(self):
         section = self._make_section(
             is_hidden=True,
+            name='command display',
             return_value_attribute='key',
             )
         section.append(('commands - hidden', 'n'))
@@ -196,6 +197,7 @@ class Menu(ScoreManagerObject):
         section = self._make_section(
             is_hidden=True,
             match_on_display_string=False,
+            name='lilypond',
             return_value_attribute='key',
             )
         section.append(('LilyPond - view log', 'lvl'))
@@ -210,6 +212,7 @@ class Menu(ScoreManagerObject):
     def _make_navigation_menu_section(self):
         section = self._make_section(
             is_hidden=True,
+            name='navigation',
             return_value_attribute='key',
             )
         section.append(('back - go', 'b'))
@@ -221,6 +224,7 @@ class Menu(ScoreManagerObject):
         section = self._make_section(
             is_hidden=True,
             match_on_display_string=False,
+            name='python',
             return_value_attribute='key',
             )
         section.append(('Python - doctest', 'pyd'))
@@ -232,6 +236,7 @@ class Menu(ScoreManagerObject):
         section = self._make_section(
             is_hidden=True,
             match_on_display_string=False,
+            name='repository',
             return_value_attribute='key',
             )
         section.append(('repository - add', 'radd'))
@@ -244,6 +249,7 @@ class Menu(ScoreManagerObject):
         section = self._make_section(
             is_hidden=True,
             match_on_display_string=False,
+            name='tour',
             return_value_attribute='key',
             )
         section.append(('scores - tour next', 'next'))
@@ -259,6 +265,7 @@ class Menu(ScoreManagerObject):
         display_prepopulated_values=False,
         match_on_display_string=True,
         menu_entries=None,
+        name=None,
         return_value_attribute='display_string',
         ):
         from scoremanager import iotools
@@ -271,6 +278,7 @@ class Menu(ScoreManagerObject):
             is_ranged=is_ranged,
             display_prepopulated_values=display_prepopulated_values,
             match_on_display_string=match_on_display_string,
+            name=name,
             return_value_attribute=return_value_attribute,
             )
         menu_section.menu_entries = menu_entries
@@ -295,6 +303,7 @@ class Menu(ScoreManagerObject):
         section = self._make_section(
             is_hidden=True,
             match_on_display_string=False,
+            name='session',
             return_value_attribute='key',
             )
         section.append(('session - display variables', 'sdv'))
@@ -304,6 +313,7 @@ class Menu(ScoreManagerObject):
         section = self._make_section(
             is_hidden=True,
             match_on_display_string=False,
+            name='source code',
             return_value_attribute='key',
             )
         section.append(('source code - edit', 'sce'))
@@ -315,6 +325,7 @@ class Menu(ScoreManagerObject):
         section = self._make_section(
             is_hidden=True,
             match_on_display_string=False,
+            name='system',
             return_value_attribute='key',
             )
         section.append(('system - quit', 'q'))
@@ -526,18 +537,20 @@ class Menu(ScoreManagerObject):
             self._session.io_manager.display(lines)
             self._session._hide_next_redraw = True
 
-    def make_asset_section(self, menu_entries=None):
+    def make_asset_section(self, menu_entries=None, name=None):
         asset_section = self._make_section(
             is_numbered=True,
+            name=name,
             return_value_attribute='explicit',
             )
         return asset_section
 
-    def make_attribute_section(self, menu_entries=None):
+    def make_attribute_section(self, menu_entries=None, name=None):
         attribute_section = self._make_section(
+            display_prepopulated_values=True,
             is_numbered=True,
             return_value_attribute='explicit',
-            display_prepopulated_values=True,
+            name=name,
             )
         return attribute_section
 
@@ -546,10 +559,12 @@ class Menu(ScoreManagerObject):
         is_secondary=False,
         match_on_display_string=True,
         menu_entries=None,
+        name=None,
         ):
         command_section = self._make_section(
             is_secondary=is_secondary,
             match_on_display_string=match_on_display_string,
+            name=name,
             return_value_attribute='key',
             )
         return command_section
@@ -558,25 +573,29 @@ class Menu(ScoreManagerObject):
         self, 
         is_numbered=False, 
         menu_entries=None,
+        name=None,
         ):
         keyed_attribute_section = self._make_section(
-            return_value_attribute='key',
-            is_numbered=is_numbered,
             display_prepopulated_values=True,
+            is_numbered=is_numbered,
+            name=name,
+            return_value_attribute='key',
             )
         return keyed_attribute_section
 
-    def make_numbered_list_section(self, menu_entries=None):
+    def make_numbered_list_section(self, menu_entries=None, name=None):
         numbered_list_section = self._make_section(
             is_numbered=True,
             is_ranged=True,
+            name=name,
             return_value_attribute='display_string',
             )
         return numbered_list_section
 
-    def make_numbered_section(self, menu_entries=None):
+    def make_numbered_section(self, menu_entries=None, name=None):
         numbered_section = self._make_section(
             is_numbered=True,
+            name=name,
             return_value_attribute='number',
             )
         return numbered_section

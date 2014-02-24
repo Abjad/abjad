@@ -105,8 +105,12 @@ class MaterialPackageManager(PackageManager):
             user_input_wrapper = self.initialize_empty_user_input_wrapper()
         return user_input_wrapper
 
+    # TODO: change name to _make_package_management_menu_section
     def _make_hidden_entries_menu_section(self, main_menu):
-        hidden_section = main_menu.make_command_section(is_secondary=True)
+        hidden_section = main_menu.make_command_section(
+            is_secondary=True,
+            name='package management',
+            )
         hidden_section.append(('remove package', 'rm'))
         hidden_section.append(('list package', 'ls'))
         hidden_section.append(('rename package', 'ren'))
@@ -117,6 +121,7 @@ class MaterialPackageManager(PackageManager):
         main_menu,
         hidden_section,
         ):
+        name = 'illustration builder'
         if self.has_output_material:
             if self.should_have_illustration:
                 if not self.has_illustration_builder_module:
@@ -128,7 +133,7 @@ class MaterialPackageManager(PackageManager):
                         material_package_name,
                         prompt=False,
                         )
-                command_section = main_menu.make_command_section()
+                command_section = main_menu.make_command_section(name=name)
                 command_section.append(
                     ('illustration builder - edit', 'ibe'))
                 if self.has_output_material:
@@ -159,17 +164,18 @@ class MaterialPackageManager(PackageManager):
         main_menu,
         hidden_section,
         ):
+        name = 'illustration pdf'
         has_illustration_pdf_section = False
         if self.has_output_material:
             if self.has_illustration_builder_module or \
                 (self.has_material_package_manager and
                 getattr(self, 'illustration_builder', None)):
-                command_section = main_menu.make_command_section()
+                command_section = main_menu.make_command_section(name=name)
                 command_section.append(('output pdf - make', 'pdfm'))
                 has_illustration_pdf_section = True
         if self.has_illustration_pdf:
             if not has_illustration_pdf_section:
-                command_section = main_menu.make_command_section()
+                command_section = main_menu.make_command_section(name=name)
             hidden_section.append(('output pdf - delete', 'pdfd'))
             command_section.append(('output pdf - view', 'pdfv'))
 
@@ -193,6 +199,9 @@ class MaterialPackageManager(PackageManager):
         self._make_illustration_pdf_menu_section(
             main_menu, hidden_section)
         self._make_hidden_entries_menu_section(main_menu)
+        #print main_menu, 'MMM'
+        #for x in main_menu.menu_sections:
+        #    print x
         return main_menu
 
     def _make_main_menu_sections(self, menu, hidden_section):
@@ -215,10 +224,11 @@ class MaterialPackageManager(PackageManager):
         main_menu, 
         hidden_section,
         ):
+        name = 'material definition'
         if not os.path.isfile(self._initializer_file_path):
             return
         if self.has_material_definition_module:
-            command_section = main_menu.make_command_section()
+            command_section = main_menu.make_command_section(name=name)
             command_section.append(
                 ('material definition - edit', 'mde'))
             command_section.default_index = len(command_section) - 1
@@ -233,7 +243,7 @@ class MaterialPackageManager(PackageManager):
             hidden_section.append(
                 ('material definition - execute & edit', 'mdxe'))
         elif self.material_package_manager_class_name is None:
-            command_section = main_menu.make_command_section()
+            command_section = main_menu.make_command_section(name=name)
             command_section.return_value_attribute = 'key'
             command_section.append(
                 ('material definition - stub', 'mdstub'))
@@ -246,16 +256,17 @@ class MaterialPackageManager(PackageManager):
         if not os.path.isfile(self._initializer_file_path):
             return
         has_output_material_section = False
+        name = 'output material'
         if self.has_material_definition_module or \
             self.has_complete_user_input_wrapper_in_memory or \
             self.has_output_material_editor:
             if self.has_material_definition or \
                 self.has_complete_user_input_wrapper_in_memory:
-                command_section = main_menu.make_command_section()
+                command_section = main_menu.make_command_section(name=name)
                 command_section.append(('output material - make', 'omm'))
                 has_output_material_section = True
             if self.has_output_material_editor:
-                command_section = main_menu.make_command_section()
+                command_section = main_menu.make_command_section(name=name)
                 command_section.append(('output material - interact', 'omi'))
                 if self.has_output_material:
                     output_material_editor = self.output_material_editor(
@@ -268,7 +279,7 @@ class MaterialPackageManager(PackageManager):
                 has_output_material_section = True
             if self.has_output_material_module:
                 if not has_output_material_section:
-                    command_section = main_menu.make_command_section()
+                    command_section = main_menu.make_command_section(name=name)
                 command_section.append(
                     ('output material - view', 'omv'))
                 hidden_section.append(
@@ -282,7 +293,7 @@ class MaterialPackageManager(PackageManager):
         hidden_section,
         ):
         menu_entries = self.user_input_wrapper_in_memory.editable_lines
-        numbered_section = main_menu.make_numbered_section()
+        numbered_section = main_menu.make_numbered_section(name='user input')
         numbered_section.menu_entries = menu_entries
         command_section = main_menu.make_command_section()
         command_section.append(('user input - clear', 'uic'))

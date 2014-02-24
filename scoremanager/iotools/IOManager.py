@@ -133,21 +133,23 @@ class IOManager(IOManager):
 
     def _make_initializer_menu_section(self, menu, has_initializer=True):
         if not has_initializer:
-            command_section = menu.make_command_section()
+            command_section = menu.make_command_section(name='initializer')
             command_section.title = "package has no initializer: use 'ins'."
         section = menu.make_command_section(
             is_secondary=True,
             match_on_display_string=False,
+            name='initializer',
             )
-        section.append(('initializer module - boilerplate', 'inbp'))
-        section.append(('initializer module - remove', 'inrm'))
-        section.append(('initializer module - stub', 'ins'))
-        section.append(('initializer module - view', 'inv'))
+        section.append(('initializer - boilerplate', 'inbp'))
+        section.append(('initializer - remove', 'inrm'))
+        section.append(('initializer - stub', 'ins'))
+        section.append(('initializer - view', 'inv'))
 
     def _make_metadata_menu_section(self, menu):
         section = menu.make_command_section(
             is_secondary=True,
             match_on_display_string=False,
+            name='metadata',
             )
         section.append(('metadata - add', 'mda'))
         section.append(('metadata - get', 'mdg'))
@@ -158,6 +160,7 @@ class IOManager(IOManager):
         section = menu.make_command_section(
             is_secondary=True,
             match_on_display_string=False,
+            name='metadata module',
             )
         section.append(('metadata module - remove', 'mdmrm'))
         section.append(('metadata module - rewrite', 'mdmrw'))
@@ -168,6 +171,7 @@ class IOManager(IOManager):
         section = menu.make_command_section(
             is_secondary=True,
             match_on_display_string=False,
+            name='views',
             )
         section.append(('views - list', 'vwl'))
         section.append(('views - new', 'vwn'))
@@ -178,6 +182,7 @@ class IOManager(IOManager):
         section = menu.make_command_section(
             is_secondary=True,
             match_on_display_string=False,
+            name='views module',
             )
         section.append(('views module - remove', 'vwmrm'))
         section.append(('views module - view', 'vwmv'))
