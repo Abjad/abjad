@@ -85,9 +85,8 @@
     This will parallel score manager IOManager inheriting from mainline
     IOManager.
 
-27. Make the (u), (k), (m), (g), (s), (t) and (y) commands work from anywhere
-    within a score. Leave the commands lowercase. Add (s) and (h) to the list,
-    too.
+27. Make the (u), (k), (m), (g), (p), (t) and (y) commands work from anywhere
+    within a score. Leave the commands lowercase.
 
 28. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (Y) or equivalent.
@@ -160,49 +159,43 @@
     ... shows up as the exact file contents in response to (materials) > (nmh)
     > ... > (mde).
 
-39. Change 'score segments (g)', 'score setup (s)' and 'score templates (t)'
-    to just 'segments (g)', 'setup (s)' and 'templates (t)'.
+39. Change menu command display strings to 'direct object - verb' pervasively.
 
-40. Change menu command display strings to 'direct object - verb' pervasively.
-
-41. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+40. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument.
     Maker sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-42. Make (next) and (prev) work again.
+41. Make (next) and (prev) work again.
 
-43. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
+42. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
 
-44. Implement __format__ on Transcript.
+43. Implement __format__ on Transcript.
 
-45. Add something to check the size of the ~/.score_manager/transcripts
+44. Add something to check the size of the ~/.score_manager/transcripts
     diretory. Should warn at starting at 9000 and overwrite starting at 10,000.
 
-46. Add more hidden menu persistence tests.
-    Use test_Menu_display_hidden_menu_commands.
+45. Uncomment the TODO in Transcript and make the constraint hold.
 
-47. Uncomment the TODO in Transcript and make the constraint hold.
-
-48. Maybe time to change these:
+46. Maybe time to change these:
         materialpackagemanagers > materialmanagers
         scorepackages > scores
         materialpackages > materials
     In scores:
         score_templates > templates
 
-49. Remove all '.'.join() statements. There should be no by-hand package
+47. Remove all '.'.join() statements. There should be no by-hand package
     manipulation. Use self._configuration.filesystem_path_to_package_path()
     instead.
 
-50. Implement something to tour everything that can be rewritten and rewrite.
+48. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-51. There's noticeable delay starting ScorePackageManager.
+49. There's noticeable delay starting ScorePackageManager.
     Probably initializing too many wranglers and managers.
     Find a way to delay (and then cache) the initialization of
     ScorePackageManager delegates.
 
-52. Implement __slots__ on Session.
+50. Implement __slots__ on Session.

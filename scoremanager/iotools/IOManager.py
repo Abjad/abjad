@@ -89,6 +89,9 @@ class IOManager(IOManager):
             return 'g'
         elif key == 'lvl':
             self.view_last_log()
+        elif key == 'm':
+            self._session._is_navigating_to_score_materials = True
+            return 'm'
         elif key == 'next':
             self._session._is_navigating_to_next_score = True
             self._session._is_backtracking_to_score_manager = True

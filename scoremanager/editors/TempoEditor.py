@@ -14,5 +14,5 @@ class TempoEditor(Editor):
         return self.TargetManifest(
             indicatortools.Tempo,
             ('duration', 'd', getters.get_duration),
-            ('units_per_minute', 'm', getters.get_integer),
+            ('units_per_minute', 'pm', getters.get_integer),
             )

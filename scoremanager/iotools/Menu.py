@@ -260,6 +260,7 @@ class Menu(ScoreManagerObject):
             name='score navigation',
             return_value_attribute='key',
             )
+        section.append(('score - materials', 'm'))
         section.append(('score - segments', 'g'))
         return section
 

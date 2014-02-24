@@ -197,7 +197,10 @@ class Manager(ScoreManagerObject):
         self._session._cache_breadcrumbs(cache=cache)
         while True:
             self._session._push_breadcrumb(self._breadcrumb)
-            if self._session._is_navigating_to_score_segments and \
+            if self._session.is_navigating_to_score_materials and \
+                type(self) is managers.ScorePackageManager:
+                result = 'm'
+            elif self._session.is_navigating_to_score_segments and \
                 type(self) is managers.ScorePackageManager:
                 result = 'g'
             else:

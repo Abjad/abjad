@@ -48,6 +48,7 @@ class Session(abctools.AbjadObject):
         'hide_hidden_commands',
         'is_displayable',
         'is_in_score',
+        'is_navigating_to_score_materials',
         'is_navigating_to_score_segments',
         'is_navigating_to_sibling_score',
         'last_line',
@@ -90,6 +91,7 @@ class Session(abctools.AbjadObject):
         self._is_backtracking_to_score_manager = False
         self._is_navigating_to_next_score = False
         self._is_navigating_to_previous_score = False
+        self._is_navigating_to_score_materials = False
         self._is_navigating_to_score_segments = False
         self._is_quitting = False
         self._is_test = False
@@ -154,9 +156,11 @@ class Session(abctools.AbjadObject):
             not self._backtracking_stack:
             self._is_backtracking_locally = False
             return True
-        elif self._is_navigating_to_score_segments and \
+        elif self.is_navigating_to_score_segments and \
             not source in ('score', 'home'):
-            #print repr(source), 'source'
+            return True
+        elif self.is_navigating_to_score_materials and \
+            not source in ('score', 'home'):
             return True
 
     def _cache_breadcrumbs(self, cache=False):
@@ -759,6 +763,22 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_navigating_to_previous_score
+
+    @property
+    def is_navigating_to_score_materials(self):
+        r'''Is true when session is navigating to score materials.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_score_materials
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_score_materials
 
     @property
     def is_navigating_to_score_segments(self):
