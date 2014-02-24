@@ -110,9 +110,9 @@ class MaterialPackageManager(PackageManager):
     def _make_illustration_builder_menu_section(
         self,
         main_menu,
-        hidden_section,
         ):
         name = 'illustration builder'
+        command_section = main_menu.make_command_section(name=name)
         if self.has_output_material:
             if self.should_have_illustration:
                 if not self.has_illustration_builder_module:
@@ -124,22 +124,19 @@ class MaterialPackageManager(PackageManager):
                         material_package_name,
                         prompt=False,
                         )
-                command_section = main_menu.make_command_section(name=name)
-                command_section.append(
-                    ('illustration builder - edit', 'ibe'))
+                command_section.append(('illustration builder - edit', 'ibe'))
                 if self.has_output_material:
-                    command_section.append(
-                        ('illustration builder - execute', 'ibx'))
-                hidden_section.append(
-                    ('illustration builder - delete', 'ibd'))
-                hidden_section.append(
-                    ('illustration builder - stub', 'ibt'))
-                hidden_section.append(
-                    ('illustration builder - edit & execute', 'ibex'))
-                command_section.append(
-                    ('score stylesheet - select', 'sss'))
-                hidden_section.append(
-                    ('source stylesheet - edit', 'ssm'))
+                    string = 'illustration builder - edit & execute'
+                    command_section.append((string, 'ibex'))
+                    string = 'illustration builder - execute'
+                    command_section.append((string, 'ibx'))
+                string = 'illustration builder - remove'
+                command_section.append((string, 'ibrm'))
+                command_section.append(('illustration builder - stub', 'ibs'))
+                name = 'stylesheets'
+                command_section = main_menu.make_command_section(name=name)
+                command_section.append(('score stylesheet - select', 'sss'))
+                command_section.append(('source stylesheet - edit', 'ssm'))
 
     def _make_illustration_ly_menu_section(self, hidden_section):
         if self.has_output_material:
@@ -205,8 +202,7 @@ class MaterialPackageManager(PackageManager):
         self._make_material_definition_menu_section(
             menu, hidden_section)
         self._make_output_material_menu_section(menu)
-        self._make_illustration_builder_menu_section(
-            menu, hidden_section)
+        self._make_illustration_builder_menu_section(menu)
 
     def _make_main_menu_sections_with_user_input_wrapper(
         self, menu, hidden_section):
@@ -1300,9 +1296,9 @@ class MaterialPackageManager(PackageManager):
 
     _user_input_to_action = PackageManager._user_input_to_action.copy()
     _user_input_to_action.update({
-        'ibd': remove_illustration_builder_module,
         'ibe': edit_illustration_builder_module,
-        'ibt': write_stub_illustration_builder_module,
+        'ibrm': remove_illustration_builder_module,
+        'ibs': write_stub_illustration_builder_module,
         'ibx': run_python_on_illustration_builder_module,
         'ibxi': run_abjad_on_illustration_builder_module,
         'lyd': remove_illustration_ly,
