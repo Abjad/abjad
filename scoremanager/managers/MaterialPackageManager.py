@@ -190,6 +190,12 @@ class MaterialPackageManager(PackageManager):
         self._make_illustration_pdf_menu_section(
             main_menu, hidden_section)
         self._make_package_management_menu_section(main_menu)
+        try:
+            material_summary_section = main_menu['material summary']
+            main_menu.menu_sections.remove(material_summary_section)
+            main_menu.menu_sections.insert(0, material_summary_section)
+        except KeyError:
+            pass
         #print main_menu, 'MMM'
         #for x in main_menu.menu_sections:
         #    print x

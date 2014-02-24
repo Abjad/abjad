@@ -48,6 +48,13 @@ class Menu(ScoreManagerObject):
 
     ### SPECIAL METHODS ###
 
+    def __getitem__(self, expr):
+        assert isinstance(expr, str)
+        for menu_section in self.menu_sections:
+            if menu_section.name == expr:
+                return menu_section
+        raise KeyError
+
     def __len__(self):
         r'''Gets number of menu sections in menu.
 
