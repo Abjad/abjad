@@ -27,7 +27,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
         assert manager.material_definition is None
         assert manager.output_material is None
     finally:
-        string = 'lmm testnotes del remove default q'
+        string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager._configuration.package_exists(name)
 
@@ -57,7 +57,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
         assert manager.material_definition is None
         assert manager.output_material is None
     finally:
-        string = 'lmm testnotes del remove default q'
+        string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager._configuration.package_exists(name)
 
@@ -88,7 +88,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
         assert manager.material_definition is None
         assert manager.output_material is None
     finally:
-        string = 'lmm testnotes del remove default q'
+        string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager._configuration.package_exists(name)
 
@@ -122,7 +122,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
         assert manager.output_material and \
             all(isinstance(x, Note) for x in manager.output_material)
     finally:
-        string = 'lmm testnotes del remove default q'
+        string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager._configuration.package_exists(name)
 
@@ -152,7 +152,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
         assert manager.material_definition is None
         assert manager.output_material is None
     finally:
-        string = 'lmm testnotes del remove default q'
+        string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager._configuration.package_exists(name)
 
@@ -182,7 +182,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
         assert manager.material_definition is None
         assert manager.output_material is None
     finally:
-        string = 'lmm testnotes del remove default q'
+        string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager._configuration.package_exists(name)
 
@@ -216,7 +216,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
             all(isinstance(x, Note) for x in manager.material_definition)
         assert manager.output_material is None
     finally:
-        string = 'lmm testnotes del remove default q'
+        string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager._configuration.package_exists(name)
 
@@ -246,7 +246,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
         assert manager.material_definition is None
         assert manager.output_material is None
     finally:
-        string = 'lmm testnotes del remove default q'
+        string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager._configuration.package_exists(name)
 
@@ -281,7 +281,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
             all(isinstance(x, Note) for x in manager.material_definition)
         assert manager.output_material is None
     finally:
-        string = 'lmm testnotes del remove default q'
+        string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager._configuration.package_exists(name)
 
@@ -323,6 +323,6 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
             all(isinstance(x, Note) for x in manager.output_material)
             
     finally:
-        string = 'lmm testnotes del remove default q'
+        string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager._configuration.package_exists(name)

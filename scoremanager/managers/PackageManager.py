@@ -75,7 +75,7 @@ class PackageManager(DirectoryManager):
         assert stringtools.is_snake_case_string(metadatum_name)
         metadata = self._get_metadata()
         metadata[metadatum_name] = metadatum_value
-        self.rewrite_metadata_module(metadata)
+        self.rewrite_metadata_module(metadata, prompt=False)
 
     def _get_metadata(self):
         metadata = None
@@ -145,7 +145,7 @@ class PackageManager(DirectoryManager):
             message = message.format(metadatum_name)
             self._session.io_manager.proceed(message)
         if was_removed:
-            self.rewrite_metadata_module(metadata)
+            self.rewrite_metadata_module(metadata, prompt=False)
             message = 'metadatum removed: {!r}.'
             message = message.format(metadatum_name)
             self._session.io_manager.proceed(message)
@@ -330,6 +330,9 @@ class PackageManager(DirectoryManager):
         if metadata is None:
             metadata = self._get_metadata()
         self._write_metadata(metadata)
+        if prompt:
+            message = 'rewrote metadata module.'
+            self._session.io_manager.proceed(message)
 
     def set_package_path(self):
         r'''Sets package path.

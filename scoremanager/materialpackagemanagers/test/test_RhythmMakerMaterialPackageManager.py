@@ -36,7 +36,7 @@ def test_RhythmMakerMaterialPackageManager_01():
             )
         assert mpp.output_material == maker
     finally:
-        string = 'lmm testrhythmmaker del remove default q'
+        string = 'lmm testrhythmmaker rm default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testrhythmmaker'
         assert not \

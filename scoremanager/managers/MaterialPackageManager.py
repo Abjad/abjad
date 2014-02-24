@@ -107,6 +107,17 @@ class MaterialPackageManager(PackageManager):
             user_input_wrapper = self.initialize_empty_user_input_wrapper()
         return user_input_wrapper
 
+    def _make_stylesheet_menu_section(
+        self,
+        menu,
+        ):
+        name = 'stylesheets'
+        section = menu.make_command_section(name=name)
+        if self.has_output_material and self.should_have_illustration:
+            section = menu.make_command_section(name=name)
+            section.append(('stylesheet - edit', 'sse'))
+            section.append(('stylesheet - select', 'sss'))
+
     def _make_illustration_builder_menu_section(
         self,
         main_menu,
@@ -133,38 +144,36 @@ class MaterialPackageManager(PackageManager):
                 string = 'illustration builder - remove'
                 command_section.append((string, 'ibrm'))
                 command_section.append(('illustration builder - stub', 'ibs'))
-                name = 'stylesheets'
-                command_section = main_menu.make_command_section(name=name)
-                command_section.append(('score stylesheet - select', 'sss'))
-                command_section.append(('source stylesheet - edit', 'ssm'))
 
-    def _make_illustration_ly_menu_section(self, hidden_section):
+    def _make_illustration_ly_menu_section(self, menu):
+        if self.has_output_material or self.has_illustration_ly:
+            section = menu.make_command_section()
         if self.has_output_material:
             if self.has_illustration_builder_module or \
                 self.has_material_package_manager:
-                hidden_section.append(('output ly - make', 'lym'))
+                section.append(('output ly - make', 'lym'))
         if self.has_illustration_ly:
-            hidden_section.append(('output ly - delete', 'lyd'))
-            hidden_section.append(('output ly - view', 'ly'))
+            section.append(('output ly - remove', 'lyrm'))
+            section.append(('output ly - view', 'ly'))
 
     def _make_illustration_pdf_menu_section(
         self,
         main_menu,
-        hidden_section,
         ):
         name = 'illustration pdf'
-        has_illustration_pdf_section = False
+        #has_illustration_pdf_section = False
+        if self.has_output_material or self.has_illustration_pdf:
+            command_section = main_menu.make_command_section(name=name)
         if self.has_output_material:
             if self.has_illustration_builder_module or \
                 (self.has_material_package_manager and
                 getattr(self, 'illustration_builder', None)):
-                command_section = main_menu.make_command_section(name=name)
                 command_section.append(('output pdf - make', 'pdfm'))
                 has_illustration_pdf_section = True
         if self.has_illustration_pdf:
             if not has_illustration_pdf_section:
                 command_section = main_menu.make_command_section(name=name)
-            hidden_section.append(('output pdf - delete', 'pdfd'))
+            command_section.append(('output pdf - remove', 'pdfrm'))
             command_section.append(('output pdf - view', 'pdfv'))
 
     def _make_main_menu(self):
@@ -182,10 +191,12 @@ class MaterialPackageManager(PackageManager):
             self._make_main_menu_sections_with_user_input_wrapper(
                 main_menu, hidden_section)
         else:
-            self._make_main_menu_sections(main_menu, hidden_section)
-        self._make_illustration_ly_menu_section(hidden_section)
-        self._make_illustration_pdf_menu_section(
-            main_menu, hidden_section)
+            self._make_illustration_builder_menu_section(main_menu)
+            self._make_material_definition_menu_section(main_menu)
+            self._make_output_material_menu_section(main_menu)
+            self._make_stylesheet_menu_section(main_menu)
+        self._make_illustration_ly_menu_section(main_menu)
+        self._make_illustration_pdf_menu_section(main_menu)
         self._make_package_management_menu_section(main_menu)
         try:
             material_summary_section = main_menu['material summary']
@@ -198,11 +209,11 @@ class MaterialPackageManager(PackageManager):
         #    print x
         return main_menu
 
-    def _make_main_menu_sections(self, menu, hidden_section):
-        self._make_material_definition_menu_section(
-            menu, hidden_section)
-        self._make_illustration_builder_menu_section(menu)
-        self._make_output_material_menu_section(menu)
+#    def _make_main_menu_sections(self, menu, hidden_section):
+#        self._make_illustration_builder_menu_section(menu)
+#        self._make_material_definition_menu_section(menu)
+#        self._make_output_material_menu_section(menu)
+#        self._make_stylesheet_menu_section(menu)
 
     def _make_main_menu_sections_with_user_input_wrapper(
         self, menu, hidden_section):
@@ -214,7 +225,6 @@ class MaterialPackageManager(PackageManager):
     def _make_material_definition_menu_section(
         self,
         main_menu, 
-        hidden_section,
         ):
         name = 'material definition'
         if not os.path.isfile(self._initializer_file_path):
@@ -290,10 +300,9 @@ class MaterialPackageManager(PackageManager):
             is_secondary=True,
             name='package management',
             )
-        hidden_section.append(('remove package', 'rm'))
-        hidden_section.append(('list package', 'ls'))
-        hidden_section.append(('rename package', 'ren'))
-        hidden_section.append(('manage stylesheets', 'stl'))
+        hidden_section.append(('package - list', 'ls'))
+        hidden_section.append(('package - remove', 'rm'))
+        hidden_section.append(('package - rename', 'ren'))
 
     def _make_user_input_module_menu_section(
         self,
@@ -656,7 +665,7 @@ class MaterialPackageManager(PackageManager):
     def stylesheet_file_manager(self):
         from scoremanager import managers
         return managers.FileManager(
-            self.stylesheet_file_path,
+            self.stylesheet_file_path_in_memory,
             session=self._session,
             )
 
@@ -742,8 +751,12 @@ class MaterialPackageManager(PackageManager):
                 output_material_module_body_lines,
             )
 
-    def edit_stylesheet_file(self):
-        self.stylesheet_file_manager.edit()
+    def edit_stylesheet_file(self, prompt=True):
+        if self.stylesheet_file_path_in_memory:
+            self.stylesheet_file_manager.edit()
+        elif prompt:
+            message = 'select stylesheet first.'
+            self._session.io_manager.proceed(message)
 
     def get_tools_package_qualified_repr(self, expr):
         if hasattr(expr, '_make_storage_format_with_overrides'):
@@ -751,12 +764,6 @@ class MaterialPackageManager(PackageManager):
         elif hasattr(expr, '_storage_format_specification'):
             return format(expr, 'storage')
         return repr(expr)
-
-    def manage_stylesheets(self):
-        from scoremanager import wranglers
-        stylesheet_file_wrangler = wranglers.StylesheetFileWrangler(
-            session=self._session)
-        stylesheet_file_wrangler._run()
 
     def remove(self):
         PackageManager.remove(self)
@@ -1297,8 +1304,8 @@ class MaterialPackageManager(PackageManager):
         'ibs': write_stub_illustration_builder_module,
         'ibx': run_python_on_illustration_builder_module,
         'ibxi': run_abjad_on_illustration_builder_module,
-        'lyd': remove_illustration_ly,
         'lym': write_illustration_ly,
+        'lyrm': remove_illustration_ly,
         'ly': illustration_ly_file_manager,
         'mdbp': write_material_definition_module_boilerplate,
         'mde': edit_material_definition_module,
@@ -1312,12 +1319,11 @@ class MaterialPackageManager(PackageManager):
         'omrm': remove_output_material_module,
         'omv': view_output_material_module,
         'pdfm': write_illustration_ly_and_pdf,
-        'pdfd': remove_illustration_pdf,
+        'pdfrm': remove_illustration_pdf,
         'pdfv': view_illustration_pdf,
         'ren': rename_package,
-        'ssm': edit_stylesheet_file,
+        'sse': edit_stylesheet_file,
         'sss': select_stylesheet,
-        'stl': manage_stylesheets,
         'uid': remove_user_input_module,
 
         'uic': clear_user_input_wrapper,

@@ -522,13 +522,13 @@ class Wrangler(ScoreManagerObject):
         asset_manager = self._initialize_asset_manager(asset_filesystem_path)
         asset_manager.rename()
 
-    def rewrite_metadata_module(self):
+    def rewrite_metadata_module(self, prompt=True):
         r'''Rewrites metadata module.
 
         Returns none.
         '''
         manager = self._get_current_package_manager()
-        manager.rewrite_metadata_module()
+        manager.rewrite_metadata_module(prompt=prompt)
 
     def run_doctest(self, prompt=True):
         r'''Runs doctest.

@@ -31,7 +31,7 @@ def test_DynamicHandlerMaterialPackageManager_01():
             )
         assert mpp.output_material == handler
     finally:
-        string = 'lmm testdynamichandler del remove default q'
+        string = 'lmm testdynamichandler rm default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testdynamichandler'
         assert not \

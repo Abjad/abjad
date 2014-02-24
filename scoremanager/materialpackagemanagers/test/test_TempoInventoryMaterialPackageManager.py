@@ -26,7 +26,7 @@ def test_TempoInventoryMaterialPackageManager_01():
         inventory = indicatortools.TempoInventory([((1, 4), 60), ((1, 4), 90)])
         assert mpp.output_material == inventory
     finally:
-        string = 'lmm testtempoinventory del remove default q'
+        string = 'lmm testtempoinventory rm default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testtempoinventory'
         assert not \

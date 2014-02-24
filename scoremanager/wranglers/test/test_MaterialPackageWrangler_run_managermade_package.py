@@ -29,7 +29,7 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
         assert manager.has_user_input_module
         assert manager.output_material is None
     finally:
-        string = 'lmm testsargasso del remove default q'
+        string = 'lmm testsargasso rm default q'
         score_manager._run(pending_user_input=string)
         assert not score_manager._configuration.package_exists(name)
 
@@ -58,8 +58,8 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
         assert manager.has_user_input_module
         assert manager.output_material is None
     finally:
-        string = 'red~example~score m testsargasso del remove default q'
-        score_manager._run(pending_user_input='red~example~score m testsargasso del remove default q')
+        string = 'red~example~score m testsargasso rm default q'
+        score_manager._run(pending_user_input='red~example~score m testsargasso rm default q')
         assert not score_manager._configuration.package_exists(name)
 
 
@@ -84,7 +84,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        assert manager.output_material is None
 #        assert manager.illustration is None
 #    finally:
-#        score_manager._run(pending_user_input='m testsargasso del remove default q')
+#        score_manager._run(pending_user_input='m testsargasso rm default q')
 #        assert not score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
 #
 #
@@ -109,7 +109,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        assert manager.material_definition is None
 #        assert manager.output_material is None
 #    finally:
-#        score_manager._run(pending_user_input='m testsargasso del remove default q')
+#        score_manager._run(pending_user_input='m testsargasso rm default q')
 #        assert not score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
 #
 #
@@ -136,7 +136,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        assert manager.output_material and and all(isinstance(x, Note) for x in
 #           manager.output_material)
 #    finally:
-#        score_manager._run(pending_user_input='lmm testsargasso del remove default q')
+#        score_manager._run(pending_user_input='lmm testsargasso rm default q')
 #        assert not score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
 #
 #
@@ -161,7 +161,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        assert manager.material_definition is None
 #        assert manager.output_material is None
 #    finally:
-#        score_manager._run(pending_user_input='lmm testsargasso del remove default q')
+#        score_manager._run(pending_user_input='lmm testsargasso rm default q')
 #        assert not score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
 #
 #
@@ -185,7 +185,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        assert manager.material_definition is None
 #        assert manager.output_material is None
 #    finally:
-#        score_manager._run(pending_user_input='lmm testsargasso del remove default q')
+#        score_manager._run(pending_user_input='lmm testsargasso rm default q')
 #        assert not score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
 #
 #
@@ -212,7 +212,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #           manager.material_definition
 #        assert manager.output_material is None
 #    finally:
-#        score_manager._run(pending_user_input='lmm testsargasso del remove default q')
+#        score_manager._run(pending_user_input='lmm testsargasso rm default q')
 #        assert not score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
 #
 #
@@ -236,7 +236,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        assert manager.material_definition is None
 #        assert manager.output_material is None
 #    finally:
-#        score_manager._run(pending_user_input='lmm testsargasso del remove default q')
+#        score_manager._run(pending_user_input='lmm testsargasso rm default q')
 #        assert not score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
 #
 #
@@ -263,7 +263,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #           manager.material_definition
 #        assert manager.output_material is None
 #    finally:
-#        score_manager._run(pending_user_input='lmm testsargasso del remove default q')
+#        score_manager._run(pending_user_input='lmm testsargasso rm default q')
 #        assert not score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
 #
 #
@@ -294,5 +294,5 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        assert manager.output_material and all(isinstance(x, Note) for x in
 #           manager.output_material
 #    finally:
-#        score_manager._run(pending_user_input='lmm testsargasso del remove default q')
+#        score_manager._run(pending_user_input='lmm testsargasso rm default q')
 #        assert not score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
