@@ -194,3 +194,8 @@
 49. Remove all '.'.join() statements. There should be no by-hand package
     manipulation. Use self._configuration.filesystem_path_to_package_path()
     instead.
+
+50. Implement something to tour everything that can be rewritten and rewrite.
+    Initializers, metadata modules, user input modules, etc. This will allow
+    output formatting changes to be applied to all collateral with a single
+    command.

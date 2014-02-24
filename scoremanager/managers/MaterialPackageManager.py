@@ -72,6 +72,8 @@ class MaterialPackageManager(PackageManager):
         elif mathtools.is_integer_equivalent_expr(result):
             self.edit_user_input_wrapper_at_number(
                 result, include_newline=False)
+        elif result == 'user entered lone return':
+            pass
         else:
             raise ValueError(result)
 

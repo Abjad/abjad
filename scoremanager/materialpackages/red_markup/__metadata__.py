@@ -7,4 +7,5 @@ metadata = collections.OrderedDict([
     ('is_material_package', True),
     ('material_package_manager_class_name', 'MarkupInventoryMaterialPackageManager'),
     ('should_have_illustration', True),
-    ('should_have_user_input_module', False)])
+    ('should_have_user_input_module', False),
+    ])

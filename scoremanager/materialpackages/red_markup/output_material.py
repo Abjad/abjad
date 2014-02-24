@@ -1,13 +1,24 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import markuptools
+from abjad import *
 
 
-red_markup = markuptools.MarkupInventory([
-	markuptools.Markup(
-		'\\bold { staccatissimo luminoso }',
-		),
-	markuptools.Markup(
-		'\\italic { serenamente }',
-		)
-	],
-	)
+red_markup = markuptools.MarkupInventory(
+    [
+        markuptools.Markup(
+            contents=(
+                markuptools.MarkupCommand(
+                    'bold',
+                    ['staccatissimo', 'luminoso']
+                    ),
+                ),
+            ),
+        markuptools.Markup(
+            contents=(
+                markuptools.MarkupCommand(
+                    'italic',
+                    ['serenamente']
+                    ),
+                ),
+            ),
+        ]
+    )
