@@ -286,7 +286,7 @@ class Menu(ScoreManagerObject):
         return menu_section
 
     def _make_section_lines(self):
-        menu_lines = []
+        result = []
         for menu_section in self.menu_sections:
             hide = self._session.hide_secondary_commands
             if hide and menu_section.is_secondary:
@@ -294,10 +294,10 @@ class Menu(ScoreManagerObject):
             if menu_section.is_hidden:
                 continue
             section_menu_lines = menu_section._make_menu_lines()
-            menu_lines.extend(section_menu_lines)
+            result.extend(section_menu_lines)
         if self.hide_current_run:
-            menu_lines = []
-        return menu_lines
+            result = []
+        return result
 
     def _make_session_menu_section(self):
         section = self._make_section(

@@ -107,17 +107,6 @@ class MaterialPackageManager(PackageManager):
             user_input_wrapper = self.initialize_empty_user_input_wrapper()
         return user_input_wrapper
 
-    # TODO: change name to _make_package_management_menu_section
-    def _make_hidden_entries_menu_section(self, main_menu):
-        hidden_section = main_menu.make_command_section(
-            is_secondary=True,
-            name='package management',
-            )
-        hidden_section.append(('remove package', 'rm'))
-        hidden_section.append(('list package', 'ls'))
-        hidden_section.append(('rename package', 'ren'))
-        hidden_section.append(('manage stylesheets', 'stl'))
-
     def _make_illustration_builder_menu_section(
         self,
         main_menu,
@@ -200,7 +189,7 @@ class MaterialPackageManager(PackageManager):
         self._make_illustration_ly_menu_section(hidden_section)
         self._make_illustration_pdf_menu_section(
             main_menu, hidden_section)
-        self._make_hidden_entries_menu_section(main_menu)
+        self._make_package_management_menu_section(main_menu)
         #print main_menu, 'MMM'
         #for x in main_menu.menu_sections:
         #    print x
@@ -273,11 +262,17 @@ class MaterialPackageManager(PackageManager):
                 if self.has_output_material:
                     output_material_editor = self.output_material_editor(
                         target=self.output_material,
-                        session=self._session)
+                        session=self._session,
+                        )
                     target_summary_lines = \
                         output_material_editor.target_summary_lines
                     if target_summary_lines:
-                        command_section.title = target_summary_lines
+                        #print target_summary_lines, 'TTT'
+                        #command_section.title = target_summary_lines
+                        section = main_menu.make_command_section(
+                            name='material summary',
+                            )
+                        section.title = target_summary_lines
                 has_output_material_section = True
             if self.has_output_material_module:
                 if not has_output_material_section:
@@ -288,6 +283,16 @@ class MaterialPackageManager(PackageManager):
                     ('output material - delete', 'omdelete'))
         hidden_section.append(
             ('output material - copy canned module', 'omcanned'))
+
+    def _make_package_management_menu_section(self, main_menu):
+        hidden_section = main_menu.make_command_section(
+            is_secondary=True,
+            name='package management',
+            )
+        hidden_section.append(('remove package', 'rm'))
+        hidden_section.append(('list package', 'ls'))
+        hidden_section.append(('rename package', 'ren'))
+        hidden_section.append(('manage stylesheets', 'stl'))
 
     def _make_user_input_module_menu_section(
         self,
