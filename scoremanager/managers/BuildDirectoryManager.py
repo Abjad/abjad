@@ -59,7 +59,7 @@ class BuildDirectoryManager(DirectoryManager):
     def _handle_back_cover_menu_result(self, result):
         if result == 'e':
             self._edit_file_ending_with('back-cover.tex')
-        elif result == 'g':
+        elif result == 'sg':
             self._io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
             self._open_file_ending_with('back-cover.pdf')
@@ -69,7 +69,7 @@ class BuildDirectoryManager(DirectoryManager):
     def _handle_front_cover_menu_result(self, result):
         if result == 'e':
             self._edit_file_ending_with('front-cover.tex')
-        elif result == 'g':
+        elif result == 'sg':
             self._io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
             self._open_file_ending_with('front-cover.pdf')
@@ -79,7 +79,7 @@ class BuildDirectoryManager(DirectoryManager):
     def _handle_preface_menu_result(self, result):
         if result == 'e':
             self._edit_file_ending_with('preface.tex')
-        elif result == 'g':
+        elif result == 'sg':
             self._io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
             self._open_file_ending_with('preface.pdf')
@@ -89,7 +89,7 @@ class BuildDirectoryManager(DirectoryManager):
     def _handle_score_menu_result(self, result):
         if result == 'e':
             self._edit_file_ending_with('score.tex')
-        elif result == 'g':
+        elif result == 'sg':
             self._io_manager.print_not_yet_implemented()
         elif result == 'lycp':
             self.copy_segment_lilypond_files()
@@ -111,7 +111,7 @@ class BuildDirectoryManager(DirectoryManager):
         menu = self._io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
         command_section.append(('source - edit', 'e'))
-        command_section.append(('source - generate', 'g'))
+        command_section.append(('source - generate', 'sg'))
         command_section.append(('source - typeset', 'ts'))
         command_section = menu.make_command_section()
         command_section.append(('pdf - view', 'pdfv'))
@@ -122,7 +122,7 @@ class BuildDirectoryManager(DirectoryManager):
         menu = self._io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
         command_section.append(('source - edit', 'e'))
-        command_section.append(('source - generate', 'g'))
+        command_section.append(('source - generate', 'sg'))
         command_section.append(('source - typeset', 'ts'))
         command_section = menu.make_command_section()
         command_section.append(('pdf - view', 'pdfv'))
@@ -144,7 +144,7 @@ class BuildDirectoryManager(DirectoryManager):
         menu = self._io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
         command_section.append(('source - edit', 'e'))
-        command_section.append(('source - generate', 'g'))
+        command_section.append(('source - generate', 'sg'))
         command_section.append(('source - typeset', 'ts'))
         command_section = menu.make_command_section()
         command_section.append(('pdf - view', 'pdfv'))
@@ -162,7 +162,7 @@ class BuildDirectoryManager(DirectoryManager):
         command_section.append(('segment assembly pdf - view', 'segv'))
         command_section = menu.make_command_section()
         command_section.append(('source - edit', 'e'))
-        command_section.append(('source - generate', 'g'))
+        command_section.append(('source - generate', 'sg'))
         command_section.append(('source - typeset', 'ts'))
         command_section = menu.make_command_section()
         command_section.append(('pdf - view', 'pdfv'))
