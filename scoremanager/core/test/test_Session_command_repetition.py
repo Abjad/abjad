@@ -12,4 +12,4 @@ def test_Session_command_repetition_01():
 
     command_history = ['next', '.', '.', '.', 'q']
     assert score_manager._session.command_history == command_history
-    assert score_manager._session.transcript.signature == (10, (1, 3, 5, 7))
+    assert score_manager._transcript.signature == (10, (1, 3, 5, 7))

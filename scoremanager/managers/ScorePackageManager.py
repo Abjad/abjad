@@ -185,7 +185,7 @@ class ScorePackageManager(PackageManager):
         elif result == 'removescore':
             self.remove(),
         elif result == 't':
-            self.score_template_directory_manager._run()
+            self._score_template_directory_manager._run()
         elif result == 'u':
             self._build_directory_manager._run()
         elif result == 'y':

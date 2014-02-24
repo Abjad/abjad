@@ -10,19 +10,19 @@ def test_ScorePackageManager_edit_forces_tagline_01():
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score setup tagline q'
     score_manager._run(pending_user_input=string)
-    assert score_manager._session.transcript.signature == (7,)
+    assert score_manager._transcript.signature == (7,)
 
     string = 'red~example~score setup tagline b q'
     score_manager._run(pending_user_input=string)
-    assert score_manager._session.transcript.signature == (9, (4, 7))
+    assert score_manager._transcript.signature == (9, (4, 7))
 
     string = 'red~example~score setup tagline s q'
     score_manager._run(pending_user_input=string)
-    assert score_manager._session.transcript.signature == (9, (2, 7))
+    assert score_manager._transcript.signature == (9, (2, 7))
 
     string = 'red~example~score setup tagline h q'
     score_manager._run(pending_user_input=string)
-    assert score_manager._session.transcript.signature == (9, (0, 7))
+    assert score_manager._transcript.signature == (9, (0, 7))
 
 
 def test_ScorePackageManager_edit_forces_tagline_02():

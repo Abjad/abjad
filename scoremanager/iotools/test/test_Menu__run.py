@@ -16,7 +16,7 @@ def test_Menu__run_01():
     menu_section.title = 'section'
 
     result = menu._run(pending_user_input='foo')
-    assert menu._session.transcript.last_menu_lines == \
+    assert menu._transcript.last_menu_lines == \
     ['Location',
       '',
       '     Section',
@@ -60,7 +60,7 @@ def test_Menu__run_02():
     menu_section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
-    assert menu._session.transcript.last_menu_lines == \
+    assert menu._transcript.last_menu_lines == \
     ['Location', '']
     assert result is None
 
@@ -97,7 +97,7 @@ def test_Menu__run_03():
     menu_section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
-    assert menu._session.transcript.last_menu_lines == \
+    assert menu._transcript.last_menu_lines == \
     ['Location',
       '',
       '     Section',
@@ -141,7 +141,7 @@ def test_Menu__run_04():
     menu_section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
-    assert menu._session.transcript.last_menu_lines == \
+    assert menu._transcript.last_menu_lines == \
     ['Location',
       '',
       '     Section',
@@ -188,7 +188,7 @@ def test_Menu__run_05():
 
     result = menu._run(pending_user_input='foo')
 
-    assert menu._session.transcript.last_menu_lines == \
+    assert menu._transcript.last_menu_lines == \
     ['Location',
       '',
       '     Section',
@@ -294,7 +294,7 @@ def test_Menu__run_07():
     menu_section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
-    assert menu._session.transcript.last_menu_lines == \
+    assert menu._transcript.last_menu_lines == \
     ['Location', '']
 
     assert result is None
@@ -394,7 +394,7 @@ def test_Menu__run_09():
     menu_section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
-    assert menu._session.transcript.last_menu_lines == \
+    assert menu._transcript.last_menu_lines == \
     ['Location',
       '',
       '     Section',
@@ -452,7 +452,7 @@ def test_Menu__run_10():
     menu_section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
-    assert menu._session.transcript.last_menu_lines == \
+    assert menu._transcript.last_menu_lines == \
     ['Location',
       '',
       '     Section',

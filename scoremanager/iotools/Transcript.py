@@ -99,8 +99,8 @@ class Transcript(AbjadObject):
         return result
 
     @property
-    def system_display_titles(self):
-        r'''Gets system display entry titles.
+    def titles(self):
+        r'''Gets titles of system display entries in transcript.
 
         Returns list.
         '''

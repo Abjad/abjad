@@ -22,6 +22,7 @@ class ScoreManagerObject(object):
         self._configuration = core.ScoreManagerConfiguration()
         self._session = session or core.Session()
         self._io_manager = iotools.IOManager(self._session)
+        self._transcript = self._session.transcript
 
     ### SPECIAL METHODS ###
 

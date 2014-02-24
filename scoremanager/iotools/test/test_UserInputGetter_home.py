@@ -8,4 +8,4 @@ def test_UserInputGetter_home_01():
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score setup instrumentation move h q'
     score_manager._run(pending_user_input=string)
-    assert score_manager._session.transcript.signature == (11, (0, 9))
+    assert score_manager._transcript.signature == (11, (0, 9))

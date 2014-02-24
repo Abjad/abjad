@@ -13,7 +13,7 @@ def test_MaterialPackageManager_screenscrapes_01():
     string = 'red~example~score m tempo~inventory q'
     score_manager._run(pending_user_input=string)
 
-    assert score_manager._session.transcript.last_menu_lines == [
+    assert score_manager._transcript.last_menu_lines == [
         'Red Example Score (2013) - materials - tempo inventory', 
         '', 
         '     Tempo(Duration(1, 8), 72)', 

@@ -34,6 +34,6 @@ def test_MaterialPackageWrangler_make_managermade_material_package_02():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='lmm nmm q')
 
-    transcript = score_manager._session.transcript
+    transcript = score_manager._transcript
     string = 'Select material package manager:'
     assert transcript.last_menu_title == string

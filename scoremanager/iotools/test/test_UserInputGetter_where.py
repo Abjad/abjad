@@ -10,4 +10,4 @@ def test_UserInputGetter_where_01():
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score setup instrumentation move where q'
     score_manager._run(pending_user_input=string)
-    assert score_manager._session.transcript.signature == (11,)
+    assert score_manager._transcript.signature == (11,)

@@ -23,16 +23,16 @@ def test_PitchRangeEditor__run_02():
 
     editor = scoremanager.editors.PitchRangeEditor()
     editor._run(pending_user_input='q')
-    assert editor._session.transcript.signature == (2,)
+    assert editor._transcript.signature == (2,)
 
     editor = scoremanager.editors.PitchRangeEditor()
     editor._run(pending_user_input='sco q')
-    assert editor._session.transcript.signature == (4, (0, 2))
+    assert editor._transcript.signature == (4, (0, 2))
 
     editor = scoremanager.editors.PitchRangeEditor()
     editor._run(pending_user_input='h')
-    assert editor._session.transcript.signature == (2,)
+    assert editor._transcript.signature == (2,)
 
     editor = scoremanager.editors.PitchRangeEditor()
     editor._run(pending_user_input='foo q')
-    assert editor._session.transcript.signature == (4, (0, 2))
+    assert editor._transcript.signature == (4, (0, 2))

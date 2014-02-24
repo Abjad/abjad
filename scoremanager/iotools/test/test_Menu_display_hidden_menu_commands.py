@@ -10,7 +10,7 @@ def test_Menu_display_hidden_menu_commands_01():
     score_manager._run(pending_user_input='n q')
 
     string = 'Score manager - example scores - hidden commands'
-    assert score_manager._session.transcript.last_menu_title == string
+    assert score_manager._transcript.last_menu_title == string
 
 
 def test_Menu_display_hidden_menu_commands_02():
@@ -21,7 +21,7 @@ def test_Menu_display_hidden_menu_commands_02():
     score_manager._run(pending_user_input='n asdf q')
 
     string = 'Score manager - example scores - hidden commands'
-    transcript = score_manager._session.transcript
+    transcript = score_manager._transcript
 
     assert transcript.system_display_entries[-1].title == string
     assert transcript.system_display_entries[-2].title == string
@@ -35,7 +35,7 @@ def test_Menu_display_hidden_menu_commands_03():
     score_manager._run(pending_user_input='n lvl q')
 
     string = 'Score manager - example scores - hidden commands'
-    transcript = score_manager._session.transcript
+    transcript = score_manager._transcript
 
     assert transcript.system_display_entries[-1].title == string
     assert transcript.system_display_entries[-2].title == string
@@ -50,7 +50,7 @@ def test_Menu_display_hidden_menu_commands_04():
     score_manager._run(pending_user_input=string)
 
     string = 'Red Example Score (2013) - hidden commands'
-    transcript = score_manager._session.transcript
+    transcript = score_manager._transcript
     assert transcript.system_display_entries[-1].title == string
 
 
@@ -63,7 +63,7 @@ def test_Menu_display_hidden_menu_commands_05():
     score_manager._run(pending_user_input=string)
 
     string = 'Red Example Score (2013) - hidden commands'
-    transcript = score_manager._session.transcript
+    transcript = score_manager._transcript
     assert transcript.last_menu_title == string
 
 
@@ -76,7 +76,7 @@ def test_Menu_display_hidden_menu_commands_06():
     score_manager._run(pending_user_input=string)
 
     string = 'Red Example Score (2013) - hidden commands'
-    transcript = score_manager._session.transcript
+    transcript = score_manager._transcript
     assert transcript.last_menu_title == string
 
 
@@ -89,7 +89,7 @@ def test_Menu_display_hidden_menu_commands_07():
     score_manager._run(pending_user_input=string)
 
     string = 'Red Example Score (2013) - hidden commands'
-    transcript = score_manager._session.transcript
+    transcript = score_manager._transcript
     assert transcript.last_menu_title == string
 
 
@@ -103,7 +103,7 @@ def test_Menu_display_hidden_menu_commands_08():
     score_manager._run(pending_user_input=string)
 
     string = 'Red Example Score (2013) - hidden commands'
-    transcript = score_manager._session.transcript
+    transcript = score_manager._transcript
     assert transcript.last_menu_title == string
 
 
@@ -117,7 +117,7 @@ def test_Menu_display_hidden_menu_commands_09():
     score_manager._run(pending_user_input=string)
 
     string = 'Red Example Score (2013) - hidden commands'
-    transcript = score_manager._session.transcript
+    transcript = score_manager._transcript
     assert transcript.last_menu_title == string
 
 
@@ -131,7 +131,7 @@ def test_Menu_display_hidden_menu_commands_10():
     score_manager._run(pending_user_input=string)
 
     string = 'Red Example Score (2013) - hidden commands'
-    transcript = score_manager._session.transcript
+    transcript = score_manager._transcript
     assert transcript.last_menu_title == string
 
 
@@ -145,7 +145,7 @@ def test_Menu_display_hidden_menu_commands_11():
     score_manager._run(pending_user_input=string)
 
     string = 'Red Example Score (2013) - hidden commands'
-    transcript = score_manager._session.transcript
+    transcript = score_manager._transcript
     assert transcript.last_menu_title == string
 
 
@@ -158,7 +158,7 @@ def test_Menu_display_hidden_menu_commands_12():
     score_manager._run(pending_user_input=string)
 
     string = 'Red Example Score (2013) - hidden commands'
-    transcript = score_manager._session.transcript
+    transcript = score_manager._transcript
     assert transcript.last_menu_title == string
 
 
@@ -171,7 +171,7 @@ def test_Menu_display_hidden_menu_commands_13():
     score_manager._run(pending_user_input=string)
 
     string = 'Red Example Score (2013) - hidden commands'
-    transcript = score_manager._session.transcript
+    transcript = score_manager._transcript
     assert transcript.last_menu_title == string
 
 
@@ -184,7 +184,7 @@ def test_Menu_display_hidden_menu_commands_14():
     score_manager._run(pending_user_input=string)
 
     string = 'Red Example Score (2013) - hidden commands'
-    transcript = score_manager._session.transcript
+    transcript = score_manager._transcript
     assert transcript.last_menu_title == string
 
 
@@ -197,6 +197,6 @@ def test_Menu_display_hidden_menu_commands_15():
     score_manager._run(pending_user_input=string)
 
     string = 'Red Example Score (2013) - hidden commands'
-    transcript = score_manager._session.transcript
+    transcript = score_manager._transcript
     assert transcript.last_menu_title == string
     assert score_manager._session.attempted_to_open_file

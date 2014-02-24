@@ -205,7 +205,7 @@ class Session(abctools.AbjadObject):
                 print entry
 
     def _print_transcript_titles(self):
-        for title in self.transcript.system_display_titles:
+        for title in self.transcript.titles:
             print repr(title)
 
     def _push_backtrack(self):

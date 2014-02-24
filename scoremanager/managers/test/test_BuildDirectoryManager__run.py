@@ -16,4 +16,4 @@ def test_BuildDirectoryManager__run_01():
         'Red Example Score (2013) - segments',
         ]
 
-    assert score_manager._session.transcript.system_display_titles == titles
+    assert score_manager._transcript.titles == titles
