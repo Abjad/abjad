@@ -204,8 +204,7 @@ class MaterialPackageManager(PackageManager):
     def _make_main_menu_sections(self, menu, hidden_section):
         self._make_material_definition_menu_section(
             menu, hidden_section)
-        self._make_output_material_menu_section(
-            menu, hidden_section)
+        self._make_output_material_menu_section(menu)
         self._make_illustration_builder_menu_section(
             menu, hidden_section)
 
@@ -214,7 +213,7 @@ class MaterialPackageManager(PackageManager):
         if not self.has_output_material_editor:
             self._make_user_input_module_menu_section(
                 menu, hidden_section)
-        self._make_output_material_menu_section(menu, hidden_section)
+        self._make_output_material_menu_section(menu)
 
     def _make_material_definition_menu_section(
         self,
@@ -245,50 +244,55 @@ class MaterialPackageManager(PackageManager):
             command_section.append(
                 ('material definition - stub', 'mdstub'))
 
+    def _can_make_output_material(self):
+        if self.has_material_definition:
+            return True
+        if self.has_complete_user_input_wrapper_in_memory:
+            return True
+        return False
+
     def _make_output_material_menu_section(
         self,
-        main_menu,
-        hidden_section,
+        menu,
         ):
         if not os.path.isfile(self._initializer_file_path):
             return
         has_output_material_section = False
         name = 'output material'
-        if self.has_material_definition_module or \
-            self.has_complete_user_input_wrapper_in_memory or \
-            self.has_output_material_editor:
-            if self.has_material_definition or \
-                self.has_complete_user_input_wrapper_in_memory:
-                command_section = main_menu.make_command_section(name=name)
-                command_section.append(('output material - make', 'omm'))
+        section = menu.make_command_section(name=name)
+        if self._should_have_output_material_section():
+            if self._can_make_output_material():
+                section.append(('output material - make', 'omm'))
                 has_output_material_section = True
             if self.has_output_material_editor:
-                command_section = main_menu.make_command_section(name=name)
-                command_section.append(('output material - interact', 'omi'))
+                section.append(('output material - interact', 'omi'))
                 if self.has_output_material:
-                    output_material_editor = self.output_material_editor(
+                    editor = self.output_material_editor(
                         target=self.output_material,
                         session=self._session,
                         )
-                    target_summary_lines = \
-                        output_material_editor.target_summary_lines
+                    target_summary_lines = editor.target_summary_lines
                     if target_summary_lines:
-                        #print target_summary_lines, 'TTT'
-                        #command_section.title = target_summary_lines
-                        section = main_menu.make_command_section(
+                        section = menu.make_command_section(
                             name='material summary',
                             )
                         section.title = target_summary_lines
                 has_output_material_section = True
             if self.has_output_material_module:
-                if not has_output_material_section:
-                    command_section = main_menu.make_command_section(name=name)
-                command_section.append(
-                    ('output material - view', 'omv'))
-                hidden_section.append(
-                    ('output material - delete', 'omdelete'))
-        hidden_section.append(
-            ('output material - copy canned module', 'omcanned'))
+                section.append(('output material - view', 'omv'))
+                string = 'output material - delete'
+                section.append((string, 'omdelete'))
+        string = 'output material - copy canned module'
+        section.append((string, 'omcanned'))
+
+    def _should_have_output_material_section(self):
+        if self.has_material_definition_module:
+            return True
+        if self.has_complete_user_input_wrapper_in_memory:
+            return True
+        if self.has_output_material_editor:
+            return True
+        return False
 
     def _make_package_management_menu_section(self, main_menu):
         hidden_section = main_menu.make_command_section(
