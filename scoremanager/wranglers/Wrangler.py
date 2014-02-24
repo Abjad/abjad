@@ -318,10 +318,13 @@ class Wrangler(ScoreManagerObject):
         rollback=None, 
         pending_user_input=None,
         ):
+        from scoremanager import wranglers
         self._session._push_controller(self)
         self._io_manager._assign_user_input(pending_user_input)
         breadcrumb = self._session._pop_breadcrumb(rollback=rollback)
         self._session._cache_breadcrumbs(cache=cache)
+        if type(self) is wranglers.SegmentPackageWrangler:
+            self._session._is_navigating_to_score_segments = False
         while True:
             self._session._push_breadcrumb(self._breadcrumb)
             menu = self._make_main_menu(head=head)

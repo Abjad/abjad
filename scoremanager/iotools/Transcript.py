@@ -99,6 +99,19 @@ class Transcript(AbjadObject):
         return result
 
     @property
+    def system_display_titles(self):
+        r'''Gets system display entry titles.
+
+        Returns list.
+        '''
+        result = []
+        for entry in self:
+            if entry.is_system_display:
+                title = entry.title
+                result.append(title)
+        return result
+
+    @property
     def user_input_entries(self):
         r'''Gets user input entries in transcript.
 

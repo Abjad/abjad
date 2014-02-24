@@ -48,6 +48,7 @@ class Session(abctools.AbjadObject):
         'hide_hidden_commands',
         'is_displayable',
         'is_in_score',
+        'is_navigating_to_score_segments',
         'is_navigating_to_sibling_score',
         'last_line',
         'nonnumbered_menu_sections_are_hidden',
@@ -89,6 +90,7 @@ class Session(abctools.AbjadObject):
         self._is_backtracking_to_score_manager = False
         self._is_navigating_to_next_score = False
         self._is_navigating_to_previous_score = False
+        self._is_navigating_to_score_segments = False
         self._is_quitting = False
         self._is_test = False
         self._last_line = ''
@@ -131,6 +133,7 @@ class Session(abctools.AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    # return true to break out of current io loop
     def _backtrack(self, source=None):
         if self.is_complete:
             return True
@@ -150,6 +153,10 @@ class Session(abctools.AbjadObject):
         elif self.is_backtracking_locally and not source == 'home' and \
             not self._backtracking_stack:
             self._is_backtracking_locally = False
+            return True
+        elif self._is_navigating_to_score_segments and \
+            not source in ('score', 'home'):
+            #print repr(source), 'source'
             return True
 
     def _cache_breadcrumbs(self, cache=False):
@@ -196,6 +203,10 @@ class Session(abctools.AbjadObject):
                 print entry
             elif entry.is_system_display and include_system_display:
                 print entry
+
+    def _print_transcript_titles(self):
+        for title in self.transcript.system_display_titles:
+            print repr(title)
 
     def _push_backtrack(self):
         if self._backtracking_stack:
@@ -748,6 +759,22 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_navigating_to_previous_score
+
+    @property
+    def is_navigating_to_score_segments(self):
+        r'''Is true when session is navigating to score segments.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_score_segments
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_score_segments
 
     @property
     def is_navigating_to_sibling_score(self):

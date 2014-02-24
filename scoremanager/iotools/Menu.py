@@ -194,6 +194,8 @@ class Menu(ScoreManagerObject):
         sections.append(self._make_lilypond_menu_section())
         sections.append(self._make_python_menu_section())
         sections.append(self._make_repository_menu_section())
+        if self._session.is_in_score:
+            sections.append(self._make_score_navigation_menu_section())
         sections.append(self._make_scores_tour_menu_section())
         sections.append(self._make_session_menu_section())
         sections.append(self._make_source_code_menu_section())
@@ -250,6 +252,15 @@ class Menu(ScoreManagerObject):
         section.append(('repository - commit', 'rci'))
         section.append(('repository - status', 'rst'))
         section.append(('repository - update', 'rup'))
+        return section
+
+    def _make_score_navigation_menu_section(self):
+        section = self._make_section(
+            is_hidden=True,
+            name='score navigation',
+            return_value_attribute='key',
+            )
+        section.append(('score - segments', 'g'))
         return section
 
     def _make_scores_tour_menu_section(self):

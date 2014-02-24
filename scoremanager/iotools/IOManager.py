@@ -84,6 +84,19 @@ class IOManager(IOManager):
         if key in ('b', 'back'):
             self._session._is_backtracking_locally = True
             self._session._hide_hidden_commands = True
+        elif key == 'g':
+            self._session._is_navigating_to_score_segments = True
+            return 'g'
+        elif key == 'lvl':
+            self.view_last_log()
+        elif key == 'next':
+            self._session._is_navigating_to_next_score = True
+            self._session._is_backtracking_to_score_manager = True
+            self._session._hide_hidden_commands = True
+        elif key == 'prev':
+            self._session.is_navigating_to_previous_score = True
+            self._session._is_backtracking_to_score_manager = True
+            self._session._hide_hidden_commands = True
         elif key == 'pyd':
             message = 'running doctest ...'
             self.display([message, ''])
@@ -96,19 +109,11 @@ class IOManager(IOManager):
             controller.run_pytest()
         elif key == 'pyi':
             self.exec_statement()
-        elif key == 'lvl':
-            self.view_last_log()
-        elif key == 'next':
-            self._session._is_navigating_to_next_score = True
-            self._session._is_backtracking_to_score_manager = True
-            self._session._hide_hidden_commands = True
-        elif key == 'prev':
-            self._session.is_navigating_to_previous_score = True
-            self._session._is_backtracking_to_score_manager = True
-            self._session._hide_hidden_commands = True
         elif key in ('q', 'quit'):
             self._session._is_quitting = True
             self._session._hide_hidden_commands = True
+        elif key == 'sct':
+            self._session.toggle_source_code_tracking()
         elif self._is_score_string(key) and self._session.is_in_score:
             self._session._is_backtracking_to_score = True
             self._session._hide_hidden_commands = True
@@ -117,8 +122,6 @@ class IOManager(IOManager):
         elif self._is_home_string(key):
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
-        elif key == 'sct':
-            self._session.toggle_source_code_tracking()
         else:
             return directive
 

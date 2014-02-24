@@ -191,13 +191,18 @@ class Manager(ScoreManagerObject):
             self._filesystem_path = new_path
 
     def _run(self, cache=False, clear=True, pending_user_input=None):
+        from scoremanager import managers
         self._session._push_controller(self)
         self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
         while True:
             self._session._push_breadcrumb(self._breadcrumb)
-            menu = self._make_main_menu()
-            result = menu._run(clear=clear)
+            if self._session._is_navigating_to_score_segments and \
+                type(self) is managers.ScorePackageManager:
+                result = 'g'
+            else:
+                menu = self._make_main_menu()
+                result = menu._run(clear=clear)
             if self._session._backtrack(source=self._backtracking_source):
                 break
             elif not result:
