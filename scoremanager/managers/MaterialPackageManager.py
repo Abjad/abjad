@@ -260,6 +260,8 @@ class MaterialPackageManager(PackageManager):
         has_output_material_section = False
         name = 'output material'
         section = menu.make_command_section(name=name)
+        string = 'output material - boilerplate'
+        section.append((string, 'ombp'))
         if self._should_have_output_material_section():
             if self._can_make_output_material():
                 section.append(('output material - make', 'omm'))
@@ -273,17 +275,14 @@ class MaterialPackageManager(PackageManager):
                         )
                     target_summary_lines = editor.target_summary_lines
                     if target_summary_lines:
-                        section = menu.make_command_section(
+                        contents_section = menu.make_command_section(
                             name='material summary',
                             )
-                        section.title = target_summary_lines
+                        contents_section.title = target_summary_lines
                 has_output_material_section = True
             if self.has_output_material_module:
+                section.append(('output material - remove', 'omrm'))
                 section.append(('output material - view', 'omv'))
-                string = 'output material - delete'
-                section.append((string, 'omdelete'))
-        string = 'output material - copy canned module'
-        section.append((string, 'omcanned'))
 
     def _should_have_output_material_section(self):
         if self.has_material_definition_module:
@@ -1315,10 +1314,10 @@ class MaterialPackageManager(PackageManager):
         'mdstub': write_stub_material_definition_module,
         'mdx': run_python_on_material_definition_module,
         'mdxe': run_abjad_on_material_definition_module,
-        'omcanned': write_output_material_module_boilerplate,
-        'omdelete': remove_output_material_module,
+        'ombp': write_output_material_module_boilerplate,
         'omm': write_output_material,
         'omi': edit_output_material,
+        'omrm': remove_output_material_module,
         'omv': view_output_material_module,
         'pdfm': write_illustration_ly_and_pdf,
         'pdfd': remove_illustration_pdf,

@@ -202,7 +202,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #            'lmm nmm testsargasso default default '
 #            'testsargasso mdcanned boilerplate_testsargasso_material_definition.py default '
 #            'omm default '
-#            'omdelete default q')
+#            'omrm default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
 #        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
@@ -253,7 +253,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #            'lmm nmm testsargasso default default '
 #            'testsargasso mdcanned boilerplate_testsargasso_material_definition.py default '
 #            'omm default '
-#            'omcanned boilerplate_exception.py default q')
+#            'ombp boilerplate_exception.py default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
 #        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert manager._list_directory() == ['__init__.py',
