@@ -201,8 +201,8 @@ class MaterialPackageManager(PackageManager):
     def _make_main_menu_sections(self, menu, hidden_section):
         self._make_material_definition_menu_section(
             menu, hidden_section)
-        self._make_output_material_menu_section(menu)
         self._make_illustration_builder_menu_section(menu)
+        self._make_output_material_menu_section(menu)
 
     def _make_main_menu_sections_with_user_input_wrapper(
         self, menu, hidden_section):
@@ -221,24 +221,20 @@ class MaterialPackageManager(PackageManager):
             return
         if self.has_material_definition_module:
             command_section = main_menu.make_command_section(name=name)
-            command_section.append(
-                ('material definition - edit', 'mde'))
+            string = 'material definition - boilerplate'
+            command_section.append((string, 'mdbp'))
+            command_section.append(('material definition - edit', 'mde'))
             command_section.default_index = len(command_section) - 1
-            command_section.append(
-                ('material definition - execute', 'mdx'))
-            hidden_section.append(
-                ('material definition - copy canned module', 'mdcanned'))
-            hidden_section.append(
-                ('material definition - delete', 'mddelete'))
-            hidden_section.append(
-                ('material definition - stub', 'mdstub'))
-            hidden_section.append(
-                ('material definition - execute & edit', 'mdxe'))
+            command_section.append(('material definition - execute', 'mdx'))
+            string = 'material definition - execute & edit'
+            command_section.append((string, 'mdxe'))
+            string = 'material definition - remove'
+            command_section.append((string, 'mdrm'))
+            command_section.append(('material definition - stub', 'mds'))
         elif self.material_package_manager_class_name is None:
             command_section = main_menu.make_command_section(name=name)
             command_section.return_value_attribute = 'key'
-            command_section.append(
-                ('material definition - stub', 'mdstub'))
+            command_section.append(('material definition - stub', 'mds'))
 
     def _can_make_output_material(self):
         if self.has_material_definition:
@@ -1304,10 +1300,10 @@ class MaterialPackageManager(PackageManager):
         'lyd': remove_illustration_ly,
         'lym': write_illustration_ly,
         'ly': illustration_ly_file_manager,
-        'mdcanned': write_material_definition_module_boilerplate,
+        'mdbp': write_material_definition_module_boilerplate,
         'mde': edit_material_definition_module,
-        'mddelete': remove_material_definition_module,
-        'mdstub': write_stub_material_definition_module,
+        'mdrm': remove_material_definition_module,
+        'mds': write_stub_material_definition_module,
         'mdx': run_python_on_material_definition_module,
         'mdxe': run_abjad_on_material_definition_module,
         'ombp': write_output_material_module_boilerplate,

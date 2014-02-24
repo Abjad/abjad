@@ -124,7 +124,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #    try:
 #        score_manager._run(pending_user_input=
 #            'lmm nmm testsargasso default default '
-#            'testsargasso mdcanned boilerplate_testsargasso_material_definition.py default '
+#            'testsargasso mdbp boilerplate_testsargasso_material_definition.py default '
 #            'omm default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
 #        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
@@ -151,7 +151,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #    try:
 #        score_manager._run(pending_user_input=
 #            'lmm nmm testsargasso default default '
-#            'testsargasso mddelete default q')
+#            'testsargasso mdrm default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
 #        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert manager._list_directory() == ['__init__.py']
@@ -176,7 +176,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #    try:
 #        score_manager._run(pending_user_input=
 #            'lmm nmm testsargasso default default '
-#            'testsargasso mdstub default q')
+#            'testsargasso mds default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
 #        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
@@ -200,7 +200,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #    try:
 #        score_manager._run(pending_user_input=
 #            'lmm nmm testsargasso default default '
-#            'testsargasso mdcanned boilerplate_testsargasso_material_definition.py default '
+#            'testsargasso mdbp boilerplate_testsargasso_material_definition.py default '
 #            'omm default '
 #            'omrm default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
@@ -227,7 +227,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #    try:
 #        score_manager._run(pending_user_input=
 #            'lmm nmm testsargasso default default '
-#            'testsargasso mdcanned boilerplate_exception.py default q')
+#            'testsargasso mdbp boilerplate_exception.py default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
 #        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
@@ -251,7 +251,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #    try:
 #        score_manager._run(pending_user_input=
 #            'lmm nmm testsargasso default default '
-#            'testsargasso mdcanned boilerplate_testsargasso_material_definition.py default '
+#            'testsargasso mdbp boilerplate_testsargasso_material_definition.py default '
 #            'omm default '
 #            'ombp boilerplate_exception.py default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
@@ -278,7 +278,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #    try:
 #        score_manager._run(pending_user_input=
 #            'lmm nmm testsargasso default default '
-#            'testsargasso mdcanned boilerplate_testsargasso_material_definition.py default '
+#            'testsargasso mdbp boilerplate_testsargasso_material_definition.py default '
 #            'omm default '
 #            'pdfm default '
 #            'q')

@@ -105,7 +105,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
     try:
         score_manager._run(pending_user_input=
             'lmm nmh testnotes default default '
-            'testnotes mdcanned boilerplate_testnotes_material_definition.py default '
+            'testnotes mdbp boilerplate_testnotes_material_definition.py default '
             'omm default q')
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialPackageManager(name)
@@ -139,7 +139,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
     try:
         score_manager._run(pending_user_input=
             'lmm nmh testnotes default default '
-            'testnotes mddelete default q')
+            'testnotes mdrm default q')
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialPackageManager(name)
         assert manager._list_directory() == [
@@ -169,7 +169,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
     try:
         score_manager._run(pending_user_input=
             'lmm nmh testnotes default '
-            'testnotes mdstub default q')
+            'testnotes mds default q')
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialPackageManager(name)
         assert manager._list_directory() == [
@@ -199,7 +199,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
     try:
         score_manager._run(pending_user_input=
             'lmm nmh testnotes default default '
-            'testnotes mdcanned boilerplate_testnotes_material_definition.py '
+            'testnotes mdbp boilerplate_testnotes_material_definition.py '
             'default '
             'omm default '
             'omrm default q')
@@ -233,7 +233,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
     try:
         score_manager._run(pending_user_input=
             'lmm nmh testnotes default default '
-            'testnotes mdcanned boilerplate_exception.py default q')
+            'testnotes mdbp boilerplate_exception.py default q')
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialPackageManager(name)
         assert manager._list_directory() == [
@@ -264,7 +264,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
     try:
         score_manager._run(pending_user_input=
             'lmm nmh testnotes default default '
-            'testnotes mdcanned boilerplate_testnotes_material_definition.py default '
+            'testnotes mdbp boilerplate_testnotes_material_definition.py default '
             'omm default '
             'ombp boilerplate_exception.py default q')
         assert score_manager._configuration.package_exists(name)
@@ -300,7 +300,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
     try:
         score_manager._run(pending_user_input=
             'lmm nmh testnotes default default '
-            'testnotes mdcanned boilerplate_testnotes_material_definition.py default '
+            'testnotes mdbp boilerplate_testnotes_material_definition.py default '
             'omm default '
             'pdfm default '
             'q')
