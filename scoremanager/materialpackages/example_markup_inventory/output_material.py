@@ -2,7 +2,7 @@
 from abjad import *
 
 
-red_markup = markuptools.MarkupInventory(
+example_markup_inventory = markuptools.MarkupInventory(
     [
         markuptools.Markup(
             contents=(
