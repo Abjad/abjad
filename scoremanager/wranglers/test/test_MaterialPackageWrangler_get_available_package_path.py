@@ -12,7 +12,7 @@ def test_MaterialPackageWrangler_get_available_package_path_01():
     assert result == 'scoremanager.materialpackages.foo'
 
     result = wrangler.get_available_package_path(
-        pending_user_input='red~notes q')
+        pending_user_input='example~notes q')
     assert result is None
 
 

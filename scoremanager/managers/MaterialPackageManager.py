@@ -19,10 +19,10 @@ class MaterialPackageManager(PackageManager):
         ::
 
             >>> package_path = 'scoremanager'
-            >>> package_path += '.materialpackages.red_numbers'
+            >>> package_path += '.materialpackages.example_numbers'
             >>> mpp = scoremanager.managers.MaterialPackageManager(package_path)
             >>> mpp
-            MaterialPackageManager('.../materialpackages/red_numbers')
+            MaterialPackageManager('.../materialpackages/example_numbers')
 
     '''
 

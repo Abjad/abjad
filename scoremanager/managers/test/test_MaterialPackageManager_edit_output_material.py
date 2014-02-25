@@ -8,9 +8,9 @@ def test_MaterialPackageManager_edit_output_material_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'lmm red~markup omi q'
+    string = 'lmm example~markup~inventory omi q'
     score_manager._run(pending_user_input=string)
     transcript = score_manager._transcript
 
-    string = 'Score manager - material library - red markup - edit'
+    string = 'Score manager - material library - example markup inventory - edit'
     assert transcript.last_menu_title == string

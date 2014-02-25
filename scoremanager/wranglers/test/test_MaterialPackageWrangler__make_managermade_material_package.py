@@ -37,10 +37,10 @@ def test_MaterialPackageWrangler__make_managermade_material_package_01():
 def test_MaterialPackageWrangler__make_managermade_material_package_02():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    string = 'scoremanager.materialpackages.red_numbers'
+    string = 'scoremanager.materialpackages.example_numbers'
     assert wrangler._configuration.package_exists(string)
     statement = "wrangler._make_managermade_material_package("
-    statement += "'scoremanager.materialpackages.red_sargasso_measures"
+    statement += "'scoremanager.materialpackages.example_sargasso_measures"
     statement += "'SargassoMeasureMaterialPackageManager')"
     assert pytest.raises(Exception, statement)
 

@@ -9,19 +9,19 @@ def test_MaterialPackageManager__run_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='lmm red~sargasso~measures q')
+    score_manager._run(pending_user_input='lmm example~sargasso~measures q')
     assert score_manager._transcript.signature == (6,)
 
-    score_manager._run(pending_user_input='lmm red~sargasso~measures b q')
+    score_manager._run(pending_user_input='lmm example~sargasso~measures b q')
     assert score_manager._transcript.signature == (8, (2, 6))
 
-    score_manager._run(pending_user_input='lmm red~sargasso~measures h q')
+    score_manager._run(pending_user_input='lmm example~sargasso~measures h q')
     assert score_manager._transcript.signature == (8, (0, 6))
 
-    score_manager._run(pending_user_input='lmm red~sargasso~measures s q')
+    score_manager._run(pending_user_input='lmm example~sargasso~measures s q')
     assert score_manager._transcript.signature == (8, (4, 6))
 
-    score_manager._run(pending_user_input='lmm red~sargasso~measures foo q')
+    score_manager._run(pending_user_input='lmm example~sargasso~measures foo q')
     assert score_manager._transcript.signature == (8, (4, 6))
 
 
@@ -30,8 +30,8 @@ def test_MaterialPackageManager__run_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='lmm red~sargasso~measures q')
-    string = 'Score manager - material library - red sargasso measures'
+    score_manager._run(pending_user_input='lmm example~sargasso~measures q')
+    string = 'Score manager - material library - example sargasso measures'
     assert score_manager._transcript.last_menu_title == string
 
 

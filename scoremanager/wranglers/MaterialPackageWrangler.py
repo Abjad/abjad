@@ -176,10 +176,10 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     x
             '.../scoremanager/materialpackages/example_articulation_handler'
             '.../scoremanager/materialpackages/example_dynamic_handler'
-            '.../scoremanager/materialpackages/red_markup'
-            '.../scoremanager/materialpackages/red_notes'
-            '.../scoremanager/materialpackages/red_numbers'
-            '.../scoremanager/materialpackages/red_sargasso_measures'
+            '.../scoremanager/materialpackages/example_markup_inventory'
+            '.../scoremanager/materialpackages/example_notes'
+            '.../scoremanager/materialpackages/example_numbers'
+            '.../scoremanager/materialpackages/example_sargasso_measures'
             '.../scorepackages/red_example_score/materials/tempo_inventory'
 
         Returns list.
@@ -214,10 +214,10 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     x
             ArticulationHandlerMaterialPackageManager('.../scoremanager/materialpackages/example_articulation_handler')
             DynamicHandlerMaterialPackageManager('.../scoremanager/materialpackages/example_dynamic_handler')
-            MarkupInventoryMaterialPackageManager('.../scoremanager/materialpackages/red_markup')
-            MaterialPackageManager('.../scoremanager/materialpackages/red_notes')
-            MaterialPackageManager('.../scoremanager/materialpackages/red_numbers')
-            SargassoMeasureMaterialPackageManager('.../scoremanager/materialpackages/red_sargasso_measures')
+            MarkupInventoryMaterialPackageManager('.../scoremanager/materialpackages/example_markup_inventory')
+            MaterialPackageManager('.../scoremanager/materialpackages/example_notes')
+            MaterialPackageManager('.../scoremanager/materialpackages/example_numbers')
+            SargassoMeasureMaterialPackageManager('.../scoremanager/materialpackages/example_sargasso_measures')
             MaterialPackageManager('.../red_example_score/materials/magic_numbers')
             PitchRangeInventoryMaterialPackageManager('.../red_example_score/materials/pitch_range_inventory')
             TempoInventoryMaterialPackageManager('.../red_example_score/materials/tempo_inventory')
@@ -252,10 +252,10 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     x
             'example articulation handler'
             'example dynamic handler'
-            'red markup'
-            'red notes'
-            'red numbers'
-            'red sargasso measures'
+            'example markup inventory'
+            'example notes'
+            'example numbers'
+            'example sargasso measures'
             'magic numbers'
             'pitch range inventory'
             'tempo inventory'
@@ -291,10 +291,10 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     x
             'scoremanager.materialpackages.example_articulation_handler'
             'scoremanager.materialpackages.example_dynamic_handler'
-            'scoremanager.materialpackages.red_markup'
-            'scoremanager.materialpackages.red_notes'
-            'scoremanager.materialpackages.red_numbers'
-            'scoremanager.materialpackages.red_sargasso_measures'
+            'scoremanager.materialpackages.example_markup_inventory'
+            'scoremanager.materialpackages.example_notes'
+            'scoremanager.materialpackages.example_numbers'
+            'scoremanager.materialpackages.example_sargasso_measures'
             'red_example_score.materials.magic_numbers'
             'red_example_score.materials.pitch_range_inventory'
             'red_example_score.materials.tempo_inventory'

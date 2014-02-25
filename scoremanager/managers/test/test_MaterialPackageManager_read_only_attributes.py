@@ -8,9 +8,9 @@ def test_MaterialPackageManager_read_only_attributes_01():
     r'''Data-only package.
     '''
 
-    string = 'scoremanager.materialpackages.red_numbers'
+    string = 'scoremanager.materialpackages.example_numbers'
     manager = scoremanager.managers.MaterialPackageManager(string)
-    assert manager._breadcrumb == 'red numbers'
+    assert manager._breadcrumb == 'example numbers'
     assert not manager.has_illustration_builder_module
     assert not manager.has_illustration_ly
     assert not manager.has_illustration_pdf
@@ -29,31 +29,31 @@ def test_MaterialPackageManager_read_only_attributes_01():
     assert manager.material_definition == [1, 2, 3, 4, 5]
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
-        'red_numbers', 
+        'example_numbers', 
         'material_definition.py',
         )
     assert manager.material_definition_module_file_path == file_path
-    string = 'scoremanager.materialpackages.red_numbers.material_definition'
+    string = 'scoremanager.materialpackages.example_numbers.material_definition'
     assert manager.material_definition_package_path == string
     directory_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
-        'red_numbers',
+        'example_numbers',
         )
     assert manager.material_package_directory == directory_path
     assert manager.material_package_manager is None
     assert manager.material_package_manager_class_name is None
-    assert manager.material_package_name == 'red_numbers'
-    assert manager.space_delimited_material_package_name == 'red numbers'
-    assert manager.material_package_name == 'red_numbers'
-    result = ['red_numbers = [1, 2, 3, 4, 5]']
+    assert manager.material_package_name == 'example_numbers'
+    assert manager.space_delimited_material_package_name == 'example numbers'
+    assert manager.material_package_name == 'example_numbers'
+    result = ['example_numbers = [1, 2, 3, 4, 5]']
     assert manager.output_material_module_body_lines == result
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
-        'red_numbers', 
+        'example_numbers', 
         'output_material.py',
         )
     assert manager.output_material_module_file_path == file_path
-    string = 'scoremanager.materialpackages.red_numbers.output_material'
+    string = 'scoremanager.materialpackages.example_numbers.output_material'
     assert manager.output_material_module_path == string
     assert manager.output_material_module_manager is not None
     assert not manager.should_have_illustration
@@ -72,12 +72,12 @@ def test_MaterialPackageManager_read_only_attributes_02():
     r'''Makermade material.
     '''
 
-    string = 'scoremanager.materialpackages.red_sargasso_measures'
+    string = 'scoremanager.materialpackages.example_sargasso_measures'
     manager = \
         scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
             string
             )
-    assert manager._breadcrumb == 'red sargasso measures'
+    assert manager._breadcrumb == 'example sargasso measures'
     assert not manager.has_illustration_builder_module
     assert manager.has_illustration_ly
     assert manager.has_illustration_pdf
@@ -93,14 +93,14 @@ def test_MaterialPackageManager_read_only_attributes_02():
     assert manager.illustration_builder_package_path is None
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
-        'red_sargasso_measures', 
+        'example_sargasso_measures', 
         'illustration.ly',
         )
     assert manager.illustration_ly_file_path == file_path
     assert manager.illustration_ly_file_manager is not None
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
-        'red_sargasso_measures', 
+        'example_sargasso_measures', 
         'illustration.pdf',
         )
     assert manager.illustration_pdf_file_path == file_path
@@ -110,25 +110,25 @@ def test_MaterialPackageManager_read_only_attributes_02():
     assert manager.material_definition_package_path is None
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
-        'red_sargasso_measures',
+        'example_sargasso_measures',
         )
     assert manager.material_package_directory == file_path
     maker = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager
     assert manager.material_package_manager is maker
     string = 'SargassoMeasureMaterialPackageManager'
     assert manager.material_package_manager_class_name == string
-    assert manager.material_package_name == 'red_sargasso_measures'
-    string = 'red sargasso measures'
+    assert manager.material_package_name == 'example_sargasso_measures'
+    string = 'example sargasso measures'
     assert manager.space_delimited_material_package_name == string
-    assert manager.material_package_name == 'red_sargasso_measures'
+    assert manager.material_package_name == 'example_sargasso_measures'
     assert manager.output_material_module_body_lines is None
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
-        'red_sargasso_measures', 
+        'example_sargasso_measures', 
         'output_material.py',
         )
     assert manager.output_material_module_file_path == file_path
-    string = 'scoremanager.materialpackages.red_sargasso_measures.output_material'
+    string = 'scoremanager.materialpackages.example_sargasso_measures.output_material'
     assert manager.output_material_module_path == string
     assert manager.output_material_module_manager is not None
     assert manager.should_have_illustration
@@ -140,11 +140,11 @@ def test_MaterialPackageManager_read_only_attributes_02():
     assert manager.should_have_user_input_module
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
-        'red_sargasso_measures', 
+        'example_sargasso_measures', 
         'user_input.py',
         )
     assert manager.user_input_module_file_path == file_path
-    string = 'scoremanager.materialpackages.red_sargasso_measures.user_input'
+    string = 'scoremanager.materialpackages.example_sargasso_measures.user_input'
     assert manager.user_input_module_package_path == string
 
 
@@ -152,9 +152,9 @@ def test_MaterialPackageManager_read_only_attributes_03():
     r'''Handmade material.
     '''
 
-    string = 'scoremanager.materialpackages.red_notes'
+    string = 'scoremanager.materialpackages.example_notes'
     manager = scoremanager.managers.MaterialPackageManager(string)
-    assert manager._breadcrumb == 'red notes'
+    assert manager._breadcrumb == 'example notes'
     assert manager.has_illustration_builder_module
     assert manager.has_illustration_ly
     assert manager.has_illustration_pdf
@@ -167,23 +167,23 @@ def test_MaterialPackageManager_read_only_attributes_03():
     assert not manager.has_user_input_wrapper_on_disk
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
-        'red_notes', 
+        'example_notes', 
         'illustration_builder.py',
         )
     assert manager.illustration_builder_module_file_path == file_path
-    string = 'scoremanager.materialpackages.red_notes.illustration_builder'
+    string = 'scoremanager.materialpackages.example_notes.illustration_builder'
     assert manager.illustration_builder_package_path == string
     assert manager.illustration_builder_module_manager is not None
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
-        'red_notes', 
+        'example_notes', 
         'illustration.ly',
         )
     assert manager.illustration_ly_file_path == file_path
     assert manager.illustration_ly_file_manager is not None
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
-        'red_notes', 
+        'example_notes', 
         'illustration.pdf',
         )
     assert manager.illustration_pdf_file_path == file_path
@@ -192,31 +192,31 @@ def test_MaterialPackageManager_read_only_attributes_03():
     assert not manager.is_managermade
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
-        'red_notes', 
+        'example_notes', 
         'material_definition.py',
         )
     assert manager.material_definition_module_file_path == file_path
-    string = 'scoremanager.materialpackages.red_notes.material_definition'
+    string = 'scoremanager.materialpackages.example_notes.material_definition'
     assert manager.material_definition_package_path == string
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
-        'red_notes',
+        'example_notes',
         )
     assert manager.material_package_directory == file_path
     assert manager.material_package_manager is None
     assert manager.material_package_manager_class_name is None
-    assert manager.material_package_name == 'red_notes'
-    assert manager.space_delimited_material_package_name == 'red notes'
-    assert manager.material_package_name == 'red_notes'
+    assert manager.material_package_name == 'example_notes'
+    assert manager.space_delimited_material_package_name == 'example notes'
+    assert manager.material_package_name == 'example_notes'
     assert all(isinstance(x, Note) for x in manager.material_definition)
     assert manager.output_material_module_body_lines is not None
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
-        'red_notes', 
+        'example_notes', 
         'output_material.py',
         )
     assert manager.output_material_module_file_path == file_path
-    string = 'scoremanager.materialpackages.red_notes.output_material'
+    string = 'scoremanager.materialpackages.example_notes.output_material'
     assert manager.output_material_module_path == string
     assert manager.output_material_module_manager is not None
     assert manager.should_have_illustration

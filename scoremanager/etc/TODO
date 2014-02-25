@@ -119,21 +119,7 @@
 
 34. Write test for (ren) to rename.
 
-35. Rename abjad material packages from ...
-        red_markup
-        red_notes
-        red_numbers
-        red_sargasso_measures
-    ... to ...
-        example_markup_inventory
-        example_notes
-        example_numbers
-        example_sargasso_measures
-    ... which will also be an opportunity to fix and secure rename code.
-    This will reduce confusion with Red Example Score.
-    Red Example Score is unrelated to example material packages.
-
-36. Write test to make sure that ...
+35. Write test to make sure that ...
         # -*- encoding: utf-8 -*-
         from abjad import *
         output_material_module_import_statements = []
@@ -143,45 +129,45 @@
     ... shows up as the exact file contents in response to (materials) > (nmh)
     > ... > (mde).
 
-37. Change menu command display strings to 'direct object - verb' pervasively.
+36. Change menu command display strings to 'direct object - verb' pervasively.
 
-38. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+37. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument.
     Maker sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-39. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
+38. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
 
-40. Implement __format__ on Transcript.
+39. Implement __format__ on Transcript.
 
-41. Add something to check the size of the ~/.score_manager/transcripts
+40. Add something to check the size of the ~/.score_manager/transcripts
     diretory. Should warn at starting at 9000 and overwrite starting at 10,000.
 
-42. Uncomment the TODO in Transcript and make the constraint hold.
+41. Uncomment the TODO in Transcript and make the constraint hold.
 
-43. Maybe time to change these:
+42. Maybe time to change these:
         materialpackagemanagers > materialmanagers
         scorepackages > scores
         materialpackages > materials
     In scores:
         score_templates > templates
 
-44. Remove all '.'.join() statements. There should be no by-hand package
+43. Remove all '.'.join() statements. There should be no by-hand package
     manipulation. Use self._configuration.filesystem_path_to_package_path()
     instead.
 
-45. Implement something to tour everything that can be rewritten and rewrite.
+44. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-46. There's noticeable delay starting ScorePackageManager.
+45. There's noticeable delay starting ScorePackageManager.
     Probably initializing too many wranglers and managers.
     Find a way to delay (and then cache) the initialization of
     ScorePackageManager delegates.
 
-47. Implement __slots__ on Session.
+46. Implement __slots__ on Session.
 
-48. Move 'done (done)' to PitchRangeInventory editor (and other editor) main
+47. Move 'done (done)' to PitchRangeInventory editor (and other editor) main
     screen. Currently it is hidden. Should be visible when adding and removing
     elements.

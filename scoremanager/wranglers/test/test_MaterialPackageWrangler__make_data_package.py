@@ -30,10 +30,10 @@ def test_MaterialPackageWrangler__make_data_package_01():
 def test_MaterialPackageWrangler__make_data_package_02():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    string = 'scoremanager.materialpackages.red_numbers'
+    string = 'scoremanager.materialpackages.example_numbers'
     assert wrangler._configuration.package_exists(string)
     statement = "wrangler._make_data_package("
-    statement += "'scoremanager.materialpackages.red_numbers')"
+    statement += "'scoremanager.materialpackages.example_numbers')"
     assert pytest.raises(Exception, statement)
 
 
