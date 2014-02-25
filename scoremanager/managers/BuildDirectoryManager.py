@@ -28,6 +28,19 @@ class BuildDirectoryManager(DirectoryManager):
     def _breadcrumb(self):
         return 'build manager'
 
+    @property
+    def _user_input_to_action(self):
+        superclass = super(BuildDirectoryManager, self)
+        _user_input_to_action = self._user_input_to_action.fget(self)
+        _user_input_to_action = _user_input_to_action.copy()
+        _user_input_to_action.update({
+            'bc': self.manage_back_cover,
+            'fc': self.manage_front_cover,
+            'pf': self.manage_preface,
+            'sc': self.manage_score,
+            })
+        return _user_input_to_action
+
     ### PRIVATE METHODS ###
 
     def _call_lilypond_on_file_ending_with(self, string):
@@ -380,13 +393,3 @@ class BuildDirectoryManager(DirectoryManager):
             self._session._pop_breadcrumb()
         self._session._pop_breadcrumb()
         self._session._restore_breadcrumbs(cache=cache)
-
-    ### UI MANIFEST ###
-
-    _user_input_to_action = DirectoryManager._user_input_to_action.copy()
-    _user_input_to_action.update({
-        'bc': manage_back_cover,
-        'fc': manage_front_cover,
-        'pf': manage_preface,
-        'sc': manage_score,
-        })

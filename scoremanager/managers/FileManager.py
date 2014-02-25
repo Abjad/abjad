@@ -17,6 +17,20 @@ class FileManager(Manager):
 
     extension = ''
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _user_input_to_action(self):
+        superlcass = super(FileManager, self)
+        _user_input_to_action = superclass._user_input_to_action
+        _user_input_to_action = _user_input_to_action.copy()
+        _user_input_to_action.update({
+            'e': self.edit,
+            'ts': self.typset_tex_file,
+            'v': self.view,
+            })
+        return _user_input_to_action
+
     ### PRIVATE METHODS ###
 
     def _execute_file_lines(self, file_path=None, return_attribute_name=None):
@@ -51,7 +65,7 @@ class FileManager(Manager):
 
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
-            self._user_input_to_action[result](self)
+            self._user_input_to_action[result]()
         elif result == 'user entered lone return':
             self.edit()
 
@@ -187,12 +201,3 @@ class FileManager(Manager):
         Returns none.
         '''
         self._io_manager.view(self._filesystem_path)
-
-    ### UI MANIFEST ###
-
-    _user_input_to_action = Manager._user_input_to_action.copy()
-    _user_input_to_action.update({
-        'e': edit,
-        'ts': typset_tex_file,
-        'v': view,
-        })

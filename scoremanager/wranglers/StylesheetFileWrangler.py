@@ -44,6 +44,19 @@ class StylesheetFileWrangler(Wrangler):
     def _temporary_asset_name(self):
         return '__temporary_stylesheet.ily'
 
+    @property
+    def _user_input_to_action(self):
+        superclass = super(StylesheetFileWrangler, self)
+        _user_input_to_action = superclass._user_input_to_action
+        _user_input_to_action = _user_input_to_action.copy()
+        _user_input_to_action.update({
+            'hse': self.edit_header_stylesheet,
+            'l': self.edit_layout_stylesheet,
+            'p': self.edit_paper_stylesheet,
+            'new': self.make_asset,
+            })
+        return _user_input_to_action
+
     ### PRIVATE METHODS ###
 
     def _filesystem_path_to_annotation(self, filesystem_path):
@@ -107,7 +120,7 @@ class StylesheetFileWrangler(Wrangler):
     
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
-            self._user_input_to_action[result](self)
+            self._user_input_to_action[result]()
         else:
             self.edit_asset(result)
 
@@ -391,13 +404,3 @@ class StylesheetFileWrangler(Wrangler):
             manager._make_empty_asset()
         else:
             manager.edit()
-
-    ### UI MANIFEST ###
-
-    _user_input_to_action = Wrangler._user_input_to_action.copy()
-    _user_input_to_action.update({
-        'hse': edit_header_stylesheet,
-        'l': edit_layout_stylesheet,
-        'p': edit_paper_stylesheet,
-        'new': make_asset,
-        })

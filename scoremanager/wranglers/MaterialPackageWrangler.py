@@ -53,6 +53,20 @@ class MaterialPackageWrangler(PackageWrangler):
         else:
             return 'material library'
 
+    @property
+    def _user_input_to_action(self):
+        superclass = super(MaterialPackageWrangler, self)
+        _user_input_to_action = superclass._user_input_to_action
+        _user_input_to_action = _user_input_to_action.copy()
+        _user_input_to_action.update({
+            'd': self.make_data_package,
+            'mtn': self._navigate_to_next_material,
+            'mtp': self._navigate_to_previous_material,
+            'nmh': self.make_handmade_material_package,
+            'nmm': self.make_managermade_material_package,
+            })
+        return _user_input_to_action
+
     ### PRIVATE METHODS ###
 
     def _get_appropriate_material_package_manager(
@@ -131,7 +145,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
-            self._user_input_to_action[result](self)
+            self._user_input_to_action[result]()
         else:
             material_package_manager = self._initialize_asset_manager(result)
             if os.path.exists(material_package_manager._filesystem_path):
@@ -204,7 +218,9 @@ class MaterialPackageWrangler(PackageWrangler):
             MaterialPackageManager('.../scoremanager/materialpackages/red_notes')
             MaterialPackageManager('.../scoremanager/materialpackages/red_numbers')
             SargassoMeasureMaterialPackageManager('.../scoremanager/materialpackages/red_sargasso_measures')
-            TempoInventoryMaterialPackageManager('.../scoremanager/scorepackages/red_example_score/materials/tempo_inventory')
+            MaterialPackageManager('.../red_example_score/materials/magic_numbers')
+            PitchRangeInventoryMaterialPackageManager('.../red_example_score/materials/pitch_range_inventory')
+            TempoInventoryMaterialPackageManager('.../red_example_score/materials/tempo_inventory')
 
         Returns list.
         '''
@@ -240,6 +256,8 @@ class MaterialPackageWrangler(PackageWrangler):
             'red notes'
             'red numbers'
             'red sargasso measures'
+            'magic numbers'
+            'pitch range inventory'
             'tempo inventory'
 
         Returns list.
@@ -277,6 +295,8 @@ class MaterialPackageWrangler(PackageWrangler):
             'scoremanager.materialpackages.red_notes'
             'scoremanager.materialpackages.red_numbers'
             'scoremanager.materialpackages.red_sargasso_measures'
+            'red_example_score.materials.magic_numbers'
+            'red_example_score.materials.pitch_range_inventory'
             'red_example_score.materials.tempo_inventory'
 
         Returns list.
@@ -488,14 +508,3 @@ class MaterialPackageWrangler(PackageWrangler):
         manager = self._get_appropriate_material_package_manager(
             material_package_manager_class_name, material_package_path)
         manager._run_first_time()
-
-    ### UI MANIFEST ###
-
-    _user_input_to_action = PackageWrangler._user_input_to_action.copy()
-    _user_input_to_action.update({
-        'd': make_data_package,
-        'mtn': _navigate_to_next_material,
-        'mtp': _navigate_to_previous_material,
-        'nmh': make_handmade_material_package,
-        'nmm': make_managermade_material_package,
-        })

@@ -57,6 +57,15 @@ class Manager(ScoreManagerObject):
         if self._filesystem_path:
             return os.path.basename(self._filesystem_path)
 
+    @property
+    def _user_input_to_action(self):
+        _user_input_to_action = {
+            'cp': self.copy,
+            'rm': self.remove_and_backtrack_locally,
+            'ren': self.rename,
+            }
+        return _user_input_to_action
+
     ### PRIVATE METHODS ###
 
     def _get_score_package_directory_name(self):
@@ -472,11 +481,3 @@ class Manager(ScoreManagerObject):
             message = 'boilerplate asset {!r} does not exist.'
             message = message.format(boilerplate_file_abjad_asset_name)
             self._io_manager.proceed(message)
-
-    ### UI MANIFEST ###
-
-    _user_input_to_action = {
-        'cp': copy,
-        'rm': remove_and_backtrack_locally,
-        'ren': rename,
-        }

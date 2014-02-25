@@ -42,11 +42,20 @@ class MaterialPackageManagerWrangler(PackageWrangler):
     def _breadcrumb(self):
         return 'material package managers'
 
+    @property
+    def _user_input_to_action(self):
+        superclass = super(MaterialPackageManagerWrangler, self)
+        _user_input_to_action = superclass._user_input_to_action
+        _user_input_to_action = _user_input_to_action.copy()
+        _user_input_to_action.update({
+            })
+        return _user_input_to_action
+
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
-            self._user_input_to_action[result](self)
+            self._user_input_to_action[result]()
         else:
             raise ValueError
 
@@ -306,9 +315,3 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             )
-
-    ### UI MANIFEST ###
-
-    _user_input_to_action = PackageWrangler._user_input_to_action.copy()
-    _user_input_to_action.update({
-        })

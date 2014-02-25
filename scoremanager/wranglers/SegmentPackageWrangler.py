@@ -34,11 +34,24 @@ class SegmentPackageWrangler(PackageWrangler):
     def _breadcrumb(self):
         return 'segments'
 
+    @property
+    def _user_input_to_action(self):
+        superclass = super(SegmentPackageWrangler, self)
+        _user_input_to_action = superclass._user_input_to_action
+        _user_input_to_action = _user_input_to_action.copy()
+        _user_input_to_action.update({
+            'lyri': self.reinterpret_all_current_lilypond_files,
+            'pdfm': self.make_asset_pdfs,
+            'pdfs': self.version_all_assets,
+            'pdfv': self.view_asset_pdfs,
+            })
+        return _user_input_to_action
+
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
-            self._user_input_to_action[result](self)
+            self._user_input_to_action[result]()
         elif result == 'user entered lone return':
             pass
         else:
@@ -431,13 +444,3 @@ class SegmentPackageWrangler(PackageWrangler):
         command = ' '.join(output_pdf_file_paths)
         command = 'open ' + command
         self._io_manager.spawn_subprocess(command)
-
-    ### UI MANIFEST ###
-
-    _user_input_to_action = PackageWrangler._user_input_to_action.copy()
-    _user_input_to_action.update({
-        'lyri': reinterpret_all_current_lilypond_files,
-        'pdfm': make_asset_pdfs,
-        'pdfs': version_all_assets,
-        'pdfv': view_asset_pdfs,
-        })

@@ -54,6 +54,17 @@ class PackageWrangler(Wrangler):
         else:
             return self._temporary_asset_name
 
+    @property
+    def _user_input_to_action(self):
+        superclass = super(PackageWrangler, self)
+        _user_input_to_action = superclass._user_input_to_action
+        _user_input_to_action = _user_input_to_action.copy()
+        _user_input_to_action.update({
+            'new': self.make_asset,
+            'ren': self.rename_asset,
+            })
+        return _user_input_to_action
+
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
@@ -344,11 +355,3 @@ class PackageWrangler(Wrangler):
         self._session._pop_breadcrumb()
         self._session._restore_breadcrumbs(cache=cache)
         return result
-
-    ### UI MANIFEST ###
-
-    _user_input_to_action = Wrangler._user_input_to_action.copy()
-    _user_input_to_action.update({
-        'new': make_asset,
-        'ren': rename_asset,
-        })

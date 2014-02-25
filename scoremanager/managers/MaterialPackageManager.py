@@ -63,12 +63,53 @@ class MaterialPackageManager(PackageManager):
     def _breadcrumb(self):
         return self._space_delimited_lowercase_name
 
+    @property
+    def _user_input_to_action(self):
+        superclass = super(MaterialPackageManager, self)
+        _user_input_to_action = superclass._user_input_to_action
+        _user_input_to_action = _user_input_to_action.copy()
+        _user_input_to_action.update({
+            'ibe': self.edit_illustration_builder_module,
+            'ibrm': self.remove_illustration_builder_module,
+            'ibs': self.write_stub_illustration_builder_module,
+            'ibx': self.run_python_on_illustration_builder_module,
+            'ibxi': self.run_abjad_on_illustration_builder_module,
+            'lym': self.write_illustration_ly,
+            'lyrm': self.remove_illustration_ly,
+            'ly': self.illustration_ly_file_manager,
+            'mdbp': self.write_material_definition_module_boilerplate,
+            'mde': self.edit_material_definition_module,
+            'mdrm': self.remove_material_definition_module,
+            'mds': self.write_stub_material_definition_module,
+            'mdx': self.run_python_on_material_definition_module,
+            'mdxe': self.run_abjad_on_material_definition_module,
+            'ombp': self.write_output_material_module_boilerplate,
+            'omm': self.write_output_material,
+            'omi': self.edit_output_material,
+            'omrm': self.remove_output_material_module,
+            'omv': self.view_output_material_module,
+            'pdfm': self.write_illustration_ly_and_pdf,
+            'pdfrm': self.remove_illustration_pdf,
+            'pdfv': self.view_illustration_pdf,
+            'ren': self.rename_package,
+            'sse': self.edit_stylesheet_file,
+            'sss': self.select_stylesheet,
+            'uid': self.remove_user_input_module,
+            'uic': self.clear_user_input_wrapper,
+            'uil': self.load_user_input_wrapper_demo_values,
+            'uip': self.populate_user_input_wrapper,
+            'uis': self.display_user_input_demo_values,
+            'uit': self.toggle_user_input_values_default_status,
+            'uimv': self.view_user_input_module,
+            })
+        return _user_input_to_action
+
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
         if result in self._user_input_to_action:
-            self._user_input_to_action[result](self)
+            self._user_input_to_action[result]()
         elif mathtools.is_integer_equivalent_expr(result):
             self.edit_user_input_wrapper_at_number(
                 result, 
@@ -1294,43 +1335,3 @@ class MaterialPackageManager(PackageManager):
             'stub user input module written to disk.',
             prompt=prompt,
             )
-
-    ### UI MANIFEST ###
-
-    _user_input_to_action = PackageManager._user_input_to_action.copy()
-    _user_input_to_action.update({
-        'ibe': edit_illustration_builder_module,
-        'ibrm': remove_illustration_builder_module,
-        'ibs': write_stub_illustration_builder_module,
-        'ibx': run_python_on_illustration_builder_module,
-        'ibxi': run_abjad_on_illustration_builder_module,
-        'lym': write_illustration_ly,
-        'lyrm': remove_illustration_ly,
-        'ly': illustration_ly_file_manager,
-        'mdbp': write_material_definition_module_boilerplate,
-        'mde': edit_material_definition_module,
-        'mdrm': remove_material_definition_module,
-        'mds': write_stub_material_definition_module,
-        'mdx': run_python_on_material_definition_module,
-        'mdxe': run_abjad_on_material_definition_module,
-        'ombp': write_output_material_module_boilerplate,
-        'omm': write_output_material,
-        'omi': edit_output_material,
-        'omrm': remove_output_material_module,
-        'omv': view_output_material_module,
-        'pdfm': write_illustration_ly_and_pdf,
-        'pdfrm': remove_illustration_pdf,
-        'pdfv': view_illustration_pdf,
-        'ren': rename_package,
-        'sse': edit_stylesheet_file,
-        'sss': select_stylesheet,
-        'uid': remove_user_input_module,
-
-        'uic': clear_user_input_wrapper,
-        'uil': load_user_input_wrapper_demo_values,
-        'uip': populate_user_input_wrapper,
-        'uis': display_user_input_demo_values,
-        'uit': toggle_user_input_values_default_status,
-        'uimv': view_user_input_module,
-
-        })

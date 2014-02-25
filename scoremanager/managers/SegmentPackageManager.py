@@ -30,6 +30,27 @@ class SegmentPackageManager(PackageManager):
     def _breadcrumb(self):
         return self._space_delimited_lowercase_name
 
+    @property
+    def _user_input_to_action(self):
+        superclass = super(SegmentPackageManager, self)
+        _user_input_to_action = superclass._user_input_to_action
+        _user_input_to_action = _user_input_to_action.copy()
+        _user_input_to_action.update({
+            'E': self.edit_asset_definition_module_from_top,
+            'e': self.edit_asset_definition_module,
+            'lyri': self.reinterpret_current_lilypond_file,
+            'lyv': self.view_current_output_ly,
+            'lyver': self.view_versioned_output_ly,
+            'pdfv': self.view_output_pdf,
+            'pdfm': self.make_asset_pdf,
+            'vv': self.view_all_versioned_pdfs,
+            'pdfver': self.view_versioned_output_pdf,
+            'pyver': self.view_versioned_segment_definition_module,
+            'pdfs': self.save_to_versions_directory,
+            'vrl': self.list_versions_directory,
+            })
+        return _user_input_to_action
+
     ### PRIVATE METHODS ###
 
     def _get_asset_definition_module_file_path(self):
@@ -60,7 +81,7 @@ class SegmentPackageManager(PackageManager):
         
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
-            self._user_input_to_action[result](self)
+            self._user_input_to_action[result]()
         elif result == 'user entered lone return':
             self.edit_asset_definition_module()
 
@@ -445,21 +466,3 @@ class SegmentPackageManager(PackageManager):
             file_pointer.write('from abjad import *\n')
             file_pointer.write('\n\n')
             file_pointer.close()
-
-    ### UI MANIFEST ###
-
-    _user_input_to_action = PackageManager._user_input_to_action.copy()
-    _user_input_to_action.update({
-        'E': edit_asset_definition_module_from_top,
-        'e': edit_asset_definition_module,
-        'lyri': reinterpret_current_lilypond_file,
-        'lyv': view_current_output_ly,
-        'lyver': view_versioned_output_ly,
-        'pdfv': view_output_pdf,
-        'pdfm': make_asset_pdf,
-        'vv': view_all_versioned_pdfs,
-        'pdfver': view_versioned_output_pdf,
-        'pyver': view_versioned_segment_definition_module,
-        'pdfs': save_to_versions_directory,
-        'vrl': list_versions_directory,
-        })

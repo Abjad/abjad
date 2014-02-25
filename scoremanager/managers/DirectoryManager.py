@@ -24,6 +24,16 @@ class DirectoryManager(Manager):
     def _repository_add_command(self):
         return 'cd {} && add'.format(self._filesystem_path)
 
+    @property
+    def _user_input_to_action(self):
+        superclass = super(DirectoryManager, self)
+        _user_input_to_action = superclass._user_input_to_action
+        _user_input_to_action = _user_input_to_action.copy()
+        _user_input_to_action.update({
+            'ls': self.list_directory,
+            })
+        return _user_input_to_action
+
     ### PRIVATE METHODS ###
 
     def _get_file_manager(self, file_path):
@@ -36,7 +46,7 @@ class DirectoryManager(Manager):
 
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
-            self._user_input_to_action[result](self)
+            self._user_input_to_action[result]()
         else:
             self._run_asset_manager(result)
 
@@ -177,10 +187,3 @@ class DirectoryManager(Manager):
             lines.append('')
             self._io_manager.display(lines)
         self._io_manager.proceed(prompt=prompt)
-
-    ### UI MANIFEST ###
-
-    _user_input_to_action = Manager._user_input_to_action.copy()
-    _user_input_to_action.update({
-        'ls': list_directory,
-        })

@@ -45,6 +45,25 @@ class ScoreManager(ScoreManagerObject):
     def _score_status_string(self):
         return '{} scores'.format(self._session.scores_to_display)
 
+    @property
+    def _user_input_to_action(self):
+        result = {
+            'cv': self.view_cache,
+            'cw': self.write_cache,
+            'lmm': self.manage_material_library,
+            'new': self.make_new_score,
+            'radd': self.add_assets_to_repository,
+            'rci': self.commit_assets_to_repository,
+            'rst': self.display_repository_status,
+            'rup': self.update_from_repository,
+            'ssl': self.display_all_scores,
+            'ssv': self.display_active_scores,
+            'ssmb': self.display_mothballed_scores,
+            'ssx': self.display_example_scores,
+            'lmy': self.manage_stylesheet_library,
+            }
+        return result
+
     ### PRIVATE METHODS ###
 
     def _get_next_score_package_name(self):
@@ -71,7 +90,7 @@ class ScoreManager(ScoreManagerObject):
 
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
-            self._user_input_to_action[result](self)
+            self._user_input_to_action[result]()
         else:
             wrangler = self._score_package_wrangler
             if result in wrangler._list_visible_asset_package_paths():
@@ -316,21 +335,3 @@ class ScoreManager(ScoreManagerObject):
         Returns none.
         '''
         self._io_manager.write_cache(prompt=prompt)
-
-    ### UI MANIFEST ###
-
-    _user_input_to_action = {
-        'cv': view_cache,
-        'cw': write_cache,
-        'lmm': manage_material_library,
-        'new': make_new_score,
-        'radd': add_assets_to_repository,
-        'rci': commit_assets_to_repository,
-        'rst': display_repository_status,
-        'rup': update_from_repository,
-        'ssl': display_all_scores,
-        'ssv': display_active_scores,
-        'ssmb': display_mothballed_scores,
-        'ssx': display_example_scores,
-        'lmy': manage_stylesheet_library,
-        }

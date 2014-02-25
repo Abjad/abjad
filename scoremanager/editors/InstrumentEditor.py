@@ -61,11 +61,20 @@ class InstrumentEditor(Editor):
                 ),
             )
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _user_input_to_action(self):
+        result = {
+            'tprd': self.toggle_pitch_range_display,
+        }
+        return result
+
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
-            self._user_input_to_action[result](self)
+            self._user_input_to_action[result]()
         else:
             super(InstrumentEditor, self)._handle_main_menu_result(result)
 
@@ -103,9 +112,3 @@ class InstrumentEditor(Editor):
             self._session._display_pitch_ranges_with_numbered_pitches = False
         else:
             self._session._display_pitch_ranges_with_numbered_pitches = True
-
-    ### UI MANIFEST ###
-
-    _user_input_to_action = {
-        'tprd':     toggle_pitch_range_display,
-        }

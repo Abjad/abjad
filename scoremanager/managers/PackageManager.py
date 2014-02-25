@@ -69,6 +69,27 @@ class PackageManager(DirectoryManager):
         file_path = os.path.join(self._filesystem_path, '__views__.py')
         return file_path
 
+    @property
+    def _user_input_to_action(self):
+        superclass = super(PackageManager, self)
+        _user_input_to_action = superclass._user_input_to_action
+        _user_input_to_action = _user_input_to_action.copy()
+        _user_input_to_action.update({
+            'inbp': self.write_boilerplate_initializer_module,
+            'inrm': self.remove_initializer_module,
+            'ins': self.write_stub_initializer_module,
+            'inv': self.view_initializer_module,
+            'mda': self.add_metadatum,
+            'mdg': self.get_metadatum,
+            'mdrm': self.remove_metadatum,
+            'mdmv': self.view_metadata_module,
+            'mdmrm': self.remove_metadata_module,
+            'mdmrw': self.rewrite_metadata_module,
+            'ren': self.rename_package,
+            'rm': self.remove_package,
+            })
+        return _user_input_to_action
+
     ### PRIVATE METHODS ###
 
     def _add_metadatum(self, metadatum_name, metadatum_value):
@@ -379,21 +400,3 @@ class PackageManager(DirectoryManager):
         line = 'stub initializer written.'
         self._io_manager.display([line, ''])
         self._io_manager.proceed()
-
-    ### UI MANIFEST ###
-
-    _user_input_to_action = DirectoryManager._user_input_to_action.copy()
-    _user_input_to_action.update({
-        'inbp': write_boilerplate_initializer_module,
-        'inrm': remove_initializer_module,
-        'ins': write_stub_initializer_module,
-        'inv': view_initializer_module,
-        'mda': add_metadatum,
-        'mdg': get_metadatum,
-        'mdrm': remove_metadatum,
-        'mdmv': view_metadata_module,
-        'mdmrm': remove_metadata_module,
-        'mdmrw': rewrite_metadata_module,
-        'ren': rename_package,
-        'rm': remove_package,
-        })

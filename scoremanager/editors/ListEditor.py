@@ -41,13 +41,24 @@ class ListEditor(Editor):
 
     item_identifier = 'element'
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _user_input_to_action(self):
+        result = {
+            'add': self.add_items,
+            'rm': self.remove_items,
+            'mv': self.move_item,
+            }
+        return result
+
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
         if not isinstance(result, str):
             raise TypeError('result must be string.')
         if result in self._user_input_to_action:
-            self._user_input_to_action[result](self)
+            self._user_input_to_action[result]()
         elif mathtools.is_integer_equivalent_expr(result):
             self.edit_item(result)
         else:
@@ -193,11 +204,3 @@ class ListEditor(Editor):
         items = sequencetools.remove_elements(
             items, indices)
         self.items[:] = items
-
-    ### UI MANIFEST ###
-
-    _user_input_to_action = {
-        'add':  add_items,
-        'rm':   remove_items,
-        'mv':   move_item,
-    }
