@@ -121,7 +121,7 @@ class Selector(AbjadObject):
     ### PUBLIC METHODS ###
 
     def by_class(
-        self, 
+        self,
         prototype=None):
         from experimental.tools import selectortools
         callback = selectortools.PrototypeSelectorCallback(prototype)
@@ -152,11 +152,159 @@ class Selector(AbjadObject):
 
     def by_logical_tie(
         self,
-        pitched=True,
+        only_with_head=False,
+        only_with_tail=False,
+        pitched=False,
         trivial=True,
-        only_with_head=True,
-        only_with_tail=True,
         ):
+        r'''Configures selector to select logical ties.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
+                >>> container = staff[2]
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie()
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                LogicalTie(Note("c'8"),)
+                LogicalTie(Note("d'8"), Note("d'8"))
+                LogicalTie(Note("e'8"),)
+                LogicalTie(Rest('r8'),)
+                LogicalTie(Note("f'8"), Note("f'8"))
+                LogicalTie(Rest('r8'),)
+
+            ::
+
+                >>> for x in selector(container):
+                ...     x
+                ...
+                LogicalTie(Note("d'8"), Note("d'8"))
+                LogicalTie(Note("e'8"),)
+                LogicalTie(Rest('r8'),)
+                LogicalTie(Note("f'8"), Note("f'8"))
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
+                >>> container = staff[2]
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(
+                ...     pitched=True,
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                LogicalTie(Note("c'8"),)
+                LogicalTie(Note("d'8"), Note("d'8"))
+                LogicalTie(Note("e'8"),)
+                LogicalTie(Note("f'8"), Note("f'8"))
+
+            ::
+
+                >>> for x in selector(container):
+                ...     x
+                ...
+                LogicalTie(Note("d'8"), Note("d'8"))
+                LogicalTie(Note("e'8"),)
+                LogicalTie(Note("f'8"), Note("f'8"))
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
+                >>> container = staff[2]
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(
+                ...     pitched=True,
+                ...     trivial=False,
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                LogicalTie(Note("d'8"), Note("d'8"))
+                LogicalTie(Note("f'8"), Note("f'8"))
+
+            ::
+
+                >>> for x in selector(container):
+                ...     x
+                ...
+                LogicalTie(Note("d'8"), Note("d'8"))
+                LogicalTie(Note("f'8"), Note("f'8"))
+
+        ..  container:: example
+
+                >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
+                >>> container = staff[2]
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(
+                ...     only_with_head=True,
+                ...     pitched=True,
+                ...     trivial=False,
+                ...     )
+
+            ::
+
+                >>> for x in selector(container):
+                ...     x
+                ...
+                LogicalTie(Note("f'8"), Note("f'8"))
+
+        ..  container:: example
+
+                >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
+                >>> container = staff[2]
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(
+                ...     only_with_tail=True,
+                ...     pitched=True,
+                ...     trivial=False,
+                ...     )
+
+            ::
+
+                >>> for x in selector(container):
+                ...     x
+                ...
+                LogicalTie(Note("d'8"), Note("d'8"))
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
+                >>> container = staff[2]
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(
+                ...     only_with_head=True,
+                ...     only_with_tail=True,
+                ...     )
+
+            ::
+
+                >>> for x in selector(container):
+                ...     x
+                ...
+                LogicalTie(Note("e'8"),)
+                LogicalTie(Rest('r8'),)
+
+        '''
         from experimental.tools import selectortools
         callback = selectortools.LogicalTieSelectorCallback(
             pitched=pitched,
