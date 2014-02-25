@@ -54,7 +54,7 @@ def test_FileManager__rename_02():
         file_manager._make_empty_asset()
         assert os.path.exists(filesystem_path)
         file_manager.add_assets_to_repository()
-        assert file_manager._is_versioned()
+        assert file_manager._is_git_versioned()
         new_filesystem_path = os.path.join(
             configuration.score_manager_directory_path, 
             'new_temporary_file.txt',

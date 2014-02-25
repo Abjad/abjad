@@ -96,18 +96,32 @@ class Manager(ScoreManagerObject):
                 return True
         return False
 
-    def _is_versioned(self):
+    # TOOD: move to IOManager
+    def _is_git_versioned(self):
         if self._filesystem_path is None:
             return False
         if not os.path.exists(self._filesystem_path):
             return False
-        if self._is_in_svn_parent_directory():
-            command = 'svn st {}'
-        # if enclosing directory isn't svn then assume git.
-        # then just return true.
-        # because we don't know how to tell if git is managing a file or not
-        else:
-            return True
+        command = 'git st {}'
+        command = command.format(self._filesystem_path)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+        first_line = process.stdout.readline()
+        if first_line.startswith(('fatal:')):
+            return False
+        return True
+
+    # TOOD: move to IOManager
+    def _is_svn_versioned(self):
+        if self._filesystem_path is None:
+            return False
+        if not os.path.exists(self._filesystem_path):
+            return False
+        command = 'svn st -u {}'
         command = command.format(self._filesystem_path)
         process = subprocess.Popen(
             command,
@@ -118,12 +132,11 @@ class Manager(ScoreManagerObject):
         first_line = process.stdout.readline()
         if first_line.startswith(('?', 'svn: warning:')):
             return False
-        else:
-            return True
+        return True
 
     def _remove(self):
         if self._is_in_svn_parent_directory():
-            if self._is_versioned():
+            if self._is_svn_versioned():
                 command = 'svn --force rm {}'
             else:
                 command = 'rm -rf {}'
@@ -159,7 +172,7 @@ class Manager(ScoreManagerObject):
 
     def _rename(self, new_path):
         if self._is_in_svn_parent_directory():
-            if self._is_versioned():
+            if self._is_svn_versioned():
                 command = 'svn --force mv {} {}'
                 command = command.format(self._filesystem_path, new_path)
                 process = subprocess.Popen(

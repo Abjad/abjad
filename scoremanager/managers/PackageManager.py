@@ -312,7 +312,7 @@ class PackageManager(DirectoryManager):
             base_name,
             new_package_name,
             )
-        if self._is_versioned():
+        if self._is_svn_versioned():
             # rename package directory
             command = 'svn mv {} {}'
             command = command.format(self._filesystem_path, new_directory_path)
