@@ -161,6 +161,8 @@ class Selector(AbjadObject):
 
         ..  container:: example
 
+            **Example 1.** Select all logical ties.
+
             ::
 
                 >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
@@ -192,6 +194,8 @@ class Selector(AbjadObject):
 
         ..  container:: example
 
+            **Example 2.** Select pitched logical ties.
+
             ::
 
                 >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
@@ -222,6 +226,8 @@ class Selector(AbjadObject):
 
         ..  container:: example
 
+            **Example 3.** Select pitched non-trivial logical ties.
+
             ::
 
                 >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
@@ -250,6 +256,11 @@ class Selector(AbjadObject):
 
         ..  container:: example
 
+            **Example 4.** Select pitched non-trivial logical ties whose head
+            is contained in the expression to be selected from.
+
+            ::
+
                 >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
                 >>> container = staff[2]
                 >>> selector = selectortools.Selector()
@@ -268,6 +279,11 @@ class Selector(AbjadObject):
 
         ..  container:: example
 
+            **Example 5.** Select pitched non-trivial logical ties whose tail
+            is contained in the expression to be selected from.
+
+            ::
+
                 >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
                 >>> container = staff[2]
                 >>> selector = selectortools.Selector()
@@ -285,6 +301,9 @@ class Selector(AbjadObject):
                 LogicalTie(Note("d'8"), Note("d'8"))
 
         ..  container:: example
+
+            **Example 5.** Select logical ties whose head and tail is contained
+            in the expression to be selected from.
 
             ::
 
