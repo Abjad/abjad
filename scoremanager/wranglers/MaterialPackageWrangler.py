@@ -174,8 +174,8 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
-            '.../scoremanager/materialpackages/example_dynamics'
-            '.../scoremanager/materialpackages/red_marcati'
+            '.../scoremanager/materialpackages/example_articulation_handler'
+            '.../scoremanager/materialpackages/example_dynamic_handler'
             '.../scoremanager/materialpackages/red_markup'
             '.../scoremanager/materialpackages/red_notes'
             '.../scoremanager/materialpackages/red_numbers'
@@ -212,8 +212,8 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     user_score_packages=False,
             ...     ):
             ...     x
-            DynamicHandlerMaterialPackageManager('.../scoremanager/materialpackages/example_dynamics')
-            ArticulationHandlerMaterialPackageManager('.../scoremanager/materialpackages/red_marcati')
+            ArticulationHandlerMaterialPackageManager('.../scoremanager/materialpackages/example_articulation_handler')
+            DynamicHandlerMaterialPackageManager('.../scoremanager/materialpackages/example_dynamic_handler')
             MarkupInventoryMaterialPackageManager('.../scoremanager/materialpackages/red_markup')
             MaterialPackageManager('.../scoremanager/materialpackages/red_notes')
             MaterialPackageManager('.../scoremanager/materialpackages/red_numbers')
@@ -250,8 +250,8 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler._list_asset_names(
             ...     user_library=False, user_score_packages=False):
             ...     x
-            'example dynamics'
-            'red marcati'
+            'example articulation handler'
+            'example dynamic handler'
             'red markup'
             'red notes'
             'red numbers'
@@ -289,8 +289,8 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
-            'scoremanager.materialpackages.example_dynamics'
-            'scoremanager.materialpackages.red_marcati'
+            'scoremanager.materialpackages.example_articulation_handler'
+            'scoremanager.materialpackages.example_dynamic_handler'
             'scoremanager.materialpackages.red_markup'
             'scoremanager.materialpackages.red_notes'
             'scoremanager.materialpackages.red_numbers'

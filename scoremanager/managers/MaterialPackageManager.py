@@ -864,13 +864,17 @@ class MaterialPackageManager(PackageManager):
         self._io_manager.display(lines)
         if not self._io_manager.confirm():
             return
-        new_directory_path = self._filesystem_path.replace(
+        old_directory_path = self._filesystem_path
+        new_directory_path = old_directory_path.replace(
             base_name,
             new_package_name,
             )
+        is_git_versioned, is_svn_versioned = False, False
         if self._is_git_versioned():
+            is_git_versioned = True
             command = 'git mv {} {}'
         elif self._is_svn_versioned():
+            is_svn_versioend = True
             command = 'svn mv {} {}'
         elif self._is_svn_versioned():
             command = 'mv {} {}'
@@ -880,7 +884,6 @@ class MaterialPackageManager(PackageManager):
         for directory_entry in os.listdir(new_directory_path):
             if directory_entry.endswith('.py'):
                 file_path = os.path.join(new_directory_path, directory_entry)
-                print file_path
                 result = os.path.splitext(base_name)
                 old_package_name, extension = result
                 self.replace_in_file(
@@ -888,22 +891,24 @@ class MaterialPackageManager(PackageManager):
                     old_package_name,
                     new_package_name,
                     )
-        commit_message = 'renamed {} to {}.'
-        commit_message = commit_message.format(base_name, new_package_name)
-        commit_message = commit_message.replace('_', ' ')
-        if self._is_git_versioned():
+        commit_message = 'Renamed material package.\n\n'
+        commit_message += 'OLD: {!r}.\n\n'.format(old_package_name)
+        commit_message += 'NEW: {!r}.'.format(new_package_name)
+        if is_git_versioned:
             command = 'git add -A {}'.format(new_directory_path)
             self._io_manager.spawn_subprocess(command)
-            command = 'git commit -m "{}" {}'
-            command = command.format(commit_message, new_directory_path)
+            command = 'git commit -m "{}" {} {}'
+            command = command.format(
+                commit_message, 
+                new_directory_path,
+                old_directory_path,
+                )
             self._io_manager.spawn_subprocess(command)
-        elif self._is_svn_versioned():
+        elif is_svn_versioned:
             parent_directory_path = os.path.dirname(self._filesystem_path)
             command = 'svn commit -m "{}" {}'
             command = command.format(commit_message, parent_directory_path)
             self._io_manager.spawn_subprocess(command)
-        # update path name to reflect change
-        self._path = new_directory_path
         self._session._is_backtracking_locally = True
 
     @staticmethod
