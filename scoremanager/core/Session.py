@@ -42,24 +42,26 @@ class Session(abctools.AbjadObject):
         'current_materials_directory_path',
         'current_score_directory_path',
         'current_score_package_manager',
+        'current_score_snake_case_name',
         'current_segments_directory_path',
         'write_transcript',
         'hide_next_redraw',
         'hide_hidden_commands',
+        'hide_secondary_commands',
         'is_displayable',
         'is_in_score',
         'is_navigating_to_build_directory',
+        'is_navigating_to_next_material',
         'is_navigating_to_score_materials',
         'is_navigating_to_score_segments',
         'is_navigating_to_sibling_score',
         'last_line',
+        'last_material_package_path',
         'nonnumbered_menu_sections_are_hidden',
         'rewrite_cache',
         'score_manager',
         'scores_to_display',
-        'hide_secondary_commands',
         'session_once_had_user_input',
-        'current_score_snake_case_name',
         'transcribe_next_command',
         'use_current_user_input_values_as_default',
         'user_input_is_consumed',
@@ -91,7 +93,9 @@ class Session(abctools.AbjadObject):
         self._is_backtracking_to_score = False
         self._is_backtracking_to_score_manager = False
         self._is_navigating_to_build_directory = False
+        self._is_navigating_to_next_material = False
         self._is_navigating_to_next_score = False
+        self._is_navigating_to_previous_material = False
         self._is_navigating_to_previous_score = False
         self._is_navigating_to_score_materials = False
         self._is_navigating_to_score_segments = False
@@ -99,6 +103,7 @@ class Session(abctools.AbjadObject):
         self._is_test = False
         self._last_line = ''
         self._last_command_was_composite = False
+        self._last_material_package_path = None
         self._menu_header_width = 160
         self._nonnumbered_menu_sections_are_hidden = False
         self._pending_user_input = pending_user_input
@@ -755,6 +760,21 @@ class Session(abctools.AbjadObject):
         return self._is_navigating_to_build_directory
 
     @property
+    def is_navigating_to_next_material(self):
+        r'''Is true when session is navigating to next material. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_next_material
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_next_material
+
+    @property
     def is_navigating_to_next_score(self):
         r'''Is true when session is navigating to next score. Otherwise false.
 
@@ -868,6 +888,21 @@ class Session(abctools.AbjadObject):
         return self._is_test
 
     @property
+    def last_command_was_composite(self):
+        r'''Is true when last command was composite. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.last_command_was_composite
+                False
+
+        Returns boolean.
+        '''
+        return self._last_command_was_composite
+
+    @property
     def last_line(self):
         r'''Gets last line of session.
 
@@ -885,19 +920,19 @@ class Session(abctools.AbjadObject):
         return self._last_line
 
     @property
-    def last_command_was_composite(self):
-        r'''Is true when last command was composite. Otherwise false.
+    def last_material_package_path(self):
+        r'''Gets last material package path.
 
         ..  container:: example
 
             ::
 
-                >>> session.last_command_was_composite
-                False
+                >>> session.last_material_package_path is None
+                True
 
-        Returns boolean.
+        Returns string or none.
         '''
-        return self._last_command_was_composite
+        return self._last_material_package_path
 
     @property
     def last_semantic_command(self):

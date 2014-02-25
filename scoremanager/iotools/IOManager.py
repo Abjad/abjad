@@ -92,6 +92,14 @@ class IOManager(IOManager):
         elif key == 'm':
             self._session._is_navigating_to_score_materials = True
             return 'm'
+        elif key == 'mtn':
+            self._session._is_navigating_to_score_materials = True
+            self._session._is_navigating_to_next_material = True
+            self._session._hide_hidden_commands = True
+        elif key == 'mtp':
+            self._session._is_navigating_to_score_materials = True
+            self._session._is_navigating_to_previous_material = True
+            self._session._hide_hidden_commands = True
         elif key == 'pyd':
             message = 'running doctest ...'
             self.display([message, ''])

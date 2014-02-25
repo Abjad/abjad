@@ -179,6 +179,7 @@ class PackageWrangler(Wrangler):
         package_manager = self._initialize_asset_manager(asset_name)
         package_manager.fix(prompt=False)
 
+    # TODO: reduce indentation with early return statements
     def _make_asset_menu_entries(self, head=None):
         names = self._list_asset_names(head=head)
         keys = len(names) * [None]

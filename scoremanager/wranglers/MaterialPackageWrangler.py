@@ -93,7 +93,26 @@ class MaterialPackageWrangler(PackageWrangler):
                     )
         return material_package_manager
 
+    def _get_next_material_package_name(self):
+        last_package_path = self._session.last_material_package_path
+        menu_entries = self._make_asset_menu_entries()
+        package_paths = [x[-1] for x in menu_entries]
+        if self._session.is_in_score:
+            score_name = self._session.current_score_snake_case_name
+            package_paths = [
+                x for x in package_paths 
+                if x.startswith(score_name)
+                ]
+        if last_package_path is None:
+            return package_paths[0]
+        assert last_package_path in package_paths
+        index = package_paths.index(last_package_path)
+        next_index = (index + 1) % len(package_paths)
+        next_package_name = package_paths[next_index]
+        return next_package_name
+        
     def _handle_main_menu_result(self, result):
+        #print repr(result), 'RRR'
         if result in self._user_input_to_action:
             self._user_input_to_action[result](self)
         else:
@@ -391,6 +410,12 @@ class MaterialPackageWrangler(PackageWrangler):
         message = 'material package {!r} created.'.format(package_path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
+    def _navigate_to_next_material(self):
+        pass
+
+    def _navigate_to_previous_material(self):
+        pass
+
     ### PUBLIC METHODS ###
 
     def make_data_package(
@@ -460,6 +485,8 @@ class MaterialPackageWrangler(PackageWrangler):
     _user_input_to_action = PackageWrangler._user_input_to_action.copy()
     _user_input_to_action.update({
         'd': make_data_package,
+        'mtn': _navigate_to_next_material,
+        'mtp': _navigate_to_previous_material,
         'nmh': make_handmade_material_package,
         'nmm': make_managermade_material_package,
         })
