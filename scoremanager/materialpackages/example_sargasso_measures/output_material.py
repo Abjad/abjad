@@ -2,7 +2,7 @@
 from abjad.tools.scoretools.Measure import Measure
 
 
-red_sargasso_measures = [
+example_sargasso_measures = [
 	Measure((4, 16), "c'16 c'16 c'8"),
 	Measure((2, 10), "c'8 c'8"),
 	Measure((3, 20), "c'8 c'16"),
