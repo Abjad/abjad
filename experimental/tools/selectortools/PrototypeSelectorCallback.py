@@ -24,6 +24,8 @@ class PrototypeSelectorCallback(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Iterates `expr`.
+        '''
         result = []
         for subexpr in expr:
             subresult = iterate(subexpr).by_class(self.prototype)

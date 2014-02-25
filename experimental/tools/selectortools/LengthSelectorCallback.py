@@ -15,7 +15,11 @@ class LengthSelectorCallback(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, length=1, parts=Exact):
+    def __init__(
+        self,
+        length=1,
+        parts=Exact,
+        ):
         assert isinstance(length, int) and length
         self._length = length
         assert parts in (None, Exact, More, Less)
@@ -24,6 +28,8 @@ class LengthSelectorCallback(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Iterates `expr`.
+        '''
         result = []
         for subexpr in expr:
             if self.parts in (None, Exact):

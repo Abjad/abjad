@@ -24,6 +24,8 @@ class SliceSelectorCallback(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Iterates `expr`.
+        '''
         prototype = (scoretools.Container, selectiontools.Selection)
         result = []
         for subexpr in expr:

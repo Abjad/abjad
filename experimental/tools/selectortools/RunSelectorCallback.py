@@ -24,6 +24,8 @@ class RunSelectorCallback(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Iterates `expr`.
+        '''
         result = []
         for subexpr in expr:
             for run in iterate(subexpr).by_run(self.prototype):

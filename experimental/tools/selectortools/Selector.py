@@ -120,7 +120,9 @@ class Selector(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def by_class(self, prototype=None):
+    def by_class(
+        self, 
+        prototype=None):
         from experimental.tools import selectortools
         callback = selectortools.PrototypeSelectorCallback(prototype)
         callbacks = self.callbacks or ()
@@ -134,7 +136,11 @@ class Selector(AbjadObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def by_length(self, length=None, parts=Exact):
+    def by_length(
+        self,
+        length=None,
+        parts=Exact,
+        ):
         from experimental.tools import selectortools
         callback = selectortools.LengthSelectorCallback(
             length=length,
@@ -144,7 +150,28 @@ class Selector(AbjadObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def by_run(self, prototype=None):
+    def by_logical_tie(
+        self,
+        pitched=True,
+        trivial=True,
+        only_with_head=True,
+        only_with_tail=True,
+        ):
+        from experimental.tools import selectortools
+        callback = selectortools.LogicalTieSelectorCallback(
+            pitched=pitched,
+            trivial=trivial,
+            only_with_head=only_with_head,
+            only_with_tail=only_with_tail,
+            )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
+    def by_run(
+        self,
+        prototype=None,
+        ):
         from experimental.tools import selectortools
         callback = selectortools.RunSelectorCallback(prototype)
         callbacks = self.callbacks or ()
