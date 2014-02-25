@@ -174,7 +174,7 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
-            '.../scoremanager/materialpackages/red_forte'
+            '.../scoremanager/materialpackages/example_dynamics'
             '.../scoremanager/materialpackages/red_marcati'
             '.../scoremanager/materialpackages/red_markup'
             '.../scoremanager/materialpackages/red_notes'
@@ -212,7 +212,7 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     user_score_packages=False,
             ...     ):
             ...     x
-            DynamicHandlerMaterialPackageManager('.../scoremanager/materialpackages/red_forte')
+            DynamicHandlerMaterialPackageManager('.../scoremanager/materialpackages/example_dynamics')
             ArticulationHandlerMaterialPackageManager('.../scoremanager/materialpackages/red_marcati')
             MarkupInventoryMaterialPackageManager('.../scoremanager/materialpackages/red_markup')
             MaterialPackageManager('.../scoremanager/materialpackages/red_notes')
@@ -250,7 +250,7 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler._list_asset_names(
             ...     user_library=False, user_score_packages=False):
             ...     x
-            'red forte'
+            'example dynamics'
             'red marcati'
             'red markup'
             'red notes'
@@ -289,7 +289,7 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
-            'scoremanager.materialpackages.red_forte'
+            'scoremanager.materialpackages.example_dynamics'
             'scoremanager.materialpackages.red_marcati'
             'scoremanager.materialpackages.red_markup'
             'scoremanager.materialpackages.red_notes'

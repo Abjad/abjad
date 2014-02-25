@@ -122,14 +122,12 @@
     is managed by MarkupInventoryMaterialPackageManager.
 
 35. Rename abjad material packages from ...
-        red_forte
         red_marcati
         red_markup
         red_notes
         red_numbers
         red_sargasso_measures
     ... to ...
-        example_dynamic_inventory
         example_articulation_inventory
         example_markup_inventory
         example_notes
