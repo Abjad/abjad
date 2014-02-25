@@ -301,14 +301,27 @@ class MaterialPackageWrangler(PackageWrangler):
         self._make_material_package(material_package_path, metadata=metadata)
 
     def _make_main_menu(self, head=None):
-        main_menu = self._io_manager.make_menu(where=self._where)
-        asset_section = main_menu.make_asset_section()
+        menu = self._io_manager.make_menu(where=self._where)
+        section = menu.make_asset_section(name='assets')
         asset_menu_entries = self._make_asset_menu_entries(head=head)
-        asset_section.menu_entries = asset_menu_entries
-        command_section = main_menu.make_command_section()
-        command_section.append(('new material - by hand', 'nmh'))
-        command_section.append(('new material - with manager', 'nmm'))
-        return main_menu
+        section.menu_entries = asset_menu_entries
+        section = menu.make_command_section(name='new material')
+        section.append(('new material - by hand', 'nmh'))
+        section.append(('new material - with manager', 'nmm'))
+        lilypond_section = menu['lilypond']
+        index = menu.menu_sections.index(lilypond_section) + 1
+        tour_menu_section = self._make_tour_menu_section(menu)
+        menu.menu_sections.insert(index, tour_menu_section)
+        return menu
+
+    def _make_tour_menu_section(self, menu):
+        section = menu.make_command_section(
+            is_hidden=True,
+            name='tour materials',
+            )
+        section.append(('materials - tour next', 'mtn'))
+        section.append(('materials - tour previous', 'mtp'))
+        return section
 
     def _make_managermade_material_package(
         self,

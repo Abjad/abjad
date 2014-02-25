@@ -576,12 +576,14 @@ class Menu(ScoreManagerObject):
 
     def make_command_section(
         self,
+        is_hidden=False,
         is_secondary=False,
         match_on_display_string=True,
         menu_entries=None,
         name=None,
         ):
         command_section = self._make_section(
+            is_hidden=is_hidden,
             is_secondary=is_secondary,
             match_on_display_string=match_on_display_string,
             name=name,
