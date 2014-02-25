@@ -44,13 +44,13 @@ class Manager(ScoreManagerObject):
 
     @property
     def _repository_add_command(self):
-        if self._filesystem_path:
-            if self._is_svn_versioned():
-                command = 'svn add {}'
-            else:
-                command = 'git add {}'
-            command = command.format(self._filesystem_path)
-            return command
+        if not self._filesystem_path:
+            return
+        parent_directory_path = os.path.dirname(self._filesystem_path)
+        if self._is_git_versioned(filesystem_path=parent_directory_path):
+            return 'git add {}'.format(self._filesystem_path)
+        elif self._is_svn_versioned(filesystem_path=parent_diretory_path):
+            return 'svn add {}'.format(self._filesystem_path)
 
     @property
     def _space_delimited_lowercase_name(self):
@@ -92,14 +92,14 @@ class Manager(ScoreManagerObject):
                 return True
         return False
 
-    # TOOD: move to IOManager
-    def _is_git_versioned(self):
-        if self._filesystem_path is None:
+    def _is_git_added(self, filesystem_path=None):
+        filesystem_path = filesystem_path or self._filesystem_path
+        if filesystem_path is None:
             return False
-        if not os.path.exists(self._filesystem_path):
+        if not os.path.exists(filesystem_path):
             return False
-        command = 'git st {}'
-        command = command.format(self._filesystem_path)
+        command = 'git st --short {}'
+        command = command.format(filesystem_path)
         process = subprocess.Popen(
             command,
             shell=True,
@@ -107,18 +107,37 @@ class Manager(ScoreManagerObject):
             stderr=subprocess.STDOUT,
             )
         first_line = process.stdout.readline()
-        if first_line.startswith(('fatal:')):
+        if first_line.startswith('A'):
+            return True
+        return False
+
+    def _is_git_versioned(self, filesystem_path=None):
+        filesystem_path = filesystem_path or self._filesystem_path
+        if filesystem_path is None:
+            return False
+        if not os.path.exists(filesystem_path):
+            return False
+        command = 'git st --short {}'
+        command = command.format(filesystem_path)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+        first_line = process.stdout.readline()
+        if first_line.startswith(('fatal:', '??', 'A')):
             return False
         return True
 
-    # TOOD: move to IOManager
-    def _is_svn_versioned(self):
-        if self._filesystem_path is None:
+    def _is_svn_versioned(self, filesystem_path=None):
+        filesystem_path = filesystem_path or self._filesystem_path
+        if filesystem_path is None:
             return False
-        if not os.path.exists(self._filesystem_path):
+        if not os.path.exists(filesystem_path):
             return False
         command = 'svn st -u {}'
-        command = command.format(self._filesystem_path)
+        command = command.format(filesystem_path)
         process = subprocess.Popen(
             command,
             shell=True,
@@ -131,82 +150,40 @@ class Manager(ScoreManagerObject):
         return True
 
     def _remove(self):
-        if self._is_svn_versioned():
-            if self._is_svn_versioned():
-                command = 'svn --force rm {}'
-            else:
-                command = 'rm -rf {}'
-            command = command.format(self._filesystem_path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                )
-            process.stdout.readline()
-            return True
-        else:
+        if self._is_git_versioned():
             command = 'git rm --force {}'
-            command = command.format(self._filesystem_path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stderr=subprocess.PIPE,
-                stdout=subprocess.PIPE,
-                )
-            process.stdout.readline()
-            first_error_line = process.stderr.readline() or ''
-            if first_error_line.startswith('fatal:'):
-                command = 'rm -rf {}'
-                command = command.format(self._filesystem_path)
-                process = subprocess.Popen(
-                    command,
-                    shell=True,
-                    stdout=subprocess.PIPE,
-                    )
-                process.stdout.readline()
-            return True
+        elif self._is_git_added():
+            command = 'git rm --force {}'
+        elif self._is_svn_versioned():
+            command = 'svn --force rm {}'
+        else:
+            command = 'rm -rf {}'
+        command = command.format(self._filesystem_path)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            )
+        process.stdout.readline()
+        return True
 
     def _rename(self, new_path):
-        if self._is_svn_versioned():
-            if self._is_svn_versioned():
-                command = 'svn --force mv {} {}'
-                command = command.format(self._filesystem_path, new_path)
-                process = subprocess.Popen(
-                    command,
-                    shell=True,
-                    stdout=subprocess.PIPE,
-                    )
-                process.stdout.readline()
-            else:
-                command = 'mv {} {}'
-                command = command.format(self._filesystem_path, new_path)
-                process = subprocess.Popen(
-                    command,
-                    shell=True,
-                    stdout=subprocess.PIPE,
-                    )
-                process.stdout.readline()
-        else:
+        if self._is_git_versioned():
             command = 'git mv --force {} {}'
-            command = command.format(self._filesystem_path, new_path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stderr=subprocess.PIPE,
-                stdout=subprocess.PIPE,
-                )
-            process.stdout.readline()
-            first_error_line = process.stderr.readline() or ''
-            if first_error_line.startswith('fatal:'):
-                command = 'mv {} {}'
-                command = command.format(self._filesystem_path, new_path)
-                process = subprocess.Popen(
-                    command,
-                    shell=True,
-                    stdout=subprocess.PIPE,
-                    )
-                process.stdout.readline()
-            self._filesystem_path = new_path
+        elif self._is_git_added():
+            command = 'git mv --force {} {}'
+        elif self._is_svn_versioned():
+            command = 'svn --force mv {} {}'
+        else:
+            command = 'mv {} {}'
+        command = command.format(self._filesystem_path, new_path)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            )
+        process.stdout.readline()
+        self._filesystem_path = new_path
 
     def _run(self, cache=False, clear=True, pending_user_input=None):
         from scoremanager import managers
