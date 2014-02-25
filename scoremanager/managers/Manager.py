@@ -45,7 +45,7 @@ class Manager(ScoreManagerObject):
     @property
     def _repository_add_command(self):
         if self._filesystem_path:
-            if self._is_in_svn_parent_directory():
+            if self._is_svn_versioned():
                 command = 'svn add {}'
             else:
                 command = 'git add {}'
@@ -85,10 +85,6 @@ class Manager(ScoreManagerObject):
         getter = self._io_manager.make_getter()
         getter.append_snake_case_file_name('new name')
         return getter
-
-    def _is_in_svn_parent_directory(self):
-        directory_path = os.path.dirname(self._filesystem_path)
-        return '.svn' in os.listdir(directory_path)
 
     def _is_populated_directory(self, directory_path):
         if os.path.exists(directory_path):
@@ -135,7 +131,7 @@ class Manager(ScoreManagerObject):
         return True
 
     def _remove(self):
-        if self._is_in_svn_parent_directory():
+        if self._is_svn_versioned():
             if self._is_svn_versioned():
                 command = 'svn --force rm {}'
             else:
@@ -171,7 +167,7 @@ class Manager(ScoreManagerObject):
             return True
 
     def _rename(self, new_path):
-        if self._is_in_svn_parent_directory():
+        if self._is_svn_versioned():
             if self._is_svn_versioned():
                 command = 'svn --force mv {} {}'
                 command = command.format(self._filesystem_path, new_path)
