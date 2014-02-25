@@ -9,89 +9,79 @@
 
 5.  Distinguish positional editor parameters from keyword editor parameters.
 
-6.  Implement navigation to tour all materials everywhere 
-    and examine in sequence.
+6.  Audit the UI of the entire materials management system by hand.
 
-7.  Audit the UI of the entire materials management system by hand.
-
-8.  Harmonize user input strings with method names in 
+7.  Harmonize user input strings with method names in 
     MaterialPackageManager._user_input_to_action dictionary.
 
-9.  Implement example_score_i.materials.divisions to import 
+8.  Implement example_score_i.materials.divisions to import 
     example_score_i.materials.time_signatures.
     This will implement an intrapackage material import.
     Implement example_score_ii.materials.divisions to 
     import example_score_i.materials.time_signatures.
     This will implement an interpackage material import.
 
-10. Replace all _read_only_attributes.py and _public_attributes.py 
+9.  Replace all _read_only_attributes.py and _public_attributes.py 
     test files with doctests.
 
-11. Sweep inline scoremanager TODO items.
+10. Sweep inline scoremanager TODO items.
 
-12. Author ScorePackageManager docstrings.
+11. Author ScorePackageManager docstrings.
 
-13. Author StylesheetFileWrangler.remove_assets() test.
+12. Author StylesheetFileWrangler.remove_assets() test.
     Will involve making pending_user_input='... rm ...' work with named 
     arguments instead of just numeric arguments.
 
-14. Make MaterialPackageManager classes stop creating materials in 
+13. Make MaterialPackageManager classes stop creating materials in 
     the scoremanager/materialpackages/ directory.
     Those classes should create material packages in the user asset 
     library material packages directory.
     Or in user score packages. But no material packages should ever 
     be created in the scoremanager/materialpackages/ directory.
 
-15. Implement material methods to move material packages 
+14. Implement material methods to move material packages 
     from one location to another.
 
-16. Finish the docstrings for all io classes.
+15. Finish the docstrings for all io classes.
 
-17. Refactor scoremanager.editors to contain as few classes as possible.
+16. Refactor scoremanager.editors to contain as few classes as possible.
 
-18. Refactor score manager wizard classes to use instance attributes in place
+17. Refactor score manager wizard classes to use instance attributes in place
     of class attributes.
 
-19. Refactor material package maker classes to use instance
+18. Refactor material package maker classes to use instance
     attributes in place of class attributes.
 
-20. Figure out the correct ajv replace regex to change tratiettore/music
+19. Figure out the correct ajv replace regex to change tratiettore/music
     to just traiettorie.
 
-21. Move score/instrumentation.py module to score/materials packages.
+20. Move score/instrumentation.py module to score/materials packages.
     Maybe easiest to do this by creating an
     InstrumentationSpecifierMaterialPackageManager.
 
-22. Make material package illustration work again.
+21. Make material package illustration work again.
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
-23. Remove empty ...
+22. Remove empty ...
         .../materialpackagemanagers/user_input.py
     ... module.
 
-24. These four classes can all be collapsed into one:
+23. These four classes can all be collapsed into one:
         wizards.HandlerCreationWizard
         wizards.ArticulationHandlerCreationWizard
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-25. Clean up MaterialPackageManager. It's by far the biggest component and the
+24. Clean up MaterialPackageManager. It's by far the biggest component and the
     most complex.
 
-26. Reformat ScoreManagerConfiguration to better follow the implementation
-    pattern of AbjadConfiguration. Make abjad_editors_directory_path
-    and so on into full-fledged public properties with doc strings.
-    Consider having ScoreManagerConfiguration inherit from AbjadConfiguration.
-    This will parallel score manager IOManager inheriting from mainline
-    IOManager.
-
-27. Make the (u), (k), (m), (g), (p), (t) and (y) commands work from anywhere
+26. Make the (u), (k), (m), (g), (p), (t) and (y) commands work from anywhere
     within a score. Leave the commands lowercase.
 
-28. There also needs to be a single command to just view the global stylesheet
+26. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (Y) or equivalent.
 
-29. Find a way to get rid of the ...
+27. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -107,31 +97,31 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-30. Eliminate unqualified test files like test_ScorePackageManager.py.
+28. Eliminate unqualified test files like test_ScorePackageManager.py.
 
-31. Remove bug that allows for creation of ...
+29. Remove bug that allows for creation of ...
         metadata = collections.OrderedDict([
             ('', ''),
             ])
     ... without allowing for removal.
 
-32. Add other commands to 'ls'. Commands should include ls variants to show
+30. Add other commands to 'ls'. Commands should include ls variants to show
     time of modification and size. Probably other filesystem commands, too.
 
-33. Replace the self.has_whatever_module properties (or methods)
+31. Replace the self.has_whatever_module properties (or methods)
     with just os.path.isfile(self.whatever_file_path) instead.
 
-34. Figure out why so many tests are commented-out at the bottom of
+32. Figure out why so many tests are commented-out at the bottom of
     test_MaterialPackageWrangler_run_managermade_package.
 
-35. Removed MarkupInventoryMaterialPackageManager.illustration_builder().
+33. Removed MarkupInventoryMaterialPackageManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
 
-36. Write test for (ren) to rename, for example, red_markup to red_markup.
+34. Write test for (ren) to rename, for example, red_markup to red_markup.
     Currently fails. Reproduce failure by creating a material package that
     is managed by MarkupInventoryMaterialPackageManager.
 
-37. Rename abjad material packages from ...
+35. Rename abjad material packages from ...
         red_forte
         red_marcati
         red_markup
@@ -149,7 +139,7 @@
     This will reduce confusion with Red Example Score.
     Red Example Score is unrelated to example material packages.
 
-38. Write test to make sure that ...
+36. Write test to make sure that ...
         # -*- encoding: utf-8 -*-
         from abjad import *
         output_material_module_import_statements = []
@@ -159,45 +149,45 @@
     ... shows up as the exact file contents in response to (materials) > (nmh)
     > ... > (mde).
 
-39. Change menu command display strings to 'direct object - verb' pervasively.
+37. Change menu command display strings to 'direct object - verb' pervasively.
 
-40. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+38. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument.
     Maker sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-41. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
+39. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
 
-42. Implement __format__ on Transcript.
+40. Implement __format__ on Transcript.
 
-43. Add something to check the size of the ~/.score_manager/transcripts
+41. Add something to check the size of the ~/.score_manager/transcripts
     diretory. Should warn at starting at 9000 and overwrite starting at 10,000.
 
-44. Uncomment the TODO in Transcript and make the constraint hold.
+42. Uncomment the TODO in Transcript and make the constraint hold.
 
-45. Maybe time to change these:
+43. Maybe time to change these:
         materialpackagemanagers > materialmanagers
         scorepackages > scores
         materialpackages > materials
     In scores:
         score_templates > templates
 
-46. Remove all '.'.join() statements. There should be no by-hand package
+44. Remove all '.'.join() statements. There should be no by-hand package
     manipulation. Use self._configuration.filesystem_path_to_package_path()
     instead.
 
-47. Implement something to tour everything that can be rewritten and rewrite.
+45. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-48. There's noticeable delay starting ScorePackageManager.
+46. There's noticeable delay starting ScorePackageManager.
     Probably initializing too many wranglers and managers.
     Find a way to delay (and then cache) the initialization of
     ScorePackageManager delegates.
 
-49. Implement __slots__ on Session.
+47. Implement __slots__ on Session.
 
-50. Move 'done (done)' to PitchRangeInventory editor (and other editor) main
+48. Move 'done (done)' to PitchRangeInventory editor (and other editor) main
     screen. Currently it is hidden. Should be visible when adding and removing
     elements.
