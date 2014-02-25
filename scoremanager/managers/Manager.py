@@ -195,9 +195,14 @@ class Manager(ScoreManagerObject):
         self._session._push_controller(self)
         self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
+        if type(self) is managers.BuildDirectoryManager:
+            self._session._is_navigating_to_build_directory = False
         while True:
             self._session._push_breadcrumb(self._breadcrumb)
-            if self._session.is_navigating_to_score_materials and \
+            if self._session.is_navigating_to_build_directory and \
+                type(self) is managers.ScorePackageManager:
+                result = 'u'
+            elif self._session.is_navigating_to_score_materials and \
                 type(self) is managers.ScorePackageManager:
                 result = 'm'
             elif self._session.is_navigating_to_score_segments and \

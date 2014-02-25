@@ -48,6 +48,7 @@ class Session(abctools.AbjadObject):
         'hide_hidden_commands',
         'is_displayable',
         'is_in_score',
+        'is_navigating_to_build_directory',
         'is_navigating_to_score_materials',
         'is_navigating_to_score_segments',
         'is_navigating_to_sibling_score',
@@ -89,6 +90,7 @@ class Session(abctools.AbjadObject):
         self._is_backtracking_locally = False
         self._is_backtracking_to_score = False
         self._is_backtracking_to_score_manager = False
+        self._is_navigating_to_build_directory = False
         self._is_navigating_to_next_score = False
         self._is_navigating_to_previous_score = False
         self._is_navigating_to_score_materials = False
@@ -156,10 +158,13 @@ class Session(abctools.AbjadObject):
             not self._backtracking_stack:
             self._is_backtracking_locally = False
             return True
-        elif self.is_navigating_to_score_segments and \
+        elif self.is_navigating_to_build_directory and \
             not source in ('score', 'home'):
             return True
         elif self.is_navigating_to_score_materials and \
+            not source in ('score', 'home'):
+            return True
+        elif self.is_navigating_to_score_segments and \
             not source in ('score', 'home'):
             return True
 
@@ -732,6 +737,22 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self.current_score_snake_case_name is not None
+
+    @property
+    def is_navigating_to_build_directory(self):
+        r'''Is true when session is navigating to build directory.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_build_directory
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_build_directory
 
     @property
     def is_navigating_to_next_score(self):

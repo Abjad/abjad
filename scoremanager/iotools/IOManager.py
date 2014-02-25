@@ -117,6 +117,9 @@ class IOManager(IOManager):
             self._session._hide_hidden_commands = True
         elif key == 'sct':
             self._session.toggle_source_code_tracking()
+        elif key == 'u':
+            self._session._is_navigating_to_build_directory = True
+            return 'u'
         elif self._is_score_string(key) and self._session.is_in_score:
             self._session._is_backtracking_to_score = True
             self._session._hide_hidden_commands = True
