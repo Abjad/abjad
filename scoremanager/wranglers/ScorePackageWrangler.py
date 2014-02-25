@@ -190,9 +190,9 @@ class ScorePackageWrangler(PackageWrangler):
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
-            '...scoremanager.scorepackages.blue_example_score'
-            '...scoremanager.scorepackages.green_example_score'
-            '...scoremanager.scorepackages.red_example_score'
+            'blue_example_score'
+            'green_example_score'
+            'red_example_score'
 
         Returns list.
         '''
@@ -341,13 +341,13 @@ class ScorePackageWrangler(PackageWrangler):
             ...     x[0]
             ...     x[1]
             ...     print
-            '...scoremanager.scorepackages.blue_example_score'
+            'blue_example_score'
             'Blue Example Score (2013)'
             <BLANKLINE>
-            '...scoremanager.scorepackages.green_example_score'
+            'green_example_score'
             'Green Example Score (2013)'
             <BLANKLINE>
-            '...scoremanager.scorepackages.red_example_score'
+            'red_example_score'
             'Red Example Score (2013)'
             <BLANKLINE>
 
@@ -402,9 +402,9 @@ class ScorePackageWrangler(PackageWrangler):
             ...     user_score_packages=False,
             ...     ):
             ...     x
-            '...scoremanager.scorepackages.blue_example_score'
-            '...scoremanager.scorepackages.green_example_score'
-            '...scoremanager.scorepackages.red_example_score'
+            'blue_example_score'
+            'green_example_score'
+            'red_example_score'
 
         Returns list.
         '''
@@ -416,7 +416,8 @@ class ScorePackageWrangler(PackageWrangler):
             user_score_packages=user_score_packages,
             head=head,
             ):
-            package_path = self._configuration.filesystem_path_to_package_path(filesystem_path)
+            package_path = self._configuration.filesystem_path_to_package_path(
+                filesystem_path)
             result.append(package_path)
         return result
 

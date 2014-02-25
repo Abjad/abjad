@@ -166,36 +166,34 @@
     Maker sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-41. Make (next) and (prev) work again.
+41. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
 
-42. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
+42. Implement __format__ on Transcript.
 
-43. Implement __format__ on Transcript.
-
-44. Add something to check the size of the ~/.score_manager/transcripts
+43. Add something to check the size of the ~/.score_manager/transcripts
     diretory. Should warn at starting at 9000 and overwrite starting at 10,000.
 
-45. Uncomment the TODO in Transcript and make the constraint hold.
+44. Uncomment the TODO in Transcript and make the constraint hold.
 
-46. Maybe time to change these:
+45. Maybe time to change these:
         materialpackagemanagers > materialmanagers
         scorepackages > scores
         materialpackages > materials
     In scores:
         score_templates > templates
 
-47. Remove all '.'.join() statements. There should be no by-hand package
+46. Remove all '.'.join() statements. There should be no by-hand package
     manipulation. Use self._configuration.filesystem_path_to_package_path()
     instead.
 
-48. Implement something to tour everything that can be rewritten and rewrite.
+47. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-49. There's noticeable delay starting ScorePackageManager.
+48. There's noticeable delay starting ScorePackageManager.
     Probably initializing too many wranglers and managers.
     Find a way to delay (and then cache) the initialization of
     ScorePackageManager delegates.
 
-50. Implement __slots__ on Session.
+49. Implement __slots__ on Session.

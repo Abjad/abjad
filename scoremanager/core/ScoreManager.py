@@ -48,22 +48,26 @@ class ScoreManager(ScoreManagerObject):
     ### PRIVATE METHODS ###
 
     def _get_next_score_package_name(self):
-        score_package_names = self._score_package_wrangler._list_asset_names()
+        wrangler = self._score_package_wrangler
+        score_package_names = wrangler._list_visible_asset_package_paths()
         if self._session.current_score_snake_case_name is None:
             return score_package_names[0]
-        index = score_package_names.index(
-            self._session.current_score_snake_case_name)
+        score_package_name = self._session.current_score_snake_case_name
+        index = score_package_names.index(score_package_name)
         next_index = (index + 1) % len(score_package_names)
-        return score_package_names[next_index]
+        next_score_package_name = score_package_names[next_index]
+        return next_score_package_name
 
     def _get_previous_score_package_name(self):
-        score_package_names = self._score_package_wrangler._list_asset_names()
+        wrangler = self._score_package_wrangler
+        score_package_names = wrangler._list_visible_asset_package_paths()
         if self._session.current_score_snake_case_name is None:
             return score_package_names[-1]
-        index = score_package_names.index(
-            self._session.current_score_snake_case_name)
-        prev_index = (index - 1) % len(score_package_names)
-        return score_package_names[prev_index]
+        score_package_name = self._session.current_score_snake_case_name
+        index = score_package_names.index(score_package_name)
+        previous_index = (index - 1) % len(score_package_names)
+        previous_score_package_name = score_package_names[previous_index]
+        return previous_score_package_name
 
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
@@ -148,7 +152,7 @@ class ScoreManager(ScoreManagerObject):
                 self._session._is_backtracking_to_score_manager = False
                 result = self._get_next_score_package_name()
             elif self._session.is_navigating_to_previous_score:
-                self._session.is_navigating_to_previous_score = False
+                self._session._is_navigating_to_previous_score = False
                 self._session._is_backtracking_to_score_manager = False
                 result = self._get_previous_score_package_name()
             elif not result:
@@ -247,7 +251,6 @@ class ScoreManager(ScoreManagerObject):
         score_package_name = score_package_path.split('.')[-1]
         manager._session._current_score_snake_case_name = score_package_name
         manager._run(cache=True)
-        self._session._current_score_snake_case_name = None
 
     def manage_stylesheet_library(self):
         r'''Manages stylesheet library.

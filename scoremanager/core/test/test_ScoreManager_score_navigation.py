@@ -1,42 +1,33 @@
 # -*- encoding: utf-8 -*-
-import pytest
 from abjad import *
 import scoremanager
 
 
 def test_ScoreManager_score_navigation_01():
-    r'''Session-initial next and prev both work.
+    r'''stn score.
     '''
-    pytest.skip('FIXME')
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='next q')
-    assert score_manager._transcript.signature == (4,)
-    assert isinstance(score_manager._session.current_score_snake_case_name, str)
-
-    score_manager._run(pending_user_input='prev q')
-    assert score_manager._transcript.signature == (4,)
-    assert isinstance(score_manager._session.current_score_snake_case_name, str)
+    string = 'stn stn q'
+    score_manager._run(pending_user_input=string)
+    titles = [
+        'Score manager - example scores',
+        'Blue Example Score (2013)',
+        'Green Example Score (2013)',
+        ]
+    assert score_manager._transcript.titles == titles
 
 
 def test_ScoreManager_score_navigation_02():
-    r'''Successive next.
+    r'''Previous score.
     '''
-    pytest.skip('FIXME')
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='next next next q')
-
-    assert score_manager._transcript.signature == (8, (1, 3, 5))
-    assert isinstance(score_manager._session.current_score_snake_case_name, str)
-
-
-def test_ScoreManager_score_navigation_03():
-    r'''Successive prev.
-    '''
-    pytest.skip('FIXME')
-
-    score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='prev prev prev q')
-    assert score_manager._transcript.signature == (8, (1, 3, 5))
-    assert isinstance(score_manager._session.current_score_snake_case_name, str)
+    string = 'stp stp q'
+    score_manager._run(pending_user_input=string)
+    titles = [
+        'Score manager - example scores',
+        'Red Example Score (2013)',
+        'Green Example Score (2013)',
+        ]
+    assert score_manager._transcript.titles == titles

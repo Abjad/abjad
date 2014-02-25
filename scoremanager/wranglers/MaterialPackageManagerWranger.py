@@ -56,8 +56,10 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             package_path = \
                 self._configuration.filesystem_path_to_package_path(
                     package_path)
+        #print repr(package_path), '~~~'
         material_package_manager = managers.MaterialPackageManager(
             package_path, session=self._session)
+        #print repr(material_package_manager), 'MMM'
         if 'materialpackagemanagers' in material_package_manager._filesystem_path:
             most, last = os.path.split(
                 material_package_manager._filesystem_path)
@@ -65,6 +67,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         else:
             material_package_manager_class_name = \
                 material_package_manager.material_package_manager_class_name
+        #print repr(material_package_manager_class_name), 'KKK'
         if material_package_manager_class_name is not None:
             material_package_manager_class = None
             command = 'from scoremanager'

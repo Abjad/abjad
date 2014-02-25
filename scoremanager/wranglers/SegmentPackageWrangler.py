@@ -113,7 +113,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
             ::
 
-                >>> head = 'scoremanager.scorepackages.red_example_score'
+                >>> head = 'red_example_score'
                 >>> for x in wrangler._list_asset_managers(head=head):
                 ...     x
                 SegmentPackageManager('.../red_example_score/segments/segment_01')
@@ -164,7 +164,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
             ::
 
-                >>> head = 'scoremanager.scorepackages.red_example_score'
+                >>> head = 'red_example_score'
                 >>> for x in wrangler._list_asset_names(head=head):
                 ...     x
                 'segment 01'
@@ -200,11 +200,11 @@ class SegmentPackageWrangler(PackageWrangler):
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
-            '....blue_example_score.segments.segment_01'
-            '....blue_example_score.segments.segment_02'
-            '....red_example_score.segments.segment_01'
-            '....red_example_score.segments.segment_02'
-            '....red_example_score.segments.segment_03'
+            'blue_example_score.segments.segment_01'
+            'blue_example_score.segments.segment_02'
+            'red_example_score.segments.segment_01'
+            'red_example_score.segments.segment_02'
+            'red_example_score.segments.segment_03'
 
         Returns list.
         '''

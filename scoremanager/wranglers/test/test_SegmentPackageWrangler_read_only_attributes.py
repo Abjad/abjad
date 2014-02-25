@@ -24,12 +24,12 @@ def test_SegmentPackageWrangler_read_only_attributes_02():
 
     assert wrangler._breadcrumb == 'segments'
 
-    string = 'scoremanager.scorepackages.red_example_score.segments'
+    string = 'red_example_score.segments'
     assert wrangler._current_storehouse_package_path == string
 
     parts = ('segments',)
     assert wrangler.score_storehouse_path_infix_parts == parts
 
-    string = 'scoremanager.scorepackages.red_example_score.segments'
+    string = 'red_example_score.segments'
     string += '.__temporary_package'
     assert wrangler._temporary_asset_package_path == string

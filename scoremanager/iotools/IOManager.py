@@ -92,14 +92,6 @@ class IOManager(IOManager):
         elif key == 'm':
             self._session._is_navigating_to_score_materials = True
             return 'm'
-        elif key == 'next':
-            self._session._is_navigating_to_next_score = True
-            self._session._is_backtracking_to_score_manager = True
-            self._session._hide_hidden_commands = True
-        elif key == 'prev':
-            self._session.is_navigating_to_previous_score = True
-            self._session._is_backtracking_to_score_manager = True
-            self._session._hide_hidden_commands = True
         elif key == 'pyd':
             message = 'running doctest ...'
             self.display([message, ''])
@@ -117,6 +109,14 @@ class IOManager(IOManager):
             self._session._hide_hidden_commands = True
         elif key == 'sct':
             self._session.toggle_source_code_tracking()
+        elif key == 'stn':
+            self._session._is_navigating_to_next_score = True
+            self._session._is_backtracking_to_score_manager = True
+            self._session._hide_hidden_commands = True
+        elif key == 'stp':
+            self._session._is_navigating_to_previous_score = True
+            self._session._is_backtracking_to_score_manager = True
+            self._session._hide_hidden_commands = True
         elif key == 'u':
             self._session._is_navigating_to_build_directory = True
             return 'u'

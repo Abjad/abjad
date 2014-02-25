@@ -159,7 +159,8 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler._list_asset_managers(
             ...     user_library=False, 
-            ...     user_score_packages=False):
+            ...     user_score_packages=False,
+            ...     ):
             ...     x
             DynamicHandlerMaterialPackageManager('.../scoremanager/materialpackages/red_forte')
             ArticulationHandlerMaterialPackageManager('.../scoremanager/materialpackages/red_marcati')
@@ -240,7 +241,7 @@ class MaterialPackageWrangler(PackageWrangler):
             'scoremanager.materialpackages.red_notes'
             'scoremanager.materialpackages.red_numbers'
             'scoremanager.materialpackages.red_sargasso_measures'
-            'scoremanager.scorepackages.red_example_score.materials.tempo_inventory'
+            'red_example_score.materials.tempo_inventory'
 
         Returns list.
         '''

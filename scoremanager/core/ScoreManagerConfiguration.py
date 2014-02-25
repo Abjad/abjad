@@ -483,7 +483,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             filesystem_path = filesystem_path[:-3]
         if filesystem_path.startswith(
             self.abjad_score_packages_directory_path):
-            prefix_length = len(self.abjad_root_directory_path) + 1
+            prefix_length = len(self.abjad_score_packages_directory_path) + 1
         elif filesystem_path.startswith(
             self.user_library_material_packages_directory_path):
             prefix_length = \
@@ -515,8 +515,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         elif filesystem_path.startswith(
             self.abjad_material_packages_directory_path):
             prefix_length = len(self.abjad_root_directory_path) + 1
-        elif filesystem_path.startswith(
-            self.score_manager_directory_path):
+        elif filesystem_path.startswith(self.score_manager_directory_path):
             prefix_length = \
                 len(os.path.dirname(self.score_manager_directory_path)) + 1
         elif filesystem_path.startswith(
@@ -637,6 +636,10 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             directory_parts = []
             directory_parts.append(self.user_library_directory_path)
             directory_parts.extend(trimmed_package_path.split('.'))
+        elif package_path_parts[0] in self.abjad_score_package_names:
+            directory_parts = []
+            directory_parts.append(self.abjad_score_packages_directory_path)
+            directory_parts.extend(package_path_parts)
         elif package_path_parts[-1] in self.abjad_score_package_names:
             directory_parts = []
             directory_parts.append(self.abjad_score_packages_directory_path)
