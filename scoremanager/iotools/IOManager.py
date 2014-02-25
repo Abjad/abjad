@@ -171,6 +171,15 @@ class IOManager(IOManager):
         section.append(('initializer - stub', 'ins'))
         section.append(('initializer - view', 'inv'))
 
+    def _make_material_tour_menu_section(self, menu):
+        section = menu.make_command_section(
+            is_hidden=True,
+            name='tour materials',
+            )
+        section.append(('materials - tour next', 'mtn'))
+        section.append(('materials - tour previous', 'mtp'))
+        return section
+
     def _make_metadata_menu_section(self, menu):
         section = menu.make_command_section(
             is_secondary=True,

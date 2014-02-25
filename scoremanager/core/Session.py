@@ -52,6 +52,7 @@ class Session(abctools.AbjadObject):
         'is_in_score',
         'is_navigating_to_build_directory',
         'is_navigating_to_next_material',
+        'is_navigating_to_previous_material',
         'is_navigating_to_score_materials',
         'is_navigating_to_score_segments',
         'is_navigating_to_sibling_score',
@@ -761,7 +762,8 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_navigating_to_next_material(self):
-        r'''Is true when session is navigating to next material. Otherwise false.
+        r'''Is true when session is navigating to next material. 
+        Otherwise false.
 
         ..  container:: example
 
@@ -788,6 +790,22 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_navigating_to_next_score
+
+    @property
+    def is_navigating_to_previous_material(self):
+        r'''Is true when session is navigating to previous material. 
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_previous_material
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_previous_material
 
     @property
     def is_navigating_to_previous_score(self):

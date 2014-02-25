@@ -197,3 +197,7 @@
     ScorePackageManager delegates.
 
 49. Implement __slots__ on Session.
+
+50. Move 'done (done)' to PitchRangeInventory editor (and other editor) main
+    screen. Currently it is hidden. Should be visible when adding and removing
+    elements.

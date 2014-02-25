@@ -205,6 +205,11 @@ class MaterialPackageManager(PackageManager):
             menu.menu_sections.insert(0, material_summary_section)
         except KeyError:
             pass
+        lilypond_section = menu['lilypond']
+        index = menu.menu_sections.index(lilypond_section) + 1
+        tour_menu_section = self._io_manager._make_material_tour_menu_section(
+            menu)
+        menu.menu_sections.insert(index, tour_menu_section)
         #print menu, 'MMM'
         #for x in menu.menu_sections:
         #    print x

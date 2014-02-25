@@ -111,8 +111,25 @@ class MaterialPackageWrangler(PackageWrangler):
         next_package_name = package_paths[next_index]
         return next_package_name
         
+    def _get_previous_material_package_name(self):
+        last_package_path = self._session.last_material_package_path
+        menu_entries = self._make_asset_menu_entries()
+        package_paths = [x[-1] for x in menu_entries]
+        if self._session.is_in_score:
+            score_name = self._session.current_score_snake_case_name
+            package_paths = [
+                x for x in package_paths 
+                if x.startswith(score_name)
+                ]
+        if last_package_path is None:
+            return package_paths[-1]
+        assert last_package_path in package_paths
+        index = package_paths.index(last_package_path)
+        previous_index = (index - 1) % len(package_paths)
+        previous_package_name = package_paths[previous_index]
+        return previous_package_name
+
     def _handle_main_menu_result(self, result):
-        #print repr(result), 'RRR'
         if result in self._user_input_to_action:
             self._user_input_to_action[result](self)
         else:
@@ -329,18 +346,10 @@ class MaterialPackageWrangler(PackageWrangler):
         section.append(('new material - with manager', 'nmm'))
         lilypond_section = menu['lilypond']
         index = menu.menu_sections.index(lilypond_section) + 1
-        tour_menu_section = self._make_tour_menu_section(menu)
+        tour_menu_section = self._io_manager._make_material_tour_menu_section(
+            menu)
         menu.menu_sections.insert(index, tour_menu_section)
         return menu
-
-    def _make_tour_menu_section(self, menu):
-        section = menu.make_command_section(
-            is_hidden=True,
-            name='tour materials',
-            )
-        section.append(('materials - tour next', 'mtn'))
-        section.append(('materials - tour previous', 'mtp'))
-        return section
 
     def _make_managermade_material_package(
         self,

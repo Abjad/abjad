@@ -331,10 +331,11 @@ class Wrangler(ScoreManagerObject):
             self._session._push_breadcrumb(self._breadcrumb)
             if self._session.is_navigating_to_next_material:
                 result = self._get_next_material_package_name()
+            elif self._session.is_navigating_to_previous_material:
+                result = self._get_previous_material_package_name()
             else:
                 menu = self._make_main_menu(head=head)
                 result = menu._run(clear=clear)
-            #print repr(result), 'ppp'
             if self._session._backtrack():
                 break
             elif not result:
