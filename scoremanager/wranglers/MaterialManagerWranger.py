@@ -7,8 +7,8 @@ from abjad.tools import stringtools
 from scoremanager.wranglers.PackageWrangler import PackageWrangler
 
 
-class MaterialPackageManagerWrangler(PackageWrangler):
-    r'''Material package manager wrangler.
+class MaterialManagerWrangler(PackageWrangler):
+    r'''material manager wrangler.
 
     ..  container:: example
 
@@ -17,34 +17,34 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             >>> score_manager = scoremanager.core.ScoreManager()
             >>> wrangler = score_manager._material_package_manager_wrangler
             >>> wrangler
-            MaterialPackageManagerWrangler()
+            MaterialManagerWrangler()
 
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        superclass = super(MaterialPackageManagerWrangler, self)
+        superclass = super(MaterialManagerWrangler, self)
         superclass.__init__(session=session)
         self.abjad_storehouse_directory_path = \
             self._configuration.abjad_material_package_managers_directory_path
         self.user_storehouse_directory_path = \
             self._configuration.user_library_material_package_managers_directory_path
-        self._human_readable_target_name = 'material package manager'
+        self._human_readable_target_name = 'material manager'
         self.forbidden_directory_entries = (
-            'InventoryMaterialPackageManager.py',
-            'MaterialPackageManager.py',
+            'InventoryMaterialManager.py',
+            'MaterialManager.py',
             )
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
-        return 'material package managers'
+        return 'material managers'
 
     @property
     def _user_input_to_action(self):
-        superclass = super(MaterialPackageManagerWrangler, self)
+        superclass = super(MaterialManagerWrangler, self)
         _user_input_to_action = superclass._user_input_to_action
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
@@ -66,9 +66,9 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             package_path = self._configuration.path_to_package(package_path)
         else:
             filesystem_path = self._configuration.package_to_path(package_path)
-        #material_package_manager = managers.MaterialPackageManager(
+        #material_package_manager = managers.MaterialManager(
         #    package_path, session=self._session)
-        material_package_manager = managers.MaterialPackageManager(
+        material_package_manager = managers.MaterialManager(
             filesystem_path=filesystem_path, 
             session=self._session,
             )
@@ -129,7 +129,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         asset_menu_entries = self._make_asset_menu_entries(head=head)
         asset_section.menu_entries = asset_menu_entries
         command_section = main_menu.make_command_section()
-        command_section.append(('new material package manager', 'new'))
+        command_section.append(('new material manager', 'new'))
         return main_menu
 
     ### PUBLIC METHODS ###
@@ -144,7 +144,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         ):
         r'''Lists asset filesystem paths.
 
-        Lists abjad material package manager filesystem paths:
+        Lists abjad material manager filesystem paths:
 
         ::
 
@@ -152,19 +152,19 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
-            '.../materialmanagers/ArticulationHandlerMaterialPackageManager.py'
-            '.../materialmanagers/DynamicHandlerMaterialPackageManager.py'
-            '.../materialmanagers/ListMaterialPackageManager.py'
-            '.../materialmanagers/MarkupInventoryMaterialPackageManager.py'
-            '.../materialmanagers/OctaveTranspositionMappingInventoryMaterialPackageManager.py'
-            '.../materialmanagers/PitchRangeInventoryMaterialPackageManager.py'
-            '.../materialmanagers/RhythmMakerMaterialPackageManager.py'
-            '.../materialmanagers/SargassoMeasureMaterialPackageManager.py'
-            '.../materialmanagers/TempoInventoryMaterialPackageManager.py'
+            '.../materialmanagers/ArticulationHandlerMaterialManager.py'
+            '.../materialmanagers/DynamicHandlerMaterialManager.py'
+            '.../materialmanagers/ListMaterialManager.py'
+            '.../materialmanagers/MarkupInventoryMaterialManager.py'
+            '.../materialmanagers/OctaveTranspositionMappingInventoryMaterialManager.py'
+            '.../materialmanagers/PitchRangeInventoryMaterialManager.py'
+            '.../materialmanagers/RhythmMakerMaterialManager.py'
+            '.../materialmanagers/SargassoMeasureMaterialManager.py'
+            '.../materialmanagers/TempoInventoryMaterialManager.py'
 
         Returns list.
         '''
-        superclass = super(MaterialPackageManagerWrangler, self)
+        superclass = super(MaterialManagerWrangler, self)
         return superclass._list_asset_filesystem_paths(
             abjad_library=abjad_library,
             user_library=user_library,
@@ -183,7 +183,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         ):
         r'''Lists asset managers.
 
-        Lists abjad material package manager managers:
+        Lists abjad material manager managers:
 
         ::
 
@@ -191,19 +191,19 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
-            ArticulationHandlerMaterialPackageManager('.../materialmanagers/ArticulationHandlerMaterialPackageManager')
-            DynamicHandlerMaterialPackageManager('.../materialmanagers/DynamicHandlerMaterialPackageManager')
-            ListMaterialPackageManager('.../materialmanagers/ListMaterialPackageManager')
-            MarkupInventoryMaterialPackageManager('.../materialmanagers/MarkupInventoryMaterialPackageManager')
-            OctaveTranspositionMappingInventoryMaterialPackageManager('.../materialmanagers/OctaveTranspositionMappingInventoryMaterialPackageManager')
-            PitchRangeInventoryMaterialPackageManager('.../materialmanagers/PitchRangeInventoryMaterialPackageManager')
-            RhythmMakerMaterialPackageManager('.../materialmanagers/RhythmMakerMaterialPackageManager')
-            SargassoMeasureMaterialPackageManager('.../materialmanagers/SargassoMeasureMaterialPackageManager')
-            TempoInventoryMaterialPackageManager('.../materialmanagers/TempoInventoryMaterialPackageManager')
+            ArticulationHandlerMaterialManager('.../materialmanagers/ArticulationHandlerMaterialManager')
+            DynamicHandlerMaterialManager('.../materialmanagers/DynamicHandlerMaterialManager')
+            ListMaterialManager('.../materialmanagers/ListMaterialManager')
+            MarkupInventoryMaterialManager('.../materialmanagers/MarkupInventoryMaterialManager')
+            OctaveTranspositionMappingInventoryMaterialManager('.../materialmanagers/OctaveTranspositionMappingInventoryMaterialManager')
+            PitchRangeInventoryMaterialManager('.../materialmanagers/PitchRangeInventoryMaterialManager')
+            RhythmMakerMaterialManager('.../materialmanagers/RhythmMakerMaterialManager')
+            SargassoMeasureMaterialManager('.../materialmanagers/SargassoMeasureMaterialManager')
+            TempoInventoryMaterialManager('.../materialmanagers/TempoInventoryMaterialManager')
 
         Returns list.
         '''
-        superclass = super(MaterialPackageManagerWrangler, self)
+        superclass = super(MaterialManagerWrangler, self)
         return superclass._list_asset_managers(
             abjad_library=abjad_library,
             user_library=user_library,
@@ -222,7 +222,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         ):
         r'''Lists asset names.
 
-        Lists abjad material package manager names:
+        Lists abjad material manager names:
 
         ::
 
@@ -230,19 +230,19 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
-            'articulation handler material package manager'
-            'dynamic handler material package manager'
-            'list material package manager'
-            'markup inventory material package manager'
-            'octave transposition mapping inventory material package manager'
-            'pitch range inventory material package manager'
-            'rhythm maker material package manager'
-            'sargasso measure material package manager'
-            'tempo inventory material package manager'
+            'articulation handler material manager'
+            'dynamic handler material manager'
+            'list material manager'
+            'markup inventory material manager'
+            'octave transposition mapping inventory material manager'
+            'pitch range inventory material manager'
+            'rhythm maker material manager'
+            'sargasso measure material manager'
+            'tempo inventory material manager'
 
         Returns list.
         '''
-        superclass = super(MaterialPackageManagerWrangler, self)
+        superclass = super(MaterialManagerWrangler, self)
         return superclass._list_asset_names(
             abjad_library=abjad_library,
             user_library=user_library,
@@ -261,7 +261,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         ):
         r'''Lists asset package_paths.
 
-        Lists abjad material package manager package paths:
+        Lists abjad material manager package paths:
 
         ::
 
@@ -269,19 +269,19 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
-            'scoremanager.materialmanagers.ArticulationHandlerMaterialPackageManager'
-            'scoremanager.materialmanagers.DynamicHandlerMaterialPackageManager'
-            'scoremanager.materialmanagers.ListMaterialPackageManager'
-            'scoremanager.materialmanagers.MarkupInventoryMaterialPackageManager'
-            'scoremanager.materialmanagers.OctaveTranspositionMappingInventoryMaterialPackageManager'
-            'scoremanager.materialmanagers.PitchRangeInventoryMaterialPackageManager'
-            'scoremanager.materialmanagers.RhythmMakerMaterialPackageManager'
-            'scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager'
-            'scoremanager.materialmanagers.TempoInventoryMaterialPackageManager'
+            'scoremanager.materialmanagers.ArticulationHandlerMaterialManager'
+            'scoremanager.materialmanagers.DynamicHandlerMaterialManager'
+            'scoremanager.materialmanagers.ListMaterialManager'
+            'scoremanager.materialmanagers.MarkupInventoryMaterialManager'
+            'scoremanager.materialmanagers.OctaveTranspositionMappingInventoryMaterialManager'
+            'scoremanager.materialmanagers.PitchRangeInventoryMaterialManager'
+            'scoremanager.materialmanagers.RhythmMakerMaterialManager'
+            'scoremanager.materialmanagers.SargassoMeasureMaterialManager'
+            'scoremanager.materialmanagers.TempoInventoryMaterialManager'
 
         Returns list.
         '''
-        superclass = super(MaterialPackageManagerWrangler, self)
+        superclass = super(MaterialManagerWrangler, self)
         return superclass._list_asset_package_paths(
             abjad_library=abjad_library,
             user_library=user_library,
@@ -299,7 +299,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         ):
         r'''Lists asset storehouse filesystem paths.
 
-        Lists abjad material package manager storehouses:
+        Lists abjad material manager storehouses:
 
         ::
 
@@ -312,7 +312,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
 
         Returns list.
         '''
-        superclass = super(MaterialPackageManagerWrangler, self)
+        superclass = super(MaterialManagerWrangler, self)
         return superclass._list_storehouse_directory_paths(
             abjad_library=abjad_library,
             user_library=user_library,

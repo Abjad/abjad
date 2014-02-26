@@ -5,7 +5,7 @@ import scoremanager
 configuration = scoremanager.core.ScoreManagerConfiguration()
 
 
-def test_MaterialPackageManager_read_only_attributes_01():
+def test_MaterialManager_read_only_attributes_01():
     r'''Data-only package.
     '''
 
@@ -14,7 +14,7 @@ def test_MaterialPackageManager_read_only_attributes_01():
         configuration.abjad_material_packages_directory_path,
         'example_numbers',
         )
-    manager = scoremanager.managers.MaterialPackageManager(filesystem_path)
+    manager = scoremanager.managers.MaterialManager(filesystem_path)
     assert manager._breadcrumb == 'example numbers'
     assert not manager.has_illustration_builder_module
     assert not manager.has_illustration_ly
@@ -60,7 +60,7 @@ def test_MaterialPackageManager_read_only_attributes_01():
     assert manager.user_input_module_package_path is None
 
 
-def test_MaterialPackageManager_read_only_attributes_02():
+def test_MaterialManager_read_only_attributes_02():
     r'''Makermade material.
     '''
 
@@ -69,7 +69,7 @@ def test_MaterialPackageManager_read_only_attributes_02():
         configuration.abjad_material_packages_directory_path,
         'example_sargasso_measures',
         )
-    manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
+    manager = scoremanager.materialmanagers.SargassoMeasureMaterialManager(
         filesystem_path=filesystem_path,    
         )
     assert manager._breadcrumb == 'example sargasso measures'
@@ -104,9 +104,9 @@ def test_MaterialPackageManager_read_only_attributes_02():
         'example_sargasso_measures',
         )
     assert manager.material_package_directory == file_path
-    maker = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager
+    maker = scoremanager.materialmanagers.SargassoMeasureMaterialManager
     assert manager.material_package_manager is maker
-    string = 'SargassoMeasureMaterialPackageManager'
+    string = 'SargassoMeasureMaterialManager'
     assert manager.material_package_manager_class_name == string
     assert manager.material_package_name == 'example_sargasso_measures'
     string = 'example sargasso measures'
@@ -130,7 +130,7 @@ def test_MaterialPackageManager_read_only_attributes_02():
     assert manager.user_input_module_package_path == string
 
 
-def test_MaterialPackageManager_read_only_attributes_03():
+def test_MaterialManager_read_only_attributes_03():
     r'''Handmade material.
     '''
 
@@ -139,7 +139,7 @@ def test_MaterialPackageManager_read_only_attributes_03():
         configuration.abjad_material_packages_directory_path,
         'example_notes',
         )
-    manager = scoremanager.managers.MaterialPackageManager(filesystem_path)
+    manager = scoremanager.managers.MaterialManager(filesystem_path)
     assert manager._breadcrumb == 'example notes'
     assert manager.has_illustration_builder_module
     assert manager.has_illustration_ly

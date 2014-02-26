@@ -57,7 +57,7 @@ class ScorePackageManager(PackageManager):
             session=self._session,
             )
         self._material_package_manager_wrangler = \
-            wranglers.MaterialPackageManagerWrangler(
+            wranglers.MaterialManagerWrangler(
             session=self._session,
             )
         if self._filesystem_path is not None:
@@ -151,7 +151,7 @@ class ScorePackageManager(PackageManager):
         for manager in wrangler._list_asset_managers(head=self._package_path):
             string = 'material_package_manager_class_name'
             class_name = manager._get_metadatum(string)
-            if class_name == 'TempoInventoryMaterialPackageManager':
+            if class_name == 'TempoInventoryMaterialManager':
                 return manager.output_material
 
     def _get_title(self):

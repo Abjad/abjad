@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
-from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
+from scoremanager.managers.MaterialManager import MaterialManager
 from scoremanager.wizards.DynamicHandlerCreationWizard \
     import DynamicHandlerCreationWizard
 
 
-class DynamicHandlerMaterialPackageManager(MaterialPackageManager):
+class DynamicHandlerMaterialManager(MaterialManager):
 
     ### CLASS VARIABLES ###
 

@@ -11,7 +11,7 @@ from scoremanager import wizards
 from scoremanager.managers.PackageManager import PackageManager
 
 
-class MaterialPackageManager(PackageManager):
+class MaterialManager(PackageManager):
     r'''Material package manager.
 
     ..  container:: example
@@ -24,17 +24,17 @@ class MaterialPackageManager(PackageManager):
             ...     configuration.abjad_material_packages_directory_path,
             ...     'example_numbers',
             ...     )
-            >>> manager = scoremanager.managers.MaterialPackageManager(
+            >>> manager = scoremanager.managers.MaterialManager(
             ...     filesystem_path=filesystem_path,
             ...     )
             >>> manager
-            MaterialPackageManager('.../materials/example_numbers')
+            MaterialManager('.../materials/example_numbers')
 
     '''
 
     ### CLASS VARIABLES ###
 
-    _generic_class_name = 'material package manager'
+    _generic_class_name = 'material manager'
 
     generic_output_name = None
 
@@ -73,7 +73,7 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def _user_input_to_action(self):
-        superclass = super(MaterialPackageManager, self)
+        superclass = super(MaterialManager, self)
         _user_input_to_action = superclass._user_input_to_action
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
@@ -210,7 +210,7 @@ class MaterialPackageManager(PackageManager):
             command_section.append(('output pdf - view', 'pdfv'))
 
     def _make_main_menu(self):
-        superclass = super(MaterialPackageManager, self)
+        superclass = super(MaterialManager, self)
         where = self._where
         menu, hidden_section = superclass._make_main_menu(where=where)
         self._make_illustration_builder_menu_section(menu)
@@ -896,7 +896,7 @@ class MaterialPackageManager(PackageManager):
 
     def select_material_package_manager(self, prompt=True):
         from scoremanager import wranglers
-        material_manager_wrangler = wranglers.MaterialPackageManagerWrangler(
+        material_manager_wrangler = wranglers.MaterialManagerWrangler(
             session=self._session)
         with self._backtracking:
             material_package_manager = \

@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 
-def test_MarkupInventoryMaterialPackageManager_01():
+def test_MarkupInventoryMaterialManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
@@ -20,7 +20,7 @@ def test_MarkupInventoryMaterialPackageManager_01():
         #string = 'scoremanager.materials.testmarkupinventory'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testmarkupinventory')
-        manager = scoremanager.materialmanagers.ArticulationHandlerMaterialPackageManager(
+        manager = scoremanager.materialmanagers.ArticulationHandlerMaterialManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 

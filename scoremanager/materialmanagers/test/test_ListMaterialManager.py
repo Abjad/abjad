@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 
-def test_ListMaterialPackageManager_01():
+def test_ListMaterialManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
@@ -19,7 +19,7 @@ def test_ListMaterialPackageManager_01():
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testlist')
         manager = \
-            scoremanager.materialmanagers.ListMaterialPackageManager(
+            scoremanager.materialmanagers.ListMaterialManager(
                 filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 

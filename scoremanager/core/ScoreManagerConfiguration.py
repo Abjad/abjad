@@ -121,7 +121,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def abjad_material_package_managers_directory_path(self):
-        r'''Gets abjad material package managers directory path.
+        r'''Gets abjad material managers directory path.
 
         ..  container:: example
 
@@ -398,7 +398,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     @property
     def user_library_material_package_managers_directory_path(self):
-        r'''Gets user library material package managers directory path.
+        r'''Gets user library material managers directory path.
 
         ..  container:: example
 

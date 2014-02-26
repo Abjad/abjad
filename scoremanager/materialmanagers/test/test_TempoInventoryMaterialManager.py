@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 
-def test_TempoInventoryMaterialPackageManager_01():
+def test_TempoInventoryMaterialManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
@@ -19,7 +19,7 @@ def test_TempoInventoryMaterialPackageManager_01():
         #string = 'scoremanager.materials.testtempoinventory'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testtempoinventory')
-        manager = scoremanager.materialmanagers.TempoInventoryMaterialPackageManager(
+        manager = scoremanager.materialmanagers.TempoInventoryMaterialManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 

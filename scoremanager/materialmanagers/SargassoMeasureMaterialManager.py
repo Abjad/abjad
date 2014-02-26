@@ -2,10 +2,10 @@
 from abjad import *
 from scoremanager import predicates
 from scoremanager.editors.UserInputWrapper import UserInputWrapper
-from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
+from scoremanager.managers.MaterialManager import MaterialManager
 
 
-class SargassoMeasureMaterialPackageManager(MaterialPackageManager):
+class SargassoMeasureMaterialManager(MaterialManager):
 
     ### CLASS VARIABLES ###
 
@@ -158,10 +158,10 @@ class SargassoMeasureMaterialPackageManager(MaterialPackageManager):
             for measure_index, multiplied_measure_numerator in \
                 enumerate(multiplied_measure_numerators):
                 possible_multipliers = \
-                    SargassoMeasureMaterialPackageManager.get_possible_meter_multipliers(
+                    SargassoMeasureMaterialManager.get_possible_meter_multipliers(
                     multiplied_measure_numerator)
                 meter_multiplier = \
-                    SargassoMeasureMaterialPackageManager.select_meter_multiplier(
+                    SargassoMeasureMaterialManager.select_meter_multiplier(
                     possible_multipliers, measure_index)
                 meter_multipliers.append(meter_multiplier)
             #print meter_multipliers
@@ -211,7 +211,7 @@ class SargassoMeasureMaterialPackageManager(MaterialPackageManager):
 
         if measures_are_shuffled:
             divided_measure_tokens = \
-                SargassoMeasureMaterialPackageManager.permute_divided_measure_tokens(
+                SargassoMeasureMaterialManager.permute_divided_measure_tokens(
                 divided_measure_tokens)
 
         meter_tokens = []

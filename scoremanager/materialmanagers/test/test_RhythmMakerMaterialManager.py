@@ -6,7 +6,7 @@ import scoremanager
 pytest.skip('unskip once it is possible to edit composite objects.')
 
 
-def test_RhythmMakerMaterialPackageManager_01():
+def test_RhythmMakerMaterialManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
@@ -22,7 +22,7 @@ def test_RhythmMakerMaterialPackageManager_01():
         #string = 'scoremanager.materials.testrhythmmaker'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testrhythmmaker')
-        manager = scoremanager.materialmanagers.RhythmMakerMaterialPackageManager(
+        manager = scoremanager.materialmanagers.RhythmMakerMaterialManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 

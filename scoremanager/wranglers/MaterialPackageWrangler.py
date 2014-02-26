@@ -37,7 +37,7 @@ class MaterialPackageWrangler(PackageWrangler):
         superclass = super(MaterialPackageWrangler, self)
         superclass.__init__(session=session)
         self._material_package_manager_wrangler = \
-            wranglers.MaterialPackageManagerWrangler(session=self._session)
+            wranglers.MaterialManagerWrangler(session=self._session)
         self.abjad_storehouse_directory_path = \
             self._configuration.abjad_material_packages_directory_path
         self.user_storehouse_directory_path = \
@@ -80,7 +80,7 @@ class MaterialPackageWrangler(PackageWrangler):
         material_package_path = self._configuration.path_to_package(
             filesystem_path)
         if material_package_manager_class_name is None:
-            manager = managers.MaterialPackageManager(
+            manager = managers.MaterialManager(
                 filesystem_path=filesystem_path,
                 session=self._session,
                 )
@@ -204,7 +204,7 @@ class MaterialPackageWrangler(PackageWrangler):
         ):
         r'''Lists asset managers.
 
-        Lists abjad material package managers:
+        Lists abjad material managers:
 
         ::
 
@@ -213,16 +213,16 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     user_score_packages=False,
             ...     ):
             ...     x
-            ArticulationHandlerMaterialPackageManager('.../scoremanager/materials/example_articulation_handler')
-            DynamicHandlerMaterialPackageManager('.../scoremanager/materials/example_dynamic_handler')
-            MarkupInventoryMaterialPackageManager('.../scoremanager/materials/example_markup_inventory')
-            MaterialPackageManager('.../scoremanager/materials/example_notes')
-            MaterialPackageManager('.../scoremanager/materials/example_numbers')
-            PitchRangeInventoryMaterialPackageManager('.../scoremanager/materials/example_pitch_range_inventory')
-            SargassoMeasureMaterialPackageManager('.../scoremanager/materials/example_sargasso_measures')
-            MaterialPackageManager('.../red_example_score/materials/magic_numbers')
-            PitchRangeInventoryMaterialPackageManager('.../red_example_score/materials/pitch_range_inventory')
-            TempoInventoryMaterialPackageManager('.../red_example_score/materials/tempo_inventory')
+            ArticulationHandlerMaterialManager('.../scoremanager/materials/example_articulation_handler')
+            DynamicHandlerMaterialManager('.../scoremanager/materials/example_dynamic_handler')
+            MarkupInventoryMaterialManager('.../scoremanager/materials/example_markup_inventory')
+            MaterialManager('.../scoremanager/materials/example_notes')
+            MaterialManager('.../scoremanager/materials/example_numbers')
+            PitchRangeInventoryMaterialManager('.../scoremanager/materials/example_pitch_range_inventory')
+            SargassoMeasureMaterialManager('.../scoremanager/materials/example_sargasso_measures')
+            MaterialManager('.../red_example_score/materials/magic_numbers')
+            PitchRangeInventoryMaterialManager('.../red_example_score/materials/pitch_range_inventory')
+            TempoInventoryMaterialManager('.../red_example_score/materials/tempo_inventory')
 
         Returns list.
         '''

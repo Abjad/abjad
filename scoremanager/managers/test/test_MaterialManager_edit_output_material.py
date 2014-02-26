@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialPackageManager_edit_output_material_01():
+def test_MaterialManager_edit_output_material_01():
     '''Edit menu has correct header.
     '''
 

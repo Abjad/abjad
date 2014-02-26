@@ -1,23 +1,21 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from scoremanager.managers.MaterialPackageManager import MaterialPackageManager
-from scoremanager.editors.OctaveTranspositionMappingInventoryEditor \
-    import OctaveTranspositionMappingInventoryEditor
+from scoremanager.managers.MaterialManager import MaterialManager
+from scoremanager.editors.TempoInventoryEditor import TempoInventoryEditor
 
 
-class OctaveTranspositionMappingInventoryMaterialPackageManager(
-    MaterialPackageManager):
+class TempoInventoryMaterialManager(MaterialManager):
 
     ### CLASS VARIABLES ###
 
-    generic_output_name = 'octave transposition mapping inventory'
+    generic_output_name = 'tempo inventory'
 
-    output_material_checker = staticmethod(lambda x: isinstance(x,
-        pitchtools.OctaveTranspositionMappingInventory))
+    output_material_checker = staticmethod(
+        lambda x: isinstance(x, indicatortools.TempoInventory))
 
-    output_material_editor = OctaveTranspositionMappingInventoryEditor
+    output_material_editor = TempoInventoryEditor
 
-    output_material_maker = pitchtools.OctaveTranspositionMappingInventory
+    output_material_maker = indicatortools.TempoInventory
 
     output_material_module_import_statements = [
         'from abjad import *',
@@ -26,12 +24,13 @@ class OctaveTranspositionMappingInventoryMaterialPackageManager(
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def illustration_builder(
-        octave_transposition_mapping_inventory, **kwargs):
+    def illustration_builder(tempo_inventory, **kwargs):
         notes = []
-        for octave_transposition_mapping in \
-            octave_transposition_mapping_inventory:
+        for tempo in tempo_inventory:
             note = Note("c'4")
+            tempo = indicatortools.Tempo(
+                tempo, scope=Staff)
+            tempo(note)
             notes.append(note)
         staff = scoretools.Staff(notes)
         staff.context_name = 'RhythmicStaff'

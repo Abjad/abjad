@@ -5,7 +5,7 @@ import scoremanager
 pytest.skip('unskip after finalizing material management menu.')
 
 
-def test_MaterialPackageManager_screenscrapes_01():
+def test_MaterialManager_screenscrapes_01():
     r'''Score material run from home.
     '''
 

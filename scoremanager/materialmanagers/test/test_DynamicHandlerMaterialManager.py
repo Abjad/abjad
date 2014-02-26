@@ -5,7 +5,7 @@ from experimental import *
 import scoremanager
 
 
-def test_DynamicHandlerMaterialPackageManager_01():
+def test_DynamicHandlerMaterialManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
@@ -21,7 +21,7 @@ def test_DynamicHandlerMaterialPackageManager_01():
         #string = 'scoremanager.materials.testdynamichandler'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testdynamichandler')
-        mpp = scoremanager.materialmanagers.DynamicHandlerMaterialPackageManager(
+        mpp = scoremanager.materialmanagers.DynamicHandlerMaterialManager(
             filesystem_path=path)
         assert mpp._list_directory() == [
             '__init__.py', 

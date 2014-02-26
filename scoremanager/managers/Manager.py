@@ -192,7 +192,7 @@ class Manager(ScoreManagerObject):
         self._session._cache_breadcrumbs(cache=cache)
         if type(self) is managers.BuildDirectoryManager:
             self._session._is_navigating_to_build_directory = False
-        if isinstance(self, managers.MaterialPackageManager):
+        if isinstance(self, managers.MaterialManager):
             self._session._is_navigating_to_next_material = False
             self._session._is_navigating_to_previous_material = False
             self._session._last_material_package_path = self._package_path

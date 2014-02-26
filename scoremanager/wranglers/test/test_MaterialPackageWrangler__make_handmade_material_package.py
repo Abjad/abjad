@@ -18,7 +18,7 @@ def test_MaterialPackageWrangler__make_handmade_material_package_01():
     try:
         wrangler._make_handmade_material_package(filesystem_path)
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.managers.MaterialPackageManager(filesystem_path)
+        manager = scoremanager.managers.MaterialManager(filesystem_path)
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -62,7 +62,7 @@ def test_MaterialPackageWrangler__make_handmade_material_package_03():
             metadata=metadata,
             )
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.managers.MaterialPackageManager(filesystem_path)
+        manager = scoremanager.managers.MaterialManager(filesystem_path)
         assert manager._get_metadatum('color') == 'red'
         assert manager._get_metadatum('is_colored')
     finally:

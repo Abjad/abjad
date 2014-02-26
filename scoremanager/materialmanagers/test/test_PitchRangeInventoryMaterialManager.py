@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 
-def test_PitchRangeInventoryMaterialPackageManager_01():
+def test_PitchRangeInventoryMaterialManager_01():
     r'''Stub material package.
     '''
 
@@ -20,7 +20,7 @@ def test_PitchRangeInventoryMaterialPackageManager_01():
         #string = 'scoremanager.materials.testpir'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testpir')
-        manager = scoremanager.materialmanagers.PitchRangeInventoryMaterialPackageManager(
+        manager = scoremanager.materialmanagers.PitchRangeInventoryMaterialManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 
@@ -34,7 +34,7 @@ def test_PitchRangeInventoryMaterialPackageManager_01():
         assert not score_manager._configuration.package_exists(string)
 
 
-def test_PitchRangeInventoryMaterialPackageManager_02():
+def test_PitchRangeInventoryMaterialManager_02():
     r'''Populate output material module.
     '''
 
@@ -52,7 +52,7 @@ def test_PitchRangeInventoryMaterialPackageManager_02():
         #string = 'scoremanager.materials.testpir'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testpir')
-        manager = scoremanager.materialmanagers.PitchRangeInventoryMaterialPackageManager(
+        manager = scoremanager.materialmanagers.PitchRangeInventoryMaterialManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 

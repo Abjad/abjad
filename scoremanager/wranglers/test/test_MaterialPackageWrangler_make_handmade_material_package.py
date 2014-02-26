@@ -19,7 +19,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_01():
         wrangler.make_handmade_material_package(
             pending_user_input='testnotes q')
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.managers.MaterialPackageManager(filesystem_path)
+        manager = scoremanager.managers.MaterialManager(filesystem_path)
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',

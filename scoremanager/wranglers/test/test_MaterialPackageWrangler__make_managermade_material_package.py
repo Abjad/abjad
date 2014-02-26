@@ -19,10 +19,10 @@ def test_MaterialPackageWrangler__make_managermade_material_package_01():
     try:
         wrangler._make_managermade_material_package(
             filesystem_path, 
-            'SargassoMeasureMaterialPackageManager',
+            'SargassoMeasureMaterialManager',
             )
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialManager(
             filesystem_path=filesystem_path)
         assert manager.is_managermade
         assert manager._list_directory() == [
@@ -46,7 +46,7 @@ def test_MaterialPackageWrangler__make_managermade_material_package_02():
     assert wrangler._configuration.package_exists(string)
     statement = "wrangler._make_managermade_material_package("
     statement += "'scoremanager.materials.example_sargasso_measures"
-    statement += "'SargassoMeasureMaterialPackageManager')"
+    statement += "'SargassoMeasureMaterialManager')"
     assert pytest.raises(Exception, statement)
 
 
@@ -64,11 +64,11 @@ def test_MaterialPackageWrangler__make_managermade_material_package_03():
         metadata = {'color': 'red', 'is_colored': True}
         wrangler._make_managermade_material_package(
             filesystem_path, 
-            'SargassoMeasureMaterialPackageManager', 
+            'SargassoMeasureMaterialManager', 
             metadata=metadata,
             )
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialManager(
             filesystem_path=filesystem_path)
         assert manager.is_managermade
         assert manager._list_directory() == [
