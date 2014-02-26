@@ -30,8 +30,11 @@ class PrototypeSelectorCallback(AbjadObject):
         r'''Iterates `expr`.
         '''
         result = []
+        prototype = self.prototype
+        if not isinstance(prototype, tuple):
+            prototype = (prototype,)
         for subexpr in expr:
-            subresult = iterate(subexpr).by_class(self.prototype)
+            subresult = iterate(subexpr).by_class(prototype)
             subresult = select(subresult)
             if subresult:
                 result.append(subresult)
