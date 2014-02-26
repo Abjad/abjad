@@ -22,7 +22,7 @@ def test_RhythmMakerMaterialManager_01():
         #string = 'scoremanager.materials.testrhythmmaker'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testrhythmmaker')
-        manager = scoremanager.materialmanagers.RhythmMakerMaterialManager(
+        manager = scoremanager.managers.RhythmMakerMaterialManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 

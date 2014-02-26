@@ -63,7 +63,7 @@
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
 22. Remove empty ...
-        .../materialmanagers/user_input.py
+        .../managers/user_input.py
     ... module.
 
 23. These four classes can all be collapsed into one:
@@ -161,4 +161,4 @@
 45. Change 'module_file_path' to 'module_path'.
     Change 'module_package_path' to 'module_package'.
 
-46. Move materialmanagers into managers.
+46. Move managers into managers.

@@ -20,7 +20,7 @@ def test_MarkupInventoryMaterialManager_01():
         #string = 'scoremanager.materials.testmarkupinventory'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testmarkupinventory')
-        manager = scoremanager.materialmanagers.ArticulationHandlerMaterialManager(
+        manager = scoremanager.managers.ArticulationHandlerMaterialManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 

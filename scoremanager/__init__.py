@@ -5,7 +5,7 @@ import exceptions
 import getters
 import iotools
 import managers
-import materialmanagers
+import managers
 import predicates
 import wizards
 import wranglers
@@ -33,7 +33,7 @@ appear on your filesystem after checkout:
     iotools/
     latex/
     managers/
-    materialmanagers/
+    managers/
     materials/
     predicates/
     scores/

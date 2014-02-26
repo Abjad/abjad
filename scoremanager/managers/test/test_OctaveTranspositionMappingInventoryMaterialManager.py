@@ -20,7 +20,7 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_01():
         #string = 'scoremanager.materials.testoctavetrans'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testoctavetrans')
-        manager = scoremanager.materialmanagers.OctaveTranspositionMappingInventoryMaterialManager(
+        manager = scoremanager.managers.OctaveTranspositionMappingInventoryMaterialManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 
@@ -52,7 +52,7 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_02():
         #string = 'scoremanager.materials.testoctavetrans'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testoctavetrans')
-        manager = scoremanager.materialmanagers.OctaveTranspositionMappingInventoryMaterialManager(
+        manager = scoremanager.managers.OctaveTranspositionMappingInventoryMaterialManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 
