@@ -10,7 +10,7 @@ def test_RhythmMakerMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materialpackages.testrhythmmaker'
+    string = 'scoremanager.materials.testrhythmmaker'
     assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
@@ -19,7 +19,7 @@ def test_RhythmMakerMaterialPackageManager_01():
             '(-1, 2, -3, 4) 16 (2, 3) (6,) b default '
             'q '
             )
-        #string = 'scoremanager.materialpackages.testrhythmmaker'
+        #string = 'scoremanager.materials.testrhythmmaker'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testrhythmmaker')
         manager = scoremanager.materialmanagers.RhythmMakerMaterialPackageManager(
@@ -42,5 +42,5 @@ def test_RhythmMakerMaterialPackageManager_01():
     finally:
         string = 'lmm testrhythmmaker rm default q'
         score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materialpackages.testrhythmmaker'
+        string = 'scoremanager.materials.testrhythmmaker'
         assert not score_manager._configuration.package_exists(string)

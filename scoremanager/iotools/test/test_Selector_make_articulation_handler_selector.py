@@ -7,8 +7,8 @@ def test_Selector_make_articulation_handler_selector_01():
 
     selector = scoremanager.iotools.Selector
     selector = selector.make_articulation_handler_selector()
-    string = 'scoremanager.materialpackages.example_articulation_handler'
+    string = 'scoremanager.materials.example_articulation_handler'
     result = selector._run(pending_user_input=string) 
 
-    package = 'scoremanager.materialpackages.example_articulation_handler'
+    package = 'scoremanager.materials.example_articulation_handler'
     assert result == package

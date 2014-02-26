@@ -8,7 +8,7 @@ def test_TempoInventoryMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materialpackages.testtempoinventory'
+    string = 'scoremanager.materials.testtempoinventory'
     assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
@@ -16,7 +16,7 @@ def test_TempoInventoryMaterialPackageManager_01():
             'testtempoinventory omi add ((1, 4), 60) add ((1, 4), 90) b default '
             'q '
             )
-        #string = 'scoremanager.materialpackages.testtempoinventory'
+        #string = 'scoremanager.materials.testtempoinventory'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testtempoinventory')
         manager = scoremanager.materialmanagers.TempoInventoryMaterialPackageManager(
@@ -32,5 +32,5 @@ def test_TempoInventoryMaterialPackageManager_01():
     finally:
         string = 'lmm testtempoinventory rm default q'
         score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materialpackages.testtempoinventory'
+        string = 'scoremanager.materials.testtempoinventory'
         assert not score_manager._configuration.package_exists(string)

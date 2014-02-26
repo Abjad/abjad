@@ -9,7 +9,7 @@ def test_ArticulationHandlerMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materialpackages.testarticulationhandler'
+    string = 'scoremanager.materials.testarticulationhandler'
     assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
@@ -39,5 +39,5 @@ def test_ArticulationHandlerMaterialPackageManager_01():
     finally:
         string = 'lmm testarticulationhandler rm default q'
         score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materialpackages.testarticulationhandler'
+        string = 'scoremanager.materials.testarticulationhandler'
         assert not score_manager._configuration.package_exists(string)

@@ -8,7 +8,7 @@ import scoremanager
 def test_MaterialPackageWrangler_make_managermade_material_package_01():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    string = 'scoremanager.materialpackages.testsargasso'
+    string = 'scoremanager.materials.testsargasso'
     assert not wrangler._configuration.package_exists(string)
     filesystem_path = os.path.join(
         wrangler._configuration.abjad_material_packages_directory_path,

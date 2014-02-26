@@ -10,7 +10,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    name = 'scoremanager.materialpackages.testnotes'
+    name = 'scoremanager.materials.testnotes'
     assert not score_manager._configuration.package_exists(name)
     filesystem_path = os.path.join(
         score_manager._configuration.abjad_material_packages_directory_path,
@@ -43,7 +43,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    name = 'scoremanager.materialpackages.testnotes'
+    name = 'scoremanager.materials.testnotes'
     assert not score_manager._configuration.package_exists(name)
     filesystem_path = os.path.join(
         score_manager._configuration.abjad_material_packages_directory_path,
@@ -77,7 +77,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    name = 'scoremanager.materialpackages.testnotes'
+    name = 'scoremanager.materials.testnotes'
     assert not score_manager._configuration.package_exists(name)
     filesystem_path = os.path.join(
         score_manager._configuration.abjad_material_packages_directory_path,
@@ -112,7 +112,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    name = 'scoremanager.materialpackages.testnotes'
+    name = 'scoremanager.materials.testnotes'
     assert not score_manager._configuration.package_exists(name)
     filesystem_path = os.path.join(
         score_manager._configuration.abjad_material_packages_directory_path,
@@ -150,7 +150,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    name = 'scoremanager.materialpackages.testnotes'
+    name = 'scoremanager.materials.testnotes'
     assert not score_manager._configuration.package_exists(name)
     filesystem_path = os.path.join(
         score_manager._configuration.abjad_material_packages_directory_path,
@@ -184,7 +184,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    name = 'scoremanager.materialpackages.testnotes'
+    name = 'scoremanager.materials.testnotes'
     assert not score_manager._configuration.package_exists(name)
     filesystem_path = os.path.join(
         score_manager._configuration.abjad_material_packages_directory_path,
@@ -218,7 +218,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    name = 'scoremanager.materialpackages.testnotes'
+    name = 'scoremanager.materials.testnotes'
     assert not score_manager._configuration.package_exists(name)
     filesystem_path = os.path.join(
         score_manager._configuration.abjad_material_packages_directory_path,
@@ -256,7 +256,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    name = 'scoremanager.materialpackages.testnotes'
+    name = 'scoremanager.materials.testnotes'
     assert not score_manager._configuration.package_exists(name)
     filesystem_path = os.path.join(
         score_manager._configuration.abjad_material_packages_directory_path,
@@ -291,7 +291,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    name = 'scoremanager.materialpackages.testnotes'
+    name = 'scoremanager.materials.testnotes'
     assert not score_manager._configuration.package_exists(name)
     filesystem_path = os.path.join(
         score_manager._configuration.abjad_material_packages_directory_path,
@@ -331,7 +331,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
         'skip this one during day-to-day development and before build only.')
 
     score_manager = scoremanager.core.ScoreManager()
-    name = 'scoremanager.materialpackages.testnotes'
+    name = 'scoremanager.materials.testnotes'
     assert not score_manager._configuration.package_exists(name)
     filesystem_path = os.path.join(
         score_manager._configuration.abjad_material_packages_directory_path,

@@ -28,7 +28,7 @@ class MaterialPackageManager(PackageManager):
             ...     filesystem_path=filesystem_path,
             ...     )
             >>> manager
-            MaterialPackageManager('.../materialpackages/example_numbers')
+            MaterialPackageManager('.../materials/example_numbers')
 
     '''
 

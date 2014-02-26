@@ -9,7 +9,7 @@ def test_MaterialPackageWrangler_get_available_package_path_01():
 
     result = wrangler.get_available_package_path(
         pending_user_input='foo')
-    assert result == 'scoremanager.materialpackages.foo'
+    assert result == 'scoremanager.materials.foo'
 
     result = wrangler.get_available_package_path(
         pending_user_input='example~notes q')

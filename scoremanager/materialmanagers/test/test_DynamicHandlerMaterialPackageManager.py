@@ -9,7 +9,7 @@ def test_DynamicHandlerMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materialpackages.testdynamichandler'
+    string = 'scoremanager.materials.testdynamichandler'
     assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
@@ -18,7 +18,7 @@ def test_DynamicHandlerMaterialPackageManager_01():
             'f (1, 16) done default '
             'q '
             )
-        #string = 'scoremanager.materialpackages.testdynamichandler'
+        #string = 'scoremanager.materials.testdynamichandler'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testdynamichandler')
         mpp = scoremanager.materialmanagers.DynamicHandlerMaterialPackageManager(
@@ -37,5 +37,5 @@ def test_DynamicHandlerMaterialPackageManager_01():
     finally:
         string = 'lmm testdynamichandler rm default q'
         score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materialpackages.testdynamichandler'
+        string = 'scoremanager.materials.testdynamichandler'
         assert not score_manager._configuration.package_exists(string)

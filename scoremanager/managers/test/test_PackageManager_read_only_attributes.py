@@ -9,7 +9,7 @@ def test_PackageManager_read_only_attributes_01():
     r'''Stub package.
     '''
 
-    string = 'scoremanager.materialpackages.example_sargasso_measures'
+    string = 'scoremanager.materials.example_sargasso_measures'
     file_path = os.path.join(
         configuration.abjad_material_packages_directory_path, 
         'example_sargasso_measures',
@@ -22,7 +22,7 @@ def test_PackageManager_read_only_attributes_01():
         'example_sargasso_measures','__init__.py',
         )
     assert package_manager._initializer_file_path == file_path
-    string = 'scoremanager.materialpackages.example_sargasso_measures'
+    string = 'scoremanager.materials.example_sargasso_measures'
     assert package_manager._package_path == string
     string = 'example sargasso measures'
     assert package_manager._space_delimited_lowercase_name == string

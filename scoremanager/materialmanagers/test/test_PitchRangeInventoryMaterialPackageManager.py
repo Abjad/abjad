@@ -10,14 +10,14 @@ def test_PitchRangeInventoryMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materialpackages.testpir'
+    string = 'scoremanager.materials.testpir'
     assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
             'lmm nmm pitch testpir default '
             'q'
             )
-        #string = 'scoremanager.materialpackages.testpir'
+        #string = 'scoremanager.materials.testpir'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testpir')
         manager = scoremanager.materialmanagers.PitchRangeInventoryMaterialPackageManager(
@@ -30,7 +30,7 @@ def test_PitchRangeInventoryMaterialPackageManager_01():
     finally:
         string = 'lmm testpir rm default q'
         score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materialpackages.testpir'
+        string = 'scoremanager.materials.testpir'
         assert not score_manager._configuration.package_exists(string)
 
 
@@ -40,7 +40,7 @@ def test_PitchRangeInventoryMaterialPackageManager_02():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materialpackages.testpir'
+    string = 'scoremanager.materials.testpir'
     assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
@@ -49,7 +49,7 @@ def test_PitchRangeInventoryMaterialPackageManager_02():
             'rm 1 move 1 2 b default '
             'q'
             )
-        #string = 'scoremanager.materialpackages.testpir'
+        #string = 'scoremanager.materials.testpir'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testpir')
         manager = scoremanager.materialmanagers.PitchRangeInventoryMaterialPackageManager(
@@ -68,5 +68,5 @@ def test_PitchRangeInventoryMaterialPackageManager_02():
     finally:
         string = 'lmm testpir rm default q'
         score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materialpackages.testpir'
+        string = 'scoremanager.materials.testpir'
         assert not score_manager._configuration.package_exists(string)

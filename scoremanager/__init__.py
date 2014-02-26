@@ -34,7 +34,7 @@ appear on your filesystem after checkout:
     latex/
     managers/
     materialmanagers/
-    materialpackages/
+    materials/
     predicates/
     scores/
     scr/

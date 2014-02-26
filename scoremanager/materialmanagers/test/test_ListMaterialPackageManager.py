@@ -8,14 +8,14 @@ def test_ListMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materialpackages.testlist'
+    string = 'scoremanager.materials.testlist'
     assert not score_manager._configuration.package_exists(string)
     try:
         score_manager._run(pending_user_input=
             'lmm nmm list testlist '
             "17 foo done b default q "
             )
-        #string = 'scoremanager.materialpackages.testlist'
+        #string = 'scoremanager.materials.testlist'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testlist')
         manager = \
@@ -31,5 +31,5 @@ def test_ListMaterialPackageManager_01():
     finally:
         string = 'lmm testlist rm default q'
         score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materialpackages.testlist'
+        string = 'scoremanager.materials.testlist'
         assert not score_manager._configuration.package_exists(string)
