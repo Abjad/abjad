@@ -19,7 +19,7 @@ class SargassoMeasureMaterialManager(MaterialManager):
         'from abjad import *',
         ]
 
-    should_have_user_input_module = True
+    _should_have_user_input_module = True
 
     user_input_demo_values = [
         ('measure_denominator', 4),

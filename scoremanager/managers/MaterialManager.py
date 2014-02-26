@@ -44,7 +44,7 @@ class MaterialManager(PackageManager):
 
     output_material_module_import_statements = []
 
-    should_have_user_input_module = False
+    _should_have_user_input_module = False
 
     ### INTIALIZER ###
 
@@ -70,7 +70,7 @@ class MaterialManager(PackageManager):
     @property
     def _output_material_module_import_statements_and_material_definition(self):
         from scoremanager import managers
-        if not self.should_have_material_definition_module:
+        if not self._should_have_material_definition_module:
             return
         return_attribute_name = [
             'output_material_module_import_statements',
@@ -88,7 +88,7 @@ class MaterialManager(PackageManager):
     @property
     def _output_material_module_import_statements_and_output_material_module_body_lines(
         self):
-        if self.should_have_material_definition_module:
+        if self._should_have_material_definition_module:
             pair = \
                 self._output_material_module_import_statements_and_material_definition
             output_material_module_import_statements, output_material = pair
@@ -99,7 +99,7 @@ class MaterialManager(PackageManager):
                 self.make_output_material_from_user_input_wrapper_in_memory()
         else:
             raise ValueError
-        if self.should_have_user_input_module:
+        if self._should_have_user_input_module:
             output_material_module_body_lines = \
                 self.make_output_material_module_body_lines(output_material)
         else:
@@ -115,6 +115,10 @@ class MaterialManager(PackageManager):
             output_material_module_import_statements,
             output_material_module_body_lines,
             )
+
+    @property
+    def _should_have_material_definition_module(self):
+        return self.material_manager_class_name is None
 
     @property
     def _user_input_to_action(self):
@@ -182,7 +186,7 @@ class MaterialManager(PackageManager):
 
     def _initialize_user_input_wrapper_in_memory(self):
         from scoremanager import managers
-        if not self.should_have_user_input_module:
+        if not self._should_have_user_input_module:
             return
         user_input_module_path = self.user_input_module_path
         if os.path.exists(self.user_input_module_path):
@@ -279,7 +283,7 @@ class MaterialManager(PackageManager):
         self._make_illustration_pdf_menu_section(menu)
         self._make_package_management_menu_section(menu)
         self._make_stylesheet_menu_section(menu)
-        if self.should_have_user_input_module:
+        if self._should_have_user_input_module:
             if not self.has_output_material_editor:
                 self._make_user_input_module_menu_section(menu)
         try:
@@ -466,13 +470,13 @@ class MaterialManager(PackageManager):
 
     @property
     def has_user_input_module(self):
-        if self.should_have_user_input_module:
+        if self._should_have_user_input_module:
             return os.path.exists(self.user_input_module_path)
         return False
 
     @property
     def has_user_input_wrapper_on_disk(self):
-        if self.should_have_user_input_module:
+        if self._should_have_user_input_module:
             return bool(self.read_user_input_wrapper_from_disk())
         return False
 
@@ -618,7 +622,7 @@ class MaterialManager(PackageManager):
 
     @property
     def output_material_module_body_lines(self):
-        if self.should_have_material_definition_module:
+        if self._should_have_material_definition_module:
             return self._output_material_module_import_statements_and_output_material_module_body_lines[1]
 
     @property
@@ -632,10 +636,6 @@ class MaterialManager(PackageManager):
             self.output_material_module_path,
             session=self._session,
             )
-
-    @property
-    def should_have_material_definition_module(self):
-        return self.material_manager_class_name is None
 
     @property
     def space_delimited_material_package_name(self):
@@ -659,7 +659,7 @@ class MaterialManager(PackageManager):
 
     @property
     def user_input_module_path(self):
-        if self.should_have_user_input_module:
+        if self._should_have_user_input_module:
             return os.path.join(self._filesystem_path, 'user_input.py')
 
     @property
@@ -683,7 +683,7 @@ class MaterialManager(PackageManager):
         self,
         prompt=False,
         ):
-        if self.should_have_user_input_module:
+        if self._should_have_user_input_module:
             self.write_stub_user_input_module(prompt=prompt)
 
     def edit_illustration_builder_module(self):
