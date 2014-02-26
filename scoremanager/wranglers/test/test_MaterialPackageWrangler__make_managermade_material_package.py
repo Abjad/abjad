@@ -18,7 +18,7 @@ def test_MaterialPackageWrangler__make_managermade_material_package_01():
 
     try:
         wrangler._make_managermade_material_package(
-            string, 
+            filesystem_path, 
             'SargassoMeasureMaterialPackageManager',
             )
         assert wrangler._configuration.package_exists(string)
@@ -63,7 +63,7 @@ def test_MaterialPackageWrangler__make_managermade_material_package_03():
     try:
         metadata = {'color': 'red', 'is_colored': True}
         wrangler._make_managermade_material_package(
-            string, 
+            filesystem_path, 
             'SargassoMeasureMaterialPackageManager', 
             metadata=metadata,
             )

@@ -16,7 +16,7 @@ def test_MaterialPackageWrangler__make_data_package_01():
         )
 
     try:
-        wrangler._make_data_package(string)
+        wrangler._make_data_package(filesystem_path)
         assert wrangler._configuration.package_exists(string)
         manager = scoremanager.managers.MaterialPackageManager(filesystem_path)
         assert manager._list_directory() == [
@@ -56,7 +56,7 @@ def test_MaterialPackageWrangler__make_data_package_03():
 
     try:
         metadata = {'color': 'red', 'is_colored': True}
-        wrangler._make_data_package(string, metadata=metadata)
+        wrangler._make_data_package(filesystem_path, metadata=metadata)
         assert wrangler._configuration.package_exists(string)
         manager = scoremanager.managers.MaterialPackageManager(filesystem_path)
         assert manager._get_metadatum('color') == 'red'

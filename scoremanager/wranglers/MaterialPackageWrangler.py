@@ -72,19 +72,15 @@ class MaterialPackageWrangler(PackageWrangler):
     def _get_appropriate_material_package_manager(
         self,
         material_package_manager_class_name, 
-        #material_package_path,
         filesystem_path,
         ):
         import scoremanager
         from scoremanager import managers
         assert os.path.sep in filesystem_path
-        #filesystem_path = self._configuration.package_to_path(
-        #    material_package_path)
         material_package_path = self._configuration.path_to_package(
             filesystem_path)
         if material_package_manager_class_name is None:
             manager = managers.MaterialPackageManager(
-                #material_package_path, 
                 filesystem_path=filesystem_path,
                 session=self._session,
                 )
@@ -350,19 +346,19 @@ class MaterialPackageWrangler(PackageWrangler):
             user_score_packages=user_score_packages,
             )
 
-    def _make_data_package(self, material_package_path, metadata=None):
+    def _make_data_package(self, filesystem_path, metadata=None):
         metadata = metadata or {}
         metadata['material_package_manager_class_name'] = None
         metadata['should_have_illustration'] = False
         metadata['should_have_user_input_module'] = False
-        self._make_material_package(material_package_path, metadata=metadata)
+        self._make_material_package(filesystem_path, metadata=metadata)
 
-    def _make_handmade_material_package(self, material_package_path, metadata=None):
+    def _make_handmade_material_package(self, filesystem_path, metadata=None):
         metadata = metadata or {}
         metadata['material_package_manager_class_name'] = None
         metadata['should_have_illustration'] = True
         metadata['should_have_user_input_module'] = False
-        self._make_material_package(material_package_path, metadata=metadata)
+        self._make_material_package(filesystem_path, metadata=metadata)
 
     def _make_main_menu(self, head=None):
         menu = self._io_manager.make_menu(where=self._where)
@@ -381,7 +377,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
     def _make_managermade_material_package(
         self,
-        material_package_path, 
+        filesystem_path, 
         material_package_manager_class_name, 
         metadata=None,
         ):
@@ -411,19 +407,18 @@ class MaterialPackageWrangler(PackageWrangler):
             )
         metadata['material_package_manager_class_name'] = \
             material_package_manager_class_name
-        metadata['should_have_illustration'] = \
-            should_have_illustration
+        metadata['should_have_illustration'] = should_have_illustration
         metadata['should_have_user_input_module'] = \
             should_have_user_input_module
-        self._make_material_package(material_package_path, metadata=metadata)
+        self._make_material_package(filesystem_path, metadata=metadata)
 
     def _make_material_package(
         self, 
-        package_path, 
+        filesystem_path,
         prompt=False, 
         metadata=None,
         ):
-        filesystem_path = self._configuration.package_to_path(package_path)
+        assert os.path.sep in filesystem_path
         metadata = collections.OrderedDict(metadata or {})
         metadata['is_material_package'] = True
         assert not os.path.exists(filesystem_path)
@@ -440,7 +435,7 @@ class MaterialPackageWrangler(PackageWrangler):
             )
         material_package_manager.conditionally_write_stub_material_definition_module()
         material_package_manager.conditionally_write_stub_user_input_module()
-        message = 'material package {!r} created.'.format(package_path)
+        message = 'material package created: {!r}.'.format(filesystem_path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
     def _navigate_to_next_material(self):
@@ -462,11 +457,12 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
-            material_package_path = \
-                self.get_available_package_path()
+            material_package_path = self.get_available_package_path()
         if self._session._backtrack():
             return
-        self._make_data_package(material_package_path, metadata=metadata)
+        filesystem_path = self._configuration.package_to_path(
+            material_package_path)
+        self._make_data_package(filesystem_path, metadata=metadata)
 
     def make_handmade_material_package(
         self, 
@@ -478,11 +474,11 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
-            package_path = \
-                self.get_available_package_path()
+            package_path = self.get_available_package_path()
         if self._session._backtrack():
             return
-        self._make_handmade_material_package(package_path)
+        filesystem_path = self._configuration.package_to_path(package_path)
+        self._make_handmade_material_package(filesystem_path)
 
     def make_managermade_material_package(
         self, 
@@ -496,21 +492,28 @@ class MaterialPackageWrangler(PackageWrangler):
         with self._backtracking:
             wrangler = self._material_package_manager_wrangler
             result = wrangler.select_asset_package_path(
-                cache=True, clear=False)
+                cache=True, 
+                clear=False,
+                )
         if self._session._backtrack():
             return
         material_package_manager_package_path = result
         material_package_manager_class_name = \
             material_package_manager_package_path.split('.')[-1]
         with self._backtracking:
-            material_package_path = \
-                self.get_available_package_path()
+            material_package_path = self.get_available_package_path()
         if self._session._backtrack():
             return
+        filesystem_path = self._configuration.package_to_path(
+            material_package_path)
         self._make_managermade_material_package(
-            material_package_path, material_package_manager_class_name)
+            filesystem_path, 
+            material_package_manager_class_name,
+            )
         filesystem_path = self._configuration.package_to_path(
             material_package_path)
         manager = self._get_appropriate_material_package_manager(
-            material_package_manager_class_name, filesystem_path)
+            material_package_manager_class_name, 
+            filesystem_path,
+            )
         manager._run_first_time()
