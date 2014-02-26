@@ -184,7 +184,7 @@ class StylesheetFileWrangler(Wrangler):
             FileManager('.../abjad/stylesheets/clean-letter-14.ily')
             FileManager('.../abjad/stylesheets/clean-letter-16.ily')
             FileManager('.../abjad/stylesheets/rhythm-letter-16.ily')
-            FileManager('.../scoremanager/scorepackages/red_example_score/stylesheets/red-example-score-stylesheet.ily')
+            FileManager('.../scoremanager/scores/red_example_score/stylesheets/red-example-score-stylesheet.ily')
 
         Returns list.
         '''

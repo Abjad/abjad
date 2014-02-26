@@ -413,7 +413,7 @@ class Session(abctools.AbjadObject):
             ::
 
                 >>> session.current_materials_directory_path
-                '.../scoremanager/materialpackages'
+                '.../scoremanager/materials'
 
         ..  container:: example
 

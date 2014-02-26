@@ -9,7 +9,7 @@ import scoremanager
 def test_MaterialPackageWrangler__make_managermade_material_package_01():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    string = 'scoremanager.materialpackages.testsargasso'
+    string = 'scoremanager.materials.testsargasso'
     assert not wrangler._configuration.package_exists(string)
     filesystem_path = os.path.join(
         wrangler._configuration.abjad_material_packages_directory_path,
@@ -18,11 +18,11 @@ def test_MaterialPackageWrangler__make_managermade_material_package_01():
 
     try:
         wrangler._make_managermade_material_package(
-            string, 
+            filesystem_path, 
             'SargassoMeasureMaterialPackageManager',
             )
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
             filesystem_path=filesystem_path)
         assert manager.is_managermade
         assert manager._list_directory() == [
@@ -42,10 +42,10 @@ def test_MaterialPackageWrangler__make_managermade_material_package_01():
 def test_MaterialPackageWrangler__make_managermade_material_package_02():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    string = 'scoremanager.materialpackages.example_numbers'
+    string = 'scoremanager.materials.example_numbers'
     assert wrangler._configuration.package_exists(string)
     statement = "wrangler._make_managermade_material_package("
-    statement += "'scoremanager.materialpackages.example_sargasso_measures"
+    statement += "'scoremanager.materials.example_sargasso_measures"
     statement += "'SargassoMeasureMaterialPackageManager')"
     assert pytest.raises(Exception, statement)
 
@@ -53,7 +53,7 @@ def test_MaterialPackageWrangler__make_managermade_material_package_02():
 def test_MaterialPackageWrangler__make_managermade_material_package_03():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    string = 'scoremanager.materialpackages.testsargasso'
+    string = 'scoremanager.materials.testsargasso'
     assert not wrangler._configuration.package_exists(string)
     filesystem_path = os.path.join(
         wrangler._configuration.abjad_material_packages_directory_path,
@@ -63,12 +63,12 @@ def test_MaterialPackageWrangler__make_managermade_material_package_03():
     try:
         metadata = {'color': 'red', 'is_colored': True}
         wrangler._make_managermade_material_package(
-            string, 
+            filesystem_path, 
             'SargassoMeasureMaterialPackageManager', 
             metadata=metadata,
             )
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
             filesystem_path=filesystem_path)
         assert manager.is_managermade
         assert manager._list_directory() == [

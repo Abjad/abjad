@@ -264,12 +264,11 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def _make_asset(
         self, 
-        package_path, 
+        filesystem_path, 
         prompt=False, 
         metadata=None,
         ):
         metadata = collections.OrderedDict(metadata or {})
-        filesystem_path = self._configuration.package_to_path(package_path)
         assert not os.path.exists(filesystem_path)
         os.mkdir(filesystem_path)
         manager = self._asset_manager_class(
@@ -279,7 +278,7 @@ class SegmentPackageWrangler(PackageWrangler):
         manager.write_initializer()
         manager.write_segment_definition_module()
         manager.make_versions_directory()
-        message = 'package {!r} created.'.format(package_path)
+        message = 'segment created: {!r}.'.format(filesystem_path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
     def _make_main_menu(self, head=None):

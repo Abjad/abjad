@@ -9,8 +9,8 @@ def test_MaterialPackageManagerWrangler_read_only_attributes_01():
     wrangler = score_manager._material_package_manager_wrangler
 
     assert wrangler._breadcrumb == 'material package managers'
-    string = 'scoremanager.materialpackagemanagers'
+    string = 'scoremanager.materialmanagers'
     assert wrangler._current_storehouse_package_path == string
 
-    string = 'scoremanager.materialpackagemanagers.__temporary_package'
+    string = 'scoremanager.materialmanagers.__temporary_package'
     assert wrangler._temporary_asset_package_path == string

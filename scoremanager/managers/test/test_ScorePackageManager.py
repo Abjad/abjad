@@ -9,7 +9,7 @@ def test_ScorePackageManager_01():
     r'''Main menu.
     '''
 
-    string = 'scoremanager.scorepackages.red_example_score'
+    string = 'scoremanager.scores.red_example_score'
     filesystem_path = os.path.join(
         configuration.abjad_score_packages_directory_path,
         'red_example_score',
@@ -52,7 +52,7 @@ def test_ScorePackageManager_03():
     from home).
     '''
 
-    string = 'scoremanager.scorepackages.red_example_score'
+    string = 'scoremanager.scores.red_example_score'
     filesystem_path = os.path.join(
         configuration.abjad_score_packages_directory_path,
         'red_example_score',
@@ -87,7 +87,7 @@ def test_ScorePackageManager_05():
     r'''Shared _session.
     '''
 
-    string = 'scoremanager.scorepackages.red_example_score'
+    string = 'scoremanager.scores.red_example_score'
     filesystem_path = os.path.join(
         configuration.abjad_score_packages_directory_path,
         'red_example_score',

@@ -10,12 +10,12 @@ def test_predicates_01():
     assert predicates.is_available_snake_case_package_name(
         'scoremanager.asdf')
     assert predicates.is_available_snake_case_package_name(
-        'scoremanager.materialpackages.asdf')
+        'scoremanager.materials.asdf')
 
     assert not predicates.is_available_snake_case_package_name(
         'scoremanager')
     assert not predicates.is_available_snake_case_package_name(
-        'scoremanager.materialpackages')
+        'scoremanager.materials')
 
 
 def test_predicates_02():
@@ -23,14 +23,14 @@ def test_predicates_02():
     assert predicates.is_existing_package_name(
         'scoremanager')
     assert predicates.is_existing_package_name(
-        'scoremanager.materialpackages')
+        'scoremanager.materials')
 
     assert not predicates.is_existing_package_name(
         'asdf')
     assert not predicates.is_existing_package_name(
         'scoremanager.asdf')
     assert not predicates.is_existing_package_name(
-        'scoremanager.materialpackages.asdf')
+        'scoremanager.materials.asdf')
 
 
 

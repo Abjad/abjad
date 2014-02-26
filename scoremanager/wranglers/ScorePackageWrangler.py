@@ -90,9 +90,9 @@ class ScorePackageWrangler(PackageWrangler):
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
-            '.../scoremanager/scorepackages/blue_example_score'
-            '.../scoremanager/scorepackages/green_example_score'
-            '.../scoremanager/scorepackages/red_example_score'
+            '.../scoremanager/scores/blue_example_score'
+            '.../scoremanager/scores/green_example_score'
+            '.../scoremanager/scores/red_example_score'
 
         Returns list.
         '''
@@ -124,9 +124,9 @@ class ScorePackageWrangler(PackageWrangler):
             ...     user_score_packages=False,
             ...     ):
             ...     x
-            ScorePackageManager('.../scorepackages/blue_example_score')
-            ScorePackageManager('.../scorepackages/green_example_score')
-            ScorePackageManager('.../scorepackages/red_example_score')
+            ScorePackageManager('.../scores/blue_example_score')
+            ScorePackageManager('.../scores/green_example_score')
+            ScorePackageManager('.../scores/red_example_score')
 
         Returns list.
         '''
@@ -223,7 +223,7 @@ class ScorePackageWrangler(PackageWrangler):
             ...     user_score_packages=False,
             ...     ):
             ...     x
-            '.../scoremanager/scorepackages'
+            '.../scoremanager/scores'
 
         Returns list.
         '''
@@ -254,9 +254,9 @@ class ScorePackageWrangler(PackageWrangler):
             ...     user_score_packages=False,
             ...     ):
             ...     x
-            '.../scoremanager/scorepackages/blue_example_score'
-            '.../scoremanager/scorepackages/green_example_score'
-            '.../scoremanager/scorepackages/red_example_score'
+            '.../scoremanager/scores/blue_example_score'
+            '.../scoremanager/scores/green_example_score'
+            '.../scoremanager/scores/red_example_score'
 
         Returns list.
         '''
@@ -290,9 +290,9 @@ class ScorePackageWrangler(PackageWrangler):
             ...     user_score_packages=False,
             ...     ):
             ...     x
-            ScorePackageManager('.../scorepackages/blue_example_score')
-            ScorePackageManager('.../scorepackages/green_example_score')
-            ScorePackageManager('.../scorepackages/red_example_score')
+            ScorePackageManager('.../scores/blue_example_score')
+            ScorePackageManager('.../scores/green_example_score')
+            ScorePackageManager('.../scores/red_example_score')
 
         Returns list.
         '''

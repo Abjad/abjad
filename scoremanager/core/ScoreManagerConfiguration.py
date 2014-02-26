@@ -128,13 +128,13 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             ::
 
                 >>> configuration.abjad_material_package_managers_directory_path
-                '.../scoremanager/materialpackagemanagers'
+                '.../scoremanager/materialmanagers'
 
         Returns string.
         '''
         path = os.path.join(
             self.score_manager_directory_path,
-            'materialpackagemanagers',
+            'materialmanagers',
             )
         return path
 
@@ -147,13 +147,13 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             ::
 
                 >>> configuration.abjad_material_packages_directory_path
-                '.../scoremanager/materialpackages'
+                '.../scoremanager/materials'
 
         Returns string.
         '''
         path = os.path.join(
             self.score_manager_directory_path,
-            'materialpackages',
+            'materials',
             )
         return path
 
@@ -188,13 +188,13 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             ::
 
                 >>> configuration.abjad_score_packages_directory_path
-                '.../scoremanager/scorepackages'
+                '.../scoremanager/scores'
 
         Returns string.
         '''
         path = os.path.join(
             self.score_manager_directory_path,
-            'scorepackages',
+            'scores',
             )
         return path
 
@@ -558,9 +558,9 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 >>> for x in configuration.list_score_directory_paths(
                 ...     abjad=True):
                 ...     x
-                '.../scoremanager/scorepackages/blue_example_score'
-                '.../scoremanager/scorepackages/green_example_score'
-                '.../scoremanager/scorepackages/red_example_score'
+                '.../scoremanager/scores/blue_example_score'
+                '.../scoremanager/scores/green_example_score'
+                '.../scoremanager/scores/red_example_score'
 
         Returns list.
         '''
@@ -604,7 +604,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
             ::
 
-                >>> package_path = 'scoremanager.materialpackages'
+                >>> package_path = 'scoremanager.materials'
                 >>> configuration.package_exists(package_path)
                 True
 
@@ -632,7 +632,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         if package_path_parts[0] == 'scoremanager':
             directory_parts = [self.score_manager_directory_path]
             directory_parts += package_path_parts[1:]
-        elif package_path_parts[0] == 'scoremanager.materialpackages':
+        elif package_path_parts[0] == 'scoremanager.materials':
             directory_parts = [self.abjad_material_packages_filesystem_path]
             directory_parts += package_path_parts[1:]
         elif package_path.startswith(self._user_library_directory_name):

@@ -9,7 +9,7 @@ def test_ScorePackageManager_read_only_attributes_01():
     r'''Read-only public attributes.
     '''
 
-    string = 'scoremanager.scorepackages.red_example_score'
+    string = 'scoremanager.scores.red_example_score'
     filesystem_path = os.path.join(
         configuration.abjad_score_packages_directory_path,
         'red_example_score',

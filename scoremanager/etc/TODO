@@ -33,11 +33,11 @@
     arguments instead of just numeric arguments.
 
 13. Make MaterialPackageManager classes stop creating materials in 
-    the scoremanager/materialpackages/ directory.
+    the scoremanager/materials/ directory.
     Those classes should create material packages in the user asset 
     library material packages directory.
     Or in user score packages. But no material packages should ever 
-    be created in the scoremanager/materialpackages/ directory.
+    be created in the scoremanager/materials/ directory.
 
 14. Implement material methods to move material packages 
     from one location to another.
@@ -63,7 +63,7 @@
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
 22. Remove empty ...
-        .../materialpackagemanagers/user_input.py
+        .../materialmanagers/user_input.py
     ... module.
 
 23. These four classes can all be collapsed into one:
@@ -146,9 +146,8 @@
 41. Uncomment the TODO in Transcript and make the constraint hold.
 
 42. Maybe time to change these:
-        materialpackagemanagers > materialmanagers
-        scorepackages > scores
-        materialpackages > materials
+        materialmanagers > materialmanagers
+        materials > materials
 
 43. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
