@@ -66,8 +66,6 @@ class MaterialManagerWrangler(PackageWrangler):
             package_path = self._configuration.path_to_package(package_path)
         else:
             filesystem_path = self._configuration.package_to_path(package_path)
-        #material_manager = managers.MaterialManager(
-        #    package_path, session=self._session)
         material_manager = managers.MaterialManager(
             filesystem_path=filesystem_path, 
             session=self._session,
@@ -78,7 +76,7 @@ class MaterialManagerWrangler(PackageWrangler):
             material_manager_class_name = last
         else:
             material_manager_class_name = \
-                material_manager.material_manager_class_name
+                material_manager._get_material_manager_class_name()
         if material_manager_class_name is not None:
             material_manager_class = None
             command = 'from scoremanager'

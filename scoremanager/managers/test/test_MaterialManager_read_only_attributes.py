@@ -41,7 +41,6 @@ def test_MaterialManager_read_only_attributes_01():
         )
     assert manager.material_package_directory == directory_path
     assert manager.material_manager is None
-    assert manager.material_manager_class_name is None
     assert manager.material_package_name == 'example_numbers'
     assert manager.space_delimited_material_package_name == 'example numbers'
     assert manager.material_package_name == 'example_numbers'
@@ -102,8 +101,6 @@ def test_MaterialManager_read_only_attributes_02():
     assert manager.material_package_directory == file_path
     maker = scoremanager.managers.SargassoMeasureMaterialManager
     assert manager.material_manager is maker
-    string = 'SargassoMeasureMaterialManager'
-    assert manager.material_manager_class_name == string
     assert manager.material_package_name == 'example_sargasso_measures'
     string = 'example sargasso measures'
     assert manager.space_delimited_material_package_name == string
@@ -184,7 +181,6 @@ def test_MaterialManager_read_only_attributes_03():
         )
     assert manager.material_package_directory == file_path
     assert manager.material_manager is None
-    assert manager.material_manager_class_name is None
     assert manager.material_package_name == 'example_notes'
     assert manager.space_delimited_material_package_name == 'example notes'
     assert manager.material_package_name == 'example_notes'

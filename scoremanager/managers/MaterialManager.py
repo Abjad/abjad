@@ -118,7 +118,7 @@ class MaterialManager(PackageManager):
 
     @property
     def _should_have_material_definition_module(self):
-        return self.material_manager_class_name is None
+        return self._get_material_manager_class_name() is None
 
     @property
     def _user_input_to_action(self):
@@ -162,6 +162,9 @@ class MaterialManager(PackageManager):
         return _user_input_to_action
 
     ### PRIVATE METHODS ###
+
+    def _get_material_manager_class_name(self):
+        return self._get_metadatum('material_manager_class_name')
 
     def _get_storage_format(self, expr):
         if hasattr(expr, '_make_storage_format_with_overrides'):
@@ -326,7 +329,7 @@ class MaterialManager(PackageManager):
             string = 'material definition - remove'
             command_section.append((string, 'mdrm'))
             command_section.append(('material definition - stub', 'mds'))
-        elif self.material_manager_class_name is None:
+        elif self._get_material_manager_class_name() is None:
             command_section = main_menu.make_command_section(name=name)
             command_section.return_value_attribute = 'key'
             command_section.append(('material definition - stub', 'mds'))
@@ -452,7 +455,7 @@ class MaterialManager(PackageManager):
 
     @property
     def has_material_manager(self):
-        return bool(self.material_manager_class_name)
+        return bool(self._get_material_manager_class_name())
 
     @property
     def has_output_material(self):
@@ -572,16 +575,8 @@ class MaterialManager(PackageManager):
         return package
 
     @property
-    def material_package_directory(self):
-        if self._session.current_materials_directory_path:
-            if self.material_package_name:
-                return os.path.join(
-                    self._session.current_materials_directory_path,
-                    self.material_package_name)
-
-    @property
     def material_manager(self):
-        if self.material_manager_class_name is None:
+        if self._get_material_manager_class_name() is None:
             return
         directory_path = \
             self._configuration.abjad_material_managers_directory_path
@@ -591,18 +586,22 @@ class MaterialManager(PackageManager):
         import_statement = 'from {} import {}'
         import_statement = import_statement.format(
             package_path,
-            self.material_manager_class_name,
+            self._get_material_manager_class_name(),
             )
         try:
             exec(import_statement)
         except:
             return
-        result = locals()[self.material_manager_class_name]
+        result = locals()[self._get_material_manager_class_name()]
         return result
 
     @property
-    def material_manager_class_name(self):
-        return self._get_metadatum('material_manager_class_name')
+    def material_package_directory(self):
+        if self._session.current_materials_directory_path:
+            if self.material_package_name:
+                return os.path.join(
+                    self._session.current_materials_directory_path,
+                    self.material_package_name)
 
     @property
     def material_package_name(self):
