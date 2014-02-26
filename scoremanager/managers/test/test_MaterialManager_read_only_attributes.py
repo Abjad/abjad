@@ -83,7 +83,6 @@ def test_MaterialManager_read_only_attributes_02():
     assert manager.has_output_material_module
     assert manager.has_user_input_module
     assert manager.has_user_input_wrapper_on_disk
-    assert manager.has_user_input_wrapper_in_memory
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
         'example_sargasso_measures', 

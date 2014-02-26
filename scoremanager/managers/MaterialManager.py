@@ -12,7 +12,7 @@ from scoremanager.managers.PackageManager import PackageManager
 
 
 class MaterialManager(PackageManager):
-    r'''Material package manager.
+    r'''Material manager.
 
     ..  container:: example
 
@@ -35,8 +35,6 @@ class MaterialManager(PackageManager):
     ### CLASS VARIABLES ###
 
     _generic_class_name = 'material manager'
-
-    generic_output_name = None
 
     illustration_builder = None
 
@@ -278,7 +276,8 @@ class MaterialManager(PackageManager):
     def _can_make_output_material(self):
         if self.has_material_definition:
             return True
-        if self.has_complete_user_input_wrapper_in_memory:
+        if bool(self.user_input_wrapper_in_memory) and \
+            self.user_input_wrapper_in_memory.is_complete:
             return True
         return False
 
@@ -318,7 +317,8 @@ class MaterialManager(PackageManager):
     def _should_have_output_material_section(self):
         if self.has_material_definition_module:
             return True
-        if self.has_complete_user_input_wrapper_in_memory:
+        if bool(self.user_input_wrapper_in_memory) and \
+            self.user_input_wrapper_in_memory.is_complete:
             return True
         if self.has_output_material_editor:
             return True
@@ -363,15 +363,12 @@ class MaterialManager(PackageManager):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def has_complete_user_input_wrapper_in_memory(self):
-        if self.has_user_input_wrapper_in_memory:
-            return self.user_input_wrapper_in_memory.is_complete
-        return False
+    def generic_output_name(self):
+        r'''Gets generic output name of material manager.
 
-    @property
-    def has_complete_user_input_wrapper_on_disk(self):
-        if self.has_user_input_wrapper_on_disk:
-            return self.user_input_wrapper_on_disk.is_complete
+        Returns string.
+        '''
+        return self._generic_output_name
 
     @property
     def has_illustration_builder_module(self):
@@ -417,12 +414,6 @@ class MaterialManager(PackageManager):
     def has_user_input_module(self):
         if self.should_have_user_input_module:
             return os.path.exists(self.user_input_module_file_path)
-        return False
-
-    @property
-    def has_user_input_wrapper_in_memory(self):
-        if self.should_have_user_input_module:
-            return bool(self.user_input_wrapper_in_memory)
         return False
 
     @property
@@ -1068,12 +1059,6 @@ class MaterialManager(PackageManager):
         file_pointer.close()
 
     ### USER INPUT WRAPPER METHODS ###
-
-    def has_complete_user_input_wrapper_on_disk(self):
-        user_input_wrapper = self.read_user_input_wrapper_from_disk()
-        if user_input_wrapper is not None:
-            return user_input_wrapper.is_complete
-        return False
 
     def read_user_input_wrapper_from_disk(self):
         from scoremanager import managers
