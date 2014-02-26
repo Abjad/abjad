@@ -163,6 +163,50 @@ class MaterialManager(PackageManager):
 
     ### PRIVATE METHODS ###
 
+    def _edit_user_input_wrapper_at_number(
+        self,
+        number,
+        include_newline=True,
+        pending_user_input=None,
+        ):
+        self._io_manager._assign_user_input(pending_user_input)
+        number = int(number)
+        if self.user_input_wrapper_in_memory is None:
+            return
+        if len(self.user_input_wrapper_in_memory) < number:
+            return
+        index = number - 1
+        key, current_value = \
+            self.user_input_wrapper_in_memory.list_items()[index]
+        test_tuple = type(self).user_input_tests[index]
+        test = test_tuple[1]
+        if len(test_tuple) == 3:
+            setup_statement = test_tuple[2]
+        else:
+            setup_statement = 'evaluated_user_input = {}'
+        if self._session.use_current_user_input_values_as_default:
+            default_value = current_value
+        else:
+            default_value = None
+        getter = self._io_manager.make_getter()
+        spaced_attribute_name = key.replace('_', ' ')
+        message = "value for '{}' must satisfy " + test.__name__ + '().'
+        getter._make_prompt(
+            spaced_attribute_name,
+            help_template=message,
+            validation_function=test,
+            setup_statements=['from abjad import *', setup_statement],
+            default_value=default_value,
+            )
+        getter.include_newlines = include_newline
+        getter.allow_none = True
+        new_value = getter._run()
+        if self._session._backtrack():
+            return
+        self.user_input_wrapper_in_memory[key] = new_value
+        wrapper = self.user_input_wrapper_in_memory
+        self.write_user_input_wrapper(wrapper)
+
     def _get_material_manager_class_name(self):
         return self._get_metadatum('material_manager_class_name')
 
@@ -178,7 +222,7 @@ class MaterialManager(PackageManager):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
         elif mathtools.is_integer_equivalent_expr(result):
-            self.edit_user_input_wrapper_at_number(
+            self._edit_user_input_wrapper_at_number(
                 result, 
                 include_newline=False,
                 )
@@ -219,7 +263,7 @@ class MaterialManager(PackageManager):
         name = 'illustration builder'
         command_section = main_menu.make_command_section(name=name)
         if self.has_output_material:
-            if not self.has_illustration_builder_module:
+            if not os.path.isfile(self.illustration_builder_module_path):
                 material_package_path = self._package_path
                 material_package_name = \
                     material_package_path.split('.')[-1]
@@ -239,13 +283,14 @@ class MaterialManager(PackageManager):
             command_section.append(('illustration builder - stub', 'ibs'))
 
     def _make_illustration_ly_menu_section(self, menu):
-        if self.has_output_material or self.has_illustration_ly:
+        if self.has_output_material or \
+            os.path.isfile(self.illustration_ly_file_path):
             section = menu.make_command_section()
         if self.has_output_material:
-            if self.has_illustration_builder_module or \
+            if os.path.isfile(self.illustration_builder_module_path) or \
                 self.has_material_manager:
                 section.append(('output ly - make', 'lym'))
-        if self.has_illustration_ly:
+        if os.path.isfile(self.illustration_ly_file_path):
             section.append(('output ly - remove', 'lyrm'))
             section.append(('output ly - view', 'ly'))
 
@@ -257,7 +302,7 @@ class MaterialManager(PackageManager):
         if self.has_output_material or self.has_illustration_pdf:
             command_section = main_menu.make_command_section(name=name)
         if self.has_output_material:
-            if self.has_illustration_builder_module or \
+            if os.path.isfile(self.illustration_builder_module_path) or \
                 (self.has_material_manager and
                 getattr(self, '__illustrate__', None)):
                 command_section.append(('output pdf - make', 'pdfm'))
@@ -430,14 +475,6 @@ class MaterialManager(PackageManager):
         Returns string.
         '''
         return self._generic_output_name
-
-    @property
-    def has_illustration_builder_module(self):
-        return os.path.exists(self.illustration_builder_module_path)
-
-    @property
-    def has_illustration_ly(self):
-        return os.path.exists(self.illustration_ly_file_path)
 
     @property
     def has_illustration_pdf(self):
@@ -650,7 +687,8 @@ class MaterialManager(PackageManager):
 
     @property
     def stylesheet_file_path_on_disk(self):
-        if self.has_illustration_ly:
+        #if self.has_illustration_ly:
+        if os.path.isfile(self.illustration_ly_file_path):
             for line in self.illustration_ly_file_manager.read_lines():
                 if line.startswith(r'\include') and 'stylesheets' in line:
                     file_name = line.split()[-1].replace('"', '')
@@ -670,13 +708,25 @@ class MaterialManager(PackageManager):
     ### PUBLIC METHODS ###
 
     def edit_illustration_builder_module(self):
+        r'''Edits illustration builder module.
+
+        Returns none.
+        '''
         self.illustration_builder_module_manager.edit()
 
     def edit_material_definition_module(self):
+        r'''Edits material definition module.
+
+        Returns none.
+        '''
         file_path = self.material_definition_module_path
         self._io_manager.edit(file_path)
 
     def edit_output_material(self):
+        r'''Edits output material.
+
+        Returns none.
+        '''
         if not self.has_output_material_editor:
             return
         output_material = self.output_material
@@ -715,6 +765,10 @@ class MaterialManager(PackageManager):
             )
 
     def edit_stylesheet_file(self, prompt=True):
+        r'''Edits stylesheet file.
+
+        Returns none.
+        '''
         if self.stylesheet_file_path_in_memory:
             self.stylesheet_file_manager.edit()
         elif prompt:
@@ -726,11 +780,12 @@ class MaterialManager(PackageManager):
 
     def remove_illustration_builder_module(self, prompt=True):
         self.remove_illustration_pdf(prompt=False)
-        if self.has_illustration_builder_module:
+        if os.path.isfile(self.illustration_builder_module_path):
             self.illustration_builder_module_manager._remove()
 
     def remove_illustration_ly(self, prompt=True):
-        if self.has_illustration_ly:
+        #if self.has_illustration_ly:
+        if os.path.isfile(self.illustration_ly_file_path):
             self.illustration_ly_file_manager._remove()
 
     def remove_illustration_pdf(self, prompt=True):
@@ -1098,6 +1153,10 @@ class MaterialManager(PackageManager):
             self._io_manager.proceed(message, prompt=prompt)
 
     def display_user_input_demo_values(self, prompt=True):
+        r'''Displays user input demo values.
+
+        Returns none.
+        '''
         lines = []
         for i, (key, value) in enumerate(self.user_input_demo_values):
             line = '    {}: {!r}'.format(key.replace('_', ' '), value)
@@ -1105,50 +1164,6 @@ class MaterialManager(PackageManager):
         lines.append('')
         self._io_manager.display(lines)
         self._io_manager.proceed(prompt=prompt)
-
-    def edit_user_input_wrapper_at_number(
-        self,
-        number,
-        include_newline=True,
-        pending_user_input=None,
-        ):
-        self._io_manager._assign_user_input(pending_user_input)
-        number = int(number)
-        if self.user_input_wrapper_in_memory is None:
-            return
-        if len(self.user_input_wrapper_in_memory) < number:
-            return
-        index = number - 1
-        key, current_value = \
-            self.user_input_wrapper_in_memory.list_items()[index]
-        test_tuple = type(self).user_input_tests[index]
-        test = test_tuple[1]
-        if len(test_tuple) == 3:
-            setup_statement = test_tuple[2]
-        else:
-            setup_statement = 'evaluated_user_input = {}'
-        if self._session.use_current_user_input_values_as_default:
-            default_value = current_value
-        else:
-            default_value = None
-        getter = self._io_manager.make_getter()
-        spaced_attribute_name = key.replace('_', ' ')
-        message = "value for '{}' must satisfy " + test.__name__ + '().'
-        getter._make_prompt(
-            spaced_attribute_name,
-            help_template=message,
-            validation_function=test,
-            setup_statements=['from abjad import *', setup_statement],
-            default_value=default_value,
-            )
-        getter.include_newlines = include_newline
-        getter.allow_none = True
-        new_value = getter._run()
-        if self._session._backtrack():
-            return
-        self.user_input_wrapper_in_memory[key] = new_value
-        wrapper = self.user_input_wrapper_in_memory
-        self.write_user_input_wrapper(wrapper)
 
     def initialize_empty_user_input_wrapper(self):
         from scoremanager import editors
@@ -1201,7 +1216,7 @@ class MaterialManager(PackageManager):
         current_element_index = current_element_number - 1
         while True:
             with self._backtracking:
-                self.edit_user_input_wrapper_at_number(
+                self._edit_user_input_wrapper_at_number(
                     current_element_number, include_newline=False)
             if self._session._backtrack():
                 return

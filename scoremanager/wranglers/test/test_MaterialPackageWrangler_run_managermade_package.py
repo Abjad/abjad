@@ -89,7 +89,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        manager = scoremanager.managers.SargassoMeasureMaterialManager('scoremanager.materials.testsargasso')
 #        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not manager.has_output_material_module
-#        assert not manager.has_illustration_builder_module
+#        assert not os.path.isfile(manager.illustration_builder_module_path)
 #        assert manager.material_definition is None
 #        assert manager.output_material is None
 #        assert manager.illustration is None
@@ -115,7 +115,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        manager = scoremanager.managers.SargassoMeasureMaterialManager('scoremanager.materials.testsargasso')
 #        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not manager.has_output_material_module
-#        assert not manager.has_illustration_builder_module
+#        assert not os.path.isfile(manager.illustration_builder_module_path)
 #        assert manager.material_definition is None
 #        assert manager.output_material is None
 #    finally:
@@ -140,7 +140,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        manager = scoremanager.managers.SargassoMeasureMaterialManager('scoremanager.materials.testsargasso')
 #        assert manager._list_directory() == ['__init__.py',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
-#        assert manager.has_illustration_builder_module
+#        assert os.path.isfile(manager.illustration_builder_module_path)
 #        assert manager.material_definition and all(isinstance(x, Note) for x in
 #           manager.material_definition)
 #        assert manager.output_material and and all(isinstance(x, Note) for x in
@@ -167,7 +167,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        assert manager._list_directory() == ['__init__.py']
 #        assert not manager.has_material_definition_module
 #        assert not manager.has_output_material_module
-#        assert not manager.has_illustration_builder_module
+#        assert not os.path.isfile(manager.illustration_builder_module_path)
 #        assert manager.material_definition is None
 #        assert manager.output_material is None
 #    finally:
@@ -191,7 +191,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        manager = scoremanager.managers.SargassoMeasureMaterialManager('scoremanager.materials.testsargasso')
 #        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not manager.has_output_material_module
-#        assert not manager.has_illustration_builder_module
+#        assert not os.path.isfile(manager.illustration_builder_module_path)
 #        assert manager.material_definition is None
 #        assert manager.output_material is None
 #    finally:
@@ -217,7 +217,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        manager = scoremanager.managers.SargassoMeasureMaterialManager('scoremanager.materials.testsargasso')
 #        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not manager.has_output_material_module
-#        assert not manager.has_illustration_builder_module
+#        assert not os.path.isfile(manager.illustration_builder_module_path)
 #        assert manager.material_definition and all(isinstance(x, Note) for x in
 #           manager.material_definition
 #        assert manager.output_material is None
@@ -242,7 +242,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        manager = scoremanager.managers.SargassoMeasureMaterialManager('scoremanager.materials.testsargasso')
 #        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not manager.has_output_material_module
-#        assert not manager.has_illustration_builder_module
+#        assert not os.path.isfile(manager.illustration_builder_module_path)
 #        assert manager.material_definition is None
 #        assert manager.output_material is None
 #    finally:
@@ -268,7 +268,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        manager = scoremanager.managers.SargassoMeasureMaterialManager('scoremanager.materials.testsargasso')
 #        assert manager._list_directory() == ['__init__.py',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
-#        assert manager.has_illustration_builder_module
+#        assert os.path.isfile(manager.illustration_builder_module_path)
 #        assert manager.material_definition and all(isinstance(x, Note) for x in
 #           manager.material_definition
 #        assert manager.output_material is None
@@ -297,7 +297,6 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        assert manager._list_directory() == [
 #            '__init__.py', 'illustration.ly', 'illustration.pdf',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
-#        assert manager.has_illustration_ly
 #        assert manager.has_illustration_pdf
 #        assert manager.material_definition and all(isinstance(x, Note) for x in
 #           manager.material_definition)

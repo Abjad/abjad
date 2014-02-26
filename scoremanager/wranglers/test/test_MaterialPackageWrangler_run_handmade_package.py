@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
             'material_definition.py', 
             ]
         assert not manager.has_output_material_module
-        assert not manager.has_illustration_builder_module
+        assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager.material_definition is None
         assert manager.output_material is None
     finally:
@@ -62,7 +62,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
             'material_definition.py', 
             ]
         assert not manager.has_output_material_module
-        assert not manager.has_illustration_builder_module
+        assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager.material_definition is None
         assert manager.output_material is None
     finally:
@@ -97,7 +97,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
             'material_definition.py', 
             ]
         assert not manager.has_output_material_module
-        assert not manager.has_illustration_builder_module
+        assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager.material_definition is None
         assert manager.output_material is None
     finally:
@@ -133,7 +133,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert manager.has_illustration_builder_module
+        assert os.path.isfile(manager.illustration_builder_module_path)
         assert manager.material_definition and \
             all(isinstance(x, Note) for x in manager.material_definition)
         assert manager.output_material and \
@@ -169,7 +169,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
             ]
         assert not manager.has_material_definition_module
         assert not manager.has_output_material_module
-        assert not manager.has_illustration_builder_module
+        assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager.material_definition is None
         assert manager.output_material is None
     finally:
@@ -203,7 +203,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
             'material_definition.py', 
             ]
         assert not manager.has_output_material_module
-        assert not manager.has_illustration_builder_module
+        assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager.material_definition is None
         assert manager.output_material is None
     finally:
@@ -240,7 +240,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
                 'material_definition.py', 
                 ]
         assert not manager.has_output_material_module
-        assert not manager.has_illustration_builder_module
+        assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager.material_definition and \
             all(isinstance(x, Note) for x in manager.material_definition)
         assert manager.output_material is None
@@ -275,7 +275,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
             'material_definition.py', 
             ]
         assert not manager.has_output_material_module
-        assert not manager.has_illustration_builder_module
+        assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager.material_definition is None
         assert manager.output_material is None
     finally:
@@ -313,7 +313,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert manager.has_illustration_builder_module
+        assert os.path.isfile(manager.illustration_builder_module_path)
         assert manager.material_definition and \
             all(isinstance(x, Note) for x in manager.material_definition)
         assert manager.output_material is None
@@ -356,7 +356,6 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert manager.has_illustration_ly
         assert manager.has_illustration_pdf
         assert manager.material_definition and \
             all(isinstance(x, Note) for x in manager.material_definition)
