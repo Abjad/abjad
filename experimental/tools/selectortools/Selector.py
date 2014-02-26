@@ -47,22 +47,16 @@ class Selector(AbjadObject):
         selectortools.Selector(
             callbacks=(
                 selectortools.PrototypeSelectorCallback(
-                    (
-                        scoretools.Leaf,
-                        )
+                    scoretools.Leaf
                     ),
                 selectortools.RunSelectorCallback(
-                    (
-                        scoretools.Note,
-                        )
+                    scoretools.Note
                     ),
                 selectortools.LengthSelectorCallback(
                     length=3,
                     parts=Exact,
                     ),
-                selectortools.SliceSelectorCallback(
-                    0
-                    ),
+                selectortools.SliceSelectorCallback(0),
                 ),
             )
 

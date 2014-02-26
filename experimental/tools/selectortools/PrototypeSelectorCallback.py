@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import select
@@ -17,8 +18,10 @@ class PrototypeSelectorCallback(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, prototype):
-        if not isinstance(prototype, tuple):
-            prototype = (prototype,)
+        if isinstance(prototype, collections.Sequence):
+            prototype = tuple(prototype)
+            assert all(isinstance(x, type) for x in prototype)
+        assert isinstance(prototype, (tuple, type))
         self._prototype = prototype
 
     ### SPECIAL METHODS ###
