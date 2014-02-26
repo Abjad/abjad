@@ -20,21 +20,9 @@ class PackageWrangler(Wrangler):
 
     @property
     def _current_storehouse_package_path(self):
-        if self._session.is_in_score:
-            parts = []
-            current_score_package_path = \
-                self._configuration.path_to_package(
-                    self._session.current_score_directory_path,
-                    )
-            parts.append(current_score_package_path)
-            parts.extend(self.score_storehouse_path_infix_parts)
-            return '.'.join(parts)
-        else:
-            package_path = \
-                self._configuration.path_to_package(
-                    self.abjad_storehouse_directory_path,
-                    )
-            return package_path
+        path = self._current_storehouse_directory_path
+        package = self._configuration.path_to_package(path)
+        return package
 
     @property
     def _temporary_asset_manager(self):
@@ -47,12 +35,9 @@ class PackageWrangler(Wrangler):
 
     @property
     def _temporary_asset_package_path(self):
-        if self._current_storehouse_package_path:
-            return '.'.join([
-                self._current_storehouse_package_path,
-                self._temporary_asset_name])
-        else:
-            return self._temporary_asset_name
+        path = self._temporary_asset_filesystem_path
+        package = self._configuration.path_to_package(path)
+        return package
 
     @property
     def _user_input_to_action(self):
@@ -252,21 +237,21 @@ class PackageWrangler(Wrangler):
             getter = self._io_manager.make_getter(where=self._where)
             getter.append_space_delimited_lowercase_string('name')
             with self._backtracking:
-                package_name = getter._run()
+                package = getter._run()
             if self._session._backtrack():
                 return
-            package_name = \
-                stringtools.string_to_accent_free_snake_case(package_name)
-            package_path = '.'.join([
-                self._current_storehouse_package_path, 
-                package_name,
-                ])
-            if self._configuration.package_exists(package_path):
-                line = 'Package {!r} already exists.'
-                line = line.format(package_path)
+            package = stringtools.string_to_accent_free_snake_case(package)
+            path = os.path.join(
+                self._current_storehouse_directory_path, 
+                package,
+                )
+            package = self._configuration.path_to_package(path)
+            if self._configuration.package_exists(package):
+                line = 'package already exists: {!r}.'
+                line = line.format(path)
                 self._io_manager.display([line, ''])
             else:
-                return package_path
+                return package
 
     def make_asset(
         self,
