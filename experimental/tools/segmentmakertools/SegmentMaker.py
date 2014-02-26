@@ -53,7 +53,7 @@ class SegmentMaker(AbjadObject):
 
         Returns LilyPond file.
         '''
-        raise NotImplementedError
+        return self()
 
     ### PUBLIC PROPERTIES ###
 
