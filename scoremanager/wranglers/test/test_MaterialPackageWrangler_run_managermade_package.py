@@ -23,7 +23,6 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             filesystem_path=filesystem_path)
-        assert manager.is_managermade
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -59,7 +58,6 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             filesystem_path=filesystem_path)
-        assert manager.is_managermade
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',

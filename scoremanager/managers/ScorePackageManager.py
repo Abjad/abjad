@@ -41,15 +41,15 @@ class ScorePackageManager(PackageManager):
             )
         self._distribution_directory_manager = manager
         if self._filesystem_path is not None:
-            instrumentation_module_file_path = os.path.join(
+            instrumentation_module_path = os.path.join(
                 self._filesystem_path,
                 'instrumentation.py',
                 )
         else:
-            instrumentation_module_file_path = None
+            instrumentation_module_path = None
         self._instrumentation_module_manager = \
             managers.FileManager(
-            instrumentation_module_file_path,
+            instrumentation_module_path,
             session=self._session,
             )
         self._material_package_wrangler = \
@@ -115,7 +115,7 @@ class ScorePackageManager(PackageManager):
     def _get_instrumentation(self):
         return self._import_instrumentation_from_instrumentation_module()
 
-    def _get_instrumentation_module_file_path(self):
+    def _get_instrumentation_module_path(self):
         file_path = os.path.join(
             self._filesystem_path,
             'instrumentation.py',
@@ -334,7 +334,7 @@ class ScorePackageManager(PackageManager):
         line = 'instrumentation={}'
         line = line.format(format(instrumentation))
         lines.append(line)
-        file_path = self._get_instrumentation_module_file_path()
+        file_path = self._get_instrumentation_module_path()
         file_pointer = file(file_path, 'w')
         file_pointer.write(''.join(lines))
         file_pointer.close()

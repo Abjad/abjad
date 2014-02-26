@@ -53,7 +53,7 @@ class SegmentPackageManager(PackageManager):
 
     ### PRIVATE METHODS ###
 
-    def _get_asset_definition_module_file_path(self):
+    def _get_asset_definition_module_path(self):
         return os.path.join(self._filesystem_path, 'definition.py')
 
     def _get_last_version_number(self):
@@ -169,21 +169,21 @@ class SegmentPackageManager(PackageManager):
         return property(**locals())
 
     @property
-    def segment_definition_module_file_path(self):
+    def segment_definition_module_path(self):
         return os.path.join(self._filesystem_path, 'definition.py')
 
     @property
     def segment_definition_module_manager(self):
         from scoremanager import managers
         manager = managers.FileManager(
-            self.segment_definition_module_file_path,
+            self.segment_definition_module_path,
             session=self._session,
             )
         return manager
 
     @property
-    def segment_definition_module_package_path(self):
-        path = self.segment_definition_module_file_path
+    def segment_definition_module_package(self):
+        path = self.segment_definition_module_path
         package = self._configuration.path_to_package(path)
         return package
 
@@ -309,9 +309,9 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         paths = {}
-        asset_definition_module_file_path = \
-            self._get_asset_definition_module_file_path()
-        if not os.path.isfile(asset_definition_module_file_path):
+        asset_definition_module_path = \
+            self._get_asset_definition_module_path()
+        if not os.path.isfile(asset_definition_module_path):
             message = 'can not find asset definition module.'
             self._io_manager.proceed(
                 message,
@@ -345,7 +345,7 @@ class SegmentPackageManager(PackageManager):
             target_file_name,
             )
         command = 'cp {} {}'.format(
-            asset_definition_module_file_path,
+            asset_definition_module_path,
             target_file_path,
             )
         self._io_manager.spawn_subprocess(command)
@@ -459,8 +459,8 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        if not os.path.exists(self.segment_definition_module_file_path):
-            file_pointer = file(self.segment_definition_module_file_path, 'w')
+        if not os.path.exists(self.segment_definition_module_path):
+            file_pointer = file(self.segment_definition_module_path, 'w')
             file_pointer.write('# -*- encoding: utf-8 -*-\n')
             file_pointer.write('from abjad import *\n')
             file_pointer.write('\n\n')

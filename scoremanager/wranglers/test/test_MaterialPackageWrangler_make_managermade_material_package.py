@@ -21,7 +21,6 @@ def test_MaterialPackageWrangler_make_managermade_material_package_01():
         assert wrangler._configuration.package_exists(string)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             filesystem_path=filesystem_path)
-        assert manager.is_managermade
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
