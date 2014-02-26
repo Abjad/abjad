@@ -669,15 +669,6 @@ class MaterialManager(PackageManager):
 
     ### PUBLIC METHODS ###
 
-    def conditionally_write_stub_material_definition_module(
-        self,
-        prompt=False,
-        ):
-        if not self._get_metadatum('material_manager_class_name'):
-            self._write_stub_material_definition_module(
-                prompt=prompt,
-                )
-
     def edit_illustration_builder_module(self):
         self.illustration_builder_module_manager.edit()
 

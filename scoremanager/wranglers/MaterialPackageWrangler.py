@@ -433,7 +433,9 @@ class MaterialPackageWrangler(PackageWrangler):
             metadata, 
             prompt=False,
             )
-        material_manager.conditionally_write_stub_material_definition_module()
+        if not material_manager._get_material_manager_class_name():
+            material_manager._write_stub_material_definition_module(
+                prompt=False)
         if material_manager._should_have_user_input_module:
             material_manager.write_stub_user_input_module()
         message = 'material package created: {!r}.'.format(filesystem_path)
