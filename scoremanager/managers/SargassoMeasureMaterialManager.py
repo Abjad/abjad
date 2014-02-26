@@ -66,7 +66,7 @@ class SargassoMeasureMaterialManager(MaterialManager):
         return possible_meter_multipliers
 
     @staticmethod
-    def illustration_builder(measures, **kwargs):
+    def __illustrate__(measures, **kwargs):
         staff = scoretools.Staff(measures)
         staff.context_name = 'RhythmicStaff'
         score = scoretools.Score([staff])

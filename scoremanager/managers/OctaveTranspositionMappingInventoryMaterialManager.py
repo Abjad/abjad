@@ -26,7 +26,7 @@ class OctaveTranspositionMappingInventoryMaterialManager(
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def illustration_builder(
+    def __illustrate__(
         octave_transposition_mapping_inventory, **kwargs):
         notes = []
         for octave_transposition_mapping in \

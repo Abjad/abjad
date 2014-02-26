@@ -36,7 +36,7 @@ class RhythmMakerMaterialManager(MaterialManager):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def illustration_builder(output_material, **kwargs):
+    def __illustrate__(output_material, **kwargs):
         meter_tokens = [
             (2, 8), (3, 8), (4, 8), (5, 8),
             (2, 16), (3, 16), (4, 16), (5, 16),

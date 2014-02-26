@@ -25,7 +25,7 @@ class PitchRangeInventoryMaterialManager(MaterialManager):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def illustration_builder(pitch_range_inventory, **kwargs):
+    def __illustrate__(pitch_range_inventory, **kwargs):
         chords = []
         for pitch_range in pitch_range_inventory:
             chord = Chord(

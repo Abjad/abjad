@@ -114,7 +114,7 @@
 32. Figure out why so many tests are commented-out at the bottom of
     test_MaterialPackageWrangler_run_managermade_package.
 
-33. Removed MarkupInventoryMaterialManager.illustration_builder().
+33. Remove MarkupInventoryMaterialManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
 
 34. Write test for (ren) to rename.

@@ -36,8 +36,6 @@ class MaterialManager(PackageManager):
 
     _generic_class_name = 'material manager'
 
-    illustration_builder = None
-
     output_material_checker = None
 
     output_material_editor = None
@@ -198,7 +196,7 @@ class MaterialManager(PackageManager):
         if self.has_output_material:
             if self.has_illustration_builder_module or \
                 (self.has_material_package_manager and
-                getattr(self, 'illustration_builder', None)):
+                getattr(self, '__illustrate__', None)):
                 command_section.append(('output pdf - make', 'pdfm'))
                 has_illustration_pdf_section = True
         if self.has_illustration_pdf:

@@ -24,7 +24,7 @@ class TempoInventoryMaterialManager(MaterialManager):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def illustration_builder(tempo_inventory, **kwargs):
+    def __illustrate__(tempo_inventory, **kwargs):
         notes = []
         for tempo in tempo_inventory:
             note = Note("c'4")
