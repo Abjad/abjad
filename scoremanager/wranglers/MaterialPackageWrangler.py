@@ -179,6 +179,7 @@ class MaterialPackageWrangler(PackageWrangler):
             '.../scoremanager/materialpackages/example_markup_inventory'
             '.../scoremanager/materialpackages/example_notes'
             '.../scoremanager/materialpackages/example_numbers'
+            '.../scoremanager/materialpackages/example_pitch_range_inventory'
             '.../scoremanager/materialpackages/example_sargasso_measures'
             '.../scorepackages/red_example_score/materials/tempo_inventory'
 
@@ -217,6 +218,7 @@ class MaterialPackageWrangler(PackageWrangler):
             MarkupInventoryMaterialPackageManager('.../scoremanager/materialpackages/example_markup_inventory')
             MaterialPackageManager('.../scoremanager/materialpackages/example_notes')
             MaterialPackageManager('.../scoremanager/materialpackages/example_numbers')
+            PitchRangeInventoryMaterialPackageManager('.../scoremanager/materialpackages/example_pitch_range_inventory')
             SargassoMeasureMaterialPackageManager('.../scoremanager/materialpackages/example_sargasso_measures')
             MaterialPackageManager('.../red_example_score/materials/magic_numbers')
             PitchRangeInventoryMaterialPackageManager('.../red_example_score/materials/pitch_range_inventory')
@@ -255,6 +257,7 @@ class MaterialPackageWrangler(PackageWrangler):
             'example markup inventory'
             'example notes'
             'example numbers'
+            'example pitch range inventory'
             'example sargasso measures'
             'magic numbers'
             'pitch range inventory'
@@ -294,6 +297,7 @@ class MaterialPackageWrangler(PackageWrangler):
             'scoremanager.materialpackages.example_markup_inventory'
             'scoremanager.materialpackages.example_notes'
             'scoremanager.materialpackages.example_numbers'
+            'scoremanager.materialpackages.example_pitch_range_inventory'
             'scoremanager.materialpackages.example_sargasso_measures'
             'red_example_score.materials.magic_numbers'
             'red_example_score.materials.pitch_range_inventory'

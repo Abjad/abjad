@@ -62,15 +62,14 @@ class Editor(ScoreManagerObject):
             self.set_target_attribute(attribute_name, attribute_value)
 
     def _make_main_menu(self):
-        main_menu = self._io_manager.make_menu(where=self._where)
-        keyed_attribute_section = \
-            main_menu.make_keyed_attribute_section(
+        menu = self._io_manager.make_menu(where=self._where)
+        keyed_attribute_section = menu.make_keyed_attribute_section(
             is_numbered=True,
             ) 
         menu_entries = self.target_attribute_tokens
         keyed_attribute_section.menu_entries = menu_entries
-        main_menu.hidden_section.append(('done', 'done'))
-        return main_menu
+        menu.hidden_section.append(('done', 'done'))
+        return menu
 
     def _run(
         self, 

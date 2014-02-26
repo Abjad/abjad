@@ -372,7 +372,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
         Returns string.
         '''
-        #path = self._settings['user_library_directory_path']
         path = self._settings['score_manager_library']
         path = os.path.expanduser(path)
         path = os.path.normpath(path)
@@ -469,7 +468,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
         Returns string.
         '''
-        #path = self._settings['user_score_packages_directory_path']
         path = self._settings['scores_directory']
         path = os.path.expanduser(path)
         path = os.path.normpath(path)
