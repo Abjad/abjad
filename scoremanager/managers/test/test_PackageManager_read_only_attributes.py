@@ -2,6 +2,7 @@
 import os
 from abjad import *
 import scoremanager
+configuration = scoremanager.core.ScoreManagerConfiguration()
 
 
 def test_PackageManager_read_only_attributes_01():
@@ -9,11 +10,11 @@ def test_PackageManager_read_only_attributes_01():
     '''
 
     string = 'scoremanager.materialpackages.example_sargasso_measures'
-    package_manager = scoremanager.managers.PackageManager(string)
     file_path = os.path.join(
-        package_manager._configuration.abjad_material_packages_directory_path, 
+        configuration.abjad_material_packages_directory_path, 
         'example_sargasso_measures',
         )
+    package_manager = scoremanager.managers.PackageManager(file_path)
     assert package_manager._filesystem_path == file_path
     assert package_manager._get_metadatum('foo') is None
     file_path = os.path.join(

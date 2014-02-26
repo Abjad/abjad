@@ -7,14 +7,18 @@ class ScorePackageManager(PackageManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, package_path=None, session=None):
+    def __init__(self, filesystem_path=None, session=None):
         from scoremanager import managers
         from scoremanager import wranglers
+        if filesystem_path is not None:
+            assert os.path.sep in filesystem_path
         PackageManager.__init__(
             self, 
-            package_path, 
+            filesystem_path=filesystem_path, 
             session=session,
             )
+        package_path = self._configuration.path_to_package(filesystem_path)
+        self._package_path = package_path
         filesystem_path = self._filesystem_path
         if filesystem_path is not None:
             filesystem_path = os.path.join(

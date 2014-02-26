@@ -55,15 +55,11 @@ class MaterialPackageManager(PackageManager):
     def __init__(self, filesystem_path=None, session=None):
         if filesystem_path is not None:
             assert os.path.sep in filesystem_path
-        #package_path = self._configuration.path_to_package(filesystem_path)
         PackageManager.__init__(
             self,
-            package_path=None,
+            filesystem_path=filesystem_path,
             session=session,
             )
-        package_path = self._configuration.path_to_package(filesystem_path)
-        self._filesystem_path = filesystem_path
-        self._package_path = package_path
         wrapper = self._initialize_user_input_wrapper_in_memory()
         self._user_input_wrapper_in_memory = wrapper
         self._generic_output_name = None

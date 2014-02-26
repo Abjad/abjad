@@ -13,13 +13,13 @@ class SegmentPackageManager(PackageManager):
 
     def __init__(
         self, 
-        package_path=None, 
+        filesystem_path=None, 
         score_template=None, 
         session=None,
         ):
         PackageManager.__init__(
             self, 
-            package_path=package_path, 
+            filesystem_path=filesystem_path,
             session=session,
             )
         self.score_template = score_template

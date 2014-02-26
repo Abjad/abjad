@@ -269,13 +269,11 @@ class SegmentPackageWrangler(PackageWrangler):
         metadata=None,
         ):
         metadata = collections.OrderedDict(metadata or {})
-        directory_path = \
-            self._configuration.package_to_path(
-            package_path)
-        assert not os.path.exists(directory_path)
-        os.mkdir(directory_path)
+        filesystem_path = self._configuration.package_to_path(package_path)
+        assert not os.path.exists(filesystem_path)
+        os.mkdir(filesystem_path)
         manager = self._asset_manager_class(
-            package_path=package_path,
+            filesystem_path=filesystem_path,
             session=self._session,
             )
         manager.write_initializer()

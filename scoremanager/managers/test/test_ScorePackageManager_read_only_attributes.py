@@ -2,6 +2,7 @@
 import os
 from abjad import *
 import scoremanager
+configuration = scoremanager.core.ScoreManagerConfiguration()
 
 
 def test_ScorePackageManager_read_only_attributes_01():
@@ -9,7 +10,12 @@ def test_ScorePackageManager_read_only_attributes_01():
     '''
 
     string = 'scoremanager.scorepackages.red_example_score'
-    package_manager = scoremanager.managers.ScorePackageManager(string)
+    filesystem_path = os.path.join(
+        configuration.abjad_score_packages_directory_path,
+        'red_example_score',
+        )
+    package_manager = scoremanager.managers.ScorePackageManager(
+        filesystem_path=filesystem_path)
 
     assert isinstance(
         package_manager._segment_package_wrangler, 

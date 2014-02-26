@@ -492,12 +492,9 @@ class Session(abctools.AbjadObject):
         Returns score package manager or none.
         '''
         from scoremanager import managers
-        package_path = \
-            self._configuration.path_to_package(
-            self.current_score_directory_path)
         if self.is_in_score:
             return managers.ScorePackageManager(
-                package_path=package_path,
+                filesystem_path=self.current_score_directory_path,
                 session=self,
                 )
 

@@ -160,7 +160,5 @@
     Find a way to delay (and then cache) the initialization of
     ScorePackageManager delegates.
 
-45. Initialize everything with filesystem paths.
-
-46. Remove all calls to ScoreManagerConfiguration.package_to_path().
+45. Remove all calls to ScoreManagerConfiguration.package_to_path().
     Though preserve ScoreMangerConfiguration.package_to_path() for a while.

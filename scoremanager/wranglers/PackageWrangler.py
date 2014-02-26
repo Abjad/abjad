@@ -55,15 +55,15 @@ class PackageWrangler(Wrangler):
     def _handle_main_menu_result(self, result):
         self._io_manager.print_not_yet_implemented()
 
-    def _initialize_asset_manager(self, package_path):
-        if os.path.sep in package_path:
-            pacakgesystem_path = \
-            self._configuration.path_to_package(
-            package_path)
-        return self._asset_manager_class(
-            package_path=package_path, 
+    def _initialize_asset_manager(self, filesystem_path):
+        if os.path.sep not in filesystem_path:
+            filesystem_path = self._configuration.package_to_path(
+                filesystem_path)
+        manager = self._asset_manager_class(
+            filesystem_path=filesystem_path, 
             session=self._session,
             )
+        return manager
 
     def _is_valid_directory_entry(self, expr):
         superclass = super(PackageWrangler, self)

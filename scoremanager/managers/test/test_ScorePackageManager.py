@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
+import os
 from abjad import *
 import scoremanager
+configuration = scoremanager.core.ScoreManagerConfiguration()
 
 
 def test_ScorePackageManager_01():
@@ -8,7 +10,12 @@ def test_ScorePackageManager_01():
     '''
 
     string = 'scoremanager.scorepackages.red_example_score'
-    red_example_score = scoremanager.managers.ScorePackageManager(string)
+    filesystem_path = os.path.join(
+        configuration.abjad_score_packages_directory_path,
+        'red_example_score',
+        )
+    red_example_score = scoremanager.managers.ScorePackageManager(
+        filesystem_path=filesystem_path)
     red_example_score._run(pending_user_input='q')
 
     assert red_example_score._transcript.last_menu_lines == \
@@ -46,7 +53,12 @@ def test_ScorePackageManager_03():
     '''
 
     string = 'scoremanager.scorepackages.red_example_score'
-    red_example_score = scoremanager.managers.ScorePackageManager(string)
+    filesystem_path = os.path.join(
+        configuration.abjad_score_packages_directory_path,
+        'red_example_score',
+        )
+    red_example_score = scoremanager.managers.ScorePackageManager(
+        filesystem_path=filesystem_path)
     red_example_score._run(pending_user_input='h')
 
     assert red_example_score._transcript.signature == (2,)
@@ -76,7 +88,12 @@ def test_ScorePackageManager_05():
     '''
 
     string = 'scoremanager.scorepackages.red_example_score'
-    manager = scoremanager.managers.ScorePackageManager(string)
+    filesystem_path = os.path.join(
+        configuration.abjad_score_packages_directory_path,
+        'red_example_score',
+        )
+    manager = scoremanager.managers.ScorePackageManager(
+        filesystem_path=filesystem_path)
 
     assert manager._session is manager._distribution_directory_manager._session
     assert manager._session is manager._build_directory_manager._session
