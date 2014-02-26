@@ -39,7 +39,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
     @property
     def _option_definitions(self):
         options = {
-            'user_library_directory_path': {
+            'score_manager_library': {
                 'comment': [
                     '',
                     'Set to the directory where you'
@@ -53,16 +53,16 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                         )
                     ),
             },
-            'user_score_packages_directory_path': {
+            'scores_directory': {
                 'comment': [
                     '',
                     'Set to the directory where you house your scores.',
-                    'Defaults to $HOME/score_packages/.'
+                    'Defaults to $HOME/scores/.'
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(
                         self.home_directory_path, 
-                        'score_packages',
+                        'scores',
                         )
                     )
             },
@@ -367,9 +367,13 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 >>> configuration.user_library_directory_path
                 '...'
 
+        Aliases `score_manager_library` setting in score manager configuration
+        file.
+
         Returns string.
         '''
-        path = self._settings['user_library_directory_path']
+        #path = self._settings['user_library_directory_path']
+        path = self._settings['score_manager_library']
         path = os.path.expanduser(path)
         path = os.path.normpath(path)
         return path
@@ -461,9 +465,12 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 >>> configuration.user_score_packages_directory_path
                 '...'
 
+        Aliases `scores_directory` setting in score manager configuration file.
+
         Returns string.
         '''
-        path = self._settings['user_score_packages_directory_path']
+        #path = self._settings['user_score_packages_directory_path']
+        path = self._settings['scores_directory']
         path = os.path.expanduser(path)
         path = os.path.normpath(path)
         return path
