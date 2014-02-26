@@ -15,16 +15,27 @@ class ScorePackageManager(PackageManager):
             package_path, 
             session=session,
             )
-        self._build_directory_manager = \
-            managers.BuildDirectoryManager(
-            score_directory_path=self._filesystem_path,
+        filesystem_path = self._filesystem_path
+        if filesystem_path is not None:
+            filesystem_path = os.path.join(
+                self._filesystem_path, 
+                'build',
+                )
+        manager = managers.BuildDirectoryManager(
+            filesystem_path=filesystem_path,
             session=self._session,
             )
-        self._distribution_directory_manager = \
-            managers.DistributionDirectoryManager(
-            score_directory_path=self._filesystem_path, 
+        self._build_directory_manager = manager
+        if filesystem_path is not None:
+            filesystem_path = os.path.join(
+                self._filesystem_path,
+                'distribution',
+                )
+        manager = managers.DistributionDirectoryManager(
+            filesystem_path=filesystem_path,
             session=self._session,
             )
+        self._distribution_directory_manager = manager
         if self._filesystem_path is not None:
             instrumentation_module_file_path = os.path.join(
                 self._filesystem_path,
