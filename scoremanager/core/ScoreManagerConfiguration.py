@@ -475,7 +475,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
     ### PUBLIC METHODS ###
 
-    def filesystem_path_to_package_path(self, filesystem_path):
+    def path_to_package(self, filesystem_path):
         r'''Changes `filesystem_path` to package path.
 
         Returns string.
@@ -574,7 +574,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                         scores_directory_path,
                         directory_entry,
                         )
-                    package_path = self.filesystem_path_to_package_path(
+                    package_path = self.path_to_package(
                         directory_path,
                         )
                     if head is None or package_path.startswith(head):
@@ -611,10 +611,10 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         Returns boolean.
         '''
         assert os.path.sep not in package_path
-        filesystem_path = self.package_path_to_filesystem_path(package_path)
+        filesystem_path = self.package_to_path(package_path)
         return os.path.exists(filesystem_path)
 
-    def package_path_to_filesystem_path(
+    def package_to_path(
         self, 
         package_path, 
         is_module=False,

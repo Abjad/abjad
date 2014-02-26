@@ -63,7 +63,7 @@ class ScorePackageWrangler(PackageWrangler):
     @property
     def _current_storehouse_package_path(self):
         package_path = \
-            self._configuration.filesystem_path_to_package_path(
+            self._configuration.path_to_package(
             self._current_storehouse_directory_path)
         return package_path
 
@@ -416,7 +416,7 @@ class ScorePackageWrangler(PackageWrangler):
             user_score_packages=user_score_packages,
             head=head,
             ):
-            package_path = self._configuration.filesystem_path_to_package_path(
+            package_path = self._configuration.path_to_package(
                 filesystem_path)
             result.append(package_path)
         return result

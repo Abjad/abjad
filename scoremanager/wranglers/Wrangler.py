@@ -157,24 +157,18 @@ class Wrangler(ScoreManagerObject):
             ):
             if not directory_path:
                 continue
-            storehouse_package_path = \
-                self._configuration.filesystem_path_to_package_path(
-                directory_path)
             if not os.path.exists(directory_path):
                 continue
             for directory_entry in sorted(os.listdir(directory_path)):
-                if self._is_valid_directory_entry(directory_entry):
-                    filesystem_path = os.path.join(
-                        directory_path, directory_entry,
-                        )
-                    if head is None:
-                        result.append(filesystem_path)
-                    else:
-                        package_path = '.'.join([
-                            storehouse_package_path, directory_entry,
-                            ])
-                        if package_path.startswith(head):
-                            result.append(filesystem_path)
+                if not self._is_valid_directory_entry(directory_entry):
+                    continue
+                path = os.path.join(directory_path, directory_entry)
+                if head is None:
+                    result.append(path)
+                else:
+                    package = self._configuration.path_to_package(path)
+                    if package.startswith(head):
+                        result.append(path)
         return result
 
     def _list_asset_managers(

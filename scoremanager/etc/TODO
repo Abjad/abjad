@@ -151,7 +151,7 @@
         materialpackages > materials
 
 43. Remove all '.'.join() statements. There should be no by-hand package
-    manipulation. Use self._configuration.filesystem_path_to_package_path()
+    manipulation. Use self._configuration.path_to_package()
     instead.
 
 44. Implement something to tour everything that can be rewritten and rewrite.

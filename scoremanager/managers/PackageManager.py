@@ -19,7 +19,7 @@ class PackageManager(DirectoryManager):
         if package_path is None or \
             os.path.sep not in package_path:
             filesystem_path = \
-                self._configuration.package_path_to_filesystem_path(
+                self._configuration.package_to_path(
                     package_path)
         else:
             filesystem_path = package_path
@@ -27,7 +27,7 @@ class PackageManager(DirectoryManager):
             assert '.' not in filesystem_path, repr(filesystem_path)
         self._filesystem_path = filesystem_path
         package_path = \
-            self._configuration.filesystem_path_to_package_path(
+            self._configuration.path_to_package(
                 filesystem_path)
         if package_path is not None:
             assert os.path.sep not in package_path, repr(package_path)

@@ -62,7 +62,7 @@ As of r10,249 it takes 6,658 function calls to initialize the score manager ...
         1    0.000    0.000    0.008    0.008 <string>:1(<module>)
         1    0.000    0.000    0.008    0.008 ScoreManager.py:11(__init__)
         6    0.000    0.000    0.008    0.001 PackagesystemAssetWrangler.py:8(__init__)
-        6    0.000    0.000    0.008    0.001 package_path_to_filesystem_path.py:4(package_path_to_filesystem_path)
+        6    0.000    0.000    0.008    0.001 package_to_path.py:4(package_to_path)
         6    0.000    0.000    0.007    0.001 ScoreManagerConfiguration.py:22(__init__)
         6    0.000    0.000    0.007    0.001 Configuration.py:16(__init__)
         2    0.000    0.000    0.003    0.001 MaterialPackageManagerWrangler.py:12(__init__)
@@ -142,8 +142,8 @@ turned on.
 ### r10,251 ###
 
 Revision r10,251 fives an inefficiency in 
-package_path_to_filesystem_path() and the same inefficiency in 
-filesystem_path_to_package_path(). Specifically, a 
+package_to_path() and the same inefficiency in 
+path_to_package(). Specifically, a 
 ScoreManagerConfiguration object was being instantiated for each and every
 call to both of these functions; note that there is disk read time incurred 
 every time a ScoreManagerConfiguration object is istantiated.

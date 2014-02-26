@@ -69,7 +69,7 @@ class StylesheetFileWrangler(Wrangler):
             tmp = os.path.join('stylesheets')
             score_filesystem_path = filesystem_path.rpartition(tmp)[0]
             package_path = \
-                self._configuration.filesystem_path_to_package_path(
+                self._configuration.path_to_package(
                 score_filesystem_path)
             score_package_manager = managers.ScorePackageManager(
                 package_path=package_path)

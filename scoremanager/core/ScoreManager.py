@@ -252,7 +252,7 @@ class ScoreManager(ScoreManagerObject):
 
         Returns none.
         '''
-        path = self._configuration.filesystem_path_to_package_path(
+        path = self._configuration.path_to_package(
             self._configuration.abjad_material_packages_directory_path,
             )
         self._material_package_wrangler._run(

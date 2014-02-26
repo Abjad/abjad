@@ -136,7 +136,7 @@ class MaterialPackageManager(PackageManager):
             'user_input',
             ])
         user_input_module_file_path = \
-            self._configuration.package_path_to_filesystem_path(
+            self._configuration.package_to_path(
             user_input_module_package_path,
             is_module=True,
             )
@@ -556,7 +556,7 @@ class MaterialPackageManager(PackageManager):
         directory_path = \
             self._configuration.abjad_material_package_managers_directory_path
         package_path = \
-            self._configuration.filesystem_path_to_package_path(
+            self._configuration.path_to_package(
             directory_path)
         import_statement = 'from {} import {}'
         import_statement = import_statement.format(

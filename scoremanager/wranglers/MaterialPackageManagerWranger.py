@@ -63,7 +63,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         from scoremanager import managers
         if os.path.sep in package_path:
             package_path = \
-                self._configuration.filesystem_path_to_package_path(
+                self._configuration.path_to_package(
                     package_path)
         #print repr(package_path), '~~~'
         material_package_manager = managers.MaterialPackageManager(

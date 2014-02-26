@@ -424,7 +424,7 @@ class MaterialPackageWrangler(PackageWrangler):
         metadata = collections.OrderedDict(metadata or {})
         metadata['is_material_package'] = True
         directory_path = \
-            self._configuration.package_path_to_filesystem_path(
+            self._configuration.package_to_path(
             package_path)
         assert not os.path.exists(directory_path)
         os.mkdir(directory_path)

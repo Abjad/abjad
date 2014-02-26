@@ -270,7 +270,7 @@ class SegmentPackageWrangler(PackageWrangler):
         ):
         metadata = collections.OrderedDict(metadata or {})
         directory_path = \
-            self._configuration.package_path_to_filesystem_path(
+            self._configuration.package_to_path(
             package_path)
         assert not os.path.exists(directory_path)
         os.mkdir(directory_path)
@@ -336,7 +336,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_name,
                 )
             segment_package_path = \
-                self._configuration.filesystem_path_to_package_path(
+                self._configuration.path_to_package(
                 segment_package_directory_path)
             manager = self._asset_manager_class(
                 segment_package_path,
@@ -373,7 +373,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_name,
                 )
             segment_package_path = \
-                self._configuration.filesystem_path_to_package_path(
+                self._configuration.path_to_package(
                 segment_package_directory_path)
             manager = self._asset_manager_class(
                 segment_package_path,
@@ -405,7 +405,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_name,
                 )
             segment_package_path = \
-                self._configuration.filesystem_path_to_package_path(
+                self._configuration.path_to_package(
                 segment_package_directory_path)
             manager = self._asset_manager_class(
                 segment_package_path,
