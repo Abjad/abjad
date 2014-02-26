@@ -132,8 +132,7 @@
 36. Change menu command display strings to 'direct object - verb' pervasively.
 
 37. Make sure that editing instrumentation doesn't change FrenchHorn to merely
-    Instrument.
-    Maker sure that editing instrumentation doesn't reset
+    Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
 38. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
@@ -160,3 +159,7 @@
 
 45. Change 'module_file_path' to 'module_path'.
     Change 'module_package_path' to 'module_package'.
+
+46. Provide an object-oriented means for makers in any score to access the
+    contents of the toplevel __metadata__ module for that score. Same for
+    discovering the contents of a score's stylesheets directory.
