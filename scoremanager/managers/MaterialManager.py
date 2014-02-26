@@ -68,6 +68,55 @@ class MaterialManager(PackageManager):
         return self._space_delimited_lowercase_name
 
     @property
+    def _output_material_module_import_statements_and_material_definition(self):
+        from scoremanager import managers
+        if not self.should_have_material_definition_module:
+            return
+        return_attribute_name = [
+            'output_material_module_import_statements',
+            self.material_package_name,
+            ]
+        manager = managers.FileManager(
+            self.material_definition_module_file_path,
+            session=self._session,
+            )
+        result = manager._execute_file_lines(
+            return_attribute_name=return_attribute_name,
+            )
+        return result
+
+    @property
+    def _output_material_module_import_statements_and_output_material_module_body_lines(
+        self):
+        if self.should_have_material_definition_module:
+            pair = \
+                self._output_material_module_import_statements_and_material_definition
+            output_material_module_import_statements, output_material = pair
+        elif self.has_material_package_manager:
+            output_material_module_import_statements = \
+                self.output_material_module_import_statements
+            output_material = \
+                self.make_output_material_from_user_input_wrapper_in_memory()
+        else:
+            raise ValueError
+        if self.should_have_user_input_module:
+            output_material_module_body_lines = \
+                self.make_output_material_module_body_lines(output_material)
+        else:
+            line = '{} = {}'
+            output_material_storage_format = \
+                self.get_tools_package_qualified_repr(output_material)
+            line = line.format(
+                self.material_package_name,
+                output_material_storage_format,
+                )
+            output_material_module_body_lines = [line]
+        return (
+            output_material_module_import_statements,
+            output_material_module_body_lines,
+            )
+
+    @property
     def _user_input_to_action(self):
         superclass = super(MaterialManager, self)
         _user_input_to_action = superclass._user_input_to_action
@@ -571,60 +620,11 @@ class MaterialManager(PackageManager):
     @property
     def output_material_module_body_lines(self):
         if self.should_have_material_definition_module:
-            return self.output_material_module_import_statements_and_output_material_module_body_lines[1]
+            return self._output_material_module_import_statements_and_output_material_module_body_lines[1]
 
     @property
     def output_material_module_file_path(self):
         return os.path.join(self._filesystem_path, 'output_material.py')
-
-    @property
-    def output_material_module_import_statements_and_material_definition(self):
-        from scoremanager import managers
-        if not self.should_have_material_definition_module:
-            return
-        return_attribute_name = [
-            'output_material_module_import_statements',
-            self.material_package_name,
-            ]
-        manager = managers.FileManager(
-            self.material_definition_module_file_path,
-            session=self._session,
-            )
-        result = manager._execute_file_lines(
-            return_attribute_name=return_attribute_name,
-            )
-        return result
-
-    @property
-    def output_material_module_import_statements_and_output_material_module_body_lines(
-        self):
-        if self.should_have_material_definition_module:
-            pair = \
-                self.output_material_module_import_statements_and_material_definition
-            output_material_module_import_statements, output_material = pair
-        elif self.has_material_package_manager:
-            output_material_module_import_statements = \
-                self.output_material_module_import_statements
-            output_material = \
-                self.make_output_material_from_user_input_wrapper_in_memory()
-        else:
-            raise ValueError
-        if self.should_have_user_input_module:
-            output_material_module_body_lines = \
-                self.make_output_material_module_body_lines(output_material)
-        else:
-            line = '{} = {}'
-            output_material_storage_format = \
-                self.get_tools_package_qualified_repr(output_material)
-            line = line.format(
-                self.material_package_name,
-                output_material_storage_format,
-                )
-            output_material_module_body_lines = [line]
-        return (
-            output_material_module_import_statements,
-            output_material_module_body_lines,
-            )
 
     @property
     def output_material_module_manager(self):
@@ -975,7 +975,7 @@ class MaterialManager(PackageManager):
         lines.append('# -*- encoding: utf-8 -*-\n')
         if output_material_module_import_statements is None or \
             output_material_module_body_lines is None:
-            pair = self.output_material_module_import_statements_and_output_material_module_body_lines
+            pair = self._output_material_module_import_statements_and_output_material_module_body_lines
             output_material_module_import_statements = pair[0]
             output_material_module_body_lines = pair[1]
         if output_material_module_import_statements is None:
