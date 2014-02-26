@@ -150,16 +150,17 @@
         scorepackages > scores
         materialpackages > materials
 
-43. Remove all '.'.join() statements. There should be no by-hand package
-    manipulation. Use self._configuration.path_to_package()
-    instead.
-
-44. Implement something to tour everything that can be rewritten and rewrite.
+43. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-45. There's noticeable delay starting ScorePackageManager.
+44. There's noticeable delay starting ScorePackageManager.
     Probably initializing too many wranglers and managers.
     Find a way to delay (and then cache) the initialization of
     ScorePackageManager delegates.
+
+45. Initialize everything with filesystem paths.
+
+46. Remove all calls to ScoreManagerConfiguration.package_to_path().
+    Though preserve ScoreMangerConfiguration.package_to_path() for a while.

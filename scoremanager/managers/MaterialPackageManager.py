@@ -124,28 +124,12 @@ class MaterialPackageManager(PackageManager):
         from scoremanager import managers
         if not self.should_have_user_input_module:
             return
-        if self._package_path.endswith('PackageManager'):
-            parts = self._package_path.split('.')
-            parts = parts[:-1]
-            parent_package_path = '.'.join(parts)
-            package_path = parent_package_path
-        else:
-            package_path = self._package_path
-        user_input_module_package_path = '.'.join([
-            package_path,
-            'user_input',
-            ])
-        user_input_module_file_path = \
-            self._configuration.package_to_path(
-            user_input_module_package_path,
-            is_module=True,
-            )
-        if not os.path.exists(user_input_module_file_path):
-            file(user_input_module_file_path, 'w').write('')
-        user_input_wrapper = self.read_user_input_wrapper_from_disk()
-        if user_input_wrapper:
-            user_input_wrapper._user_input_module_import_statements = \
-                getattr(self, 'user_input_module_import_statements', [])[:]
+        user_input_module_file_path = self.user_input_module_file_path
+        if os.path.exists(self.user_input_module_file_path):
+            user_input_wrapper = self.read_user_input_wrapper_from_disk()
+            if user_input_wrapper:
+                user_input_wrapper._user_input_module_import_statements = \
+                    getattr(self, 'user_input_module_import_statements', [])[:]
         else:
             user_input_wrapper = self.initialize_empty_user_input_wrapper()
         return user_input_wrapper
@@ -469,7 +453,12 @@ class MaterialPackageManager(PackageManager):
     @property
     def illustration_builder_package_path(self):
         if self.should_have_illustration_builder_module:
-            return '.'.join([self._package_path, 'illustration_builder'])
+            path = os.path.join(
+                self._filesystem_path, 
+                'illustration_builder.py',
+                )
+            package = self._configuration.path_to_package(path)
+            return package
 
     @property
     def illustration_ly_file_manager(self):
@@ -534,12 +523,21 @@ class MaterialPackageManager(PackageManager):
     @property
     def material_definition_module_file_path(self):
         if self.should_have_material_definition_module:
-            return os.path.join(self._filesystem_path, 'material_definition.py')
+            path = os.path.join(
+                self._filesystem_path, 
+                'material_definition.py',
+                )
+            return path
 
     @property
     def material_definition_package_path(self):
         if self.should_have_material_definition_module:
-            return '.'.join([self._package_path, 'material_definition'])
+            path = os.path.join(
+                self._filesystem_path,
+                'material_definition.py',
+                )
+            package = self._configuration.path_to_package(path)
+            return package
 
     @property
     def material_package_directory(self):
@@ -725,8 +723,9 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def user_input_module_package_path(self):
-        if self.should_have_user_input_module:
-            return '.'.join([self._package_path, 'user_input'])
+        file_path = self.user_input_module_file_path
+        package = self._configuration.path_to_package(file_path)
+        return package
 
     ### PUBLIC METHODS ###
 
