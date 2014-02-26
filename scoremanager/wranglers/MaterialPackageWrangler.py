@@ -36,7 +36,7 @@ class MaterialPackageWrangler(PackageWrangler):
         from scoremanager import wranglers
         superclass = super(MaterialPackageWrangler, self)
         superclass.__init__(session=session)
-        self._material_package_manager_wrangler = \
+        self._material_manager_wrangler = \
             wranglers.MaterialManagerWrangler(session=self._session)
         self.abjad_storehouse_directory_path = \
             self._configuration.abjad_material_packages_directory_path
@@ -69,9 +69,9 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### PRIVATE METHODS ###
 
-    def _get_appropriate_material_package_manager(
+    def _get_appropriate_material_manager(
         self,
-        material_package_manager_class_name, 
+        material_manager_class_name, 
         filesystem_path,
         ):
         import scoremanager
@@ -79,7 +79,7 @@ class MaterialPackageWrangler(PackageWrangler):
         assert os.path.sep in filesystem_path
         material_package_path = self._configuration.path_to_package(
             filesystem_path)
-        if material_package_manager_class_name is None:
+        if material_manager_class_name is None:
             manager = managers.MaterialManager(
                 filesystem_path=filesystem_path,
                 session=self._session,
@@ -88,20 +88,20 @@ class MaterialPackageWrangler(PackageWrangler):
             command = 'manager = '
             command += 'scoremanager.managers.{}'
             command += '(filesystem_path=filesystem_path, session=self._session)'
-            command = command.format(material_package_manager_class_name)
+            command = command.format(material_manager_class_name)
             try:
                 exec(command)
             except AttributeError:
                 command = 'from {0}.{1}.{1}'
-                command += ' import {1} as material_package_manager_class'
+                command += ' import {1} as material_manager_class'
                 path = self._configuration.user_library_material_packages_directory_path
                 package_path = self._configuration.path_to_package(path)
                 command = command.format(
                     package_path,
-                    material_package_manager_class_name,
+                    material_manager_class_name,
                     )
                 exec(command)
-                manager = material_package_manager_class(
+                manager = material_manager_class(
                     material_package_path, 
                     session=self._session,
                     )
@@ -147,12 +147,12 @@ class MaterialPackageWrangler(PackageWrangler):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
         else:
-            material_package_manager = self._initialize_asset_manager(result)
-            if os.path.exists(material_package_manager._filesystem_path):
-                material_package_manager._run()
+            material_manager = self._initialize_asset_manager(result)
+            if os.path.exists(material_manager._filesystem_path):
+                material_manager._run()
 
     def _initialize_asset_manager(self, package_path):
-        wrangler = self._material_package_manager_wrangler
+        wrangler = self._material_manager_wrangler
         manager = wrangler._initialize_asset_manager(package_path)
         return manager
 
@@ -348,14 +348,14 @@ class MaterialPackageWrangler(PackageWrangler):
 
     def _make_data_package(self, filesystem_path, metadata=None):
         metadata = metadata or {}
-        metadata['material_package_manager_class_name'] = None
+        metadata['material_manager_class_name'] = None
         metadata['should_have_illustration'] = False
         metadata['should_have_user_input_module'] = False
         self._make_material_package(filesystem_path, metadata=metadata)
 
     def _make_handmade_material_package(self, filesystem_path, metadata=None):
         metadata = metadata or {}
-        metadata['material_package_manager_class_name'] = None
+        metadata['material_manager_class_name'] = None
         metadata['should_have_illustration'] = True
         metadata['should_have_user_input_module'] = False
         self._make_material_package(filesystem_path, metadata=metadata)
@@ -378,35 +378,35 @@ class MaterialPackageWrangler(PackageWrangler):
     def _make_managermade_material_package(
         self,
         filesystem_path, 
-        material_package_manager_class_name, 
+        material_manager_class_name, 
         metadata=None,
         ):
         metadata = metadata or {}
         command = 'from scoremanager.managers '
-        command += 'import {} as material_package_manager_class'
-        command = command.format(material_package_manager_class_name)
+        command += 'import {} as material_manager_class'
+        command = command.format(material_manager_class_name)
         try:
             exec(command)
         except ImportError:
-            command = 'from {} import {} as material_package_manager_class'
+            command = 'from {} import {} as material_manager_class'
             path = self._configuration.user_library_material_packages_directory_path
             package_path = self._configuration.path_to_package(path)
             command = command.format(
                 package_path,
-                material_package_manager_class_name,
+                material_manager_class_name,
                 )
             exec(command)
         should_have_user_input_module = getattr(
-            material_package_manager_class, 
+            material_manager_class, 
             'should_have_user_input_module', 
             True,
             )
         should_have_illustration = hasattr(
-            material_package_manager_class, 
+            material_manager_class, 
             'illustration_builder',
             )
-        metadata['material_package_manager_class_name'] = \
-            material_package_manager_class_name
+        metadata['material_manager_class_name'] = \
+            material_manager_class_name
         metadata['should_have_illustration'] = should_have_illustration
         metadata['should_have_user_input_module'] = \
             should_have_user_input_module
@@ -423,18 +423,18 @@ class MaterialPackageWrangler(PackageWrangler):
         metadata['is_material_package'] = True
         assert not os.path.exists(filesystem_path)
         os.mkdir(filesystem_path)
-        string = 'material_package_manager_class_name'
-        material_package_manager_class_name = metadata.get(string)
-        pair = (material_package_manager_class_name, filesystem_path)
-        material_package_manager = self._get_appropriate_material_package_manager(
+        string = 'material_manager_class_name'
+        material_manager_class_name = metadata.get(string)
+        pair = (material_manager_class_name, filesystem_path)
+        material_manager = self._get_appropriate_material_manager(
             *pair)
-        material_package_manager._initializer_file_manager._write_stub()
-        material_package_manager.rewrite_metadata_module(
+        material_manager._initializer_file_manager._write_stub()
+        material_manager.rewrite_metadata_module(
             metadata, 
             prompt=False,
             )
-        material_package_manager.conditionally_write_stub_material_definition_module()
-        material_package_manager.conditionally_write_stub_user_input_module()
+        material_manager.conditionally_write_stub_material_definition_module()
+        material_manager.conditionally_write_stub_user_input_module()
         message = 'material package created: {!r}.'.format(filesystem_path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
@@ -490,16 +490,16 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
-            wrangler = self._material_package_manager_wrangler
+            wrangler = self._material_manager_wrangler
             result = wrangler.select_asset_package_path(
                 cache=True, 
                 clear=False,
                 )
         if self._session._backtrack():
             return
-        material_package_manager_package_path = result
-        material_package_manager_class_name = \
-            material_package_manager_package_path.split('.')[-1]
+        material_manager_package_path = result
+        material_manager_class_name = \
+            material_manager_package_path.split('.')[-1]
         with self._backtracking:
             material_package_path = self.get_available_package_path()
         if self._session._backtrack():
@@ -508,12 +508,12 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_path)
         self._make_managermade_material_package(
             filesystem_path, 
-            material_package_manager_class_name,
+            material_manager_class_name,
             )
         filesystem_path = self._configuration.package_to_path(
             material_package_path)
-        manager = self._get_appropriate_material_package_manager(
-            material_package_manager_class_name, 
+        manager = self._get_appropriate_material_manager(
+            material_manager_class_name, 
             filesystem_path,
             )
         manager._run_first_time()

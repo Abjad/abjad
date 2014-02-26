@@ -81,7 +81,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         directory_paths = (
             self.user_library_directory_path,
             self.user_library_editors_directory_path,
-            self.user_library_material_package_managers_directory_path,
+            self.user_library_material_managers_directory_path,
             self.user_library_material_packages_directory_path,
             )
         for directory_path in directory_paths:
@@ -120,14 +120,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return path
 
     @property
-    def abjad_material_package_managers_directory_path(self):
+    def abjad_material_managers_directory_path(self):
         r'''Gets abjad material managers directory path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.abjad_material_package_managers_directory_path
+                >>> configuration.abjad_material_managers_directory_path
                 '.../scoremanager/managers'
 
         Returns string.
@@ -397,21 +397,21 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         return path
 
     @property
-    def user_library_material_package_managers_directory_path(self):
+    def user_library_material_managers_directory_path(self):
         r'''Gets user library material managers directory path.
 
         ..  container:: example
 
             ::
 
-                >>> configuration.user_library_material_package_managers_directory_path
-                '.../material_package_managers'
+                >>> configuration.user_library_material_managers_directory_path
+                '.../material_managers'
 
         Returns string.
         '''
         path = os.path.join(
             self.user_library_directory_path,
-            'material_package_managers',
+            'material_managers',
             )
         return path
 
@@ -508,14 +508,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                     ])
             return result
         elif filesystem_path.startswith(
-            self.user_library_material_package_managers_directory_path):
+            self.user_library_material_managers_directory_path):
             return '.'.join([
                 self._user_library_directory_name,
                 'material_packages',
                 os.path.basename(filesystem_path),
                 ])
         elif filesystem_path.startswith(
-            self.abjad_material_package_managers_directory_path):
+            self.abjad_material_managers_directory_path):
             prefix_length = len(self.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(
             self.abjad_material_packages_directory_path):

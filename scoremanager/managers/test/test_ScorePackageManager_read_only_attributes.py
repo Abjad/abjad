@@ -30,7 +30,7 @@ def test_ScorePackageManager_read_only_attributes_01():
         scoremanager.managers.DirectoryManager,
         )
     assert isinstance(
-        package_manager._material_package_manager_wrangler,
+        package_manager._material_manager_wrangler,
         scoremanager.wranglers.MaterialManagerWrangler,
         )
     assert isinstance(

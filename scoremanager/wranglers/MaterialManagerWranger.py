@@ -15,7 +15,7 @@ class MaterialManagerWrangler(PackageWrangler):
         ::
 
             >>> score_manager = scoremanager.core.ScoreManager()
-            >>> wrangler = score_manager._material_package_manager_wrangler
+            >>> wrangler = score_manager._material_manager_wrangler
             >>> wrangler
             MaterialManagerWrangler()
 
@@ -27,9 +27,9 @@ class MaterialManagerWrangler(PackageWrangler):
         superclass = super(MaterialManagerWrangler, self)
         superclass.__init__(session=session)
         self.abjad_storehouse_directory_path = \
-            self._configuration.abjad_material_package_managers_directory_path
+            self._configuration.abjad_material_managers_directory_path
         self.user_storehouse_directory_path = \
-            self._configuration.user_library_material_package_managers_directory_path
+            self._configuration.user_library_material_managers_directory_path
         self._human_readable_target_name = 'material manager'
         self.forbidden_directory_entries = (
             'InventoryMaterialManager.py',
@@ -66,41 +66,41 @@ class MaterialManagerWrangler(PackageWrangler):
             package_path = self._configuration.path_to_package(package_path)
         else:
             filesystem_path = self._configuration.package_to_path(package_path)
-        #material_package_manager = managers.MaterialManager(
+        #material_manager = managers.MaterialManager(
         #    package_path, session=self._session)
-        material_package_manager = managers.MaterialManager(
+        material_manager = managers.MaterialManager(
             filesystem_path=filesystem_path, 
             session=self._session,
             )
-        if 'managers' in material_package_manager._filesystem_path:
+        if 'managers' in material_manager._filesystem_path:
             most, last = os.path.split(
-                material_package_manager._filesystem_path)
-            material_package_manager_class_name = last
+                material_manager._filesystem_path)
+            material_manager_class_name = last
         else:
-            material_package_manager_class_name = \
-                material_package_manager.material_package_manager_class_name
-        if material_package_manager_class_name is not None:
-            material_package_manager_class = None
+            material_manager_class_name = \
+                material_manager.material_manager_class_name
+        if material_manager_class_name is not None:
+            material_manager_class = None
             command = 'from scoremanager'
             command += '.managers '
-            command += 'import {} as material_package_manager_class'
-            command = command.format(material_package_manager_class_name)
+            command += 'import {} as material_manager_class'
+            command = command.format(material_manager_class_name)
             try:
                 exec(command)
             except ImportError:
-                command = 'from {} import {} as material_package_manager_class'
+                command = 'from {} import {} as material_manager_class'
                 path = self._configuration.user_library_material_packages_directory_path
                 package_path = self._configuration.path_to_package(path)
                 command = command.format(
                     package_path,
-                    material_package_manager_class_name,
+                    material_manager_class_name,
                     )
                 exec(command)
-            material_package_manager = material_package_manager_class(
+            material_manager = material_manager_class(
                 filesystem_path=filesystem_path, 
                 session=self._session,
                 )
-        return material_package_manager
+        return material_manager
 
     def _is_valid_directory_entry(self, directory_entry):
         if directory_entry in ('test', 'stylesheets'):

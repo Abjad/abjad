@@ -27,7 +27,7 @@ class ScoreManager(ScoreManagerObject):
         self._segment_package_wrangler = wrangler
         wrangler = wranglers.MaterialManagerWrangler(
             session=self._session)
-        self._material_package_manager_wrangler = wrangler
+        self._material_manager_wrangler = wrangler
         wrangler = wranglers.MaterialPackageWrangler(session=self._session)
         self._material_package_wrangler = wrangler
         wrangler = wranglers.ScorePackageWrangler(session=self._session)

@@ -334,7 +334,7 @@ class PromptMakerMixin(AbjadObject):
             default_value=default_value,
             )
 
-    def append_material_package_manager_class_name(
+    def append_material_manager_class_name(
         self, 
         spaced_attribute_name, 
         default_value=None,
