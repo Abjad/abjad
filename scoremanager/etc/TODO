@@ -165,5 +165,3 @@
     Probably initializing too many wranglers and managers.
     Find a way to delay (and then cache) the initialization of
     ScorePackageManager delegates.
-
-46. Implement __slots__ on Session.
