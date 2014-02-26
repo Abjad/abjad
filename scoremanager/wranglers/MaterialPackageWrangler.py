@@ -92,10 +92,8 @@ class MaterialPackageWrangler(PackageWrangler):
             except AttributeError:
                 command = 'from {0}.{1}.{1}'
                 command += ' import {1} as material_package_manager_class'
-                package_path = '.'.join([
-                    self._configuration._user_library_directory_name,
-                    'material_packages',
-                    ])
+                path = self._configuration.user_library_material_packages_directory_path
+                package_path = self._configuration.path_to_package(path)
                 command = command.format(
                     package_path,
                     material_package_manager_class_name,
@@ -389,10 +387,8 @@ class MaterialPackageWrangler(PackageWrangler):
             exec(command)
         except ImportError:
             command = 'from {} import {} as material_package_manager_class'
-            package_path = '.'.join([
-                self._configuration._user_library_directory_name,
-                'material_packages',
-                ])
+            path = self._configuration.user_library_material_packages_directory_path
+            package_path = self._configuration.path_to_package(path)
             command = command.format(
                 package_path,
                 material_package_manager_class_name,
