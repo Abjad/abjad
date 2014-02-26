@@ -19,6 +19,8 @@ def test_InstrumentEditor_base_states_01():
       "     4: short instrument name markup (sm): \markup { Acc. }",
       '     5: range (rg): [E1, C8]',
       '     6: clefs (cf): treble, bass',
+      '',
+      '     done (done)',
       '']
 
 

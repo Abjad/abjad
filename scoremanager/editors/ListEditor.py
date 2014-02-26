@@ -65,21 +65,20 @@ class ListEditor(Editor):
             super(ListEditor, self)._handle_main_menu_result(result)
 
     def _make_main_menu(self):
-        main_menu = self._io_manager.make_menu(where=self._where)
-        keyed_attribute_section = main_menu.make_keyed_attribute_section()
+        menu = self._io_manager.make_menu(where=self._where)
+        keyed_attribute_section = menu.make_keyed_attribute_section()
         keyed_attribute_section.menu_entries = self.target_attribute_tokens
-        numbered_section = main_menu.make_numbered_section()
+        numbered_section = menu.make_numbered_section()
         self._numbered_section = numbered_section
         numbered_section.menu_entries = self.target_summary_lines
-        command_section = main_menu.make_command_section()
-        command_section.append(('add elements', 'add'))
+        section = menu.make_command_section(name='add, move, remove')
+        section.append(('add elements', 'add'))
         if 1 < len(self.items):
-            command_section.append(('move elements', 'mv'))
+            section.append(('move elements', 'mv'))
         if 0 < len(self.items):
-            command_section.append(('remove elements', 'rm'))
-        hidden_section = main_menu.make_command_section(is_secondary=True)
-        hidden_section.append(('done', 'done'))
-        return main_menu
+            section.append(('remove elements', 'rm'))
+        self._io_manager._make_done_menu_section(menu)
+        return menu
 
     ### PUBLIC PROPERTIES ###
 

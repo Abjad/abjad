@@ -157,6 +157,13 @@ class IOManager(IOManager):
                 return True
         return False
 
+    def _make_done_menu_section(self, menu):
+        section = menu.make_command_section(
+            name='done',
+            )
+        section.append(('done', 'done'))
+        return section
+
     def _make_initializer_menu_section(self, menu, has_initializer=True):
         if not has_initializer:
             command_section = menu.make_command_section(name='initializer')
@@ -170,6 +177,7 @@ class IOManager(IOManager):
         section.append(('initializer - remove', 'inrm'))
         section.append(('initializer - stub', 'ins'))
         section.append(('initializer - view', 'inv'))
+        return section
 
     def _make_material_tour_menu_section(self, menu):
         section = menu.make_command_section(

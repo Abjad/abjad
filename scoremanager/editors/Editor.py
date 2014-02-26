@@ -68,7 +68,7 @@ class Editor(ScoreManagerObject):
             ) 
         menu_entries = self.target_attribute_tokens
         keyed_attribute_section.menu_entries = menu_entries
-        menu.hidden_section.append(('done', 'done'))
+        self._io_manager._make_done_menu_section(menu)
         return menu
 
     def _run(
