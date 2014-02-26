@@ -161,3 +161,6 @@
 
 45. Remove all calls to ScoreManagerConfiguration.package_to_path().
     Though preserve ScoreMangerConfiguration.package_to_path() for a while.
+
+46. Change 'module_file_path' to 'module_path'.
+    Change 'module_package_path' to 'module_package'.

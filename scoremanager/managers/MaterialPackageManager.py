@@ -148,7 +148,7 @@ class MaterialPackageManager(PackageManager):
         ):
         name = 'stylesheets'
         section = menu.make_command_section(name=name)
-        if self.has_output_material and self.should_have_illustration:
+        if self.has_output_material:
             section = menu.make_command_section(name=name)
             section.append(('stylesheet - edit', 'sse'))
             section.append(('stylesheet - select', 'sss'))
@@ -160,25 +160,24 @@ class MaterialPackageManager(PackageManager):
         name = 'illustration builder'
         command_section = main_menu.make_command_section(name=name)
         if self.has_output_material:
-            if self.should_have_illustration:
-                if not self.has_illustration_builder_module:
-                    material_package_path = self._package_path
-                    material_package_name = \
-                        material_package_path.split('.')[-1]
-                    self.write_stub_illustration_builder_module(
-                        material_package_path,
-                        material_package_name,
-                        prompt=False,
-                        )
-                command_section.append(('illustration builder - edit', 'ibe'))
-                if self.has_output_material:
-                    string = 'illustration builder - edit & execute'
-                    command_section.append((string, 'ibex'))
-                    string = 'illustration builder - execute'
-                    command_section.append((string, 'ibx'))
-                string = 'illustration builder - remove'
-                command_section.append((string, 'ibrm'))
-                command_section.append(('illustration builder - stub', 'ibs'))
+            if not self.has_illustration_builder_module:
+                material_package_path = self._package_path
+                material_package_name = \
+                    material_package_path.split('.')[-1]
+                self.write_stub_illustration_builder_module(
+                    material_package_path,
+                    material_package_name,
+                    prompt=False,
+                    )
+            command_section.append(('illustration builder - edit', 'ibe'))
+            if self.has_output_material:
+                string = 'illustration builder - edit & execute'
+                command_section.append((string, 'ibex'))
+                string = 'illustration builder - execute'
+                command_section.append((string, 'ibx'))
+            string = 'illustration builder - remove'
+            command_section.append((string, 'ibrm'))
+            command_section.append(('illustration builder - stub', 'ibs'))
 
     def _make_illustration_ly_menu_section(self, menu):
         if self.has_output_material or self.has_illustration_ly:
@@ -196,7 +195,6 @@ class MaterialPackageManager(PackageManager):
         main_menu,
         ):
         name = 'illustration pdf'
-        #has_illustration_pdf_section = False
         if self.has_output_material or self.has_illustration_pdf:
             command_section = main_menu.make_command_section(name=name)
         if self.has_output_material:
@@ -377,34 +375,25 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def has_illustration_builder_module(self):
-        if self.should_have_illustration_builder_module:
-            return os.path.exists(self.illustration_builder_module_file_path)
-        return False
+        return os.path.exists(self.illustration_builder_module_file_path)
 
     @property
     def has_illustration_ly(self):
-        if self.should_have_illustration_ly:
-            return os.path.exists(self.illustration_ly_file_path)
-        return False
+        return os.path.exists(self.illustration_ly_file_path)
 
     @property
     def has_illustration_pdf(self):
-        if self.should_have_illustration_pdf:
-            return os.path.exists(self.illustration_pdf_file_path)
-        return False
+        return os.path.exists(self.illustration_pdf_file_path)
 
     @property
     def has_material_definition(self):
-        if self.should_have_material_definition_module:
-            if self.has_material_definition_module:
-                return self.material_definition is not None
+        if self.has_material_definition_module:
+            return self.material_definition is not None
         return False
 
     @property
     def has_material_definition_module(self):
-        if self.should_have_material_definition_module:
-            return os.path.exists(self.material_definition_module_file_path)
-        return False
+        return os.path.exists(self.material_definition_module_file_path)
 
     @property
     def has_material_package_manager(self):
@@ -412,9 +401,8 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def has_output_material(self):
-        if self.should_have_output_material_module:
-            if self.has_output_material_module:
-                return True
+        if self.has_output_material_module:
+            return True
         return False
 
     @property
@@ -423,9 +411,7 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def has_output_material_module(self):
-        if self.should_have_output_material_module:
-            return os.path.exists(self.output_material_module_file_path)
-        return False
+        return os.path.exists(self.output_material_module_file_path)
 
     @property
     def has_user_input_module(self):
@@ -447,8 +433,10 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def illustration_builder_module_file_path(self):
-        if self.should_have_illustration_builder_module:
-            return os.path.join(self._filesystem_path, 'illustration_builder.py')
+        return os.path.join(
+            self._filesystem_path, 
+            'illustration_builder.py',
+            )
 
     @property
     def illustration_builder_module_manager(self):
@@ -460,13 +448,12 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def illustration_builder_package_path(self):
-        if self.should_have_illustration_builder_module:
-            path = os.path.join(
-                self._filesystem_path, 
-                'illustration_builder.py',
-                )
-            package = self._configuration.path_to_package(path)
-            return package
+        path = os.path.join(
+            self._filesystem_path, 
+            'illustration_builder.py',
+            )
+        package = self._configuration.path_to_package(path)
+        return package
 
     @property
     def illustration_ly_file_manager(self):
@@ -480,8 +467,7 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def illustration_ly_file_path(self):
-        if self.should_have_illustration_ly:
-            return os.path.join(self._filesystem_path, 'illustration.ly')
+        return os.path.join(self._filesystem_path, 'illustration.ly')
 
     @property
     def illustration_pdf_file_manager(self):
@@ -495,8 +481,7 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def illustration_pdf_file_path(self):
-        if self.should_have_illustration_pdf:
-            return os.path.join(self._filesystem_path, 'illustration.pdf')
+        return os.path.join(self._filesystem_path, 'illustration.pdf')
 
     @property
     def illustration_with_stylesheet(self):
@@ -530,22 +515,20 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def material_definition_module_file_path(self):
-        if self.should_have_material_definition_module:
-            path = os.path.join(
-                self._filesystem_path, 
-                'material_definition.py',
-                )
-            return path
+        path = os.path.join(
+            self._filesystem_path, 
+            'material_definition.py',
+            )
+        return path
 
     @property
     def material_definition_package_path(self):
-        if self.should_have_material_definition_module:
-            path = os.path.join(
-                self._filesystem_path,
-                'material_definition.py',
-                )
-            package = self._configuration.path_to_package(path)
-            return package
+        path = os.path.join(
+            self._filesystem_path,
+            'material_definition.py',
+            )
+        package = self._configuration.path_to_package(path)
+        return package
 
     @property
     def material_package_directory(self):
@@ -603,8 +586,7 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def output_material_module_file_path(self):
-        if self.should_have_output_material_module:
-            return os.path.join(self._filesystem_path, 'output_material.py')
+        return os.path.join(self._filesystem_path, 'output_material.py')
 
     @property
     def output_material_module_import_statements_and_material_definition(self):
@@ -639,7 +621,6 @@ class MaterialPackageManager(PackageManager):
         else:
             raise ValueError
         if self.should_have_user_input_module:
-        #if hasattr(self, 'make_output_material_module_body_lines'):
             output_material_module_body_lines = \
                 self.make_output_material_module_body_lines(output_material)
         else:
@@ -665,44 +646,8 @@ class MaterialPackageManager(PackageManager):
             )
 
     @property
-    def output_material_module_path(self):
-        if self.should_have_output_material_module:
-            return '{}.output_material'.format(self._package_path)
-
-    @property
-    def should_have_illustration(self):
-        return self._get_metadatum('should_have_illustration')
-
-    @property
-    def should_have_illustration_builder_module(self):
-        if self.should_have_illustration:
-            if self.material_package_manager_class_name is None:
-                return True
-        return False
-
-    @property
-    def should_have_illustration_ly(self):
-        return self.should_have_illustration
-
-    @property
-    def should_have_illustration_pdf(self):
-        return self.should_have_illustration
-
-    @property
-    def should_have_initializer(self):
-        return True
-
-    @property
     def should_have_material_definition_module(self):
         return self.material_package_manager_class_name is None
-
-    @property
-    def should_have_output_material_module(self):
-        return True
-
-    @property
-    def should_have_stylesheet(self):
-        return self.should_have_illustration
 
     @property
     def space_delimited_material_package_name(self):
@@ -751,8 +696,7 @@ class MaterialPackageManager(PackageManager):
         prompt=False,
         ):
         if self.should_have_user_input_module:
-            self.write_stub_user_input_module(
-                prompt=prompt)
+            self.write_stub_user_input_module(prompt=prompt)
 
     def edit_illustration_builder_module(self):
         self.illustration_builder_module_manager.edit()
@@ -1087,6 +1031,7 @@ class MaterialPackageManager(PackageManager):
         lines.append('\n')
         line = 'score, treble_staff, bass_staff ='
         line += ' scoretools.make_piano_score_from_leaves({})\n'
+        lines.append(line)
         line = line.format(material_package_name)
         line = 'illustration = lilypondfiletools.'
         line += 'make_basic_lilypond_file(score)\n'
