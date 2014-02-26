@@ -128,13 +128,13 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             ::
 
                 >>> configuration.abjad_material_package_managers_directory_path
-                '.../scoremanager/materialpackagemanagers'
+                '.../scoremanager/materialmanagers'
 
         Returns string.
         '''
         path = os.path.join(
             self.score_manager_directory_path,
-            'materialpackagemanagers',
+            'materialmanagers',
             )
         return path
 

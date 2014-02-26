@@ -72,7 +72,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             filesystem_path=filesystem_path, 
             session=self._session,
             )
-        if 'materialpackagemanagers' in material_package_manager._filesystem_path:
+        if 'materialmanagers' in material_package_manager._filesystem_path:
             most, last = os.path.split(
                 material_package_manager._filesystem_path)
             material_package_manager_class_name = last
@@ -82,7 +82,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         if material_package_manager_class_name is not None:
             material_package_manager_class = None
             command = 'from scoremanager'
-            command += '.materialpackagemanagers '
+            command += '.materialmanagers '
             command += 'import {} as material_package_manager_class'
             command = command.format(material_package_manager_class_name)
             try:
@@ -152,15 +152,15 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
-            '.../materialpackagemanagers/ArticulationHandlerMaterialPackageManager.py'
-            '.../materialpackagemanagers/DynamicHandlerMaterialPackageManager.py'
-            '.../materialpackagemanagers/ListMaterialPackageManager.py'
-            '.../materialpackagemanagers/MarkupInventoryMaterialPackageManager.py'
-            '.../materialpackagemanagers/OctaveTranspositionMappingInventoryMaterialPackageManager.py'
-            '.../materialpackagemanagers/PitchRangeInventoryMaterialPackageManager.py'
-            '.../materialpackagemanagers/RhythmMakerMaterialPackageManager.py'
-            '.../materialpackagemanagers/SargassoMeasureMaterialPackageManager.py'
-            '.../materialpackagemanagers/TempoInventoryMaterialPackageManager.py'
+            '.../materialmanagers/ArticulationHandlerMaterialPackageManager.py'
+            '.../materialmanagers/DynamicHandlerMaterialPackageManager.py'
+            '.../materialmanagers/ListMaterialPackageManager.py'
+            '.../materialmanagers/MarkupInventoryMaterialPackageManager.py'
+            '.../materialmanagers/OctaveTranspositionMappingInventoryMaterialPackageManager.py'
+            '.../materialmanagers/PitchRangeInventoryMaterialPackageManager.py'
+            '.../materialmanagers/RhythmMakerMaterialPackageManager.py'
+            '.../materialmanagers/SargassoMeasureMaterialPackageManager.py'
+            '.../materialmanagers/TempoInventoryMaterialPackageManager.py'
 
         Returns list.
         '''
@@ -191,15 +191,15 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
-            ArticulationHandlerMaterialPackageManager('.../materialpackagemanagers/ArticulationHandlerMaterialPackageManager')
-            DynamicHandlerMaterialPackageManager('.../materialpackagemanagers/DynamicHandlerMaterialPackageManager')
-            ListMaterialPackageManager('.../materialpackagemanagers/ListMaterialPackageManager')
-            MarkupInventoryMaterialPackageManager('.../materialpackagemanagers/MarkupInventoryMaterialPackageManager')
-            OctaveTranspositionMappingInventoryMaterialPackageManager('.../materialpackagemanagers/OctaveTranspositionMappingInventoryMaterialPackageManager')
-            PitchRangeInventoryMaterialPackageManager('.../materialpackagemanagers/PitchRangeInventoryMaterialPackageManager')
-            RhythmMakerMaterialPackageManager('.../materialpackagemanagers/RhythmMakerMaterialPackageManager')
-            SargassoMeasureMaterialPackageManager('.../materialpackagemanagers/SargassoMeasureMaterialPackageManager')
-            TempoInventoryMaterialPackageManager('.../materialpackagemanagers/TempoInventoryMaterialPackageManager')
+            ArticulationHandlerMaterialPackageManager('.../materialmanagers/ArticulationHandlerMaterialPackageManager')
+            DynamicHandlerMaterialPackageManager('.../materialmanagers/DynamicHandlerMaterialPackageManager')
+            ListMaterialPackageManager('.../materialmanagers/ListMaterialPackageManager')
+            MarkupInventoryMaterialPackageManager('.../materialmanagers/MarkupInventoryMaterialPackageManager')
+            OctaveTranspositionMappingInventoryMaterialPackageManager('.../materialmanagers/OctaveTranspositionMappingInventoryMaterialPackageManager')
+            PitchRangeInventoryMaterialPackageManager('.../materialmanagers/PitchRangeInventoryMaterialPackageManager')
+            RhythmMakerMaterialPackageManager('.../materialmanagers/RhythmMakerMaterialPackageManager')
+            SargassoMeasureMaterialPackageManager('.../materialmanagers/SargassoMeasureMaterialPackageManager')
+            TempoInventoryMaterialPackageManager('.../materialmanagers/TempoInventoryMaterialPackageManager')
 
         Returns list.
         '''
@@ -269,15 +269,15 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
-            'scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageManager'
-            'scoremanager.materialpackagemanagers.DynamicHandlerMaterialPackageManager'
-            'scoremanager.materialpackagemanagers.ListMaterialPackageManager'
-            'scoremanager.materialpackagemanagers.MarkupInventoryMaterialPackageManager'
-            'scoremanager.materialpackagemanagers.OctaveTranspositionMappingInventoryMaterialPackageManager'
-            'scoremanager.materialpackagemanagers.PitchRangeInventoryMaterialPackageManager'
-            'scoremanager.materialpackagemanagers.RhythmMakerMaterialPackageManager'
-            'scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager'
-            'scoremanager.materialpackagemanagers.TempoInventoryMaterialPackageManager'
+            'scoremanager.materialmanagers.ArticulationHandlerMaterialPackageManager'
+            'scoremanager.materialmanagers.DynamicHandlerMaterialPackageManager'
+            'scoremanager.materialmanagers.ListMaterialPackageManager'
+            'scoremanager.materialmanagers.MarkupInventoryMaterialPackageManager'
+            'scoremanager.materialmanagers.OctaveTranspositionMappingInventoryMaterialPackageManager'
+            'scoremanager.materialmanagers.PitchRangeInventoryMaterialPackageManager'
+            'scoremanager.materialmanagers.RhythmMakerMaterialPackageManager'
+            'scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager'
+            'scoremanager.materialmanagers.TempoInventoryMaterialPackageManager'
 
         Returns list.
         '''
@@ -308,7 +308,7 @@ class MaterialPackageManagerWrangler(PackageWrangler):
             ...     user_score_packages=False,
             ...     ):
             ...     x
-            '.../scoremanager/materialpackagemanagers'
+            '.../scoremanager/materialmanagers'
 
         Returns list.
         '''

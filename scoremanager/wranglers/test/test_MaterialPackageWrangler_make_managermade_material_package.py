@@ -19,7 +19,7 @@ def test_MaterialPackageWrangler_make_managermade_material_package_01():
         command = 'sargasso testsargasso q'
         wrangler.make_managermade_material_package(pending_user_input=command)
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
             filesystem_path=filesystem_path)
         assert manager.is_managermade
         assert manager._list_directory() == [

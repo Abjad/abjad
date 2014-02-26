@@ -19,7 +19,7 @@ def test_ListMaterialPackageManager_01():
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testlist')
         manager = \
-            scoremanager.materialpackagemanagers.ListMaterialPackageManager(
+            scoremanager.materialmanagers.ListMaterialPackageManager(
                 filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 

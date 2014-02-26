@@ -86,7 +86,7 @@ class MaterialPackageWrangler(PackageWrangler):
                 )
         else:
             command = 'manager = '
-            command += 'scoremanager.materialpackagemanagers.{}'
+            command += 'scoremanager.materialmanagers.{}'
             command += '(filesystem_path=filesystem_path, session=self._session)'
             command = command.format(material_package_manager_class_name)
             try:
@@ -382,7 +382,7 @@ class MaterialPackageWrangler(PackageWrangler):
         metadata=None,
         ):
         metadata = metadata or {}
-        command = 'from scoremanager.materialpackagemanagers '
+        command = 'from scoremanager.materialmanagers '
         command += 'import {} as material_package_manager_class'
         command = command.format(material_package_manager_class_name)
         try:

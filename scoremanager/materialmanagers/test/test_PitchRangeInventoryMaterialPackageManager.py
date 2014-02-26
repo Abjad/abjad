@@ -20,7 +20,7 @@ def test_PitchRangeInventoryMaterialPackageManager_01():
         #string = 'scoremanager.materialpackages.testpir'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testpir')
-        manager = scoremanager.materialpackagemanagers.PitchRangeInventoryMaterialPackageManager(
+        manager = scoremanager.materialmanagers.PitchRangeInventoryMaterialPackageManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 
@@ -52,7 +52,7 @@ def test_PitchRangeInventoryMaterialPackageManager_02():
         #string = 'scoremanager.materialpackages.testpir'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testpir')
-        manager = scoremanager.materialpackagemanagers.PitchRangeInventoryMaterialPackageManager(
+        manager = scoremanager.materialmanagers.PitchRangeInventoryMaterialPackageManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 

@@ -21,7 +21,7 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
         string = 'lmm nmm sargasso testsargasso default q'
         score_manager._run(pending_user_input=string)
         assert score_manager._configuration.package_exists(name)
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
             filesystem_path=filesystem_path)
         assert manager.is_managermade
         assert manager._list_directory() == [
@@ -57,7 +57,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
         string = 'red~example~score m nmm sargasso testsargasso default q'
         score_manager._run(pending_user_input=string)
         assert score_manager._configuration.package_exists(name)
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
             filesystem_path=filesystem_path)
         assert manager.is_managermade
         assert manager._list_directory() == [
@@ -88,7 +88,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #            'm nmm testsargasso default default '
 #            'testsargasso incanned boilerplate_exception.py default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
-#        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
+#        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not manager.has_output_material_module
 #        assert not manager.has_illustration_builder_module
@@ -114,7 +114,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #            'testsargasso incanned boilerplate_exception.py default '
 #            'inr yes yes default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
-#        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
+#        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not manager.has_output_material_module
 #        assert not manager.has_illustration_builder_module
@@ -139,7 +139,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #            'testsargasso mdbp boilerplate_testsargasso_material_definition.py default '
 #            'omm default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
-#        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
+#        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert manager._list_directory() == ['__init__.py',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
 #        assert manager.has_illustration_builder_module
@@ -165,7 +165,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #            'lmm nmm testsargasso default default '
 #            'testsargasso mdrm default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
-#        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
+#        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert manager._list_directory() == ['__init__.py']
 #        assert not manager.has_material_definition_module
 #        assert not manager.has_output_material_module
@@ -190,7 +190,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #            'lmm nmm testsargasso default default '
 #            'testsargasso mds default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
-#        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
+#        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not manager.has_output_material_module
 #        assert not manager.has_illustration_builder_module
@@ -216,7 +216,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #            'omm default '
 #            'omrm default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
-#        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
+#        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not manager.has_output_material_module
 #        assert not manager.has_illustration_builder_module
@@ -241,7 +241,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #            'lmm nmm testsargasso default default '
 #            'testsargasso mdbp boilerplate_exception.py default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
-#        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
+#        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not manager.has_output_material_module
 #        assert not manager.has_illustration_builder_module
@@ -267,7 +267,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #            'omm default '
 #            'ombp boilerplate_exception.py default q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
-#        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
+#        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert manager._list_directory() == ['__init__.py',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
 #        assert manager.has_illustration_builder_module
@@ -295,7 +295,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #            'pdfm default '
 #            'q')
 #        assert score_manager._configuration.package_exists('scoremanager.materialpackages.testsargasso')
-#        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
+#        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager('scoremanager.materialpackages.testsargasso')
 #        assert manager._list_directory() == [
 #            '__init__.py', 'illustration.ly', 'illustration.pdf',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']

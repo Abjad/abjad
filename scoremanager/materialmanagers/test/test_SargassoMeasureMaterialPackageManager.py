@@ -20,7 +20,7 @@ def test_SargassoMeasureMaterialPackageManager_01():
         #string = 'scoremanager.materialpackages.testsargasso'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 
@@ -62,7 +62,7 @@ def test_SargassoMeasureMaterialPackageManager_02():
         #string = 'scoremanager.materialpackages.testsargasso'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 
@@ -103,7 +103,7 @@ def test_SargassoMeasureMaterialPackageManager_03():
         #string = 'scoremanager.materialpackages.testsargasso'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 
@@ -144,7 +144,7 @@ def test_SargassoMeasureMaterialPackageManager_04():
         #string = 'scoremanager.materialpackages.testsargasso'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 
@@ -186,7 +186,7 @@ def test_SargassoMeasureMaterialPackageManager_05():
         #string = 'scoremanager.materialpackages.testsargasso'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 
@@ -228,7 +228,7 @@ def test_SargassoMeasureMaterialPackageManager_06():
         #string = 'scoremanager.materialpackages.testsargasso'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 
@@ -269,7 +269,7 @@ def test_SargassoMeasureMaterialPackageManager_07():
         #string = 'scoremanager.materialpackages.testsargasso'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 
@@ -310,7 +310,7 @@ def test_SargassoMeasureMaterialPackageManager_08():
         #string = 'scoremanager.materialpackages.testsargasso'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 

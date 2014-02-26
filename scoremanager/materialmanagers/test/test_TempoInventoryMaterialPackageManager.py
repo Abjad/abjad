@@ -19,7 +19,7 @@ def test_TempoInventoryMaterialPackageManager_01():
         #string = 'scoremanager.materialpackages.testtempoinventory'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testtempoinventory')
-        manager = scoremanager.materialpackagemanagers.TempoInventoryMaterialPackageManager(
+        manager = scoremanager.materialmanagers.TempoInventoryMaterialPackageManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 

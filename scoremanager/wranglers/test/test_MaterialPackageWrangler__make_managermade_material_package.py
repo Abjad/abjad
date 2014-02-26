@@ -22,7 +22,7 @@ def test_MaterialPackageWrangler__make_managermade_material_package_01():
             'SargassoMeasureMaterialPackageManager',
             )
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
             filesystem_path=filesystem_path)
         assert manager.is_managermade
         assert manager._list_directory() == [
@@ -68,7 +68,7 @@ def test_MaterialPackageWrangler__make_managermade_material_package_03():
             metadata=metadata,
             )
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
             filesystem_path=filesystem_path)
         assert manager.is_managermade
         assert manager._list_directory() == [

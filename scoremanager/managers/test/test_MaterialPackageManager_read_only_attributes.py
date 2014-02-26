@@ -81,7 +81,7 @@ def test_MaterialPackageManager_read_only_attributes_02():
         configuration.abjad_material_packages_directory_path,
         'example_sargasso_measures',
         )
-    manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+    manager = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager(
         filesystem_path=filesystem_path,    
         )
     assert manager._breadcrumb == 'example sargasso measures'
@@ -120,7 +120,7 @@ def test_MaterialPackageManager_read_only_attributes_02():
         'example_sargasso_measures',
         )
     assert manager.material_package_directory == file_path
-    maker = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager
+    maker = scoremanager.materialmanagers.SargassoMeasureMaterialPackageManager
     assert manager.material_package_manager is maker
     string = 'SargassoMeasureMaterialPackageManager'
     assert manager.material_package_manager_class_name == string

@@ -63,7 +63,7 @@
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
 22. Remove empty ...
-        .../materialpackagemanagers/user_input.py
+        .../materialmanagers/user_input.py
     ... module.
 
 23. These four classes can all be collapsed into one:
@@ -146,7 +146,7 @@
 41. Uncomment the TODO in Transcript and make the constraint hold.
 
 42. Maybe time to change these:
-        materialpackagemanagers > materialmanagers
+        materialmanagers > materialmanagers
         materialpackages > materials
 
 43. Implement something to tour everything that can be rewritten and rewrite.

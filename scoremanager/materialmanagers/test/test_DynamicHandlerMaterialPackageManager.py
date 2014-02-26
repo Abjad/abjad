@@ -21,7 +21,7 @@ def test_DynamicHandlerMaterialPackageManager_01():
         #string = 'scoremanager.materialpackages.testdynamichandler'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testdynamichandler')
-        mpp = scoremanager.materialpackagemanagers.DynamicHandlerMaterialPackageManager(
+        mpp = scoremanager.materialmanagers.DynamicHandlerMaterialPackageManager(
             filesystem_path=path)
         assert mpp._list_directory() == [
             '__init__.py', 

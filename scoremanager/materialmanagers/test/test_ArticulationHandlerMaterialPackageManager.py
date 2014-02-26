@@ -20,7 +20,7 @@ def test_ArticulationHandlerMaterialPackageManager_01():
             )
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testarticulationhandler')
-        manager = scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageManager(
+        manager = scoremanager.materialmanagers.ArticulationHandlerMaterialPackageManager(
             filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 
