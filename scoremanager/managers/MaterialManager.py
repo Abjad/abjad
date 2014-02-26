@@ -678,13 +678,6 @@ class MaterialManager(PackageManager):
                 prompt=prompt,
                 )
 
-    def conditionally_write_stub_user_input_module(
-        self,
-        prompt=False,
-        ):
-        if self._should_have_user_input_module:
-            self.write_stub_user_input_module(prompt=prompt)
-
     def edit_illustration_builder_module(self):
         self.illustration_builder_module_manager.edit()
 
@@ -1099,16 +1092,19 @@ class MaterialManager(PackageManager):
     ### PUBLIC METHODS ###
 
     def clear_user_input_wrapper(self, prompt=False):
+        r'''Clears user input wrapper.
+
+        Returns none.
+        '''
         if self.user_input_wrapper_in_memory.is_empty:
-            self._io_manager.proceed(
-                'user input already empty.', prompt=prompt)
+            message = 'user input already empty.'
+            self._io_manager.proceed(message, prompt=prompt)
         else:
             self.user_input_wrapper_in_memory.clear()
             wrapper = self.user_input_wrapper_in_memory
             self.write_user_input_wrapper(wrapper)
-            self._io_manager.proceed(
-                'user input wrapper cleared and written to disk.',
-                prompt=prompt)
+            message = 'user input wrapper cleared and written to disk.'
+            self._io_manager.proceed(message, prompt=prompt)
 
     def display_user_input_demo_values(self, prompt=True):
         lines = []
