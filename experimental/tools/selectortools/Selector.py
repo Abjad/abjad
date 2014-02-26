@@ -123,6 +123,10 @@ class Selector(AbjadObject):
     def by_class(
         self,
         prototype=None):
+        r'''Configures selector to select components of class `prototype`.
+
+        Emits new selector.
+        '''
         from experimental.tools import selectortools
         callback = selectortools.PrototypeSelectorCallback(prototype)
         callbacks = self.callbacks or ()
@@ -130,6 +134,10 @@ class Selector(AbjadObject):
         return type(self)(callbacks)
 
     def by_leaves(self):
+        r'''Configures selector to select leaves.
+
+        Emits new selector.
+        '''
         from experimental.tools import selectortools
         callback = selectortools.PrototypeSelectorCallback(scoretools.Leaf)
         callbacks = self.callbacks or ()
@@ -141,6 +149,11 @@ class Selector(AbjadObject):
         length=None,
         parts=Exact,
         ):
+        r'''Configures selector to selector containers or selections of length
+        `length`.
+
+        Emits new selector.
+        '''
         from experimental.tools import selectortools
         callback = selectortools.LengthSelectorCallback(
             length=length,
@@ -323,6 +336,7 @@ class Selector(AbjadObject):
                 LogicalTie(Note("e'8"),)
                 LogicalTie(Rest('r8'),)
 
+        Emits new selector.
         '''
         from experimental.tools import selectortools
         callback = selectortools.LogicalTieSelectorCallback(
@@ -339,6 +353,29 @@ class Selector(AbjadObject):
         self,
         prototype=None,
         ):
+        r'''Configures selector to select runs of `prototype`.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
+                >>> selector = selectortools.Selector()
+                >>> prototype = (Note, Chord)
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_run(prototype)
+            
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'8"), Note("d'8"))
+                Selection(Note("e'8"),)
+                Selection(Note("f'8"), Note("g'8"), Note("a'8"))
+
+        Emits new selector.
+        '''
         from experimental.tools import selectortools
         callback = selectortools.RunSelectorCallback(prototype)
         callbacks = self.callbacks or ()
@@ -346,6 +383,29 @@ class Selector(AbjadObject):
         return type(self)(callbacks)
 
     def longer_than(self, count):
+        r'''Configures selector to select containers or selections whose length
+        is longer than `count`.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_run(Note)
+                >>> selector = selector.longer_than(1)
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("d'8"), Note("e'8"))
+                Selection(Note("f'8"), Note("g'8"), Note("a'8"))
+
+        Emits new selector.
+        '''
         from experimental.tools import selectortools
         callback = selectortools.LengthSelectorCallback(
             length=count + 1,
@@ -356,6 +416,29 @@ class Selector(AbjadObject):
         return type(self)(callbacks)
 
     def shorter_than(self, count):
+        r'''Configures selector to select containers or selections whose length
+        is shorter than `count`.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_run(Note)
+                >>> selector = selector.shorter_than(3)
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'8"),)
+                Selection(Note("d'8"), Note("e'8"))
+
+        Emits new selector.
+        '''
         from experimental.tools import selectortools
         callback = selectortools.LengthSelectorCallback(
             length=count - 1,
