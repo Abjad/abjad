@@ -44,7 +44,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    name = 'scoremanager.scorepackages.red_example_score.materials.testsargasso'
+    name = 'scoremanager.scores.red_example_score.materials.testsargasso'
     assert not score_manager._configuration.package_exists(name)
     filesystem_path = os.path.join(
         score_manager._configuration.abjad_score_packages_directory_path,

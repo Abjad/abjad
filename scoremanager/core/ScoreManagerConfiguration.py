@@ -188,13 +188,13 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             ::
 
                 >>> configuration.abjad_score_packages_directory_path
-                '.../scoremanager/scorepackages'
+                '.../scoremanager/scores'
 
         Returns string.
         '''
         path = os.path.join(
             self.score_manager_directory_path,
-            'scorepackages',
+            'scores',
             )
         return path
 
@@ -558,9 +558,9 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 >>> for x in configuration.list_score_directory_paths(
                 ...     abjad=True):
                 ...     x
-                '.../scoremanager/scorepackages/blue_example_score'
-                '.../scoremanager/scorepackages/green_example_score'
-                '.../scoremanager/scorepackages/red_example_score'
+                '.../scoremanager/scores/blue_example_score'
+                '.../scoremanager/scores/green_example_score'
+                '.../scoremanager/scores/red_example_score'
 
         Returns list.
         '''

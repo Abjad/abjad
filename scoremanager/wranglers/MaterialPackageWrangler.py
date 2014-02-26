@@ -181,7 +181,7 @@ class MaterialPackageWrangler(PackageWrangler):
             '.../scoremanager/materialpackages/example_numbers'
             '.../scoremanager/materialpackages/example_pitch_range_inventory'
             '.../scoremanager/materialpackages/example_sargasso_measures'
-            '.../scorepackages/red_example_score/materials/tempo_inventory'
+            '.../scores/red_example_score/materials/tempo_inventory'
 
         Returns list.
         '''
@@ -332,9 +332,9 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     user_score_packages=False):
             ...     x
             '.../scoremanager/materialpackages'
-            '.../scoremanager/scorepackages/blue_example_score/materials'
-            '.../scoremanager/scorepackages/green_example_score/materials'
-            '.../scoremanager/scorepackages/red_example_score/materials'
+            '.../scoremanager/scores/blue_example_score/materials'
+            '.../scoremanager/scores/green_example_score/materials'
+            '.../scoremanager/scores/red_example_score/materials'
 
         Returns list.
         '''

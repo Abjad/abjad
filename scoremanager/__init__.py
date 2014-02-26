@@ -36,7 +36,7 @@ appear on your filesystem after checkout:
     materialpackagemanagers/
     materialpackages/
     predicates/
-    scorepackages/
+    scores/
     scr/
     wizards/
     wranglers/

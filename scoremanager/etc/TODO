@@ -147,7 +147,6 @@
 
 42. Maybe time to change these:
         materialpackagemanagers > materialmanagers
-        scorepackages > scores
         materialpackages > materials
 
 43. Implement something to tour everything that can be rewritten and rewrite.
