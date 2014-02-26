@@ -160,5 +160,3 @@
 
 45. Change 'module_file_path' to 'module_path'.
     Change 'module_package_path' to 'module_package'.
-
-46. Move managers into managers.
