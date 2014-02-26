@@ -62,13 +62,16 @@ class MaterialPackageManagerWrangler(PackageWrangler):
     def _initialize_asset_manager(self, package_path):
         from scoremanager import managers
         if os.path.sep in package_path:
-            package_path = \
-                self._configuration.path_to_package(
-                    package_path)
-        #print repr(package_path), '~~~'
+            filesystem_path = package_path
+            package_path = self._configuration.path_to_package(package_path)
+        else:
+            filesystem_path = self._configuration.package_to_path(package_path)
+        #material_package_manager = managers.MaterialPackageManager(
+        #    package_path, session=self._session)
         material_package_manager = managers.MaterialPackageManager(
-            package_path, session=self._session)
-        #print repr(material_package_manager), 'MMM'
+            filesystem_path=filesystem_path, 
+            session=self._session,
+            )
         if 'materialpackagemanagers' in material_package_manager._filesystem_path:
             most, last = os.path.split(
                 material_package_manager._filesystem_path)
@@ -76,7 +79,6 @@ class MaterialPackageManagerWrangler(PackageWrangler):
         else:
             material_package_manager_class_name = \
                 material_package_manager.material_package_manager_class_name
-        #print repr(material_package_manager_class_name), 'KKK'
         if material_package_manager_class_name is not None:
             material_package_manager_class = None
             command = 'from scoremanager'
@@ -94,8 +96,12 @@ class MaterialPackageManagerWrangler(PackageWrangler):
                     material_package_manager_class_name,
                     )
                 exec(command)
+            #material_package_manager = material_package_manager_class(
+            #    package_path, session=self._session)
             material_package_manager = material_package_manager_class(
-                package_path, session=self._session)
+                filesystem_path=filesystem_path, 
+                session=self._session,
+                )
         return material_package_manager
 
     def _is_valid_directory_entry(self, directory_entry):

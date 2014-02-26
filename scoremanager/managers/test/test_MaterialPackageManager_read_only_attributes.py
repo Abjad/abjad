@@ -2,14 +2,18 @@
 import os
 from abjad import *
 import scoremanager
-
+configuration = scoremanager.core.ScoreManagerConfiguration()
 
 def test_MaterialPackageManager_read_only_attributes_01():
     r'''Data-only package.
     '''
 
     string = 'scoremanager.materialpackages.example_numbers'
-    manager = scoremanager.managers.MaterialPackageManager(string)
+    filesystem_path = os.path.join(
+        configuration.abjad_material_packages_directory_path,
+        'example_numbers',
+        )
+    manager = scoremanager.managers.MaterialPackageManager(filesystem_path)
     assert manager._breadcrumb == 'example numbers'
     assert not manager.has_illustration_builder_module
     assert not manager.has_illustration_ly
@@ -73,10 +77,13 @@ def test_MaterialPackageManager_read_only_attributes_02():
     '''
 
     string = 'scoremanager.materialpackages.example_sargasso_measures'
-    manager = \
-        scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
-            string
-            )
+    filesystem_path = os.path.join(
+        configuration.abjad_material_packages_directory_path,
+        'example_sargasso_measures',
+        )
+    manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+        filesystem_path=filesystem_path,    
+        )
     assert manager._breadcrumb == 'example sargasso measures'
     assert not manager.has_illustration_builder_module
     assert manager.has_illustration_ly
@@ -153,7 +160,11 @@ def test_MaterialPackageManager_read_only_attributes_03():
     '''
 
     string = 'scoremanager.materialpackages.example_notes'
-    manager = scoremanager.managers.MaterialPackageManager(string)
+    filesystem_path = os.path.join(
+        configuration.abjad_material_packages_directory_path,
+        'example_notes',
+        )
+    manager = scoremanager.managers.MaterialPackageManager(filesystem_path)
     assert manager._breadcrumb == 'example notes'
     assert manager.has_illustration_builder_module
     assert manager.has_illustration_ly

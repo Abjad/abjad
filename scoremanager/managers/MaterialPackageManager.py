@@ -18,10 +18,16 @@ class MaterialPackageManager(PackageManager):
 
         ::
 
-            >>> package_path = 'scoremanager'
-            >>> package_path += '.materialpackages.example_numbers'
-            >>> mpp = scoremanager.managers.MaterialPackageManager(package_path)
-            >>> mpp
+            >>> import os
+            >>> configuration = scoremanager.core.ScoreManagerConfiguration()
+            >>> filesystem_path = os.path.join(
+            ...     configuration.abjad_material_packages_directory_path,
+            ...     'example_numbers',
+            ...     )
+            >>> manager = scoremanager.managers.MaterialPackageManager(
+            ...     filesystem_path=filesystem_path,
+            ...     )
+            >>> manager
             MaterialPackageManager('.../materialpackages/example_numbers')
 
     '''
@@ -46,14 +52,20 @@ class MaterialPackageManager(PackageManager):
 
     ### INTIALIZER ###
 
-    def __init__(self, package_path=None, session=None):
+    def __init__(self, filesystem_path=None, session=None):
+        if filesystem_path is not None:
+            assert os.path.sep in filesystem_path
+        #package_path = self._configuration.path_to_package(filesystem_path)
         PackageManager.__init__(
             self,
-            package_path=package_path,
+            package_path=None,
             session=session,
             )
-        self._user_input_wrapper_in_memory = \
-            self._initialize_user_input_wrapper_in_memory()
+        package_path = self._configuration.path_to_package(filesystem_path)
+        self._filesystem_path = filesystem_path
+        self._package_path = package_path
+        wrapper = self._initialize_user_input_wrapper_in_memory()
+        self._user_input_wrapper_in_memory = wrapper
         self._generic_output_name = None
         self.stylesheet_file_path_in_memory = None
 

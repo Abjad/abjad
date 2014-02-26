@@ -12,12 +12,17 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
     score_manager = scoremanager.core.ScoreManager()
     name = 'scoremanager.materialpackages.testsargasso'
     assert not score_manager._configuration.package_exists(name)
+    filesystem_path = os.path.join(
+        score_manager._configuration.abjad_material_packages_directory_path,
+        'testsargasso',
+        )
 
     try:
         string = 'lmm nmm sargasso testsargasso default q'
         score_manager._run(pending_user_input=string)
         assert score_manager._configuration.package_exists(name)
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(name)
+        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+            filesystem_path=filesystem_path)
         assert manager.is_managermade
         assert manager._list_directory() == [
             '__init__.py', 
@@ -41,12 +46,19 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
     score_manager = scoremanager.core.ScoreManager()
     name = 'scoremanager.scorepackages.red_example_score.materials.testsargasso'
     assert not score_manager._configuration.package_exists(name)
+    filesystem_path = os.path.join(
+        score_manager._configuration.abjad_score_packages_directory_path,
+        'red_example_score',
+        'materials',
+        'testsargasso',
+        )
 
     try:
         string = 'red~example~score m nmm sargasso testsargasso default q'
         score_manager._run(pending_user_input=string)
         assert score_manager._configuration.package_exists(name)
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(name)
+        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+            filesystem_path=filesystem_path)
         assert manager.is_managermade
         assert manager._list_directory() == [
             '__init__.py', 

@@ -72,20 +72,26 @@ class MaterialPackageWrangler(PackageWrangler):
     def _get_appropriate_material_package_manager(
         self,
         material_package_manager_class_name, 
-        material_package_path,
+        #material_package_path,
+        filesystem_path,
         ):
         import scoremanager
         from scoremanager import managers
+        assert os.path.sep in filesystem_path
+        #filesystem_path = self._configuration.package_to_path(
+        #    material_package_path)
+        material_package_path = self._configuration.path_to_package(
+            filesystem_path)
         if material_package_manager_class_name is None:
-            material_package_manager = \
-                managers.MaterialPackageManager(
-                material_package_path, 
+            manager = managers.MaterialPackageManager(
+                #material_package_path, 
+                filesystem_path=filesystem_path,
                 session=self._session,
                 )
         else:
-            command = 'material_package_manager = '
+            command = 'manager = '
             command += 'scoremanager.materialpackagemanagers.{}'
-            command += '(material_package_path, session=self._session)'
+            command += '(filesystem_path=filesystem_path, session=self._session)'
             command = command.format(material_package_manager_class_name)
             try:
                 exec(command)
@@ -99,11 +105,11 @@ class MaterialPackageWrangler(PackageWrangler):
                     material_package_manager_class_name,
                     )
                 exec(command)
-                material_package_manager = material_package_manager_class(
+                manager = material_package_manager_class(
                     material_package_path, 
                     session=self._session,
                     )
-        return material_package_manager
+        return manager
 
     def _get_next_material_package_name(self):
         last_package_path = self._session.last_material_package_path
@@ -417,16 +423,14 @@ class MaterialPackageWrangler(PackageWrangler):
         prompt=False, 
         metadata=None,
         ):
+        filesystem_path = self._configuration.package_to_path(package_path)
         metadata = collections.OrderedDict(metadata or {})
         metadata['is_material_package'] = True
-        directory_path = \
-            self._configuration.package_to_path(
-            package_path)
-        assert not os.path.exists(directory_path)
-        os.mkdir(directory_path)
+        assert not os.path.exists(filesystem_path)
+        os.mkdir(filesystem_path)
         string = 'material_package_manager_class_name'
         material_package_manager_class_name = metadata.get(string)
-        pair = (material_package_manager_class_name, package_path)
+        pair = (material_package_manager_class_name, filesystem_path)
         material_package_manager = self._get_appropriate_material_package_manager(
             *pair)
         material_package_manager._initializer_file_manager._write_stub()
@@ -505,6 +509,8 @@ class MaterialPackageWrangler(PackageWrangler):
             return
         self._make_managermade_material_package(
             material_package_path, material_package_manager_class_name)
+        filesystem_path = self._configuration.package_to_path(
+            material_package_path)
         manager = self._get_appropriate_material_package_manager(
-            material_package_manager_class_name, material_package_path)
+            material_package_manager_class_name, filesystem_path)
         manager._run_first_time()

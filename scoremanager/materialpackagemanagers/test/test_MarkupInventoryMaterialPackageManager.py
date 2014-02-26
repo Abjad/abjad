@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import os
 from abjad import *
 import scoremanager
 
@@ -6,6 +7,7 @@ import scoremanager
 def test_MarkupInventoryMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
+    configuration = score_manager._configuration
     string = 'scoremanager.materialpackages.testmarkupinventory'
     assert not score_manager._configuration.package_exists(string)
     try:
@@ -15,10 +17,12 @@ def test_MarkupInventoryMaterialPackageManager_01():
             "add arg r'\\italic~{~serenamente~}' done "
             "add arg r'\\italic~{~presto~}' done done default q"
             )
-        string = 'scoremanager.materialpackages.testmarkupinventory'
-        mpp = scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageManager(
-            string)
-        assert mpp._list_directory() == [
+        #string = 'scoremanager.materialpackages.testmarkupinventory'
+        path = configuration.abjad_material_packages_directory_path
+        path = os.path.join(path, 'testmarkupinventory')
+        manager = scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageManager(
+            filesystem_path=path)
+        assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'illustration_builder.py',
@@ -33,10 +37,9 @@ def test_MarkupInventoryMaterialPackageManager_01():
                 )
             ],
             )
-        assert mpp.output_material == inventory
+        assert manager.output_material == inventory
     finally:
         string = 'lmm testmarkupinventory rm default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testmarkupinventory'
-        assert not \
-            score_manager._configuration.package_exists(string)
+        assert not score_manager._configuration.package_exists(string)

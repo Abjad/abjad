@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import os
 from abjad import *
 import scoremanager
 
@@ -8,6 +9,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageManager_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
+    configuration = score_manager._configuration
     string = 'scoremanager.materialpackages.testoctavetrans'
     assert not score_manager._configuration.package_exists(string)
     try:
@@ -15,20 +17,21 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageManager_01():
             'lmm nmm octave testoctavetrans default '
             'q'
             )
-        string = 'scoremanager.materialpackages.testoctavetrans'
-        mpp = scoremanager.materialpackagemanagers.OctaveTranspositionMappingInventoryMaterialPackageManager(
-            string)
-        assert mpp._list_directory() == [
+        #string = 'scoremanager.materialpackages.testoctavetrans'
+        path = configuration.abjad_material_packages_directory_path
+        path = os.path.join(path, 'testoctavetrans')
+        manager = scoremanager.materialpackagemanagers.OctaveTranspositionMappingInventoryMaterialPackageManager(
+            filesystem_path=path)
+        assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             ]
-        assert mpp.output_material is None
+        assert manager.output_material is None
     finally:
         string = 'lmm testoctavetrans rm default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testoctavetrans'
-        assert not \
-            score_manager._configuration.package_exists(string)
+        assert not score_manager._configuration.package_exists(string)
 
 
 def test_OctaveTranspositionMappingInventoryMaterialPackageManager_02():
@@ -36,6 +39,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageManager_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
+    configuration = score_manager._configuration
     string = 'scoremanager.materialpackages.testoctavetrans'
     assert not score_manager._configuration.package_exists(string)
     try:
@@ -45,10 +49,12 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageManager_02():
             'add source [C4, C8) target 27 done done '
             'add add source [A0, C8] target -18 done done done default q'
             )
-        string = 'scoremanager.materialpackages.testoctavetrans'
-        mpp = scoremanager.materialpackagemanagers.OctaveTranspositionMappingInventoryMaterialPackageManager(
-            string)
-        assert mpp._list_directory() == [
+        #string = 'scoremanager.materialpackages.testoctavetrans'
+        path = configuration.abjad_material_packages_directory_path
+        path = os.path.join(path, 'testoctavetrans')
+        manager = scoremanager.materialpackagemanagers.OctaveTranspositionMappingInventoryMaterialPackageManager(
+            filesystem_path=path)
+        assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'illustration_builder.py',
@@ -65,10 +71,9 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageManager_02():
             mapping_1, 
             mapping_2
             ])
-        assert mpp.output_material == inventory
+        assert manager.output_material == inventory
     finally:
         string = 'lmm testoctavetrans rm default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testoctavetrans'
-        assert not \
-            score_manager._configuration.package_exists(string)
+        assert not score_manager._configuration.package_exists(string)

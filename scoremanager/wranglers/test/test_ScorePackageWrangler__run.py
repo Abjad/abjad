@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import os
 import pytest
 from abjad import *
 import scoremanager
@@ -19,10 +20,10 @@ def test_ScorePackageWrangler__run_01():
             'q'
             )
         assert score_manager._configuration.package_exists(name)
-        spp = scoremanager.managers.ScorePackageManager(name)
-        assert spp.annotated_title == 'Test score (2012)'
-        assert spp.composer is None
-        assert spp.instrumentation is None
+        manager = scoremanager.managers.ScorePackageManager(name)
+        assert manager.annotated_title == 'Test score (2012)'
+        assert manager.composer is None
+        assert manager.instrumentation is None
     finally:
         string = 'test removescore clobberscore remove default q'
         score_manager._run(pending_user_input=string)

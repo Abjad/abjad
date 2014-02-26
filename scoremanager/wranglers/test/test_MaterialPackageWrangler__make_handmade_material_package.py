@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import os
 import pytest
 from abjad import *
 import scoremanager
@@ -9,12 +10,16 @@ def test_MaterialPackageWrangler__make_handmade_material_package_01():
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.testnotes'
     assert not wrangler._configuration.package_exists(string)
+    filesystem_path = os.path.join(
+        wrangler._configuration.abjad_material_packages_directory_path,
+        'testnotes',
+        )
 
 
     try:
         wrangler._make_handmade_material_package(string)
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.managers.MaterialPackageManager(string)
+        manager = scoremanager.managers.MaterialPackageManager(filesystem_path)
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -46,12 +51,16 @@ def test_MaterialPackageWrangler__make_handmade_material_package_03():
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.testnotes'
     assert not wrangler._configuration.package_exists(string)
+    filesystem_path = os.path.join(
+        wrangler._configuration.abjad_material_packages_directory_path,
+        'testnotes',
+        )
 
     try:
         metadata = {'color': 'red', 'is_colored': True}
         wrangler._make_handmade_material_package(string, metadata=metadata)
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.managers.MaterialPackageManager(string)
+        manager = scoremanager.managers.MaterialPackageManager(filesystem_path)
         assert manager._get_metadatum('color') == 'red'
         assert manager._get_metadatum('is_colored')
     finally:

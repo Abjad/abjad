@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import os
 from abjad import *
 from experimental import *
 import scoremanager
@@ -7,6 +8,7 @@ import scoremanager
 def test_ArticulationHandlerMaterialPackageManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
+    configuration = score_manager._configuration
     string = 'scoremanager.materialpackages.testarticulationhandler'
     assert not score_manager._configuration.package_exists(string)
     try:
@@ -16,9 +18,10 @@ def test_ArticulationHandlerMaterialPackageManager_01():
             "['^', '.'] (1, 64) (1, 4) c c'''' done default "
             'q '
             )
-        string = 'scoremanager.materialpackages.testarticulationhandler'
+        path = configuration.abjad_material_packages_directory_path
+        path = os.path.join(path, 'testarticulationhandler')
         manager = scoremanager.materialpackagemanagers.ArticulationHandlerMaterialPackageManager(
-            string)
+            filesystem_path=path)
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -37,5 +40,4 @@ def test_ArticulationHandlerMaterialPackageManager_01():
         string = 'lmm testarticulationhandler rm default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testarticulationhandler'
-        assert not \
-            score_manager._configuration.package_exists(string)
+        assert not score_manager._configuration.package_exists(string)

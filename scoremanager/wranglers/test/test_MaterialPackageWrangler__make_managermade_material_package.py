@@ -11,6 +11,10 @@ def test_MaterialPackageWrangler__make_managermade_material_package_01():
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.testsargasso'
     assert not wrangler._configuration.package_exists(string)
+    filesystem_path = os.path.join(
+        wrangler._configuration.abjad_material_packages_directory_path,
+        'testsargasso',
+        )
 
     try:
         wrangler._make_managermade_material_package(
@@ -18,7 +22,8 @@ def test_MaterialPackageWrangler__make_managermade_material_package_01():
             'SargassoMeasureMaterialPackageManager',
             )
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(string)
+        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+            filesystem_path=filesystem_path)
         assert manager.is_managermade
         assert manager._list_directory() == [
             '__init__.py', 
@@ -50,6 +55,10 @@ def test_MaterialPackageWrangler__make_managermade_material_package_03():
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.testsargasso'
     assert not wrangler._configuration.package_exists(string)
+    filesystem_path = os.path.join(
+        wrangler._configuration.abjad_material_packages_directory_path,
+        'testsargasso',
+        )
 
     try:
         metadata = {'color': 'red', 'is_colored': True}
@@ -59,7 +68,8 @@ def test_MaterialPackageWrangler__make_managermade_material_package_03():
             metadata=metadata,
             )
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(string)
+        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+            filesystem_path=filesystem_path)
         assert manager.is_managermade
         assert manager._list_directory() == [
             '__init__.py', 

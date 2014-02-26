@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import os
 from abjad import *
 import scoremanager
 
@@ -8,6 +9,7 @@ def test_PitchRangeInventoryMaterialPackageManager_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
+    configuration = score_manager._configuration
     string = 'scoremanager.materialpackages.testpir'
     assert not score_manager._configuration.package_exists(string)
     try:
@@ -15,20 +17,21 @@ def test_PitchRangeInventoryMaterialPackageManager_01():
             'lmm nmm pitch testpir default '
             'q'
             )
-        string = 'scoremanager.materialpackages.testpir'
-        mpp = scoremanager.materialpackagemanagers.PitchRangeInventoryMaterialPackageManager(
-            string)
-        assert mpp._list_directory() == [
+        #string = 'scoremanager.materialpackages.testpir'
+        path = configuration.abjad_material_packages_directory_path
+        path = os.path.join(path, 'testpir')
+        manager = scoremanager.materialpackagemanagers.PitchRangeInventoryMaterialPackageManager(
+            filesystem_path=path)
+        assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             ]
-        assert mpp.output_material is None
+        assert manager.output_material is None
     finally:
         string = 'lmm testpir rm default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testpir'
-        assert not \
-            score_manager._configuration.package_exists(string)
+        assert not score_manager._configuration.package_exists(string)
 
 
 def test_PitchRangeInventoryMaterialPackageManager_02():
@@ -36,6 +39,7 @@ def test_PitchRangeInventoryMaterialPackageManager_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
+    configuration = score_manager._configuration
     string = 'scoremanager.materialpackages.testpir'
     assert not score_manager._configuration.package_exists(string)
     try:
@@ -45,10 +49,12 @@ def test_PitchRangeInventoryMaterialPackageManager_02():
             'rm 1 move 1 2 b default '
             'q'
             )
-        string = 'scoremanager.materialpackages.testpir'
-        mpp = scoremanager.materialpackagemanagers.PitchRangeInventoryMaterialPackageManager(
-            string)
-        assert mpp._list_directory() == [
+        #string = 'scoremanager.materialpackages.testpir'
+        path = configuration.abjad_material_packages_directory_path
+        path = os.path.join(path, 'testpir')
+        manager = scoremanager.materialpackagemanagers.PitchRangeInventoryMaterialPackageManager(
+            filesystem_path=path)
+        assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'illustration_builder.py',
@@ -58,10 +64,9 @@ def test_PitchRangeInventoryMaterialPackageManager_02():
             pitchtools.PitchRange('[C2, G5]'), 
             pitchtools.PitchRange('[C2, F#5]'),
             ])
-        assert mpp.output_material == pitch_range_inventory
+        assert manager.output_material == pitch_range_inventory
     finally:
         string = 'lmm testpir rm default q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materialpackages.testpir'
-        assert not \
-            score_manager._configuration.package_exists(string)
+        assert not score_manager._configuration.package_exists(string)

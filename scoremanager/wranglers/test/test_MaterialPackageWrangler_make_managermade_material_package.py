@@ -10,12 +10,17 @@ def test_MaterialPackageWrangler_make_managermade_material_package_01():
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materialpackages.testsargasso'
     assert not wrangler._configuration.package_exists(string)
+    filesystem_path = os.path.join(
+        wrangler._configuration.abjad_material_packages_directory_path,
+        'testsargasso',
+        )
 
     try:
         command = 'sargasso testsargasso q'
         wrangler.make_managermade_material_package(pending_user_input=command)
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(string)
+        manager = scoremanager.materialpackagemanagers.SargassoMeasureMaterialPackageManager(
+            filesystem_path=filesystem_path)
         assert manager.is_managermade
         assert manager._list_directory() == [
             '__init__.py', 
