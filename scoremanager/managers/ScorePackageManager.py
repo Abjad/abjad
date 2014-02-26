@@ -48,7 +48,7 @@ class ScorePackageManager(PackageManager):
         if self._filesystem_path is not None:
             filesystem_path = os.path.join(
                 self._filesystem_path, 
-                'score_templates',
+                'templates',
                 )
         else:
             filesystem_path = None
@@ -113,12 +113,6 @@ class ScorePackageManager(PackageManager):
             'materials',
             )
 
-    def _get_score_templates_directory_path(self):
-        return os.path.join(
-            self._filesystem_path, 
-            'score_templates',
-            )
-
     def _get_segments_directory_path(self):
         return os.path.join(
             self._filesystem_path, 
@@ -129,6 +123,12 @@ class ScorePackageManager(PackageManager):
         return os.path.join(
             self._filesystem_path, 
             'stylesheets',
+            )
+
+    def _get_templates_directory_path(self):
+        return os.path.join(
+            self._filesystem_path, 
+            'templates',
             )
 
     def _get_tempo_inventory(self):
@@ -159,7 +159,7 @@ class ScorePackageManager(PackageManager):
             self._get_distribution_directory_path(),
             self._get_materials_directory_path(),
             self._get_segments_directory_path(),
-            self._get_score_templates_directory_path(),
+            self._get_templates_directory_path(),
             self._get_stylesheets_directory_path(),
             )
 

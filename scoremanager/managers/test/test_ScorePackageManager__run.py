@@ -24,7 +24,7 @@ def test_ScorePackageManager__run_01():
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - score_templates',
+        'Red Example Score (2013) - templates',
         'Red Example Score (2013) - segments',
         ]
     assert score_manager._transcript.titles == titles
@@ -61,7 +61,7 @@ def test_ScorePackageManager__run_02():
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - score_templates',
+        'Red Example Score (2013) - templates',
         'Red Example Score (2013) - materials',
         ]
     assert score_manager._transcript.titles == titles
@@ -128,7 +128,7 @@ def test_ScorePackageManager__run_03():
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - score_templates',
+        'Red Example Score (2013) - templates',
         'Red Example Score (2013) - build manager',
         ]
     assert score_manager._transcript.titles == titles
