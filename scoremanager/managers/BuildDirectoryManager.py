@@ -33,11 +33,26 @@ class BuildDirectoryManager(DirectoryManager):
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
             'bc': self.manage_back_cover,
-            'fc': self.manage_front_cover,
+            'fce': self.edit_front_cover_latex,
+            'fcg': self.generate_front_cover_latex,
+            'fct': self.typeset_front_cover_latex,
+            'fcv': self.view_front_cover_pdf,
             'pf': self.manage_preface,
             'sc': self.manage_score,
             })
         return _user_input_to_action
+
+    def edit_front_cover_latex(self):
+        self._edit_file_ending_with('front-cover.tex')
+
+    def generate_front_cover_latex(self):
+        self._io_manager.print_not_yet_implemented()
+
+    def view_front_cover_pdf(self):
+        self._open_file_ending_with('front-cover.pdf')
+
+    def typeset_front_cover_latex(self):
+        self._typeset_file_ending_with('front-cover.tex')
 
     ### PRIVATE METHODS ###
 
@@ -75,7 +90,7 @@ class BuildDirectoryManager(DirectoryManager):
         elif result == 'pdfv':
             self._open_file_ending_with('back-cover.pdf')
         elif result == 'ts':
-            self._typset_file_ending_with('back-cover.tex')
+            self._typeset_file_ending_with('back-cover.tex')
 
     def _handle_front_cover_menu_result(self, result):
         if result == 'e':
@@ -85,7 +100,7 @@ class BuildDirectoryManager(DirectoryManager):
         elif result == 'pdfv':
             self._open_file_ending_with('front-cover.pdf')
         elif result == 'ts':
-            self._typset_file_ending_with('front-cover.tex')
+            self._typeset_file_ending_with('front-cover.tex')
 
     def _handle_preface_menu_result(self, result):
         if result == 'e':
@@ -95,7 +110,7 @@ class BuildDirectoryManager(DirectoryManager):
         elif result == 'pdfv':
             self._open_file_ending_with('preface.pdf')
         elif result == 'ts':
-            self._typset_file_ending_with('preface.tex')
+            self._typeset_file_ending_with('preface.tex')
 
     def _handle_score_menu_result(self, result):
         if result == 'e':
@@ -116,7 +131,7 @@ class BuildDirectoryManager(DirectoryManager):
         elif result == 'segv':
             self._open_file_ending_with('score-segments.pdf')
         elif result == 'ts':
-            self._typset_file_ending_with('score.tex')
+            self._typeset_file_ending_with('score.tex')
 
     def _make_back_cover_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
@@ -129,27 +144,30 @@ class BuildDirectoryManager(DirectoryManager):
         command_section.default_index = len(command_section) - 1
         return menu
 
-    def _make_front_cover_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
-        command_section = menu.make_command_section()
-        command_section.append(('source - edit', 'e'))
-        command_section.append(('source - generate', 'sg'))
-        command_section.append(('source - typeset', 'ts'))
-        command_section = menu.make_command_section()
-        command_section.append(('pdf - view', 'pdfv'))
-        command_section.default_index = len(command_section) - 1
-        return menu
-
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
-        command_section = menu.make_command_section()
-        command_section.append(('back cover - manage', 'bc'))
-        command_section.append(('front cover - manage', 'fc'))
-        command_section.append(('preface - manage', 'pf'))
-        command_section.append(('score - manage', 'sc'))
-        hidden_section = menu.make_command_section(is_secondary=True)
-        hidden_section.append(('list directory', 'ls'))
+        self._make_front_cover_menu_section(menu)
+        section = menu.make_command_section()
+        section.append(('back cover - manage', 'bc'))
+        section.append(('preface - manage', 'pf'))
+        section.append(('score - manage', 'sc'))
+        self._make_directory_menu_section(menu)
         return menu
+
+    def _make_directory_menu_section(self, menu):
+        section = menu.make_command_section(is_secondary=True)
+        section.append(('directory - list', 'ls'))
+        section.append(('directory - list long', 'll'))
+        section.append(('directory - pwd', 'pwd'))
+        return section
+
+    def _make_front_cover_menu_section(self, menu):
+        section = menu.make_command_section(name='front cover')
+        section.append(('front cover latex - edit', 'fce'))
+        section.append(('front cover latex - generate', 'fcg'))
+        section.append(('front cover latex - typeset', 'fct'))
+        section.append(('front cover pdf - view', 'fcv'))
+        return section
 
     def _make_preface_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
@@ -204,11 +222,11 @@ class BuildDirectoryManager(DirectoryManager):
         with open(file_path, 'w') as file_pointer:
             file_pointer.write(lines)
 
-    def _typset_file_ending_with(self, string):
+    def _typeset_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
         if file_path:
             file_manager = self._get_file_manager(file_path)
-            file_manager.typset_tex_file()
+            file_manager.typeset_tex_file()
         else:
             message = 'file ending in {!r} not found.'
             message = message.format(string)
@@ -320,28 +338,6 @@ class BuildDirectoryManager(DirectoryManager):
                 self._session._pop_breadcrumb()
                 continue
             self._handle_back_cover_menu_result(result)
-            if self._session._backtrack():
-                break
-            self._session._pop_breadcrumb()
-        self._session._pop_breadcrumb()
-        self._session._restore_breadcrumbs(cache=cache)
-
-    def manage_front_cover(self, clear=True, cache=False):
-        r'''Manages front cover.
-
-        Returns none.
-        '''
-        self._session._cache_breadcrumbs(cache=cache)
-        while True:
-            self._session._push_breadcrumb('front cover')
-            menu = self._make_front_cover_menu()
-            result = menu._run(clear=clear)
-            if self._session._backtrack():
-                break
-            elif not result:
-                self._session._pop_breadcrumb()
-                continue
-            self._handle_front_cover_menu_result(result)
             if self._session._backtrack():
                 break
             self._session._pop_breadcrumb()

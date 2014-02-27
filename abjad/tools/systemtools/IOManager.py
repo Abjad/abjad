@@ -279,10 +279,13 @@ class IOManager(object):
             return
         if sys.platform.lower() == 'linux2':
             viewer = application or 'xdg-open'
-        else:
-            viewer = application
-            viewer = viewer or abjad_configuration['text_editor']
-            viewer = viewer or 'open'
+        elif file_path.endswith('.pdf'): 
+            viewer = application or abjad_configuration['pdf_viewer']
+        elif file_path.endswith('.py'):
+            viewer = application or abjad_configuration['text_editor']
+        elif file_path.endswith('.txt'):
+            viewer = application or abjad_configuration['text_editor']
+        viewer = viewer or 'open' 
         if line_number:
             command = '{} +{} {}'.format(viewer, line_number, file_path)
         else:
