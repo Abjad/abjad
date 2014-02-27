@@ -1,15 +1,17 @@
 # -*- encoding: utf-8 -*-
-import pytest
 from abjad import *
 import scoremanager
 
 
 def test_Session_command_repetition_01():
-    pytest.skip('TODO: command repetition is currently broken.')
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='next . . . q')
-
-    command_history = ['next', '.', '.', '.', 'q']
-    assert score_manager._session.command_history == command_history
-    assert score_manager._transcript.signature == (10, (1, 3, 5, 7))
+    score_manager._run(pending_user_input='stn . . . q')
+    titles = [ 
+        'Score manager - example scores',
+        'Blue Example Score (2013)',
+        'Green Example Score (2013)',
+        'Red Example Score (2013)',
+        'Blue Example Score (2013)',
+        ]
+    assert score_manager._transcript.titles == titles
