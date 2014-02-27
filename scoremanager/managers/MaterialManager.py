@@ -430,13 +430,14 @@ class MaterialManager(PackageManager):
         return False
 
     def _make_package_management_menu_section(self, main_menu):
-        hidden_section = main_menu.make_command_section(
+        section = main_menu.make_command_section(
             is_secondary=True,
             name='package management',
             )
-        hidden_section.append(('package - list', 'ls'))
-        hidden_section.append(('package - remove', 'rm'))
-        hidden_section.append(('package - rename', 'ren'))
+        section.append(('package - list', 'ls'))
+        section.append(('package - pwd', 'pwd'))
+        section.append(('package - remove', 'rm'))
+        section.append(('package - rename', 'ren'))
 
     def _make_user_input_module_menu_section(
         self,

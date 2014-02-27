@@ -31,6 +31,7 @@ class DirectoryManager(Manager):
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
             'ls': self.list_directory,
+            'pwd': self.display_present_working_directory,
             })
         return _user_input_to_action
 
@@ -106,6 +107,17 @@ class DirectoryManager(Manager):
         manager._run()
 
     ### PUBLIC METHODS ###
+
+    def display_present_working_directory(self):
+        '''Displays present working directory.
+
+        Returns none.
+        '''
+        lines = []
+        lines.append(self._filesystem_path)
+        lines.append('')
+        self._io_manager.display(lines)
+        self._session._hide_next_redraw = True
 
     def edit_asset(
         self,

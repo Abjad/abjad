@@ -158,10 +158,10 @@
     contents of the toplevel __metadata__ module for that score. Same for
     discovering the contents of a score's stylesheets directory.
 
-45. Add a 'pwd' command to go with 'ls'.
-
-46. Remove ...
+45. Remove ...
         score_manager._configuration.package_exists(package)
     ... in favor of ...
         os.path.exists(path)
     ... in test files.
+
+46. Mark all test calls to score_manager._run() with is_test=True.
