@@ -449,6 +449,7 @@ class Manager(ScoreManagerObject):
     def write_boilerplate(
         self, 
         pending_user_input=None,
+        prompt=True,
         ):
         r'''Writes filesystem asset boilerplate.
 

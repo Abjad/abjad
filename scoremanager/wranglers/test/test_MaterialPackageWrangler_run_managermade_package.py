@@ -96,211 +96,40 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #    finally:
 #        score_manager._run(pending_user_input='m testsargasso rm default q')
 #        assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#
-#def test_MaterialPackageWrangler_run_managermade_package_04():
-#    r'''Make managermade package. Corrupt initializer. Restore initializer.
-#    Verify initializer. Remove package.
-#    '''
-#
-#    score_manager = scoremanager.core.ScoreManager()
-#    assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#    try:
-#        score_manager._run(pending_user_input=
-#            'm nmm testsargasso default default '
-#            'testsargasso incanned boilerplate_exception.py default '
-#            'inr yes yes default q')
-#        assert score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#        manager = scoremanager.managers.SargassoMeasureMaterialManager('scoremanager.materials.testsargasso')
-#        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
-#        assert not manager.has_output_material_module
-#        assert not os.path.isfile(manager.illustration_builder_module_path)
-#        assert manager.material_definition is None
-#        assert manager.output_material is None
-#    finally:
-#        score_manager._run(pending_user_input='m testsargasso rm default q')
-#        assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#
-#def test_MaterialPackageWrangler_run_managermade_package_05():
-#    r'''Make managermade package. Create output material.
-#    Delete package."
-#    '''
-#
-#    score_manager = scoremanager.core.ScoreManager()
-#    assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#    try:
-#        score_manager._run(pending_user_input=
-#            'lmm nmm testsargasso default default '
-#            'testsargasso mdbp boilerplate_testsargasso_material_definition.py default '
-#            'omm default q')
-#        assert score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#        manager = scoremanager.managers.SargassoMeasureMaterialManager('scoremanager.materials.testsargasso')
-#        assert manager._list_directory() == ['__init__.py',
-#            'illustration_builder.py', 'material_definition.py', 'output_material.py']
-#        assert os.path.isfile(manager.illustration_builder_module_path)
-#        assert manager.material_definition and all(isinstance(x, Note) for x in
-#           manager.material_definition)
-#        assert manager.output_material and and all(isinstance(x, Note) for x in
-#           manager.output_material)
-#    finally:
-#        score_manager._run(pending_user_input='lmm testsargasso rm default q')
-#        assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#
-#def test_MaterialPackageWrangler_run_managermade_package_06():
-#    r'''Make managermade package. Delete material definition module.
-#    Remove package.
-#    '''
-#
-#    score_manager = scoremanager.core.ScoreManager()
-#    assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#    try:
-#        score_manager._run(pending_user_input=
-#            'lmm nmm testsargasso default default '
-#            'testsargasso mdrm default q')
-#        assert score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#        manager = scoremanager.managers.SargassoMeasureMaterialManager('scoremanager.materials.testsargasso')
-#        assert manager._list_directory() == ['__init__.py']
-#        assert not manager.has_material_definition_module
-#        assert not manager.has_output_material_module
-#        assert not os.path.isfile(manager.illustration_builder_module_path)
-#        assert manager.material_definition is None
-#        assert manager.output_material is None
-#    finally:
-#        score_manager._run(pending_user_input='lmm testsargasso rm default q')
-#        assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#
-#def test_MaterialPackageWrangler_run_managermade_package_07():
-#    r'''Make managermade package. Overwrite material definition module with stub.
-#    Delete package.
-#    '''
-#
-#    score_manager = scoremanager.core.ScoreManager()
-#    assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#    try:
-#        score_manager._run(pending_user_input=
-#            'lmm nmm testsargasso default default '
-#            'testsargasso mds default q')
-#        assert score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#        manager = scoremanager.managers.SargassoMeasureMaterialManager('scoremanager.materials.testsargasso')
-#        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
-#        assert not manager.has_output_material_module
-#        assert not os.path.isfile(manager.illustration_builder_module_path)
-#        assert manager.material_definition is None
-#        assert manager.output_material is None
-#    finally:
-#        score_manager._run(pending_user_input='lmm testsargasso rm default q')
-#        assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#
-#def test_MaterialPackageWrangler_run_managermade_package_08():
-#    r'''Make managermade package. Copy canned material definition. Make output material. Remove output material.
-#    Remove package.
-#    '''
-#
-#    score_manager = scoremanager.core.ScoreManager()
-#    assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#    try:
-#        score_manager._run(pending_user_input=
-#            'lmm nmm testsargasso default default '
-#            'testsargasso mdbp boilerplate_testsargasso_material_definition.py default '
-#            'omm default '
-#            'omrm default q')
-#        assert score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#        manager = scoremanager.managers.SargassoMeasureMaterialManager('scoremanager.materials.testsargasso')
-#        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
-#        assert not manager.has_output_material_module
-#        assert not os.path.isfile(manager.illustration_builder_module_path)
-#        assert manager.material_definition and all(isinstance(x, Note) for x in
-#           manager.material_definition
-#        assert manager.output_material is None
-#    finally:
-#        score_manager._run(pending_user_input='lmm testsargasso rm default q')
-#        assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#
-#def test_MaterialPackageWrangler_run_managermade_package_09():
-#    r'''Make managermade package. Copy canned material definition with exception.
-#    Examine package state. Remove package.
-#    '''
-#
-#    score_manager = scoremanager.core.ScoreManager()
-#    assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#    try:
-#        score_manager._run(pending_user_input=
-#            'lmm nmm testsargasso default default '
-#            'testsargasso mdbp boilerplate_exception.py default q')
-#        assert score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#        manager = scoremanager.managers.SargassoMeasureMaterialManager('scoremanager.materials.testsargasso')
-#        assert manager._list_directory() == ['__init__.py', 'material_definition.py']
-#        assert not manager.has_output_material_module
-#        assert not os.path.isfile(manager.illustration_builder_module_path)
-#        assert manager.material_definition is None
-#        assert manager.output_material is None
-#    finally:
-#        score_manager._run(pending_user_input='lmm testsargasso rm default q')
-#        assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#
-#def test_MaterialPackageWrangler_run_managermade_package_10():
-#    r'''Make managermade package. Copy canned material definition module. Make output data. Corrupt output data.
-#    Verify invalid output material module. Remove package.
-#    '''
-#
-#    score_manager = scoremanager.core.ScoreManager()
-#    assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#    try:
-#        score_manager._run(pending_user_input=
-#            'lmm nmm testsargasso default default '
-#            'testsargasso mdbp boilerplate_testsargasso_material_definition.py default '
-#            'omm default '
-#            'ombp boilerplate_exception.py default q')
-#        assert score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#        manager = scoremanager.managers.SargassoMeasureMaterialManager('scoremanager.materials.testsargasso')
-#        assert manager._list_directory() == ['__init__.py',
-#            'illustration_builder.py', 'material_definition.py', 'output_material.py']
-#        assert os.path.isfile(manager.illustration_builder_module_path)
-#        assert manager.material_definition and all(isinstance(x, Note) for x in
-#           manager.material_definition
-#        assert manager.output_material is None
-#    finally:
-#        score_manager._run(pending_user_input='lmm testsargasso rm default q')
-#        assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#
-#def test_MaterialPackageWrangler_run_managermade_package_11():
-#    r'''Make managermade package. Copy canned material definition module.
-#    Make output data. Make PDF. Remove package.
-#    '''
-#
-#    score_manager = scoremanager.core.ScoreManager()
-#    assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#
-#    try:
-#        score_manager._run(pending_user_input=
-#            'lmm nmm testsargasso default default '
-#            'testsargasso mdbp boilerplate_testsargasso_material_definition.py default '
-#            'omm default '
-#            'pdfm default '
-#            'q')
-#        assert score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
-#        manager = scoremanager.managers.SargassoMeasureMaterialManager('scoremanager.materials.testsargasso')
-#        assert manager._list_directory() == [
-#            '__init__.py', 'illustration.ly', 'illustration.pdf',
-#            'illustration_builder.py', 'material_definition.py', 'output_material.py']
-#        assert manager.material_definition and all(isinstance(x, Note) for x in
-#           manager.material_definition)
-#        assert manager.output_material and all(isinstance(x, Note) for x in
-#           manager.output_material
-#    finally:
-#        score_manager._run(pending_user_input='lmm testsargasso rm default q')
-#        assert not score_manager._configuration.package_exists('scoremanager.materials.testsargasso')
+
+
+def test_MaterialPackageWrangler_run_managermade_package_04():
+    r'''Make managermade package. Corrupt initializer. Restore initializer.
+    Verify initializer. Remove package.
+    '''
+
+    score_manager = scoremanager.core.ScoreManager()
+    package = 'scoremanager.materials.testsargassomeasures'
+    assert not score_manager._configuration.package_exists(package)
+    filesystem_path = os.path.join(
+        score_manager._configuration.abjad_material_packages_directory_path,
+        'testsargassomeasures',
+        )
+    input_ = 'lmm nmm sargasso testsargassomeasures'
+    input_ += ' omi inbp boilerplate_exception.py default'
+    input_ += ' ins default q'
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'user_input.py',
+        ]
+
+    try:
+        score_manager._run(pending_user_input=input_)
+        assert score_manager._configuration.package_exists(package)
+        manager = scoremanager.managers.SargassoMeasureMaterialManager(
+            filesystem_path=filesystem_path)
+        assert manager._list_directory() == directory_entries
+        assert not manager.has_output_material_module
+        assert not os.path.isfile(manager.illustration_builder_module_path)
+        assert manager.material_definition is None
+        assert manager.output_material is None
+    finally:
+        input_ = 'lmm testsargassomeasures rm default q'
+        score_manager._run(pending_user_input=input_)
+        assert not score_manager._configuration.package_exists(package)

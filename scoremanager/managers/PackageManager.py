@@ -372,19 +372,28 @@ class PackageManager(DirectoryManager):
             command = 'vim -R {}'.format(file_path)
             self._io_manager.spawn_subprocess(command)
 
-    def write_boilerplate_initializer_module(self):
+    def write_boilerplate_initializer_module(self, prompt=True):
         r'''Writes boilerplate initializer module.
 
         Returns none.
         '''
-        self.initializer_file_manager.write_boilerplate()
+        from scoremanager import managers
+        manager = managers.FileManager(
+            self._initializer_file_path,
+            session=self._session,
+            )
+        manager.write_boilerplate(prompt=prompt)
 
-    def write_stub_initializer_module(self):
+    def write_stub_initializer_module(self, prompt=True):
         r'''Wrties stub initializer module.
 
         Returns none.
         '''
-        self.initializer_file_manager._write_stub()
-        line = 'stub initializer written.'
-        self._io_manager.display([line, ''])
-        self._io_manager.proceed()
+        from scoremanager import managers
+        manager = managers.FileManager(
+            self._initializer_file_path,
+            session=self._session,
+            )
+        manager._write_stub()
+        message = 'stub initializer written.'
+        self._io_manager.proceed(message)
