@@ -9,7 +9,7 @@ from abjad.tools.topleveltools import detach
 
 
 class Note(Leaf):
-    '''A note.
+    r'''A note.
 
     ..  container:: example
         

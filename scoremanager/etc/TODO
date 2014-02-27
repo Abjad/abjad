@@ -160,3 +160,8 @@
 45. Provide an object-oriented means for makers in any score to access the
     contents of the toplevel __metadata__ module for that score. Same for
     discovering the contents of a score's stylesheets directory.
+
+46. Debug the following:
+        lmm example~numbers inv q
+    This produces a (faulty) illustration_builder.py module in the package.
+    No illustration_builder.py module should be produced.

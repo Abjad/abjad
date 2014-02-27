@@ -360,7 +360,12 @@ class PackageManager(DirectoryManager):
 
         Returns none.
         '''
-        self.initializer_file_manager.view()
+        from scoremanager import managers
+        manager = managers.FileManager(
+            self._initializer_file_path,
+            session=self._session,
+            )
+        manager.view()
 
     def view_metadata_module(self):
         r'''Views metadata module.
