@@ -26,7 +26,7 @@ class FileManager(Manager):
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
             'e': self.edit,
-            'ts': self.typset_tex_file,
+            'ts': self.typeset_tex_file,
             'v': self.view,
             })
         return _user_input_to_action
@@ -171,7 +171,7 @@ class FileManager(Manager):
         '''
         self._io_manager.open_file(self._filesystem_path)
 
-    def typset_tex_file(self, prompt=True):
+    def typeset_tex_file(self, prompt=True):
         r'''Typesets TeX file.
 
         Returns none.
