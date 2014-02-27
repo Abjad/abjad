@@ -36,58 +36,25 @@ class BuildDirectoryManager(DirectoryManager):
             'bcg': self.generate_back_cover_latex,
             'bct': self.typeset_back_cover_latex,
             'bcv': self.view_back_cover_pdf,
-
             'fce': self.edit_front_cover_latex,
             'fcg': self.generate_front_cover_latex,
             'fct': self.typeset_front_cover_latex,
             'fcv': self.view_front_cover_pdf,
-
             'pfe': self.edit_preface_latex,
             'pfg': self.generate_preface_latex,
             'pft': self.typeset_preface_latex,
             'pfv': self.view_preface_pdf,
-
-            'sc': self.manage_score,
+            'se': self.edit_score_latex,
+            'sg': self.generate_score_latex,
+            'st': self.typeset_score_latex,
+            'sv': self.view_score_pdf,
+            'lycp': self.copy_segment_lilypond_files,
+            'pdfcp': self.copy_segment_pdfs,
+            'sege': self.edit_segment_assembly_lilypond_file,
+            'segly': self.interpret_segment_assembly_lilypond_file,
+            'segv': self.view_segment_assembly_pdf,
             })
         return _user_input_to_action
-
-    def edit_front_cover_latex(self):
-        self._edit_file_ending_with('front-cover.tex')
-
-    def generate_front_cover_latex(self):
-        self._io_manager.print_not_yet_implemented()
-
-    def view_front_cover_pdf(self):
-        self._open_file_ending_with('front-cover.pdf')
-
-    def typeset_front_cover_latex(self):
-        self._typeset_file_ending_with('front-cover.tex')
-
-
-    def edit_back_cover_latex(self):
-        self._edit_file_ending_with('back-cover.tex')
-
-    def generate_back_cover_latex(self):
-        self._io_manager.print_not_yet_implemented()
-
-    def view_back_cover_pdf(self):
-        self._open_file_ending_with('back-cover.pdf')
-
-    def typeset_back_cover_latex(self):
-        self._typeset_file_ending_with('back-cover.tex')
-
-
-    def edit_preface_latex(self):
-        self._edit_file_ending_with('preface.tex')
-
-    def generate_preface_latex(self):
-        self._io_manager.print_not_yet_implemented()
-
-    def view_preface_pdf(self):
-        self._open_file_ending_with('preface.pdf')
-
-    def typeset_preface_latex(self):
-        self._typeset_file_ending_with('preface.tex')
 
     ### PRIVATE METHODS ###
 
@@ -117,44 +84,12 @@ class BuildDirectoryManager(DirectoryManager):
                 file_path = os.path.join(self._filesystem_path, file_name)
                 return file_path
 
-    def _handle_front_cover_menu_result(self, result):
-        if result == 'e':
-            self._edit_file_ending_with('front-cover.tex')
-        elif result == 'sg':
-            self._io_manager.print_not_yet_implemented()
-        elif result == 'pdfv':
-            self._open_file_ending_with('front-cover.pdf')
-        elif result == 'ts':
-            self._typeset_file_ending_with('front-cover.tex')
-
-    def _handle_score_menu_result(self, result):
-        if result == 'e':
-            self._edit_file_ending_with('score.tex')
-        elif result == 'sg':
-            self._io_manager.print_not_yet_implemented()
-        elif result == 'lycp':
-            self.copy_segment_lilypond_files()
-        elif result == 'pdfcp':
-            self.copy_segment_pdfs()
-        elif result == 'pdfv':
-            self._open_file_ending_with('score.pdf')
-        elif result == 'seged':
-            self._edit_file_ending_with('score-segments.ly')
-        elif result == 'segly':
-            self._call_lilypond_on_file_ending_with(
-                'score-segments.ly')
-        elif result == 'segv':
-            self._open_file_ending_with('score-segments.pdf')
-        elif result == 'ts':
-            self._typeset_file_ending_with('score.tex')
-
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
         self._make_back_cover_menu_section(menu)
         self._make_front_cover_menu_section(menu)
         self._make_preface_menu_section(menu)
-        section = menu.make_command_section()
-        section.append(('score - manage', 'sc'))
+        self._make_score_menu_sections(menu)
         self._make_directory_menu_section(menu)
         return menu
 
@@ -189,22 +124,19 @@ class BuildDirectoryManager(DirectoryManager):
         section.append(('preface pdf - view', 'pfv'))
         return menu
 
-    def _make_score_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
-        command_section = menu.make_command_section()
-        command_section.append(('segment lys - copy', 'lycp'))
-        command_section.append(('segment pdfs - copy', 'pdfcp'))
-        command_section = menu.make_command_section()
-        command_section.append(('segment assembly ly - edit', 'seged'))
-        command_section.append(('segment assembly ly - lilypond', 'segly'))
-        command_section.append(('segment assembly pdf - view', 'segv'))
-        command_section = menu.make_command_section()
-        command_section.append(('source - edit', 'e'))
-        command_section.append(('source - generate', 'sg'))
-        command_section.append(('source - typeset', 'ts'))
-        command_section = menu.make_command_section()
-        command_section.append(('pdf - view', 'pdfv'))
-        command_section.default_index = len(command_section) - 1
+    def _make_score_menu_sections(self, menu):
+        section = menu.make_command_section(name='segments?')
+        section.append(('segment lys - copy', 'lycp'))
+        section.append(('segment pdfs - copy', 'pdfcp'))
+        section = menu.make_command_section(name='segment assembly?')
+        section.append(('segment assembly ly - edit', 'sege'))
+        section.append(('segment assembly ly - lilypond', 'segly'))
+        section.append(('segment assembly pdf - view', 'segv'))
+        section = menu.make_command_section(name='score')
+        section.append(('score latex - edit', 'se'))
+        section.append(('score latex - generate', 'sg'))
+        section.append(('score latex - typeset', 'st'))
+        section.append(('score pdf - view', 'sv'))
         return menu
 
     def _open_file_ending_with(self, string):
@@ -331,24 +263,59 @@ class BuildDirectoryManager(DirectoryManager):
             self._io_manager.display(message)
         self._io_manager.proceed('')
 
-    def manage_score(self, clear=True, cache=False):
-        r'''Manages score.
+    def edit_back_cover_latex(self):
+        self._edit_file_ending_with('back-cover.tex')
 
-        Returns none.
-        '''
-        self._session._cache_breadcrumbs(cache=cache)
-        while True:
-            self._session._push_breadcrumb('score')
-            menu = self._make_score_menu()
-            result = menu._run(clear=clear)
-            if self._session._backtrack():
-                break
-            elif not result:
-                self._session._pop_breadcrumb()
-                continue
-            self._handle_score_menu_result(result)
-            if self._session._backtrack():
-                break
-            self._session._pop_breadcrumb()
-        self._session._pop_breadcrumb()
-        self._session._restore_breadcrumbs(cache=cache)
+    def edit_front_cover_latex(self):
+        self._edit_file_ending_with('front-cover.tex')
+
+    def edit_preface_latex(self):
+        self._edit_file_ending_with('preface.tex')
+
+    def edit_score_latex(self):
+        self._edit_file_ending_with('score.tex')
+
+    def edit_segment_assembly_lilypond_file(self):
+        self._edit_file_ending_with('score-segments.ly')
+
+    def generate_back_cover_latex(self):
+        self._io_manager.print_not_yet_implemented()
+
+    def generate_front_cover_latex(self):
+        self._io_manager.print_not_yet_implemented()
+
+    def generate_preface_latex(self):
+        self._io_manager.print_not_yet_implemented()
+
+    def generate_score_latex(self):
+        self._io_manager.print_not_yet_implemented()
+
+    def interpret_segment_assembly_lilypond_file(self):
+        self._call_lilypond_on_file_ending_with('score-segments.ly')
+
+    def typeset_back_cover_latex(self):
+        self._typeset_file_ending_with('back-cover.tex')
+
+    def typeset_front_cover_latex(self):
+        self._typeset_file_ending_with('front-cover.tex')
+
+    def typeset_preface_latex(self):
+        self._typeset_file_ending_with('preface.tex')
+
+    def typeset_score_latex(self):
+        self._typeset_file_ending_with('score.tex')
+
+    def view_back_cover_pdf(self):
+        self._open_file_ending_with('back-cover.pdf')
+
+    def view_front_cover_pdf(self):
+        self._open_file_ending_with('front-cover.pdf')
+
+    def view_preface_pdf(self):
+        self._open_file_ending_with('preface.pdf')
+
+    def view_score_pdf(self):
+        self._open_file_ending_with('score.pdf')
+
+    def view_segment_assembly_pdf(self):
+        self._open_file_ending_with('score-segments.pdf')
