@@ -10,9 +10,9 @@ class DynamicHandlerMaterialManager(MaterialManager):
 
     generic_output_name = 'dynamic handler'
 
-    output_material_maker = DynamicHandlerCreationWizard
+    _output_material_maker = DynamicHandlerCreationWizard
 
-    output_material_module_import_statements = [
+    _output_material_module_import_statements = [
         'from abjad import *',
         'from experimental.tools import handlertools',
         ]
@@ -20,12 +20,12 @@ class DynamicHandlerMaterialManager(MaterialManager):
     ### STATIC METHODS ###
 
     @staticmethod
-    def output_material_checker(expr):
+    def _output_material_checker(expr):
         from experimental.tools import handlertools
         return isinstance(expr, handlertools.DynamicHandler)
 
     @staticmethod
-    def output_material_editor(target=None, session=None):
+    def _output_material_editor(target=None, session=None):
         from scoremanager import wizards
         if target:
             wizard = wizards.DynamicHandlerCreationWizard()

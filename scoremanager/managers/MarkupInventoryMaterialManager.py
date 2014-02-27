@@ -10,14 +10,14 @@ class MarkupInventoryMaterialManager(MaterialManager):
 
     generic_output_name = 'markup inventory'
 
-    output_material_checker = staticmethod(
+    _output_material_checker = staticmethod(
         lambda x: isinstance(x, markuptools.MarkupInventory))
 
-    output_material_editor = MarkupInventoryEditor
+    _output_material_editor = MarkupInventoryEditor
 
-    output_material_maker = markuptools.MarkupInventory
+    _output_material_maker = markuptools.MarkupInventory
 
-    output_material_module_import_statements = [
+    _output_material_module_import_statements = [
         'from abjad import *',
         ]
 

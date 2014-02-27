@@ -122,7 +122,7 @@
 35. Write test to make sure that ...
         # -*- encoding: utf-8 -*-
         from abjad import *
-        output_material_module_import_statements = []
+        _output_material_module_import_statements = []
 
 
         some_material = None

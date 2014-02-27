@@ -10,14 +10,14 @@ class TempoInventoryMaterialManager(MaterialManager):
 
     generic_output_name = 'tempo inventory'
 
-    output_material_checker = staticmethod(
+    _output_material_checker = staticmethod(
         lambda x: isinstance(x, indicatortools.TempoInventory))
 
-    output_material_editor = TempoInventoryEditor
+    _output_material_editor = TempoInventoryEditor
 
-    output_material_maker = indicatortools.TempoInventory
+    _output_material_maker = indicatortools.TempoInventory
 
-    output_material_module_import_statements = [
+    _output_material_module_import_statements = [
         'from abjad import *',
         ]
 

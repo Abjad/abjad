@@ -11,14 +11,14 @@ class PitchRangeInventoryMaterialManager(MaterialManager):
 
     generic_output_name = 'pitch range inventory'
 
-    output_material_checker = staticmethod(
+    _output_material_checker = staticmethod(
         lambda x: isinstance(x, pitchtools.PitchRangeInventory))
 
-    output_material_editor = PitchRangeInventoryEditor
+    _output_material_editor = PitchRangeInventoryEditor
 
-    output_material_maker = pitchtools.PitchRangeInventory
+    _output_material_maker = pitchtools.PitchRangeInventory
 
-    output_material_module_import_statements = [
+    _output_material_module_import_statements = [
         'from abjad import *',
         ]
 

@@ -11,11 +11,11 @@ class SargassoMeasureMaterialManager(MaterialManager):
 
     generic_output_name = 'sargasso measures'
 
-    output_material_checker = staticmethod(lambda output: all(
+    _output_material_checker = staticmethod(lambda output: all(
         isinstance(x, scoretools.Measure) and x.implicit_scaling 
         for x in output))
 
-    output_material_module_import_statements = [
+    _output_material_module_import_statements = [
         'from abjad import *',
         ]
 
@@ -93,7 +93,7 @@ class SargassoMeasureMaterialManager(MaterialManager):
         return lines
 
     @staticmethod
-    def output_material_maker(
+    def _output_material_maker(
         measure_denominator, 
         measure_numerator_talea,
         measure_division_denominator, 

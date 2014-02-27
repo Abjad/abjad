@@ -13,20 +13,20 @@ class RhythmMakerMaterialManager(MaterialManager):
 
     generic_output_name = 'time-menu_entry maker'
 
-    output_material_maker = RhythmMakerCreationWizard
+    _output_material_maker = RhythmMakerCreationWizard
 
-    output_material_module_import_statements = [
+    _output_material_module_import_statements = [
         'from abjad import *',
         ]
 
     ### STATIC METHODS ###
 
     @staticmethod
-    def output_material_checker(expr):
+    def _output_material_checker(expr):
         return isinstance(expr, rhythmmakertools.RhythmMaker)
 
     @staticmethod
-    def output_material_editor(target=None, session=None):
+    def _output_material_editor(target=None, session=None):
         if target:
             wizard = RhythmMakerCreationWizard()
             rhythm_maker_editor = wizard._get_target_editor(

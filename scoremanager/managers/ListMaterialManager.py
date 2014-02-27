@@ -9,8 +9,8 @@ class ListMaterialManager(MaterialManager):
     ### CLASS VARIABLES ###
 
     generic_output_name = 'list'
-    output_material_checker = staticmethod(lambda x: isinstance(x, list))
-    output_material_editor = ListEditor
+    _output_material_checker = staticmethod(lambda x: isinstance(x, list))
+    _output_material_editor = ListEditor
 
     ### PUBLIC METHODS ###
 

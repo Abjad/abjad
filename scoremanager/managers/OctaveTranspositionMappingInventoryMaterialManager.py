@@ -12,14 +12,14 @@ class OctaveTranspositionMappingInventoryMaterialManager(
 
     generic_output_name = 'octave transposition mapping inventory'
 
-    output_material_checker = staticmethod(lambda x: isinstance(x,
+    _output_material_checker = staticmethod(lambda x: isinstance(x,
         pitchtools.OctaveTranspositionMappingInventory))
 
-    output_material_editor = OctaveTranspositionMappingInventoryEditor
+    _output_material_editor = OctaveTranspositionMappingInventoryEditor
 
-    output_material_maker = pitchtools.OctaveTranspositionMappingInventory
+    _output_material_maker = pitchtools.OctaveTranspositionMappingInventory
 
-    output_material_module_import_statements = [
+    _output_material_module_import_statements = [
         'from abjad import *',
         ]
 
