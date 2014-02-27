@@ -31,6 +31,7 @@ class DirectoryManager(Manager):
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
             'ls': self.list_directory,
+            'll': self.list_directory_long,
             'pwd': self.display_present_working_directory,
             })
         return _user_input_to_action
@@ -165,11 +166,28 @@ class DirectoryManager(Manager):
             else:
                 raise TypeError(directory_entry)
             lines.append(line)
+        lines.append('')
         self._io_manager.display(
             lines,
             capitalize_first_character=False,
             )
-        self._io_manager.display('')
+        self._session._hide_next_redraw = True
+
+    def list_directory_long(self):
+        r'''Lists directory with ``ls -l``.
+
+        Returns none.
+        '''
+        command = 'ls -l {}'
+        command = command.format(self._filesystem_path)
+        lines = []
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in process.stdout.readlines()]
+        lines.append('')
+        self._io_manager.display(
+            lines,
+            capitalize_first_character=False,
+            )
         self._session._hide_next_redraw = True
 
     def run_doctest(self, prompt=True):

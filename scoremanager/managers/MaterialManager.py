@@ -435,6 +435,7 @@ class MaterialManager(PackageManager):
             name='package management',
             )
         section.append(('package - list', 'ls'))
+        section.append(('package - list long', 'll'))
         section.append(('package - pwd', 'pwd'))
         section.append(('package - remove', 'rm'))
         section.append(('package - rename', 'ren'))

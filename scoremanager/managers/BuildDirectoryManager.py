@@ -29,7 +29,7 @@ class BuildDirectoryManager(DirectoryManager):
     @property
     def _user_input_to_action(self):
         superclass = super(BuildDirectoryManager, self)
-        _user_input_to_action = self._user_input_to_action.fget(self)
+        _user_input_to_action = superclass._user_input_to_action
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
             'bc': self.manage_back_cover,

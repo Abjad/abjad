@@ -317,6 +317,8 @@ class IOManager(IOManager):
         Returns none.
         '''
         assert isinstance(lines, (str, list))
+        if lines == '':
+            raise Exception('do not display a single empty line.')
         if isinstance(lines, str):
             lines = [lines]
         if self._session.hide_next_redraw:

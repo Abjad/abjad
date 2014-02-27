@@ -105,18 +105,15 @@
             ])
     ... without allowing for removal.
 
-30. Add other commands to 'ls'. Commands should include ls variants to show
-    time of modification and size. Probably other filesystem commands, too.
-
-31. Replace the self.has_whatever_module properties (or methods)
+30. Replace the self.has_whatever_module properties (or methods)
     with just os.path.isfile(self.whatever_file_path) instead.
 
-32. Remove MarkupInventoryMaterialManager.illustration_builder().
+31. Remove MarkupInventoryMaterialManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
 
-33. Write test for (ren) to rename.
+32. Write test for (ren) to rename.
 
-34. Write test to make sure that ...
+33. Write test to make sure that ...
         # -*- encoding: utf-8 -*-
         from abjad import *
         _output_material_module_import_statements = []
@@ -126,40 +123,40 @@
     ... shows up as the exact file contents in response to (materials) > (nmh)
     > ... > (mde).
 
-35. Change menu command display strings to 'direct object - verb' pervasively.
+34. Change menu command display strings to 'direct object - verb' pervasively.
 
-36. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+35. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-37. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
+36. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
 
-38. Implement __format__ on Transcript.
+37. Implement __format__ on Transcript.
 
-39. Add something to check the size of the ~/.score_manager/transcripts
+38. Add something to check the size of the ~/.score_manager/transcripts
     diretory. Should warn at starting at 9000 and overwrite starting at 10,000.
 
-40. Implement something to tour everything that can be rewritten and rewrite.
+39. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-41. There's noticeable delay starting ScorePackageManager.
+40. There's noticeable delay starting ScorePackageManager.
     Probably initializing too many wranglers and managers.
     Find a way to delay (and then cache) the initialization of
     ScorePackageManager delegates.
 
-42. Remove all calls to ScoreManagerConfiguration.package_to_path().
+41. Remove all calls to ScoreManagerConfiguration.package_to_path().
     Though preserve ScoreMangerConfiguration.package_to_path() for a while.
 
-43. Provide an object-oriented means for makers in any score to access the
+42. Provide an object-oriented means for makers in any score to access the
     contents of the toplevel __metadata__ module for that score. Same for
     discovering the contents of a score's stylesheets directory.
 
-44. Remove ...
+43. Remove ...
         score_manager._configuration.package_exists(package)
     ... in favor of ...
         os.path.exists(path)
     ... in test files.
 
-45. Mark all test calls to score_manager._run() with is_test=True.
+44. Mark all test calls to score_manager._run() with is_test=True.
