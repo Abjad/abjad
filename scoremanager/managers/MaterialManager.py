@@ -263,22 +263,12 @@ class MaterialManager(PackageManager):
         name = 'illustration builder'
         command_section = main_menu.make_command_section(name=name)
         if self.has_output_material:
-            if not os.path.isfile(self.illustration_builder_module_path):
-                material_package_path = self._package_path
-                material_package_name = \
-                    material_package_path.split('.')[-1]
-                self.write_stub_illustration_builder_module(
-                    material_package_path,
-                    material_package_name,
-                    prompt=False,
-                    )
             command_section.append(('illustration builder - edit', 'ibe'))
-            if self.has_output_material:
+            if os.path.isfile(self.illustration_builder_module_path):
                 string = 'illustration builder - edit & execute'
                 command_section.append((string, 'ibex'))
                 string = 'illustration builder - execute'
                 command_section.append((string, 'ibx'))
-            if os.path.isfile(self.illustration_builder_module_path):
                 string = 'illustration builder - remove'
                 command_section.append((string, 'ibrm'))
             command_section.append(('illustration builder - stub', 'ibs'))

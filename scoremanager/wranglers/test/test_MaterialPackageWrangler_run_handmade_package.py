@@ -129,11 +129,10 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
         assert manager._list_directory() == [
             '__init__.py',
             '__metadata__.py',
-            'illustration_builder.py', 
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert os.path.isfile(manager.illustration_builder_module_path)
+        assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager.material_definition and \
             all(isinstance(x, Note) for x in manager.material_definition)
         assert manager.output_material and \
@@ -238,11 +237,10 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
         assert manager._list_directory() == [
                 '__init__.py', 
                 '__metadata__.py',
-                'illustration_builder.py',
                 'material_definition.py', 
                 ]
         assert not manager.has_output_material_module
-        #assert not os.path.isfile(manager.illustration_builder_module_path)
+        assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager.material_definition and \
             all(isinstance(x, Note) for x in manager.material_definition)
         assert manager.output_material is None
@@ -311,11 +309,10 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
         assert manager._list_directory() == [
             '__init__.py',
             '__metadata__.py',
-            'illustration_builder.py', 
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert os.path.isfile(manager.illustration_builder_module_path)
+        assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager.material_definition and \
             all(isinstance(x, Note) for x in manager.material_definition)
         assert manager.output_material is None

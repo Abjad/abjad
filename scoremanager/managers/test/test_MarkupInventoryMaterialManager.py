@@ -17,7 +17,6 @@ def test_MarkupInventoryMaterialManager_01():
             "add arg r'\\italic~{~serenamente~}' done "
             "add arg r'\\italic~{~presto~}' done done default q"
             )
-        #string = 'scoremanager.materials.testmarkupinventory'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testmarkupinventory')
         manager = scoremanager.managers.ArticulationHandlerMaterialManager(
@@ -25,7 +24,6 @@ def test_MarkupInventoryMaterialManager_01():
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
-            'illustration_builder.py',
             'output_material.py',
             ]
         inventory = markuptools.MarkupInventory([

@@ -16,7 +16,6 @@ def test_TempoInventoryMaterialManager_01():
             'testtempoinventory omi add ((1, 4), 60) add ((1, 4), 90) b default '
             'q '
             )
-        #string = 'scoremanager.materials.testtempoinventory'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testtempoinventory')
         manager = scoremanager.managers.TempoInventoryMaterialManager(
@@ -24,7 +23,6 @@ def test_TempoInventoryMaterialManager_01():
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
-            'illustration_builder.py',
             'output_material.py', 
             ]
         inventory = indicatortools.TempoInventory([((1, 4), 60), ((1, 4), 90)])

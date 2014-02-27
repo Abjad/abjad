@@ -49,7 +49,6 @@ def test_PitchRangeInventoryMaterialManager_02():
             'rm 1 move 1 2 b default '
             'q'
             )
-        #string = 'scoremanager.materials.testpir'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testpir')
         manager = scoremanager.managers.PitchRangeInventoryMaterialManager(
@@ -57,7 +56,6 @@ def test_PitchRangeInventoryMaterialManager_02():
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
-            'illustration_builder.py',
             'output_material.py',
             ]
         pitch_range_inventory = pitchtools.PitchRangeInventory([

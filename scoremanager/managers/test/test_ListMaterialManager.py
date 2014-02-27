@@ -15,7 +15,6 @@ def test_ListMaterialManager_01():
             'lmm nmm list testlist '
             "17 foo done b default q "
             )
-        #string = 'scoremanager.materials.testlist'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testlist')
         manager = \
@@ -24,7 +23,6 @@ def test_ListMaterialManager_01():
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
-            'illustration_builder.py',
             'output_material.py',
             ]
         assert manager.output_material == [17, 'foo']

@@ -18,7 +18,6 @@ def test_DynamicHandlerMaterialManager_01():
             'f (1, 16) done default '
             'q '
             )
-        #string = 'scoremanager.materials.testdynamichandler'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testdynamichandler')
         mpp = scoremanager.managers.DynamicHandlerMaterialManager(
@@ -26,7 +25,6 @@ def test_DynamicHandlerMaterialManager_01():
         assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
-            'illustration_builder.py',
             'output_material.py', 
             ]
         handler = handlertools.ReiteratedDynamicHandler(

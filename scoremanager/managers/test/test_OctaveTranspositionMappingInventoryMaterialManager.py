@@ -49,7 +49,6 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_02():
             'add source [C4, C8) target 27 done done '
             'add add source [A0, C8] target -18 done done done default q'
             )
-        #string = 'scoremanager.materials.testoctavetrans'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testoctavetrans')
         manager = scoremanager.managers.OctaveTranspositionMappingInventoryMaterialManager(
@@ -57,7 +56,6 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_02():
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
-            'illustration_builder.py',
             'output_material.py',
             ]
         mapping_1 = pitchtools.OctaveTranspositionMapping([

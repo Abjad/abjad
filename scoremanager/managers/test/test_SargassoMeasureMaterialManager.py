@@ -307,7 +307,6 @@ def test_SargassoMeasureMaterialManager_08():
             'testsargasso uil omm default '
             'q'
             )
-        #string = 'scoremanager.materials.testsargasso'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
@@ -315,7 +314,6 @@ def test_SargassoMeasureMaterialManager_08():
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
-            'illustration_builder.py',
             'output_material.py', 
             'user_input.py',
             ]
