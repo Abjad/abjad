@@ -13,4 +13,4 @@ def test_DirectoryManager_display_present_working_directory_01():
         score_manager._configuration.abjad_material_packages_directory_path,
         'example_numbers',
         )
-    assert score_manager._transcript.last_menu_title == path
+    assert score_manager._transcript.last_title == path

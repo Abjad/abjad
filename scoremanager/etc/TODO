@@ -139,29 +139,27 @@
 39. Add something to check the size of the ~/.score_manager/transcripts
     diretory. Should warn at starting at 9000 and overwrite starting at 10,000.
 
-40. Uncomment the TODO in Transcript and make the constraint hold.
-
-41. Implement something to tour everything that can be rewritten and rewrite.
+40. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-42. There's noticeable delay starting ScorePackageManager.
+41. There's noticeable delay starting ScorePackageManager.
     Probably initializing too many wranglers and managers.
     Find a way to delay (and then cache) the initialization of
     ScorePackageManager delegates.
 
-43. Remove all calls to ScoreManagerConfiguration.package_to_path().
+42. Remove all calls to ScoreManagerConfiguration.package_to_path().
     Though preserve ScoreMangerConfiguration.package_to_path() for a while.
 
-44. Provide an object-oriented means for makers in any score to access the
+43. Provide an object-oriented means for makers in any score to access the
     contents of the toplevel __metadata__ module for that score. Same for
     discovering the contents of a score's stylesheets directory.
 
-45. Remove ...
+44. Remove ...
         score_manager._configuration.package_exists(package)
     ... in favor of ...
         os.path.exists(path)
     ... in test files.
 
-46. Mark all test calls to score_manager._run() with is_test=True.
+45. Mark all test calls to score_manager._run() with is_test=True.

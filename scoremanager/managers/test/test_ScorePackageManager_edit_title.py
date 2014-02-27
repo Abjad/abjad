@@ -15,7 +15,7 @@ def test_ScorePackageManager_edit_title_01():
         string = 'Green Example Score (2013) - setup'
         assert score_manager._transcript[-5].title == string
         string = 'Foo (2013) - setup'
-        assert score_manager._transcript.last_menu_title == string
+        assert score_manager._transcript.last_title == string
     finally:
         string = 'foo setup title Green~Example~Score q'
         score_manager._run(pending_user_input=string)
@@ -23,4 +23,4 @@ def test_ScorePackageManager_edit_title_01():
         string = 'Foo (2013) - setup'
         assert score_manager._transcript[-5].title == string
         string = 'Green Example Score (2013) - setup'
-        assert score_manager._transcript.last_menu_title == string
+        assert score_manager._transcript.last_title == string

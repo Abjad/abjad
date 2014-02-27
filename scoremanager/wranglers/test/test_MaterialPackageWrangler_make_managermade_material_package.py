@@ -40,4 +40,4 @@ def test_MaterialPackageWrangler_make_managermade_material_package_02():
 
     transcript = score_manager._transcript
     string = 'Select material manager:'
-    assert transcript.last_menu_title == string
+    assert transcript.last_title == string

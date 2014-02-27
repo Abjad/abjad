@@ -31,7 +31,7 @@ def test_MaterialPackageWrangler__run_02():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='lmm q')
     title_line = 'Score manager - material library'
-    assert score_manager._transcript.last_menu_title == title_line
+    assert score_manager._transcript.last_title == title_line
 
 
 def test_MaterialPackageWrangler__run_03():

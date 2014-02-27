@@ -13,4 +13,4 @@ def test_MaterialManager_edit_output_material_01():
     transcript = score_manager._transcript
 
     string = 'Score manager - material library - example markup inventory - edit'
-    assert transcript.last_menu_title == string
+    assert transcript.last_title == string
