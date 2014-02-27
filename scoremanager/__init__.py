@@ -1,14 +1,4 @@
 # -*- encoding: utf-8 -*-
-import core
-import editors
-import exceptions
-import getters
-import iotools
-import managers
-import predicates
-import wizards
-import wranglers
-
 '''Installing the Abjad score manager.
 
 Do the following to install the score manager on your system:
@@ -68,12 +58,12 @@ break.
 scoremanager/ directory to do this. You're ready to use the score manager when
 all tests pass.
 '''
-from abjad.tools import systemtools
-
-
-systemtools.ImportManager.import_structured_package(
-	__path__[0],
-	globals(),
-	)
-
-_documentation_section = 'score manager'
+import core
+import editors
+import exceptions
+import getters
+import iotools
+import managers
+import predicates
+import wizards
+import wranglers
