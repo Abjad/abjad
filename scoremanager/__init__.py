@@ -5,7 +5,6 @@ import exceptions
 import getters
 import iotools
 import managers
-import managers
 import predicates
 import wizards
 import wranglers
@@ -22,7 +21,7 @@ Do the following to install the score manager on your system:
     6. rebuild the Abjad score manager API.
     7. run doctest on the scoremanager/ directory.
 
-1. Verify the score manager directories. The following 15 directories should 
+1. Verify the score manager directories. The following 14 directories should 
 appear on your filesystem after checkout:
 
     boilerplate/
@@ -32,7 +31,6 @@ appear on your filesystem after checkout:
     getters/
     iotools/
     latex/
-    managers/
     managers/
     materials/
     predicates/
