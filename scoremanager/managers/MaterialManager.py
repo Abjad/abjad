@@ -299,7 +299,8 @@ class MaterialManager(PackageManager):
         main_menu,
         ):
         name = 'illustration pdf'
-        if self.has_output_material or self.has_illustration_pdf:
+        if self.has_output_material or \
+            os.path.isfile(self.illustration_pdf_file_path):
             command_section = main_menu.make_command_section(name=name)
         if self.has_output_material:
             if os.path.isfile(self.illustration_builder_module_path) or \
@@ -307,7 +308,7 @@ class MaterialManager(PackageManager):
                 getattr(self, '__illustrate__', None)):
                 command_section.append(('output pdf - make', 'pdfm'))
                 has_illustration_pdf_section = True
-        if self.has_illustration_pdf:
+        if os.path.isfile(self.illustration_pdf_file_path):
             if not has_illustration_pdf_section:
                 command_section = main_menu.make_command_section(name=name)
             command_section.append(('output pdf - remove', 'pdfrm'))
@@ -475,10 +476,6 @@ class MaterialManager(PackageManager):
         Returns string.
         '''
         return self._generic_output_name
-
-    @property
-    def has_illustration_pdf(self):
-        return os.path.exists(self.illustration_pdf_file_path)
 
     @property
     def has_material_definition(self):
@@ -790,7 +787,7 @@ class MaterialManager(PackageManager):
 
     def remove_illustration_pdf(self, prompt=True):
         self.remove_illustration_ly(prompt=False)
-        if self.has_illustration_pdf:
+        if os.path.isfile(self.illustration_pdf_file_path):
             self.illustration_pdf_file_manager._remove()
 
     def remove_material_definition_module(self, prompt=True):

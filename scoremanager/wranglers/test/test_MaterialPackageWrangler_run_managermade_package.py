@@ -297,7 +297,6 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 #        assert manager._list_directory() == [
 #            '__init__.py', 'illustration.ly', 'illustration.pdf',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
-#        assert manager.has_illustration_pdf
 #        assert manager.material_definition and all(isinstance(x, Note) for x in
 #           manager.material_definition)
 #        assert manager.output_material and all(isinstance(x, Note) for x in

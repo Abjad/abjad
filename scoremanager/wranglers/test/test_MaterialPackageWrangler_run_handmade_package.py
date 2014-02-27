@@ -356,7 +356,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert manager.has_illustration_pdf
+        assert os.path.isfile(self.illustration_pdf_file_path)
         assert manager.material_definition and \
             all(isinstance(x, Note) for x in manager.material_definition)
         assert manager.output_material and \
