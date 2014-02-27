@@ -159,8 +159,8 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
 
     try:
         score_manager._run(pending_user_input=
-            'lmm nmh testnotes default default '
-            'testnotes mdrm default q')
+            'lmm nmh testnotes testnotes mdrm remove q'
+            )
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
         assert manager._list_directory() == [
@@ -227,20 +227,22 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
 
     try:
         score_manager._run(pending_user_input=
-            'lmm nmh testnotes default default '
-            'testnotes mdbp boilerplate_testnotes_material_definition.py '
-            'default '
-            'omm default '
-            'omrm default q')
+            'lmm nmh testnotes'
+            ' testnotes mdbp boilerplate_testnotes_material_definition.py'
+            ' default'
+            ' omm default'
+            ' omrm remove q'
+            )
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
         assert manager._list_directory() == [
                 '__init__.py', 
                 '__metadata__.py',
+                'illustration_builder.py',
                 'material_definition.py', 
                 ]
         assert not manager.has_output_material_module
-        assert not os.path.isfile(manager.illustration_builder_module_path)
+        #assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager.material_definition and \
             all(isinstance(x, Note) for x in manager.material_definition)
         assert manager.output_material is None

@@ -374,6 +374,7 @@ class Manager(ScoreManagerObject):
     def remove(
         self, 
         pending_user_input=None,
+        prompt=True,
         ):
         r'''Removes filesystem asset.
 
@@ -382,18 +383,18 @@ class Manager(ScoreManagerObject):
         self._io_manager._assign_user_input(pending_user_input)
         message = '{} will be removed.'
         message = message.format(self._filesystem_path)
-        self._io_manager.display([message, ''])
-        getter = self._io_manager.make_getter(where=self._where)
-        getter.append_string("type 'remove' to proceed")
-        result = getter._run()
+        if prompt:
+            self._io_manager.display([message, ''])
+            getter = self._io_manager.make_getter(where=self._where)
+            getter.append_string("type 'remove' to proceed")
+            result = getter._run()
+        else:
+            result = True
         if self._session._backtrack():
             return
         if not result == 'remove':
             return
-        if self._remove():
-            message = '{} removed.'
-            message = message.format(self._filesystem_path)
-            self._io_manager.proceed(message)
+        self._remove()
 
     def remove_and_backtrack_locally(self):
         r'''Removes filesystem asset and backtracks locally.

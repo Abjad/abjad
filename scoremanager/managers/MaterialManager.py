@@ -278,8 +278,9 @@ class MaterialManager(PackageManager):
                 command_section.append((string, 'ibex'))
                 string = 'illustration builder - execute'
                 command_section.append((string, 'ibx'))
-            string = 'illustration builder - remove'
-            command_section.append((string, 'ibrm'))
+            if os.path.isfile(self.illustration_builder_module_path):
+                string = 'illustration builder - remove'
+                command_section.append((string, 'ibrm'))
             command_section.append(('illustration builder - stub', 'ibs'))
 
     def _make_illustration_ly_menu_section(self, menu):
@@ -772,34 +773,29 @@ class MaterialManager(PackageManager):
             message = 'select stylesheet first.'
             self._io_manager.proceed(message)
 
-    def remove(self):
-        PackageManager.remove(self)
-
     def remove_illustration_builder_module(self, prompt=True):
-        self.remove_illustration_pdf(prompt=False)
         if os.path.isfile(self.illustration_builder_module_path):
-            self.illustration_builder_module_manager._remove()
+            self.illustration_builder_module_manager.remove(prompt=prompt)
 
     def remove_illustration_ly(self, prompt=True):
-        #if self.has_illustration_ly:
         if os.path.isfile(self.illustration_ly_file_path):
-            self.illustration_ly_file_manager._remove()
+            self.illustration_ly_file_manager.remove(prompt=prompt)
 
     def remove_illustration_pdf(self, prompt=True):
-        self.remove_illustration_ly(prompt=False)
         if os.path.isfile(self.illustration_pdf_file_path):
-            self.illustration_pdf_file_manager._remove()
+            self.illustration_pdf_file_manager.remove(prompt=prompt)
 
     def remove_material_definition_module(self, prompt=True):
         from scoremanager import managers
-        self.remove_output_material_module(prompt=False)
-        self.remove_illustration_builder_module(prompt=False)
+        #self.remove_output_material_module(prompt=False)
+        #self.remove_illustration_builder_module(prompt=False)
         if self.has_material_definition_module:
             manager = managers.FileManager(
                 self.material_definition_module_path,
                 session=self._session,
                 )
-            manager._remove()
+            #manager._remove()
+            manager.remove(prompt=prompt)
 
     def remove_output_material_module(self, prompt=True):
         self.remove_illustration_builder_module(prompt=False)
