@@ -127,6 +127,8 @@ class MaterialManager(PackageManager):
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
             'ibe': self.edit_illustration_builder_module,
+            'ibex': self.edit_and_execute_illustration_builder_module,
+            'ibm': self.write_stub_illustration_builder_module,
             'ibrm': self.remove_illustration_builder_module,
             'ibs': self.write_stub_illustration_builder_module,
             'ibx': self.run_python_on_illustration_builder_module,
@@ -263,15 +265,20 @@ class MaterialManager(PackageManager):
         name = 'illustration builder'
         command_section = main_menu.make_command_section(name=name)
         if self.has_output_material:
-            command_section.append(('illustration builder - edit', 'ibe'))
             if os.path.isfile(self.illustration_builder_module_path):
+                string = 'illustration builder - edit'
+                command_section.append((string, 'ibe'))
                 string = 'illustration builder - edit & execute'
                 command_section.append((string, 'ibex'))
                 string = 'illustration builder - execute'
                 command_section.append((string, 'ibx'))
                 string = 'illustration builder - remove'
                 command_section.append((string, 'ibrm'))
-            command_section.append(('illustration builder - stub', 'ibs'))
+                string = 'illustration builder - stub'
+                command_section.append((string, 'ibs'))
+            else:
+                string = 'illustration builder - make'
+                command_section.append((string, 'ibm'))
 
     def _make_illustration_ly_menu_section(self, menu):
         if self.has_output_material or \
@@ -695,6 +702,14 @@ class MaterialManager(PackageManager):
 
     ### PUBLIC METHODS ###
 
+    def edit_and_execute_illustration_builder_module(self):
+        r'''Edits and then executes illustration builder module.
+
+        Returns none.
+        '''
+        self.edit_illustration_builder_module()
+        self.run_python_on_illustration_builder_module()
+
     def edit_illustration_builder_module(self):
         r'''Edits illustration builder module.
 
@@ -1018,12 +1033,9 @@ class MaterialManager(PackageManager):
             )
         manager.write_boilerplate()
 
-    def write_stub_illustration_builder_module(
-        self,
-        material_package_path,
-        material_package_name,
-        prompt=True,
-        ):
+    def write_stub_illustration_builder_module(self, prompt=True):
+        material_package_path = self._package_path
+        material_package_name = material_package_path.split('.')[-1]
         lines = []
         lines.append('from abjad import *\n')
         line = 'from {}.output_material import {}\n'
@@ -1033,8 +1045,8 @@ class MaterialManager(PackageManager):
         lines.append('\n')
         line = 'score, treble_staff, bass_staff ='
         line += ' scoretools.make_piano_score_from_leaves({})\n'
-        lines.append(line)
         line = line.format(material_package_name)
+        lines.append(line)
         line = 'illustration = lilypondfiletools.'
         line += 'make_basic_lilypond_file(score)\n'
         lines.append(line)
