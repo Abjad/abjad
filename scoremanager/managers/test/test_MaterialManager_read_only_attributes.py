@@ -20,7 +20,6 @@ def test_MaterialManager_read_only_attributes_01():
     assert not manager._read_material_manager_class_name()
     material_definition = manager._execute_material_definition_module()
     assert material_definition == [1, 2, 3, 4, 5]
-    assert manager.material_manager is None
     assert manager.material_package_name == 'example_numbers'
     assert manager.space_delimited_material_package_name == 'example numbers'
     assert manager.material_package_name == 'example_numbers'
@@ -53,8 +52,6 @@ def test_MaterialManager_read_only_attributes_02():
     assert not os.path.isfile(manager._material_definition_module_path)
     assert manager._read_material_manager_class_name()
     assert manager.illustration_ly_file_manager is not None
-    maker = scoremanager.managers.SargassoMeasureMaterialManager
-    assert manager.material_manager is maker
     assert manager.material_package_name == 'example_sargasso_measures'
     string = 'example sargasso measures'
     assert manager.space_delimited_material_package_name == string
@@ -99,7 +96,6 @@ def test_MaterialManager_read_only_attributes_03():
         manager._configuration.abjad_material_packages_directory_path, 
         'example_notes',
         )
-    assert manager.material_manager is None
     assert manager.material_package_name == 'example_notes'
     assert manager.space_delimited_material_package_name == 'example notes'
     assert manager.material_package_name == 'example_notes'

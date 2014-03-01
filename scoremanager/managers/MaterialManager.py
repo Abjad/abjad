@@ -576,26 +576,21 @@ class MaterialManager(PackageManager):
             )
         return manager
 
-    @property
-    def material_manager(self):
-        if self._read_material_manager_class_name() is None:
-            return
-        directory_path = \
-            self._configuration.abjad_material_managers_directory_path
-        package_path = \
-            self._configuration.path_to_package(
-            directory_path)
-        import_statement = 'from {} import {}'
-        import_statement = import_statement.format(
-            package_path,
-            self._read_material_manager_class_name(),
-            )
-        try:
-            exec(import_statement)
-        except:
-            return
-        result = locals()[self._read_material_manager_class_name()]
-        return result
+#    @property
+#    def material_manager(self):
+#        class_name = self._read_material_manager_class_name()
+#        if class_name is None:
+#            return
+#        path = self._configuration.abjad_material_managers_directory_path
+#        package = self._configuration.path_to_package(path)
+#        statement = 'from {} import {}'
+#        statement = statement.format(package, class_name)
+#        try:
+#            exec(statement)
+#        except:
+#            return
+#        result = locals()[class_name]
+#        return result
 
     @property
     def material_package_name(self):
