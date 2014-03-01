@@ -252,6 +252,25 @@ class MaterialManager(PackageManager):
             )
         return result
 
+    # TODO: change property to method
+    # TODO: make illustration work the same way as for segment PDF rendering;
+    #       use something like _interpret_in_external_process()
+    def _illustrate(self):
+        # TODO: replace old and dangerous import_output_material_safely()
+        output_material = \
+            self.output_material_module_manager.import_output_material_safely()
+        kwargs = {}
+        kwargs['title'] = self._space_delimited_lowercase_name
+        if self._session.is_in_score:
+            title = self._session.current_score_package_manager.title
+            string = '({})'.format(title)
+            kwargs['subtitle'] = string
+        illustration = self.illustration_builder(output_material, **kwargs)
+        if illustration and self.stylesheet_file_path_in_memory:
+            path = self.stylesheet_file_path_in_memory
+            illustration.file_initial_user_includes.append(path)
+        return illustration
+
     def _initialize_empty_user_input_wrapper(self):
         from scoremanager import editors
         user_input_wrapper = editors.UserInputWrapper()
@@ -528,26 +547,6 @@ class MaterialManager(PackageManager):
         Returns string.
         '''
         return self._generic_output_name
-
-    # TODO: change property to method
-    # TODO: make illustration work the same way as for segment PDF rendering;
-    #       use something like _interpret_in_external_process()
-    @property
-    def illustration(self):
-        # TODO: replace old and dangerous import_output_material_safely()
-        output_material = \
-            self.output_material_module_manager.import_output_material_safely()
-        kwargs = {}
-        kwargs['title'] = self._space_delimited_lowercase_name
-        if self._session.is_in_score:
-            title = self._session.current_score_package_manager.title
-            string = '({})'.format(title)
-            kwargs['subtitle'] = string
-        illustration = self.illustration_builder(output_material, **kwargs)
-        if illustration and self.stylesheet_file_path_in_memory:
-            path = self.stylesheet_file_path_in_memory
-            illustration.file_initial_user_includes.append(path)
-        return illustration
 
     @property
     def illustration_builder_module_manager(self):
@@ -926,9 +925,6 @@ class MaterialManager(PackageManager):
 
     def write_illustration_ly(self, prompt=True):
         illustration = self.illustration
-#        if illustration and self.stylesheet_file_path_in_memory:
-#            path = self.stylesheet_file_path_in_memory
-#            illustration.file_initial_user_includes.append(path)
         topleveltools.persist(illustration).as_pdf(
             self._illustration_ly_file_path,
             )
@@ -938,7 +934,7 @@ class MaterialManager(PackageManager):
             )
 
     def write_illustration_ly_and_pdf(self, prompt=True):
-        illustration = self.illustration
+        illustration = self._illustrate()
         topleveltools.persist(illustration).as_pdf(
             self._illustration_pdf_file_path,
             )
@@ -948,7 +944,7 @@ class MaterialManager(PackageManager):
             )
 
     def write_illustration_pdf(self, prompt=True):
-        illustration = self.illustration
+        illustration = self._illustrate()
         topleveltools.persist(illustration).as_pdf(
             self._illustration_pdf_file_path,
             )
