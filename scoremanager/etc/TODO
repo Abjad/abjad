@@ -160,3 +160,10 @@
     ... in test files.
 
 44. Mark all test calls to score_manager._run() with is_test=True.
+
+45. Note that ArticulationHandlerMaterialManager implementation is limited
+    to just a handful of class variables. See if the class can be eliminated
+    by moving the variables to ArticulationHandler and by teaching
+    MaterialManager how to inspect ArticulationHandler class variables. The
+    will then be true for DynamicHandlerMaterialManager and a couple of other
+    material manager classes.
