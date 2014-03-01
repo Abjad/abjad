@@ -433,7 +433,7 @@ class MaterialPackageWrangler(PackageWrangler):
             metadata, 
             prompt=False,
             )
-        if not material_manager._get_material_manager_class_name():
+        if not material_manager._read_material_manager_class_name():
             material_manager._write_stub_material_definition_module(
                 prompt=False)
         if material_manager._should_have_user_input_module:

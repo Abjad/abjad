@@ -76,7 +76,7 @@ class MaterialManagerWrangler(PackageWrangler):
             material_manager_class_name = last
         else:
             material_manager_class_name = \
-                material_manager._get_material_manager_class_name()
+                material_manager._read_material_manager_class_name()
         if material_manager_class_name is not None:
             material_manager_class = None
             command = 'from scoremanager'

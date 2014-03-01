@@ -92,7 +92,7 @@ class MaterialManager(PackageManager):
             pair = \
                 self._output_material_module_import_statements_and_material_definition
             _output_material_module_import_statements, output_material = pair
-        elif self.has_material_manager:
+        elif self._read_material_manager_class_name():
             _output_material_module_import_statements = \
                 self._output_material_module_import_statements
             output_material = \
@@ -118,7 +118,7 @@ class MaterialManager(PackageManager):
 
     @property
     def _should_have_material_definition_module(self):
-        return self._get_material_manager_class_name() is None
+        return self._read_material_manager_class_name() is None
 
     @property
     def _user_input_to_action(self):
@@ -222,7 +222,7 @@ class MaterialManager(PackageManager):
             )
         return result
 
-    def _get_material_manager_class_name(self):
+    def _read_material_manager_class_name(self):
         return self._get_metadatum('material_manager_class_name')
 
     def _get_storage_format(self, expr):
@@ -266,7 +266,8 @@ class MaterialManager(PackageManager):
         ):
         name = 'stylesheets'
         section = menu.make_command_section(name=name)
-        if self.has_output_material:
+        #if self.has_output_material:
+        if os.path.isfile(self.output_material_module_path):
             section = menu.make_command_section(name=name)
             section.append(('stylesheet - edit', 'sse'))
             section.append(('stylesheet - select', 'sss'))
@@ -277,7 +278,8 @@ class MaterialManager(PackageManager):
         ):
         name = 'illustration builder'
         command_section = main_menu.make_command_section(name=name)
-        if self.has_output_material:
+        #if self.has_output_material:
+        if os.path.isfile(self.output_material_module_path):
             if os.path.isfile(self.illustration_builder_module_path):
                 string = 'illustration builder - edit'
                 command_section.append((string, 'ibe'))
@@ -294,12 +296,14 @@ class MaterialManager(PackageManager):
                 command_section.append((string, 'ibm'))
 
     def _make_illustration_ly_menu_section(self, menu):
-        if self.has_output_material or \
+        #if self.has_output_material or \
+        if os.path.isfile(self.output_material_module_path) or \
             os.path.isfile(self.illustration_ly_file_path):
             section = menu.make_command_section()
-        if self.has_output_material:
+        #if self.has_output_material:
+        if os.path.isfile(self.output_material_module_path):
             if os.path.isfile(self.illustration_builder_module_path) or \
-                self.has_material_manager:
+                self._read_material_manager_class_name():
                 section.append(('output ly - make', 'lym'))
         if os.path.isfile(self.illustration_ly_file_path):
             section.append(('output ly - remove', 'lyrm'))
@@ -310,12 +314,14 @@ class MaterialManager(PackageManager):
         main_menu,
         ):
         name = 'illustration pdf'
-        if self.has_output_material or \
+        #if self.has_output_material or \
+        if os.path.isfile(self.output_material_module_path) or \
             os.path.isfile(self.illustration_pdf_file_path):
             command_section = main_menu.make_command_section(name=name)
-        if self.has_output_material:
+        #if self.has_output_material:
+        if os.path.isfile(self.output_material_module_path):
             if os.path.isfile(self.illustration_builder_module_path) or \
-                (self.has_material_manager and
+                (self._read_material_manager_class_name() and
                 getattr(self, '__illustrate__', None)):
                 command_section.append(('output pdf - make', 'pdfm'))
                 has_illustration_pdf_section = True
@@ -386,7 +392,7 @@ class MaterialManager(PackageManager):
             string = 'material definition - remove'
             command_section.append((string, 'mdrm'))
             command_section.append(('material definition - stub', 'mds'))
-        elif self._get_material_manager_class_name() is None:
+        elif self._read_material_manager_class_name() is None:
             command_section = main_menu.make_command_section(name=name)
             command_section.return_value_attribute = 'key'
             command_section.append(('material definition - stub', 'mds'))
@@ -416,7 +422,8 @@ class MaterialManager(PackageManager):
                 has_output_material_section = True
             if self.has_output_material_editor:
                 section.append(('output material - interact', 'omi'))
-                if self.has_output_material:
+                #if self.has_output_material:
+                if os.path.isfile(self.output_material_module_path):
                     editor = self._output_material_editor(
                         target=self.output_material,
                         session=self._session,
@@ -490,15 +497,11 @@ class MaterialManager(PackageManager):
         '''
         return self._generic_output_name
 
-    @property
-    def has_material_manager(self):
-        return bool(self._get_material_manager_class_name())
-
-    @property
-    def has_output_material(self):
-        if self.has_output_material_module:
-            return True
-        return False
+#    @property
+#    def has_output_material(self):
+#        if self.has_output_material_module:
+#            return True
+#        return False
 
     @property
     def has_output_material_editor(self):
@@ -599,7 +602,7 @@ class MaterialManager(PackageManager):
 
     @property
     def material_manager(self):
-        if self._get_material_manager_class_name() is None:
+        if self._read_material_manager_class_name() is None:
             return
         directory_path = \
             self._configuration.abjad_material_managers_directory_path
@@ -609,13 +612,13 @@ class MaterialManager(PackageManager):
         import_statement = 'from {} import {}'
         import_statement = import_statement.format(
             package_path,
-            self._get_material_manager_class_name(),
+            self._read_material_manager_class_name(),
             )
         try:
             exec(import_statement)
         except:
             return
-        result = locals()[self._get_material_manager_class_name()]
+        result = locals()[self._read_material_manager_class_name()]
         return result
 
     @property
