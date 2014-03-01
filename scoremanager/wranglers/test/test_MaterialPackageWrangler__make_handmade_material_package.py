@@ -26,7 +26,7 @@ def test_MaterialPackageWrangler__make_handmade_material_package_01():
             ]
         assert not manager.has_output_material_module
         assert not os.path.isfile(manager.illustration_builder_module_path)
-        assert manager.material_definition is None
+        assert manager._execute_material_definition_module() is None
         assert manager.output_material is None
     finally:
         manager._remove()

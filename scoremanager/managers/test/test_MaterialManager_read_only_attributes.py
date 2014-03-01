@@ -23,7 +23,8 @@ def test_MaterialManager_read_only_attributes_01():
     assert manager.has_output_material_module
     assert not manager.has_user_input_module
     assert not manager.has_user_input_wrapper_on_disk
-    assert manager.material_definition == [1, 2, 3, 4, 5]
+    material_definition = manager._execute_material_definition_module()
+    assert material_definition == [1, 2, 3, 4, 5]
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
         'example_numbers', 
@@ -175,7 +176,8 @@ def test_MaterialManager_read_only_attributes_03():
     assert manager.material_package_name == 'example_notes'
     assert manager.space_delimited_material_package_name == 'example notes'
     assert manager.material_package_name == 'example_notes'
-    assert all(isinstance(x, Note) for x in manager.material_definition)
+    material_definition = manager._execute_material_definition_module()
+    assert all(isinstance(x, Note) for x in material_definition)
     assert manager.output_material_module_body_lines is not None
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 

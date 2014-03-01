@@ -209,6 +209,19 @@ class MaterialManager(PackageManager):
         wrapper = self.user_input_wrapper_in_memory
         self.write_user_input_wrapper(wrapper)
 
+    def _execute_material_definition_module(self):
+        from scoremanager import managers
+        if not self.has_material_definition_module:
+            return
+        manager = managers.FileManager(
+            self.material_definition_module_path,
+            session=self._session,
+            )
+        result = manager._execute_file_lines(
+            return_attribute_name=self.material_package_name,
+            )
+        return result
+
     def _get_material_manager_class_name(self):
         return self._get_metadatum('material_manager_class_name')
 
@@ -480,7 +493,8 @@ class MaterialManager(PackageManager):
     @property
     def has_material_definition(self):
         if self.has_material_definition_module:
-            return self.material_definition is not None
+            material_definition = self._execute_material_definition_module()
+            return material_definition is not None
         return False
 
     @property
@@ -576,20 +590,6 @@ class MaterialManager(PackageManager):
             illustration.file_initial_user_includes.append(
                 self.stylesheet_file_path_in_memory)
         return illustration
-
-    @property
-    def material_definition(self):
-        from scoremanager import managers
-        if not self.has_material_definition_module:
-            return
-        manager = managers.FileManager(
-            self.material_definition_module_path,
-            session=self._session,
-            )
-        result = manager._execute_file_lines(
-            return_attribute_name=self.material_package_name,
-            )
-        return result
 
     @property
     def material_definition_module_path(self):

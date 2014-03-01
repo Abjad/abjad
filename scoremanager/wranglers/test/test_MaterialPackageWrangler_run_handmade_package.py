@@ -29,7 +29,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
             ]
         assert not manager.has_output_material_module
         assert not os.path.isfile(manager.illustration_builder_module_path)
-        assert manager.material_definition is None
+        assert manager._execute_material_definition_module() is None
         assert manager.output_material is None
     finally:
         string = 'lmm testnotes rm default q'
@@ -63,7 +63,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
             ]
         assert not manager.has_output_material_module
         assert not os.path.isfile(manager.illustration_builder_module_path)
-        assert manager.material_definition is None
+        assert manager._execute_material_definition_module() is None
         assert manager.output_material is None
     finally:
         string = 'lmm testnotes rm default q'
@@ -98,7 +98,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
             ]
         assert not manager.has_output_material_module
         assert not os.path.isfile(manager.illustration_builder_module_path)
-        assert manager.material_definition is None
+        assert manager._execute_material_definition_module() is None
         assert manager.output_material is None
     finally:
         string = 'lmm testnotes rm default q'
@@ -133,8 +133,9 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
             'output_material.py', 
             ]
         assert not os.path.isfile(manager.illustration_builder_module_path)
-        assert manager.material_definition and \
-            all(isinstance(x, Note) for x in manager.material_definition)
+        material_definition = manager._execute_material_definition_module()
+        assert material_definition
+        assert all(isinstance(x, Note) for x in material_definition)
         assert manager.output_material and \
             all(isinstance(x, Note) for x in manager.output_material)
     finally:
@@ -169,7 +170,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
         assert not manager.has_material_definition_module
         assert not manager.has_output_material_module
         assert not os.path.isfile(manager.illustration_builder_module_path)
-        assert manager.material_definition is None
+        assert manager._execute_material_definition_module() is None
         assert manager.output_material is None
     finally:
         string = 'lmm testnotes rm default q'
@@ -203,7 +204,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
             ]
         assert not manager.has_output_material_module
         assert not os.path.isfile(manager.illustration_builder_module_path)
-        assert manager.material_definition is None
+        assert manager._execute_material_definition_module() is None
         assert manager.output_material is None
     finally:
         string = 'lmm testnotes rm default q'
@@ -241,8 +242,9 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
                 ]
         assert not manager.has_output_material_module
         assert not os.path.isfile(manager.illustration_builder_module_path)
-        assert manager.material_definition and \
-            all(isinstance(x, Note) for x in manager.material_definition)
+        material_definition = manager._execute_material_definition_module()
+        assert material_definition
+        assert all(isinstance(x, Note) for x in material_definition)
         assert manager.output_material is None
     finally:
         string = 'lmm testnotes rm default q'
@@ -276,7 +278,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
             ]
         assert not manager.has_output_material_module
         assert not os.path.isfile(manager.illustration_builder_module_path)
-        assert manager.material_definition is None
+        assert manager._execute_material_definition_module() is None
         assert manager.output_material is None
     finally:
         string = 'lmm testnotes rm default q'
@@ -313,8 +315,9 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
             'output_material.py', 
             ]
         assert not os.path.isfile(manager.illustration_builder_module_path)
-        assert manager.material_definition and \
-            all(isinstance(x, Note) for x in manager.material_definition)
+        material_definition = manager._execute_material_definition_module()
+        assert material_definition
+        assert all(isinstance(x, Note) for x in material_definition)
         assert manager.output_material is None
     finally:
         string = 'lmm testnotes rm default q'
