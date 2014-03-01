@@ -27,7 +27,6 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
             '__metadata__.py',
             'material_definition.py', 
             ]
-        assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager._execute_material_definition_module() is None
         assert manager.output_material is None
     finally:
@@ -60,7 +59,6 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
             '__metadata__.py',
             'material_definition.py', 
             ]
-        assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager._execute_material_definition_module() is None
         assert manager.output_material is None
     finally:
@@ -94,7 +92,6 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
             '__metadata__.py',
             'material_definition.py', 
             ]
-        assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager._execute_material_definition_module() is None
         assert manager.output_material is None
     finally:
@@ -129,7 +126,6 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert not os.path.isfile(manager.illustration_builder_module_path)
         material_definition = manager._execute_material_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
@@ -194,7 +190,6 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
             '__metadata__.py',
             'material_definition.py', 
             ]
-        assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager._execute_material_definition_module() is None
         assert manager.output_material is None
     finally:
@@ -231,7 +226,6 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
                 '__metadata__.py',
                 'material_definition.py', 
                 ]
-        assert not os.path.isfile(manager.illustration_builder_module_path)
         material_definition = manager._execute_material_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
@@ -266,7 +260,6 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
             '__metadata__.py',
             'material_definition.py', 
             ]
-        assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager._execute_material_definition_module() is None
         assert manager.output_material is None
     finally:
@@ -303,7 +296,6 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert not os.path.isfile(manager.illustration_builder_module_path)
         material_definition = manager._execute_material_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
@@ -347,7 +339,6 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert os.path.isfile(self.illustration_pdf_file_path)
         assert manager.material_definition and \
             all(isinstance(x, Note) for x in manager.material_definition)
         assert manager.output_material and \
