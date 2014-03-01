@@ -350,7 +350,8 @@ class MaterialManager(PackageManager):
         self._make_package_management_menu_section(menu)
         self._make_stylesheet_menu_section(menu)
         if self._should_have_user_input_module:
-            if not self.has_output_material_editor:
+            #if not self.has_output_material_editor:
+            if not self._output_material_editor:
                 self._make_user_input_module_menu_section(menu)
         try:
             material_summary_section = menu['material summary']
@@ -369,7 +370,8 @@ class MaterialManager(PackageManager):
         return menu
 
     def _make_main_menu_sections_with_user_input_wrapper(self, menu):
-        if not self.has_output_material_editor:
+        #if not self.has_output_material_editor:
+        if not self._output_material_editor:
             self._make_user_input_module_menu_section(menu)
         self._make_output_material_menu_section(menu)
 
@@ -420,9 +422,9 @@ class MaterialManager(PackageManager):
             if self._can_make_output_material():
                 section.append(('output material - make', 'omm'))
                 has_output_material_section = True
-            if self.has_output_material_editor:
+            #if self.has_output_material_editor:
+            if self._output_material_editor:
                 section.append(('output material - interact', 'omi'))
-                #if self.has_output_material:
                 if os.path.isfile(self.output_material_module_path):
                     editor = self._output_material_editor(
                         target=self.output_material,
@@ -435,7 +437,8 @@ class MaterialManager(PackageManager):
                             )
                         contents_section.title = target_summary_lines
                 has_output_material_section = True
-            if self.has_output_material_module:
+            #if self.has_output_material_module:
+            if os.path.isfile(self.output_material_module_path):
                 section.append(('output material - remove', 'omrm'))
                 section.append(('output material - view', 'omv'))
 
@@ -445,7 +448,8 @@ class MaterialManager(PackageManager):
         if bool(self.user_input_wrapper_in_memory) and \
             self.user_input_wrapper_in_memory.is_complete:
             return True
-        if self.has_output_material_editor:
+        #if self.has_output_material_editor:
+        if self._output_material_editor:
             return True
         return False
 
@@ -496,20 +500,6 @@ class MaterialManager(PackageManager):
         Returns string.
         '''
         return self._generic_output_name
-
-#    @property
-#    def has_output_material(self):
-#        if self.has_output_material_module:
-#            return True
-#        return False
-
-    @property
-    def has_output_material_editor(self):
-        return bool(getattr(self, '_output_material_editor', None))
-
-    @property
-    def has_output_material_module(self):
-        return os.path.exists(self.output_material_module_path)
 
     @property
     def has_user_input_module(self):
@@ -724,7 +714,8 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        if not self.has_output_material_editor:
+        #if not self.has_output_material_editor:
+        if not self._output_material_editor:
             return
         output_material = self.output_material
         if not hasattr(self, '_output_material_maker'):
@@ -795,7 +786,8 @@ class MaterialManager(PackageManager):
 
     def remove_output_material_module(self, prompt=True):
         self.remove_illustration_builder_module(prompt=False)
-        if self.has_output_material_module:
+        #if self.has_output_material_module:
+        if os.path.isfile(self.output_material_module_path):
             self.output_material_module_manager._remove()
 
     def remove_user_input_module(self, prompt=True):

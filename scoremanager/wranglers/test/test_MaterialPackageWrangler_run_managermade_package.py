@@ -28,7 +28,6 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
             'user_input.py',
             ]
         assert os.path.isfile(manager._initializer_file_path)
-        assert not manager.has_output_material_module
         assert manager.has_user_input_module
         assert manager.output_material is None
     finally:
@@ -63,7 +62,6 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
             'user_input.py',
             ]
         assert os.path.isfile(manager._initializer_file_path)
-        assert not manager.has_output_material_module
         assert manager.has_user_input_module
         assert manager.output_material is None
     finally:
@@ -96,7 +94,6 @@ def test_MaterialPackageWrangler_run_managermade_package_03():
         assert os.path.exists(path)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(path)
         assert manager._list_directory() == directory_entries
-        assert not manager.has_output_material_module
         assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager._execute_material_definition_module() is None
         assert manager.output_material is None
@@ -131,7 +128,6 @@ def test_MaterialPackageWrangler_run_managermade_package_04():
         assert os.path.exists(path)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(path)
         assert manager._list_directory() == directory_entries
-        assert not manager.has_output_material_module
         assert not os.path.isfile(manager.illustration_builder_module_path)
         assert manager._execute_material_definition_module() is None
         assert manager.output_material is None

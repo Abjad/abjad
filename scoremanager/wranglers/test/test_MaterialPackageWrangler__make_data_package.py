@@ -24,7 +24,6 @@ def test_MaterialPackageWrangler__make_data_package_01():
             '__metadata__.py',
             'material_definition.py', 
             ]
-        assert not manager.has_output_material_module
         assert manager._execute_material_definition_module() is None
         assert manager.output_material is None
     finally:

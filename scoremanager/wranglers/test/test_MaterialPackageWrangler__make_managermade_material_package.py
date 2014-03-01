@@ -30,7 +30,6 @@ def test_MaterialPackageWrangler__make_managermade_material_package_01():
             'user_input.py',
             ]
         assert os.path.isfile(manager._initializer_file_path)
-        assert not manager.has_output_material_module
         assert manager.has_user_input_module
         assert manager.output_material is None
     finally:
