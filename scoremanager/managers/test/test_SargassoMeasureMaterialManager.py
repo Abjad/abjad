@@ -301,6 +301,35 @@ def test_SargassoMeasureMaterialManager_08():
     configuration = score_manager._configuration
     string = 'scoremanager.materials.testsargasso'
     assert not score_manager._configuration.package_exists(string)
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'output_material.py', 
+        'user_input.py',
+        ]
+    measures = [
+        scoretools.Measure((4, 16), "c'16 c'16 c'8"),
+        scoretools.Measure((2, 10), "c'8 c'8"),
+        scoretools.Measure((3, 20), "c'8 c'16"),
+        scoretools.Measure((4, 16), "c'8. c'16"),
+        scoretools.Measure((4, 16), "c'8. c'16"),
+        scoretools.Measure((11, 30), "c'16 c'16 c'8 c'8. c'4"),
+        scoretools.Measure((15, 30), "c'8 c'16 c'8 c'8. c'4 c'16 c'16 c'16"),
+        scoretools.Measure((2, 8), "c'8 c'8"),
+        scoretools.Measure((10, 26), "c'8 c'8. c'4 c'16"),
+        scoretools.Measure((4, 30), "c'16 c'16 c'16 c'16"),
+        scoretools.Measure((15, 30), "c'16 c'4 c'16 c'16 c'8 c'8. c'16 c'8"),
+        scoretools.Measure((7, 26), "c'16 c'4 c'16 c'16"),
+        scoretools.Measure((3, 26), "c'16 c'16 c'16"),
+        scoretools.Measure((1, 4), "c'4"),
+        scoretools.Measure((10, 19), "c'8. c'4 c'16 c'16 c'16"),
+        scoretools.Measure((6, 26), "c'16 c'16 c'4"),
+        scoretools.Measure((6, 20), "c'4 c'16 c'16"),
+        scoretools.Measure((2, 20), "c'16 c'16"),
+        scoretools.Measure((9, 19), "c'16 c'4 c'16 c'16 c'8")]
+    for measure in measures:
+        measure.implicit_scaling = True
+
     try:
         score_manager._run(pending_user_input=
             'lmm nmm sargasso testsargasso default '
@@ -311,39 +340,13 @@ def test_SargassoMeasureMaterialManager_08():
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             filesystem_path=path)
-        assert manager._list_directory() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'output_material.py', 
-            'user_input.py',
-            ]
-        measures = [
-            scoretools.Measure((4, 16), "c'16 c'16 c'8"),
-            scoretools.Measure((2, 10), "c'8 c'8"),
-            scoretools.Measure((3, 20), "c'8 c'16"),
-            scoretools.Measure((4, 16), "c'8. c'16"),
-            scoretools.Measure((4, 16), "c'8. c'16"),
-            scoretools.Measure((11, 30), "c'16 c'16 c'8 c'8. c'4"),
-            scoretools.Measure((15, 30), "c'8 c'16 c'8 c'8. c'4 c'16 c'16 c'16"),
-            scoretools.Measure((2, 8), "c'8 c'8"),
-            scoretools.Measure((10, 26), "c'8 c'8. c'4 c'16"),
-            scoretools.Measure((4, 30), "c'16 c'16 c'16 c'16"),
-            scoretools.Measure((15, 30), "c'16 c'4 c'16 c'16 c'8 c'8. c'16 c'8"),
-            scoretools.Measure((7, 26), "c'16 c'4 c'16 c'16"),
-            scoretools.Measure((3, 26), "c'16 c'16 c'16"),
-            scoretools.Measure((1, 4), "c'4"),
-            scoretools.Measure((10, 19), "c'8. c'4 c'16 c'16 c'16"),
-            scoretools.Measure((6, 26), "c'16 c'16 c'4"),
-            scoretools.Measure((6, 20), "c'4 c'16 c'16"),
-            scoretools.Measure((2, 20), "c'16 c'16"),
-            scoretools.Measure((9, 19), "c'16 c'4 c'16 c'16 c'8")]
-        for measure in measures:
-            measure.implicit_scaling = True
+        assert manager._list_directory() == directory_entries
         assert format(Staff(measures))
-        for measure in manager.output_material:
+        output_material = manager._execute_output_material_module()
+        for measure in output_material:
             assert measure.implicit_scaling
-        assert format(Staff(manager.output_material))
-        assert format(Staff(manager.output_material)) == format(Staff(measures))
+        assert format(Staff(output_material))
+        assert format(Staff(output_material)) == format(Staff(measures))
     finally:
         string = 'lmm testsargasso rm default q'
         score_manager._run(pending_user_input=string)

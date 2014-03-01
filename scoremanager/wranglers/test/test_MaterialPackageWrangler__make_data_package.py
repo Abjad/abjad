@@ -14,18 +14,20 @@ def test_MaterialPackageWrangler__make_data_package_01():
         wrangler._configuration.abjad_material_packages_directory_path,
         'testnumbers',
         )
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'material_definition.py', 
+        ]
 
     try:
         wrangler._make_data_package(filesystem_path)
         assert wrangler._configuration.package_exists(string)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
-        assert manager._list_directory() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'material_definition.py', 
-            ]
+        assert manager._list_directory() == directory_entries
         assert manager._execute_material_definition_module() is None
-        assert manager.output_material is None
+        output_material = manager._execute_output_material_module()
+        assert output_material is None
     finally:
         manager._remove()
         assert not wrangler._configuration.package_exists(string)

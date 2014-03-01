@@ -89,7 +89,7 @@ def test_MaterialPackageWrangler_run_managermade_package_03():
         manager = scoremanager.managers.SargassoMeasureMaterialManager(path)
         assert manager._list_directory() == directory_entries
         assert manager._execute_material_definition_module() is None
-        assert manager.output_material is None
+        assert manager._execute_output_material_module() is None
     finally:
         input_ = 'lmm testsargassomeasures rm q'
         score_manager._run(pending_user_input=input_)
@@ -122,7 +122,7 @@ def test_MaterialPackageWrangler_run_managermade_package_04():
         manager = scoremanager.managers.SargassoMeasureMaterialManager(path)
         assert manager._list_directory() == directory_entries
         assert manager._execute_material_definition_module() is None
-        assert manager.output_material is None
+        assert manager._execute_output_material_module() is None
     finally:
         input_ = 'lmm testsargassomeasures rm default q'
         score_manager._run(pending_user_input=input_)

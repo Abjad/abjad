@@ -252,6 +252,18 @@ class MaterialManager(PackageManager):
             )
         return result
 
+    #def output_material(self):
+    def _execute_output_material_module(self):
+        manager = self.output_material_module_manager
+        output_material = None
+        try:
+            output_material = manager._execute_file_lines(
+                return_attribute_name=self.material_package_name,
+                )
+        except:
+            traceback.print_exc()
+        return output_material
+
     # TODO: change property to method
     # TODO: make illustration work the same way as for segment PDF rendering;
     #       use something like _interpret_in_external_process()
@@ -475,8 +487,9 @@ class MaterialManager(PackageManager):
             if self._output_material_editor:
                 section.append(('output material - interact', 'omi'))
                 if os.path.isfile(self.output_material_module_path):
+                    output_material = self._execute_output_material_module()
                     editor = self._output_material_editor(
-                        target=self.output_material,
+                        target=output_material,
                         session=self._session,
                         )
                     target_summary_lines = editor.target_summary_lines
@@ -576,37 +589,9 @@ class MaterialManager(PackageManager):
             )
         return manager
 
-#    @property
-#    def material_manager(self):
-#        class_name = self._read_material_manager_class_name()
-#        if class_name is None:
-#            return
-#        path = self._configuration.abjad_material_managers_directory_path
-#        package = self._configuration.path_to_package(path)
-#        statement = 'from {} import {}'
-#        statement = statement.format(package, class_name)
-#        try:
-#            exec(statement)
-#        except:
-#            return
-#        result = locals()[class_name]
-#        return result
-
     @property
     def material_package_name(self):
         return os.path.basename(self._filesystem_path)
-
-    @property
-    def output_material(self):
-        try:
-            output_material = \
-                self.output_material_module_manager._execute_file_lines(
-                    return_attribute_name=self.material_package_name,
-                    )
-        except:
-            traceback.print_exc()
-            output_material = None
-        return output_material
 
     @property
     def output_material_module_body_lines(self):
@@ -690,7 +675,7 @@ class MaterialManager(PackageManager):
         '''
         if not self._output_material_editor:
             return
-        output_material = self.output_material
+        output_material = self._execute_output_material_module()
         if not hasattr(self, '_output_material_maker'):
             output_material_handler_callable = self._output_material_editor
         elif output_material is None and self._output_material_maker and \

@@ -11,6 +11,16 @@ def test_DynamicHandlerMaterialManager_01():
     configuration = score_manager._configuration
     string = 'scoremanager.materials.testdynamichandler'
     assert not score_manager._configuration.package_exists(string)
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'output_material.py', 
+        ]
+    handler = handlertools.ReiteratedDynamicHandler(
+        dynamic_name='f',
+        minimum_duration=Duration(1, 16),
+        )
+
     try:
         score_manager._run(pending_user_input=
             'lmm nmm dynamic testdynamichandler default '
@@ -20,18 +30,11 @@ def test_DynamicHandlerMaterialManager_01():
             )
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testdynamichandler')
-        mpp = scoremanager.managers.DynamicHandlerMaterialManager(
+        manager = scoremanager.managers.DynamicHandlerMaterialManager(
             filesystem_path=path)
-        assert mpp._list_directory() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'output_material.py', 
-            ]
-        handler = handlertools.ReiteratedDynamicHandler(
-            dynamic_name='f',
-            minimum_duration=Duration(1, 16),
-            )
-        assert mpp.output_material == handler
+        assert manager._list_directory() == directory_entries
+        output_material = manager._execute_output_material_module()
+        assert output_material == handler
     finally:
         string = 'lmm testdynamichandler rm default q'
         score_manager._run(pending_user_input=string)

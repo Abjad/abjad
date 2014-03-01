@@ -16,19 +16,20 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'material_definition.py', 
+        ]
 
     try:
         string = 'lmm nmh testnotes default default q'
         score_manager._run(pending_user_input=string)
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
-        assert manager._list_directory() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'material_definition.py', 
-            ]
+        assert manager._list_directory() == directory_entries
         assert manager._execute_material_definition_module() is None
-        assert manager.output_material is None
+        assert manager._execute_output_material_module() is None
     finally:
         string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
@@ -47,6 +48,11 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'material_definition.py', 
+        ]
 
     try:
         score_manager._run(pending_user_input=
@@ -54,13 +60,9 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
             'testnotes incanned boilerplate_exception.py default q')
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
-        assert manager._list_directory() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'material_definition.py', 
-            ]
-        assert manager._execute_material_definition_module() is None
-        assert manager.output_material is None
+        assert manager._list_directory() == directory_entries
+        output_material = manager._execute_material_definition_module()
+        assert output_material is None
     finally:
         string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
@@ -79,6 +81,11 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'material_definition.py', 
+        ]
 
     try:
         score_manager._run(pending_user_input=
@@ -87,13 +94,9 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
             'inr yes yes default q')
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
-        assert manager._list_directory() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'material_definition.py', 
-            ]
+        assert manager._list_directory() == directory_entries
         assert manager._execute_material_definition_module() is None
-        assert manager.output_material is None
+        assert manager._execute_output_material_module() is None
     finally:
         string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
@@ -112,6 +115,12 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
+    directory_entries = [
+        '__init__.py',
+        '__metadata__.py',
+        'material_definition.py', 
+        'output_material.py', 
+        ]
 
     try:
         score_manager._run(pending_user_input=
@@ -120,17 +129,13 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
             'omm default q')
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
-        assert manager._list_directory() == [
-            '__init__.py',
-            '__metadata__.py',
-            'material_definition.py', 
-            'output_material.py', 
-            ]
+        assert manager._list_directory() == directory_entries
         material_definition = manager._execute_material_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
-        assert manager.output_material and \
-            all(isinstance(x, Note) for x in manager.output_material)
+        output_material = manager._execute_output_material_module()
+        assert output_material
+        assert all(isinstance(x, Note) for x in output_material)
     finally:
         string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
@@ -149,6 +154,10 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        ]
 
     try:
         score_manager._run(pending_user_input=
@@ -156,10 +165,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
             )
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
-        assert manager._list_directory() == [
-            '__init__.py', 
-            '__metadata__.py',
-            ]
+        assert manager._list_directory() == directory_entries
     finally:
         string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
@@ -178,6 +184,11 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'material_definition.py', 
+        ]
 
     try:
         score_manager._run(pending_user_input=
@@ -185,13 +196,9 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
             'testnotes mds default q')
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
-        assert manager._list_directory() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'material_definition.py', 
-            ]
+        assert manager._list_directory() == directory_entries
         assert manager._execute_material_definition_module() is None
-        assert manager.output_material is None
+        assert manager._execute_output_material_module() is None
     finally:
         string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
@@ -210,6 +217,11 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'material_definition.py', 
+        ]
 
     try:
         score_manager._run(pending_user_input=
@@ -221,15 +233,12 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
             )
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
-        assert manager._list_directory() == [
-                '__init__.py', 
-                '__metadata__.py',
-                'material_definition.py', 
-                ]
+        assert manager._list_directory() == directory_entries
         material_definition = manager._execute_material_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
-        assert manager.output_material is None
+        output_material = manager._execute_output_material_module()
+        assert output_material is None
     finally:
         string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
@@ -248,6 +257,11 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'material_definition.py', 
+        ]
 
     try:
         score_manager._run(pending_user_input=
@@ -255,13 +269,9 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
             'testnotes mdbp boilerplate_exception.py default q')
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
-        assert manager._list_directory() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'material_definition.py', 
-            ]
+        assert manager._list_directory() == directory_entries
         assert manager._execute_material_definition_module() is None
-        assert manager.output_material is None
+        assert manager._execute_output_material_module() is None
     finally:
         string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
@@ -281,6 +291,12 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
+    directory_entries = [
+        '__init__.py',
+        '__metadata__.py',
+        'material_definition.py', 
+        'output_material.py', 
+        ]
 
     try:
         score_manager._run(pending_user_input=
@@ -290,16 +306,12 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
             'ombp boilerplate_exception.py default q')
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
-        assert manager._list_directory() == [
-            '__init__.py',
-            '__metadata__.py',
-            'material_definition.py', 
-            'output_material.py', 
-            ]
+        assert manager._list_directory() == directory_entries
         material_definition = manager._execute_material_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
-        assert manager.output_material is None
+        output_material = manager._execute_output_material_module()
+        assert output_material is None
     finally:
         string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
@@ -310,8 +322,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
     r'''Make handmade package. Copy canned material definition module.
     Make output data. Make PDF. Remove package.
     '''
-    pytest.skip(
-        'skip this one during day-to-day development and before build only.')
+    pytest.skip('make PDF generation work again.')
 
     score_manager = scoremanager.core.ScoreManager()
     name = 'scoremanager.materials.testnotes'
@@ -320,29 +331,30 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'illustration.ly', 
+        'illustration.pdf',
+        ]
 
     try:
         score_manager._run(pending_user_input=
-            'lmm nmh testnotes default default '
-            'testnotes mdbp boilerplate_testnotes_material_definition.py default '
-            'omm default '
-            'pdfm default '
-            'q')
+            'lmm nmh testnotes'
+            ' testnotes mdbp boilerplate_testnotes_material_definition.py default'
+            ' omm default'
+            ' pdfm default'
+            ' q'
+            )
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
-        assert manager._list_directory() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'illustration.ly', 
-            'illustration.pdf',
-            'illustration_builder.py', 
-            'material_definition.py', 
-            'output_material.py', 
-            ]
-        assert manager.material_definition and \
-            all(isinstance(x, Note) for x in manager.material_definition)
-        assert manager.output_material and \
-            all(isinstance(x, Note) for x in manager.output_material)
+        assert manager._list_directory() == directory_entries
+        material_definition = manager._execute_material_definition_module()
+        assert material_definition
+        assert all(isinstance(x, Note) for x in material_definition)
+        output_material = manager._execute_output_material_module()
+        assert output_material
+        assert all(isinstance(x, Note) for x in output_material)
             
     finally:
         string = 'lmm testnotes rm default q'

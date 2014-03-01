@@ -10,6 +10,22 @@ def test_MarkupInventoryMaterialManager_01():
     configuration = score_manager._configuration
     string = 'scoremanager.materials.testmarkupinventory'
     assert not score_manager._configuration.package_exists(string)
+    inventory = markuptools.MarkupInventory(
+        [
+            markuptools.Markup(
+                '\\italic { serenamente }',
+                ),
+            markuptools.Markup(
+                '\\italic { presto }',
+                )
+            ],
+        )
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'output_material.py',
+        ]
+
     try:
         score_manager._run(pending_user_input=
             "lmm nmm markup testmarkupinventory "
@@ -21,21 +37,9 @@ def test_MarkupInventoryMaterialManager_01():
         path = os.path.join(path, 'testmarkupinventory')
         manager = scoremanager.managers.ArticulationHandlerMaterialManager(
             filesystem_path=path)
-        assert manager._list_directory() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'output_material.py',
-            ]
-        inventory = markuptools.MarkupInventory([
-            markuptools.Markup(
-                '\\italic { serenamente }',
-                ),
-            markuptools.Markup(
-                '\\italic { presto }',
-                )
-            ],
-            )
-        assert manager.output_material == inventory
+        assert manager._list_directory() == directory_entries
+        output_material = manager._execute_output_material_module()
+        assert output_material == inventory
     finally:
         string = 'lmm testmarkupinventory rm default q'
         score_manager._run(pending_user_input=string)

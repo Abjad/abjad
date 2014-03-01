@@ -11,6 +11,19 @@ def test_ArticulationHandlerMaterialManager_01():
     configuration = score_manager._configuration
     string = 'scoremanager.materials.testarticulationhandler'
     assert not score_manager._configuration.package_exists(string)
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'output_material.py', 
+        ]
+    handler = handlertools.ReiteratedArticulationHandler(
+        articulation_list=['^', '.'],
+        minimum_duration=Duration(1, 64),
+        maximum_duration=Duration(1, 4),
+        minimum_written_pitch=NamedPitch('c'),
+        maximum_written_pitch=NamedPitch("c''''"),
+        )
+
     try:
         score_manager._run(pending_user_input=
             'lmm nmm articulation testarticulationhandler default '
@@ -22,19 +35,9 @@ def test_ArticulationHandlerMaterialManager_01():
         path = os.path.join(path, 'testarticulationhandler')
         manager = scoremanager.managers.ArticulationHandlerMaterialManager(
             filesystem_path=path)
-        assert manager._list_directory() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'output_material.py', 
-            ]
-        handler = handlertools.ReiteratedArticulationHandler(
-            articulation_list=['^', '.'],
-            minimum_duration=Duration(1, 64),
-            maximum_duration=Duration(1, 4),
-            minimum_written_pitch=NamedPitch('c'),
-            maximum_written_pitch=NamedPitch("c''''"),
-            )
-        assert manager.output_material == handler
+        assert manager._list_directory() == directory_entries
+        output_material = manager._execute_output_material_module()
+        assert output_material == handler
     finally:
         string = 'lmm testarticulationhandler rm default q'
         score_manager._run(pending_user_input=string)

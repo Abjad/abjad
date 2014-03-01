@@ -12,21 +12,23 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_01():
     configuration = score_manager._configuration
     string = 'scoremanager.materials.testoctavetrans'
     assert not score_manager._configuration.package_exists(string)
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        ]
+
     try:
         score_manager._run(pending_user_input=
             'lmm nmm octave testoctavetrans default '
             'q'
             )
-        #string = 'scoremanager.materials.testoctavetrans'
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testoctavetrans')
         manager = scoremanager.managers.OctaveTranspositionMappingInventoryMaterialManager(
             filesystem_path=path)
-        assert manager._list_directory() == [
-            '__init__.py', 
-            '__metadata__.py',
-            ]
-        assert manager.output_material is None
+        assert manager._list_directory() == directory_entries
+        output_material = manager._execute_output_material_module()
+        assert output_material is None
     finally:
         string = 'lmm testoctavetrans rm default q'
         score_manager._run(pending_user_input=string)
@@ -42,6 +44,23 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_02():
     configuration = score_manager._configuration
     string = 'scoremanager.materials.testoctavetrans'
     assert not score_manager._configuration.package_exists(string)
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'output_material.py',
+        ]
+    mapping_1 = pitchtools.OctaveTranspositionMapping([
+        ('[A0, C4)', 15), 
+        ('[C4, C8)', 27),
+        ])
+    mapping_2 = pitchtools.OctaveTranspositionMapping([
+        ('[A0, C8]', -18),
+        ])
+    inventory = pitchtools.OctaveTranspositionMappingInventory([
+        mapping_1, 
+        mapping_2
+        ])
+
     try:
         score_manager._run(pending_user_input=
             'lmm nmm octave testoctavetrans '
@@ -53,23 +72,9 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_02():
         path = os.path.join(path, 'testoctavetrans')
         manager = scoremanager.managers.OctaveTranspositionMappingInventoryMaterialManager(
             filesystem_path=path)
-        assert manager._list_directory() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'output_material.py',
-            ]
-        mapping_1 = pitchtools.OctaveTranspositionMapping([
-            ('[A0, C4)', 15), 
-            ('[C4, C8)', 27),
-            ])
-        mapping_2 = pitchtools.OctaveTranspositionMapping([
-            ('[A0, C8]', -18),
-            ])
-        inventory = pitchtools.OctaveTranspositionMappingInventory([
-            mapping_1, 
-            mapping_2
-            ])
-        assert manager.output_material == inventory
+        assert manager._list_directory() == directory_entries
+        output_material = manager._execute_output_material_module()
+        assert output_material == inventory
     finally:
         string = 'lmm testoctavetrans rm default q'
         score_manager._run(pending_user_input=string)

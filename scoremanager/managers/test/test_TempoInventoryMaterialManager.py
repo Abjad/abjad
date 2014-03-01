@@ -10,6 +10,16 @@ def test_TempoInventoryMaterialManager_01():
     configuration = score_manager._configuration
     string = 'scoremanager.materials.testtempoinventory'
     assert not score_manager._configuration.package_exists(string)
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'output_material.py', 
+        ]
+    inventory = indicatortools.TempoInventory([
+        ((1, 4), 60), 
+        ((1, 4), 90),
+        ])
+
     try:
         score_manager._run(pending_user_input=
             'lmm nmm tempo testtempoinventory default '
@@ -20,13 +30,9 @@ def test_TempoInventoryMaterialManager_01():
         path = os.path.join(path, 'testtempoinventory')
         manager = scoremanager.managers.TempoInventoryMaterialManager(
             filesystem_path=path)
-        assert manager._list_directory() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'output_material.py', 
-            ]
-        inventory = indicatortools.TempoInventory([((1, 4), 60), ((1, 4), 90)])
-        assert manager.output_material == inventory
+        assert manager._list_directory() == directory_entries
+        output_material = manager._execute_output_material_module()
+        assert output_material == inventory
     finally:
         string = 'lmm testtempoinventory rm default q'
         score_manager._run(pending_user_input=string)
