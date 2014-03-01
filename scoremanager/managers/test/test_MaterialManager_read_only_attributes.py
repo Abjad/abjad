@@ -18,8 +18,6 @@ def test_MaterialManager_read_only_attributes_01():
     assert manager._breadcrumb == 'example numbers'
     assert os.path.isfile(manager.material_definition_module_path)
     assert not manager._read_material_manager_class_name()
-    assert not manager.has_user_input_module
-    assert not manager.has_user_input_wrapper_on_disk
     material_definition = manager._execute_material_definition_module()
     assert material_definition == [1, 2, 3, 4, 5]
     file_path = os.path.join(
@@ -68,8 +66,6 @@ def test_MaterialManager_read_only_attributes_02():
     assert manager._breadcrumb == 'example sargasso measures'
     assert not os.path.isfile(manager.material_definition_module_path)
     assert manager._read_material_manager_class_name()
-    assert manager.has_user_input_module
-    assert manager.has_user_input_wrapper_on_disk
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
         'example_sargasso_measures', 
@@ -124,8 +120,6 @@ def test_MaterialManager_read_only_attributes_03():
     manager = scoremanager.managers.MaterialManager(filesystem_path)
     assert manager._breadcrumb == 'example notes'
     assert not manager._read_material_manager_class_name()
-    assert not manager.has_user_input_module
-    assert not manager.has_user_input_wrapper_on_disk
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
         'example_notes', 

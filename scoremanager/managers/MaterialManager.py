@@ -502,18 +502,6 @@ class MaterialManager(PackageManager):
         return self._generic_output_name
 
     @property
-    def has_user_input_module(self):
-        if self._should_have_user_input_module:
-            return os.path.exists(self.user_input_module_path)
-        return False
-
-    @property
-    def has_user_input_wrapper_on_disk(self):
-        if self._should_have_user_input_module:
-            return bool(self.read_user_input_wrapper_from_disk())
-        return False
-
-    @property
     def illustration_builder_module_path(self):
         return os.path.join(
             self._filesystem_path, 
@@ -786,13 +774,12 @@ class MaterialManager(PackageManager):
 
     def remove_output_material_module(self, prompt=True):
         self.remove_illustration_builder_module(prompt=False)
-        #if self.has_output_material_module:
         if os.path.isfile(self.output_material_module_path):
             self.output_material_module_manager._remove()
 
     def remove_user_input_module(self, prompt=True):
         from scoremanager import managers
-        if self.has_user_input_module:
+        if os.path.isfile(self.user_input_module_path):
             manager = managers.FileManager(
                 self.user_input_module_path,
                 session=self._session,

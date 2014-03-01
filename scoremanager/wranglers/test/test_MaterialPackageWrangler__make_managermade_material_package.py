@@ -29,9 +29,6 @@ def test_MaterialPackageWrangler__make_managermade_material_package_01():
             '__metadata__.py',
             'user_input.py',
             ]
-        assert os.path.isfile(manager._initializer_file_path)
-        assert manager.has_user_input_module
-        assert manager.output_material is None
     finally:
         manager._remove()
         assert not wrangler._configuration.package_exists(string)

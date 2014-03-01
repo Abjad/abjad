@@ -27,9 +27,6 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
             '__metadata__.py',
             'user_input.py',
             ]
-        assert os.path.isfile(manager._initializer_file_path)
-        assert manager.has_user_input_module
-        assert manager.output_material is None
     finally:
         string = 'lmm testsargasso rm default q'
         score_manager._run(pending_user_input=string)
@@ -61,9 +58,6 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
             '__metadata__.py',
             'user_input.py',
             ]
-        assert os.path.isfile(manager._initializer_file_path)
-        assert manager.has_user_input_module
-        assert manager.output_material is None
     finally:
         string = 'red~example~score m testsargasso rm default q'
         score_manager._run(pending_user_input='red~example~score m testsargasso rm default q')
