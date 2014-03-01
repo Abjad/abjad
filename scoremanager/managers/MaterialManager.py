@@ -211,7 +211,7 @@ class MaterialManager(PackageManager):
 
     def _execute_material_definition_module(self):
         from scoremanager import managers
-        if not self.has_material_definition_module:
+        if not os.path.isfile(self.material_definition_module_path):
             return
         manager = managers.FileManager(
             self.material_definition_module_path,
@@ -374,7 +374,7 @@ class MaterialManager(PackageManager):
         name = 'material definition'
         if not os.path.isfile(self._initializer_file_path):
             return
-        if self.has_material_definition_module:
+        if os.path.isfile(self.material_definition_module_path):
             command_section = main_menu.make_command_section(name=name)
             string = 'material definition - boilerplate'
             command_section.append((string, 'mdbp'))
@@ -392,7 +392,7 @@ class MaterialManager(PackageManager):
             command_section.append(('material definition - stub', 'mds'))
 
     def _can_make_output_material(self):
-        if self.has_material_definition:
+        if os.path.isfile(self.material_definition_module_path):
             return True
         if bool(self.user_input_wrapper_in_memory) and \
             self.user_input_wrapper_in_memory.is_complete:
@@ -433,7 +433,7 @@ class MaterialManager(PackageManager):
                 section.append(('output material - view', 'omv'))
 
     def _should_have_output_material_section(self):
-        if self.has_material_definition_module:
+        if os.path.isfile(self.material_definition_module_path):
             return True
         if bool(self.user_input_wrapper_in_memory) and \
             self.user_input_wrapper_in_memory.is_complete:
@@ -489,17 +489,6 @@ class MaterialManager(PackageManager):
         Returns string.
         '''
         return self._generic_output_name
-
-    @property
-    def has_material_definition(self):
-        if self.has_material_definition_module:
-            material_definition = self._execute_material_definition_module()
-            return material_definition is not None
-        return False
-
-    @property
-    def has_material_definition_module(self):
-        return os.path.exists(self.material_definition_module_path)
 
     @property
     def has_material_manager(self):
@@ -794,14 +783,11 @@ class MaterialManager(PackageManager):
 
     def remove_material_definition_module(self, prompt=True):
         from scoremanager import managers
-        #self.remove_output_material_module(prompt=False)
-        #self.remove_illustration_builder_module(prompt=False)
-        if self.has_material_definition_module:
+        if os.path.isfile(self.material_definition_module_path):
             manager = managers.FileManager(
                 self.material_definition_module_path,
                 session=self._session,
                 )
-            #manager._remove()
             manager.remove(prompt=prompt)
 
     def remove_output_material_module(self, prompt=True):

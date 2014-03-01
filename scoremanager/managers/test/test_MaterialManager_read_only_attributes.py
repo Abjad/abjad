@@ -16,8 +16,7 @@ def test_MaterialManager_read_only_attributes_01():
         )
     manager = scoremanager.managers.MaterialManager(filesystem_path)
     assert manager._breadcrumb == 'example numbers'
-    assert manager.has_material_definition
-    assert manager.has_material_definition_module
+    assert os.path.isfile(manager.material_definition_module_path)
     assert not manager.has_material_manager
     assert manager.has_output_material
     assert manager.has_output_material_module
@@ -69,8 +68,7 @@ def test_MaterialManager_read_only_attributes_02():
         filesystem_path=filesystem_path,    
         )
     assert manager._breadcrumb == 'example sargasso measures'
-    assert not manager.has_material_definition
-    assert not manager.has_material_definition_module
+    assert not os.path.isfile(manager.material_definition_module_path)
     assert manager.has_material_manager
     assert manager.has_output_material
     assert manager.has_output_material_module
@@ -129,8 +127,6 @@ def test_MaterialManager_read_only_attributes_03():
         )
     manager = scoremanager.managers.MaterialManager(filesystem_path)
     assert manager._breadcrumb == 'example notes'
-    assert manager.has_material_definition
-    assert manager.has_material_definition_module
     assert not manager.has_material_manager
     assert manager.has_output_material
     assert manager.has_output_material_module

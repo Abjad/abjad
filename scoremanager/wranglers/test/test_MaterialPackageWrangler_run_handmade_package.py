@@ -167,11 +167,6 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
             '__init__.py', 
             '__metadata__.py',
             ]
-        assert not manager.has_material_definition_module
-        assert not manager.has_output_material_module
-        assert not os.path.isfile(manager.illustration_builder_module_path)
-        assert manager._execute_material_definition_module() is None
-        assert manager.output_material is None
     finally:
         string = 'lmm testnotes rm default q'
         score_manager._run(pending_user_input=string)
