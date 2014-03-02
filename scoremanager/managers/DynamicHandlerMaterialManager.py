@@ -17,13 +17,21 @@ class DynamicHandlerMaterialManager(MaterialManager):
         'from experimental.tools import handlertools',
         ]
 
-    ### STATIC METHODS ###
+    ### INITIALIZER ###
 
+    def __init__(self, filesystem_path=None, session=None):
+        superclass = super(DynamicHandlerMaterialManager, self)
+        superclass.__init__(filesystem_path=filesystem_path, session=session)
+
+    ### PRIVATE METHODS ###
+
+    # TODO: name verb-first
     @staticmethod
     def _output_material_checker(expr):
         from experimental.tools import handlertools
         return isinstance(expr, handlertools.DynamicHandler)
 
+    # TODO: name verb-first
     @staticmethod
     def _output_material_editor(target=None, session=None):
         from scoremanager import wizards

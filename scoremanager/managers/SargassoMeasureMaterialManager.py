@@ -9,8 +9,6 @@ class SargassoMeasureMaterialManager(MaterialManager):
 
     ### CLASS VARIABLES ###
 
-    generic_output_name = 'sargasso measures'
-
     _output_material_checker = staticmethod(lambda output: all(
         isinstance(x, scoretools.Measure) and x.implicit_scaling 
         for x in output))
@@ -19,7 +17,7 @@ class SargassoMeasureMaterialManager(MaterialManager):
         'from abjad import *',
         ]
 
-    _should_have_user_input_module = True
+    generic_output_name = 'sargasso measures'
 
     user_input_demo_values = [
         ('measure_denominator', 4),
@@ -52,18 +50,15 @@ class SargassoMeasureMaterialManager(MaterialManager):
         ('measures_are_shuffled', predicates.is_boolean),
         ]
 
-    ### PUBLIC METHODS ###
+    ### INITIALIZER ###
 
-    @staticmethod
-    def get_possible_meter_multipliers(multiplied_measure_numerator):
-        possible_meter_multipliers = []
-        for denominator in range(
-                multiplied_measure_numerator, 
-                2 * multiplied_measure_numerator):
-            possible_meter_multiplier = \
-                Multiplier(multiplied_measure_numerator, denominator)
-            possible_meter_multipliers.append(possible_meter_multiplier)
-        return possible_meter_multipliers
+    def __init__(self, filesystem_path, session=None):
+        superclass = super(SargassoMeasureMaterialManager, self)
+        superclass.__init__(filesystem_path=filesystem_path, session=session)
+        self._should_have_user_input_module = True
+        wrapper = self._initialize_user_input_wrapper_in_memory()
+
+    ### SPECIAL METHODS ###
 
     @staticmethod
     def __illustrate__(measures, **kwargs):
@@ -80,17 +75,7 @@ class SargassoMeasureMaterialManager(MaterialManager):
         score.add_final_bar_line()
         return illustration
 
-    def make_output_material_module_body_lines(self, output_material):
-        lines = []
-        lines.append('{} = ['.format(self.material_package_name))
-        for measure in output_material[:-1]:
-            line = measure._one_line_input_string
-            line = 'scoretools.' + line
-            lines.append('\t{},'.format(line))
-        line = output_material[-1]._one_line_input_string
-        lines.append('\tscoretools.{}]'.format(line))
-        lines = [line + '\n' for line in lines]
-        return lines
+    ### PRIVATE METHODS ###
 
     @staticmethod
     def _output_material_maker(
@@ -245,6 +230,31 @@ class SargassoMeasureMaterialManager(MaterialManager):
         #print measures
 
         return measures
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def get_possible_meter_multipliers(multiplied_measure_numerator):
+        possible_meter_multipliers = []
+        for denominator in range(
+                multiplied_measure_numerator, 
+                2 * multiplied_measure_numerator):
+            possible_meter_multiplier = \
+                Multiplier(multiplied_measure_numerator, denominator)
+            possible_meter_multipliers.append(possible_meter_multiplier)
+        return possible_meter_multipliers
+
+    def make_output_material_module_body_lines(self, output_material):
+        lines = []
+        lines.append('{} = ['.format(self.material_package_name))
+        for measure in output_material[:-1]:
+            line = measure._one_line_input_string
+            line = 'scoretools.' + line
+            lines.append('\t{},'.format(line))
+        line = output_material[-1]._one_line_input_string
+        lines.append('\tscoretools.{}]'.format(line))
+        lines = [line + '\n' for line in lines]
+        return lines
 
     @staticmethod
     def permute_divided_measure_tokens(divided_measure_tokens):

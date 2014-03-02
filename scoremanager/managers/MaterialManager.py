@@ -44,8 +44,6 @@ class MaterialManager(PackageManager):
 
     _output_material_module_import_statements = []
 
-    _should_have_user_input_module = False
-
     ### INTIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
@@ -56,9 +54,9 @@ class MaterialManager(PackageManager):
             filesystem_path=filesystem_path,
             session=session,
             )
-        wrapper = self._initialize_user_input_wrapper_in_memory()
-        self._user_input_wrapper_in_memory = wrapper
         self._generic_output_name = None
+        self._should_have_user_input_module = False
+        self._user_input_wrapper_in_memory = None
         self.stylesheet_file_path_in_memory = None
 
     ### PRIVATE PROPERTIES ###
@@ -328,7 +326,7 @@ class MaterialManager(PackageManager):
                     getattr(self, 'user_input_module_import_statements', [])[:]
         else:
             user_input_wrapper = self._initialize_empty_user_input_wrapper()
-        return user_input_wrapper
+        self._user_input_wrapper_in_memory = user_input_wrapper
 
     def _make_stylesheet_menu_section(
         self,

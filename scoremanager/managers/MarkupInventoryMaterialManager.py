@@ -21,7 +21,13 @@ class MarkupInventoryMaterialManager(MaterialManager):
         'from abjad import *',
         ]
 
-    ### PUBLIC METHODS ###
+    ### INITIALIZER ###
+
+    def __init__(self, filesystem_path=None, session=None):
+        superclass = super(MarkupInventoryMaterialManager, self)
+        superclass.__init__(filesystem_path=filesystem_path, session=session)
+
+    ### SPECIAL METHODS ###
 
     @staticmethod
     def __illustrate__(markup_inventory, **kwargs):
