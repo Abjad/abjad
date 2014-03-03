@@ -55,10 +55,10 @@ class Wrangler(ScoreManagerObject):
     @property
     def _user_input_to_action(self):
         _user_input_to_action = {
-            'inbp': self.write_boilerplate_initializer_module,
-            'inrm': self.remove_initializer_module,
-            'ins': self.write_stub_initializer_module,
-            'inv': self.view_initializer_module,
+            'inbp': self.write_boilerplate_initializer,
+            'inrm': self.remove_initializer,
+            'ins': self.write_stub_initializer,
+            'inv': self.view_initializer,
             'ls': self.list_directory,
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
@@ -502,13 +502,13 @@ class Wrangler(ScoreManagerObject):
         message = message.format(total_assets_removed, asset_string)
         self._io_manager.proceed(message)
 
-    def remove_initializer_module(self):
+    def remove_initializer(self):
         r'''Removes initializer module.
 
         Returns none.
         '''
         manager = self._get_current_package_manager()
-        manager.remove_initializer_module()
+        manager.remove_initializer()
 
     def remove_metadata_module(self):
         r'''Removes metadata module.
@@ -691,13 +691,13 @@ class Wrangler(ScoreManagerObject):
         manager = self._get_current_package_manager()
         manager._add_metadatum('view_name', view_name)
 
-    def view_initializer_module(self):
+    def view_initializer(self):
         r'''Views initializer module.
 
         Returns none.
         '''
         manager = self._get_current_package_manager()
-        manager.view_initializer_module()
+        manager.view_initializer()
 
     def view_metadata_module(self):
         r'''Views metadata module.
@@ -715,21 +715,21 @@ class Wrangler(ScoreManagerObject):
         manager = self._get_current_view_module_manager()
         manager.edit()
 
-    def write_boilerplate_initializer_module(self):
+    def write_boilerplate_initializer(self):
         r'''Writes boilerplate initializer module.
 
         Returns none.
         '''
         manager = self._get_current_package_manager()
-        manager.write_boilerplate_initializer_module()
+        manager.write_boilerplate_initializer()
 
-    def write_stub_initializer_module(self):
+    def write_stub_initializer(self):
         r'''Writes stub initializer module.
 
         Returns none.
         '''
         manager = self._get_current_package_manager()
-        manager.write_stub_initializer_module()
+        manager.write_stub_initializer()
 
     def write_view(self, view_name, new_view, prompt=True):
         r'''Writes view to views module.

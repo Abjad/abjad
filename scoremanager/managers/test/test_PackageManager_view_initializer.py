@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_PackageManager_view_initializer_module_01():
+def test_PackageManager_view_initializer_01():
 
     score_manager = scoremanager.core.ScoreManager()
     input_ = 'lmm example~numbers inv q'
