@@ -120,22 +120,6 @@ class DirectoryManager(Manager):
         self._io_manager.display(lines)
         self._session._hide_next_redraw = True
 
-    def edit_asset(
-        self,
-        filesystem_path,
-        pending_user_input=None,
-        ):
-        r'''Edits directory asset.
-
-        Returns none.
-        '''
-        self._io_manager._assign_user_input(pending_user_input)
-        manager = self._asset_manager_class(
-            filesystem_path=filesystem_path,
-            session=self._session,
-            )
-        manager.edit()
-
     def get_filesystem_path(self):
         r'''Gets filesystem path of directory manager.
 

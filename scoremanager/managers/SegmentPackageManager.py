@@ -36,8 +36,8 @@ class SegmentPackageManager(PackageManager):
         _user_input_to_action = superclass._user_input_to_action
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
-            'E': self.edit_asset_definition_module_from_top,
-            'e': self.edit_asset_definition_module,
+            'E': self.edit_segment_definition_module_from_top,
+            'e': self.edit_segment_definition_module,
             'lyri': self.reinterpret_current_lilypond_file,
             'lyv': self.view_current_output_ly,
             'lyver': self.view_versioned_output_ly,
@@ -53,7 +53,7 @@ class SegmentPackageManager(PackageManager):
 
     ### PRIVATE METHODS ###
 
-    def _get_asset_definition_module_path(self):
+    def _get_segment_definition_module_path(self):
         return os.path.join(self._filesystem_path, 'definition.py')
 
     def _get_last_version_number(self):
@@ -83,7 +83,7 @@ class SegmentPackageManager(PackageManager):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
         elif result == 'user entered lone return':
-            self.edit_asset_definition_module()
+            self.edit_segment_definition_module()
 
     def _make_main_menu(self):
         superclass = super(SegmentPackageManager, self)
@@ -189,7 +189,7 @@ class SegmentPackageManager(PackageManager):
 
     ### PUBLIC METHODS ###
 
-    def edit_asset_definition_module(
+    def edit_segment_definition_module(
         self,
         pending_user_input=None,
         ):
@@ -200,7 +200,7 @@ class SegmentPackageManager(PackageManager):
         self._io_manager._assign_user_input(pending_user_input)
         self.segment_definition_module_manager.edit()
 
-    def edit_asset_definition_module_from_top(
+    def edit_segment_definition_module_from_top(
         self,
         pending_user_input=None,
         ):
@@ -309,9 +309,9 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         paths = {}
-        asset_definition_module_path = \
-            self._get_asset_definition_module_path()
-        if not os.path.isfile(asset_definition_module_path):
+        segment_definition_module_path = \
+            self._get_segment_definition_module_path()
+        if not os.path.isfile(segment_definition_module_path):
             message = 'can not find asset definition module.'
             self._io_manager.proceed(
                 message,
@@ -345,7 +345,7 @@ class SegmentPackageManager(PackageManager):
             target_file_name,
             )
         command = 'cp {} {}'.format(
-            asset_definition_module_path,
+            segment_definition_module_path,
             target_file_path,
             )
         self._io_manager.spawn_subprocess(command)

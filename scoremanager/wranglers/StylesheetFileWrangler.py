@@ -59,6 +59,18 @@ class StylesheetFileWrangler(Wrangler):
 
     ### PRIVATE METHODS ###
 
+    def _edit_stylesheet(
+        self, 
+        filesystem_path,
+        pending_user_input=None,
+        ):
+        self._io_manager._assign_user_input(pending_user_input)
+        manager = self._asset_manager_class(
+            filesystem_path=filesystem_path, 
+            session=self._session,
+            )
+        manager.edit()
+
     def _filesystem_path_to_annotation(self, filesystem_path):
         from scoremanager import managers
         annotation = None
@@ -119,7 +131,7 @@ class StylesheetFileWrangler(Wrangler):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
         else:
-            self.edit_asset(result)
+            self._edit_stylesheet(result)
 
     def _is_valid_directory_entry(self, directory_entry):
         superclass = super(StylesheetFileWrangler, self)
@@ -310,22 +322,6 @@ class StylesheetFileWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def edit_asset(
-        self, 
-        filesystem_path,
-        pending_user_input=None,
-        ):
-        r'''Edits asset.
-
-        Returns none.
-        '''
-        self._io_manager._assign_user_input(pending_user_input)
-        manager = self._asset_manager_class(
-            filesystem_path=filesystem_path, 
-            session=self._session,
-            )
-        manager.edit()
-
     def edit_header_stylesheet(
         self,
         pending_user_input=None,
@@ -335,7 +331,7 @@ class StylesheetFileWrangler(Wrangler):
         Returns none.
         '''
         file_path = self._get_header_stylesheet_file_path()
-        self.edit_asset(file_path)
+        self._edit_stylesheet(file_path)
 
     def edit_layout_stylesheet(
         self,
@@ -346,7 +342,7 @@ class StylesheetFileWrangler(Wrangler):
         Returns none.
         '''
         file_path = self._get_layout_stylesheet_file_path()
-        self.edit_asset(file_path)
+        self._edit_stylesheet(file_path)
 
     def edit_paper_stylesheet(
         self,
@@ -357,7 +353,7 @@ class StylesheetFileWrangler(Wrangler):
         Returns none.
         '''
         file_path = self._get_paper_stylesheet_file_path()
-        self.edit_asset(file_path)
+        self._edit_stylesheet(file_path)
 
     def make_asset(
         self,

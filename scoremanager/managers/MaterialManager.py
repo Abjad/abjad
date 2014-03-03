@@ -229,7 +229,7 @@ class MaterialManager(PackageManager):
             'pdfrm': self.remove_illustration_pdf,
             'pdfv': self.view_illustration_pdf,
             'ren': self.rename_package,
-            'sse': self.edit_stylesheet_file,
+            'sse': self.edit_stylesheet,
             'sss': self.select_stylesheet,
             'uid': self.remove_user_input_module,
             'uic': self.clear_user_input_wrapper,
@@ -783,8 +783,8 @@ class MaterialManager(PackageManager):
                 output_material_module_body_lines,
             )
 
-    def edit_stylesheet_file(self, prompt=True):
-        r'''Edits stylesheet file.
+    def edit_stylesheet(self, prompt=True):
+        r'''Edits stylesheet.
 
         Returns none.
         '''
