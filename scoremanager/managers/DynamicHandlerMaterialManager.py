@@ -1,14 +1,8 @@
 # -*- encoding: utf-8 -*-
 from scoremanager.managers.MaterialManager import MaterialManager
-from scoremanager.wizards.DynamicHandlerCreationWizard \
-    import DynamicHandlerCreationWizard
 
 
 class DynamicHandlerMaterialManager(MaterialManager):
-
-    ### CLASS VARIABLES ###
-
-    _output_material_maker = DynamicHandlerCreationWizard
 
     ### INITIALIZER ###
 
@@ -23,15 +17,13 @@ class DynamicHandlerMaterialManager(MaterialManager):
 
     ### PRIVATE METHODS ###
 
-    # TODO: name verb-first
     @staticmethod
-    def _output_material_checker(expr):
+    def _check_output_material(material):
         from experimental.tools import handlertools
-        return isinstance(expr, handlertools.DynamicHandler)
+        return isinstance(material, handlertools.DynamicHandler)
 
-    # TODO: name verb-first
     @staticmethod
-    def _output_material_editor(target=None, session=None):
+    def _get_output_material_editor(target=None, session=None):
         from scoremanager import wizards
         if target:
             wizard = wizards.DynamicHandlerCreationWizard()
@@ -40,3 +32,14 @@ class DynamicHandlerMaterialManager(MaterialManager):
                 target=target,
                 )
             return dynamic_handler_editor
+        else:
+            return True
+
+    @staticmethod
+    def _make_output_material(target=None, session=None):
+        from scoremanager import wizards
+        wizard = wizards.DynamicHandlerCreationWizard(
+            session=session,
+            target=target,
+            )
+        return wizard

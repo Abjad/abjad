@@ -9,10 +9,6 @@ class SargassoMeasureMaterialManager(MaterialManager):
 
     ### CLASS VARIABLES ###
 
-    _output_material_checker = staticmethod(lambda output: all(
-        isinstance(x, scoretools.Measure) and x.implicit_scaling 
-        for x in output))
-
     user_input_demo_values = [
         ('measure_denominator', 4),
         ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
@@ -76,7 +72,14 @@ class SargassoMeasureMaterialManager(MaterialManager):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _output_material_maker(
+    def _check_output_material(material):
+        return all(
+            isinstance(_, scoretools.Measure) and _.implicit_scaling
+            for _ in material
+            )
+
+    @staticmethod
+    def _make_output_material(
         measure_denominator, 
         measure_numerator_talea,
         measure_division_denominator, 

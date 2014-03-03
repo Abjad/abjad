@@ -1,20 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from scoremanager.managers.MaterialManager import MaterialManager
-from scoremanager.editors.PitchRangeInventoryEditor \
-    import PitchRangeInventoryEditor
 
 
 class PitchRangeInventoryMaterialManager(MaterialManager):
-
-    ### CLASS VARIABLES ###
-
-    _output_material_checker = staticmethod(
-        lambda x: isinstance(x, pitchtools.PitchRangeInventory))
-
-    _output_material_editor = PitchRangeInventoryEditor
-
-    _output_material_maker = pitchtools.PitchRangeInventory
 
     ### INITIALIZER ###
 
@@ -46,3 +35,22 @@ class PitchRangeInventoryMaterialManager(MaterialManager):
         moment = schemetools.SchemeMoment(1, 4)
         set_(score).proportional_notation_duration = moment
         return illustration
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def _check_output_material(material):
+        return isinstance(material, pitchtools.PitchRangeInventory)
+
+    @staticmethod
+    def _get_output_material_editor(target=None, session=None):
+        from scoremanager import editors
+        editor = editors.PitchRangeInventoryEditor(
+            session=session,
+            target=target,
+            )
+        return editor
+
+    @staticmethod
+    def _make_output_material():
+        return pitchtools.PitchRangeInventory

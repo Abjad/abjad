@@ -1,19 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from scoremanager.managers.MaterialManager import MaterialManager
-from scoremanager.editors.MarkupInventoryEditor import MarkupInventoryEditor
 
 
 class MarkupInventoryMaterialManager(MaterialManager):
-
-    ### CLASS VARIABLES ###
-
-    _output_material_checker = staticmethod(
-        lambda x: isinstance(x, markuptools.MarkupInventory))
-
-    _output_material_editor = MarkupInventoryEditor
-
-    _output_material_maker = markuptools.MarkupInventory
 
     ### INITIALIZER ###
 
@@ -65,3 +55,22 @@ class MarkupInventoryMaterialManager(MaterialManager):
             illustration.header_block.subtitle = \
                 markuptools.Markup(kwargs.get('subtitle'))
         return illustration
+
+    ### PUBLIC MEHTODS ###
+
+    @staticmethod
+    def _check_output_material(material):
+        return isinstance(material, markuptools.MarkupInventory)
+
+    @staticmethod
+    def _get_output_material_editor(target=None, session=None):
+        from scoremanager import editors
+        editor = editors.MarkupInventoryEditor(
+            session=session,
+            target=target,
+            )
+        return editor
+
+    @staticmethod
+    def _make_output_material():
+        return markuptools.MarkupInventory

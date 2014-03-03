@@ -32,13 +32,17 @@ class MaterialManager(PackageManager):
 
     '''
 
-    ### CLASS VARIABLES ###
+    @staticmethod
+    def _check_output_material(material):
+        return True
 
-    _output_material_checker = None
+    @staticmethod
+    def _get_output_material_editor(target=None, session=None):
+        return
 
-    _output_material_editor = None
-
-    _output_material_maker = None
+    @staticmethod
+    def _make_output_material():
+        return
 
     ### INTIALIZER ###
 
@@ -410,7 +414,8 @@ class MaterialManager(PackageManager):
         self._make_package_management_menu_section(menu)
         self._make_stylesheet_menu_section(menu)
         if self._should_have_user_input_module:
-            if not self._output_material_editor:
+            editor = self._get_output_material_editor()
+            if not editor:
                 self._make_user_input_module_menu_section(menu)
         try:
             material_summary_section = menu['material summary']
@@ -429,7 +434,8 @@ class MaterialManager(PackageManager):
         return menu
 
     def _make_main_menu_sections_with_user_input_wrapper(self, menu):
-        if not self._output_material_editor:
+        editor = self._get_output_material_editor()
+        if not editor:
             self._make_user_input_module_menu_section(menu)
         self._make_output_material_menu_section(menu)
 
@@ -480,11 +486,12 @@ class MaterialManager(PackageManager):
             if self._can_make_output_material():
                 section.append(('output material - make', 'omm'))
                 has_output_material_section = True
-            if self._output_material_editor:
+            editor = self._get_output_material_editor()
+            if editor:
                 section.append(('output material - interact', 'omi'))
                 if os.path.isfile(self.output_material_module_path):
                     output_material = self._execute_output_material_module()
-                    editor = self._output_material_editor(
+                    editor = self._get_output_material_editor(
                         target=output_material,
                         session=self._session,
                         )
@@ -505,7 +512,9 @@ class MaterialManager(PackageManager):
         if bool(self.user_input_wrapper_in_memory) and \
             self.user_input_wrapper_in_memory.is_complete:
             return True
-        if self._output_material_editor:
+        editor = self._get_output_material_editor()
+        #if self._get_output_material_editor:
+        if editor:
             return True
         return False
 
@@ -669,18 +678,26 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        if not self._output_material_editor:
+        editor = self._get_output_material_editor()
+        if not editor:
             return
         output_material = self._execute_output_material_module()
-        if not hasattr(self, '_output_material_maker'):
-            output_material_handler_callable = self._output_material_editor
-        elif output_material is None and self._output_material_maker and \
-            issubclass(self._output_material_maker, wizards.Wizard):
-            output_material_handler_callable = self._output_material_maker
+        if not hasattr(self, '_make_output_material'):
+            output_material_handler = self._get_output_material_editor(
+                target=output_material,
+                session=self._session,
+                )
+        elif output_material is None and self._make_output_material() and \
+            isinstance(self._make_output_material(), wizards.Wizard):
+            output_material_handler = self._make_output_material(
+                target=output_material,
+                session=self._session,
+                )
         else:
-            output_material_handler_callable = self._output_material_editor
-        output_material_handler = output_material_handler_callable(
-            target=output_material, session=self._session)
+            output_material_handler = self._get_output_material_editor(
+                target=output_material,
+                session=self._session,
+                )
         output_material_handler._run()
         if self._session._backtrack():
             return
@@ -1081,9 +1098,9 @@ class MaterialManager(PackageManager):
             )
 
     def make_output_material_from_user_input_wrapper_in_memory(self):
-        output_material = self._output_material_maker(
+        output_material = self._make_output_material(
             *self.user_input_wrapper_in_memory.list_values())
-        assert type(self)._output_material_checker(
+        assert type(self)._check_output_material(
             output_material), repr(output_material)
         return output_material
 

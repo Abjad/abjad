@@ -1,19 +1,8 @@
 # -*- encoding: utf-8 -*-
-from experimental.tools.handlertools.ArticulationHandler \
-    import ArticulationHandler
 from scoremanager.managers.MaterialManager import MaterialManager
-from scoremanager.wizards.ArticulationHandlerCreationWizard \
-    import ArticulationHandlerCreationWizard
 
 
 class ArticulationHandlerMaterialManager(MaterialManager):
-
-    ### CLASS VARIABLES ###
-
-    _output_material_checker = staticmethod(
-        lambda x: isinstance(x, ArticulationHandler))
-
-    _output_material_maker = ArticulationHandlerCreationWizard
 
     ### INITIALIZER ###
 
@@ -30,10 +19,29 @@ class ArticulationHandlerMaterialManager(MaterialManager):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def _output_material_editor(target=None, session=None):
+    def _check_output_material(material):
+        from experimental.tools import handlertools
+        return isinstance(x, handlertools.ArticulationHandler)
+
+    @staticmethod
+    def _get_output_material_editor(target=None, session=None):
         from scoremanager import wizards
         if target:
             wizard = wizards.ArticulationHandlerCreationWizard()
             articulation_handler_editor = wizard._get_target_editor(
-                target.__class__.__name__, target=target)
+                target.__class__.__name__, 
+                target=target,
+                )
             return articulation_handler_editor
+        else:
+            return True
+
+    @staticmethod
+    def _make_output_material(target=None, session=None):
+        from scoremanager import wizards
+        #return wizards.ArticulationHandlerCreationWizard
+        wizard = wizards.ArticulationHandlerCreationWizard(
+            session=session,
+            target=target,
+            )
+        return wizard
