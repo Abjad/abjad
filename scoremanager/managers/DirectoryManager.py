@@ -120,18 +120,6 @@ class DirectoryManager(Manager):
         self._io_manager.display(lines)
         self._session._hide_next_redraw = True
 
-    def get_filesystem_path(self):
-        r'''Gets filesystem path of directory manager.
-
-        Returns none.
-        '''
-        getter = self._io_manager.make_getter(where=self._where)
-        getter.append_string('directory path')
-        result = getter._run()
-        if self._session._backtrack():
-            return
-        self._filesystem_path = result
-
     def list_directory(self):
         r'''Lists directory.
 
