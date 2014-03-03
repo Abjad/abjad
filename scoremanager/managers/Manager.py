@@ -58,7 +58,7 @@ class Manager(ScoreManagerObject):
     def _user_input_to_action(self):
         _user_input_to_action = {
             'cp': self.copy,
-            'rm': self.remove_and_backtrack_locally,
+            'rm': self.remove,
             'ren': self.rename,
             }
         return _user_input_to_action
@@ -375,6 +375,8 @@ class Manager(ScoreManagerObject):
         ):
         r'''Removes filesystem asset.
 
+        Backtracks up one level from previous location of asset.
+
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
@@ -392,13 +394,6 @@ class Manager(ScoreManagerObject):
         if not result == 'remove':
             return
         self._remove()
-
-    def remove_and_backtrack_locally(self):
-        r'''Removes filesystem asset and backtracks locally.
-
-        Returns none.
-        '''
-        self.remove()
         self._session._is_backtracking_locally = True
 
     def rename(
