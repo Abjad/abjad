@@ -36,7 +36,7 @@ def test_DynamicHandlerMaterialManager_01():
         output_material = manager._execute_output_material_module()
         assert output_material == handler
     finally:
-        string = 'lmm testdynamichandler rm default q'
+        string = 'lmm testdynamichandler rm remove q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materials.testdynamichandler'
         assert not score_manager._configuration.package_exists(string)

@@ -38,7 +38,7 @@ def test_SargassoMeasureMaterialManager_01():
             ('measures_are_shuffled', None)])
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'lmm testsargasso rm default q'
+        string = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materials.testsargasso'
         assert not score_manager._configuration.package_exists(string)
@@ -80,7 +80,7 @@ def test_SargassoMeasureMaterialManager_02():
             ('measures_are_shuffled', True)])
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'lmm testsargasso rm default q'
+        string = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materials.testsargasso'
         assert not score_manager._configuration.package_exists(string)
@@ -121,7 +121,7 @@ def test_SargassoMeasureMaterialManager_03():
             ('measures_are_shuffled', None)])
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'lmm testsargasso rm default q'
+        string = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materials.testsargasso'
         assert not score_manager._configuration.package_exists(string)
@@ -162,7 +162,7 @@ def test_SargassoMeasureMaterialManager_04():
             ('measures_are_shuffled', None)])
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'lmm testsargasso rm default q'
+        string = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materials.testsargasso'
         assert not score_manager._configuration.package_exists(string)
@@ -204,7 +204,7 @@ def test_SargassoMeasureMaterialManager_05():
             ('measures_are_shuffled', True)])
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'lmm testsargasso rm default q'
+        string = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materials.testsargasso'
         assert not score_manager._configuration.package_exists(string)
@@ -246,7 +246,7 @@ def test_SargassoMeasureMaterialManager_06():
             ('measures_are_shuffled', None)])
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'lmm testsargasso rm default q'
+        string = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materials.testsargasso'
         assert not score_manager._configuration.package_exists(string)
@@ -287,7 +287,7 @@ def test_SargassoMeasureMaterialManager_07():
             ('measures_are_shuffled', None)])
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'lmm testsargasso rm default q'
+        string = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materials.testsargasso'
         assert not score_manager._configuration.package_exists(string)
@@ -348,7 +348,7 @@ def test_SargassoMeasureMaterialManager_08():
         assert format(Staff(output_material))
         assert format(Staff(output_material)) == format(Staff(measures))
     finally:
-        string = 'lmm testsargasso rm default q'
+        string = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materials.testsargasso'
         assert not score_manager._configuration.package_exists(string)

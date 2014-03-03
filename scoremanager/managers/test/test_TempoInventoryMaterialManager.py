@@ -34,7 +34,7 @@ def test_TempoInventoryMaterialManager_01():
         output_material = manager._execute_output_material_module()
         assert output_material == inventory
     finally:
-        string = 'lmm testtempoinventory rm default q'
+        string = 'lmm testtempoinventory rm remove q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materials.testtempoinventory'
         assert not score_manager._configuration.package_exists(string)

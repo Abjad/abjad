@@ -39,7 +39,7 @@ def test_ArticulationHandlerMaterialManager_01():
         output_material = manager._execute_output_material_module()
         assert output_material == handler
     finally:
-        string = 'lmm testarticulationhandler rm default q'
+        string = 'lmm testarticulationhandler rm remove q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materials.testarticulationhandler'
         assert not score_manager._configuration.package_exists(string)

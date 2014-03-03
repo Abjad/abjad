@@ -30,7 +30,7 @@ def test_PitchRangeInventoryMaterialManager_01():
         output_material = manager._execute_output_material_module()
         assert output_material is None
     finally:
-        string = 'lmm testpir rm default q'
+        string = 'lmm testpir rm remove q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materials.testpir'
         assert not score_manager._configuration.package_exists(string)
@@ -69,7 +69,7 @@ def test_PitchRangeInventoryMaterialManager_02():
         output_material = manager._execute_output_material_module()
         assert output_material == inventory
     finally:
-        string = 'lmm testpir rm default q'
+        string = 'lmm testpir rm remove q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materials.testpir'
         assert not score_manager._configuration.package_exists(string)

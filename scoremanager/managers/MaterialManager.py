@@ -228,7 +228,7 @@ class MaterialManager(PackageManager):
             'pdfm': self.write_illustration_ly_and_pdf,
             'pdfrm': self.remove_illustration_pdf,
             'pdfv': self.view_illustration_pdf,
-            'ren': self.rename_package,
+            'ren': self.rename,
             'sse': self.edit_stylesheet,
             'sss': self.select_stylesheet,
             'uid': self.remove_user_input_module,
@@ -896,8 +896,8 @@ class MaterialManager(PackageManager):
             manager._user_input_module_manager
             manager._remove()
 
-    def rename_package(self):
-        r'''Renames package.
+    def rename(self):
+        r'''Renames material package.
 
         Returns none.
         '''

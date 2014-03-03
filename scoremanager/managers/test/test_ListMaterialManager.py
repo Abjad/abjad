@@ -28,7 +28,7 @@ def test_ListMaterialManager_01():
         output_material = manager._execute_output_material_module()
         assert output_material == [17, 'foo']
     finally:
-        string = 'lmm testlist rm default q'
+        string = 'lmm testlist rm remove q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materials.testlist'
         assert not score_manager._configuration.package_exists(string)

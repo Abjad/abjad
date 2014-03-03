@@ -68,8 +68,8 @@ class PackageManager(DirectoryManager):
             'mdmv': self.view_metadata_module,
             'mdmrm': self.remove_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
-            'ren': self.rename_package,
-            'rm': self.remove_package,
+            'ren': self.rename,
+            'rm': self.remove,
             })
         return _user_input_to_action
 
@@ -249,14 +249,6 @@ class PackageManager(DirectoryManager):
             metadatum_name = result
             self._remove_metadatum(metadatum_name)
 
-    def remove_package(self):
-        r'''Removes package.
-
-        Returns none.
-        '''
-        self._remove()
-        self._session._is_backtracking_locally = True
-
     def remove_views_module(self, prompt=True):
         r'''Removes views module.
 
@@ -274,7 +266,7 @@ class PackageManager(DirectoryManager):
                 prompt=prompt,
                 )
 
-    def rename_package(self):
+    def rename(self):
         r'''Renames package.
 
         Returns none.

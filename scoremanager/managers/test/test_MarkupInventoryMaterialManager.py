@@ -41,7 +41,7 @@ def test_MarkupInventoryMaterialManager_01():
         output_material = manager._execute_output_material_module()
         assert output_material == inventory
     finally:
-        string = 'lmm testmarkupinventory rm default q'
+        string = 'lmm testmarkupinventory rm remove q'
         score_manager._run(pending_user_input=string)
         string = 'scoremanager.materials.testmarkupinventory'
         assert not score_manager._configuration.package_exists(string)

@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
             'user_input.py',
             ]
     finally:
-        string = 'lmm testsargasso rm default q'
+        string = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=string)
         assert not score_manager._configuration.package_exists(name)
 
@@ -59,8 +59,8 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
             'user_input.py',
             ]
     finally:
-        string = 'red~example~score m testsargasso rm default q'
-        score_manager._run(pending_user_input='red~example~score m testsargasso rm default q')
+        string = 'red~example~score m testsargasso rm remove q'
+        score_manager._run(pending_user_input='red~example~score m testsargasso rm remove q')
         assert not score_manager._configuration.package_exists(name)
 
 
@@ -91,7 +91,7 @@ def test_MaterialPackageWrangler_run_managermade_package_03():
         assert manager._execute_material_definition_module() is None
         assert manager._execute_output_material_module() is None
     finally:
-        input_ = 'lmm testsargassomeasures rm q'
+        input_ = 'lmm testsargassomeasures rm remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(path)
 
@@ -124,6 +124,6 @@ def test_MaterialPackageWrangler_run_managermade_package_04():
         assert manager._execute_material_definition_module() is None
         assert manager._execute_output_material_module() is None
     finally:
-        input_ = 'lmm testsargassomeasures rm default q'
+        input_ = 'lmm testsargassomeasures rm remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(path)
