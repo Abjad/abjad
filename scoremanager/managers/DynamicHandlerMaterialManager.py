@@ -8,20 +8,18 @@ class DynamicHandlerMaterialManager(MaterialManager):
 
     ### CLASS VARIABLES ###
 
-    generic_output_name = 'dynamic handler'
-
     _output_material_maker = DynamicHandlerCreationWizard
-
-    _output_material_module_import_statements = [
-        'from abjad import *',
-        'from experimental.tools import handlertools',
-        ]
 
     ### INITIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
         superclass = super(DynamicHandlerMaterialManager, self)
         superclass.__init__(filesystem_path=filesystem_path, session=session)
+        self._generic_output_name = 'dynamic handler'
+        self._output_material_module_import_statements = [
+            'from abjad import *',
+            'from experimental.tools import handlertools',
+            ]
 
     ### PRIVATE METHODS ###
 

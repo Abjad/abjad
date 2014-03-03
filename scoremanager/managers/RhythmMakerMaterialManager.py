@@ -12,17 +12,15 @@ class RhythmMakerMaterialManager(MaterialManager):
 
     _output_material_maker = RhythmMakerCreationWizard
 
-    _output_material_module_import_statements = [
-        'from abjad import *',
-        ]
-
-    generic_output_name = 'rhythm-maker'
-
     ### INITIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
         superclass = super(RhythmMakerMaterialManager, self)
         superclass.__init__(filesystem_path=filesystem_path, session=session)
+        self._generic_output_name = 'rhythm-maker'
+        self._output_material_module_import_statements = [
+            'from abjad import *',
+            ]
 
     ### SPECIAL METHODS ###
 

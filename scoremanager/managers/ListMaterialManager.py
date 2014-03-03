@@ -8,11 +8,16 @@ class ListMaterialManager(MaterialManager):
 
     ### CLASS VARIABLES ###
 
-    generic_output_name = 'list'
-
     _output_material_checker = staticmethod(lambda x: isinstance(x, list))
 
     _output_material_editor = ListEditor
+
+    ### INITIALIZER ###
+
+    def __init__(self, filesystem_path=None, session=None):
+        superclass = super(ListMaterialManager, self)
+        superclass.__init__(filesystem_path=filesystem_path, session=session)
+        self._generic_output_name = 'list'
 
     ### PUBLIC METHODS ###
 

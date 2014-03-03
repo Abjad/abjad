@@ -15,17 +15,15 @@ class TempoInventoryMaterialManager(MaterialManager):
 
     _output_material_maker = indicatortools.TempoInventory
 
-    _output_material_module_import_statements = [
-        'from abjad import *',
-        ]
-
-    generic_output_name = 'tempo inventory'
-
     ### INITIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
         superclass = super(TempoInventoryMaterialManager, self)
         superclass.__init__(filesystem_path=filesystem_path, session=session)
+        self._generic_output_name = 'tempo inventory'
+        self._output_material_module_import_statements = [
+            'from abjad import *',
+            ]
 
     ### SPECIAL METHODS ###
 

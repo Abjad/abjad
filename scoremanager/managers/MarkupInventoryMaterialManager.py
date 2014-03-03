@@ -8,8 +8,6 @@ class MarkupInventoryMaterialManager(MaterialManager):
 
     ### CLASS VARIABLES ###
 
-    generic_output_name = 'markup inventory'
-
     _output_material_checker = staticmethod(
         lambda x: isinstance(x, markuptools.MarkupInventory))
 
@@ -17,15 +15,15 @@ class MarkupInventoryMaterialManager(MaterialManager):
 
     _output_material_maker = markuptools.MarkupInventory
 
-    _output_material_module_import_statements = [
-        'from abjad import *',
-        ]
-
     ### INITIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
         superclass = super(MarkupInventoryMaterialManager, self)
         superclass.__init__(filesystem_path=filesystem_path, session=session)
+        self._generic_output_name = 'markup inventory'
+        self._output_material_module_import_statements = [
+            'from abjad import *',
+            ]
 
     ### SPECIAL METHODS ###
 

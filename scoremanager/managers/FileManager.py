@@ -11,11 +11,16 @@ class FileManager(Manager):
 
     ### CLASS VARIABLES ###
 
-    _generic_class_name = 'file'
-
     _temporary_asset_name = 'temporary_file.txt'
 
     extension = ''
+
+    ### INITIALIZER ###
+
+    def __init__(self, filesystem_path=None, session=None):
+        superclass = super(FileManager, self)
+        superclass.__init__(filesystem_path=filesystem_path, session=session)
+        self._generic_class_name = 'file'
 
     ### PRIVATE PROPERTIES ###
 

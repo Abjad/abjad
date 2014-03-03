@@ -263,7 +263,8 @@ class Wrangler(ScoreManagerObject):
         is_storehouse=False,
         ):
         if human_readable_target_name is None:
-            generic_class_name = self._asset_manager_class._generic_class_name
+            manager = self._asset_manager_class()
+            generic_class_name = manager._generic_class_name
             human_readable_target_name = generic_class_name
         if infinitival_phrase:
             return 'select {} {}:'.format(

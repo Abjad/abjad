@@ -13,12 +13,6 @@ class SargassoMeasureMaterialManager(MaterialManager):
         isinstance(x, scoretools.Measure) and x.implicit_scaling 
         for x in output))
 
-    _output_material_module_import_statements = [
-        'from abjad import *',
-        ]
-
-    generic_output_name = 'sargasso measures'
-
     user_input_demo_values = [
         ('measure_denominator', 4),
         ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
@@ -55,6 +49,10 @@ class SargassoMeasureMaterialManager(MaterialManager):
     def __init__(self, filesystem_path, session=None):
         superclass = super(SargassoMeasureMaterialManager, self)
         superclass.__init__(filesystem_path=filesystem_path, session=session)
+        self._generic_output_name = 'sargasso measures'
+        self._output_material_module_import_statements = [
+            'from abjad import *',
+            ]
         self._should_have_user_input_module = True
         wrapper = self._initialize_user_input_wrapper_in_memory()
 

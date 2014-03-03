@@ -34,15 +34,11 @@ class MaterialManager(PackageManager):
 
     ### CLASS VARIABLES ###
 
-    _generic_class_name = 'material manager'
-
     _output_material_checker = None
 
     _output_material_editor = None
 
     _output_material_maker = None
-
-    _output_material_module_import_statements = []
 
     ### INTIALIZER ###
 
@@ -55,9 +51,11 @@ class MaterialManager(PackageManager):
             session=session,
             )
         self._generic_output_name = None
+        self._generic_class_name = 'material manager'
+        self._output_material_module_import_statements = []
         self._should_have_user_input_module = False
+        self._stylesheet_file_path_in_memory = None
         self._user_input_wrapper_in_memory = None
-        self.stylesheet_file_path_in_memory = None
 
     ### PRIVATE PROPERTIES ###
 
@@ -276,8 +274,8 @@ class MaterialManager(PackageManager):
             string = '({})'.format(title)
             kwargs['subtitle'] = string
         illustration = self.illustration_builder(output_material, **kwargs)
-        if illustration and self.stylesheet_file_path_in_memory:
-            path = self.stylesheet_file_path_in_memory
+        if illustration and self._stylesheet_file_path_in_memory:
+            path = self._stylesheet_file_path_in_memory
             illustration.file_initial_user_includes.append(path)
         return illustration
 
@@ -616,7 +614,7 @@ class MaterialManager(PackageManager):
     def stylesheet_file_manager(self):
         from scoremanager import managers
         return managers.FileManager(
-            self.stylesheet_file_path_in_memory,
+            self._stylesheet_file_path_in_memory,
             session=self._session,
             )
 
@@ -713,7 +711,7 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        if self.stylesheet_file_path_in_memory:
+        if self._stylesheet_file_path_in_memory:
             self.stylesheet_file_manager.edit()
         elif prompt:
             message = 'select stylesheet first.'
@@ -886,7 +884,7 @@ class MaterialManager(PackageManager):
                 stylesheet_file_wrangler.select_asset_filesystem_path()
         if self._session._backtrack():
             return
-        self.stylesheet_file_path_in_memory = stylesheet_file_path
+        self._stylesheet_file_path_in_memory = stylesheet_file_path
         self._io_manager.proceed(
             'stylesheet selected.', 
             prompt=prompt,
@@ -971,7 +969,8 @@ class MaterialManager(PackageManager):
             file_pointer.write(lines)
         self._add_metadatum('is_material_package', True)
         if hasattr(self, 'generic_output_name'):
-            self._add_metadatum('generic_output_name', self.generic_output_name)
+            generic_output_name = self.generic_output_name
+            self._add_metadatum('generic_output_name', generic_output_name)
         message = 'output material written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
 

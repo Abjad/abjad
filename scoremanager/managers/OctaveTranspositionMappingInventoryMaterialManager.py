@@ -16,12 +16,6 @@ class OctaveTranspositionMappingInventoryMaterialManager(MaterialManager):
 
     _output_material_maker = pitchtools.OctaveTranspositionMappingInventory
 
-    _output_material_module_import_statements = [
-        'from abjad import *',
-        ]
-
-    generic_output_name = 'octave transposition mapping inventory'
-
     ### INITIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
@@ -30,6 +24,10 @@ class OctaveTranspositionMappingInventoryMaterialManager(MaterialManager):
             self,
             )
         superclass.__init__(filesystem_path=filesystem_path, session=session)
+        self._generic_output_name = 'octave transposition mapping inventory'
+        self._output_material_module_import_statements = [
+            'from abjad import *',
+            ]
 
     ### SPECIAL METHODS ###
 

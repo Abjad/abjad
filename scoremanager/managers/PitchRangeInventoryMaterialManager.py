@@ -16,17 +16,15 @@ class PitchRangeInventoryMaterialManager(MaterialManager):
 
     _output_material_maker = pitchtools.PitchRangeInventory
 
-    _output_material_module_import_statements = [
-        'from abjad import *',
-        ]
-
-    generic_output_name = 'pitch range inventory'
-
     ### INITIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
         superclass = super(PitchRangeInventoryMaterialManager, self)
         superclass.__init__(filesystem_path=filesystem_path, session=session)
+        self._generic_output_name = 'pitch range inventory'
+        self._output_material_module_import_statements = [
+            'from abjad import *',
+            ]
 
     ### SPECIAL METHODS ###
 
