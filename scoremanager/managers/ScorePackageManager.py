@@ -241,7 +241,7 @@ class ScorePackageManager(PackageManager):
             file_path,
             session=self._session,
             )
-        instrumentation = manager._execute_file_lines(
+        instrumentation = manager._execute(
             return_attribute_name='instrumentation',
             )
         return instrumentation

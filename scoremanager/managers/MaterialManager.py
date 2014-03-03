@@ -104,14 +104,6 @@ class MaterialManager(PackageManager):
             )
 
     @property
-    def _material_definition_module_path(self):
-        path = os.path.join(
-            self._filesystem_path, 
-            'material_definition.py',
-            )
-        return path
-
-    @property
     def _material_definition_module_manager(self):
         from scoremanager import managers
         return managers.FileManager(
@@ -120,24 +112,27 @@ class MaterialManager(PackageManager):
             )
 
     @property
+    def _material_definition_module_path(self):
+        path = os.path.join(
+            self._filesystem_path, 
+            'material_definition.py',
+            )
+        return path
+
+    @property
     def _material_package_name(self):
         return os.path.basename(self._filesystem_path)
 
     @property
     def _output_material_module_import_statements_and_material_definition(
         self):
-        from scoremanager import managers
         if not self._should_have_material_definition_module:
             return
         return_attribute_name = [
             '_output_material_module_import_statements',
             self._material_package_name,
             ]
-        manager = managers.FileManager(
-            self._material_definition_module_path,
-            session=self._session,
-            )
-        result = manager._execute_file_lines(
+        result = self._material_definition_module_manager._execute(
             return_attribute_name=return_attribute_name,
             )
         return result
@@ -198,17 +193,30 @@ class MaterialManager(PackageManager):
             )
 
     @property
+    def _user_input_module_manager(self):
+        from scoremanager import managers
+        return managers.FileManager(
+            self._user_input_module_path,
+            session=self._session,
+            )
+
+    @property
+    def _user_input_module_path(self):
+        if self._should_have_user_input_module:
+            return os.path.join(self._filesystem_path, 'user_input.py')
+
+    @property
     def _user_input_to_action(self):
         superclass = super(MaterialManager, self)
         _user_input_to_action = superclass._user_input_to_action
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
             'ibe': self.edit_illustration_builder_module,
-            'ibex': self.edit_and_execute_illustration_builder_module,
+            'ibei': self.edit_and_interpret_illustration_builder_module,
             'ibm': self.write_illustration_builder_module_stub,
             'ibrm': self.remove_illustration_builder_module,
             'ibs': self.write_illustration_builder_module_stub,
-            'ibx': self.run_python_on_illustration_builder_module,
+            'ibi': self.interpret_illustration_builder_module,
             'lym': self.write_illustration_ly,
             'lyrm': self.remove_illustration_ly,
             'ly': self._illustration_ly_file_manager,
@@ -217,7 +225,7 @@ class MaterialManager(PackageManager):
             'mde': self.edit_material_definition_module,
             'mdrm': self.remove_material_definition_module,
             'mds': self.write_material_definition_module_stub,
-            'mdx': self.run_python_on_material_definition_module,
+            'mdi': self.interpret_material_definition_module,
             'ombp': self.write_output_material_module_boilerplate,
             'omm': self.write_output_material,
             'omi': self.edit_output_material,
@@ -238,19 +246,6 @@ class MaterialManager(PackageManager):
             'uimv': self.view_user_input_module,
             })
         return _user_input_to_action
-
-    @property
-    def _user_input_module_path(self):
-        if self._should_have_user_input_module:
-            return os.path.join(self._filesystem_path, 'user_input.py')
-
-    @property
-    def _user_input_module_manager(self):
-        from scoremanager import managers
-        return managers.FileManager(
-            self._user_input_module_path,
-            session=self._session,
-            )
 
     ### PRIVATE METHODS ###
 
@@ -309,30 +304,6 @@ class MaterialManager(PackageManager):
         self._user_input_wrapper_in_memory[key] = new_value
         wrapper = self._user_input_wrapper_in_memory
         self._write_user_input_wrapper(wrapper)
-
-    def _execute_material_definition_module(self):
-        from scoremanager import managers
-        if not os.path.isfile(self._material_definition_module_path):
-            return
-        manager = managers.FileManager(
-            self._material_definition_module_path,
-            session=self._session,
-            )
-        result = manager._execute_file_lines(
-            return_attribute_name=self._material_package_name,
-            )
-        return result
-
-    def _execute_output_material_module(self):
-        manager = self._output_material_module_manager
-        output_material = None
-        try:
-            output_material = manager._execute_file_lines(
-                return_attribute_name=self._material_package_name,
-                )
-        except:
-            traceback.print_exc()
-        return output_material
 
     @staticmethod
     def _get_output_material_editor(target=None, session=None):
@@ -402,6 +373,25 @@ class MaterialManager(PackageManager):
             user_input_wrapper = self._initialize_empty_user_input_wrapper()
         self._user_input_wrapper_in_memory = user_input_wrapper
 
+    def _interpret_material_definition_module(self):
+        if not os.path.isfile(self._material_definition_module_path):
+            return
+        result = self._material_definition_module_manager._execute(
+            return_attribute_name=self._material_package_name,
+            )
+        return result
+
+    def _execute_output_material_module(self):
+        manager = self._output_material_module_manager
+        output_material = None
+        try:
+            output_material = manager._execute(
+                return_attribute_name=self._material_package_name,
+                )
+        except:
+            traceback.print_exc()
+        return output_material
+
     def _make_illustration_builder_menu_section(
         self,
         main_menu,
@@ -412,10 +402,10 @@ class MaterialManager(PackageManager):
             if os.path.isfile(self._illustration_builder_module_path):
                 string = 'illustration builder - edit'
                 command_section.append((string, 'ibe'))
-                string = 'illustration builder - edit & execute'
-                command_section.append((string, 'ibex'))
-                string = 'illustration builder - execute'
-                command_section.append((string, 'ibx'))
+                string = 'illustration builder - edit & interpret'
+                command_section.append((string, 'ibei'))
+                string = 'illustration builder - interpret'
+                command_section.append((string, 'ibi'))
                 string = 'illustration builder - remove'
                 command_section.append((string, 'ibrm'))
                 string = 'illustration builder - stub'
@@ -513,7 +503,7 @@ class MaterialManager(PackageManager):
             command_section.append((string, 'mdbp'))
             command_section.append(('material definition - edit', 'mde'))
             command_section.default_index = len(command_section) - 1
-            command_section.append(('material definition - execute', 'mdx'))
+            command_section.append(('material definition - interpret', 'mdi'))
             string = 'material definition - remove'
             command_section.append((string, 'mdrm'))
             command_section.append(('material definition - stub', 'mds'))
@@ -622,6 +612,14 @@ class MaterialManager(PackageManager):
     def _read_material_manager_class_name(self):
         return self._get_metadatum('material_manager_class_name')
 
+    def _read_user_input_wrapper_from_disk(self):
+        manager = self._user_input_module_manager
+        result = manager._execute(
+            file_path=self._user_input_module_path,
+            return_attribute_name='user_input_wrapper',
+            )
+        return result
+
     @staticmethod
     def _replace_in_file(file_path, old, new):
         with file(file_path, 'r') as file_pointer:
@@ -706,13 +704,13 @@ class MaterialManager(PackageManager):
         self._io_manager.display(lines)
         self._io_manager.proceed(prompt=prompt)
 
-    def edit_and_execute_illustration_builder_module(self):
-        r'''Edits and then executes illustration builder module.
+    def edit_and_interpret_illustration_builder_module(self):
+        r'''Edits and then interprets illustration builder module.
 
         Returns none.
         '''
         self.edit_illustration_builder_module()
-        self.run_python_on_illustration_builder_module()
+        self.interpret_illustration_builder_module()
 
     def edit_illustration_builder_module(self):
         r'''Edits illustration builder module.
@@ -790,6 +788,21 @@ class MaterialManager(PackageManager):
             message = 'select stylesheet first.'
             self._io_manager.proceed(message)
 
+    def interpret_illustration_builder_module(self):
+        r'''Runs Python on illustration builder module.
+
+        Returns none.
+        '''
+        self._illustration_builder_module_manager._interpret(prompt=True)
+
+    def interpret_material_definition_module(self):
+        r'''Runs Python on material definition module.
+
+        Returns none.
+        '''
+        manager = self._material_definition_module_manager
+        manager._interpret()
+
     def load_user_input_wrapper_demo_values(self, prompt=False):
         r'''Loads user input wrapper demo values.
 
@@ -832,14 +845,6 @@ class MaterialManager(PackageManager):
             current_element_number = current_element_index + 1
             if current_element_number == start_element_number:
                 break
-
-    def _read_user_input_wrapper_from_disk(self):
-        manager = self._user_input_module_manager
-        result = manager._execute_file_lines(
-            file_path=self._user_input_module_path,
-            return_attribute_name='user_input_wrapper',
-            )
-        return result
 
     def remove_illustration_builder_module(self, prompt=True):
         r'''Removes illustration builder module.
@@ -959,21 +964,6 @@ class MaterialManager(PackageManager):
             self._io_manager.spawn_subprocess(command)
         self._session._is_backtracking_locally = True
 
-    def run_python_on_illustration_builder_module(self):
-        r'''Runs Python on illustration builder module.
-
-        Returns none.
-        '''
-        self._illustration_builder_module_manager._run_python(prompt=True)
-
-    def run_python_on_material_definition_module(self):
-        r'''Runs Python on material definition module.
-
-        Returns none.
-        '''
-        manager = self._material_definition_module_manager
-        manager._run_python()
-
     def select_stylesheet(self, prompt=True):
         r'''Selects stylesheet.
 
@@ -1033,6 +1023,36 @@ class MaterialManager(PackageManager):
         file_path = self._user_input_module_path
         self._io_manager.view(file_path)
 
+    def write_illustration_builder_module_stub(self, prompt=True):
+        r'''Writes stub illustration builder module.
+
+        Returns none.
+        '''
+        material_package_path = self._package_path
+        material_package_name = material_package_path.split('.')[-1]
+        lines = []
+        lines.append('from abjad import *\n')
+        line = 'from {}.output_material import {}\n'
+        line = line.format(material_package_path, material_package_name)
+        lines.append(line)
+        lines.append('\n')
+        lines.append('\n')
+        line = 'score, treble_staff, bass_staff ='
+        line += ' scoretools.make_piano_score_from_leaves({})\n'
+        line = line.format(material_package_name)
+        lines.append(line)
+        line = 'illustration = lilypondfiletools.'
+        line += 'make_basic_lilypond_file(score)\n'
+        lines.append(line)
+        file_path = os.path.join(
+            self._filesystem_path,
+            'illustration_builder.py',
+            )
+        with file(file_path, 'w') as file_pointer:
+            file_pointer.write(''.join(lines))
+        message = 'stub illustration builder written to disk.'
+        self._io_manager.proceed(message, prompt=prompt)
+
     def write_illustration_ly(self, prompt=True):
         r'''Writes illustration LilyPond file.
 
@@ -1068,6 +1088,23 @@ class MaterialManager(PackageManager):
         '''
         manager = self._material_definition_module_manager
         manager.write_boilerplate()
+
+    def write_material_definition_module_stub(self):
+        r'''Writes stub material definition module.
+
+        Returns none.
+        '''
+        lines = []
+        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append('from abjad import *\n')
+        lines.append('_output_material_module_import_statements = []')
+        lines.append('\n\n\n')
+        line = '{} = None'.format(self._material_package_name)
+        lines.append(line)
+        lines = ''.join(lines)
+        file_pointer = file(self._material_definition_module_path, 'w')
+        file_pointer.write(lines)
+        file_pointer.close()
 
     def write_output_material(
         self,
@@ -1119,49 +1156,3 @@ class MaterialManager(PackageManager):
         manager = self._output_material_module_manager
         manager.write_boilerplate()
 
-    def write_illustration_builder_module_stub(self, prompt=True):
-        r'''Writes stub illustration builder module.
-
-        Returns none.
-        '''
-        material_package_path = self._package_path
-        material_package_name = material_package_path.split('.')[-1]
-        lines = []
-        lines.append('from abjad import *\n')
-        line = 'from {}.output_material import {}\n'
-        line = line.format(material_package_path, material_package_name)
-        lines.append(line)
-        lines.append('\n')
-        lines.append('\n')
-        line = 'score, treble_staff, bass_staff ='
-        line += ' scoretools.make_piano_score_from_leaves({})\n'
-        line = line.format(material_package_name)
-        lines.append(line)
-        line = 'illustration = lilypondfiletools.'
-        line += 'make_basic_lilypond_file(score)\n'
-        lines.append(line)
-        file_path = os.path.join(
-            self._filesystem_path,
-            'illustration_builder.py',
-            )
-        with file(file_path, 'w') as file_pointer:
-            file_pointer.write(''.join(lines))
-        message = 'stub illustration builder written to disk.'
-        self._io_manager.proceed(message, prompt=prompt)
-
-    def write_material_definition_module_stub(self):
-        r'''Writes stub material definition module.
-
-        Returns none.
-        '''
-        lines = []
-        lines.append('# -*- encoding: utf-8 -*-\n')
-        lines.append('from abjad import *\n')
-        lines.append('_output_material_module_import_statements = []')
-        lines.append('\n\n\n')
-        line = '{} = None'.format(self._material_package_name)
-        lines.append(line)
-        lines = ''.join(lines)
-        file_pointer = file(self._material_definition_module_path, 'w')
-        file_pointer.write(lines)
-        file_pointer.close()

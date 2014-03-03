@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
         assert manager._list_directory() == directory_entries
-        assert manager._execute_material_definition_module() is None
+        assert manager._interpret_material_definition_module() is None
         assert manager._execute_output_material_module() is None
     finally:
         string = 'lmm testnotes rm remove q'
@@ -61,7 +61,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
         assert manager._list_directory() == directory_entries
-        output_material = manager._execute_material_definition_module()
+        output_material = manager._interpret_material_definition_module()
         assert output_material is None
     finally:
         string = 'lmm testnotes rm remove q'
@@ -95,7 +95,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
         assert manager._list_directory() == directory_entries
-        assert manager._execute_material_definition_module() is None
+        assert manager._interpret_material_definition_module() is None
         assert manager._execute_output_material_module() is None
     finally:
         string = 'lmm testnotes rm remove q'
@@ -130,7 +130,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
         assert manager._list_directory() == directory_entries
-        material_definition = manager._execute_material_definition_module()
+        material_definition = manager._interpret_material_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
         output_material = manager._execute_output_material_module()
@@ -197,7 +197,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
         assert manager._list_directory() == directory_entries
-        assert manager._execute_material_definition_module() is None
+        assert manager._interpret_material_definition_module() is None
         assert manager._execute_output_material_module() is None
     finally:
         string = 'lmm testnotes rm remove q'
@@ -234,7 +234,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
         assert manager._list_directory() == directory_entries
-        material_definition = manager._execute_material_definition_module()
+        material_definition = manager._interpret_material_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
         output_material = manager._execute_output_material_module()
@@ -270,7 +270,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
         assert manager._list_directory() == directory_entries
-        assert manager._execute_material_definition_module() is None
+        assert manager._interpret_material_definition_module() is None
         assert manager._execute_output_material_module() is None
     finally:
         string = 'lmm testnotes rm remove q'
@@ -307,7 +307,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
         assert manager._list_directory() == directory_entries
-        material_definition = manager._execute_material_definition_module()
+        material_definition = manager._interpret_material_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
         output_material = manager._execute_output_material_module()
@@ -349,7 +349,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.MaterialManager(filesystem_path)
         assert manager._list_directory() == directory_entries
-        material_definition = manager._execute_material_definition_module()
+        material_definition = manager._interpret_material_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
         output_material = manager._execute_output_material_module()

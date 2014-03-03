@@ -53,9 +53,6 @@ class SegmentPackageManager(PackageManager):
 
     ### PRIVATE METHODS ###
 
-    def _get_segment_definition_module_path(self):
-        return os.path.join(self._filesystem_path, 'definition.py')
-
     def _get_last_version_number(self):
         versions_directory_path = self._get_versions_directory_path()
         if not os.path.exists(versions_directory_path):
@@ -75,6 +72,9 @@ class SegmentPackageManager(PackageManager):
         
     def _get_output_pdf_file_path(self):
         return os.path.join(self._filesystem_path, 'output.pdf')
+
+    def _get_segment_definition_module_path(self):
+        return os.path.join(self._filesystem_path, 'definition.py')
 
     def _get_versions_directory_path(self):
         return os.path.join(self._filesystem_path, 'versions')

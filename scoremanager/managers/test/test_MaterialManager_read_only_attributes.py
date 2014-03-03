@@ -18,7 +18,7 @@ def test_MaterialManager_read_only_attributes_01():
     assert manager._breadcrumb == 'example numbers'
     assert os.path.isfile(manager._material_definition_module_path)
     assert not manager._read_material_manager_class_name()
-    material_definition = manager._execute_material_definition_module()
+    material_definition = manager._interpret_material_definition_module()
     assert material_definition == [1, 2, 3, 4, 5]
 
 
@@ -60,7 +60,7 @@ def test_MaterialManager_read_only_attributes_03():
         manager._configuration.abjad_material_packages_directory_path, 
         'example_notes',
         )
-    material_definition = manager._execute_material_definition_module()
+    material_definition = manager._interpret_material_definition_module()
     assert all(isinstance(x, Note) for x in material_definition)
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 

@@ -324,7 +324,7 @@ class Wrangler(ScoreManagerObject):
             view_file_path,
             session=self._session,
             )
-        view_inventory = manager._execute_file_lines(
+        view_inventory = manager._execute(
             return_attribute_name='view_inventory',
             )
         return view_inventory

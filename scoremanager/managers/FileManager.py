@@ -39,7 +39,20 @@ class FileManager(Manager):
 
     ### PRIVATE METHODS ###
 
-    def _execute_file_lines(self, file_path=None, return_attribute_name=None):
+    def _get_space_delimited_lowercase_name(self):
+        if self._filesystem_path:
+            base_name = os.path.basename(self._filesystem_path)
+            name = base_name.strip('.py')
+            name = stringtools.string_to_space_delimited_lowercase(name)
+            return name
+
+    def _handle_main_menu_result(self, result):
+        if result in self._user_input_to_action:
+            self._user_input_to_action[result]()
+        elif result == 'user entered lone return':
+            self.edit()
+
+    def _execute(self, file_path=None, return_attribute_name=None):
         file_path = file_path or self._filesystem_path
         if os.path.isfile(file_path):
             file_pointer = open(file_path, 'r')
@@ -62,18 +75,11 @@ class FileManager(Manager):
                 result = tuple(result)
                 return result
 
-    def _get_space_delimited_lowercase_name(self):
-        if self._filesystem_path:
-            base_name = os.path.basename(self._filesystem_path)
-            name = base_name.strip('.py')
-            name = stringtools.string_to_space_delimited_lowercase(name)
-            return name
-
-    def _handle_main_menu_result(self, result):
-        if result in self._user_input_to_action:
-            self._user_input_to_action[result]()
-        elif result == 'user entered lone return':
-            self.edit()
+    def _interpret(self, prompt=True):
+        command = 'python {}'.format(self._filesystem_path)
+        self._io_manager.spawn_subprocess(command)
+        message = 'file interpreted.'
+        self._io_manager.proceed(message, prompt=prompt)
 
     def _interpret_in_external_process(self):
         command = 'python {}'.format(self._filesystem_path)
@@ -119,12 +125,6 @@ class FileManager(Manager):
                 result.extend(file_pointer.readlines())
                 file_pointer.close()
         return result
-
-    def _run_python(self, prompt=True):
-        command = 'python {}'.format(self._filesystem_path)
-        self._io_manager.spawn_subprocess(command)
-        message = 'file executed.'
-        self._io_manager.proceed(message, prompt=prompt)
 
     def _write_boilerplate(self, boilerplate_file_abjad_asset_name):
         if not os.path.exists(boilerplate_file_abjad_asset_name):

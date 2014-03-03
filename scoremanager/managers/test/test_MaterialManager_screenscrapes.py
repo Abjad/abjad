@@ -25,7 +25,7 @@ def test_MaterialManager_screenscrapes_01():
         '     output material - view (omv)', 
         '', 
         '     illustration builder - edit (ibe)', 
-        '     illustration builder - execute (ibx)', 
+        '     illustration builder - interpret (ibi)', 
         '     score stylesheet - select (sss)', 
         '', 
         '     output pdf - make (pdfm)', 
