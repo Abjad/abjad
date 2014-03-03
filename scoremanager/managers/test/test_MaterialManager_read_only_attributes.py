@@ -20,19 +20,6 @@ def test_MaterialManager_read_only_attributes_01():
     assert not manager._read_material_manager_class_name()
     material_definition = manager._execute_material_definition_module()
     assert material_definition == [1, 2, 3, 4, 5]
-    assert manager.material_package_name == 'example_numbers'
-    assert manager.space_delimited_material_package_name == 'example numbers'
-    assert manager.material_package_name == 'example_numbers'
-    result = ['example_numbers = [1, 2, 3, 4, 5]']
-    assert manager.output_material_module_body_lines == result
-    file_path = os.path.join(
-        manager._configuration.abjad_material_packages_directory_path, 
-        'example_numbers', 
-        'output_material.py',
-        )
-    assert manager.output_material_module_path == file_path
-    assert manager.stylesheet_file_path_on_disk is None
-    assert manager.user_input_module_path is None
 
 
 def test_MaterialManager_read_only_attributes_02():
@@ -50,23 +37,6 @@ def test_MaterialManager_read_only_attributes_02():
     assert manager._breadcrumb == 'example sargasso measures'
     assert not os.path.isfile(manager._material_definition_module_path)
     assert manager._read_material_manager_class_name()
-    assert manager.material_package_name == 'example_sargasso_measures'
-    string = 'example sargasso measures'
-    assert manager.space_delimited_material_package_name == string
-    assert manager.material_package_name == 'example_sargasso_measures'
-    assert manager.output_material_module_body_lines is None
-    file_path = os.path.join(
-        manager._configuration.abjad_material_packages_directory_path, 
-        'example_sargasso_measures', 
-        'output_material.py',
-        )
-    assert manager.output_material_module_path == file_path
-    file_path = os.path.join(
-        manager._configuration.abjad_material_packages_directory_path, 
-        'example_sargasso_measures', 
-        'user_input.py',
-        )
-    assert manager.user_input_module_path == file_path
 
 
 def test_MaterialManager_read_only_attributes_03():
@@ -90,15 +60,10 @@ def test_MaterialManager_read_only_attributes_03():
         manager._configuration.abjad_material_packages_directory_path, 
         'example_notes',
         )
-    assert manager.material_package_name == 'example_notes'
-    assert manager.space_delimited_material_package_name == 'example notes'
-    assert manager.material_package_name == 'example_notes'
     material_definition = manager._execute_material_definition_module()
     assert all(isinstance(x, Note) for x in material_definition)
-    assert manager.output_material_module_body_lines is not None
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
         'example_notes', 
         'output_material.py',
         )
-    assert manager.output_material_module_path == file_path

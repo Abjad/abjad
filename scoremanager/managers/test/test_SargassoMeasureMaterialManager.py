@@ -36,7 +36,7 @@ def test_SargassoMeasureMaterialManager_01():
             ('measures_are_scaled', None),
             ('measures_are_split', None),
             ('measures_are_shuffled', None)])
-        assert manager.user_input_wrapper_in_memory == user_input_wrapper
+        assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
         string = 'lmm testsargasso rm default q'
         score_manager._run(pending_user_input=string)
@@ -78,7 +78,7 @@ def test_SargassoMeasureMaterialManager_02():
             ('measures_are_scaled', True),
             ('measures_are_split', True),
             ('measures_are_shuffled', True)])
-        assert manager.user_input_wrapper_in_memory == user_input_wrapper
+        assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
         string = 'lmm testsargasso rm default q'
         score_manager._run(pending_user_input=string)
@@ -119,7 +119,7 @@ def test_SargassoMeasureMaterialManager_03():
             ('measures_are_scaled', None),
             ('measures_are_split', None),
             ('measures_are_shuffled', None)])
-        assert manager.user_input_wrapper_in_memory == user_input_wrapper
+        assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
         string = 'lmm testsargasso rm default q'
         score_manager._run(pending_user_input=string)
@@ -160,7 +160,7 @@ def test_SargassoMeasureMaterialManager_04():
             ('measures_are_scaled', None),
             ('measures_are_split', None),
             ('measures_are_shuffled', None)])
-        assert manager.user_input_wrapper_in_memory == user_input_wrapper
+        assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
         string = 'lmm testsargasso rm default q'
         score_manager._run(pending_user_input=string)
@@ -202,7 +202,7 @@ def test_SargassoMeasureMaterialManager_05():
             ('measures_are_scaled', False),
             ('measures_are_split', True),
             ('measures_are_shuffled', True)])
-        assert manager.user_input_wrapper_in_memory == user_input_wrapper
+        assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
         string = 'lmm testsargasso rm default q'
         score_manager._run(pending_user_input=string)
@@ -244,7 +244,7 @@ def test_SargassoMeasureMaterialManager_06():
             ('measures_are_scaled', None),
             ('measures_are_split', None),
             ('measures_are_shuffled', None)])
-        assert manager.user_input_wrapper_in_memory == user_input_wrapper
+        assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
         string = 'lmm testsargasso rm default q'
         score_manager._run(pending_user_input=string)
@@ -285,7 +285,7 @@ def test_SargassoMeasureMaterialManager_07():
             ('measures_are_scaled', None),
             ('measures_are_split', None),
             ('measures_are_shuffled', None)])
-        assert manager.user_input_wrapper_in_memory == user_input_wrapper
+        assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
         string = 'lmm testsargasso rm default q'
         score_manager._run(pending_user_input=string)
