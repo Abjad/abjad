@@ -226,19 +226,6 @@ class Manager(ScoreManagerObject):
         asset_name = space_delimited_lowercase_name.replace(' ', '_')
         return asset_name
 
-    def _write_boilerplate(self, boilerplate_file_abjad_asset_name):
-        if not os.path.exists(boilerplate_file_abjad_asset_name):
-            boilerplate_file_abjad_asset_name = os.path.join(
-                self._configuration.boilerplate_directory_path,
-                boilerplate_file_abjad_asset_name,
-                )
-        if os.path.exists(boilerplate_file_abjad_asset_name):
-            shutil.copyfile(
-                boilerplate_file_abjad_asset_name,
-                self._filesystem_path,
-                )
-            return True
-
     ### PUBLIC METHODS ###
 
     def add_assets_to_repository(self, prompt=False):
@@ -438,26 +425,3 @@ class Manager(ScoreManagerObject):
         lines.append('')
         self._io_manager.display(lines)
         self._io_manager.proceed(prompt=prompt)
-
-    def write_boilerplate(
-        self, 
-        pending_user_input=None,
-        prompt=True,
-        ):
-        r'''Writes filesystem asset boilerplate.
-
-        Returns none.
-        '''
-        self._io_manager._assign_user_input(pending_user_input)
-        getter = self._io_manager.make_getter(where=self._where)
-        getter.append_snake_case_file_name('name of boilerplate asset')
-        with self._backtracking:
-            boilerplate_file_abjad_asset_name = getter._run()
-        if self._session._backtrack():
-            return
-        if self._write_boilerplate(boilerplate_file_abjad_asset_name):
-            self._io_manager.proceed('boilerplate asset copied.')
-        else:
-            message = 'boilerplate asset {!r} does not exist.'
-            message = message.format(boilerplate_file_abjad_asset_name)
-            self._io_manager.proceed(message)
