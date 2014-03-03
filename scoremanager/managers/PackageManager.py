@@ -58,9 +58,9 @@ class PackageManager(DirectoryManager):
         _user_input_to_action = superclass._user_input_to_action
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
-            'inbp': self.write_boilerplate_initializer,
+            'inbp': self.write_initializer_boilerplate,
             'inrm': self.remove_initializer,
-            'ins': self.write_stub_initializer,
+            'ins': self.write_initializer_stub,
             'inv': self.view_initializer,
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
@@ -335,18 +335,6 @@ class PackageManager(DirectoryManager):
             message = 'rewrote metadata module.'
             self._io_manager.proceed(message)
 
-    def set_package_path(self):
-        r'''Sets package path.
-
-        Returns none.
-        '''
-        getter = self._io_manager.make_getter(where=self._where)
-        getter.append_snake_case_package_name('package name')
-        result = getter._run()
-        if self._session._backtrack():
-            return
-        self._package_path = result
-
     def view_initializer(self):
         r'''Views initializer module.
 
@@ -369,7 +357,7 @@ class PackageManager(DirectoryManager):
             command = 'vim -R {}'.format(file_path)
             self._io_manager.spawn_subprocess(command)
 
-    def write_boilerplate_initializer(self, prompt=True):
+    def write_initializer_boilerplate(self, prompt=True):
         r'''Writes boilerplate initializer module.
 
         Returns none.
@@ -381,7 +369,7 @@ class PackageManager(DirectoryManager):
             )
         manager.write_boilerplate(prompt=prompt)
 
-    def write_stub_initializer(self, prompt=True):
+    def write_initializer_stub(self, prompt=True):
         r'''Wrties stub initializer module.
 
         Returns none.

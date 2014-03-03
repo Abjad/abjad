@@ -55,9 +55,9 @@ class Wrangler(ScoreManagerObject):
     @property
     def _user_input_to_action(self):
         _user_input_to_action = {
-            'inbp': self.write_boilerplate_initializer,
+            'inbp': self.write_initializer_boilerplate,
             'inrm': self.remove_initializer,
-            'ins': self.write_stub_initializer,
+            'ins': self.write_initializer_stub,
             'inv': self.view_initializer,
             'ls': self.list_directory,
             'mda': self.add_metadatum,
@@ -715,21 +715,21 @@ class Wrangler(ScoreManagerObject):
         manager = self._get_current_view_module_manager()
         manager.edit()
 
-    def write_boilerplate_initializer(self):
+    def write_initializer_boilerplate(self):
         r'''Writes boilerplate initializer module.
 
         Returns none.
         '''
         manager = self._get_current_package_manager()
-        manager.write_boilerplate_initializer()
+        manager.write_initializer_boilerplate()
 
-    def write_stub_initializer(self):
+    def write_initializer_stub(self):
         r'''Writes stub initializer module.
 
         Returns none.
         '''
         manager = self._get_current_package_manager()
-        manager.write_stub_initializer()
+        manager.write_initializer_stub()
 
     def write_view(self, view_name, new_view, prompt=True):
         r'''Writes view to views module.

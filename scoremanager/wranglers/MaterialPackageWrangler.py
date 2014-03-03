@@ -434,10 +434,10 @@ class MaterialPackageWrangler(PackageWrangler):
             prompt=False,
             )
         if not material_manager._read_material_manager_class_name():
-            material_manager._write_stub_material_definition_module(
+            material_manager._write_material_definition_module_stub(
                 prompt=False)
         if material_manager._should_have_user_input_module:
-            material_manager._write_stub_user_input_module()
+            material_manager._write_user_input_module_stub()
         message = 'material package created: {!r}.'.format(filesystem_path)
         self._io_manager.proceed(message=message, prompt=prompt)
 

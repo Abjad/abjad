@@ -205,9 +205,9 @@ class MaterialManager(PackageManager):
         _user_input_to_action.update({
             'ibe': self.edit_illustration_builder_module,
             'ibex': self.edit_and_execute_illustration_builder_module,
-            'ibm': self.write_stub_illustration_builder_module,
+            'ibm': self.write_illustration_builder_module_stub,
             'ibrm': self.remove_illustration_builder_module,
-            'ibs': self.write_stub_illustration_builder_module,
+            'ibs': self.write_illustration_builder_module_stub,
             'ibx': self.run_python_on_illustration_builder_module,
             'ibxi': self.run_abjad_on_illustration_builder_module,
             'lym': self.write_illustration_ly,
@@ -217,7 +217,7 @@ class MaterialManager(PackageManager):
             'mdbp': self.write_material_definition_module_boilerplate,
             'mde': self.edit_material_definition_module,
             'mdrm': self.remove_material_definition_module,
-            'mds': self.write_stub_material_definition_module,
+            'mds': self.write_material_definition_module_stub,
             'mdx': self.run_python_on_material_definition_module,
             'mdxe': self.run_abjad_on_material_definition_module,
             'ombp': self.write_output_material_module_boilerplate,
@@ -650,12 +650,12 @@ class MaterialManager(PackageManager):
             return True
         return False
 
-    def _write_stub_material_definition_module(self, prompt=True):
-        self.write_stub_material_definition_module()
+    def _write_material_definition_module_stub(self, prompt=True):
+        self.write_material_definition_module_stub()
         message = 'stub material definition written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
 
-    def _write_stub_user_input_module(self, prompt=False):
+    def _write_user_input_module_stub(self, prompt=False):
         wrapper = self._initialize_empty_user_input_wrapper()
         self._write_user_input_wrapper(wrapper)
         self._io_manager.proceed(
@@ -1138,7 +1138,7 @@ class MaterialManager(PackageManager):
         manager = self._output_material_module_manager
         manager.write_boilerplate()
 
-    def write_stub_illustration_builder_module(self, prompt=True):
+    def write_illustration_builder_module_stub(self, prompt=True):
         r'''Writes stub illustration builder module.
 
         Returns none.
@@ -1168,7 +1168,7 @@ class MaterialManager(PackageManager):
         message = 'stub illustration builder written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
 
-    def write_stub_material_definition_module(self):
+    def write_material_definition_module_stub(self):
         r'''Writes stub material definition module.
 
         Returns none.
