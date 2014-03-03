@@ -120,12 +120,6 @@ class FileManager(Manager):
                 file_pointer.close()
         return result
 
-    def _run_abjad(self, prompt=True):
-        command = 'abjad {}'.format(self._filesystem_path)
-        self._io_manager.spawn_subprocess(command)
-        message = 'file executed.'
-        self._io_manager.proceed(message, prompt=prompt)
-
     def _run_python(self, prompt=True):
         command = 'python {}'.format(self._filesystem_path)
         self._io_manager.spawn_subprocess(command)

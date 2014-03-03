@@ -209,7 +209,6 @@ class MaterialManager(PackageManager):
             'ibrm': self.remove_illustration_builder_module,
             'ibs': self.write_illustration_builder_module_stub,
             'ibx': self.run_python_on_illustration_builder_module,
-            'ibxi': self.run_abjad_on_illustration_builder_module,
             'lym': self.write_illustration_ly,
             'lyrm': self.remove_illustration_ly,
             'ly': self._illustration_ly_file_manager,
@@ -219,7 +218,6 @@ class MaterialManager(PackageManager):
             'mdrm': self.remove_material_definition_module,
             'mds': self.write_material_definition_module_stub,
             'mdx': self.run_python_on_material_definition_module,
-            'mdxe': self.run_abjad_on_material_definition_module,
             'ombp': self.write_output_material_module_boilerplate,
             'omm': self.write_output_material,
             'omi': self.edit_output_material,
@@ -516,8 +514,6 @@ class MaterialManager(PackageManager):
             command_section.append(('material definition - edit', 'mde'))
             command_section.default_index = len(command_section) - 1
             command_section.append(('material definition - execute', 'mdx'))
-            string = 'material definition - execute & edit'
-            command_section.append((string, 'mdxe'))
             string = 'material definition - remove'
             command_section.append((string, 'mdrm'))
             command_section.append(('material definition - stub', 'mds'))
@@ -962,21 +958,6 @@ class MaterialManager(PackageManager):
             command = command.format(commit_message, parent_directory_path)
             self._io_manager.spawn_subprocess(command)
         self._session._is_backtracking_locally = True
-
-    def run_abjad_on_illustration_builder_module(self):
-        r'''Runs Abjad on illustration builder module.
-
-        Returns none.
-        '''
-        self._illustration_builder_module_manager._run_abjad(prompt=True)
-
-    def run_abjad_on_material_definition_module(self):
-        r'''Runs Abjad on material definition module.
-
-        Returns none.
-        '''
-        manager = self._material_definition_module_manager
-        manager._run_abjad()
 
     def run_python_on_illustration_builder_module(self):
         r'''Runs Python on illustration builder module.
