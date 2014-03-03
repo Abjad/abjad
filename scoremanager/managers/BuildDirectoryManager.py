@@ -84,13 +84,12 @@ class BuildDirectoryManager(DirectoryManager):
                 file_path = os.path.join(self._filesystem_path, file_name)
                 return file_path
 
-    def _make_main_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
-        self._make_back_cover_menu_section(menu)
-        self._make_front_cover_menu_section(menu)
-        self._make_preface_menu_section(menu)
-        self._make_score_menu_sections(menu)
-        self._make_directory_menu_section(menu)
+    def _make_back_cover_menu_section(self, menu):
+        section = menu.make_command_section()
+        section.append(('back cover latex - edit', 'bce'))
+        section.append(('back cover latex - generate', 'bcg'))
+        section.append(('back cover latex - typeset', 'bct'))
+        section.append(('back cover pdf - view', 'bcv'))
         return menu
 
     def _make_directory_menu_section(self, menu):
@@ -100,14 +99,6 @@ class BuildDirectoryManager(DirectoryManager):
         section.append(('directory - pwd', 'pwd'))
         return section
 
-    def _make_back_cover_menu_section(self, menu):
-        section = menu.make_command_section()
-        section.append(('back cover latex - edit', 'bce'))
-        section.append(('back cover latex - generate', 'bcg'))
-        section.append(('back cover latex - typeset', 'bct'))
-        section.append(('back cover pdf - view', 'bcv'))
-        return menu
-
     def _make_front_cover_menu_section(self, menu):
         section = menu.make_command_section(name='front cover')
         section.append(('front cover latex - edit', 'fce'))
@@ -115,6 +106,15 @@ class BuildDirectoryManager(DirectoryManager):
         section.append(('front cover latex - typeset', 'fct'))
         section.append(('front cover pdf - view', 'fcv'))
         return section
+
+    def _make_main_menu(self):
+        menu = self._io_manager.make_menu(where=self._where)
+        self._make_back_cover_menu_section(menu)
+        self._make_front_cover_menu_section(menu)
+        self._make_preface_menu_section(menu)
+        self._make_score_menu_sections(menu)
+        self._make_directory_menu_section(menu)
+        return menu
 
     def _make_preface_menu_section(self, menu):
         section = menu.make_command_section()

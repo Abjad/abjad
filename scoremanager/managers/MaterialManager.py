@@ -56,6 +56,14 @@ class MaterialManager(PackageManager):
         return self._space_delimited_lowercase_name
 
     @property
+    def _illustration_builder_module_manager(self):
+        from scoremanager import managers
+        return managers.FileManager(
+            self._illustration_builder_module_path,
+            session=self._session,
+            )
+
+    @property
     def _illustration_builder_module_path(self):
         return os.path.join(
             self._filesystem_path, 
@@ -63,11 +71,31 @@ class MaterialManager(PackageManager):
             )
 
     @property
+    def _illustration_ly_file_manager(self):
+        from scoremanager import managers
+        file_path = os.path.join(self._filesystem_path, 'illustration.ly')
+        manager = managers.FileManager(
+            file_path,
+            session=self._session,
+            )
+        return manager
+
+    @property
     def _illustration_ly_file_path(self):
         return os.path.join(
             self._filesystem_path, 
             'illustration.ly',
             )
+
+    @property
+    def _illustration_pdf_file_manager(self):
+        from scoremanager import managers
+        file_path = os.path.join(self._filesystem_path, 'illustration.pdf')
+        manager = managers.FileManager(
+            file_path,
+            session=self._session,
+            )
+        return manager
 
     @property
     def _illustration_pdf_file_path(self):
@@ -114,12 +142,12 @@ class MaterialManager(PackageManager):
             _output_material_module_import_statements = \
                 self._output_material_module_import_statements
             output_material = \
-                self.make_output_material_from_user_input_wrapper_in_memory()
+                self._make_output_material_from_user_input_wrapper_in_memory()
         else:
             raise ValueError
         if self._should_have_user_input_module:
             output_material_module_body_lines = \
-                self.make_output_material_module_body_lines(output_material)
+                self._make_output_material_module_body_lines(output_material)
         else:
             line = '{} = {}'
             output_material_storage_format = \
@@ -135,8 +163,24 @@ class MaterialManager(PackageManager):
             )
 
     @property
+    def _output_material_module_manager(self):
+        from scoremanager import managers
+        return managers.FileManager(
+            self.output_material_module_path,
+            session=self._session,
+            )
+
+    @property
     def _should_have_material_definition_module(self):
         return self._read_material_manager_class_name() is None
+
+    @property
+    def _stylesheet_file_manager(self):
+        from scoremanager import managers
+        return managers.FileManager(
+            self._stylesheet_file_path_in_memory,
+            session=self._session,
+            )
 
     @property
     def _user_input_to_action(self):
@@ -182,6 +226,14 @@ class MaterialManager(PackageManager):
         return _user_input_to_action
 
     ### PRIVATE METHODS ###
+
+    def _can_make_output_material(self):
+        if os.path.isfile(self._material_definition_module_path):
+            return True
+        if bool(self.user_input_wrapper_in_memory) and \
+            self.user_input_wrapper_in_memory.is_complete:
+            return True
+        return False
 
     @staticmethod
     def _check_output_material(material):
@@ -259,6 +311,27 @@ class MaterialManager(PackageManager):
     def _get_output_material_editor(target=None, session=None):
         return
 
+    def _get_storage_format(self, expr):
+        if hasattr(expr, '_make_storage_format_with_overrides'):
+            return expr._make_storage_format_with_overrides()
+        elif hasattr(expr, '_storage_format_specification'):
+            return format(expr, 'storage')
+        return repr(expr)
+
+    def _handle_main_menu_result(self, result):
+        assert isinstance(result, str)
+        if result in self._user_input_to_action:
+            self._user_input_to_action[result]()
+        elif mathtools.is_integer_equivalent_expr(result):
+            self._edit_user_input_wrapper_at_number(
+                result, 
+                include_newline=False,
+                )
+        elif result == 'user entered lone return':
+            pass
+        else:
+            raise ValueError(result)
+
     # TODO: change property to method
     # TODO: make illustration work the same way as for segment PDF rendering;
     #       use something like _interpret_in_external_process()
@@ -287,34 +360,6 @@ class MaterialManager(PackageManager):
             user_input_wrapper[user_input_attribute_name] = None
         return user_input_wrapper
 
-    @staticmethod
-    def _make_output_material():
-        return
-
-    def _read_material_manager_class_name(self):
-        return self._get_metadatum('material_manager_class_name')
-
-    def _get_storage_format(self, expr):
-        if hasattr(expr, '_make_storage_format_with_overrides'):
-            return expr._make_storage_format_with_overrides()
-        elif hasattr(expr, '_storage_format_specification'):
-            return format(expr, 'storage')
-        return repr(expr)
-
-    def _handle_main_menu_result(self, result):
-        assert isinstance(result, str)
-        if result in self._user_input_to_action:
-            self._user_input_to_action[result]()
-        elif mathtools.is_integer_equivalent_expr(result):
-            self._edit_user_input_wrapper_at_number(
-                result, 
-                include_newline=False,
-                )
-        elif result == 'user entered lone return':
-            pass
-        else:
-            raise ValueError(result)
-
     def _initialize_user_input_wrapper_in_memory(self):
         from scoremanager import managers
         if not self._should_have_user_input_module:
@@ -328,17 +373,6 @@ class MaterialManager(PackageManager):
         else:
             user_input_wrapper = self._initialize_empty_user_input_wrapper()
         self._user_input_wrapper_in_memory = user_input_wrapper
-
-    def _make_stylesheet_menu_section(
-        self,
-        menu,
-        ):
-        name = 'stylesheets'
-        section = menu.make_command_section(name=name)
-        if os.path.isfile(self.output_material_module_path):
-            section = menu.make_command_section(name=name)
-            section.append(('stylesheet - edit', 'sse'))
-            section.append(('stylesheet - select', 'sss'))
 
     def _make_illustration_builder_menu_section(
         self,
@@ -462,13 +496,16 @@ class MaterialManager(PackageManager):
             command_section.return_value_attribute = 'key'
             command_section.append(('material definition - stub', 'mds'))
 
-    def _can_make_output_material(self):
-        if os.path.isfile(self._material_definition_module_path):
-            return True
-        if bool(self.user_input_wrapper_in_memory) and \
-            self.user_input_wrapper_in_memory.is_complete:
-            return True
-        return False
+    @staticmethod
+    def _make_output_material():
+        return
+
+    def _make_output_material_from_user_input_wrapper_in_memory(self):
+        output_material = self._make_output_material(
+            *self.user_input_wrapper_in_memory.list_values())
+        assert type(self)._check_output_material(
+            output_material), repr(output_material)
+        return output_material
 
     def _make_output_material_menu_section(
         self,
@@ -505,16 +542,15 @@ class MaterialManager(PackageManager):
                 section.append(('output material - remove', 'omrm'))
                 section.append(('output material - view', 'omv'))
 
-    def _should_have_output_material_section(self):
-        if os.path.isfile(self._material_definition_module_path):
-            return True
-        if bool(self.user_input_wrapper_in_memory) and \
-            self.user_input_wrapper_in_memory.is_complete:
-            return True
-        editor = self._get_output_material_editor()
-        if editor:
-            return True
-        return False
+    def _make_output_material_module_body_lines(self, output_material):
+        if hasattr(output_material, '_storage_format_specification'):
+            lines = format(output_material, 'storage').splitlines()
+        else:
+            lines = [repr(output_material)]
+        lines = list(lines)
+        lines[0] = '{} = {}'.format(self.material_package_name, lines[0])
+        lines = [line + '\n' for line in lines]
+        return lines
 
     def _make_package_management_menu_section(self, main_menu):
         section = main_menu.make_command_section(
@@ -526,6 +562,17 @@ class MaterialManager(PackageManager):
         section.append(('package - pwd', 'pwd'))
         section.append(('package - remove', 'rm'))
         section.append(('package - rename', 'ren'))
+
+    def _make_stylesheet_menu_section(
+        self,
+        menu,
+        ):
+        name = 'stylesheets'
+        section = menu.make_command_section(name=name)
+        if os.path.isfile(self.output_material_module_path):
+            section = menu.make_command_section(name=name)
+            section.append(('stylesheet - edit', 'sse'))
+            section.append(('stylesheet - select', 'sss'))
 
     def _make_user_input_module_menu_section(
         self,
@@ -546,43 +593,37 @@ class MaterialManager(PackageManager):
         command_section.append(('user input module - remove', 'uimrm'))
         command_section.append(('user input module - view', 'uimv'))
 
+    def _read_material_manager_class_name(self):
+        return self._get_metadatum('material_manager_class_name')
+
     def _run_first_time(self):
         self._run(pending_user_input='omi')
+
+    def _should_have_output_material_section(self):
+        if os.path.isfile(self._material_definition_module_path):
+            return True
+        if bool(self.user_input_wrapper_in_memory) and \
+            self.user_input_wrapper_in_memory.is_complete:
+            return True
+        editor = self._get_output_material_editor()
+        if editor:
+            return True
+        return False
 
     def _write_stub_material_definition_module(self, prompt=True):
         self.write_stub_music_material_definition()
         message = 'stub material definition written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
 
+    def _write_stub_user_input_module(self, prompt=False):
+        wrapper = self._initialize_empty_user_input_wrapper()
+        self.write_user_input_wrapper(wrapper)
+        self._io_manager.proceed(
+            'stub user input module written to disk.',
+            prompt=prompt,
+            )
+
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def _illustration_builder_module_manager(self):
-        from scoremanager import managers
-        return managers.FileManager(
-            self._illustration_builder_module_path,
-            session=self._session,
-            )
-
-    @property
-    def _illustration_ly_file_manager(self):
-        from scoremanager import managers
-        file_path = os.path.join(self._filesystem_path, 'illustration.ly')
-        manager = managers.FileManager(
-            file_path,
-            session=self._session,
-            )
-        return manager
-
-    @property
-    def _illustration_pdf_file_manager(self):
-        from scoremanager import managers
-        file_path = os.path.join(self._filesystem_path, 'illustration.pdf')
-        manager = managers.FileManager(
-            file_path,
-            session=self._session,
-            )
-        return manager
 
     @property
     def material_package_name(self):
@@ -598,24 +639,8 @@ class MaterialManager(PackageManager):
         return os.path.join(self._filesystem_path, 'output_material.py')
 
     @property
-    def _output_material_module_manager(self):
-        from scoremanager import managers
-        return managers.FileManager(
-            self.output_material_module_path,
-            session=self._session,
-            )
-
-    @property
     def space_delimited_material_package_name(self):
         return self.material_package_name.replace('_', ' ')
-
-    @property
-    def _stylesheet_file_manager(self):
-        from scoremanager import managers
-        return managers.FileManager(
-            self._stylesheet_file_path_in_memory,
-            session=self._session,
-            )
 
     @property
     def stylesheet_file_path_on_disk(self):
@@ -639,6 +664,34 @@ class MaterialManager(PackageManager):
         return self._user_input_wrapper_in_memory
 
     ### PUBLIC METHODS ###
+
+    def clear_user_input_wrapper(self, prompt=False):
+        r'''Clears user input wrapper.
+
+        Returns none.
+        '''
+        if self.user_input_wrapper_in_memory.is_empty:
+            message = 'user input already empty.'
+            self._io_manager.proceed(message, prompt=prompt)
+        else:
+            self.user_input_wrapper_in_memory.clear()
+            wrapper = self.user_input_wrapper_in_memory
+            self.write_user_input_wrapper(wrapper)
+            message = 'user input wrapper cleared and written to disk.'
+            self._io_manager.proceed(message, prompt=prompt)
+
+    def display_user_input_demo_values(self, prompt=True):
+        r'''Displays user input demo values.
+
+        Returns none.
+        '''
+        lines = []
+        for i, (key, value) in enumerate(self.user_input_demo_values):
+            line = '    {}: {!r}'.format(key.replace('_', ' '), value)
+            lines.append(line)
+        lines.append('')
+        self._io_manager.display(lines)
+        self._io_manager.proceed(prompt=prompt)
 
     def edit_and_execute_illustration_builder_module(self):
         r'''Edits and then executes illustration builder module.
@@ -693,9 +746,9 @@ class MaterialManager(PackageManager):
             return
         _output_material_module_import_statements = \
             self._output_material_module_import_statements
-        if hasattr(self, 'make_output_material_module_body_lines'):
+        if hasattr(self, '_make_output_material_module_body_lines'):
             output_material_module_body_lines = \
-                self.make_output_material_module_body_lines(
+                self._make_output_material_module_body_lines(
                     output_material_handler.target)
         else:
             line = '{} = {}'
@@ -723,6 +776,49 @@ class MaterialManager(PackageManager):
         elif prompt:
             message = 'select stylesheet first.'
             self._io_manager.proceed(message)
+
+    def load_user_input_wrapper_demo_values(self, prompt=False):
+        r'''Loads user input wrapper demo values.
+
+        Returns none.
+        '''
+        user_input_demo_values = copy.deepcopy(
+            type(self).user_input_demo_values)
+        for key, value in user_input_demo_values:
+            self.user_input_wrapper_in_memory[key] = value
+        wrapper = self.user_input_wrapper_in_memory
+        self.write_user_input_wrapper(wrapper)
+        self._io_manager.proceed(
+            'demo values loaded and written to disk.',
+            prompt=prompt,
+            )
+
+    def populate_user_input_wrapper(self, prompt=False):
+        r'''Populates user input wrapper.
+
+        Returns none.
+        '''
+        total_elements = len(self.user_input_wrapper_in_memory)
+        getter = self._io_manager.make_getter(where=self._where)
+        getter.append_integer_in_range(
+            'start at element number', 1, total_elements, default_value=1)
+        with self._backtracking:
+            start_element_number = getter._run()
+        if self._session._backtrack():
+            return
+        current_element_number = start_element_number
+        current_element_index = current_element_number - 1
+        while True:
+            with self._backtracking:
+                self._edit_user_input_wrapper_at_number(
+                    current_element_number, include_newline=False)
+            if self._session._backtrack():
+                return
+            current_element_index += 1
+            current_element_index %= total_elements
+            current_element_number = current_element_index + 1
+            if current_element_number == start_element_number:
+                break
 
     def read_user_input_wrapper_from_disk(self):
         from scoremanager import managers
@@ -897,6 +993,13 @@ class MaterialManager(PackageManager):
             prompt=prompt,
             )
 
+    def toggle_user_input_values_default_status(self):
+        r'''Toggles user input values default status.
+
+        Returns none.
+        '''
+        self._session.toggle_user_input_values_default_status()
+
     def view_illustration_ly(self):
         self._illustration_ly_file_manager.view()
 
@@ -905,6 +1008,19 @@ class MaterialManager(PackageManager):
 
     def view_output_material_module(self):
         self._output_material_module_manager.view()
+
+    def view_user_input_module(
+        self,
+        pending_user_input=None,
+        ):
+        r'''Views user input module.
+
+        Returns none.
+        '''
+        from scoremanager import managers
+        self._io_manager._assign_user_input(pending_user_input)
+        file_path = self.user_input_module_path
+        self._io_manager.view(file_path)
 
     def write_illustration_ly(self, prompt=True):
         illustration = self.illustration
@@ -1044,105 +1160,3 @@ class MaterialManager(PackageManager):
         file_pointer = file(self.user_input_module_path, 'w')
         file_pointer.write(lines)
         file_pointer.close()
-
-    ### PUBLIC METHODS ###
-
-    def clear_user_input_wrapper(self, prompt=False):
-        r'''Clears user input wrapper.
-
-        Returns none.
-        '''
-        if self.user_input_wrapper_in_memory.is_empty:
-            message = 'user input already empty.'
-            self._io_manager.proceed(message, prompt=prompt)
-        else:
-            self.user_input_wrapper_in_memory.clear()
-            wrapper = self.user_input_wrapper_in_memory
-            self.write_user_input_wrapper(wrapper)
-            message = 'user input wrapper cleared and written to disk.'
-            self._io_manager.proceed(message, prompt=prompt)
-
-    def display_user_input_demo_values(self, prompt=True):
-        r'''Displays user input demo values.
-
-        Returns none.
-        '''
-        lines = []
-        for i, (key, value) in enumerate(self.user_input_demo_values):
-            line = '    {}: {!r}'.format(key.replace('_', ' '), value)
-            lines.append(line)
-        lines.append('')
-        self._io_manager.display(lines)
-        self._io_manager.proceed(prompt=prompt)
-
-    def load_user_input_wrapper_demo_values(self, prompt=False):
-        user_input_demo_values = copy.deepcopy(
-            type(self).user_input_demo_values)
-        for key, value in user_input_demo_values:
-            self.user_input_wrapper_in_memory[key] = value
-        wrapper = self.user_input_wrapper_in_memory
-        self.write_user_input_wrapper(wrapper)
-        self._io_manager.proceed(
-            'demo values loaded and written to disk.',
-            prompt=prompt,
-            )
-
-    def make_output_material_from_user_input_wrapper_in_memory(self):
-        output_material = self._make_output_material(
-            *self.user_input_wrapper_in_memory.list_values())
-        assert type(self)._check_output_material(
-            output_material), repr(output_material)
-        return output_material
-
-    def make_output_material_module_body_lines(self, output_material):
-        if hasattr(output_material, '_storage_format_specification'):
-            lines = format(output_material, 'storage').splitlines()
-        else:
-            lines = [repr(output_material)]
-        lines = list(lines)
-        lines[0] = '{} = {}'.format(self.material_package_name, lines[0])
-        lines = [line + '\n' for line in lines]
-        return lines
-
-    def populate_user_input_wrapper(self, prompt=False):
-        total_elements = len(self.user_input_wrapper_in_memory)
-        getter = self._io_manager.make_getter(where=self._where)
-        getter.append_integer_in_range(
-            'start at element number', 1, total_elements, default_value=1)
-        with self._backtracking:
-            start_element_number = getter._run()
-        if self._session._backtrack():
-            return
-        current_element_number = start_element_number
-        current_element_index = current_element_number - 1
-        while True:
-            with self._backtracking:
-                self._edit_user_input_wrapper_at_number(
-                    current_element_number, include_newline=False)
-            if self._session._backtrack():
-                return
-            current_element_index += 1
-            current_element_index %= total_elements
-            current_element_number = current_element_index + 1
-            if current_element_number == start_element_number:
-                break
-
-    def toggle_user_input_values_default_status(self):
-        self._session.toggle_user_input_values_default_status()
-
-    def view_user_input_module(
-        self,
-        pending_user_input=None,
-        ):
-        from scoremanager import managers
-        self._io_manager._assign_user_input(pending_user_input)
-        file_path = self.user_input_module_path
-        self._io_manager.view(file_path)
-
-    def write_stub_user_input_module(self, prompt=False):
-        wrapper = self._initialize_empty_user_input_wrapper()
-        self.write_user_input_wrapper(wrapper)
-        self._io_manager.proceed(
-            'stub user input module written to disk.',
-            prompt=prompt,
-            )

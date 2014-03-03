@@ -169,10 +169,6 @@ class SegmentPackageManager(PackageManager):
         return property(**locals())
 
     @property
-    def segment_definition_module_path(self):
-        return os.path.join(self._filesystem_path, 'definition.py')
-
-    @property
     def segment_definition_module_manager(self):
         from scoremanager import managers
         manager = managers.FileManager(
@@ -186,6 +182,10 @@ class SegmentPackageManager(PackageManager):
         path = self.segment_definition_module_path
         package = self._configuration.path_to_package(path)
         return package
+
+    @property
+    def segment_definition_module_path(self):
+        return os.path.join(self._filesystem_path, 'definition.py')
 
     ### PUBLIC METHODS ###
 

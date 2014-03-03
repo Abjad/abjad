@@ -53,11 +53,6 @@ class PackageManager(DirectoryManager):
             return result
 
     @property
-    def _views_module_path(self):
-        file_path = os.path.join(self._filesystem_path, '__views__.py')
-        return file_path
-
-    @property
     def _user_input_to_action(self):
         superclass = super(PackageManager, self)
         _user_input_to_action = superclass._user_input_to_action
@@ -77,6 +72,11 @@ class PackageManager(DirectoryManager):
             'rm': self.remove_package,
             })
         return _user_input_to_action
+
+    @property
+    def _views_module_path(self):
+        file_path = os.path.join(self._filesystem_path, '__views__.py')
+        return file_path
 
     ### PRIVATE METHODS ###
 

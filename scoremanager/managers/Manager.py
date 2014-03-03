@@ -83,12 +83,6 @@ class Manager(ScoreManagerObject):
         getter.append_snake_case_file_name('new name')
         return getter
 
-    def _is_populated_directory(self, directory_path):
-        if os.path.exists(directory_path):
-            if os.listdir(directory_path):
-                return True
-        return False
-
     def _is_git_added(self, filesystem_path=None):
         filesystem_path = filesystem_path or self._filesystem_path
         if filesystem_path is None:
@@ -126,6 +120,12 @@ class Manager(ScoreManagerObject):
         if first_line.startswith(('fatal:', '??', 'A')):
             return False
         return True
+
+    def _is_populated_directory(self, directory_path):
+        if os.path.exists(directory_path):
+            if os.listdir(directory_path):
+                return True
+        return False
 
     def _is_svn_versioned(self, filesystem_path=None):
         filesystem_path = filesystem_path or self._filesystem_path

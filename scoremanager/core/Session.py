@@ -650,21 +650,6 @@ class Session(abctools.AbjadObject):
         return self._hide_secondary_commands
 
     @property
-    def io_manager(self):
-        r'''Gets session IO manager.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.io_manager
-                IOManager()
-
-        Returns IO manager.
-        '''
-        return self._io_manager
-
-    @property
     def initial_user_input(self):
         r'''Gets session initial user input.
 
@@ -678,6 +663,21 @@ class Session(abctools.AbjadObject):
         Returns string or none.
         '''
         return self._initial_user_input
+
+    @property
+    def io_manager(self):
+        r'''Gets session IO manager.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.io_manager
+                IOManager()
+
+        Returns IO manager.
+        '''
+        return self._io_manager
 
     @property
     def is_autoadding(self):
