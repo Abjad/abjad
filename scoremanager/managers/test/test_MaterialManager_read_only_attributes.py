@@ -31,7 +31,6 @@ def test_MaterialManager_read_only_attributes_01():
         'output_material.py',
         )
     assert manager.output_material_module_path == file_path
-    assert manager.output_material_module_manager is not None
     assert manager.stylesheet_file_path_on_disk is None
     assert manager.user_input_module_path is None
 
@@ -51,7 +50,6 @@ def test_MaterialManager_read_only_attributes_02():
     assert manager._breadcrumb == 'example sargasso measures'
     assert not os.path.isfile(manager._material_definition_module_path)
     assert manager._read_material_manager_class_name()
-    assert manager.illustration_ly_file_manager is not None
     assert manager.material_package_name == 'example_sargasso_measures'
     string = 'example sargasso measures'
     assert manager.space_delimited_material_package_name == string
@@ -63,7 +61,6 @@ def test_MaterialManager_read_only_attributes_02():
         'output_material.py',
         )
     assert manager.output_material_module_path == file_path
-    assert manager.output_material_module_manager is not None
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
         'example_sargasso_measures', 
@@ -89,9 +86,6 @@ def test_MaterialManager_read_only_attributes_03():
         'example_notes', 
         'illustration_builder.py',
         )
-    assert manager.illustration_builder_module_manager is not None
-    assert manager.illustration_ly_file_manager is not None
-    assert manager.illustration_pdf_file_manager is not None
     file_path = os.path.join(
         manager._configuration.abjad_material_packages_directory_path, 
         'example_notes',
@@ -108,4 +102,3 @@ def test_MaterialManager_read_only_attributes_03():
         'output_material.py',
         )
     assert manager.output_material_module_path == file_path
-    assert manager.output_material_module_manager is not None

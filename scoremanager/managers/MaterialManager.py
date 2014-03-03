@@ -32,18 +32,6 @@ class MaterialManager(PackageManager):
 
     '''
 
-    @staticmethod
-    def _check_output_material(material):
-        return True
-
-    @staticmethod
-    def _get_output_material_editor(target=None, session=None):
-        return
-
-    @staticmethod
-    def _make_output_material():
-        return
-
     ### INTIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
@@ -165,7 +153,7 @@ class MaterialManager(PackageManager):
             'ibxi': self.run_abjad_on_illustration_builder_module,
             'lym': self.write_illustration_ly,
             'lyrm': self.remove_illustration_ly,
-            'ly': self.illustration_ly_file_manager,
+            'ly': self._illustration_ly_file_manager,
             'mdbp': self.write_material_definition_module_boilerplate,
             'mde': self.edit_material_definition_module,
             'mdrm': self.remove_material_definition_module,
@@ -194,6 +182,10 @@ class MaterialManager(PackageManager):
         return _user_input_to_action
 
     ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _check_output_material(material):
+        return True
 
     def _edit_user_input_wrapper_at_number(
         self,
@@ -252,9 +244,8 @@ class MaterialManager(PackageManager):
             )
         return result
 
-    #def output_material(self):
     def _execute_output_material_module(self):
-        manager = self.output_material_module_manager
+        manager = self._output_material_module_manager
         output_material = None
         try:
             output_material = manager._execute_file_lines(
@@ -264,13 +255,17 @@ class MaterialManager(PackageManager):
             traceback.print_exc()
         return output_material
 
+    @staticmethod
+    def _get_output_material_editor(target=None, session=None):
+        return
+
     # TODO: change property to method
     # TODO: make illustration work the same way as for segment PDF rendering;
     #       use something like _interpret_in_external_process()
     def _illustrate(self):
         # TODO: replace old and dangerous import_output_material_safely()
         output_material = \
-            self.output_material_module_manager.import_output_material_safely()
+            self._output_material_module_manager.import_output_material_safely()
         kwargs = {}
         kwargs['title'] = self._space_delimited_lowercase_name
         if self._session.is_in_score:
@@ -291,6 +286,10 @@ class MaterialManager(PackageManager):
         for user_input_attribute_name in self.user_input_attribute_names:
             user_input_wrapper[user_input_attribute_name] = None
         return user_input_wrapper
+
+    @staticmethod
+    def _make_output_material():
+        return
 
     def _read_material_manager_class_name(self):
         return self._get_metadatum('material_manager_class_name')
@@ -513,7 +512,6 @@ class MaterialManager(PackageManager):
             self.user_input_wrapper_in_memory.is_complete:
             return True
         editor = self._get_output_material_editor()
-        #if self._get_output_material_editor:
         if editor:
             return True
         return False
@@ -559,15 +557,7 @@ class MaterialManager(PackageManager):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def generic_output_name(self):
-        r'''Gets generic output name of material manager.
-
-        Returns string.
-        '''
-        return self._generic_output_name
-
-    @property
-    def illustration_builder_module_manager(self):
+    def _illustration_builder_module_manager(self):
         from scoremanager import managers
         return managers.FileManager(
             self._illustration_builder_module_path,
@@ -575,7 +565,7 @@ class MaterialManager(PackageManager):
             )
 
     @property
-    def illustration_ly_file_manager(self):
+    def _illustration_ly_file_manager(self):
         from scoremanager import managers
         file_path = os.path.join(self._filesystem_path, 'illustration.ly')
         manager = managers.FileManager(
@@ -585,7 +575,7 @@ class MaterialManager(PackageManager):
         return manager
 
     @property
-    def illustration_pdf_file_manager(self):
+    def _illustration_pdf_file_manager(self):
         from scoremanager import managers
         file_path = os.path.join(self._filesystem_path, 'illustration.pdf')
         manager = managers.FileManager(
@@ -608,7 +598,7 @@ class MaterialManager(PackageManager):
         return os.path.join(self._filesystem_path, 'output_material.py')
 
     @property
-    def output_material_module_manager(self):
+    def _output_material_module_manager(self):
         from scoremanager import managers
         return managers.FileManager(
             self.output_material_module_path,
@@ -620,7 +610,7 @@ class MaterialManager(PackageManager):
         return self.material_package_name.replace('_', ' ')
 
     @property
-    def stylesheet_file_manager(self):
+    def _stylesheet_file_manager(self):
         from scoremanager import managers
         return managers.FileManager(
             self._stylesheet_file_path_in_memory,
@@ -630,7 +620,7 @@ class MaterialManager(PackageManager):
     @property
     def stylesheet_file_path_on_disk(self):
         if os.path.isfile(self._illustration_ly_file_path):
-            for line in self.illustration_ly_file_manager.read_lines():
+            for line in self._illustration_ly_file_manager.read_lines():
                 if line.startswith(r'\include') and 'stylesheets' in line:
                     file_name = line.split()[-1].replace('"', '')
                     return file_name
@@ -663,7 +653,7 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        self.illustration_builder_module_manager.edit()
+        self._illustration_builder_module_manager.edit()
 
     def edit_material_definition_module(self):
         r'''Edits material definition module.
@@ -729,7 +719,7 @@ class MaterialManager(PackageManager):
         Returns none.
         '''
         if self._stylesheet_file_path_in_memory:
-            self.stylesheet_file_manager.edit()
+            self._stylesheet_file_manager.edit()
         elif prompt:
             message = 'select stylesheet first.'
             self._io_manager.proceed(message)
@@ -748,15 +738,15 @@ class MaterialManager(PackageManager):
 
     def remove_illustration_builder_module(self, prompt=True):
         if os.path.isfile(self._illustration_builder_module_path):
-            self.illustration_builder_module_manager.remove(prompt=prompt)
+            self._illustration_builder_module_manager.remove(prompt=prompt)
 
     def remove_illustration_ly(self, prompt=True):
         if os.path.isfile(self._illustration_ly_file_path):
-            self.illustration_ly_file_manager.remove(prompt=prompt)
+            self._illustration_ly_file_manager.remove(prompt=prompt)
 
     def remove_illustration_pdf(self, prompt=True):
         if os.path.isfile(self._illustration_pdf_file_path):
-            self.illustration_pdf_file_manager.remove(prompt=prompt)
+            self._illustration_pdf_file_manager.remove(prompt=prompt)
 
     def remove_material_definition_module(self, prompt=True):
         from scoremanager import managers
@@ -770,7 +760,7 @@ class MaterialManager(PackageManager):
     def remove_output_material_module(self, prompt=True):
         self.remove_illustration_builder_module(prompt=False)
         if os.path.isfile(self.output_material_module_path):
-            self.output_material_module_manager._remove()
+            self._output_material_module_manager._remove()
 
     def remove_user_input_module(self, prompt=True):
         from scoremanager import managers
@@ -855,7 +845,7 @@ class MaterialManager(PackageManager):
             file_pointer.write(''.join(new_file_lines))
 
     def run_abjad_on_illustration_builder_module(self):
-        self.illustration_builder_module_manager._run_abjad(prompt=True)
+        self._illustration_builder_module_manager._run_abjad(prompt=True)
 
     def run_abjad_on_material_definition_module(self):
         from scoremanager import managers
@@ -866,7 +856,7 @@ class MaterialManager(PackageManager):
         manager._run_abjad()
 
     def run_python_on_illustration_builder_module(self):
-        self.illustration_builder_module_manager._run_python(prompt=True)
+        self._illustration_builder_module_manager._run_python(prompt=True)
 
     def run_python_on_material_definition_module(self):
         from scoremanager import managers
@@ -908,13 +898,13 @@ class MaterialManager(PackageManager):
             )
 
     def view_illustration_ly(self):
-        self.illustration_ly_file_manager.view()
+        self._illustration_ly_file_manager.view()
 
     def view_illustration_pdf(self):
-        self.illustration_pdf_file_manager.view()
+        self._illustration_pdf_file_manager.view()
 
     def view_output_material_module(self):
-        self.output_material_module_manager.view()
+        self._output_material_module_manager.view()
 
     def write_illustration_ly(self, prompt=True):
         illustration = self.illustration
@@ -981,12 +971,12 @@ class MaterialManager(PackageManager):
         lines.extend(['\n', '\n'])
         lines.extend(output_material_module_body_lines)
         lines = ''.join(lines)
-        manager = self.output_material_module_manager
+        manager = self._output_material_module_manager
         with file(manager._filesystem_path, 'w') as file_pointer:
             file_pointer.write(lines)
         self._add_metadatum('is_material_package', True)
-        if hasattr(self, 'generic_output_name'):
-            generic_output_name = self.generic_output_name
+        if hasattr(self, '_generic_output_name'):
+            generic_output_name = self._generic_output_name
             self._add_metadatum('generic_output_name', generic_output_name)
         message = 'output material written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
