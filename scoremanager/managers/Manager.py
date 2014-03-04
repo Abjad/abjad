@@ -7,7 +7,7 @@ from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
 class Manager(ScoreManagerObject):
-    r'''Filesystem asset manager.
+    r'''Manager.
     '''
 
     ### INITIALIZER ###
@@ -58,6 +58,8 @@ class Manager(ScoreManagerObject):
     def _user_input_to_action(self):
         _user_input_to_action = {
             'cp': self.copy,
+            'ls': self.list,
+            'll': self.list_long,
             'rm': self.remove,
             'ren': self.rename,
             }
@@ -145,6 +147,23 @@ class Manager(ScoreManagerObject):
         if first_line.startswith(('?', 'svn: warning:')):
             return False
         return True
+
+    def _list(self, public_entries_only=False):
+        result = []
+        if not os.path.exists(self._path):
+            return result
+        if public_entries_only:
+            for directory_entry in sorted(os.listdir(self._path)):
+                if directory_entry[0].isalpha():
+                    if not directory_entry.endswith('.pyc'):
+                        if not directory_entry in ('test',):
+                            result.append(directory_entry)
+        else:
+            for directory_entry in sorted(os.listdir(self._path)):
+                if not directory_entry.startswith('.'):
+                    if not directory_entry.endswith('.pyc'):
+                        result.append(directory_entry)
+        return result
 
     def _remove(self):
         if self._is_git_versioned():
@@ -304,6 +323,73 @@ class Manager(ScoreManagerObject):
             return
         shutil.copyfile(self._path, new_path)
         self._io_manager.proceed('asset copied.')
+
+    def doctest(self, prompt=True):
+        r'''Runs doctest on asset.
+
+        Returns none.
+        '''
+        command = 'ajv doctest {}'.format(self._path)
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in process.stdout.readlines()]
+        if lines:
+            if lines[0] == '':
+                lines.remove('')
+            lines.append('')
+            self._io_manager.display(lines)
+        self._io_manager.proceed(prompt=prompt)
+
+    def list(self):
+        r'''Lists asset.
+
+        Returns none.
+        '''
+        lines = []
+        for directory_entry in self._list():
+            path = os.path.join(self._path, directory_entry)
+            if os.path.isdir(path):
+                line = directory_entry + '/'
+            elif os.path.isfile(path):
+                line = directory_entry
+            else:
+                raise TypeError(directory_entry)
+            lines.append(line)
+        lines.append('')
+        self._io_manager.display(
+            lines,
+            capitalize_first_character=False,
+            )
+        self._session._hide_next_redraw = True
+
+    def list_long(self):
+        r'''Lists asset with ``ls -l``.
+
+        Returns none.
+        '''
+        command = 'ls -l {}'
+        command = command.format(self._path)
+        lines = []
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in process.stdout.readlines()]
+        lines.append('')
+        self._io_manager.display(
+            lines,
+            capitalize_first_character=False,
+            )
+        self._session._hide_next_redraw = True
+
+    def pytest(self, prompt=True):
+        r'''Runs py.test on asset.
+
+        Returns none.
+        '''
+        command = 'py.test -rf {}'.format(self._path)
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in process.stdout.readlines()]
+        if lines:
+            lines.append('')
+            self._io_manager.display(lines)
+        self._io_manager.proceed(prompt=prompt)
 
     def status(self, prompt=True):
         r'''Intearctively displays repository status of assets.

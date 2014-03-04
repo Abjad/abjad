@@ -20,9 +20,9 @@ class DirectoryManager(Manager):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _repository_add_command(self):
-        return 'cd {} && add'.format(self._path)
+#    @property
+#    def _repository_add_command(self):
+#        return 'cd {} && add'.format(self._path)
 
     @property
     def _user_input_to_action(self):
@@ -30,8 +30,8 @@ class DirectoryManager(Manager):
         _user_input_to_action = superclass._user_input_to_action
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
-            'ls': self.list,
-            'll': self.list_long,
+#            'ls': self.list,
+#            'll': self.list_long,
             'pwd': self.pwd,
             })
         return _user_input_to_action
@@ -51,23 +51,6 @@ class DirectoryManager(Manager):
             self._user_input_to_action[result]()
         else:
             self._run_asset_manager(result)
-
-    def _list(self, public_entries_only=False):
-        result = []
-        if not os.path.exists(self._path):
-            return result
-        if public_entries_only:
-            for directory_entry in sorted(os.listdir(self._path)):
-                if directory_entry[0].isalpha():
-                    if not directory_entry.endswith('.pyc'):
-                        if not directory_entry in ('test',):
-                            result.append(directory_entry)
-        else:
-            for directory_entry in sorted(os.listdir(self._path)):
-                if not directory_entry.startswith('.') and \
-                    not directory_entry.endswith('.pyc'):
-                    result.append(directory_entry)
-        return result
 
     def _make_asset_menu_entries(self):
         file_names = self._list()
@@ -110,7 +93,7 @@ class DirectoryManager(Manager):
     ### PUBLIC METHODS ###
 
     def pwd(self):
-        '''Displays present working directory.
+        '''Displays path of current working directory.
 
         Returns none.
         '''
@@ -119,73 +102,3 @@ class DirectoryManager(Manager):
         lines.append('')
         self._io_manager.display(lines)
         self._session._hide_next_redraw = True
-
-    def list(self):
-        r'''Lists directory.
-
-        Returns none.
-        '''
-        lines = []
-        for directory_entry in self._list():
-            path = os.path.join(
-                self._path, 
-                directory_entry,
-                )
-            if os.path.isdir(path):
-                line = directory_entry + '/'
-            elif os.path.isfile(path):
-                line = directory_entry
-            else:
-                raise TypeError(directory_entry)
-            lines.append(line)
-        lines.append('')
-        self._io_manager.display(
-            lines,
-            capitalize_first_character=False,
-            )
-        self._session._hide_next_redraw = True
-
-    def list_long(self):
-        r'''Lists directory with ``ls -l``.
-
-        Returns none.
-        '''
-        command = 'ls -l {}'
-        command = command.format(self._path)
-        lines = []
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        lines.append('')
-        self._io_manager.display(
-            lines,
-            capitalize_first_character=False,
-            )
-        self._session._hide_next_redraw = True
-
-    def doctest(self, prompt=True):
-        r'''Runs doctest.
-
-        Returns none.
-        '''
-        command = 'ajv doctest {}'.format(self._path)
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        if lines:
-            if lines[0] == '':
-                lines.remove('')
-            lines.append('')
-            self._io_manager.display(lines)
-        self._io_manager.proceed(prompt=prompt)
-
-    def pytest(self, prompt=True):
-        r'''Runs pytest.
-
-        Returns none.
-        '''
-        command = 'py.test -rf {}'.format(self._path)
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        if lines:
-            lines.append('')
-            self._io_manager.display(lines)
-        self._io_manager.proceed(prompt=prompt)
