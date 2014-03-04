@@ -70,7 +70,7 @@ class Wrangler(ScoreManagerObject):
             'inrm': self.remove_initializer,
             'ins': self.write_initializer_stub,
             'inv': self.view_initializer,
-            'ls': self.list_directory,
+            'ls': self.list,
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
             'mdrm': self.remove_metadatum,
@@ -440,12 +440,12 @@ class Wrangler(ScoreManagerObject):
         '''
         self._current_package_manager.get_metadatum()
 
-    def list_directory(self):
+    def list(self):
         r'''List directory of current package manager.
         
         Returns none.
         '''
-        self._current_package_manager.list_directory()
+        self._current_package_manager.list()
 
     def list_views(
         self,
@@ -596,19 +596,19 @@ class Wrangler(ScoreManagerObject):
         '''
         self._current_package_manager.rewrite_metadata_module(prompt=prompt)
 
-    def run_doctest(self, prompt=True):
+    def doctest(self, prompt=True):
         r'''Runs doctest.
 
         Returns none.
         '''
-        self._current_package_manager.run_doctest(prompt=prompt)
+        self._current_package_manager.doctest(prompt=prompt)
 
-    def run_pytest(self, prompt=True):
+    def pytest(self, prompt=True):
         r'''Runs py.test.
 
         Returns none.
         '''
-        self._current_package_manager.run_pytest(prompt=prompt)
+        self._current_package_manager.pytest(prompt=prompt)
 
     def select_view(
         self,

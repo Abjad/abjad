@@ -22,7 +22,7 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list_directory() == [
+        assert manager._list() == [
             '__init__.py', 
             '__metadata__.py',
             'user_input.py',
@@ -53,7 +53,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
         assert score_manager._configuration.package_exists(name)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list_directory() == [
+        assert manager._list() == [
             '__init__.py', 
             '__metadata__.py',
             'user_input.py',
@@ -87,7 +87,7 @@ def test_MaterialPackageWrangler_run_managermade_package_03():
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(path)
-        assert manager._list_directory() == directory_entries
+        assert manager._list() == directory_entries
         assert manager._interpret_material_definition_module() is None
         assert manager._execute_output_material_module() is None
     finally:
@@ -120,7 +120,7 @@ def test_MaterialPackageWrangler_run_managermade_package_04():
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(path)
-        assert manager._list_directory() == directory_entries
+        assert manager._list() == directory_entries
         assert manager._interpret_material_definition_module() is None
         assert manager._execute_output_material_module() is None
     finally:

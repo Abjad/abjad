@@ -26,7 +26,7 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_01():
         path = os.path.join(path, 'testoctavetrans')
         manager = scoremanager.managers.OctaveTranspositionMappingInventoryMaterialManager(
             path=path)
-        assert manager._list_directory() == directory_entries
+        assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material is None
     finally:
@@ -72,7 +72,7 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_02():
         path = os.path.join(path, 'testoctavetrans')
         manager = scoremanager.managers.OctaveTranspositionMappingInventoryMaterialManager(
             path=path)
-        assert manager._list_directory() == directory_entries
+        assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == inventory
     finally:

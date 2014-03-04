@@ -79,7 +79,7 @@ class BuildDirectoryManager(DirectoryManager):
             self._io_manager.proceed(message)
 
     def _get_file_path_ending_with(self, string):
-        for file_name in self._list_directory():
+        for file_name in self._list():
             if file_name.endswith(string):
                 file_path = os.path.join(self._path, file_name)
                 return file_path

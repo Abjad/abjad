@@ -163,7 +163,7 @@ class Selector(ScoreManagerObject):
                 path=directory_path,
                 session=session,
                 )
-            entries = manager._list_directory(public_entries_only=True)
+            entries = manager._list(public_entries_only=True)
             for entry in entries:
                 if strip_file_extensions:
                     entry = os.path.splitext(entry)[0]

@@ -24,7 +24,7 @@ def test_ListMaterialManager_01():
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testlist')
         manager = scoremanager.managers.ListMaterialManager(path)
-        assert manager._list_directory() == directory_entries
+        assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == [17, 'foo']
     finally:

@@ -21,7 +21,7 @@ def test_MaterialPackageWrangler_make_managermade_material_package_01():
         assert wrangler._configuration.package_exists(string)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list_directory() == [
+        assert manager._list() == [
             '__init__.py', 
             '__metadata__.py',
             'user_input.py',

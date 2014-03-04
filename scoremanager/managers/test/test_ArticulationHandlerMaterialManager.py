@@ -35,7 +35,7 @@ def test_ArticulationHandlerMaterialManager_01():
         path = os.path.join(path, 'testarticulationhandler')
         manager = scoremanager.managers.ArticulationHandlerMaterialManager(
             path=path)
-        assert manager._list_directory() == directory_entries
+        assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == handler
     finally:

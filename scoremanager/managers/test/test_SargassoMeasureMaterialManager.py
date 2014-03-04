@@ -22,7 +22,7 @@ def test_SargassoMeasureMaterialManager_01():
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list_directory() == [
+        assert manager._list() == [
             '__init__.py', 
             '__metadata__.py',
             'user_input.py',
@@ -64,7 +64,7 @@ def test_SargassoMeasureMaterialManager_02():
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list_directory() == [
+        assert manager._list() == [
             '__init__.py', 
             '__metadata__.py',
             'user_input.py',
@@ -105,7 +105,7 @@ def test_SargassoMeasureMaterialManager_03():
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list_directory() == [
+        assert manager._list() == [
             '__init__.py', 
             '__metadata__.py',
             'user_input.py',
@@ -146,7 +146,7 @@ def test_SargassoMeasureMaterialManager_04():
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list_directory() == [
+        assert manager._list() == [
             '__init__.py', 
             '__metadata__.py',
             'user_input.py',
@@ -188,7 +188,7 @@ def test_SargassoMeasureMaterialManager_05():
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list_directory() == [
+        assert manager._list() == [
             '__init__.py', 
             '__metadata__.py',
             'user_input.py',
@@ -230,7 +230,7 @@ def test_SargassoMeasureMaterialManager_06():
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list_directory() == [
+        assert manager._list() == [
             '__init__.py', 
             '__metadata__.py',
             'user_input.py',
@@ -271,7 +271,7 @@ def test_SargassoMeasureMaterialManager_07():
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list_directory() == [
+        assert manager._list() == [
             '__init__.py', 
             '__metadata__.py',
             'user_input.py',
@@ -340,7 +340,7 @@ def test_SargassoMeasureMaterialManager_08():
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list_directory() == directory_entries
+        assert manager._list() == directory_entries
         assert format(Staff(measures))
         output_material = manager._execute_output_material_module()
         for measure in output_material:

@@ -30,8 +30,8 @@ class DirectoryManager(Manager):
         _user_input_to_action = superclass._user_input_to_action
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
-            'ls': self.list_directory,
-            'll': self.list_directory_long,
+            'ls': self.list,
+            'll': self.list_long,
             'pwd': self.display_present_working_directory,
             })
         return _user_input_to_action
@@ -52,7 +52,7 @@ class DirectoryManager(Manager):
         else:
             self._run_asset_manager(result)
 
-    def _list_directory(self, public_entries_only=False):
+    def _list(self, public_entries_only=False):
         result = []
         if not os.path.exists(self._path):
             return result
@@ -70,7 +70,7 @@ class DirectoryManager(Manager):
         return result
 
     def _make_asset_menu_entries(self):
-        file_names = self._list_directory()
+        file_names = self._list()
         file_names = [x for x in file_names if x[0].isalpha()]
         file_paths = []
         for file_name in file_names:
@@ -120,13 +120,13 @@ class DirectoryManager(Manager):
         self._io_manager.display(lines)
         self._session._hide_next_redraw = True
 
-    def list_directory(self):
+    def list(self):
         r'''Lists directory.
 
         Returns none.
         '''
         lines = []
-        for directory_entry in self._list_directory():
+        for directory_entry in self._list():
             path = os.path.join(
                 self._path, 
                 directory_entry,
@@ -145,7 +145,7 @@ class DirectoryManager(Manager):
             )
         self._session._hide_next_redraw = True
 
-    def list_directory_long(self):
+    def list_long(self):
         r'''Lists directory with ``ls -l``.
 
         Returns none.
@@ -162,7 +162,7 @@ class DirectoryManager(Manager):
             )
         self._session._hide_next_redraw = True
 
-    def run_doctest(self, prompt=True):
+    def doctest(self, prompt=True):
         r'''Runs doctest.
 
         Returns none.
@@ -177,7 +177,7 @@ class DirectoryManager(Manager):
             self._io_manager.display(lines)
         self._io_manager.proceed(prompt=prompt)
 
-    def run_pytest(self, prompt=True):
+    def pytest(self, prompt=True):
         r'''Runs pytest.
 
         Returns none.

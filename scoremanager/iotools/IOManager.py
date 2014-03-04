@@ -104,12 +104,12 @@ class IOManager(IOManager):
             message = 'running doctest ...'
             self.display([message, ''])
             controller = self._session.current_controller
-            controller.run_doctest()
+            controller.doctest()
         elif key == 'pyt':
             message = 'running py.test ...'
             self.display([message, ''])
             controller = self._session.current_controller
-            controller.run_pytest()
+            controller.pytest()
         elif key == 'pyi':
             self.exec_statement()
         elif key in ('q', 'quit'):

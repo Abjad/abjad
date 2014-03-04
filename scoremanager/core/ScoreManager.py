@@ -280,7 +280,7 @@ class ScoreManager(ScoreManagerObject):
             rollback=True, 
             )
 
-    def run_doctest(self, prompt=True):
+    def doctest(self, prompt=True):
         r'''Runs doctest.
 
         Returns none.
@@ -297,7 +297,7 @@ class ScoreManager(ScoreManagerObject):
                 )
         self._io_manager.proceed(prompt=prompt)
 
-    def run_pytest(self, prompt=True):
+    def pytest(self, prompt=True):
         r'''Runs py.test.
 
         Returns none.

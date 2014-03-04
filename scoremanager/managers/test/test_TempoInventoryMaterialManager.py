@@ -30,7 +30,7 @@ def test_TempoInventoryMaterialManager_01():
         path = os.path.join(path, 'testtempoinventory')
         manager = scoremanager.managers.TempoInventoryMaterialManager(
             path=path)
-        assert manager._list_directory() == directory_entries
+        assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == inventory
     finally:

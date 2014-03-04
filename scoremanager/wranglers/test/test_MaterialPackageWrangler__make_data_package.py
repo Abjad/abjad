@@ -24,7 +24,7 @@ def test_MaterialPackageWrangler__make_data_package_01():
         wrangler._make_data_package(path)
         assert wrangler._configuration.package_exists(string)
         manager = scoremanager.managers.MaterialManager(path)
-        assert manager._list_directory() == directory_entries
+        assert manager._list() == directory_entries
         assert manager._interpret_material_definition_module() is None
         output_material = manager._execute_output_material_module()
         assert output_material is None
