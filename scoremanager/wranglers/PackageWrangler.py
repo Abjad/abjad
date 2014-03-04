@@ -46,6 +46,19 @@ class PackageWrangler(Wrangler):
 
     ### PRIVATE METHODS ###
 
+    def _get_view_from_disk(self):
+        package_manager = self._current_package_manager
+        if not package_manager:
+            return
+        view_name = package_manager._get_metadatum('view_name')
+        if not view_name:
+            return
+        view_inventory = self._read_view_inventory_from_disk()
+        if not view_inventory:
+            return
+        view = view_inventory.get(view_name)
+        return view
+
     def _handle_main_menu_result(self, result):
         self._io_manager.print_not_yet_implemented()
 
@@ -126,6 +139,8 @@ class PackageWrangler(Wrangler):
 
     def _make_asset_menu_entries(self, head=None):
         names = self._list_asset_names(head=head)
+        if not names:
+            return
         keys = len(names) * [None]
         prepopulated_return_values = len(names) * [None]
         paths = self._list_visible_asset_paths(head=head)
@@ -133,25 +148,12 @@ class PackageWrangler(Wrangler):
         for path in paths:
             package_path = self._configuration.path_to_package_path(path)
             package_paths.append(package_path)
-        paths = package_paths
-        assert len(names) == len(keys) == len(paths)
-        if not names:
-            return
-        sequences = (names, [None], [None], paths)
+        assert len(names) == len(keys) == len(package_paths)
+        sequences = (names, [None], [None], package_paths)
         entries = sequencetools.zip_sequences(sequences, cyclic=True)
-        package_manager = self._current_package_manager
-        if not package_manager:
-            return entries
-        view_name = package_manager._get_metadatum('view_name')
-        if not view_name:
-            return entries
-        view_inventory = self._read_view_inventory_from_disk()
-        if not view_inventory:
-            return entries
-        correct_view = view_inventory.get(view_name)
-        if not correct_view:
-            return entries
-        entries = self._sort_asset_menu_entries_by_view(entries, correct_view)
+        view = self._get_view_from_disk()
+        if view is not None:
+            entries = self._sort_asset_menu_entries_by_view(entries, view)
         return entries
 
     def _make_main_menu(self, head=None):
