@@ -13,8 +13,7 @@ def test_FileManager__remove_01():
         configuration.score_manager_directory_path, 
         'temporary_file.txt',
         )
-    file_manager = scoremanager.managers.FileManager(
-        path=path)
+    file_manager = scoremanager.managers.FileManager(path=path)
     assert not os.path.exists(path)
 
     try:
@@ -37,8 +36,7 @@ def test_FileManager__remove_02():
         configuration.score_manager_directory_path, 
         'temporary_file.txt',
         )
-    file_manager = scoremanager.managers.FileManager(
-        path=path)
+    file_manager = scoremanager.managers.FileManager(path=path)
     assert not os.path.exists(path)
 
     try:
