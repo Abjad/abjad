@@ -392,7 +392,7 @@ class Manager(ScoreManagerObject):
         self._io_manager.proceed(prompt=prompt)
 
     def status(self, prompt=True):
-        r'''Intearctively displays repository status of assets.
+        r'''Displays repository status of assets.
     
         Returns none.
         '''
