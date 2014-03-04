@@ -20,7 +20,7 @@ class PackageWrangler(Wrangler):
 
     @property
     def _current_storehouse_package_path(self):
-        path = self._current_storehouse_directory_path
+        path = self._current_storehouse_path
         package = self._configuration.path_to_package(path)
         return package
 
@@ -135,7 +135,7 @@ class PackageWrangler(Wrangler):
         result = []
         superclass = super(PackageWrangler, self)
         for filesystem_path in \
-            superclass._list_storehouse_directory_paths(
+            superclass._list_storehouse_paths(
             abjad_library=True,
             user_library=True,
             abjad_score_packages=True,
@@ -170,7 +170,7 @@ class PackageWrangler(Wrangler):
     def _make_asset(self, asset_name):
         assert stringtools.is_snake_case_package_name(asset_name)
         asset_filesystem_path = os.path.join(
-            self._current_storehouse_directory_path, asset_name)
+            self._current_storehouse_path, asset_name)
         os.mkdir(asset_filesystem_path)
         package_manager = self._initialize_asset_manager(asset_name)
         package_manager.fix(prompt=False)
@@ -242,7 +242,7 @@ class PackageWrangler(Wrangler):
                 return
             package = stringtools.string_to_accent_free_snake_case(package)
             path = os.path.join(
-                self._current_storehouse_directory_path, 
+                self._current_storehouse_path, 
                 package,
                 )
             package = self._configuration.path_to_package(path)

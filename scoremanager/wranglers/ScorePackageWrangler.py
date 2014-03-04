@@ -36,9 +36,9 @@ class ScorePackageWrangler(PackageWrangler):
         superclass = super(ScorePackageWrangler, self)
         superclass.__init__(session=session)
         self._asset_manager_class = managers.ScorePackageManager
-        self.abjad_storehouse_directory_path = \
+        self.abjad_storehouse_path = \
             self._configuration.abjad_score_packages_directory_path
-        self.user_storehouse_directory_path = \
+        self.user_storehouse_path = \
             self._configuration.user_score_packages_directory_path
 
     ### PRIVATE PROPERTIES ###
@@ -48,7 +48,7 @@ class ScorePackageWrangler(PackageWrangler):
         return 'scores'
 
     @property
-    def _current_storehouse_directory_path(self):
+    def _current_storehouse_path(self):
         if self._session.is_in_score:
             if self._session.current_score_snake_case_name in \
                     sorted(os.listdir(
@@ -64,7 +64,7 @@ class ScorePackageWrangler(PackageWrangler):
     def _current_storehouse_package_path(self):
         package_path = \
             self._configuration.path_to_package(
-            self._current_storehouse_directory_path)
+            self._current_storehouse_path)
         return package_path
 
     ### PRIVATE METHODS ###
@@ -205,7 +205,7 @@ class ScorePackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def _list_storehouse_directory_paths(
+    def _list_storehouse_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -218,7 +218,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler._list_storehouse_directory_paths(
+            >>> for x in wrangler._list_storehouse_paths(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -228,7 +228,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(ScorePackageWrangler, self)
-        return superclass._list_storehouse_directory_paths(
+        return superclass._list_storehouse_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,

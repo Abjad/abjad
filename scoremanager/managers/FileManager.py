@@ -220,7 +220,7 @@ class FileManager(Manager):
         pending_user_input=None,
         prompt=True,
         ):
-        r'''Writes filesystem asset boilerplate.
+        r'''Writes asset boilerplate.
 
         Returns none.
         '''

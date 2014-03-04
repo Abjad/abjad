@@ -38,9 +38,9 @@ class MaterialPackageWrangler(PackageWrangler):
         superclass.__init__(session=session)
         self._material_manager_wrangler = \
             wranglers.MaterialManagerWrangler(session=self._session)
-        self.abjad_storehouse_directory_path = \
+        self.abjad_storehouse_path = \
             self._configuration.abjad_material_packages_directory_path
-        self.user_storehouse_directory_path = \
+        self.user_storehouse_path = \
             self._configuration.user_library_material_packages_directory_path
         self.score_storehouse_path_infix_parts = ('materials',)
 
@@ -314,7 +314,7 @@ class MaterialPackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def _list_storehouse_directory_paths(
+    def _list_storehouse_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -327,7 +327,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler._list_storehouse_directory_paths(
+            >>> for x in wrangler._list_storehouse_paths(
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
@@ -339,7 +339,7 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialPackageWrangler, self)
-        return superclass._list_storehouse_directory_paths(
+        return superclass._list_storehouse_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,

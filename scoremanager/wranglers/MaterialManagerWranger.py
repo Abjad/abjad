@@ -26,9 +26,9 @@ class MaterialManagerWrangler(PackageWrangler):
     def __init__(self, session=None):
         superclass = super(MaterialManagerWrangler, self)
         superclass.__init__(session=session)
-        self.abjad_storehouse_directory_path = \
+        self.abjad_storehouse_path = \
             self._configuration.abjad_material_managers_directory_path
-        self.user_storehouse_directory_path = \
+        self.user_storehouse_path = \
             self._configuration.user_library_material_managers_directory_path
         self._human_readable_target_name = 'material manager'
         self.forbidden_directory_entries = (
@@ -288,7 +288,7 @@ class MaterialManagerWrangler(PackageWrangler):
             head=head,
             )
 
-    def _list_storehouse_directory_paths(
+    def _list_storehouse_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -301,7 +301,7 @@ class MaterialManagerWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler._list_storehouse_directory_paths(
+            >>> for x in wrangler._list_storehouse_paths(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -311,7 +311,7 @@ class MaterialManagerWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialManagerWrangler, self)
-        return superclass._list_storehouse_directory_paths(
+        return superclass._list_storehouse_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,

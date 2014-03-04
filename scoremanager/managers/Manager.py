@@ -16,7 +16,7 @@ class Manager(ScoreManagerObject):
         ScoreManagerObject.__init__(self, session=session)
         assert filesystem_path is None or os.path.sep in filesystem_path
         self._filesystem_path = filesystem_path
-        self._generic_class_name = 'filesystem asset'
+        self._generic_class_name = 'asset'
 
     ### SPECIAL METHODS ###
 
@@ -229,7 +229,7 @@ class Manager(ScoreManagerObject):
     ### PUBLIC METHODS ###
 
     def add_assets_to_repository(self, prompt=False):
-        r'''Adds unversioned filesystem assets to repository.
+        r'''Adds unversioned assets to repository.
 
         Returns none.
         '''
@@ -247,7 +247,7 @@ class Manager(ScoreManagerObject):
         self._io_manager.proceed(prompt=prompt)
 
     def commit_assets_to_repository(self, commit_message=None, prompt=True):
-        r'''Commits unversioned filesystem assets to repository.
+        r'''Commits unversioned assets to repository.
 
         Returns none.
         '''
@@ -284,7 +284,7 @@ class Manager(ScoreManagerObject):
         self, 
         pending_user_input=None,
         ):
-        r'''Copies filesystem asset.
+        r'''Copies asset.
 
         Returns none.
         '''
@@ -306,7 +306,7 @@ class Manager(ScoreManagerObject):
         self._io_manager.proceed('asset copied.')
 
     def display_repository_status(self, prompt=True):
-        r'''Intearctively displays repository status of filesystem assets.
+        r'''Intearctively displays repository status of assets.
     
         Returns none.
         '''
@@ -360,7 +360,7 @@ class Manager(ScoreManagerObject):
         pending_user_input=None,
         prompt=True,
         ):
-        r'''Removes filesystem asset.
+        r'''Removes asset.
 
         Backtracks up one level from previous location of asset.
 
@@ -387,7 +387,7 @@ class Manager(ScoreManagerObject):
         self, 
         pending_user_input=None,
         ):
-        r'''Renames filesystem asset.
+        r'''Renames asset.
 
         Returns none.
         '''
@@ -408,7 +408,7 @@ class Manager(ScoreManagerObject):
             self._io_manager.proceed('asset renamed.')
 
     def update_from_repository(self, prompt=True):
-        r'''Updates versioned filesystem assets.
+        r'''Updates versioned assets.
 
         Returns none.
         '''

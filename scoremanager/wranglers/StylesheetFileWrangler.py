@@ -25,9 +25,9 @@ class StylesheetFileWrangler(Wrangler):
         superclass = super(StylesheetFileWrangler, self)
         superclass.__init__(session=session)
         self._asset_manager_class = managers.FileManager
-        self.abjad_storehouse_directory_path = \
+        self.abjad_storehouse_path = \
             self._configuration.abjad_stylesheets_directory_path
-        self.user_storehouse_directory_path = \
+        self.user_storehouse_path = \
             self._configuration.user_library_stylesheets_directory_path
         self.score_storehouse_path_infix_parts = ('stylesheets',)
 
@@ -247,7 +247,7 @@ class StylesheetFileWrangler(Wrangler):
             include_extension=include_extension,
             )
 
-    def _list_storehouse_directory_paths(
+    def _list_storehouse_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -260,7 +260,7 @@ class StylesheetFileWrangler(Wrangler):
 
         ::
 
-            >>> for x in wrangler._list_storehouse_directory_paths(
+            >>> for x in wrangler._list_storehouse_paths(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -273,7 +273,7 @@ class StylesheetFileWrangler(Wrangler):
         Returns list.
         '''
         superclass = super(StylesheetFileWrangler, self)
-        return superclass._list_storehouse_directory_paths(
+        return superclass._list_storehouse_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -367,7 +367,7 @@ class StylesheetFileWrangler(Wrangler):
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
             storehouse_path = \
-                self.select_storehouse_directory_path(
+                self.select_storehouse_path(
                 abjad_library=False,
                 user_library=True,
                 abjad_score_packages=False,

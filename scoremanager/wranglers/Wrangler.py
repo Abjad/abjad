@@ -20,8 +20,8 @@ class Wrangler(ScoreManagerObject):
 
     def __init__(self, session=None):
         ScoreManagerObject.__init__(self, session=session)
-        self.abjad_storehouse_directory_path = None
-        self.user_storehouse_directory_path = None
+        self.abjad_storehouse_path = None
+        self.user_storehouse_path = None
         self.score_storehouse_path_infix_parts = ()
         self.forbidden_directory_entries = ()
 
@@ -39,19 +39,19 @@ class Wrangler(ScoreManagerObject):
             )
 
     @property
-    def _current_storehouse_directory_path(self):
+    def _current_storehouse_path(self):
         if self._session.is_in_score:
             parts = []
             parts.append(self._session.current_score_directory_path)
             parts.extend(self.score_storehouse_path_infix_parts)
             return os.path.join(*parts)
         else:
-            return self.abjad_storehouse_directory_path
+            return self.abjad_storehouse_path
 
     @property
     def _temporary_asset_filesystem_path(self):
         return os.path.join(
-            self._current_storehouse_directory_path, 
+            self._current_storehouse_path, 
             self._temporary_asset_name)
 
     @property
@@ -146,7 +146,7 @@ class Wrangler(ScoreManagerObject):
         head=None,
         ):
         result = []
-        for directory_path in self._list_storehouse_directory_paths(
+        for directory_path in self._list_storehouse_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -214,7 +214,7 @@ class Wrangler(ScoreManagerObject):
                         filesystem_path))
         return result
 
-    def _list_storehouse_directory_paths(
+    def _list_storehouse_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -223,10 +223,10 @@ class Wrangler(ScoreManagerObject):
         ):
         result = []
         if abjad_library and \
-            self.abjad_storehouse_directory_path is not None:
-            result.append(self.abjad_storehouse_directory_path)
-        if user_library and self.user_storehouse_directory_path is not None:
-            result.append(self.user_storehouse_directory_path)
+            self.abjad_storehouse_path is not None:
+            result.append(self.abjad_storehouse_path)
+        if user_library and self.user_storehouse_path is not None:
+            result.append(self.user_storehouse_path)
         if abjad_score_packages and \
             self.score_storehouse_path_infix_parts:
             for score_directory_path in \
@@ -234,8 +234,8 @@ class Wrangler(ScoreManagerObject):
                 parts = [score_directory_path]
                 if self.score_storehouse_path_infix_parts:
                     parts.extend(self.score_storehouse_path_infix_parts)
-                storehouse_directory_path = os.path.join(*parts)
-                result.append(storehouse_directory_path)
+                storehouse_path = os.path.join(*parts)
+                result.append(storehouse_path)
         if user_score_packages and self.score_storehouse_path_infix_parts:
             for directory_path in \
                 self._configuration.list_score_directory_paths(user=True):
@@ -249,7 +249,7 @@ class Wrangler(ScoreManagerObject):
     def _make_asset(self, asset_name):
         assert stringtools.is_snake_case_string(asset_name)
         path = os.path.join(
-            self._current_storehouse_directory_path, 
+            self._current_storehouse_path, 
             asset_name,
             )
         manager = self._initialize_asset_manager(path)
@@ -295,7 +295,7 @@ class Wrangler(ScoreManagerObject):
         ):
         from scoremanager import wranglers
         keys, display_strings = [], []
-        keys.append(self.user_storehouse_directory_path)
+        keys.append(self.user_storehouse_path)
         display_strings.append('My {}'.format(self._breadcrumb))
         wrangler = wranglers.ScorePackageWrangler(session=self._session)
         managers = wrangler._list_asset_managers(
@@ -578,7 +578,7 @@ class Wrangler(ScoreManagerObject):
         self._session._restore_breadcrumbs(cache=cache)
         return result
 
-    def select_storehouse_directory_path(
+    def select_storehouse_path(
         self,
         clear=True, 
         cache=False,
