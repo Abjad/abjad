@@ -55,10 +55,10 @@ class PackageWrangler(Wrangler):
     def _handle_main_menu_result(self, result):
         self._io_manager.print_not_yet_implemented()
 
+    # TODO: eventually accept only filesystem path
     def _initialize_asset_manager(self, path):
         if os.path.sep not in path:
-            path = self._configuration.package_to_path(
-                path)
+            path = self._configuration.package_to_path(path)
         manager = self._asset_manager_class(
             path=path, 
             session=self._session,
@@ -85,14 +85,14 @@ class PackageWrangler(Wrangler):
         Returns list.
         '''
         result = []
-        for package_path in self._list_asset_package_paths(
+        for path in self._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             head=head,
             ):
-            asset_manager = self._initialize_asset_manager(package_path)
+            asset_manager = self._initialize_asset_manager(path)
             result.append(asset_manager)
         return result
 

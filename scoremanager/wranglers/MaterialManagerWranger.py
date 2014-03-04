@@ -59,6 +59,7 @@ class MaterialManagerWrangler(PackageWrangler):
         else:
             raise ValueError
 
+    # TODO: eventually allow filesystem path only
     def _initialize_asset_manager(self, package_path):
         from scoremanager import managers
         if os.path.sep in package_path:
@@ -66,14 +67,15 @@ class MaterialManagerWrangler(PackageWrangler):
             package_path = self._configuration.path_to_package(package_path)
         else:
             path = self._configuration.package_to_path(package_path)
+        assert '.py' not in package_path, repr(package_path)
         material_manager = managers.MaterialManager(
             path=path, 
             session=self._session,
             )
         if 'managers' in material_manager._path:
-            most, last = os.path.split(
-                material_manager._path)
-            material_manager_class_name = last
+            most, last = os.path.split(material_manager._path)
+            #material_manager_class_name = last
+            material_manager_class_name = os.path.splitext(last)[0]
         else:
             material_manager_class_name = \
                 material_manager._read_material_manager_class_name()
@@ -193,15 +195,15 @@ class MaterialManagerWrangler(PackageWrangler):
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
-            ArticulationHandlerMaterialManager('.../managers/ArticulationHandlerMaterialManager')
-            DynamicHandlerMaterialManager('.../managers/DynamicHandlerMaterialManager')
-            ListMaterialManager('.../managers/ListMaterialManager')
-            MarkupInventoryMaterialManager('.../managers/MarkupInventoryMaterialManager')
-            OctaveTranspositionMappingInventoryMaterialManager('.../managers/OctaveTranspositionMappingInventoryMaterialManager')
-            PitchRangeInventoryMaterialManager('.../managers/PitchRangeInventoryMaterialManager')
-            RhythmMakerMaterialManager('.../managers/RhythmMakerMaterialManager')
-            SargassoMeasureMaterialManager('.../managers/SargassoMeasureMaterialManager')
-            TempoInventoryMaterialManager('.../managers/TempoInventoryMaterialManager')
+            ArticulationHandlerMaterialManager('.../managers/ArticulationHandlerMaterialManager.py')
+            DynamicHandlerMaterialManager('.../managers/DynamicHandlerMaterialManager.py')
+            ListMaterialManager('.../managers/ListMaterialManager.py')
+            MarkupInventoryMaterialManager('.../managers/MarkupInventoryMaterialManager.py')
+            OctaveTranspositionMappingInventoryMaterialManager('.../managers/OctaveTranspositionMappingInventoryMaterialManager.py')
+            PitchRangeInventoryMaterialManager('.../managers/PitchRangeInventoryMaterialManager.py')
+            RhythmMakerMaterialManager('.../managers/RhythmMakerMaterialManager.py')
+            SargassoMeasureMaterialManager('.../managers/SargassoMeasureMaterialManager.py')
+            TempoInventoryMaterialManager('.../managers/TempoInventoryMaterialManager.py')
 
         Returns list.
         '''
