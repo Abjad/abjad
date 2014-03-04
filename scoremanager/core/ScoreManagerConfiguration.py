@@ -508,7 +508,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                         scores_directory_path,
                         directory_entry,
                         )
-                    package_path = self.path_to_package(
+                    package_path = self.path_to_package_path(
                         directory_path,
                         )
                     if head is None or package_path.startswith(head):
@@ -592,7 +592,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             path += '.py'
         return path
 
-    def path_to_package(self, path):
+    def path_to_package_path(self, path):
         r'''Changes `path` to package path.
 
         Returns string.

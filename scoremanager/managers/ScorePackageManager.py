@@ -17,7 +17,7 @@ class ScorePackageManager(PackageManager):
             path=path, 
             session=session,
             )
-        package_path = self._configuration.path_to_package(path)
+        package_path = self._configuration.path_to_package_path(path)
         self._package_path = package_path
         path = self._path
         if path is not None:

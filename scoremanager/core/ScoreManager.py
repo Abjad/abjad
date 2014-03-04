@@ -72,7 +72,7 @@ class ScoreManager(ScoreManagerObject):
         paths = wrangler._list_visible_asset_paths()
         score_package_names = []
         for path in paths:
-            package_path = self._configuration.path_to_package(path)
+            package_path = self._configuration.path_to_package_path(path)
             score_package_names.append(package_path)
         if self._session.current_score_snake_case_name is None:
             return score_package_names[0]
@@ -88,7 +88,7 @@ class ScoreManager(ScoreManagerObject):
         paths = wrangler._list_visible_asset_paths()
         score_package_names = []
         for path in paths:
-            package_path = self._configuration.path_to_package(path)
+            package_path = self._configuration.path_to_package_path(path)
             score_package_names.append(package_path)
         if self._session.current_score_snake_case_name is None:
             return score_package_names[-1]
@@ -106,7 +106,7 @@ class ScoreManager(ScoreManagerObject):
             paths = wrangler._list_visible_asset_paths()
             score_package_names = []
             for path in paths:
-                package_path = self._configuration.path_to_package(path)
+                package_path = self._configuration.path_to_package_path(path)
                 score_package_names.append(package_path)
             #if result in wrangler._list_visible_asset_package_paths():
             if result in score_package_names:
@@ -268,7 +268,7 @@ class ScoreManager(ScoreManagerObject):
 
         Returns none.
         '''
-        path = self._configuration.path_to_package(
+        path = self._configuration.path_to_package_path(
             self._configuration.abjad_material_packages_directory_path,
             )
         self._material_package_wrangler._run(

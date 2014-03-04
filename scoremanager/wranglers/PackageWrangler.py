@@ -30,7 +30,7 @@ class PackageWrangler(Wrangler):
     @property
     def _temporary_asset_package_path(self):
         path = self._temporary_asset_path
-        package = self._configuration.path_to_package(path)
+        package = self._configuration.path_to_package_path(path)
         return package
 
     @property
@@ -111,7 +111,7 @@ class PackageWrangler(Wrangler):
             user_score_packages=True,
             ):
             package_path = \
-                self._configuration.path_to_package(
+                self._configuration.path_to_package_path(
                 path)
             result.append(package_path)
         return result
@@ -131,7 +131,7 @@ class PackageWrangler(Wrangler):
         paths = self._list_visible_asset_paths(head=head)
         package_paths = []
         for path in paths:
-            package_path = self._configuration.path_to_package(path)
+            package_path = self._configuration.path_to_package_path(path)
             package_paths.append(package_path)
         paths = package_paths
         assert len(names) == len(keys) == len(paths)
@@ -199,7 +199,7 @@ class PackageWrangler(Wrangler):
                 self._current_storehouse_path, 
                 package,
                 )
-            package = self._configuration.path_to_package(path)
+            package = self._configuration.path_to_package_path(path)
             if self._configuration.package_exists(package):
                 line = 'package already exists: {!r}.'
                 line = line.format(path)

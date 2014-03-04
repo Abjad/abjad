@@ -64,7 +64,7 @@ class MaterialManagerWrangler(PackageWrangler):
         from scoremanager import managers
         if os.path.sep in package_path:
             path = package_path
-            package_path = self._configuration.path_to_package(package_path)
+            package_path = self._configuration.path_to_package_path(package_path)
         else:
             path = self._configuration.package_to_path(package_path)
         assert '.py' not in package_path, repr(package_path)
@@ -90,7 +90,7 @@ class MaterialManagerWrangler(PackageWrangler):
             except ImportError:
                 command = 'from {} import {} as material_manager_class'
                 path = self._configuration.user_library_material_packages_directory_path
-                package_path = self._configuration.path_to_package(path)
+                package_path = self._configuration.path_to_package_path(path)
                 command = command.format(
                     package_path,
                     material_manager_class_name,
@@ -121,7 +121,7 @@ class MaterialManagerWrangler(PackageWrangler):
         paths = self._list_asset_paths(head=head)
         packages = []
         for path in paths:
-            package = self._configuration.path_to_package(path)
+            package = self._configuration.path_to_package_path(path)
             packages.append(package)
         assert len(names) == len(packages)
         sequences = (names, [None], [None], packages)

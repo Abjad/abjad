@@ -351,7 +351,7 @@ class ScorePackageWrangler(PackageWrangler):
         menuing_entries = []
         for menuing_pair in menuing_pairs:
             path, score_title = menuing_pair
-            package_path = self._configuration.path_to_package(path)
+            package_path = self._configuration.path_to_package_path(path)
             entry = (score_title, None, None, package_path)
             menuing_entries.append(entry)
         return menuing_entries

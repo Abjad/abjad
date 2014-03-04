@@ -167,7 +167,7 @@ class Wrangler(ScoreManagerObject):
                 if head is None:
                     result.append(path)
                 else:
-                    package = self._configuration.path_to_package(path)
+                    package = self._configuration.path_to_package_path(path)
                     if package.startswith(head):
                         result.append(path)
         return result

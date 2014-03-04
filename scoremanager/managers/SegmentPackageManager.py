@@ -180,7 +180,7 @@ class SegmentPackageManager(PackageManager):
     @property
     def segment_definition_module_package(self):
         path = self.segment_definition_module_path
-        package = self._configuration.path_to_package(path)
+        package = self._configuration.path_to_package_path(path)
         return package
 
     @property

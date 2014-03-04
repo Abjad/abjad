@@ -77,7 +77,7 @@ class MaterialPackageWrangler(PackageWrangler):
         import scoremanager
         from scoremanager import managers
         assert os.path.sep in path
-        material_package_path = self._configuration.path_to_package(
+        material_package_path = self._configuration.path_to_package_path(
             path)
         if material_manager_class_name is None:
             manager = managers.MaterialManager(
@@ -95,7 +95,7 @@ class MaterialPackageWrangler(PackageWrangler):
                 command = 'from {0}.{1}.{1}'
                 command += ' import {1} as material_manager_class'
                 path = self._configuration.user_library_material_packages_directory_path
-                package_path = self._configuration.path_to_package(path)
+                package_path = self._configuration.path_to_package_path(path)
                 command = command.format(
                     package_path,
                     material_manager_class_name,
@@ -350,7 +350,7 @@ class MaterialPackageWrangler(PackageWrangler):
         except ImportError:
             command = 'from {} import {} as material_manager_class'
             path = self._configuration.user_library_material_packages_directory_path
-            package_path = self._configuration.path_to_package(path)
+            package_path = self._configuration.path_to_package_path(path)
             command = command.format(
                 package_path,
                 material_manager_class_name,

@@ -298,7 +298,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_name,
                 )
             segment_package_path = \
-                self._configuration.path_to_package(
+                self._configuration.path_to_package_path(
                 segment_package_directory_path)
             manager = self._asset_manager_class(
                 segment_package_path,
@@ -335,7 +335,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_name,
                 )
             segment_package_path = \
-                self._configuration.path_to_package(
+                self._configuration.path_to_package_path(
                 segment_package_directory_path)
             manager = self._asset_manager_class(
                 segment_package_path,
@@ -367,7 +367,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_name,
                 )
             segment_package_path = \
-                self._configuration.path_to_package(
+                self._configuration.path_to_package_path(
                 segment_package_directory_path)
             manager = self._asset_manager_class(
                 segment_package_path,

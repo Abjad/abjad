@@ -260,7 +260,7 @@ class Selector(ScoreManagerObject):
             return result
         items = []
         for directory_path in list_current_material_directory_paths():
-            package_path = configuration.path_to_package(
+            package_path = configuration.path_to_package_path(
                 directory_path)
             items.append(package_path)
         selector.items = items
