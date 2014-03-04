@@ -280,7 +280,7 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append(asset_manager)
         return result
 
-    def _list_visible_asset_package_path_and_score_title_pairs(
+    def _list_visible_asset_path_and_score_title_pairs(
         self,
         abjad_library=True, 
         user_library=True,
@@ -288,26 +288,26 @@ class ScorePackageWrangler(PackageWrangler):
         user_score_packages=True,
         head=None,
         ):
-        r'''Lists visible asset package path and score title pairs.
+        r'''Lists visible asset path and score title pairs.
 
-        Lists visible abjad score package path and title pairs:
+        Lists visible abjad score path and title pairs:
 
         ::
 
-            >>> for x in wrangler._list_visible_asset_package_path_and_score_title_pairs(
+            >>> for x in wrangler._list_visible_asset_path_and_score_title_pairs(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
             ...     x[0]
             ...     x[1]
             ...     print
-            'blue_example_score'
+            '.../scoremanager/scores/blue_example_score'
             'Blue Example Score (2013)'
             <BLANKLINE>
-            'green_example_score'
+            '.../scoremanager/scores/green_example_score'
             'Green Example Score (2013)'
             <BLANKLINE>
-            'red_example_score'
+            '.../scoremanager/scores/red_example_score'
             'Red Example Score (2013)'
             <BLANKLINE>
 
@@ -340,15 +340,20 @@ class ScorePackageWrangler(PackageWrangler):
                         )
                 else:
                     title_with_year = '{}'.format(metadata['title'])
-                result.append((asset_manager._package_path, title_with_year))
+                result.append((asset_manager._path, title_with_year))
         return result
 
     def _make_asset_menu_entries(self, head=None):
-        menuing_pairs = \
-            self._list_visible_asset_package_path_and_score_title_pairs()
+        menuing_pairs = self._list_visible_asset_path_and_score_title_pairs()
         tmp = stringtools.strip_diacritics_from_binary_string
         menuing_pairs.sort(key=lambda x: tmp(x[1]))
-        menuing_entries = [(x[1], None, None, x[0]) for x in menuing_pairs]
+        #menuing_entries = [(x[1], None, None, x[0]) for x in menuing_pairs]
+        menuing_entries = []
+        for menuing_pair in menuing_pairs:
+            path, score_title = menuing_pair
+            package_path = self._configuration.path_to_package(path)
+            entry = (score_title, None, None, package_path)
+            menuing_entries.append(entry)
         return menuing_entries
 
     def _make_main_menu(self):
