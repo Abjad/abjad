@@ -364,6 +364,66 @@ class Wrangler(ScoreManagerObject):
             )
         self._session._restore_breadcrumbs(cache=cache)
 
+    def _select_asset_path(
+        self, 
+        clear=True, 
+        cache=False,
+        pending_user_input=None,
+        ):
+        self._io_manager._assign_user_input(pending_user_input)
+        self._session._cache_breadcrumbs(cache=cache)
+        menu = self._make_asset_selection_menu()
+        while True:
+            breadcrumb = self._make_asset_selection_breadcrumb()
+            self._session._push_breadcrumb(breadcrumb)
+            result = menu._run(clear=clear)
+            if self._session._backtrack():
+                break
+            elif not result:
+                self._session._pop_breadcrumb()
+                continue
+            else:
+                break
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
+        return result
+
+    def _select_storehouse_path(
+        self,
+        clear=True, 
+        cache=False,
+        abjad_library=True,
+        user_library=True,
+        abjad_score_packages=True,
+        user_score_packages=True,
+        pending_user_input=None,
+        ):
+        self._io_manager._assign_user_input(pending_user_input)
+        self._session._cache_breadcrumbs(cache=cache)
+        menu = self._io_manager.make_menu(where=self._where)
+        asset_section = menu.make_asset_section()
+        menu_entries = self._make_storehouse_menu_entries(
+            abjad_library=False,
+            user_library=True,
+            abjad_score_packages=False,
+            user_score_packages=False)
+        asset_section.menu_entries = menu_entries
+        while True:
+            breadcrumb = self._make_asset_selection_breadcrumb(
+                is_storehouse=True)
+            self._session._push_breadcrumb(breadcrumb)
+            result = menu._run(clear=clear)
+            if self._session._backtrack():
+                break
+            elif not result:
+                self._session._pop_breadcrumb()
+                continue
+            else:
+                break
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
+        return result
+
     ### PUBLIC METHODS ###
 
     def add_metadatum(self):
@@ -523,7 +583,7 @@ class Wrangler(ScoreManagerObject):
         '''
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
-            asset_path = self.select_asset_path()
+            asset_path = self._select_asset_path()
         if self._session._backtrack():
             return
         asset_manager = self._initialize_asset_manager(asset_path)
@@ -549,74 +609,6 @@ class Wrangler(ScoreManagerObject):
         Returns none.
         '''
         self._current_package_manager.run_pytest(prompt=prompt)
-
-    def select_asset_path(
-        self, 
-        clear=True, 
-        cache=False,
-        pending_user_input=None,
-        ):
-        r'''Selects asset filesystem path.
-
-        Returns string.
-        '''
-        self._io_manager._assign_user_input(pending_user_input)
-        self._session._cache_breadcrumbs(cache=cache)
-        menu = self._make_asset_selection_menu()
-        while True:
-            breadcrumb = self._make_asset_selection_breadcrumb()
-            self._session._push_breadcrumb(breadcrumb)
-            result = menu._run(clear=clear)
-            if self._session._backtrack():
-                break
-            elif not result:
-                self._session._pop_breadcrumb()
-                continue
-            else:
-                break
-        self._session._pop_breadcrumb()
-        self._session._restore_breadcrumbs(cache=cache)
-        return result
-
-    def select_storehouse_path(
-        self,
-        clear=True, 
-        cache=False,
-        abjad_library=True,
-        user_library=True,
-        abjad_score_packages=True,
-        user_score_packages=True,
-        pending_user_input=None,
-        ):
-        r'''Selects asset storehouse filesystem path.
-
-        Returns string.
-        '''
-        self._io_manager._assign_user_input(pending_user_input)
-        self._session._cache_breadcrumbs(cache=cache)
-        menu = self._io_manager.make_menu(where=self._where)
-        asset_section = menu.make_asset_section()
-        menu_entries = self._make_storehouse_menu_entries(
-            abjad_library=False,
-            user_library=True,
-            abjad_score_packages=False,
-            user_score_packages=False)
-        asset_section.menu_entries = menu_entries
-        while True:
-            breadcrumb = self._make_asset_selection_breadcrumb(
-                is_storehouse=True)
-            self._session._push_breadcrumb(breadcrumb)
-            result = menu._run(clear=clear)
-            if self._session._backtrack():
-                break
-            elif not result:
-                self._session._pop_breadcrumb()
-                continue
-            else:
-                break
-        self._session._pop_breadcrumb()
-        self._session._restore_breadcrumbs(cache=cache)
-        return result
 
     def select_view(
         self,

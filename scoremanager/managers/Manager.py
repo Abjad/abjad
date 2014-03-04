@@ -21,7 +21,7 @@ class Manager(ScoreManagerObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Gets interpreter representation of filesystem assset manager.
+        r'''Gets interpreter representation of filesystem asset manager.
 
         Returns string.
         '''
