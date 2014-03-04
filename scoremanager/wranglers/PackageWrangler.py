@@ -19,12 +19,6 @@ class PackageWrangler(Wrangler):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _current_storehouse_package_path(self):
-        path = self._current_storehouse_path
-        package = self._configuration.path_to_package(path)
-        return package
-
-    @property
     def _temporary_asset_manager(self):
         return self._initialize_asset_manager(
             self._temporary_asset_package_path)

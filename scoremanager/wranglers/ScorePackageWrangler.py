@@ -60,12 +60,6 @@ class ScorePackageWrangler(PackageWrangler):
         else:
             return self._configuration.user_score_packages_directory_path
 
-    @property
-    def _current_storehouse_package_path(self):
-        package = self._configuration.path_to_package(
-            self._current_storehouse_path)
-        return package
-
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self):
