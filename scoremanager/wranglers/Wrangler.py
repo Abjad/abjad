@@ -28,6 +28,17 @@ class Wrangler(ScoreManagerObject):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _current_package_manager(self):
+        from scoremanager import managers
+        directory_path = self._get_current_directory_path_of_interest()
+        if directory_path is None:
+            return
+        return managers.PackageManager(
+            directory_path,
+            session=self._session,
+            )
+
+    @property
     def _current_storehouse_directory_path(self):
         if self._session.is_in_score:
             parts = []
@@ -102,17 +113,6 @@ class Wrangler(ScoreManagerObject):
             directory_path = os.path.join(*parts)
             assert '.' not in directory_path, repr(directory_path)
             return directory_path
-
-    def _get_current_package_manager(self):
-        from scoremanager import managers
-        directory_path = self._get_current_directory_path_of_interest()
-        if directory_path is None:
-            return
-        manager = managers.PackageManager(
-            directory_path,
-            session=self._session,
-            )
-        return manager
 
     def _get_current_view_module_manager(self):
         from scoremanager import managers
@@ -379,24 +379,21 @@ class Wrangler(ScoreManagerObject):
 
         Returns none.
         '''
-        manager = self._get_current_package_manager()
-        manager.add_metadatum()
+        self._current_package_manager.add_metadatum()
 
     def get_metadatum(self):
         r'''Gets metadatum from metadata module.
 
         Returns object.
         '''
-        manager = self._get_current_package_manager()
-        manager.get_metadatum()
+        self._current_package_manager.get_metadatum()
 
     def list_directory(self):
         r'''List directory of current package manager.
         
         Returns none.
         '''
-        manager = self._get_current_package_manager()
-        manager.list_directory()
+        self._current_package_manager.list_directory()
 
     def list_views(
         self,
@@ -507,32 +504,28 @@ class Wrangler(ScoreManagerObject):
 
         Returns none.
         '''
-        manager = self._get_current_package_manager()
-        manager.remove_initializer()
+        self._current_package_manager.remove_initializer()
 
     def remove_metadata_module(self):
         r'''Removes metadata module.
 
         Returns none.
         '''
-        manager = self._get_current_package_manager()
-        manager.remove_metadata_module()
+        self._current_package_manager.remove_metadata_module()
 
     def remove_metadatum(self):
         r'''Removes metadatum from metadata module.
 
         Returns none.
         '''
-        manager = self._get_current_package_manager()
-        manager.remove_metadatum()
+        self._current_package_manager.remove_metadatum()
 
     def remove_views_module(self):
         r'''Removes views module.
 
         Returns none.
         '''
-        manager = self._get_current_package_manager()
-        manager.remove_views_module()
+        self._current_package_manager.remove_views_module()
 
     def rename_asset(
         self,
@@ -556,8 +549,7 @@ class Wrangler(ScoreManagerObject):
 
         Returns none.
         '''
-        manager = self._get_current_package_manager()
-        manager.rewrite_metadata_module(prompt=prompt)
+        self._current_package_manager.rewrite_metadata_module(prompt=prompt)
 
     def run_doctest(self, prompt=True):
         r'''Runs doctest.
@@ -688,24 +680,21 @@ class Wrangler(ScoreManagerObject):
             view_name = selector._run()
         if self._session._backtrack():
             return
-        manager = self._get_current_package_manager()
-        manager._add_metadatum('view_name', view_name)
+        self._current_package_manager._add_metadata('view_name', view_name)
 
     def view_initializer(self):
         r'''Views initializer module.
 
         Returns none.
         '''
-        manager = self._get_current_package_manager()
-        manager.view_initializer()
+        self._current_package_manager.view_initializer()
 
     def view_metadata_module(self):
         r'''Views metadata module.
 
         Returns none.
         '''
-        manager = self._get_current_package_manager()
-        manager.view_metadata_module()
+        self._current_package_manager.view_metadata_module()
 
     def view_views_module(self):
         r'''Views views module.
@@ -720,16 +709,14 @@ class Wrangler(ScoreManagerObject):
 
         Returns none.
         '''
-        manager = self._get_current_package_manager()
-        manager.write_initializer_boilerplate()
+        self._current_package_manager.write_initializer_boilerplate()
 
     def write_initializer_stub(self):
         r'''Writes stub initializer module.
 
         Returns none.
         '''
-        manager = self._get_current_package_manager()
-        manager.write_initializer_stub()
+        self._current_package_manager.write_initializer_stub()
 
     def write_view(self, view_name, new_view, prompt=True):
         r'''Writes view to views module.
