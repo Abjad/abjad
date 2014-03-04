@@ -116,9 +116,13 @@ class MaterialManagerWrangler(PackageWrangler):
 
     def _make_asset_menu_entries(self, head=None):
         names = self._list_asset_names(head=head)
-        paths = self._list_asset_package_paths(head=head)
-        assert len(names) == len(paths)
-        sequences = (names, [None], [None], paths)
+        paths = self._list_asset_paths(head=head)
+        packages = []
+        for path in paths:
+            package = self._configuration.path_to_package(path)
+            packages.append(package)
+        assert len(names) == len(packages)
+        sequences = (names, [None], [None], packages)
         return sequencetools.zip_sequences(sequences, cyclic=True)
 
     def _make_main_menu(self, head=None):
