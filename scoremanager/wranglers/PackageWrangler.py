@@ -138,12 +138,12 @@ class PackageWrangler(Wrangler):
         package_manager.fix(prompt=False)
 
     def _make_asset_menu_entries(self, head=None):
-        names = self._list_asset_names(head=head)
+        names = self._list_visible_asset_names()
         if not names:
             return
         keys = len(names) * [None]
         prepopulated_return_values = len(names) * [None]
-        paths = self._list_visible_asset_paths(head=head)
+        paths = self._list_visible_asset_paths()
         package_paths = []
         for path in paths:
             package_path = self._configuration.path_to_package_path(path)

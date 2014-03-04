@@ -25,8 +25,7 @@ class ScoreManager(ScoreManagerObject):
         self._session._score_manager = self
         wrangler = wranglers.SegmentPackageWrangler(session=self._session)
         self._segment_package_wrangler = wrangler
-        wrangler = wranglers.MaterialManagerWrangler(
-            session=self._session)
+        wrangler = wranglers.MaterialManagerWrangler(session=self._session)
         self._material_manager_wrangler = wrangler
         wrangler = wranglers.MaterialPackageWrangler(session=self._session)
         self._material_package_wrangler = wrangler
@@ -68,7 +67,6 @@ class ScoreManager(ScoreManagerObject):
 
     def _get_next_score_package_name(self):
         wrangler = self._score_package_wrangler
-        #score_package_names = wrangler._list_visible_asset_package_paths()
         paths = wrangler._list_visible_asset_paths()
         score_package_names = []
         for path in paths:
@@ -268,12 +266,12 @@ class ScoreManager(ScoreManagerObject):
 
         Returns none.
         '''
-        path = self._configuration.path_to_package_path(
+        package_path = self._configuration.path_to_package_path(
             self._configuration.abjad_material_packages_directory_path,
             )
         self._material_package_wrangler._run(
             rollback=True, 
-            head=path,
+            head=package_path,
             )
 
     def manage_score(self, score_package_path):
