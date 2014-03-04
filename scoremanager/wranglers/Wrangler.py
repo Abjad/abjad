@@ -541,36 +541,14 @@ class Wrangler(ScoreManagerObject):
 
         Returns none.
         '''
-        path = self._get_current_directory_path_of_interest()
-        command = 'ajv doctest {}'.format(path)
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        if lines:
-            if lines[0] == '':
-                lines.remove('')
-            lines.append('')
-            self._io_manager.display(
-                lines, 
-                capitalize_first_character=False,
-                )
-        self._io_manager.proceed(prompt=prompt)
+        self._current_package_manager.run_doctest(prompt=prompt)
 
     def run_pytest(self, prompt=True):
         r'''Runs py.test.
 
         Returns none.
         '''
-        path = self._get_current_directory_path_of_interest()
-        command = 'py.test -rf {}'.format(path)
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        if lines:
-            lines.append('')
-            self._io_manager.display(
-                lines, 
-                capitalize_first_character=False,
-                )
-        self._io_manager.proceed(prompt=prompt)
+        self._current_package_manager.run_pytest(prompt=prompt)
 
     def select_asset_filesystem_path(
         self, 
