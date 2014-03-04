@@ -333,10 +333,11 @@ class Wrangler(ScoreManagerObject):
         else:
             return 'select {}:'.format(human_readable_target_name)
 
+    # TODO: remove head
     def _make_asset_selection_menu(self, head=None):
         menu = self._io_manager.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
-        asset_menu_entries = self._make_asset_menu_entries(head=head)
+        asset_menu_entries = self._make_asset_menu_entries()
         asset_section.menu_entries = asset_menu_entries
         return menu
 
@@ -594,8 +595,7 @@ class Wrangler(ScoreManagerObject):
             view_name = getter._run()
         if self._session._backtrack():
             return
-        head = self._session.current_score_package_path
-        menu_entries = self._make_asset_menu_entries(head=head)
+        menu_entries = self._make_asset_menu_entries()
         display_strings = [x[0] for x in menu_entries]
         editor = editors.ListEditor(
             session=self._session,

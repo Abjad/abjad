@@ -246,10 +246,11 @@ class SegmentPackageWrangler(PackageWrangler):
         message = 'segment created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
+    # TODO: remove head
     def _make_main_menu(self, head=None):
         main_menu = self._io_manager.make_menu(where=self._where)
         asset_section = main_menu.make_asset_section()
-        asset_menu_entries = self._make_asset_menu_entries(head=head)
+        asset_menu_entries = self._make_asset_menu_entries()
         asset_section.menu_entries = asset_menu_entries
         command_section = main_menu.make_command_section(
             match_on_display_string=False,

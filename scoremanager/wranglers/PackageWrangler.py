@@ -137,7 +137,8 @@ class PackageWrangler(Wrangler):
         package_manager = self._initialize_asset_manager(asset_name)
         package_manager.fix(prompt=False)
 
-    def _make_asset_menu_entries(self, head=None):
+    # TODO: remove head
+    def _make_asset_menu_entries(self):
         names = self._list_visible_asset_names()
         if not names:
             return

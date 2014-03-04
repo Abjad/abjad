@@ -116,9 +116,9 @@ class MaterialManagerWrangler(PackageWrangler):
                 return True
         return False
 
-    def _make_asset_menu_entries(self, head=None):
-        names = self._list_asset_names(head=head)
-        paths = self._list_asset_paths(head=head)
+    def _make_asset_menu_entries(self):
+        names = self._list_asset_names()
+        paths = self._list_asset_paths()
         packages = []
         for path in paths:
             package = self._configuration.path_to_package_path(path)
@@ -127,10 +127,11 @@ class MaterialManagerWrangler(PackageWrangler):
         sequences = (names, [None], [None], packages)
         return sequencetools.zip_sequences(sequences, cyclic=True)
 
+    # TODO: remove head
     def _make_main_menu(self, head=None):
         main_menu = self._io_manager.make_menu(where=self._where)
         asset_section = main_menu.make_asset_section()
-        asset_menu_entries = self._make_asset_menu_entries(head=head)
+        asset_menu_entries = self._make_asset_menu_entries()
         asset_section.menu_entries = asset_menu_entries
         command_section = main_menu.make_command_section()
         command_section.append(('new material manager', 'new'))

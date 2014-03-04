@@ -295,6 +295,7 @@ class StylesheetFileWrangler(Wrangler):
             menu_entries = sequencetools.zip_sequences(sequences, cyclic=True)
         return menu_entries
 
+    # TODO: remove head
     def _make_main_menu(self, head=None):
         main_menu = self._io_manager.make_menu(where=self._where)
         self._main_menu = main_menu

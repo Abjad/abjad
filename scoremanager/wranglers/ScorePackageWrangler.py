@@ -343,11 +343,10 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append((asset_manager._path, title_with_year))
         return result
 
-    def _make_asset_menu_entries(self, head=None):
+    def _make_asset_menu_entries(self):
         menu_pairs = self._list_visible_asset_path_and_score_title_pairs()
         tmp = stringtools.strip_diacritics_from_binary_string
         menu_pairs.sort(key=lambda x: tmp(x[1]))
-        #menu_entries = [(x[1], None, None, x[0]) for x in menu_pairs]
         menu_entries = []
         for menu_pair in menu_pairs:
             path, score_title = menu_pair
