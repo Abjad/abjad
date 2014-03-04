@@ -88,6 +88,14 @@ class Wrangler(ScoreManagerObject):
         return _user_input_to_action
 
     @property
+    def _views_module_manager(self):
+        from scoremanager import managers
+        return managers.FileManager(
+            self._views_module_path,
+            session=self._session,
+            )
+
+    @property
     def _views_module_path(self):
         directory_path = self._get_current_directory_path_of_interest()
         file_path = os.path.join(directory_path, '__views__.py')
@@ -95,10 +103,8 @@ class Wrangler(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
-    def _filesystem_path_to_space_delimited_lowercase_name(
-        self, 
-        filesystem_path,
-        ):
+    @staticmethod
+    def _filesystem_path_to_space_delimited_lowercase_name(filesystem_path):
         filesystem_path = os.path.normpath(filesystem_path)
         asset_name = os.path.basename(filesystem_path)
         if '.' in asset_name:
@@ -113,15 +119,6 @@ class Wrangler(ScoreManagerObject):
             directory_path = os.path.join(*parts)
             assert '.' not in directory_path, repr(directory_path)
             return directory_path
-
-    def _get_current_view_module_manager(self):
-        from scoremanager import managers
-        file_path = self._views_module_path
-        manager = managers.FileManager(
-            file_path,
-            session=self._session,
-            )
-        return manager
 
     @abc.abstractmethod
     def _handle_main_menu_result(self, result):
@@ -251,10 +248,12 @@ class Wrangler(ScoreManagerObject):
 
     def _make_asset(self, asset_name):
         assert stringtools.is_snake_case_string(asset_name)
-        asset_filesystem_path = os.path.join(
-            self._current_storehouse_directory_path, asset_name)
-        asset_manager = self._initialize_asset_manager(asset_filesystem_path)
-        asset_manager._write_stub()
+        path = os.path.join(
+            self._current_storehouse_directory_path, 
+            asset_name,
+            )
+        manager = self._initialize_asset_manager(path)
+        manager._write_stub()
 
     def _make_asset_selection_breadcrumb(
         self, 
@@ -296,35 +295,28 @@ class Wrangler(ScoreManagerObject):
         ):
         from scoremanager import wranglers
         keys, display_strings = [], []
-        keys.append(
-            self.user_storehouse_directory_path)
+        keys.append(self.user_storehouse_directory_path)
         display_strings.append('My {}'.format(self._breadcrumb))
-        wrangler = wranglers.ScorePackageWrangler(
-            session=self._session)
-        for manager in wrangler._list_asset_managers(
+        wrangler = wranglers.ScorePackageWrangler(session=self._session)
+        managers = wrangler._list_asset_managers(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
-            ):
+            )
+        for manager in managers:
             display_strings.append(manager._get_title())
-            path_parts = (manager._filesystem_path,) + \
-                self.score_storehouse_path_infix_parts
+            path_parts = (manager._filesystem_path,)
+            path_parts = path_parts + self.score_storehouse_path_infix_parts
             key = os.path.join(*path_parts)
             keys.append(key)
         sequences = [display_strings, [None], [None], keys]
         return sequencetools.zip_sequences(sequences, cyclic=True)
 
     def _read_view_inventory_from_disk(self):
-        from scoremanager import managers
-        view_file_path = self._views_module_path
-        if view_file_path is None:
+        if self._views_module_path is None:
             return
-        manager = managers.FileManager(
-            view_file_path,
-            session=self._session,
-            )
-        view_inventory = manager._execute(
+        view_inventory = self._views_module_manager._execute(
             return_attribute_name='view_inventory',
             )
         return view_inventory
@@ -537,8 +529,7 @@ class Wrangler(ScoreManagerObject):
         '''
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
-            asset_filesystem_path = \
-                self.select_asset_filesystem_path()
+            asset_filesystem_path = self.select_asset_filesystem_path()
         if self._session._backtrack():
             return
         asset_manager = self._initialize_asset_manager(asset_filesystem_path)
@@ -701,8 +692,7 @@ class Wrangler(ScoreManagerObject):
 
         Returns none.
         '''
-        manager = self._get_current_view_module_manager()
-        manager.edit()
+        self._views_module_manager.edit()
 
     def write_initializer_boilerplate(self):
         r'''Writes boilerplate initializer module.
