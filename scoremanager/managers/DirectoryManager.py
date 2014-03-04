@@ -20,18 +20,12 @@ class DirectoryManager(Manager):
 
     ### PRIVATE PROPERTIES ###
 
-#    @property
-#    def _repository_add_command(self):
-#        return 'cd {} && add'.format(self._path)
-
     @property
     def _user_input_to_action(self):
         superclass = super(DirectoryManager, self)
         _user_input_to_action = superclass._user_input_to_action
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
-#            'ls': self.list,
-#            'll': self.list_long,
             'pwd': self.pwd,
             })
         return _user_input_to_action
