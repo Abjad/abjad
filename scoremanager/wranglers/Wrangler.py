@@ -65,7 +65,7 @@ class Wrangler(ScoreManagerObject):
 
     @property
     def _user_input_to_action(self):
-        _user_input_to_action = {
+        user_input_to_action = {
             'inbp': self.write_initializer_boilerplate,
             'inrm': self.remove_initializer,
             'ins': self.write_initializer_stub,
@@ -77,15 +77,15 @@ class Wrangler(ScoreManagerObject):
             'mdmrm': self.remove_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
             'mdmv': self.view_metadata_module,
-            'ren': self.rename_asset,
-            'rm': self.remove_assets,
+            'ren': self.rename,
+            'rm': self.remove,
             'vwl': self.list_views,
             'vwn': self.make_view,
             'vws': self.select_view,
             'vwmrm': self.remove_views_module,
             'vwmv': self.view_views_module,
             }
-        return _user_input_to_action
+        return user_input_to_action
 
     @property
     def _views_module_manager(self):
@@ -455,10 +455,7 @@ class Wrangler(ScoreManagerObject):
             )
         self.write_view(view_name, view)
 
-    def remove_assets(
-        self, 
-        pending_user_input=None,
-        ):
+    def remove(self, pending_user_input=None):
         r'''Removes assets.
 
         Returns none.
@@ -519,10 +516,7 @@ class Wrangler(ScoreManagerObject):
         '''
         self._current_package_manager.remove_views_module()
 
-    def rename_asset(
-        self,
-        pending_user_input=None,
-        ):
+    def rename(self, pending_user_input=None):
         r'''Renames asset.
 
         Returns none.

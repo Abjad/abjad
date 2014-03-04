@@ -5,7 +5,7 @@ from abjad import *
 import scoremanager
 
 
-def test_StylesheetFileWrangler_remove_assets_01():
+def test_StylesheetFileWrangler_remove_01():
     pytest.skip('FIXME: user asset library stylesheets should show up here.')
 
     score_manager = scoremanager.core.ScoreManager()

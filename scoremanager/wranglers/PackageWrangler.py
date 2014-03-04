@@ -46,7 +46,7 @@ class PackageWrangler(Wrangler):
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
             'new': self.make_asset,
-            'ren': self.rename_asset,
+            'ren': self.rename,
             })
         return _user_input_to_action
 
@@ -287,20 +287,17 @@ class PackageWrangler(Wrangler):
             file_reference.write('')
             file_reference.close()
 
-    def rename_asset(
-        self, 
-        head=None,
-        pending_user_input=None,
-        ):
+    def rename(self, head=None, pending_user_input=None):
         r'''Renames asset.
 
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
-            asset_package_path = \
-                self.select_asset_package_path(
-                head=head, infinitival_phrase='to rename')
+            asset_package_path = self.select_asset_package_path(
+                head=head, 
+                infinitival_phrase='to rename',
+                )
         if self._session._backtrack():
             return
         asset_manager = self._initialize_asset_manager(asset_package_path)
