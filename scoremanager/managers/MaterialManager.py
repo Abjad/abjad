@@ -74,7 +74,7 @@ class MaterialManager(PackageManager):
         from scoremanager import managers
         file_path = os.path.join(self._filesystem_path, 'illustration.ly')
         manager = managers.FileManager(
-            file_path,
+            self._illustration_ly_file_path,
             session=self._session,
             )
         return manager
@@ -91,7 +91,7 @@ class MaterialManager(PackageManager):
         from scoremanager import managers
         file_path = os.path.join(self._filesystem_path, 'illustration.pdf')
         manager = managers.FileManager(
-            file_path,
+            self._illustration_pdf_file_manager,
             session=self._session,
             )
         return manager
@@ -382,10 +382,9 @@ class MaterialManager(PackageManager):
         return result
 
     def _execute_output_material_module(self):
-        manager = self._output_material_module_manager
         output_material = None
         try:
-            output_material = manager._execute(
+            output_material = self._output_material_module_manager._execute(
                 return_attribute_name=self._material_package_name,
                 )
         except:
@@ -613,8 +612,7 @@ class MaterialManager(PackageManager):
         return self._get_metadatum('material_manager_class_name')
 
     def _read_user_input_wrapper_from_disk(self):
-        manager = self._user_input_module_manager
-        result = manager._execute(
+        result = self._user_input_module_manager._execute(
             file_path=self._user_input_module_path,
             return_attribute_name='user_input_wrapper',
             )
@@ -800,8 +798,7 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        manager = self._material_definition_module_manager
-        manager._interpret()
+        self._material_definition_module_manager._interpret()
 
     def load_user_input_wrapper_demo_values(self, prompt=False):
         r'''Loads user input wrapper demo values.
@@ -876,8 +873,7 @@ class MaterialManager(PackageManager):
         Returns none.
         '''
         if os.path.isfile(self._material_definition_module_path):
-            manager = self._material_definition_module_manager
-            manager.remove(prompt=prompt)
+            self._material_definition_module_manager.remove(prompt=prompt)
 
     def remove_output_material_module(self, prompt=True):
         r'''Removes output material module.
@@ -1086,8 +1082,7 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        manager = self._material_definition_module_manager
-        manager.write_boilerplate()
+        self._material_definition_module_manager.write_boilerplate()
 
     def write_material_definition_module_stub(self):
         r'''Writes stub material definition module.
@@ -1153,6 +1148,4 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        manager = self._output_material_module_manager
-        manager.write_boilerplate()
-
+        self._output_material_module_manager.write_boilerplate()
