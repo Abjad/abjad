@@ -274,46 +274,6 @@ class MaterialPackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def _list_asset_package_paths(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset packagesystem paths.
-
-        Lists abjad material package paths:
-
-        ::
-
-            >>> for x in wrangler._list_asset_package_paths(
-            ...     user_library=False, 
-            ...     user_score_packages=False):
-            ...     x
-            'scoremanager.materials.example_articulation_handler'
-            'scoremanager.materials.example_dynamic_handler'
-            'scoremanager.materials.example_markup_inventory'
-            'scoremanager.materials.example_notes'
-            'scoremanager.materials.example_numbers'
-            'scoremanager.materials.example_pitch_range_inventory'
-            'scoremanager.materials.example_sargasso_measures'
-            'red_example_score.materials.magic_numbers'
-            'red_example_score.materials.pitch_range_inventory'
-            'red_example_score.materials.tempo_inventory'
-
-        Returns list.
-        '''
-        superclass = super(MaterialPackageWrangler, self)
-        return superclass._list_asset_package_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            )
-
     def _list_storehouse_paths(
         self,
         abjad_library=True, 

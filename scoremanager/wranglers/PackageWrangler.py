@@ -96,31 +96,6 @@ class PackageWrangler(Wrangler):
             result.append(asset_manager)
         return result
 
-    def _list_asset_package_paths(
-        self,
-        abjad_library=True,
-        user_library=True,
-        abjad_score_packages=True,
-        user_score_packages=True,
-        head=None,
-        ):
-        r'''Lists asset packagesystem paths.
-
-        Returns list.
-        '''
-        result = []
-        for path in self._list_asset_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head):
-            package_path = \
-                self._configuration.path_to_package(
-                    path)
-            result.append(package_path)
-        return result
-
     def _list_storehouse_package_paths(
         self,
         abjad_library=True,

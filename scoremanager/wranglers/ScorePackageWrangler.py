@@ -171,39 +171,6 @@ class ScorePackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def _list_asset_package_paths(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset packagesystem paths.
-
-        Lists abjad score package paths:
-
-        ::
-
-            >>> for x in wrangler._list_asset_package_paths(
-            ...     user_library=False, 
-            ...     user_score_packages=False):
-            ...     x
-            'blue_example_score'
-            'green_example_score'
-            'red_example_score'
-
-        Returns list.
-        '''
-        superclass = super(ScorePackageWrangler, self)
-        return superclass._list_asset_package_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            )
-
     def _list_storehouse_paths(
         self,
         abjad_library=True, 
