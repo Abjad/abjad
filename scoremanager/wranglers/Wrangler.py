@@ -426,12 +426,60 @@ class Wrangler(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
+    def add(self, prompt=True):
+        r'''Adds assets to repository.
+
+        Returns none.
+        '''
+        if hasattr(self, '_list_visible_asset_managers'):
+            managers = self._list_visible_asset_managers()
+        else:
+            managers = self._list_asset_managers(
+                abjad_library=True, 
+                user_library=True,
+                abjad_score_packages=True, 
+                user_score_packages=True,
+                )
+        for manager in managers:
+            manager.add(prompt=False)
+        self._io_manager.proceed(prompt=prompt)
+
     def add_metadatum(self):
         r'''Adds metadatum to metadata module.
 
         Returns none.
         '''
         self._current_package_manager.add_metadatum()
+
+    def commit(self, prompt=True):
+        r'''Commits assets to repository.
+
+        Returns none.
+        '''
+        getter = self._io_manager.make_getter(where=self._where)
+        getter.append_string('commit message')
+        commit_message = getter._run(clear_terminal=False)
+        if self._session._backtrack():
+            return
+        line = 'commit message will be: "{}"\n'.format(commit_message)
+        self._io_manager.display(line)
+        if not self._io_manager.confirm():
+            return
+        if hasattr(self, '_list_visible_asset_managers'):
+            managers = self._list_visible_asset_managers()
+        else:
+            managers = self._list_asset_managers(
+                abjad_library=True, 
+                user_library=True,
+                abjad_score_packages=True, 
+                user_score_packages=True,
+                )
+        for manager in managers:
+            manager.commit(
+                commit_message=commit_message, 
+                prompt=False,
+                )
+        self._io_manager.proceed(prompt=prompt)
 
     def get_metadatum(self):
         r'''Gets metadatum from metadata module.
@@ -636,6 +684,42 @@ class Wrangler(ScoreManagerObject):
         if self._session._backtrack():
             return
         self._current_package_manager._add_metadata('view_name', view_name)
+
+    def status(self, prompt=True):
+        r'''Check asset status in repository.
+
+        Returns none.
+        '''
+        if hasattr(self, '_list_visible_asset_managers'):
+            managers = self._list_visible_asset_managers()
+        else:
+            managers = self._list_asset_managers(
+                abjad_library=True, 
+                user_library=True,
+                abjad_score_packages=True, 
+                user_score_packages=True,
+                )
+        for manager in managers:
+            manager.status(prompt=False)
+        self._io_manager.proceed(prompt=prompt)
+
+    def update(self, prompt=True):
+        r'''Updates assets from repository.
+
+        Returns none.
+        '''
+        if hasattr(self, '_list_visible_asset_managers'):
+            managers = self._list_visible_asset_managers()
+        else:
+            managers = self._list_asset_managers(
+                abjad_library=True, 
+                user_library=True,
+                abjad_score_packages=True, 
+                user_score_packages=True,
+                )
+        for manager in managers:
+            manager.update(prompt=False)
+        self._io_manager.proceed(prompt=prompt)
 
     def view_initializer(self):
         r'''Views initializer module.

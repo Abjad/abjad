@@ -61,7 +61,11 @@ class Manager(ScoreManagerObject):
             'ls': self.list,
             'll': self.list_long,
             'rm': self.remove,
+            'radd': self.add,
+            'rci': self.commit,
             'ren': self.rename,
+            'rup': self.update,
+            'rst': self.status,
             }
         return _user_input_to_action
 
@@ -396,6 +400,7 @@ class Manager(ScoreManagerObject):
     
         Returns none.
         '''
+        print 'STATUS'
         line = self._get_score_package_directory_name()
         line = line + ' ...'
         self._io_manager.display(line, capitalize_first_character=False)
