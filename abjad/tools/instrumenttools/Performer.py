@@ -117,7 +117,7 @@ class Performer(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _one_line_menuing_summary(self):
+    def _one_line_menu_summary(self):
         if not self.instruments:
             result = '{}: no instruments'.format(self.name)
         elif len(self.instruments) == 1 and self.name == \

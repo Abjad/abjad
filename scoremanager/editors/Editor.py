@@ -219,7 +219,7 @@ class Editor(ScoreManagerObject):
             for target_attribute_name in self.target_attribute_names:
                 name = stringtools.string_to_space_delimited_lowercase(
                     target_attribute_name)
-                value = self._io_manager._get_one_line_menuing_summary(
+                value = self._io_manager._get_one_line_menu_summary(
                     getattr(self.target, target_attribute_name))
                 result.append('{}: {}'.format(name, value))
         return result
@@ -310,7 +310,7 @@ class Editor(ScoreManagerObject):
             if hasattr(attribute_value, '__len__') and \
                 not len(attribute_value):
                 attribute_value = None
-            prepopulated_value = self._io_manager._get_one_line_menuing_summary(
+            prepopulated_value = self._io_manager._get_one_line_menu_summary(
                 attribute_value)
             menu_entry = (display_string, key, prepopulated_value)
             result.append(menu_entry)
@@ -341,7 +341,7 @@ class Editor(ScoreManagerObject):
         result = []
         for arg in getattr(target, 'args', []):
             name = stringtools.string_to_space_delimited_lowercase(arg)
-            value = self._io_manager._get_one_line_menuing_summary(getattr(target, arg))
+            value = self._io_manager._get_one_line_menu_summary(getattr(target, arg))
             result.append('{}: {}'.format(name, value))
         return result
 
@@ -349,7 +349,7 @@ class Editor(ScoreManagerObject):
         result = []
         for kwarg in getattr(target, 'kwargs', []):
             name = stringtools.string_to_space_delimited_lowercase(kwarg)
-            value = self._io_manager._get_one_line_menuing_summary(
+            value = self._io_manager._get_one_line_menu_summary(
                 getattr(target, kwarg))
             result.append('{}: {}'.format(name, value))
         return result

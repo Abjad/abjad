@@ -78,5 +78,5 @@ class ClefInventory(TypedList):
         return indicatortools.Clef
 
     @property
-    def _one_line_menuing_summary(self):
+    def _one_line_menu_summary(self):
         return ', '.join([clef.name for clef in self])

@@ -66,11 +66,11 @@ class IOManager(IOManager):
                 self._session._pending_user_input = pending_user_input
 
     @staticmethod
-    def _get_one_line_menuing_summary(expr):
+    def _get_one_line_menu_summary(expr):
         if isinstance(expr, (types.ClassType, abc.ABCMeta, types.TypeType)):
             return expr.__name__
-        elif getattr(expr, '_one_line_menuing_summary', None):
-            return expr._one_line_menuing_summary
+        elif getattr(expr, '_one_line_menu_summary', None):
+            return expr._one_line_menu_summary
         elif isinstance(expr, str):
             return expr
         else:

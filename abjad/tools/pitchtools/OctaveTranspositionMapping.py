@@ -104,11 +104,11 @@ class OctaveTranspositionMapping(TypedList):
         return OctaveTranspositionMappingComponent
 
     @property
-    def _one_line_menuing_summary(self):
+    def _one_line_menu_summary(self):
         name = 'mapping'
         contents = []
         for mapping_component in self:
-            contents.append(mapping_component._one_line_menuing_summary)
+            contents.append(mapping_component._one_line_menu_summary)
         contents_string = ', '.join(contents)
         return '{}: {}'.format(name, contents_string)
 

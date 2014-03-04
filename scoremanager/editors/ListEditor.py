@@ -102,7 +102,7 @@ class ListEditor(Editor):
         result = []
         for item in self.items:
             result.append(
-                self._io_manager._get_one_line_menuing_summary(item))
+                self._io_manager._get_one_line_menu_summary(item))
         return result
 
     ### PUBLIC METHODS ###

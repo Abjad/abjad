@@ -316,7 +316,7 @@ class Tempo(AbjadObject):
             return r'\tempo \default'
 
     @property
-    def _one_line_menuing_summary(self):
+    def _one_line_menu_summary(self):
         return self._lilypond_format.lstrip(r'\tempo ')
 
     @property

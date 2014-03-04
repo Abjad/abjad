@@ -156,7 +156,7 @@ class Instrument(AbjadObject):
         return result
 
     @property
-    def _one_line_menuing_summary(self):
+    def _one_line_menu_summary(self):
         return self.instrument_name
 
     @property

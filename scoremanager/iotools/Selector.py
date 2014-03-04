@@ -40,7 +40,7 @@ class Selector(ScoreManagerObject):
 
     def _change_expr_to_menu_entry(self, expr):
         return (
-            self._io_manager._get_one_line_menuing_summary(expr),
+            self._io_manager._get_one_line_menu_summary(expr),
             None,
             None,
             expr,

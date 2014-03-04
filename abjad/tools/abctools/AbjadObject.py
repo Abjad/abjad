@@ -77,7 +77,7 @@ class AbjadObject(object):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _one_line_menuing_summary(self):
+    def _one_line_menu_summary(self):
         return str(self)
 
     @property

@@ -341,7 +341,7 @@ class PitchRange(AbjadObject):
             return ')'
 
     @property
-    def _one_line_menuing_summary(self):
+    def _one_line_menu_summary(self):
         return self.one_line_named_pitch_repr
 
     @property

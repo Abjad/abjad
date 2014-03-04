@@ -344,17 +344,17 @@ class ScorePackageWrangler(PackageWrangler):
         return result
 
     def _make_asset_menu_entries(self, head=None):
-        menuing_pairs = self._list_visible_asset_path_and_score_title_pairs()
+        menu_pairs = self._list_visible_asset_path_and_score_title_pairs()
         tmp = stringtools.strip_diacritics_from_binary_string
-        menuing_pairs.sort(key=lambda x: tmp(x[1]))
-        #menuing_entries = [(x[1], None, None, x[0]) for x in menuing_pairs]
-        menuing_entries = []
-        for menuing_pair in menuing_pairs:
-            path, score_title = menuing_pair
+        menu_pairs.sort(key=lambda x: tmp(x[1]))
+        #menu_entries = [(x[1], None, None, x[0]) for x in menu_pairs]
+        menu_entries = []
+        for menu_pair in menu_pairs:
+            path, score_title = menu_pair
             package_path = self._configuration.path_to_package_path(path)
             entry = (score_title, None, None, package_path)
-            menuing_entries.append(entry)
-        return menuing_entries
+            menu_entries.append(entry)
+        return menu_entries
 
     def _make_main_menu(self):
         self._io_manager.print_not_yet_implemented()

@@ -68,5 +68,5 @@ class TimeSignatureInventory(TypedList):
         return indicatortools.TimeSignature
 
     @property
-    def _one_line_menuing_summary(self):
+    def _one_line_menu_summary(self):
         return ', '.join([time_signature.pair for time_signature in self])
