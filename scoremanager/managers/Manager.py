@@ -148,7 +148,6 @@ class Manager(ScoreManagerObject):
         return False
 
     def _is_svn_versioned(self, path=None):
-        print 'checking svn versioning ...'
         path = path or self._path
         if path is None:
             return False

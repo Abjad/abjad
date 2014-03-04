@@ -77,8 +77,12 @@ class Wrangler(ScoreManagerObject):
             'mdmrm': self.remove_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
             'mdmv': self.view_metadata_module,
+            'radd': self.add,
+            'rci': self.commit,
             'ren': self.rename,
             'rm': self.remove,
+            'rst': self.status,
+            'rup': self.update,
             'vwl': self.list_views,
             'vwn': self.make_view,
             'vws': self.select_view,
@@ -176,8 +180,6 @@ class Wrangler(ScoreManagerObject):
         user_score_packages=True, 
         head=None,
         ):
-        if hasattr(self, '_list_visible_asset_managers'):
-            return self._list_visible_asset_managers(head=head)
         result = []
         for path in self._list_asset_paths(
             abjad_library=abjad_library,
@@ -245,6 +247,22 @@ class Wrangler(ScoreManagerObject):
                 path = os.path.join(*parts)
                 result.append(path)
         return result
+
+    def _list_visible_asset_managers(
+        self,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
+        head=None,
+        ):
+        return self._list_asset_managers(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            head=head,
+            ) 
 
     def _list_visible_asset_paths(
         self,
@@ -447,15 +465,12 @@ class Wrangler(ScoreManagerObject):
 
         Returns none.
         '''
-        if hasattr(self, '_list_visible_asset_managers'):
-            managers = self._list_visible_asset_managers()
-        else:
-            managers = self._list_asset_managers(
-                abjad_library=True, 
-                user_library=True,
-                abjad_score_packages=True, 
-                user_score_packages=True,
-                )
+        managers = self._list_asset_managers(
+            abjad_library=True, 
+            user_library=True,
+            abjad_score_packages=True, 
+            user_score_packages=True,
+            )
         for manager in managers:
             manager.add(prompt=False)
         self._io_manager.proceed(prompt=prompt)
@@ -481,15 +496,12 @@ class Wrangler(ScoreManagerObject):
         self._io_manager.display(line)
         if not self._io_manager.confirm():
             return
-        if hasattr(self, '_list_visible_asset_managers'):
-            managers = self._list_visible_asset_managers()
-        else:
-            managers = self._list_asset_managers(
-                abjad_library=True, 
-                user_library=True,
-                abjad_score_packages=True, 
-                user_score_packages=True,
-                )
+        managers = self._list_asset_managers(
+            abjad_library=True, 
+            user_library=True,
+            abjad_score_packages=True, 
+            user_score_packages=True,
+            )
         for manager in managers:
             manager.commit(
                 commit_message=commit_message, 
@@ -706,15 +718,12 @@ class Wrangler(ScoreManagerObject):
 
         Returns none.
         '''
-        if hasattr(self, '_list_visible_asset_managers'):
-            managers = self._list_visible_asset_managers()
-        else:
-            managers = self._list_asset_managers(
-                abjad_library=True, 
-                user_library=True,
-                abjad_score_packages=True, 
-                user_score_packages=True,
-                )
+        managers = self._list_asset_managers(
+            abjad_library=True, 
+            user_library=True,
+            abjad_score_packages=True, 
+            user_score_packages=True,
+            )
         for manager in managers:
             manager.status(prompt=False)
         self._io_manager.proceed(prompt=prompt)
@@ -724,15 +733,12 @@ class Wrangler(ScoreManagerObject):
 
         Returns none.
         '''
-        if hasattr(self, '_list_visible_asset_managers'):
-            managers = self._list_visible_asset_managers()
-        else:
-            managers = self._list_asset_managers(
-                abjad_library=True, 
-                user_library=True,
-                abjad_score_packages=True, 
-                user_score_packages=True,
-                )
+        managers = self._list_asset_managers(
+            abjad_library=True, 
+            user_library=True,
+            abjad_score_packages=True, 
+            user_score_packages=True,
+            )
         for manager in managers:
             manager.update(prompt=False)
         self._io_manager.proceed(prompt=prompt)
