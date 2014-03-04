@@ -512,11 +512,11 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                         directory_path,
                         )
                     if head is None or package_path.startswith(head):
-                        filesystem_path = os.path.join(
+                        path = os.path.join(
                             self.abjad_score_packages_directory_path,
                             directory_entry,
                             )
-                        result.append(filesystem_path)
+                        result.append(path)
         if user:
             scores_directory_path = self.user_score_packages_directory_path
             directory_entries = sorted(os.listdir(scores_directory_path))
@@ -524,11 +524,11 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 if directory_entry[0].isalpha():
                     package_path = directory_entry
                     if head is None or package_path.startswith(head):
-                        filesystem_path = os.path.join(
+                        path = os.path.join(
                             self.user_score_packages_directory_path,
                             directory_entry,
                             )
-                        result.append(filesystem_path)
+                        result.append(path)
         return result
 
     def package_exists(self, package_path):
@@ -545,8 +545,8 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         Returns boolean.
         '''
         assert os.path.sep not in package_path
-        filesystem_path = self.package_to_path(package_path)
-        return os.path.exists(filesystem_path)
+        path = self.package_to_path(package_path)
+        return os.path.exists(path)
 
     def package_to_path(
         self, 
@@ -567,7 +567,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             directory_parts = [self.score_manager_directory_path]
             directory_parts += package_path_parts[1:]
         elif package_path_parts[0] == 'scoremanager.materials':
-            directory_parts = [self.abjad_material_packages_filesystem_path]
+            directory_parts = [self.abjad_material_packages_path]
             directory_parts += package_path_parts[1:]
         elif package_path.startswith(self._user_library_directory_name):
             prefix_length = len(self._user_library_directory_name)
@@ -586,31 +586,31 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         else:
             directory_parts = [self.user_score_packages_directory_path]
             directory_parts += package_path_parts[:]
-        filesystem_path = os.path.join(*directory_parts)
-        filesystem_path = os.path.normpath(filesystem_path)
+        path = os.path.join(*directory_parts)
+        path = os.path.normpath(path)
         if is_module:
-            filesystem_path += '.py'
-        return filesystem_path
+            path += '.py'
+        return path
 
-    def path_to_package(self, filesystem_path):
-        r'''Changes `filesystem_path` to package path.
+    def path_to_package(self, path):
+        r'''Changes `path` to package path.
 
         Returns string.
         '''
-        if filesystem_path is None:
+        if path is None:
             return
-        assert isinstance(filesystem_path, str), repr(filesystem_path)
-        filesystem_path = os.path.normpath(filesystem_path)
-        if filesystem_path.endswith('.py'):
-            filesystem_path = filesystem_path[:-3]
-        if filesystem_path.startswith(
+        assert isinstance(path, str), repr(path)
+        path = os.path.normpath(path)
+        if path.endswith('.py'):
+            path = path[:-3]
+        if path.startswith(
             self.abjad_score_packages_directory_path):
             prefix_length = len(self.abjad_score_packages_directory_path) + 1
-        elif filesystem_path.startswith(
+        elif path.startswith(
             self.user_library_material_packages_directory_path):
             prefix_length = \
                 len(self.user_library_material_packages_directory_path) + 1
-            remainder = filesystem_path[prefix_length:]
+            remainder = path[prefix_length:]
             if remainder:
                 remainder = remainder.replace(os.path.sep, '.')
                 result = '{}.{}'.format(
@@ -624,36 +624,36 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                     'material_packages',
                     ])
             return result
-        elif filesystem_path.startswith(
+        elif path.startswith(
             self.user_library_material_managers_directory_path):
             return '.'.join([
                 self._user_library_directory_name,
                 'material_packages',
-                os.path.basename(filesystem_path),
+                os.path.basename(path),
                 ])
-        elif filesystem_path.startswith(
+        elif path.startswith(
             self.abjad_material_managers_directory_path):
             prefix_length = len(self.abjad_root_directory_path) + 1
-        elif filesystem_path.startswith(
+        elif path.startswith(
             self.abjad_material_packages_directory_path):
             prefix_length = len(self.abjad_root_directory_path) + 1
-        elif filesystem_path.startswith(self.score_manager_directory_path):
+        elif path.startswith(self.score_manager_directory_path):
             prefix_length = \
                 len(os.path.dirname(self.score_manager_directory_path)) + 1
-        elif filesystem_path.startswith(
+        elif path.startswith(
             self.user_score_packages_directory_path):
             prefix_length = len(self.user_score_packages_directory_path) + 1
-        elif filesystem_path.startswith(
+        elif path.startswith(
             self.user_library_stylesheets_directory_path):
             prefix_length = \
                 len(os.path.dirname(
                 self.user_library_stylesheets_directory_path)) + 1
-        elif filesystem_path.startswith(self.abjad_stylesheets_directory_path):
+        elif path.startswith(self.abjad_stylesheets_directory_path):
             prefix_length = len(self.abjad_root_directory_path) + 1
         else:
             message = 'can not change filesystem path'
             message += ' to packagesystem path: {!r}.'
-            raise Exception(message.format(filesystem_path))
-        package_path = filesystem_path[prefix_length:]
+            raise Exception(message.format(path))
+        package_path = path[prefix_length:]
         package_path = package_path.replace(os.path.sep, '.')
         return package_path

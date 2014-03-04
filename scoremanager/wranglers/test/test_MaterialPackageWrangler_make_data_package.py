@@ -10,7 +10,7 @@ def test_MaterialPackageWrangler_make_data_package_01():
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materials.testnumbers'
     assert not wrangler._configuration.package_exists(string)
-    filesystem_path = os.path.join(
+    path = os.path.join(
         wrangler._configuration.abjad_material_packages_directory_path,
         'testnumbers',
         )
@@ -18,7 +18,7 @@ def test_MaterialPackageWrangler_make_data_package_01():
     try:
         wrangler.make_data_package(pending_user_input='testnumbers q')
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.managers.MaterialManager(filesystem_path)
+        manager = scoremanager.managers.MaterialManager(path)
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',

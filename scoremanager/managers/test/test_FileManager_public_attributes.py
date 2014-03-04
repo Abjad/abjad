@@ -12,7 +12,7 @@ def test_FileManager_public_attributes_01():
 
     assert file_manager._generic_class_name == 'file'
     assert file_manager._space_delimited_lowercase_name is None
-    assert file_manager._filesystem_path is None
+    assert file_manager._path is None
     assert file_manager._plural_generic_class_name == 'files'
     assert file_manager._repository_add_command is None
     assert file_manager._temporary_asset_name == 'temporary_file.txt'
@@ -24,15 +24,15 @@ def test_FileManager_public_attributes_02():
 
     file_name = 'clean-letter-14.ily'
     configuration = scoremanager.core.ScoreManagerConfiguration()
-    filesystem_path = os.path.join(
+    path = os.path.join(
         configuration.score_manager_directory_path,
         'stylesheets', 
         file_name,
         )
-    file_manager = scoremanager.managers.FileManager(filesystem_path)
+    file_manager = scoremanager.managers.FileManager(path)
 
     assert file_manager._generic_class_name == 'file'
     assert file_manager._space_delimited_lowercase_name == file_name
-    assert file_manager._filesystem_path == filesystem_path
+    assert file_manager._path == path
     assert file_manager._plural_generic_class_name == 'files'
     assert file_manager._temporary_asset_name == 'temporary_file.txt'

@@ -7,11 +7,11 @@ class DistributionDirectoryManager(DirectoryManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, filesystem_path=None, session=None):
-        if filesystem_path is not None:
-            assert filesystem_path.endswith('distribution')
+    def __init__(self, path=None, session=None):
+        if path is not None:
+            assert path.endswith('distribution')
         DirectoryManager.__init__(
             self,
-            filesystem_path=filesystem_path,
+            path=path,
             session=session,
             )

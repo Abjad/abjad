@@ -8,9 +8,9 @@ class ListMaterialManager(MaterialManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, filesystem_path=None, session=None):
+    def __init__(self, path=None, session=None):
         superclass = super(ListMaterialManager, self)
-        superclass.__init__(filesystem_path=filesystem_path, session=session)
+        superclass.__init__(path=path, session=session)
         self._generic_output_name = 'list'
 
     ### PUBLIC METHODS ###

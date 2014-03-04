@@ -9,11 +9,11 @@ class DirectoryManager(Manager):
 
     ### INITIALIZER ###
 
-    def __init__(self, filesystem_path=None, session=None):
+    def __init__(self, path=None, session=None):
         from scoremanager import managers
         superclass = super(DirectoryManager, self)
         superclass.__init__(
-            filesystem_path=filesystem_path,
+            path=path,
             session=session,
             )
         self._asset_manager_class = managers.FileManager
@@ -22,7 +22,7 @@ class DirectoryManager(Manager):
 
     @property
     def _repository_add_command(self):
-        return 'cd {} && add'.format(self._filesystem_path)
+        return 'cd {} && add'.format(self._path)
 
     @property
     def _user_input_to_action(self):
@@ -54,16 +54,16 @@ class DirectoryManager(Manager):
 
     def _list_directory(self, public_entries_only=False):
         result = []
-        if not os.path.exists(self._filesystem_path):
+        if not os.path.exists(self._path):
             return result
         if public_entries_only:
-            for directory_entry in sorted(os.listdir(self._filesystem_path)):
+            for directory_entry in sorted(os.listdir(self._path)):
                 if directory_entry[0].isalpha():
                     if not directory_entry.endswith('.pyc'):
                         if not directory_entry in ('test',):
                             result.append(directory_entry)
         else:
-            for directory_entry in sorted(os.listdir(self._filesystem_path)):
+            for directory_entry in sorted(os.listdir(self._path)):
                 if not directory_entry.startswith('.') and \
                     not directory_entry.endswith('.pyc'):
                     result.append(directory_entry)
@@ -74,7 +74,7 @@ class DirectoryManager(Manager):
         file_names = [x for x in file_names if x[0].isalpha()]
         file_paths = []
         for file_name in file_names:
-            file_path = os.path.join(self._filesystem_path, file_name)
+            file_path = os.path.join(self._path, file_name)
             file_paths.append(file_path)
         display_strings = file_names[:]
         menu_entries = []
@@ -85,7 +85,7 @@ class DirectoryManager(Manager):
 
     def _make_empty_asset(self, prompt=False):
         if not self.exists():
-            os.mkdir(self._filesystem_path)
+            os.mkdir(self._path)
         self._io_manager.proceed(prompt=prompt)
 
     def _make_main_menu(self):
@@ -99,10 +99,10 @@ class DirectoryManager(Manager):
 
     def _run_asset_manager(
         self,
-        filesystem_path,
+        path,
         ):
         manager = self._asset_manager_class(
-            filesystem_path=filesystem_path,
+            path=path,
             session=self._session,
             )
         manager._run()
@@ -115,7 +115,7 @@ class DirectoryManager(Manager):
         Returns none.
         '''
         lines = []
-        lines.append(self._filesystem_path)
+        lines.append(self._path)
         lines.append('')
         self._io_manager.display(lines)
         self._session._hide_next_redraw = True
@@ -127,13 +127,13 @@ class DirectoryManager(Manager):
         '''
         lines = []
         for directory_entry in self._list_directory():
-            filesystem_path = os.path.join(
-                self._filesystem_path, 
+            path = os.path.join(
+                self._path, 
                 directory_entry,
                 )
-            if os.path.isdir(filesystem_path):
+            if os.path.isdir(path):
                 line = directory_entry + '/'
-            elif os.path.isfile(filesystem_path):
+            elif os.path.isfile(path):
                 line = directory_entry
             else:
                 raise TypeError(directory_entry)
@@ -151,7 +151,7 @@ class DirectoryManager(Manager):
         Returns none.
         '''
         command = 'ls -l {}'
-        command = command.format(self._filesystem_path)
+        command = command.format(self._path)
         lines = []
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in process.stdout.readlines()]
@@ -167,7 +167,7 @@ class DirectoryManager(Manager):
 
         Returns none.
         '''
-        command = 'ajv doctest {}'.format(self._filesystem_path)
+        command = 'ajv doctest {}'.format(self._path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
@@ -182,7 +182,7 @@ class DirectoryManager(Manager):
 
         Returns none.
         '''
-        command = 'py.test -rf {}'.format(self._filesystem_path)
+        command = 'py.test -rf {}'.format(self._path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:

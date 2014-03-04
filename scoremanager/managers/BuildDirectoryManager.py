@@ -11,12 +11,12 @@ class BuildDirectoryManager(DirectoryManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, filesystem_path=None, session=None):
-        if filesystem_path is not None:
-            assert filesystem_path.endswith('build')
+    def __init__(self, path=None, session=None):
+        if path is not None:
+            assert path.endswith('build')
         DirectoryManager.__init__(
             self,
-            filesystem_path=filesystem_path,
+            path=path,
             session=session,
             )
 
@@ -81,7 +81,7 @@ class BuildDirectoryManager(DirectoryManager):
     def _get_file_path_ending_with(self, string):
         for file_name in self._list_directory():
             if file_name.endswith(string):
-                file_path = os.path.join(self._filesystem_path, file_name)
+                file_path = os.path.join(self._path, file_name)
                 return file_path
 
     def _make_back_cover_menu_section(self, menu):
@@ -215,7 +215,7 @@ class BuildDirectoryManager(DirectoryManager):
                 directory_entry,
                 )
             target_file_path = os.path.join(
-                self._filesystem_path,
+                self._path,
                 target_file_name,
                 )
             shutil.copyfile(source_file_path, target_file_path)
@@ -254,7 +254,7 @@ class BuildDirectoryManager(DirectoryManager):
                 directory_entry,
                 )
             target_file_path = os.path.join(
-                self._filesystem_path,
+                self._path,
                 target_file_name,
                 )
             shutil.copyfile(source_file_path, target_file_path)

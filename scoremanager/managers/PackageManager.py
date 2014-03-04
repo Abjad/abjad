@@ -10,15 +10,15 @@ class PackageManager(DirectoryManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, filesystem_path=None, session=None):
-        if filesystem_path is not None:
-            assert os.path.sep in filesystem_path
+    def __init__(self, path=None, session=None):
+        if path is not None:
+            assert os.path.sep in path
         DirectoryManager.__init__(
             self,
-            filesystem_path=filesystem_path,
+            path=path,
             session=session,
             )
-        package_path = self._configuration.path_to_package(filesystem_path)
+        package_path = self._configuration.path_to_package(path)
         self._package_path = package_path
 
     ### PRIVATE PROPERTIES ###
@@ -33,12 +33,12 @@ class PackageManager(DirectoryManager):
 
     @property
     def _initializer_file_path(self):
-        if self._filesystem_path is not None:
-            return os.path.join(self._filesystem_path, '__init__.py')
+        if self._path is not None:
+            return os.path.join(self._path, '__init__.py')
 
     @property
     def _metadata_module_path(self):
-        file_path = os.path.join(self._filesystem_path, '__metadata__.py')
+        file_path = os.path.join(self._path, '__metadata__.py')
         return file_path
 
     @property
@@ -47,8 +47,8 @@ class PackageManager(DirectoryManager):
 
     @property
     def _space_delimited_lowercase_name(self):
-        if self._filesystem_path:
-            base_name = os.path.basename(self._filesystem_path)
+        if self._path:
+            base_name = os.path.basename(self._path)
             result = base_name.replace('_', ' ')
             return result
 
@@ -75,7 +75,7 @@ class PackageManager(DirectoryManager):
 
     @property
     def _views_module_path(self):
-        file_path = os.path.join(self._filesystem_path, '__views__.py')
+        file_path = os.path.join(self._path, '__views__.py')
         return file_path
 
     ### PRIVATE METHODS ###
@@ -271,7 +271,7 @@ class PackageManager(DirectoryManager):
 
         Returns none.
         '''
-        base_name = os.path.basename(self._filesystem_path)
+        base_name = os.path.basename(self._path)
         line = 'current name: {}'.format(base_name)
         self._io_manager.display(line)
         getter = self._io_manager.make_getter(where=self._where)
@@ -288,14 +288,14 @@ class PackageManager(DirectoryManager):
         self._io_manager.display(lines)
         if not self._io_manager.confirm():
             return
-        new_directory_path = self._filesystem_path.replace(
+        new_directory_path = self._path.replace(
             base_name,
             new_package_name,
             )
         if self._is_svn_versioned():
             # rename package directory
             command = 'svn mv {} {}'
-            command = command.format(self._filesystem_path, new_directory_path)
+            command = command.format(self._path, new_directory_path)
             self._io_manager.spawn_subprocess(command)
             # commit
             commit_message = 'renamed {} to {}.'
@@ -304,7 +304,7 @@ class PackageManager(DirectoryManager):
                 new_package_name,
                 )
             commit_message = commit_message.replace('_', ' ')
-            parent_directory_path = os.path.dirname(self._filesystem_path)
+            parent_directory_path = os.path.dirname(self._path)
             command = 'svn commit -m {!r} {}'
             command = command.format(
                 commit_message,
@@ -313,7 +313,7 @@ class PackageManager(DirectoryManager):
             self._io_manager.spawn_subprocess(command)
         else:
             command = 'mv {} {}'
-            command = command.format(self._filesystem_path, new_directory_path)
+            command = command.format(self._path, new_directory_path)
             self._io_manager.spawn_subprocess(command)
         # update path name to reflect change
         self._path = new_directory_path

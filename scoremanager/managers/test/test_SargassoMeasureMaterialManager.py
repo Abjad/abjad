@@ -21,7 +21,7 @@ def test_SargassoMeasureMaterialManager_01():
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            filesystem_path=path)
+            path=path)
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -63,7 +63,7 @@ def test_SargassoMeasureMaterialManager_02():
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            filesystem_path=path)
+            path=path)
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -104,7 +104,7 @@ def test_SargassoMeasureMaterialManager_03():
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            filesystem_path=path)
+            path=path)
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -145,7 +145,7 @@ def test_SargassoMeasureMaterialManager_04():
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            filesystem_path=path)
+            path=path)
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -187,7 +187,7 @@ def test_SargassoMeasureMaterialManager_05():
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            filesystem_path=path)
+            path=path)
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -229,7 +229,7 @@ def test_SargassoMeasureMaterialManager_06():
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            filesystem_path=path)
+            path=path)
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -270,7 +270,7 @@ def test_SargassoMeasureMaterialManager_07():
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            filesystem_path=path)
+            path=path)
         assert manager._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -339,7 +339,7 @@ def test_SargassoMeasureMaterialManager_08():
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testsargasso')
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            filesystem_path=path)
+            path=path)
         assert manager._list_directory() == directory_entries
         assert format(Staff(measures))
         output_material = manager._execute_output_material_module()

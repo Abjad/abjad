@@ -62,17 +62,17 @@ class MaterialManagerWrangler(PackageWrangler):
     def _initialize_asset_manager(self, package_path):
         from scoremanager import managers
         if os.path.sep in package_path:
-            filesystem_path = package_path
+            path = package_path
             package_path = self._configuration.path_to_package(package_path)
         else:
-            filesystem_path = self._configuration.package_to_path(package_path)
+            path = self._configuration.package_to_path(package_path)
         material_manager = managers.MaterialManager(
-            filesystem_path=filesystem_path, 
+            path=path, 
             session=self._session,
             )
-        if 'managers' in material_manager._filesystem_path:
+        if 'managers' in material_manager._path:
             most, last = os.path.split(
-                material_manager._filesystem_path)
+                material_manager._path)
             material_manager_class_name = last
         else:
             material_manager_class_name = \
@@ -95,7 +95,7 @@ class MaterialManagerWrangler(PackageWrangler):
                     )
                 exec(command)
             material_manager = material_manager_class(
-                filesystem_path=filesystem_path, 
+                path=path, 
                 session=self._session,
                 )
         return material_manager
@@ -132,7 +132,7 @@ class MaterialManagerWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def _list_asset_filesystem_paths(
+    def _list_asset_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -146,7 +146,7 @@ class MaterialManagerWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler._list_asset_filesystem_paths(
+            >>> for x in wrangler._list_asset_paths(
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
@@ -163,7 +163,7 @@ class MaterialManagerWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialManagerWrangler, self)
-        return superclass._list_asset_filesystem_paths(
+        return superclass._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,

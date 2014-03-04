@@ -87,7 +87,7 @@ from abjad.tools.topleveltools import show
 # import custom exceptions into the builtins module
 import os
 from abjad.tools.systemtools.ImportManager import ImportManager
-ImportManager.import_public_names_from_filesystem_path_into_namespace(
+ImportManager.import_public_names_from_path_into_namespace(
     os.path.join(__path__[0], 'tools', 'exceptiontools'),
     __builtins__,
     )

@@ -7,42 +7,42 @@ class ScorePackageManager(PackageManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, filesystem_path=None, session=None):
+    def __init__(self, path=None, session=None):
         from scoremanager import managers
         from scoremanager import wranglers
-        if filesystem_path is not None:
-            assert os.path.sep in filesystem_path
+        if path is not None:
+            assert os.path.sep in path
         PackageManager.__init__(
             self, 
-            filesystem_path=filesystem_path, 
+            path=path, 
             session=session,
             )
-        package_path = self._configuration.path_to_package(filesystem_path)
+        package_path = self._configuration.path_to_package(path)
         self._package_path = package_path
-        filesystem_path = self._filesystem_path
-        if filesystem_path is not None:
-            filesystem_path = os.path.join(
-                self._filesystem_path, 
+        path = self._path
+        if path is not None:
+            path = os.path.join(
+                self._path, 
                 'build',
                 )
         manager = managers.BuildDirectoryManager(
-            filesystem_path=filesystem_path,
+            path=path,
             session=self._session,
             )
         self._build_directory_manager = manager
-        if filesystem_path is not None:
-            filesystem_path = os.path.join(
-                self._filesystem_path,
+        if path is not None:
+            path = os.path.join(
+                self._path,
                 'distribution',
                 )
         manager = managers.DistributionDirectoryManager(
-            filesystem_path=filesystem_path,
+            path=path,
             session=self._session,
             )
         self._distribution_directory_manager = manager
-        if self._filesystem_path is not None:
+        if self._path is not None:
             instrumentation_module_path = os.path.join(
-                self._filesystem_path,
+                self._path,
                 'instrumentation.py',
                 )
         else:
@@ -60,16 +60,16 @@ class ScorePackageManager(PackageManager):
             wranglers.MaterialManagerWrangler(
             session=self._session,
             )
-        if self._filesystem_path is not None:
-            filesystem_path = os.path.join(
-                self._filesystem_path, 
+        if self._path is not None:
+            path = os.path.join(
+                self._path, 
                 'templates',
                 )
         else:
-            filesystem_path = None
+            path = None
         self._score_template_directory_manager = \
             managers.DirectoryManager(
-            filesystem_path=filesystem_path,
+            path=path,
             session=self._session,
             )
         self._segment_package_wrangler = \
@@ -102,13 +102,13 @@ class ScorePackageManager(PackageManager):
 
     def _get_build_directory_path(self):
         return os.path.join(
-            self._filesystem_path, 
+            self._path, 
             'build',
             )
 
     def _get_distribution_directory_path(self):
         return os.path.join(
-            self._filesystem_path, 
+            self._path, 
             'distribution',
             )
 
@@ -117,32 +117,32 @@ class ScorePackageManager(PackageManager):
 
     def _get_instrumentation_module_path(self):
         file_path = os.path.join(
-            self._filesystem_path,
+            self._path,
             'instrumentation.py',
             )
         return file_path
 
     def _get_materials_directory_path(self):
         return os.path.join(
-            self._filesystem_path, 
+            self._path, 
             'materials',
             )
 
     def _get_segments_directory_path(self):
         return os.path.join(
-            self._filesystem_path, 
+            self._path, 
             'segments',
             )
 
     def _get_stylesheets_directory_path(self):
         return os.path.join(
-            self._filesystem_path, 
+            self._path, 
             'stylesheets',
             )
 
     def _get_templates_directory_path(self):
         return os.path.join(
-            self._filesystem_path, 
+            self._path, 
             'templates',
             )
 
@@ -234,7 +234,7 @@ class ScorePackageManager(PackageManager):
     def _import_instrumentation_from_instrumentation_module(self):
         from scoremanager import managers
         file_path = os.path.join(
-            self._filesystem_path,
+            self._path,
             'instrumentation.py',
             )
         manager = managers.FileManager(

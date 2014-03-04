@@ -61,32 +61,32 @@ class StylesheetFileWrangler(Wrangler):
 
     def _edit_stylesheet(
         self, 
-        filesystem_path,
+        path,
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
         manager = self._asset_manager_class(
-            filesystem_path=filesystem_path, 
+            path=path, 
             session=self._session,
             )
         manager.edit()
 
-    def _filesystem_path_to_annotation(self, filesystem_path):
+    def _path_to_annotation(self, path):
         from scoremanager import managers
         annotation = None
-        if filesystem_path.startswith(
+        if path.startswith(
             self._configuration.abjad_score_packages_directory_path) or \
-            filesystem_path.startswith(
+            path.startswith(
             self._configuration.user_score_packages_directory_path):
             tmp = os.path.join('stylesheets')
-            score_filesystem_path = filesystem_path.rpartition(tmp)[0]
+            score_path = path.rpartition(tmp)[0]
             score_package_manager = managers.ScorePackageManager(
-                filesystem_path=score_filesystem_path)
+                path=score_path)
             annotation = score_package_manager._get_title()
-        elif filesystem_path.startswith(
+        elif path.startswith(
             self._configuration.abjad_stylesheets_directory_path):
             annotation = 'Abjad'
-        elif filesystem_path.startswith(
+        elif path.startswith(
             self._configuration.user_library_stylesheets_directory_path):
             annotation = 'library'
         return annotation
@@ -140,7 +140,7 @@ class StylesheetFileWrangler(Wrangler):
                 return True
         return False
 
-    def _list_asset_filesystem_paths(
+    def _list_asset_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -154,7 +154,7 @@ class StylesheetFileWrangler(Wrangler):
 
         ::
 
-            >>> for x in wrangler._list_asset_filesystem_paths(
+            >>> for x in wrangler._list_asset_paths(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -167,7 +167,7 @@ class StylesheetFileWrangler(Wrangler):
         Returns list.
         '''
         superclass = super(StylesheetFileWrangler, self)
-        return superclass._list_asset_filesystem_paths(
+        return superclass._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -281,17 +281,17 @@ class StylesheetFileWrangler(Wrangler):
             )
 
     def _make_asset_menu_entries(self, head=None, include_extension=False):
-        filesystem_paths = self._list_asset_filesystem_paths(head=head)
+        paths = self._list_asset_paths(head=head)
         display_strings = []
-        for filesystem_path in filesystem_paths:
-            display_string = os.path.basename(filesystem_path)
-            annotation = self._filesystem_path_to_annotation(filesystem_path)
+        for path in paths:
+            display_string = os.path.basename(path)
+            annotation = self._path_to_annotation(path)
             if annotation:
                 display_string = '{} ({})'.format(display_string, annotation)
             display_strings.append(display_string)
         menu_entries = []
         if display_strings:
-            sequences = (display_strings, [None], [None], filesystem_paths)
+            sequences = (display_strings, [None], [None], paths)
             menu_entries = sequencetools.zip_sequences(sequences, cyclic=True)
         return menu_entries
 

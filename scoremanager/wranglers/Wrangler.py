@@ -49,7 +49,7 @@ class Wrangler(ScoreManagerObject):
             return self.abjad_storehouse_path
 
     @property
-    def _temporary_asset_filesystem_path(self):
+    def _temporary_asset_path(self):
         return os.path.join(
             self._current_storehouse_path, 
             self._temporary_asset_name)
@@ -57,7 +57,7 @@ class Wrangler(ScoreManagerObject):
     @property
     def _temporary_asset_manager(self):
         return self._initialize_asset_manager(
-            self._temporary_asset_filesystem_path)
+            self._temporary_asset_path)
 
     @abc.abstractproperty
     def _temporary_asset_name(self):
@@ -104,9 +104,9 @@ class Wrangler(ScoreManagerObject):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _filesystem_path_to_space_delimited_lowercase_name(filesystem_path):
-        filesystem_path = os.path.normpath(filesystem_path)
-        asset_name = os.path.basename(filesystem_path)
+    def _path_to_space_delimited_lowercase_name(path):
+        path = os.path.normpath(path)
+        asset_name = os.path.basename(path)
         if '.' in asset_name:
             asset_name = asset_name[:asset_name.rindex('.')]
         return stringtools.string_to_space_delimited_lowercase(asset_name)
@@ -124,10 +124,10 @@ class Wrangler(ScoreManagerObject):
     def _handle_main_menu_result(self, result):
         pass
 
-    def _initialize_asset_manager(self, filesystem_path):
-        assert os.path.sep in filesystem_path, repr(filesystem_path)
+    def _initialize_asset_manager(self, path):
+        assert os.path.sep in path, repr(path)
         return self._asset_manager_class(
-            filesystem_path=filesystem_path, 
+            path=path, 
             session=self._session,
             )
 
@@ -137,7 +137,7 @@ class Wrangler(ScoreManagerObject):
                 return True
         return False
 
-    def _list_asset_filesystem_paths(
+    def _list_asset_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -179,13 +179,13 @@ class Wrangler(ScoreManagerObject):
         if hasattr(self, '_list_visible_asset_managers'):
             return self._list_visible_asset_managers(head=head)
         result = []
-        for filesystem_path in self._list_asset_filesystem_paths(
+        for path in self._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             head=head):
-            asset_manager = self._initialize_asset_manager(filesystem_path)
+            asset_manager = self._initialize_asset_manager(path)
             result.append(asset_manager)
         return result
 
@@ -199,7 +199,7 @@ class Wrangler(ScoreManagerObject):
         include_extension=False,
         ):
         result = []
-        for filesystem_path in self._list_asset_filesystem_paths(
+        for path in self._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -207,11 +207,11 @@ class Wrangler(ScoreManagerObject):
             head=head,
             ):
             if include_extension:
-                result.append(os.path.basename(filesystem_path))
+                result.append(os.path.basename(path))
             else:
                 result.append(
-                    self._filesystem_path_to_space_delimited_lowercase_name(
-                        filesystem_path))
+                    self._path_to_space_delimited_lowercase_name(
+                        path))
         return result
 
     def _list_storehouse_paths(
@@ -242,8 +242,8 @@ class Wrangler(ScoreManagerObject):
                 parts = [directory_path]
                 if self.score_storehouse_path_infix_parts:
                     parts.extend(self.score_storehouse_path_infix_parts)
-                filesystem_path = os.path.join(*parts)
-                result.append(filesystem_path)
+                path = os.path.join(*parts)
+                result.append(path)
         return result
 
     def _make_asset(self, asset_name):
@@ -306,7 +306,7 @@ class Wrangler(ScoreManagerObject):
             )
         for manager in managers:
             display_strings.append(manager._get_title())
-            path_parts = (manager._filesystem_path,)
+            path_parts = (manager._path,)
             path_parts = path_parts + self.score_storehouse_path_infix_parts
             key = os.path.join(*path_parts)
             keys.append(key)
@@ -475,9 +475,9 @@ class Wrangler(ScoreManagerObject):
         for asset_number in result:
             asset_index = asset_number - 1
             menu_entry = asset_section.menu_entries[asset_index]
-            asset_filesystem_path = menu_entry.return_value
+            asset_path = menu_entry.return_value
             asset_manager = self._initialize_asset_manager(
-                asset_filesystem_path)
+                asset_path)
             asset_manager._remove()
             total_assets_removed += 1
         if total_assets_removed == 1:
@@ -523,10 +523,10 @@ class Wrangler(ScoreManagerObject):
         '''
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
-            asset_filesystem_path = self.select_asset_filesystem_path()
+            asset_path = self.select_asset_path()
         if self._session._backtrack():
             return
-        asset_manager = self._initialize_asset_manager(asset_filesystem_path)
+        asset_manager = self._initialize_asset_manager(asset_path)
         asset_manager.rename()
 
     def rewrite_metadata_module(self, prompt=True):
@@ -550,7 +550,7 @@ class Wrangler(ScoreManagerObject):
         '''
         self._current_package_manager.run_pytest(prompt=prompt)
 
-    def select_asset_filesystem_path(
+    def select_asset_path(
         self, 
         clear=True, 
         cache=False,

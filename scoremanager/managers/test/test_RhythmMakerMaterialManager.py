@@ -37,7 +37,7 @@ def test_RhythmMakerMaterialManager_01():
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testrhythmmaker')
         manager = scoremanager.managers.RhythmMakerMaterialManager(
-            filesystem_path=path)
+            path=path)
         assert manager._list_directory() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == maker

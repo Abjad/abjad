@@ -10,12 +10,12 @@ def test_ScorePackageManager_read_only_attributes_01():
     '''
 
     string = 'scoremanager.scores.red_example_score'
-    filesystem_path = os.path.join(
+    path = os.path.join(
         configuration.abjad_score_packages_directory_path,
         'red_example_score',
         )
     package_manager = scoremanager.managers.ScorePackageManager(
-        filesystem_path=filesystem_path)
+        path=path)
 
     assert isinstance(
         package_manager._segment_package_wrangler, 

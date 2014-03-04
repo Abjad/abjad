@@ -19,12 +19,12 @@ class MaterialManager(PackageManager):
 
             >>> import os
             >>> configuration = scoremanager.core.ScoreManagerConfiguration()
-            >>> filesystem_path = os.path.join(
+            >>> path = os.path.join(
             ...     configuration.abjad_material_packages_directory_path,
             ...     'example_numbers',
             ...     )
             >>> manager = scoremanager.managers.MaterialManager(
-            ...     filesystem_path=filesystem_path,
+            ...     path=path,
             ...     )
             >>> manager
             MaterialManager('.../materials/example_numbers')
@@ -33,12 +33,12 @@ class MaterialManager(PackageManager):
 
     ### INTIALIZER ###
 
-    def __init__(self, filesystem_path=None, session=None):
-        if filesystem_path is not None:
-            assert os.path.sep in filesystem_path
+    def __init__(self, path=None, session=None):
+        if path is not None:
+            assert os.path.sep in path
         PackageManager.__init__(
             self,
-            filesystem_path=filesystem_path,
+            path=path,
             session=session,
             )
         self._generic_output_name = None
@@ -65,14 +65,14 @@ class MaterialManager(PackageManager):
     @property
     def _illustration_builder_module_path(self):
         return os.path.join(
-            self._filesystem_path, 
+            self._path, 
             'illustration_builder.py',
             )
 
     @property
     def _illustration_ly_file_manager(self):
         from scoremanager import managers
-        file_path = os.path.join(self._filesystem_path, 'illustration.ly')
+        file_path = os.path.join(self._path, 'illustration.ly')
         manager = managers.FileManager(
             self._illustration_ly_file_path,
             session=self._session,
@@ -82,14 +82,14 @@ class MaterialManager(PackageManager):
     @property
     def _illustration_ly_file_path(self):
         return os.path.join(
-            self._filesystem_path, 
+            self._path, 
             'illustration.ly',
             )
 
     @property
     def _illustration_pdf_file_manager(self):
         from scoremanager import managers
-        file_path = os.path.join(self._filesystem_path, 'illustration.pdf')
+        file_path = os.path.join(self._path, 'illustration.pdf')
         manager = managers.FileManager(
             self._illustration_pdf_file_manager,
             session=self._session,
@@ -99,7 +99,7 @@ class MaterialManager(PackageManager):
     @property
     def _illustration_pdf_file_path(self):
         return os.path.join(
-            self._filesystem_path, 
+            self._path, 
             'illustration.pdf',
             )
 
@@ -114,14 +114,14 @@ class MaterialManager(PackageManager):
     @property
     def _material_definition_module_path(self):
         path = os.path.join(
-            self._filesystem_path, 
+            self._path, 
             'material_definition.py',
             )
         return path
 
     @property
     def _material_package_name(self):
-        return os.path.basename(self._filesystem_path)
+        return os.path.basename(self._path)
 
     @property
     def _output_material_module_import_statements_and_material_definition(
@@ -178,7 +178,7 @@ class MaterialManager(PackageManager):
 
     @property
     def _output_material_module_path(self):
-        return os.path.join(self._filesystem_path, 'output_material.py')
+        return os.path.join(self._path, 'output_material.py')
 
     @property
     def _should_have_material_definition_module(self):
@@ -203,7 +203,7 @@ class MaterialManager(PackageManager):
     @property
     def _user_input_module_path(self):
         if self._should_have_user_input_module:
-            return os.path.join(self._filesystem_path, 'user_input.py')
+            return os.path.join(self._path, 'user_input.py')
 
     @property
     def _user_input_to_action(self):
@@ -898,7 +898,7 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        base_name = os.path.basename(self._filesystem_path)
+        base_name = os.path.basename(self._path)
         line = 'current name: {}'.format(base_name)
         self._io_manager.display(line)
         getter = self._io_manager.make_getter(where=self._where)
@@ -913,7 +913,7 @@ class MaterialManager(PackageManager):
         self._io_manager.display(lines)
         if not self._io_manager.confirm():
             return
-        old_directory_path = self._filesystem_path
+        old_directory_path = self._path
         new_directory_path = old_directory_path.replace(
             base_name,
             new_package_name,
@@ -927,7 +927,7 @@ class MaterialManager(PackageManager):
             command = 'svn mv {} {}'
         elif self._is_svn_versioned():
             command = 'mv {} {}'
-        command = command.format(self._filesystem_path, new_directory_path)
+        command = command.format(self._path, new_directory_path)
         self._io_manager.spawn_subprocess(command)
         self._path = new_directory_path
         for directory_entry in os.listdir(new_directory_path):
@@ -954,7 +954,7 @@ class MaterialManager(PackageManager):
                 )
             self._io_manager.spawn_subprocess(command)
         elif is_svn_versioned:
-            parent_directory_path = os.path.dirname(self._filesystem_path)
+            parent_directory_path = os.path.dirname(self._path)
             command = 'svn commit -m "{}" {}'
             command = command.format(commit_message, parent_directory_path)
             self._io_manager.spawn_subprocess(command)
@@ -970,7 +970,7 @@ class MaterialManager(PackageManager):
             session=self._session)
         with self._backtracking:
             stylesheet_file_path = \
-                stylesheet_file_wrangler.select_asset_filesystem_path()
+                stylesheet_file_wrangler.select_asset_path()
         if self._session._backtrack():
             return
         self._stylesheet_file_path_in_memory = stylesheet_file_path
@@ -1041,7 +1041,7 @@ class MaterialManager(PackageManager):
         line += 'make_basic_lilypond_file(score)\n'
         lines.append(line)
         file_path = os.path.join(
-            self._filesystem_path,
+            self._path,
             'illustration_builder.py',
             )
         with file(file_path, 'w') as file_pointer:
@@ -1134,7 +1134,7 @@ class MaterialManager(PackageManager):
         lines.extend(output_material_module_body_lines)
         lines = ''.join(lines)
         manager = self._output_material_module_manager
-        with file(manager._filesystem_path, 'w') as file_pointer:
+        with file(manager._path, 'w') as file_pointer:
             file_pointer.write(lines)
         self._add_metadatum('is_material_package', True)
         if hasattr(self, '_generic_output_name'):

@@ -35,7 +35,7 @@ class PackageWrangler(Wrangler):
 
     @property
     def _temporary_asset_package_path(self):
-        path = self._temporary_asset_filesystem_path
+        path = self._temporary_asset_path
         package = self._configuration.path_to_package(path)
         return package
 
@@ -55,12 +55,12 @@ class PackageWrangler(Wrangler):
     def _handle_main_menu_result(self, result):
         self._io_manager.print_not_yet_implemented()
 
-    def _initialize_asset_manager(self, filesystem_path):
-        if os.path.sep not in filesystem_path:
-            filesystem_path = self._configuration.package_to_path(
-                filesystem_path)
+    def _initialize_asset_manager(self, path):
+        if os.path.sep not in path:
+            path = self._configuration.package_to_path(
+                path)
         manager = self._asset_manager_class(
-            filesystem_path=filesystem_path, 
+            path=path, 
             session=self._session,
             )
         return manager
@@ -109,7 +109,7 @@ class PackageWrangler(Wrangler):
         Returns list.
         '''
         result = []
-        for filesystem_path in self._list_asset_filesystem_paths(
+        for path in self._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -117,7 +117,7 @@ class PackageWrangler(Wrangler):
             head=head):
             package_path = \
                 self._configuration.path_to_package(
-                    filesystem_path)
+                    path)
             result.append(package_path)
         return result
 
@@ -134,7 +134,7 @@ class PackageWrangler(Wrangler):
         '''
         result = []
         superclass = super(PackageWrangler, self)
-        for filesystem_path in \
+        for path in \
             superclass._list_storehouse_paths(
             abjad_library=True,
             user_library=True,
@@ -143,7 +143,7 @@ class PackageWrangler(Wrangler):
             ):
             package_path = \
                 self._configuration.path_to_package(
-                filesystem_path)
+                path)
             result.append(package_path)
         return result
 
@@ -169,9 +169,9 @@ class PackageWrangler(Wrangler):
 
     def _make_asset(self, asset_name):
         assert stringtools.is_snake_case_package_name(asset_name)
-        asset_filesystem_path = os.path.join(
+        asset_path = os.path.join(
             self._current_storehouse_path, asset_name)
-        os.mkdir(asset_filesystem_path)
+        os.mkdir(asset_path)
         package_manager = self._initialize_asset_manager(asset_name)
         package_manager.fix(prompt=False)
 

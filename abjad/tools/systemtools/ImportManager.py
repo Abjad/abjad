@@ -69,7 +69,7 @@ class ImportManager(object):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def import_public_names_from_filesystem_path_into_namespace(
+    def import_public_names_from_path_into_namespace(
         path,
         namespace,
         delete_systemtools=True,
@@ -139,7 +139,7 @@ class ImportManager(object):
 
         The function will work for any package laid out like Abjad packages.
         '''
-        ImportManager.import_public_names_from_filesystem_path_into_namespace(
+        ImportManager.import_public_names_from_path_into_namespace(
             path,
             namespace,
             delete_systemtools=delete_systemtools,

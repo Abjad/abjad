@@ -10,11 +10,11 @@ def test_MaterialManager_read_only_attributes_01():
     '''
 
     string = 'scoremanager.materials.example_numbers'
-    filesystem_path = os.path.join(
+    path = os.path.join(
         configuration.abjad_material_packages_directory_path,
         'example_numbers',
         )
-    manager = scoremanager.managers.MaterialManager(filesystem_path)
+    manager = scoremanager.managers.MaterialManager(path)
     assert manager._breadcrumb == 'example numbers'
     assert os.path.isfile(manager._material_definition_module_path)
     assert not manager._read_material_manager_class_name()
@@ -27,12 +27,12 @@ def test_MaterialManager_read_only_attributes_02():
     '''
 
     string = 'scoremanager.materials.example_sargasso_measures'
-    filesystem_path = os.path.join(
+    path = os.path.join(
         configuration.abjad_material_packages_directory_path,
         'example_sargasso_measures',
         )
     manager = scoremanager.managers.SargassoMeasureMaterialManager(
-        filesystem_path=filesystem_path,    
+        path=path,    
         )
     assert manager._breadcrumb == 'example sargasso measures'
     assert not os.path.isfile(manager._material_definition_module_path)
@@ -44,11 +44,11 @@ def test_MaterialManager_read_only_attributes_03():
     '''
 
     string = 'scoremanager.materials.example_notes'
-    filesystem_path = os.path.join(
+    path = os.path.join(
         configuration.abjad_material_packages_directory_path,
         'example_notes',
         )
-    manager = scoremanager.managers.MaterialManager(filesystem_path)
+    manager = scoremanager.managers.MaterialManager(path)
     assert manager._breadcrumb == 'example notes'
     assert not manager._read_material_manager_class_name()
     file_path = os.path.join(

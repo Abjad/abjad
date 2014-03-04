@@ -494,7 +494,7 @@ class Session(abctools.AbjadObject):
         from scoremanager import managers
         if self.is_in_score:
             return managers.ScorePackageManager(
-                filesystem_path=self.current_score_directory_path,
+                path=self.current_score_directory_path,
                 session=self,
                 )
 

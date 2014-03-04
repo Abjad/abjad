@@ -160,7 +160,7 @@ class Selector(ScoreManagerObject):
         items = []
         for directory_path in storehouse_paths:
             manager = managers.DirectoryManager(
-                filesystem_path=directory_path,
+                path=directory_path,
                 session=session,
                 )
             entries = manager._list_directory(public_entries_only=True)

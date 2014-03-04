@@ -18,9 +18,9 @@ class FileManager(Manager):
 
     ### INITIALIZER ###
 
-    def __init__(self, filesystem_path=None, session=None):
+    def __init__(self, path=None, session=None):
         superclass = super(FileManager, self)
-        superclass.__init__(filesystem_path=filesystem_path, session=session)
+        superclass.__init__(path=path, session=session)
         self._generic_class_name = 'file'
 
     ### PRIVATE PROPERTIES ###
@@ -40,8 +40,8 @@ class FileManager(Manager):
     ### PRIVATE METHODS ###
 
     def _get_space_delimited_lowercase_name(self):
-        if self._filesystem_path:
-            base_name = os.path.basename(self._filesystem_path)
+        if self._path:
+            base_name = os.path.basename(self._path)
             name = base_name.strip('.py')
             name = stringtools.string_to_space_delimited_lowercase(name)
             return name
@@ -53,7 +53,7 @@ class FileManager(Manager):
             self.edit()
 
     def _execute(self, file_path=None, return_attribute_name=None):
-        file_path = file_path or self._filesystem_path
+        file_path = file_path or self._path
         if os.path.isfile(file_path):
             file_pointer = open(file_path, 'r')
             file_contents_string = file_pointer.read()
@@ -76,26 +76,26 @@ class FileManager(Manager):
                 return result
 
     def _interpret(self, prompt=True):
-        command = 'python {}'.format(self._filesystem_path)
+        command = 'python {}'.format(self._path)
         self._io_manager.spawn_subprocess(command)
         message = 'file interpreted.'
         self._io_manager.proceed(message, prompt=prompt)
 
     def _interpret_in_external_process(self):
-        command = 'python {}'.format(self._filesystem_path)
+        command = 'python {}'.format(self._path)
         result = self._io_manager.spawn_subprocess(command)
         if result != 0:
             self._io_manager.display('')
             self._io_manager.proceed()
 
     def _is_editable(self):
-        if self._filesystem_path.endswith(('.tex', '.py')):
+        if self._path.endswith(('.tex', '.py')):
             return True
         return False
 
     def _make_empty_asset(self, prompt=False):
-        if not os.path.exists(self._filesystem_path):
-            file_reference = file(self._filesystem_path, 'w')
+        if not os.path.exists(self._path):
+            file_reference = file(self._path, 'w')
             file_reference.write('')
             file_reference.close()
         self._io_manager.proceed(prompt=prompt)
@@ -109,19 +109,19 @@ class FileManager(Manager):
             command_section.default_index = len(command_section) - 1
         command_section.append(('rename', 'ren'))
         command_section.append(('remove', 'rm'))
-        if self._filesystem_path.endswith('.py'):
+        if self._path.endswith('.py'):
             command_section.append(('run', 'run'))
-        if self._filesystem_path.endswith('.tex'):
+        if self._path.endswith('.tex'):
             command_section.append(('typeset', 'ts'))
-        if self._filesystem_path.endswith('.pdf'):
+        if self._path.endswith('.pdf'):
             command_section.append(('view', 'v'))
         return main_menu
 
     def _read_lines(self):
         result = []
-        if self._filesystem_path:
-            if os.path.exists(self._filesystem_path):
-                file_pointer = file(self._filesystem_path)
+        if self._path:
+            if os.path.exists(self._path):
+                file_pointer = file(self._path)
                 result.extend(file_pointer.readlines())
                 file_pointer.close()
         return result
@@ -135,12 +135,12 @@ class FileManager(Manager):
         if os.path.exists(boilerplate_file_abjad_asset_name):
             shutil.copyfile(
                 boilerplate_file_abjad_asset_name,
-                self._filesystem_path,
+                self._path,
                 )
             return True
 
     def _write_stub(self):
-        file_pointer = open(self._filesystem_path, 'w')
+        file_pointer = open(self._path, 'w')
         file_pointer.write('# -*- encoding: utf-8 -*-')
         file_pointer.close()
 
@@ -160,9 +160,9 @@ class FileManager(Manager):
             raise ValueError(message)
         command = '{} {}'.format(
             executable,
-            self._filesystem_path,
+            self._path,
             )
-        input_directory = os.path.dirname(self._filesystem_path)
+        input_directory = os.path.dirname(self._path)
         with systemtools.TemporaryDirectoryChange(input_directory):
             self._io_manager.spawn_subprocess(command)
         self._io_manager.proceed('', prompt=prompt)
@@ -173,7 +173,7 @@ class FileManager(Manager):
         Returns none.
         '''
         self._io_manager.edit(
-            self._filesystem_path,
+            self._path,
             line_number=line_number,
             )
 
@@ -182,15 +182,15 @@ class FileManager(Manager):
 
         Returns none.
         '''
-        self._io_manager.open_file(self._filesystem_path)
+        self._io_manager.open_file(self._path)
 
     def typeset_tex_file(self, prompt=True):
         r'''Typesets TeX file.
 
         Returns none.
         '''
-        input_directory = os.path.dirname(self._filesystem_path)
-        basename = os.path.basename(self._filesystem_path)
+        input_directory = os.path.dirname(self._path)
+        basename = os.path.basename(self._path)
         input_file_name_stem, extension = os.path.splitext(basename)
         output_directory = input_directory
         command = 'pdflatex --jobname={} -output-directory={} {}/{}.tex'
@@ -213,7 +213,7 @@ class FileManager(Manager):
 
         Returns none.
         '''
-        self._io_manager.view(self._filesystem_path)
+        self._io_manager.view(self._path)
 
     def write_boilerplate(
         self, 

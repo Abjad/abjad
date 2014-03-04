@@ -9,30 +9,30 @@ def test_FileManager_rename_01():
     '''
 
     configuration = scoremanager.core.ScoreManagerConfiguration()
-    filesystem_path = os.path.join(
+    path = os.path.join(
         configuration.score_manager_directory_path, 
         'test_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(
-        filesystem_path=filesystem_path)
-    assert not os.path.exists(filesystem_path)
+        path=path)
+    assert not os.path.exists(path)
 
     try:
         file_manager._make_empty_asset()
-        assert os.path.exists(filesystem_path)
-        new_filesystem_path = os.path.join(
+        assert os.path.exists(path)
+        new_path = os.path.join(
             configuration.score_manager_directory_path, 
             'new_test_file.txt',
             )
         file_manager.rename(
             pending_user_input='new_test_file.txt y q')
-        assert file_manager._filesystem_path == new_filesystem_path
-        assert not os.path.exists(filesystem_path)
-        assert os.path.exists(new_filesystem_path)
+        assert file_manager._path == new_path
+        assert not os.path.exists(path)
+        assert os.path.exists(new_path)
     finally:
         file_manager._remove()
-        assert not os.path.exists(filesystem_path)
-        assert not os.path.exists(new_filesystem_path)
+        assert not os.path.exists(path)
+        assert not os.path.exists(new_path)
 
 
 def test_FileManager_rename_02():
@@ -40,29 +40,29 @@ def test_FileManager_rename_02():
     '''
 
     configuration = scoremanager.core.ScoreManagerConfiguration()
-    filesystem_path = os.path.join(
+    path = os.path.join(
         configuration.score_manager_directory_path, 
         'test_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(
-        filesystem_path=filesystem_path)
-    assert not os.path.exists(filesystem_path)
+        path=path)
+    assert not os.path.exists(path)
 
     try:
         file_manager._make_empty_asset()
-        assert os.path.exists(filesystem_path)
+        assert os.path.exists(path)
         file_manager.add_assets_to_repository()
         assert file_manager._is_git_added()
         assert not file_manager._is_git_versioned()
-        new_filesystem_path = os.path.join(
+        new_path = os.path.join(
             configuration.score_manager_directory_path, 
             'new_test_file.txt',
             )
         string = 'new_test_file.txt y q'
         file_manager.rename(pending_user_input=string)
-        assert file_manager._filesystem_path == new_filesystem_path
-        assert os.path.exists(new_filesystem_path)
+        assert file_manager._path == new_path
+        assert os.path.exists(new_path)
     finally:
         file_manager._remove()
-        assert not os.path.exists(filesystem_path)
-        assert not os.path.exists(new_filesystem_path)
+        assert not os.path.exists(path)
+        assert not os.path.exists(new_path)

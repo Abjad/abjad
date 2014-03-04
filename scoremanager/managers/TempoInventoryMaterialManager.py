@@ -7,9 +7,9 @@ class TempoInventoryMaterialManager(MaterialManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, filesystem_path=None, session=None):
+    def __init__(self, path=None, session=None):
         superclass = super(TempoInventoryMaterialManager, self)
-        superclass.__init__(filesystem_path=filesystem_path, session=session)
+        superclass.__init__(path=path, session=session)
         self._generic_output_name = 'tempo inventory'
         self._output_material_module_import_statements = [
             'from abjad import *',

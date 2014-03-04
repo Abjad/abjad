@@ -12,10 +12,10 @@ class Manager(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, filesystem_path=None, session=None):
+    def __init__(self, path=None, session=None):
         ScoreManagerObject.__init__(self, session=session)
-        assert filesystem_path is None or os.path.sep in filesystem_path
-        self._filesystem_path = filesystem_path
+        assert path is None or os.path.sep in path
+        self._path = path
         self._generic_class_name = 'asset'
 
     ### SPECIAL METHODS ###
@@ -25,14 +25,14 @@ class Manager(ScoreManagerObject):
 
         Returns string.
         '''
-        return '{}({!r})'.format(type(self).__name__, self._filesystem_path)
+        return '{}({!r})'.format(type(self).__name__, self._path)
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
-        if self._filesystem_path:
-            return os.path.basename(self._filesystem_path)
+        if self._path:
+            return os.path.basename(self._path)
         return self._space_delimited_lowercase_class_name
 
     @property
@@ -41,18 +41,18 @@ class Manager(ScoreManagerObject):
 
     @property
     def _repository_add_command(self):
-        if not self._filesystem_path:
+        if not self._path:
             return
-        parent_directory_path = os.path.dirname(self._filesystem_path)
-        if self._is_git_versioned(filesystem_path=parent_directory_path):
-            return 'git add {}'.format(self._filesystem_path)
-        elif self._is_svn_versioned(filesystem_path=parent_diretory_path):
-            return 'svn add {}'.format(self._filesystem_path)
+        parent_directory_path = os.path.dirname(self._path)
+        if self._is_git_versioned(path=parent_directory_path):
+            return 'git add {}'.format(self._path)
+        elif self._is_svn_versioned(path=parent_diretory_path):
+            return 'svn add {}'.format(self._path)
 
     @property
     def _space_delimited_lowercase_name(self):
-        if self._filesystem_path:
-            return os.path.basename(self._filesystem_path)
+        if self._path:
+            return os.path.basename(self._path)
 
     @property
     def _user_input_to_action(self):
@@ -66,7 +66,7 @@ class Manager(ScoreManagerObject):
     ### PRIVATE METHODS ###
 
     def _get_score_package_directory_name(self):
-        line = self._filesystem_path
+        line = self._path
         line = line.replace(
             self._configuration.abjad_score_packages_directory_path,
             '',
@@ -83,14 +83,14 @@ class Manager(ScoreManagerObject):
         getter.append_snake_case_file_name('new name')
         return getter
 
-    def _is_git_added(self, filesystem_path=None):
-        filesystem_path = filesystem_path or self._filesystem_path
-        if filesystem_path is None:
+    def _is_git_added(self, path=None):
+        path = path or self._path
+        if path is None:
             return False
-        if not os.path.exists(filesystem_path):
+        if not os.path.exists(path):
             return False
         command = 'git st --short {}'
-        command = command.format(filesystem_path)
+        command = command.format(path)
         process = subprocess.Popen(
             command,
             shell=True,
@@ -102,14 +102,14 @@ class Manager(ScoreManagerObject):
             return True
         return False
 
-    def _is_git_versioned(self, filesystem_path=None):
-        filesystem_path = filesystem_path or self._filesystem_path
-        if filesystem_path is None:
+    def _is_git_versioned(self, path=None):
+        path = path or self._path
+        if path is None:
             return False
-        if not os.path.exists(filesystem_path):
+        if not os.path.exists(path):
             return False
         command = 'git st --short {}'
-        command = command.format(filesystem_path)
+        command = command.format(path)
         process = subprocess.Popen(
             command,
             shell=True,
@@ -127,14 +127,14 @@ class Manager(ScoreManagerObject):
                 return True
         return False
 
-    def _is_svn_versioned(self, filesystem_path=None):
-        filesystem_path = filesystem_path or self._filesystem_path
-        if filesystem_path is None:
+    def _is_svn_versioned(self, path=None):
+        path = path or self._path
+        if path is None:
             return False
-        if not os.path.exists(filesystem_path):
+        if not os.path.exists(path):
             return False
         command = 'svn st -u {}'
-        command = command.format(filesystem_path)
+        command = command.format(path)
         process = subprocess.Popen(
             command,
             shell=True,
@@ -155,7 +155,7 @@ class Manager(ScoreManagerObject):
             command = 'svn --force rm {}'
         else:
             command = 'rm -rf {}'
-        command = command.format(self._filesystem_path)
+        command = command.format(self._path)
         process = subprocess.Popen(
             command,
             shell=True,
@@ -173,14 +173,14 @@ class Manager(ScoreManagerObject):
             command = 'svn --force mv {} {}'
         else:
             command = 'mv {} {}'
-        command = command.format(self._filesystem_path, new_path)
+        command = command.format(self._path, new_path)
         process = subprocess.Popen(
             command,
             shell=True,
             stdout=subprocess.PIPE,
             )
         process.stdout.readline()
-        self._filesystem_path = new_path
+        self._path = new_path
 
     def _run(self, cache=False, clear=True, pending_user_input=None):
         from scoremanager import managers
@@ -266,7 +266,7 @@ class Manager(ScoreManagerObject):
         line = line + ' ...'
         lines.append(line)
         command = 'svn commit -m "{}" {}'
-        command = command.format(commit_message, self._filesystem_path)
+        command = command.format(commit_message, self._path)
         process = subprocess.Popen(
             command,
             shell=True,
@@ -295,14 +295,14 @@ class Manager(ScoreManagerObject):
             return
         new_asset_name = \
             self._space_delimited_lowercase_name_to_asset_name(result)
-        parent_directory_path = os.path.dirname(self._filesystem_path)
+        parent_directory_path = os.path.dirname(self._path)
         new_path = os.path.join(parent_directory_path, new_asset_name)
         message = 'new path will be {}'
         message = message.format(new_path)
         self._io_manager.display(message)
         if not self._io_manager.confirm():
             return
-        shutil.copyfile(self._filesystem_path, new_path)
+        shutil.copyfile(self._path, new_path)
         self._io_manager.proceed('asset copied.')
 
     def display_repository_status(self, prompt=True):
@@ -313,14 +313,14 @@ class Manager(ScoreManagerObject):
         line = self._get_score_package_directory_name()
         line = line + ' ...'
         self._io_manager.display(line, capitalize_first_character=False)
-        command = 'svn st -u {}'.format(self._filesystem_path)
+        command = 'svn st -u {}'.format(self._path)
         process = subprocess.Popen(
             command,
             shell=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             )
-        path = self._filesystem_path
+        path = self._path
         path = path + os.path.sep
         clean_lines = []
         for line in process.stdout.readlines():
@@ -329,14 +329,14 @@ class Manager(ScoreManagerObject):
             clean_lines.append(clean_line)
         clean_lines.append('')
         if clean_lines and 'svn: warning' in clean_lines[0]:
-            command = 'git st {}'.format(self._filesystem_path)
+            command = 'git st {}'.format(self._path)
             process = subprocess.Popen(
                 command,
                 shell=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 )
-            path = self._filesystem_path
+            path = self._path
             path = path + os.path.sep
             clean_lines = []
             for line in process.stdout.readlines():
@@ -368,7 +368,7 @@ class Manager(ScoreManagerObject):
         '''
         self._io_manager._assign_user_input(pending_user_input)
         message = '{} will be removed.'
-        message = message.format(self._filesystem_path)
+        message = message.format(self._path)
         if prompt:
             self._io_manager.display([message, ''])
             getter = self._io_manager.make_getter(where=self._where)
@@ -397,7 +397,7 @@ class Manager(ScoreManagerObject):
         result = getter._run()
         if self._session._backtrack():
             return
-        parent_directory_path = os.path.dirname(self._filesystem_path)
+        parent_directory_path = os.path.dirname(self._path)
         new_path = os.path.join(parent_directory_path, result)
         message = 'new path name will be: {!r}.'
         message = message.format(new_path)
@@ -415,7 +415,7 @@ class Manager(ScoreManagerObject):
         line = self._get_score_package_directory_name()
         line = line + ' ...'
         self._io_manager.display(line, capitalize_first_character=False)
-        command = 'svn up {}'.format(self._filesystem_path)
+        command = 'svn up {}'.format(self._path)
         process = subprocess.Popen(
             command,
             shell=True,

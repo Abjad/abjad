@@ -7,14 +7,14 @@ import scoremanager
 def test_FileManager__write_boilerplate_01():
 
     configuration = scoremanager.core.ScoreManagerConfiguration()
-    filesystem_path = os.path.join(
+    path = os.path.join(
         configuration.score_manager_directory_path, 
         'temporary_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(
-        filesystem_path=filesystem_path,
+        path=path,
         )
-    assert not os.path.exists(filesystem_path)
+    assert not os.path.exists(path)
 
     try:
         string = 'boilerplate_testnumbers_material_definition.py'
@@ -25,10 +25,10 @@ def test_FileManager__write_boilerplate_01():
             boilerplate_file_abjad_asset_name
             )
         source = open(file_path, 'r')
-        target = open(file_manager._filesystem_path)
+        target = open(file_manager._path)
         assert source.readlines() == target.readlines()
         file_manager._remove()
     finally:
-        if os.path.exists(filesystem_path):
-            os.remove(filesystem_path)
-        assert not os.path.exists(filesystem_path)
+        if os.path.exists(path):
+            os.remove(path)
+        assert not os.path.exists(path)

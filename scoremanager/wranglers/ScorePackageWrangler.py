@@ -72,7 +72,7 @@ class ScorePackageWrangler(PackageWrangler):
     def _handle_main_menu_result(self):
         self._io_manager.print_not_yet_implemented()
 
-    def _list_asset_filesystem_paths(
+    def _list_asset_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -86,7 +86,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler._list_asset_filesystem_paths(
+            >>> for x in wrangler._list_asset_paths(
             ...     user_library=False, 
             ...     user_score_packages=False):
             ...     x
@@ -97,7 +97,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(ScorePackageWrangler, self)
-        return superclass._list_asset_filesystem_paths(
+        return superclass._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -235,7 +235,7 @@ class ScorePackageWrangler(PackageWrangler):
             user_score_packages=user_score_packages,
             )
 
-    def _list_visible_asset_filesystem_paths(
+    def _list_visible_asset_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -249,7 +249,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler._list_visible_asset_filesystem_paths(
+            >>> for x in wrangler._list_visible_asset_paths(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -268,7 +268,7 @@ class ScorePackageWrangler(PackageWrangler):
             user_score_packages=user_score_packages,
             head=head,
             ):
-            result.append(visible_asset_manager._filesystem_path)
+            result.append(visible_asset_manager._path)
         return result
 
     def _list_visible_asset_managers(
@@ -409,7 +409,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         result = []
-        for filesystem_path in self._list_visible_asset_filesystem_paths(
+        for path in self._list_visible_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -417,7 +417,7 @@ class ScorePackageWrangler(PackageWrangler):
             head=head,
             ):
             package_path = self._configuration.path_to_package(
-                filesystem_path)
+                path)
             result.append(package_path)
         return result
 

@@ -10,7 +10,7 @@ def test_MaterialPackageWrangler__make_data_package_01():
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materials.testnumbers'
     assert not wrangler._configuration.package_exists(string)
-    filesystem_path = os.path.join(
+    path = os.path.join(
         wrangler._configuration.abjad_material_packages_directory_path,
         'testnumbers',
         )
@@ -21,9 +21,9 @@ def test_MaterialPackageWrangler__make_data_package_01():
         ]
 
     try:
-        wrangler._make_data_package(filesystem_path)
+        wrangler._make_data_package(path)
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.managers.MaterialManager(filesystem_path)
+        manager = scoremanager.managers.MaterialManager(path)
         assert manager._list_directory() == directory_entries
         assert manager._interpret_material_definition_module() is None
         output_material = manager._execute_output_material_module()
@@ -50,16 +50,16 @@ def test_MaterialPackageWrangler__make_data_package_03():
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     string = 'scoremanager.materials.testnumbers'
     assert not wrangler._configuration.package_exists(string)
-    filesystem_path = os.path.join(
+    path = os.path.join(
         wrangler._configuration.abjad_material_packages_directory_path,
         'testnumbers',
         )
 
     try:
         metadata = {'color': 'red', 'is_colored': True}
-        wrangler._make_data_package(filesystem_path, metadata=metadata)
+        wrangler._make_data_package(path, metadata=metadata)
         assert wrangler._configuration.package_exists(string)
-        manager = scoremanager.managers.MaterialManager(filesystem_path)
+        manager = scoremanager.managers.MaterialManager(path)
         assert manager._get_metadatum('color') == 'red'
         assert manager._get_metadatum('is_colored')
     finally:

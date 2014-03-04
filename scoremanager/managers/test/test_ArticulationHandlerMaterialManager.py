@@ -34,7 +34,7 @@ def test_ArticulationHandlerMaterialManager_01():
         path = configuration.abjad_material_packages_directory_path
         path = os.path.join(path, 'testarticulationhandler')
         manager = scoremanager.managers.ArticulationHandlerMaterialManager(
-            filesystem_path=path)
+            path=path)
         assert manager._list_directory() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == handler

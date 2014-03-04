@@ -42,9 +42,9 @@ class SargassoMeasureMaterialManager(MaterialManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, filesystem_path, session=None):
+    def __init__(self, path, session=None):
         superclass = super(SargassoMeasureMaterialManager, self)
-        superclass.__init__(filesystem_path=filesystem_path, session=session)
+        superclass.__init__(path=path, session=session)
         self._generic_output_name = 'sargasso measures'
         self._output_material_module_import_statements = [
             'from abjad import *',

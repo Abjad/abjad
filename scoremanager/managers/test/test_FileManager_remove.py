@@ -9,24 +9,24 @@ def test_FileManager_remove_01():
     '''
 
     configuration = scoremanager.core.ScoreManagerConfiguration()
-    filesystem_path = os.path.join(
+    path = os.path.join(
         configuration.score_manager_directory_path, 
         'temporary_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(
-        filesystem_path=filesystem_path)
-    assert not os.path.exists(filesystem_path)
+        path=path)
+    assert not os.path.exists(path)
 
     try:
         file_manager._make_empty_asset()
-        assert os.path.exists(filesystem_path)
+        assert os.path.exists(path)
         file_manager.remove(
             pending_user_input='remove default q')
-        assert not os.path.exists(filesystem_path)
+        assert not os.path.exists(path)
     finally:
-        if os.path.exists(filesystem_path):
-            os.remove(filesystem_path)
-        assert not os.path.exists(filesystem_path)
+        if os.path.exists(path):
+            os.remove(path)
+        assert not os.path.exists(path)
 
 
 def test_FileManager_remove_02():
@@ -34,22 +34,22 @@ def test_FileManager_remove_02():
     '''
 
     configuration = scoremanager.core.ScoreManagerConfiguration()
-    filesystem_path = os.path.join(
+    path = os.path.join(
         configuration.score_manager_directory_path, 
         'temporary_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(
-        filesystem_path=filesystem_path)
-    assert not os.path.exists(filesystem_path)
+        path=path)
+    assert not os.path.exists(path)
 
     try:
         file_manager._make_empty_asset()
-        assert os.path.exists(filesystem_path)
+        assert os.path.exists(path)
         file_manager.add_assets_to_repository()
         file_manager.remove(
             pending_user_input='remove default q')
-        assert not os.path.exists(filesystem_path)
+        assert not os.path.exists(path)
     finally:
-        if os.path.exists(filesystem_path):
-            os.remove(filesystem_path)
-        assert not os.path.exists(filesystem_path)
+        if os.path.exists(path):
+            os.remove(path)
+        assert not os.path.exists(path)

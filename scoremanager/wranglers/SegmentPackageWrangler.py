@@ -58,7 +58,7 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_manager = self._initialize_asset_manager(result)
             segment_package_manager._run()
 
-    def _list_asset_filesystem_paths(
+    def _list_asset_paths(
         self,
         abjad_library=True, 
         user_library=True,
@@ -72,7 +72,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler._list_asset_filesystem_paths(
+            >>> for x in wrangler._list_asset_paths(
             ...     user_library=False, 
             ...     user_score_packages=False,
             ...     ):
@@ -86,7 +86,7 @@ class SegmentPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(SegmentPackageWrangler, self)
-        return superclass._list_asset_filesystem_paths(
+        return superclass._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -264,21 +264,21 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def _make_asset(
         self, 
-        filesystem_path, 
+        path, 
         prompt=False, 
         metadata=None,
         ):
         metadata = collections.OrderedDict(metadata or {})
-        assert not os.path.exists(filesystem_path)
-        os.mkdir(filesystem_path)
+        assert not os.path.exists(path)
+        os.mkdir(path)
         manager = self._asset_manager_class(
-            filesystem_path=filesystem_path,
+            path=path,
             session=self._session,
             )
         manager.write_initializer()
         manager.write_segment_definition_module()
         manager.make_versions_directory()
-        message = 'segment created: {!r}.'.format(filesystem_path)
+        message = 'segment created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
     def _make_main_menu(self, head=None):
