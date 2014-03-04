@@ -32,7 +32,7 @@ class DirectoryManager(Manager):
         _user_input_to_action.update({
             'ls': self.list,
             'll': self.list_long,
-            'pwd': self.display_present_working_directory,
+            'pwd': self.pwd,
             })
         return _user_input_to_action
 
@@ -109,7 +109,7 @@ class DirectoryManager(Manager):
 
     ### PUBLIC METHODS ###
 
-    def display_present_working_directory(self):
+    def pwd(self):
         '''Displays present working directory.
 
         Returns none.

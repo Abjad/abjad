@@ -434,7 +434,7 @@ class ScorePackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def add_assets_to_repository(self, prompt=True):
+    def add(self, prompt=True):
         r'''Adds assets to repository.
 
         Returns none.
@@ -449,10 +449,10 @@ class ScorePackageWrangler(PackageWrangler):
                 user_score_packages=True,
                 )
         for manager in managers:
-            manager.add_assets_to_repository(prompt=False)
+            manager.add(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
-    def commit_assets_to_repository(self, prompt=True):
+    def commit(self, prompt=True):
         r'''Commits assets to repository.
 
         Returns none.
@@ -476,13 +476,13 @@ class ScorePackageWrangler(PackageWrangler):
                 user_score_packages=True,
                 )
         for manager in managers:
-            manager.commit_assets_to_repository(
+            manager.commit(
                 commit_message=commit_message, 
                 prompt=False,
                 )
         self._io_manager.proceed(prompt=prompt)
 
-    def display_repository_status(self, prompt=True):
+    def status(self, prompt=True):
         r'''Check asset status in repository.
 
         Returns none.
@@ -497,7 +497,7 @@ class ScorePackageWrangler(PackageWrangler):
                 user_score_packages=True,
                 )
         for manager in managers:
-            manager.display_repository_status(prompt=False)
+            manager.status(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
     def fix_visible_assets(self, prompt=True):
@@ -545,7 +545,7 @@ class ScorePackageWrangler(PackageWrangler):
         score_package_manager.year_of_completion = year
         self._session._push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
 
-    def update_from_repository(self, prompt=True):
+    def update(self, prompt=True):
         r'''Updates assets from repository.
 
         Returns none.
@@ -560,5 +560,5 @@ class ScorePackageWrangler(PackageWrangler):
                 user_score_packages=True,
                 )
         for manager in managers:
-            manager.update_from_repository(prompt=False)
+            manager.update(prompt=False)
         self._io_manager.proceed(prompt=prompt)

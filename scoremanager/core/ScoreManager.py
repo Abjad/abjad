@@ -52,10 +52,10 @@ class ScoreManager(ScoreManagerObject):
             'cw': self.write_cache,
             'lmm': self.manage_material_library,
             'new': self.make_new_score,
-            'radd': self.add_assets_to_repository,
-            'rci': self.commit_assets_to_repository,
-            'rst': self.display_repository_status,
-            'rup': self.update_from_repository,
+            'radd': self.add,
+            'rci': self.commit,
+            'rst': self.status,
+            'rup': self.update,
             'ssl': self.display_all_scores,
             'ssv': self.display_active_scores,
             'ssmb': self.display_mothballed_scores,
@@ -191,19 +191,19 @@ class ScoreManager(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def add_assets_to_repository(self, prompt=True):
+    def add(self, prompt=True):
         r'''Adds assets to repository.
 
         Returns none.
         '''
-        self._score_package_wrangler.add_assets_to_repository()
+        self._score_package_wrangler.add()
 
-    def commit_assets_to_repository(self, prompt=True):
+    def commit(self, prompt=True):
         r'''Commits assets to repository.
 
         Returns none.
         '''
-        self._score_package_wrangler.commit_assets_to_repository()
+        self._score_package_wrangler.commit()
 
     def display_active_scores(self):
         r'''Displays active scores.
@@ -233,12 +233,12 @@ class ScoreManager(ScoreManagerObject):
         '''
         self._session.display_mothballed_scores()
 
-    def display_repository_status(self, prompt=True):
+    def status(self, prompt=True):
         r'''Displays status of repository assets.
         
         Returns none.
         '''
-        self._score_package_wrangler.display_repository_status()
+        self._score_package_wrangler.status()
 
     def make_new_score(self):
         r'''Makes new score.
@@ -314,12 +314,12 @@ class ScoreManager(ScoreManagerObject):
                 )
         self._io_manager.proceed(prompt=prompt)
 
-    def update_from_repository(self, prompt=True):
+    def update(self, prompt=True):
         r'''Updates repository assets.
 
         Returns none.
         '''
-        self._score_package_wrangler.update_from_repository()
+        self._score_package_wrangler.update()
 
     def view_cache(self):
         r'''Views cache.

@@ -228,7 +228,7 @@ class Manager(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def add_assets_to_repository(self, prompt=False):
+    def add(self, prompt=False):
         r'''Adds unversioned assets to repository.
 
         Returns none.
@@ -246,7 +246,7 @@ class Manager(ScoreManagerObject):
         self._io_manager.display(lines)
         self._io_manager.proceed(prompt=prompt)
 
-    def commit_assets_to_repository(self, commit_message=None, prompt=True):
+    def commit(self, commit_message=None, prompt=True):
         r'''Commits unversioned assets to repository.
 
         Returns none.
@@ -305,7 +305,7 @@ class Manager(ScoreManagerObject):
         shutil.copyfile(self._path, new_path)
         self._io_manager.proceed('asset copied.')
 
-    def display_repository_status(self, prompt=True):
+    def status(self, prompt=True):
         r'''Intearctively displays repository status of assets.
     
         Returns none.
@@ -407,7 +407,7 @@ class Manager(ScoreManagerObject):
         if self._rename(new_path):
             self._io_manager.proceed('asset renamed.')
 
-    def update_from_repository(self, prompt=True):
+    def update(self, prompt=True):
         r'''Updates versioned assets.
 
         Returns none.

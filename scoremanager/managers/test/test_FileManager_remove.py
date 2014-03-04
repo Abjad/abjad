@@ -45,7 +45,7 @@ def test_FileManager_remove_02():
     try:
         file_manager._make_empty_asset()
         assert os.path.exists(path)
-        file_manager.add_assets_to_repository()
+        file_manager.add()
         file_manager.remove(
             pending_user_input='remove default q')
         assert not os.path.exists(path)

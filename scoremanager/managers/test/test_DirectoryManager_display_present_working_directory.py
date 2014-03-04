@@ -4,7 +4,7 @@ from abjad import *
 import scoremanager
 
 
-def test_DirectoryManager_display_present_working_directory_01():
+def test_DirectoryManager_pwd_01():
 
     score_manager = scoremanager.core.ScoreManager()
     input_ = 'lmm example~numbers pwd q'
