@@ -124,7 +124,6 @@ class PackageWrangler(Wrangler):
         package_manager = self._initialize_asset_manager(asset_name)
         package_manager.fix(prompt=False)
 
-    # TODO: reduce indentation with early return statements
     def _make_asset_menu_entries(self, head=None):
         names = self._list_asset_names(head=head)
         keys = len(names) * [None]
@@ -136,23 +135,24 @@ class PackageWrangler(Wrangler):
             package_paths.append(package_path)
         paths = package_paths
         assert len(names) == len(keys) == len(paths)
-        if names:
-            sequences = (names, [None], [None], paths)
-            entries = sequencetools.zip_sequences(sequences, cyclic=True)
-            package_manager = self._current_package_manager
-            if package_manager:
-                view_name = package_manager._get_metadatum('view_name')
-                if view_name:
-                    view_inventory = self._read_view_inventory_from_disk()
-                    if view_inventory:
-                        correct_view = view_inventory.get(view_name)
-                        if correct_view:
-                            entries = \
-                                self._sort_asset_menu_entries_by_view(
-                                entries,
-                                correct_view,
-                                )
+        if not names:
+            return
+        sequences = (names, [None], [None], paths)
+        entries = sequencetools.zip_sequences(sequences, cyclic=True)
+        package_manager = self._current_package_manager
+        if not package_manager:
             return entries
+        view_name = package_manager._get_metadatum('view_name')
+        if not view_name:
+            return entries
+        view_inventory = self._read_view_inventory_from_disk()
+        if not view_inventory:
+            return entries
+        correct_view = view_inventory.get(view_name)
+        if not correct_view:
+            return entries
+        entries = self._sort_asset_menu_entries_by_view(entries, correct_view)
+        return entries
 
     def _make_main_menu(self, head=None):
         self._io_manager.print_not_yet_implemented()
