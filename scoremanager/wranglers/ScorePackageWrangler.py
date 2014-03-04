@@ -62,10 +62,9 @@ class ScorePackageWrangler(PackageWrangler):
 
     @property
     def _current_storehouse_package_path(self):
-        package_path = \
-            self._configuration.path_to_package(
+        package = self._configuration.path_to_package(
             self._current_storehouse_path)
-        return package_path
+        return package
 
     ### PRIVATE METHODS ###
 
@@ -431,53 +430,3 @@ class ScorePackageWrangler(PackageWrangler):
 
     def _make_main_menu(self):
         self._io_manager.print_not_yet_implemented()
-
-    ### PUBLIC METHODS ###
-
-    def fix_visible_assets(self, prompt=True):
-        r'''Fixes visible assets.
-
-        Returns result list.
-        '''
-        results = []
-        for asset_manager in self._list_visible_asset_managers():
-            result = asset_manager.fix(
-                prompt=False,
-                )
-            results.append(result)
-        self._io_manager.proceed(prompt=prompt)
-        return results
-
-    def make_asset(
-        self, 
-        rollback=False,
-        pending_user_input=None,
-        ):
-        r'''Makes asset.
-
-        Returns none.
-        '''
-        self._io_manager._assign_user_input(pending_user_input)
-        breadcrumb = self._session._pop_breadcrumb(rollback=rollback)
-        getter = self._io_manager.make_getter(where=self._where)
-        getter.indent_level = 1
-        getter.prompt_character = ':'
-        getter.capitalize_prompts = False
-        getter.include_newlines = False
-        getter.number_prompts = True
-        getter.append_string('score title')
-        getter.append_snake_case_package_name('package name')
-        getter.append_integer_in_range('year', start=1, allow_none=True)
-        result = getter._run()
-        if self._session._backtrack():
-            return
-        title, score_package_name, year = result
-        self._make_asset(score_package_name)
-        score_package_manager = self._initialize_asset_manager(
-            score_package_name)
-        score_package_manager._add_metadatum('title', title)
-        score_package_manager.year_of_completion = year
-        self._session._push_breadcrumb(
-            breadcrumb=breadcrumb, 
-            rollback=rollback,
-            )
