@@ -349,44 +349,6 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append((asset_manager._package_path, title_with_year))
         return result
 
-    def _list_visible_asset_package_paths(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists visible asset packagesystem paths.
-
-        Lists visible abjad score package packagesystem paths:
-
-        ::
-
-            >>> for x in wrangler._list_visible_asset_package_paths(
-            ...     user_library=False, 
-            ...     user_score_packages=False,
-            ...     ):
-            ...     x
-            'blue_example_score'
-            'green_example_score'
-            'red_example_score'
-
-        Returns list.
-        '''
-        result = []
-        for path in self._list_visible_asset_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            ):
-            package_path = self._configuration.path_to_package(
-                path)
-            result.append(package_path)
-        return result
-
     def _make_asset_menu_entries(self, head=None):
         menuing_pairs = \
             self._list_visible_asset_package_path_and_score_title_pairs()

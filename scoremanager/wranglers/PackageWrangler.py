@@ -122,26 +122,6 @@ class PackageWrangler(Wrangler):
             result.append(package_path)
         return result
 
-    def _list_visible_asset_package_paths(self, head=None):
-        r'''Lists visible asset packagesystem paths.
-
-        Returns list.
-        '''
-        result = []
-        if hasattr(self, '_list_visible_asset_managers'):
-            for asset_manager in self._list_visible_asset_managers(head=head):
-                result.append(asset_manager._package_path)
-        else:
-            for asset_manager in self._list_asset_managers(
-                abjad_library=True,
-                user_library=True,
-                abjad_score_packages=True,
-                user_score_packages=True,
-                head=head,
-                ):
-                result.append(asset_manager._package_path)
-        return result
-
     def _make_asset(self, asset_name):
         assert stringtools.is_snake_case_package_name(asset_name)
         asset_path = os.path.join(
@@ -155,7 +135,12 @@ class PackageWrangler(Wrangler):
         names = self._list_asset_names(head=head)
         keys = len(names) * [None]
         prepopulated_return_values = len(names) * [None]
-        paths = self._list_visible_asset_package_paths(head=head)
+        paths = self._list_visible_asset_paths(head=head)
+        package_paths = []
+        for path in paths:
+            package_path = self._configuration.path_to_package(path)
+            package_paths.append(package_path)
+        paths = package_paths
         assert len(names) == len(keys) == len(paths)
         if names:
             sequences = (names, [None], [None], paths)

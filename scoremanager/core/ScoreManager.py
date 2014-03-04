@@ -68,7 +68,12 @@ class ScoreManager(ScoreManagerObject):
 
     def _get_next_score_package_name(self):
         wrangler = self._score_package_wrangler
-        score_package_names = wrangler._list_visible_asset_package_paths()
+        #score_package_names = wrangler._list_visible_asset_package_paths()
+        paths = wrangler._list_visible_asset_paths()
+        score_package_names = []
+        for path in paths:
+            package_path = self._configuration.path_to_package(path)
+            score_package_names.append(package_path)
         if self._session.current_score_snake_case_name is None:
             return score_package_names[0]
         score_package_name = self._session.current_score_snake_case_name
@@ -79,7 +84,12 @@ class ScoreManager(ScoreManagerObject):
 
     def _get_previous_score_package_name(self):
         wrangler = self._score_package_wrangler
-        score_package_names = wrangler._list_visible_asset_package_paths()
+        #score_package_names = wrangler._list_visible_asset_package_paths()
+        paths = wrangler._list_visible_asset_paths()
+        score_package_names = []
+        for path in paths:
+            package_path = self._configuration.path_to_package(path)
+            score_package_names.append(package_path)
         if self._session.current_score_snake_case_name is None:
             return score_package_names[-1]
         score_package_name = self._session.current_score_snake_case_name
@@ -93,7 +103,13 @@ class ScoreManager(ScoreManagerObject):
             self._user_input_to_action[result]()
         else:
             wrangler = self._score_package_wrangler
-            if result in wrangler._list_visible_asset_package_paths():
+            paths = wrangler._list_visible_asset_paths()
+            score_package_names = []
+            for path in paths:
+                package_path = self._configuration.path_to_package(path)
+                score_package_names.append(package_path)
+            #if result in wrangler._list_visible_asset_package_paths():
+            if result in score_package_names:
                 self.manage_score(result)
 
     def _make_main_menu(self):

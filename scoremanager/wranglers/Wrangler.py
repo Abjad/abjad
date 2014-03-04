@@ -246,6 +246,22 @@ class Wrangler(ScoreManagerObject):
                 result.append(path)
         return result
 
+    def _list_visible_asset_paths(
+        self,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
+        head=None,
+        ):
+        return self._list_asset_paths(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            head=head,
+            ) 
+
     def _make_asset(self, asset_name):
         assert stringtools.is_snake_case_string(asset_name)
         path = os.path.join(
