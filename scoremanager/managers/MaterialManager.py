@@ -72,12 +72,10 @@ class MaterialManager(PackageManager):
     @property
     def _illustration_ly_file_manager(self):
         from scoremanager import managers
-        file_path = os.path.join(self._path, 'illustration.ly')
-        manager = managers.FileManager(
+        return managers.FileManager(
             self._illustration_ly_file_path,
             session=self._session,
             )
-        return manager
 
     @property
     def _illustration_ly_file_path(self):
@@ -89,12 +87,10 @@ class MaterialManager(PackageManager):
     @property
     def _illustration_pdf_file_manager(self):
         from scoremanager import managers
-        file_path = os.path.join(self._path, 'illustration.pdf')
-        manager = managers.FileManager(
-            self._illustration_pdf_file_manager,
+        return managers.FileManager(
+            self._illustration_pdf_file_path,
             session=self._session,
             )
-        return manager
 
     @property
     def _illustration_pdf_file_path(self):
@@ -219,7 +215,6 @@ class MaterialManager(PackageManager):
             'ibi': self.interpret_illustration_builder_module,
             'lym': self.write_illustration_ly,
             'lyrm': self.remove_illustration_ly,
-            'ly': self._illustration_ly_file_manager,
             'lyv': self.view_illustration_ly,
             'mdbp': self.write_material_definition_module_boilerplate,
             'mde': self.edit_material_definition_module,
@@ -423,7 +418,7 @@ class MaterialManager(PackageManager):
                 section.append(('output ly - make', 'lym'))
         if os.path.isfile(self._illustration_ly_file_path):
             section.append(('output ly - remove', 'lyrm'))
-            section.append(('output ly - view', 'ly'))
+            section.append(('output ly - view', 'lyv'))
 
     def _make_illustration_pdf_menu_section(
         self,

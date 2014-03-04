@@ -179,11 +179,13 @@ class Session(abctools.AbjadObject):
         '''
         summary = []
         if self.initial_user_input is not None:
-            summary.append('initial_pending_user_input={!r}'.format(
-                self.initial_user_input))
-        if self.pending_user_input is not None:
-            summary.append('pending_user_input={!r}'.format(
-                self.pending_user_input))
+            string = 'initial_pending_user_input={!r}'
+            string = string.format(self.initial_user_input)
+            summary.append(string)
+        if self.pending_user_input not in (None, ''):
+            string = 'pending_user_input={!r}'
+            string = string.format(self.pending_user_input)
+            summary.append(string)
         summary = ', '.join(summary)
         return '{}({})'.format(type(self).__name__, summary)
 
