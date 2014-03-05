@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
+import math
 import re
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.pitchtools.PitchClass import PitchClass
@@ -146,6 +147,29 @@ class Pitch(AbjadObject):
         Returns new pitch.
         '''
         raise NotImplementedError
+
+    @classmethod
+    def from_hertz(class_, hertz):
+        r'''Creates pitch from `hertz`.
+
+        ::
+
+            >>> pitchtools.NamedPitch.from_hertz(440)
+            NamedPitch("a'")
+
+        ::
+
+            >>> pitchtools.NumberedPitch.from_hertz(440)
+            NumberedPitch(9)
+
+        Returns new pitch.
+        '''
+        hertz = float(hertz)
+        midi = 69. + 12. * math.log(hertz / 440., 2)
+        midi -= 60
+        midi = round(midi * 4.) / 4.
+        pitch = class_(midi)
+        return pitch
 
     @abc.abstractmethod
     def invert(self, axis=None):
