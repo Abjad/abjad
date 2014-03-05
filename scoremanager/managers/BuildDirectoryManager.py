@@ -206,8 +206,10 @@ class BuildDirectoryManager(DirectoryManager):
                 )
             if not os.path.isfile(source_file_path):
                 continue
-            score_package_path = self._session.current_score_package_path
-            score_name = score_package_path.replace('_', '-')
+            score_path = self._session.current_score_directory_path
+            score_package = self._configuration.path_to_package_path(
+                score_path)
+            score_name = score_package.replace('_', '-')
             directory_entry = directory_entry.replace('_', '-')
             target_file_name = '{}-segment-{}.ly'
             target_file_name = target_file_name.format(
