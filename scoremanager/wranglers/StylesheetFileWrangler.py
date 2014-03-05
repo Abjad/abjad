@@ -51,8 +51,8 @@ class StylesheetFileWrangler(Wrangler):
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
             'hse': self.edit_header_stylesheet,
-            'l': self.edit_layout_stylesheet,
-            'p': self.edit_paper_stylesheet,
+            'lse': self.edit_layout_stylesheet,
+            'pse': self.edit_paper_stylesheet,
             'new': self.make_asset,
             })
         return _user_input_to_action
@@ -297,29 +297,29 @@ class StylesheetFileWrangler(Wrangler):
 
     # TODO: remove head
     def _make_main_menu(self, head=None):
-        main_menu = self._io_manager.make_menu(where=self._where)
-        self._main_menu = main_menu
-        asset_section = main_menu.make_asset_section()
-        main_menu._asset_section = asset_section
+        menu = self._io_manager.make_menu(where=self._where)
+        self._main_menu = menu
+        asset_section = menu.make_asset_section()
+        menu._asset_section = asset_section
         menu_entries = self._make_asset_menu_entries(
             head=head,
             include_extension=True,
             )
         asset_section.menu_entries = menu_entries
         if self._session.current_score_directory_path:
-            command_section = main_menu.make_command_section()
+            section = menu.make_command_section()
             if self._get_header_stylesheet_file_path():
-                command_section.append(('header stylesheet - edit', 'hse'))
+                section.append(('header stylesheet - edit', 'hse'))
             if self._get_layout_stylesheet_file_path():
-                command_section.append(('layout stylesheet - edit', 'l'))
+                section.append(('layout stylesheet - edit', 'lse'))
             if self._get_paper_stylesheet_file_path():
-                command_section.append(('paper stylesheet - edit', 'p'))
-        command_section = main_menu.make_command_section()
-        command_section.append(('new', 'new'))
-        command_section.append(('copy', 'cp'))
-        command_section.append(('rename', 'ren'))
-        command_section.append(('remove', 'rm'))
-        return main_menu
+                section.append(('paper stylesheet - edit', 'pse'))
+        section = menu.make_command_section()
+        section.append(('stylesheets - copy', 'cp'))
+        section.append(('stylesheets - new', 'new'))
+        section.append(('stylesheets - rename', 'ren'))
+        section.append(('stylesheets - remove', 'rm'))
+        return menu
 
     ### PUBLIC METHODS ###
 

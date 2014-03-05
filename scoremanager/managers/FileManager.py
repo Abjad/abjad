@@ -101,21 +101,21 @@ class FileManager(Manager):
         self._io_manager.proceed(prompt=prompt)
 
     def _make_main_menu(self):
-        main_menu = self._io_manager.make_menu(where=self._where)
-        self._main_menu = main_menu
-        command_section = main_menu.make_command_section()
+        menu = self._io_manager.make_menu(where=self._where)
+        self._main_menu = menu
+        section = menu.make_command_section()
         if self._is_editable():
-            command_section.append(('edit', 'e'))
-            command_section.default_index = len(command_section) - 1
-        command_section.append(('rename', 'ren'))
-        command_section.append(('remove', 'rm'))
+            section.append(('edit', 'e'))
+            section.default_index = len(section) - 1
+        section.append(('rename', 'ren'))
+        section.append(('remove', 'rm'))
         if self._path.endswith('.py'):
-            command_section.append(('run', 'run'))
+            section.append(('run', 'run'))
         if self._path.endswith('.tex'):
-            command_section.append(('typeset', 'ts'))
+            section.append(('typeset', 'ts'))
         if self._path.endswith('.pdf'):
-            command_section.append(('view', 'v'))
-        return main_menu
+            section.append(('view', 'v'))
+        return menu
 
     def _read_lines(self):
         result = []

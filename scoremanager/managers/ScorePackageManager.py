@@ -256,28 +256,28 @@ class ScorePackageManager(PackageManager):
 
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
-        command_section = menu.make_command_section()
-        command_section.append(('build', 'u'))
-        command_section.append(('makers', 'k'))
-        command_section.append(('materials', 'm'))
-        command_section.append(('segments', 'g'))
-        command_section.append(('setup', 'p'))
-        command_section.append(('templates', 't'))
-        command_section.append(('stylesheets', 'y'))
+        section = menu.make_command_section()
+        section.append(('build', 'u'))
+        section.append(('makers', 'k'))
+        section.append(('materials', 'm'))
+        section.append(('segments', 'g'))
+        section.append(('setup', 'p'))
+        section.append(('templates', 't'))
+        section.append(('stylesheets', 'y'))
         manager = self._build_directory_manager
         if manager._get_file_path_ending_with('score.pdf'):
-            command_section = menu.make_command_section()
-            command_section.append(('score pdf - view', 'pdfv'))
-            command_section.default_index = len(command_section) - 1
+            section = menu.make_command_section()
+            section.append(('score pdf - view', 'pdfv'))
+            section.default_index = len(section) - 1
         # TODO: restructure with encapsulated methods
         # TODO: use verb-first syntax
-        hidden_section = menu.make_command_section(is_secondary=True)
-        hidden_section.append(('fix package structure', 'fix'))
-        hidden_section.append(('list directory contents', 'ls'))
-        hidden_section.append(('run pytest', 'pytest'))
-        hidden_section.append(('remove score package', 'removescore'))
-        hidden_section.append(('view initializer', 'inv'))
-        hidden_section.append(('view instrumentation', 'instrumentation'))
+        section = menu.make_command_section(is_secondary=True)
+        section.append(('fix package structure', 'fix'))
+        section.append(('list directory contents', 'ls'))
+        section.append(('run pytest', 'pytest'))
+        section.append(('remove score package', 'removescore'))
+        section.append(('view initializer', 'inv'))
+        section.append(('view instrumentation', 'instrumentation'))
         self._io_manager._make_metadata_menu_section(menu)
         self._io_manager._make_metadata_module_menu_section(menu)
         return menu
@@ -287,8 +287,8 @@ class ScorePackageManager(PackageManager):
         attribute_section = menu.make_attribute_section()
         menu_entries = self._make_setup_menu_entries()
         attribute_section.menu_entries = menu_entries
-        command_section = menu.make_command_section()
-        command_section.append(('instrumentation', 'instr'))
+        section = menu.make_command_section()
+        section.append(('instrumentation', 'instr'))
         return menu
 
     def _make_setup_menu_entries(self):

@@ -8,15 +8,15 @@ def test_MenuSection_default_index_01():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    menu_section = menu._make_section()
-    menu_section.title = 'section'
-    menu_section.append('apple')
-    menu_section.append('banana')
-    menu_section.append('cherry')
+    section = menu._make_section()
+    section.title = 'section'
+    section.append('apple')
+    section.append('banana')
+    section.append('cherry')
 
-    assert menu_section.default_index is None
-    assert pytest.raises(ValueError, 'menu_section.default_index = -1')
-    assert pytest.raises(ValueError, 'menu_section.default_index = 99')
+    assert section.default_index is None
+    assert pytest.raises(ValueError, 'section.default_index = -1')
+    assert pytest.raises(ValueError, 'section.default_index = 99')
 
-    menu_section.default_index = 2
-    assert menu_section.default_index == 2
+    section.default_index = 2
+    assert section.default_index == 2

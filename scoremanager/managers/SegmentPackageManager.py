@@ -88,38 +88,38 @@ class SegmentPackageManager(PackageManager):
     def _make_main_menu(self):
         superclass = super(SegmentPackageManager, self)
         where = self._where
-        main_menu, hidden_section = superclass._make_main_menu(where=where)
-        hidden_section.append(('remove package', 'rm'))
-        hidden_section.append(('list package', 'ls'))
-        hidden_section.append(('rename package', 'ren'))
-        command_section = main_menu.make_command_section()
-        command_section.append(('segment definition module - edit', 'e'))
-        command_section = main_menu.make_command_section()
-        command_section.append(('current pdf - make', 'pdfm'))
+        menu, section = superclass._make_main_menu(where=where)
+        section.append(('remove package', 'rm'))
+        section.append(('list package', 'ls'))
+        section.append(('rename package', 'ren'))
+        section = menu.make_command_section()
+        section.append(('segment definition module - edit', 'e'))
+        section = menu.make_command_section()
+        section.append(('current pdf - make', 'pdfm'))
         if os.path.isfile(self._get_output_pdf_file_path()):
-            command_section.append(('current pdf - version', 'pdfs'))
+            section.append(('current pdf - version', 'pdfs'))
         if os.path.isfile(self._get_output_pdf_file_path()):
-            command_section.append(('current pdf - view', 'pdfv'))
-            command_section.default_index = len(command_section) - 1
-        command_section = main_menu.make_command_section()
+            section.append(('current pdf - view', 'pdfv'))
+            section.default_index = len(section) - 1
+        section = menu.make_command_section()
         versions_directory_path = self._get_versions_directory_path()
         if self._is_populated_directory(versions_directory_path):
-            command_section.append(('versioned pdfs - view', 'vv'))
-        hidden_section = main_menu.make_command_section(is_secondary=True)
-        hidden_section.append(('segment definition module - edit at top', 'E'))
+            section.append(('versioned pdfs - view', 'vv'))
+        section = menu.make_command_section(is_secondary=True)
+        section.append(('segment definition module - edit at top', 'E'))
         if os.path.isfile(self._get_output_lilypond_file_path()):
-            hidden_section = main_menu.make_command_section(is_secondary=True)
+            section = menu.make_command_section(is_secondary=True)
             string = 'current lilypond file - reinterpret'
-            hidden_section.append((string, 'lyri'))
+            section.append((string, 'lyri'))
             string = 'current lilypond file - view'
-            hidden_section.append((string, 'lyv'))
-        hidden_section = main_menu.make_command_section(is_secondary=True)
-        hidden_section.append(('versioned output ly - view', 'lyver'))
-        hidden_section.append(('versioned output pdf - view', 'pdfv'))
+            section.append((string, 'lyv'))
+        section = menu.make_command_section(is_secondary=True)
+        section.append(('versioned output ly - view', 'lyver'))
+        section.append(('versioned output pdf - view', 'pdfv'))
         display_string = 'versioned segment definition module - view'
-        hidden_section.append((display_string, 'pyver'))
-        hidden_section.append(('list versions directory', 'vrl'))
-        return main_menu
+        section.append((display_string, 'pyver'))
+        section.append(('list versions directory', 'vrl'))
+        return menu
 
     def _view_versioned_file(self, extension):
         assert extension in ('.ly', '.pdf', '.py')

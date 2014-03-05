@@ -247,37 +247,34 @@ class SegmentPackageWrangler(PackageWrangler):
         self._io_manager.proceed(message=message, prompt=prompt)
 
     def _make_main_menu(self):
-        main_menu = self._io_manager.make_menu(where=self._where)
-        asset_section = main_menu.make_asset_section()
+        menu = self._io_manager.make_menu(where=self._where)
+        asset_section = menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries()
         asset_section.menu_entries = asset_menu_entries
-        command_section = main_menu.make_command_section(
+        section = menu.make_command_section(
             match_on_display_string=False,
             )
         string = 'all segments - current lilypond file - reinterpret'
-        command_section.append((string, 'lyri'))
-        command_section = main_menu.make_command_section(
+        section.append((string, 'lyri'))
+        section = menu.make_command_section(
             match_on_display_string=False,
             )
-        string = 'all segments - current pdf - make'
-        command_section.append((string, 'pdfm'))
-        string = 'all segments - current pdf - version'
-        command_section.append((string, 'pdfs'))
-        string = 'all segments - current pdf - view'
-        command_section.append((string, 'pdfv'))
-        command_section = main_menu.make_command_section()
-        command_section.append(('new segment', 'new'))
-        hidden_section = main_menu.make_command_section(is_secondary=True)
-        hidden_section.append(('list', 'ls'))
+        section.append(('all segments - current pdf - make', 'pdfm'))
+        section.append(('all segments - current pdf - version', 'pdfs'))
+        section.append(('all segments - current pdf - view', 'pdfv'))
+        section = menu.make_command_section()
+        section.append(('new segment', 'new'))
+        section = menu.make_command_section(is_secondary=True)
+        section.append(('list', 'ls'))
         self._io_manager._make_initializer_menu_section(
-            main_menu,
+            menu,
             has_initializer=True,
             )
-        self._io_manager._make_metadata_menu_section(main_menu)
-        self._io_manager._make_metadata_module_menu_section(main_menu)
-        self._io_manager._make_views_menu_section(main_menu)
-        self._io_manager._make_views_module_menu_section(main_menu)
-        return main_menu
+        self._io_manager._make_metadata_menu_section(menu)
+        self._io_manager._make_metadata_module_menu_section(menu)
+        self._io_manager._make_views_menu_section(menu)
+        self._io_manager._make_views_module_menu_section(menu)
+        return menu
 
     ### PUBLIC METHODS ###
 
