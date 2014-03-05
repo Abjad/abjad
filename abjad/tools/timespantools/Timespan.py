@@ -495,35 +495,53 @@ class Timespan(BoundedObject):
         elif expr.trisects_timespan(self):
             new_start_offset = self.start_offset
             new_stop_offset = expr.start_offset
-            timespan = type(self)(new_start_offset, new_stop_offset)
+            timespan = type(self)(
+                start_offset=new_start_offset,
+                stop_offset=new_stop_offset,
+                )
             inventory.append(timespan)
             new_start_offset = expr.stop_offset
             new_stop_offset = self.stop_offset
-            timespan = type(self)(new_start_offset, new_stop_offset)
+            timespan = type(self)(
+                start_offset=new_start_offset,
+                stop_offset=new_stop_offset,
+                )
             inventory.append(timespan)
         elif expr.contains_timespan_improperly(self):
             pass
         elif expr.overlaps_only_start_of_timespan(self):
             new_start_offset = expr.stop_offset
             new_stop_offset = self.stop_offset
-            timespan = type(self)(new_start_offset, new_stop_offset)
+            timespan = type(self)(
+                start_offset=new_start_offset,
+                stop_offset=new_stop_offset,
+                )
             inventory.append(timespan)
         elif expr.overlaps_only_stop_of_timespan(self):
             new_start_offset = self.start_offset
             new_stop_offset = expr.start_offset
-            timespan = type(self)(new_start_offset, new_stop_offset)
+            timespan = type(self)(
+                start_offset=new_start_offset,
+                stop_offset=new_stop_offset,
+                )
             inventory.append(timespan)
         elif expr.starts_when_timespan_starts(self) and \
             expr.stops_before_timespan_stops(self):
             new_start_offset = expr.stop_offset
             new_stop_offset = self.stop_offset
-            timespan = type(self)(new_start_offset, new_stop_offset)
+            timespan = type(self)(
+                start_offset=new_start_offset,
+                stop_offset=new_stop_offset,
+                )
             inventory.append(timespan)
         elif expr.stops_when_timespan_stops(self) and \
             expr.starts_after_timespan_starts(self):
             new_start_offset = self.start_offset
             new_stop_offset = expr.start_offset
-            timespan = type(self)(new_start_offset, new_stop_offset)
+            timespan = type(self)(
+                start_offset=new_start_offset,
+                stop_offset=new_stop_offset,
+                )
             inventory.append(timespan)
         else:
             raise ValueError(self, expr)
@@ -655,8 +673,14 @@ class Timespan(BoundedObject):
         stop_offsets = [self.stop_offset, expr.stop_offset]
         start_offsets.sort()
         stop_offsets.sort()
-        timespan_1 = type(self)(*start_offsets)
-        timespan_2 = type(self)(*stop_offsets)
+        timespan_1 = type(self)(
+            start_offset=start_offsets[0],
+            stop_offset=start_offsets[1],
+            )
+        timespan_2 = type(self)(
+            start_offset=stop_offsets[0],
+            stop_offset=stop_offsets[1],
+            )
         if timespan_1.is_well_formed:
             result.append(timespan_1)
         if timespan_2.is_well_formed:
@@ -682,7 +706,10 @@ class Timespan(BoundedObject):
             start_offset, stop_offset = expr.get_timespan().offsets
         else:
             start_offset, stop_offset = expr.timespan.offsets
-        return type(self)(start_offset, stop_offset)
+        return type(self)(
+            start_offset=start_offset,
+            stop_offset=stop_offset,
+            )
 
     def _implements_timespan_interface(self, timespan):
         if hasattr(timespan, 'start_offset') and \
