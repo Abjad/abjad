@@ -80,7 +80,6 @@ class ScorePackageManager(PackageManager):
             wranglers.StylesheetFileWrangler(
             session=self._session,
             )
-        #self._initialize_user_input_to_action()
 
     ### PRIVATE PROPERTIES ###
 
@@ -180,6 +179,7 @@ class ScorePackageManager(PackageManager):
             self._get_stylesheets_directory_path(),
             )
 
+    # TODO: change back to implementation with instance dictionary
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
         if result == 'fix':
@@ -199,8 +199,16 @@ class ScorePackageManager(PackageManager):
             self._build_directory_manager._open_file_ending_with(
                 'score.pdf',
                 )
+        elif result == 'radd':
+            self.add()
+        elif result == 'rci':
+            self.commit()
         elif result == 'removescore':
             self.remove(),
+        elif result == 'rst':
+            self.status()
+        elif result == 'rup':
+            self.update()
         elif result == 't':
             self._score_template_directory_manager._run()
         elif result == 'u':
@@ -247,8 +255,8 @@ class ScorePackageManager(PackageManager):
         return instrumentation
 
     def _make_main_menu(self):
-        main_menu = self._io_manager.make_menu(where=self._where)
-        command_section = main_menu.make_command_section()
+        menu = self._io_manager.make_menu(where=self._where)
+        command_section = menu.make_command_section()
         command_section.append(('build', 'u'))
         command_section.append(('makers', 'k'))
         command_section.append(('materials', 'm'))
@@ -258,19 +266,21 @@ class ScorePackageManager(PackageManager):
         command_section.append(('stylesheets', 'y'))
         manager = self._build_directory_manager
         if manager._get_file_path_ending_with('score.pdf'):
-            command_section = main_menu.make_command_section()
+            command_section = menu.make_command_section()
             command_section.append(('score pdf - view', 'pdfv'))
             command_section.default_index = len(command_section) - 1
-        hidden_section = main_menu.make_command_section(is_secondary=True)
+        # TODO: restructure with encapsulated methods
+        # TODO: use verb-first syntax
+        hidden_section = menu.make_command_section(is_secondary=True)
         hidden_section.append(('fix package structure', 'fix'))
         hidden_section.append(('list directory contents', 'ls'))
         hidden_section.append(('run pytest', 'pytest'))
         hidden_section.append(('remove score package', 'removescore'))
         hidden_section.append(('view initializer', 'inv'))
         hidden_section.append(('view instrumentation', 'instrumentation'))
-        self._io_manager._make_metadata_menu_section(main_menu)
-        self._io_manager._make_metadata_module_menu_section(main_menu)
-        return main_menu
+        self._io_manager._make_metadata_menu_section(menu)
+        self._io_manager._make_metadata_module_menu_section(menu)
+        return menu
 
     def _make_setup_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
