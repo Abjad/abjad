@@ -193,6 +193,7 @@ class BuildDirectoryManager(DirectoryManager):
         '''
         self._io_manager._assign_user_input(pending_user_input)
         segments_directory_path = self._session.current_segments_directory_path
+        build_directory_path = self._session.current_build_directory_path
         for directory_entry in sorted(os.listdir(segments_directory_path)):
             segment_directory_path = os.path.join(
                 segments_directory_path,
@@ -220,9 +221,11 @@ class BuildDirectoryManager(DirectoryManager):
                 self._path,
                 target_file_name,
                 )
+            if not os.path.exists(build_directory_path):
+                os.mkdir(build_directory_path)
             shutil.copyfile(source_file_path, target_file_path)
             self._trim_lilypond_file(target_file_path)
-            message = 'Segment {} LilyPond file copied & trimmed.'
+            message = 'segment {} LilyPond file copied & trimmed.'
             message = message.format(directory_entry)
             self._io_manager.display(message)
         self._io_manager.proceed('')

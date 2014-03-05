@@ -84,6 +84,7 @@ class Session(abctools.AbjadObject):
         'command_history',
         'controller_stack',
         'controllers_visited',
+        'current_build_directory_path',
         'current_controller',
         'current_materials_directory_path',
         'current_score_directory_path',
@@ -387,6 +388,40 @@ class Session(abctools.AbjadObject):
         Returs list.
         '''
         return self._controllers_visited
+
+    @property
+    def current_build_directory_path(self):
+        r'''Gets session current build directory path.
+
+        ..  container:: example
+
+            Build directory path of session outside score:
+
+            ::
+
+                >>> session.current_build_directory_path is None
+                True
+
+        ..  container:: example
+
+            Build directory path of session in score:
+
+            ::
+
+                >>> session_in_score.current_build_directory_path
+                '.../foo/build'
+
+        (Output will vary according to configuration.)
+
+        Returns string.
+        '''
+        if self.is_in_score:
+            manager = self.current_score_package_manager
+            path = os.path.join(
+                manager._path,
+                'build',
+                )
+            return path
 
     @property
     def current_controller(self):
