@@ -105,16 +105,16 @@ class FileManager(Manager):
         self._main_menu = menu
         section = menu.make_command_section()
         if self._is_editable():
-            section.append(('edit', 'e'))
+            section.append(('file - edit', 'e'))
             section.default_index = len(section) - 1
-        section.append(('rename', 'ren'))
-        section.append(('remove', 'rm'))
+        section.append(('file - rename', 'ren'))
+        section.append(('file - remove', 'rm'))
         if self._path.endswith('.py'):
-            section.append(('run', 'run'))
+            section.append(('file - run', 'run'))
         if self._path.endswith('.tex'):
-            section.append(('typeset', 'ts'))
+            section.append(('file - typeset', 'ts'))
         if self._path.endswith('.pdf'):
-            section.append(('view', 'v'))
+            section.append(('file - view', 'v'))
         return menu
 
     def _read_lines(self):

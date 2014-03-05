@@ -8,23 +8,23 @@ def test_InstrumentationEditor_move_performer_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score setup instrumentation move q'
+    string = 'red~example~score setup instrumentation mv q'
     score_manager._run(pending_user_input=string)
     assert score_manager._transcript.signature == (9,)
 
-    string = 'red~example~score setup instrumentation move b q'
+    string = 'red~example~score setup instrumentation mv b q'
     score_manager._run(pending_user_input=string)
     assert score_manager._transcript.signature == (11, (6, 9))
 
-    string = 'red~example~score setup instrumentation move h q'
+    string = 'red~example~score setup instrumentation mv h q'
     score_manager._run(pending_user_input=string)
     assert score_manager._transcript.signature == (11, (0, 9))
 
-    string = 'red~example~score setup instrumentation move s q'
+    string = 'red~example~score setup instrumentation mv s q'
     score_manager._run(pending_user_input=string)
     assert score_manager._transcript.signature == (11, (2, 9))
 
-    string = 'red~example~score setup instrumentation move foo q'
+    string = 'red~example~score setup instrumentation mv foo q'
     score_manager._run(pending_user_input=string)
     assert score_manager._transcript.signature == (11,)
 
@@ -35,7 +35,7 @@ def test_InstrumentationEditor_move_performer_02():
 
     editor = scoremanager.editors.InstrumentationEditor()
     string = 'add accordionist default add bassist default'
-    string += ' add bassoonist bassoon move 1 2 move 2 3 q'
+    string += ' add bassoonist bassoon mv 1 2 mv 2 3 q'
     editor._run(pending_user_input=string)
     assert editor.target == instrumenttools.InstrumentationSpecifier([
         instrumenttools.Performer(

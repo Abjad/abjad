@@ -38,9 +38,9 @@ def test_MenuSection__menu_entry_keys_02():
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
     section = menu._make_section()
-    section.append(('add something', 'add'))
-    section.append(('delete something', 'rm'))
-    section.append(('modify something', 'mod'))
+    section.append(('something - add', 'add'))
+    section.append(('something - delete', 'rm'))
+    section.append(('something - modify', 'mod'))
     section.title = 'section title'
     assert not section.is_numbered
     assert section._menu_entry_keys == \
@@ -51,9 +51,9 @@ def test_MenuSection__menu_entry_keys_02():
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
     section = menu._make_section(is_numbered=True)
-    section.append(('add something', 'add'))
-    section.append(('delete something', 'rm'))
-    section.append(('modify something', 'mod'))
+    section.append(('something - add', 'add'))
+    section.append(('something - delete', 'rm'))
+    section.append(('something - modify', 'mod'))
     section.title = 'section title'
     assert section.is_numbered
     assert section._menu_entry_keys == \

@@ -272,12 +272,12 @@ class ScorePackageManager(PackageManager):
         # TODO: restructure with encapsulated methods
         # TODO: use verb-first syntax
         section = menu.make_command_section(is_secondary=True)
-        section.append(('fix package structure', 'fix'))
-        section.append(('list directory contents', 'ls'))
-        section.append(('run pytest', 'pytest'))
-        section.append(('remove score package', 'removescore'))
-        section.append(('view initializer', 'inv'))
-        section.append(('view instrumentation', 'instrumentation'))
+        section.append(('package - fix', 'fix'))
+        section.append(('directory - list', 'ls'))
+        section.append(('Python - test', 'pyt'))
+        section.append(('score - remove', 'removescore'))
+        section.append(('initializer - view', 'inv'))
+        section.append(('instrumentation - view', 'instrumentation'))
         self._io_manager._make_metadata_menu_section(menu)
         self._io_manager._make_metadata_module_menu_section(menu)
         return menu

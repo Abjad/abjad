@@ -73,9 +73,9 @@ def test_MenuSection__menu_entry_return_values_02():
     section = menu._make_section()
     section.return_value_attribute = 'key'
     section.is_numbered = True
-    section.append(('add something', 'add'))
-    section.append(('delete something', 'rm'))
-    section.append(('modify something', 'mod'))
+    section.append(('something - add', 'add'))
+    section.append(('something - delete', 'rm'))
+    section.append(('something - modify', 'mod'))
     section.title = 'section'
     assert section.is_numbered
     assert section._menu_entry_return_values == ['add', 'rm', 'mod']
@@ -86,9 +86,9 @@ def test_MenuSection__menu_entry_return_values_02():
     menu._session._push_breadcrumb('location')
     section = menu._make_section()
     section.return_value_attribute = 'key'
-    section.append(('add something', 'add'))
-    section.append(('delete something', 'rm'))
-    section.append(('modify something', 'mod'))
+    section.append(('something - add', 'add'))
+    section.append(('something - delete', 'rm'))
+    section.append(('something - modify', 'mod'))
     section.title = 'section'
     assert not section.is_numbered
     assert section._menu_entry_return_values == \
@@ -99,26 +99,26 @@ def test_MenuSection__menu_entry_return_values_02():
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
     section = menu._make_section(is_numbered=True)
-    section.append(('add something', 'add'))
-    section.append(('delete something', 'rm'))
-    section.append(('modify something', 'mod'))
+    section.append(('something - add', 'add'))
+    section.append(('something - delete', 'rm'))
+    section.append(('something - modify', 'mod'))
     section.title = 'section'
     assert section.is_numbered
     assert section._menu_entry_return_values == \
-        ['add something', 'delete something', 'modify something']
+        ['something - add', 'something - delete', 'something - modify']
     assert section._menu_entry_return_values == \
         section._menu_entry_display_strings
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
     section = menu._make_section()
-    section.append(('add something', 'add'))
-    section.append(('delete something', 'rm'))
-    section.append(('modify something', 'mod'))
+    section.append(('something - add', 'add'))
+    section.append(('something - delete', 'rm'))
+    section.append(('something - modify', 'mod'))
     section.title = 'section'
     assert not section.is_numbered
     assert section._menu_entry_return_values == \
-        ['add something', 'delete something', 'modify something']
+        ['something - add', 'something - delete', 'something - modify']
     assert section._menu_entry_return_values == \
         section._menu_entry_display_strings
 
@@ -132,9 +132,9 @@ def test_MenuSection__menu_entry_return_values_03():
     menu._session._push_breadcrumb('location')
     section = menu._make_section()
     section.return_value_attribute = 'explicit'
-    section.append(('add something', 'add', None, 'return value A'))
-    section.append(('delete something', 'rm', None, 'return value B'))
-    section.append(('modify something', 'mod', None, 'return value C'))
+    section.append(('something - add', 'add', None, 'return value A'))
+    section.append(('something - delete', 'rm', None, 'return value B'))
+    section.append(('something - modify', 'mod', None, 'return value C'))
     section.title = 'section'
     assert not section.is_numbered
     assert section._menu_entry_return_values == \

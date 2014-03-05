@@ -72,11 +72,11 @@ class ListEditor(Editor):
         self._numbered_section = numbered_section
         numbered_section.menu_entries = self.target_summary_lines
         section = menu.make_command_section(name='add, move, remove')
-        section.append(('add elements', 'add'))
+        section.append(('elements - add', 'add'))
         if 1 < len(self.items):
-            section.append(('move elements', 'mv'))
+            section.append(('elements - move', 'mv'))
         if 0 < len(self.items):
-            section.append(('remove elements', 'rm'))
+            section.append(('elements - remove', 'rm'))
         self._io_manager._make_done_menu_section(menu)
         return menu
 
