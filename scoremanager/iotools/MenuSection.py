@@ -14,14 +14,14 @@ class MenuSection(AbjadObject):
             >>> menu = scoremanager.iotools.Menu(
             ...     include_default_hidden_sections=False,
             ...     )
-            >>> menu_section = menu.make_command_section()
-            >>> entry = menu_section.append(('foo - add', 'add'))
-            >>> entry = menu_section.append(('foo - delete', 'delete'))
-            >>> entry = menu_section.append(('foo - modify', 'modify'))
+            >>> section = menu.make_command_section()
+            >>> entry = section.append(('foo - add', 'add'))
+            >>> entry = section.append(('foo - delete', 'delete'))
+            >>> entry = section.append(('foo - modify', 'modify'))
 
         ::
 
-            >>> menu_section
+            >>> section
             <MenuSection (3)>
 
     '''
@@ -218,7 +218,7 @@ class MenuSection(AbjadObject):
 
             ::
 
-                >>> menu_section.default_index is None
+                >>> section.default_index is None
                 True
 
             Returns nonnegative integer or none.
@@ -246,7 +246,7 @@ class MenuSection(AbjadObject):
 
             ::
 
-                >>> menu_section.display_prepopulated_values
+                >>> section.display_prepopulated_values
                 False
 
             Returns boolean.
@@ -264,7 +264,7 @@ class MenuSection(AbjadObject):
 
             ::
 
-                >>> menu_section.indent_level
+                >>> section.indent_level
                 1
 
             Returns nonnegative integer.
@@ -283,7 +283,7 @@ class MenuSection(AbjadObject):
 
             ::
 
-                >>> menu_section.is_numbered
+                >>> section.is_numbered
                 False
 
             Returns boolean.
@@ -302,7 +302,7 @@ class MenuSection(AbjadObject):
 
             ::
 
-                >>> menu_section.is_ranged
+                >>> section.is_ranged
                 False
 
             Returns boolean.
@@ -321,7 +321,7 @@ class MenuSection(AbjadObject):
 
             ::
 
-                >>> menu_section.is_secondary
+                >>> section.is_secondary
                 False
 
             Returns boolean.
@@ -339,7 +339,7 @@ class MenuSection(AbjadObject):
 
             ::
 
-                >>> for menu_entry in menu_section.menu_entries:
+                >>> for menu_entry in section.menu_entries:
                 ...     menu_entry
                 <MenuEntry: 'foo - add'>
                 <MenuEntry: 'foo - delete'>
@@ -367,7 +367,7 @@ class MenuSection(AbjadObject):
 
             ::
 
-                >>> menu_section.name
+                >>> section.name
 
         Returns string or none.
         '''
@@ -380,7 +380,7 @@ class MenuSection(AbjadObject):
 
             ::
 
-                >>> menu_section.return_value_attribute
+                >>> section.return_value_attribute
                 'key'
 
             Acceptable values:
@@ -407,7 +407,7 @@ class MenuSection(AbjadObject):
 
             ::
 
-                >>> menu_section.title is None
+                >>> section.title is None
                 True
 
             Returns string or none.
@@ -425,12 +425,12 @@ class MenuSection(AbjadObject):
 
         ::
 
-            >>> menu_section.append(('foo - stub', 'stub'))
+            >>> section.append(('foo - stub', 'stub'))
             <MenuEntry: 'foo - stub'>
 
         ::
 
-            >>> for menu_entry in menu_section.menu_entries:
+            >>> for menu_entry in section.menu_entries:
             ...     menu_entry
             <MenuEntry: 'foo - add'>
             <MenuEntry: 'foo - delete'>

@@ -388,25 +388,25 @@ class MaterialManager(PackageManager):
 
     def _make_illustration_builder_menu_section(
         self,
-        main_menu,
+        menu,
         ):
         name = 'illustration builder'
-        command_section = main_menu.make_command_section(name=name)
+        section = menu.make_command_section(name=name)
         if os.path.isfile(self._output_material_module_path):
             if os.path.isfile(self._illustration_builder_module_path):
                 string = 'illustration builder - edit'
-                command_section.append((string, 'ibe'))
+                section.append((string, 'ibe'))
                 string = 'illustration builder - edit & interpret'
-                command_section.append((string, 'ibei'))
+                section.append((string, 'ibei'))
                 string = 'illustration builder - interpret'
-                command_section.append((string, 'ibi'))
+                section.append((string, 'ibi'))
                 string = 'illustration builder - remove'
-                command_section.append((string, 'ibrm'))
+                section.append((string, 'ibrm'))
                 string = 'illustration builder - stub'
-                command_section.append((string, 'ibs'))
+                section.append((string, 'ibs'))
             else:
                 string = 'illustration builder - make'
-                command_section.append((string, 'ibm'))
+                section.append((string, 'ibm'))
 
     def _make_illustration_ly_menu_section(self, menu):
         if os.path.isfile(self._output_material_module_path) or \
@@ -422,23 +422,23 @@ class MaterialManager(PackageManager):
 
     def _make_illustration_pdf_menu_section(
         self,
-        main_menu,
+        menu,
         ):
         name = 'illustration pdf'
         if os.path.isfile(self._output_material_module_path) or \
             os.path.isfile(self._illustration_pdf_file_path):
-            command_section = main_menu.make_command_section(name=name)
+            section = menu.make_command_section(name=name)
         if os.path.isfile(self._output_material_module_path):
             if os.path.isfile(self._illustration_builder_module_path) or \
                 (self._read_material_manager_class_name() and
                 getattr(self, '__illustrate__', None)):
-                command_section.append(('output pdf - make', 'pdfm'))
+                section.append(('output pdf - make', 'pdfm'))
                 has_illustration_pdf_section = True
         if os.path.isfile(self._illustration_pdf_file_path):
             if not has_illustration_pdf_section:
-                command_section = main_menu.make_command_section(name=name)
-            command_section.append(('output pdf - remove', 'pdfrm'))
-            command_section.append(('output pdf - view', 'pdfv'))
+                section = menu.make_command_section(name=name)
+            section.append(('output pdf - remove', 'pdfrm'))
+            section.append(('output pdf - view', 'pdfv'))
 
     def _make_main_menu(self):
         superclass = super(MaterialManager, self)
@@ -486,25 +486,25 @@ class MaterialManager(PackageManager):
 
     def _make_material_definition_menu_section(
         self,
-        main_menu, 
+        menu, 
         ):
         name = 'material definition'
         if not os.path.isfile(self._initializer_file_path):
             return
         if os.path.isfile(self._material_definition_module_path):
-            command_section = main_menu.make_command_section(name=name)
+            section = menu.make_command_section(name=name)
             string = 'material definition - boilerplate'
-            command_section.append((string, 'mdbp'))
-            command_section.append(('material definition - edit', 'mde'))
-            command_section.default_index = len(command_section) - 1
-            command_section.append(('material definition - interpret', 'mdi'))
+            section.append((string, 'mdbp'))
+            section.append(('material definition - edit', 'mde'))
+            section.default_index = len(section) - 1
+            section.append(('material definition - interpret', 'mdi'))
             string = 'material definition - remove'
-            command_section.append((string, 'mdrm'))
-            command_section.append(('material definition - stub', 'mds'))
+            section.append((string, 'mdrm'))
+            section.append(('material definition - stub', 'mds'))
         elif self._read_material_manager_class_name() is None:
-            command_section = main_menu.make_command_section(name=name)
-            command_section.return_value_attribute = 'key'
-            command_section.append(('material definition - stub', 'mds'))
+            section = menu.make_command_section(name=name)
+            section.return_value_attribute = 'key'
+            section.append(('material definition - stub', 'mds'))
 
     @staticmethod
     def _make_output_material():
@@ -586,22 +586,20 @@ class MaterialManager(PackageManager):
 
     def _make_user_input_module_menu_section(
         self,
-        main_menu, 
+        menu, 
         ):
         menu_entries = self._user_input_wrapper_in_memory.editable_lines
-        numbered_section = main_menu.make_numbered_section(
-            name='material summary')
+        numbered_section = menu.make_numbered_section(name='material summary')
         numbered_section.menu_entries = menu_entries
-        command_section = main_menu.make_command_section(name='user input')
-        command_section.append(('user input - clear', 'uic'))
-        command_section.append(('user input - load demo values', 'uil'))
-        command_section.append(('user input - populate', 'uip'))
-        command_section.append(('user input - show demo values', 'uis'))
-        command_section.append(('user input - toggle default mode', 'uit'))
-        command_section = main_menu.make_command_section(
-            name='user input module')
-        command_section.append(('user input module - remove', 'uimrm'))
-        command_section.append(('user input module - view', 'uimv'))
+        section = menu.make_command_section(name='user input')
+        section.append(('user input - clear', 'uic'))
+        section.append(('user input - load demo values', 'uil'))
+        section.append(('user input - populate', 'uip'))
+        section.append(('user input - show demo values', 'uis'))
+        section.append(('user input - toggle default mode', 'uit'))
+        section = menu.make_command_section(name='user input module')
+        section.append(('user input module - remove', 'uimrm'))
+        section.append(('user input module - view', 'uimv'))
 
     def _read_material_manager_class_name(self):
         return self._get_metadatum('material_manager_class_name')
