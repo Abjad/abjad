@@ -42,3 +42,19 @@ def test_MaterialPackageWrangler__run_03():
     score_manager._run(pending_user_input='lmm q')
     menu_lines = score_manager._transcript.last_menu_lines
     assert any(x.endswith('example sargasso measures') for x in menu_lines)
+
+
+def test_MaterialPackageWrangler__run_04():
+    r'''Current score is reset on return to home.
+    '''
+
+    score_manager = scoremanager.core.ScoreManager()
+    string = 'red~example~score h lmm q'
+    score_manager._run(pending_user_input=string)
+
+    found_example_articulation_handler = False
+    for line in score_manager._transcript.last_menu_lines:
+        if 'example articulation handler' in line:
+            found_example_articulation_handler = True
+
+    assert found_example_articulation_handler 

@@ -134,6 +134,7 @@ class IOManager(IOManager):
         elif self._is_score_string(key) and not self._session.is_in_score:
             directive = None
         elif self._is_home_string(key):
+            self._session._current_score_snake_case_name = None
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
         else:
