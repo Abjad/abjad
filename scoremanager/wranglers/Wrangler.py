@@ -490,7 +490,7 @@ class Wrangler(ScoreManagerObject):
 
         Returns none.
         '''
-        managers = self._list_asset_managers(
+        managers = self._list_visible_asset_managers(
             abjad_library=True, 
             user_library=True,
             abjad_score_packages=True, 
@@ -521,7 +521,7 @@ class Wrangler(ScoreManagerObject):
         self._io_manager.display(line)
         if not self._io_manager.confirm():
             return
-        managers = self._list_asset_managers(
+        managers = self._list_visible_asset_managers(
             abjad_library=True, 
             user_library=True,
             abjad_score_packages=True, 
@@ -757,7 +757,7 @@ class Wrangler(ScoreManagerObject):
 
         Returns none.
         '''
-        managers = self._list_asset_managers(
+        managers = self._list_visible_asset_managers(
             abjad_library=True, 
             user_library=True,
             abjad_score_packages=True, 
