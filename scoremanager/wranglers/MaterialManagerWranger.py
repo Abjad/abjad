@@ -127,8 +127,7 @@ class MaterialManagerWrangler(PackageWrangler):
         sequences = (names, [None], [None], packages)
         return sequencetools.zip_sequences(sequences, cyclic=True)
 
-    # TODO: remove head
-    def _make_main_menu(self, head=None):
+    def _make_main_menu(self):
         main_menu = self._io_manager.make_menu(where=self._where)
         asset_section = main_menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries()

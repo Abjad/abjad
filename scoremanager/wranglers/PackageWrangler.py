@@ -157,7 +157,7 @@ class PackageWrangler(Wrangler):
             entries = self._sort_asset_menu_entries_by_view(entries, view)
         return entries
 
-    def _make_main_menu(self, head=None):
+    def _make_main_menu(self):
         self._io_manager.print_not_yet_implemented()
 
     @staticmethod
