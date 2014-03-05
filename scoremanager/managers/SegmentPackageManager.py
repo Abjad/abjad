@@ -89,9 +89,9 @@ class SegmentPackageManager(PackageManager):
         superclass = super(SegmentPackageManager, self)
         where = self._where
         menu, section = superclass._make_main_menu(where=where)
-        section.append(('remove package', 'rm'))
-        section.append(('list package', 'ls'))
-        section.append(('rename package', 'ren'))
+        section.append(('package - remove', 'rm'))
+        section.append(('package - list ', 'ls'))
+        section.append(('package - rename', 'ren'))
         section = menu.make_command_section()
         section.append(('segment definition module - edit', 'e'))
         section = menu.make_command_section()
@@ -116,9 +116,9 @@ class SegmentPackageManager(PackageManager):
         section = menu.make_command_section(is_secondary=True)
         section.append(('versioned output ly - view', 'lyver'))
         section.append(('versioned output pdf - view', 'pdfv'))
-        display_string = 'versioned segment definition module - view'
-        section.append((display_string, 'pyver'))
-        section.append(('list versions directory', 'vrl'))
+        string = 'versioned segment definition module - view'
+        section.append((string, 'pyver'))
+        section.append(('versions directory - list', 'vrl'))
         return menu
 
     def _view_versioned_file(self, extension):

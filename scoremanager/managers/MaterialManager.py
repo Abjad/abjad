@@ -565,13 +565,13 @@ class MaterialManager(PackageManager):
     def _make_package_management_menu_section(self, main_menu):
         section = main_menu.make_command_section(
             is_secondary=True,
-            name='package management',
+            name='directory management',
             )
-        section.append(('package - list', 'ls'))
-        section.append(('package - list long', 'll'))
-        section.append(('package - pwd', 'pwd'))
-        section.append(('package - remove', 'rm'))
-        section.append(('package - rename', 'ren'))
+        section.append(('directory - list', 'ls'))
+        section.append(('directory - list long', 'll'))
+        section.append(('directory - pwd', 'pwd'))
+        section.append(('directory - remove', 'rm'))
+        section.append(('directory - rename', 'ren'))
 
     def _make_stylesheet_menu_section(
         self,

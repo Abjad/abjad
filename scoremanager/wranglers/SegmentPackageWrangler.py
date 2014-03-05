@@ -263,9 +263,9 @@ class SegmentPackageWrangler(PackageWrangler):
         section.append(('all segments - current pdf - version', 'pdfs'))
         section.append(('all segments - current pdf - view', 'pdfv'))
         section = menu.make_command_section()
-        section.append(('new segment', 'new'))
+        section.append(('segments - new', 'new'))
         section = menu.make_command_section(is_secondary=True)
-        section.append(('list', 'ls'))
+        section.append(('package - list', 'ls'))
         self._io_manager._make_initializer_menu_section(
             menu,
             has_initializer=True,
