@@ -212,7 +212,7 @@ class BuildDirectoryManager(DirectoryManager):
                 score_path)
             score_name = score_package.replace('_', '-')
             directory_entry = directory_entry.replace('_', '-')
-            target_file_name = '{}-segment-{}.ly'
+            target_file_name = '{}-{}.ly'
             target_file_name = target_file_name.format(
                 score_name,
                 directory_entry,
