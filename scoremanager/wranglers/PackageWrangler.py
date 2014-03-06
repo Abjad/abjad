@@ -218,24 +218,6 @@ class PackageWrangler(Wrangler):
             return
         self._make_asset(path)
 
-    def make_empty_package(self, package_path):
-        r'''Makes empty package.
-
-        Returns none.
-        '''
-        if package_path is None:
-            return
-        directory_path = \
-            self._configuration.package_path_to_path(
-            package_path)
-        if not os.path.exists(directory_path):
-            os.mkdir(directory_path)
-            initializer_file_path = os.path.join(
-                directory_path, '__init__.py')
-            file_reference = file(initializer_file_path, 'w')
-            file_reference.write('')
-            file_reference.close()
-
     def rename(self, head=None, pending_user_input=None):
         r'''Renames asset.
 
