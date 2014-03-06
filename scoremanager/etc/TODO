@@ -134,25 +134,22 @@
     output formatting changes to be applied to all collateral with a single
     command.
 
-37. There's noticeable delay starting ScorePackageManager.
-    Probably initializing too many wranglers and managers.
-    Find a way to delay (and then cache) the initialization of
-    ScorePackageManager delegates.
-
-38. Provide an object-oriented means for makers in any score to access the
+37. Provide an object-oriented means for makers in any score to access the
     contents of the toplevel __metadata__ module for that score. Same for
     discovering the contents of a score's stylesheets directory.
 
-39. Mark all test calls to score_manager._run() with is_test=True.
+38. Mark all test calls to score_manager._run() with is_test=True.
 
-40. Note that ArticulationHandlerMaterialManager implementation is limited
+39. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
 
-41. Make (rst) work in (lmy).
+40. Make (rst) work in (lmy).
 
-42. Change 'git st' to 'git status' in repository management code.
+41. Change 'git st' to 'git status' in repository management code.
     'st' is not an official Git alias.
+
+42. Rename StylesheetFileWrangler to just StylesheetWrangler.

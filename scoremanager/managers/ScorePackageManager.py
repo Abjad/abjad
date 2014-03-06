@@ -8,83 +8,10 @@ class ScorePackageManager(PackageManager):
     ### INITIALIZER ###
 
     def __init__(self, path=None, session=None):
-        from scoremanager import managers
-        from scoremanager import wranglers
         PackageManager.__init__(
             self, 
             path=path, 
             session=session,
-            )
-
-        self._build_directory_manager = None
-        self._distribution_directory_manager = None
-        self._instrumentation_module_manager = None
-        self._material_package_wrangler = None
-        self._material_manager_wrangler = None
-        self._score_template_directory_manager = None
-        self._segment_package_wrangler = None
-        self._stylesheet_wrangler = None
-
-        path = self._path
-        if path is not None:
-            path = os.path.join(
-                self._path, 
-                'build',
-                )
-        manager = managers.BuildDirectoryManager(
-            path=path,
-            session=self._session,
-            )
-        self._build_directory_manager = manager
-        if path is not None:
-            path = os.path.join(
-                self._path,
-                'distribution',
-                )
-        manager = managers.DistributionDirectoryManager(
-            path=path,
-            session=self._session,
-            )
-        self._distribution_directory_manager = manager
-        if self._path is not None:
-            instrumentation_module_path = os.path.join(
-                self._path,
-                'instrumentation.py',
-                )
-        else:
-            instrumentation_module_path = None
-        self._instrumentation_module_manager = \
-            managers.FileManager(
-            instrumentation_module_path,
-            session=self._session,
-            )
-        self._material_package_wrangler = \
-            wranglers.MaterialPackageWrangler(
-            session=self._session,
-            )
-        self._material_manager_wrangler = \
-            wranglers.MaterialManagerWrangler(
-            session=self._session,
-            )
-        if self._path is not None:
-            path = os.path.join(
-                self._path, 
-                'templates',
-                )
-        else:
-            path = None
-        self._score_template_directory_manager = \
-            managers.DirectoryManager(
-            path=path,
-            session=self._session,
-            )
-        self._segment_package_wrangler = \
-            wranglers.SegmentPackageWrangler(
-            session=self._session,
-            )
-        self._stylesheet_wrangler = \
-            wranglers.StylesheetFileWrangler(
-            session=self._session,
             )
 
     ### PRIVATE PROPERTIES ###
@@ -96,6 +23,103 @@ class ScorePackageManager(PackageManager):
     @property
     def _breadcrumb(self):
         return self._get_annotated_title()
+
+    @property
+    def _build_directory_manager(self):
+        from scoremanager import managers
+        if self._path is None:
+            return
+        if not hasattr(self, '_cached_build_directory_manager'):
+            path = os.path.join(self._path, 'build')
+            manager = managers.BuildDirectoryManager(
+                path=path,
+                session=self._session,
+                )
+            self._cached_build_directory_manager = manager
+        return self._cached_build_directory_manager
+
+    @property
+    def _distribution_directory_manager(self):
+        from scoremanager import managers
+        if self._path is None:
+            return
+        if not hasattr(self, '_cached_distribution_directory_manager'):
+            path = os.path.join(self._path, 'distribution')
+            manager = managers.DistributionDirectoryManager(
+                path=path,
+                session=self._session,
+                )
+            self._cached_distribution_directory_manager = manager
+        return self._cached_distribution_directory_manager
+
+    @property
+    def _instrumentation_module_manager(self):
+        from scoremanager import managers
+        if self._path is None:
+            return
+        if not hasattr(self, '_cached_instrumentation_module_manager'):
+            path = os.path.join(self._path, 'instrumentation.py')
+            manager = managers.FileManager(
+                path,
+                session=self._session,
+                )
+            self._cached_instrumentation_module_manager = manager
+        return self._cached_instrumentation_module_manager
+
+    @property
+    def _material_package_wrangler(self):
+        from scoremanager import wranglers
+        if self._path is None:
+            return
+        if not hasattr(self, '_cached_material_package_wrangler'):
+            wrangler = wranglers.MaterialPackageWrangler(session=self._session)
+            self._cached_material_package_wrangler = wrangler
+        return self._cached_material_package_wrangler
+
+    @property
+    def _material_manager_wrangler(self):
+        from scoremanager import wranglers
+        if self._path is None:
+            return
+        if not hasattr(self, '_cached_material_manager_wrangler'):
+            wrangler = wranglers.MaterialManagerWrangler(session=self._session)
+            self._cached_material_manager_wrangler = wrangler
+        return self._cached_material_manager_wrangler
+
+    @property
+    def _score_template_directory_manager(self):
+        from scoremanager import managers
+        if self._path is None:
+            return
+        if not hasattr(self, '_cached_score_template_directory_manager'):
+            path = os.path.join(self._path, 'templates')
+            manager = managers.DirectoryManager(
+                path=path,
+                session=self._session,
+            )
+            self._cached_score_template_directory_manager = manager
+        return self._cached_score_template_directory_manager
+
+
+    @property
+    def _segment_package_wrangler(self):
+        from scoremanager import wranglers
+        if self._path is None:
+            return
+        if not hasattr(self, '_cached_segment_package_wrangler'):
+            wrangler = wranglers.SegmentPackageWrangler(session=self._session)
+            self._cached_segment_package_wrangler = wrangler
+        return self._cached_segment_package_wrangler
+
+    @property
+    def _stylesheet_wrangler(self):
+        from scoremanager import wranglers
+        if self._path is None:
+            return
+        if not hasattr(self, '_cached_stylesheet_wrangler'):
+            wrangler = wranglers.StylesheetFileWrangler(session=self._session)
+            self._cached_stylesheet_wrangler = wrangler
+        return self._cached_stylesheet_wrangler
 
     ### PRIVATE METHODS ###
 
