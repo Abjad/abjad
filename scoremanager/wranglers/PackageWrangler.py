@@ -110,7 +110,7 @@ class PackageWrangler(Wrangler):
         abjad_score_packages=True,
         user_score_packages=True,
         ):
-        r'''Lists asset storehouse packagesystem paths.
+        r'''Lists storehouse package paths.
 
         Returns list.
         '''
@@ -185,7 +185,7 @@ class PackageWrangler(Wrangler):
         self, 
         pending_user_input=None,
         ):
-        r'''Gets available packagesystem path.
+        r'''Gets available package path.
 
         Returns string.
         '''
@@ -194,21 +194,22 @@ class PackageWrangler(Wrangler):
             getter = self._io_manager.make_getter(where=self._where)
             getter.append_space_delimited_lowercase_string('name')
             with self._backtracking:
-                package = getter._run()
+                package_name = getter._run()
             if self._session._backtrack():
                 return
-            package = stringtools.string_to_accent_free_snake_case(package)
+            package_name = stringtools.string_to_accent_free_snake_case(
+                package_name)
             path = os.path.join(
                 self._current_storehouse_path, 
-                package,
+                package_name,
                 )
-            package = self._configuration.path_to_package_path(path)
-            if self._configuration.package_exists(package):
-                line = 'package already exists: {!r}.'
+            if os.path.exists(path):
+                line = 'path already exists: {!r}.'
                 line = line.format(path)
                 self._io_manager.display([line, ''])
             else:
-                return package
+                package_path = self._configuration.path_to_package_path(path)
+                return package_path
 
     def make_asset(
         self,
@@ -268,7 +269,7 @@ class PackageWrangler(Wrangler):
         infinitival_phrase=None,
         pending_user_input=None,
         ):
-        '''Selects asset packagesystem path.
+        '''Selects asset package path.
 
         Returns string.
         '''
