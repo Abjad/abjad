@@ -9,7 +9,7 @@ def test_MaterialPackageWrangler_material_navigation_01():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score m mtn mtn mtn mtn q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler_material_navigation_02():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score m mtp mtp mtp mtp q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',

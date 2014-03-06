@@ -9,7 +9,7 @@ def test_ScoreManager_score_navigation_01():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'stn stn q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
     titles = [
         'Score manager - example scores',
         'Blue Example Score (2013)',
@@ -24,7 +24,7 @@ def test_ScoreManager_score_navigation_02():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'stp stp q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',

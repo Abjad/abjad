@@ -159,7 +159,7 @@ def test_SargassoMeasureMaterialManager_04():
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
         input_ = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_user_input=input_, is_test=True)
         assert not os.path.exists(path)
 
 

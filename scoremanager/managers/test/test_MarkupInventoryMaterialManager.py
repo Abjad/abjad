@@ -33,7 +33,7 @@ def test_MarkupInventoryMaterialManager_01():
     input_ += " add arg r'\\italic~{~presto~}' done done default q"
 
     try:
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_user_input=input_, is_test=True)
         manager = scoremanager.managers.ArticulationHandlerMaterialManager(
             path=path)
         assert manager._list() == directory_entries
@@ -41,5 +41,5 @@ def test_MarkupInventoryMaterialManager_01():
         assert output_material == inventory
     finally:
         input_ = 'lmm testmarkupinventory rm remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_user_input=input_, is_test=True)
         assert not os.path.exists(path)

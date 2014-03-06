@@ -32,7 +32,10 @@ class InstrumentCreationWizard(Wizard):
         clear=True,
         head=None,
         pending_user_input=None,
+        is_test=False,
         ):
+        if is_test:
+            self._session._is_test = True
         self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
         self._session._push_breadcrumb(self._breadcrumb)

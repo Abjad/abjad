@@ -29,7 +29,7 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_01():
         assert output_material is None
     finally:
         input_ = 'lmm testoctavetrans rm remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_user_input=input_, is_test=True)
         assert not os.path.exists(path)
 
 
@@ -74,5 +74,5 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_02():
         assert output_material == inventory
     finally:
         string = 'lmm testoctavetrans rm remove q'
-        score_manager._run(pending_user_input=string)
+        score_manager._run(pending_user_input=string, is_test=True)
         assert not os.path.exists(path)

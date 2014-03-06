@@ -40,5 +40,5 @@ def test_ArticulationHandlerMaterialManager_01():
         assert output_material == handler
     finally:
         input_ = 'lmm testarticulationhandler rm remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_user_input=input_, is_test=True)
         assert not os.path.exists(path)

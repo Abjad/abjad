@@ -29,7 +29,7 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
         assert manager._list() == directory_entries
     finally:
         input_ = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_user_input=input_, is_test=True)
         assert not os.path.exists(path)
 
 

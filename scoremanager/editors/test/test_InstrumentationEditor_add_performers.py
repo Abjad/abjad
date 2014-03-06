@@ -9,23 +9,23 @@ def test_InstrumentationEditor_add_performers_01():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score setup instrumentation add q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
     assert score_manager._transcript.signature == (10,)
 
     string = 'red~example~score setup instrumentation add b q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
     assert score_manager._transcript.signature == (12, (6, 10))
 
     string = 'red~example~score setup instrumentation add h q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
     assert score_manager._transcript.signature == (12, (0, 10))
 
     string = 'red~example~score setup instrumentation add score q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
     assert score_manager._transcript.signature == (12, (2, 10))
 
     string = 'red~example~score setup instrumentation add foo q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
     assert score_manager._transcript.signature == (12, (8, 10))
 
 

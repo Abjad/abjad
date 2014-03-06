@@ -193,7 +193,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
         assert manager._execute_output_material_module() is None
     finally:
         input_ = 'lmm testnotes rm remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_user_input=input_, is_test=True)
         assert not os.path.exists(path)
 
 

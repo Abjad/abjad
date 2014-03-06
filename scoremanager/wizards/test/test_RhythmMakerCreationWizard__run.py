@@ -8,9 +8,8 @@ pytest.skip('unskip once it is possible to edit composite objects.')
 def test_RhythmMakerCreationWizard__run_01():
 
     wizard = scoremanager.wizards.RhythmMakerCreationWizard()
-    wizard._run(pending_user_input=
-        'talearhythmmaker (-1, 2, -3, 4) 16 (2, 3) (6,) b'
-        )
+    input_ = 'talearhythmmaker (-1, 2, -3, 4) 16 (2, 3) (6,) b'
+    wizard._run(pending_user_input=input_, is_test=True)
 
     talea = rhythmmakertools.Talea(
         counts=(-1, 2, -3, 4),

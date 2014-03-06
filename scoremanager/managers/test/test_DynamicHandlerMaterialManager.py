@@ -27,7 +27,7 @@ def test_DynamicHandlerMaterialManager_01():
     input_ += ' reiterateddynamic f (1, 16) done default q'
 
     try:
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_user_input=input_, is_test=True)
         manager = scoremanager.managers.DynamicHandlerMaterialManager(
             path=path)
         assert manager._list() == directory_entries
@@ -35,5 +35,5 @@ def test_DynamicHandlerMaterialManager_01():
         assert output_material == handler
     finally:
         string = 'lmm testdynamichandler rm remove q'
-        score_manager._run(pending_user_input=string)
+        score_manager._run(pending_user_input=string, is_test=True)
         assert not os.path.exists(path)

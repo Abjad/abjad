@@ -8,14 +8,14 @@ def test_ScoreManager__run_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='q')
+    score_manager._run(pending_user_input='q', is_test=True)
     assert score_manager._transcript.signature == (2,)
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='h q')
+    score_manager._run(pending_user_input='h q', is_test=True)
     assert score_manager._transcript.signature == (4, (0, 2))
 
-    score_manager._run(pending_user_input='foo q')
+    score_manager._run(pending_user_input='foo q', is_test=True)
     assert score_manager._transcript.signature == (4, (0, 2))
 
 
@@ -24,7 +24,7 @@ def test_ScoreManager__run_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='s q')
+    score_manager._run(pending_user_input='s q', is_test=True)
     assert score_manager._transcript.signature == (4, (0, 2))
 
 
@@ -33,5 +33,5 @@ def test_ScoreManager__run_03():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='b q')
+    score_manager._run(pending_user_input='b q', is_test=True)
     assert score_manager._transcript.signature == (4, (0, 2))

@@ -7,7 +7,7 @@ def test_PackageManager_view_initializer_01():
 
     score_manager = scoremanager.core.ScoreManager()
     input_ = 'lmm example~numbers inv q'
-    score_manager._run(pending_user_input=input_)
+    score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
         'Score manager - example scores', 
         'Score manager - material library',

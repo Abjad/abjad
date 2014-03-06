@@ -36,7 +36,8 @@ def test_ScorePackageManager_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input="red~example~score h q")
+    input_ = 'red~example~score h q'
+    score_manager._run(pending_user_input=input_, is_test=True)
 
     assert score_manager._transcript.signature == (6, (0, 4))
     string = 'Score manager - example scores'
@@ -72,7 +73,8 @@ def test_ScorePackageManager_04():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='red~example~score b q')
+    input_ = 'red~example~score b q'
+    score_manager._run(pending_user_input=input_, is_test=True)
 
     assert score_manager._transcript.signature == (6, (0, 4))
     string = 'Score manager - example scores'

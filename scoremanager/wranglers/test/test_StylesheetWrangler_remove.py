@@ -29,7 +29,8 @@ def test_StylesheetWrangler_remove_01():
     assert os.path.exists(second_path)
 
     try:
-        score_manager._run(pending_user_input='y rm aaa-aab default q')
+        input_ = 'y rm aaa-aab default q'
+        score_manager._run(pending_user_input=input_, is_test=True)
         assert not os.path.exists(first_path)
         assert not os.path.exists(second_path)
     finally:

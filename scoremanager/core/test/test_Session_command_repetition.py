@@ -6,7 +6,7 @@ import scoremanager
 def test_Session_command_repetition_01():
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='stn . . . q')
+    score_manager._run(pending_user_input='stn . . . q', is_test=True)
     titles = [ 
         'Score manager - example scores',
         'Blue Example Score (2013)',

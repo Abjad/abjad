@@ -7,7 +7,7 @@ import scoremanager
 def test_Menu_display_hidden_menu_commands_01():
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='n q')
+    score_manager._run(pending_user_input='n q', is_test=True)
 
     string = 'Score manager - example scores - hidden commands'
     assert score_manager._transcript.last_title == string
@@ -18,7 +18,7 @@ def test_Menu_display_hidden_menu_commands_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='n asdf q')
+    score_manager._run(pending_user_input='n asdf q', is_test=True)
 
     string = 'Score manager - example scores - hidden commands'
     transcript = score_manager._transcript
@@ -32,7 +32,7 @@ def test_Menu_display_hidden_menu_commands_03():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='n lvl q')
+    score_manager._run(pending_user_input='n lvl q', is_test=True)
 
     string = 'Score manager - example scores - hidden commands'
     transcript = score_manager._transcript
@@ -47,7 +47,7 @@ def test_Menu_display_hidden_menu_commands_04():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score n q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
 
     string = 'Red Example Score (2013) - hidden commands'
     transcript = score_manager._transcript
@@ -60,7 +60,7 @@ def test_Menu_display_hidden_menu_commands_05():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score n pyd default q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
 
     string = 'Red Example Score (2013) - hidden commands'
     transcript = score_manager._transcript
@@ -73,7 +73,7 @@ def test_Menu_display_hidden_menu_commands_06():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score n pyt default q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
 
     string = 'Red Example Score (2013) - hidden commands'
     transcript = score_manager._transcript
@@ -86,7 +86,7 @@ def test_Menu_display_hidden_menu_commands_07():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score n pyi 2**38 redraw q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
 
     string = 'Red Example Score (2013) - hidden commands'
     transcript = score_manager._transcript
@@ -100,7 +100,7 @@ def test_Menu_display_hidden_menu_commands_08():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score n radd q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
 
     string = 'Red Example Score (2013) - hidden commands'
     transcript = score_manager._transcript
@@ -114,7 +114,7 @@ def test_Menu_display_hidden_menu_commands_09():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score n rci q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
 
     string = 'Red Example Score (2013) - hidden commands'
     transcript = score_manager._transcript
@@ -128,7 +128,7 @@ def test_Menu_display_hidden_menu_commands_10():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score n rst q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
 
     string = 'Red Example Score (2013) - hidden commands'
     transcript = score_manager._transcript
@@ -142,7 +142,7 @@ def test_Menu_display_hidden_menu_commands_11():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score n rup q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
 
     string = 'Red Example Score (2013) - hidden commands'
     transcript = score_manager._transcript
@@ -155,7 +155,7 @@ def test_Menu_display_hidden_menu_commands_12():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score n sdv default q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
 
     string = 'Red Example Score (2013) - hidden commands'
     transcript = score_manager._transcript
@@ -168,7 +168,7 @@ def test_Menu_display_hidden_menu_commands_13():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score n sct redraw q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
 
     string = 'Red Example Score (2013) - hidden commands'
     transcript = score_manager._transcript
@@ -181,7 +181,7 @@ def test_Menu_display_hidden_menu_commands_14():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score n sct scl redraw q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
 
     string = 'Red Example Score (2013) - hidden commands'
     transcript = score_manager._transcript
@@ -194,7 +194,7 @@ def test_Menu_display_hidden_menu_commands_15():
 
     score_manager = scoremanager.core.ScoreManager()
     string = 'red~example~score n sct sce q'
-    score_manager._run(pending_user_input=string)
+    score_manager._run(pending_user_input=string, is_test=True)
 
     string = 'Red Example Score (2013) - hidden commands'
     transcript = score_manager._transcript

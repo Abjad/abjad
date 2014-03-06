@@ -28,5 +28,5 @@ def test_ListMaterialManager_01():
         assert output_material == [17, 'foo']
     finally:
         input_ = 'lmm testlist rm remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_user_input=input_, is_test=True)
         assert not os.path.exists(path)
