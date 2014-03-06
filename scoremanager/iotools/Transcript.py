@@ -31,12 +31,13 @@ class Transcript(AbjadObject):
             )
         self.entries.append(entry)
 
-    def _write(self, output_directory=None):
-        if output_directory is None:
-            output_directory = self._configuration.transcripts_directory_path
+    def _write(self, transcripts_directory=None):
+        if transcripts_directory is None:
+            transcripts_directory = \
+                self._configuration.transcripts_directory_path
         start_time = self.start_time.strftime('%Y-%m-%d-%H-%M-%S')
         file_name = 'session-{}.txt'.format(start_time)
-        file_path = os.path.join(output_directory, file_name)
+        file_path = os.path.join(transcripts_directory, file_name)
         output = file(file_path, 'w')
         for entry in self.entries:
             line = entry._format()

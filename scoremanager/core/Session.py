@@ -230,6 +230,18 @@ class Session(abctools.AbjadObject):
 
     def _clean_up(self):
         if self.write_transcript:
+            transcripts_directory = \
+                self._configuration.transcripts_directory_path
+            transcripts = os.listdir(transcripts_directory)
+            count = len(transcripts)
+            if 9000 <= count:
+                messages = []
+                message = 'transcripts directory contains {} transcripts.'
+                message = message.format(count)
+                messages.append(message)
+                message = 'prune directory soon.'
+                messages.append(message)
+                self.io_manager.display(messages)
             self.transcript._write()
 
     def _format_breadcrumb_stack(self):
