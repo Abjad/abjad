@@ -137,7 +137,6 @@ class PackageWrangler(Wrangler):
         package_manager = self._initialize_asset_manager(asset_name)
         package_manager.fix(prompt=False)
 
-    # TODO: remove head
     def _make_asset_menu_entries(self):
         names = self._list_visible_asset_names()
         if not names:
@@ -145,12 +144,7 @@ class PackageWrangler(Wrangler):
         keys = len(names) * [None]
         prepopulated_return_values = len(names) * [None]
         paths = self._list_visible_asset_paths()
-        package_paths = []
-        for path in paths:
-            package_path = self._configuration.path_to_package_path(path)
-            package_paths.append(package_path)
-        assert len(names) == len(keys) == len(package_paths)
-        sequences = (names, [None], [None], package_paths)
+        sequences = (names, [None], [None], paths)
         entries = sequencetools.zip_sequences(sequences, cyclic=True)
         view = self._get_view_from_disk()
         if view is not None:

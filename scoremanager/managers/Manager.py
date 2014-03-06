@@ -225,7 +225,7 @@ class Manager(ScoreManagerObject):
         if isinstance(self, managers.MaterialManager):
             self._session._is_navigating_to_next_material = False
             self._session._is_navigating_to_previous_material = False
-            self._session._last_material_package_path = self._package_path
+            self._session._last_material_path = self._path
         while True:
             self._session._push_breadcrumb(self._breadcrumb)
             if self._session.is_navigating_to_build_directory and \

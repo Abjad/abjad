@@ -59,22 +59,15 @@ class MaterialManagerWrangler(PackageWrangler):
         else:
             raise ValueError
 
-    # TODO: eventually allow filesystem path only
-    def _initialize_asset_manager(self, package_path):
+    def _initialize_asset_manager(self, path):
         from scoremanager import managers
-        if os.path.sep in package_path:
-            path = package_path
-            package_path = self._configuration.path_to_package_path(package_path)
-        else:
-            path = self._configuration.package_path_to_path(package_path)
-        assert '.py' not in package_path, repr(package_path)
+        assert os.path.sep in path, repr(path)
         material_manager = managers.MaterialManager(
             path=path, 
             session=self._session,
             )
         if 'managers' in material_manager._path:
             most, last = os.path.split(material_manager._path)
-            #material_manager_class_name = last
             material_manager_class_name = os.path.splitext(last)[0]
         else:
             material_manager_class_name = \

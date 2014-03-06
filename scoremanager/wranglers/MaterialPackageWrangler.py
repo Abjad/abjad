@@ -107,41 +107,35 @@ class MaterialPackageWrangler(PackageWrangler):
                     )
         return manager
 
-    def _get_next_material_package_name(self):
-        last_package_path = self._session.last_material_package_path
+    def _get_next_material_path(self):
+        last_path = self._session.last_material_path
         menu_entries = self._make_asset_menu_entries()
-        package_paths = [x[-1] for x in menu_entries]
+        paths = [x[-1] for x in menu_entries]
         if self._session.is_in_score:
-            score_name = self._session.current_score_snake_case_name
-            package_paths = [
-                x for x in package_paths 
-                if x.startswith(score_name)
-                ]
-        if last_package_path is None:
-            return package_paths[0]
-        assert last_package_path in package_paths
-        index = package_paths.index(last_package_path)
-        next_index = (index + 1) % len(package_paths)
-        next_package_name = package_paths[next_index]
-        return next_package_name
+            score_directory = self._session.current_score_directory_path
+            paths = [x for x in paths if x.startswith(score_directory)]
+        if last_path is None:
+            return paths[0]
+        assert last_path in paths
+        index = paths.index(last_path)
+        next_index = (index + 1) % len(paths)
+        next_path = paths[next_index]
+        return next_path
         
-    def _get_previous_material_package_name(self):
-        last_package_path = self._session.last_material_package_path
+    def _get_previous_material_path(self):
+        last_path = self._session.last_material_path
         menu_entries = self._make_asset_menu_entries()
-        package_paths = [x[-1] for x in menu_entries]
+        paths = [x[-1] for x in menu_entries]
         if self._session.is_in_score:
-            score_name = self._session.current_score_snake_case_name
-            package_paths = [
-                x for x in package_paths 
-                if x.startswith(score_name)
-                ]
-        if last_package_path is None:
-            return package_paths[-1]
-        assert last_package_path in package_paths
-        index = package_paths.index(last_package_path)
-        previous_index = (index - 1) % len(package_paths)
-        previous_package_name = package_paths[previous_index]
-        return previous_package_name
+            score_directory = self._session.current_score_directory_path
+            paths = [x for x in paths if x.startswith(score_directory)]
+        if last_path is None:
+            return paths[-1]
+        assert last_path in paths
+        index = paths.index(last_path)
+        previous_index = (index - 1) % len(paths)
+        previous_path = paths[previous_index]
+        return previous_path
 
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:

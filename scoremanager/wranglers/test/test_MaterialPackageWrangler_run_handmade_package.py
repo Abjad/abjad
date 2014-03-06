@@ -83,7 +83,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
         '__metadata__.py',
         'material_definition.py', 
         ]
-    input_ = 'lmm nmh testnotes default default '
+    input_ = 'lmm nmh testnotes'
     input_ += ' testnotes incanned boilerplate_exception.py default'
     input_ += ' inr yes yes default q'
 
