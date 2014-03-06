@@ -571,15 +571,18 @@ class IOManager(IOManager):
 
         Returns none.
         '''
-        cache_file_path = self._configuration.cache_file_path
-        cache_file_pointer = file(cache_file_path, 'w')
-        cache_file_pointer.write('# -*- encoding: utf-8 -*-\n')
-        cache_file_pointer.write('\n\n')
-        cache_file_pointer.write('start_menu_entries = [\n')
+        lines = []
+        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append('\n\n')
+        lines.append('start_menu_entries = [\n')
         menu_entries = self._score_package_wrangler._make_asset_menu_entries()
         for menu_entry in menu_entries:
-            cache_file_pointer.write('{},\n'.format(menu_entry))
-        cache_file_pointer.write(']\n')
+            lines.append('{},\n'.format(menu_entry))
+        lines.append(']\n')
+        cache_file_path = self._configuration.cache_file_path
+        cache_file_pointer = file(cache_file_path, 'w')
+        lines = ''.join(lines)
+        cache_file_pointer.write(lines)
         cache_file_pointer.close()
         if prompt:
             message = 'cache written.'

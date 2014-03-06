@@ -333,13 +333,14 @@ class ScorePackageWrangler(PackageWrangler):
                     and not is_mothballed) or \
                 (scores_to_display == 'mothballed' and is_mothballed):
                 year_of_completion = metadata.get('year_of_completion')
+                title = metadata.get('title')
                 if year_of_completion:
                     title_with_year = '{} ({})'.format(
-                        metadata['title'], 
+                        title,
                         year_of_completion,
                         )
                 else:
-                    title_with_year = '{}'.format(metadata['title'])
+                    title_with_year = str(title)
                 result.append((asset_manager._path, title_with_year))
         return result
 
