@@ -148,6 +148,3 @@
     material manager classes.
 
 40. Make (rst) work in (lmy).
-
-41. Change 'git st' to 'git status' in repository management code.
-    'st' is not an official Git alias.

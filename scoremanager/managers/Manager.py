@@ -57,7 +57,7 @@ class Manager(ScoreManagerObject):
             return
         parent_directory_path = os.path.dirname(self._path)
         if self._is_git_versioned(path=parent_directory_path):
-            return 'git st {}'.format(self._path)
+            return 'git status {}'.format(self._path)
         elif self._is_svn_versioned(path=self._path):
             return 'svn st -u {}'.format(self._path)
         else:
@@ -109,7 +109,7 @@ class Manager(ScoreManagerObject):
             return False
         if not os.path.exists(path):
             return False
-        command = 'git st --short {}'
+        command = 'git status --short {}'
         command = command.format(path)
         process = subprocess.Popen(
             command,
@@ -128,7 +128,7 @@ class Manager(ScoreManagerObject):
             return False
         if not os.path.exists(path):
             return False
-        command = 'git st --short {}'
+        command = 'git status --short {}'
         command = command.format(path)
         process = subprocess.Popen(
             command,
@@ -413,7 +413,6 @@ class Manager(ScoreManagerObject):
         line = self._get_score_package_directory_name()
         line = line + ' ...'
         self._io_manager.display(line, capitalize_first_character=False)
-        #command = 'svn st -u {}'.format(self._path)
         command = self._repository_status_command
         process = subprocess.Popen(
             command,
@@ -429,27 +428,6 @@ class Manager(ScoreManagerObject):
             clean_line = clean_line.replace(path, '')
             clean_lines.append(clean_line)
         clean_lines.append('')
-#        if clean_lines and 'svn: warning' in clean_lines[0]:
-#            command = 'git st {}'.format(self._path)
-#            process = subprocess.Popen(
-#                command,
-#                shell=True,
-#                stdout=subprocess.PIPE,
-#                stderr=subprocess.STDOUT,
-#                )
-#            path = self._path
-#            path = path + os.path.sep
-#            clean_lines = []
-#            for line in process.stdout.readlines():
-#                clean_line = line.strip()
-#                clean_line = clean_line.replace(path, '')
-#                clean_lines.append(clean_line)
-#            clean_lines.append('')
-#        if clean_lines and 'fatal:' in clean_lines[0]:
-#            clean_lines = []
-#            message = 'versioned by neither Subversion nor Git'
-#            clean_lines.append(message)
-#            clean_lines.append('')
         self._io_manager.display(
             clean_lines, 
             capitalize_first_character=False,
