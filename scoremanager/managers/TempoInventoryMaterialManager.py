@@ -19,6 +19,10 @@ class TempoInventoryMaterialManager(MaterialManager):
 
     @staticmethod
     def __illustrate__(tempo_inventory, **kwargs):
+        r'''Illustrates tempo inventory.
+
+        Returns LilyPond file.
+        '''
         notes = []
         for tempo in tempo_inventory:
             note = Note("c'4")

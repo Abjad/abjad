@@ -37,6 +37,15 @@ class SegmentPackageManager(PackageManager):
         return os.path.join(self._path, 'output.pdf')
 
     @property
+    def _segment_definition_module_manager(self):
+        from scoremanager import managers
+        manager = managers.FileManager(
+            self._segment_definition_module_path,
+            session=self._session,
+            )
+        return manager
+
+    @property
     def _segment_definition_module_path(self):
         return os.path.join(self._path, 'definition.py')
 
@@ -158,23 +167,6 @@ class SegmentPackageManager(PackageManager):
                 command = 'open {}'.format(file_path)
             self._io_manager.spawn_subprocess(command)
         
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def segment_definition_module_manager(self):
-        from scoremanager import managers
-        manager = managers.FileManager(
-            self._segment_definition_module_path,
-            session=self._session,
-            )
-        return manager
-
-    @property
-    def segment_definition_module_package(self):
-        path = self._segment_definition_module_path
-        package = self._configuration.path_to_package_path(path)
-        return package
-
     ### PUBLIC METHODS ###
 
     def edit_segment_definition_module(
@@ -186,7 +178,7 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
-        self.segment_definition_module_manager.edit()
+        self._segment_definition_module_manager.edit()
 
     def edit_segment_definition_module_from_top(
         self,
@@ -197,7 +189,7 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
-        self.segment_definition_module_manager.edit(
+        self._segment_definition_module_manager.edit(
             line_number=1)
 
     def list_versions_directory(self):
@@ -235,7 +227,7 @@ class SegmentPackageManager(PackageManager):
         modification_time = 0
         if os.path.isfile(output_pdf_file_path):
             modification_time = os.path.getmtime(output_pdf_file_path)
-        manager = self.segment_definition_module_manager
+        manager = self._segment_definition_module_manager
         manager._interpret_in_external_process()
         new_modification_time = 0
         if os.path.isfile(output_pdf_file_path):
