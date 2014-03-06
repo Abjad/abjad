@@ -28,7 +28,7 @@
 
 11. Author ScorePackageManager docstrings.
 
-12. Author StylesheetFileWrangler.remove() test.
+12. Author StylesheetWrangler.remove() test.
     Will involve making pending_user_input='... rm ...' work with named 
     arguments instead of just numeric arguments.
 
@@ -151,5 +151,3 @@
 
 41. Change 'git st' to 'git status' in repository management code.
     'st' is not an official Git alias.
-
-42. Rename StylesheetFileWrangler to just StylesheetWrangler.

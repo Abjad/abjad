@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_StylesheetFileWrangler__run_01():
+def test_StylesheetWrangler__run_01():
     r'''Entries are annotated with labels like (Abjad).
     '''
     

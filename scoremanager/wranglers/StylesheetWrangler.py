@@ -5,16 +5,16 @@ from abjad.tools import stringtools
 from scoremanager.wranglers.Wrangler import Wrangler
 
 
-class StylesheetFileWrangler(Wrangler):
+class StylesheetWrangler(Wrangler):
     r'''Stylesheet file wrangler.
 
     ..  container:: example
 
         ::
 
-            >>> wrangler = scoremanager.wranglers.StylesheetFileWrangler()
+            >>> wrangler = scoremanager.wranglers.StylesheetWrangler()
             >>> wrangler
-            StylesheetFileWrangler()
+            StylesheetWrangler()
 
     '''
 
@@ -22,7 +22,7 @@ class StylesheetFileWrangler(Wrangler):
 
     def __init__(self, session=None):
         from scoremanager import managers
-        superclass = super(StylesheetFileWrangler, self)
+        superclass = super(StylesheetWrangler, self)
         superclass.__init__(session=session)
         self._asset_manager_class = managers.FileManager
         self.abjad_storehouse_path = \
@@ -46,7 +46,7 @@ class StylesheetFileWrangler(Wrangler):
 
     @property
     def _user_input_to_action(self):
-        superclass = super(StylesheetFileWrangler, self)
+        superclass = super(StylesheetWrangler, self)
         _user_input_to_action = superclass._user_input_to_action
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
@@ -134,7 +134,7 @@ class StylesheetFileWrangler(Wrangler):
             self._edit_stylesheet(result)
 
     def _is_valid_directory_entry(self, directory_entry):
-        superclass = super(StylesheetFileWrangler, self)
+        superclass = super(StylesheetWrangler, self)
         if superclass._is_valid_directory_entry(directory_entry):
             if directory_entry.endswith('.ily'):
                 return True
@@ -166,7 +166,7 @@ class StylesheetFileWrangler(Wrangler):
 
         Returns list.
         '''
-        superclass = super(StylesheetFileWrangler, self)
+        superclass = super(StylesheetWrangler, self)
         return superclass._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
@@ -200,7 +200,7 @@ class StylesheetFileWrangler(Wrangler):
 
         Returns list.
         '''
-        superclass = super(StylesheetFileWrangler, self)
+        superclass = super(StylesheetWrangler, self)
         return superclass._list_asset_managers(
             abjad_library=abjad_library,
             user_library=user_library,
@@ -237,7 +237,7 @@ class StylesheetFileWrangler(Wrangler):
 
         Returns list.
         '''
-        superclass = super(StylesheetFileWrangler, self)
+        superclass = super(StylesheetWrangler, self)
         return superclass._list_asset_names(
             abjad_library=abjad_library,
             user_library=user_library,
@@ -272,7 +272,7 @@ class StylesheetFileWrangler(Wrangler):
 
         Returns list.
         '''
-        superclass = super(StylesheetFileWrangler, self)
+        superclass = super(StylesheetWrangler, self)
         return superclass._list_storehouse_paths(
             abjad_library=abjad_library,
             user_library=user_library,

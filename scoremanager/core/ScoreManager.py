@@ -31,7 +31,7 @@ class ScoreManager(ScoreManagerObject):
         self._material_package_wrangler = wrangler
         wrangler = wranglers.ScorePackageWrangler(session=self._session)
         self._score_package_wrangler = wrangler
-        wrangler = wranglers.StylesheetFileWrangler(session=self._session)
+        wrangler = wranglers.StylesheetWrangler(session=self._session)
         self._stylesheet_file_wrangler = wrangler
 
     ### PRIVATE PROPERTIES ###

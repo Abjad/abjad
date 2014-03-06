@@ -959,7 +959,7 @@ class MaterialManager(PackageManager):
         Returns none.
         '''
         from scoremanager import wranglers
-        stylesheet_file_wrangler = wranglers.StylesheetFileWrangler(
+        stylesheet_file_wrangler = wranglers.StylesheetWrangler(
             session=self._session)
         with self._backtracking:
             stylesheet_file_path = \

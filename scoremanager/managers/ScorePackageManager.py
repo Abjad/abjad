@@ -117,7 +117,7 @@ class ScorePackageManager(PackageManager):
         if self._path is None:
             return
         if not hasattr(self, '_cached_stylesheet_wrangler'):
-            wrangler = wranglers.StylesheetFileWrangler(session=self._session)
+            wrangler = wranglers.StylesheetWrangler(session=self._session)
             self._cached_stylesheet_wrangler = wrangler
         return self._cached_stylesheet_wrangler
 

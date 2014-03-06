@@ -123,6 +123,6 @@ def test_Session_controllers_visited_08():
     controllers = [
         scoremanager.core.ScoreManager(),
         scoremanager.managers.ScorePackageManager(),
-        scoremanager.wranglers.StylesheetFileWrangler(),
+        scoremanager.wranglers.StylesheetWrangler(),
         ]
     assert score_manager._session.controllers_visited == controllers
