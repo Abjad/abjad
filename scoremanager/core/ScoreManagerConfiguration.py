@@ -581,50 +581,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                         result.append(path)
         return result
 
-    def package_path_to_path(
-        self, 
-        package_path, 
-        is_module=False,
-        ):
-        r'''Changes `package_path` to filesystem path.
-
-        Appends ``.py`` when `is_module` is true.
-
-        Returns string.
-        '''
-        if package_path is None:
-            return
-        assert isinstance(package_path, str), repr(package_path)
-        package_path_parts = package_path.split('.')
-        if package_path_parts[0] == 'scoremanager':
-            directory_parts = [self.score_manager_directory_path]
-            directory_parts += package_path_parts[1:]
-        elif package_path_parts[0] == 'scoremanager.materials':
-            directory_parts = [self.abjad_material_packages_path]
-            directory_parts += package_path_parts[1:]
-        elif package_path.startswith(self._user_library_directory_name):
-            prefix_length = len(self._user_library_directory_name)
-            trimmed_package_path = package_path[prefix_length:]
-            directory_parts = []
-            directory_parts.append(self.user_library_directory_path)
-            directory_parts.extend(trimmed_package_path.split('.'))
-        elif package_path_parts[0] in self.abjad_score_package_names:
-            directory_parts = []
-            directory_parts.append(self.abjad_score_packages_directory_path)
-            directory_parts.extend(package_path_parts)
-        elif package_path_parts[-1] in self.abjad_score_package_names:
-            directory_parts = []
-            directory_parts.append(self.abjad_score_packages_directory_path)
-            directory_parts.append(package_path_parts[-1])
-        else:
-            directory_parts = [self.user_score_packages_directory_path]
-            directory_parts += package_path_parts[:]
-        path = os.path.join(*directory_parts)
-        path = os.path.normpath(path)
-        if is_module:
-            path += '.py'
-        return path
-
     def path_to_package_path(self, path):
         r'''Changes `path` to package path.
 
