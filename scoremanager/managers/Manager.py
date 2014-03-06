@@ -354,7 +354,7 @@ class Manager(ScoreManagerObject):
         self._io_manager.proceed(prompt=prompt)
 
     def list(self):
-        r'''Lists asset.
+        r'''Lists directory.
 
         Returns none.
         '''
@@ -376,7 +376,7 @@ class Manager(ScoreManagerObject):
         self._session._hide_next_redraw = True
 
     def list_long(self):
-        r'''Lists asset with ``ls -l``.
+        r'''Lists directory with ``ls -l``.
 
         Returns none.
         '''

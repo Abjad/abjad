@@ -19,6 +19,10 @@ class MarkupInventoryMaterialManager(MaterialManager):
 
     @staticmethod
     def __illustrate__(markup_inventory, **kwargs):
+        r'''Illustrates markup inventory.
+
+        Returns LilyPond file.
+        '''
         notes = []
         for markup in markup_inventory:
             note = Note("c'1")

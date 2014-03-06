@@ -20,6 +20,10 @@ class RhythmMakerMaterialManager(MaterialManager):
 
     @staticmethod
     def __illustrate__(output_material, **kwargs):
+        r'''Illustrates rhythm-maker.
+
+        Returns LilyPond file.
+        '''
         meter_tokens = [
             (2, 8), (3, 8), (4, 8), (5, 8),
             (2, 16), (3, 16), (4, 16), (5, 16),

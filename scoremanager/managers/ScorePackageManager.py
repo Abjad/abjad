@@ -181,7 +181,6 @@ class ScorePackageManager(PackageManager):
             string = 'material_manager_class_name'
             class_name = manager._get_metadatum(string)
             if class_name == 'TempoInventoryMaterialManager':
-                #return manager.output_material
                 output_material = manager._execute_output_material_module()
                 return output_material
 
@@ -300,7 +299,6 @@ class ScorePackageManager(PackageManager):
             section.append(('score pdf - view', 'pdfv'))
             section.default_index = len(section) - 1
         # TODO: restructure with encapsulated methods
-        # TODO: use verb-first syntax
         section = menu.make_command_section(is_secondary=True)
         section.append(('package - fix', 'fix'))
         section.append(('directory - list', 'ls'))
@@ -384,14 +382,22 @@ class ScorePackageManager(PackageManager):
     ### PUBLIC METHODS ###
 
     def edit_catalog_number(self):
+        r'''Edits catalog number of score.
+
+        Returns none.
+        '''
         getter = self._io_manager.make_getter(where=self._where)
-        getter.append_string('Catalog number')
+        getter.append_string('catalog number')
         result = getter._run()
         if self._session._backtrack():
             return
         self._add_metadatum('catalog_number', result)
 
     def edit_forces_tagline(self):
+        r'''Edits forces tagline of score.
+
+        Returns none.
+        '''
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('Forces tagline')
         result = getter._run()
@@ -400,6 +406,10 @@ class ScorePackageManager(PackageManager):
         self._add_metadatum('forces_tagline', result)
 
     def edit_instrumentation_specifier(self):
+        r'''Edits instrumentation specifier of score.
+
+        Returns none.
+        '''
         from scoremanager import editors
         target = self._get_instrumentation()
         editor = editors.InstrumentationEditor(
@@ -410,6 +420,10 @@ class ScorePackageManager(PackageManager):
         self._write_instrumentation(editor.target)
 
     def edit_title(self):
+        r'''Edits title of score.
+
+        Returns none.
+        '''
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('new title')
         result = getter._run()
@@ -419,6 +433,10 @@ class ScorePackageManager(PackageManager):
         self._io_manager._write_cache()
 
     def edit_year_of_completion(self):
+        r'''Edits year of completion of score.
+
+        Returns none.
+        '''
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_integer_in_range(
             'year of completion', 
@@ -431,13 +449,16 @@ class ScorePackageManager(PackageManager):
         self._add_metadatum('year_of_completion', result)
 
     def fix(self, prompt=True):
+        r'''Fixes score package structure.
+
+        Returns none.
+        '''
         result = True
         for path in self._get_top_level_directory_paths():
             if not os.path.exists(path):
                 result = False
                 prompt = 'create {!r}? '.format(path)
-                if not prompt or \
-                    self._io_manager.confirm(prompt):
+                if not prompt or self._io_manager.confirm(prompt):
                     os.mkdir(path)
         if not os.path.exists(self._initializer_file_path):
             result = False
@@ -479,6 +500,10 @@ class ScorePackageManager(PackageManager):
         return result
 
     def remove(self):
+        r'''Removes score package.
+
+        Returns none.
+        '''
         line = 'WARNING! Score package {!r} will be completely removed.'
         line = line.format(self._package_path)
         self._io_manager.display([line, ''])

@@ -269,58 +269,134 @@ class BuildDirectoryManager(DirectoryManager):
         self._io_manager.proceed('')
 
     def edit_back_cover_latex(self):
+        r'''Edits back cover LaTeX file.
+
+        Returns none.
+        '''
         self._edit_file_ending_with('back-cover.tex')
 
     def edit_front_cover_latex(self):
+        r'''Edits front cover LaTeX file.
+
+        Returns none.
+        '''
         self._edit_file_ending_with('front-cover.tex')
 
     def edit_preface_latex(self):
+        r'''Edits preface LaTeX file.
+
+        Returns none.
+        '''
         self._edit_file_ending_with('preface.tex')
 
     def edit_score_latex(self):
+        r'''Edits score LaTeX file.
+
+        Returns none.
+        '''
         self._edit_file_ending_with('score.tex')
 
     def edit_segment_assembly_lilypond_file(self):
+        r'''Edits segment assembly LilyPond file.
+
+        Returns none.
+        '''
         self._edit_file_ending_with('score-segments.ly')
 
     def generate_back_cover_latex(self):
+        r'''Generates back cover LaTeX file.
+
+        Returns none.
+        '''
         self._io_manager.print_not_yet_implemented()
 
     def generate_front_cover_latex(self):
+        r'''Generates front cover LaTeX file.
+
+        Returns none.
+        '''
         self._io_manager.print_not_yet_implemented()
 
     def generate_preface_latex(self):
+        r'''Generates preface LaTeX file.
+
+        Returns none.
+        '''
         self._io_manager.print_not_yet_implemented()
 
     def generate_score_latex(self):
+        r'''Generates score LaTeX file.
+
+        Returns none.
+        '''
         self._io_manager.print_not_yet_implemented()
 
     def interpret_segment_assembly_lilypond_file(self):
+        r'''Interprets segment assembly LilyPond file.
+
+        Returns none.
+        '''
         self._call_lilypond_on_file_ending_with('score-segments.ly')
 
     def typeset_back_cover_latex(self):
+        r'''Typesets back cover LaTeX file.
+
+        Returns none.
+        '''
         self._typeset_file_ending_with('back-cover.tex')
 
     def typeset_front_cover_latex(self):
+        r'''Typesets front cover LaTeX file.
+
+        Retunrs none.
+        '''
         self._typeset_file_ending_with('front-cover.tex')
 
     def typeset_preface_latex(self):
+        r'''Typesets preface LaTeX file.
+
+        Returns none.
+        '''
         self._typeset_file_ending_with('preface.tex')
 
     def typeset_score_latex(self):
+        r'''Typesets score LaTeX file.
+
+        Returns none.
+        '''
         self._typeset_file_ending_with('score.tex')
 
     def view_back_cover_pdf(self):
+        r'''Views back cover PDF.
+        
+        Returns none.
+        '''
         self._open_file_ending_with('back-cover.pdf')
 
     def view_front_cover_pdf(self):
+        r'''Views front cover PDF.
+
+        Returns none.
+        '''
         self._open_file_ending_with('front-cover.pdf')
 
     def view_preface_pdf(self):
+        r'''Views preface PDF.
+
+        Returns none.
+        '''
         self._open_file_ending_with('preface.pdf')
 
     def view_score_pdf(self):
+        r'''Views score PDF.
+
+        Returns none.
+        '''
         self._open_file_ending_with('score.pdf')
 
     def view_segment_assembly_pdf(self):
+        r''''Views segment assembly PDF.
+
+        Returns none.
+        '''
         self._open_file_ending_with('score-segments.pdf')

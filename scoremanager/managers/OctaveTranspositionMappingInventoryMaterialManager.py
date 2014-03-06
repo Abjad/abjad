@@ -22,6 +22,10 @@ class OctaveTranspositionMappingInventoryMaterialManager(MaterialManager):
 
     @staticmethod
     def __illustrate__(octave_transposition_mapping_inventory, **kwargs):
+        r'''Illustrates octave transposition mapping inventory.
+
+        Returns LilyPond file.
+        '''
         notes = []
         for mapping in octave_transposition_mapping_inventory:
             note = Note("c'4")

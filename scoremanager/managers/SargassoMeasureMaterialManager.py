@@ -56,6 +56,10 @@ class SargassoMeasureMaterialManager(MaterialManager):
 
     @staticmethod
     def __illustrate__(measures, **kwargs):
+        r'''Illustrates sargasso measures.
+
+        Returns LilyPond file.
+        '''
         staff = scoretools.Staff(measures)
         staff.context_name = 'RhythmicStaff'
         score = scoretools.Score([staff])
@@ -144,10 +148,10 @@ class SargassoMeasureMaterialManager(MaterialManager):
             for measure_index, multiplied_measure_numerator in \
                 enumerate(multiplied_measure_numerators):
                 possible_multipliers = \
-                    SargassoMeasureMaterialManager.get_possible_meter_multipliers(
+                    SargassoMeasureMaterialManager._get_possible_meter_multipliers(
                     multiplied_measure_numerator)
                 meter_multiplier = \
-                    SargassoMeasureMaterialManager.select_meter_multiplier(
+                    SargassoMeasureMaterialManager._select_meter_multiplier(
                     possible_multipliers, measure_index)
                 meter_multipliers.append(meter_multiplier)
             #print meter_multipliers
@@ -197,7 +201,7 @@ class SargassoMeasureMaterialManager(MaterialManager):
 
         if measures_are_shuffled:
             divided_measure_tokens = \
-                SargassoMeasureMaterialManager.permute_divided_measure_tokens(
+                SargassoMeasureMaterialManager._permute_divided_measure_tokens(
                 divided_measure_tokens)
 
         meter_tokens = []
@@ -232,10 +236,8 @@ class SargassoMeasureMaterialManager(MaterialManager):
 
         return measures
 
-    ### PUBLIC METHODS ###
-
     @staticmethod
-    def get_possible_meter_multipliers(multiplied_measure_numerator):
+    def _get_possible_meter_multipliers(multiplied_measure_numerator):
         possible_meter_multipliers = []
         for denominator in range(
                 multiplied_measure_numerator, 
@@ -245,9 +247,9 @@ class SargassoMeasureMaterialManager(MaterialManager):
             possible_meter_multipliers.append(possible_meter_multiplier)
         return possible_meter_multipliers
 
-    def make_output_material_module_body_lines(self, output_material):
+    def _make_output_material_module_body_lines(self, output_material):
         lines = []
-        lines.append('{} = ['.format(self.material_package_name))
+        lines.append('{} = ['.format(self._material_package_name))
         for measure in output_material[:-1]:
             line = measure._one_line_input_string
             line = 'scoretools.' + line
@@ -258,7 +260,7 @@ class SargassoMeasureMaterialManager(MaterialManager):
         return lines
 
     @staticmethod
-    def permute_divided_measure_tokens(divided_measure_tokens):
+    def _permute_divided_measure_tokens(divided_measure_tokens):
         modulus_of_permutation = 5
         len_divided_measure_tokens = len(divided_measure_tokens)
         assert mathtools.are_relatively_prime(
@@ -271,7 +273,7 @@ class SargassoMeasureMaterialManager(MaterialManager):
         return divided_measure_tokens
 
     @staticmethod
-    def select_meter_multiplier(possible_meter_multipliers, measure_index):
+    def _select_meter_multiplier(possible_meter_multipliers, measure_index):
         possible_meter_multipliers = \
             datastructuretools.CyclicTuple(possible_meter_multipliers)
         meter_multiplier = possible_meter_multipliers[5 * measure_index]

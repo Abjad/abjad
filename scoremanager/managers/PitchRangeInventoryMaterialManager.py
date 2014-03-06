@@ -19,6 +19,10 @@ class PitchRangeInventoryMaterialManager(MaterialManager):
 
     @staticmethod
     def __illustrate__(pitch_range_inventory, **kwargs):
+        r'''Illustrates pitch range inventory.
+
+        Returns LilyPond file.
+        '''
         chords = []
         for pitch_range in pitch_range_inventory:
             pair = (pitch_range.start_pitch, pitch_range.stop_pitch)

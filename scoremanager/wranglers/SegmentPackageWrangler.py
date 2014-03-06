@@ -40,10 +40,10 @@ class SegmentPackageWrangler(PackageWrangler):
         _user_input_to_action = superclass._user_input_to_action
         _user_input_to_action = _user_input_to_action.copy()
         _user_input_to_action.update({
-            'lyri': self.reinterpret_all_current_lilypond_files,
-            'pdfm': self.make_asset_pdfs,
-            'pdfs': self.version_all_assets,
-            'pdfv': self.view_asset_pdfs,
+            'lyri': self.reinterpret_current_lilypond_files,
+            'pdfm': self.make_segment_pdfs,
+            'pdfs': self.version_segment_packages,
+            'pdfv': self.view_segment_pdfs,
             })
         return _user_input_to_action
 
@@ -278,10 +278,14 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def make_asset_pdfs(
+    def make_segment_pdfs(
         self,
         pending_user_input=None,
         ):
+        r'''Makes asset PDFs.
+
+        Returns none.
+        '''
         self._io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
         parts += self.score_storehouse_path_infix_parts
@@ -310,15 +314,19 @@ class SegmentPackageWrangler(PackageWrangler):
                 message = message.format(segment_package_name)
                 self._io_manager.display(message)
         self._io_manager.display('')
-        self.view_asset_pdfs()
+        self.view_segment_pdfs()
         self._io_manager.proceed()
 
-    def reinterpret_all_current_lilypond_files(
+    def reinterpret_current_lilypond_files(
         self,
         pending_user_input=None,
         prompt=True,
         view_output_pdfs=True,
         ):
+        r'''Reinterprets all current LilyPond files.
+
+        Returns none.
+        '''
         self._io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
         parts += self.score_storehouse_path_infix_parts
@@ -345,12 +353,16 @@ class SegmentPackageWrangler(PackageWrangler):
         message = 'press return to view PDF(s).'
         self._io_manager.proceed(message=message, prompt=prompt)
         if view_output_pdfs:
-            self.view_asset_pdfs()
+            self.view_segment_pdfs()
 
-    def version_all_assets(
+    def version_segment_packages(
         self,
         pending_user_input=None,
         ):
+        r'''Versions all assets.
+
+        Returns none.
+        '''
         self._io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
         parts += self.score_storehouse_path_infix_parts
@@ -380,10 +392,14 @@ class SegmentPackageWrangler(PackageWrangler):
         self._io_manager.display('')
         self._io_manager.proceed()
 
-    def view_asset_pdfs(
+    def view_segment_pdfs(
         self,
         pending_user_input=None,
         ):
+        r'''Views all asset PDFs.
+
+        Returns none.
+        '''
         self._io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
         parts += self.score_storehouse_path_infix_parts

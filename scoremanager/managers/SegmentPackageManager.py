@@ -31,6 +31,22 @@ class SegmentPackageManager(PackageManager):
         return self._space_delimited_lowercase_name
 
     @property
+    def _output_lilypond_file_path(self):
+        return os.path.join(self._path, 'output.ly')
+        
+    @property
+    def _output_pdf_file_path(self):
+        return os.path.join(self._path, 'output.pdf')
+
+    @property
+    def _segment_definition_module_path(self):
+        return os.path.join(self._path, 'definition.py')
+
+    @property
+    def _versions_directory_path(self):
+        return os.path.join(self._path, 'versions')
+        
+    @property
     def _user_input_to_action(self):
         superclass = super(SegmentPackageManager, self)
         _user_input_to_action = superclass._user_input_to_action
@@ -54,7 +70,7 @@ class SegmentPackageManager(PackageManager):
     ### PRIVATE METHODS ###
 
     def _get_last_version_number(self):
-        versions_directory_path = self._get_versions_directory_path()
+        versions_directory_path = self._versions_directory_path
         if not os.path.exists(versions_directory_path):
             return
         file_names = sorted(os.listdir(versions_directory_path))
@@ -67,18 +83,6 @@ class SegmentPackageManager(PackageManager):
         version_number = int(version_string)
         return version_number
 
-    def _get_output_lilypond_file_path(self):
-        return os.path.join(self._path, 'output.ly')
-        
-    def _get_output_pdf_file_path(self):
-        return os.path.join(self._path, 'output.pdf')
-
-    def _get_segment_definition_module_path(self):
-        return os.path.join(self._path, 'definition.py')
-
-    def _get_versions_directory_path(self):
-        return os.path.join(self._path, 'versions')
-        
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
@@ -96,18 +100,18 @@ class SegmentPackageManager(PackageManager):
         section.append(('segment definition module - edit', 'e'))
         section = menu.make_command_section()
         section.append(('current pdf - make', 'pdfm'))
-        if os.path.isfile(self._get_output_pdf_file_path()):
+        if os.path.isfile(self._output_pdf_file_path):
             section.append(('current pdf - version', 'pdfs'))
-        if os.path.isfile(self._get_output_pdf_file_path()):
+        if os.path.isfile(self._output_pdf_file_path):
             section.append(('current pdf - view', 'pdfv'))
             section.default_index = len(section) - 1
         section = menu.make_command_section()
-        versions_directory_path = self._get_versions_directory_path()
+        versions_directory_path = self._versions_directory_path
         if self._is_populated_directory(versions_directory_path):
             section.append(('versioned pdfs - view', 'vv'))
         section = menu.make_command_section(is_secondary=True)
         section.append(('segment definition module - edit at top', 'E'))
-        if os.path.isfile(self._get_output_lilypond_file_path()):
+        if os.path.isfile(self._output_lilypond_file_path):
             section = menu.make_command_section(is_secondary=True)
             string = 'current lilypond file - reinterpret'
             section.append((string, 'lyri'))
@@ -172,20 +176,16 @@ class SegmentPackageManager(PackageManager):
     def segment_definition_module_manager(self):
         from scoremanager import managers
         manager = managers.FileManager(
-            self.segment_definition_module_path,
+            self._segment_definition_module_path,
             session=self._session,
             )
         return manager
 
     @property
     def segment_definition_module_package(self):
-        path = self.segment_definition_module_path
+        path = self._segment_definition_module_path
         package = self._configuration.path_to_package_path(path)
         return package
-
-    @property
-    def segment_definition_module_path(self):
-        return os.path.join(self._path, 'definition.py')
 
     ### PUBLIC METHODS ###
 
@@ -217,7 +217,7 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        versions_directory_path = self._get_versions_directory_path()
+        versions_directory_path = self._versions_directory_path
         if not os.path.exists(versions_directory_path):
             line = 'no versions found.'
             self._io_manager.display([line, ''])
@@ -243,7 +243,7 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        output_pdf_file_path = self._get_output_pdf_file_path()
+        output_pdf_file_path = self._output_pdf_file_path
         modification_time = 0
         if os.path.isfile(output_pdf_file_path):
             modification_time = os.path.getmtime(output_pdf_file_path)
@@ -260,8 +260,8 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        if not os.path.exists(self._get_versions_directory_path()):
-            os.mkdir(self._get_versions_directory_path())
+        if not os.path.exists(self._versions_directory_path):
+            os.mkdir(self._versions_directory_path)
 
     def reinterpret_current_lilypond_file(
         self, 
@@ -274,18 +274,18 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        file_path = self._get_output_lilypond_file_path()
+        file_path = self._output_lilypond_file_path
         if not os.path.isfile(file_path):
             return
         result = self._io_manager.run_lilypond(file_path)
         if not result:
             return
         lines = []
-        lilypond_file_path = self._get_output_lilypond_file_path()
+        lilypond_file_path = self._output_lilypond_file_path
         message = 'reinterpreted {!r}.'
         message = message.format(lilypond_file_path)
         lines.append(message)
-        pdf_file_path = self._get_output_pdf_file_path()
+        pdf_file_path = self._output_pdf_file_path
         message = 'wrote {!r}.'
         message = message.format(pdf_file_path)
         lines.append(message)
@@ -318,7 +318,7 @@ class SegmentPackageManager(PackageManager):
                 prompt=prompt,
                 )
             return
-        output_pdf_file_path = self._get_output_pdf_file_path()
+        output_pdf_file_path = self._output_pdf_file_path
         if not os.path.isfile(output_pdf_file_path):
             message = 'can not find output PDF.'
             self._io_manager.proceed(
@@ -326,7 +326,7 @@ class SegmentPackageManager(PackageManager):
                 prompt=prompt,
                 )
             return
-        output_lilypond_file_path = self._get_output_lilypond_file_path()
+        output_lilypond_file_path = self._output_lilypond_file_path
         if not os.path.isfile(output_lilypond_file_path):
             message = 'can not find output LilyPond file.'
             self._io_manager.proceed(
@@ -335,13 +335,13 @@ class SegmentPackageManager(PackageManager):
                 )
             return
         next_output_file_name = systemtools.IOManager.get_next_output_file_name(
-            output_directory_path=self._get_versions_directory_path(),
+            output_directory_path=self._versions_directory_path,
             )
         result = os.path.splitext(next_output_file_name)
         next_output_file_name_root, extension = result
         target_file_name = next_output_file_name_root + '.py'
         target_file_path = os.path.join(
-            self._get_versions_directory_path(),
+            self._versions_directory_path,
             target_file_name,
             )
         command = 'cp {} {}'.format(
@@ -351,7 +351,7 @@ class SegmentPackageManager(PackageManager):
         self._io_manager.spawn_subprocess(command)
         target_file_name = next_output_file_name_root + '.pdf'
         target_file_path = os.path.join(
-            self._get_versions_directory_path(),
+            self._versions_directory_path,
             target_file_name,
             )
         command = 'cp {} {}'.format(
@@ -361,7 +361,7 @@ class SegmentPackageManager(PackageManager):
         self._io_manager.spawn_subprocess(command)
         target_file_name = next_output_file_name_root + '.ly'
         target_file_path = os.path.join(
-            self._get_versions_directory_path(),
+            self._versions_directory_path,
             target_file_name,
             )
         command = 'cp {} {}'.format(
@@ -383,7 +383,7 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        versions_directory_path = self._get_versions_directory_path()
+        versions_directory_path = self._versions_directory_path
         file_paths = []
         for directory_entry in os.listdir(versions_directory_path):
             if not directory_entry[0].isdigit():
@@ -408,7 +408,7 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        output_lilypond_file_path = self._get_output_lilypond_file_path()
+        output_lilypond_file_path = self._output_lilypond_file_path
         if os.path.isfile(output_lilypond_file_path):
             command = 'vim -R {}'.format(output_lilypond_file_path)
             self._io_manager.spawn_subprocess(command)
@@ -418,7 +418,7 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        output_pdf_file_path = self._get_output_pdf_file_path()
+        output_pdf_file_path = self._output_pdf_file_path
         if os.path.isfile(output_pdf_file_path):
             command = 'open {}'.format(output_pdf_file_path)
             self._io_manager.spawn_subprocess(command)
