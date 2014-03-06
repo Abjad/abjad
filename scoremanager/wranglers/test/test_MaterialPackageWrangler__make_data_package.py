@@ -8,12 +8,11 @@ import scoremanager
 def test_MaterialPackageWrangler__make_data_package_01():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    string = 'scoremanager.materials.testnumbers'
-    assert not wrangler._configuration.package_exists(string)
     path = os.path.join(
         wrangler._configuration.abjad_material_packages_directory_path,
         'testnumbers',
         )
+    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -22,7 +21,7 @@ def test_MaterialPackageWrangler__make_data_package_01():
 
     try:
         wrangler._make_data_package(path)
-        assert wrangler._configuration.package_exists(string)
+        assert os.path.exists(path)
         manager = scoremanager.managers.MaterialManager(path)
         assert manager._list() == directory_entries
         assert manager._interpret_material_definition_module() is None
@@ -30,17 +29,7 @@ def test_MaterialPackageWrangler__make_data_package_01():
         assert output_material is None
     finally:
         manager._remove()
-        assert not wrangler._configuration.package_exists(string)
-
-
-def test_MaterialPackageWrangler__make_data_package_02():
-
-    wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    string = 'scoremanager.materials.example_numbers'
-    assert wrangler._configuration.package_exists(string)
-    statement = "wrangler._make_data_package("
-    statement += "'scoremanager.materials.example_numbers')"
-    assert pytest.raises(Exception, statement)
+        assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler__make_data_package_03():
@@ -48,20 +37,19 @@ def test_MaterialPackageWrangler__make_data_package_03():
     '''
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
-    string = 'scoremanager.materials.testnumbers'
-    assert not wrangler._configuration.package_exists(string)
     path = os.path.join(
         wrangler._configuration.abjad_material_packages_directory_path,
         'testnumbers',
         )
+    assert not os.path.exists(path)
 
     try:
         metadata = {'color': 'red', 'is_colored': True}
         wrangler._make_data_package(path, metadata=metadata)
-        assert wrangler._configuration.package_exists(string)
+        assert os.path.exists(path)
         manager = scoremanager.managers.MaterialManager(path)
         assert manager._get_metadatum('color') == 'red'
         assert manager._get_metadatum('is_colored')
     finally:
         manager._remove()
-        assert not wrangler._configuration.package_exists(string)
+        assert not os.path.exists(path)

@@ -9,28 +9,28 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    name = 'scoremanager.materials.testsargasso'
-    assert not score_manager._configuration.package_exists(name)
     path = os.path.join(
         score_manager._configuration.abjad_material_packages_directory_path,
         'testsargasso',
         )
+    assert not os.path.exists(path)
+    input_ = 'lmm nmm sargasso testsargasso default q'
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'user_input.py',
+        ]
 
     try:
-        string = 'lmm nmm sargasso testsargasso default q'
-        score_manager._run(pending_user_input=string)
-        assert score_manager._configuration.package_exists(name)
+        score_manager._run(pending_user_input=input_, is_test=True)
+        assert os.path.exists(path)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'user_input.py',
-            ]
+        assert manager._list() == directory_entries
     finally:
-        string = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=string)
-        assert not score_manager._configuration.package_exists(name)
+        input_ = 'lmm testsargasso rm remove q'
+        score_manager._run(pending_user_input=input_)
+        assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_run_managermade_package_02():
@@ -38,30 +38,30 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    name = 'scoremanager.scores.red_example_score.materials.testsargasso'
-    assert not score_manager._configuration.package_exists(name)
     path = os.path.join(
         score_manager._configuration.abjad_score_packages_directory_path,
         'red_example_score',
         'materials',
         'testsargasso',
         )
+    assert not os.path.exists(path)
+    input_ = 'red~example~score m nmm sargasso testsargasso default q'
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'user_input.py',
+        ]
 
     try:
-        string = 'red~example~score m nmm sargasso testsargasso default q'
-        score_manager._run(pending_user_input=string)
-        assert score_manager._configuration.package_exists(name)
+        score_manager._run(pending_user_input=input_, is_test=True)
+        assert os.path.exists(path)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'user_input.py',
-            ]
+        assert manager._list() == directory_entries
     finally:
-        string = 'red~example~score m testsargasso rm remove q'
-        score_manager._run(pending_user_input='red~example~score m testsargasso rm remove q')
-        assert not score_manager._configuration.package_exists(name)
+        input_ = 'red~example~score m testsargasso rm remove q'
+        score_manager._run(pending_user_input=input_, is_test=True)
+        assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_run_managermade_package_03():
@@ -84,7 +84,7 @@ def test_MaterialPackageWrangler_run_managermade_package_03():
         ]
 
     try:
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(path)
         assert manager._list() == directory_entries
@@ -92,7 +92,7 @@ def test_MaterialPackageWrangler_run_managermade_package_03():
         assert manager._execute_output_material_module() is None
     finally:
         input_ = 'lmm testsargassomeasures rm remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_user_input=input_, is_test=True)
         assert not os.path.exists(path)
 
 
@@ -117,7 +117,7 @@ def test_MaterialPackageWrangler_run_managermade_package_04():
         ]
 
     try:
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(path)
         assert manager._list() == directory_entries
@@ -125,5 +125,5 @@ def test_MaterialPackageWrangler_run_managermade_package_04():
         assert manager._execute_output_material_module() is None
     finally:
         input_ = 'lmm testsargassomeasures rm remove q'
-        score_manager._run(pending_user_input=input_)
+        score_manager._run(pending_user_input=input_, is_test=True)
         assert not os.path.exists(path)
