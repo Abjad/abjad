@@ -32,7 +32,7 @@ def test_MaterialPackageWrangler__make_handmade_material_package_01():
         assert not os.path.exists(path)
 
 
-def test_MaterialPackageWrangler__make_handmade_material_package_03():
+def test_MaterialPackageWrangler__make_handmade_material_package_02():
     r'''With custom metadata.
     '''
 

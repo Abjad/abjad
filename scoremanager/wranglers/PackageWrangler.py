@@ -65,7 +65,7 @@ class PackageWrangler(Wrangler):
     # TODO: eventually accept only filesystem path
     def _initialize_asset_manager(self, path):
         if os.path.sep not in path:
-            path = self._configuration.package_to_path(path)
+            path = self._configuration.package_path_to_path(path)
         manager = self._asset_manager_class(
             path=path, 
             session=self._session,
@@ -235,7 +235,7 @@ class PackageWrangler(Wrangler):
         if package_path is None:
             return
         directory_path = \
-            self._configuration.package_to_path(
+            self._configuration.package_path_to_path(
             package_path)
         if not os.path.exists(directory_path):
             os.mkdir(directory_path)

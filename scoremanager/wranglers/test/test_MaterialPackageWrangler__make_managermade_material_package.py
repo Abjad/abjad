@@ -34,7 +34,7 @@ def test_MaterialPackageWrangler__make_managermade_material_package_01():
         assert not os.path.exists(path)
 
 
-def test_MaterialPackageWrangler__make_managermade_material_package_03():
+def test_MaterialPackageWrangler__make_managermade_material_package_02():
 
     wrangler = scoremanager.wranglers.MaterialPackageWrangler()
     path = os.path.join(

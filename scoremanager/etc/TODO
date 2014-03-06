@@ -144,29 +144,23 @@
     Find a way to delay (and then cache) the initialization of
     ScorePackageManager delegates.
 
-40. Remove all calls to ScoreManagerConfiguration.package_to_path().
-    Though preserve ScoreMangerConfiguration.package_to_path() for a while.
+40. Remove all calls to ScoreManagerConfiguration.package_path_to_path().
+    Though preserve ScoreMangerConfiguration.package_path_to_path() for a while.
 
 41. Provide an object-oriented means for makers in any score to access the
     contents of the toplevel __metadata__ module for that score. Same for
     discovering the contents of a score's stylesheets directory.
 
-42. Remove ...
-        score_manager._configuration.package_exists(package)
-    ... in favor of ...
-        os.path.exists(path)
-    ... in test files.
+42. Mark all test calls to score_manager._run() with is_test=True.
 
-43. Mark all test calls to score_manager._run() with is_test=True.
-
-44. Note that ArticulationHandlerMaterialManager implementation is limited
+43. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
 
-45. Make (rst) work in (lmy).
+44. Make (rst) work in (lmy).
 
-46. Change 'git st' to 'git status' in repository management code.
+45. Change 'git st' to 'git status' in repository management code.
     'st' is not an official Git alias.

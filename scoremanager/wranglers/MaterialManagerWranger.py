@@ -66,7 +66,7 @@ class MaterialManagerWrangler(PackageWrangler):
             path = package_path
             package_path = self._configuration.path_to_package_path(package_path)
         else:
-            path = self._configuration.package_to_path(package_path)
+            path = self._configuration.package_path_to_path(package_path)
         assert '.py' not in package_path, repr(package_path)
         material_manager = managers.MaterialManager(
             path=path, 

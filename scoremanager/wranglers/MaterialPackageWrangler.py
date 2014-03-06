@@ -423,7 +423,7 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_path = self.get_available_package_path()
         if self._session._backtrack():
             return
-        path = self._configuration.package_to_path(
+        path = self._configuration.package_path_to_path(
             material_package_path)
         self._make_data_package(path, metadata=metadata)
 
@@ -440,7 +440,7 @@ class MaterialPackageWrangler(PackageWrangler):
             package_path = self.get_available_package_path()
         if self._session._backtrack():
             return
-        path = self._configuration.package_to_path(package_path)
+        path = self._configuration.package_path_to_path(package_path)
         self._make_handmade_material_package(path)
 
     def make_managermade_material_package(
@@ -467,13 +467,13 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_path = self.get_available_package_path()
         if self._session._backtrack():
             return
-        path = self._configuration.package_to_path(
+        path = self._configuration.package_path_to_path(
             material_package_path)
         self._make_managermade_material_package(
             path, 
             material_manager_class_name,
             )
-        path = self._configuration.package_to_path(
+        path = self._configuration.package_path_to_path(
             material_package_path)
         manager = self._get_appropriate_material_manager(
             material_manager_class_name, 

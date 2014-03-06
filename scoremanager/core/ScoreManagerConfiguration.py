@@ -581,24 +581,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                         result.append(path)
         return result
 
-    def package_exists(self, package_path):
-        r'''Is true whens `package_path` exists. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> package_path = 'scoremanager.materials'
-                >>> configuration.package_exists(package_path)
-                True
-
-        Returns boolean.
-        '''
-        assert os.path.sep not in package_path
-        path = self.package_to_path(package_path)
-        return os.path.exists(path)
-
-    def package_to_path(
+    def package_path_to_path(
         self, 
         package_path, 
         is_module=False,
