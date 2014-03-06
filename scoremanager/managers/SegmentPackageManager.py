@@ -14,7 +14,6 @@ class SegmentPackageManager(PackageManager):
     def __init__(
         self, 
         path=None, 
-        score_template=None, 
         session=None,
         ):
         PackageManager.__init__(
@@ -22,7 +21,6 @@ class SegmentPackageManager(PackageManager):
             path=path,
             session=session,
             )
-        self.score_template = score_template
 
     ### PRIVATE PROPERTIES ###
 
@@ -161,16 +159,6 @@ class SegmentPackageManager(PackageManager):
             self._io_manager.spawn_subprocess(command)
         
     ### PUBLIC PROPERTIES ###
-
-    @apply
-    def score_template():
-        def fget(self):
-            return self._score_template
-        def fset(self, score_template):
-            from abjad.tools import scoretools
-            assert isinstance(score_template, (scoretools.Score, type(None)))
-            self._score_template = score_template
-        return property(**locals())
 
     @property
     def segment_definition_module_manager(self):
