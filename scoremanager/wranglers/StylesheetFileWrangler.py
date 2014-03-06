@@ -88,7 +88,7 @@ class StylesheetFileWrangler(Wrangler):
             annotation = 'Abjad'
         elif path.startswith(
             self._configuration.user_library_stylesheets_directory_path):
-            annotation = 'library'
+            annotation = self._configuration.composer_last_name
         return annotation
 
     def _get_current_directory(self):

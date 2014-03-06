@@ -64,7 +64,21 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                         self.home_directory_path, 
                         'scores',
                         )
-                    )
+                    ),
+            },
+            'composer_full_name': {
+                'comment': [
+                    '',
+                    'Set to full name of composer.',
+                ],
+                'spec': 'string',
+            },
+            'composer_last_name': {
+                'comment': [
+                    '',
+                    'Set to last name of composer.',
+                ],
+                'spec': 'string',
             },
         }
         return options
@@ -252,6 +266,42 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             'cache.py',
             )
         return file_path
+
+    @property
+    def composer_full_name(self):
+        r'''Gets composer full name.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.composer_full_name
+                '...'
+
+        Aliases `composer` setting in score manager configuration
+        file.
+
+        Returns string.
+        '''
+        return self._settings['composer_full_name']
+
+    @property
+    def composer_last_name(self):
+        r'''Gets composer last name.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.composer_last_name
+                '...'
+
+        Aliases `composer` setting in score manager configuration
+        file.
+
+        Returns string.
+        '''
+        return self._settings['composer_last_name']
 
     @property
     def configuration_directory_path(self):
