@@ -175,7 +175,7 @@ class PackageWrangler(Wrangler):
 
     ### PUBLIC METHODS ###
 
-    def get_available_package_path(
+    def get_available_path(
         self, 
         pending_user_input=None,
         ):
@@ -188,22 +188,20 @@ class PackageWrangler(Wrangler):
             getter = self._io_manager.make_getter(where=self._where)
             getter.append_space_delimited_lowercase_string('name')
             with self._backtracking:
-                package_name = getter._run()
+                name = getter._run()
             if self._session._backtrack():
                 return
-            package_name = stringtools.string_to_accent_free_snake_case(
-                package_name)
+            name = stringtools.string_to_accent_free_snake_case(name)
             path = os.path.join(
                 self._current_storehouse_path, 
-                package_name,
+                name,
                 )
             if os.path.exists(path):
                 line = 'path already exists: {!r}.'
                 line = line.format(path)
                 self._io_manager.display([line, ''])
             else:
-                package_path = self._configuration.path_to_package_path(path)
-                return package_path
+                return path
 
     def make_asset(
         self,
@@ -215,11 +213,10 @@ class PackageWrangler(Wrangler):
         '''
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
-            package_path = \
-                self.get_available_package_path()
+            path = self.get_available_path()
         if self._session._backtrack():
             return
-        self._make_asset(package_path)
+        self._make_asset(path)
 
     def make_empty_package(self, package_path):
         r'''Makes empty package.
