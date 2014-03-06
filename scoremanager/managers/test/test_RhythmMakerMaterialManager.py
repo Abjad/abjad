@@ -10,8 +10,11 @@ def test_RhythmMakerMaterialManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materials.testrhythmmaker'
-    assert not score_manager._configuration.package_exists(string)
+    path = os.path.join(
+        configuration.abjad_material_packages_directory_path,
+        'testrhythmmaker',
+        )
+    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -26,23 +29,18 @@ def test_RhythmMakerMaterialManager_01():
         extra_counts_per_division=(2, 3),
         split_divisions_by_counts=(6,),
         )
+    input_ = 'lmm nmm rhythm testrhythmmaker default'
+    input_ += ' testrhythmmaker omi talearhythmmaker'
+    input_ += ' (-1, 2, -3, 4) 16 (2, 3) (6,) b default q'
 
     try:
-        score_manager._run(pending_user_input=
-            'lmm nmm rhythm testrhythmmaker default '
-            'testrhythmmaker omi talearhythmmaker '
-            '(-1, 2, -3, 4) 16 (2, 3) (6,) b default '
-            'q '
-            )
-        path = configuration.abjad_material_packages_directory_path
-        path = os.path.join(path, 'testrhythmmaker')
+        score_manager._run(pending_user_input=input_, is_test=True)
         manager = scoremanager.managers.RhythmMakerMaterialManager(
             path=path)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == maker
     finally:
-        string = 'lmm testrhythmmaker rm remove q'
-        score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materials.testrhythmmaker'
-        assert not score_manager._configuration.package_exists(string)
+        input_ = 'lmm testrhythmmaker rm remove q'
+        score_manager._run(pending_user_input=input_, is_test=True)
+        assert not os.path.exists(path)

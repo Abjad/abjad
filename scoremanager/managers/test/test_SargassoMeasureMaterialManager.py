@@ -10,38 +10,38 @@ def test_SargassoMeasureMaterialManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materials.testsargasso'
-    assert not score_manager._configuration.package_exists(string)
+    path = os.path.join(
+        configuration.abjad_material_packages_directory_path,
+        'testsargasso',
+        )
+    assert not os.path.exists(path)
+    input_ = 'lmm nmm sargasso testsargasso default q'
+    user_input_wrapper = scoremanager.editors.UserInputWrapper([
+        ('measure_denominator', None),
+        ('measure_numerator_talea', None),
+        ('measure_division_denominator', None),
+        ('measure_division_talea', None),
+        ('total_duration', None),
+        ('measures_are_scaled', None),
+        ('measures_are_split', None),
+        ('measures_are_shuffled', None),
+        ])
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'user_input.py',
+        ]
+
     try:
-        score_manager._run(pending_user_input=
-            'lmm nmm sargasso testsargasso default '
-            'q'
-            )
-        #string = 'scoremanager.materials.testsargasso'
-        path = configuration.abjad_material_packages_directory_path
-        path = os.path.join(path, 'testsargasso')
+        score_manager._run(pending_user_input=input_, is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'user_input.py',
-            ]
-        user_input_wrapper = scoremanager.editors.UserInputWrapper([
-            ('measure_denominator', None),
-            ('measure_numerator_talea', None),
-            ('measure_division_denominator', None),
-            ('measure_division_talea', None),
-            ('total_duration', None),
-            ('measures_are_scaled', None),
-            ('measures_are_split', None),
-            ('measures_are_shuffled', None)])
+        assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materials.testsargasso'
-        assert not score_manager._configuration.package_exists(string)
+        input_ = 'lmm testsargasso rm remove q'
+        score_manager._run(pending_user_input=input_, is_test=True)
+        assert not os.path.exists(path)
 
 
 def test_SargassoMeasureMaterialManager_02():
@@ -50,40 +50,38 @@ def test_SargassoMeasureMaterialManager_02():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materials.testsargasso'
-    assert not score_manager._configuration.package_exists(string)
+    path = os.path.join(
+        configuration.abjad_material_packages_directory_path,
+        'testsargasso',
+        )
+    assert not os.path.exists(path)
+    input_ = 'lmm nmm sargasso testsargasso default testsargasso uil q'
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'user_input.py',
+        ]
+    user_input_wrapper = scoremanager.editors.UserInputWrapper([
+        ('measure_denominator', 4),
+        ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
+        ('measure_division_denominator', 16),
+        ('measure_division_talea', [1, 1, 2, 3, 1, 2, 3, 4, 1, 1, 1, 1, 4]),
+        ('total_duration', Duration(11, 2)),
+        ('measures_are_scaled', True),
+        ('measures_are_split', True),
+        ('measures_are_shuffled', True),
+        ])
 
     try:
-        score_manager._run(pending_user_input=
-            'lmm nmm sargasso testsargasso default '
-            'testsargasso uil '
-            'q'
-            )
-        #string = 'scoremanager.materials.testsargasso'
-        path = configuration.abjad_material_packages_directory_path
-        path = os.path.join(path, 'testsargasso')
+        score_manager._run(pending_user_input=input_, is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'user_input.py',
-            ]
-        user_input_wrapper = scoremanager.editors.UserInputWrapper([
-            ('measure_denominator', 4),
-            ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
-            ('measure_division_denominator', 16),
-            ('measure_division_talea', [1, 1, 2, 3, 1, 2, 3, 4, 1, 1, 1, 1, 4]),
-            ('total_duration', Duration(11, 2)),
-            ('measures_are_scaled', True),
-            ('measures_are_split', True),
-            ('measures_are_shuffled', True)])
+        assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materials.testsargasso'
-        assert not score_manager._configuration.package_exists(string)
+        input_ = 'lmm testsargasso rm remove q'
+        score_manager._run(pending_user_input=input_, is_test=True)
+        assert not os.path.exists(path)
 
 
 def test_SargassoMeasureMaterialManager_03():
@@ -92,39 +90,37 @@ def test_SargassoMeasureMaterialManager_03():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materials.testsargasso'
-    assert not score_manager._configuration.package_exists(string)
+    path = os.path.join(
+        configuration.abjad_material_packages_directory_path,
+        'testsargasso',
+        )
+    input_ = 'lmm nmm sargasso testsargasso default testsargasso uil uic q'
+    directory_entries = [
+            '__init__.py', 
+        '__metadata__.py',
+        'user_input.py',
+        ]
+    user_input_wrapper = scoremanager.editors.UserInputWrapper([
+        ('measure_denominator', None),
+        ('measure_numerator_talea', None),
+        ('measure_division_denominator', None),
+        ('measure_division_talea', None),
+        ('total_duration', None),
+        ('measures_are_scaled', None),
+        ('measures_are_split', None),
+        ('measures_are_shuffled', None),
+        ])
+
     try:
-        score_manager._run(pending_user_input=
-            'lmm nmm sargasso testsargasso default '
-            'testsargasso uil uic '
-            'q'
-            )
-        #string = 'scoremanager.materials.testsargasso'
-        path = configuration.abjad_material_packages_directory_path
-        path = os.path.join(path, 'testsargasso')
+        score_manager._run(pending_user_input=input_, is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'user_input.py',
-            ]
-        user_input_wrapper = scoremanager.editors.UserInputWrapper([
-            ('measure_denominator', None),
-            ('measure_numerator_talea', None),
-            ('measure_division_denominator', None),
-            ('measure_division_talea', None),
-            ('total_duration', None),
-            ('measures_are_scaled', None),
-            ('measures_are_split', None),
-            ('measures_are_shuffled', None)])
+        assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materials.testsargasso'
-        assert not score_manager._configuration.package_exists(string)
+        input_ = 'lmm testsargasso rm remove q'
+        score_manager._run(pending_user_input=input_, is_test=True)
+        assert not os.path.exists(path)
 
 
 def test_SargassoMeasureMaterialManager_04():
@@ -133,39 +129,38 @@ def test_SargassoMeasureMaterialManager_04():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materials.testsargasso'
-    assert not score_manager._configuration.package_exists(string)
+    path = os.path.join(
+        configuration.abjad_material_packages_directory_path,
+        'testsargasso',
+        )
+    assert not os.path.exists(path)
+    input_ = 'lmm nmm sargasso testsargasso default testsargasso 3 16 q'
+    directory_entries = [
+            '__init__.py', 
+        '__metadata__.py',
+        'user_input.py',
+        ]
+    user_input_wrapper = scoremanager.editors.UserInputWrapper([
+        ('measure_denominator', None),
+        ('measure_numerator_talea', None),
+        ('measure_division_denominator', 16),
+        ('measure_division_talea', None),
+        ('total_duration', None),
+        ('measures_are_scaled', None),
+        ('measures_are_split', None),
+        ('measures_are_shuffled', None),
+        ])
+
     try:
-        score_manager._run(pending_user_input=
-            'lmm nmm sargasso testsargasso default '
-            'testsargasso 3 16 '
-            'q'
-            )
-        #string = 'scoremanager.materials.testsargasso'
-        path = configuration.abjad_material_packages_directory_path
-        path = os.path.join(path, 'testsargasso')
+        score_manager._run(pending_user_input=input_, is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'user_input.py',
-            ]
-        user_input_wrapper = scoremanager.editors.UserInputWrapper([
-            ('measure_denominator', None),
-            ('measure_numerator_talea', None),
-            ('measure_division_denominator', 16),
-            ('measure_division_talea', None),
-            ('total_duration', None),
-            ('measures_are_scaled', None),
-            ('measures_are_split', None),
-            ('measures_are_shuffled', None)])
+        assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materials.testsargasso'
-        assert not score_manager._configuration.package_exists(string)
+        input_ = 'lmm testsargasso rm remove q'
+        score_manager._run(pending_user_input=input_)
+        assert not os.path.exists(path)
 
 
 def test_SargassoMeasureMaterialManager_05():
@@ -174,40 +169,40 @@ def test_SargassoMeasureMaterialManager_05():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materials.testsargasso'
-    assert not score_manager._configuration.package_exists(string)
+    path = os.path.join(
+        configuration.abjad_material_packages_directory_path,
+        'testsargasso',
+        )
+    assert not os.path.exists(path)
+    input_ = 'lmm nmm sargasso testsargasso default'
+    input_ += ' testsargasso uip 5 Duration(11, 2) False True True'
+    input_ += ' 4 [2, 2, 2, 2, 1, 1, 4, 4] 16 [1, 1, 2, 3, 4] q'
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'user_input.py',
+        ]
+    user_input_wrapper = scoremanager.editors.UserInputWrapper([
+        ('measure_denominator', 4),
+        ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
+        ('measure_division_denominator', 16),
+        ('measure_division_talea', [1, 1, 2, 3, 4]),
+        ('total_duration', Duration(11, 2)),
+        ('measures_are_scaled', False),
+        ('measures_are_split', True),
+        ('measures_are_shuffled', True),
+        ])
+
     try:
-        score_manager._run(pending_user_input=
-            'lmm nmm sargasso testsargasso default '
-            'testsargasso uip 5 '
-            'Duration(11, 2) False True True 4 [2, 2, 2, 2, 1, 1, 4, 4] 16 [1, 1, 2, 3, 4] '
-            'q'
-            )
-        #string = 'scoremanager.materials.testsargasso'
-        path = configuration.abjad_material_packages_directory_path
-        path = os.path.join(path, 'testsargasso')
+        score_manager._run(pending_user_input=input_, is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'user_input.py',
-            ]
-        user_input_wrapper = scoremanager.editors.UserInputWrapper([
-            ('measure_denominator', 4),
-            ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
-            ('measure_division_denominator', 16),
-            ('measure_division_talea', [1, 1, 2, 3, 4]),
-            ('total_duration', Duration(11, 2)),
-            ('measures_are_scaled', False),
-            ('measures_are_split', True),
-            ('measures_are_shuffled', True)])
+        assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materials.testsargasso'
-        assert not score_manager._configuration.package_exists(string)
+        input_ = 'lmm testsargasso rm remove q'
+        score_manager._run(pending_user_input=input_, is_test=True)
+        assert not os.path.exists(path)
 
 
 def test_SargassoMeasureMaterialManager_06():
@@ -216,40 +211,40 @@ def test_SargassoMeasureMaterialManager_06():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materials.testsargasso'
-    assert not score_manager._configuration.package_exists(string)
+    path = os.path.join(
+        configuration.abjad_material_packages_directory_path,
+        'testsargasso',
+        )
+    assert not os.path.exists(path)
+    input_ = 'lmm nmm sargasso testsargasso default'
+    input_ += ' testsargasso uip 1'
+    input_ += ' 4 [2, 2, 3, 3] 16 [1, 1, 1, 1, 6, 6] b q'
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'user_input.py',
+        ]
+    user_input_wrapper = scoremanager.editors.UserInputWrapper([
+        ('measure_denominator', 4),
+        ('measure_numerator_talea', [2, 2, 3, 3]),
+        ('measure_division_denominator', 16),
+        ('measure_division_talea', [1, 1, 1, 1, 6, 6]),
+        ('total_duration', None),
+        ('measures_are_scaled', None),
+        ('measures_are_split', None),
+        ('measures_are_shuffled', None),
+        ])
+
     try:
-        score_manager._run(pending_user_input=
-            'lmm nmm sargasso testsargasso default '
-            'testsargasso uip 1 '
-            '4 [2, 2, 3, 3] 16 [1, 1, 1, 1, 6, 6] b '
-            'q'
-            )
-        #string = 'scoremanager.materials.testsargasso'
-        path = configuration.abjad_material_packages_directory_path
-        path = os.path.join(path, 'testsargasso')
+        score_manager._run(pending_user_input=input_, is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'user_input.py',
-            ]
-        user_input_wrapper = scoremanager.editors.UserInputWrapper([
-            ('measure_denominator', 4),
-            ('measure_numerator_talea', [2, 2, 3, 3]),
-            ('measure_division_denominator', 16),
-            ('measure_division_talea', [1, 1, 1, 1, 6, 6]),
-            ('total_duration', None),
-            ('measures_are_scaled', None),
-            ('measures_are_split', None),
-            ('measures_are_shuffled', None)])
+        assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materials.testsargasso'
-        assert not score_manager._configuration.package_exists(string)
+        input_ = 'lmm testsargasso rm remove q'
+        score_manager._run(pending_user_input=input_, is_test=True)
+        assert not os.path.exists(path)
 
 
 def test_SargassoMeasureMaterialManager_07():
@@ -258,39 +253,39 @@ def test_SargassoMeasureMaterialManager_07():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materials.testsargasso'
-    assert not score_manager._configuration.package_exists(string)
+    path = os.path.join(
+        configuration.abjad_material_packages_directory_path,
+        'testsargasso',
+        )
+    assert not os.path.exists(path)
+    input_ = 'lmm nmm sargasso testsargasso default'
+    input_ += ' testsargasso uil 6 None 7 None 8 None q'
+    directory_entries = [
+        '__init__.py', 
+        '__metadata__.py',
+        'user_input.py',
+        ]
+    user_input_wrapper = scoremanager.editors.UserInputWrapper([
+        ('measure_denominator', 4),
+        ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
+        ('measure_division_denominator', 16),
+        ('measure_division_talea', [1, 1, 2, 3, 1, 2, 3, 4, 1, 1, 1, 1, 4]),
+        ('total_duration', Duration(11, 2)),
+        ('measures_are_scaled', None),
+        ('measures_are_split', None),
+        ('measures_are_shuffled', None),
+        ])
+
     try:
-        score_manager._run(pending_user_input=
-            'lmm nmm sargasso testsargasso default '
-            'testsargasso uil 6 None 7 None 8 None '
-            'q'
-            )
-        #string = 'scoremanager.materials.testsargasso'
-        path = configuration.abjad_material_packages_directory_path
-        path = os.path.join(path, 'testsargasso')
+        score_manager._run(pending_user_input=input_, is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
-        assert manager._list() == [
-            '__init__.py', 
-            '__metadata__.py',
-            'user_input.py',
-            ]
-        user_input_wrapper = scoremanager.editors.UserInputWrapper([
-            ('measure_denominator', 4),
-            ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
-            ('measure_division_denominator', 16),
-            ('measure_division_talea', [1, 1, 2, 3, 1, 2, 3, 4, 1, 1, 1, 1, 4]),
-            ('total_duration', Duration(11, 2)),
-            ('measures_are_scaled', None),
-            ('measures_are_split', None),
-            ('measures_are_shuffled', None)])
+        assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        string = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materials.testsargasso'
-        assert not score_manager._configuration.package_exists(string)
+        input_ = 'lmm testsargasso rm remove q'
+        score_manager._run(pending_user_input=input_, is_test=True)
+        assert not os.path.exists(path)
 
 
 def test_SargassoMeasureMaterialManager_08():
@@ -299,8 +294,11 @@ def test_SargassoMeasureMaterialManager_08():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materials.testsargasso'
-    assert not score_manager._configuration.package_exists(string)
+    path = os.path.join(
+        configuration.abjad_material_packages_directory_path,
+        'testsargasso',
+        )
+    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -329,15 +327,11 @@ def test_SargassoMeasureMaterialManager_08():
         scoretools.Measure((9, 19), "c'16 c'4 c'16 c'16 c'8")]
     for measure in measures:
         measure.implicit_scaling = True
+    input_ = 'lmm nmm sargasso testsargasso default'
+    input_ += ' testsargasso uil omm default q'
 
     try:
-        score_manager._run(pending_user_input=
-            'lmm nmm sargasso testsargasso default '
-            'testsargasso uil omm default '
-            'q'
-            )
-        path = configuration.abjad_material_packages_directory_path
-        path = os.path.join(path, 'testsargasso')
+        score_manager._run(pending_user_input=input_, is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager(
             path=path)
         assert manager._list() == directory_entries
@@ -348,7 +342,6 @@ def test_SargassoMeasureMaterialManager_08():
         assert format(Staff(output_material))
         assert format(Staff(output_material)) == format(Staff(measures))
     finally:
-        string = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materials.testsargasso'
-        assert not score_manager._configuration.package_exists(string)
+        input_ = 'lmm testsargasso rm remove q'
+        score_manager._run(pending_user_input=input_, is_test=True)
+        assert not os.path.exists(path)
