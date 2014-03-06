@@ -9,8 +9,11 @@ def test_ArticulationHandlerMaterialManager_01():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
-    string = 'scoremanager.materials.testarticulationhandler'
-    assert not score_manager._configuration.package_exists(string)
+    path = os.path.join(
+        configuration.abjad_material_packages_directory_path,
+        'testarticulationhandler',
+        )
+    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -23,23 +26,19 @@ def test_ArticulationHandlerMaterialManager_01():
         minimum_written_pitch=NamedPitch('c'),
         maximum_written_pitch=NamedPitch("c''''"),
         )
+    input_ = 'lmm nmm articulation testarticulationhandler default'
+    input_ += ' reiterated'
+    input_ += " ['^', '.'] (1, 64) (1, 4) c c'''' done default"
+    input_ += ' q'
 
     try:
-        score_manager._run(pending_user_input=
-            'lmm nmm articulation testarticulationhandler default '
-            'testarticulationhandler omi reiterated '
-            "['^', '.'] (1, 64) (1, 4) c c'''' done default "
-            'q '
-            )
-        path = configuration.abjad_material_packages_directory_path
-        path = os.path.join(path, 'testarticulationhandler')
+        score_manager._run(pending_user_input=input_, is_test=True)
         manager = scoremanager.managers.ArticulationHandlerMaterialManager(
             path=path)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == handler
     finally:
-        string = 'lmm testarticulationhandler rm remove q'
-        score_manager._run(pending_user_input=string)
-        string = 'scoremanager.materials.testarticulationhandler'
-        assert not score_manager._configuration.package_exists(string)
+        input_ = 'lmm testarticulationhandler rm remove q'
+        score_manager._run(pending_user_input=input_)
+        assert not os.path.exists(path)
