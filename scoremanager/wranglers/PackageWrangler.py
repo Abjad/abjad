@@ -62,10 +62,8 @@ class PackageWrangler(Wrangler):
     def _handle_main_menu_result(self, result):
         self._io_manager.print_not_yet_implemented()
 
-    # TODO: eventually accept only filesystem path
     def _initialize_asset_manager(self, path):
-        if os.path.sep not in path:
-            path = self._configuration.package_path_to_path(path)
+        assert os.path.sep in path, repr(path)
         manager = self._asset_manager_class(
             path=path, 
             session=self._session,

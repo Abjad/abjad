@@ -65,49 +65,35 @@ class ScoreManager(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_next_score_package_name(self):
+    def _get_next_score_directory_path(self):
         wrangler = self._score_package_wrangler
         paths = wrangler._list_visible_asset_paths()
-        score_package_names = []
-        for path in paths:
-            package_path = self._configuration.path_to_package_path(path)
-            score_package_names.append(package_path)
-        if self._session.current_score_snake_case_name is None:
-            return score_package_names[0]
-        score_package_name = self._session.current_score_snake_case_name
-        index = score_package_names.index(score_package_name)
-        next_index = (index + 1) % len(score_package_names)
-        next_score_package_name = score_package_names[next_index]
-        return next_score_package_name
+        if self._session.current_score_directory_path is None:
+            return paths[0]
+        score_path = self._session.current_score_directory_path
+        index = paths.index(score_path)
+        next_index = (index + 1) % len(paths)
+        next_path = paths[next_index]
+        return next_path
 
-    def _get_previous_score_package_name(self):
+    def _get_previous_score_directory_path(self):
         wrangler = self._score_package_wrangler
-        #score_package_names = wrangler._list_visible_asset_package_paths()
         paths = wrangler._list_visible_asset_paths()
-        score_package_names = []
-        for path in paths:
-            package_path = self._configuration.path_to_package_path(path)
-            score_package_names.append(package_path)
-        if self._session.current_score_snake_case_name is None:
-            return score_package_names[-1]
-        score_package_name = self._session.current_score_snake_case_name
-        index = score_package_names.index(score_package_name)
-        previous_index = (index - 1) % len(score_package_names)
-        previous_score_package_name = score_package_names[previous_index]
-        return previous_score_package_name
+        if self._session.current_score_directory_path is None:
+            return paths[-1]
+        path = self._session.current_score_directory_path
+        index = paths.index(path)
+        previous_index = (index - 1) % len(paths)
+        previous_path = paths[previous_index]
+        return previous_path
 
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
         else:
             wrangler = self._score_package_wrangler
-            paths = wrangler._list_visible_asset_paths()
-            score_package_names = []
-            for path in paths:
-                package_path = self._configuration.path_to_package_path(path)
-                score_package_names.append(package_path)
-            #if result in wrangler._list_visible_asset_package_paths():
-            if result in score_package_names:
+            score_package_paths = wrangler._list_visible_asset_paths()
+            if result in score_package_paths:
                 self.manage_score(result)
 
     def _make_main_menu(self):
@@ -183,11 +169,11 @@ class ScoreManager(ScoreManagerObject):
             elif self._session.is_navigating_to_next_score:
                 self._session._is_navigating_to_next_score = False
                 self._session._is_backtracking_to_score_manager = False
-                result = self._get_next_score_package_name()
+                result = self._get_next_score_directory_path()
             elif self._session.is_navigating_to_previous_score:
                 self._session._is_navigating_to_previous_score = False
                 self._session._is_backtracking_to_score_manager = False
-                result = self._get_previous_score_package_name()
+                result = self._get_previous_score_directory_path()
             elif not result:
                 self._session._pop_breadcrumb()
                 continue
