@@ -10,15 +10,21 @@ class ScorePackageManager(PackageManager):
     def __init__(self, path=None, session=None):
         from scoremanager import managers
         from scoremanager import wranglers
-        if path is not None:
-            assert os.path.sep in path
         PackageManager.__init__(
             self, 
             path=path, 
             session=session,
             )
-        package_path = self._configuration.path_to_package_path(path)
-        self._package_path = package_path
+
+        self._build_directory_manager = None
+        self._distribution_directory_manager = None
+        self._instrumentation_module_manager = None
+        self._material_package_wrangler = None
+        self._material_manager_wrangler = None
+        self._score_template_directory_manager = None
+        self._segment_package_wrangler = None
+        self._stylesheet_wrangler = None
+
         path = self._path
         if path is not None:
             path = os.path.join(
