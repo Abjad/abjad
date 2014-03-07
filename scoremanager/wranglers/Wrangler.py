@@ -107,12 +107,15 @@ class Wrangler(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _extract_common_parent_directories(paths):
+    def _extract_common_parent_directories(self, paths):
         parent_directories = []
+        user_score_packages_directory_path = \
+            self._configuration.user_score_packages_directory_path
         for path in paths:
             parent_directory = os.path.dirname(path)
-            if parent_directory not in parent_directories:
+            if parent_directory == user_score_packages_directory_path:
+                parent_directories.append(path)
+            elif parent_directory not in parent_directories:
                 parent_directories.append(parent_directory)
         return parent_directories
 
