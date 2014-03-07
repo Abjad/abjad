@@ -212,45 +212,6 @@ class MaterialManagerWrangler(PackageWrangler):
             head=head,
             )
 
-    def _list_asset_names(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset names.
-
-        Lists abjad material manager names:
-
-        ::
-
-            >>> for x in wrangler._list_asset_names(
-            ...     user_library=False, 
-            ...     user_score_packages=False):
-            ...     x
-            'articulation handler material manager'
-            'dynamic handler material manager'
-            'list material manager'
-            'markup inventory material manager'
-            'octave transposition mapping inventory material manager'
-            'pitch range inventory material manager'
-            'rhythm maker material manager'
-            'sargasso measure material manager'
-            'tempo inventory material manager'
-
-        Returns list.
-        '''
-        superclass = super(MaterialManagerWrangler, self)
-        return superclass._list_asset_names(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            )
-
     def _list_storehouse_paths(
         self,
         abjad_library=True, 

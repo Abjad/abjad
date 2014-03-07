@@ -127,3 +127,6 @@
 
 33. Disambiguate (mdrm) command in MaterialManager. Right now it
     means both 'material definition - remove' and 'metadata - remove'.
+
+34. Add main menu (ssc) display option for 'show scores - composer'.
+    This will show everything except the example scores.
