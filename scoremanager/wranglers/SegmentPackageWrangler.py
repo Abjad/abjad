@@ -58,56 +58,6 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_manager = self._initialize_asset_manager(result)
             segment_package_manager._run()
 
-    def _list_asset_managers(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset managers.
-
-        ..  container:: example
-
-            List abjad segment package managers:
-
-            ::
-
-                >>> for x in wrangler._list_asset_managers(
-                ...     user_library=False, 
-                ...     user_score_packages=False):
-                ...     x
-                SegmentPackageManager('.../blue_example_score/segments/segment_01')
-                SegmentPackageManager('.../blue_example_score/segments/segment_02')
-                SegmentPackageManager('.../red_example_score/segments/segment_01')
-                SegmentPackageManager('.../red_example_score/segments/segment_02')
-                SegmentPackageManager('.../red_example_score/segments/segment_03')
-
-        ..  container:: example
-
-            List red example score segment package managers:
-
-            ::
-
-                >>> head = 'red_example_score'
-                >>> for x in wrangler._list_asset_managers(head=head):
-                ...     x
-                SegmentPackageManager('.../red_example_score/segments/segment_01')
-                SegmentPackageManager('.../red_example_score/segments/segment_02')
-                SegmentPackageManager('.../red_example_score/segments/segment_03')
-
-        Returns list.
-        '''
-        superclass = super(SegmentPackageWrangler, self)
-        return superclass._list_asset_managers(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            )
-
     def _list_asset_paths(
         self,
         abjad_library=True, 

@@ -177,7 +177,9 @@ class ScorePackageManager(PackageManager):
 
     def _get_tempo_inventory(self):
         wrangler = self._material_package_wrangler
-        for manager in wrangler._list_asset_managers(head=self._package_path):
+        paths = wrangler._list_asset_paths(head=self._package_path)
+        for path in paths:
+            manager = wrangler._initialize_asset_manager(path)
             string = 'material_manager_class_name'
             class_name = manager._get_metadatum(string)
             if class_name == 'TempoInventoryMaterialManager':
@@ -219,7 +221,6 @@ class ScorePackageManager(PackageManager):
             self._instrumentation_module_manager.edit()
         elif result == 'k':
             self._io_manager.print_not_yet_implemented()
-            #self._maker_module_wrangler._run(head=self._package_path)
         elif result == 'm':
             self._material_package_wrangler._run(head=self._package_path)
         elif result == 'p':

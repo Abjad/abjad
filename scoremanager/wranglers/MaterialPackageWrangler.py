@@ -150,47 +150,6 @@ class MaterialPackageWrangler(PackageWrangler):
         manager = wrangler._initialize_asset_manager(package_path)
         return manager
 
-    def _list_asset_managers(
-        self, 
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset managers.
-
-        Lists abjad material managers:
-
-        ::
-
-            >>> for x in wrangler._list_asset_managers(
-            ...     user_library=False, 
-            ...     user_score_packages=False,
-            ...     ):
-            ...     x
-            ArticulationHandlerMaterialManager('.../scoremanager/materials/example_articulation_handler')
-            DynamicHandlerMaterialManager('.../scoremanager/materials/example_dynamic_handler')
-            MarkupInventoryMaterialManager('.../scoremanager/materials/example_markup_inventory')
-            MaterialManager('.../scoremanager/materials/example_notes')
-            MaterialManager('.../scoremanager/materials/example_numbers')
-            PitchRangeInventoryMaterialManager('.../scoremanager/materials/example_pitch_range_inventory')
-            SargassoMeasureMaterialManager('.../scoremanager/materials/example_sargasso_measures')
-            MaterialManager('.../red_example_score/materials/magic_numbers')
-            PitchRangeInventoryMaterialManager('.../red_example_score/materials/pitch_range_inventory')
-            TempoInventoryMaterialManager('.../red_example_score/materials/tempo_inventory')
-
-        Returns list.
-        '''
-        superclass = super(MaterialPackageWrangler, self)
-        return superclass._list_asset_managers(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            )
-
     def _list_asset_paths(
         self,
         abjad_library=True, 
