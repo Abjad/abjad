@@ -153,17 +153,18 @@ class Wrangler(ScoreManagerObject):
         user_score_packages=True, 
         head=None,
         ):
-        result = []
-        for path in self._list_asset_paths(
+        managers = []
+        paths = path in self._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             head=head,
-            ):
-            asset_manager = self._initialize_asset_manager(path)
-            result.append(asset_manager)
-        return result
+            )
+        for path in paths:
+            manager = self._initialize_asset_manager(path)
+            managers.append(manager)
+        return managers
 
     def _list_asset_paths(
         self,
@@ -240,13 +241,18 @@ class Wrangler(ScoreManagerObject):
         path = self._get_current_directory_path_of_interest()
         package_path = self._configuration.path_to_package_path(path)
         package_path = package_path or 'scoremanager'
-        return self._list_asset_managers(
+        paths = self._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             head=package_path,
             ) 
+        managers = []
+        for path in paths:
+            manager = self._initialize_asset_manager(path)
+            managers.append(manager)
+        return managers
 
     def _list_visible_asset_paths(
         self,
@@ -319,12 +325,25 @@ class Wrangler(ScoreManagerObject):
         keys.append(self.user_storehouse_path)
         display_strings.append('My {}'.format(self._breadcrumb))
         wrangler = wranglers.ScorePackageWrangler(session=self._session)
+
         managers = wrangler._list_asset_managers(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             )
+
+#        paths = wrangler._list_asset_paths(
+#            abjad_library=abjad_library,
+#            user_library=user_library,
+#            abjad_score_packages=abjad_score_packages,
+#            user_score_packages=user_score_packages,
+#            )
+#        managers = []
+#        for path in paths:
+#            manager = self._initialize_asset_manager(path)
+#            managers.append(manager)
+
         for manager in managers:
             display_strings.append(manager._get_title())
             path_parts = (manager._path,)

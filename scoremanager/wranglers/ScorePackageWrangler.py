@@ -65,40 +65,6 @@ class ScorePackageWrangler(PackageWrangler):
     def _handle_main_menu_result(self):
         self._io_manager.print_not_yet_implemented()
 
-    def _list_asset_managers(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset managers.
-
-        Lists abjad score package managers:
-
-        ::
-
-            >>> for x in wrangler._list_asset_managers(
-            ...     user_library=False, 
-            ...     user_score_packages=False,
-            ...     ):
-            ...     x
-            ScorePackageManager('.../scores/blue_example_score')
-            ScorePackageManager('.../scores/green_example_score')
-            ScorePackageManager('.../scores/red_example_score')
-
-        Returns list.
-        '''
-        superclass = super(ScorePackageWrangler, self)
-        return superclass._list_asset_managers(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            )
-
     def _list_asset_paths(
         self,
         abjad_library=True, 

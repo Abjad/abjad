@@ -85,21 +85,18 @@ class PackageWrangler(Wrangler):
         user_score_packages=True,
         head=None,
         ):
-        r'''Lists asset managers.
-
-        Returns list.
-        '''
-        result = []
-        for path in self._list_asset_paths(
+        managers = []
+        paths = self._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             head=head,
-            ):
-            asset_manager = self._initialize_asset_manager(path)
-            result.append(asset_manager)
-        return result
+            )
+        for path in paths:
+            manager = self._initialize_asset_manager(path)
+            managers.append(manager)
+        return managers
 
     def _make_asset(self, asset_name):
         assert stringtools.is_snake_case_package_name(asset_name)

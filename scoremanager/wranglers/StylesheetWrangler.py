@@ -120,40 +120,6 @@ class StylesheetWrangler(Wrangler):
                 return True
         return False
 
-    def _list_asset_managers(
-        self, 
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset managers.
-
-        Lists abjad stylesheet managers:
-
-        ::
-
-            >>> for x in wrangler._list_asset_managers(
-            ...     user_library=False, 
-            ...    user_score_packages=False):
-            ...     x
-            FileManager('.../abjad/stylesheets/clean-letter-14.ily')
-            FileManager('.../abjad/stylesheets/clean-letter-16.ily')
-            FileManager('.../abjad/stylesheets/rhythm-letter-16.ily')
-            FileManager('.../scoremanager/scores/red_example_score/stylesheets/red-example-score-stylesheet.ily')
-
-        Returns list.
-        '''
-        superclass = super(StylesheetWrangler, self)
-        return superclass._list_asset_managers(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            )
-
     def _list_asset_paths(
         self,
         abjad_library=True, 
@@ -162,9 +128,9 @@ class StylesheetWrangler(Wrangler):
         user_score_packages=True, 
         head=None,
         ):
-        r'''Lists asset filesystem paths.
+        r'''Lists asset paths.
 
-        Lists abjad stylesheet filesystem paths:
+        Lists abjad stylesheet paths:
 
         ::
 
