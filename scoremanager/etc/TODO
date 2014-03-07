@@ -62,26 +62,22 @@
 21. Make material package illustration work again.
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
-22. Remove empty ...
-        .../managers/user_input.py
-    ... module.
-
-23. These four classes can all be collapsed into one:
+22. These four classes can all be collapsed into one:
         wizards.HandlerCreationWizard
         wizards.ArticulationHandlerCreationWizard
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-24. Clean up MaterialManager. It's by far the biggest component and the
+23. Clean up MaterialManager. It's by far the biggest component and the
     most complex.
 
-26. Make the (u), (k), (m), (g), (p), (t) and (y) commands work from anywhere
+24. Make the (u), (k), (m), (g), (p), (t) and (y) commands work from anywhere
     within a score. Leave the commands lowercase.
 
-26. There also needs to be a single command to just view the global stylesheet
+24. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (Y) or equivalent.
 
-27. Find a way to get rid of the ...
+25. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -97,20 +93,20 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-28. Eliminate unqualified test files like test_ScorePackageManager.py.
+26. Eliminate unqualified test files like test_ScorePackageManager.py.
 
-29. Remove bug that allows for creation of ...
+27. Remove bug that allows for creation of ...
         metadata = collections.OrderedDict([
             ('', ''),
             ])
     ... without allowing for removal.
 
-30. Remove MarkupInventoryMaterialManager.illustration_builder().
+28. Remove MarkupInventoryMaterialManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
 
-31. Write test for (ren) to rename.
+29. Write test for (ren) to rename.
 
-32. Write test to make sure that ...
+30. Write test to make sure that ...
         # -*- encoding: utf-8 -*-
         from abjad import *
         _output_material_module_import_statements = []
@@ -120,18 +116,18 @@
     ... shows up as the exact file contents in response to (materials) > (nmh)
     > ... > (mde).
 
-33. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+31. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-34. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
+32. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
 
-35. Implement something to tour everything that can be rewritten and rewrite.
+33. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-36. Note that ArticulationHandlerMaterialManager implementation is limited
+34. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
