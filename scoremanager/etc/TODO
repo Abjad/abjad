@@ -68,16 +68,13 @@
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-23. Clean up MaterialManager. It's by far the biggest component and the
-    most complex.
-
-24. Make the (u), (k), (m), (g), (p), (t) and (y) commands work from anywhere
+23. Make the (u), (k), (m), (g), (p), (t) and (y) commands work from anywhere
     within a score. Leave the commands lowercase.
 
-24. There also needs to be a single command to just view the global stylesheet
+23. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (Y) or equivalent.
 
-25. Find a way to get rid of the ...
+24. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -93,20 +90,20 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-26. Eliminate unqualified test files like test_ScorePackageManager.py.
+25. Eliminate unqualified test files like test_ScorePackageManager.py.
 
-27. Remove bug that allows for creation of ...
+26. Remove bug that allows for creation of ...
         metadata = collections.OrderedDict([
             ('', ''),
             ])
     ... without allowing for removal.
 
-28. Remove MarkupInventoryMaterialManager.illustration_builder().
+27. Remove MarkupInventoryMaterialManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
 
-29. Write test for (ren) to rename.
+28. Write test for (ren) to rename.
 
-30. Write test to make sure that ...
+29. Write test to make sure that ...
         # -*- encoding: utf-8 -*-
         from abjad import *
         _output_material_module_import_statements = []
@@ -116,18 +113,18 @@
     ... shows up as the exact file contents in response to (materials) > (nmh)
     > ... > (mde).
 
-31. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+30. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-32. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
+31. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
 
-33. Implement something to tour everything that can be rewritten and rewrite.
+32. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-34. Note that ArticulationHandlerMaterialManager implementation is limited
+33. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
