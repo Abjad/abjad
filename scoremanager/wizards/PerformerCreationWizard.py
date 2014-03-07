@@ -25,7 +25,6 @@ class PerformerCreationWizard(Wizard):
         self, 
         cache=False, 
         clear=True, 
-        head=None, 
         pending_user_input=None,
         is_test=False,
         ):

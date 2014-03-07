@@ -529,7 +529,6 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         self, 
         abjad=False, 
         user=False, 
-        head=None,
         ):
         r'''Lists score directory paths.
 
@@ -540,7 +539,8 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             ::
 
                 >>> for x in configuration.list_score_directory_paths(
-                ...     abjad=True):
+                ...     abjad=True,
+                ...     ):
                 ...     x
                 '.../scoremanager/scores/blue_example_score'
                 '.../scoremanager/scores/green_example_score'
@@ -561,24 +561,22 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                     package_path = self.path_to_package_path(
                         directory_path,
                         )
-                    if head is None or package_path.startswith(head):
-                        path = os.path.join(
-                            self.abjad_score_packages_directory_path,
-                            directory_entry,
-                            )
-                        result.append(path)
+                    path = os.path.join(
+                        self.abjad_score_packages_directory_path,
+                        directory_entry,
+                        )
+                    result.append(path)
         if user:
             scores_directory_path = self.user_score_packages_directory_path
             directory_entries = sorted(os.listdir(scores_directory_path))
             for directory_entry in directory_entries:
                 if directory_entry[0].isalpha():
                     package_path = directory_entry
-                    if head is None or package_path.startswith(head):
-                        path = os.path.join(
-                            self.user_score_packages_directory_path,
-                            directory_entry,
-                            )
-                        result.append(path)
+                    path = os.path.join(
+                        self.user_score_packages_directory_path,
+                        directory_entry,
+                        )
+                    result.append(path)
         return result
 
     def path_to_package_path(self, path):

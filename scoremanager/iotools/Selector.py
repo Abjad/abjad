@@ -60,7 +60,7 @@ class Selector(ScoreManagerObject):
         result = []
         return result
 
-    def _make_main_menu(self, head=None):
+    def _make_main_menu(self):
         main_menu = self._io_manager.make_menu(where=self._where)
         menu_section = main_menu._make_section(
             return_value_attribute=self.return_value_attribute,
@@ -70,25 +70,24 @@ class Selector(ScoreManagerObject):
         if hasattr(self, 'menu_entries'):
             menu_entries = self.menu_entries
         else:
-            menu_entries = self._make_menu_entries(head=head)
+            menu_entries = self._make_menu_entries()
         menu_section.menu_entries = menu_entries
         return main_menu
 
-    def _make_menu_entries(self, head=None):
+    def _make_menu_entries(self):
         return [self._change_expr_to_menu_entry(item) for item in self.items]
 
     def _run(
         self, 
         cache=False,
         clear=True,
-        head=None,
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
         while True:
             self._session._push_breadcrumb(self._breadcrumb)
-            menu = self._make_main_menu(head=head)
+            menu = self._make_main_menu()
             result = menu._run(clear=clear)
             if self._session._backtrack():
                 break
