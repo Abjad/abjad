@@ -128,94 +128,6 @@ class ScorePackageWrangler(PackageWrangler):
             user_score_packages=user_score_packages,
             )
 
-    def _list_visible_asset_managers(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True,
-        head=None,
-        ):
-        r'''Lists visible asset managers.
-
-        Lists visible score package managers:
-
-        ::
-
-            >>> for x in wrangler._list_visible_asset_managers(
-            ...     user_library=False, 
-            ...     user_score_packages=False,
-            ...     ):
-            ...     x
-            ScorePackageManager('.../scores/blue_example_score')
-            ScorePackageManager('.../scores/green_example_score')
-            ScorePackageManager('.../scores/red_example_score')
-
-        Returns list.
-        '''
-        managers = []
-        paths = self._list_visible_asset_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            )
-        for path in paths:
-            manager = self._initialize_asset_manager(path)
-            managers.append(manager)
-        return managers
-
-    def _list_visible_asset_path_and_score_title_pairs(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True,
-        head=None,
-        ):
-        r'''Lists visible asset path and score title pairs.
-
-        Lists visible abjad score path and title pairs:
-
-        ::
-
-            >>> for x in wrangler._list_visible_asset_path_and_score_title_pairs(
-            ...     user_library=False, 
-            ...     user_score_packages=False,
-            ...     ):
-            ...     x[0]
-            ...     x[1]
-            ...     print
-            '.../scoremanager/scores/blue_example_score'
-            'Blue Example Score (2013)'
-            <BLANKLINE>
-            '.../scoremanager/scores/green_example_score'
-            'Green Example Score (2013)'
-            <BLANKLINE>
-            '.../scoremanager/scores/red_example_score'
-            'Red Example Score (2013)'
-            <BLANKLINE>
-
-        Returns list.
-        '''
-        result = []
-        managers = self._list_visible_asset_managers()
-        for manager in managers:
-            metadata = manager._get_metadata()
-            year_of_completion = metadata.get('year_of_completion')
-            title = metadata.get('title')
-            if year_of_completion:
-                title_with_year = '{} ({})'.format(
-                    title,
-                    year_of_completion,
-                    )
-            else:
-                title_with_year = str(title)
-            pair = (manager._path, title_with_year)
-            result.append(pair)
-        return result
-
     def _list_visible_asset_paths(
         self,
         abjad_library=True, 
@@ -256,7 +168,22 @@ class ScorePackageWrangler(PackageWrangler):
         return result
 
     def _make_asset_menu_entries(self):
-        menu_pairs = self._list_visible_asset_path_and_score_title_pairs()
+        menu_pairs = []
+        paths = self._list_visible_asset_paths()
+        for path in paths:
+            manager = self._initialize_asset_manager(path)
+            metadata = manager._get_metadata()
+            year_of_completion = metadata.get('year_of_completion')
+            title = metadata.get('title')
+            if year_of_completion:
+                title_with_year = '{} ({})'.format(
+                    title,
+                    year_of_completion,
+                    )
+            else:
+                title_with_year = str(title)
+            pair = (manager._path, title_with_year)
+            menu_pairs.append(pair)
         tmp = stringtools.strip_diacritics_from_binary_string
         menu_pairs.sort(key=lambda x: tmp(x[1]))
         menu_entries = []
