@@ -41,32 +41,29 @@
 15. Refactor score manager wizard classes to use instance attributes in place
     of class attributes.
 
-16. Refactor material package maker classes to use instance
-    attributes in place of class attributes.
-
-17. Figure out the correct ajv replace regex to change tratiettore/music
+16. Figure out the correct ajv replace regex to change tratiettore/music
     to just traiettorie.
 
-18. Move score/instrumentation.py module to score/materials packages.
+17. Move score/instrumentation.py module to score/materials packages.
     Maybe easiest to do this by creating an
     InstrumentationSpecifierMaterialManager.
 
-19. Make material package illustration work again.
+18. Make material package illustration work again.
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
-20. These four classes can all be collapsed into one:
+19. These four classes can all be collapsed into one:
         wizards.HandlerCreationWizard
         wizards.ArticulationHandlerCreationWizard
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-21. Make the (u), (k), (m), (g), (p), (t) and (y) commands work from anywhere
+20. Make the (u), (k), (m), (g), (p), (t) and (y) commands work from anywhere
     within a score. Leave the commands lowercase.
 
-21. There also needs to be a single command to just view the global stylesheet
+20. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (Y) or equivalent.
 
-22. Find a way to get rid of the ...
+21. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -82,20 +79,20 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-23. Eliminate unqualified test files like test_ScorePackageManager.py.
+22. Eliminate unqualified test files like test_ScorePackageManager.py.
 
-24. Remove bug that allows for creation of ...
+23. Remove bug that allows for creation of ...
         metadata = collections.OrderedDict([
             ('', ''),
             ])
     ... without allowing for removal.
 
-25. Remove MarkupInventoryMaterialManager.illustration_builder().
+24. Remove MarkupInventoryMaterialManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
 
-26. Write test for (ren) to rename.
+25. Write test for (ren) to rename.
 
-27. Write test to make sure that ...
+26. Write test to make sure that ...
         # -*- encoding: utf-8 -*-
         from abjad import *
         _output_material_module_import_statements = []
@@ -105,18 +102,18 @@
     ... shows up as the exact file contents in response to (materials) > (nmh)
     > ... > (mde).
 
-28. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+27. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-29. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
+28. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
 
-30. Implement something to tour everything that can be rewritten and rewrite.
+29. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-31. Note that ArticulationHandlerMaterialManager implementation is limited
+30. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The

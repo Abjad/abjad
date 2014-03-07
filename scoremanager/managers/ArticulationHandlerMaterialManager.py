@@ -15,7 +15,6 @@ class ArticulationHandlerMaterialManager(MaterialManager):
             'from experimental.tools import handlertools',
             ]
 
-
     ### PUBLIC METHODS ###
 
     @staticmethod
