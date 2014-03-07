@@ -119,3 +119,11 @@
     MaterialManager how to inspect ArticulationHandler class variables. The
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
+
+31. Make (red~example~score > ls) work.
+
+32. Realphabetize 'directory - whatever' menu section to where it should
+    appear. Can use MaterialManager as working example.
+
+33. Disambiguate (mdrm) command in MaterialManager. Right now it
+    means both 'material definition - remove' and 'metadata - remove'.
