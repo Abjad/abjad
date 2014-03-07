@@ -101,32 +101,6 @@ class PackageWrangler(Wrangler):
             result.append(asset_manager)
         return result
 
-    def _list_storehouse_package_paths(
-        self,
-        abjad_library=True,
-        user_library=True,
-        abjad_score_packages=True,
-        user_score_packages=True,
-        ):
-        r'''Lists storehouse package paths.
-
-        Returns list.
-        '''
-        result = []
-        superclass = super(PackageWrangler, self)
-        for path in \
-            superclass._list_storehouse_paths(
-            abjad_library=True,
-            user_library=True,
-            abjad_score_packages=True,
-            user_score_packages=True,
-            ):
-            package_path = \
-                self._configuration.path_to_package_path(
-                path)
-            result.append(package_path)
-        return result
-
     def _make_asset(self, asset_name):
         assert stringtools.is_snake_case_package_name(asset_name)
         asset_path = os.path.join(
@@ -236,7 +210,6 @@ class PackageWrangler(Wrangler):
         self,
         clear=True,
         cache=False,
-        head=None,
         infinitival_phrase=None,
         pending_user_input=None,
         ):
@@ -254,7 +227,7 @@ class PackageWrangler(Wrangler):
                 infinitival_phrase=infinitival_phrase,
                 )
             self._session._push_breadcrumb(breadcrumb)
-            menu = self._make_asset_selection_menu(head=head)
+            menu = self._make_asset_selection_menu()
             result = menu._run(clear=clear)
             if self._session._backtrack():
                 break

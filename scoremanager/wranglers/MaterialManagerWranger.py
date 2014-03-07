@@ -110,8 +110,11 @@ class MaterialManagerWrangler(PackageWrangler):
         return False
 
     def _make_asset_menu_entries(self):
-        names = self._list_asset_names()
         paths = self._list_asset_paths()
+        names = [
+            self._path_to_space_delimited_lowercase_name(path)
+            for path in paths
+            ]
         packages = []
         for path in paths:
             package = self._configuration.path_to_package_path(path)

@@ -348,8 +348,7 @@ class Wrangler(ScoreManagerObject):
         else:
             return 'select {}:'.format(human_readable_target_name)
 
-    # TODO: remove head
-    def _make_asset_selection_menu(self, head=None):
+    def _make_asset_selection_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries()
