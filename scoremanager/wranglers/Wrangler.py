@@ -108,6 +108,15 @@ class Wrangler(ScoreManagerObject):
     ### PRIVATE METHODS ###
 
     @staticmethod
+    def _extract_common_parent_directories(paths):
+        parent_directories = []
+        for path in paths:
+            parent_directory = os.path.dirname(path)
+            if parent_directory not in parent_directories:
+                parent_directories.append(parent_directory)
+        return parent_directories
+
+    @staticmethod
     def _path_to_space_delimited_lowercase_name(path):
         path = os.path.normpath(path)
         asset_name = os.path.basename(path)
@@ -150,17 +159,19 @@ class Wrangler(ScoreManagerObject):
         head=None,
         ):
         result = []
-        for directory_path in self._list_storehouse_paths(
+        directory_paths = self._list_storehouse_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
-            ):
+            )
+        for directory_path in directory_paths:
             if not directory_path:
                 continue
             if not os.path.exists(directory_path):
                 continue
-            for directory_entry in sorted(os.listdir(directory_path)):
+            directory_entries =  sorted(os.listdir(directory_path))
+            for directory_entry in directory_entries:
                 if not self._is_valid_directory_entry(directory_entry):
                     continue
                 path = os.path.join(directory_path, directory_entry)
@@ -295,7 +306,8 @@ class Wrangler(ScoreManagerObject):
         ):
         path = self._get_current_directory_path_of_interest()
         package_path = self._configuration.path_to_package_path(path)
-        package_path = package_path or 'scoremanager'
+        if 'Stylesheet' not in type(self).__name__:
+            package_path = package_path or 'scoremanager'
         return self._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
@@ -738,17 +750,18 @@ class Wrangler(ScoreManagerObject):
         self._current_package_manager._add_metadata('view_name', view_name)
 
     def status(self, prompt=True):
-        r'''Check asset status in repository.
+        r'''Display asset status in repository.
 
         Returns none.
         '''
-        managers = self._list_visible_asset_managers(
-            abjad_library=True, 
-            user_library=True,
-            abjad_score_packages=True, 
-            user_score_packages=True,
-            )
-        for manager in managers:
+        from scoremanager import managers
+        paths = self._list_visible_asset_paths()
+        paths = self._extract_common_parent_directories(paths)
+        for path in paths:
+            manager = managers.DirectoryManager(
+                path=path,
+                session=self._session,
+                )
             manager.status(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
