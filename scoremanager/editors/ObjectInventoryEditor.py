@@ -3,6 +3,8 @@ from scoremanager.editors.ListEditor import ListEditor
 
 
 class ObjectInventoryEditor(ListEditor):
+    r'''ObjectInventory editor.
+    '''
 
     ### PUBLIC PROPERTIES ###
 

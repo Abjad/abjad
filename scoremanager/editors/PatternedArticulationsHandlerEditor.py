@@ -5,6 +5,8 @@ from scoremanager.editors.Editor import Editor
 
 
 class PatternedArticulationsHandlerEditor(Editor):
+    r'''PatternedArticulationsHandler editor.
+    '''
 
     ### PUBLIC PROPERTIES ###
 

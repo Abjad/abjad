@@ -8,6 +8,8 @@ from scoremanager.managers.DirectoryManager import DirectoryManager
 
 
 class BuildDirectoryManager(DirectoryManager):
+    r'''Build directory manager.
+    '''
 
     ### INITIALIZER ###
 

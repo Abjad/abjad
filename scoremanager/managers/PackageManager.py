@@ -7,6 +7,8 @@ from scoremanager.managers.DirectoryManager import DirectoryManager
 
 
 class PackageManager(DirectoryManager):
+    r'''Package manager.
+    '''
 
     ### INITIALIZER ###
 

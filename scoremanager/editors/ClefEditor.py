@@ -5,6 +5,8 @@ from scoremanager.editors.Editor import Editor
 
 
 class ClefEditor(Editor):
+    r'''Clef editor.
+    '''
 
     ### PUBLIC PROPERTIES ###
 

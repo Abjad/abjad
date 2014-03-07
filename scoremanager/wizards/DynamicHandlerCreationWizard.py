@@ -3,6 +3,8 @@ from scoremanager.wizards.Wizard import Wizard
 
 
 class DynamicHandlerCreationWizard(Wizard):
+    r'''Dynamic handler creation wizard.
+    '''
 
     ### CLASS VARIABLES ###
 

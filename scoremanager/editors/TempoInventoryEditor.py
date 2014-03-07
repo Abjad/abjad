@@ -7,6 +7,8 @@ from scoremanager.iotools.UserInputGetter import UserInputGetter
 
 
 class TempoInventoryEditor(ObjectInventoryEditor):
+    r'''TempoInventory editor.
+    '''
 
     ### CLASS VARIABLES ###
 

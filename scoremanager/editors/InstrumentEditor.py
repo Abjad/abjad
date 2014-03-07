@@ -7,6 +7,8 @@ from scoremanager.editors.Editor import Editor
 
 
 class InstrumentEditor(Editor):
+    r'''Instrument editor.
+    '''
 
     ### PUBLIC PROPERTIES ###
 

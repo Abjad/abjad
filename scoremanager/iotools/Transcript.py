@@ -6,6 +6,8 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Transcript(AbjadObject):
+    r'''Transcript.
+    '''
 
     ### INITIALIZER ###
 

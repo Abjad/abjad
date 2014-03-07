@@ -4,6 +4,8 @@ from scoremanager import iotools
 
 
 class PitchClassTransformCreationWizard(Wizard):
+    r'''Pitch-class transform creation wizard.
+    '''
 
     ### PRIVATE PROPERTIES ###
 

@@ -5,6 +5,8 @@ from scoremanager.editors.Editor import Editor
 
 
 class PitchRangeEditor(Editor):
+    r'''PitchRange editor.
+    '''
 
     ### PUBLIC PROPERTIES ###
 

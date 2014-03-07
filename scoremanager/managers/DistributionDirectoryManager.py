@@ -4,6 +4,8 @@ from scoremanager.managers.DirectoryManager import DirectoryManager
 
 
 class DistributionDirectoryManager(DirectoryManager):
+    r'''Distribution directory manager.
+    '''
 
     ### INITIALIZER ###
 

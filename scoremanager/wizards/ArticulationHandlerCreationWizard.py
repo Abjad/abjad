@@ -3,6 +3,8 @@ from scoremanager.wizards.Wizard import Wizard
 
 
 class ArticulationHandlerCreationWizard(Wizard):
+    r'''Articulation handler creation wizard.
+    '''
 
     ### CLASS VARIABLES ###
 

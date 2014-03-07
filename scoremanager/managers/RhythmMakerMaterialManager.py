@@ -5,6 +5,8 @@ from scoremanager.managers.MaterialManager import MaterialManager
 
 
 class RhythmMakerMaterialManager(MaterialManager):
+    r'''Rhythm-maker material manager.
+    '''
 
     ### INITIALIZER ###
 

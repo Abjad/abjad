@@ -6,6 +6,8 @@ from scoremanager.wizards.Wizard import Wizard
 
 
 class InstrumentCreationWizard(Wizard):
+    r'''Instrument creation wizard.
+    '''
 
     ### INITIALIZER ###
 

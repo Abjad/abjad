@@ -3,6 +3,8 @@ from scoremanager.wizards.Wizard import Wizard
 
 
 class RhythmMakerCreationWizard(Wizard):
+    r'''Rhythm-maker creation wizard.
+    '''
 
     ### CLASS VARIABLES ###
 

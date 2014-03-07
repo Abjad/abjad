@@ -4,6 +4,8 @@ from scoremanager.managers.MaterialManager import MaterialManager
 
 
 class PitchRangeInventoryMaterialManager(MaterialManager):
+    r'''Pitch range inventory material manager.
+    '''
 
     ### INITIALIZER ###
 

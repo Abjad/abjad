@@ -4,6 +4,8 @@ from scoremanager.managers.MaterialManager import MaterialManager
 
 
 class MarkupInventoryMaterialManager(MaterialManager):
+    r'''Markup inventory material manager.
+    '''
 
     ### INITIALIZER ###
 

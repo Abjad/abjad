@@ -7,6 +7,8 @@ from abjad.tools.abctools.ContextManager import ContextManager
 
 
 class ScoreManagerObject(object):
+    r'''Score manager object.
+    '''
 
     ### CLASS VARIABLES ###
 

@@ -5,6 +5,8 @@ from scoremanager.managers.MaterialManager import MaterialManager
 
 
 class ListMaterialManager(MaterialManager):
+    r'''List material manager.
+    '''
 
     ### INITIALIZER ###
 

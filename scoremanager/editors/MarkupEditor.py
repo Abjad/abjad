@@ -5,6 +5,8 @@ from scoremanager.editors.Editor import Editor
 
 
 class MarkupEditor(Editor):
+    r'''Markup editor.
+    '''
 
     ### PUBLIC PROPERTIES ###
 

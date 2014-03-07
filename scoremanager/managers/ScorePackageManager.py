@@ -4,6 +4,8 @@ from scoremanager.managers.PackageManager import PackageManager
 
 
 class ScorePackageManager(PackageManager):
+    r'''Score package manager.
+    '''
 
     ### INITIALIZER ###
 

@@ -6,6 +6,8 @@ from scoremanager.editors.ObjectInventoryEditor import ObjectInventoryEditor
 
 
 class ClefInventoryEditor(ObjectInventoryEditor):
+    r'''Clef inventory editor.
+    '''
 
     ### CLASS VARIABLES ###
 

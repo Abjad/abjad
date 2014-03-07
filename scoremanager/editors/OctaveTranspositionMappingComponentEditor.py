@@ -5,6 +5,8 @@ from scoremanager.editors.Editor import Editor
 
 
 class OctaveTranspositionMappingComponentEditor(Editor):
+    r'''OctaveTranspositionMappingComponent editor.
+    '''
 
     ### PUBLIC PROPERTIES ###
 

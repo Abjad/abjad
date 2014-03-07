@@ -5,6 +5,8 @@ from scoremanager.editors.Editor import Editor
 
 
 class TerracedDynamicsHandlerEditor(Editor):
+    r'''TerracedDynamicsHandler editor.
+    '''
 
     ### PUBLIC PROPERTIES ###
 

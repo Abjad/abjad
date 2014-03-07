@@ -3,6 +3,8 @@ import collections
 
 
 class UserInputWrapper(collections.OrderedDict):
+    r'''User input wrapper.
+    '''
 
     ### INITIALIZER ###
 

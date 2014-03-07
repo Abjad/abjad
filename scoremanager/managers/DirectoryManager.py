@@ -6,6 +6,8 @@ from scoremanager.managers.Manager import Manager
 
 
 class DirectoryManager(Manager):
+    r'''Directory manager.
+    '''
 
     ### INITIALIZER ###
 

@@ -6,6 +6,8 @@ from scoremanager.editors.Editor import Editor
 
 
 class TempoEditor(Editor):
+    r'''Tempo editor.
+    '''
 
     ### PUBLIC PROPERTIES ###
 

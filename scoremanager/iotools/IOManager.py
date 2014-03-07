@@ -8,7 +8,7 @@ from abjad.tools.systemtools.IOManager import IOManager
 
 
 class IOManager(IOManager):
-    r'''Manages Abjad IO.
+    r'''IO manager.
 
     ..  container:: example
 

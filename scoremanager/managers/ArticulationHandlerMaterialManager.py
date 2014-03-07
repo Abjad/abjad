@@ -3,6 +3,8 @@ from scoremanager.managers.MaterialManager import MaterialManager
 
 
 class ArticulationHandlerMaterialManager(MaterialManager):
+    r'''Articulation handler material manager.
+    '''
 
     ### INITIALIZER ###
 

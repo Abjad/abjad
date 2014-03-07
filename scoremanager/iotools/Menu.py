@@ -7,7 +7,7 @@ from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
 class Menu(ScoreManagerObject):
-    r'''A menu.
+    r'''Menu.
 
     ..  container:: example
 

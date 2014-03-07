@@ -4,6 +4,8 @@ from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
 
 class Editor(ScoreManagerObject):
+    r'''Editor.
+    '''
 
     ### INITIALIZER ###
 

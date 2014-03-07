@@ -8,6 +8,8 @@ from scoremanager.iotools.UserInputGetter import UserInputGetter
 
 
 class MarkupInventoryEditor(ObjectInventoryEditor):
+    r'''Markup inventory editor.
+    '''
 
     ### CLASS VARIABLES ###
 

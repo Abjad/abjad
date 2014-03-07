@@ -4,6 +4,8 @@ from scoremanager.managers.MaterialManager import MaterialManager
 
 
 class TempoInventoryMaterialManager(MaterialManager):
+    r'''Tempo inventory material manager.
+    '''
 
     ### INITIALIZER ###
 

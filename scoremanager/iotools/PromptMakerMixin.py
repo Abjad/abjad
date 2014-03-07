@@ -9,6 +9,8 @@ from scoremanager import predicates
 
 
 class PromptMakerMixin(AbjadObject):
+    r'''Prompt maker mixin.
+    '''
 
     ### PRIVATE METHODS ###
 

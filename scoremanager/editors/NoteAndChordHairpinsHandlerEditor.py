@@ -5,6 +5,8 @@ from scoremanager.editors.Editor import Editor
 
 
 class NoteAndChordHairpinsHandlerEditor(Editor):
+    r'''NoteAndChordHairpinsHandler editor.
+    '''
 
     ### PUBLIC PROPERTIES ###
 

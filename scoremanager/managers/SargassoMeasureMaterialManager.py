@@ -6,6 +6,8 @@ from scoremanager.managers.MaterialManager import MaterialManager
 
 
 class SargassoMeasureMaterialManager(MaterialManager):
+    r'''Sargasso measure material manager.
+    '''
 
     ### CLASS VARIABLES ###
 

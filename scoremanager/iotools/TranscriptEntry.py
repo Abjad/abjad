@@ -5,7 +5,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class TranscriptEntry(AbjadObject):
-    r'''IO transcript entry.
+    r'''Transcript entry.
     '''
 
     ### CLASS VARIABLES ###

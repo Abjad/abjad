@@ -5,6 +5,8 @@ from scoremanager.editors.Editor import Editor
 
 
 class AttributeDetail(AbjadObject):
+    r'''Attribute detail.
+    '''
 
     ### INITIALIZER ###
 

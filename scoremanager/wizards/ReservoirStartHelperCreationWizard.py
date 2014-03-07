@@ -4,6 +4,8 @@ from scoremanager import iotools
 
 
 class ReservoirStartHelperCreationWizard(Wizard):
+    r'''Reservoir start helper creation wizard.
+    '''
 
     ### PRIVATE PROPERTIES ###
 

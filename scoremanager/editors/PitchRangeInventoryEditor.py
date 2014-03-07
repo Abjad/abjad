@@ -7,6 +7,8 @@ from scoremanager.iotools.UserInputGetter import UserInputGetter
 
 
 class PitchRangeInventoryEditor(ObjectInventoryEditor):
+    r'''PitchRangeInventory editor.
+    '''
 
     ### CLASS VARIABLES ###
 

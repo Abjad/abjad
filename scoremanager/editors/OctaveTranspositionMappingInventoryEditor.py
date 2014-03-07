@@ -7,6 +7,8 @@ from scoremanager.editors.OctaveTranspositionMappingEditor \
 
 
 class OctaveTranspositionMappingInventoryEditor(ObjectInventoryEditor):
+    r'''OctaveTranspositionMappingInventory editor.
+    '''
 
     ### CLASS VARIABLES ###
 

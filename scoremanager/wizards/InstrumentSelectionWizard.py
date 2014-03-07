@@ -5,6 +5,8 @@ from scoremanager.wizards.Wizard import Wizard
 
 
 class InstrumentSelectionWizard(Wizard):
+    r'''Instrument selection wizard.
+    '''
 
     ### PRIVATE PROPERTIES ###
 

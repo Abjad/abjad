@@ -5,6 +5,8 @@ from scoremanager.editors.Editor import Editor
 
 
 class ReiteratedDynamicHandlerEditor(Editor):
+    r'''ReiteratedDynamicHandler editor.
+    '''
 
     ### PUBLIC PROPERTIES ###
 

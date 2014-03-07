@@ -3,6 +3,8 @@ from scoremanager.managers.MaterialManager import MaterialManager
 
 
 class DynamicHandlerMaterialManager(MaterialManager):
+    r'''Dynamic handler material manager.
+    '''
 
     ### INITIALIZER ###
 

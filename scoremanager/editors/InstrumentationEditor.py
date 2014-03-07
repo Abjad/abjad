@@ -7,6 +7,8 @@ from scoremanager.editors.PerformerEditor import PerformerEditor
 
 
 class InstrumentationEditor(ListEditor):
+    r'''Instrumentation editor.
+    '''
 
     ### CLASS VARIABLES ###
 

@@ -5,6 +5,8 @@ from scoremanager.editors.RhythmMakerEditor import RhythmMakerEditor
 
 
 class NoteRhythmMakerEditor(RhythmMakerEditor):
+    r'''NoteRhythmMaker editor.
+    '''
 
     ### PUBLIC PROPERTIES ###
 

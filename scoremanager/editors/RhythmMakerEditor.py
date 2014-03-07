@@ -3,6 +3,8 @@ from scoremanager.editors.Editor import Editor
 
 
 class RhythmMakerEditor(Editor):
+    r'''RhythmMaker editor.
+    '''
 
     ### PUBLIC PROPERTIES ###
 

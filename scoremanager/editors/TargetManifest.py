@@ -4,6 +4,8 @@ from scoremanager.editors.AttributeDetail import AttributeDetail
 
 
 class TargetManifest(AbjadObject):
+    r'''Target manifest.
+    '''
 
     ### INITIALIZER ###
 

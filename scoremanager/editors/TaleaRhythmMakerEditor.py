@@ -5,6 +5,8 @@ from scoremanager.editors.RhythmMakerEditor import RhythmMakerEditor
 
 
 class TaleaRhythmMakerEditor(RhythmMakerEditor):
+    r'''TaleaRhythmMaker editor.
+    '''
 
     ### PUBLIC PROPERTIES ###
 

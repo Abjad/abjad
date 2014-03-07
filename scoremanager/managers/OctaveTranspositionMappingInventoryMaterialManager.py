@@ -4,6 +4,8 @@ from scoremanager.managers.MaterialManager import MaterialManager
 
 
 class OctaveTranspositionMappingInventoryMaterialManager(MaterialManager):
+    r'''Octave transposition mapping inventory material manager.
+    '''
 
     ### INITIALIZER ###
 
