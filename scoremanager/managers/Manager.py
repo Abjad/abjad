@@ -36,6 +36,10 @@ class Manager(ScoreManagerObject):
         return self._space_delimited_lowercase_class_name
 
     @property
+    def _is_visible(self):
+        raise NotImplementedError
+
+    @property
     def _plural_generic_class_name(self):
         return stringtools.pluralize_string(self._generic_class_name)
 

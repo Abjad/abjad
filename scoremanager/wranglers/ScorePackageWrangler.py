@@ -153,29 +153,19 @@ class ScorePackageWrangler(PackageWrangler):
 
         Returns list.
         '''
-        result = []
-        scores_to_display = self._session.scores_to_display
-        for asset_manager in PackageWrangler._list_asset_managers(
-            self,
+        managers = []
+        paths = self._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             head=head,
-            ):
-            is_mothballed = asset_manager._get_metadatum('is_mothballed')
-            is_example = asset_manager._get_metadatum('is_example')
-            if scores_to_display == 'all':
-                result.append(asset_manager)
-            elif (scores_to_display == 'active' and not is_mothballed and
-                not is_example):
-                result.append(asset_manager)
-            elif (scores_to_display == 'example' and is_example and
-                not is_mothballed):
-                result.append(asset_manager)
-            elif scores_to_display == 'mothballed' and is_mothballed:
-                result.append(asset_manager)
-        return result
+            )
+        for path in paths:
+            manager = self._initialize_asset_manager(path)
+            if manager._is_visible():
+                managers.append(manager)
+        return managers
 
     def _list_visible_asset_path_and_score_title_pairs(
         self,
@@ -211,24 +201,17 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         result = []
-        scores_to_display = self._session.scores_to_display
-        for asset_manager in PackageWrangler._list_asset_managers(
+        managers = PackageWrangler._list_asset_managers(
             self,
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             head=head,
-            ):
-            metadata = asset_manager._get_metadata()
-            is_example = metadata.get('is_example', False)
-            is_mothballed = metadata.get('is_mothballed', False)
-            if scores_to_display == 'all' or \
-                (scores_to_display == 'active' and not is_mothballed
-                    and not is_example) or \
-                (scores_to_display == 'example' and is_example 
-                    and not is_mothballed) or \
-                (scores_to_display == 'mothballed' and is_mothballed):
+            )
+        for manager in managers:
+            metadata = manager._is_visible()
+            if metadata:
                 year_of_completion = metadata.get('year_of_completion')
                 title = metadata.get('title')
                 if year_of_completion:
@@ -238,7 +221,7 @@ class ScorePackageWrangler(PackageWrangler):
                         )
                 else:
                     title_with_year = str(title)
-                result.append((asset_manager._path, title_with_year))
+                result.append((manager._path, title_with_year))
         return result
 
     def _list_visible_asset_paths(
@@ -267,14 +250,15 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         result = []
-        for visible_asset_manager in self._list_visible_asset_managers(
+        managers = self._list_visible_asset_managers(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             head=head,
-            ):
-            result.append(visible_asset_manager._path)
+            )
+        for manager in managers:
+            result.append(manager._path)
         return result
 
     def _make_asset_menu_entries(self):

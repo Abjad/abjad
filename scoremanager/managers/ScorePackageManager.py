@@ -283,6 +283,26 @@ class ScorePackageManager(PackageManager):
             )
         return instrumentation
 
+    def _is_visible(self):
+        scores_to_display = self._session.scores_to_display
+        metadata = self._get_metadata()
+        if scores_to_display == 'all':
+            return metadata
+        is_mothballed = metadata.get('is_mothballed')
+        is_example = metadata.get('is_example')
+        if scores_to_display == 'active':
+            if not is_mothballed:
+                if not is_example:
+                    return metadata
+        elif scores_to_display == 'example':
+            if is_example:
+                if not is_mothballed:
+                    return metadata
+        elif scores_to_display == 'mothballed':
+            if is_mothballed:
+                return metadata
+        return False
+
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
         section = menu.make_command_section()
