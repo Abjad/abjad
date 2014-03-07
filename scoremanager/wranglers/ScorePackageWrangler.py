@@ -154,7 +154,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         managers = []
-        paths = self._list_asset_paths(
+        paths = self._list_visible_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -163,8 +163,7 @@ class ScorePackageWrangler(PackageWrangler):
             )
         for path in paths:
             manager = self._initialize_asset_manager(path)
-            if manager._is_visible():
-                managers.append(manager)
+            managers.append(manager)
         return managers
 
     def _list_visible_asset_path_and_score_title_pairs(
@@ -201,27 +200,20 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         result = []
-        managers = PackageWrangler._list_asset_managers(
-            self,
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            )
+        managers = self._list_visible_asset_managers()
         for manager in managers:
-            metadata = manager._is_visible()
-            if metadata:
-                year_of_completion = metadata.get('year_of_completion')
-                title = metadata.get('title')
-                if year_of_completion:
-                    title_with_year = '{} ({})'.format(
-                        title,
-                        year_of_completion,
-                        )
-                else:
-                    title_with_year = str(title)
-                result.append((manager._path, title_with_year))
+            metadata = manager._get_metadata()
+            year_of_completion = metadata.get('year_of_completion')
+            title = metadata.get('title')
+            if year_of_completion:
+                title_with_year = '{} ({})'.format(
+                    title,
+                    year_of_completion,
+                    )
+            else:
+                title_with_year = str(title)
+            pair = (manager._path, title_with_year)
+            result.append(pair)
         return result
 
     def _list_visible_asset_paths(
@@ -250,15 +242,17 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         result = []
-        managers = self._list_visible_asset_managers(
+        paths = self._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             head=head,
             )
-        for manager in managers:
-            result.append(manager._path)
+        for path in paths:
+            manager = self._initialize_asset_manager(path)
+            if manager._is_visible():
+                result.append(path)
         return result
 
     def _make_asset_menu_entries(self):
