@@ -194,7 +194,7 @@ class PackageWrangler(Wrangler):
             return
         self._make_asset(path)
 
-    def rename(self, head=None, pending_user_input=None):
+    def rename(self, pending_user_input=None):
         r'''Renames asset.
 
         Returns none.
@@ -202,7 +202,6 @@ class PackageWrangler(Wrangler):
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
             asset_package_path = self.select_asset_package_path(
-                head=head, 
                 infinitival_phrase='to rename',
                 )
         if self._session._backtrack():

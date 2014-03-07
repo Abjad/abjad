@@ -222,8 +222,8 @@ class StylesheetWrangler(Wrangler):
             user_score_packages=user_score_packages,
             )
 
-    def _make_asset_menu_entries(self, head=None, include_extension=False):
-        paths = self._list_asset_paths(head=head)
+    def _make_asset_menu_entries(self, include_extension=False):
+        paths = self._list_asset_paths()
         display_strings = []
         for path in paths:
             display_string = os.path.basename(path)
@@ -237,14 +237,12 @@ class StylesheetWrangler(Wrangler):
             menu_entries = sequencetools.zip_sequences(sequences, cyclic=True)
         return menu_entries
 
-    # TODO: remove head
-    def _make_main_menu(self, head=None):
+    def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
         self._main_menu = menu
         asset_section = menu.make_asset_section()
         menu._asset_section = asset_section
         menu_entries = self._make_asset_menu_entries(
-            head=head,
             include_extension=True,
             )
         asset_section.menu_entries = menu_entries
