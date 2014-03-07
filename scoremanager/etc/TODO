@@ -105,15 +105,12 @@
             ])
     ... without allowing for removal.
 
-30. Replace the self.has_whatever_module properties (or methods)
-    with just os.path.isfile(self.whatever_file_path) instead.
-
-31. Remove MarkupInventoryMaterialManager.illustration_builder().
+30. Remove MarkupInventoryMaterialManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
 
-32. Write test for (ren) to rename.
+31. Write test for (ren) to rename.
 
-33. Write test to make sure that ...
+32. Write test to make sure that ...
         # -*- encoding: utf-8 -*-
         from abjad import *
         _output_material_module_import_statements = []
@@ -123,18 +120,18 @@
     ... shows up as the exact file contents in response to (materials) > (nmh)
     > ... > (mde).
 
-34. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+33. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-35. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
+34. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
 
-36. Implement something to tour everything that can be rewritten and rewrite.
+35. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-37. Note that ArticulationHandlerMaterialManager implementation is limited
+36. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
