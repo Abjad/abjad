@@ -405,35 +405,6 @@ class Manager(ScoreManagerObject):
             self._io_manager.display(lines)
         self._io_manager.proceed(prompt=prompt)
 
-    def status(self, prompt=True):
-        r'''Displays repository status of assets.
-    
-        Returns none.
-        '''
-        line = self._get_score_package_directory_name()
-        line = line + ' ...'
-        self._io_manager.display(line, capitalize_first_character=False)
-        command = self._repository_status_command
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
-        path = self._path
-        path = path + os.path.sep
-        clean_lines = []
-        for line in process.stdout.readlines():
-            clean_line = line.strip()
-            clean_line = clean_line.replace(path, '')
-            clean_lines.append(clean_line)
-        clean_lines.append('')
-        self._io_manager.display(
-            clean_lines, 
-            capitalize_first_character=False,
-            )
-        self._io_manager.proceed(prompt=prompt)
-
     def remove(
         self, 
         pending_user_input=None,
@@ -485,6 +456,35 @@ class Manager(ScoreManagerObject):
             return
         if self._rename(new_path):
             self._io_manager.proceed('asset renamed.')
+
+    def status(self, prompt=True):
+        r'''Displays repository status of assets.
+    
+        Returns none.
+        '''
+        line = self._get_score_package_directory_name()
+        line = line + ' ...'
+        self._io_manager.display(line, capitalize_first_character=False)
+        command = self._repository_status_command
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+        path = self._path
+        path = path + os.path.sep
+        clean_lines = []
+        for line in process.stdout.readlines():
+            clean_line = line.strip()
+            clean_line = clean_line.replace(path, '')
+            clean_lines.append(clean_line)
+        clean_lines.append('')
+        self._io_manager.display(
+            clean_lines, 
+            capitalize_first_character=False,
+            )
+        self._io_manager.proceed(prompt=prompt)
 
     def update(self, prompt=True):
         r'''Updates versioned assets.

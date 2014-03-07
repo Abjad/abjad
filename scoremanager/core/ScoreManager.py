@@ -233,12 +233,22 @@ class ScoreManager(ScoreManagerObject):
         '''
         self._session.display_mothballed_scores()
 
-    def status(self, prompt=True):
-        r'''Displays status of repository assets.
-        
+    def doctest(self, prompt=True):
+        r'''Runs doctest.
+
         Returns none.
         '''
-        self._score_package_wrangler.status()
+        path = self._configuration.user_score_packages_directory_path
+        command = 'ajv doctest {}'.format(path)
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in process.stdout.readlines()]
+        if lines:
+            lines.append('')
+            self._io_manager.display(
+                lines, 
+                capitalize_first_character=False,
+                )
+        self._io_manager.proceed(prompt=prompt)
 
     def make_new_score(self):
         r'''Makes new score.
@@ -280,23 +290,6 @@ class ScoreManager(ScoreManagerObject):
             rollback=True, 
             )
 
-    def doctest(self, prompt=True):
-        r'''Runs doctest.
-
-        Returns none.
-        '''
-        path = self._configuration.user_score_packages_directory_path
-        command = 'ajv doctest {}'.format(path)
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        lines = [line.strip() for line in process.stdout.readlines()]
-        if lines:
-            lines.append('')
-            self._io_manager.display(
-                lines, 
-                capitalize_first_character=False,
-                )
-        self._io_manager.proceed(prompt=prompt)
-
     def pytest(self, prompt=True):
         r'''Runs py.test.
 
@@ -313,6 +306,13 @@ class ScoreManager(ScoreManagerObject):
                 capitalize_first_character=False,
                 )
         self._io_manager.proceed(prompt=prompt)
+
+    def status(self, prompt=True):
+        r'''Displays status of repository assets.
+        
+        Returns none.
+        '''
+        self._score_package_wrangler.status()
 
     def update(self, prompt=True):
         r'''Updates repository assets.

@@ -67,16 +67,6 @@ class ScorePackageManager(PackageManager):
         return self._cached_instrumentation_module_manager
 
     @property
-    def _material_package_wrangler(self):
-        from scoremanager import wranglers
-        if self._path is None:
-            return
-        if not hasattr(self, '_cached_material_package_wrangler'):
-            wrangler = wranglers.MaterialPackageWrangler(session=self._session)
-            self._cached_material_package_wrangler = wrangler
-        return self._cached_material_package_wrangler
-
-    @property
     def _material_manager_wrangler(self):
         from scoremanager import wranglers
         if self._path is None:
@@ -85,6 +75,16 @@ class ScorePackageManager(PackageManager):
             wrangler = wranglers.MaterialManagerWrangler(session=self._session)
             self._cached_material_manager_wrangler = wrangler
         return self._cached_material_manager_wrangler
+
+    @property
+    def _material_package_wrangler(self):
+        from scoremanager import wranglers
+        if self._path is None:
+            return
+        if not hasattr(self, '_cached_material_package_wrangler'):
+            wrangler = wranglers.MaterialPackageWrangler(session=self._session)
+            self._cached_material_package_wrangler = wrangler
+        return self._cached_material_package_wrangler
 
     @property
     def _score_template_directory_manager(self):

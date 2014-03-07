@@ -300,6 +300,16 @@ class MaterialManager(PackageManager):
         wrapper = self._user_input_wrapper_in_memory
         self._write_user_input_wrapper(wrapper)
 
+    def _execute_output_material_module(self):
+        output_material = None
+        try:
+            output_material = self._output_material_module_manager._execute(
+                return_attribute_name=self._material_package_name,
+                )
+        except:
+            traceback.print_exc()
+        return output_material
+
     @staticmethod
     def _get_output_material_editor(target=None, session=None):
         return
@@ -375,16 +385,6 @@ class MaterialManager(PackageManager):
             return_attribute_name=self._material_package_name,
             )
         return result
-
-    def _execute_output_material_module(self):
-        output_material = None
-        try:
-            output_material = self._output_material_module_manager._execute(
-                return_attribute_name=self._material_package_name,
-                )
-        except:
-            traceback.print_exc()
-        return output_material
 
     def _make_illustration_builder_menu_section(
         self,

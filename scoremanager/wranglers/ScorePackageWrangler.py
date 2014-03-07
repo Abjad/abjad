@@ -65,39 +65,6 @@ class ScorePackageWrangler(PackageWrangler):
     def _handle_main_menu_result(self):
         self._io_manager.print_not_yet_implemented()
 
-    def _list_asset_paths(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset filesystem paths.
-
-        Lists abjad score package filesystem paths:
-
-        ::
-
-            >>> for x in wrangler._list_asset_paths(
-            ...     user_library=False, 
-            ...     user_score_packages=False):
-            ...     x
-            '.../scoremanager/scores/blue_example_score'
-            '.../scoremanager/scores/green_example_score'
-            '.../scoremanager/scores/red_example_score'
-
-        Returns list.
-        '''
-        superclass = super(ScorePackageWrangler, self)
-        return superclass._list_asset_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            )
-
     def _list_asset_managers(
         self,
         abjad_library=True, 
@@ -125,6 +92,39 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         superclass = super(ScorePackageWrangler, self)
         return superclass._list_asset_managers(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            head=head,
+            )
+
+    def _list_asset_paths(
+        self,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
+        head=None,
+        ):
+        r'''Lists asset filesystem paths.
+
+        Lists abjad score package filesystem paths:
+
+        ::
+
+            >>> for x in wrangler._list_asset_paths(
+            ...     user_library=False, 
+            ...     user_score_packages=False):
+            ...     x
+            '.../scoremanager/scores/blue_example_score'
+            '.../scoremanager/scores/green_example_score'
+            '.../scoremanager/scores/red_example_score'
+
+        Returns list.
+        '''
+        superclass = super(ScorePackageWrangler, self)
+        return superclass._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -161,42 +161,6 @@ class ScorePackageWrangler(PackageWrangler):
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             )
-
-    def _list_visible_asset_paths(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists visible asset filesystem paths.
-
-        Lists visible abjad score package filesystem paths:
-
-        ::
-
-            >>> for x in wrangler._list_visible_asset_paths(
-            ...     user_library=False, 
-            ...     user_score_packages=False,
-            ...     ):
-            ...     x
-            '.../scoremanager/scores/blue_example_score'
-            '.../scoremanager/scores/green_example_score'
-            '.../scoremanager/scores/red_example_score'
-
-        Returns list.
-        '''
-        result = []
-        for visible_asset_manager in self._list_visible_asset_managers(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            ):
-            result.append(visible_asset_manager._path)
-        return result
 
     def _list_visible_asset_managers(
         self,
@@ -309,6 +273,42 @@ class ScorePackageWrangler(PackageWrangler):
                 else:
                     title_with_year = str(title)
                 result.append((asset_manager._path, title_with_year))
+        return result
+
+    def _list_visible_asset_paths(
+        self,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
+        head=None,
+        ):
+        r'''Lists visible asset filesystem paths.
+
+        Lists visible abjad score package filesystem paths:
+
+        ::
+
+            >>> for x in wrangler._list_visible_asset_paths(
+            ...     user_library=False, 
+            ...     user_score_packages=False,
+            ...     ):
+            ...     x
+            '.../scoremanager/scores/blue_example_score'
+            '.../scoremanager/scores/green_example_score'
+            '.../scoremanager/scores/red_example_score'
+
+        Returns list.
+        '''
+        result = []
+        for visible_asset_manager in self._list_visible_asset_managers(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            head=head,
+            ):
+            result.append(visible_asset_manager._path)
         return result
 
     def _make_asset_menu_entries(self):

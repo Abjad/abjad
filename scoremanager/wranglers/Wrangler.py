@@ -49,12 +49,6 @@ class Wrangler(ScoreManagerObject):
             return self.abjad_storehouse_path
 
     @property
-    def _temporary_asset_path(self):
-        return os.path.join(
-            self._current_storehouse_path, 
-            self._temporary_asset_name)
-
-    @property
     def _temporary_asset_manager(self):
         return self._initialize_asset_manager(
             self._temporary_asset_path)
@@ -62,6 +56,12 @@ class Wrangler(ScoreManagerObject):
     @abc.abstractproperty
     def _temporary_asset_name(self):
         pass
+
+    @property
+    def _temporary_asset_path(self):
+        return os.path.join(
+            self._current_storehouse_path, 
+            self._temporary_asset_name)
 
     @property
     def _user_input_to_action(self):
@@ -119,14 +119,6 @@ class Wrangler(ScoreManagerObject):
                 parent_directories.append(parent_directory)
         return parent_directories
 
-    @staticmethod
-    def _path_to_space_delimited_lowercase_name(path):
-        path = os.path.normpath(path)
-        asset_name = os.path.basename(path)
-        if '.' in asset_name:
-            asset_name = asset_name[:asset_name.rindex('.')]
-        return stringtools.string_to_space_delimited_lowercase(asset_name)
-
     def _get_current_directory_path_of_interest(self):
         score_directory_path = self._session.current_score_directory_path
         if score_directory_path is not None:
@@ -152,6 +144,26 @@ class Wrangler(ScoreManagerObject):
             if directory_entry[0].isalpha():
                 return True
         return False
+
+    def _list_asset_managers(
+        self,
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
+        head=None,
+        ):
+        result = []
+        for path in self._list_asset_paths(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            head=head,
+            ):
+            asset_manager = self._initialize_asset_manager(path)
+            result.append(asset_manager)
+        return result
 
     def _list_asset_paths(
         self,
@@ -184,26 +196,6 @@ class Wrangler(ScoreManagerObject):
                     package = self._configuration.path_to_package_path(path)
                     if package.startswith(head):
                         result.append(path)
-        return result
-
-    def _list_asset_managers(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        result = []
-        for path in self._list_asset_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            ):
-            asset_manager = self._initialize_asset_manager(path)
-            result.append(asset_manager)
         return result
 
     def _list_storehouse_paths(
@@ -364,6 +356,14 @@ class Wrangler(ScoreManagerObject):
             keys.append(key)
         sequences = [display_strings, [None], [None], keys]
         return sequencetools.zip_sequences(sequences, cyclic=True)
+
+    @staticmethod
+    def _path_to_space_delimited_lowercase_name(path):
+        path = os.path.normpath(path)
+        asset_name = os.path.basename(path)
+        if '.' in asset_name:
+            asset_name = asset_name[:asset_name.rindex('.')]
+        return stringtools.string_to_space_delimited_lowercase(asset_name)
 
     def _read_view_inventory_from_disk(self):
         if self._views_module_path is None:
@@ -527,6 +527,13 @@ class Wrangler(ScoreManagerObject):
                 )
         self._io_manager.proceed(prompt=prompt)
 
+    def doctest(self, prompt=True):
+        r'''Runs doctest.
+
+        Returns none.
+        '''
+        self._current_package_manager.doctest(prompt=prompt)
+
     def get_metadatum(self):
         r'''Gets metadatum from metadata module.
 
@@ -608,6 +615,13 @@ class Wrangler(ScoreManagerObject):
             )
         self.write_view(view_name, view)
 
+    def pytest(self, prompt=True):
+        r'''Runs py.test.
+
+        Returns none.
+        '''
+        self._current_package_manager.pytest(prompt=prompt)
+
     def remove(self, pending_user_input=None):
         r'''Removes assets.
 
@@ -688,20 +702,6 @@ class Wrangler(ScoreManagerObject):
         Returns none.
         '''
         self._current_package_manager.rewrite_metadata_module(prompt=prompt)
-
-    def doctest(self, prompt=True):
-        r'''Runs doctest.
-
-        Returns none.
-        '''
-        self._current_package_manager.doctest(prompt=prompt)
-
-    def pytest(self, prompt=True):
-        r'''Runs py.test.
-
-        Returns none.
-        '''
-        self._current_package_manager.pytest(prompt=prompt)
 
     def select_view(
         self,

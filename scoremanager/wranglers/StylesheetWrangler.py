@@ -71,26 +71,6 @@ class StylesheetWrangler(Wrangler):
             )
         manager.edit()
 
-    def _path_to_annotation(self, path):
-        from scoremanager import managers
-        annotation = None
-        if path.startswith(
-            self._configuration.abjad_score_packages_directory_path) or \
-            path.startswith(
-            self._configuration.user_score_packages_directory_path):
-            tmp = os.path.join('stylesheets')
-            score_path = path.rpartition(tmp)[0]
-            score_package_manager = managers.ScorePackageManager(
-                path=score_path)
-            annotation = score_package_manager._get_title()
-        elif path.startswith(
-            self._configuration.abjad_stylesheets_directory_path):
-            annotation = 'Abjad'
-        elif path.startswith(
-            self._configuration.user_library_stylesheets_directory_path):
-            annotation = self._configuration.composer_last_name
-        return annotation
-
     def _get_current_directory(self):
         if self._session.current_score_directory_path:
             parts = (self._session.current_score_directory_path,)
@@ -140,6 +120,40 @@ class StylesheetWrangler(Wrangler):
                 return True
         return False
 
+    def _list_asset_managers(
+        self, 
+        abjad_library=True, 
+        user_library=True,
+        abjad_score_packages=True, 
+        user_score_packages=True, 
+        head=None,
+        ):
+        r'''Lists asset managers.
+
+        Lists abjad stylesheet managers:
+
+        ::
+
+            >>> for x in wrangler._list_asset_managers(
+            ...     user_library=False, 
+            ...    user_score_packages=False):
+            ...     x
+            FileManager('.../abjad/stylesheets/clean-letter-14.ily')
+            FileManager('.../abjad/stylesheets/clean-letter-16.ily')
+            FileManager('.../abjad/stylesheets/rhythm-letter-16.ily')
+            FileManager('.../scoremanager/scores/red_example_score/stylesheets/red-example-score-stylesheet.ily')
+
+        Returns list.
+        '''
+        superclass = super(StylesheetWrangler, self)
+        return superclass._list_asset_managers(
+            abjad_library=abjad_library,
+            user_library=user_library,
+            abjad_score_packages=abjad_score_packages,
+            user_score_packages=user_score_packages,
+            head=head,
+            )
+
     def _list_asset_paths(
         self,
         abjad_library=True, 
@@ -168,40 +182,6 @@ class StylesheetWrangler(Wrangler):
         '''
         superclass = super(StylesheetWrangler, self)
         return superclass._list_asset_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=head,
-            )
-
-    def _list_asset_managers(
-        self, 
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset managers.
-
-        Lists abjad stylesheet managers:
-
-        ::
-
-            >>> for x in wrangler._list_asset_managers(
-            ...     user_library=False, 
-            ...    user_score_packages=False):
-            ...     x
-            FileManager('.../abjad/stylesheets/clean-letter-14.ily')
-            FileManager('.../abjad/stylesheets/clean-letter-16.ily')
-            FileManager('.../abjad/stylesheets/rhythm-letter-16.ily')
-            FileManager('.../scoremanager/scores/red_example_score/stylesheets/red-example-score-stylesheet.ily')
-
-        Returns list.
-        '''
-        superclass = super(StylesheetWrangler, self)
-        return superclass._list_asset_managers(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
@@ -282,6 +262,26 @@ class StylesheetWrangler(Wrangler):
         section.append(('stylesheets - rename', 'ren'))
         section.append(('stylesheets - remove', 'rm'))
         return menu
+
+    def _path_to_annotation(self, path):
+        from scoremanager import managers
+        annotation = None
+        if path.startswith(
+            self._configuration.abjad_score_packages_directory_path) or \
+            path.startswith(
+            self._configuration.user_score_packages_directory_path):
+            tmp = os.path.join('stylesheets')
+            score_path = path.rpartition(tmp)[0]
+            score_package_manager = managers.ScorePackageManager(
+                path=score_path)
+            annotation = score_package_manager._get_title()
+        elif path.startswith(
+            self._configuration.abjad_stylesheets_directory_path):
+            annotation = 'Abjad'
+        elif path.startswith(
+            self._configuration.user_library_stylesheets_directory_path):
+            annotation = self._configuration.composer_last_name
+        return annotation
 
     ### PUBLIC METHODS ###
 

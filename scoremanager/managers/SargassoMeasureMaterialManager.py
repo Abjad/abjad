@@ -83,6 +83,17 @@ class SargassoMeasureMaterialManager(MaterialManager):
             )
 
     @staticmethod
+    def _get_possible_meter_multipliers(multiplied_measure_numerator):
+        possible_meter_multipliers = []
+        for denominator in range(
+                multiplied_measure_numerator, 
+                2 * multiplied_measure_numerator):
+            possible_meter_multiplier = \
+                Multiplier(multiplied_measure_numerator, denominator)
+            possible_meter_multipliers.append(possible_meter_multiplier)
+        return possible_meter_multipliers
+
+    @staticmethod
     def _make_output_material(
         measure_denominator, 
         measure_numerator_talea,
@@ -235,17 +246,6 @@ class SargassoMeasureMaterialManager(MaterialManager):
         #print measures
 
         return measures
-
-    @staticmethod
-    def _get_possible_meter_multipliers(multiplied_measure_numerator):
-        possible_meter_multipliers = []
-        for denominator in range(
-                multiplied_measure_numerator, 
-                2 * multiplied_measure_numerator):
-            possible_meter_multiplier = \
-                Multiplier(multiplied_measure_numerator, denominator)
-            possible_meter_multipliers.append(possible_meter_multiplier)
-        return possible_meter_multipliers
 
     def _make_output_material_module_body_lines(self, output_material):
         lines = []

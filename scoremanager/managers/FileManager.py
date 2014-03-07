@@ -39,19 +39,6 @@ class FileManager(Manager):
 
     ### PRIVATE METHODS ###
 
-    def _get_space_delimited_lowercase_name(self):
-        if self._path:
-            base_name = os.path.basename(self._path)
-            name = base_name.strip('.py')
-            name = stringtools.string_to_space_delimited_lowercase(name)
-            return name
-
-    def _handle_main_menu_result(self, result):
-        if result in self._user_input_to_action:
-            self._user_input_to_action[result]()
-        elif result == 'user entered lone return':
-            self.edit()
-
     def _execute(self, file_path=None, return_attribute_name=None):
         file_path = file_path or self._path
         if os.path.isfile(file_path):
@@ -74,6 +61,19 @@ class FileManager(Manager):
                         result.append(None)
                 result = tuple(result)
                 return result
+
+    def _get_space_delimited_lowercase_name(self):
+        if self._path:
+            base_name = os.path.basename(self._path)
+            name = base_name.strip('.py')
+            name = stringtools.string_to_space_delimited_lowercase(name)
+            return name
+
+    def _handle_main_menu_result(self, result):
+        if result in self._user_input_to_action:
+            self._user_input_to_action[result]()
+        elif result == 'user entered lone return':
+            self.edit()
 
     def _interpret(self, prompt=True):
         command = 'python {}'.format(self._path)

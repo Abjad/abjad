@@ -50,10 +50,6 @@ class SegmentPackageManager(PackageManager):
         return os.path.join(self._path, 'definition.py')
 
     @property
-    def _versions_directory_path(self):
-        return os.path.join(self._path, 'versions')
-        
-    @property
     def _user_input_to_action(self):
         superclass = super(SegmentPackageManager, self)
         _user_input_to_action = superclass._user_input_to_action
@@ -74,6 +70,10 @@ class SegmentPackageManager(PackageManager):
             })
         return _user_input_to_action
 
+    @property
+    def _versions_directory_path(self):
+        return os.path.join(self._path, 'versions')
+        
     ### PRIVATE METHODS ###
 
     def _get_last_version_number(self):
