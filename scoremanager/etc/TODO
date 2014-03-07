@@ -140,5 +140,3 @@
     MaterialManager how to inspect ArticulationHandler class variables. The
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
-
-38. Make (rst) work in (lmy).
