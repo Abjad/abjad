@@ -231,29 +231,6 @@ class Wrangler(ScoreManagerObject):
                 result.append(path)
         return result
 
-    def _list_visible_asset_managers(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        ):
-        path = self._get_current_directory_path_of_interest()
-        package_path = self._configuration.path_to_package_path(path)
-        package_path = package_path or 'scoremanager'
-        paths = self._list_asset_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=package_path,
-            ) 
-        managers = []
-        for path in paths:
-            manager = self._initialize_asset_manager(path)
-            managers.append(manager)
-        return managers
-
     def _list_visible_asset_paths(
         self,
         abjad_library=True, 
@@ -479,13 +456,9 @@ class Wrangler(ScoreManagerObject):
 
         Returns none.
         '''
-        managers = self._list_visible_asset_managers(
-            abjad_library=True, 
-            user_library=True,
-            abjad_score_packages=True, 
-            user_score_packages=True,
-            )
-        for manager in managers:
+        paths = self._list_visible_asset_paths()
+        for path in paths:
+            manager = self._initialize_asset_manager(path)
             manager.add(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
@@ -510,13 +483,9 @@ class Wrangler(ScoreManagerObject):
         self._io_manager.display(line)
         if not self._io_manager.confirm():
             return
-        managers = self._list_visible_asset_managers(
-            abjad_library=True, 
-            user_library=True,
-            abjad_score_packages=True, 
-            user_score_packages=True,
-            )
-        for manager in managers:
+        paths = self._list_visible_asset_paths()
+        for path in paths:
+            manager = self._initialize_asset_manager(path)
             manager.commit(
                 commit_message=commit_message, 
                 prompt=False,
@@ -747,13 +716,9 @@ class Wrangler(ScoreManagerObject):
 
         Returns none.
         '''
-        managers = self._list_visible_asset_managers(
-            abjad_library=True, 
-            user_library=True,
-            abjad_score_packages=True, 
-            user_score_packages=True,
-            )
-        for manager in managers:
+        paths = self._list_visible_asset_paths()
+        for path in paths:
+            manager = self._initialize_asset_manager(path)
             manager.update(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
