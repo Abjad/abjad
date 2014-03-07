@@ -248,29 +248,6 @@ class Wrangler(ScoreManagerObject):
             head=package_path,
             ) 
 
-    def _list_visible_asset_names(
-        self,
-        abjad_library=True, 
-        user_library=True,
-        abjad_score_packages=True, 
-        user_score_packages=True, 
-        ):
-        result = []
-        path = self._get_current_directory_path_of_interest()
-        package_path = self._configuration.path_to_package_path(path)
-        package_path = package_path or 'scoremanager'
-        paths = self._list_asset_paths(
-            abjad_library=abjad_library,
-            user_library=user_library,
-            abjad_score_packages=abjad_score_packages,
-            user_score_packages=user_score_packages,
-            head=package_path,
-            )
-        for path in paths:
-            name = self._path_to_space_delimited_lowercase_name(path)
-            result.append(name)
-        return result
-
     def _list_visible_asset_paths(
         self,
         abjad_library=True, 

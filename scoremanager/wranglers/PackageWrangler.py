@@ -110,7 +110,11 @@ class PackageWrangler(Wrangler):
         package_manager.fix(prompt=False)
 
     def _make_asset_menu_entries(self):
-        names = self._list_visible_asset_names()
+        paths = self._list_visible_asset_paths()
+        names = [
+            self._path_to_space_delimited_lowercase_name(path)
+            for path in paths
+            ]
         if not names:
             return
         keys = len(names) * [None]
