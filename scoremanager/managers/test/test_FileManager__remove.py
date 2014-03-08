@@ -2,13 +2,13 @@
 import os
 from abjad import *
 import scoremanager
+configuration = scoremanager.core.ScoreManagerConfiguration()
 
 
 def test_FileManager__remove_01():
     r'''Nonversioned file.
     '''
 
-    configuration = scoremanager.core.ScoreManagerConfiguration()
     path = os.path.join(
         configuration.score_manager_directory_path, 
         'temporary_file.txt',
@@ -31,7 +31,6 @@ def test_FileManager__remove_02():
     r'''Versioned file.
     '''
 
-    configuration = scoremanager.core.ScoreManagerConfiguration()
     path = os.path.join(
         configuration.score_manager_directory_path, 
         'temporary_file.txt',

@@ -273,8 +273,9 @@ class Manager(ScoreManagerObject):
         line = self._get_score_package_directory_name()
         line = line + ' ...'
         self._io_manager.display(line, capitalize_first_character=False)
+        command = self._repository_add_command,
         process = subprocess.Popen(
-            self._repository_add_command,
+            command,
             shell=True,
             stdout=subprocess.PIPE,
             )
