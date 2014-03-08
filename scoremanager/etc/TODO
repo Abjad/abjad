@@ -130,7 +130,3 @@
 
 34. Add main menu (ssc) display option for 'show scores - composer'.
     This will show everything except the example scores.
-
-35. Hunt for 'filesystem' and remove.
-
-36. Change 'year_of_completion' to just 'year'.

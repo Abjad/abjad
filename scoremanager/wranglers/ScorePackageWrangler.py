@@ -72,9 +72,9 @@ class ScorePackageWrangler(PackageWrangler):
         abjad_score_packages=True, 
         user_score_packages=True, 
         ):
-        r'''Lists asset filesystem paths.
+        r'''Lists asset paths.
 
-        Lists abjad score package filesystem paths:
+        Lists abjad score package paths:
 
         ::
 
@@ -104,7 +104,7 @@ class ScorePackageWrangler(PackageWrangler):
         abjad_score_packages=True, 
         user_score_packages=True,
         ):
-        r'''Lists asset storehouse filesystem paths.
+        r'''Lists storehouse paths.
 
         Lists abjad score storehouse:
 
@@ -134,9 +134,9 @@ class ScorePackageWrangler(PackageWrangler):
         abjad_score_packages=True, 
         user_score_packages=True, 
         ):
-        r'''Lists visible asset filesystem paths.
+        r'''Lists visible asset paths.
 
-        Lists visible abjad score package filesystem paths:
+        Lists visible abjad score package paths:
 
         ::
 

@@ -160,9 +160,9 @@ class StylesheetWrangler(Wrangler):
         abjad_score_packages=True, 
         user_score_packages=True,
         ):
-        r'''Lists asset storehouse filesystem paths.
+        r'''Lists storehouse paths.
 
-        Lists abjad storehouse filesystem paths:
+        Lists abjad storehouse paths:
 
         ::
 

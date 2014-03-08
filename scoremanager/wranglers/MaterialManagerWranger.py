@@ -141,9 +141,9 @@ class MaterialManagerWrangler(PackageWrangler):
         abjad_score_packages=True, 
         user_score_packages=True, 
         ):
-        r'''Lists asset filesystem paths.
+        r'''Lists asset paths.
 
-        Lists abjad material manager filesystem paths:
+        Lists abjad material manager paths:
 
         ::
 
@@ -179,7 +179,7 @@ class MaterialManagerWrangler(PackageWrangler):
         abjad_score_packages=True, 
         user_score_packages=True,
         ):
-        r'''Lists asset storehouse filesystem paths.
+        r'''Lists storehouse paths.
 
         Lists abjad material manager storehouses:
 
