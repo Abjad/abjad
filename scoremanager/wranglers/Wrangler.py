@@ -217,17 +217,24 @@ class Wrangler(ScoreManagerObject):
         abjad_score_packages=True, 
         user_score_packages=True, 
         ):
-        path = self._get_current_directory_path_of_interest()
-        package_path = self._configuration.path_to_package_path(path)
+        current_path = self._get_current_directory_path_of_interest()
         if 'Stylesheet' not in type(self).__name__:
-            package_path = package_path or 'scoremanager'
-        return self._list_asset_paths(
+            if current_path is None:
+                current_path = self._configuration.score_manager_directory_path
+        paths = self._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
-            head=package_path,
             ) 
+        result = []
+        for path in paths:
+            if current_path is None:
+                result.append(path)
+            else:
+                if path.startswith(current_path):
+                    result.append(path)
+        return result
 
     def _make_asset(self, asset_name):
         assert stringtools.is_snake_case_string(asset_name)
