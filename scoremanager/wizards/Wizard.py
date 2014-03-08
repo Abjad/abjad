@@ -11,13 +11,13 @@ class Wizard(ScoreManagerObject):
 
     __metaclass__ = abc.ABCMeta
 
-    target_editor_class_name_suffix = 'Editor'
 
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
         ScoreManagerObject.__init__(self, session=session)
         self.target = target
+        self.target_editor_class_name_suffix = 'Editor'
 
     ### PRIVATE PROPERTIES ###
 

@@ -6,10 +6,6 @@ class DynamicHandlerCreationWizard(Wizard):
     r'''Dynamic handler creation wizard.
     '''
 
-    ### CLASS VARIABLES ###
-
-    handler_editor_class_name_suffix = 'Editor'
-
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
@@ -23,6 +19,7 @@ class DynamicHandlerCreationWizard(Wizard):
             session=self._session,
             )
         self.selector = selector
+        self.handler_editor_class_name_suffix = 'Editor'
 
     ### PRIVATE PROPERTIES ###
 

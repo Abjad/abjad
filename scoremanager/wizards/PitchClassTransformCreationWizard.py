@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from scoremanager.wizards.Wizard import Wizard
 from scoremanager import iotools
+from scoremanager.wizards.Wizard import Wizard
 
 
 class PitchClassTransformCreationWizard(Wizard):

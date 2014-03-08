@@ -27,32 +27,18 @@ class ListEditor(Editor):
 
     '''
 
-    ### CLASS VARIABLES ###
+    ### INITIALIZER ###
 
-    item_class = None
-
-    item_creator_class = None
-
-    item_creator_class_kwargs = {}
-
-    item_editor_class = None
-
-    item_getter_configuration_method = iotools.UserInputGetter.append_expr
-
-    item_identifier = 'element'
-
-#    ### INITIALIZER ###
-#
-#    def __init__(self, session=None, target=None):
-#        superclass = super(ListEditor, self)
-#        superclass.__init__(session=session, target=target)
-#        self.item_class = None
-#        self.item_creator_class = None
-#        self.item_creator_class_kwargs = {}
-#        self.item_editor_class = None
-#        self.item_getter_configuration_method = \
-#            iotools.UserInputGetter.append_expr
-#        self.item_identifier = 'element'
+    def __init__(self, session=None, target=None):
+        superclass = super(ListEditor, self)
+        superclass.__init__(session=session, target=target)
+        self.item_class = None
+        self.item_creator_class = None
+        self.item_creator_class_kwargs = {}
+        self.item_editor_class = None
+        self.item_getter_configuration_method = \
+            iotools.UserInputGetter.append_expr
+        self.item_identifier = 'element'
 
     ### PRIVATE PROPERTIES ###
 
