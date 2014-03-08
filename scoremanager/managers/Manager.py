@@ -134,6 +134,7 @@ class Manager(ScoreManagerObject):
             return False
         command = 'git status --short {}'
         command = command.format(path)
+        print repr(command), 'CMD'
         process = subprocess.Popen(
             command,
             shell=True,
@@ -141,6 +142,7 @@ class Manager(ScoreManagerObject):
             stderr=subprocess.STDOUT,
             )
         first_line = process.stdout.readline()
+        print repr(first_line), 'FL'
         if first_line.startswith(('fatal:', '??', 'A')):
             return False
         return True
