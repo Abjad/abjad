@@ -262,12 +262,8 @@ class ScoreManager(ScoreManagerObject):
 
         Returns none.
         '''
-        package_path = self._configuration.path_to_package_path(
-            self._configuration.abjad_material_packages_directory_path,
-            )
         self._material_package_wrangler._run(
             rollback=True, 
-            head=package_path,
             )
 
     def manage_score(self, score_package_path):
