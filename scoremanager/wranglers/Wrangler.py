@@ -318,7 +318,6 @@ class Wrangler(ScoreManagerObject):
         self, 
         cache=False, 
         clear=True, 
-        head=None, 
         rollback=None, 
         pending_user_input=None,
         ):

@@ -133,7 +133,6 @@ class ScorePackageWrangler(PackageWrangler):
         user_library=True,
         abjad_score_packages=True, 
         user_score_packages=True, 
-        head=None,
         ):
         r'''Lists visible asset filesystem paths.
 
