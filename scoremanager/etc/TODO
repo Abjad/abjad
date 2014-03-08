@@ -127,3 +127,15 @@
 
 33. Add main menu (ssc) display option for 'show scores - composer'.
     This will show everything except the example scores.
+
+34. Add annotations to the materials in (lmm). So:
+     1: example articulation handler (Abjad)
+     2: example dynamic handler (Abjad)
+     3: example markup inventory (Abjad)
+     4: example notes (Abjad)
+     5: example numbers (Abjad)
+     6: example pitch range inventory (Abjad)
+     7: example sargasso measures (Abjad)
+     8: magic numbers (Red Example Score)
+     9: pitch range inventory (Red Example Score)
+     10: tempo inventory (Red Example Score)
