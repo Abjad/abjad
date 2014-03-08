@@ -40,7 +40,6 @@ class ArticulationHandlerMaterialManager(MaterialManager):
     @staticmethod
     def _make_output_material(target=None, session=None):
         from scoremanager import wizards
-        #return wizards.ArticulationHandlerCreationWizard
         wizard = wizards.ArticulationHandlerCreationWizard(
             session=session,
             target=target,

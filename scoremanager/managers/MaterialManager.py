@@ -271,7 +271,7 @@ class MaterialManager(PackageManager):
         index = number - 1
         key, current_value = \
             self._user_input_wrapper_in_memory.list_items()[index]
-        test_tuple = type(self).user_input_tests[index]
+        test_tuple = type(self).user_input_tests.fget(self)[index]
         test = test_tuple[1]
         if len(test_tuple) == 3:
             setup_statement = test_tuple[2]
@@ -798,8 +798,8 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        user_input_demo_values = copy.deepcopy(
-            type(self).user_input_demo_values)
+        user_input_demo_values = type(self).user_input_demo_values.fget(self)
+        user_input_demo_values = copy.deepcopy(user_input_demo_values)
         for key, value in user_input_demo_values:
             self._user_input_wrapper_in_memory[key] = value
         wrapper = self._user_input_wrapper_in_memory
