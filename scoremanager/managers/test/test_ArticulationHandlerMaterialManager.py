@@ -33,12 +33,16 @@ def test_ArticulationHandlerMaterialManager_01():
 
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.ArticulationHandlerMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.ArticulationHandlerMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == handler
-    finally:
         input_ = 'lmm testarticulationhandler rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            os.rmdir(path)
+
+    assert not os.path.exists(path)

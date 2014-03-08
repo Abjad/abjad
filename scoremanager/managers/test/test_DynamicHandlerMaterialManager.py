@@ -28,12 +28,16 @@ def test_DynamicHandlerMaterialManager_01():
 
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.DynamicHandlerMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.DynamicHandlerMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == handler
+        input_ = 'lmm testdynamichandler rm remove q'
+        score_manager._run(pending_user_input=input_, is_test=True)
     finally:
-        string = 'lmm testdynamichandler rm remove q'
-        score_manager._run(pending_user_input=string, is_test=True)
-        assert not os.path.exists(path)
+        if os.path.exists(path):
+            os.rmdir(path)
+
+    assert not os.path.exists(path)
