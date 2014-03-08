@@ -179,7 +179,7 @@ class ScorePackageManager(PackageManager):
 
     def _get_tempo_inventory(self):
         wrangler = self._material_package_wrangler
-        paths = wrangler._list_asset_paths(head=self._package_path)
+        paths = wrangler._list_asset_paths()
         for path in paths:
             manager = wrangler._initialize_asset_manager(path)
             string = 'material_manager_class_name'
@@ -218,13 +218,13 @@ class ScorePackageManager(PackageManager):
         if result == 'fix':
             self.fix(),
         elif result == 'g':
-            self._segment_package_wrangler._run(head=self._package_path)
+            self._segment_package_wrangler._run()
         elif result == 'instrumentation':
             self._instrumentation_module_manager.edit()
         elif result == 'k':
             self._io_manager.print_not_yet_implemented()
         elif result == 'm':
-            self._material_package_wrangler._run(head=self._package_path)
+            self._material_package_wrangler._run()
         elif result == 'p':
             self._manage_setup(),
         elif result == 'pdfv':
@@ -246,7 +246,7 @@ class ScorePackageManager(PackageManager):
         elif result == 'u':
             self._build_directory_manager._run()
         elif result == 'y':
-            self._stylesheet_wrangler._run(head=self._package_path)
+            self._stylesheet_wrangler._run()
         elif result == 'user entered lone return':
             pass
         else:
