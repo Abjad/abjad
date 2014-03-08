@@ -156,7 +156,6 @@ class MaterialPackageWrangler(PackageWrangler):
         user_library=True,
         abjad_score_packages=True, 
         user_score_packages=True, 
-        head=None,
         ):
         r'''Lists asset filesystem paths.
 
@@ -166,7 +165,8 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler._list_asset_paths(
             ...     user_library=False, 
-            ...     user_score_packages=False):
+            ...     user_score_packages=False,
+            ...     ):
             ...     x
             '.../scoremanager/materials/example_articulation_handler'
             '.../scoremanager/materials/example_dynamic_handler'
@@ -185,7 +185,6 @@ class MaterialPackageWrangler(PackageWrangler):
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
-            head=head,
             )
 
     def _list_storehouse_paths(

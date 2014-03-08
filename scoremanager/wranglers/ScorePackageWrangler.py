@@ -71,7 +71,6 @@ class ScorePackageWrangler(PackageWrangler):
         user_library=True,
         abjad_score_packages=True, 
         user_score_packages=True, 
-        head=None,
         ):
         r'''Lists asset filesystem paths.
 
@@ -81,7 +80,8 @@ class ScorePackageWrangler(PackageWrangler):
 
             >>> for x in wrangler._list_asset_paths(
             ...     user_library=False, 
-            ...     user_score_packages=False):
+            ...     user_score_packages=False,
+            ...     ):
             ...     x
             '.../scoremanager/scores/blue_example_score'
             '.../scoremanager/scores/green_example_score'
@@ -95,7 +95,6 @@ class ScorePackageWrangler(PackageWrangler):
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
-            head=head,
             )
 
     def _list_storehouse_paths(
@@ -159,7 +158,6 @@ class ScorePackageWrangler(PackageWrangler):
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
-            head=head,
             )
         for path in paths:
             manager = self._initialize_asset_manager(path)

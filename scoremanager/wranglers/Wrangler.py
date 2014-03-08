@@ -151,7 +151,6 @@ class Wrangler(ScoreManagerObject):
         user_library=True,
         abjad_score_packages=True, 
         user_score_packages=True, 
-        head=None,
         ):
         result = []
         directory_paths = self._list_storehouse_paths(
@@ -170,12 +169,7 @@ class Wrangler(ScoreManagerObject):
                 if not self._is_valid_directory_entry(directory_entry):
                     continue
                 path = os.path.join(directory_path, directory_entry)
-                if head is None:
-                    result.append(path)
-                else:
-                    package = self._configuration.path_to_package_path(path)
-                    if package.startswith(head):
-                        result.append(path)
+                result.append(path)
         return result
 
     def _list_storehouse_paths(

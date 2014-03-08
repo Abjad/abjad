@@ -64,7 +64,6 @@ class SegmentPackageWrangler(PackageWrangler):
         user_library=True,
         abjad_score_packages=True, 
         user_score_packages=True, 
-        head=None,
         ):
         r'''Lists asset filesystem paths.
 
@@ -91,7 +90,6 @@ class SegmentPackageWrangler(PackageWrangler):
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
-            head=head,
             )
 
     def _list_storehouse_paths(
