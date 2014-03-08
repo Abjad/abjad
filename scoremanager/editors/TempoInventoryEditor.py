@@ -2,23 +2,24 @@
 from abjad.tools import indicatortools
 from scoremanager import getters
 from scoremanager.editors.ObjectInventoryEditor import ObjectInventoryEditor
-from scoremanager.editors.TempoEditor import TempoEditor
-from scoremanager.iotools.UserInputGetter import UserInputGetter
 
 
 class TempoInventoryEditor(ObjectInventoryEditor):
     r'''TempoInventory editor.
     '''
 
-    ### CLASS VARIABLES ###
+    ### INITIALIZER ###
 
-    item_class = indicatortools.Tempo
-
-    item_editor_class = TempoEditor
-
-    item_getter_configuration_method = UserInputGetter.append_tempo
-
-    item_identifier = 'tempo'
+    def __init__(self, session=None, target=None):
+        from scoremanager import editors
+        from scoremanager import iotools
+        superclass = super(TempoInventoryEditor, self)
+        superclass.__init__(session=session, target=target)
+        self.item_class = indicatortools.Tempo
+        self.item_editor_class = editors.TempoEditor
+        self.item_getter_configuration_method = \
+            iotools.UserInputGetter.append_tempo
+        self.item_identifier = 'tempo'
 
     ### PUBLIC PROPERTIES ###
 

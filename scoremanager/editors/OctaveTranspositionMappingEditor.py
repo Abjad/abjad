@@ -2,23 +2,24 @@
 from abjad.tools import pitchtools
 from scoremanager import getters
 from scoremanager.editors.ObjectInventoryEditor import ObjectInventoryEditor
-from scoremanager.editors.OctaveTranspositionMappingComponentEditor \
-    import OctaveTranspositionMappingComponentEditor
 
 
 class OctaveTranspositionMappingEditor(ObjectInventoryEditor):
     r'''OctaveTranspositionMapping editor.
     '''
 
-    ### CLASS VARIABLES ###
+    ### INITIALIZER ###
 
-    item_class = pitchtools.OctaveTranspositionMappingComponent
-
-    item_creator_class = OctaveTranspositionMappingComponentEditor
-
-    item_editor_class = OctaveTranspositionMappingComponentEditor
-
-    item_identifier = 'octave transposition mapping component'
+    def __init__(self, session=None, target=None):
+        from scoremanager import editors
+        superclass = super(OctaveTranspositionMappingEditor, self)
+        superclass.__init__(session=session, target=target)
+        self.item_class = pitchtools.OctaveTranspositionMappingComponent
+        self.item_creator_class = \
+            editors.OctaveTranspositionMappingComponentEditor
+        self.item_editor_class = \
+            editors.OctaveTranspositionMappingComponentEditor
+        self.item_identifier = 'octave transposition mapping component'
 
     ### PUBLIC PROPERTIES ###
 

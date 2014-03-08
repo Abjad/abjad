@@ -3,23 +3,22 @@ from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from scoremanager import getters
 from scoremanager.editors.ObjectInventoryEditor import ObjectInventoryEditor
-from scoremanager.editors.MarkupEditor import MarkupEditor
-from scoremanager.iotools.UserInputGetter import UserInputGetter
 
 
 class MarkupInventoryEditor(ObjectInventoryEditor):
     r'''Markup inventory editor.
     '''
 
-    ### CLASS VARIABLES ###
+    ### INITIALIZER ###
 
-    item_class = markuptools.Markup
-
-    item_creator_class = MarkupEditor
-
-    item_editor_class = MarkupEditor
-
-    item_identifier = 'markup'
+    def __init__(self, session=None, target=None):
+        from scoremanager import editors
+        superclass = super(MarkupInventoryEditor, self)
+        superclass.__init__(session=session, target=target)
+        self.item_class = markuptools.Markup
+        self.item_creator_class = editors.MarkupEditor
+        self.item_editor_class = editors.MarkupEditor
+        self.item_identifier = 'markup'
 
     ### PUBLIC PROPERTIES ###
 

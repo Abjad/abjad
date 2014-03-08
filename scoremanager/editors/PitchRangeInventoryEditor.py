@@ -2,24 +2,25 @@
 from abjad.tools import pitchtools
 from scoremanager.editors.Editor import Editor
 from scoremanager.editors.ObjectInventoryEditor import ObjectInventoryEditor
-from scoremanager.editors.PitchRangeEditor import PitchRangeEditor
-from scoremanager.iotools.UserInputGetter import UserInputGetter
 
 
 class PitchRangeInventoryEditor(ObjectInventoryEditor):
     r'''PitchRangeInventory editor.
     '''
 
-    ### CLASS VARIABLES ###
+    ### INITIALIZER ###
 
-    item_getter_configuration_method = \
-        UserInputGetter.append_symbolic_pitch_range_string
+    def __init__(self, session=None, target=None):
+        from scoremanager import editors
+        from scoremanager import iotools
+        superclass = super(PitchRangeInventoryEditor, self)
+        superclass.__init__(session=session, target=target)
+        self.item_getter_configuration_method = \
+            iotools.UserInputGetter.append_symbolic_pitch_range_string
+        self.item_class = pitchtools.PitchRange
+        self.item_editor_class = editors.PitchRangeEditor
+        self.item_identifier = 'pitch range'
 
-    item_class = pitchtools.PitchRange
-
-    item_editor_class = PitchRangeEditor
-
-    item_identifier = 'pitch range'
 
     ### PUBLIC PROPERTIES ###
 

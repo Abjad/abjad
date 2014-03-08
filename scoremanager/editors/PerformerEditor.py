@@ -4,24 +4,24 @@ from abjad.tools import scoretools
 from scoremanager import getters
 from scoremanager import wizards
 from scoremanager.editors.ListEditor import ListEditor
-from scoremanager.editors.InstrumentEditor import InstrumentEditor
 
 
 class PerformerEditor(ListEditor):
     r'''Performer editor.
     '''
 
-    ### CLASS VARIABLES ###
+    ### INITIALIZER ###
 
-    item_class = instrumenttools.Instrument
+    def __init__(self, session=None, target=None):
+        from scoremanager import editors
+        superclass = super(PerformerEditor, self)
+        superclass.__init__(session=session, target=target)
+        self.item_class = instrumenttools.Instrument
+        self.item_creator_class = wizards.InstrumentCreationWizard
+        self.item_creator_class_kwargs = {'is_ranged': True}
+        self.item_editor_class = editors.InstrumentEditor
+        self.item_identifier = 'instrument'
 
-    item_creator_class = wizards.InstrumentCreationWizard
-
-    item_creator_class_kwargs = {'is_ranged': True}
-
-    item_editor_class = InstrumentEditor
-
-    item_identifier = 'instrument'
 
     ### PUBLIC PROPERTIES ###
 
