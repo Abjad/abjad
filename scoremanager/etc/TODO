@@ -1,66 +1,63 @@
-1.  Edit instrument transposition.
+1.  Sweep inline scoremanager TODO items.
 
-2.  Make user input getter defaults work like menu defaults.
+2.  Edit instrument transposition.
+
+3.  Make user input getter defaults work like menu defaults.
     Implement default value on user input getter.
 
-3.  Fix IOManager.handle_user_input() default handling.
+4.  Fix IOManager.handle_user_input() default handling.
 
-4.  Find a way dynamically to present default notice with default menu entries.
+5.  Find a way dynamically to present default notice with default menu entries.
 
-5.  Distinguish positional editor parameters from keyword editor parameters.
+6.  Distinguish positional editor parameters from keyword editor parameters.
 
-6.  Audit the UI of the entire materials management system by hand.
+7.  Audit the UI of the entire materials management system by hand.
 
-7.  Implement red_example_score.materials.divisions to import 
+8.  Implement red_example_score.materials.divisions to import 
     red_example_score.materials.time_signatures.
     This will implement an intrapackage material import.
 
-8.  Replace all _read_only_attributes.py and _public_attributes.py 
-    test files with doctests.
-
-9.  Sweep inline scoremanager TODO items.
-
-10. Author StylesheetWrangler.remove() test.
+9.  Author StylesheetWrangler.remove() test.
     Will involve making pending_user_input='... rm ...' work with named 
     arguments instead of just numeric arguments.
 
-11. Make MaterialManager classes stop creating materials in 
+10. Make MaterialManager classes stop creating materials in 
     the scoremanager/materials/ directory.
     Those classes should create material packages in the user asset 
     library material packages directory.
     Or in user score packages. But no material packages should ever 
     be created in the scoremanager/materials/ directory.
 
-12. Implement material methods to move material packages 
+11. Implement material methods to move material packages 
     from one location to another.
 
-13. Finish the docstrings for all io classes.
+12. Finish the docstrings for all io classes.
 
-14. Refactor scoremanager.editors to contain as few classes as possible.
+13. Refactor scoremanager.editors to contain as few classes as possible.
 
-15. Figure out the correct ajv replace regex to change tratiettore/music
+14. Figure out the correct ajv replace regex to change tratiettore/music
     to just traiettorie.
 
-16. Move score/instrumentation.py module to score/materials packages.
+15. Move score/instrumentation.py module to score/materials packages.
     Maybe easiest to do this by creating an
     InstrumentationSpecifierMaterialManager.
 
-17. Make material package illustration work again.
+16. Make material package illustration work again.
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
-18. These four classes can all be collapsed into one:
+17. These four classes can all be collapsed into one:
         wizards.HandlerCreationWizard
         wizards.ArticulationHandlerCreationWizard
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-19. Make the (u), (k), (m), (g), (p), (t) and (y) commands work from anywhere
+18. Make the (u), (k), (m), (g), (p), (t) and (y) commands work from anywhere
     within a score. Leave the commands lowercase.
 
-19. There also needs to be a single command to just view the global stylesheet
+18. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (Y) or equivalent.
 
-20. Find a way to get rid of the ...
+19. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -76,20 +73,20 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-21. Eliminate unqualified test files like test_ScorePackageManager.py.
+20. Eliminate unqualified test files like test_ScorePackageManager.py.
 
-22. Remove bug that allows for creation of ...
+21. Remove bug that allows for creation of ...
         metadata = collections.OrderedDict([
             ('', ''),
             ])
     ... without allowing for removal.
 
-23. Remove MarkupInventoryMaterialManager.illustration_builder().
+22. Remove MarkupInventoryMaterialManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
 
-24. Write test for (ren) to rename.
+23. Write test for (ren) to rename.
 
-25. Write test to make sure that ...
+24. Write test to make sure that ...
         # -*- encoding: utf-8 -*-
         from abjad import *
         _output_material_module_import_statements = []
@@ -99,36 +96,36 @@
     ... shows up as the exact file contents in response to (materials) > (nmh)
     > ... > (mde).
 
-26. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+25. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-27. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
+26. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
 
-28. Implement something to tour everything that can be rewritten and rewrite.
+27. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-29. Note that ArticulationHandlerMaterialManager implementation is limited
+28. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
 
-30. Make (red~example~score > ls) work.
+29. Make (red~example~score > ls) work.
 
-31. Realphabetize 'directory - whatever' menu section to where it should
+30. Realphabetize 'directory - whatever' menu section to where it should
     appear. Can use MaterialManager as working example.
 
-32. Disambiguate (mdrm) command in MaterialManager. Right now it
+31. Disambiguate (mdrm) command in MaterialManager. Right now it
     means both 'material definition - remove' and 'metadata - remove'.
 
-33. Add main menu (ssc) display option for 'show scores - composer'.
+32. Add main menu (ssc) display option for 'show scores - composer'.
     This will show everything except the example scores.
 
-34. Add annotations to the materials in (lmm). So:
+33. Add annotations to the materials in (lmm). So:
      1: example articulation handler (Abjad)
      2: example dynamic handler (Abjad)
      3: example markup inventory (Abjad)
