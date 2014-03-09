@@ -9,8 +9,8 @@ def test_ScorePackageManager__run_01():
 
     score_manager = scoremanager.core.ScoreManager()
 
-    string = 'red~example~score setup g q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup g q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -19,8 +19,8 @@ def test_ScorePackageManager__run_01():
         ]
     assert score_manager._transcript.titles == titles
 
-    string = 'red~example~score templates g q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score templates g q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -29,8 +29,8 @@ def test_ScorePackageManager__run_01():
         ]
     assert score_manager._transcript.titles == titles
 
-    string = 'red~example~score stylesheets g q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score stylesheets g q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -46,8 +46,8 @@ def test_ScorePackageManager__run_02():
 
     score_manager = scoremanager.core.ScoreManager()
 
-    string = 'red~example~score setup m q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup m q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -56,8 +56,8 @@ def test_ScorePackageManager__run_02():
         ]
     assert score_manager._transcript.titles == titles
 
-    string = 'red~example~score templates m q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score templates m q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -66,8 +66,8 @@ def test_ScorePackageManager__run_02():
         ]
     assert score_manager._transcript.titles == titles
 
-    string = 'red~example~score stylesheets m q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score stylesheets m q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -83,8 +83,8 @@ def test_ScorePackageManager__run_03():
 
     score_manager = scoremanager.core.ScoreManager()
 
-    string = 'red~example~score u u q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score u u q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -93,8 +93,8 @@ def test_ScorePackageManager__run_03():
         ]
     assert score_manager._transcript.titles == titles
 
-    string = 'red~example~score m u q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score m u q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -103,8 +103,8 @@ def test_ScorePackageManager__run_03():
         ]
     assert score_manager._transcript.titles == titles
 
-    string = 'red~example~score g u q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score g u q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -113,8 +113,8 @@ def test_ScorePackageManager__run_03():
         ]
     assert score_manager._transcript.titles == titles
 
-    string = 'red~example~score setup u q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup u q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -123,8 +123,8 @@ def test_ScorePackageManager__run_03():
         ]
     assert score_manager._transcript.titles == titles
 
-    string = 'red~example~score templates u q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score templates u q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -133,8 +133,8 @@ def test_ScorePackageManager__run_03():
         ]
     assert score_manager._transcript.titles == titles
 
-    string = 'red~example~score y u q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score y u q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',

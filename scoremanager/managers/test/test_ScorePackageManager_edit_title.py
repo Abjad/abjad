@@ -9,16 +9,16 @@ def test_ScorePackageManager_edit_title_01():
 
     try:
         score_manager = scoremanager.core.ScoreManager()
-        string = 'green~example~score setup title Foo q'
-        score_manager._run(pending_user_input=string, is_test=True)
+        input_ = 'green~example~score setup title Foo q'
+        score_manager._run(pending_user_input=input_, is_test=True)
         assert score_manager._transcript.signature == (9,)
         string = 'Green Example Score (2013) - setup'
         assert score_manager._transcript[-5].title == string
         string = 'Foo (2013) - setup'
         assert score_manager._transcript.last_title == string
     finally:
-        string = 'foo setup title Green~Example~Score q'
-        score_manager._run(pending_user_input=string, is_test=True)
+        input_ = 'foo setup title Green~Example~Score q'
+        score_manager._run(pending_user_input=input_, is_test=True)
         assert score_manager._transcript.signature == (9,)
         string = 'Foo (2013) - setup'
         assert score_manager._transcript[-5].title == string
