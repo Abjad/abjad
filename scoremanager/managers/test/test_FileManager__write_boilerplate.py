@@ -14,15 +14,14 @@ def test_FileManager__write_boilerplate_01():
     file_manager = scoremanager.managers.FileManager(
         path=path,
         )
-    assert not os.path.exists(path)
+    file_name = 'boilerplate_testnumbers_material_definition.py'
 
+    assert not os.path.exists(path)
     try:
-        string = 'boilerplate_testnumbers_material_definition.py'
-        boilerplate_file_abjad_asset_name = string
-        file_manager._write_boilerplate(boilerplate_file_abjad_asset_name)
+        file_manager._write_boilerplate(file_name)
         file_path = os.path.join(
             file_manager._configuration.boilerplate_directory_path, 
-            boilerplate_file_abjad_asset_name
+            file_name,
             )
         source = open(file_path, 'r')
         target = open(file_manager._path)
@@ -31,4 +30,4 @@ def test_FileManager__write_boilerplate_01():
     finally:
         if os.path.exists(path):
             os.remove(path)
-        assert not os.path.exists(path)
+    assert not os.path.exists(path)

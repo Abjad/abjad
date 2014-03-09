@@ -12,7 +12,6 @@ def test_MarkupInventoryMaterialManager_01():
         configuration.abjad_material_packages_directory_path,
         'testmarkupinventory',
         )
-    assert not os.path.exists(path)
     inventory = markuptools.MarkupInventory(
         [
             markuptools.Markup(
@@ -32,14 +31,18 @@ def test_MarkupInventoryMaterialManager_01():
     input_ += " add arg r'\\italic~{~serenamente~}' done"
     input_ += " add arg r'\\italic~{~presto~}' done done default q"
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.ArticulationHandlerMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.ArticulationHandlerMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == inventory
-    finally:
         input_ = 'lmm testmarkupinventory rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            os.rmdir(path)
+    assert not os.path.exists(path)

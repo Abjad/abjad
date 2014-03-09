@@ -14,7 +14,6 @@ def test_SargassoMeasureMaterialManager_01():
         configuration.abjad_material_packages_directory_path,
         'testsargasso',
         )
-    assert not os.path.exists(path)
     input_ = 'lmm nmm sargasso testsargasso default q'
     user_input_wrapper = scoremanager.editors.UserInputWrapper([
         ('measure_denominator', None),
@@ -32,16 +31,20 @@ def test_SargassoMeasureMaterialManager_01():
         'user_input.py',
         ]
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.SargassoMeasureMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
-    finally:
         input_ = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            os.path.rmdir(path)
+    assert not os.path.exists(path)
 
 
 def test_SargassoMeasureMaterialManager_02():
@@ -54,7 +57,6 @@ def test_SargassoMeasureMaterialManager_02():
         configuration.abjad_material_packages_directory_path,
         'testsargasso',
         )
-    assert not os.path.exists(path)
     input_ = 'lmm nmm sargasso testsargasso default testsargasso uil q'
     directory_entries = [
         '__init__.py', 
@@ -72,16 +74,20 @@ def test_SargassoMeasureMaterialManager_02():
         ('measures_are_shuffled', True),
         ])
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.SargassoMeasureMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
-    finally:
         input_ = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            os.rmdir(path)
+    assert not os.path.exists(path)
 
 
 def test_SargassoMeasureMaterialManager_03():
@@ -111,16 +117,20 @@ def test_SargassoMeasureMaterialManager_03():
         ('measures_are_shuffled', None),
         ])
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.SargassoMeasureMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
-    finally:
         input_ = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            os.rmdir(path)
+    assert not os.path.exists(path)
 
 
 def test_SargassoMeasureMaterialManager_04():
@@ -133,7 +143,6 @@ def test_SargassoMeasureMaterialManager_04():
         configuration.abjad_material_packages_directory_path,
         'testsargasso',
         )
-    assert not os.path.exists(path)
     input_ = 'lmm nmm sargasso testsargasso default testsargasso 3 16 q'
     directory_entries = [
             '__init__.py', 
@@ -151,16 +160,20 @@ def test_SargassoMeasureMaterialManager_04():
         ('measures_are_shuffled', None),
         ])
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.SargassoMeasureMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
-    finally:
         input_ = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            os.rmdir(path)
+    assert not os.path.exists(path)
 
 
 def test_SargassoMeasureMaterialManager_05():
@@ -173,7 +186,6 @@ def test_SargassoMeasureMaterialManager_05():
         configuration.abjad_material_packages_directory_path,
         'testsargasso',
         )
-    assert not os.path.exists(path)
     input_ = 'lmm nmm sargasso testsargasso default'
     input_ += ' testsargasso uip 5 Duration(11, 2) False True True'
     input_ += ' 4 [2, 2, 2, 2, 1, 1, 4, 4] 16 [1, 1, 2, 3, 4] q'
@@ -193,16 +205,20 @@ def test_SargassoMeasureMaterialManager_05():
         ('measures_are_shuffled', True),
         ])
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.SargassoMeasureMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
-    finally:
         input_ = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            os.rmdir(path)
+    assert not os.path.exists(path)
 
 
 def test_SargassoMeasureMaterialManager_06():
@@ -215,7 +231,6 @@ def test_SargassoMeasureMaterialManager_06():
         configuration.abjad_material_packages_directory_path,
         'testsargasso',
         )
-    assert not os.path.exists(path)
     input_ = 'lmm nmm sargasso testsargasso default'
     input_ += ' testsargasso uip 1'
     input_ += ' 4 [2, 2, 3, 3] 16 [1, 1, 1, 1, 6, 6] b q'
@@ -235,16 +250,20 @@ def test_SargassoMeasureMaterialManager_06():
         ('measures_are_shuffled', None),
         ])
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.SargassoMeasureMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
-    finally:
         input_ = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            os.rmdir(path)
+    assert not os.path.exists(path)
 
 
 def test_SargassoMeasureMaterialManager_07():
@@ -257,7 +276,6 @@ def test_SargassoMeasureMaterialManager_07():
         configuration.abjad_material_packages_directory_path,
         'testsargasso',
         )
-    assert not os.path.exists(path)
     input_ = 'lmm nmm sargasso testsargasso default'
     input_ += ' testsargasso uil 6 None 7 None 8 None q'
     directory_entries = [
@@ -276,16 +294,20 @@ def test_SargassoMeasureMaterialManager_07():
         ('measures_are_shuffled', None),
         ])
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.SargassoMeasureMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
-    finally:
         input_ = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            os.rmdir(path)
+    assert not os.path.exists(path)
 
 
 def test_SargassoMeasureMaterialManager_08():
@@ -298,7 +320,6 @@ def test_SargassoMeasureMaterialManager_08():
         configuration.abjad_material_packages_directory_path,
         'testsargasso',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -330,10 +351,12 @@ def test_SargassoMeasureMaterialManager_08():
     input_ = 'lmm nmm sargasso testsargasso default'
     input_ += ' testsargasso uil omm default q'
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.SargassoMeasureMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.SargassoMeasureMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         assert format(Staff(measures))
         output_material = manager._execute_output_material_module()
@@ -341,7 +364,9 @@ def test_SargassoMeasureMaterialManager_08():
             assert measure.implicit_scaling
         assert format(Staff(output_material))
         assert format(Staff(output_material)) == format(Staff(measures))
-    finally:
         input_ = 'lmm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            os.rmdir(path)
+    assert not os.path.exists(path)

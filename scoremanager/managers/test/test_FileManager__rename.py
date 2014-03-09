@@ -18,9 +18,9 @@ def test_FileManager__rename_01():
         'new_temporary_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(path=path)
+
     assert not os.path.exists(path)
     assert not os.path.exists(new_path)
-
     try:
         file_manager._make_empty_asset()
         assert os.path.exists(path)
@@ -33,7 +33,6 @@ def test_FileManager__rename_01():
             os.remove(path)
         if os.path.exists(new_path):
             os.remove(new_path)
-
     assert not os.path.exists(path)
     assert not os.path.exists(new_path)
 
@@ -51,9 +50,9 @@ def test_FileManager__rename_02():
         'new_temporary_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(path=path)
+
     assert not os.path.exists(path)
     assert not os.path.exists(new_path)
-
     try:
         file_manager._make_empty_asset()
         assert os.path.exists(path)
@@ -69,6 +68,5 @@ def test_FileManager__rename_02():
             os.remove(path)
         if os.path.exists(new_path):
             os.remove(new_path)
-
     assert not os.path.exists(path)
     assert not os.path.exists(new_path)

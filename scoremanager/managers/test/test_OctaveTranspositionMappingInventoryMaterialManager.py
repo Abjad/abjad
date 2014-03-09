@@ -20,17 +20,21 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_01():
         ]
     input_ = 'lmm nmm octave testoctavetrans default q'
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.OctaveTranspositionMappingInventoryMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.OctaveTranspositionMappingInventoryMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material is None
-    finally:
         input_ = 'lmm testoctavetrans rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            os.rmdir(path)
+    assert not os.path.exists(path)
 
 
 def test_OctaveTranspositionMappingInventoryMaterialManager_02():
@@ -43,7 +47,6 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_02():
         configuration.abjad_material_packages_directory_path,
         'testoctavetrans',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -65,14 +68,18 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_02():
     input_ += ' add source [C4, C8) target 27 done done'
     input_ += ' add add source [A0, C8] target -18 done done done default q'
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.OctaveTranspositionMappingInventoryMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.OctaveTranspositionMappingInventoryMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == inventory
+        input_ = 'lmm testoctavetrans rm remove q'
+        score_manager._run(pending_user_input=input_, is_test=True)
     finally:
-        string = 'lmm testoctavetrans rm remove q'
-        score_manager._run(pending_user_input=string, is_test=True)
-        assert not os.path.exists(path)
+        if os.path.exists(path):
+            os.rmdir(path)
+    assert not os.path.exists(path)

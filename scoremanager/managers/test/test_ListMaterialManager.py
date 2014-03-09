@@ -12,7 +12,6 @@ def test_ListMaterialManager_01():
         configuration.abjad_material_packages_directory_path,
         'testlist',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -20,13 +19,17 @@ def test_ListMaterialManager_01():
         ]
     input_ = 'lmm nmm list testlist 17 foo done b default q'
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
+        assert os.path.exists(path)
         manager = scoremanager.managers.ListMaterialManager(path)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == [17, 'foo']
-    finally:
         input_ = 'lmm testlist rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            os.rmdir(path)
+    assert not os.path.exists(path)

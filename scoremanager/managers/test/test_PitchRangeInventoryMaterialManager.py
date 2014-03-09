@@ -14,24 +14,27 @@ def test_PitchRangeInventoryMaterialManager_01():
         configuration.abjad_material_packages_directory_path,
         'testpir',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
         ]
     input_ = 'lmm nmm pitch testpir default q'
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.PitchRangeInventoryMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.PitchRangeInventoryMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material is None
-    finally:
         input_ = 'lmm testpir rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            os.rmdir(path)
+    assert not os.path.exists(path)
 
 
 def test_PitchRangeInventoryMaterialManager_02():
@@ -57,14 +60,18 @@ def test_PitchRangeInventoryMaterialManager_02():
     input_ += ' testpir omi add [A0, C8] add [C2, F#5] add [C2, G5]'
     input_ += ' rm 1 mv 1 2 b default q'
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.PitchRangeInventoryMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.PitchRangeInventoryMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == inventory
-    finally:
         input_ = 'lmm testpir rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            os.rmdir(path)
+    assert not os.path.exists(path)

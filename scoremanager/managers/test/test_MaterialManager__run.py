@@ -46,24 +46,24 @@ def test_MaterialManager__run_03():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score m tempo~inventory q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score m tempo~inventory q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     assert score_manager._transcript.signature == (8,)
 
-    string = 'red~example~score m tempo~inventory b q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score m tempo~inventory b q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     assert score_manager._transcript.signature == (10, (4, 8))
 
-    string = 'red~example~score m tempo~inventory h q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score m tempo~inventory h q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     assert score_manager._transcript.signature == (10, (0, 8))
 
-    string = 'red~example~score m tempo~inventory s q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score m tempo~inventory s q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     assert score_manager._transcript.signature == (10, (2, 8))
 
-    string = 'red~example~score m tempo~inventory foo q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score m tempo~inventory foo q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     assert score_manager._transcript.signature == (10, (6, 8))
 
 
@@ -72,8 +72,8 @@ def test_MaterialManager__run_04():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score m tempo~inventory q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score m tempo~inventory q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     string = 'Red Example Score (2013) - materials - tempo inventory'
     assert score_manager._transcript.last_title == string
 
@@ -83,8 +83,8 @@ def test_MaterialManager__run_05():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score m g q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score m g q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',

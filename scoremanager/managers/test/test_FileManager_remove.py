@@ -14,8 +14,8 @@ def test_FileManager_remove_01():
         'temporary_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(path=path)
-    assert not os.path.exists(path)
 
+    assert not os.path.exists(path)
     try:
         file_manager._make_empty_asset()
         assert os.path.exists(path)
@@ -24,7 +24,6 @@ def test_FileManager_remove_01():
     finally:
         if os.path.exists(path):
             os.remove(path)
-
     assert not os.path.exists(path)
 
 
@@ -37,8 +36,8 @@ def test_FileManager_remove_02():
         'temporary_file.txt',
         )
     file_manager = scoremanager.managers.FileManager(path=path)
-    assert not os.path.exists(path)
 
+    assert not os.path.exists(path)
     try:
         file_manager._make_empty_asset()
         assert os.path.exists(path)
@@ -48,5 +47,4 @@ def test_FileManager_remove_02():
     finally:
         if os.path.exists(path):
             os.remove(path)
-
     assert not os.path.exists(path)

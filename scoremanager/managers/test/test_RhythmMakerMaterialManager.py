@@ -14,7 +14,6 @@ def test_RhythmMakerMaterialManager_01():
         configuration.abjad_material_packages_directory_path,
         'testrhythmmaker',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -33,14 +32,18 @@ def test_RhythmMakerMaterialManager_01():
     input_ += ' testrhythmmaker omi talearhythmmaker'
     input_ += ' (-1, 2, -3, 4) 16 (2, 3) (6,) b default q'
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.RhythmMakerMaterialManager(
-            path=path)
+        assert os.path.exists(path)
+        manager = scoremanager.managers.RhythmMakerMaterialManager
+        manager = manager(path=path)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == maker
-    finally:
         input_ = 'lmm testrhythmmaker rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            os.rmdir(path)
+    assert not os.path.exists(path)
