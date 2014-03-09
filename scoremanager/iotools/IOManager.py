@@ -100,6 +100,10 @@ class IOManager(IOManager):
             self._session._is_navigating_to_score_materials = True
             self._session._is_navigating_to_previous_material = True
             self._session._hide_hidden_commands = True
+        elif directive == 'n':
+            self._session.toggle_hidden_commands()
+        elif directive == 'o':
+            self._session.toggle_secondary_commands()
         elif key == 'pyd':
             message = 'running doctest ...'
             self.display([message, ''])
@@ -115,10 +119,14 @@ class IOManager(IOManager):
         elif key in ('q', 'quit'):
             self._session._is_quitting = True
             self._session._hide_hidden_commands = True
+        elif key == 'sce':
+            self.edit_calling_code()
         elif key == 'scl':
             self.display_calling_code_line_number()
         elif key == 'sct':
             self._session.toggle_source_code_tracking()
+        elif key == 'sdv':
+            self._session.display_variables()
         elif key == 'stn':
             self._session._is_navigating_to_next_score = True
             self._session._is_backtracking_to_score_manager = True
@@ -376,6 +384,28 @@ class IOManager(IOManager):
         else:
             command = 'vim +{} {}'.format(line_number, file_path)
         self.spawn_subprocess(command)
+
+    def edit_calling_code(self):
+        r'''Edits calling code.
+
+        Returns none.
+        '''
+        where = self._session.where
+        if where is not None:
+            file_path = where[1]
+            line_number = where[2]
+            self.open_file(
+                file_path,
+                line_number=line_number,
+                )
+        else:
+            lines = []
+            message = 'where-tracking not enabled.'
+            message += " Use 'sct' for source code tracking."
+            lines.append(message)
+            lines.append('')
+            self.display(lines)
+            self._session._hide_next_redraw = True
 
     def exec_statement(self, statement=None):
         r'''Executes `statement`.
