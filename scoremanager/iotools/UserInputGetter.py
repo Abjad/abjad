@@ -125,12 +125,12 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
                 include_chevron=include_chevron, 
                 include_newline=self.include_newlines,
                 prompt_character=self.prompt_character, 
-                capitalize_prompt=self.capitalize_prompts)
+                capitalize_prompt=self.capitalize_prompts,
+                )
             if user_input is None:
                 self._prompt_index += 1
                 break
-            user_input = \
-                self._io_manager._handle_hidden_menu_section_return_value(
+            user_input = self._io_manager._handle_io_manager_directive(
                 user_input)
             if self._session._backtrack():
                 self._current_prompt_is_done = True

@@ -49,6 +49,13 @@ class Menu(ScoreManagerObject):
     ### SPECIAL METHODS ###
 
     def __getitem__(self, expr):
+        r'''Gets menu section with name equal to `expr`.
+
+        Raises key error when no menu section with name equal to `expr` is
+        found in menu.
+
+        Returns menu section.
+        '''
         assert isinstance(expr, str)
         for menu_section in self.menu_sections:
             if menu_section.name == expr:
@@ -119,9 +126,7 @@ class Menu(ScoreManagerObject):
         directive = self._change_user_input_to_directive(user_input)
         directive = self._strip_default_notice_from_strings(directive)
         self._session._hide_next_redraw = False
-        io_manager = self._io_manager
-        directive = \
-            io_manager._handle_hidden_menu_section_return_value(directive)
+        directive = self._io_manager._handle_io_manager_directive(directive)
         if directive is None and user_entered_lone_return:
             return 'user entered lone return'
         elif directive is None and not user_entered_lone_return:
@@ -433,7 +438,7 @@ class Menu(ScoreManagerObject):
 
     @property
     def hidden_section(self):
-        r'''Menu hidden section.
+        r'''Gets menu hidden section.
 
         ::
 
@@ -448,7 +453,7 @@ class Menu(ScoreManagerObject):
 
     @property
     def menu_sections(self):
-        r'''Menu sections.
+        r'''Gets menu sections.
 
         ::
 
@@ -481,7 +486,7 @@ class Menu(ScoreManagerObject):
     @apply
     def title():
         def fget(self):
-            r'''Menu title.
+            r'''Gets menu title.
 
             ::
 
@@ -498,7 +503,12 @@ class Menu(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
+    # TODO: move to IOManager
     def display_calling_code_line_number(self):
+        r'''Displays calling code line number.
+
+        Returns none.
+        '''
         lines = []
         if self.where is not None:
             file_path = self.where[1]
@@ -516,7 +526,12 @@ class Menu(ScoreManagerObject):
         else:
             self._session._enable_where = True
 
+    # TODO: move to IOManager
     def display_hidden_commands(self):
+        r'''Display hidden commands.
+
+        Returns none.
+        '''
         self._session._push_breadcrumb('hidden commands')
         menu_lines = []
         title = self._session.menu_header
@@ -540,7 +555,12 @@ class Menu(ScoreManagerObject):
             )
         self._session._pop_breadcrumb()
 
+    # TODO: move to IOManager
     def edit_calling_code(self):
+        r'''Edits calling code.
+
+        Returns none.
+        '''
         if self.where is not None:
             file_path = self.where[1]
             line_number = self.where[2]
@@ -558,6 +578,15 @@ class Menu(ScoreManagerObject):
             self._session._hide_next_redraw = True
 
     def make_asset_section(self, menu_entries=None, name=None):
+        r'''Makes asset section.
+
+        With these attributes:
+
+            * numbered
+            * return value set to explicit
+
+        Returns menu section.
+        '''
         asset_section = self._make_section(
             is_numbered=True,
             name=name,
@@ -566,6 +595,16 @@ class Menu(ScoreManagerObject):
         return asset_section
 
     def make_attribute_section(self, menu_entries=None, name=None):
+        r'''Makes attribute section.
+
+        With these attributes:
+
+            * displays prepopulated values
+            * numbered
+            * return value set to explicit
+
+        Returns menu section.
+        '''
         attribute_section = self._make_section(
             display_prepopulated_values=True,
             is_numbered=True,
@@ -582,6 +621,16 @@ class Menu(ScoreManagerObject):
         menu_entries=None,
         name=None,
         ):
+        r'''Makes command section.
+
+        Menu section with these attributes:
+
+            * not hidden
+            * not secondary
+            * match on display string
+
+        Returns menu section.
+        '''
         command_section = self._make_section(
             is_hidden=is_hidden,
             is_secondary=is_secondary,
@@ -597,6 +646,14 @@ class Menu(ScoreManagerObject):
         menu_entries=None,
         name=None,
         ):
+        r'''Makes keyed attribute section.
+
+        With these attributes:
+
+            * not numbered
+
+        Returns menu section.
+        '''
         keyed_attribute_section = self._make_section(
             display_prepopulated_values=True,
             is_numbered=is_numbered,
@@ -606,6 +663,16 @@ class Menu(ScoreManagerObject):
         return keyed_attribute_section
 
     def make_numbered_list_section(self, menu_entries=None, name=None):
+        r'''Makes numbered list section.
+
+        With these attributes:
+
+            * numbered
+            * ranged
+            * return value equal to display string
+
+        Returns menu section.
+        '''
         numbered_list_section = self._make_section(
             is_numbered=True,
             is_ranged=True,
@@ -615,6 +682,15 @@ class Menu(ScoreManagerObject):
         return numbered_list_section
 
     def make_numbered_section(self, menu_entries=None, name=None):
+        r'''Makes numbered section.
+
+        With these attributes:
+
+            * numbered
+            * return value equal to item number
+
+        Returns menu section.
+        '''
         numbered_section = self._make_section(
             is_numbered=True,
             name=name,

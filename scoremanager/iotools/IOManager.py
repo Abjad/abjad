@@ -76,7 +76,7 @@ class IOManager(IOManager):
         else:
             return repr(expr)
 
-    def _handle_hidden_menu_section_return_value(self, directive):
+    def _handle_io_manager_directive(self, directive):
         if isinstance(directive, list) and len(directive) == 1:
             key = directive[0]
         else:
@@ -115,6 +115,8 @@ class IOManager(IOManager):
         elif key in ('q', 'quit'):
             self._session._is_quitting = True
             self._session._hide_hidden_commands = True
+        #elif key == 'scl':
+        #    print 'ASDF!'
         elif key == 'sct':
             self._session.toggle_source_code_tracking()
         elif key == 'stn':
@@ -275,7 +277,7 @@ class IOManager(IOManager):
     def clear_terminal(self):
         r'''Clears terminal.
 
-        Only clears terminal is _session is displayable.
+        Only clears terminal if session is displayable.
 
         Returns none.
         '''
