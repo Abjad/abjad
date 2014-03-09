@@ -31,7 +31,7 @@
 11. Implement material methods to move material packages 
     from one location to another.
 
-12. Finish the docstrings for all io classes.
+12. Finish docstrings for all iotools classes.
 
 13. Refactor scoremanager.editors to contain as few classes as possible.
 
