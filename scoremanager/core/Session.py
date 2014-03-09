@@ -75,6 +75,7 @@ class Session(abctools.AbjadObject):
         '_transcribe_next_command',
         '_transcript',
         '_use_current_user_input_values_as_default',
+        '_where',
         '_write_transcript',
         )
 
@@ -113,6 +114,7 @@ class Session(abctools.AbjadObject):
         'transcribe_next_command',
         'use_current_user_input_values_as_default',
         'user_input_is_consumed',
+        'where',
         )
 
     ### INITIALIZER ###
@@ -162,6 +164,7 @@ class Session(abctools.AbjadObject):
         self._transcribe_next_command = True
         self._transcript = iotools.Transcript()
         self._use_current_user_input_values_as_default = False
+        self._where = None
         self._write_transcript = False
 
     ### SPECIAL METHODS ###
@@ -1263,6 +1266,12 @@ class Session(abctools.AbjadObject):
             if self.pending_user_input is None:
                 return True
         return False
+
+    @property
+    def where(self):
+        r'''Gets source code location of current menu.
+        '''
+        return self._where
 
     @property
     def write_transcript(self):

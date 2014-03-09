@@ -115,8 +115,8 @@ class IOManager(IOManager):
         elif key in ('q', 'quit'):
             self._session._is_quitting = True
             self._session._hide_hidden_commands = True
-        #elif key == 'scl':
-        #    print 'ASDF!'
+        elif key == 'scl':
+            self.display_calling_code_line_number()
         elif key == 'sct':
             self._session.toggle_source_code_tracking()
         elif key == 'stn':
@@ -212,6 +212,9 @@ class IOManager(IOManager):
         section.append(('metadata module - rewrite', 'mdmrw'))
         section.append(('metadata module - view', 'mdmv'))
         return section
+
+    def _make_tab(self, n):
+        return 4 * n * ' '
 
     def _make_views_menu_section(self, menu):
         section = menu.make_command_section(
@@ -338,6 +341,28 @@ class IOManager(IOManager):
                 self.clear_terminal()
             for line in lines:
                 print line
+
+    def display_calling_code_line_number(self):
+        r'''Displays calling code line number.
+
+        Returns none.
+        '''
+        lines = []
+        where = self._session.where
+        if where is not None:
+            file_path = where[1]
+            file_name = os.path.basename(file_path)
+            line = '{}   file: {}'.format(self._make_tab(1), file_name)
+            lines.append(line)
+            line = '{} method: {}'.format(self._make_tab(1), where[3])
+            lines.append(line)
+            line = '{}   line: {}'.format(self._make_tab(1), where[2])
+            lines.append(line)
+            lines.append('')
+            self.display(lines, capitalize_first_character=False)
+            self._session._hide_next_redraw = True
+        else:
+            self._session._enable_where = True
 
     def edit(self, file_path, line_number=None):
         r'''Edits `file_path`.

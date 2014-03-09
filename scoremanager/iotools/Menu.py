@@ -108,6 +108,8 @@ class Menu(ScoreManagerObject):
         self, 
         predetermined_user_input=None,
         ):
+        # TODO: maybe implement a WhereTracking context manager
+        self._session._where = self.where
         self._clear_terminal()
         if not self._session.hide_hidden_commands:
             self.display_hidden_commands()
@@ -143,6 +145,7 @@ class Menu(ScoreManagerObject):
             self.display_calling_code_line_number()
         else:
             return directive
+        self._session._where = None
 
     def _enclose_in_list(self, expr):
         if self._has_ranged_section():
@@ -502,29 +505,6 @@ class Menu(ScoreManagerObject):
         return property(**locals())
 
     ### PUBLIC METHODS ###
-
-    # TODO: move to IOManager
-    def display_calling_code_line_number(self):
-        r'''Displays calling code line number.
-
-        Returns none.
-        '''
-        lines = []
-        if self.where is not None:
-            file_path = self.where[1]
-            file_name = os.path.basename(file_path)
-            line = '{}   file: {}'.format(self._make_tab(1), file_name)
-            lines.append(line)
-            line = '{} method: {}'.format(self._make_tab(1), self.where[3])
-            lines.append(line)
-            line = '{}   line: {}'.format(self._make_tab(1), self.where[2])
-            lines.append(line)
-            lines.append('')
-            self._io_manager.display(
-                lines, capitalize_first_character=False)
-            self._session._hide_next_redraw = True
-        else:
-            self._session._enable_where = True
 
     # TODO: move to IOManager
     def display_hidden_commands(self):
