@@ -304,6 +304,23 @@ class ScorePackageManager(PackageManager):
 
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
+        self._make_main_menu_section(menu)
+        self._make_initializer_menu_section(menu)
+        self._make_instrumentation_module_menu_section(menu)
+        self._make_score_pdf_menu_section(menu)
+        self._make_metadata_module_menu_section(menu)
+        self._make_metadata_menu_section(menu)
+        self._make_package_fix_menu_section(menu)
+        self._make_score_menu_section(menu)
+        return menu
+
+
+    def _make_instrumentation_module_menu_section(self, menu):
+        section = menu.make_command_section(is_secondary=True)
+        section.append(('instrumentation module - view', 'instrumentation'))
+        return section
+
+    def _make_main_menu_section(self, menu):
         section = menu.make_command_section()
         section.append(('build', 'u'))
         section.append(('makers', 'k'))
@@ -312,23 +329,24 @@ class ScorePackageManager(PackageManager):
         section.append(('setup', 'p'))
         section.append(('templates', 't'))
         section.append(('stylesheets', 'y'))
+        return section
+
+    def _make_package_fix_menu_section(self, menu):
+        section = menu.make_command_section(is_secondary=True)
+        section.append(('package - fix', 'fix'))
+        return section
+
+    def _make_score_menu_section(self, menu):
+        section = menu.make_command_section(is_secondary=True)
+        section.append(('score - remove', 'removescore'))
+        return section
+
+    def _make_score_pdf_menu_section(self, menu):
         manager = self._build_directory_manager
         if manager._get_file_path_ending_with('score.pdf'):
             section = menu.make_command_section()
             section.append(('score pdf - view', 'pdfv'))
             section.default_index = len(section) - 1
-        # TODO: restructure with encapsulated methods
-        section = menu.make_command_section(is_secondary=True)
-        section.append(('package - fix', 'fix'))
-        section.append(('directory - list', 'ls'))
-        section.append(('Python - test', 'pyt'))
-        section.append(('score - remove', 'removescore'))
-        #section.append(('initializer - view', 'inv'))
-        section.append(('instrumentation - view', 'instrumentation'))
-        self._make_initializer_menu_section(menu)
-        self._make_metadata_menu_section(menu)
-        self._make_metadata_module_menu_section(menu)
-        return menu
 
     def _make_setup_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
