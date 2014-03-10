@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 import os
 import subprocess
-from scoremanager.core.ScoreManagerObject import ScoreManagerObject
+from scoremanager.core.Controller import Controller
 
 
-class ScoreManager(ScoreManagerObject):
+class ScoreManager(Controller):
     r'''Score manager.
 
     ..  container:: example
@@ -21,7 +21,7 @@ class ScoreManager(ScoreManagerObject):
 
     def __init__(self, session=None):
         from scoremanager import wranglers
-        ScoreManagerObject.__init__(self, session=session)
+        Controller.__init__(self, session=session)
         self._session._score_manager = self
         wrangler = wranglers.SegmentPackageWrangler(session=self._session)
         self._segment_package_wrangler = wrangler
@@ -113,7 +113,7 @@ class ScoreManager(ScoreManagerObject):
         section.append(('scores - show examples', 'ssx'))
         section.append(('scores - show mothballed', 'ssmb'))
         section.append(('scores - show user', 'ssu'))
-        menu._make_default_hidden_sections()
+        self._make_default_hidden_sections(menu)
         return menu
 
     def _make_score_selection_menu(self):
