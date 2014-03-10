@@ -76,7 +76,7 @@ class ListEditor(Editor):
             section.append(('elements - move', 'mv'))
         if 0 < len(self.items):
             section.append(('elements - remove', 'rm'))
-        self._io_manager._make_done_menu_section(menu)
+        self._make_done_menu_section(menu)
         return menu
 
     ### PUBLIC PROPERTIES ###

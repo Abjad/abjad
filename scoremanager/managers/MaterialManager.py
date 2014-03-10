@@ -448,13 +448,13 @@ class MaterialManager(PackageManager):
         menu, hidden_section = superclass._make_main_menu(where=where)
         self._make_illustration_builder_menu_section(menu)
         has_initializer = os.path.isfile(self._initializer_file_path)
-        self._io_manager._make_initializer_menu_section(
+        self._make_initializer_menu_section(
             menu, 
             has_initializer=has_initializer,
             )
         self._make_material_definition_menu_section(menu)
-        self._io_manager._make_metadata_menu_section(menu)
-        self._io_manager._make_metadata_module_menu_section(menu)
+        self._make_metadata_menu_section(menu)
+        self._make_metadata_module_menu_section(menu)
         self._make_illustration_ly_menu_section(menu)
         self._make_output_material_menu_section(menu)
         self._make_illustration_pdf_menu_section(menu)
@@ -472,8 +472,7 @@ class MaterialManager(PackageManager):
             pass
         lilypond_section = menu['lilypond']
         index = menu.menu_sections.index(lilypond_section) + 1
-        tour_menu_section = self._io_manager._make_material_tour_menu_section(
-            menu)
+        tour_menu_section = self._make_material_tour_menu_section(menu)
         menu.menu_sections.insert(index, tour_menu_section)
         #print menu, 'MMM'
         #for x in menu.menu_sections:

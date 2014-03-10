@@ -97,14 +97,11 @@ class SegmentPackageWrangler(PackageWrangler):
         section.append(('segments - new', 'new'))
         section = menu.make_command_section(is_secondary=True)
         section.append(('package - list', 'ls'))
-        self._io_manager._make_initializer_menu_section(
-            menu,
-            has_initializer=True,
-            )
-        self._io_manager._make_metadata_menu_section(menu)
-        self._io_manager._make_metadata_module_menu_section(menu)
-        self._io_manager._make_views_menu_section(menu)
-        self._io_manager._make_views_module_menu_section(menu)
+        self._make_initializer_menu_section(menu, has_initializer=True)
+        self._make_metadata_menu_section(menu)
+        self._make_metadata_module_menu_section(menu)
+        self._make_views_menu_section(menu)
+        self._make_views_module_menu_section(menu)
         return menu
 
     ### PUBLIC METHODS ###

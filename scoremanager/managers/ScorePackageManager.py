@@ -332,8 +332,8 @@ class ScorePackageManager(PackageManager):
         section.append(('score - remove', 'removescore'))
         section.append(('initializer - view', 'inv'))
         section.append(('instrumentation - view', 'instrumentation'))
-        self._io_manager._make_metadata_menu_section(menu)
-        self._io_manager._make_metadata_module_menu_section(menu)
+        self._make_metadata_menu_section(menu)
+        self._make_metadata_module_menu_section(menu)
         return menu
 
     def _make_setup_menu(self):

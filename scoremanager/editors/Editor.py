@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from scoremanager.core.ScoreManagerObject import ScoreManagerObject
+from scoremanager.core.Controller import Controller
 
 
-class Editor(ScoreManagerObject):
+class Editor(Controller):
     r'''Editor.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
-        ScoreManagerObject.__init__(self, session=session)
+        Controller.__init__(self, session=session)
         if target is not None:
             assert isinstance(target, self.target_class)
         self.target = target
@@ -70,7 +70,7 @@ class Editor(ScoreManagerObject):
             ) 
         menu_entries = self.target_attribute_tokens
         keyed_attribute_section.menu_entries = menu_entries
-        self._io_manager._make_done_menu_section(menu)
+        self._make_done_menu_section(menu)
         return menu
 
     def _run(
