@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+import shutil
 from abjad import *
 from experimental import *
 import scoremanager
@@ -38,6 +39,6 @@ def test_DynamicHandlerMaterialManager_01():
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
         if os.path.exists(path):
-            os.rmdir(path)
+            shutil.rmtree(path)
 
     assert not os.path.exists(path)

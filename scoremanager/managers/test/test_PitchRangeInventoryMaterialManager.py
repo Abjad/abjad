@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+import shutil
 from abjad import *
 import scoremanager
 
@@ -33,7 +34,7 @@ def test_PitchRangeInventoryMaterialManager_01():
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
         if os.path.exists(path):
-            os.rmdir(path)
+            shutil.rmtree(path)
     assert not os.path.exists(path)
 
 
@@ -73,5 +74,5 @@ def test_PitchRangeInventoryMaterialManager_02():
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
         if os.path.exists(path):
-            os.rmdir(path)
+            shutil.rmtree(path)
     assert not os.path.exists(path)
