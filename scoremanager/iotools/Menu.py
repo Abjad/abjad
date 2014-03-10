@@ -60,7 +60,7 @@ class Menu(ScoreManagerObject):
         for menu_section in self.menu_sections:
             if menu_section.name == expr:
                 return menu_section
-        raise KeyError
+        raise KeyError(expr)
 
     def __len__(self):
         r'''Gets number of menu sections in menu.
