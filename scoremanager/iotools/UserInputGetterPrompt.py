@@ -5,8 +5,6 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class UserInputGetterPrompt(AbjadObject):
     r'''User input getter prompt.
 
-    .. note:: add doctests.
-
     Returns user input getter prompt.
     '''
 
@@ -39,38 +37,74 @@ class UserInputGetterPrompt(AbjadObject):
 
     @property
     def additional_help_template_arguments(self):
+        r'''Gets additional help template arugments of prompt.
+
+        Returns list.
+        '''
         return self._additional_help_template_arguments
 
     @property
     def default_value(self):
+        r'''Gets default value of prompt.
+
+        Returns object.
+        '''
         return self._default_value
 
     @property
     def help_string(self):
-        return self.help_template.format(
+        r'''Gets help string of prompt.
+
+        Returns string.
+        '''
+        result = self.help_template.format(
             self.prompt_string,
-            *self.additional_help_template_arguments)
+            *self.additional_help_template_arguments
+            )
+        return result
 
     @property
     def help_template(self):
+        r'''Gets help template of prompt.
+
+        Returns something.
+        '''
         return self._help_template
 
     @property
     def include_chevron(self):
+        r'''Is true when prompt includes chevron. Otherwise false.
+
+        Returns boolean.
+        '''
         return self._include_chevron
 
     @property
     def prompt_string(self):
+        r'''Gets prompt string.
+
+        Returns string.
+        '''
         return self._prompt_string
 
     @property
     def setup_statements(self):
+        r'''Gets setup statements.
+
+        Returns list of strings.
+        '''
         return self._setup_statements
 
     @property
     def target_menu_section(self):
+        r'''Gets target menu section of prompt.
+        '''
         return self._target_menu_section
 
     @property
     def validation_function(self):
+        r'''Gets validation function of prompt.
+
+        Returns callable.
+        '''
         return self._validation_function
