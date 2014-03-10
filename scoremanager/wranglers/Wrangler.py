@@ -5,10 +5,10 @@ import subprocess
 from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from scoremanager.core.ScoreManagerObject import ScoreManagerObject
+from scoremanager.core.Controller import Controller
 
 
-class Wrangler(ScoreManagerObject):
+class Wrangler(Controller):
     r'''Wrangler.
     '''
 
@@ -19,7 +19,7 @@ class Wrangler(ScoreManagerObject):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        ScoreManagerObject.__init__(self, session=session)
+        Controller.__init__(self, session=session)
         self.abjad_storehouse_path = None
         self.user_storehouse_path = None
         self.score_storehouse_path_infix_parts = ()

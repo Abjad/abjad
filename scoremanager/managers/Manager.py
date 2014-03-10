@@ -3,17 +3,17 @@ import os
 import shutil
 import subprocess
 from abjad.tools import stringtools
-from scoremanager.core.ScoreManagerObject import ScoreManagerObject
+from scoremanager.core.Controller import Controller
 
 
-class Manager(ScoreManagerObject):
+class Manager(Controller):
     r'''Manager.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, path=None, session=None):
-        ScoreManagerObject.__init__(self, session=session)
+        Controller.__init__(self, session=session)
         assert path is None or os.path.sep in path, repr(path)
         self._path = path
         self._generic_class_name = 'asset'

@@ -426,6 +426,7 @@ class MaterialManager(PackageManager):
         menu,
         ):
         name = 'illustration pdf'
+        has_illustration_pdf_section = False
         if os.path.isfile(self._output_material_module_path) or \
             os.path.isfile(self._illustration_pdf_file_path):
             section = menu.make_command_section(name=name)
