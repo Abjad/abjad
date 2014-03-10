@@ -212,47 +212,40 @@ class ScorePackageManager(PackageManager):
             self._get_stylesheets_directory_path(),
             )
 
-    # TODO: change back to implementation with instance dictionary
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
-        if result == 'fix':
-            self.fix(),
-        elif result == 'g':
-            self._segment_package_wrangler._run()
-        elif result == 'instrumentation':
-            self._instrumentation_module_manager.edit()
-        elif result == 'k':
-            self._io_manager.print_not_yet_implemented()
-        elif result == 'm':
-            self._material_package_wrangler._run()
-        elif result == 'p':
-            self._manage_setup(),
-        elif result == 'pdfv':
-            self._build_directory_manager._open_file_ending_with(
-                'score.pdf',
-                )
-        elif result == 'radd':
-            self.add()
-        elif result == 'rci':
-            self.commit()
-        elif result == 'removescore':
-            self.remove(),
-        elif result == 'rst':
-            self.status()
-        elif result == 'rup':
-            self.update()
-        elif result == 't':
-            self._score_template_directory_manager._run()
-        elif result == 'u':
-            self._build_directory_manager._run()
-        elif result == 'y':
-            self._stylesheet_wrangler._run()
+        if result in self._user_input_to_action:
+            self._user_input_to_action[result]()
         elif result == 'user entered lone return':
             pass
         else:
             message = 'unknown user input: {!r}.'
             message = message.format(result)
             raise ValueError(message)
+
+    @property
+    def _user_input_to_action(self):
+        superclass = super(ScorePackageManager, self)
+        result = superclass._user_input_to_action
+        result = result.copy()
+        result.update({
+            'g': self._segment_package_wrangler._run,
+            'fix': self.fix,
+            'instrumentation': self._instrumentation_module_manager.edit,
+            'k': self._io_manager.print_not_yet_implemented,
+            'm': self._material_package_wrangler._run,
+            'p': self._manage_setup,
+            'pdfv': self.view_score_pdf,
+            'radd': self.add,
+            'rci': self.commit,
+            'removescore': self.remove,
+            'rst': self.status,
+            'rup': self.update,
+            't': self._score_template_directory_manager._run,
+            'u': self._build_directory_manager._run,
+            'y': self._stylesheet_wrangler._run,
+            })
+        return result
 
     def _handle_setup_menu_result(self, result):
         assert isinstance(result, str)
@@ -330,8 +323,9 @@ class ScorePackageManager(PackageManager):
         section.append(('directory - list', 'ls'))
         section.append(('Python - test', 'pyt'))
         section.append(('score - remove', 'removescore'))
-        section.append(('initializer - view', 'inv'))
+        #section.append(('initializer - view', 'inv'))
         section.append(('instrumentation - view', 'instrumentation'))
+        self._make_initializer_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_metadata_module_menu_section(menu)
         return menu
@@ -545,3 +539,10 @@ class ScorePackageManager(PackageManager):
             if self._session._backtrack():
                 return
             self._session._is_backtracking_locally = True
+
+    def view_score_pdf(self):
+        r'''Views score PDF.
+
+        Returns none.
+        '''
+        self._build_directory_manager._open_file_ending_with('score.pdf')
