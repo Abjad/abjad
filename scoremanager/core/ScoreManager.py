@@ -59,6 +59,7 @@ class ScoreManager(ScoreManagerObject):
             'ssv': self.display_active_scores,
             'ssmb': self.display_mothballed_scores,
             'ssx': self.display_example_scores,
+            'ssu': self.display_user_scores,
             'lmy': self.manage_stylesheet_library,
             }
         return result
@@ -111,6 +112,7 @@ class ScoreManager(ScoreManagerObject):
         section.append(('scores - show active', 'ssv'))
         section.append(('scores - show examples', 'ssx'))
         section.append(('scores - show mothballed', 'ssmb'))
+        section.append(('scores - show user', 'ssu'))
         menu._make_default_hidden_sections()
         return menu
 
@@ -232,6 +234,13 @@ class ScoreManager(ScoreManagerObject):
         Returns none.
         '''
         self._session.display_mothballed_scores()
+
+    def display_user_scores(self):
+        r'''Displays user scores.
+
+        Returns none.
+        '''
+        self._session.display_user_scores()
 
     def doctest(self, prompt=True):
         r'''Runs doctest.

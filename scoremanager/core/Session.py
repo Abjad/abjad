@@ -1322,6 +1322,14 @@ class Session(abctools.AbjadObject):
         self._scores_to_display = 'mothballed'
         self._rewrite_cache = True
 
+    def display_user_scores(self):
+        r'''Sets scores to show to ``'user'``.
+
+        Returns none.
+        '''
+        self._scores_to_display = 'user'
+        self._rewrite_cache = True
+
     def display_variables(self):
         r'''Displays session variables.
 

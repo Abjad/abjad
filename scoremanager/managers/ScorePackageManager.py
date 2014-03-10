@@ -297,6 +297,9 @@ class ScorePackageManager(PackageManager):
             if not is_mothballed:
                 if not is_example:
                     return metadata
+        elif scores_to_display == 'user':
+            if not is_example:
+                return metadata
         elif scores_to_display == 'example':
             if is_example:
                 if not is_mothballed:
