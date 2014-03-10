@@ -15,6 +15,17 @@ class ReservoirStartHelperCreationWizard(Wizard):
 
     ### PRIVATE METHODS ###
 
+    def _get_function_arguments(self, function_name):
+        arguments = []
+        if function_name in ('start at index n'):
+            getter = self._io_manager.make_getter(where=self._where)
+            getter.append_integer('index')
+            result = getter._run()
+            if self._session._backtrack():
+                return
+            arguments.append(result)
+        return tuple(arguments)
+
     def _run(
         self,
         cache=False,
@@ -42,7 +53,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
             elif not function_name:
                 self._session._pop_breadcrumb()
                 continue
-            function_arguments = self.get_function_arguments(function_name)
+            function_arguments = self._get_function_arguments(function_name)
             if self._session._backtrack():
                 break
             elif function_arguments is None:
@@ -55,16 +66,3 @@ class ReservoirStartHelperCreationWizard(Wizard):
         self._session._restore_breadcrumbs(cache=cache)
         self.target = function_application_pairs
         return self.target
-
-    ### PUBLIC METHODS ###
-
-    def get_function_arguments(self, function_name):
-        arguments = []
-        if function_name in ('start at index n'):
-            getter = self._io_manager.make_getter(where=self._where)
-            getter.append_integer('index')
-            result = getter._run()
-            if self._session._backtrack():
-                return
-            arguments.append(result)
-        return tuple(arguments)

@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_PerformerCreationWizard_make_performer_configuration_menu_01():
+def test_PerformerCreationWizard__make_performer_configuration_menu_01():
     r'''Clarinetist configuration menu contains exactly one default entry.
     '''
 

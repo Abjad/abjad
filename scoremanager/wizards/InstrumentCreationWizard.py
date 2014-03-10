@@ -28,6 +28,39 @@ class InstrumentCreationWizard(Wizard):
 
     ### PRIVATE METHODS ###
 
+    @staticmethod
+    def _change_instrument_name_to_instrument(instrument_name):
+        if instrument_name in (
+            'alto',
+            'baritone',
+            'bass',
+            'soprano',
+            'tenor',
+            ):
+            instrument_name = instrument_name + ' Voice'
+        instrument_name = instrument_name.title()
+        instrument_name = instrument_name.replace(' ', '')
+        command = 'instrument = instrumenttools.{}()'.format(instrument_name)
+        exec(command)
+        return instrument
+
+    def _name_untuned_percussion(self, instrument):
+        from abjad.tools.instrumenttools import UntunedPercussion
+        if isinstance(instrument, instrumenttools.UntunedPercussion):
+            selector = iotools.Selector(session=self._session)
+            items = UntunedPercussion.known_untuned_percussion[:]
+            selector.items = items
+            with self._backtracking:
+                instrument_name = selector._run()
+            if self._session._backtrack():
+                return
+            instrument = new(
+                instrument,
+                instrument_name=instrument_name,
+                short_instrument_name=instrument_name,
+                )
+        return instrument
+
     def _run(
         self,
         cache=False,
@@ -57,8 +90,8 @@ class InstrumentCreationWizard(Wizard):
         instruments = []
         for instrument_name in instrument_names:
             instrument = \
-                self.change_instrument_name_to_instrument(instrument_name)
-            instrument = self.name_untuned_percussion(instrument)
+                self._change_instrument_name_to_instrument(instrument_name)
+            instrument = self._name_untuned_percussion(instrument)
             instruments.append(instrument)
         if self.is_ranged:
             result = instruments[:]
@@ -68,37 +101,3 @@ class InstrumentCreationWizard(Wizard):
         self._session._restore_breadcrumbs(cache=cache)
         self.target = result
         return self.target
-
-    ### PUBLIC METHODS ###
-
-    def change_instrument_name_to_instrument(self, instrument_name):
-        if instrument_name in (
-            'alto',
-            'baritone',
-            'bass',
-            'soprano',
-            'tenor',
-            ):
-            instrument_name = instrument_name + ' Voice'
-        instrument_name = instrument_name.title()
-        instrument_name = instrument_name.replace(' ', '')
-        command = 'instrument = instrumenttools.{}()'.format(instrument_name)
-        exec(command)
-        return instrument
-
-    def name_untuned_percussion(self, instrument):
-        from abjad.tools.instrumenttools import UntunedPercussion
-        if isinstance(instrument, instrumenttools.UntunedPercussion):
-            selector = iotools.Selector(session=self._session)
-            items = UntunedPercussion.known_untuned_percussion[:]
-            selector.items = items
-            with self._backtracking:
-                instrument_name = selector._run()
-            if self._session._backtrack():
-                return
-            instrument = new(
-                instrument,
-                instrument_name=instrument_name,
-                short_instrument_name=instrument_name,
-                )
-        return instrument

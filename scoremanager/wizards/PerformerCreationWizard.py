@@ -23,74 +23,7 @@ class PerformerCreationWizard(Wizard):
 
     ### PRIVATE METHODS ###
 
-    def _run(
-        self, 
-        cache=False, 
-        clear=True, 
-        pending_user_input=None,
-        is_test=False,
-        ):
-        from scoremanager.iotools import Selector
-        if is_test:
-            self._session._is_test = True
-        self._io_manager._assign_user_input(pending_user_input)
-        self._session._cache_breadcrumbs(cache=cache)
-        try_again = False
-        performers = []
-        while True:
-            self._session._push_breadcrumb(self._breadcrumb)
-            selector = Selector.make_score_tools_performer_name_selector(
-                session=self._session,
-                )
-            selector.is_ranged=self.is_ranged
-            with self._backtracking:
-                result = selector._run()
-            if self._session._backtrack():
-                break
-            if isinstance(result, list):
-                performer_names = result
-            else:
-                performer_names = [result]
-            performers = []
-            for performer_name in performer_names:
-                self._session._push_breadcrumb(self._breadcrumb)
-                with self._backtracking:
-                    performer = instrumenttools.Performer(performer_name)
-                    self.initialize_performer(performer)
-                self._session._pop_breadcrumb()
-                was_backtracking_locally = \
-                    self._session.is_backtracking_locally
-                if self._session._backtrack():
-                    if was_backtracking_locally:
-                        try_again = True
-                    else:
-                        try_again = False
-                        performers = []
-                    break
-                performers.append(performer)
-            if not try_again:
-                break
-            else:
-                try_again = False
-                self._session._pop_breadcrumb()
-        if self.is_ranged and performers:
-            final_result = performers[:]
-        elif self.is_ranged and not performers:
-            final_result = []
-        elif not self.is_ranged and performers:
-            final_result = performers[0]
-        elif not self.is_ranged and not performers:
-            final_result = None
-        else:
-            raise ValueError
-        self._session._pop_breadcrumb()
-        self._session._restore_breadcrumbs(cache=cache)
-        self.target = final_result
-        return self.target
-
-    ### PUBLIC METHODS ###
-
-    def initialize_performer(
+    def _initialize_performer(
         self, 
         performer, 
         cache=False, 
@@ -99,7 +32,7 @@ class PerformerCreationWizard(Wizard):
         ):
         from scoremanager import wizards
         self._io_manager._assign_user_input(pending_user_input)
-        menu = self.make_performer_configuration_menu(performer)
+        menu = self._make_performer_configuration_menu(performer)
         while True:
             self._session._push_breadcrumb(performer.name)
             result = menu._run(clear=clear)
@@ -137,7 +70,7 @@ class PerformerCreationWizard(Wizard):
         self._session._pop_breadcrumb()
         self._session._restore_breadcrumbs(cache=cache)
 
-    def make_performer_configuration_menu(self, performer):
+    def _make_performer_configuration_menu(self, performer):
         menu = self._io_manager.make_menu(where=self._where)
         numbered_list_section = menu.make_numbered_list_section()
         numbered_list_section.title = 'select instruments'
@@ -170,3 +103,68 @@ class PerformerCreationWizard(Wizard):
         numbered_list_section.default_index = default_index
         section.append(('instruments - skip', 'skip'))
         return menu
+
+    def _run(
+        self, 
+        cache=False, 
+        clear=True, 
+        pending_user_input=None,
+        is_test=False,
+        ):
+        from scoremanager.iotools import Selector
+        if is_test:
+            self._session._is_test = True
+        self._io_manager._assign_user_input(pending_user_input)
+        self._session._cache_breadcrumbs(cache=cache)
+        try_again = False
+        performers = []
+        while True:
+            self._session._push_breadcrumb(self._breadcrumb)
+            selector = Selector.make_score_tools_performer_name_selector(
+                session=self._session,
+                )
+            selector.is_ranged=self.is_ranged
+            with self._backtracking:
+                result = selector._run()
+            if self._session._backtrack():
+                break
+            if isinstance(result, list):
+                performer_names = result
+            else:
+                performer_names = [result]
+            performers = []
+            for performer_name in performer_names:
+                self._session._push_breadcrumb(self._breadcrumb)
+                with self._backtracking:
+                    performer = instrumenttools.Performer(performer_name)
+                    self._initialize_performer(performer)
+                self._session._pop_breadcrumb()
+                was_backtracking_locally = \
+                    self._session.is_backtracking_locally
+                if self._session._backtrack():
+                    if was_backtracking_locally:
+                        try_again = True
+                    else:
+                        try_again = False
+                        performers = []
+                    break
+                performers.append(performer)
+            if not try_again:
+                break
+            else:
+                try_again = False
+                self._session._pop_breadcrumb()
+        if self.is_ranged and performers:
+            final_result = performers[:]
+        elif self.is_ranged and not performers:
+            final_result = []
+        elif not self.is_ranged and performers:
+            final_result = performers[0]
+        elif not self.is_ranged and not performers:
+            final_result = None
+        else:
+            raise ValueError
+        self._session._pop_breadcrumb()
+        self._session._restore_breadcrumbs(cache=cache)
+        self.target = final_result
+        return self.target
