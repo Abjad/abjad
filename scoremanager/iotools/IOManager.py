@@ -205,9 +205,9 @@ class IOManager(IOManager):
             match_on_display_string=False,
             name='metadata',
             )
-        section.append(('metadata - add', 'mda'))
-        section.append(('metadata - get', 'mdg'))
-        section.append(('metadata - remove', 'mdrm'))
+        section.append(('metadatum - add', 'mma'))
+        section.append(('metadatum - get', 'mmg'))
+        section.append(('metadatum - remove', 'mmrm'))
         return section
 
     def _make_metadata_module_menu_section(self, menu):
@@ -216,9 +216,9 @@ class IOManager(IOManager):
             match_on_display_string=False,
             name='metadata module',
             )
-        section.append(('metadata module - remove', 'mdmrm'))
-        section.append(('metadata module - rewrite', 'mdmrw'))
-        section.append(('metadata module - view', 'mdmv'))
+        section.append(('metadata module - remove', 'mmmrm'))
+        section.append(('metadata module - rewrite', 'mmmrw'))
+        section.append(('metadata module - view', 'mmmv'))
         return section
 
     def _make_tab(self, n):
