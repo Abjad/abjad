@@ -34,7 +34,7 @@ class Menu(ScoreManagerObject):
         self, 
         session=None, 
         where=None,
-        include_default_hidden_sections=True,
+        include_default_hidden_sections=False,
         should_clear_terminal=False,
         title=None,
         ):
