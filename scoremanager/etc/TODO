@@ -117,10 +117,7 @@
 29. Realphabetize 'directory - whatever' menu section to where it should
     appear. Can use MaterialManager as working example.
 
-30. Disambiguate (mdrm) command in MaterialManager. Right now it
-    means both 'material definition - remove' and 'metadata - remove'.
-
-31. Add annotations to the materials in (lmm). So:
+30. Add annotations to the materials in (lmm). So:
      1: example articulation handler (Abjad)
      2: example dynamic handler (Abjad)
      3: example markup inventory (Abjad)
@@ -132,7 +129,7 @@
      9: pitch range inventory (Red Example Score)
      10: tempo inventory (Red Example Score)
 
-32. Implement no_session=False keywords on all classes that take session=None.
+31. Implement no_session=False keywords on all classes that take session=None.
     Force initializers to demand that no_session=True every time session=None.
     When session=something then no_session=False is fine and will pass.
     This will be a way of ensuring that session is being passed around
