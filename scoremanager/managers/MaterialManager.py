@@ -281,7 +281,10 @@ class MaterialManager(PackageManager):
             default_value = current_value
         else:
             default_value = None
-        getter = self._io_manager.make_getter()
+        getter = self._io_manager.make_getter(
+            allow_none=True,
+            include_newlines=include_newline,
+            )
         spaced_attribute_name = key.replace('_', ' ')
         message = "value for '{}' must satisfy " + test.__name__ + '().'
         getter._make_prompt(
@@ -291,8 +294,6 @@ class MaterialManager(PackageManager):
             setup_statements=['from abjad import *', setup_statement],
             default_value=default_value,
             )
-        getter.include_newlines = include_newline
-        getter.allow_none = True
         new_value = getter._run()
         if self._session._backtrack():
             return

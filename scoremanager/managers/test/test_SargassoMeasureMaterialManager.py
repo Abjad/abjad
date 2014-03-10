@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+import shutil
 from abjad import *
 import scoremanager
 
@@ -86,7 +87,7 @@ def test_SargassoMeasureMaterialManager_02():
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
         if os.path.exists(path):
-            os.rmdir(path)
+            shutil.rmtree(path)
     assert not os.path.exists(path)
 
 
@@ -129,7 +130,7 @@ def test_SargassoMeasureMaterialManager_03():
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
         if os.path.exists(path):
-            os.rmdir(path)
+            shutil.rmtree(path)
     assert not os.path.exists(path)
 
 
@@ -172,7 +173,7 @@ def test_SargassoMeasureMaterialManager_04():
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
         if os.path.exists(path):
-            os.rmdir(path)
+            shutil.rmtree(path)
     assert not os.path.exists(path)
 
 
@@ -217,7 +218,7 @@ def test_SargassoMeasureMaterialManager_05():
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
         if os.path.exists(path):
-            os.rmdir(path)
+            shutil.rmtree(path)
     assert not os.path.exists(path)
 
 
@@ -262,7 +263,7 @@ def test_SargassoMeasureMaterialManager_06():
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
         if os.path.exists(path):
-            os.rmdir(path)
+            shutil.rmtree(path)
     assert not os.path.exists(path)
 
 
@@ -306,7 +307,7 @@ def test_SargassoMeasureMaterialManager_07():
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
         if os.path.exists(path):
-            os.rmdir(path)
+            shutil.rmtree(path)
     assert not os.path.exists(path)
 
 
@@ -368,5 +369,5 @@ def test_SargassoMeasureMaterialManager_08():
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
         if os.path.exists(path):
-            os.rmdir(path)
+            shutil.rmtree(path)
     assert not os.path.exists(path)

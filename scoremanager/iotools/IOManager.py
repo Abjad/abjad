@@ -307,9 +307,11 @@ class IOManager(IOManager):
 
         Returns boolean.
         '''
-        getter = self.make_getter(where=None)
+        getter = self.make_getter(
+            where=None, 
+            include_newlines=False,
+            )
         getter.append_yes_no_string(prompt_string)
-        getter.include_newlines = False
         result = getter._run(
             clear_terminal=clear_terminal,
             include_chevron=include_chevron,
@@ -504,7 +506,12 @@ class IOManager(IOManager):
         finally:
             readline.set_startup_hook()
 
-    def make_getter(self, where=None):
+    def make_getter(
+        self, 
+        where=None, 
+        allow_none=False,
+        include_newlines=False,
+        ):
         r'''Makes getter.
 
         Returns getter.
@@ -513,6 +520,8 @@ class IOManager(IOManager):
         getter = iotools.UserInputGetter(
             where=where, 
             session=self._session,
+            allow_none=allow_none,
+            include_newlines=include_newlines,
             )
         return getter
 

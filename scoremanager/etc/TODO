@@ -136,3 +136,11 @@
      8: magic numbers (Red Example Score)
      9: pitch range inventory (Red Example Score)
      10: tempo inventory (Red Example Score)
+
+34. Change os.rmdir(path) to shutil.rmtree(path) in tests.
+
+35. Implement no_session=False keywords on all classes that take session=None.
+    Force initializers to demand that no_session=True every time session=None.
+    When session=something then no_session=False is fine and will pass.
+    This will be a way of ensuring that session is being passed around
+    absolutely everywhere except single-entry tests.

@@ -12,15 +12,24 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
 
     ### INITIALIZER ###
 
-    def __init__(self, session=None, where=None):
+    def __init__(
+        self, 
+        session=None, 
+        where=None,
+        allow_none=False,
+        capitalize_prompts=True,
+        include_newlines=False,
+        number_prompts=False,
+        prompt_character='>',
+        ):
         ScoreManagerObject.__init__(self, session=session)
         PromptMakerMixin.__init__(self)
         self._prompts = []
-        self.allow_none = False
-        self.capitalize_prompts = True
-        self.include_newlines = False
-        self.number_prompts = False
-        self.prompt_character = '>'
+        self._allow_none = allow_none
+        self._capitalize_prompts = capitalize_prompts
+        self._include_newlines = include_newlines
+        self._number_prompts = number_prompts
+        self._prompt_character = prompt_character
         self.where = where
 
     ### SPECIAL METHODS ###
@@ -186,63 +195,50 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
 
     ### PUBLIC PROPERTIES ###
 
-    # TODO: make read-only
-    @apply
-    def allow_none():
-        def fget(self):
-            r'''Gets and sets boolean indicator to allow none.
+    @property
+    def allow_none(self):
+        r'''Is true when user input getter allows none.
+        Otherwise false.
 
-            Returns boolean.
-            '''
-            return self._allow_none
-        def fset(self, expr):
-            assert isinstance(expr, bool)
-            self._allow_none = expr
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._allow_none
 
-    # TODO: make read-only
-    @apply
-    def capitalize_prompts():
-        def fget(self):
-            r'''Gets and sets boolean indicator to capitalize prompts.
+    @property
+    def capitalize_prompts(self):
+        r'''Is true when user input getter capitalizes prompts.
+        Otherwise false.
 
-            Returns boolean.
-            '''
-            return self._capitalize_prompts
-        def fset(self, expr):
-            assert isinstance(expr, bool)
-            self._capitalize_prompts = expr
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._capitalize_prompts
+        
 
-    # TODO: make read-only
-    @apply
-    def include_newlines():
-        def fget(self):
-            return self._include_newlines
-        def fset(self, expr):
-            assert isinstance(expr, bool)
-            self._include_newlines = expr
-        return property(**locals())
+    @property
+    def include_newlines(self):
+        r'''Is true when user input getter incldues newlines.
+        Otherwise false.
 
-    # TODO: make read-only
-    @apply
-    def number_prompts():
-        def fget(self):
-            return self._number_prompts
-        def fset(self, expr):
-            assert isinstance(expr, bool)
-            self._number_prompts = expr
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._include_newlines
 
-    # TODO: make read-only
-    @apply
-    def prompt_character():
-        def fget(self):
-            return self._prompt_character
-        def fset(self, expr):
-            assert isinstance(expr, str)
-            self._prompt_character = expr
-        return property(**locals())
+    @property
+    def number_prompts(self):
+        r'''Is true when user input getter numbers prompts.
+        Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._number_prompts
+
+    @property
+    def prompt_character(self):
+        r'''Gets user input getter prompt character.
+
+        Returns string.
+        '''
+        return self._prompt_character
 
     @property
     def prompts(self):

@@ -450,7 +450,6 @@ class Manager(ScoreManagerObject):
         '''
         self._io_manager._assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
-        getter.include_newlines = False
         result = getter._run()
         if self._session._backtrack():
             return
