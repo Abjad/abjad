@@ -21,6 +21,10 @@ class Transcript(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __getitem__(self, expr):
+        r'''Gets transcript entry matching `expr`.
+
+        Returns transcript entry.
+        '''
         return self.entries.__getitem__(expr)
 
     ### PRIVATE METHODS ###
@@ -51,18 +55,34 @@ class Transcript(AbjadObject):
 
     @property
     def entries(self):
+        r'''Gets transcript entries.
+
+        Returns list of transcript entries.
+        '''
         return self._entries
 
     @property
     def last_menu_lines(self):
+        r'''Gets last menu lines.
+
+        Returns lines of -2 entry.
+        '''
         return self[-2].lines
 
     @property
     def last_title(self):
+        r'''Gets last title.
+
+        Returns line 0 of last menu lines.
+        '''
         return self.last_menu_lines[0]
 
     @property
     def signature(self):
+        r'''Gets transcript signature.
+
+        Returns tuple.
+        '''
         result = []
         short_transcript = [entry.lines for entry in self.entries]
         result.append(len(short_transcript))
@@ -82,6 +102,10 @@ class Transcript(AbjadObject):
 
     @property
     def start_time(self):
+        r'''Gets transcript start time.
+
+        Returns date / time.
+        '''
         return self._start_time
 
     @property

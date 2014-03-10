@@ -107,6 +107,10 @@ class Selector(ScoreManagerObject):
     @apply
     def items():
         def fget(self):
+            r'''Gets and sets selector items.
+
+            Returns list.
+            '''
             if self._items:
                 return self._items
             else:
@@ -121,6 +125,10 @@ class Selector(ScoreManagerObject):
     def make_articulation_handler_class_name_selector(
         session=None, 
         ):
+        r'''Makes articulation handler class name selector.
+
+        Returns selector.
+        '''
         selector = Selector.make_handler_class_name_selector(
             session=session,
             base_class_names=('ArticulationHandler',),
@@ -132,6 +140,10 @@ class Selector(ScoreManagerObject):
     def make_articulation_handler_selector(
         session=None,
         ):
+        r'''Makes articulation handler selector.
+
+        Returns selector.
+        '''
         selector = Selector.make_material_package_selector(
             session=session,
             generic_output_name='articulation handler',
@@ -142,6 +154,10 @@ class Selector(ScoreManagerObject):
     def make_clef_name_selector(
         session=None, 
         ):
+        r'''Makes clef name selector.
+
+        Returns selector.
+        '''
         from abjad.tools import indicatortools
         selector = Selector(session=session)
         selector.items = indicatortools.Clef._list_clef_names()
@@ -154,6 +170,10 @@ class Selector(ScoreManagerObject):
         forbidden_directory_entries=None,
         strip_file_extensions=False,
         ):
+        r'''Makes directory content selector.
+
+        Returns selector.
+        '''
         from scoremanager import managers
         selector = Selector(session=session)
         storehouse_paths = storehouse_paths or []
@@ -177,6 +197,10 @@ class Selector(ScoreManagerObject):
     def make_dynamic_handler_class_name_selector(
         session=None, 
         ):
+        r'''Makes dynamic handler class name selector.
+
+        Returns selector.
+        '''
         selector = Selector.make_handler_class_name_selector(
             session=session,
             base_class_names=('DynamicHandler', 'DynamicsHandler'),
@@ -188,6 +212,10 @@ class Selector(ScoreManagerObject):
     def make_dynamic_handler_package_selector(
         session=None,
         ):
+        r'''Makes dynamic handler package selector.
+
+        Returns selector.
+        '''
         selector = Selector.make_material_package_selector(
             session=session,
             generic_output_name='dynamic handler',
@@ -200,6 +228,10 @@ class Selector(ScoreManagerObject):
         base_class_names=None,
         forbidden_class_names=None,
         ):
+        r'''Makes handler class name selector.
+
+        Returns seelctor.
+        '''
         from scoremanager import core
         configuration = core.ScoreManagerConfiguration()
         selector = Selector(session=session)
@@ -223,6 +255,10 @@ class Selector(ScoreManagerObject):
         session=None,
         generic_output_name='',
         ):
+        r'''Makes material package selector.
+
+        Returns selector.
+        '''
         from scoremanager import core
         configuration = core.ScoreManagerConfiguration()
         selector = Selector(session=session)
@@ -271,6 +307,10 @@ class Selector(ScoreManagerObject):
     def make_performer_selector(
         session=None,
         ):
+        r'''Makes performer selector.
+
+        Returns selector.
+        '''
         selector = Selector(session=session)
         items = []
         manager = selector._session.current_score_package_manager
@@ -284,6 +324,10 @@ class Selector(ScoreManagerObject):
     def make_pitch_class_reservoir_selector(
         session=None,
         ):
+        r'''Makes pitch-class reservoir selector.
+
+        Returns selector.
+        '''
         selector = Selector.make_material_package_selector(
             session=session,
             generic_output_name='pitch class reservoir',
@@ -294,6 +338,10 @@ class Selector(ScoreManagerObject):
     def make_rhythm_maker_class_name_selector(
         session=None,
         ):
+        r'''Makes rhythm-maker class name selector.
+
+        Returns selector.
+        '''
         from scoremanager import core
         configuration = core.ScoreManagerConfiguration()
         rhythm_maker_tools_directory_path = os.path.join(
@@ -312,6 +360,10 @@ class Selector(ScoreManagerObject):
     def make_rhythm_maker_package_selector(
         session=None,
         ):
+        r'''Makes rhythm-maker package selector.
+
+        Returns selector.
+        '''
         selector = Selector.make_material_package_selector(
             session=session,
             generic_output_name='rhythm-maker',
@@ -322,6 +374,10 @@ class Selector(ScoreManagerObject):
     def make_score_instrument_selector(
         session=None,
         ):
+        r'''Makes score instrument selector.
+
+        Returns selector.
+        '''
         selector = Selector(session=session)
         items = []
         if selector._session.is_in_score:
@@ -336,6 +392,10 @@ class Selector(ScoreManagerObject):
     def make_score_tools_performer_name_selector(
         session=None,
         ):
+        r'''Makes scoretools performer name selector.
+
+        Returns selector.
+        '''
         from abjad.tools import instrumenttools
         selector = Selector(session=session)
         selector.return_value_attribute = 'display_string'
@@ -355,6 +415,10 @@ class Selector(ScoreManagerObject):
     def make_tempo_selector(
         session=None,
         ):
+        r'''Makes tempo selector.
+
+        Returns selector.
+        '''
         selector = Selector(session=session)
         items = []
         manager = selector._session.current_score_package_manager

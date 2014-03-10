@@ -8,9 +8,6 @@ from scoremanager.iotools.PromptMakerMixin import PromptMakerMixin
 
 class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
     r'''User input getter.
-
-    .. note:: add docstring.
-
     '''
 
     ### INITIALIZER ###
@@ -29,7 +26,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
     ### SPECIAL METHODS ###
 
     def __len__(self):
-        r'''Number of prompts in user input getter menu.
+        r'''Gets number of prompts in user input getter menu.
 
         Returns nonnegative integer.
         '''
@@ -189,24 +186,35 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
 
     ### PUBLIC PROPERTIES ###
 
+    # TODO: make read-only
     @apply
     def allow_none():
         def fget(self):
+            r'''Gets and sets boolean indicator to allow none.
+
+            Returns boolean.
+            '''
             return self._allow_none
         def fset(self, expr):
             assert isinstance(expr, bool)
             self._allow_none = expr
         return property(**locals())
 
+    # TODO: make read-only
     @apply
     def capitalize_prompts():
         def fget(self):
+            r'''Gets and sets boolean indicator to capitalize prompts.
+
+            Returns boolean.
+            '''
             return self._capitalize_prompts
         def fset(self, expr):
             assert isinstance(expr, bool)
             self._capitalize_prompts = expr
         return property(**locals())
 
+    # TODO: make read-only
     @apply
     def include_newlines():
         def fget(self):
@@ -216,6 +224,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             self._include_newlines = expr
         return property(**locals())
 
+    # TODO: make read-only
     @apply
     def number_prompts():
         def fget(self):
@@ -225,6 +234,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             self._number_prompts = expr
         return property(**locals())
 
+    # TODO: make read-only
     @apply
     def prompt_character():
         def fget(self):
@@ -236,4 +246,8 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
 
     @property
     def prompts(self):
+        r'''Gets user input getter prompts.
+
+        Returns list of prompts.
+        '''
         return self._prompts
