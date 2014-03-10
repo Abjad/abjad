@@ -97,22 +97,24 @@ class ScoreManager(Controller):
             if result in score_package_paths:
                 self.manage_score(result)
 
-    def _make_main_menu(self):
-        menu = self._make_score_selection_menu()
-        section = menu.make_command_section()
-        section.append(('scores - new', 'new'))
+    def _make_cache_menu_section(self, menu):
         section = menu.make_command_section(is_secondary=True)
         section.append(('cache - view', 'cv'))
         section.append(('cache - write', 'cw'))
+        return menu
+
+    def _make_library_menu_section(self, menu):
         section = menu.make_command_section(is_secondary=True)
         section.append(('library - manage materials', 'lmm'))
         section.append(('library - manage stylesheets', 'lmy'))
-        section = menu.make_command_section(is_secondary=True)
-        section.append(('scores - show all', 'ssl'))
-        section.append(('scores - show active', 'ssv'))
-        section.append(('scores - show examples', 'ssx'))
-        section.append(('scores - show mothballed', 'ssmb'))
-        section.append(('scores - show user', 'ssu'))
+        return section
+
+    def _make_main_menu(self):
+        menu = self._make_score_selection_menu()
+        self._make_scores_menu_section(menu)
+        self._make_library_menu_section(menu)
+        self._make_scores_show_menu_section(menu)
+        self._make_cache_menu_section(menu)
         self._make_default_hidden_sections(menu)
         return menu
 
@@ -134,6 +136,20 @@ class ScoreManager(Controller):
         asset_section = menu.make_asset_section()
         asset_section.menu_entries = menu_entries
         return menu
+
+    def _make_scores_menu_section(self, menu):
+        section = menu.make_command_section()
+        section.append(('scores - new', 'new'))
+        return section
+
+    def _make_scores_show_menu_section(self, menu):
+        section = menu.make_command_section(is_secondary=True)
+        section.append(('scores - show all', 'ssl'))
+        section.append(('scores - show active', 'ssv'))
+        section.append(('scores - show examples', 'ssx'))
+        section.append(('scores - show mothballed', 'ssmb'))
+        section.append(('scores - show user', 'ssu'))
+        return section
 
     def _run(
         self, 
