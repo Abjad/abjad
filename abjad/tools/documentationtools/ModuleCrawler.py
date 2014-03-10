@@ -57,7 +57,7 @@ class ModuleCrawler(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __iter__(self):
+    def __iter__(self, include_score_manager=False):
         r'''Iterates module crawler.
 
         Returns generator.
