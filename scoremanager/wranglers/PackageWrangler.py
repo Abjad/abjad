@@ -59,9 +59,6 @@ class PackageWrangler(Wrangler):
         view = view_inventory.get(view_name)
         return view
 
-    def _handle_main_menu_result(self, result):
-        self._io_manager.print_not_yet_implemented()
-
     def _initialize_asset_manager(self, path):
         assert os.path.sep in path, repr(path)
         manager = self._asset_manager_class(
@@ -102,9 +99,6 @@ class PackageWrangler(Wrangler):
         if view is not None:
             entries = self._sort_asset_menu_entries_by_view(entries, view)
         return entries
-
-    def _make_main_menu(self):
-        self._io_manager.print_not_yet_implemented()
 
     @staticmethod
     def _sort_asset_menu_entries_by_view(entries, view):

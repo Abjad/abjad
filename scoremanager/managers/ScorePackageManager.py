@@ -305,6 +305,7 @@ class ScorePackageManager(PackageManager):
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
         self._make_main_menu_section(menu)
+        self._make_directory_menu_section(menu)
         self._make_initializer_menu_section(menu)
         self._make_instrumentation_module_menu_section(menu)
         self._make_score_pdf_menu_section(menu)
@@ -313,7 +314,6 @@ class ScorePackageManager(PackageManager):
         self._make_package_fix_menu_section(menu)
         self._make_score_menu_section(menu)
         return menu
-
 
     def _make_instrumentation_module_menu_section(self, menu):
         section = menu.make_command_section(is_secondary=True)
