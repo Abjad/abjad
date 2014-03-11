@@ -37,15 +37,15 @@ class SegmentPackageWrangler(PackageWrangler):
     @property
     def _user_input_to_action(self):
         superclass = super(SegmentPackageWrangler, self)
-        _user_input_to_action = superclass._user_input_to_action
-        _user_input_to_action = _user_input_to_action.copy()
-        _user_input_to_action.update({
+        result = superclass._user_input_to_action
+        result = result.copy()
+        result.update({
             'lyri': self.reinterpret_current_lilypond_files,
             'pdfm': self.make_segment_pdfs,
             'pdfs': self.version_segment_packages,
             'pdfv': self.view_segment_pdfs,
             })
-        return _user_input_to_action
+        return result
 
     ### PRIVATE METHODS ###
 
@@ -77,24 +77,39 @@ class SegmentPackageWrangler(PackageWrangler):
         message = 'segment created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
-    def _make_main_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
-        asset_section = menu.make_asset_section()
+    def _make_asset_menu_section(self, menu):
+        section = menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries()
-        asset_section.menu_entries = asset_menu_entries
+        section.menu_entries = asset_menu_entries
         section = menu.make_command_section(
             match_on_display_string=False,
             )
+        return section
+
+    def _make_current_lilypond_files_menu_section(self, menu):
+        section = menu.make_command_section(name='current lilypond files')
         string = 'all segments - current lilypond file - reinterpret'
         section.append((string, 'lyri'))
-        section = menu.make_command_section(
-            match_on_display_string=False,
-            )
+        return section
+
+    def _make_current_pdfs_menu_section(self, menu):
+        section = menu.make_command_section(name='current pdfs')
         section.append(('all segments - current pdf - make', 'pdfm'))
         section.append(('all segments - current pdf - version', 'pdfs'))
         section.append(('all segments - current pdf - view', 'pdfv'))
-        section = menu.make_command_section()
+        return section
+
+    def _make_segments_menu_section(self, menu):
+        section = menu.make_command_section(name='segments')
         section.append(('segments - new', 'new'))
+        return section
+
+    def _make_main_menu(self):
+        menu = self._io_manager.make_menu(where=self._where)
+        self._make_asset_menu_section(menu)
+        self._make_current_lilypond_files_menu_section(menu)
+        self._make_current_pdfs_menu_section(menu)
+        self._make_segments_menu_section(menu)
         section = menu.make_command_section(is_secondary=True)
         section.append(('package - list', 'ls'))
         self._make_initializer_menu_section(menu, has_initializer=True)
