@@ -135,29 +135,42 @@ class StylesheetWrangler(Wrangler):
             menu_entries = sequencetools.zip_sequences(sequences, cyclic=True)
         return menu_entries
 
-    def _make_main_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
-        self._main_menu = menu
-        asset_section = menu.make_asset_section()
-        menu._asset_section = asset_section
+    def _make_asset_menu_section(self, menu):
+        section = menu.make_asset_section()
+        menu._asset_section = section
         menu_entries = self._make_asset_menu_entries(
             include_extension=True,
             )
-        asset_section.menu_entries = menu_entries
-        if self._session.current_score_directory_path:
-            section = menu.make_command_section()
-            if self._get_header_stylesheet_file_path():
-                section.append(('header stylesheet - edit', 'hse'))
-            if self._get_layout_stylesheet_file_path():
-                section.append(('layout stylesheet - edit', 'lse'))
-            if self._get_paper_stylesheet_file_path():
-                section.append(('paper stylesheet - edit', 'pse'))
-        section = menu.make_command_section()
+        section.menu_entries = menu_entries
+        return section
+
+    def _make_main_menu(self):
+        menu = self._io_manager.make_menu(where=self._where)
+        self._main_menu = menu
+        self._make_asset_menu_section(menu)
+        self._make_stylesheet_selection_menu(menu)
+        self._make_stylesheets_menu_section(menu)
+        return menu
+
+    def _make_stylesheets_menu_section(self, menu):
+        section = menu.make_command_section(name='stylesheets')
         section.append(('stylesheets - copy', 'cp'))
         section.append(('stylesheets - new', 'new'))
         section.append(('stylesheets - rename', 'ren'))
         section.append(('stylesheets - remove', 'rm'))
-        return menu
+        return section
+
+    def _make_stylesheet_selection_menu(self, menu):
+        if not self._session.current_score_directory_path:
+            return
+        section = menu.make_command_section(name='stylesheet selection')
+        if self._get_header_stylesheet_file_path():
+            section.append(('header stylesheet - edit', 'hse'))
+        if self._get_layout_stylesheet_file_path():
+            section.append(('layout stylesheet - edit', 'lse'))
+        if self._get_paper_stylesheet_file_path():
+            section.append(('paper stylesheet - edit', 'pse'))
+        return section
 
     def _path_to_annotation(self, path):
         from scoremanager import managers
