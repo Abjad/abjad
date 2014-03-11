@@ -140,6 +140,8 @@ class MaterialPackageWrangler(PackageWrangler):
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
+        elif result == 'user entered lone return':
+            pass
         else:
             material_manager = self._initialize_asset_manager(result)
             if os.path.exists(material_manager._path):
@@ -169,13 +171,11 @@ class MaterialPackageWrangler(PackageWrangler):
         section = menu.make_asset_section(name='assets')
         asset_menu_entries = self._make_asset_menu_entries()
         section.menu_entries = asset_menu_entries
-        section = menu.make_command_section(name='new material')
-        section.append(('new material - by hand', 'nmh'))
-        section.append(('new material - with manager', 'nmm'))
+        section = menu.make_command_section(name='material')
+        section.append(('material - new by hand', 'nmh'))
+        section.append(('material - new with manager', 'nmm'))
         lilypond_section = menu['lilypond']
-        index = menu.menu_sections.index(lilypond_section) + 1
-        tour_menu_section = self._make_material_tour_menu_section(menu)
-        menu.menu_sections.insert(index, tour_menu_section)
+        self._make_material_tour_menu_section(menu)
         return menu
 
     def _make_managermade_material_package(

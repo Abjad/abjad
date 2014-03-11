@@ -54,7 +54,7 @@ class Controller(ScoreManagerObject):
     def _make_material_tour_menu_section(self, menu):
         section = menu.make_command_section(
             is_hidden=True,
-            name='tour materials',
+            name='materials - tour',
             )
         section.append(('materials - tour next', 'mtn'))
         section.append(('materials - tour previous', 'mtp'))
@@ -64,7 +64,7 @@ class Controller(ScoreManagerObject):
         section = menu.make_command_section(
             is_hidden=True,
             match_on_display_string=False,
-            name='metadata',
+            name='metadatum',
             )
         section.append(('metadatum - add', 'mma'))
         section.append(('metadatum - get', 'mmg'))
