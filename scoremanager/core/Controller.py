@@ -23,6 +23,18 @@ class Controller(ScoreManagerObject):
         sections.append(self._make_system_menu_section(menu))
         return sections
 
+    def _make_directory_management_menu_section(self, menu):
+        section = menu.make_command_section(
+            is_secondary=True,
+            name='directory management',
+            )
+        section.append(('directory - list', 'ls'))
+        section.append(('directory - list long', 'll'))
+        section.append(('directory - pwd', 'pwd'))
+        section.append(('directory - remove', 'rm'))
+        section.append(('directory - rename', 'ren'))
+        return section
+
     def _make_done_menu_section(self, menu):
         section = menu.make_command_section(
             name='done',

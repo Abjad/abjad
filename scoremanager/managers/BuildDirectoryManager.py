@@ -94,13 +94,6 @@ class BuildDirectoryManager(DirectoryManager):
         section.append(('back cover pdf - view', 'bcv'))
         return menu
 
-    def _make_directory_menu_section(self, menu):
-        section = menu.make_command_section(is_secondary=True)
-        section.append(('directory - list', 'ls'))
-        section.append(('directory - list long', 'll'))
-        section.append(('directory - pwd', 'pwd'))
-        return section
-
     def _make_front_cover_menu_section(self, menu):
         section = menu.make_command_section(name='front cover')
         section.append(('front cover latex - edit', 'fce'))
@@ -112,10 +105,10 @@ class BuildDirectoryManager(DirectoryManager):
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
         self._make_back_cover_menu_section(menu)
+        self._make_directory_management_menu_section(menu)
         self._make_front_cover_menu_section(menu)
         self._make_preface_menu_section(menu)
         self._make_score_menu_sections(menu)
-        self._make_directory_menu_section(menu)
         return menu
 
     def _make_preface_menu_section(self, menu):

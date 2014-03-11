@@ -65,18 +65,20 @@ class Wrangler(Controller):
 
     @property
     def _user_input_to_action(self):
-        user_input_to_action = {
+        result = {
             'inbp': self.write_initializer_boilerplate,
             'inrm': self.remove_initializer,
             'ins': self.write_initializer_stub,
             'inv': self.view_initializer,
             'ls': self.list,
+            'll': self.list_long,
             'mma': self.add_metadatum,
             'mmg': self.get_metadatum,
             'mmrm': self.remove_metadatum,
             'mmmrm': self.remove_metadata_module,
             'mmmrw': self.rewrite_metadata_module,
             'mmmv': self.view_metadata_module,
+            'pwd': self.pwd,
             'radd': self.add,
             'rci': self.commit,
             'ren': self.rename,
@@ -89,7 +91,7 @@ class Wrangler(Controller):
             'vwmrm': self.remove_views_module,
             'vwmv': self.view_views_module,
             }
-        return user_input_to_action
+        return result
 
     @property
     def _views_module_manager(self):
@@ -480,6 +482,13 @@ class Wrangler(Controller):
         '''
         self._current_package_manager.list()
 
+    def list_long(self):
+        r'''List directory of current package manager with ``ls -l``.
+        
+        Returns none.
+        '''
+        self._current_package_manager.list_long()
+
     def list_views(
         self,
         pending_user_input=None,
@@ -546,6 +555,13 @@ class Wrangler(Controller):
             tokens, 
             )
         self.write_view(view_name, view)
+
+    def pwd(self):
+        r'''Displays current working directory of current package manager.
+        
+        Returns none.
+        '''
+        self._current_package_manager.pwd()
 
     def pytest(self, prompt=True):
         r'''Runs py.test.
