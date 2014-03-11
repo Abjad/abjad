@@ -28,7 +28,7 @@
     Or in user score packages. But no material packages should ever 
     be created in the scoremanager/materials/ directory.
 
-11. Implement material methods to move material packages 
+11. Implement MaterialPackageWrangler method to a material package 
     from one location to another.
 
 12. Refactor scoremanager.editors to contain as few classes as possible.
@@ -49,8 +49,8 @@
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-17. Make the (u), (k), (m), (g), (p), (t) and (y) commands work from anywhere
-    within a score. Leave the commands lowercase.
+17. Make the (p), (t) and (y) commands work from anywhere within a score.
+    Leave the commands lowercase.
 
 17. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (Y) or equivalent.
@@ -112,9 +112,7 @@
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
 
-28. Make (red~example~score > ls) work.
-
-29. Add annotations to the materials in (lmm). So:
+28. Add annotations to the materials in (lmm). So:
      1: example articulation handler (Abjad)
      2: example dynamic handler (Abjad)
      3: example markup inventory (Abjad)
@@ -126,7 +124,7 @@
      9: pitch range inventory (Red Example Score)
      10: tempo inventory (Red Example Score)
 
-30. Implement no_session=False keywords on all classes that take session=None.
+29. Implement no_session=False keywords on all classes that take session=None.
     Force initializers to demand that no_session=True every time session=None.
     When session=something then no_session=False is fine and will pass.
     This will be a way of ensuring that session is being passed around
