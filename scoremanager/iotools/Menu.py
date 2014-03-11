@@ -112,7 +112,7 @@ class Menu(ScoreManagerObject):
         self._session._where = self.where
         self._clear_terminal()
         if not self._session.hide_hidden_commands:
-            self._display_hidden_commands()
+            self._display_all_commands()
         else:
             menu_lines = self._make_menu_lines()
             self._io_manager.display(
@@ -139,8 +139,8 @@ class Menu(ScoreManagerObject):
         self._session._where = None
         return result
 
-    def _display_hidden_commands(self):
-        self._session._push_breadcrumb('hidden commands')
+    def _display_all_commands(self):
+        self._session._push_breadcrumb('all commands')
         menu_lines = []
         title = self._session.menu_header
         title = stringtools.capitalize_string_start(title)
