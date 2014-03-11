@@ -62,9 +62,8 @@ class Selector(ScoreManagerObject):
         result = []
         return result
 
-    def _make_main_menu(self):
-        main_menu = self._io_manager.make_menu(where=self._where)
-        menu_section = main_menu._make_section(
+    def _make_asset_menu_section(self, menu):
+        section = menu._make_section(
             return_value_attribute=self.return_value_attribute,
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
@@ -73,8 +72,13 @@ class Selector(ScoreManagerObject):
             menu_entries = self.menu_entries
         else:
             menu_entries = self._make_menu_entries()
-        menu_section.menu_entries = menu_entries
-        return main_menu
+        section.menu_entries = menu_entries
+        return section
+
+    def _make_main_menu(self):
+        menu = self._io_manager.make_menu(where=self._where)
+        self._make_asset_menu_section(menu)
+        return menu
 
     def _make_menu_entries(self):
         return [self._change_expr_to_menu_entry(item) for item in self.items]

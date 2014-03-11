@@ -57,9 +57,9 @@ class PackageManager(DirectoryManager):
     @property
     def _user_input_to_action(self):
         superclass = super(PackageManager, self)
-        _user_input_to_action = superclass._user_input_to_action
-        _user_input_to_action = _user_input_to_action.copy()
-        _user_input_to_action.update({
+        result = superclass._user_input_to_action
+        result = result.copy()
+        result.update({
             'inbp': self.write_initializer_boilerplate,
             'inrm': self.remove_initializer,
             'ins': self.write_initializer_stub,
@@ -73,7 +73,7 @@ class PackageManager(DirectoryManager):
             'ren': self.rename,
             'rm': self.remove,
             })
-        return _user_input_to_action
+        return result
 
     @property
     def _views_module_path(self):

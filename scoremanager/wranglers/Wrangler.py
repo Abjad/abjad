@@ -272,10 +272,6 @@ class Wrangler(Controller):
         asset_section.menu_entries = asset_menu_entries
         return menu
 
-    @abc.abstractmethod
-    def _make_main_menu(self):
-        pass
-
     def _make_storehouse_menu_entries(
         self,
         abjad_library=True,

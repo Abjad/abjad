@@ -204,9 +204,9 @@ class MaterialManager(PackageManager):
     @property
     def _user_input_to_action(self):
         superclass = super(MaterialManager, self)
-        _user_input_to_action = superclass._user_input_to_action
-        _user_input_to_action = _user_input_to_action.copy()
-        _user_input_to_action.update({
+        result = superclass._user_input_to_action
+        result = result.copy()
+        result.update({
             'ibe': self.edit_illustration_builder_module,
             'ibei': self.edit_and_interpret_illustration_builder_module,
             'ibm': self.write_illustration_builder_module_stub,
@@ -240,7 +240,7 @@ class MaterialManager(PackageManager):
             'uit': self.toggle_user_input_values_default_status,
             'uimv': self.view_user_input_module,
             })
-        return _user_input_to_action
+        return result
 
     ### PRIVATE METHODS ###
 

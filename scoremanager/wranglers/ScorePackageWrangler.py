@@ -36,10 +36,10 @@ class ScorePackageWrangler(PackageWrangler):
         superclass = super(ScorePackageWrangler, self)
         superclass.__init__(session=session)
         self._asset_manager_class = managers.ScorePackageManager
-        self.abjad_storehouse_path = \
-            self._configuration.abjad_score_packages_directory_path
-        self.user_storehouse_path = \
-            self._configuration.user_score_packages_directory_path
+        path = self._configuration.abjad_score_packages_directory_path
+        self.abjad_storehouse_path = path
+        path = self._configuration.user_score_packages_directory_path
+        self.user_storehouse_path = path
 
     ### PRIVATE PROPERTIES ###
 
@@ -50,11 +50,11 @@ class ScorePackageWrangler(PackageWrangler):
     @property
     def _current_storehouse_path(self):
         if self._session.is_in_score:
-            if self._session.current_score_snake_case_name in \
-                    sorted(os.listdir(
-                self._configuration.abjad_score_packages_directory_path)):
-                return \
-                    self._configuration.abjad_score_packages_directory_path
+            path = self._configuration.abjad_score_packages_directory_path
+            directory_entries = sorted(os.listdir(path))
+            current_score = self._session.current_score_snake_case_name
+            if current_score in directory_entries:
+                return path
             else:
                 return self._configuration.user_score_packages_directory_path
         else:
@@ -110,6 +110,3 @@ class ScorePackageWrangler(PackageWrangler):
             entry = (score_title, None, None, path)
             menu_entries.append(entry)
         return menu_entries
-
-    def _make_main_menu(self):
-        self._io_manager.print_not_yet_implemented()

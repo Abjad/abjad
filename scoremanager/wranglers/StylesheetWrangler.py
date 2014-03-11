@@ -47,15 +47,15 @@ class StylesheetWrangler(Wrangler):
     @property
     def _user_input_to_action(self):
         superclass = super(StylesheetWrangler, self)
-        _user_input_to_action = superclass._user_input_to_action
-        _user_input_to_action = _user_input_to_action.copy()
-        _user_input_to_action.update({
+        result = superclass._user_input_to_action
+        result = result.copy()
+        result.update({
             'hse': self.edit_header_stylesheet,
             'lse': self.edit_layout_stylesheet,
             'pse': self.edit_paper_stylesheet,
             'new': self.make_asset,
             })
-        return _user_input_to_action
+        return result
 
     ### PRIVATE METHODS ###
 

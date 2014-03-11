@@ -62,6 +62,13 @@ class DirectoryManager(Manager):
             menu_entries = sequencetools.zip_sequences(sequences, cyclic=True)
         return menu_entries
 
+    def _make_asset_menu_section(self, menu):
+        asset_section = menu.make_asset_section()
+        menu._asset_section = asset_section
+        menu_entries = self._make_asset_menu_entries()
+        asset_section.menu_entries = menu_entries
+        return menu
+
     def _make_empty_asset(self, prompt=False):
         if not os.path.exists(self._path):
             os.makedirs(self._path)
@@ -73,13 +80,10 @@ class DirectoryManager(Manager):
         self._io_manager.proceed(prompt=prompt)
 
     def _make_main_menu(self):
-        main_menu = self._io_manager.make_menu(where=self._where)
-        self._main_menu = main_menu
-        asset_section = main_menu.make_asset_section()
-        main_menu._asset_section = asset_section
-        menu_entries = self._make_asset_menu_entries()
-        asset_section.menu_entries = menu_entries
-        return main_menu
+        menu = self._io_manager.make_menu(where=self._where)
+        self._main_menu = menu
+        self._make_asset_menu_section(menu)
+        return menu
 
     def _run_asset_manager(
         self,

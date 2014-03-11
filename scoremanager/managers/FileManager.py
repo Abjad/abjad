@@ -28,14 +28,14 @@ class FileManager(Manager):
     @property
     def _user_input_to_action(self):
         superlcass = super(FileManager, self)
-        _user_input_to_action = superclass._user_input_to_action
-        _user_input_to_action = _user_input_to_action.copy()
-        _user_input_to_action.update({
+        result = superclass._user_input_to_action
+        result = result.copy()
+        result.update({
             'e': self.edit,
             'ts': self.typeset_tex_file,
             'v': self.view,
             })
-        return _user_input_to_action
+        return result
 
     ### PRIVATE METHODS ###
 
@@ -100,9 +100,7 @@ class FileManager(Manager):
             file_reference.close()
         self._io_manager.proceed(prompt=prompt)
 
-    def _make_main_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
-        self._main_menu = menu
+    def _make_file_menu_section(self, menu):
         section = menu.make_command_section()
         if self._is_editable():
             section.append(('file - edit', 'e'))
@@ -115,6 +113,12 @@ class FileManager(Manager):
             section.append(('file - typeset', 'ts'))
         if self._path.endswith('.pdf'):
             section.append(('file - view', 'v'))
+        return section
+
+    def _make_main_menu(self):
+        menu = self._io_manager.make_menu(where=self._where)
+        self._main_menu = menu
+        self._make_file_menu_section(self, menu)
         return menu
 
     def _read_lines(self):
