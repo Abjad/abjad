@@ -39,6 +39,10 @@ class SegmentPackageManager(PackageManager):
     @property
     def _segment_definition_module_manager(self):
         from scoremanager import managers
+        if not os.path.exists(self._segment_definition_module_path):
+            message = 'no definition.py module found.'
+            self._io_manager.confirm(message)
+            return
         manager = managers.FileManager(
             self._segment_definition_module_path,
             session=self._session,
@@ -52,9 +56,9 @@ class SegmentPackageManager(PackageManager):
     @property
     def _user_input_to_action(self):
         superclass = super(SegmentPackageManager, self)
-        _user_input_to_action = superclass._user_input_to_action
-        _user_input_to_action = _user_input_to_action.copy()
-        _user_input_to_action.update({
+        result = superclass._user_input_to_action
+        result = result.copy()
+        result.update({
             'E': self.edit_segment_definition_module_from_top,
             'e': self.edit_segment_definition_module,
             'lyri': self.reinterpret_current_lilypond_file,
@@ -68,7 +72,7 @@ class SegmentPackageManager(PackageManager):
             'pdfs': self.save_to_versions_directory,
             'vrl': self.list_versions_directory,
             })
-        return _user_input_to_action
+        return result
 
     @property
     def _versions_directory_path(self):
@@ -96,41 +100,61 @@ class SegmentPackageManager(PackageManager):
         elif result == 'user entered lone return':
             self.edit_segment_definition_module()
 
-    def _make_main_menu(self):
-        superclass = super(SegmentPackageManager, self)
-        where = self._where
-        menu, section = superclass._make_main_menu(where=where)
-        section.append(('package - remove', 'rm'))
-        section.append(('package - list ', 'ls'))
-        section.append(('package - rename', 'ren'))
-        section = menu.make_command_section()
-        section.append(('segment definition module - edit', 'e'))
-        section = menu.make_command_section()
-        section.append(('current pdf - make', 'pdfm'))
-        if os.path.isfile(self._output_pdf_file_path):
-            section.append(('current pdf - version', 'pdfs'))
-        if os.path.isfile(self._output_pdf_file_path):
-            section.append(('current pdf - view', 'pdfv'))
-            section.default_index = len(section) - 1
-        section = menu.make_command_section()
-        versions_directory_path = self._versions_directory_path
-        if self._is_populated_directory(versions_directory_path):
-            section.append(('versioned pdfs - view', 'vv'))
-        section = menu.make_command_section(is_secondary=True)
-        section.append(('segment definition module - edit at top', 'E'))
+    def _make_current_lilypond_file_menu_section(self, menu):
         if os.path.isfile(self._output_lilypond_file_path):
             section = menu.make_command_section(is_secondary=True)
             string = 'current lilypond file - reinterpret'
             section.append((string, 'lyri'))
             string = 'current lilypond file - view'
             section.append((string, 'lyv'))
-        section = menu.make_command_section(is_secondary=True)
+        return section
+
+    def _make_current_pdf_menu_section(self, menu):
+        section = menu.make_command_section(name='current pdf')
+        section.append(('current pdf - make', 'pdfm'))
+        if os.path.isfile(self._output_pdf_file_path):
+            section.append(('current pdf - version', 'pdfs'))
+        if os.path.isfile(self._output_pdf_file_path):
+            section.append(('current pdf - view', 'pdfv'))
+            section.default_index = len(section) - 1
+        return section
+
+    def _make_versioned_pdfs_menu_section(self, menu):
+        section = menu.make_command_section(name='versioned pdfs')
+        versions_directory_path = self._versions_directory_path
+        if self._is_populated_directory(versions_directory_path):
+            section.append(('versioned pdfs - view', 'vv'))
+        return section
+
+    def _make_versions_directory_menu_section(self, menu):
+        section = menu.make_command_section(
+            is_secondary=True,
+            name='versions directory',
+            )
         section.append(('versioned output ly - view', 'lyver'))
         section.append(('versioned output pdf - view', 'pdfv'))
         string = 'versioned segment definition module - view'
         section.append((string, 'pyver'))
         section.append(('versions directory - list', 'vrl'))
+        return section
+
+    def _make_main_menu(self):
+        superclass = super(SegmentPackageManager, self)
+        where = self._where
+        menu, section = superclass._make_main_menu(where=where)
+        self._make_directory_menu_section(menu)
+        self._make_segment_definition_module_menu_section(menu)
+        self._make_current_pdf_menu_section(menu)
+        self._make_versioned_pdfs_menu_section(menu)
+        self._make_current_lilypond_file_menu_section(menu)
+        self._make_versions_directory_menu_section(menu)
         return menu
+
+    def _make_segment_definition_module_menu_section(self, menu):
+        section = menu.make_command_section(name='segment definition module')
+        section.append(('segment definition module - edit', 'e'))
+        section.append(('segment definition module - edit at top', 'E'))
+        return section
 
     def _view_versioned_file(self, extension):
         assert extension in ('.ly', '.pdf', '.py')
@@ -178,7 +202,10 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
-        self._segment_definition_module_manager.edit()
+        manager = self._segment_definition_module_manager
+        if not manager:
+            return
+        manager.edit()
 
     def edit_segment_definition_module_from_top(
         self,
@@ -189,8 +216,10 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
-        self._segment_definition_module_manager.edit(
-            line_number=1)
+        manager = self._segment_definition_module_manager
+        if not manager:
+            return
+        manager.edit(line_number=1)
 
     def list_versions_directory(self):
         r'''Lists versions directory.
@@ -228,6 +257,8 @@ class SegmentPackageManager(PackageManager):
         if os.path.isfile(output_pdf_file_path):
             modification_time = os.path.getmtime(output_pdf_file_path)
         manager = self._segment_definition_module_manager
+        if not manager:
+            return
         manager._interpret_in_external_process()
         new_modification_time = 0
         if os.path.isfile(output_pdf_file_path):

@@ -110,7 +110,7 @@ class SegmentPackageWrangler(PackageWrangler):
         self._make_current_lilypond_files_menu_section(menu)
         self._make_current_pdfs_menu_section(menu)
         self._make_segments_menu_section(menu)
-        self._make_directory_management_menu_section(menu)
+        self._make_directory_menu_section(menu)
         self._make_initializer_menu_section(menu, has_initializer=True)
         self._make_metadata_menu_section(menu)
         self._make_metadata_module_menu_section(menu)

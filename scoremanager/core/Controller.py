@@ -23,7 +23,7 @@ class Controller(ScoreManagerObject):
         sections.append(self._make_system_menu_section(menu))
         return sections
 
-    def _make_directory_management_menu_section(self, menu):
+    def _make_directory_menu_section(self, menu):
         section = menu.make_command_section(
             is_secondary=True,
             name='directory management',

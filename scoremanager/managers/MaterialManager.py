@@ -458,7 +458,7 @@ class MaterialManager(PackageManager):
         self._make_illustration_ly_menu_section(menu)
         self._make_output_material_menu_section(menu)
         self._make_illustration_pdf_menu_section(menu)
-        self._make_directory_management_menu_section(menu)
+        self._make_directory_menu_section(menu)
         self._make_stylesheet_menu_section(menu)
         if self._should_have_user_input_module:
             editor = self._get_output_material_editor()
