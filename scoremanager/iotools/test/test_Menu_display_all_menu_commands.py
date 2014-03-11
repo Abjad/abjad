@@ -9,7 +9,7 @@ def test_Menu_display_all_menu_commands_01():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='n q', is_test=True)
 
-    string = 'Score manager - example scores - all commands'
+    string = 'Score manager - example scores - commands'
     assert score_manager._transcript.last_title == string
 
 
@@ -20,7 +20,7 @@ def test_Menu_display_all_menu_commands_02():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='n asdf q', is_test=True)
 
-    string_1 = 'Score manager - example scores - all commands'
+    string_1 = 'Score manager - example scores - commands'
     string_2 = 'Score manager - example scores'
     transcript = score_manager._transcript
 
@@ -35,7 +35,7 @@ def test_Menu_display_all_menu_commands_03():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='n lvl q', is_test=True)
 
-    string_2 = 'Score manager - example scores - all commands'
+    string_2 = 'Score manager - example scores - commands'
     string_1 = 'Score manager - example scores'
     transcript = score_manager._transcript
 
@@ -51,7 +51,7 @@ def test_Menu_display_all_menu_commands_04():
     string = 'red~example~score n q'
     score_manager._run(pending_user_input=string, is_test=True)
 
-    string = 'Red Example Score (2013) - all commands'
+    string = 'Red Example Score (2013) - commands'
     transcript = score_manager._transcript
     assert transcript.system_display_entries[-1].title == string
 
@@ -104,7 +104,7 @@ def test_Menu_display_all_menu_commands_08():
     string = 'red~example~score n radd q'
     score_manager._run(pending_user_input=string, is_test=True)
 
-    string = 'Red Example Score (2013) - all commands'
+    string = 'Red Example Score (2013) - commands'
     transcript = score_manager._transcript
     assert transcript.last_title == string
 
@@ -118,7 +118,7 @@ def test_Menu_display_all_menu_commands_09():
     string = 'red~example~score n rci q'
     score_manager._run(pending_user_input=string, is_test=True)
 
-    string = 'Red Example Score (2013) - all commands'
+    string = 'Red Example Score (2013) - commands'
     transcript = score_manager._transcript
     assert transcript.last_title == string
 
@@ -132,7 +132,7 @@ def test_Menu_display_all_menu_commands_10():
     string = 'red~example~score n rst q'
     score_manager._run(pending_user_input=string, is_test=True)
 
-    string = 'Red Example Score (2013) - all commands'
+    string = 'Red Example Score (2013) - commands'
     transcript = score_manager._transcript
     assert transcript.last_title == string
 
@@ -146,7 +146,7 @@ def test_Menu_display_all_menu_commands_11():
     string = 'red~example~score n rup q'
     score_manager._run(pending_user_input=string, is_test=True)
 
-    string = 'Red Example Score (2013) - all commands'
+    string = 'Red Example Score (2013) - commands'
     transcript = score_manager._transcript
     assert transcript.last_title == string
 

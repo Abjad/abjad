@@ -141,7 +141,7 @@ class Menu(ScoreManagerObject):
         return result
 
     def _display_all_commands(self):
-        self._session._push_breadcrumb('all commands')
+        self._session._push_breadcrumb('commands')
         menu_lines = []
         title = self._session.menu_header
         title = stringtools.capitalize_string_start(title)
