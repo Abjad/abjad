@@ -20,11 +20,12 @@ def test_Menu_display_all_menu_commands_02():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='n asdf q', is_test=True)
 
-    string = 'Score manager - example scores - all commands'
+    string_1 = 'Score manager - example scores - all commands'
+    string_2 = 'Score manager - example scores'
     transcript = score_manager._transcript
 
-    assert transcript.system_display_entries[-1].title == string
-    assert transcript.system_display_entries[-2].title == string
+    assert transcript.system_display_entries[-1].title == string_2
+    assert transcript.system_display_entries[-2].title == string_1
 
 
 def test_Menu_display_all_menu_commands_03():
@@ -34,11 +35,12 @@ def test_Menu_display_all_menu_commands_03():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='n lvl q', is_test=True)
 
-    string = 'Score manager - example scores - all commands'
+    string_2 = 'Score manager - example scores - all commands'
+    string_1 = 'Score manager - example scores'
     transcript = score_manager._transcript
 
-    assert transcript.system_display_entries[-1].title == string
-    assert transcript.system_display_entries[-2].title == string
+    assert transcript.system_display_entries[-2].title == string_2
+    assert transcript.system_display_entries[-1].title == string_1
 
 
 def test_Menu_display_all_menu_commands_04():
@@ -62,7 +64,7 @@ def test_Menu_display_all_menu_commands_05():
     string = 'red~example~score n pyd default q'
     score_manager._run(pending_user_input=string, is_test=True)
 
-    string = 'Red Example Score (2013) - all commands'
+    string = 'Red Example Score (2013)'
     transcript = score_manager._transcript
     assert transcript.last_title == string
 
@@ -75,7 +77,7 @@ def test_Menu_display_all_menu_commands_06():
     string = 'red~example~score n pyt default q'
     score_manager._run(pending_user_input=string, is_test=True)
 
-    string = 'Red Example Score (2013) - all commands'
+    string = 'Red Example Score (2013)'
     transcript = score_manager._transcript
     assert transcript.last_title == string
 
@@ -88,7 +90,7 @@ def test_Menu_display_all_menu_commands_07():
     string = 'red~example~score n pyi 2**38 redraw q'
     score_manager._run(pending_user_input=string, is_test=True)
 
-    string = 'Red Example Score (2013) - all commands'
+    string = 'Red Example Score (2013)'
     transcript = score_manager._transcript
     assert transcript.last_title == string
 
@@ -157,7 +159,7 @@ def test_Menu_display_all_menu_commands_12():
     string = 'red~example~score n o default q'
     score_manager._run(pending_user_input=string, is_test=True)
 
-    string = 'Red Example Score (2013) - all commands'
+    string = 'Red Example Score (2013)'
     transcript = score_manager._transcript
     assert transcript.last_title == string
 
@@ -170,7 +172,7 @@ def test_Menu_display_all_menu_commands_13():
     string = 'red~example~score n sct redraw q'
     score_manager._run(pending_user_input=string, is_test=True)
 
-    string = 'Red Example Score (2013) - all commands'
+    string = 'Red Example Score (2013)'
     transcript = score_manager._transcript
     assert transcript.last_title == string
 
@@ -183,7 +185,7 @@ def test_Menu_display_all_menu_commands_14():
     string = 'red~example~score n sct scl redraw q'
     score_manager._run(pending_user_input=string, is_test=True)
 
-    string = 'Red Example Score (2013) - all commands'
+    string = 'Red Example Score (2013)'
     transcript = score_manager._transcript
     assert transcript.last_title == string
 
@@ -196,7 +198,7 @@ def test_Menu_display_all_menu_commands_15():
     string = 'red~example~score n sct sce q'
     score_manager._run(pending_user_input=string, is_test=True)
 
-    string = 'Red Example Score (2013) - all commands'
+    string = 'Red Example Score (2013)'
     transcript = score_manager._transcript
     assert transcript.last_title == string
     assert score_manager._session.attempted_to_open_file

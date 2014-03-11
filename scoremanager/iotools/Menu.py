@@ -115,12 +115,11 @@ class Menu(ScoreManagerObject):
         self._clear_terminal()
         if not self._session.hide_hidden_commands:
             self._display_all_commands()
-        else:
-            menu_lines = self._make_menu_lines()
-            self._io_manager.display(
-                menu_lines,
-                capitalize_first_character=False,
-                )
+        menu_lines = self._make_menu_lines()
+        self._io_manager.display(
+            menu_lines,
+            capitalize_first_character=False,
+            )
         if predetermined_user_input is not None:
             self._session._where = None
             return predetermined_user_input
@@ -164,6 +163,8 @@ class Menu(ScoreManagerObject):
             clear_terminal=True,
             )
         self._session._pop_breadcrumb()
+        self._session._hide_hidden_commands = True
+        self._session._hide_next_redraw = True
 
     def _enclose_in_list(self, expr):
         if self._has_ranged_section():
