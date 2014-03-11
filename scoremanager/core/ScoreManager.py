@@ -121,7 +121,7 @@ class ScoreManager(Controller):
         self._make_library_menu_section(menu)
         self._make_scores_show_menu_section(menu)
         self._make_cache_menu_section(menu)
-        self._make_default_hidden_sections(menu)
+        menu._make_default_hidden_sections()
         return menu
 
     def _make_score_selection_menu(self):
