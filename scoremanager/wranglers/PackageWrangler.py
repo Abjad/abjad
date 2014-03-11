@@ -36,13 +36,13 @@ class PackageWrangler(Wrangler):
     @property
     def _user_input_to_action(self):
         superclass = super(PackageWrangler, self)
-        _user_input_to_action = superclass._user_input_to_action
-        _user_input_to_action = _user_input_to_action.copy()
-        _user_input_to_action.update({
+        result = superclass._user_input_to_action
+        result = result.copy()
+        result.update({
             'new': self.make_asset,
             'ren': self.rename,
             })
-        return _user_input_to_action
+        return result
 
     ### PRIVATE METHODS ###
 

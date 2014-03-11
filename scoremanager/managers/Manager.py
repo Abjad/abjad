@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import copy
 import os
 import shutil
 import subprocess
@@ -74,7 +75,10 @@ class Manager(Controller):
 
     @property
     def _user_input_to_action(self):
-        _user_input_to_action = {
+        superclass = super(Manager, self)
+        result = superclass._user_input_to_action
+        result = copy.deepcopy(result)
+        result.update({
             'cp': self.copy,
             'ls': self.list,
             'll': self.list_long,
@@ -84,8 +88,8 @@ class Manager(Controller):
             'ren': self.rename,
             'rup': self.update,
             'rst': self.status,
-            }
-        return _user_input_to_action
+            })
+        return result
 
     ### PRIVATE METHODS ###
 

@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
+import copy
 import os
 import subprocess
 from abjad.tools import datastructuretools
@@ -65,7 +66,10 @@ class Wrangler(Controller):
 
     @property
     def _user_input_to_action(self):
-        result = {
+        superclass = super(Wrangler, self)
+        result = superclass._user_input_to_action
+        result = copy.deepcopy(result)
+        result.update({
             'inbp': self.write_initializer_boilerplate,
             'inrm': self.remove_initializer,
             'ins': self.write_initializer_stub,
@@ -90,7 +94,7 @@ class Wrangler(Controller):
             'vws': self.select_view,
             'vwmrm': self.remove_views_module,
             'vwmv': self.view_views_module,
-            }
+            })
         return result
 
     @property

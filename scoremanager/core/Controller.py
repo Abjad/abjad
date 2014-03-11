@@ -6,6 +6,14 @@ class Controller(ScoreManagerObject):
     r'''Controller.
     '''
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _user_input_to_action(self):
+        result = {
+            }
+        return result
+
     ### PRIVATE METHODS ###
 
     def _make_default_hidden_sections(self, menu):
