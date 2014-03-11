@@ -335,7 +335,7 @@ class Menu(ScoreManagerObject):
             hide = self._session.hide_secondary_commands
             if hide and menu_section.is_secondary:
                 continue
-            if menu_section.is_hidden:
+            if hide and menu_section.is_hidden:
                 continue
             section_menu_lines = menu_section._make_menu_lines()
             result.extend(section_menu_lines)
