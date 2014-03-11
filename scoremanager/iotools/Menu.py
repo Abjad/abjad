@@ -92,6 +92,8 @@ class Menu(ScoreManagerObject):
             return self._handle_argument_range_user_input(user_input)
         elif user_input == 'r':
             return 'r'
+        elif user_input == '?':
+            return '?'
         elif 3 <= len(user_input) and 'score'.startswith(user_input):
             return 'score'
         else:
@@ -335,7 +337,8 @@ class Menu(ScoreManagerObject):
             return_value_attribute='key',
             )
         section.append(('system - back', 'b'))
-        section.append(('system - hidden', 'n'))
+        section.append(('system - all', 'n'))
+        #section.append(('system - all', '?'))
         section.append(('system - home', 'h'))
         section.append(('system - quit', 'q'))
         section.append(('system - score', 's'))
