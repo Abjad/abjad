@@ -147,6 +147,8 @@ class Menu(ScoreManagerObject):
         menu_lines.append(title)
         menu_lines.append('')
         for menu_section in self.menu_sections:
+            if menu_section.is_asset_section:
+                continue
             for menu_entry in menu_section.menu_entries:
                 key = menu_entry.key
                 display_string = menu_entry.display_string
