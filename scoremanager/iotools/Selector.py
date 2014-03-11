@@ -65,9 +65,10 @@ class Selector(ScoreManagerObject):
     def _make_asset_menu_section(self, menu):
         section = menu._make_section(
             name='assets',
-            return_value_attribute=self.return_value_attribute,
+            is_asset_section=True,
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
+            return_value_attribute=self.return_value_attribute,
             )
         if hasattr(self, 'menu_entries'):
             menu_entries = self.menu_entries

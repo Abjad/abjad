@@ -297,6 +297,7 @@ class Menu(ScoreManagerObject):
 
     def _make_section(
         self, 
+        is_asset_section=False,
         is_hidden=False, 
         is_numbered=False, 
         is_ranged=False, 
@@ -310,6 +311,7 @@ class Menu(ScoreManagerObject):
         assert not (is_numbered and self._has_numbered_section())
         assert not (is_ranged and self._has_ranged_section())
         menu_section = iotools.MenuSection(
+            is_asset_section=is_asset_section,
             is_hidden=is_hidden,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
@@ -516,6 +518,7 @@ class Menu(ScoreManagerObject):
         '''
         name = name or 'assets'
         section = self._make_section(
+            is_asset_section=True,
             is_numbered=True,
             name=name,
             return_value_attribute='explicit',
@@ -593,6 +596,7 @@ class Menu(ScoreManagerObject):
 
         With these attributes:
 
+            * asset section
             * numbered
             * ranged
             * return value equal to display string
@@ -600,6 +604,7 @@ class Menu(ScoreManagerObject):
         Returns menu section.
         '''
         numbered_list_section = self._make_section(
+            is_asset_section=True,
             is_numbered=True,
             is_ranged=True,
             name=name,
@@ -612,14 +617,16 @@ class Menu(ScoreManagerObject):
 
         With these attributes:
 
+            * asset section
             * numbered
             * return value equal to item number
 
         Returns menu section.
         '''
         numbered_section = self._make_section(
-            is_numbered=True,
             name=name,
+            is_asset_section=True,
+            is_numbered=True,
             return_value_attribute='number',
             )
         return numbered_section

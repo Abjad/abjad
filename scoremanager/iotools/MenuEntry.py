@@ -38,6 +38,20 @@ class MenuEntry(AbjadObject):
         prepopulated_value=None,
         explicit_return_value=None,
         ):
+        prototype_names = (
+            'done',
+            'keyed attributes',
+            'keyed attribute section',
+            'instrumentation',
+            'main',
+            'numbered section',
+            'pitch range',
+            'setup',
+            'test',
+            )
+        if not menu_section.is_asset_section:
+            if not menu_section.name in prototype_names:
+                assert '-' in display_string, repr(menu_section)
         self._menu_section = menu_section
         self._display_string = display_string
         self._key = key

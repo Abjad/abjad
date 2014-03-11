@@ -42,6 +42,7 @@ class MenuSection(AbjadObject):
         return_value_attribute='display_string',
         default_index=None,
         indent_level=1,
+        is_asset_section=False,
         is_hidden=False,
         is_numbered=False,
         is_ranged=False,
@@ -58,6 +59,7 @@ class MenuSection(AbjadObject):
         self.return_value_attribute = return_value_attribute
         self.default_index = default_index
         self.indent_level = indent_level
+        self._is_asset_section = is_asset_section
         self.is_hidden = is_hidden
         self.is_numbered = is_numbered
         self.is_ranged = is_ranged
@@ -270,6 +272,14 @@ class MenuSection(AbjadObject):
             assert isinstance(indent_level, int) and 0 <= indent_level
             self._indent_level = indent_level
         return property(**locals())
+
+    @property
+    def is_asset_section(self):
+        r'''Is true when menu section lists assets. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._is_asset_section
 
     # TODO: make read-only
     @apply
