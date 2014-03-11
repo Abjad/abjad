@@ -43,7 +43,6 @@ class MenuSection(AbjadObject):
         default_index=None,
         indent_level=1,
         is_secondary=False,
-        is_hidden=False,
         is_numbered=False,
         is_ranged=False,
         display_prepopulated_values=False,
@@ -59,7 +58,6 @@ class MenuSection(AbjadObject):
         self.default_index = default_index
         self.indent_level = indent_level
         self.is_secondary = is_secondary
-        self.is_hidden = is_hidden
         self.is_numbered = is_numbered
         self.is_ranged = is_ranged
         self.display_prepopulated_values = display_prepopulated_values
@@ -85,9 +83,6 @@ class MenuSection(AbjadObject):
         if self.is_secondary:
             left_parenthesis = '['
             right_parenthesis = ']'
-        if self.is_hidden:
-            left_parenthesis = '{'
-            right_parenthesis = '}'
         if self.name:
             return '<{} {!r} {}{}{}>'.format(
                 type(self).__name__, 

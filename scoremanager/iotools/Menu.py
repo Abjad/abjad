@@ -147,8 +147,6 @@ class Menu(ScoreManagerObject):
         menu_lines.append(title)
         menu_lines.append('')
         for menu_section in self.menu_sections:
-            if not menu_section.is_hidden:
-                continue
             for menu_entry in menu_section.menu_entries:
                 key = menu_entry.key
                 display_string = menu_entry.display_string
@@ -173,8 +171,6 @@ class Menu(ScoreManagerObject):
         for menu_section in self.menu_sections:
             if menu_section.is_secondary:
                 continue
-#            if menu_section.is_hidden:
-#                continue
             if menu_section._menu_entry_return_values:
                 return menu_section._menu_entry_return_values[0]
 
@@ -303,7 +299,6 @@ class Menu(ScoreManagerObject):
     def _make_section(
         self, 
         is_secondary=False, 
-        is_hidden=False,
         is_numbered=False, 
         is_ranged=False, 
         display_prepopulated_values=False,
@@ -317,7 +312,6 @@ class Menu(ScoreManagerObject):
         assert not (is_ranged and self._has_ranged_section())
         menu_section = iotools.MenuSection(
             is_secondary=is_secondary,
-            is_hidden=is_hidden,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
             display_prepopulated_values=display_prepopulated_values,
@@ -334,8 +328,6 @@ class Menu(ScoreManagerObject):
         for menu_section in self.menu_sections:
             hide = self._session.hide_secondary_commands
             if hide and menu_section.is_secondary:
-                continue
-            if hide and menu_section.is_hidden:
                 continue
             section_menu_lines = menu_section._make_menu_lines()
             result.extend(section_menu_lines)
@@ -551,7 +543,6 @@ class Menu(ScoreManagerObject):
 
     def make_command_section(
         self,
-        is_hidden=False,
         is_secondary=False,
         match_on_display_string=True,
         menu_entries=None,
@@ -568,7 +559,6 @@ class Menu(ScoreManagerObject):
         Returns menu section.
         '''
         command_section = self._make_section(
-            is_hidden=is_hidden,
             is_secondary=is_secondary,
             match_on_display_string=match_on_display_string,
             name=name,
