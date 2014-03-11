@@ -145,14 +145,14 @@ class ScoreManager(Controller):
 
     def _make_scores_menu_section(self, menu):
         section = menu.make_command_section(
-            name='scores show',
+            name='scores - new',
             )
         section.append(('scores - new', 'new'))
         return section
 
     def _make_scores_show_menu_section(self, menu):
         section = menu.make_command_section(
-            name='scores show',
+            name='scores - show',
             is_hidden=True,
             )
         section.append(('scores - show all', 'ssl'))

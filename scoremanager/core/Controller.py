@@ -31,7 +31,7 @@ class Controller(ScoreManagerObject):
 
     def _make_done_menu_section(self, menu):
         section = menu.make_command_section(
-            name='done',
+            name='zzz - done',
             )
         section.append(('done', 'done'))
         return section

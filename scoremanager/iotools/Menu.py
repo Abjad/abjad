@@ -270,7 +270,7 @@ class Menu(ScoreManagerObject):
         section = self._make_section(
             is_hidden=True,
             match_on_display_string=False,
-            name='tour',
+            name='scores - tour',
             return_value_attribute='key',
             )
         section.append(('scores - tour next', 'stn'))
@@ -304,6 +304,7 @@ class Menu(ScoreManagerObject):
             )
         menu_section.menu_entries = menu_entries
         self.menu_sections.append(menu_section)
+        self.menu_sections.sort(key=lambda x: x.name)
         return menu_section
 
     def _make_section_lines(self):

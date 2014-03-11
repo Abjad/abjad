@@ -48,6 +48,7 @@ class MenuEntry(AbjadObject):
             'pitch range',
             'setup',
             'test',
+            'zzz - done',
             )
         if not menu_section.is_asset_section:
             if not menu_section.name in prototype_names:
