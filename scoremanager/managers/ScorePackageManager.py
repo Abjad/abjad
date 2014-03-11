@@ -229,6 +229,7 @@ class ScorePackageManager(PackageManager):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
+            'd': self._distribution_directory_manager._run,
             'g': self._segment_package_wrangler._run,
             'fix': self.fix,
             'instrumentation': self._instrumentation_module_manager.edit,
@@ -305,7 +306,7 @@ class ScorePackageManager(PackageManager):
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
         self._make_main_menu_section(menu)
-        self._make_directory_menu_section(menu)
+        self._make_directory_menu_section(menu, is_permanent=True)
         self._make_initializer_menu_section(menu)
         self._make_instrumentation_module_menu_section(menu)
         self._make_score_pdf_menu_section(menu)
@@ -323,6 +324,7 @@ class ScorePackageManager(PackageManager):
     def _make_main_menu_section(self, menu):
         section = menu.make_command_section()
         section.append(('build', 'u'))
+        section.append(('distribution', 'd'))
         section.append(('makers', 'k'))
         section.append(('materials', 'm'))
         section.append(('segments', 'g'))

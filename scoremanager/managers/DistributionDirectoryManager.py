@@ -17,3 +17,12 @@ class DistributionDirectoryManager(DirectoryManager):
             path=path,
             session=session,
             )
+        if not os.path.exists(path):
+            self._make_empty_asset()
+
+    ### PRIVATE METHODS ###
+
+    def _make_main_menu(self):
+        menu = self._io_manager.make_menu(where=self._where)
+        self._make_directory_menu_section(menu, is_permanent=True)
+        return menu

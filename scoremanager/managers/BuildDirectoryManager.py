@@ -31,9 +31,9 @@ class BuildDirectoryManager(DirectoryManager):
     @property
     def _user_input_to_action(self):
         superclass = super(BuildDirectoryManager, self)
-        _user_input_to_action = superclass._user_input_to_action
-        _user_input_to_action = _user_input_to_action.copy()
-        _user_input_to_action.update({
+        result = superclass._user_input_to_action
+        result = result.copy()
+        result.update({
             'bce': self.edit_back_cover_latex,
             'bcg': self.generate_back_cover_latex,
             'bct': self.typeset_back_cover_latex,
@@ -56,7 +56,7 @@ class BuildDirectoryManager(DirectoryManager):
             'segly': self.interpret_segment_assembly_lilypond_file,
             'segv': self.view_segment_assembly_pdf,
             })
-        return _user_input_to_action
+        return result
 
     ### PRIVATE METHODS ###
 
@@ -105,7 +105,7 @@ class BuildDirectoryManager(DirectoryManager):
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
         self._make_back_cover_menu_section(menu)
-        self._make_directory_menu_section(menu)
+        self._make_directory_menu_section(menu, is_permanent=True)
         self._make_front_cover_menu_section(menu)
         self._make_preface_menu_section(menu)
         self._make_score_menu_sections(menu)

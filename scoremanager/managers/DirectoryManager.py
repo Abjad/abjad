@@ -25,12 +25,12 @@ class DirectoryManager(Manager):
     @property
     def _user_input_to_action(self):
         superclass = super(DirectoryManager, self)
-        _user_input_to_action = superclass._user_input_to_action
-        _user_input_to_action = _user_input_to_action.copy()
-        _user_input_to_action.update({
+        result = superclass._user_input_to_action
+        result = result.copy()
+        result.update({
             'pwd': self.pwd,
             })
-        return _user_input_to_action
+        return result
 
     ### PRIVATE METHODS ###
 
@@ -63,8 +63,13 @@ class DirectoryManager(Manager):
         return menu_entries
 
     def _make_empty_asset(self, prompt=False):
-        if not self.exists():
-            os.mkdir(self._path)
+        if not os.path.exists(self._path):
+            os.makedirs(self._path)
+            if self._is_git_versioned(self._path):
+                file_path = os.path.join(self._path, '.gitignore')
+                file_pointer = file(file_path, 'w')
+                file_pointer.write('')
+                file_pointer.close()
         self._io_manager.proceed(prompt=prompt)
 
     def _make_main_menu(self):

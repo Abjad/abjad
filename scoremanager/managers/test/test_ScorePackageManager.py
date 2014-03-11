@@ -14,21 +14,23 @@ def test_ScorePackageManager_01():
         configuration.abjad_score_packages_directory_path,
         'red_example_score',
         )
-    red_example_score = scoremanager.managers.ScorePackageManager(
-        path=path)
+    red_example_score = scoremanager.managers.ScorePackageManager(path=path)
     red_example_score._run(pending_user_input='q')
 
-    assert red_example_score._transcript.last_menu_lines == \
-    ['Red Example Score (2013)',
-      '',
-      '     build (u)',
-      '     makers (k)',
-      '     materials (m)',
-      '     segments (g)',
-      '     setup (p)',
-      '     templates (t)',
-      '     stylesheets (y)',
-      '']
+    lines = [
+        'Red Example Score (2013)',
+        '',
+        '     build (u)',
+        '     distribution (d)',
+        '     makers (k)',
+        '     materials (m)',
+        '     segments (g)',
+        '     setup (p)',
+        '     templates (t)',
+        '     stylesheets (y)',
+        '',
+        ]
+    assert red_example_score._transcript.last_menu_lines == lines
 
 
 def test_ScorePackageManager_02():
