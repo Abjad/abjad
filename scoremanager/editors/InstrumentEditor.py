@@ -80,10 +80,17 @@ class InstrumentEditor(Editor):
         else:
             super(InstrumentEditor, self)._handle_main_menu_result(result)
 
+    def _make_pitch_range_menu_section(self, menu):
+        section = menu.make_command_section(
+            is_secondary=True,
+            name='pitch range',
+            )
+        section.append(('toggle pitch range display', 'tprd'))
+        return section
+        
     def _make_main_menu(self):
         menu = super(InstrumentEditor, self)._make_main_menu()
-        pair = ('toggle pitch range display', 'tprd')
-        menu.hidden_section.append(pair)
+        self._make_pitch_range_menu_section(menu)
         return menu
 
     ### PUBLIC PROPERTIES ###

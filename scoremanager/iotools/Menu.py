@@ -456,23 +456,6 @@ class Menu(ScoreManagerObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def hidden_section(self):
-        r'''Gets menu hidden section.
-
-        ..  container:: example
-
-            ::
-
-                >>> menu.hidden_section is None
-                True
-
-        Returns menu section or none.
-        '''
-        for menu_section in self.menu_sections:
-            if menu_section.is_hidden:
-                return menu_section
-
-    @property
     def menu_sections(self):
         r'''Gets menu sections.
 
