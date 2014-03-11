@@ -104,14 +104,18 @@ class PackageManager(DirectoryManager):
         metadatum = metadata.get(metadatum_name, None)
         return metadatum
 
-    def _make_main_menu(self, where=None):
-        where = where or self._where
-        main_menu = self._io_manager.make_menu(where=where)
-        hidden_section = main_menu.make_command_section(
+    def _make_junk_drawer_menu_section(self, menu):
+        section = menu.make_command_section(
             is_secondary=True,
             name='junk drawer',
             )
-        return main_menu, hidden_section
+        return section
+        
+    def _make_main_menu(self, where=None):
+        where = where or self._where
+        menu = self._io_manager.make_menu(where=where)
+        self._make_junk_drawer_menu_section(menu)
+        return menu
 
     @staticmethod
     def _make_metadata_lines(metadata):

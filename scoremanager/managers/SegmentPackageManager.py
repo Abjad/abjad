@@ -141,7 +141,7 @@ class SegmentPackageManager(PackageManager):
     def _make_main_menu(self):
         superclass = super(SegmentPackageManager, self)
         where = self._where
-        menu, section = superclass._make_main_menu(where=where)
+        menu = superclass._make_main_menu(where=where)
         self._make_directory_menu_section(menu)
         self._make_segment_definition_module_menu_section(menu)
         self._make_current_pdf_menu_section(menu)
