@@ -204,7 +204,6 @@ class Menu(ScoreManagerObject):
             return_value_attribute='key',
             )
         section.append(('commands - hidden', 'n'))
-        section.append(('commands - secondary', 'o'))
         return section
 
     def _make_default_hidden_sections(self):
@@ -326,7 +325,7 @@ class Menu(ScoreManagerObject):
     def _make_section_lines(self):
         result = []
         for menu_section in self.menu_sections:
-            hide = self._session.hide_secondary_commands
+            hide = self._session.hide_hidden_commands
             if hide and menu_section.is_hidden:
                 continue
             section_menu_lines = menu_section._make_menu_lines()
@@ -553,8 +552,8 @@ class Menu(ScoreManagerObject):
         Menu section with these attributes:
 
             * not hidden
-            * not secondary
             * match on display string
+            * return value attribute equal to ``'key'``
 
         Returns menu section.
         '''

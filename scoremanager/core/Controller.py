@@ -127,7 +127,6 @@ class Controller(ScoreManagerObject):
             return_value_attribute='key',
             )
         section.append(('commands - hidden', 'n'))
-        section.append(('commands - secondary', 'o'))
         return section
 
     def _make_lilypond_menu_section(self, menu):

@@ -270,6 +270,7 @@ class MenuSection(AbjadObject):
             self._indent_level = indent_level
         return property(**locals())
 
+    # TODO: make read-only
     @apply
     def is_numbered():
         def fget(self):
@@ -289,6 +290,7 @@ class MenuSection(AbjadObject):
                 self._is_numbered = expr
         return property(**locals())
 
+    # TODO: make read-only
     @apply
     def is_ranged():
         def fget(self):
@@ -308,6 +310,7 @@ class MenuSection(AbjadObject):
                 self._is_ranged = expr
         return property(**locals())
 
+    # TODO: make read-only
     @apply
     def is_hidden():
         def fget(self):
@@ -321,10 +324,10 @@ class MenuSection(AbjadObject):
 
             Returns boolean.
             '''
-            return self._is_secondary
+            return self._is_hidden
         def fset(self, expr):
             if not self.menu_entries:
-                self._is_secondary = expr
+                self._is_hidden = expr
         return property(**locals())
 
     @apply
@@ -368,6 +371,7 @@ class MenuSection(AbjadObject):
         '''
         return self._name
 
+    # TODO: make read-only
     @apply
     def return_value_attribute():
         def fget(self):

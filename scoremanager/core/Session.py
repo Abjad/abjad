@@ -46,7 +46,6 @@ class Session(abctools.AbjadObject):
         '_enable_where',
         '_hide_hidden_commands',
         '_hide_next_redraw',
-        '_hide_secondary_commands',
         '_initial_user_input',
         '_io_manager',
         '_is_autoadding',
@@ -95,7 +94,6 @@ class Session(abctools.AbjadObject):
         'write_transcript',
         'hide_next_redraw',
         'hide_hidden_commands',
-        'hide_secondary_commands',
         'is_displayable',
         'is_in_score',
         'is_navigating_to_build_directory',
@@ -135,7 +133,6 @@ class Session(abctools.AbjadObject):
         self._enable_where = False
         self._hide_hidden_commands = True
         self._hide_next_redraw = False
-        self._hide_secondary_commands = True
         self._initial_user_input = pending_user_input
         self._io_manager = iotools.IOManager(self)
         self._is_autoadding = False
@@ -270,7 +267,7 @@ class Session(abctools.AbjadObject):
 
     def _pop_controller(self):
         controller = self.controller_stack.pop()
-        self._hide_secondary_commands = True
+        self._hide_hidden_commands = True
 
     def _print_transcript(
         self, 
@@ -302,7 +299,7 @@ class Session(abctools.AbjadObject):
         self.controller_stack.append(controller)
         if controller not in self._controllers_visited:
             self._controllers_visited.append(controller)
-        self._hide_secondary_commands = True
+        self._hide_hidden_commands = True
 
     def _reinitialize(self):
         type(self).__init__(self)
@@ -684,22 +681,6 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._hide_next_redraw
-
-    @property
-    def hide_secondary_commands(self):
-        r'''Gets and sets flag indicating that hidden menu sections
-        are hidden.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.hide_secondary_commands
-                True
-
-        Returns boolean.
-        '''
-        return self._hide_secondary_commands
 
     @property
     def initial_user_input(self):
@@ -1354,17 +1335,6 @@ class Session(abctools.AbjadObject):
             self._hide_hidden_commands = False
         else:
             self._hide_hidden_commands = True
-
-    def toggle_secondary_commands(self):
-        r'''Toggles `hide_secondary_commands`.
-
-        Returns none.
-        '''
-        if self.hide_secondary_commands:
-            self._hide_secondary_commands = False
-        else:
-            self._hide_secondary_commands = True
-        self._hide_hidden_commands = True
 
     def toggle_source_code_tracking(self, prompt=True):
         r'''Toggles source code tracking.

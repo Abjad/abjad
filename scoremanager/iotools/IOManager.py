@@ -102,8 +102,6 @@ class IOManager(IOManager):
             self._session._hide_hidden_commands = True
         elif directive == 'n':
             self._session.toggle_hidden_commands()
-        elif directive == 'o':
-            self._session.toggle_secondary_commands()
         elif key == 'pyd':
             message = 'running doctest ...'
             self.display([message, ''])
