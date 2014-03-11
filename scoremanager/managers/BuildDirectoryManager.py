@@ -87,7 +87,7 @@ class BuildDirectoryManager(DirectoryManager):
                 return file_path
 
     def _make_back_cover_menu_section(self, menu):
-        section = menu.make_command_section()
+        section = menu.make_command_section(name='back cover')
         section.append(('back cover latex - edit', 'bce'))
         section.append(('back cover latex - generate', 'bcg'))
         section.append(('back cover latex - typeset', 'bct'))
@@ -112,7 +112,7 @@ class BuildDirectoryManager(DirectoryManager):
         return menu
 
     def _make_preface_menu_section(self, menu):
-        section = menu.make_command_section()
+        section = menu.make_command_section(name='preface')
         section.append(('preface latex - edit', 'pfe'))
         section.append(('preface latex - generate', 'pfg'))
         section.append(('preface latex - typeset', 'pft'))

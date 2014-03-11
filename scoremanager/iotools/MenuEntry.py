@@ -13,7 +13,7 @@ class MenuEntry(AbjadObject):
             >>> menu = scoremanager.iotools.Menu(
             ...     include_default_hidden_sections=False,
             ...     )
-            >>> section = menu.make_command_section()
+            >>> section = menu.make_command_section(name='test')
             >>> entry = section.append(('foo - add', 'add'))
             >>> entry = section.append(('foo - delete', 'delete'))
             >>> entry = section.append(('foo - modify', 'modify'))

@@ -66,6 +66,7 @@ class Editor(Controller):
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
         keyed_attribute_section = menu.make_keyed_attribute_section(
+            name='keyed attributes',
             is_numbered=True,
             ) 
         menu_entries = self.target_attribute_tokens

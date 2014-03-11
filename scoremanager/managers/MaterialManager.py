@@ -412,7 +412,7 @@ class MaterialManager(PackageManager):
     def _make_illustration_ly_menu_section(self, menu):
         if os.path.isfile(self._output_material_module_path) or \
             os.path.isfile(self._illustration_ly_file_path):
-            section = menu.make_command_section()
+            section = menu.make_command_section(name='output ly')
         if os.path.isfile(self._output_material_module_path):
             if os.path.isfile(self._illustration_builder_module_path) or \
                 self._read_material_manager_class_name():

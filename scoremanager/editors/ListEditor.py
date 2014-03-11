@@ -65,9 +65,13 @@ class ListEditor(Editor):
 
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
-        keyed_attribute_section = menu.make_keyed_attribute_section()
+        keyed_attribute_section = menu.make_keyed_attribute_section(
+            name='keyed attribute section',
+            )
         keyed_attribute_section.menu_entries = self.target_attribute_tokens
-        numbered_section = menu.make_numbered_section()
+        numbered_section = menu.make_numbered_section(
+            name='numbered section',
+            )
         self._numbered_section = numbered_section
         numbered_section.menu_entries = self.target_summary_lines
         section = menu.make_command_section(name='add, move, remove')

@@ -10,7 +10,7 @@ def test_MenuSection__menu_entry_keys_01():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section()
+    section = menu._make_section(name='test')
     section.append('apple')
     section.append('banana')
     section.append('cherry')
@@ -20,7 +20,7 @@ def test_MenuSection__menu_entry_keys_01():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(is_numbered=True)
+    section = menu._make_section(name='test', is_numbered=True)
     section.append('apple')
     section.append('banana')
     section.append('cherry')
@@ -37,7 +37,7 @@ def test_MenuSection__menu_entry_keys_02():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section()
+    section = menu._make_section(name='test')
     section.append(('something - add', 'add'))
     section.append(('something - delete', 'rm'))
     section.append(('something - modify', 'mod'))
@@ -50,7 +50,7 @@ def test_MenuSection__menu_entry_keys_02():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(is_numbered=True)
+    section = menu._make_section(name='test', is_numbered=True)
     section.append(('something - add', 'add'))
     section.append(('something - delete', 'rm'))
     section.append(('something - modify', 'mod'))

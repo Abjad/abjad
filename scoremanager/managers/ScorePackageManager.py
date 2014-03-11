@@ -317,12 +317,15 @@ class ScorePackageManager(PackageManager):
         return menu
 
     def _make_instrumentation_module_menu_section(self, menu):
-        section = menu.make_command_section(is_hidden=True)
+        section = menu.make_command_section(
+            name='instrumentation',
+            is_hidden=True,
+            )
         section.append(('instrumentation module - view', 'instrumentation'))
         return section
 
     def _make_main_menu_section(self, menu):
-        section = menu.make_command_section()
+        section = menu.make_command_section(name='main')
         section.append(('build', 'u'))
         section.append(('distribution', 'd'))
         section.append(('makers', 'k'))
@@ -334,28 +337,36 @@ class ScorePackageManager(PackageManager):
         return section
 
     def _make_package_fix_menu_section(self, menu):
-        section = menu.make_command_section(is_hidden=True)
+        section = menu.make_command_section(
+            name='package',
+            is_hidden=True,
+            )
         section.append(('package - fix', 'fix'))
         return section
 
     def _make_score_menu_section(self, menu):
-        section = menu.make_command_section(is_hidden=True)
+        section = menu.make_command_section(
+            name='score',
+            is_hidden=True,
+            )
         section.append(('score - remove', 'removescore'))
         return section
 
     def _make_score_pdf_menu_section(self, menu):
         manager = self._build_directory_manager
         if manager._get_file_path_ending_with('score.pdf'):
-            section = menu.make_command_section()
+            section = menu.make_command_section(name='score pdf')
             section.append(('score pdf - view', 'pdfv'))
             section.default_index = len(section) - 1
 
     def _make_setup_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
-        attribute_section = menu.make_attribute_section()
+        attribute_section = menu.make_attribute_section(
+            name='setup',
+            )
         menu_entries = self._make_setup_menu_entries()
         attribute_section.menu_entries = menu_entries
-        section = menu.make_command_section()
+        section = menu.make_command_section(name='instrumentation')
         section.append(('instrumentation', 'instr'))
         return menu
 

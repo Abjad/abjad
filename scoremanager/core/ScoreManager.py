@@ -98,13 +98,19 @@ class ScoreManager(Controller):
                 self.manage_score(result)
 
     def _make_cache_menu_section(self, menu):
-        section = menu.make_command_section(is_hidden=True)
+        section = menu.make_command_section(
+            name='cache',
+            is_hidden=True,
+            )
         section.append(('cache - view', 'cv'))
         section.append(('cache - write', 'cw'))
         return menu
 
     def _make_library_menu_section(self, menu):
-        section = menu.make_command_section(is_hidden=True)
+        section = menu.make_command_section(
+            name='library',
+            is_hidden=True,
+            )
         section.append(('library - manage materials', 'lmm'))
         section.append(('library - manage stylesheets', 'lmy'))
         return section
@@ -138,12 +144,15 @@ class ScoreManager(Controller):
         return menu
 
     def _make_scores_menu_section(self, menu):
-        section = menu.make_command_section()
+        section = menu.make_command_section(name='scores')
         section.append(('scores - new', 'new'))
         return section
 
     def _make_scores_show_menu_section(self, menu):
-        section = menu.make_command_section(is_hidden=True)
+        section = menu.make_command_section(
+            name='scores show',
+            is_hidden=True,
+            )
         section.append(('scores - show all', 'ssl'))
         section.append(('scores - show active', 'ssv'))
         section.append(('scores - show examples', 'ssx'))

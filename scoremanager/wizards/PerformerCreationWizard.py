@@ -72,9 +72,11 @@ class PerformerCreationWizard(Wizard):
 
     def _make_performer_configuration_menu(self, performer):
         menu = self._io_manager.make_menu(where=self._where)
-        numbered_list_section = menu.make_numbered_list_section()
+        numbered_list_section = menu.make_numbered_list_section(
+            name='select instruments',
+            )
         numbered_list_section.title = 'select instruments'
-        section = menu.make_command_section()
+        section = menu.make_command_section(name='instrument commands')
         likely_instruments = \
             performer.likely_instruments_based_on_performer_name
         likely_instrument_names = [

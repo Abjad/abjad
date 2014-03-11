@@ -102,7 +102,10 @@ class SegmentPackageManager(PackageManager):
 
     def _make_current_lilypond_file_menu_section(self, menu):
         if os.path.isfile(self._output_lilypond_file_path):
-            section = menu.make_command_section(is_hidden=True)
+            section = menu.make_command_section(
+                name='current lilypond file',
+                is_hidden=True,
+                )
             string = 'current lilypond file - reinterpret'
             section.append((string, 'lyri'))
             string = 'current lilypond file - view'

@@ -64,6 +64,7 @@ class Selector(ScoreManagerObject):
 
     def _make_asset_menu_section(self, menu):
         section = menu._make_section(
+            name='assets',
             return_value_attribute=self.return_value_attribute,
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,

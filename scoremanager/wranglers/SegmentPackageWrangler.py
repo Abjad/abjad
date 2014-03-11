@@ -82,6 +82,7 @@ class SegmentPackageWrangler(PackageWrangler):
         asset_menu_entries = self._make_asset_menu_entries()
         section.menu_entries = asset_menu_entries
         section = menu.make_command_section(
+            name='assets',
             match_on_display_string=False,
             )
         return section

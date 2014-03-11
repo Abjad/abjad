@@ -16,7 +16,7 @@ class Menu(ScoreManagerObject):
             >>> menu = scoremanager.iotools.Menu(
             ...     include_default_hidden_sections=False,
             ...     )
-            >>> section = menu.make_command_section()
+            >>> section = menu.make_command_section(name='test')
             >>> entry = section.append(('foo - add', 'add'))
             >>> entry = section.append(('foo - delete', 'delete'))
             >>> entry = section.append(('foo - modify', 'modify'))
@@ -456,7 +456,7 @@ class Menu(ScoreManagerObject):
 
                 >>> for menu_section in menu.menu_sections:
                 ...     menu_section
-                <MenuSection (3)>
+                <MenuSection 'test' (3)>
 
         Returns list.
         '''
@@ -514,12 +514,13 @@ class Menu(ScoreManagerObject):
 
         Returns menu section.
         '''
-        asset_section = self._make_section(
+        name = name or 'assets'
+        section = self._make_section(
             is_numbered=True,
             name=name,
             return_value_attribute='explicit',
             )
-        return asset_section
+        return section
 
     def make_attribute_section(self, menu_entries=None, name=None):
         r'''Makes attribute section.

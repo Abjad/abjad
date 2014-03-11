@@ -14,7 +14,7 @@ class MenuSection(AbjadObject):
             >>> menu = scoremanager.iotools.Menu(
             ...     include_default_hidden_sections=False,
             ...     )
-            >>> section = menu.make_command_section()
+            >>> section = menu.make_command_section(name='test')
             >>> entry = section.append(('foo - add', 'add'))
             >>> entry = section.append(('foo - delete', 'delete'))
             >>> entry = section.append(('foo - modify', 'modify'))
@@ -22,7 +22,7 @@ class MenuSection(AbjadObject):
         ::
 
             >>> section
-            <MenuSection (3)>
+            <MenuSection 'test' (3)>
 
     '''
 
@@ -51,6 +51,7 @@ class MenuSection(AbjadObject):
         title=None,
         ):
         AbjadObject.__init__(self)
+        assert name, repr(name)
         self._name = name
         self.menu_entries = []
         assert return_value_attribute in self.return_value_attributes
@@ -366,6 +367,7 @@ class MenuSection(AbjadObject):
             ::
 
                 >>> section.name
+                'test'
 
         Returns string or none.
         '''
