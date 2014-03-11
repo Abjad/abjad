@@ -33,7 +33,7 @@ class Controller(ScoreManagerObject):
 
     def _make_directory_menu_section(self, menu, is_permanent=False):
         section = menu.make_command_section(
-            is_secondary=True,
+            is_hidden=True,
             name='directory',
             )
         section.append(('directory - list', 'ls'))
@@ -56,7 +56,7 @@ class Controller(ScoreManagerObject):
             section = menu.make_command_section(name='initializer')
             section.title = "package has no initializer: use 'ins'."
         section = menu.make_command_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='initializer',
             )
@@ -68,7 +68,7 @@ class Controller(ScoreManagerObject):
 
     def _make_material_tour_menu_section(self, menu):
         section = menu.make_command_section(
-            is_secondary=True,
+            is_hidden=True,
             name='tour materials',
             )
         section.append(('materials - tour next', 'mtn'))
@@ -77,7 +77,7 @@ class Controller(ScoreManagerObject):
 
     def _make_metadata_menu_section(self, menu):
         section = menu.make_command_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='metadata',
             )
@@ -88,7 +88,7 @@ class Controller(ScoreManagerObject):
 
     def _make_metadata_module_menu_section(self, menu):
         section = menu.make_command_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='metadata module',
             )
@@ -99,7 +99,7 @@ class Controller(ScoreManagerObject):
 
     def _make_views_menu_section(self, menu):
         section = menu.make_command_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='views',
             )
@@ -110,7 +110,7 @@ class Controller(ScoreManagerObject):
 
     def _make_views_module_menu_section(self, menu):
         section = menu.make_command_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='views module',
             )
@@ -122,7 +122,7 @@ class Controller(ScoreManagerObject):
 
     def _make_command_display_menu_section(self, menu):
         section = menu._make_section(
-            is_secondary=True,
+            is_hidden=True,
             name='command display',
             return_value_attribute='key',
             )
@@ -132,7 +132,7 @@ class Controller(ScoreManagerObject):
 
     def _make_lilypond_menu_section(self, menu):
         section = menu._make_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='lilypond',
             return_value_attribute='key',
@@ -142,7 +142,7 @@ class Controller(ScoreManagerObject):
 
     def _make_navigation_menu_section(self, menu):
         section = menu._make_section(
-            is_secondary=True,
+            is_hidden=True,
             name='navigation',
             return_value_attribute='key',
             )
@@ -153,7 +153,7 @@ class Controller(ScoreManagerObject):
 
     def _make_python_menu_section(self, menu):
         section = menu._make_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='python',
             return_value_attribute='key',
@@ -165,7 +165,7 @@ class Controller(ScoreManagerObject):
 
     def _make_repository_menu_section(self, menu):
         section = menu._make_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='repository',
             return_value_attribute='key',
@@ -178,7 +178,7 @@ class Controller(ScoreManagerObject):
 
     def _make_score_navigation_menu_section(self, menu):
         section = menu._make_section(
-            is_secondary=True,
+            is_hidden=True,
             name='score navigation',
             return_value_attribute='key',
             )
@@ -189,7 +189,7 @@ class Controller(ScoreManagerObject):
 
     def _make_scores_tour_menu_section(self, menu):
         section = menu._make_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='tour',
             return_value_attribute='key',
@@ -200,7 +200,7 @@ class Controller(ScoreManagerObject):
 
     def _make_session_menu_section(self, menu):
         section = menu._make_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='session',
             return_value_attribute='key',
@@ -210,7 +210,7 @@ class Controller(ScoreManagerObject):
 
     def _make_source_code_menu_section(self, menu):
         section = menu._make_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='source code',
             return_value_attribute='key',
@@ -222,7 +222,7 @@ class Controller(ScoreManagerObject):
 
     def _make_system_menu_section(self, menu):
         section = menu._make_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='system',
             return_value_attribute='key',

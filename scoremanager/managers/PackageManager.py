@@ -106,7 +106,7 @@ class PackageManager(DirectoryManager):
 
     def _make_junk_drawer_menu_section(self, menu):
         section = menu.make_command_section(
-            is_secondary=True,
+            is_hidden=True,
             name='junk drawer',
             )
         return section

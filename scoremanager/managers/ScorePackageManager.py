@@ -317,7 +317,7 @@ class ScorePackageManager(PackageManager):
         return menu
 
     def _make_instrumentation_module_menu_section(self, menu):
-        section = menu.make_command_section(is_secondary=True)
+        section = menu.make_command_section(is_hidden=True)
         section.append(('instrumentation module - view', 'instrumentation'))
         return section
 
@@ -334,12 +334,12 @@ class ScorePackageManager(PackageManager):
         return section
 
     def _make_package_fix_menu_section(self, menu):
-        section = menu.make_command_section(is_secondary=True)
+        section = menu.make_command_section(is_hidden=True)
         section.append(('package - fix', 'fix'))
         return section
 
     def _make_score_menu_section(self, menu):
-        section = menu.make_command_section(is_secondary=True)
+        section = menu.make_command_section(is_hidden=True)
         section.append(('score - remove', 'removescore'))
         return section
 

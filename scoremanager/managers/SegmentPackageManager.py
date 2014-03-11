@@ -102,7 +102,7 @@ class SegmentPackageManager(PackageManager):
 
     def _make_current_lilypond_file_menu_section(self, menu):
         if os.path.isfile(self._output_lilypond_file_path):
-            section = menu.make_command_section(is_secondary=True)
+            section = menu.make_command_section(is_hidden=True)
             string = 'current lilypond file - reinterpret'
             section.append((string, 'lyri'))
             string = 'current lilypond file - view'
@@ -128,7 +128,7 @@ class SegmentPackageManager(PackageManager):
 
     def _make_versions_directory_menu_section(self, menu):
         section = menu.make_command_section(
-            is_secondary=True,
+            is_hidden=True,
             name='versions directory',
             )
         section.append(('versioned output ly - view', 'lyver'))

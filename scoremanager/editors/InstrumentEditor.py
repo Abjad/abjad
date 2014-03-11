@@ -82,7 +82,7 @@ class InstrumentEditor(Editor):
 
     def _make_pitch_range_menu_section(self, menu):
         section = menu.make_command_section(
-            is_secondary=True,
+            is_hidden=True,
             name='pitch range',
             )
         section.append(('toggle pitch range display', 'tprd'))

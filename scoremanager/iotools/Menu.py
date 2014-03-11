@@ -169,7 +169,7 @@ class Menu(ScoreManagerObject):
 
     def _get_first_nonhidden_return_value_in_menu(self):
         for menu_section in self.menu_sections:
-            if menu_section.is_secondary:
+            if menu_section.is_hidden:
                 continue
             if menu_section._menu_entry_return_values:
                 return menu_section._menu_entry_return_values[0]
@@ -199,7 +199,7 @@ class Menu(ScoreManagerObject):
 
     def _make_command_display_menu_section(self):
         section = self._make_section(
-            is_secondary=True,
+            is_hidden=True,
             name='command display',
             return_value_attribute='key',
             )
@@ -224,7 +224,7 @@ class Menu(ScoreManagerObject):
 
     def _make_lilypond_menu_section(self):
         section = self._make_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='lilypond',
             return_value_attribute='key',
@@ -240,7 +240,7 @@ class Menu(ScoreManagerObject):
 
     def _make_navigation_menu_section(self):
         section = self._make_section(
-            is_secondary=True,
+            is_hidden=True,
             name='navigation',
             return_value_attribute='key',
             )
@@ -251,7 +251,7 @@ class Menu(ScoreManagerObject):
 
     def _make_python_menu_section(self):
         section = self._make_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='python',
             return_value_attribute='key',
@@ -263,7 +263,7 @@ class Menu(ScoreManagerObject):
 
     def _make_repository_menu_section(self):
         section = self._make_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='repository',
             return_value_attribute='key',
@@ -276,7 +276,7 @@ class Menu(ScoreManagerObject):
 
     def _make_score_navigation_menu_section(self):
         section = self._make_section(
-            is_secondary=True,
+            is_hidden=True,
             name='score navigation',
             return_value_attribute='key',
             )
@@ -287,7 +287,7 @@ class Menu(ScoreManagerObject):
 
     def _make_scores_tour_menu_section(self):
         section = self._make_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='tour',
             return_value_attribute='key',
@@ -298,7 +298,7 @@ class Menu(ScoreManagerObject):
 
     def _make_section(
         self, 
-        is_secondary=False, 
+        is_hidden=False, 
         is_numbered=False, 
         is_ranged=False, 
         display_prepopulated_values=False,
@@ -311,7 +311,7 @@ class Menu(ScoreManagerObject):
         assert not (is_numbered and self._has_numbered_section())
         assert not (is_ranged and self._has_ranged_section())
         menu_section = iotools.MenuSection(
-            is_secondary=is_secondary,
+            is_hidden=is_hidden,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
             display_prepopulated_values=display_prepopulated_values,
@@ -327,7 +327,7 @@ class Menu(ScoreManagerObject):
         result = []
         for menu_section in self.menu_sections:
             hide = self._session.hide_secondary_commands
-            if hide and menu_section.is_secondary:
+            if hide and menu_section.is_hidden:
                 continue
             section_menu_lines = menu_section._make_menu_lines()
             result.extend(section_menu_lines)
@@ -337,7 +337,7 @@ class Menu(ScoreManagerObject):
 
     def _make_session_menu_section(self):
         section = self._make_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='session',
             return_value_attribute='key',
@@ -347,7 +347,7 @@ class Menu(ScoreManagerObject):
 
     def _make_source_code_menu_section(self):
         section = self._make_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='source code',
             return_value_attribute='key',
@@ -359,7 +359,7 @@ class Menu(ScoreManagerObject):
 
     def _make_system_menu_section(self):
         section = self._make_section(
-            is_secondary=True,
+            is_hidden=True,
             match_on_display_string=False,
             name='system',
             return_value_attribute='key',
@@ -543,7 +543,7 @@ class Menu(ScoreManagerObject):
 
     def make_command_section(
         self,
-        is_secondary=False,
+        is_hidden=False,
         match_on_display_string=True,
         menu_entries=None,
         name=None,
@@ -559,7 +559,7 @@ class Menu(ScoreManagerObject):
         Returns menu section.
         '''
         command_section = self._make_section(
-            is_secondary=is_secondary,
+            is_hidden=is_hidden,
             match_on_display_string=match_on_display_string,
             name=name,
             return_value_attribute='key',
