@@ -154,7 +154,7 @@ def test_Menu_display_hidden_menu_commands_12():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score n sdv default q'
+    string = 'red~example~score n o default q'
     score_manager._run(pending_user_input=string, is_test=True)
 
     string = 'Red Example Score (2013) - hidden commands'

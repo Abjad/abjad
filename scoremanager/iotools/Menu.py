@@ -197,26 +197,14 @@ class Menu(ScoreManagerObject):
     def _has_ranged_section(self):
         return any(x.is_ranged for x in self.menu_sections)
 
-    def _make_command_display_menu_section(self):
-        section = self._make_section(
-            is_hidden=True,
-            name='command display',
-            return_value_attribute='key',
-            )
-        section.append(('commands - hidden', 'n'))
-        return section
-
     def _make_default_hidden_sections(self):
         sections = []
-        sections.append(self._make_navigation_menu_section())
-        sections.append(self._make_command_display_menu_section())
         sections.append(self._make_lilypond_menu_section())
         sections.append(self._make_python_menu_section())
         sections.append(self._make_repository_menu_section())
         if self._session.is_in_score:
             sections.append(self._make_score_navigation_menu_section())
         sections.append(self._make_scores_tour_menu_section())
-        sections.append(self._make_session_menu_section())
         sections.append(self._make_source_code_menu_section())
         sections.append(self._make_system_menu_section())
         return sections
@@ -236,17 +224,6 @@ class Menu(ScoreManagerObject):
         result.extend(self._make_title_lines())
         result.extend(self._make_section_lines())
         return result
-
-    def _make_navigation_menu_section(self):
-        section = self._make_section(
-            is_hidden=True,
-            name='navigation',
-            return_value_attribute='key',
-            )
-        section.append(('back - go', 'b'))
-        section.append(('home - go', 'h'))
-        section.append(('score - go', 's'))
-        return section
 
     def _make_python_menu_section(self):
         section = self._make_section(
@@ -336,16 +313,6 @@ class Menu(ScoreManagerObject):
             result = []
         return result
 
-    def _make_session_menu_section(self):
-        section = self._make_section(
-            is_hidden=True,
-            match_on_display_string=False,
-            name='session',
-            return_value_attribute='key',
-            )
-        section.append(('session - display variables', 'sdv'))
-        return section
-
     def _make_source_code_menu_section(self):
         section = self._make_section(
             is_hidden=True,
@@ -365,7 +332,12 @@ class Menu(ScoreManagerObject):
             name='system',
             return_value_attribute='key',
             )
+        section.append(('system - back', 'b'))
+        section.append(('system - hidden', 'n'))
+        section.append(('system - home', 'h'))
         section.append(('system - quit', 'q'))
+        section.append(('system - score', 's'))
+        section.append(('system - session', 'o'))
         return section
 
     def _make_tab(self, n):

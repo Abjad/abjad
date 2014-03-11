@@ -102,6 +102,8 @@ class IOManager(IOManager):
             self._session._hide_hidden_commands = True
         elif directive == 'n':
             self._session.toggle_hidden_commands()
+        elif key == 'o':
+            self._session.display_variables()
         elif key == 'pyd':
             message = 'running doctest ...'
             self.display([message, ''])
@@ -123,8 +125,6 @@ class IOManager(IOManager):
             self.display_calling_code_line_number()
         elif key == 'sct':
             self._session.toggle_source_code_tracking()
-        elif key == 'sdv':
-            self._session.display_variables()
         elif key == 'stn':
             self._session._is_navigating_to_next_score = True
             self._session._is_backtracking_to_score_manager = True

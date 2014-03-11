@@ -117,7 +117,6 @@ class ScoreManager(Controller):
 
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
-        self._make_scores_menu_section(menu)
         self._make_library_menu_section(menu)
         self._make_scores_show_menu_section(menu)
         self._make_cache_menu_section(menu)
@@ -143,16 +142,12 @@ class ScoreManager(Controller):
         asset_section.menu_entries = menu_entries
         return menu
 
-    def _make_scores_menu_section(self, menu):
-        section = menu.make_command_section(name='scores')
-        section.append(('scores - new', 'new'))
-        return section
-
     def _make_scores_show_menu_section(self, menu):
         section = menu.make_command_section(
             name='scores show',
-            is_hidden=True,
+            #is_hidden=True,
             )
+        section.append(('scores - new', 'new'))
         section.append(('scores - show all', 'ssl'))
         section.append(('scores - show active', 'ssv'))
         section.append(('scores - show examples', 'ssx'))
