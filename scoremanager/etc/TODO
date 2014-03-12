@@ -98,14 +98,12 @@
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-25. Replace hard-coded 'vi -R {}' commands with a portable io manager method.
-
-26. Implement something to tour everything that can be rewritten and rewrite.
+25. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-27. Note that ArticulationHandlerMaterialManager implementation is limited
+26. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The

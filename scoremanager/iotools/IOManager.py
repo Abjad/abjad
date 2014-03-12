@@ -532,11 +532,18 @@ class IOManager(IOManager):
     def view(self, file_path):
         r'''Views `file_path`.
 
+        Also works when `file_path` is a list of PDFs.
+
         Returns none.
         '''
-        if not os.path.isfile(file_path):
+        if not isinstance(file_path, list) and not os.path.isfile(file_path):
             return
-        if file_path.endswith('.pdf'):
+        if isinstance(file_path, list) and \
+            all(x.endswith('.pdf') for x in file_path):
+            file_paths = file_path
+            file_paths = ' '.join(file_paths)
+            command = 'open {}'.format(file_paths)
+        elif file_path.endswith('.pdf'):
             command = 'open {}'.format(file_path)
         else:
             command = 'vim -R {}'.format(file_path)

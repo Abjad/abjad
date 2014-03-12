@@ -360,8 +360,7 @@ class PackageManager(DirectoryManager):
         '''
         file_path = self._metadata_module_path
         if os.path.isfile(file_path):
-            command = 'vim -R {}'.format(file_path)
-            self._io_manager.spawn_subprocess(command)
+            self._io_manager.view(file_path)
 
     def write_initializer_boilerplate(self, prompt=True):
         r'''Writes boilerplate initializer module.

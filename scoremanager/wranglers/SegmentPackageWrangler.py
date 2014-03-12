@@ -259,6 +259,4 @@ class SegmentPackageWrangler(PackageWrangler):
                 )
             if os.path.isfile(output_pdf_file_path):
                 output_pdf_file_paths.append(output_pdf_file_path)
-        command = ' '.join(output_pdf_file_paths)
-        command = 'open ' + command
-        self._io_manager.spawn_subprocess(command)
+        self._io_manager.view(output_pdf_file_paths)

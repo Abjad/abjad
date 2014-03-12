@@ -188,11 +188,7 @@ class SegmentPackageManager(PackageManager):
             file_name,
             )
         if os.path.isfile(file_path):
-            if extension in ('.ly', '.py'):
-                command = 'vim -R {}'.format(file_path)
-            elif extension == '.pdf':
-                command = 'open {}'.format(file_path)
-            self._io_manager.spawn_subprocess(command)
+            self._io_manager.view(file_path)
         
     ### PUBLIC METHODS ###
 
@@ -413,29 +409,25 @@ class SegmentPackageManager(PackageManager):
             message = 'version directory empty.'
             self._io_manager.proceed(message)
             return
-        file_paths = ' '.join(file_paths)
-        command = 'open {}'.format(file_paths)
-        self._io_manager.spawn_subprocess(command)
+        self._io_manager.view(file_paths)
 
     def view_current_output_ly(self):
         r'''Views current output LilyPond file.
 
         Returns none.
         '''
-        output_lilypond_file_path = self._output_lilypond_file_path
-        if os.path.isfile(output_lilypond_file_path):
-            command = 'vim -R {}'.format(output_lilypond_file_path)
-            self._io_manager.spawn_subprocess(command)
+        file_path = self._output_lilypond_file_path
+        if os.path.isfile(file_path):
+            self._io_manager.view(file_path)
 
     def view_output_pdf(self):
         r'''Views output PDF.
 
         Returns none.
         '''
-        output_pdf_file_path = self._output_pdf_file_path
-        if os.path.isfile(output_pdf_file_path):
-            command = 'open {}'.format(output_pdf_file_path)
-            self._io_manager.spawn_subprocess(command)
+        file_path = self._output_pdf_file_path
+        if os.path.isfile(file_path):
+            self._io_manager.view(file_path)
 
     def view_versioned_output_ly(self):
         r'''Views output LilyPond file.
