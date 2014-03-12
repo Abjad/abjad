@@ -112,7 +112,5 @@
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
 
-28. Change '_stylesheet_file_wrangler' to '_stylesheet_wrangler'.
-
-29. Make 'abjad_storehouse_path' and 'user_storehouse_path' private.
+28. Make 'abjad_storehouse_path' and 'user_storehouse_path' private.
     Probably only wrangler attributes.

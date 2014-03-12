@@ -35,7 +35,7 @@ class ScoreManager(Controller):
         wrangler = wranglers.ScorePackageWrangler(session=self._session)
         self._score_package_wrangler = wrangler
         wrangler = wranglers.StylesheetWrangler(session=self._session)
-        self._stylesheet_file_wrangler = wrangler
+        self._stylesheet_wrangler = wrangler
 
     ### PRIVATE PROPERTIES ###
 
@@ -321,7 +321,7 @@ class ScoreManager(Controller):
 
         Returns none.
         '''
-        self._stylesheet_file_wrangler._run(
+        self._stylesheet_wrangler._run(
             rollback=True, 
             )
 

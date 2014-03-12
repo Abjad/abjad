@@ -183,7 +183,7 @@ class MaterialManager(PackageManager):
         return self._read_material_manager_class_name() is None
 
     @property
-    def _stylesheet_file_manager(self):
+    def _stylesheet_manager(self):
         from scoremanager import managers
         return managers.FileManager(
             self._stylesheet_file_path_in_memory,
@@ -760,7 +760,7 @@ class MaterialManager(PackageManager):
         Returns none.
         '''
         if self._stylesheet_file_path_in_memory:
-            self._stylesheet_file_manager.edit()
+            self._stylesheet_manager.edit()
         elif prompt:
             message = 'select stylesheet first.'
             self._io_manager.proceed(message)
@@ -945,11 +945,9 @@ class MaterialManager(PackageManager):
         Returns none.
         '''
         from scoremanager import wranglers
-        stylesheet_file_wrangler = wranglers.StylesheetWrangler(
-            session=self._session)
+        wrangler = wranglers.StylesheetWrangler(session=self._session)
         with self._backtracking:
-            stylesheet_file_path = \
-                stylesheet_file_wrangler.select_asset_path()
+            stylesheet_file_path = wrangler.select_asset_path()
         if self._session._backtrack():
             return
         self._stylesheet_file_path_in_memory = stylesheet_file_path
