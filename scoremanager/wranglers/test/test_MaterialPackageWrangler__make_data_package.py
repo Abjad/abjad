@@ -8,7 +8,8 @@ import scoremanager
 
 def test_MaterialPackageWrangler__make_data_package_01():
 
-    wrangler = scoremanager.wranglers.MaterialPackageWrangler()
+    session = scoremanager.core.Session()
+    wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     path = os.path.join(
         wrangler._configuration.abjad_material_packages_directory_path,
         'testnumbers',
@@ -41,7 +42,8 @@ def test_MaterialPackageWrangler__make_data_package_02():
     r'''With custom metadata.
     '''
 
-    wrangler = scoremanager.wranglers.MaterialPackageWrangler()
+    session = scoremanager.core.Session()
+    wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     path = os.path.join(
         wrangler._configuration.abjad_material_packages_directory_path,
         'testnumbers',

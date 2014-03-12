@@ -12,8 +12,10 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> from scoremanager import wranglers
-            >>> wrangler = wranglers.ScorePackageWrangler()
+            >>> session = scoremanager.core.Session()
+            >>> wrangler = scoremanager.wranglers.ScorePackageWrangler(
+            ...     session=session,
+            ...     )
             >>> wrangler
             ScorePackageWrangler()
 
@@ -21,9 +23,11 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> wrangler_in_score = wranglers.ScorePackageWrangler()
-            >>> session = wrangler_in_score._session
+            >>> session = scoremanager.core.Session()
             >>> session._current_score_snake_case_name = 'red_example_score'
+            >>> wrangler_in_score = scoremanager.wranglers.ScorePackageWrangler(
+            ...     session=session,
+            ...     )
             >>> wrangler_in_score
             ScorePackageWrangler()
 

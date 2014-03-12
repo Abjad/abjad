@@ -8,7 +8,8 @@ def test_MaterialPackageWrangler__list_asset_paths_01():
     r'''Abjad library material pcakages.
     '''
 
-    wrangler = scoremanager.wranglers.MaterialPackageWrangler()
+    session = scoremanager.core.Session()
+    wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
 
     package_names = [
         'example_articulation_handler',
@@ -42,7 +43,8 @@ def test_MaterialPackageWrangler__list_asset_paths_02():
     r'''Red Example Score material library.
     '''
 
-    wrangler = scoremanager.wranglers.MaterialPackageWrangler()
+    session = scoremanager.core.Session()
+    wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
 
     package_names = [
         'magic_numbers',

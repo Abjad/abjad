@@ -8,7 +8,8 @@ import scoremanager
 
 def test_MaterialPackageWrangler_make_handmade_material_package_01():
 
-    wrangler = scoremanager.wranglers.MaterialPackageWrangler()
+    session = scoremanager.core.Session()
+    wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     path = os.path.join(
         wrangler._configuration.abjad_material_packages_directory_path,
         'testnotes',
@@ -29,6 +30,5 @@ def test_MaterialPackageWrangler_make_handmade_material_package_01():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
     finally:
-        #manager._remove()
         shutil.rmtree(path)
     assert not os.path.exists(path)

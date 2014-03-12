@@ -20,6 +20,7 @@ class Wrangler(Controller):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
+        assert session is not None
         Controller.__init__(self, session=session)
         self.abjad_storehouse_path = None
         self.user_storehouse_path = None

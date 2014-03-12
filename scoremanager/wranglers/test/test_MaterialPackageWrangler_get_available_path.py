@@ -6,7 +6,8 @@ import scoremanager
 
 def test_MaterialPackageWrangler_get_available_path_01():
 
-    wrangler = scoremanager.wranglers.MaterialPackageWrangler()
+    session = scoremanager.core.Session()
+    wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     result = wrangler.get_available_path(pending_user_input='foo')
     path = os.path.join(
         wrangler._configuration.abjad_material_packages_directory_path,
@@ -20,7 +21,8 @@ def test_MaterialPackageWrangler_get_available_path_01():
 
 def test_MaterialPackageWrangler_get_available_path_02():
 
-    wrangler = scoremanager.wranglers.MaterialPackageWrangler()
+    session = scoremanager.core.Session()
+    wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     wrangler._session._current_score_snake_case_name = 'red_example_score'
     result = wrangler.get_available_path(pending_user_input='foo')
     path = os.path.join(
@@ -35,7 +37,8 @@ def test_MaterialPackageWrangler_get_available_path_02():
 
 def test_MaterialPackageWrangler_get_available_path_03():
 
-    wrangler = scoremanager.wranglers.MaterialPackageWrangler()
+    session = scoremanager.core.Session()
+    wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
 
     result = wrangler.get_available_path(pending_user_input='q')
     assert result is None

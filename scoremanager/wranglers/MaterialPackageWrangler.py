@@ -13,8 +13,10 @@ class MaterialPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> from scoremanager import wranglers
-            >>> wrangler = wranglers.MaterialPackageWrangler()
+            >>> session = scoremanager.core.Session()
+            >>> wrangler = scoremanager.wranglers.MaterialPackageWrangler(
+            ...     session=session,
+            ...     )
             >>> wrangler
             MaterialPackageWrangler()
 
@@ -22,9 +24,11 @@ class MaterialPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> wrangler_in_score = wranglers.MaterialPackageWrangler()
-            >>> session = wrangler_in_score._session
+            >>> session = scoremanager.core.Session()
             >>> session._current_score_snake_case_name = 'red_example_score'
+            >>> wrangler_in_score = scoremanager.wranglers.MaterialPackageWrangler(
+            ...     session=session,
+            ...     )
             >>> wrangler_in_score
             MaterialPackageWrangler()
 

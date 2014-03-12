@@ -463,7 +463,7 @@ class MaterialManager(PackageManager):
         self._make_directory_menu_section(menu)
         self._make_stylesheet_menu_section(menu)
         if self._should_have_user_input_module:
-            editor = self._get_output_material_editor()
+            editor = self._get_output_material_editor(session=self._session)
             if not editor:
                 self._make_user_input_module_menu_section(menu)
         try:
@@ -476,7 +476,7 @@ class MaterialManager(PackageManager):
         return menu
 
     def _make_main_menu_sections_with_user_input_wrapper(self, menu):
-        editor = self._get_output_material_editor()
+        editor = self._get_output_material_editor(session=self._session)
         if not editor:
             self._make_user_input_module_menu_section(menu)
         self._make_output_material_menu_section(menu)
@@ -529,7 +529,7 @@ class MaterialManager(PackageManager):
             if self._can_make_output_material():
                 section.append(('output material - make', 'omm'))
                 has_output_material_section = True
-            editor = self._get_output_material_editor()
+            editor = self._get_output_material_editor(session=self._session)
             if editor:
                 section.append(('output material - interact', 'omi'))
                 if os.path.isfile(self._output_material_module_path):
@@ -616,7 +616,7 @@ class MaterialManager(PackageManager):
         if bool(self._user_input_wrapper_in_memory) and \
             self._user_input_wrapper_in_memory.is_complete:
             return True
-        editor = self._get_output_material_editor()
+        editor = self._get_output_material_editor(session=self._session)
         if editor:
             return True
         return False
@@ -709,7 +709,7 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        editor = self._get_output_material_editor()
+        editor = self._get_output_material_editor(session=self._session)
         if not editor:
             return
         output_material = self._execute_output_material_module()

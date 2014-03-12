@@ -6,6 +6,13 @@ class Controller(ScoreManagerObject):
     r'''Controller.
     '''
 
+    ### INTIIALIZER ###
+
+    def __init__(self, session=None):
+        #assert session is not None
+        superclass = super(Controller, self)
+        superclass.__init__(session=session)
+
     ### PRIVATE PROPERTIES ###
 
     @property

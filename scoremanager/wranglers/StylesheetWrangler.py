@@ -12,7 +12,10 @@ class StylesheetWrangler(Wrangler):
 
         ::
 
-            >>> wrangler = scoremanager.wranglers.StylesheetWrangler()
+            >>> session = scoremanager.core.Session()
+            >>> wrangler = scoremanager.wranglers.StylesheetWrangler(
+            ...     session=session,
+            ...     )
             >>> wrangler
             StylesheetWrangler()
 
