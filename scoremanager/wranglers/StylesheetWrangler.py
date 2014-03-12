@@ -177,30 +177,6 @@ class StylesheetWrangler(Wrangler):
             section.append(('paper stylesheet - edit', 'pse'))
         return section
 
-    def _path_to_annotation(self, path):
-        from scoremanager import managers
-        annotation = None
-        score_storehouses = (
-            self._configuration.abjad_score_packages_directory_path,
-            self._configuration.user_score_packages_directory_path,
-            )
-        abjad_stylesheets_directory_path = \
-            self._configuration.abjad_stylesheets_directory_path
-        user_library_stylesheets_directory_path = \
-            self._configuration.user_library_stylesheets_directory_path
-        if path.startswith(score_storehouses):
-            score_path = self._configuration._path_to_score_path(path)
-            manager = managers.ScorePackageManager(
-                path=score_path,
-                session=self._session,
-                )
-            annotation = manager._get_title()
-        elif path.startswith(abjad_stylesheets_directory_path):
-            annotation = 'Abjad'
-        elif path.startswith(user_library_stylesheets_directory_path):
-            annotation = self._configuration.composer_last_name
-        return annotation
-
     ### PUBLIC METHODS ###
 
     def edit_header_stylesheet(

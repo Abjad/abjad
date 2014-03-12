@@ -109,3 +109,24 @@ class Controller(ScoreManagerObject):
         section.append(('views module - remove', 'vwmrm'))
         section.append(('views module - view', 'vwmv'))
         return section
+        
+    def _path_to_annotation(self, path):
+        from scoremanager import managers
+        score_storehouses = (
+            self._configuration.abjad_score_packages_directory_path,
+            self._configuration.user_score_packages_directory_path,
+            )
+        if path.startswith(score_storehouses):
+            score_path = self._configuration._path_to_score_path(path)
+            manager = managers.ScorePackageManager(
+                path=score_path,
+                session=self._session,
+                )
+            annotation = manager._get_title()
+        elif path.startswith(self.abjad_storehouse_path):
+            annotation = 'Abjad'
+        elif path.startswith(self.user_storehouse_path):
+            annotation = self._configuration.composer_last_name
+        else:
+            annotation = None
+        return annotation
