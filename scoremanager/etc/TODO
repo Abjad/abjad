@@ -57,32 +57,30 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-16. Eliminate unqualified test files like test_ScorePackageManager.py.
-
-17. Remove bug that allows for creation of ...
+16. Remove bug that allows for creation of ...
         metadata = collections.OrderedDict([
             ('', ''),
             ])
     ... without allowing for removal.
 
-18. Remove MarkupInventoryMaterialManager.illustration_builder().
+17. Remove MarkupInventoryMaterialManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
 
-19. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+18. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-20. Implement something to tour everything that can be rewritten and rewrite.
+19. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-21. Note that ArticulationHandlerMaterialManager implementation is limited
+20. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
 
-22. Change 'output material - interact (omi)' to 
+21. Change 'output material - interact (omi)' to 
     'output material - edit (ome)'.
