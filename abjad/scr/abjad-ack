@@ -6,8 +6,12 @@ from abjad.tools import systemtools
 
 systemtools.IOManager.clear_terminal()
 start_time = time.time()
-command = r'ack --ignore-dir=docs --ignore-dir=build {!r}'
-command = command.format(sys.argv[1])
+argument = sys.argv[1]
+if "'" in argument:
+    command = r'ack --ignore-dir=docs --ignore-dir=build "{}"'
+else:
+    command = r"ack --ignore-dir=docs --ignore-dir=build '{}'"
+command = command.format(argument)
 print 'abjad-ack is running this command:'
 print
 print '    ' + command
