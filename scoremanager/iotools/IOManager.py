@@ -309,6 +309,9 @@ class IOManager(IOManager):
             command = 'vim + {}'.format(file_path)
         else:
             command = 'vim +{} {}'.format(line_number, file_path)
+        self._session._attempted_to_open_file = True
+        if self._session.is_test:
+            return
         self.spawn_subprocess(command)
 
     def edit_calling_code(self):
