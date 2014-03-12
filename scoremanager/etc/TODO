@@ -91,8 +91,8 @@
 
 
         some_material = None
-    ... shows up as the exact file contents in response to (materials) > (nmh)
-    > ... > (mde).
+    ... shows up as the exact file contents in response to 
+    (lmm) > (nmh) > ... > (mde).
 
 24. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument. Make sure that editing instrumentation doesn't reset
@@ -109,3 +109,5 @@
     MaterialManager how to inspect ArticulationHandler class variables. The
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
+
+27. Make Wrangler.score_storehouse_path_infix_parts private.

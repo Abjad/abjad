@@ -87,12 +87,17 @@ class PackageWrangler(Wrangler):
     def get_available_path(
         self, 
         pending_user_input=None,
+        storehouse_path=None,
         ):
-        r'''Gets available package path.
+        r'''Gets available path in `storehouse_path`.
+
+        Sets `storehouse_path` equal to current storehouse path when
+        `storehouse_path` is none.
 
         Returns string.
         '''
         self._io_manager._assign_user_input(pending_user_input)
+        storehouse_path = storehouse_path or self._current_storehouse_path
         while True:
             getter = self._io_manager.make_getter(where=self._where)
             getter.append_space_delimited_lowercase_string('name')
@@ -101,10 +106,7 @@ class PackageWrangler(Wrangler):
             if self._session._backtrack():
                 return
             name = stringtools.string_to_accent_free_snake_case(name)
-            path = os.path.join(
-                self._current_storehouse_path, 
-                name,
-                )
+            path = os.path.join(storehouse_path, name)
             if os.path.exists(path):
                 line = 'path already exists: {!r}.'
                 line = line.format(path)

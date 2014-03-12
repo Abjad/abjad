@@ -281,8 +281,12 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
+        if self._session.is_in_score:
+            storehouse_path = self._current_storehouse_path
+        else:
+            storehouse_path = self._user_storehouse_path
         with self._backtracking:
-            path = self.get_available_path()
+            path = self.get_available_path(storehouse_path=storehouse_path)
         if self._session._backtrack():
             return
         self._make_handmade_material_package(path)

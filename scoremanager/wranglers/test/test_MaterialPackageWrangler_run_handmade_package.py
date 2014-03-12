@@ -4,6 +4,7 @@ import pytest
 import shutil
 from abjad import *
 import scoremanager
+configuration = scoremanager.core.ScoreManagerConfiguration()
 
 
 def test_MaterialPackageWrangler_run_handmade_package_01():
@@ -12,7 +13,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
 
     score_manager = scoremanager.core.ScoreManager()
     path = os.path.join(
-        score_manager._configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testnotes',
         )
     directory_entries = [
@@ -47,7 +48,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
 
     score_manager = scoremanager.core.ScoreManager()
     path = os.path.join(
-        score_manager._configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testnotes',
         )
     directory_entries = [
@@ -83,7 +84,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
 
     score_manager = scoremanager.core.ScoreManager()
     path = os.path.join(
-        score_manager._configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testnotes',
         )
     directory_entries = [
@@ -120,7 +121,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
 
     score_manager = scoremanager.core.ScoreManager()
     path = os.path.join(
-        score_manager._configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testnotes',
         )
     directory_entries = [
@@ -162,7 +163,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
 
     score_manager = scoremanager.core.ScoreManager()
     path = os.path.join(
-        score_manager._configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testnotes',
         )
     directory_entries = [
@@ -194,7 +195,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
 
     score_manager = scoremanager.core.ScoreManager()
     path = os.path.join(
-        score_manager._configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testnotes',
         )
     directory_entries = [
@@ -229,7 +230,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
 
     score_manager = scoremanager.core.ScoreManager()
     path = os.path.join(
-        score_manager._configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testnotes',
         )
     directory_entries = [
@@ -269,7 +270,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
 
     score_manager = scoremanager.core.ScoreManager()
     path = os.path.join(
-        score_manager._configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testnotes',
         )
     directory_entries = [
@@ -306,7 +307,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
 
     score_manager = scoremanager.core.ScoreManager()
     path = os.path.join(
-        score_manager._configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testnotes',
         )
     directory_entries = [
@@ -348,7 +349,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
 
     score_manager = scoremanager.core.ScoreManager()
     path = os.path.join(
-        score_manager._configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testnotes',
         )
     directory_entries = [

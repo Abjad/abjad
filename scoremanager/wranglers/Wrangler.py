@@ -218,10 +218,15 @@ class Wrangler(Controller):
         abjad_score_packages=True, 
         user_score_packages=True, 
         ):
+
         current_path = self._get_current_directory_path_of_interest()
-        if 'Stylesheet' not in type(self).__name__:
-            if current_path is None:
-                current_path = self._configuration.score_manager_directory_path
+
+#        print repr(current_path), 'CP'
+#        if 'Stylesheet' not in type(self).__name__:
+#            if current_path is None:
+#                current_path = self._configuration.score_manager_directory_path
+#        print repr(current_path), 'CP2'
+
         paths = self._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,

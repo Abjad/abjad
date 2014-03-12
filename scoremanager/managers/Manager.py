@@ -164,14 +164,31 @@ class Manager(Controller):
             return False
         if not os.path.exists(path):
             return False
-        while path:
-            if os.path.isdir(path):
-                if '.svn' in os.listdir(path):
-                    return True
-            path = os.path.dirname(path)
-            if path == os.path.sep:
+        is_in_svn_versioned_tree = False
+        path_to_check = path
+        root_directory = os.path.sep
+        while path_to_check:
+            if os.path.isdir(path_to_check):
+                if '.svn' in os.listdir(path_to_check):
+                    is_in_svn_versioned_tree = True
+            path_to_check = os.path.dirname(path_to_check)
+            if path_to_check == root_directory:
                 break
-        return False
+        if not is_in_svn_versioned_tree:
+            return False
+        command = 'svn st -u {}'
+        command = command.format(path)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+        first_line = process.stdout.readline()
+        if first_line.startswith('svn: warning:'):
+            return False
+        else:
+            return True
 
     def _list(self, public_entries_only=False):
         result = []
