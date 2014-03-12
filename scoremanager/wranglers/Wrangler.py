@@ -302,12 +302,12 @@ class Wrangler(Controller):
         return sequencetools.zip_sequences(sequences, cyclic=True)
 
     @staticmethod
-    def _path_to_space_delimited_lowercase_name(path):
+    def _path_to_human_readable_name(path, extension=False):
         path = os.path.normpath(path)
-        asset_name = os.path.basename(path)
-        if '.' in asset_name:
-            asset_name = asset_name[:asset_name.rindex('.')]
-        return stringtools.string_to_space_delimited_lowercase(asset_name)
+        name = os.path.basename(path)
+        if not extension:
+            name, extension = os.path.splitext(name)
+        return stringtools.string_to_space_delimited_lowercase(name)
 
     def _read_view_inventory_from_disk(self):
         if self._views_module_path is None:

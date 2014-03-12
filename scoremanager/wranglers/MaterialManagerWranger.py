@@ -112,7 +112,7 @@ class MaterialManagerWrangler(PackageWrangler):
     def _make_asset_menu_entries(self):
         paths = self._list_asset_paths()
         names = [
-            self._path_to_space_delimited_lowercase_name(path)
+            self._path_to_human_readable_name(path)
             for path in paths
             ]
         packages = []

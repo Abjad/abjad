@@ -127,7 +127,10 @@ class StylesheetWrangler(Wrangler):
         paths = self._list_asset_paths()
         display_strings = []
         for path in paths:
-            display_string = os.path.basename(path)
+            display_string = self._path_to_human_readable_name(
+                path,
+                extension=True,
+                )
             annotation = self._path_to_annotation(path)
             if annotation:
                 display_string = '{} ({})'.format(display_string, annotation)
