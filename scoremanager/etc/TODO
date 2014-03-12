@@ -17,38 +17,34 @@
     red_example_score.materials.time_signatures.
     This will implement an intrapackage material import.
 
-9.  Author StylesheetWrangler.remove() test.
-    Will involve making pending_user_input='... rm ...' work with named 
-    arguments instead of just numeric arguments.
-
-10. Implement MaterialPackageWrangler method to a material package 
+9.  Implement MaterialPackageWrangler method to a material package 
     from one location to another.
 
-11. Refactor scoremanager.editors to contain as few classes as possible.
+10. Refactor scoremanager.editors to contain as few classes as possible.
 
-12. Figure out the correct ajv replace regex to change tratiettore/music
+11. Figure out the correct ajv replace regex to change tratiettore/music
     to just traiettorie.
 
-13. Move score/instrumentation.py module to score/materials packages.
+12. Move score/instrumentation.py module to score/materials packages.
     Maybe easiest to do this by creating an
     InstrumentationSpecifierMaterialManager.
 
-14. Make material package illustration work again.
+13. Make material package illustration work again.
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
-15. These four classes can all be collapsed into one:
+14. These four classes can all be collapsed into one:
         wizards.HandlerCreationWizard
         wizards.ArticulationHandlerCreationWizard
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-16. Make the (p), (t) and (y) commands work from anywhere within a score.
+15. Make the (p), (t) and (y) commands work from anywhere within a score.
     Leave the commands lowercase.
 
-16. There also needs to be a single command to just view the global stylesheet
+15. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (Y) or equivalent.
 
-17. Find a way to get rid of the ...
+16. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -64,27 +60,27 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-18. Eliminate unqualified test files like test_ScorePackageManager.py.
+17. Eliminate unqualified test files like test_ScorePackageManager.py.
 
-19. Remove bug that allows for creation of ...
+18. Remove bug that allows for creation of ...
         metadata = collections.OrderedDict([
             ('', ''),
             ])
     ... without allowing for removal.
 
-20. Remove MarkupInventoryMaterialManager.illustration_builder().
+19. Remove MarkupInventoryMaterialManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
 
-21. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+20. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-22. Implement something to tour everything that can be rewritten and rewrite.
+21. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-23. Note that ArticulationHandlerMaterialManager implementation is limited
+22. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
