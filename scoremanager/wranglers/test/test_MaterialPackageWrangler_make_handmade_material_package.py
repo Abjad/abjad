@@ -30,5 +30,6 @@ def test_MaterialPackageWrangler_make_handmade_material_package_01():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
     finally:
-        shutil.rmtree(path)
+        if os.path.exists(path):
+            shutil.rmtree(path)
     assert not os.path.exists(path)

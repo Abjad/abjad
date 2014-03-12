@@ -53,6 +53,9 @@ class MaterialManagerWrangler(PackageWrangler):
 
     ### PRIVATE METHODS ###
 
+    def _get_current_directory_path_of_interest(self):
+        pass
+
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
@@ -110,7 +113,7 @@ class MaterialManagerWrangler(PackageWrangler):
         return False
 
     def _make_asset_menu_entries(self):
-        paths = self._list_asset_paths()
+        paths = self._list_visible_asset_paths()
         names = [
             self._path_to_human_readable_name(path)
             for path in paths
