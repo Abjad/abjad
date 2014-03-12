@@ -1,42 +1,37 @@
 # -*- encoding: utf-8 -*-
 import os
-import pytest
+import shutil
 from abjad import *
 import scoremanager
+configuration = scoremanager.core.ScoreManagerConfiguration()
 
 
 def test_StylesheetWrangler_remove_01():
-    pytest.skip('FIXME: user asset library stylesheets should show up here.')
 
     score_manager = scoremanager.core.ScoreManager()
-    configuration = score_manager._configuration
-    first_path = os.path.join(
-        configuration.user_library_stylesheets_directory_path,
-        'aaa.ly',
+    path = os.path.join(
+        configuration.abjad_stylesheets_directory_path,
+        'clean-letter-14.ily',
         )
-    second_path = os.path.join(
-        configuration.user_library_stylesheets_directory_path,
-        'aab.ly',
+    backup_path = os.path.join(
+        configuration.abjad_stylesheets_directory_path,
+        'clean-letter-14.ily.backup',
         )
 
-    assert not os.path.exists(first_path)
-    assert not os.path.exists(second_path)
+    assert os.path.exists(path)
+    shutil.copyfile(path, backup_path)
+    assert os.path.exists(backup_path)
 
-    file(first_path, 'w').write('')
-    file(second_path, 'w').write('')
+    input_ = 'lmy rm clean-letter-14.ily remove q'
+    score_manager._run(pending_user_input=input_, is_test=True)
+    assert not os.path.exists(path)
+    assert os.path.exists(backup_path)
+    shutil.move(backup_path, path)
+    manager = scoremanager.managers.FileManager(
+        path=path,
+        session=score_manager._session,
+        )
+    manager.add()
 
-    assert os.path.exists(first_path)
-    assert os.path.exists(second_path)
-
-    try:
-        input_ = 'y rm aaa-aab default q'
-        score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(first_path)
-        assert not os.path.exists(second_path)
-    finally:
-        if os.path.exists(first_path):
-            os.remove(first_path)
-        if os.path.exists(second_path):
-            os.remove(second_path)
-        assert not os.path.exists(first_path)
-        assert not os.path.exists(second_path)
+    assert os.path.exists(path)
+    assert not os.path.exists(backup_path)

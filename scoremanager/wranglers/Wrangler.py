@@ -570,37 +570,17 @@ class Wrangler(Controller):
         self._current_package_manager.pytest(prompt=prompt)
 
     def remove(self, pending_user_input=None):
-        r'''Removes assets.
+        r'''Removes asset.
 
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
-        getter = self._io_manager.make_getter(where=self._where)
-        asset_section = self._main_menu._asset_section
-        getter.append_menu_section_range(
-            'number(s) to remove', 
-            asset_section,
-            )
-        result = getter._run()
+        with self._backtracking:
+            asset_path = self._select_asset_path()
         if self._session._backtrack():
             return
-        asset_indices = [asset_number - 1 for asset_number in result]
-        total_assets_removed = 0
-        for asset_number in result:
-            asset_index = asset_number - 1
-            menu_entry = asset_section.menu_entries[asset_index]
-            asset_path = menu_entry.return_value
-            asset_manager = self._initialize_asset_manager(
-                asset_path)
-            asset_manager._remove()
-            total_assets_removed += 1
-        if total_assets_removed == 1:
-            asset_string = 'asset'
-        else:
-            asset_string = 'assets'
-        message = '{} {} removed.'
-        message = message.format(total_assets_removed, asset_string)
-        self._io_manager.proceed(message)
+        asset_manager = self._initialize_asset_manager(asset_path)
+        asset_manager.remove()
 
     def remove_initializer(self):
         r'''Removes initializer module.
