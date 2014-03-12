@@ -459,6 +459,7 @@ class MaterialManager(PackageManager):
         self._make_metadata_module_menu_section(menu)
         self._make_illustration_ly_menu_section(menu)
         self._make_output_material_menu_section(menu)
+        self._make_output_material_module_menu_section(menu)
         self._make_illustration_pdf_menu_section(menu)
         self._make_directory_menu_section(menu)
         self._make_stylesheet_menu_section(menu)
@@ -514,24 +515,29 @@ class MaterialManager(PackageManager):
             output_material), repr(output_material)
         return output_material
 
-    def _make_output_material_menu_section(
+    def _make_output_material_module_menu_section(
         self,
         menu,
         ):
         if not os.path.isfile(self._initializer_file_path):
             return
-        has_output_material_section = False
-        name = 'output material'
-        section = menu.make_command_section(name=name)
-        string = 'output material - boilerplate'
+        section = menu.make_command_section(name='output material module')
+        string = 'output material module - boilerplate'
         section.append((string, 'ombp'))
         if self._should_have_output_material_section():
             if self._can_make_output_material():
-                section.append(('output material - make', 'omm'))
-                has_output_material_section = True
+                section.append(('output material module - make', 'omm'))
+            if os.path.isfile(self._output_material_module_path):
+                section.append(('output material module - remove', 'omrm'))
+                section.append(('output material module - view', 'omv'))
+
+    def _make_output_material_menu_section(self, menu):
+        section = menu.make_command_section(name='output material')
+        if self._should_have_output_material_section():
             editor = self._get_output_material_editor(session=self._session)
             if editor:
                 section.append(('output material - interact', 'omi'))
+                # TODO: encapsulate the following in an independent section
                 if os.path.isfile(self._output_material_module_path):
                     output_material = self._execute_output_material_module()
                     editor = self._get_output_material_editor(
@@ -544,10 +550,6 @@ class MaterialManager(PackageManager):
                             name='material summary',
                             )
                         contents_section.title = target_summary_lines
-                has_output_material_section = True
-            if os.path.isfile(self._output_material_module_path):
-                section.append(('output material - remove', 'omrm'))
-                section.append(('output material - view', 'omv'))
 
     def _make_output_material_module_body_lines(self, output_material):
         if hasattr(output_material, '_storage_format_specification'):
