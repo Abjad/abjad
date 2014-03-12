@@ -42,6 +42,9 @@ class Editor(Controller):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
+        if result == 'user entered lone return':
+            self._session._is_backtracking_locally = True
+            return
         attribute_name = self.target_manifest.menu_key_to_attribute_name(
             result)
         prepopulated_value = self.menu_key_to_prepopulated_value(result)

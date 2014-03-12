@@ -94,6 +94,8 @@ class ScoreManager(Controller):
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
+        elif result == 'user entered lone return':
+            pass
         else:
             wrangler = self._score_package_wrangler
             score_package_paths = wrangler._list_visible_asset_paths()
