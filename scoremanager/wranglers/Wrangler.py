@@ -246,6 +246,27 @@ class Wrangler(Controller):
         manager = self._initialize_asset_manager(path)
         manager._write_stub()
 
+    def _make_asset_menu_entries(self, extensions=False):
+        paths = self._list_visible_asset_paths()
+        names = []
+        for path in paths:
+            name = self._path_to_human_readable_name(
+                path, 
+                extension=extensions,
+                )
+            annotation = self._path_to_annotation(path)
+            if annotation:
+                name = '{} ({})'.format(name, annotation)
+            names.append(name)
+        entries = []
+        if names:
+            sequences = (names, [None], [None], paths)
+            entries = sequencetools.zip_sequences(sequences, cyclic=True)
+            view = self._get_view_from_disk()
+            if view is not None:
+                entries = self._sort_asset_menu_entries_by_view(entries, view)
+        return entries
+
     def _make_asset_selection_breadcrumb(
         self, 
         human_readable_target_name=None,

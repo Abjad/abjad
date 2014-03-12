@@ -82,46 +82,6 @@ class PackageWrangler(Wrangler):
         package_manager = self._initialize_asset_manager(asset_name)
         package_manager.fix(prompt=False)
 
-    def _make_asset_menu_entries(self):
-        paths = self._list_visible_asset_paths()
-        names = []
-        for path in paths:
-            name = self._path_to_human_readable_name(path, extension=False)
-            annotation = self._path_to_annotation(path)
-            if annotation:
-                name = '{} ({})'.format(name, annotation)
-            names.append(name)
-        if not names:
-            return
-        keys = len(names) * [None]
-        prepopulated_return_values = len(names) * [None]
-        paths = self._list_visible_asset_paths()
-        sequences = (names, [None], [None], paths)
-        entries = sequencetools.zip_sequences(sequences, cyclic=True)
-        view = self._get_view_from_disk()
-        if view is not None:
-            entries = self._sort_asset_menu_entries_by_view(entries, view)
-        return entries
-
-    @staticmethod
-    def _sort_asset_menu_entries_by_view(entries, view):
-        entries_found_in_view = len(entries) * [None]
-        entries_not_found_in_view = []
-        for entry in entries:
-            name = entry[0]
-            if name in view:
-                index = view.index(name)
-                entries_found_in_view[index] = entry
-            else:
-                entries_not_found_in_view.append(entry)
-        entries_found_in_view = [
-            x for x in entries_found_in_view 
-            if not x is None
-            ]
-        sorted_entries = entries_found_in_view + entries_not_found_in_view
-        assert len(sorted_entries) == len(entries)
-        return sorted_entries
-
     ### PUBLIC METHODS ###
 
     def get_available_path(

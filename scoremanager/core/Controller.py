@@ -23,6 +23,9 @@ class Controller(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
+    def _get_view_from_disk(self):
+        pass
+
     def _make_directory_menu_section(self, menu, is_permanent=False):
         section = menu.make_command_section(
             is_hidden=True,
@@ -130,3 +133,22 @@ class Controller(ScoreManagerObject):
         else:
             annotation = None
         return annotation
+
+    @staticmethod
+    def _sort_asset_menu_entries_by_view(entries, view):
+        entries_found_in_view = len(entries) * [None]
+        entries_not_found_in_view = []
+        for entry in entries:
+            name = entry[0]
+            if name in view:
+                index = view.index(name)
+                entries_found_in_view[index] = entry
+            else:
+                entries_not_found_in_view.append(entry)
+        entries_found_in_view = [
+            x for x in entries_found_in_view 
+            if not x is None
+            ]
+        sorted_entries = entries_found_in_view + entries_not_found_in_view
+        assert len(sorted_entries) == len(entries)
+        return sorted_entries
