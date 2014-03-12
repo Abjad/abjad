@@ -263,7 +263,9 @@ class Wrangler(Controller):
     def _make_asset_selection_menu(self, packages_instead_of_paths=False):
         menu = self._io_manager.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
+        include_extensions = getattr(self, '_include_extensions', False)
         asset_menu_entries = self._make_asset_menu_entries(
+            include_extensions=include_extensions,
             packages_instead_of_paths=packages_instead_of_paths,
             )
         asset_section.menu_entries = asset_menu_entries
@@ -298,10 +300,10 @@ class Wrangler(Controller):
         return sequencetools.zip_sequences(sequences, cyclic=True)
 
     @staticmethod
-    def _path_to_human_readable_name(path, extension=False):
+    def _path_to_human_readable_name(path, include_extension=False):
         path = os.path.normpath(path)
         name = os.path.basename(path)
-        if not extension:
+        if not include_extension:
             name, extension = os.path.splitext(name)
         return stringtools.string_to_space_delimited_lowercase(name)
 
@@ -361,6 +363,7 @@ class Wrangler(Controller):
         cache=False,
         pending_user_input=None,
         ):
+        print 'AAA'
         self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
         menu = self._make_asset_selection_menu()

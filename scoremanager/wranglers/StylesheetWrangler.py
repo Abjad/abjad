@@ -33,6 +33,7 @@ class StylesheetWrangler(Wrangler):
         self._user_storehouse_path = \
             self._configuration.user_library_stylesheets_directory_path
         self._score_storehouse_path_infix_parts = ('stylesheets',)
+        self._include_extensions = True
 
     ### PRIVATE PROPERTIES ###
 
@@ -128,7 +129,7 @@ class StylesheetWrangler(Wrangler):
     def _make_asset_menu_section(self, menu):
         section = menu.make_asset_section()
         menu._asset_section = section
-        menu_entries = self._make_asset_menu_entries(extensions=True)
+        menu_entries = self._make_asset_menu_entries(include_extensions=True)
         section.menu_entries = menu_entries
         return section
 

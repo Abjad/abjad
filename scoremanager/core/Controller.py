@@ -29,7 +29,7 @@ class Controller(ScoreManagerObject):
 
     def _make_asset_menu_entries(
         self, 
-        extensions=False, 
+        include_extensions=False, 
         include_asset_name=True,
         include_year=False,
         packages_instead_of_paths=False,
@@ -40,7 +40,7 @@ class Controller(ScoreManagerObject):
         for path in paths:
             string = self._path_to_human_readable_name(
                 path, 
-                extension=extensions,
+                include_extension=include_extensions,
                 )
             annotation = self._path_to_annotation(path, year=include_year)
             if include_asset_name:
