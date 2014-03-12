@@ -26,9 +26,9 @@ class MaterialManagerWrangler(PackageWrangler):
     def __init__(self, session=None):
         superclass = super(MaterialManagerWrangler, self)
         superclass.__init__(session=session)
-        self.abjad_storehouse_path = \
+        self._abjad_storehouse_path = \
             self._configuration.abjad_material_managers_directory_path
-        self.user_storehouse_path = \
+        self._user_storehouse_path = \
             self._configuration.user_library_material_managers_directory_path
         self._human_readable_target_name = 'material manager'
         self.forbidden_directory_entries = (

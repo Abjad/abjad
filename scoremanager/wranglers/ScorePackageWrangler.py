@@ -41,9 +41,9 @@ class ScorePackageWrangler(PackageWrangler):
         superclass.__init__(session=session)
         self._asset_manager_class = managers.ScorePackageManager
         path = self._configuration.abjad_score_packages_directory_path
-        self.abjad_storehouse_path = path
+        self._abjad_storehouse_path = path
         path = self._configuration.user_score_packages_directory_path
-        self.user_storehouse_path = path
+        self._user_storehouse_path = path
 
     ### PRIVATE PROPERTIES ###
 

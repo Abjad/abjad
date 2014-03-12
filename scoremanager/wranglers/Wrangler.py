@@ -22,8 +22,8 @@ class Wrangler(Controller):
     def __init__(self, session=None):
         assert session is not None
         Controller.__init__(self, session=session)
-        self.abjad_storehouse_path = None
-        self.user_storehouse_path = None
+        self._abjad_storehouse_path = None
+        self._user_storehouse_path = None
         self.score_storehouse_path_infix_parts = ()
         self.forbidden_directory_entries = ()
 
@@ -48,7 +48,7 @@ class Wrangler(Controller):
             parts.extend(self.score_storehouse_path_infix_parts)
             return os.path.join(*parts)
         else:
-            return self.abjad_storehouse_path
+            return self._abjad_storehouse_path
 
     @property
     def _temporary_asset_manager(self):
@@ -188,10 +188,10 @@ class Wrangler(Controller):
         ):
         result = []
         if abjad_library and \
-            self.abjad_storehouse_path is not None:
-            result.append(self.abjad_storehouse_path)
-        if user_library and self.user_storehouse_path is not None:
-            result.append(self.user_storehouse_path)
+            self._abjad_storehouse_path is not None:
+            result.append(self._abjad_storehouse_path)
+        if user_library and self._user_storehouse_path is not None:
+            result.append(self._user_storehouse_path)
         if abjad_score_packages and \
             self.score_storehouse_path_infix_parts:
             for score_directory_path in \
@@ -284,7 +284,7 @@ class Wrangler(Controller):
         ):
         from scoremanager import wranglers
         keys, display_strings = [], []
-        keys.append(self.user_storehouse_path)
+        keys.append(self._user_storehouse_path)
         display_strings.append('My {}'.format(self._breadcrumb))
         wrangler = wranglers.ScorePackageWrangler(session=self._session)
         paths = wrangler._list_asset_paths(

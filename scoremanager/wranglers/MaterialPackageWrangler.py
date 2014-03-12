@@ -42,9 +42,9 @@ class MaterialPackageWrangler(PackageWrangler):
         superclass.__init__(session=session)
         self._material_manager_wrangler = \
             wranglers.MaterialManagerWrangler(session=self._session)
-        self.abjad_storehouse_path = \
+        self._abjad_storehouse_path = \
             self._configuration.abjad_material_packages_directory_path
-        self.user_storehouse_path = \
+        self._user_storehouse_path = \
             self._configuration.user_library_material_packages_directory_path
         self.score_storehouse_path_infix_parts = ('materials',)
 

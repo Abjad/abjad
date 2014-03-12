@@ -169,9 +169,9 @@ class Controller(ScoreManagerObject):
                 annotation = '{} ({})'.format(title, year_of_completion)
             else:
                 annotation = str(title)
-        elif path.startswith(self.abjad_storehouse_path):
+        elif path.startswith(self._abjad_storehouse_path):
             annotation = 'Abjad'
-        elif path.startswith(self.user_storehouse_path):
+        elif path.startswith(self._user_storehouse_path):
             annotation = self._configuration.composer_last_name
         else:
             annotation = None
