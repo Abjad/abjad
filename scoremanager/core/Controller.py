@@ -113,7 +113,7 @@ class Controller(ScoreManagerObject):
         section.append(('views module - view', 'vwmv'))
         return section
         
-    def _path_to_annotation(self, path):
+    def _path_to_annotation(self, path, year=False):
         from scoremanager import managers
         score_storehouses = (
             self._configuration.abjad_score_packages_directory_path,
@@ -125,7 +125,13 @@ class Controller(ScoreManagerObject):
                 path=score_path,
                 session=self._session,
                 )
-            annotation = manager._get_title()
+            metadata = manager._get_metadata()
+            year_of_completion = metadata.get('year_of_completion')
+            title = metadata.get('title')
+            if year and year_of_completion:
+                annotation = '{} ({})'.format(title, year_of_completion)
+            else:
+                annotation = str(title)
         elif path.startswith(self.abjad_storehouse_path):
             annotation = 'Abjad'
         elif path.startswith(self.user_storehouse_path):

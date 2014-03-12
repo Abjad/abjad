@@ -246,7 +246,7 @@ class Wrangler(Controller):
         manager = self._initialize_asset_manager(path)
         manager._write_stub()
 
-    def _make_asset_menu_entries(self, extensions=False):
+    def _make_asset_menu_entries(self, extensions=False, year=False):
         paths = self._list_visible_asset_paths()
         names = []
         for path in paths:
@@ -254,7 +254,7 @@ class Wrangler(Controller):
                 path, 
                 extension=extensions,
                 )
-            annotation = self._path_to_annotation(path)
+            annotation = self._path_to_annotation(path, year=year)
             if annotation:
                 name = '{} ({})'.format(name, annotation)
             names.append(name)

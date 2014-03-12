@@ -93,24 +93,17 @@ class ScorePackageWrangler(PackageWrangler):
         menu_pairs = []
         paths = self._list_visible_asset_paths()
         for path in paths:
-            manager = self._initialize_asset_manager(path)
-            metadata = manager._get_metadata()
-            year_of_completion = metadata.get('year_of_completion')
-            title = metadata.get('title')
-            if year_of_completion:
-                title_with_year = '{} ({})'.format(
-                    title,
-                    year_of_completion,
-                    )
-            else:
-                title_with_year = str(title)
-            pair = (manager._path, title_with_year)
+            title_with_year = self._path_to_annotation(path, year=True)
+            pair = (path, title_with_year)
             menu_pairs.append(pair)
         tmp = stringtools.strip_diacritics_from_binary_string
         menu_pairs.sort(key=lambda x: tmp(x[1]))
-        menu_entries = []
+        entries = []
         for menu_pair in menu_pairs:
             path, score_title = menu_pair
             entry = (score_title, None, None, path)
-            menu_entries.append(entry)
-        return menu_entries
+            entries.append(entry)
+        view = self._get_view_from_disk()
+        if view is not None:
+            entries = self._sort_asset_menu_entries_by_view(entries, view)
+        return entries
