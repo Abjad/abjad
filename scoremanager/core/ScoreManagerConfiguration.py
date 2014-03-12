@@ -112,6 +112,21 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             if not os.path.exists(directory_path):
                 os.makedirs(directory_path)
 
+    def _path_to_score_path(self, path):
+        if path.startswith(self.user_score_packages_directory_path):
+            prefix_length = len(self.user_score_packages_directory_path)
+        elif path.startswith(self.abjad_score_packages_directory_path):
+            prefix_length = len(self.abjad_score_packages_directory_path)
+        else:
+            message = 'path not found in score: {!r}.'
+            message = message.format(path)
+            raise ValueError(message)
+        path_prefix = path[:prefix_length]
+        path_suffix = path[prefix_length+1:]
+        score_name = path_suffix.split(os.path.sep)[0]
+        score_path = os.path.join(path_prefix, score_name)
+        return score_path
+
     ### PUBLIC PROPERTIES ###
 
     @property

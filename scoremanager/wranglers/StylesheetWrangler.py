@@ -113,6 +113,8 @@ class StylesheetWrangler(Wrangler):
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
+        elif result == 'user entered lone return':
+            pass
         else:
             self._edit_stylesheet(result)
 
@@ -178,22 +180,24 @@ class StylesheetWrangler(Wrangler):
     def _path_to_annotation(self, path):
         from scoremanager import managers
         annotation = None
-        if path.startswith(
-            self._configuration.abjad_score_packages_directory_path) or \
-            path.startswith(
-            self._configuration.user_score_packages_directory_path):
-            tmp = os.path.join('stylesheets')
-            score_path = path.rpartition(tmp)[0]
-            score_package_manager = managers.ScorePackageManager(
+        score_storehouses = (
+            self._configuration.abjad_score_packages_directory_path,
+            self._configuration.user_score_packages_directory_path,
+            )
+        abjad_stylesheets_directory_path = \
+            self._configuration.abjad_stylesheets_directory_path
+        user_library_stylesheets_directory_path = \
+            self._configuration.user_library_stylesheets_directory_path
+        if path.startswith(score_storehouses):
+            score_path = self._configuration._path_to_score_path(path)
+            manager = managers.ScorePackageManager(
                 path=score_path,
                 session=self._session,
                 )
-            annotation = score_package_manager._get_title()
-        elif path.startswith(
-            self._configuration.abjad_stylesheets_directory_path):
+            annotation = manager._get_title()
+        elif path.startswith(abjad_stylesheets_directory_path):
             annotation = 'Abjad'
-        elif path.startswith(
-            self._configuration.user_library_stylesheets_directory_path):
+        elif path.startswith(user_library_stylesheets_directory_path):
             annotation = self._configuration.composer_last_name
         return annotation
 
