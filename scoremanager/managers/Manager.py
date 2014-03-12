@@ -109,7 +109,7 @@ class Manager(Controller):
 
     def _initialize_file_name_getter(self):
         getter = self._io_manager.make_getter()
-        getter.append_snake_case_file_name('new name')
+        getter.append_dash_case_file_name('new name')
         return getter
 
     def _is_git_added(self, path=None):

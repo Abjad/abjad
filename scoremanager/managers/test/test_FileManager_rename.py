@@ -11,11 +11,11 @@ def test_FileManager_rename_01():
 
     path = os.path.join(
         configuration.score_manager_directory_path, 
-        'test_file.txt',
+        'test-file.txt',
         )
     new_path = os.path.join(
         configuration.score_manager_directory_path, 
-        'new_test_file.txt',
+        'new-test-file.txt',
         )
     session = scoremanager.core.Session()
     manager = scoremanager.managers.FileManager(path=path, session=session)
@@ -25,7 +25,7 @@ def test_FileManager_rename_01():
     try:
         manager._make_empty_asset()
         assert os.path.exists(path)
-        manager.rename(pending_user_input='new_test_file.txt y q')
+        manager.rename(pending_user_input='new-test-file.txt y q')
         assert manager._path == new_path
         assert not os.path.exists(path)
         assert os.path.exists(new_path)
@@ -45,15 +45,15 @@ def test_FileManager_rename_02():
 
     path = os.path.join(
         configuration.score_manager_directory_path, 
-        'test_file.txt',
+        'test-file.txt',
         )
     new_path = os.path.join(
         configuration.score_manager_directory_path, 
-        'new_test_file.txt',
+        'new-test-file.txt',
         )
     session = scoremanager.core.Session()
     manager = scoremanager.managers.FileManager(path=path, session=session)
-    input_ = 'new_test_file.txt y q'
+    input_ = 'new-test-file.txt y q'
 
     assert not os.path.exists(path)
     assert not os.path.exists(new_path)
