@@ -182,7 +182,9 @@ class StylesheetWrangler(Wrangler):
             tmp = os.path.join('stylesheets')
             score_path = path.rpartition(tmp)[0]
             score_package_manager = managers.ScorePackageManager(
-                path=score_path)
+                path=score_path,
+                session=self._session,
+                )
             annotation = score_package_manager._get_title()
         elif path.startswith(
             self._configuration.abjad_stylesheets_directory_path):

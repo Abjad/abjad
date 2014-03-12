@@ -30,8 +30,9 @@ def test_DynamicHandlerMaterialManager_01():
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
+        session = scoremanager.core.Session()
         manager = scoremanager.managers.DynamicHandlerMaterialManager
-        manager = manager(path=path)
+        manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == handler

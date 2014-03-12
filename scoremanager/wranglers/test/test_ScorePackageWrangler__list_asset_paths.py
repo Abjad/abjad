@@ -8,7 +8,8 @@ def test_ScorePackageWrangler__list_asset_paths_01():
     r'''Abjad score packages.
     '''
 
-    wrangler = scoremanager.wranglers.ScorePackageWrangler()
+    session = scoremanager.core.Session()
+    wrangler = scoremanager.wranglers.ScorePackageWrangler(session=session)
 
     package_names = [
         'blue_example_score',

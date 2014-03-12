@@ -8,7 +8,8 @@ def test_SegmentPackageWrangler__list_storehouse_paths_01():
     r'''Lists all Abjad score package segment directories.
     '''
     
-    wrangler = scoremanager.wranglers.SegmentPackageWrangler()
+    session = scoremanager.core.Session()
+    wrangler = scoremanager.wranglers.SegmentPackageWrangler(session=session)
     
     package_names = [
         'blue_example_score',

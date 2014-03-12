@@ -13,13 +13,14 @@ def test_FileManager__remove_01():
         configuration.score_manager_directory_path, 
         'temporary_file.txt',
         )
-    file_manager = scoremanager.managers.FileManager(path=path)
+    session = scoremanager.core.Session()
+    manager = scoremanager.managers.FileManager(path=path, session=session)
 
     assert not os.path.exists(path)
     try:
-        file_manager._make_empty_asset()
+        manager._make_empty_asset()
         assert os.path.exists(path)
-        file_manager._remove()
+        manager._remove()
         assert not os.path.exists(path)
     finally:
         if os.path.exists(path):
@@ -35,16 +36,17 @@ def test_FileManager__remove_02():
         configuration.score_manager_directory_path, 
         'temporary_file.txt',
         )
-    file_manager = scoremanager.managers.FileManager(path=path)
+    session = scoremanager.core.Session()
+    manager = scoremanager.managers.FileManager(path=path, session=session)
 
     assert not os.path.exists(path)
     try:
-        file_manager._make_empty_asset()
+        manager._make_empty_asset()
         assert os.path.exists(path)
-        file_manager.add()
-        assert file_manager._is_git_added()
-        assert not file_manager._is_git_versioned()
-        file_manager._remove()
+        manager.add()
+        assert manager._is_git_added()
+        assert not manager._is_git_versioned()
+        manager._remove()
         assert not os.path.exists(path)
     finally:
         if os.path.exists(path):

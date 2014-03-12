@@ -19,12 +19,14 @@ class MaterialManager(PackageManager):
 
             >>> import os
             >>> configuration = scoremanager.core.ScoreManagerConfiguration()
+            >>> session = scoremanager.core.Session()
             >>> path = os.path.join(
             ...     configuration.abjad_material_packages_directory_path,
             ...     'example_numbers',
             ...     )
             >>> manager = scoremanager.managers.MaterialManager(
             ...     path=path,
+            ...     session=session,
             ...     )
             >>> manager
             MaterialManager('.../materials/example_numbers')

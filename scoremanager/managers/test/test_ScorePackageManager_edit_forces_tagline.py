@@ -38,10 +38,14 @@ def test_ScorePackageManager_edit_forces_tagline_02():
         score_manager = scoremanager.core.ScoreManager()
         input_ = 'red~example~score setup tagline for~foo~bar q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.ScorePackageManager(path)
+        session = scoremanager.core.Session()
+        manager = scoremanager.managers.ScorePackageManager
+        manager = manager(path=path, session=session)
         assert manager._get_metadatum('forces_tagline') == 'for foo bar'
     finally:
         input_ = 'red~example~score setup tagline for~six~players q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        manager = scoremanager.managers.ScorePackageManager(path)
+        session = scoremanager.core.Session()
+        manager = scoremanager.managers.ScorePackageManager
+        manager = manager(path=path, session=session)
         assert manager._get_metadatum('forces_tagline') == 'for six players'

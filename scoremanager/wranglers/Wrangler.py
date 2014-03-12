@@ -252,7 +252,7 @@ class Wrangler(Controller):
         is_storehouse=False,
         ):
         if human_readable_target_name is None:
-            manager = self._asset_manager_class()
+            manager = self._asset_manager_class(session=self._session)
             generic_class_name = manager._generic_class_name
             human_readable_target_name = generic_class_name
         if infinitival_phrase:

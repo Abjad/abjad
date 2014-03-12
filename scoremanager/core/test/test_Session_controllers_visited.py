@@ -11,8 +11,9 @@ def test_Session_controllers_visited_01():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='q', is_test=True)
 
+    session = scoremanager.core.Session()
     controllers = [
-        scoremanager.core.ScoreManager(),
+        scoremanager.core.ScoreManager(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
 
@@ -24,9 +25,10 @@ def test_Session_controllers_visited_02():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='red~example~score q', is_test=True)
 
+    session = scoremanager.core.Session()
     controllers = [
-        scoremanager.core.ScoreManager(),
-        scoremanager.managers.ScorePackageManager(),
+        scoremanager.core.ScoreManager(session=session),
+        scoremanager.managers.ScorePackageManager(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
 
@@ -38,10 +40,11 @@ def test_Session_controllers_visited_03():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='red~example~score u q', is_test=True)
 
+    session = scoremanager.core.Session()
     controllers = [
-        scoremanager.core.ScoreManager(),
-        scoremanager.managers.ScorePackageManager(),
-        scoremanager.managers.BuildDirectoryManager(),
+        scoremanager.core.ScoreManager(session=session),
+        scoremanager.managers.ScorePackageManager(session=session),
+        scoremanager.managers.BuildDirectoryManager(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
 
@@ -53,10 +56,11 @@ def test_Session_controllers_visited_04():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='red~example~score m q', is_test=True)
 
+    session = scoremanager.core.Session()
     controllers = [
-        scoremanager.core.ScoreManager(),
-        scoremanager.managers.ScorePackageManager(),
-        scoremanager.wranglers.MaterialPackageWrangler(),
+        scoremanager.core.ScoreManager(session=session),
+        scoremanager.managers.ScorePackageManager(session=session),
+        scoremanager.wranglers.MaterialPackageWrangler(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
 
@@ -69,11 +73,12 @@ def test_Session_controllers_visited_05():
     string = 'red~example~score m tempo~inventory q'
     score_manager._run(pending_user_input=string, is_test=True)
 
+    session = scoremanager.core.Session()
     controllers = [
-        scoremanager.core.ScoreManager(),
-        scoremanager.managers.ScorePackageManager(),
-        scoremanager.wranglers.MaterialPackageWrangler(),
-        scoremanager.managers.TempoInventoryMaterialManager(),
+        scoremanager.core.ScoreManager(session=session),
+        scoremanager.managers.ScorePackageManager(session=session),
+        scoremanager.wranglers.MaterialPackageWrangler(session=session),
+        scoremanager.managers.TempoInventoryMaterialManager(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
 
@@ -86,10 +91,11 @@ def test_Session_controllers_visited_06():
     string = 'red~example~score g q'
     score_manager._run(pending_user_input=string, is_test=True)
 
+    session = scoremanager.core.Session()
     controllers = [
-        scoremanager.core.ScoreManager(),
-        scoremanager.managers.ScorePackageManager(),
-        scoremanager.wranglers.SegmentPackageWrangler(),
+        scoremanager.core.ScoreManager(session=session),
+        scoremanager.managers.ScorePackageManager(session=session),
+        scoremanager.wranglers.SegmentPackageWrangler(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
 
@@ -102,11 +108,12 @@ def test_Session_controllers_visited_07():
     string = 'red~example~score g 1 q'
     score_manager._run(pending_user_input=string, is_test=True)
 
+    session = scoremanager.core.Session()
     controllers = [
-        scoremanager.core.ScoreManager(),
-        scoremanager.managers.ScorePackageManager(),
-        scoremanager.wranglers.SegmentPackageWrangler(),
-        scoremanager.managers.SegmentPackageManager(),
+        scoremanager.core.ScoreManager(session=session),
+        scoremanager.managers.ScorePackageManager(session=session),
+        scoremanager.wranglers.SegmentPackageWrangler(session=session),
+        scoremanager.managers.SegmentPackageManager(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
 
@@ -119,9 +126,10 @@ def test_Session_controllers_visited_08():
     string = 'red~example~score y q'
     score_manager._run(pending_user_input=string, is_test=True)
 
+    session = scoremanager.core.Session()
     controllers = [
-        scoremanager.core.ScoreManager(),
-        scoremanager.managers.ScorePackageManager(),
-        scoremanager.wranglers.StylesheetWrangler(),
+        scoremanager.core.ScoreManager(session=session),
+        scoremanager.managers.ScorePackageManager(session=session),
+        scoremanager.wranglers.StylesheetWrangler(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers

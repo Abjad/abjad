@@ -17,17 +17,18 @@ def test_FileManager__rename_01():
         configuration.score_manager_directory_path, 
         'new_temporary_file.txt',
         )
-    file_manager = scoremanager.managers.FileManager(path=path)
+    session = scoremanager.core.Session()
+    manager = scoremanager.managers.FileManager(path=path, session=session)
 
     assert not os.path.exists(path)
     assert not os.path.exists(new_path)
     try:
-        file_manager._make_empty_asset()
+        manager._make_empty_asset()
         assert os.path.exists(path)
-        file_manager._rename(new_path)
+        manager._rename(new_path)
         assert not os.path.exists(path)
         assert os.path.exists(new_path)
-        file_manager._remove()
+        manager._remove()
     finally:
         if os.path.exists(path):
             os.remove(path)
@@ -49,20 +50,21 @@ def test_FileManager__rename_02():
         configuration.score_manager_directory_path, 
         'new_temporary_file.txt',
         )
-    file_manager = scoremanager.managers.FileManager(path=path)
+    session = scoremanager.core.Session()
+    manager = scoremanager.managers.FileManager(path=path, session=session)
 
     assert not os.path.exists(path)
     assert not os.path.exists(new_path)
     try:
-        file_manager._make_empty_asset()
+        manager._make_empty_asset()
         assert os.path.exists(path)
-        file_manager.add()
-        assert file_manager._is_git_added()
-        assert not file_manager._is_git_versioned()
-        file_manager._rename(new_path)
+        manager.add()
+        assert manager._is_git_added()
+        assert not manager._is_git_versioned()
+        manager._rename(new_path)
         assert os.path.exists(new_path)
-        assert file_manager._path == new_path
-        file_manager._remove()
+        assert manager._path == new_path
+        manager._remove()
     finally:
         if os.path.exists(path):
             os.remove(path)

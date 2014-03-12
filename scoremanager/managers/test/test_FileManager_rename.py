@@ -17,18 +17,19 @@ def test_FileManager_rename_01():
         configuration.score_manager_directory_path, 
         'new_test_file.txt',
         )
-    file_manager = scoremanager.managers.FileManager(path=path)
+    session = scoremanager.core.Session()
+    manager = scoremanager.managers.FileManager(path=path, session=session)
 
     assert not os.path.exists(path)
     assert not os.path.exists(new_path)
     try:
-        file_manager._make_empty_asset()
+        manager._make_empty_asset()
         assert os.path.exists(path)
-        file_manager.rename(pending_user_input='new_test_file.txt y q')
-        assert file_manager._path == new_path
+        manager.rename(pending_user_input='new_test_file.txt y q')
+        assert manager._path == new_path
         assert not os.path.exists(path)
         assert os.path.exists(new_path)
-        file_manager._remove()
+        manager._remove()
     finally:
         if os.path.exists(path):
             os.remove(path)
@@ -50,21 +51,22 @@ def test_FileManager_rename_02():
         configuration.score_manager_directory_path, 
         'new_test_file.txt',
         )
-    file_manager = scoremanager.managers.FileManager(path=path)
+    session = scoremanager.core.Session()
+    manager = scoremanager.managers.FileManager(path=path, session=session)
     input_ = 'new_test_file.txt y q'
 
     assert not os.path.exists(path)
     assert not os.path.exists(new_path)
     try:
-        file_manager._make_empty_asset()
+        manager._make_empty_asset()
         assert os.path.exists(path)
-        file_manager.add()
-        assert file_manager._is_git_added()
-        assert not file_manager._is_git_versioned()
-        file_manager.rename(pending_user_input=input_)
-        assert file_manager._path == new_path
+        manager.add()
+        assert manager._is_git_added()
+        assert not manager._is_git_versioned()
+        manager.rename(pending_user_input=input_)
+        assert manager._path == new_path
         assert os.path.exists(new_path)
-        file_manager._remove()
+        manager._remove()
     finally:
         if os.path.exists(path):
             os.remove(path)

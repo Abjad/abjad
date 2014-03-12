@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+import shutil
 from abjad import *
 import scoremanager
 
@@ -8,7 +9,8 @@ def test_SegmentPackageWrangler__list_asset_paths_01():
     r'''Lists all segment packages resident in Abjad score packages.
     '''
 
-    wrangler = scoremanager.wranglers.SegmentPackageWrangler()
+    session = scoremanager.core.Session()
+    wrangler = scoremanager.wranglers.SegmentPackageWrangler(session=session)
 
     blue_segment_names = [
         'segment_01',

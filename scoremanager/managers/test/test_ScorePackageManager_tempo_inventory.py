@@ -7,13 +7,15 @@ import scoremanager
 def test_ScorePackageManager_tempo_inventory_01():
 
     configuration = scoremanager.core.ScoreManagerConfiguration()
-    directory_path = os.path.join(
+    path = os.path.join(
         configuration.abjad_score_packages_directory_path,
         'red_example_score',
         )
         
+    session = scoremanager.core.Session()
     score_package_manager = scoremanager.managers.ScorePackageManager(
-        directory_path
+        path=path,
+        session=session,
         )
 
     assert score_package_manager._get_tempo_inventory() == \

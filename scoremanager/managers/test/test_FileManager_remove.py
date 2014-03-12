@@ -13,13 +13,14 @@ def test_FileManager_remove_01():
         configuration.score_manager_directory_path, 
         'temporary_file.txt',
         )
-    file_manager = scoremanager.managers.FileManager(path=path)
+    session = scoremanager.core.Session()
+    manager = scoremanager.managers.FileManager(path=path, session=session)
 
     assert not os.path.exists(path)
     try:
-        file_manager._make_empty_asset()
+        manager._make_empty_asset()
         assert os.path.exists(path)
-        file_manager.remove(pending_user_input='remove default q')
+        manager.remove(pending_user_input='remove default q')
         assert not os.path.exists(path)
     finally:
         if os.path.exists(path):
@@ -35,14 +36,15 @@ def test_FileManager_remove_02():
         configuration.score_manager_directory_path, 
         'temporary_file.txt',
         )
-    file_manager = scoremanager.managers.FileManager(path=path)
+    session = scoremanager.core.Session()
+    manager = scoremanager.managers.FileManager(path=path, session=session)
 
     assert not os.path.exists(path)
     try:
-        file_manager._make_empty_asset()
+        manager._make_empty_asset()
         assert os.path.exists(path)
-        file_manager.add()
-        file_manager.remove(pending_user_input='remove default q')
+        manager.add()
+        manager.remove(pending_user_input='remove default q')
         assert not os.path.exists(path)
     finally:
         if os.path.exists(path):

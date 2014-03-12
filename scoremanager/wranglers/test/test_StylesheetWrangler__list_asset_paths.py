@@ -8,7 +8,8 @@ def test_StylesheetWrangler__list_asset_paths_01():
     r'''Lists paths of stylesheets resident in Abjad stylesheet library.
     '''
 
-    wrangler = scoremanager.wranglers.StylesheetWrangler()
+    session = scoremanager.core.Session()
+    wrangler = scoremanager.wranglers.StylesheetWrangler(session=session)
 
     file_names = [
         'clean-letter-14.ily',

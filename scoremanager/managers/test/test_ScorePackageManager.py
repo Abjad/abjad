@@ -14,7 +14,11 @@ def test_ScorePackageManager_01():
         configuration.abjad_score_packages_directory_path,
         'red_example_score',
         )
-    red_example_score = scoremanager.managers.ScorePackageManager(path=path)
+    session = scoremanager.core.Session()
+    red_example_score = scoremanager.managers.ScorePackageManager(
+        path=path,
+        session=session,
+        )
     red_example_score._run(pending_user_input='q')
 
     lines = [
@@ -60,8 +64,11 @@ def test_ScorePackageManager_03():
         configuration.abjad_score_packages_directory_path,
         'red_example_score',
         )
+    session = scoremanager.core.Session()
     red_example_score = scoremanager.managers.ScorePackageManager(
-        path=path)
+        path=path,
+        session=session,
+        )
     red_example_score._run(pending_user_input='h')
 
     assert red_example_score._transcript.signature == (2,)
@@ -96,8 +103,11 @@ def test_ScorePackageManager_05():
         configuration.abjad_score_packages_directory_path,
         'red_example_score',
         )
+    session = scoremanager.core.Session()
     manager = scoremanager.managers.ScorePackageManager(
-        path=path)
+        path=path,
+        session=session,
+        )
 
     assert manager._session is manager._distribution_directory_manager._session
     assert manager._session is manager._build_directory_manager._session

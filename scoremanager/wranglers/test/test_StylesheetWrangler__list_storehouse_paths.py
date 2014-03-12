@@ -8,7 +8,8 @@ def test_StylesheetWrangler__list_storehouse_paths_01():
     r'''Lists Abjad stylesheet library path.
     '''
     
-    wrangler = scoremanager.wranglers.StylesheetWrangler()
+    session = scoremanager.core.Session()
+    wrangler = scoremanager.wranglers.StylesheetWrangler(session=session)
     
     paths = [
         wrangler._configuration.abjad_stylesheets_directory_path,
@@ -28,7 +29,8 @@ def test_StylesheetWrangler__list_storehouse_paths_02():
     r'''Lists paths of Abjad score package stylesheet directories.
     '''
     
-    wrangler = scoremanager.wranglers.StylesheetWrangler()
+    session = scoremanager.core.Session()
+    wrangler = scoremanager.wranglers.StylesheetWrangler(session=session)
     
     score_names = [
         'blue_example_score',

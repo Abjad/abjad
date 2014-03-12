@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 import pytest
+import shutil
 from abjad import *
 import scoremanager
 
@@ -14,25 +15,29 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
         'material_definition.py', 
         ]
 
+    assert not os.path.exists(path)
     try:
         input_ = 'lmm nmh testnotes default default q'
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
-        manager = scoremanager.managers.MaterialManager(path)
+        session = scoremanager.core.Session()
+        manager = scoremanager.managers.MaterialManager
+        manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_material_definition_module() is None
         assert manager._execute_output_material_module() is None
-    finally:
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            shutil.rmtree(path)
+    assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_02():
@@ -45,7 +50,6 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -54,17 +58,22 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
     input_ = 'lmm nmh testnotes default default'
     input_ += ' testnotes incanned boilerplate_exception.py default q'
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
-        manager = scoremanager.managers.MaterialManager(path)
+        session = scoremanager.core.Session()
+        manager = scoremanager.managers.MaterialManager
+        manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._interpret_material_definition_module()
         assert output_material is None
-    finally:
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            shutil.rmtree(path)
+    assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_03():
@@ -77,7 +86,6 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -87,17 +95,22 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
     input_ += ' testnotes incanned boilerplate_exception.py default'
     input_ += ' inr yes yes default q'
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
-        manager = scoremanager.managers.MaterialManager(path)
+        session = scoremanager.core.Session()
+        manager = scoremanager.managers.MaterialManager
+        manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_material_definition_module() is None
         assert manager._execute_output_material_module() is None
-    finally:
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            shutil.rmtree(path)
+    assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_04():
@@ -110,7 +123,6 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
@@ -121,10 +133,13 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
     input_ += ' boilerplate_testnotes_material_definition.py default'
     input_ += ' omm default q'
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
-        manager = scoremanager.managers.MaterialManager(path)
+        session = scoremanager.core.Session()
+        manager = scoremanager.managers.MaterialManager
+        manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         material_definition = manager._interpret_material_definition_module()
         assert material_definition
@@ -132,10 +147,12 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
         output_material = manager._execute_output_material_module()
         assert output_material
         assert all(isinstance(x, Note) for x in output_material)
-    finally:
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            shutil.rmtree(path)
+    assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_05():
@@ -148,22 +165,26 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
         ]
     input_ = 'lmm nmh testnotes testnotes mdrm remove q'
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
-        manager = scoremanager.managers.MaterialManager(path)
+        session = scoremanager.core.Session()
+        manager = scoremanager.managers.MaterialManager
+        manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-    finally:
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            shutil.rmtree(path)
+    assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_06():
@@ -176,7 +197,6 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -184,17 +204,22 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
         ]
     input_ = 'lmm nmh testnotes default testnotes mds default q'
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
-        manager = scoremanager.managers.MaterialManager(path)
+        session = scoremanager.core.Session()
+        manager = scoremanager.managers.MaterialManager
+        manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_material_definition_module() is None
         assert manager._execute_output_material_module() is None
-    finally:
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            shutil.rmtree(path)
+    assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_07():
@@ -207,7 +232,6 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -217,20 +241,25 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
     input_ += ' testnotes mdbp boilerplate_testnotes_material_definition.py'
     input_ += ' default omm default omrm remove q' 
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
-        manager = scoremanager.managers.MaterialManager(path)
+        session = scoremanager.core.Session()
+        manager = scoremanager.managers.MaterialManager
+        manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         material_definition = manager._interpret_material_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
         output_material = manager._execute_output_material_module()
         assert output_material is None
-    finally:
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            shutil.rmtree(path)
+    assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_08():
@@ -243,7 +272,6 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -252,17 +280,22 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
     input_ = 'lmm nmh testnotes default default'
     input_ += ' testnotes mdbp boilerplate_exception.py default q'
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
-        manager = scoremanager.managers.MaterialManager(path)
+        session = scoremanager.core.Session()
+        manager = scoremanager.managers.MaterialManager
+        manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_material_definition_module() is None
         assert manager._execute_output_material_module() is None
-    finally:
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            shutil.rmtree(path)
+    assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_09():
@@ -276,7 +309,6 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
@@ -287,20 +319,25 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
     input_ += ' boilerplate_testnotes_material_definition.py default '
     input_ += 'omm default ombp boilerplate_exception.py default q'
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
-        manager = scoremanager.managers.MaterialManager(path)
+        session = scoremanager.core.Session()
+        manager = scoremanager.managers.MaterialManager
+        manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         material_definition = manager._interpret_material_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
         output_material = manager._execute_output_material_module()
         assert output_material is None
-    finally:
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            shutil.rmtree(path)
+    assert not os.path.exists(path)
 
 
 def test_MaterialPackageWrangler_run_handmade_package_10():
@@ -314,7 +351,6 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
         score_manager._configuration.abjad_material_packages_directory_path,
         'testnotes',
         )
-    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -325,10 +361,13 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
     input_ += ' boilerplate_testnotes_material_definition.py default'
     input_ += ' omm default pdfm default q' 
 
+    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
-        manager = scoremanager.managers.MaterialManager(path)
+        session = scoremanager.core.Session()
+        manager = scoremanager.managers.MaterialManager
+        manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         material_definition = manager._interpret_material_definition_module()
         assert material_definition
@@ -336,8 +375,9 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
         output_material = manager._execute_output_material_module()
         assert output_material
         assert all(isinstance(x, Note) for x in output_material)
-            
-    finally:
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
-        assert not os.path.exists(path)
+    finally:
+        if os.path.exists(path):
+            shutil.rmtree(path)
+    assert not os.path.exists(path)
