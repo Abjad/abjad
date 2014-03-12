@@ -46,7 +46,7 @@ class MaterialPackageWrangler(PackageWrangler):
             self._configuration.abjad_material_packages_directory_path
         self._user_storehouse_path = \
             self._configuration.user_library_material_packages_directory_path
-        self.score_storehouse_path_infix_parts = ('materials',)
+        self._score_storehouse_path_infix_parts = ('materials',)
 
     ### PRIVATE PROPERTIES ###
 

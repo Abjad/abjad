@@ -24,7 +24,7 @@ class Wrangler(Controller):
         Controller.__init__(self, session=session)
         self._abjad_storehouse_path = None
         self._user_storehouse_path = None
-        self.score_storehouse_path_infix_parts = ()
+        self._score_storehouse_path_infix_parts = ()
         self.forbidden_directory_entries = ()
 
     ### PRIVATE PROPERTIES ###
@@ -45,7 +45,7 @@ class Wrangler(Controller):
         if self._session.is_in_score:
             parts = []
             parts.append(self._session.current_score_directory_path)
-            parts.extend(self.score_storehouse_path_infix_parts)
+            parts.extend(self._score_storehouse_path_infix_parts)
             return os.path.join(*parts)
         else:
             return self._abjad_storehouse_path
@@ -130,7 +130,7 @@ class Wrangler(Controller):
         score_directory_path = self._session.current_score_directory_path
         if score_directory_path is not None:
             parts = (score_directory_path,)
-            parts += self.score_storehouse_path_infix_parts
+            parts += self._score_storehouse_path_infix_parts
             directory_path = os.path.join(*parts)
             assert '.' not in directory_path, repr(directory_path)
             return directory_path
@@ -193,20 +193,20 @@ class Wrangler(Controller):
         if user_library and self._user_storehouse_path is not None:
             result.append(self._user_storehouse_path)
         if abjad_score_packages and \
-            self.score_storehouse_path_infix_parts:
+            self._score_storehouse_path_infix_parts:
             for score_directory_path in \
                 self._configuration.list_score_directory_paths(abjad=True):
                 parts = [score_directory_path]
-                if self.score_storehouse_path_infix_parts:
-                    parts.extend(self.score_storehouse_path_infix_parts)
+                if self._score_storehouse_path_infix_parts:
+                    parts.extend(self._score_storehouse_path_infix_parts)
                 storehouse_path = os.path.join(*parts)
                 result.append(storehouse_path)
-        if user_score_packages and self.score_storehouse_path_infix_parts:
+        if user_score_packages and self._score_storehouse_path_infix_parts:
             for directory_path in \
                 self._configuration.list_score_directory_paths(user=True):
                 parts = [directory_path]
-                if self.score_storehouse_path_infix_parts:
-                    parts.extend(self.score_storehouse_path_infix_parts)
+                if self._score_storehouse_path_infix_parts:
+                    parts.extend(self._score_storehouse_path_infix_parts)
                 path = os.path.join(*parts)
                 result.append(path)
         return result
@@ -218,29 +218,18 @@ class Wrangler(Controller):
         abjad_score_packages=True, 
         user_score_packages=True, 
         ):
-
-        current_path = self._get_current_directory_path_of_interest()
-
-#        print repr(current_path), 'CP'
-#        if 'Stylesheet' not in type(self).__name__:
-#            if current_path is None:
-#                current_path = self._configuration.score_manager_directory_path
-#        print repr(current_path), 'CP2'
-
+        visible_paths = []
         paths = self._list_asset_paths(
             abjad_library=abjad_library,
             user_library=user_library,
             abjad_score_packages=abjad_score_packages,
             user_score_packages=user_score_packages,
             ) 
-        result = []
+        current_path = self._get_current_directory_path_of_interest()
         for path in paths:
-            if current_path is None:
-                result.append(path)
-            else:
-                if path.startswith(current_path):
-                    result.append(path)
-        return result
+            if current_path is None or path.startswith(current_path):
+                visible_paths.append(path)
+        return visible_paths
 
     def _make_asset(self, asset_name):
         assert stringtools.is_snake_case_string(asset_name)
@@ -302,7 +291,7 @@ class Wrangler(Controller):
             manager = wrangler._initialize_asset_manager(path)
             display_strings.append(manager._get_title())
             path_parts = (manager._path,)
-            path_parts = path_parts + self.score_storehouse_path_infix_parts
+            path_parts = path_parts + self._score_storehouse_path_infix_parts
             key = os.path.join(*path_parts)
             keys.append(key)
         sequences = [display_strings, [None], [None], keys]

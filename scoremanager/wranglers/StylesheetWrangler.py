@@ -32,7 +32,7 @@ class StylesheetWrangler(Wrangler):
             self._configuration.abjad_stylesheets_directory_path
         self._user_storehouse_path = \
             self._configuration.user_library_stylesheets_directory_path
-        self.score_storehouse_path_infix_parts = ('stylesheets',)
+        self._score_storehouse_path_infix_parts = ('stylesheets',)
 
     ### PRIVATE PROPERTIES ###
 
@@ -77,7 +77,7 @@ class StylesheetWrangler(Wrangler):
     def _get_current_directory(self):
         if self._session.current_score_directory_path:
             parts = (self._session.current_score_directory_path,)
-            parts += self.score_storehouse_path_infix_parts
+            parts += self._score_storehouse_path_infix_parts
             return os.path.join(*parts)
     
     def _get_header_stylesheet_file_path(self):
