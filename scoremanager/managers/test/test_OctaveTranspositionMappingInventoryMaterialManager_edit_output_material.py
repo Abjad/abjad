@@ -5,7 +5,7 @@ from abjad import *
 import scoremanager
 
 
-def test_PitchRangeInventoryMaterialManager_01():
+def test_OctaveTranspositionMappingInventoryMaterialManager_edit_output_material_01():
     r'''Stub material package.
     '''
 
@@ -13,25 +13,25 @@ def test_PitchRangeInventoryMaterialManager_01():
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
-        'testpir',
+        'testoctavetrans',
         )
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
         ]
-    input_ = 'lmm nmm pitch testpir default q'
+    input_ = 'lmm nmm octave testoctavetrans default q'
 
     assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
-        manager = scoremanager.managers.PitchRangeInventoryMaterialManager
+        manager = scoremanager.managers.OctaveTranspositionMappingInventoryMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material is None
-        input_ = 'lmm testpir rm remove q'
+        input_ = 'lmm testoctavetrans rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
         if os.path.exists(path):
@@ -39,7 +39,7 @@ def test_PitchRangeInventoryMaterialManager_01():
     assert not os.path.exists(path)
 
 
-def test_PitchRangeInventoryMaterialManager_02():
+def test_OctaveTranspositionMappingInventoryMaterialManager_edit_output_material_02():
     r'''Populate output material module.
     '''
 
@@ -47,32 +47,40 @@ def test_PitchRangeInventoryMaterialManager_02():
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
-        'testpir',
+        'testoctavetrans',
         )
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
         'output_material.py',
         ]
-    inventory = pitchtools.PitchRangeInventory([
-        pitchtools.PitchRange('[C2, G5]'), 
-        pitchtools.PitchRange('[C2, F#5]'),
+    mapping_1 = pitchtools.OctaveTranspositionMapping([
+        ('[A0, C4)', 15), 
+        ('[C4, C8)', 27),
         ])
-    input_ = 'lmm nmm pitch testpir default'
-    input_ += ' testpir omi add [A0, C8] add [C2, F#5] add [C2, G5]'
-    input_ += ' rm 1 mv 1 2 b default q'
+    mapping_2 = pitchtools.OctaveTranspositionMapping([
+        ('[A0, C8]', -18),
+        ])
+    inventory = pitchtools.OctaveTranspositionMappingInventory([
+        mapping_1, 
+        mapping_2
+        ])
+    input_ = 'lmm nmm octave testoctavetrans'
+    input_ += ' testoctavetrans omi add add source [A0, C4) target 15 done'
+    input_ += ' add source [C4, C8) target 27 done done'
+    input_ += ' add add source [A0, C8] target -18 done done done default q'
 
     assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
-        manager = scoremanager.managers.PitchRangeInventoryMaterialManager
+        manager = scoremanager.managers.OctaveTranspositionMappingInventoryMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
         assert output_material == inventory
-        input_ = 'lmm testpir rm remove q'
+        input_ = 'lmm testoctavetrans rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
         if os.path.exists(path):

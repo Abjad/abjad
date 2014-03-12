@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_NoteRhythmMakerEditor_01():
+def test_NoteRhythmMakerEditor__run_01():
 
     session = scoremanager.core.Session()
     editor = scoremanager.editors.NoteRhythmMakerEditor(session=session)

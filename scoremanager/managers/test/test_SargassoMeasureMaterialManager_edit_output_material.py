@@ -5,7 +5,7 @@ from abjad import *
 import scoremanager
 
 
-def test_SargassoMeasureMaterialManager_01():
+def test_SargassoMeasureMaterialManager_edit_output_material_01():
     r'''Empty wrapper.
     '''
 
@@ -49,7 +49,7 @@ def test_SargassoMeasureMaterialManager_01():
     assert not os.path.exists(path)
 
 
-def test_SargassoMeasureMaterialManager_02():
+def test_SargassoMeasureMaterialManager_edit_output_material_02():
     r'''Load demo values.
     '''
 
@@ -93,7 +93,7 @@ def test_SargassoMeasureMaterialManager_02():
     assert not os.path.exists(path)
 
 
-def test_SargassoMeasureMaterialManager_03():
+def test_SargassoMeasureMaterialManager_edit_output_material_03():
     r'''Load demo values and then clear all.
     '''
 
@@ -137,7 +137,7 @@ def test_SargassoMeasureMaterialManager_03():
     assert not os.path.exists(path)
 
 
-def test_SargassoMeasureMaterialManager_04():
+def test_SargassoMeasureMaterialManager_edit_output_material_04():
     r'''Edit one value.
     '''
 
@@ -181,7 +181,7 @@ def test_SargassoMeasureMaterialManager_04():
     assert not os.path.exists(path)
 
 
-def test_SargassoMeasureMaterialManager_05():
+def test_SargassoMeasureMaterialManager_edit_output_material_05():
     r'''Populate wrapper.
     '''
 
@@ -227,7 +227,7 @@ def test_SargassoMeasureMaterialManager_05():
     assert not os.path.exists(path)
 
 
-def test_SargassoMeasureMaterialManager_06():
+def test_SargassoMeasureMaterialManager_edit_output_material_06():
     r'''Partial population.
     '''
 
@@ -273,7 +273,7 @@ def test_SargassoMeasureMaterialManager_06():
     assert not os.path.exists(path)
 
 
-def test_SargassoMeasureMaterialManager_07():
+def test_SargassoMeasureMaterialManager_edit_output_material_07():
     r'''Set some values to none.
     '''
 
@@ -318,7 +318,7 @@ def test_SargassoMeasureMaterialManager_07():
     assert not os.path.exists(path)
 
 
-def test_SargassoMeasureMaterialManager_08():
+def test_SargassoMeasureMaterialManager_edit_output_material_08():
     r'''Make output from demo values.
     '''
 

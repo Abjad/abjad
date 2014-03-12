@@ -2,42 +2,44 @@
 import os
 import shutil
 from abjad import *
+from experimental import *
 import scoremanager
 
 
-def test_TempoInventoryMaterialManager_01():
+def test_DynamicHandlerMaterialManager_edit_output_material_01():
 
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
-        'testtempoinventory',
+        'testdynamichandler',
         )
+    assert not os.path.exists(path)
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
         'output_material.py', 
         ]
-    inventory = indicatortools.TempoInventory([
-        ((1, 4), 60), 
-        ((1, 4), 90),
-        ])
-    input_ = 'lmm nmm tempo testtempoinventory default testtempoinventory omi'
-    input_ += ' add ((1, 4), 60) add ((1, 4), 90) b default q'
+    handler = handlertools.ReiteratedDynamicHandler(
+        dynamic_name='f',
+        minimum_duration=Duration(1, 16),
+        )
+    input_ = 'lmm nmm dynamic testdynamichandler default'
+    input_ += ' reiterateddynamic f (1, 16) done default q'
 
-    assert not os.path.exists(path)
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
-        manager = scoremanager.managers.TempoInventoryMaterialManager
+        manager = scoremanager.managers.DynamicHandlerMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         output_material = manager._execute_output_material_module()
-        assert output_material == inventory
-        input_ = 'lmm testtempoinventory rm remove q'
+        assert output_material == handler
+        input_ = 'lmm testdynamichandler rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
+
     assert not os.path.exists(path)

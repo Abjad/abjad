@@ -5,7 +5,7 @@ import scoremanager
 pytest.skip('unskip once it is possible to edit composite objects.')
 
 
-def test_TaleaRhythmMakerEditor_01():
+def test_TaleaRhythmMakerEditor__run_01():
 
     session = scoremanager.core.Session()
     editor = scoremanager.editors.TaleaRhythmMakerEditor(session=session)
