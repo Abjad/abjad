@@ -21,41 +21,34 @@
     Will involve making pending_user_input='... rm ...' work with named 
     arguments instead of just numeric arguments.
 
-10. Make MaterialManager classes stop creating materials in 
-    the scoremanager/materials/ directory.
-    Those classes should create material packages in the user asset 
-    library material packages directory.
-    Or in user score packages. But no material packages should ever 
-    be created in the scoremanager/materials/ directory.
-
-11. Implement MaterialPackageWrangler method to a material package 
+10. Implement MaterialPackageWrangler method to a material package 
     from one location to another.
 
-12. Refactor scoremanager.editors to contain as few classes as possible.
+11. Refactor scoremanager.editors to contain as few classes as possible.
 
-13. Figure out the correct ajv replace regex to change tratiettore/music
+12. Figure out the correct ajv replace regex to change tratiettore/music
     to just traiettorie.
 
-14. Move score/instrumentation.py module to score/materials packages.
+13. Move score/instrumentation.py module to score/materials packages.
     Maybe easiest to do this by creating an
     InstrumentationSpecifierMaterialManager.
 
-15. Make material package illustration work again.
+14. Make material package illustration work again.
     (score > materials > tempo inventory > pdfm) is the command sequence.
 
-16. These four classes can all be collapsed into one:
+15. These four classes can all be collapsed into one:
         wizards.HandlerCreationWizard
         wizards.ArticulationHandlerCreationWizard
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-17. Make the (p), (t) and (y) commands work from anywhere within a score.
+16. Make the (p), (t) and (y) commands work from anywhere within a score.
     Leave the commands lowercase.
 
-17. There also needs to be a single command to just view the global stylesheet
+16. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (Y) or equivalent.
 
-18. Find a way to get rid of the ...
+17. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -71,20 +64,20 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-19. Eliminate unqualified test files like test_ScorePackageManager.py.
+18. Eliminate unqualified test files like test_ScorePackageManager.py.
 
-20. Remove bug that allows for creation of ...
+19. Remove bug that allows for creation of ...
         metadata = collections.OrderedDict([
             ('', ''),
             ])
     ... without allowing for removal.
 
-21. Remove MarkupInventoryMaterialManager.illustration_builder().
+20. Remove MarkupInventoryMaterialManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
 
-22. Write test for (ren) to rename.
+21. Write test for (ren) to rename.
 
-23. Write test to make sure that ...
+22. Write test to make sure that ...
         # -*- encoding: utf-8 -*-
         from abjad import *
         _output_material_module_import_statements = []
@@ -94,16 +87,16 @@
     ... shows up as the exact file contents in response to 
     (lmm) > (nmh) > ... > (mde).
 
-24. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+23. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-25. Implement something to tour everything that can be rewritten and rewrite.
+24. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-26. Note that ArticulationHandlerMaterialManager implementation is limited
+25. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
