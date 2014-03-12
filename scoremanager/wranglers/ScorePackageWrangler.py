@@ -88,22 +88,3 @@ class ScorePackageWrangler(PackageWrangler):
             if manager._is_visible():
                 visible_paths.append(path)
         return visible_paths
-
-    def _make_asset_menu_entries(self):
-        menu_pairs = []
-        paths = self._list_visible_asset_paths()
-        for path in paths:
-            title_with_year = self._path_to_annotation(path, year=True)
-            pair = (path, title_with_year)
-            menu_pairs.append(pair)
-        tmp = stringtools.strip_diacritics_from_binary_string
-        menu_pairs.sort(key=lambda x: tmp(x[1]))
-        entries = []
-        for menu_pair in menu_pairs:
-            path, score_title = menu_pair
-            entry = (score_title, None, None, path)
-            entries.append(entry)
-        view = self._get_view_from_disk()
-        if view is not None:
-            entries = self._sort_asset_menu_entries_by_view(entries, view)
-        return entries

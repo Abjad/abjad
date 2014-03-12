@@ -565,7 +565,12 @@ class IOManager(IOManager):
         lines.append('# -*- encoding: utf-8 -*-\n')
         lines.append('\n\n')
         lines.append('start_menu_entries = [\n')
-        menu_entries = self._score_package_wrangler._make_asset_menu_entries()
+        wrangler = self._score_package_wrangler
+        menu_entries = wrangler._make_asset_menu_entries(
+            include_asset_name=False,
+            include_year=True,
+            sort_by_annotation=True, 
+            )
         for menu_entry in menu_entries:
             lines.append('{},\n'.format(menu_entry))
         lines.append(']\n')

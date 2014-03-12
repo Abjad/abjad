@@ -246,25 +246,34 @@ class Wrangler(Controller):
         manager = self._initialize_asset_manager(path)
         manager._write_stub()
 
-    def _make_asset_menu_entries(self, extensions=False, year=False):
+    def _make_asset_menu_entries(
+        self, 
+        extensions=False, 
+        include_asset_name=True,
+        include_year=False,
+        sort_by_annotation=False, 
+        ):
         paths = self._list_visible_asset_paths()
-        names = []
+        strings = []
         for path in paths:
-            name = self._path_to_human_readable_name(
+            string = self._path_to_human_readable_name(
                 path, 
                 extension=extensions,
                 )
-            annotation = self._path_to_annotation(path, year=year)
-            if annotation:
-                name = '{} ({})'.format(name, annotation)
-            names.append(name)
-        entries = []
-        if names:
-            sequences = (names, [None], [None], paths)
-            entries = sequencetools.zip_sequences(sequences, cyclic=True)
-            view = self._get_view_from_disk()
-            if view is not None:
-                entries = self._sort_asset_menu_entries_by_view(entries, view)
+            annotation = self._path_to_annotation(path, year=include_year)
+            if include_asset_name:
+                string = '{} ({})'.format(string, annotation)
+            else:
+                string = str(annotation)
+            strings.append(string)
+        pairs = zip(strings, paths)
+        if sort_by_annotation:
+            tmp = stringtools.strip_diacritics_from_binary_string
+            pairs.sort(key=lambda x: tmp(x[0]))
+        entries = [(string, None, None, path) for string, path in pairs]
+        view = self._get_view_from_disk()
+        if view is not None:
+            entries = self._sort_asset_menu_entries_by_view(entries, view)
         return entries
 
     def _make_asset_selection_breadcrumb(
