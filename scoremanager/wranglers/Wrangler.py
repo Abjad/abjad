@@ -246,42 +246,6 @@ class Wrangler(Controller):
         manager = self._initialize_asset_manager(path)
         manager._write_stub()
 
-    def _make_asset_menu_entries(
-        self, 
-        extensions=False, 
-        include_asset_name=True,
-        include_year=False,
-        packages_instead_of_paths=False,
-        sort_by_annotation=False, 
-        ):
-        paths = self._list_visible_asset_paths()
-        strings = []
-        for path in paths:
-            string = self._path_to_human_readable_name(
-                path, 
-                extension=extensions,
-                )
-            annotation = self._path_to_annotation(path, year=include_year)
-            if include_asset_name:
-                string = '{} ({})'.format(string, annotation)
-            else:
-                string = str(annotation)
-            strings.append(string)
-        pairs = zip(strings, paths)
-        if sort_by_annotation:
-            tmp = stringtools.strip_diacritics_from_binary_string
-            pairs.sort(key=lambda x: tmp(x[0]))
-        entries = []
-        for string, path in pairs:
-            if packages_instead_of_paths:
-                path = self._configuration.path_to_package_path(path)
-            entry = (string, None, None, path)
-            entries.append(entry)
-        view = self._get_view_from_disk()
-        if view is not None:
-            entries = self._sort_asset_menu_entries_by_view(entries, view)
-        return entries
-
     def _make_asset_selection_breadcrumb(
         self, 
         human_readable_target_name=None,

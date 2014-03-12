@@ -45,22 +45,19 @@ class DirectoryManager(Manager):
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
+        elif result == 'user entered lone return':
+            pass
         else:
             self._run_asset_manager(result)
 
-    def _make_asset_menu_entries(self):
+    def _list_visible_asset_paths(self):
         file_names = self._list()
         file_names = [x for x in file_names if x[0].isalpha()]
         file_paths = []
         for file_name in file_names:
             file_path = os.path.join(self._path, file_name)
             file_paths.append(file_path)
-        display_strings = file_names[:]
-        menu_entries = []
-        if display_strings:
-            sequences = [display_strings, [None], [None], file_paths]
-            menu_entries = sequencetools.zip_sequences(sequences, cyclic=True)
-        return menu_entries
+        return file_paths
 
     def _make_asset_menu_section(self, menu):
         asset_section = menu.make_asset_section()
