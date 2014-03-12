@@ -363,7 +363,6 @@ class Wrangler(Controller):
         cache=False,
         pending_user_input=None,
         ):
-        print 'AAA'
         self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
         menu = self._make_asset_selection_menu()

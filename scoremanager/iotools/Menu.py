@@ -88,8 +88,6 @@ class Menu(ScoreManagerObject):
                     default_value = menu_section._default_value
             if default_value is not None:
                 return self._enclose_in_list(default_value)
-        elif self._user_enters_argument_range(user_input):
-            return self._handle_argument_range_user_input(user_input)
         elif user_input == 'r':
             return 'r'
         elif user_input == '?':
@@ -101,6 +99,8 @@ class Menu(ScoreManagerObject):
                 for menu_entry in menu_section.menu_entries:
                     if menu_entry.matches(user_input):
                         return self._enclose_in_list(menu_entry.return_value)
+        if self._user_enters_argument_range(user_input):
+            return self._handle_argument_range_user_input(user_input)
 
     def _clear_terminal(self):
         if self.should_clear_terminal:
@@ -490,7 +490,8 @@ class Menu(ScoreManagerObject):
 
         With these attributes:
 
-            * numbered
+            * is asset section
+            * is numbered
             * return value set to explicit
 
         Returns menu section.
