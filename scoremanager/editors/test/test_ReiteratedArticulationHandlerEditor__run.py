@@ -6,7 +6,9 @@ import scoremanager
 
 def test_ReiteratedArticulationHandlerEditor__run_01():
 
-    editor = scoremanager.editors.ReiteratedArticulationHandlerEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.ReiteratedArticulationHandlerEditor
+    editor = editor(session=session)
     string = "['.', '^'] (1, 16) (1, 8) cs'' c''' done"
     editor._run(
         pending_user_input=string, 
@@ -27,7 +29,9 @@ def test_ReiteratedArticulationHandlerEditor__run_01():
 
 def test_ReiteratedArticulationHandlerEditor__run_02():
 
-    editor = scoremanager.editors.ReiteratedArticulationHandlerEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.ReiteratedArticulationHandlerEditor
+    editor = editor(session=session)
     string = "['.', '^'] None None None None done"
     editor._run(
         pending_user_input=string,

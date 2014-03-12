@@ -34,7 +34,8 @@ def test_PerformerEditor_move_instrument_02():
     r'''Add two instruments. Move them.
     '''
 
-    editor = scoremanager.editors.PerformerEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.PerformerEditor(session=session)
     editor._run(pending_user_input='add 1 add 2 mv 1 2 q')
     assert editor.target == instrumenttools.Performer(
         instruments=[

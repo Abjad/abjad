@@ -6,7 +6,9 @@ import scoremanager
 
 def test_TerracedDynamicsHandlerEditor__run_01():
 
-    editor = scoremanager.editors.TerracedDynamicsHandlerEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.TerracedDynamicsHandlerEditor
+    editor = editor(session=session)
     string = "1 ['p', 'f', 'f'] Duration(1, 8) q"
     editor._run(pending_user_input=string, is_autoadvancing=True)
 

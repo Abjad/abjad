@@ -6,7 +6,8 @@ import scoremanager
 
 def test_TargetManifest_change_retrievable_attribute_name_to_initializer_argument_name_01():
 
-    editor = scoremanager.editors.MarkupEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.MarkupEditor(session=session)
 
     assert editor.target_manifest.change_retrievable_attribute_name_to_initializer_argument_name(
         'contents_string') == 'arg'
@@ -16,7 +17,8 @@ def test_TargetManifest_change_retrievable_attribute_name_to_initializer_argumen
 
 def test_TargetManifest_change_retrievable_attribute_name_to_initializer_argument_name_02():
 
-    editor = scoremanager.editors.MarkupEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.MarkupEditor(session=session)
 
     statement = "editor.target_manifest.change_retrievable_attribute_name"
     statement += "_to_initializer_argument_name('asdfasdf')"

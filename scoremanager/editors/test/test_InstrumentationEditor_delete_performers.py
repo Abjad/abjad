@@ -33,7 +33,8 @@ def test_InstrumentationEditor_delete_performers_02():
     r'''Add three performers. Delete two.
     '''
 
-    editor = scoremanager.editors.InstrumentationEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.InstrumentationEditor(session=session)
     string = 'add acc default add bass default add bassoon default rm 3 rm 2 q'
     editor._run(pending_user_input=string)
     assert editor.target == instrumenttools.InstrumentationSpecifier(
@@ -50,7 +51,8 @@ def test_InstrumentationEditor_delete_performers_03():
     r'''Range handling.
     '''
 
-    editor = scoremanager.editors.InstrumentationEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.InstrumentationEditor(session=session)
     editor._run(pending_user_input='add 1-3 default default default rm 3-2 q')
     assert editor.target == instrumenttools.InstrumentationSpecifier(
         [

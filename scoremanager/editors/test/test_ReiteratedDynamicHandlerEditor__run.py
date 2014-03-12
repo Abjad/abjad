@@ -6,7 +6,9 @@ import scoremanager
 
 def test_ReiteratedDynamicHandlerEditor__run_01():
 
-    editor = scoremanager.editors.ReiteratedDynamicHandlerEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.ReiteratedDynamicHandlerEditor
+    editor = editor(session=session)
     editor._run(
         pending_user_input="1 f Duration(1, 8) q", 
         is_autoadvancing=True,

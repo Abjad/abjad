@@ -39,12 +39,14 @@ def test_InstrumentEditor_short_instrument_name_03():
     Unless short instrument name markup is set explicitly.
     '''
 
-    editor = scoremanager.editors.InstrumentEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.InstrumentEditor(session=session)
     editor._run(pending_user_input="accordion sn 'foo' q")
     instrument = editor.target
     assert instrument.short_instrument_name == 'foo'
 
-    editor = scoremanager.editors.InstrumentEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.InstrumentEditor(session=session)
     editor._run(pending_user_input="accordion sm 'bar' sn 'foo' q")
     instrument = editor.target
     assert instrument.short_instrument_name == 'foo'

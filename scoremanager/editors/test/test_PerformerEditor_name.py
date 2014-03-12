@@ -36,6 +36,7 @@ def test_PerformerEditor_name_03():
     r'''Create, name and rename performer.
     '''
 
-    editor = scoremanager.editors.PerformerEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.PerformerEditor(session=session)
     editor._run(pending_user_input='name foo name bar q')
     assert editor.target == instrumenttools.Performer(name='bar')

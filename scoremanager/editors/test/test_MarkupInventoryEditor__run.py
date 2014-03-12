@@ -5,7 +5,8 @@ import scoremanager
 
 def test_MarkupInventoryEditor__run_01():
 
-    editor = scoremanager.editors.MarkupInventoryEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.MarkupInventoryEditor(session=session)
     string = "add arg r'\\italic~{~serenamente~possibile~}' done done"
     editor._run(pending_user_input=string)
 
@@ -20,7 +21,8 @@ def test_MarkupInventoryEditor__run_01():
 
 def test_MarkupInventoryEditor__run_02():
 
-    editor = scoremanager.editors.MarkupInventoryEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.MarkupInventoryEditor(session=session)
     string = "add"
     string += " arg r'\\italic~{~serenamente~possibile~}'"
     string += " direction up done"

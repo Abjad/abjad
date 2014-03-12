@@ -5,7 +5,8 @@ import scoremanager
 
 def test_ClefMarkEditor__run_01():
 
-    editor = scoremanager.editors.ClefEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.ClefEditor(session=session)
     editor._run(pending_user_input='clef treble done')
 
     clef = indicatortools.Clef('treble')

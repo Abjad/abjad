@@ -33,16 +33,19 @@ def test_PerformerEditor_delete_instruments_02():
     r'''Add two instruments. Delete one.
     '''
 
-    editor = scoremanager.editors.PerformerEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.PerformerEditor(session=session)
     editor._run(pending_user_input='add flute add acc rm flute q')
-    assert editor.target == instrumenttools.Performer(instruments=[instrumenttools.Accordion()])
+    assert editor.target == instrumenttools.Performer(
+        instruments=[instrumenttools.Accordion()])
 
 
 def test_PerformerEditor_delete_instruments_03():
     r'''Numeric range handling.
     '''
 
-    editor = scoremanager.editors.PerformerEditor()
+    session = scoremanager.core.Session()
+    editor = scoremanager.editors.PerformerEditor(session=session)
     editor._run(pending_user_input='add 1-3 rm 1,3 q')
     assert editor.target == instrumenttools.Performer(
         instruments=[instrumenttools.AltoVoice()],

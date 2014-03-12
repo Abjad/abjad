@@ -11,7 +11,8 @@ class ListEditor(Editor):
 
     ::
 
-        >>> editor = scoremanager.editors.ListEditor()
+        >>> session = scoremanager.core.Session()
+        >>> editor = scoremanager.editors.ListEditor(session=session)
         >>> editor.target = ['first', 'second', 'third']
         >>> editor
         ListEditor(target=['first', 'second', 'third'])
