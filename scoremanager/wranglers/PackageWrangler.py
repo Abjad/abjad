@@ -163,7 +163,9 @@ class PackageWrangler(Wrangler):
                 infinitival_phrase=infinitival_phrase,
                 )
             self._session._push_breadcrumb(breadcrumb)
-            menu = self._make_asset_selection_menu()
+            menu = self._make_asset_selection_menu(
+                packages_instead_of_paths=True,
+                )
             result = menu._run(clear=clear)
             if self._session._backtrack():
                 break

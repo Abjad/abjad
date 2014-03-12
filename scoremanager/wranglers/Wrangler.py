@@ -251,6 +251,7 @@ class Wrangler(Controller):
         extensions=False, 
         include_asset_name=True,
         include_year=False,
+        packages_instead_of_paths=False,
         sort_by_annotation=False, 
         ):
         paths = self._list_visible_asset_paths()
@@ -270,7 +271,12 @@ class Wrangler(Controller):
         if sort_by_annotation:
             tmp = stringtools.strip_diacritics_from_binary_string
             pairs.sort(key=lambda x: tmp(x[0]))
-        entries = [(string, None, None, path) for string, path in pairs]
+        entries = []
+        for string, path in pairs:
+            if packages_instead_of_paths:
+                path = self._configuration.path_to_package_path(path)
+            entry = (string, None, None, path)
+            entries.append(entry)
         view = self._get_view_from_disk()
         if view is not None:
             entries = self._sort_asset_menu_entries_by_view(entries, view)
@@ -296,10 +302,12 @@ class Wrangler(Controller):
         else:
             return 'select {}:'.format(human_readable_target_name)
 
-    def _make_asset_selection_menu(self):
+    def _make_asset_selection_menu(self, packages_instead_of_paths=False):
         menu = self._io_manager.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
-        asset_menu_entries = self._make_asset_menu_entries()
+        asset_menu_entries = self._make_asset_menu_entries(
+            packages_instead_of_paths=packages_instead_of_paths,
+            )
         asset_section.menu_entries = asset_menu_entries
         return menu
 

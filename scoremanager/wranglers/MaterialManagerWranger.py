@@ -112,20 +112,6 @@ class MaterialManagerWrangler(PackageWrangler):
                 return True
         return False
 
-    def _make_asset_menu_entries(self):
-        paths = self._list_visible_asset_paths()
-        names = [
-            self._path_to_human_readable_name(path)
-            for path in paths
-            ]
-        packages = []
-        for path in paths:
-            package = self._configuration.path_to_package_path(path)
-            packages.append(package)
-        assert len(names) == len(packages)
-        sequences = (names, [None], [None], packages)
-        return sequencetools.zip_sequences(sequences, cyclic=True)
-
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
