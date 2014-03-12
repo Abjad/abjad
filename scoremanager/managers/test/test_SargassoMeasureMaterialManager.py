@@ -12,7 +12,7 @@ def test_SargassoMeasureMaterialManager_01():
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
     input_ = 'lmm nmm sargasso testsargasso default q'
@@ -56,7 +56,7 @@ def test_SargassoMeasureMaterialManager_02():
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
     input_ = 'lmm nmm sargasso testsargasso default testsargasso uil q'
@@ -100,7 +100,7 @@ def test_SargassoMeasureMaterialManager_03():
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
     input_ = 'lmm nmm sargasso testsargasso default testsargasso uil uic q'
@@ -144,7 +144,7 @@ def test_SargassoMeasureMaterialManager_04():
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
     input_ = 'lmm nmm sargasso testsargasso default testsargasso 3 16 q'
@@ -188,7 +188,7 @@ def test_SargassoMeasureMaterialManager_05():
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
     input_ = 'lmm nmm sargasso testsargasso default'
@@ -234,7 +234,7 @@ def test_SargassoMeasureMaterialManager_06():
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
     input_ = 'lmm nmm sargasso testsargasso default'
@@ -280,7 +280,7 @@ def test_SargassoMeasureMaterialManager_07():
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
     input_ = 'lmm nmm sargasso testsargasso default'
@@ -325,7 +325,7 @@ def test_SargassoMeasureMaterialManager_08():
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
     directory_entries = [

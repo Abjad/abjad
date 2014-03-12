@@ -2,15 +2,20 @@
 import os
 from abjad import *
 import scoremanager
+configuration = scoremanager.core.ScoreManagerConfiguration()
 
 
 def test_MaterialPackageWrangler_get_available_path_01():
 
     session = scoremanager.core.Session()
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
-    result = wrangler.get_available_path(pending_user_input='foo')
+    storehouse = configuration.user_library_material_packages_directory_path
+    result = wrangler.get_available_path(
+        pending_user_input='foo',
+        storehouse_path=storehouse,
+        )
     path = os.path.join(
-        wrangler._configuration.abjad_material_packages_directory_path,
+        storehouse,
         'foo',
         )
     assert result == path
@@ -26,7 +31,7 @@ def test_MaterialPackageWrangler_get_available_path_02():
     wrangler._session._current_score_snake_case_name = 'red_example_score'
     result = wrangler.get_available_path(pending_user_input='foo')
     path = os.path.join(
-        wrangler._configuration.abjad_score_packages_directory_path,
+        configuration.abjad_score_packages_directory_path,
         'red_example_score',
         'materials',
         'foo',

@@ -11,7 +11,7 @@ def test_DynamicHandlerMaterialManager_01():
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testdynamichandler',
         )
     assert not os.path.exists(path)

@@ -12,7 +12,7 @@ def test_PitchRangeInventoryMaterialManager_01():
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testpir',
         )
     directory_entries = [
@@ -46,7 +46,7 @@ def test_PitchRangeInventoryMaterialManager_02():
     score_manager = scoremanager.core.ScoreManager()
     configuration = score_manager._configuration
     path = os.path.join(
-        configuration.abjad_material_packages_directory_path,
+        configuration.user_library_material_packages_directory_path,
         'testpir',
         )
     directory_entries = [

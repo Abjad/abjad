@@ -11,7 +11,7 @@ def test_MaterialPackageWrangler_make_managermade_material_package_01():
     session = scoremanager.core.Session()
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     path = os.path.join(
-        wrangler._configuration.abjad_material_packages_directory_path,
+        wrangler._configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
     directory_entries = [

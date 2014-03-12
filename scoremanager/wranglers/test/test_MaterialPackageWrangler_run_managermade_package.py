@@ -11,7 +11,7 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
 
     score_manager = scoremanager.core.ScoreManager()
     path = os.path.join(
-        score_manager._configuration.abjad_material_packages_directory_path,
+        score_manager._configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
     input_ = 'lmm nmm sargasso testsargasso default q'
@@ -78,7 +78,7 @@ def test_MaterialPackageWrangler_run_managermade_package_03():
 
     score_manager = scoremanager.core.ScoreManager()
     path = os.path.join(
-        score_manager._configuration.abjad_material_packages_directory_path,
+        score_manager._configuration.user_library_material_packages_directory_path,
         'testsargassomeasures',
         )
     input_ = 'lmm nmm sargasso testsargassomeasures'
@@ -114,7 +114,7 @@ def test_MaterialPackageWrangler_run_managermade_package_04():
 
     score_manager = scoremanager.core.ScoreManager()
     path = os.path.join(
-        score_manager._configuration.abjad_material_packages_directory_path,
+        score_manager._configuration.user_library_material_packages_directory_path,
         'testsargassomeasures',
         )
     input_ = 'lmm nmm sargasso testsargassomeasures'

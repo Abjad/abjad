@@ -40,12 +40,12 @@ class MaterialPackageWrangler(PackageWrangler):
         from scoremanager import wranglers
         superclass = super(MaterialPackageWrangler, self)
         superclass.__init__(session=session)
-        self._material_manager_wrangler = \
-            wranglers.MaterialManagerWrangler(session=self._session)
-        self._abjad_storehouse_path = \
-            self._configuration.abjad_material_packages_directory_path
-        self._user_storehouse_path = \
-            self._configuration.user_library_material_packages_directory_path
+        wrangler = wranglers.MaterialManagerWrangler(session=self._session)
+        self._material_manager_wrangler = wrangler
+        path = self._configuration.abjad_material_packages_directory_path
+        self._abjad_storehouse_path = path
+        path = self._configuration.user_library_material_packages_directory_path
+        self._user_storehouse_path = path
         self._score_storehouse_path_infix_parts = ('materials',)
 
     ### PRIVATE PROPERTIES ###
@@ -266,8 +266,12 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
+        if self._session.is_in_score:
+            storehouse_path = self._current_storehouse_path
+        else:
+            storehouse_path = self._user_storehouse_path
         with self._backtracking:
-            path = self.get_available_path()
+            path = self.get_available_path(storehouse_path=storehouse_path)
         if self._session._backtrack():
             return
         self._make_data_package(path, metadata=metadata)
@@ -311,8 +315,12 @@ class MaterialPackageWrangler(PackageWrangler):
         material_manager_package_path = result
         material_manager_class_name = \
             material_manager_package_path.split('.')[-1]
+        if self._session.is_in_score:
+            storehouse_path = self._current_storehouse_path
+        else:
+            storehouse_path = self._user_storehouse_path
         with self._backtracking:
-            path = self.get_available_path()
+            path = self.get_available_path(storehouse_path=storehouse_path)
         if self._session._backtrack():
             return
         self._make_managermade_material_package(
