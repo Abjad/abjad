@@ -112,19 +112,7 @@
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
 
-28. Add annotations to the materials in (lmm). So:
-     1: example articulation handler (Abjad)
-     2: example dynamic handler (Abjad)
-     3: example markup inventory (Abjad)
-     4: example notes (Abjad)
-     5: example numbers (Abjad)
-     6: example pitch range inventory (Abjad)
-     7: example sargasso measures (Abjad)
-     8: magic numbers (Red Example Score)
-     9: pitch range inventory (Red Example Score)
-     10: tempo inventory (Red Example Score)
+28. Change '_stylesheet_file_wrangler' to '_stylesheet_wrangler'.
 
-29. Change '_stylesheet_file_wrangler' to '_stylesheet_wrangler'.
-
-30. Make 'abjad_storehouse_path' and 'user_storehouse_path' private.
+29. Make 'abjad_storehouse_path' and 'user_storehouse_path' private.
     Probably only wrangler attributes.

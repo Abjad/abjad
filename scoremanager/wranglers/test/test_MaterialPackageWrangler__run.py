@@ -41,7 +41,8 @@ def test_MaterialPackageWrangler__run_03():
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='lmm q', is_test=True)
     menu_lines = score_manager._transcript.last_menu_lines
-    assert any(x.endswith('example sargasso measures') for x in menu_lines)
+    string = 'example sargasso measures (Abjad)'
+    assert any(x.endswith(string) for x in menu_lines)
 
 
 def test_MaterialPackageWrangler__run_04():

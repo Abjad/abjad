@@ -84,10 +84,13 @@ class PackageWrangler(Wrangler):
 
     def _make_asset_menu_entries(self):
         paths = self._list_visible_asset_paths()
-        names = [
-            self._path_to_human_readable_name(path)
-            for path in paths
-            ]
+        names = []
+        for path in paths:
+            name = self._path_to_human_readable_name(path, extension=False)
+            annotation = self._path_to_annotation(path)
+            if annotation:
+                name = '{} ({})'.format(name, annotation)
+            names.append(name)
         if not names:
             return
         keys = len(names) * [None]
