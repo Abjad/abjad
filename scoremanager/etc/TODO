@@ -77,26 +77,16 @@
 
 21. Write test for (ren) to rename.
 
-22. Write test to make sure that ...
-        # -*- encoding: utf-8 -*-
-        from abjad import *
-        _output_material_module_import_statements = []
-
-
-        some_material = None
-    ... shows up as the exact file contents in response to 
-    (lmm) > (nmh) > ... > (mde).
-
-23. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+22. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-24. Implement something to tour everything that can be rewritten and rewrite.
+23. Implement something to tour everything that can be rewritten and rewrite.
     Initializers, metadata modules, user input modules, etc. This will allow
     output formatting changes to be applied to all collateral with a single
     command.
 
-25. Note that ArticulationHandlerMaterialManager implementation is limited
+24. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
