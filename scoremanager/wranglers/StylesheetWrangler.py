@@ -124,20 +124,17 @@ class StylesheetWrangler(Wrangler):
         return False
 
     def _make_asset_menu_entries(self, include_extension=False):
-        paths = self._list_asset_paths()
-        display_strings = []
+        paths = self._list_visible_asset_paths()
+        names = []
         for path in paths:
-            display_string = self._path_to_human_readable_name(
-                path,
-                extension=True,
-                )
+            name = self._path_to_human_readable_name(path, extension=True)
             annotation = self._path_to_annotation(path)
             if annotation:
-                display_string = '{} ({})'.format(display_string, annotation)
-            display_strings.append(display_string)
+                name = '{} ({})'.format(name, annotation)
+            names.append(name)
         menu_entries = []
-        if display_strings:
-            sequences = (display_strings, [None], [None], paths)
+        if names:
+            sequences = (names, [None], [None], paths)
             menu_entries = sequencetools.zip_sequences(sequences, cyclic=True)
         return menu_entries
 
