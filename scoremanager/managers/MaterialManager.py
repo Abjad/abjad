@@ -902,13 +902,13 @@ class MaterialManager(PackageManager):
             new_package_name,
             )
         is_git_versioned, is_svn_versioned = False, False
-        if self._is_git_versioned():
+        if self._is_git_added():
             is_git_versioned = True
             command = 'git mv {} {}'
         elif self._is_svn_versioned():
             is_svn_versioend = True
             command = 'svn mv {} {}'
-        elif self._is_svn_versioned():
+        else:
             command = 'mv {} {}'
         command = command.format(self._path, new_directory_path)
         self._io_manager.spawn_subprocess(command)
