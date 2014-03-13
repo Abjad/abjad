@@ -122,6 +122,7 @@ class Manager(Controller):
             command,
             shell=True,
             stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
             )
         first_line = process.stdout.readline()
         first_line = first_line.strip()
@@ -141,6 +142,7 @@ class Manager(Controller):
             command,
             shell=True,
             stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
             )
         first_line = process.stdout.readline()
         first_line = first_line.strip()
@@ -179,9 +181,10 @@ class Manager(Controller):
         process = subprocess.Popen(
             command,
             shell=True,
-            stderr=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
             )
-        first_line = process.stderr.readline()
+        first_line = process.stdout.readline()
         if first_line.startswith('fatal:'):
             return False
         else:
@@ -257,6 +260,7 @@ class Manager(Controller):
             command,
             shell=True,
             stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
             )
         process.stdout.readline()
         return True
@@ -276,6 +280,7 @@ class Manager(Controller):
             command,
             shell=True,
             stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
             )
         process.stdout.readline()
         self._path = new_path
@@ -339,6 +344,7 @@ class Manager(Controller):
             command,
             shell=True,
             stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
             )
         lines = [line.strip() for line in process.stdout.readlines()]
         lines.append('')
@@ -370,6 +376,7 @@ class Manager(Controller):
             command,
             shell=True,
             stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
             )
         lines.extend([line.strip() for line in process.stdout.readlines()])
         lines.append('')
@@ -410,7 +417,12 @@ class Manager(Controller):
         Returns none.
         '''
         command = 'ajv doctest {}'.format(self._path)
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        process = subprocess.Popen(
+            command, 
+            shell=True, 
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
             if lines[0] == '':
@@ -449,7 +461,12 @@ class Manager(Controller):
         command = 'ls -l {}'
         command = command.format(self._path)
         lines = []
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        process = subprocess.Popen(
+            command, 
+            shell=True, 
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
         lines = [line.strip() for line in process.stdout.readlines()]
         lines.append('')
         self._io_manager.display(
@@ -464,7 +481,12 @@ class Manager(Controller):
         Returns none.
         '''
         command = 'py.test -rf {}'.format(self._path)
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        process = subprocess.Popen(
+            command, 
+            shell=True, 
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
             lines.append('')
@@ -564,6 +586,7 @@ class Manager(Controller):
             command,
             shell=True,
             stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
             )
         lines = [line.strip() for line in process.stdout.readlines()]
         lines.append('')
