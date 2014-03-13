@@ -64,21 +64,18 @@
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-18. Implement something to tour everything that can be rewritten and rewrite.
-    Initializers, metadata modules, user input modules, etc. This will allow
-    output formatting changes to be applied to all collateral with a single
-    command.
-
-19. Note that ArticulationHandlerMaterialManager implementation is limited
+18. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
 
-20. Change 'output material - interact (omi)' to 
+19. Change 'output material - interact (omi)' to 
     'output material - edit (ome)'.
 
-21. Implement 'segments - tour next' and 'segment - tour previous' commands.
+20. Implement 'segments - tour next' and 'segment - tour previous' commands.
 
-22. Implement an 'all whatever - edit' command.
+21. Implement an 'all whatever - edit' command.
+
+22. Write view tests. Start with segment wrangler.
