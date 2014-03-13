@@ -901,12 +901,12 @@ class MaterialManager(PackageManager):
             base_name,
             new_package_name,
             )
-        is_git_versioned, is_svn_versioned = False, False
-        if self._is_git_added():
-            is_git_versioned = True
+        is_in_git_repository, is_svn_versioned = False, False
+        if self._is_in_git_repository():
+            is_in_git_repository = True
             command = 'git mv {} {}'
         elif self._is_svn_versioned():
-            is_svn_versioend = True
+            is_svn_versioned = True
             command = 'svn mv {} {}'
         else:
             command = 'mv {} {}'
@@ -926,7 +926,7 @@ class MaterialManager(PackageManager):
         commit_message = 'Renamed material package.\n\n'
         commit_message += 'OLD: {!r}.\n\n'.format(old_package_name)
         commit_message += 'NEW: {!r}.'.format(new_package_name)
-        if is_git_versioned:
+        if is_in_git_repository:
             command = 'git add -A {}'.format(new_directory_path)
             self._io_manager.spawn_subprocess(command)
             command = 'git commit -m "{}" {} {}'

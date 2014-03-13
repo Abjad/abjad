@@ -122,7 +122,6 @@ class Manager(Controller):
             command,
             shell=True,
             stdout=subprocess.PIPE,
-            #stderr=subprocess.STDOUT,
             )
         first_line = process.stdout.readline()
         if first_line.startswith('A'):
@@ -141,7 +140,6 @@ class Manager(Controller):
             command,
             shell=True,
             stdout=subprocess.PIPE,
-            #stderr=subprocess.STDOUT,
             )
         first_line = process.stdout.readline()
         if first_line.startswith('??'):
