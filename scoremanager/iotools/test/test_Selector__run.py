@@ -5,8 +5,10 @@ import scoremanager
 
 def test_Selector__run_01():
 
-    selector = scoremanager.iotools.Selector()
-    selector.items = ['apple', 'banana', 'cherry']
+    items=['apple', 'banana', 'cherry']
+    selector = scoremanager.iotools.Selector(
+        items=items,
+        )
 
     assert selector._run(pending_user_input='apple') == 'apple'
     assert selector._run(pending_user_input='banana') == 'banana'
@@ -15,8 +17,9 @@ def test_Selector__run_01():
 
 def test_Selector__run_02():
 
-    selector = scoremanager.iotools.Selector()
     items = instrumenttools.UntunedPercussion.known_untuned_percussion[:]
-    selector.items = items
+    selector = scoremanager.iotools.Selector(
+        items=items,
+        )
 
     assert selector._run(pending_user_input='cax') == 'caxixi'

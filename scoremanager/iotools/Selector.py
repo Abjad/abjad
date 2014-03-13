@@ -21,7 +21,7 @@ class Selector(ScoreManagerObject):
         ScoreManagerObject.__init__(self, session=session)
         self.is_numbered = is_numbered
         self.is_ranged = is_ranged
-        self.items = items or []
+        self._items = items or []
         self.return_value_attribute = return_value_attribute
         self.where = where
 
@@ -48,7 +48,11 @@ class Selector(ScoreManagerObject):
             expr,
             )
 
-    def _get_metadata_from_directory_path(self, directory_path, metadatum_name):
+    def _get_metadata_from_directory_path(
+        self, 
+        directory_path, 
+        metadatum_name,
+        ):
         metadata_module_path = os.path.join(directory_path, '__metadata__.py')
         if os.path.isfile(metadata_module_path):
             metadata_module = open(metadata_module_path, 'r')
@@ -110,20 +114,13 @@ class Selector(ScoreManagerObject):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def items():
-        def fget(self):
-            r'''Gets and sets selector items.
+    @property
+    def items(self):
+        r'''Gets selector items.
 
-            Returns list.
-            '''
-            if self._items:
-                return self._items
-            else:
-                return self._list_items()
-        def fset(self, items):
-            self._items = items
-        return property(**locals())
+        Returns list.
+        '''
+        return self._items
 
     ### PUBLIC METHODS ###
 
@@ -165,8 +162,11 @@ class Selector(ScoreManagerObject):
         Returns selector.
         '''
         from abjad.tools import indicatortools
-        selector = Selector(session=session)
-        selector.items = indicatortools.Clef._list_clef_names()
+        items = indicatortools.Clef._list_clef_names()
+        selector = Selector(
+            session=session,
+            items=items,
+            )
         return selector
 
     @staticmethod
@@ -181,7 +181,6 @@ class Selector(ScoreManagerObject):
         Returns selector.
         '''
         from scoremanager import managers
-        selector = Selector(session=session)
         storehouse_paths = storehouse_paths or []
         forbidden_directory_entries = forbidden_directory_entries or []
         items = []
@@ -196,7 +195,10 @@ class Selector(ScoreManagerObject):
                     entry = os.path.splitext(entry)[0]
                 if entry not in forbidden_directory_entries:
                     items.append(entry)
-        selector.items = items
+        selector = Selector(
+            session=session,
+            items=items,
+            )
         return selector
 
     @staticmethod
@@ -240,7 +242,6 @@ class Selector(ScoreManagerObject):
         '''
         from scoremanager import core
         configuration = core.ScoreManagerConfiguration()
-        selector = Selector(session=session)
         base_class_names = base_class_names or ()
         forbidden_class_names = forbidden_class_names or ()
         directory_path = configuration.handler_tools_directory_path
@@ -253,7 +254,10 @@ class Selector(ScoreManagerObject):
                         if class_name not in forbidden_class_names:
                             class_names.append(class_name)
                         continue
-        selector.items = class_names
+        selector = Selector(
+            session=session,
+            items=class_names,
+            )
         return selector
 
     @staticmethod
@@ -267,7 +271,6 @@ class Selector(ScoreManagerObject):
         '''
         from scoremanager import core
         configuration = core.ScoreManagerConfiguration()
-        selector = Selector(session=session)
         def list_public_directory_paths(subtree_path):
             result = []
             for triple in os.walk(subtree_path):
@@ -291,10 +294,11 @@ class Selector(ScoreManagerObject):
             return result
         def list_current_material_directory_paths():
             result = []
-            path = selector._session.current_materials_directory_path
+            tmp_selector = Selector(session=session)
+            path = tmp_selector._session.current_materials_directory_path
             paths = list_public_directory_paths_with_initializers(path)
             for directory_path in paths:
-                metadatum = selector._get_metadata_from_directory_path(
+                metadatum = tmp_selector._get_metadata_from_directory_path(
                     directory_path, 
                     'generic_output_name',
                     )
@@ -303,10 +307,12 @@ class Selector(ScoreManagerObject):
             return result
         items = []
         for directory_path in list_current_material_directory_paths():
-            package_path = configuration.path_to_package_path(
-                directory_path)
+            package_path = configuration.path_to_package_path(directory_path)
             items.append(package_path)
-        selector.items = items
+        selector = Selector(
+            session=session,
+            items=items,
+            )
         return selector
 
     @staticmethod
@@ -317,13 +323,15 @@ class Selector(ScoreManagerObject):
 
         Returns selector.
         '''
-        selector = Selector(session=session)
         items = []
-        manager = selector._session.current_score_package_manager
+        manager = session.current_score_package_manager
         if hasattr(manager, '_get_instrumentation'):
             instrumentation = manager._get_instrumentation()
             items.extend(instrumentation.performers)
-        selector.items = items
+        selector = Selector(
+            session=session,
+            items=items,
+            )
         return selector
 
     @staticmethod
@@ -384,14 +392,16 @@ class Selector(ScoreManagerObject):
 
         Returns selector.
         '''
-        selector = Selector(session=session)
         items = []
-        if selector._session.is_in_score:
-            manager = selector._session.current_score_package_manager
+        if session.is_in_score:
+            manager = session.current_score_package_manager
             instrumentation = manager._get_instrumentation()
             items.extend(instrumentation.instruments)
             items.append('other')
-        selector.items = items
+        selector = Selector(
+            session=session,
+            items=items,
+            )
         return selector
 
     @staticmethod
@@ -403,9 +413,8 @@ class Selector(ScoreManagerObject):
         Returns selector.
         '''
         from abjad.tools import instrumenttools
-        selector = Selector(session=session)
-        selector.return_value_attribute = 'display_string'
-        performer_pairs = instrumenttools.Performer.list_primary_performer_names()
+        performer_pairs = \
+            instrumenttools.Performer.list_primary_performer_names()
         performer_pairs.append(('percussionist', 'perc.'))
         performer_pairs.sort()
         menu_entries = []
@@ -414,6 +423,8 @@ class Selector(ScoreManagerObject):
             performer_abbreviation = performer_abbreviation.split()[-1]
             performer_abbreviation = performer_abbreviation.strip('.')
             menu_entries.append((performer_name, performer_abbreviation)) 
+        selector = Selector(session=session)
+        selector.return_value_attribute = 'display_string'
         selector.menu_entries = menu_entries
         return selector
 
@@ -425,10 +436,12 @@ class Selector(ScoreManagerObject):
 
         Returns selector.
         '''
-        selector = Selector(session=session)
         items = []
-        manager = selector._session.current_score_package_manager
+        manager = session.current_score_package_manager
         if hasattr(manager, '_get_tempo_inventory'):
             items = manager._get_tempo_inventory()
-        selector.items = items
+        selector = Selector(
+            session=session,
+            items=items,
+            )
         return selector
