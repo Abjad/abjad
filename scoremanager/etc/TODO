@@ -78,3 +78,7 @@
 
 20. Change 'output material - interact (omi)' to 
     'output material - edit (ome)'.
+
+21. Debug the statal error caused by this command history:
+    command_history: [
+        '1', 'rst', '', 'b', 'm', 'lmm', '5', 'rst', '', 'b', 'b', 'lmm', 'o']

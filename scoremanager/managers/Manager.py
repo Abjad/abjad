@@ -116,7 +116,7 @@ class Manager(Controller):
             return False
         if not os.path.exists(path):
             return False
-        command = 'git status --short {}'
+        command = 'git status --porcelain {}'
         command = command.format(path)
         process = subprocess.Popen(
             command,
@@ -124,6 +124,7 @@ class Manager(Controller):
             stdout=subprocess.PIPE,
             )
         first_line = process.stdout.readline()
+        first_line = first_line.strip()
         if first_line.startswith('A'):
             return True
         return False
@@ -134,7 +135,7 @@ class Manager(Controller):
             return False
         if not os.path.exists(path):
             return False
-        command = 'git status --short {}'
+        command = 'git status --porcelain {}'
         command = command.format(path)
         process = subprocess.Popen(
             command,
@@ -142,30 +143,30 @@ class Manager(Controller):
             stdout=subprocess.PIPE,
             )
         first_line = process.stdout.readline()
+        first_line = first_line.strip()
         if first_line.startswith('??'):
             return True
         return False
 
-#    def _is_git_versioned(self, path=None):
-#        path = path or self._path
-#        if path is None:
-#            return False
-#        if not os.path.exists(path):
-#            return False
-#        command = 'git status --short {}'
-#        command = command.format(path)
-#        process = subprocess.Popen(
-#            command,
-#            shell=True,
-#            stdout=subprocess.PIPE,
-#            stderr=subprocess.STDOUT,
-#            )
-#        first_line = process.stdout.readline()
-#        # TODO: change to the following commented-out line
-#        #if first_line.startswith('fatal:'):
-#        if first_line.startswith(('fatal:', '??', 'A')):
-#            return False
-#        return True
+    def _is_git_versioned(self, path=None):
+        if not self._is_in_git_repository(path=path):
+            return False
+        command = 'git status --porcelain {}'
+        command = command.format(path)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+        first_line = process.stdout.readline()
+        first_line = first_line.strip()
+        if first_line == '':
+            return True
+        elif first_line.startswith('M'):
+            return True
+        else:
+            return False
 
     def _is_in_git_repository(self, path=None):
         path = path or self._path
@@ -173,7 +174,7 @@ class Manager(Controller):
             return False
         if not os.path.exists(path):
             return False
-        command = 'git status --short {}'
+        command = 'git status --porcelain {}'
         command = command.format(path)
         process = subprocess.Popen(
             command,
