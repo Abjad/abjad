@@ -42,8 +42,8 @@ class Menu(ScoreManagerObject):
         self._menu_sections = []
         if include_default_hidden_sections:
             self._make_default_hidden_sections()
-        self.should_clear_terminal = should_clear_terminal
-        self.title = title
+        self._should_clear_terminal = should_clear_terminal
+        self._title = title
         self.where = where
 
     ### SPECIAL METHODS ###
@@ -369,7 +369,7 @@ class Menu(ScoreManagerObject):
         self._io_manager._assign_user_input(pending_user_input)
         clear, hide_current_run = clear, False
         while True:
-            self.should_clear_terminal = clear
+            self._should_clear_terminal = clear
             self.hide_current_run = hide_current_run
             clear, hide_current_run = False, True
             result = self._display(
@@ -429,47 +429,77 @@ class Menu(ScoreManagerObject):
         '''
         return self._menu_sections
 
-    # TODO: make read-only
-    @apply
-    def should_clear_terminal():
-        def fget(self):
-            r'''Is true when menu should clear terminal. Otherwise false:
-    
-            ..  container:: example
+#    # TODO: make read-only
+#    @apply
+#    def should_clear_terminal():
+#        def fget(self):
+#            r'''Is true when menu should clear terminal. Otherwise false:
+#    
+#            ..  container:: example
+#
+#                ::
+#
+#                    >>> menu.should_clear_terminal
+#                    False
+#
+#            Returns boolean.
+#            '''
+#            return self._should_clear_terminal
+#        def fset(self, should_clear_terminal):
+#            assert isinstance(should_clear_terminal, bool)
+#            self._should_clear_terminal = should_clear_terminal
+#        return property(**locals())
 
-                ::
+    @property
+    def should_clear_terminal(self):
+        r'''Is true when menu should clear terminal. Otherwise false.
 
-                    >>> menu.should_clear_terminal
-                    False
+        ..  container:: example
 
-            Returns boolean.
-            '''
-            return self._should_clear_terminal
-        def fset(self, should_clear_terminal):
-            assert isinstance(should_clear_terminal, bool)
-            self._should_clear_terminal = should_clear_terminal
-        return property(**locals())
+            ::
 
-    # TODO: make read-only
-    @apply
-    def title():
-        def fget(self):
-            r'''Gets and sets menu title.
+                >>> menu.should_clear_terminal
+                False
 
-            ..  container:: example
+        Returns boolean.
+        '''
+        return self._should_clear_terminal
 
-                ::
+#    # TODO: make read-only
+#    @apply
+#    def title():
+#        def fget(self):
+#            r'''Gets and sets menu title.
+#
+#            ..  container:: example
+#
+#                ::
+#
+#                    >>> menu.title is None
+#                    True
+#
+#            Returns string or none.
+#            '''
+#            return self._title
+#        def fset(self, title):
+#            assert isinstance(title, (str, type(None)))
+#            self._title = title
+#        return property(**locals())
 
-                    >>> menu.title is None
-                    True
+    @property
+    def title(self):
+        r'''Gets menu title.
 
-            Returns string or none.
-            '''
-            return self._title
-        def fset(self, title):
-            assert isinstance(title, (str, type(None)))
-            self._title = title
-        return property(**locals())
+        ..  container:: example
+
+            ::
+
+                >>> menu.title is None
+                True
+
+        Returns string or none.
+        '''
+        return self._title
 
     ### PUBLIC METHODS ###
 
