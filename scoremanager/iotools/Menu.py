@@ -328,7 +328,7 @@ class Menu(ScoreManagerObject):
         return section
 
     def _make_system_menu_section(self):
-        section = self.make_command_section(name='system', is_hidden=True)
+        section = self.make_navigation_section(name='system', is_hidden=True)
         section.append(('system - back', 'b'))
         section.append(('system - all', 'n'))
         section.append(('system - home', 'h'))
