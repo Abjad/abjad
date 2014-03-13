@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_ClefMarkEditor__run_01():
+def test_ClefEditor__run_01():
 
     session = scoremanager.core.Session()
     editor = scoremanager.editors.ClefEditor(session=session)

@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_ClefMarkInventoryEditor__run_01():
+def test_ClefInventoryEditor__run_01():
 
     session = scoremanager.core.Session()
     editor = scoremanager.editors.ClefInventoryEditor(session=session)
