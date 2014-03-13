@@ -4,22 +4,22 @@ from abjad import *
 import scoremanager
 
 
-def test_TargetManifest_change_retrievable_attribute_name_to_initializer_argument_name_01():
+def test_TargetManifest_change__to_initializer_argument_name_01():
 
     session = scoremanager.core.Session()
     editor = scoremanager.editors.MarkupEditor(session=session)
 
-    assert editor.target_manifest.change_retrievable_attribute_name_to_initializer_argument_name(
+    assert editor._target_manifest._to_initializer_argument_names(
         'contents_string') == 'arg'
-    assert editor.target_manifest.change_retrievable_attribute_name_to_initializer_argument_name(
+    assert editor._target_manifest._to_initializer_argument_names(
         'direction') == 'direction'
 
 
-def test_TargetManifest_change_retrievable_attribute_name_to_initializer_argument_name_02():
+def test_TargetManifest_change__to_initializer_argument_name_02():
 
     session = scoremanager.core.Session()
     editor = scoremanager.editors.MarkupEditor(session=session)
 
-    statement = "editor.target_manifest.change_retrievable_attribute_name"
+    statement = "editor._target_manifest.change_retrievable_attribute_name"
     statement += "_to_initializer_argument_name('asdfasdf')"
     assert pytest.raises(Exception, statement)

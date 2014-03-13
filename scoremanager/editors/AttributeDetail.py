@@ -49,6 +49,10 @@ class AttributeDetail(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
+        r'''Gets interpreter representation of attribute detail.
+
+        Returns string.
+        '''
         parts = [
             repr(self._space_delimited_lowercase_name),
             repr(self.menu_key),
@@ -60,7 +64,7 @@ class AttributeDetail(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def get_editor(
+    def _get_editor(
         self, 
         space_delimited_attribute_name, 
         prepopulated_value, 

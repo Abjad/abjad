@@ -12,7 +12,7 @@ class TempoEditor(Editor):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def target_manifest(self):
+    def _target_manifest(self):
         from editors import TargetManifest
         return TargetManifest(
             indicatortools.Tempo,

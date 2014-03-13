@@ -15,7 +15,7 @@ class Editor(Controller):
             assert isinstance(target, self._target_class)
         self.target = target
         self._initialize_attributes_in_memory()
-        if not hasattr(self, 'target_manifest'):
+        if not hasattr(self, '_target_manifest'):
             raise Exception(self)
         self.explicit_breadcrumb = None
 
@@ -46,15 +46,15 @@ class Editor(Controller):
 
     @property
     def _target_class(self):
-        return self.target_manifest._target_class
+        return self._target_manifest._target_class
 
     @property
     def _target_name(self):
-        target_name_attribute = self.target_manifest.target_name_attribute
+        target_name_attribute = self._target_manifest.target_name_attribute
         if target_name_attribute:
             return getattr(
                 self.target, 
-                self.target_manifest.target_name_attribute, 
+                self._target_manifest.target_name_attribute, 
                 None,
                 )
 
@@ -63,8 +63,8 @@ class Editor(Controller):
         result = []
         if self.target is not None:
             target_attribute_names = []
-            if hasattr(self, 'target_manifest'):
-                names = self.target_manifest.attribute_names
+            if hasattr(self, '_target_manifest'):
+                names = self._target_manifest.attribute_names
                 target_attribute_names.extend(names)
             for target_attribute_name in target_attribute_names:
                 name = stringtools.string_to_space_delimited_lowercase(
@@ -98,19 +98,19 @@ class Editor(Controller):
     def _copy_target_attributes_to_memory(self):
         self._initialize_attributes_in_memory()
         retrievable_attribute_names = []
-        if hasattr(self, 'target_manifest'):
-            names = self.target_manifest.positional_initializer_retrievable_attribute_names
+        if hasattr(self, '_target_manifest'):
+            names = self._target_manifest.positional_initializer_retrievable_attribute_names
             retrievable_attribute_names.extend(names)
         for attribute_name in retrievable_attribute_names:
             attribute_value = getattr(self.target, attribute_name, None)
             if attribute_value is not None:
                 attribute_name = \
-                    self.target_manifest.change_retrievable_attribute_name_to_initializer_argument_name(
+                    self._target_manifest._to_initializer_argument_names(
                     attribute_name)
                 self._attributes_in_memory[attribute_name] = attribute_value
         keyword_attribute_names = []
-        if hasattr(self, 'target_manifest'):
-            names = self.target_manifest.keyword_attribute_names
+        if hasattr(self, '_target_manifest'):
+            names = self._target_manifest.keyword_attribute_names
             keyword_attribute_names.extend(names)
         for attribute_name in keyword_attribute_names:
             attribute_value = getattr(self.target, attribute_name, None)
@@ -122,11 +122,11 @@ class Editor(Controller):
         if result == 'user entered lone return':
             self._session._is_backtracking_locally = True
             return
-        attribute_name = self.target_manifest.menu_key_to_attribute_name(
+        attribute_name = self._target_manifest._menu_key_to_attribute_name(
             result)
         prepopulated_value = self._menu_key_to_prepopulated_value(result)
         kwargs = self._menu_key_to_delegated_editor_kwargs(result)
-        editor = self.target_manifest.menu_key_to_editor(
+        editor = self._target_manifest._menu_key_to_editor(
             result, 
             session=self._session, 
             prepopulated_value=prepopulated_value, 
@@ -157,15 +157,15 @@ class Editor(Controller):
     def _initialize_target_from_attributes_in_memory(self):
         args, kwargs = [], {}
         positional_argument_names = []
-        if hasattr(self, 'target_manifest'):
-            names = self.target_manifest.positional_initializer_argument_names
+        if hasattr(self, '_target_manifest'):
+            names = self._target_manifest.positional_initializer_argument_names
             positional_argument_names.extend(names)
         for attribute_name in positional_argument_names:
             if attribute_name in self._attributes_in_memory:
                 args.append(self._attributes_in_memory.get(attribute_name))
         keyword_attribute_names = []
-        if hasattr(self, 'target_manifest'):
-            names = self.target_manifest.keyword_attribute_names
+        if hasattr(self, '_target_manifest'):
+            names = self._target_manifest.keyword_attribute_names
             keyword_attribute_names.extend(names)
         for attribute_name in keyword_attribute_names:
             if attribute_name in self._attributes_in_memory:
@@ -189,7 +189,7 @@ class Editor(Controller):
 
     def _make_target_attribute_tokens(self):
         result = []
-        for attribute_detail in self.target_manifest.attribute_details:
+        for attribute_detail in self._target_manifest.attribute_details:
             if attribute_detail.is_null:
                 result.append(())
                 continue
@@ -221,7 +221,7 @@ class Editor(Controller):
 
     def _menu_key_to_prepopulated_value(self, menu_key):
         attribute_name = \
-            self.target_manifest.menu_key_to_attribute_name(menu_key)
+            self._target_manifest._menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
 
     def _run(
