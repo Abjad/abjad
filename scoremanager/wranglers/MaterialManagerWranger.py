@@ -116,7 +116,8 @@ class MaterialManagerWrangler(PackageWrangler):
         menu = self._io_manager.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries()
-        asset_section.menu_entries = asset_menu_entries
+        for menu_entry in asset_menu_entries:
+            asset_section.append(menu_entry)
         section = menu.make_command_section()
         section.append(('material manager - new', 'new'))
         return menu

@@ -63,7 +63,8 @@ class DirectoryManager(Manager):
         asset_section = menu.make_asset_section()
         menu._asset_section = asset_section
         menu_entries = self._make_asset_menu_entries()
-        asset_section.menu_entries = menu_entries
+        for menu_entry in menu_entries:
+            asset_section.append(menu_entry)
         return menu
 
     def _make_empty_asset(self, prompt=False):
