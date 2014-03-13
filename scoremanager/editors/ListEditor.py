@@ -44,6 +44,22 @@ class ListEditor(Editor):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _items(self):
+        return self.target
+
+    @property
+    def _target_manifest(self):
+        from editors import TargetManifest
+        return TargetManifest(list,)
+
+    @property
+    def _target_summary_lines(self):
+        result = []
+        for item in self._items:
+            result.append(self._io_manager._get_one_line_menu_summary(item))
+        return result
+
+    @property
     def _user_input_to_action(self):
         result = {
             'add': self.add_items,
@@ -54,6 +70,12 @@ class ListEditor(Editor):
 
     ### PRIVATE METHODS ###
 
+    def _get_item_from_item_number(self, item_number):
+        try:
+            return self._items[int(item_number) - 1]
+        except:
+            pass
+
     def _handle_main_menu_result(self, result):
         if not isinstance(result, str):
             raise TypeError('result must be string.')
@@ -63,6 +85,12 @@ class ListEditor(Editor):
             self.edit_item(result)
         else:
             super(ListEditor, self)._handle_main_menu_result(result)
+
+    def _initialize_target(self):
+        if self.target is not None:
+            return
+        else:
+            self.target = self._target_class([])
 
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
@@ -78,31 +106,12 @@ class ListEditor(Editor):
         numbered_section.menu_entries = self._target_summary_lines
         section = menu.make_command_section(name='add, move, remove')
         section.append(('elements - add', 'add'))
-        if 1 < len(self.items):
+        if 1 < len(self._items):
             section.append(('elements - move', 'mv'))
-        if 0 < len(self.items):
+        if 0 < len(self._items):
             section.append(('elements - remove', 'rm'))
         self._make_done_menu_section(menu)
         return menu
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def items(self):
-        return self.target
-
-    @property
-    def _target_manifest(self):
-        from editors import TargetManifest
-        return TargetManifest(list,)
-
-    @property
-    def _target_summary_lines(self):
-        result = []
-        for item in self.items:
-            result.append(
-                self._io_manager._get_one_line_menu_summary(item))
-        return result
 
     ### PUBLIC METHODS ###
 
@@ -154,10 +163,10 @@ class ListEditor(Editor):
             items = result
         else:
             items = [result]
-        self.items.extend(items)
+        self._items.extend(items)
 
     def edit_item(self, item_number):
-        r'''Edits item.
+        r'''Edits item in list.
 
         Returns none.
         '''
@@ -170,39 +179,27 @@ class ListEditor(Editor):
                     )
                 item_editor._run()
                 item_index = int(item_number) - 1
-                self.items[item_index] = item_editor.target
-
-    def _get_item_from_item_number(self, item_number):
-        try:
-            return self.items[int(item_number) - 1]
-        except:
-            pass
-
-    def _initialize_target(self):
-        if self.target is not None:
-            return
-        else:
-            self.target = self._target_class([])
+                self._items[item_index] = item_editor.target
 
     def move_item(self):
-        r'''Moves items.
+        r'''Moves items in list.
 
         Returns none.
         '''
         getter = self._io_manager.make_getter(where=self._where)
-        getter.append_integer_in_range('old number', 1, len(self.items))
-        getter.append_integer_in_range('new number', 1, len(self.items))
+        getter.append_integer_in_range('old number', 1, len(self._items))
+        getter.append_integer_in_range('new number', 1, len(self._items))
         result = getter._run()
         if self._session._backtrack():
             return
         old_number, new_number = result
         old_index, new_index = old_number - 1, new_number - 1
-        item = self.items[old_index]
-        self.items.remove(item)
-        self.items.insert(new_index, item)
+        item = self._items[old_index]
+        self._items.remove(item)
+        self._items.insert(new_index, item)
 
     def remove_items(self):
-        r'''Removes items.
+        r'''Removes items from list.
 
         Returns none.
         '''
@@ -215,7 +212,6 @@ class ListEditor(Editor):
             return
         indices = [argument_number - 1 for argument_number in argument_range]
         indices = list(reversed(sorted(set(indices))))
-        items = self.items[:]
-        items = sequencetools.remove_elements(
-            items, indices)
-        self.items[:] = items
+        items = self._items[:]
+        items = sequencetools.remove_elements(items, indices)
+        self._items[:] = items

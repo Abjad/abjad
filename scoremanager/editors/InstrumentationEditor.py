@@ -30,7 +30,7 @@ class InstrumentationEditor(ListEditor):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def items(self):
+    def _items(self):
         return self.target.performers
 
     @property
