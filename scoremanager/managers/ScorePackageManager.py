@@ -503,6 +503,10 @@ class ScorePackageManager(PackageManager):
                 prompt = 'create {!r}? '.format(path)
                 if not prompt or self._io_manager.confirm(prompt):
                     os.mkdir(path)
+                    gitignore_path = os.path.join(path, '.gitignore')
+                    file_pointer = file(gitignore_path, 'w')
+                    file_pointer.write('')
+                    file_pointer.close()
         if not os.path.exists(self._initializer_file_path):
             result = False
             prompt = 'create {}? '.format(self._initializer_file_path)
