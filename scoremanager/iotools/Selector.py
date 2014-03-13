@@ -78,7 +78,8 @@ class Selector(ScoreManagerObject):
             menu_entries = self.menu_entries
         else:
             menu_entries = self._make_menu_entries()
-        section.menu_entries = menu_entries
+        for menu_entry in menu_entries:
+            section.append(menu_entry)
         return section
 
     def _make_main_menu(self):

@@ -288,11 +288,11 @@ class Menu(ScoreManagerObject):
             display_prepopulated_values=display_prepopulated_values,
             default_index=default_index,
             match_on_display_string=match_on_display_string,
+            menu_entries=menu_entries,
             name=name,
             return_value_attribute=return_value_attribute,
             title=title,
             )
-        menu_section.menu_entries = menu_entries
         self.menu_sections.append(menu_section)
         self.menu_sections.sort(key=lambda x: x.name)
         noncommand_sections = [

@@ -183,7 +183,8 @@ class Editor(Controller):
             is_numbered=True,
             ) 
         menu_entries = self._make_target_attribute_tokens()
-        keyed_attribute_section.menu_entries = menu_entries
+        for menu_entry in menu_entries:
+            keyed_attribute_section.append(menu_entry)
         self._make_done_menu_section(menu)
         return menu
 

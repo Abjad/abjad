@@ -268,7 +268,8 @@ class Wrangler(Controller):
             include_extensions=include_extensions,
             packages_instead_of_paths=packages_instead_of_paths,
             )
-        asset_section.menu_entries = asset_menu_entries
+        for menu_entry in asset_menu_entries:
+            asset_section.append(menu_entry)
         return menu
 
     def _make_storehouse_menu_entries(
@@ -392,7 +393,8 @@ class Wrangler(Controller):
             user_library=True,
             abjad_score_packages=False,
             user_score_packages=False)
-        asset_section.menu_entries = menu_entries
+        for menu_entry in menu_entries:
+            asset_section.append(menu_entry)
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb(
                 is_storehouse=True)

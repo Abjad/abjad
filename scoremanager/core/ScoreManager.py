@@ -145,7 +145,8 @@ class ScoreManager(Controller):
             include_default_hidden_sections=False,
             )
         asset_section = menu.make_asset_section()
-        asset_section.menu_entries = menu_entries
+        for menu_entry in menu_entries:
+            asset_section.append(menu_entry)
         return menu
 
     def _make_scores_menu_section(self, menu):

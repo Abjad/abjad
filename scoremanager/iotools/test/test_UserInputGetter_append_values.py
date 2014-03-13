@@ -19,7 +19,8 @@ def test_UserInputGetter_append_values_01():
         is_numbered=True,
         )
     menu_entries = ['apple', 'banana', 'cherry', 'durian', 'endive', 'fennel']
-    menu_section.menu_entries = menu_entries
+    for menu_entry in menu_entries:
+        menu_section.append(menu_entry)
     getter.append_menu_section_range('attribute', menu_section)
     result = [6, 5, 4, 1, 3]
     assert getter._run(pending_user_input='fen-dur, app, che') == result

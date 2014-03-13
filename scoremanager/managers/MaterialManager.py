@@ -579,7 +579,8 @@ class MaterialManager(PackageManager):
         ):
         menu_entries = self._user_input_wrapper_in_memory.editable_lines
         numbered_section = menu.make_numbered_section(name='material summary')
-        numbered_section.menu_entries = menu_entries
+        for menu_entry in menu_entries:
+            numbered_section.append(menu_entry)
         section = menu.make_command_section(name='user input')
         section.append(('user input - clear', 'uic'))
         section.append(('user input - load demo values', 'uil'))

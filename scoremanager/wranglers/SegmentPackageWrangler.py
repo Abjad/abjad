@@ -80,7 +80,8 @@ class SegmentPackageWrangler(PackageWrangler):
     def _make_asset_menu_section(self, menu):
         section = menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries()
-        section.menu_entries = asset_menu_entries
+        for menu_entry in asset_menu_entries:
+            section.append(menu_entry)
         section = menu.make_command_section(
             name='assets',
             match_on_display_string=False,

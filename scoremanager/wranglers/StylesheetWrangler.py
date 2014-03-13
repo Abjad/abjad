@@ -130,7 +130,8 @@ class StylesheetWrangler(Wrangler):
         section = menu.make_asset_section()
         menu._asset_section = section
         menu_entries = self._make_asset_menu_entries(include_extensions=True)
-        section.menu_entries = menu_entries
+        for menu_entry in menu_entries:
+            section.append(menu_entry)
         return section
 
     def _make_main_menu(self):

@@ -358,7 +358,8 @@ class ScorePackageManager(PackageManager):
     def _make_setup_menu_section(self, menu):
         section = menu.make_attribute_section(name='setup')
         menu_entries = self._make_setup_menu_entries()
-        section.menu_entries = menu_entries
+        for menu_entry in menu_entries:
+            section.append(menu_entry)
         return section
 
     def _make_setup_menu_entries(self):

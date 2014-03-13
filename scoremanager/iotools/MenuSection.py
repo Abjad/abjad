@@ -50,13 +50,13 @@ class MenuSection(AbjadObject):
         is_ranged=False,
         display_prepopulated_values=False,
         match_on_display_string=True,
+        menu_entries=None,
         name=None,
         title=None,
         ):
         AbjadObject.__init__(self)
         assert name, repr(name)
         self._name = name
-        self.menu_entries = []
         assert return_value_attribute in self.return_value_attributes
         self._return_value_attribute = return_value_attribute
         self._indent_level = indent_level
@@ -67,6 +67,7 @@ class MenuSection(AbjadObject):
         self._is_numbered = is_numbered
         self._is_ranged = is_ranged
         self._display_prepopulated_values = display_prepopulated_values
+        self._menu_entries = menu_entries or []
         self._title = title
         self._default_index = default_index
         self.match_on_display_string = match_on_display_string
@@ -331,32 +332,31 @@ class MenuSection(AbjadObject):
         '''
         return self._is_hidden
 
-    @apply
-    def menu_entries():
-        def fget(self):
-            r'''Menu section menu entries.
+    @property
+    def menu_entries(self):
+        r'''Menu section menu entries.
 
-            ::
+        ::
 
-                >>> for menu_entry in section.menu_entries:
-                ...     menu_entry
-                <MenuEntry: 'foo - add'>
-                <MenuEntry: 'foo - delete'>
-                <MenuEntry: 'foo - modify'>
+            >>> for menu_entry in section.menu_entries:
+            ...     menu_entry
+            <MenuEntry: 'foo - add'>
+            <MenuEntry: 'foo - delete'>
+            <MenuEntry: 'foo - modify'>
 
-            Returns list.
-            '''
-            return self._menu_entries
-        def fset(self, menu_entries):
-            if menu_entries is None:
-                self._menu_entries = []
-            elif isinstance(menu_entries, list):
-                self._menu_entries = []
-                for menu_entry in menu_entries:
-                    self.append(menu_entry)
-            else:
-                raise TypeError(menu_entries)
-        return property(**locals())
+        Returns list.
+        '''
+        return self._menu_entries
+#        def fset(self, menu_entries):
+#            if menu_entries is None:
+#                self._menu_entries = []
+#            elif isinstance(menu_entries, list):
+#                self._menu_entries = []
+#                for menu_entry in menu_entries:
+#                    self.append(menu_entry)
+#            else:
+#                raise TypeError(menu_entries)
+#        return property(**locals())
 
     @property
     def name(self):

@@ -97,13 +97,16 @@ class ListEditor(Editor):
         keyed_attribute_section = menu.make_keyed_attribute_section(
             name='keyed attribute section',
             )
-        keyed_attribute_section.menu_entries = \
-            self._make_target_attribute_tokens()
+        menu_entries = self._make_target_attribute_tokens()
+        for menu_entry in menu_entries:
+            keyed_attribute_section.append(menu_entry)
         numbered_section = menu.make_numbered_section(
             name='numbered section',
             )
+        menu_entries = self._target_summary_lines
+        for menu_entry in menu_entries:
+            numbered_section.append(menu_entry)
         self._numbered_section = numbered_section
-        numbered_section.menu_entries = self._target_summary_lines
         section = menu.make_command_section(name='add, move, remove')
         section.append(('elements - add', 'add'))
         if 1 < len(self._items):
