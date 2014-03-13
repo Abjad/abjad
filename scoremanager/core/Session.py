@@ -728,6 +728,38 @@ class Session(abctools.AbjadObject):
         return self._is_autoadding
 
     @property
+    def is_autonavigating(self):
+        r'''Is true when session is autonavigating. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_autonavigating
+                False
+
+        Returns boolean.
+        '''
+        if self.is_navigating_to_build_directory:
+            return True
+        elif self.is_navigating_to_next_material:
+            return True
+        elif self.is_navigating_to_next_score:
+            return True
+        elif self.is_navigating_to_previous_material:
+            return True
+        elif self.is_navigating_to_previous_score:
+            return True
+        elif self.is_navigating_to_score_materials:
+            return True
+        elif self.is_navigating_to_score_segments:
+            return True
+        elif self.is_navigating_to_sibling_score:
+            return True
+        else:
+            return False
+
+    @property
     def is_backtracking_locally(self):
         r'''Is true when session is backtracking locally. 
         Otherwise false.

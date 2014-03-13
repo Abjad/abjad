@@ -59,3 +59,15 @@ def test_MaterialPackageWrangler__run_04():
             found_example_articulation_handler = True
 
     assert found_example_articulation_handler 
+
+
+def test_MaterialPackageWrangler__run_05():
+    r'''Current score is reset on backtracking from score to home.
+    '''
+
+    score_manager = scoremanager.core.ScoreManager()
+    string = 'red~example~score b lmm q'
+    score_manager._run(pending_user_input=string, is_test=True)
+    
+    string = 'Score manager - material library'
+    assert score_manager._transcript.entries[-2].title == string

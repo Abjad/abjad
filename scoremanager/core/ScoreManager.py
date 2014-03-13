@@ -191,6 +191,7 @@ class ScoreManager(Controller):
             self._session.display_active_scores()
         run_main_menu = True
         while True:
+            #self._session._current_score_snake_case_name = None # new
             self._session._push_breadcrumb(self._score_status_string)
             if run_main_menu:
                 menu = self._make_main_menu()
@@ -318,6 +319,10 @@ class ScoreManager(Controller):
         score_package_name = score_package_path.split('.')[-1]
         manager._session._current_score_snake_case_name = score_package_name
         manager._run(cache=True)
+        if manager._session.is_autonavigating:
+            pass
+        else:
+            manager._session._current_score_snake_case_name = None
 
     def manage_stylesheet_library(self):
         r'''Manages stylesheet library.
