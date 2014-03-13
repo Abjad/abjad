@@ -26,8 +26,6 @@ def list_all_scoremanager_classes(modules=None):
     for path in paths:
         class_documenter = documentationtools.ClassCrawler(
             path,
-            # TODO: is this correct?
-            root_package_name='abjad',
             )
         for x in class_documenter():
             all_classes.add(x)

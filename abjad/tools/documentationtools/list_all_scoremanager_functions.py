@@ -26,8 +26,6 @@ def list_all_scoremanager_functions(modules=None):
     for path in paths:
         function_documenter = documentationtools.FunctionCrawler(
             path,
-            # TODO: is this correct?
-            root_package_name='abjad',
             )
         for x in function_documenter():
             all_functions.add(x)
