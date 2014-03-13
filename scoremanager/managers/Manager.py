@@ -49,8 +49,9 @@ class Manager(Controller):
     def _repository_add_command(self):
         if not self._path:
             return
-        parent_directory_path = os.path.dirname(self._path)
-        if self._is_git_versioned(path=parent_directory_path):
+        #parent_directory_path = os.path.dirname(self._path)
+        #if self._is_git_versioned(path=parent_directory_path):
+        if self._is_in_git_repository(path=self._path):
             return 'git add {}'.format(self._path)
         elif self._is_svn_versioned(path=self._path):
             return 'svn add {}'.format(self._path)
