@@ -152,6 +152,25 @@ class Manager(Controller):
             return False
         return True
 
+    def _is_in_git_repository(self, path=None):
+        path = path or self._path
+        if path is None:
+            return False
+        if not os.path.exists(path):
+            return False
+        command = 'git status --short {}'
+        command = command.format(path)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stderr=subprocess.PIPE,
+            )
+        first_line = process.stderr.readline()
+        if first_line.startswith('fatal:'):
+            return False
+        else:
+            return True
+
     def _is_populated_directory(self, directory_path):
         if os.path.exists(directory_path):
             if os.listdir(directory_path):
