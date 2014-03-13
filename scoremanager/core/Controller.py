@@ -1,4 +1,5 @@
 # -*- encoding: utf -*-
+import os
 from abjad.tools import stringtools
 from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
@@ -176,6 +177,14 @@ class Controller(ScoreManagerObject):
         else:
             annotation = None
         return annotation
+
+    @staticmethod
+    def _path_to_human_readable_name(path, include_extension=False):
+        path = os.path.normpath(path)
+        name = os.path.basename(path)
+        if not include_extension:
+            name, extension = os.path.splitext(name)
+        return stringtools.string_to_space_delimited_lowercase(name)
 
     @staticmethod
     def _sort_asset_menu_entries_by_view(entries, view):

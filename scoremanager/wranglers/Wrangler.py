@@ -299,14 +299,6 @@ class Wrangler(Controller):
         sequences = [display_strings, [None], [None], keys]
         return sequencetools.zip_sequences(sequences, cyclic=True)
 
-    @staticmethod
-    def _path_to_human_readable_name(path, include_extension=False):
-        path = os.path.normpath(path)
-        name = os.path.basename(path)
-        if not include_extension:
-            name, extension = os.path.splitext(name)
-        return stringtools.string_to_space_delimited_lowercase(name)
-
     def _read_view_inventory_from_disk(self):
         if self._views_module_path is None:
             return
