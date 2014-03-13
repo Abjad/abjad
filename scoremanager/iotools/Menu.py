@@ -215,12 +215,13 @@ class Menu(ScoreManagerObject):
         return sections
 
     def _make_lilypond_menu_section(self):
-        section = self._make_section(
-            is_hidden=True,
-            match_on_display_string=False,
-            name='lilypond',
-            return_value_attribute='key',
-            )
+#        section = self._make_section(
+#            is_hidden=True,
+#            match_on_display_string=False,
+#            name='lilypond',
+#            return_value_attribute='key',
+#            )
+        section = self.make_command_section(name='lilypond', is_hidden=True)
         section.append(('LilyPond - view log', 'lvl'))
         return section
 
@@ -231,24 +232,26 @@ class Menu(ScoreManagerObject):
         return result
 
     def _make_python_menu_section(self):
-        section = self._make_section(
-            is_hidden=True,
-            match_on_display_string=False,
-            name='python',
-            return_value_attribute='key',
-            )
+#        section = self._make_section(
+#            is_hidden=True,
+#            match_on_display_string=False,
+#            name='python',
+#            return_value_attribute='key',
+#            )
+        section = self.make_command_section(name='python', is_hidden=True)
         section.append(('Python - doctest', 'pyd'))
         section.append(('Python - interact', 'pyi'))
         section.append(('Python - test', 'pyt'))
         return section
 
     def _make_repository_menu_section(self):
-        section = self._make_section(
-            is_hidden=True,
-            match_on_display_string=False,
-            name='repository',
-            return_value_attribute='key',
-            )
+#        section = self._make_section(
+#            is_hidden=True,
+#            match_on_display_string=False,
+#            name='repository',
+#            return_value_attribute='key',
+#            )
+        section = self.make_command_section(name='repository', is_hidden=True)
         section.append(('repository - add', 'radd'))
         section.append(('repository - commit', 'rci'))
         section.append(('repository - status', 'rst'))
@@ -256,10 +259,14 @@ class Menu(ScoreManagerObject):
         return section
 
     def _make_score_navigation_menu_section(self):
-        section = self._make_section(
-            is_hidden=True,
+#        section = self._make_section(
+#            is_hidden=True,
+#            name='score navigation',
+#            return_value_attribute='key',
+#            )
+        section = self.make_command_section(
             name='score navigation',
-            return_value_attribute='key',
+            is_hidden=True,
             )
         section.append(('score - build', 'u'))
         section.append(('score - materials', 'm'))
@@ -267,11 +274,15 @@ class Menu(ScoreManagerObject):
         return section
 
     def _make_scores_tour_menu_section(self):
-        section = self._make_section(
-            is_hidden=True,
-            match_on_display_string=False,
+#        section = self._make_section(
+#            is_hidden=True,
+#            match_on_display_string=False,
+#            name='scores - tour',
+#            return_value_attribute='key',
+#            )
+        section = self.make_command_section(
             name='scores - tour',
-            return_value_attribute='key',
+            is_hidden=True,
             )
         section.append(('scores - tour next', 'stn'))
         section.append(('scores - tour prev', 'stp'))
@@ -332,11 +343,15 @@ class Menu(ScoreManagerObject):
         return result
 
     def _make_source_code_menu_section(self):
-        section = self._make_section(
-            is_hidden=True,
-            match_on_display_string=False,
+#        section = self._make_section(
+#            is_hidden=True,
+#            match_on_display_string=False,
+#            name='source code',
+#            return_value_attribute='key',
+#            )
+        section = self.make_command_section(
             name='source code',
-            return_value_attribute='key',
+            is_hidden=True,
             )
         section.append(('source code - edit', 'sce'))
         section.append(('source code - location', 'scl'))
@@ -344,12 +359,6 @@ class Menu(ScoreManagerObject):
         return section
 
     def _make_system_menu_section(self):
-#        section = self._make_section(
-#            is_hidden=True,
-#            match_on_display_string=False,
-#            name='system',
-#            return_value_attribute='key',
-#            )
         section = self.make_command_section(name='system', is_hidden=True)
         section.append(('system - back', 'b'))
         section.append(('system - all', 'n'))
