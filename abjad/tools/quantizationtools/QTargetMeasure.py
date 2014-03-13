@@ -32,9 +32,7 @@ class QTargetMeasure(AbjadObject):
                 definition={   2: None,
                     },
                 ),
-            time_signature=indicatortools.TimeSignature(
-                (4, 4)
-                ),
+            time_signature=indicatortools.TimeSignature((4, 4)),
             tempo=indicatortools.Tempo(
                 durationtools.Duration(1, 4),
                 60

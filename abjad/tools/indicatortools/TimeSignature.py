@@ -139,9 +139,7 @@ class TimeSignature(AbjadObject):
         ::
 
             >>> print format(TimeSignature((3, 8)))
-            indicatortools.TimeSignature(
-                (3, 8)
-                )
+            indicatortools.TimeSignature((3, 8))
 
         Returns string.
         '''
@@ -227,8 +225,12 @@ class TimeSignature(AbjadObject):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        is_indented = True
+        if self.partial is None and self.suppress is None:
+            is_indented = False
         return systemtools.StorageFormatSpecification(
             self,
+            is_indented=is_indented,
             keyword_argument_names=(
                 'partial',
                 'suppress',

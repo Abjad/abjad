@@ -53,9 +53,7 @@ class MeasurewiseQSchema(QSchema):
                 durationtools.Duration(1, 4),
                 60
                 ),
-            time_signature=indicatortools.TimeSignature(
-                (4, 4)
-                ),
+            time_signature=indicatortools.TimeSignature((4, 4)),
             use_full_measure=False,
             )
 

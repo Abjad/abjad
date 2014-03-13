@@ -5,7 +5,7 @@ from abjad.tools.quantizationtools.QSchemaItem import QSchemaItem
 
 
 class MeasurewiseQSchemaItem(QSchemaItem):
-    '''`MeasurewiseQSchemaItem` represents a change of state in the 
+    '''`MeasurewiseQSchemaItem` represents a change of state in the
     timeline of a metered quantization process.
 
     ::
@@ -38,9 +38,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         ...     )
         >>> print format(q_schema_item)
         quantizationtools.MeasurewiseQSchemaItem(
-            time_signature=indicatortools.TimeSignature(
-                (6, 8)
-                ),
+            time_signature=indicatortools.TimeSignature((6, 8)),
             )
 
     Test for beatspan, given a defined time signature:
@@ -65,8 +63,8 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        search_tree=None, 
+        self,
+        search_tree=None,
         tempo=None,
         time_signature=None,
         use_full_measure=None
