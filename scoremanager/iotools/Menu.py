@@ -307,6 +307,14 @@ class Menu(ScoreManagerObject):
         menu_section.menu_entries = menu_entries
         self.menu_sections.append(menu_section)
         self.menu_sections.sort(key=lambda x: x.name)
+        attribute_sections = [
+            x for x in self.menu_sections
+            if x.is_attribute_section
+            ]
+        for attribute_section in attribute_sections:
+            self.menu_sections.remove(attribute_section)
+        for attribute_section in attribute_sections:
+            self.menu_sections.insert(0, attribute_section)
         return menu_section
 
     def _make_section_lines(self):
