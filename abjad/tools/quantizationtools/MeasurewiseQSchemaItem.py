@@ -23,10 +23,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         ...     )
         >>> print format(q_schema_item)
         quantizationtools.MeasurewiseQSchemaItem(
-            tempo=indicatortools.Tempo(
-                durationtools.Duration(1, 4),
-                60
-                ),
+            tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 60),
             )
 
     Define a change in time signature:

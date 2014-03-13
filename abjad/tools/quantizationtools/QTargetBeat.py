@@ -33,10 +33,7 @@ class QTargetBeat(AbjadObject):
                 definition={   3: None,
                     },
                 ),
-            tempo=indicatortools.Tempo(
-                durationtools.Duration(1, 4),
-                56
-                ),
+            tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 56),
             )
 
     Not composer-safe.

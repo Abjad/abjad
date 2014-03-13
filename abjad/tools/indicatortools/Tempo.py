@@ -330,14 +330,17 @@ class Tempo(AbjadObject):
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         positional_argument_values = []
+        is_indented = False
         if self.textual_indication:
             positional_argument_values.append(self.textual_indication)
+            is_indented = True
         if self.duration:
             positional_argument_values.append(self.duration)
         if self.units_per_minute:
             positional_argument_values.append(self.units_per_minute)
         return systemtools.StorageFormatSpecification(
             self,
+            is_indented=is_indented,
             positional_argument_values=positional_argument_values,
             )
 

@@ -50,10 +50,7 @@ class BeatwiseQSchema(QSchema):
                     13: None,
                     },
                 ),
-            tempo=indicatortools.Tempo(
-                durationtools.Duration(1, 4),
-                60
-                ),
+            tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 60),
             )
 
     Each time-step in a ``BeatwiseQSchema`` is composed of three settings:

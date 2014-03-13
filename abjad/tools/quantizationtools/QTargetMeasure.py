@@ -33,10 +33,7 @@ class QTargetMeasure(AbjadObject):
                     },
                 ),
             time_signature=indicatortools.TimeSignature((4, 4)),
-            tempo=indicatortools.Tempo(
-                durationtools.Duration(1, 4),
-                60
-                ),
+            tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 60),
             use_full_measure=False,
             )
 
@@ -180,10 +177,7 @@ class QTargetMeasure(AbjadObject):
                     definition={   2: None,
                         },
                     ),
-                tempo=indicatortools.Tempo(
-                    durationtools.Duration(1, 4),
-                    60
-                    ),
+                tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 60),
                 )
             quantizationtools.QTargetBeat(
                 beatspan=durationtools.Duration(1, 4),
@@ -192,10 +186,7 @@ class QTargetMeasure(AbjadObject):
                     definition={   2: None,
                         },
                     ),
-                tempo=indicatortools.Tempo(
-                    durationtools.Duration(1, 4),
-                    60
-                    ),
+                tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 60),
                 )
             quantizationtools.QTargetBeat(
                 beatspan=durationtools.Duration(1, 4),
@@ -204,10 +195,7 @@ class QTargetMeasure(AbjadObject):
                     definition={   2: None,
                         },
                     ),
-                tempo=indicatortools.Tempo(
-                    durationtools.Duration(1, 4),
-                    60
-                    ),
+                tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 60),
                 )
             quantizationtools.QTargetBeat(
                 beatspan=durationtools.Duration(1, 4),
@@ -216,10 +204,7 @@ class QTargetMeasure(AbjadObject):
                     definition={   2: None,
                         },
                     ),
-                tempo=indicatortools.Tempo(
-                    durationtools.Duration(1, 4),
-                    60
-                    ),
+                tempo=indicatortools.Tempo(durationtools.Duration(1, 4), 60),
                 )
 
         Returns tuple.
