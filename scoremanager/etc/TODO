@@ -35,7 +35,7 @@
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-14. Make the (p), (t) and (y) commands work from anywhere within a score.
+14. Make the (p) and (y) commands work from anywhere within a score.
     Leave the commands lowercase.
 
 14. There also needs to be a single command to just view the global stylesheet
@@ -84,3 +84,5 @@
 
 21. Change 'output material - interact (omi)' to 
     'output material - edit (ome)'.
+
+22. Remove all @apply from scoremananger branch.

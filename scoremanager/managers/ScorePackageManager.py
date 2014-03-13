@@ -314,7 +314,7 @@ class ScorePackageManager(PackageManager):
         return section
 
     def _make_main_menu_section(self, menu):
-        section = menu.make_command_section(name='main')
+        section = menu.make_navigation_section(name='main')
         section.append(('build', 'u'))
         section.append(('distribution', 'd'))
         section.append(('makers', 'k'))

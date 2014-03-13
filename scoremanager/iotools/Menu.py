@@ -148,7 +148,7 @@ class Menu(ScoreManagerObject):
         menu_lines.append(title)
         menu_lines.append('')
         for menu_section in self.menu_sections:
-            if menu_section.is_asset_section:
+            if not menu_section.is_command_section:
                 continue
             for menu_entry in menu_section.menu_entries:
                 key = menu_entry.key
@@ -215,12 +215,6 @@ class Menu(ScoreManagerObject):
         return sections
 
     def _make_lilypond_menu_section(self):
-#        section = self._make_section(
-#            is_hidden=True,
-#            match_on_display_string=False,
-#            name='lilypond',
-#            return_value_attribute='key',
-#            )
         section = self.make_command_section(name='lilypond', is_hidden=True)
         section.append(('LilyPond - view log', 'lvl'))
         return section
@@ -232,12 +226,6 @@ class Menu(ScoreManagerObject):
         return result
 
     def _make_python_menu_section(self):
-#        section = self._make_section(
-#            is_hidden=True,
-#            match_on_display_string=False,
-#            name='python',
-#            return_value_attribute='key',
-#            )
         section = self.make_command_section(name='python', is_hidden=True)
         section.append(('Python - doctest', 'pyd'))
         section.append(('Python - interact', 'pyi'))
@@ -245,12 +233,6 @@ class Menu(ScoreManagerObject):
         return section
 
     def _make_repository_menu_section(self):
-#        section = self._make_section(
-#            is_hidden=True,
-#            match_on_display_string=False,
-#            name='repository',
-#            return_value_attribute='key',
-#            )
         section = self.make_command_section(name='repository', is_hidden=True)
         section.append(('repository - add', 'radd'))
         section.append(('repository - commit', 'rci'))
@@ -259,11 +241,6 @@ class Menu(ScoreManagerObject):
         return section
 
     def _make_score_navigation_menu_section(self):
-#        section = self._make_section(
-#            is_hidden=True,
-#            name='score navigation',
-#            return_value_attribute='key',
-#            )
         section = self.make_command_section(
             name='score navigation',
             is_hidden=True,
@@ -274,12 +251,6 @@ class Menu(ScoreManagerObject):
         return section
 
     def _make_scores_tour_menu_section(self):
-#        section = self._make_section(
-#            is_hidden=True,
-#            match_on_display_string=False,
-#            name='scores - tour',
-#            return_value_attribute='key',
-#            )
         section = self.make_command_section(
             name='scores - tour',
             is_hidden=True,
@@ -343,12 +314,6 @@ class Menu(ScoreManagerObject):
         return result
 
     def _make_source_code_menu_section(self):
-#        section = self._make_section(
-#            is_hidden=True,
-#            match_on_display_string=False,
-#            name='source code',
-#            return_value_attribute='key',
-#            )
         section = self.make_command_section(
             name='source code',
             is_hidden=True,
@@ -464,6 +429,7 @@ class Menu(ScoreManagerObject):
         '''
         return self._menu_sections
 
+    # TODO: make read-only
     @apply
     def should_clear_terminal():
         def fget(self):
@@ -484,6 +450,7 @@ class Menu(ScoreManagerObject):
             self._should_clear_terminal = should_clear_terminal
         return property(**locals())
 
+    # TODO: make read-only
     @apply
     def title():
         def fget(self):
@@ -538,14 +505,14 @@ class Menu(ScoreManagerObject):
 
         Returns menu section.
         '''
-        attribute_section = self._make_section(
+        section = self._make_section(
             display_prepopulated_values=True,
             is_attribute_section=True,
             is_numbered=True,
             return_value_attribute='explicit',
             name=name,
             )
-        return attribute_section
+        return section
 
     def make_command_section(
         self,
@@ -565,14 +532,14 @@ class Menu(ScoreManagerObject):
 
         Returns menu section.
         '''
-        command_section = self._make_section(
+        section = self._make_section(
             is_command_section=True,
             is_hidden=is_hidden,
             match_on_display_string=match_on_display_string,
             name=name,
             return_value_attribute='key',
             )
-        return command_section
+        return section
 
     def make_keyed_attribute_section(
         self, 
@@ -588,13 +555,13 @@ class Menu(ScoreManagerObject):
 
         Returns menu section.
         '''
-        keyed_attribute_section = self._make_section(
+        section = self._make_section(
             display_prepopulated_values=True,
             is_numbered=is_numbered,
             name=name,
             return_value_attribute='key',
             )
-        return keyed_attribute_section
+        return section
 
     def make_numbered_list_section(self, menu_entries=None, name=None):
         r'''Makes numbered list section.
@@ -608,14 +575,14 @@ class Menu(ScoreManagerObject):
 
         Returns menu section.
         '''
-        numbered_list_section = self._make_section(
+        section = self._make_section(
             is_asset_section=True,
             is_numbered=True,
             is_ranged=True,
             name=name,
             return_value_attribute='display_string',
             )
-        return numbered_list_section
+        return section
 
     def make_numbered_section(self, menu_entries=None, name=None):
         r'''Makes numbered section.
@@ -628,10 +595,35 @@ class Menu(ScoreManagerObject):
 
         Returns menu section.
         '''
-        numbered_section = self._make_section(
+        section = self._make_section(
             name=name,
             is_asset_section=True,
             is_numbered=True,
             return_value_attribute='number',
             )
-        return numbered_section
+        return section
+
+    def make_navigation_section(
+        self,
+        is_hidden=False,
+        match_on_display_string=True,
+        menu_entries=None,
+        name=None,
+        ):
+        r'''Makes navigation section.
+
+        Menu section with these attributes:
+
+            * not hidden
+            * match on display string
+            * return value attribute equal to ``'key'``
+
+        Returns menu section.
+        '''
+        section = self._make_section(
+            is_hidden=is_hidden,
+            match_on_display_string=match_on_display_string,
+            name=name,
+            return_value_attribute='key',
+            )
+        return section
