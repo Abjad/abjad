@@ -114,6 +114,10 @@ class ListEditor(Editor):
     ### PUBLIC METHODS ###
 
     def add_items(self):
+        r'''Adds items to list.
+
+        Returns none.
+        '''
         if self.item_creator_class:
             item_creator = self.item_creator_class(
                 session=self._session, 
@@ -160,7 +164,11 @@ class ListEditor(Editor):
         self.items.extend(items)
 
     def edit_item(self, item_number):
-        item = self.get_item_from_item_number(item_number)
+        r'''Edits item.
+
+        Returns none.
+        '''
+        item = self._get_item_from_item_number(item_number)
         if item is not None:
             if self.item_editor_class is not None:
                 item_editor = self.item_editor_class(
@@ -171,7 +179,7 @@ class ListEditor(Editor):
                 item_index = int(item_number) - 1
                 self.items[item_index] = item_editor.target
 
-    def get_item_from_item_number(self, item_number):
+    def _get_item_from_item_number(self, item_number):
         try:
             return self.items[int(item_number) - 1]
         except:
@@ -184,6 +192,10 @@ class ListEditor(Editor):
             self.target = self._target_class([])
 
     def move_item(self):
+        r'''Moves items.
+
+        Returns none.
+        '''
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_integer_in_range('old number', 1, len(self.items))
         getter.append_integer_in_range('new number', 1, len(self.items))
@@ -197,6 +209,10 @@ class ListEditor(Editor):
         self.items.insert(new_index, item)
 
     def remove_items(self):
+        r'''Removes items.
+
+        Returns none.
+        '''
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_menu_section_range(
             self.items_identifier, self._numbered_section)

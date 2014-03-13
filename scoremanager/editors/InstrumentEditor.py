@@ -118,6 +118,12 @@ class InstrumentEditor(Editor):
                 self.target = None
 
     def toggle_pitch_range_display(self):
+        r'''Toggle pitch range display.
+
+        Between numbered pitches and lettered pitches.
+
+        Returns none.
+        '''
         if self._session.display_pitch_ranges_with_numbered_pitches:
             self._session._display_pitch_ranges_with_numbered_pitches = False
         else:

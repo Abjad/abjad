@@ -253,11 +253,16 @@ class SargassoMeasureMaterialManager(MaterialManager):
 
     @property
     def user_input_demo_values(self):
+        r'''Gest user input demo values.
+
+        Returns list.
+        '''
         return [
             ('measure_denominator', 4),
             ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
             ('measure_division_denominator', 16),
-            ('measure_division_talea', [1, 1, 2, 3, 1, 2, 3, 4, 1, 1, 1, 1, 4]),
+            ('measure_division_talea', 
+                [1, 1, 2, 3, 1, 2, 3, 4, 1, 1, 1, 1, 4]),
             ('total_duration', durationtools.Duration(44, 8)),
             ('measures_are_scaled', True),
             ('measures_are_split', True),
@@ -266,10 +271,18 @@ class SargassoMeasureMaterialManager(MaterialManager):
 
     @property
     def user_input_module_import_statements(self):
+        r'''Gets user input module import statements.
+
+        Returns list of strings.
+        '''
         return ['from abjad import *']
 
     @property
     def user_input_tests(self):
+        r'''Gets user input tests.
+
+        Returns list of pairs.
+        '''
         from scoremanager import predicates
         return [
             ('measure_denominator', 
