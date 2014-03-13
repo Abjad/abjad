@@ -122,13 +122,33 @@ class Manager(Controller):
             command,
             shell=True,
             stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
+            #stderr=subprocess.STDOUT,
             )
         first_line = process.stdout.readline()
         if first_line.startswith('A'):
             return True
         return False
 
+    def _is_git_unknown(self, path=None):
+        path = path or self._path
+        if path is None:
+            return False
+        if not os.path.exists(path):
+            return False
+        command = 'git status --short {}'
+        command = command.format(path)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            #stderr=subprocess.STDOUT,
+            )
+        first_line = process.stdout.readline()
+        if first_line.startswith('??'):
+            return True
+        return False
+
+    # TODO: change name to self._is_git_managed()
     def _is_git_versioned(self, path=None):
         path = path or self._path
         if path is None:
@@ -225,10 +245,11 @@ class Manager(Controller):
         return result
 
     def _remove(self):
-        if self._is_git_versioned():
-            command = 'git rm --force {}'
-        elif self._is_git_added():
-            command = 'git rm --force {}'
+        if self._is_in_git_repository():
+            if self._is_git_unknown():
+                command = 'rm -rf {}'
+            else:
+                command = 'git rm --force {}'
         elif self._is_svn_versioned():
             command = 'svn --force rm {}'
         else:
