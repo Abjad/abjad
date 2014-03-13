@@ -30,7 +30,6 @@ def test_ScorePackageManager__run_01():
         '     materials (m)',
         '     segments (g)',
         '     setup (p)',
-        '     templates (t)',
         '     stylesheets (y)',
         '',
         ]
@@ -132,16 +131,6 @@ def test_ScorePackageManager__run_06():
         ]
     assert score_manager._transcript.titles == titles
 
-    input_ = 'red~example~score templates g q'
-    score_manager._run(pending_user_input=input_, is_test=True)
-    titles = [
-        'Score manager - example scores',
-        'Red Example Score (2013)',
-        'Red Example Score (2013) - templates',
-        'Red Example Score (2013) - segments',
-        ]
-    assert score_manager._transcript.titles == titles
-
     input_ = 'red~example~score stylesheets g q'
     score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
@@ -165,16 +154,6 @@ def test_ScorePackageManager__run_07():
         'Score manager - example scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - setup',
-        'Red Example Score (2013) - materials',
-        ]
-    assert score_manager._transcript.titles == titles
-
-    input_ = 'red~example~score templates m q'
-    score_manager._run(pending_user_input=input_, is_test=True)
-    titles = [
-        'Score manager - example scores',
-        'Red Example Score (2013)',
-        'Red Example Score (2013) - templates',
         'Red Example Score (2013) - materials',
         ]
     assert score_manager._transcript.titles == titles
@@ -232,16 +211,6 @@ def test_ScorePackageManager__run_08():
         'Score manager - example scores',
         'Red Example Score (2013)',
         'Red Example Score (2013) - setup',
-        'Red Example Score (2013) - build manager',
-        ]
-    assert score_manager._transcript.titles == titles
-
-    input_ = 'red~example~score templates u q'
-    score_manager._run(pending_user_input=input_, is_test=True)
-    titles = [
-        'Score manager - example scores',
-        'Red Example Score (2013)',
-        'Red Example Score (2013) - templates',
         'Red Example Score (2013) - build manager',
         ]
     assert score_manager._transcript.titles == titles

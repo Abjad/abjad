@@ -89,21 +89,6 @@ class ScorePackageManager(PackageManager):
         return self._cached_material_package_wrangler
 
     @property
-    def _score_template_directory_manager(self):
-        from scoremanager import managers
-        if self._path is None:
-            return
-        if not hasattr(self, '_cached_score_template_directory_manager'):
-            path = os.path.join(self._path, 'templates')
-            manager = managers.DirectoryManager(
-                path=path,
-                session=self._session,
-            )
-            self._cached_score_template_directory_manager = manager
-        return self._cached_score_template_directory_manager
-
-
-    @property
     def _segment_package_wrangler(self):
         from scoremanager import wranglers
         if self._path is None:
@@ -153,6 +138,12 @@ class ScorePackageManager(PackageManager):
             )
         return file_path
 
+    def _get_makers_directory_path(self):
+        return os.path.join(
+            self._path, 
+            'makers',
+            )
+
     def _get_materials_directory_path(self):
         return os.path.join(
             self._path, 
@@ -169,12 +160,6 @@ class ScorePackageManager(PackageManager):
         return os.path.join(
             self._path, 
             'stylesheets',
-            )
-
-    def _get_templates_directory_path(self):
-        return os.path.join(
-            self._path, 
-            'templates',
             )
 
     def _get_tempo_inventory(self):
@@ -206,9 +191,9 @@ class ScorePackageManager(PackageManager):
         return (
             self._get_build_directory_path(),
             self._get_distribution_directory_path(),
+            self._get_makers_directory_path(),
             self._get_materials_directory_path(),
             self._get_segments_directory_path(),
-            self._get_templates_directory_path(),
             self._get_stylesheets_directory_path(),
             )
 
@@ -242,7 +227,6 @@ class ScorePackageManager(PackageManager):
             'removescore': self.remove,
             'rst': self.status,
             'rup': self.update,
-            't': self._score_template_directory_manager._run,
             'u': self._build_directory_manager._run,
             'y': self._stylesheet_wrangler._run,
             })
@@ -332,7 +316,6 @@ class ScorePackageManager(PackageManager):
         section.append(('materials', 'm'))
         section.append(('segments', 'g'))
         section.append(('setup', 'p'))
-        section.append(('templates', 't'))
         section.append(('stylesheets', 'y'))
         return section
 
