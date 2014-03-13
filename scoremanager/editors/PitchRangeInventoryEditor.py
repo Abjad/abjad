@@ -33,7 +33,7 @@ class PitchRangeInventoryEditor(ObjectInventoryEditor):
             )
 
     @property
-    def target_summary_lines(self):
+    def _target_summary_lines(self):
         result = []
         for pitch_range in self.target:
             result.append(repr(pitch_range))

@@ -103,7 +103,7 @@ class InstrumentEditor(Editor):
 
     ### PUBLIC METHODS ###
 
-    def initialize_target(self):
+    def _initialize_target(self):
         if self.target is None:
             with self._backtracking:
                 wizard = wizards.InstrumentCreationWizard(

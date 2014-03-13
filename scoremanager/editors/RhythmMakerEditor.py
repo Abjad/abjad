@@ -9,10 +9,10 @@ class RhythmMakerEditor(Editor):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def target_summary_lines(self):
+    def _target_summary_lines(self):
         result = []
         if self.target:
             result.append(self.target.__class__.__name__)
             result.append('')
-            result.extend(Editor.target_summary_lines.fget(self))
+            result.extend(Editor._target_summary_lines.fget(self))
         return result

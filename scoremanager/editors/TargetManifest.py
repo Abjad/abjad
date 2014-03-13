@@ -128,7 +128,7 @@ class TargetManifest(AbjadObject):
             )
         return editor
 
-    def menu_key_to_prepopulated_value(self, menu_key):
+    def _menu_key_to_prepopulated_value(self, menu_key):
         attribute_name = self.menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
 

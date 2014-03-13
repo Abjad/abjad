@@ -40,7 +40,7 @@ class PerformerEditor(ListEditor):
 
     ### PUBLIC METHODS ###
 
-    def initialize_target(self):
+    def _initialize_target(self):
         if self.target is not None:
             return
         else:

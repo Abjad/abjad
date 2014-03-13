@@ -544,12 +544,12 @@ class MaterialManager(PackageManager):
                         target=output_material,
                         session=self._session,
                         )
-                    target_summary_lines = editor.target_summary_lines
-                    if target_summary_lines:
+                    _target_summary_lines = editor._target_summary_lines
+                    if _target_summary_lines:
                         contents_section = menu.make_command_section(
                             name='material summary',
                             )
-                        contents_section.title = target_summary_lines
+                        contents_section.title = _target_summary_lines
 
     def _make_output_material_module_body_lines(self, output_material):
         if hasattr(output_material, '_storage_format_specification'):

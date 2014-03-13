@@ -70,12 +70,12 @@ class ListEditor(Editor):
             name='keyed attribute section',
             )
         keyed_attribute_section.menu_entries = \
-            self.make_target_attribute_tokens()
+            self._make_target_attribute_tokens()
         numbered_section = menu.make_numbered_section(
             name='numbered section',
             )
         self._numbered_section = numbered_section
-        numbered_section.menu_entries = self.target_summary_lines
+        numbered_section.menu_entries = self._target_summary_lines
         section = menu.make_command_section(name='add, move, remove')
         section.append(('elements - add', 'add'))
         if 1 < len(self.items):
@@ -104,7 +104,7 @@ class ListEditor(Editor):
         return TargetManifest(list,)
 
     @property
-    def target_summary_lines(self):
+    def _target_summary_lines(self):
         result = []
         for item in self.items:
             result.append(
@@ -177,7 +177,7 @@ class ListEditor(Editor):
         except:
             pass
 
-    def initialize_target(self):
+    def _initialize_target(self):
         if self.target is not None:
             return
         else:

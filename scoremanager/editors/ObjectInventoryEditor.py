@@ -14,7 +14,7 @@ class ObjectInventoryEditor(ListEditor):
             return 'edit'
 
     @property
-    def target_summary_lines(self):
+    def _target_summary_lines(self):
         result = []
         for item in self.target:
             result.append(repr(item))
