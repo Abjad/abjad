@@ -148,27 +148,26 @@ class Manager(Controller):
             return True
         return False
 
-    # TODO: change name to self._is_git_managed()
-    def _is_git_versioned(self, path=None):
-        path = path or self._path
-        if path is None:
-            return False
-        if not os.path.exists(path):
-            return False
-        command = 'git status --short {}'
-        command = command.format(path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
-        first_line = process.stdout.readline()
-        # TODO: change to the following commented-out line
-        #if first_line.startswith('fatal:'):
-        if first_line.startswith(('fatal:', '??', 'A')):
-            return False
-        return True
+#    def _is_git_versioned(self, path=None):
+#        path = path or self._path
+#        if path is None:
+#            return False
+#        if not os.path.exists(path):
+#            return False
+#        command = 'git status --short {}'
+#        command = command.format(path)
+#        process = subprocess.Popen(
+#            command,
+#            shell=True,
+#            stdout=subprocess.PIPE,
+#            stderr=subprocess.STDOUT,
+#            )
+#        first_line = process.stdout.readline()
+#        # TODO: change to the following commented-out line
+#        #if first_line.startswith('fatal:'):
+#        if first_line.startswith(('fatal:', '??', 'A')):
+#            return False
+#        return True
 
     def _is_in_git_repository(self, path=None):
         path = path or self._path
@@ -264,10 +263,11 @@ class Manager(Controller):
         return True
 
     def _rename(self, new_path):
-        if self._is_git_versioned():
-            command = 'git mv --force {} {}'
-        elif self._is_git_added():
-            command = 'git mv --force {} {}'
+        if self._is_in_git_repository():
+            if self._is_git_unknown():
+                command = 'mv {} {}'
+            else:
+                command = 'git mv --force {} {}'
         elif self._is_svn_versioned():
             command = 'svn --force mv {} {}'
         else:
