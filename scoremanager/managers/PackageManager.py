@@ -188,7 +188,7 @@ class PackageManager(DirectoryManager):
         Returns none.
         '''
         getter = self._io_manager.make_getter(where=self._where)
-        getter.append_string('metadatum name')
+        getter.append_snake_case_string('metadatum name', allow_empty=False)
         getter.append_expr('metadatum value')
         result = getter._run()
         if self._session._backtrack():

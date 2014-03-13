@@ -84,6 +84,9 @@ def is_named_pitch(expr):
 def is_negative_integer(expr):
     return is_integer(expr) and expr < 0
 
+def is_nonempty_string(expr):
+    return isinstance(expr, str) and bool(expr)
+
 def is_nonnegative_integer(expr):
     return is_integer(expr) and expr <= 0
 

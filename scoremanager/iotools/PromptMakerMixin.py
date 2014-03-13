@@ -644,16 +644,27 @@ class PromptMakerMixin(AbjadObject):
         self, 
         spaced_attribute_name, 
         default_value=None,
+        allow_empty=False,
         ):
         r'''Appends snake case string.
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be '
-        help_template += 'underscore-delimited lowercase string.'
+        def is_nonempty_snake_case_string(expr):
+            if stringtools.is_snake_case_string(expr):
+                return bool(expr)
+            return False
+        if allow_empty:
+            help_template = 'value for {!r} must be'
+            help_template += ' snake-case string.'
+            validation_function = stringtools.is_snake_case_string
+        else:
+            help_template = 'value for {!r} must be nonempty'
+            help_template += ' snake-case string.'
+            validation_function = is_nonempty_snake_case_string
         self._make_prompt(
             spaced_attribute_name, 
-            validation_function=stringtools.is_snake_case_string,
+            validation_function=validation_function,
             help_template=help_template, 
             default_value=default_value,
             )
@@ -680,15 +691,21 @@ class PromptMakerMixin(AbjadObject):
         self, 
         spaced_attribute_name, 
         default_value=None,
+        allow_empty=True,
         ):
         r'''Appends string.
 
         Returns prompt.
         '''
-        help_template = 'value for {!r} must be string.'
+        if allow_empty:
+            validation_function = predicates.is_string
+            help_template = 'value for {!r} must be string.'
+        else:
+            validation_function = predicates.is_nonempty_string
+            help_template = 'value for {!r} must be nonempty string.'
         self._make_prompt(
             spaced_attribute_name, 
-            validation_function=predicates.is_string,
+            validation_function=validation_function,
             help_template=help_template, 
             default_value=default_value,
             )
