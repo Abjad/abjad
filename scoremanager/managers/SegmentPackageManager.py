@@ -65,11 +65,12 @@ class SegmentPackageManager(PackageManager):
             'lyv': self.view_current_output_ly,
             'lyver': self.view_versioned_output_ly,
             'pdfv': self.view_output_pdf,
-            'pdfm': self.make_asset_pdf,
+            #'pdfm': self.interpret_segment_definition_module,
             'vv': self.view_all_versioned_pdfs,
             'pdfver': self.view_versioned_output_pdf,
             'pyver': self.view_versioned_segment_definition_module,
             'pdfs': self.save_to_versions_directory,
+            'sdmi': self.interpret_segment_definition_module,
             'vrl': self.list_versions_directory,
             })
         return result
@@ -114,7 +115,7 @@ class SegmentPackageManager(PackageManager):
 
     def _make_current_pdf_menu_section(self, menu):
         section = menu.make_command_section(name='current pdf')
-        section.append(('current pdf - make', 'pdfm'))
+        #section.append(('current pdf - make', 'pdfm'))
         if os.path.isfile(self._output_pdf_file_path):
             section.append(('current pdf - version', 'pdfs'))
         if os.path.isfile(self._output_pdf_file_path):
@@ -156,6 +157,8 @@ class SegmentPackageManager(PackageManager):
         section = menu.make_command_section(name='segment definition module')
         section.append(('segment definition module - edit', 'e'))
         section.append(('segment definition module - edit at top', 'E'))
+        # ZZZ
+        section.append(('segment definition module - interpret', 'sdmi'))
         return section
 
     def _view_versioned_file(self, extension):
@@ -242,7 +245,7 @@ class SegmentPackageManager(PackageManager):
         self._io_manager.display(lines)
         self._io_manager.proceed('')
 
-    def make_asset_pdf(
+    def interpret_segment_definition_module(
         self,
         view_asset_pdf=True,
         ):
@@ -258,6 +261,8 @@ class SegmentPackageManager(PackageManager):
         if not manager:
             return
         manager._interpret_in_external_process()
+        if not view_asset_pdf:
+            return
         new_modification_time = 0
         if os.path.isfile(output_pdf_file_path):
             new_modification_time = os.path.getmtime(output_pdf_file_path)

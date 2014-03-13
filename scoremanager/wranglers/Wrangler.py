@@ -642,14 +642,17 @@ class Wrangler(Controller):
             return
         lines = []
         view_names = view_inventory.keys()
-        selector = self._io_manager.make_selector(where=self._where)
+        selector = self._io_manager.make_selector(
+            where=self._where,
+            items=view_names,
+            )
+        # TODO: make attribute read-only and not assignable after init
         selector.explicit_breadcrumb = 'select view'
-        selector.items = view_names
         with self._backtracking:
             view_name = selector._run()
         if self._session._backtrack():
             return
-        self._current_package_manager._add_metadata('view_name', view_name)
+        self._current_package_manager._add_metadatum('view_name', view_name)
 
     def status(self, prompt=True):
         r'''Display asset status in repository.

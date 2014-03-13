@@ -41,9 +41,9 @@ class SegmentPackageWrangler(PackageWrangler):
         result = result.copy()
         result.update({
             'lyri': self.reinterpret_current_lilypond_files,
-            'pdfm': self.make_segment_pdfs,
             'pdfs': self.version_segment_packages,
             'pdfv': self.view_segment_pdfs,
+            'sdmi': self.interpret_segment_definition_modules,
             })
         return result
 
@@ -88,6 +88,13 @@ class SegmentPackageWrangler(PackageWrangler):
             )
         return section
 
+    def _make_current_definition_modules_menu_section(self, menu):
+        name = 'current definition modules'
+        section = menu.make_command_section(name=name)
+        string = 'all segments - current definition module - interpret'
+        section.append((string, 'sdmi'))
+        return section
+
     def _make_current_lilypond_files_menu_section(self, menu):
         section = menu.make_command_section(name='current lilypond files')
         string = 'all segments - current lilypond file - reinterpret'
@@ -96,7 +103,6 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def _make_current_pdfs_menu_section(self, menu):
         section = menu.make_command_section(name='current pdfs')
-        section.append(('all segments - current pdf - make', 'pdfm'))
         section.append(('all segments - current pdf - version', 'pdfs'))
         section.append(('all segments - current pdf - view', 'pdfv'))
         return section
@@ -109,6 +115,7 @@ class SegmentPackageWrangler(PackageWrangler):
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
         self._make_asset_menu_section(menu)
+        self._make_current_definition_modules_menu_section(menu)
         self._make_current_lilypond_files_menu_section(menu)
         self._make_current_pdfs_menu_section(menu)
         self._make_segments_menu_section(menu)
@@ -122,7 +129,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def make_segment_pdfs(
+    def interpret_segment_definition_modules(
         self,
         pending_user_input=None,
         ):
@@ -142,23 +149,19 @@ class SegmentPackageWrangler(PackageWrangler):
                 segments_directory_path,
                 segment_package_name,
                 )
-            segment_package_path = \
-                self._configuration.path_to_package_path(
-                segment_package_directory_path)
             manager = self._asset_manager_class(
-                segment_package_path,
+                path=segment_package_directory_path,
                 session=self._session,
                 )
-            manager.make_asset_pdf(
+            manager.interpret_segment_definition_module(
                 view_asset_pdf=False,
                 )
-            output_pdf_file_path = manager._get_output_pdf_file_path()
+            output_pdf_file_path = manager._output_pdf_file_path
             if os.path.isfile(output_pdf_file_path):
                 message = 'segment {} PDF created.'
                 message = message.format(segment_package_name)
                 self._io_manager.display(message)
         self._io_manager.display('')
-        self.view_segment_pdfs()
         self._io_manager.proceed()
 
     def reinterpret_current_lilypond_files(

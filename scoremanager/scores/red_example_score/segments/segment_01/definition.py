@@ -29,5 +29,3 @@ if __name__ == '__main__':
     persist(lilypond_file).as_ly(ly_file_path)
     pdf_file_path = os.path.join(current_directory_path, 'output.pdf')
     persist(lilypond_file).as_pdf(pdf_file_path)
-    command = 'open {}'.format(pdf_file_path)
-    os.system(command)

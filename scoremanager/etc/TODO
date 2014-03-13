@@ -78,3 +78,7 @@
 
 20. Change 'output material - interact (omi)' to 
     'output material - edit (ome)'.
+
+21. Implement 'segments - tour next' and 'segment - tour previous' commands.
+
+22. Implement an 'all whatever - edit' command.

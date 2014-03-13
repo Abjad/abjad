@@ -257,8 +257,6 @@ class IOManager(IOManager):
         Returns none.
         '''
         assert isinstance(lines, (str, list))
-        if lines == '':
-            raise Exception('do not display a single empty line.')
         if isinstance(lines, str):
             lines = [lines]
         if self._session.hide_next_redraw:
@@ -465,7 +463,11 @@ class IOManager(IOManager):
             )
         return menu
 
-    def make_selector(self, where=None):
+    def make_selector(
+        self, 
+        where=None,
+        items=None,
+        ):
         r'''Makes selector.
 
         Returns selector.
@@ -474,6 +476,7 @@ class IOManager(IOManager):
         selector = iotools.Selector(
             where=where,
             session=self._session,
+            items=items,
             )
         return selector
 
