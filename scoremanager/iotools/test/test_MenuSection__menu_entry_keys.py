@@ -10,21 +10,23 @@ def test_MenuSection__menu_entry_keys_01():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test')
+    section = menu._make_section(name='test', title='section')
     section.append('apple')
     section.append('banana')
     section.append('cherry')
-    section.title = 'section'
     assert not section.is_numbered
     assert section._menu_entry_keys == [None, None, None]
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test', is_numbered=True)
+    section = menu._make_section(
+        name='test', 
+        is_numbered=True, 
+        title='section',
+        )
     section.append('apple')
     section.append('banana')
     section.append('cherry')
-    section.title = 'section'
     assert section.is_numbered
     assert section._menu_entry_keys == [None, None, None]
 
@@ -37,11 +39,10 @@ def test_MenuSection__menu_entry_keys_02():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test')
+    section = menu._make_section(name='test', title='section title')
     section.append(('something - add', 'add'))
     section.append(('something - delete', 'rm'))
     section.append(('something - modify', 'mod'))
-    section.title = 'section title'
     assert not section.is_numbered
     assert section._menu_entry_keys == \
         ['add', 'rm', 'mod']
@@ -50,11 +51,14 @@ def test_MenuSection__menu_entry_keys_02():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test', is_numbered=True)
+    section = menu._make_section(
+        name='test', 
+        is_numbered=True, 
+        title='section title',
+        )
     section.append(('something - add', 'add'))
     section.append(('something - delete', 'rm'))
     section.append(('something - modify', 'mod'))
-    section.title = 'section title'
     assert section.is_numbered
     assert section._menu_entry_keys == \
         ['add', 'rm', 'mod']

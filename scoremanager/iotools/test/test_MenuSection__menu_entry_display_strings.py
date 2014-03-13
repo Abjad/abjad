@@ -11,22 +11,24 @@ def test_MenuSection__menu_entry_display_strings_01():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test')
+    section = menu._make_section(name='test', title='section')
     section.append('apple')
     section.append('banana')
     section.append('cherry')
-    section.title = 'section'
     assert not section.is_numbered
     assert section._menu_entry_display_strings == \
         ['apple', 'banana', 'cherry']
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test', is_numbered=True)
+    section = menu._make_section(
+        name='test', 
+        is_numbered=True, 
+        title='section',
+        )
     section.append('apple')
     section.append('banana')
     section.append('cherry')
-    section.title = 'section'
     assert section.is_numbered
     assert section._menu_entry_display_strings == \
         ['apple', 'banana', 'cherry']
@@ -40,11 +42,10 @@ def test_MenuSection__menu_entry_display_strings_02():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test')
+    section = menu._make_section(name='test', title='section title')
     section.append(('add something', 'add'))
     section.append(('delete something', 'rm'))
     section.append(('modify something', 'mod'))
-    section.title = 'section title'
     assert not section.is_numbered
     assert section._menu_entry_display_strings == \
         ['add something', 'delete something', 'modify something']
@@ -53,11 +54,14 @@ def test_MenuSection__menu_entry_display_strings_02():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test', is_numbered=True)
+    section = menu._make_section(
+        name='test', 
+        is_numbered=True, 
+        title='section title',
+        )
     section.append(('add something', 'add'))
     section.append(('delete something', 'rm'))
     section.append(('modify something', 'mod'))
-    section.title = 'section title'
     assert section.is_numbered
     assert section._menu_entry_display_strings == \
         ['add something', 'delete something', 'modify something']

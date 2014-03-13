@@ -501,7 +501,6 @@ class MaterialManager(PackageManager):
             section.append(('material definition - stub', 'mds'))
         elif self._read_material_manager_class_name() is None:
             section = menu.make_command_section(name=name)
-            section.return_value_attribute = 'key'
             section.append(('material definition - stub', 'mds'))
 
     @staticmethod
@@ -546,13 +545,10 @@ class MaterialManager(PackageManager):
                         )
                     _target_summary_lines = editor._target_summary_lines
                     if _target_summary_lines:
-                        #contents_section = menu.make_command_section(
-                        #    name='material summary',
-                        #    )
                         contents_section = menu.make_attribute_section(
                             name='material summary',
+                            title=_target_summary_lines,
                             )
-                        contents_section.title = _target_summary_lines
 
     def _make_output_material_module_body_lines(self, output_material):
         if hasattr(output_material, '_storage_format_specification'):

@@ -9,11 +9,10 @@ def test_Menu__run_01():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test')
+    section = menu._make_section(name='test', title='section')
     section.append('apple')
     section.append('banana')
     section.append('cherry')
-    section.title = 'section'
 
     result = menu._run(pending_user_input='foo')
     assert menu._transcript.last_menu_lines == \
@@ -53,11 +52,14 @@ def test_Menu__run_02():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test', is_hidden=True)
+    section = menu._make_section(
+        name='test', 
+        is_hidden=True,
+        title='section',
+        )
     section.append('apple')
     section.append('banana')
     section.append('cherry')
-    section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
     assert menu._transcript.last_menu_lines == \
@@ -90,11 +92,14 @@ def test_Menu__run_03():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test', is_numbered=True)
+    section = menu._make_section(
+        name='test', 
+        is_numbered=True,
+        title='section',
+        )
     section.append('apple')
     section.append('banana')
     section.append('cherry')
-    section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
     assert menu._transcript.last_menu_lines == \
@@ -134,11 +139,14 @@ def test_Menu__run_04():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test', is_ranged=True)
+    section = menu._make_section(
+        name='test', 
+        is_ranged=True,
+        title='section',
+        )
     section.append('apple')
     section.append('banana')
     section.append('cherry')
-    section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
     assert menu._transcript.last_menu_lines == \
@@ -179,12 +187,14 @@ def test_Menu__run_05():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test')
-    section.return_value_attribute = 'key'
+    section = menu._make_section(
+        name='test',
+        title='section',
+        return_value_attribute='key',
+        )
     section.append(('first command', 'add'))
     section.append(('second command', 'rm'))
     section.append(('third command', 'mod'))
-    section.title = 'section'
 
     result = menu._run(pending_user_input='foo')
 
@@ -237,7 +247,9 @@ def test_Menu__run_06():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test')
+    section = menu._make_section(
+        name='test',
+        )
     section.append(('first command', 'add'))
     section.append(('second command', 'rm'))
     section.append(('third command', 'mod'))
@@ -285,13 +297,15 @@ def test_Menu__run_07():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test')
-    section.return_value_attribute = 'key'
-    section.is_hidden = True
+    section = menu._make_section(
+        name='test',
+        return_value_attribute='key',
+        is_hidden=True,
+        title='section',
+        )
     section.append(('first command', 'add'))
     section.append(('second command', 'rm'))
     section.append(('third command', 'mod'))
-    section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
     assert menu._transcript.last_menu_lines == \
@@ -337,11 +351,14 @@ def test_Menu__run_08():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test', is_hidden=True)
+    section = menu._make_section(
+        name='test', 
+        is_hidden=True,
+        title='section',
+        )
     section.append(('first command', 'add'))
     section.append(('second command', 'rm'))
     section.append(('third command', 'mod'))
-    section.title = 'section'
 
     menu._session._reinitialize()
     result = menu._run(pending_user_input='foo')
@@ -385,13 +402,15 @@ def test_Menu__run_09():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test')
-    section.return_value_attribute = 'key'
-    section.is_numbered = True 
+    section = menu._make_section(
+        name='test',
+        return_value_attribute='key',
+        is_numbered=True,
+        title='section',
+        )
     section.append(('first command', 'add'))
     section.append(('second command', 'rm'))
     section.append(('third command', 'mod'))
-    section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
     assert menu._transcript.last_menu_lines == \
@@ -443,13 +462,15 @@ def test_Menu__run_10():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test')
-    section.return_value_attribute = 'key'
-    section.is_ranged = True
+    section = menu._make_section(
+        name='test',
+        return_value_attribute='key',
+        is_ranged=True,
+        title='section',
+        )
     section.append(('first command', 'add'))
     section.append(('second command', 'rm'))
     section.append(('third command', 'mod'))
-    section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
     assert menu._transcript.last_menu_lines == \
@@ -501,11 +522,14 @@ def test_Menu__run_11():
 
     menu = scoremanager.iotools.Menu()
     menu._session._push_breadcrumb('location')
-    section = menu._make_section(name='test', is_ranged=True)
+    section = menu._make_section(
+        name='test', 
+        is_ranged=True,
+        title='section',
+        )
     section.append(('first command', 'add'))
     section.append(('second command', 'rm'))
     section.append(('third command', 'mod'))
-    section.title = 'section'
 
     menu._session._reinitialize()
     result = menu._run(pending_user_input='foo')

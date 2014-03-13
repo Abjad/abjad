@@ -272,6 +272,7 @@ class Menu(ScoreManagerObject):
         menu_entries=None,
         name=None,
         return_value_attribute='display_string',
+        title=None,
         ):
         from scoremanager import iotools
         assert not (is_numbered and self._has_numbered_section())
@@ -287,6 +288,7 @@ class Menu(ScoreManagerObject):
             match_on_display_string=match_on_display_string,
             name=name,
             return_value_attribute=return_value_attribute,
+            title=title,
             )
         menu_section.menu_entries = menu_entries
         self.menu_sections.append(menu_section)
@@ -429,27 +431,6 @@ class Menu(ScoreManagerObject):
         '''
         return self._menu_sections
 
-#    # TODO: make read-only
-#    @apply
-#    def should_clear_terminal():
-#        def fget(self):
-#            r'''Is true when menu should clear terminal. Otherwise false:
-#    
-#            ..  container:: example
-#
-#                ::
-#
-#                    >>> menu.should_clear_terminal
-#                    False
-#
-#            Returns boolean.
-#            '''
-#            return self._should_clear_terminal
-#        def fset(self, should_clear_terminal):
-#            assert isinstance(should_clear_terminal, bool)
-#            self._should_clear_terminal = should_clear_terminal
-#        return property(**locals())
-
     @property
     def should_clear_terminal(self):
         r'''Is true when menu should clear terminal. Otherwise false.
@@ -464,27 +445,6 @@ class Menu(ScoreManagerObject):
         Returns boolean.
         '''
         return self._should_clear_terminal
-
-#    # TODO: make read-only
-#    @apply
-#    def title():
-#        def fget(self):
-#            r'''Gets and sets menu title.
-#
-#            ..  container:: example
-#
-#                ::
-#
-#                    >>> menu.title is None
-#                    True
-#
-#            Returns string or none.
-#            '''
-#            return self._title
-#        def fset(self, title):
-#            assert isinstance(title, (str, type(None)))
-#            self._title = title
-#        return property(**locals())
 
     @property
     def title(self):
@@ -523,7 +483,7 @@ class Menu(ScoreManagerObject):
             )
         return section
 
-    def make_attribute_section(self, menu_entries=None, name=None):
+    def make_attribute_section(self, menu_entries=None, name=None, title=None):
         r'''Makes attribute section.
 
         With these attributes:
@@ -541,6 +501,7 @@ class Menu(ScoreManagerObject):
             is_numbered=True,
             return_value_attribute='explicit',
             name=name,
+            title=title,
             )
         return section
 
@@ -593,7 +554,12 @@ class Menu(ScoreManagerObject):
             )
         return section
 
-    def make_numbered_list_section(self, menu_entries=None, name=None):
+    def make_numbered_list_section(
+        self, 
+        menu_entries=None, 
+        name=None,
+        title=None,
+        ):
         r'''Makes numbered list section.
 
         With these attributes:
@@ -611,6 +577,7 @@ class Menu(ScoreManagerObject):
             is_ranged=True,
             name=name,
             return_value_attribute='display_string',
+            title=title,
             )
         return section
 

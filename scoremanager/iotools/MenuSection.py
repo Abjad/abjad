@@ -58,18 +58,18 @@ class MenuSection(AbjadObject):
         self._name = name
         self.menu_entries = []
         assert return_value_attribute in self.return_value_attributes
-        self.return_value_attribute = return_value_attribute
-        self.default_index = default_index
-        self.indent_level = indent_level
+        self._return_value_attribute = return_value_attribute
+        self._indent_level = indent_level
         self._is_asset_section = is_asset_section
         self._is_attribute_section = is_attribute_section
         self._is_command_section = is_command_section
-        self.is_hidden = is_hidden
-        self.is_numbered = is_numbered
-        self.is_ranged = is_ranged
-        self.display_prepopulated_values = display_prepopulated_values
+        self._is_hidden = is_hidden
+        self._is_numbered = is_numbered
+        self._is_ranged = is_ranged
+        self._display_prepopulated_values = display_prepopulated_values
+        self._title = title
+        self.default_index = default_index
         self.match_on_display_string = match_on_display_string
-        self.title = title
 
     ### SPECIAL METHODS ###
 
@@ -106,7 +106,6 @@ class MenuSection(AbjadObject):
             )
 
     ### PRIVATE PROPERTIES ###
-
 
     @property
     def _default_value(self):
@@ -240,42 +239,32 @@ class MenuSection(AbjadObject):
             self._default_index = default_index
         return property(**locals())
 
-    @apply
-    def display_prepopulated_values():
-        def fget(self):
-            r'''Is true when menu section should show prepopulated values.
-            Otherwise false:
+    @property
+    def display_prepopulated_values(self):
+        r'''Is true when menu section should show prepopulated values.
+        Otherwise false:
 
-            ::
+        ::
 
-                >>> section.display_prepopulated_values
-                False
+            >>> section.display_prepopulated_values
+            False
 
-            Returns boolean.
-            '''
-            return self._display_prepopulated_values
-        def fset(self, display_prepopulated_values):
-            assert isinstance(display_prepopulated_values, bool)
-            self._display_prepopulated_values = display_prepopulated_values
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._display_prepopulated_values
 
-    @apply
-    def indent_level():
-        def fget(self):
-            r'''Menu section indent level.
+    @property
+    def indent_level(self):
+        r'''Gets menu indent level.
 
-            ::
+        ::
 
-                >>> section.indent_level
-                1
+            >>> section.indent_level
+            1
 
-            Returns nonnegative integer.
-            '''
-            return self._indent_level
-        def fset(self, indent_level):
-            assert isinstance(indent_level, int) and 0 <= indent_level
-            self._indent_level = indent_level
-        return property(**locals())
+        Returns nonnegative integer.
+        '''
+        return self._indent_level
 
     @property
     def is_asset_section(self):
@@ -301,65 +290,47 @@ class MenuSection(AbjadObject):
         '''
         return self._is_command_section
 
-    # TODO: make read-only
-    @apply
-    def is_numbered():
-        def fget(self):
-            r'''Is true when menu section is numbered. 
-            Otherwise false:
+    @property
+    def is_numbered(self):
+        r'''Is true when menu section is numbered. 
+        Otherwise false:
 
-            ::
+        ::
 
-                >>> section.is_numbered
-                False
+            >>> section.is_numbered
+            False
 
-            Returns boolean.
-            '''
-            return self._is_numbered
-        def fset(self, expr):
-            if not self.menu_entries:
-                self._is_numbered = expr
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._is_numbered
 
-    # TODO: make read-only
-    @apply
-    def is_ranged():
-        def fget(self):
-            r'''Is true when menu section is ranged. 
-            Otherwise false:
+    @property
+    def is_ranged(self):
+        r'''Is true when menu section is ranged. 
+        Otherwise false:
 
-            ::
+        ::
 
-                >>> section.is_ranged
-                False
+            >>> section.is_ranged
+            False
 
-            Returns boolean.
-            '''
-            return self._is_ranged
-        def fset(self, expr):
-            if not self.menu_entries:
-                self._is_ranged = expr
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._is_ranged
 
-    # TODO: make read-only
-    @apply
-    def is_hidden():
-        def fget(self):
-            r'''Is true when menu section is hidden. 
-            Otherwise false:
+    @property
+    def is_hidden(self):
+        r'''Is true when menu section is hidden. 
+        Otherwise false:
 
-            ::
+        ::
 
-                >>> section.is_hidden
-                False
+            >>> section.is_hidden
+            False
 
-            Returns boolean.
-            '''
-            return self._is_hidden
-        def fset(self, expr):
-            if not self.menu_entries:
-                self._is_hidden = expr
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._is_hidden
 
     @apply
     def menu_entries():
@@ -403,51 +374,40 @@ class MenuSection(AbjadObject):
         '''
         return self._name
 
-    # TODO: make read-only
-    @apply
-    def return_value_attribute():
-        def fget(self):
-            r'''Menu section return value attribute.
+    @property
+    def return_value_attribute(self):
+        r'''Menu section return value attribute.
 
-            ::
+        ::
 
-                >>> section.return_value_attribute
-                'key'
+            >>> section.return_value_attribute
+            'key'
 
-            Acceptable values:
+        Acceptable values:
 
-            ::
+        ::
 
-                'display_string' 
-                'key' 
-                'number' 
-                'explicit'
+            'display_string' 
+            'key' 
+            'number' 
+            'explicit'
 
-            Returns string.
-            '''
-            return self._return_value_attribute
-        def fset(self, expr):
-            if not self.menu_entries:
-                self._return_value_attribute = expr
-        return property(**locals())
+        Returns string.
+        '''
+        return self._return_value_attribute
     
-    @apply
-    def title():
-        def fget(self):
-            r'''Menu section title.
+    @property
+    def title(self):
+        r'''Gets menu section title.
 
-            ::
+        ::
 
-                >>> section.title is None
-                True
+            >>> section.title is None
+            True
 
-            Returns string or none.
-            '''
-            return self._title
-        def fset(self, title):
-            assert isinstance(title, (str, list, type(None)))
-            self._title = title
-        return property(**locals())
+        Returns string or none.
+        '''
+        return self._title
 
     ### PUBLIC METHODS ###
 
