@@ -92,13 +92,6 @@ class ListEditor(Editor):
         return self.target
 
     @property
-    def items_identifier(self):
-        if hasattr(self, '_items_identifier'):
-            return self._items_identifer
-        else:
-            return stringtools.pluralize_string(self.item_identifier)
-
-    @property
     def _target_manifest(self):
         from editors import TargetManifest
         return TargetManifest(list,)
@@ -214,8 +207,9 @@ class ListEditor(Editor):
         Returns none.
         '''
         getter = self._io_manager.make_getter(where=self._where)
+        items_identifier = stringtools.pluralize_string(self.item_identifier)
         getter.append_menu_section_range(
-            self.items_identifier, self._numbered_section)
+            items_identifier, self._numbered_section)
         argument_range = getter._run()
         if self._session._backtrack():
             return
