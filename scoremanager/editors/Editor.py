@@ -37,7 +37,8 @@ class Editor(Controller):
         elif self.target_name:
             return self.target_name
         else:
-            return self.space_delimited_lowercase_target_class_name
+            return stringtools.string_to_space_delimited_lowercase(
+                self.target_class.__name__)
 
     ### PRIVATE METHODS ###
 
@@ -72,7 +73,7 @@ class Editor(Controller):
             name='keyed attributes',
             is_numbered=True,
             ) 
-        menu_entries = self.target_attribute_tokens
+        menu_entries = self.make_target_attribute_tokens()
         keyed_attribute_section.menu_entries = menu_entries
         self._make_done_menu_section(menu)
         return menu
@@ -151,38 +152,8 @@ class Editor(Controller):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def attributes_in_memory(self):
-        return self._attributes_in_memory
-
-    @property
-    def space_delimited_lowercase_target_class_name(self):
-        return stringtools.string_to_space_delimited_lowercase(
-            self.target_class.__name__)
-
-    @property
-    def target_attribute_names(self):
-        result = []
-        if hasattr(self, 'target_manifest'):
-            result.extend(self.target_manifest.attribute_names)
-        return result
-
-    @property
-    def target_attribute_tokens(self):
-        if hasattr(self, 'target_manifest'):
-            return self.make_target_attribute_tokens_from_target_manifest()
-        else:
-            raise ValueError
-
-    @property
     def target_class(self):
         return self.target_manifest.target_class
-
-    @property
-    def target_keyword_attribute_names(self):
-        result = []
-        if hasattr(self, 'target_manifest'):
-            result.extend(self.target_manifest.keyword_attribute_names)
-        return result
 
     @property
     def target_name(self):
@@ -191,29 +162,18 @@ class Editor(Controller):
             return getattr(
                 self.target, 
                 self.target_manifest.target_name_attribute, 
-                None)
-
-    @property
-    def target_positional_initializer_argument_names(self):
-        result = []
-        if hasattr(self, 'target_manifest'):
-            result.extend(
-                self.target_manifest.positional_initializer_argument_names)
-        return result
-
-    @property
-    def target_positional_initializer_retrievable_attribute_names(self):
-        result = []
-        if hasattr(self, 'target_manifest'):
-            result.extend(
-                self.target_manifest.positional_initializer_retrievable_attribute_names)
-        return result
+                None,
+                )
 
     @property
     def target_summary_lines(self):
         result = []
         if self.target is not None:
-            for target_attribute_name in self.target_attribute_names:
+            target_attribute_names = []
+            if hasattr(self, 'target_manifest'):
+                names = self.target_manifest.attribute_names
+                target_attribute_names.extend(names)
+            for target_attribute_name in target_attribute_names:
                 name = stringtools.string_to_space_delimited_lowercase(
                     target_attribute_name)
                 value = self._io_manager._get_one_line_menu_summary(
@@ -244,18 +204,25 @@ class Editor(Controller):
 
     def copy_target_attributes_to_memory(self):
         self.initialize_attributes_in_memory()
-        for attribute_name in \
-            self.target_positional_initializer_retrievable_attribute_names:
+        retrievable_attribute_names = []
+        if hasattr(self, 'target_manifest'):
+            names = self.target_manifest.positional_initializer_retrievable_attribute_names
+            retrievable_attribute_names.extend(names)
+        for attribute_name in retrievable_attribute_names:
             attribute_value = getattr(self.target, attribute_name, None)
             if attribute_value is not None:
                 attribute_name = \
                     self.target_manifest.change_retrievable_attribute_name_to_initializer_argument_name(
                     attribute_name)
-                self.attributes_in_memory[attribute_name] = attribute_value
-        for attribute_name in self.target_keyword_attribute_names:
+                self._attributes_in_memory[attribute_name] = attribute_value
+        keyword_attribute_names = []
+        if hasattr(self, 'target_manifest'):
+            names = self.target_manifest.keyword_attribute_names
+            keyword_attribute_names.extend(names)
+        for attribute_name in keyword_attribute_names:
             attribute_value = getattr(self.target, attribute_name, None)
             if attribute_value is not None:
-                self.attributes_in_memory[attribute_name] = attribute_value
+                self._attributes_in_memory[attribute_name] = attribute_value
         self.target = None
 
     def initialize_attributes_in_memory(self):
@@ -271,20 +238,27 @@ class Editor(Controller):
 
     def initialize_target_from_attributes_in_memory(self):
         args, kwargs = [], {}
-        for attribute_name in \
-            self.target_positional_initializer_argument_names:
-            if attribute_name in self.attributes_in_memory:
-                args.append(self.attributes_in_memory.get(attribute_name))
-        for attribute_name in self.target_keyword_attribute_names:
-            if attribute_name in self.attributes_in_memory:
+        positional_argument_names = []
+        if hasattr(self, 'target_manifest'):
+            names = self.target_manifest.positional_initializer_argument_names
+            positional_argument_names.extend(names)
+        for attribute_name in positional_argument_names:
+            if attribute_name in self._attributes_in_memory:
+                args.append(self._attributes_in_memory.get(attribute_name))
+        keyword_attribute_names = []
+        if hasattr(self, 'target_manifest'):
+            names = self.target_manifest.keyword_attribute_names
+            keyword_attribute_names.extend(names)
+        for attribute_name in keyword_attribute_names:
+            if attribute_name in self._attributes_in_memory:
                 kwargs[attribute_name] = \
-                    self.attributes_in_memory.get(attribute_name)
+                    self._attributes_in_memory.get(attribute_name)
         try:
             self.target = self.target_class(*args, **kwargs)
         except:
             pass
 
-    def make_target_attribute_tokens_from_target_manifest(self):
+    def make_target_attribute_tokens(self):
         result = []
         for attribute_detail in self.target_manifest.attribute_details:
             if attribute_detail.is_null:
@@ -299,10 +273,10 @@ class Editor(Controller):
                     attribute_value = getattr(
                         self.target, attribute_detail.name, None)
             else:
-                attribute_value = self.attributes_in_memory.get(
+                attribute_value = self._attributes_in_memory.get(
                     attribute_detail.retrievable_name)
                 if attribute_value is None:
-                    attribute_value = self.attributes_in_memory.get(
+                    attribute_value = self._attributes_in_memory.get(
                         attribute_detail.name)
             if hasattr(attribute_value, '__len__') and \
                 not len(attribute_value):
@@ -330,9 +304,9 @@ class Editor(Controller):
                 # elif the attribute is read-only
                 except AttributeError:
                     self.copy_target_attributes_to_memory()
-                    self.attributes_in_memory[attribute_name] = attribute_value
+                    self._attributes_in_memory[attribute_name] = attribute_value
         else:
-            self.attributes_in_memory[attribute_name] = attribute_value
+            self._attributes_in_memory[attribute_name] = attribute_value
 
     def target_args_to_target_summary_lines(self, target):
         result = []

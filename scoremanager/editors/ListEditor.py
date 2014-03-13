@@ -69,7 +69,8 @@ class ListEditor(Editor):
         keyed_attribute_section = menu.make_keyed_attribute_section(
             name='keyed attribute section',
             )
-        keyed_attribute_section.menu_entries = self.target_attribute_tokens
+        keyed_attribute_section.menu_entries = \
+            self.make_target_attribute_tokens()
         numbered_section = menu.make_numbered_section(
             name='numbered section',
             )
