@@ -44,6 +44,7 @@ class MenuSection(AbjadObject):
         indent_level=1,
         is_asset_section=False,
         is_attribute_section=False,
+        is_command_section=False,
         is_hidden=False,
         is_numbered=False,
         is_ranged=False,
@@ -62,6 +63,7 @@ class MenuSection(AbjadObject):
         self.indent_level = indent_level
         self._is_asset_section = is_asset_section
         self._is_attribute_section = is_attribute_section
+        self._is_command_section = is_command_section
         self.is_hidden = is_hidden
         self.is_numbered = is_numbered
         self.is_ranged = is_ranged
@@ -290,6 +292,14 @@ class MenuSection(AbjadObject):
         Returns boolean.
         '''
         return self._is_attribute_section
+
+    @property
+    def is_command_section(self):
+        r'''Is true when menu section lists commands. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._is_command_section
 
     # TODO: make read-only
     @apply

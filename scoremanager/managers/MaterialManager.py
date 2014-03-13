@@ -546,7 +546,10 @@ class MaterialManager(PackageManager):
                         )
                     _target_summary_lines = editor._target_summary_lines
                     if _target_summary_lines:
-                        contents_section = menu.make_command_section(
+                        #contents_section = menu.make_command_section(
+                        #    name='material summary',
+                        #    )
+                        contents_section = menu.make_attribute_section(
                             name='material summary',
                             )
                         contents_section.title = _target_summary_lines

@@ -281,6 +281,7 @@ class Menu(ScoreManagerObject):
         self, 
         is_asset_section=False,
         is_attribute_section=False,
+        is_command_section=False,
         is_hidden=False, 
         is_numbered=False, 
         is_ranged=False, 
@@ -296,6 +297,7 @@ class Menu(ScoreManagerObject):
         menu_section = iotools.MenuSection(
             is_asset_section=is_asset_section,
             is_attribute_section=is_attribute_section,
+            is_command_section=is_command_section,
             is_hidden=is_hidden,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
@@ -309,7 +311,8 @@ class Menu(ScoreManagerObject):
         self.menu_sections.sort(key=lambda x: x.name)
         attribute_sections = [
             x for x in self.menu_sections
-            if x.is_attribute_section
+            #if x.is_attribute_section
+            if not x.is_command_section
             ]
         for attribute_section in attribute_sections:
             self.menu_sections.remove(attribute_section)
@@ -547,6 +550,7 @@ class Menu(ScoreManagerObject):
 
         Menu section with these attributes:
 
+            * is command section
             * not hidden
             * match on display string
             * return value attribute equal to ``'key'``
@@ -554,6 +558,7 @@ class Menu(ScoreManagerObject):
         Returns menu section.
         '''
         command_section = self._make_section(
+            is_command_section=True,
             is_hidden=is_hidden,
             match_on_display_string=match_on_display_string,
             name=name,
