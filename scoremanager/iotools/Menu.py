@@ -309,15 +309,14 @@ class Menu(ScoreManagerObject):
         menu_section.menu_entries = menu_entries
         self.menu_sections.append(menu_section)
         self.menu_sections.sort(key=lambda x: x.name)
-        attribute_sections = [
+        noncommand_sections = [
             x for x in self.menu_sections
-            #if x.is_attribute_section
             if not x.is_command_section
             ]
-        for attribute_section in attribute_sections:
-            self.menu_sections.remove(attribute_section)
-        for attribute_section in attribute_sections:
-            self.menu_sections.insert(0, attribute_section)
+        for noncommand_section in noncommand_sections:
+            self.menu_sections.remove(noncommand_section)
+        for noncommand_section in noncommand_sections:
+            self.menu_sections.insert(0, noncommand_section)
         return menu_section
 
     def _make_section_lines(self):
@@ -345,15 +344,15 @@ class Menu(ScoreManagerObject):
         return section
 
     def _make_system_menu_section(self):
-        section = self._make_section(
-            is_hidden=True,
-            match_on_display_string=False,
-            name='system',
-            return_value_attribute='key',
-            )
+#        section = self._make_section(
+#            is_hidden=True,
+#            match_on_display_string=False,
+#            name='system',
+#            return_value_attribute='key',
+#            )
+        section = self.make_command_section(name='system', is_hidden=True)
         section.append(('system - back', 'b'))
         section.append(('system - all', 'n'))
-        #section.append(('system - all', '?'))
         section.append(('system - home', 'h'))
         section.append(('system - quit', 'q'))
         section.append(('system - score', 's'))

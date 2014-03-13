@@ -485,4 +485,6 @@ class MenuSection(AbjadObject):
         kwargs['menu_section'] = self
         menu_entry = iotools.MenuEntry(**kwargs)
         self.menu_entries.append(menu_entry)
+        if self.is_command_section:
+            self.menu_entries.sort()
         return menu_entry
