@@ -490,11 +490,13 @@ class MaterialManager(PackageManager):
         if not os.path.isfile(self._initializer_file_path):
             return
         if os.path.isfile(self._material_definition_module_path):
-            section = menu.make_command_section(name=name)
+            section = menu.make_command_section(
+                name=name,
+                default_index=1
+                )
             string = 'material definition - boilerplate'
             section.append((string, 'mdbp'))
             section.append(('material definition - edit', 'mde'))
-            section.default_index = len(section) - 1
             section.append(('material definition - interpret', 'mdi'))
             string = 'material definition - remove'
             section.append((string, 'mdrm'))

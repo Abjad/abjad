@@ -101,10 +101,9 @@ class FileManager(Manager):
         self._io_manager.proceed(prompt=prompt)
 
     def _make_file_menu_section(self, menu):
-        section = menu.make_command_section()
+        section = menu.make_command_section(default_index=0)
         if self._is_editable():
             section.append(('file - edit', 'e'))
-            section.default_index = len(section) - 1
         section.append(('file - rename', 'ren'))
         section.append(('file - remove', 'rm'))
         if self._path.endswith('.py'):

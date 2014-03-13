@@ -268,6 +268,7 @@ class Menu(ScoreManagerObject):
         is_numbered=False, 
         is_ranged=False, 
         display_prepopulated_values=False,
+        default_index=None,
         match_on_display_string=True,
         menu_entries=None,
         name=None,
@@ -285,6 +286,7 @@ class Menu(ScoreManagerObject):
             is_numbered=is_numbered,
             is_ranged=is_ranged,
             display_prepopulated_values=display_prepopulated_values,
+            default_index=default_index,
             match_on_display_string=match_on_display_string,
             name=name,
             return_value_attribute=return_value_attribute,
@@ -508,6 +510,7 @@ class Menu(ScoreManagerObject):
     def make_command_section(
         self,
         is_hidden=False,
+        default_index=None,
         match_on_display_string=True,
         menu_entries=None,
         name=None,
@@ -526,6 +529,7 @@ class Menu(ScoreManagerObject):
         section = self._make_section(
             is_command_section=True,
             is_hidden=is_hidden,
+            default_index=default_index,
             match_on_display_string=match_on_display_string,
             name=name,
             return_value_attribute='key',
@@ -559,6 +563,7 @@ class Menu(ScoreManagerObject):
         menu_entries=None, 
         name=None,
         title=None,
+        default_index=None,
         ):
         r'''Makes numbered list section.
 
@@ -575,6 +580,7 @@ class Menu(ScoreManagerObject):
             is_asset_section=True,
             is_numbered=True,
             is_ranged=True,
+            default_index=default_index,
             name=name,
             return_value_attribute='display_string',
             title=title,

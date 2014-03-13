@@ -343,9 +343,11 @@ class ScorePackageManager(PackageManager):
     def _make_score_pdf_menu_section(self, menu):
         manager = self._build_directory_manager
         if manager._get_file_path_ending_with('score.pdf'):
-            section = menu.make_command_section(name='score pdf')
+            section = menu.make_command_section(
+                name='score pdf',
+                default_index=0,
+                )
             section.append(('score pdf - view', 'pdfv'))
-            section.default_index = len(section) - 1
 
     def _make_setup_menu(self):
         menu = self._io_manager.make_menu(where=self._where)

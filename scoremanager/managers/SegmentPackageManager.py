@@ -119,7 +119,6 @@ class SegmentPackageManager(PackageManager):
             section.append(('current pdf - version', 'pdfs'))
         if os.path.isfile(self._output_pdf_file_path):
             section.append(('current pdf - view', 'pdfv'))
-            section.default_index = len(section) - 1
         return section
 
     def _make_versioned_pdfs_menu_section(self, menu):

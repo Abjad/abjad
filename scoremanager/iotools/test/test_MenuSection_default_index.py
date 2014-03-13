@@ -14,8 +14,19 @@ def test_MenuSection_default_index_01():
     section.append('cherry')
 
     assert section.default_index is None
-    assert pytest.raises(ValueError, 'section.default_index = -1')
-    assert pytest.raises(ValueError, 'section.default_index = 99')
 
-    section.default_index = 2
+
+def test_MenuSection_default_index_02():
+
+    menu = scoremanager.iotools.Menu()
+    menu._session._push_breadcrumb('location')
+    section = menu._make_section(
+        name='test', 
+        title='section',
+        default_index=2,
+        )
+    section.append('apple')
+    section.append('banana')
+    section.append('cherry')
+
     assert section.default_index == 2

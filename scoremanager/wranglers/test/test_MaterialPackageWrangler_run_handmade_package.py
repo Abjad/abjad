@@ -56,8 +56,8 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
         '__metadata__.py',
         'material_definition.py', 
         ]
-    input_ = 'lmm nmh testnotes default default'
-    input_ += ' testnotes incanned boilerplate_exception.py default q'
+    input_ = 'lmm nmh testnotes'
+    input_ += ' testnotes inbp boilerplate_exception.py default q'
 
     assert not os.path.exists(path)
     try:
@@ -93,7 +93,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
         'material_definition.py', 
         ]
     input_ = 'lmm nmh testnotes'
-    input_ += ' testnotes incanned boilerplate_exception.py default'
+    input_ += ' testnotes inbp boilerplate_exception.py default'
     input_ += ' inr yes yes default q'
 
     assert not os.path.exists(path)

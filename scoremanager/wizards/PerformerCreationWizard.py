@@ -72,10 +72,10 @@ class PerformerCreationWizard(Wizard):
 
     def _make_performer_configuration_menu(self, performer):
         menu = self._io_manager.make_menu(where=self._where)
-        numbered_list_section = menu.make_numbered_list_section(
-            name='select instruments',
-            title='select instruments'
-            )
+#        numbered_list_section = menu.make_numbered_list_section(
+#            name='select instruments',
+#            title='select instruments'
+#            )
         section = menu.make_command_section(name='instrument commands')
         likely_instruments = \
             performer.likely_instruments_based_on_performer_name
@@ -85,6 +85,7 @@ class PerformerCreationWizard(Wizard):
         most_likely_instrument = \
             performer.most_likely_instrument_based_on_performer_name
         default_index = None
+        numbered_menu_entries = []
         if most_likely_instrument is not None:
             most_likely_instrument_name = \
                 most_likely_instrument().instrument_name
@@ -96,13 +97,22 @@ class PerformerCreationWizard(Wizard):
             most_likely_number = most_likely_index + 1
             default_index = most_likely_index
         if likely_instruments:
-            numbered_list_section.menu_entries = likely_instrument_names
+            #numbered_list_section.menu_entries = likely_instrument_names
+            numbered_menu_entries = likely_instrument_names
             section.append(('instruments - more', 'more'))
         else:
             instrument_names = \
                 instrumenttools.Instrument._list_instrument_names()
-            numbered_list_section.menu_entries = instrument_names
-        numbered_list_section.default_index = default_index
+            #numbered_list_section.menu_entries = instrument_names
+            numbered_menu_entries = instrument_names
+        #numbered_list_section.default_index = default_index
+        numbered_list_section = menu.make_numbered_list_section(
+            name='select instruments',
+            title='select instruments',
+            default_index=default_index,
+            #menu_entries=numbered_menu_entries,
+            )
+        numbered_list_section.menu_entries = numbered_menu_entries
         section.append(('instruments - skip', 'skip'))
         return menu
 

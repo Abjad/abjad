@@ -68,7 +68,7 @@ class MenuSection(AbjadObject):
         self._is_ranged = is_ranged
         self._display_prepopulated_values = display_prepopulated_values
         self._title = title
-        self.default_index = default_index
+        self._default_index = default_index
         self.match_on_display_string = match_on_display_string
 
     ### SPECIAL METHODS ###
@@ -212,32 +212,31 @@ class MenuSection(AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def default_index():
-        def fget(self):
-            r'''Menu section default index.
+    @property
+    def default_index(self):
+        r'''Gets menu section default index.
 
-            ::
+        ::
 
-                >>> section.default_index is None
-                True
+            >>> section.default_index is None
+            True
 
-            Returns nonnegative integer or none.
-            '''
-            return self._default_index
-        def fset(self, default_index):
-            assert isinstance(default_index, (int, type(None)))
-            if isinstance(default_index, int):
-                count = len(self.menu_entries)
-                if default_index < 0:
-                    message = 'default index must be positive integer.'
-                    raise ValueError(message)
-                if count <= default_index:
-                    message = 'only {} menu entries in menu section.'
-                    message = message.format(count)
-                    raise ValueError(message)
-            self._default_index = default_index
-        return property(**locals())
+        Returns nonnegative integer or none.
+        '''
+        return self._default_index
+#        def fset(self, default_index):
+#            assert isinstance(default_index, (int, type(None)))
+#            if isinstance(default_index, int):
+#                count = len(self.menu_entries)
+#                if default_index < 0:
+#                    message = 'default index must be positive integer.'
+#                    raise ValueError(message)
+#                if count <= default_index:
+#                    message = 'only {} menu entries in menu section.'
+#                    message = message.format(count)
+#                    raise ValueError(message)
+#            self._default_index = default_index
+#        return property(**locals())
 
     @property
     def display_prepopulated_values(self):
