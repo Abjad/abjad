@@ -70,7 +70,7 @@ class DirectoryManager(Manager):
     def _make_empty_asset(self, prompt=False):
         if not os.path.exists(self._path):
             os.makedirs(self._path)
-            if self._is_git_versioned(self._path):
+            if self._is_in_git_repository(self._path):
                 file_path = os.path.join(self._path, '.gitignore')
                 file_pointer = file(file_path, 'w')
                 file_pointer.write('')
