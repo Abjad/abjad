@@ -44,4 +44,4 @@ class PerformerEditor(ListEditor):
         if self.target is not None:
             return
         else:
-            self.target = self.target_class()
+            self.target = self._target_class()

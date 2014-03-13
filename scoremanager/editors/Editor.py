@@ -12,7 +12,7 @@ class Editor(Controller):
     def __init__(self, session=None, target=None):
         Controller.__init__(self, session=session)
         if target is not None:
-            assert isinstance(target, self.target_class)
+            assert isinstance(target, self._target_class)
         self.target = target
         self._initialize_attributes_in_memory()
         if not hasattr(self, 'target_manifest'):
@@ -22,6 +22,10 @@ class Editor(Controller):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
+        r'''Gets interpreter representation of editor.
+
+        Returns string.
+        '''
         if self.target is None:
             summary = ''
         else:
@@ -34,11 +38,25 @@ class Editor(Controller):
     def _breadcrumb(self):
         if self.explicit_breadcrumb:
             return self.explicit_breadcrumb
-        elif self.target_name:
-            return self.target_name
+        elif self._target_name:
+            return self._target_name
         else:
             return stringtools.string_to_space_delimited_lowercase(
-                self.target_class.__name__)
+                self._target_class.__name__)
+
+    @property
+    def _target_class(self):
+        return self.target_manifest._target_class
+
+    @property
+    def _target_name(self):
+        target_name_attribute = self.target_manifest.target_name_attribute
+        if target_name_attribute:
+            return getattr(
+                self.target, 
+                self.target_manifest.target_name_attribute, 
+                None,
+                )
 
     @property
     def _target_summary_lines(self):
@@ -132,7 +150,7 @@ class Editor(Controller):
         if self.target is not None:
             return
         try:
-            self.target = self.target_class()
+            self.target = self._target_class()
         except:
             pass
 
@@ -154,7 +172,7 @@ class Editor(Controller):
                 kwargs[attribute_name] = \
                     self._attributes_in_memory.get(attribute_name)
         try:
-            self.target = self.target_class(*args, **kwargs)
+            self.target = self._target_class(*args, **kwargs)
         except:
             pass
 
@@ -307,19 +325,3 @@ class Editor(Controller):
                 getattr(target, kwarg))
             result.append('{}: {}'.format(name, value))
         return result
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def target_class(self):
-        return self.target_manifest.target_class
-
-    @property
-    def target_name(self):
-        target_name_attribute = self.target_manifest.target_name_attribute
-        if target_name_attribute:
-            return getattr(
-                self.target, 
-                self.target_manifest.target_name_attribute, 
-                None,
-                )

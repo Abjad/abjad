@@ -9,7 +9,7 @@ class ObjectInventoryEditor(ListEditor):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def target_name(self):
+    def _target_name(self):
         if self.target is not None:
             return 'edit'
 

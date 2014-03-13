@@ -181,7 +181,7 @@ class ListEditor(Editor):
         if self.target is not None:
             return
         else:
-            self.target = self.target_class([])
+            self.target = self._target_class([])
 
     def move_item(self):
         getter = self._io_manager.make_getter(where=self._where)

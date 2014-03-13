@@ -25,7 +25,7 @@ class InstrumentationEditor(ListEditor):
 
     @property
     def _breadcrumb(self):
-        return self.target_name or 'instrumentation'
+        return self._target_name or 'instrumentation'
 
     ### PUBLIC PROPERTIES ###
 

@@ -9,8 +9,8 @@ class TargetManifest(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, target_class, *attribute_details, **kwargs):
-        self.target_class = target_class
+    def __init__(self, _target_class, *attribute_details, **kwargs):
+        self._target_class = _target_class
         self._attribute_details = []
         for attribute_detail in attribute_details:
             self.attribute_details.append(AttributeDetail(*attribute_detail))
@@ -21,7 +21,7 @@ class TargetManifest(AbjadObject):
     def __repr__(self):
         parts = ', '.join([str(x) for x in self.attribute_details])
         return '{}({}, {})'.format(
-            type(self).__name__, self.target_class.__name__, parts)
+            type(self).__name__, self._target_class.__name__, parts)
 
     ### PUBLIC PROPERTIES ###
 
@@ -47,7 +47,7 @@ class TargetManifest(AbjadObject):
     def format_pieces(self):
         result = []
         result.append('{}({},'.format(
-            type(self).__name__, self.target_class.__name__))
+            type(self).__name__, self._target_class.__name__))
         for attribute_detail in self.attribute_details:
             result.append('\t{!r},'.format(attribute_detail))
         result.append('\t)')
