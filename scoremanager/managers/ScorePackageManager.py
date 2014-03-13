@@ -300,6 +300,11 @@ class ScorePackageManager(PackageManager):
         self._make_score_menu_section(menu)
         return menu
 
+    def _make_instrumentation_menu_section(self, menu):
+        section = menu.make_command_section(name='instrumentation')
+        section.append(('instrumentation', 'instr'))
+        return section
+
     def _make_instrumentation_module_menu_section(self, menu):
         section = menu.make_command_section(
             name='instrumentation',
@@ -344,14 +349,15 @@ class ScorePackageManager(PackageManager):
 
     def _make_setup_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
-        attribute_section = menu.make_attribute_section(
-            name='setup',
-            )
-        menu_entries = self._make_setup_menu_entries()
-        attribute_section.menu_entries = menu_entries
-        section = menu.make_command_section(name='instrumentation')
-        section.append(('instrumentation', 'instr'))
+        self._make_setup_menu_section(menu)
+        self._make_instrumentation_menu_section(menu)
         return menu
+
+    def _make_setup_menu_section(self, menu):
+        section = menu.make_attribute_section(name='setup')
+        menu_entries = self._make_setup_menu_entries()
+        section.menu_entries = menu_entries
+        return section
 
     def _make_setup_menu_entries(self):
         result = []
@@ -385,8 +391,8 @@ class ScorePackageManager(PackageManager):
             annotated_title = self._get_annotated_title()
             breadcrumb = '{} - setup'.format(annotated_title)
             self._session._push_breadcrumb(breadcrumb)
-            setup_menu = self._make_setup_menu()
-            result = setup_menu._run(clear=clear)
+            menu = self._make_setup_menu()
+            result = menu._run(clear=clear)
             if self._session._backtrack():
                 break
             elif not result:

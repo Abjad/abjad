@@ -280,6 +280,7 @@ class Menu(ScoreManagerObject):
     def _make_section(
         self, 
         is_asset_section=False,
+        is_attribute_section=False,
         is_hidden=False, 
         is_numbered=False, 
         is_ranged=False, 
@@ -294,6 +295,7 @@ class Menu(ScoreManagerObject):
         assert not (is_ranged and self._has_ranged_section())
         menu_section = iotools.MenuSection(
             is_asset_section=is_asset_section,
+            is_attribute_section=is_attribute_section,
             is_hidden=is_hidden,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
@@ -510,14 +512,16 @@ class Menu(ScoreManagerObject):
 
         With these attributes:
 
+            * is attribute section
+            * is numbered
             * displays prepopulated values
-            * numbered
             * return value set to explicit
 
         Returns menu section.
         '''
         attribute_section = self._make_section(
             display_prepopulated_values=True,
+            is_attribute_section=True,
             is_numbered=True,
             return_value_attribute='explicit',
             name=name,
