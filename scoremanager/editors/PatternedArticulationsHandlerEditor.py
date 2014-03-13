@@ -12,7 +12,8 @@ class PatternedArticulationsHandlerEditor(Editor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             handlertools.PatternedArticulationsHandler,
             ('articulation_lists', None, 'al', getters.get_lists, False),
             ('minimum_duration', None, 'nd', getters.get_duration, False),

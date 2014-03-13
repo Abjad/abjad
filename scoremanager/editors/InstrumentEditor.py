@@ -14,8 +14,9 @@ class InstrumentEditor(Editor):
 
     @property
     def target_manifest(self):
+        from editors import TargetManifest
         from scoremanager import editors
-        return self.TargetManifest(
+        return TargetManifest(
             instrumenttools.Instrument,
             (
                 'instrument_name', 

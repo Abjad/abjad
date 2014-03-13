@@ -13,7 +13,8 @@ class TempoEditor(Editor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             indicatortools.Tempo,
             ('duration', 'd', getters.get_duration),
             ('units_per_minute', 'pm', getters.get_integer),

@@ -12,7 +12,8 @@ class NoteAndChordHairpinHandlerEditor(Editor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             handlertools.NoteAndChordHairpinHandler,
             ('hairpin_token', None, 'ht', getters.get_hairpin_token, True),
             ('minimum_duration', None, 'md', getters.get_duration, True),

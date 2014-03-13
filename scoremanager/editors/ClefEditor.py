@@ -12,7 +12,8 @@ class ClefEditor(Editor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             indicatortools.Clef,
             ('clef_name', 'nm', getters.get_string),
             )

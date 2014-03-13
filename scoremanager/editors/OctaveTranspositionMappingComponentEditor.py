@@ -12,7 +12,8 @@ class OctaveTranspositionMappingComponentEditor(Editor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             pitchtools.OctaveTranspositionMappingComponent,
             ('source_pitch_range', 'pr', getters.get_symbolic_pitch_range_string),
             ('target_octave_start_pitch', 'sp', getters.get_integer),

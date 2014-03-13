@@ -151,17 +151,8 @@ class Editor(Controller):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def TargetManifest(self):
-        from scoremanager import editors
-        return editors.TargetManifest
-
-    @property
     def attributes_in_memory(self):
         return self._attributes_in_memory
-
-    @property
-    def has_target(self):
-        return self.target is not None
 
     @property
     def space_delimited_lowercase_target_class_name(self):
@@ -347,7 +338,8 @@ class Editor(Controller):
         result = []
         for arg in getattr(target, 'args', []):
             name = stringtools.string_to_space_delimited_lowercase(arg)
-            value = self._io_manager._get_one_line_menu_summary(getattr(target, arg))
+            attribute = getattr(target, arg)
+            value = self._io_manager._get_one_line_menu_summary(attribute)
             result.append('{}: {}'.format(name, value))
         return result
 

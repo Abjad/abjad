@@ -26,7 +26,8 @@ class PitchRangeInventoryEditor(ObjectInventoryEditor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             pitchtools.PitchRangeInventory,
             target_name_attribute='name',
             )

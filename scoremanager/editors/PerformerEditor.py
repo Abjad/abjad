@@ -31,7 +31,8 @@ class PerformerEditor(ListEditor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             instrumenttools.Performer,
             ('name', 'nm', getters.get_string),
             target_attribute_name='name',

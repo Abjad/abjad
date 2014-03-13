@@ -12,7 +12,8 @@ class TerracedDynamicsHandlerEditor(Editor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             handlertools.TerracedDynamicsHandler,
             ('dynamics', None, 'dy', getters.get_dynamics, True),
             ('minimum_duration', None, 'md', getters.get_duration, True),

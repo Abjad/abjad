@@ -35,7 +35,8 @@ class InstrumentationEditor(ListEditor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             instrumenttools.InstrumentationSpecifier,
             )
 

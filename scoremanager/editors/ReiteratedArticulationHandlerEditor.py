@@ -12,7 +12,8 @@ class ReiteratedArticulationHandlerEditor(Editor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             handlertools.ReiteratedArticulationHandler,
             ('articulation_list', None, 'al', getters.get_articulations, False),
             ('minimum_duration', None, 'nd', getters.get_duration, False),

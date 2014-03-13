@@ -23,7 +23,8 @@ class OctaveTranspositionMappingInventoryEditor(ObjectInventoryEditor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             pitchtools.OctaveTranspositionMappingInventory,
             target_attribute_name='name',
             )

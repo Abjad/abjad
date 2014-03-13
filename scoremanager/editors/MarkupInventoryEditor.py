@@ -24,7 +24,8 @@ class MarkupInventoryEditor(ObjectInventoryEditor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             markuptools.MarkupInventory,
             target_name_attribute='inventory name',
             )

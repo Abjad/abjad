@@ -12,7 +12,8 @@ class MarkupEditor(Editor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             markuptools.Markup,
             ('arg', 'contents_string', 'arg', 'ag', getters.get_string, True),
             ('direction', 'direction', 'dr', getters.get_direction_string, False),

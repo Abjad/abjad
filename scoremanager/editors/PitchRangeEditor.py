@@ -12,7 +12,8 @@ class PitchRangeEditor(Editor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             pitchtools.PitchRange,
             ('one_line_named_pitch_repr', 'rp', 
                 getters.get_symbolic_pitch_range_string),

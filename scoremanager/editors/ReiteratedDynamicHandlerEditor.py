@@ -12,7 +12,8 @@ class ReiteratedDynamicHandlerEditor(Editor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             handlertools.ReiteratedDynamicHandler,
             ('dynamic_name', None, 'dy', getters.get_dynamic, True),
             ('minimum_duration', None, 'md', getters.get_duration, True),

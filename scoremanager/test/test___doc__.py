@@ -23,13 +23,10 @@ ignored_names = (
     'value',
     )
 
-#ignored_classes = (
-#    'LilyPondLexicalDefinition',
-#    'LilyPondSyntacticalDefinition',
-#    'ReducedLyParser',
-#    'RhythmTreeParser',
-#    'SchemeParser',
-#    )
+ignored_classes = (
+    )
+
+
 
 
 #classes = documentationtools.list_all_abjad_classes()

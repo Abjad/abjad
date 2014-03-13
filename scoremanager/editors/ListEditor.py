@@ -99,7 +99,8 @@ class ListEditor(Editor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(list,)
+        from editors import TargetManifest
+        return TargetManifest(list,)
 
     @property
     def target_summary_lines(self):

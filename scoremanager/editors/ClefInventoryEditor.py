@@ -24,7 +24,8 @@ class ClefInventoryEditor(ObjectInventoryEditor):
 
     @property
     def target_manifest(self):
-        return self.TargetManifest(
+        from editors import TargetManifest
+        return TargetManifest(
             indicatortools.ClefInventory,
             target_name_attribute='name',
             )
