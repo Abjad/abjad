@@ -145,6 +145,8 @@ class IOManager(IOManager):
         elif key == 'y' and not self._session.is_in_confirmation_environment:
             self._session._is_navigating_to_score_stylesheets = True
             return 'y'
+        elif key == 'Y':
+            self.edit_score_stylesheet()
         elif self._is_score_string(key) and not self._session.is_in_score:
             directive = None
         elif self._is_home_string(key):
@@ -339,6 +341,27 @@ class IOManager(IOManager):
             lines.append('')
             self.display(lines)
             self._session._hide_next_redraw = True
+
+    def edit_score_stylesheet(self):
+        r'''Edits current stylesheet.
+
+        Returns none.
+        '''
+        if not self._session.is_in_score:
+            return
+        directory = self._session.current_score_directory_path
+        stylesheets_directory = os.path.join(directory, 'stylesheets')
+        found_score_stylesheet = False
+        for directory_entry in os.listdir(stylesheets_directory):
+            if directory_entry.endswith('stylesheet.ily'):
+                found_score_stylesheet = True
+                break
+        if found_score_stylesheet:
+            file_path = os.path.join(stylesheets_directory, directory_entry)
+            self.edit(file_path)
+        else:
+            message = 'no file ending in *stylesheet.ily found.'
+            self.proceed(message)
 
     def exec_statement(self, statement=None):
         r'''Executes `statement`.

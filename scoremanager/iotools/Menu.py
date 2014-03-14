@@ -250,6 +250,7 @@ class Menu(ScoreManagerObject):
         section.append(('score - segments', 'g'))
         section.append(('score - setup', 'p'))
         section.append(('score - stylesheets', 'y'))
+        section.append(('score - current stylesheet', 'Y'))
         return section
 
     def _make_scores_tour_menu_section(self):

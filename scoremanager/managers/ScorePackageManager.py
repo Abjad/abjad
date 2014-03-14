@@ -229,6 +229,7 @@ class ScorePackageManager(PackageManager):
             'rup': self.update,
             'u': self._build_directory_manager._run,
             'y': self._stylesheet_wrangler._run,
+            'Y': self._io_manager.edit_score_stylesheet,
             })
         return result
 
@@ -298,6 +299,7 @@ class ScorePackageManager(PackageManager):
         self._make_metadata_menu_section(menu)
         self._make_package_fix_menu_section(menu)
         self._make_score_menu_section(menu)
+        self._make_shortcuts_menu_section(menu)
         return menu
 
     def _make_instrumentation_menu_section(self, menu):
@@ -387,6 +389,14 @@ class ScorePackageManager(PackageManager):
             prepopulated_value = catalog_number
         result.append((return_value, None, prepopulated_value, return_value))
         return result
+
+    def _make_shortcuts_menu_section(self, menu):
+        section = menu.make_command_section(
+            name='edit', 
+            is_hidden=True,
+            )
+        section.append(('edit - stylesheet', 'Y'))
+        return section
 
     def _manage_setup(self, clear=True, cache=True):
         self._session._is_navigating_to_score_setup = False
