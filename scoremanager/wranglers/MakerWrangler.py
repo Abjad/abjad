@@ -84,18 +84,14 @@ class MakerWrangler(Wrangler):
         else:
             self._edit_maker_module(result)
 
-    # TODO: maybe not necessary?
-    def _is_valid_directory_entry(self, directory_entry):
-        superclass = super(MakerWrangler, self)
-        if superclass._is_valid_directory_entry(directory_entry):
-            if directory_entry.endswith('.py'):
-                return True
-        return False
-
     def _make_asset_menu_section(self, menu):
         section = menu.make_asset_section()
         menu._asset_section = section
-        menu_entries = self._make_asset_menu_entries(include_extensions=True)
+        menu_entries = self._make_asset_menu_entries(
+            human_readable=False,
+            include_annotation=False,
+            include_extensions=True,
+            )
         for menu_entry in menu_entries:
             section.append(menu_entry)
         return section

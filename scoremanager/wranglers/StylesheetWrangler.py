@@ -130,7 +130,15 @@ class StylesheetWrangler(Wrangler):
     def _make_asset_menu_section(self, menu):
         section = menu.make_asset_section()
         menu._asset_section = section
-        menu_entries = self._make_asset_menu_entries(include_extensions=True)
+        if self._session.is_in_score:
+            include_annotation = False
+        else:
+            include_annotation = True
+        menu_entries = self._make_asset_menu_entries(
+            human_readable=False,
+            include_annotation=include_annotation,
+            include_extensions=True,
+            )
         for menu_entry in menu_entries:
             section.append(menu_entry)
         return section

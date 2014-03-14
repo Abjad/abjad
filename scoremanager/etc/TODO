@@ -79,3 +79,5 @@
 
 23. Change user/score_manager_library/material_packages/
     to user/score_manager_library/materials/.
+
+24. Change MakerWrangler to MakerModuleWrangler.

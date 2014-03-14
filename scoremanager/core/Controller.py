@@ -30,24 +30,30 @@ class Controller(ScoreManagerObject):
 
     def _make_asset_menu_entries(
         self, 
+        include_annotation=True,
         include_extensions=False, 
         include_asset_name=True,
         include_year=False,
+        human_readable=True,
         packages_instead_of_paths=False,
         sort_by_annotation=False, 
         ):
         paths = self._list_visible_asset_paths()
         strings = []
         for path in paths:
-            string = self._path_to_human_readable_name(
-                path, 
-                include_extension=include_extensions,
-                )
-            annotation = self._path_to_annotation(path, year=include_year)
-            if include_asset_name:
-                string = '{} ({})'.format(string, annotation)
+            if human_readable:
+                string = self._path_to_human_readable_name(
+                    path, 
+                    include_extension=include_extensions,
+                    )
             else:
-                string = str(annotation)
+                string = os.path.basename(path)
+            if include_annotation:
+                annotation = self._path_to_annotation(path, year=include_year)
+                if include_asset_name:
+                    string = '{} ({})'.format(string, annotation)
+                else:
+                    string = str(annotation)
             strings.append(string)
         pairs = zip(strings, paths)
         if sort_by_annotation:
