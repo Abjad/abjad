@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import mathtools
+import copy
 from abjad.tools.abctools import AbjadObject
 
 
@@ -90,7 +90,7 @@ class Sequence(AbjadObject):
         Returns string.
         '''
         return AbjadObject.__format__(
-            self, 
+            self,
             format_specification=format_specification,
             )
 
@@ -136,7 +136,7 @@ class Sequence(AbjadObject):
             Gets length of six-item sequence:
 
             ::
-                
+
                 >>> len(Sequence(1, 2, 3, 4, 5, 6))
                 6
 
@@ -274,7 +274,7 @@ class Sequence(AbjadObject):
         ..  container:: example
 
             ::
-                
+
                 >>> Sequence(1, 2, 3, 4, 5, 6).period_of_rotation
                 6
 
@@ -496,7 +496,7 @@ class Sequence(AbjadObject):
                 >>> Sequence(0, 1, 2, 6, 7, 8).is_repetition_free()
                 True
 
-            Is true when sequence is empty: 
+            Is true when sequence is empty:
 
             ::
 
@@ -555,7 +555,7 @@ class Sequence(AbjadObject):
         ..  container:: example
 
             Is false when sequence is not a restricted growth function:
-            
+
             ::
 
                 >>> Sequence(1, 1, 1, 3).is_restricted_growth_function()
@@ -566,8 +566,8 @@ class Sequence(AbjadObject):
                 >>> Sequence(17).is_restricted_growth_function()
                 False
 
-        A restricted growth function is a sequence ``l`` such that 
-        ``l[0] == 1`` and such that ``l[i] <= max(l[:i]) + 1`` for 
+        A restricted growth function is a sequence ``l`` such that
+        ``l[0] == 1`` and such that ``l[i] <= max(l[:i]) + 1`` for
         ``1 <= i <= len(l)``.
 
         Returns boolean.
@@ -583,3 +583,39 @@ class Sequence(AbjadObject):
             return True
         except TypeError:
             return False
+
+    ### PUBLIC METHODS ###
+
+    def rotate(self, n):
+        '''Rotates this sequence.
+
+        Rotates `sequence` to the right:
+
+        ::
+
+            >>> sequencetools.Sequence(*range(10)).rotate(4)
+            Sequence(6, 7, 8, 9, 0, 1, 2, 3, 4, 5)
+
+        Rotates `sequence` to the left:
+
+        ::
+
+            >>> sequencetools.Sequence(*range(10)).rotate(-3)
+            Sequence(3, 4, 5, 6, 7, 8, 9, 0, 1, 2)
+
+        Rotates `sequence` neither to the right nor the left:
+
+        ::
+
+            >>> sequencetools.Sequence(*range(10)).rotate(0)
+            Sequence(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+
+        Returns newly created `sequence` object.
+        '''
+
+        result = []
+        if len(self):
+            n = n % len(self)
+            for element in self[-n:len(self)] + self[:-n]:
+                result.append(copy.deepcopy(element))
+        return type(self)(*result)
