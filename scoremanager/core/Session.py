@@ -52,6 +52,7 @@ class Session(abctools.AbjadObject):
         '_is_backtracking_locally',
         '_is_backtracking_to_score',
         '_is_backtracking_to_score_manager',
+        '_is_in_confirmation_environment',
         '_is_navigating_to_build_directory',
         '_is_navigating_to_next_material',
         '_is_navigating_to_next_score',
@@ -60,6 +61,7 @@ class Session(abctools.AbjadObject):
         '_is_navigating_to_score_materials',
         '_is_navigating_to_score_segments',
         '_is_navigating_to_score_setup',
+        '_is_navigating_to_score_stylesheets',
         '_is_quitting',
         '_is_test',
         '_last_line',
@@ -98,13 +100,6 @@ class Session(abctools.AbjadObject):
         'is_autonavigating',
         'is_displayable',
         'is_in_score',
-#        'is_navigating_to_build_directory',
-#        'is_navigating_to_next_material',
-#        'is_navigating_to_previous_material',
-#        'is_navigating_to_score_materials',
-#        'is_navigating_to_score_segments',
-#        'is_navigating_to_score_setup',
-#        'is_navigating_to_sibling_score',
         'last_line',
         'last_material_path',
         'nonnumbered_menu_sections_are_hidden',
@@ -142,6 +137,7 @@ class Session(abctools.AbjadObject):
         self._is_backtracking_locally = False
         self._is_backtracking_to_score = False
         self._is_backtracking_to_score_manager = False
+        self._is_in_confirmation_environment = False
         self._is_navigating_to_build_directory = False
         self._is_navigating_to_next_material = False
         self._is_navigating_to_next_score = False
@@ -150,6 +146,7 @@ class Session(abctools.AbjadObject):
         self._is_navigating_to_score_materials = False
         self._is_navigating_to_score_segments = False
         self._is_navigating_to_score_setup = False
+        self._is_navigating_to_score_stylesheets = False
         self._is_quitting = False
         self._is_test = False
         self._last_line = ''
@@ -227,6 +224,9 @@ class Session(abctools.AbjadObject):
             not source in ('score', 'home'):
             return True
         elif self.is_navigating_to_score_setup and \
+            not source in ('score', 'home'):
+            return True
+        elif self.is_navigating_to_score_stylesheets and \
             not source in ('score', 'home'):
             return True
 
@@ -763,6 +763,8 @@ class Session(abctools.AbjadObject):
             return True
         elif self.is_navigating_to_score_setup:
             return True
+        elif self.is_navigating_to_score_stylesheets:
+            return True
         else:
             return False
 
@@ -843,6 +845,22 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return not self.pending_user_input
+
+    @property
+    def is_in_confirmation_environment(self):
+        r'''Is true when session is in confirmation environment. 
+        Otherwise false:
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_in_confirmation_environment
+                False
+
+        Returns boolean.
+        '''
+        return self._is_in_confirmation_environment
 
     @property
     def is_in_score(self):
@@ -985,6 +1003,22 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_navigating_to_score_setup
+
+    @property
+    def is_navigating_to_score_stylesheets(self):
+        r'''Is true when session is navigating to score stylesheets.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_score_stylesheets
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_score_stylesheets
 
     @property
     def is_navigating_to_sibling_score(self):

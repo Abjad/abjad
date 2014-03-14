@@ -177,6 +177,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         clear_terminal=False,
         include_chevron=True,
         ):
+        self._session._is_in_confirmation_environment = True
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
             self._present_prompts_and_evaluate_user_input(
@@ -184,8 +185,11 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
                 include_chevron=include_chevron,
                 )
         if len(self._evaluated_user_input) == 1:
-            return self._evaluated_user_input[0]
-        return self._evaluated_user_input[:]
+            result = self._evaluated_user_input[0]
+        else:
+            result = self._evaluated_user_input[:]
+        self._session._is_in_confirmation_environment = False
+        return result
 
     def _validate_evaluated_user_input(self, evaluated_user_input):
         if evaluated_user_input is None and self.allow_none:

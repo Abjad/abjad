@@ -142,6 +142,9 @@ class IOManager(IOManager):
         elif self._is_score_string(key) and self._session.is_in_score:
             self._session._is_backtracking_to_score = True
             self._session._hide_hidden_commands = True
+        elif key == 'y' and not self._session.is_in_confirmation_environment:
+            self._session._is_navigating_to_score_stylesheets = True
+            return 'y'
         elif self._is_score_string(key) and not self._session.is_in_score:
             directive = None
         elif self._is_home_string(key):

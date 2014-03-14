@@ -324,6 +324,8 @@ class Wrangler(Controller):
             self._session._is_navigating_to_score_materials = False
         elif type(self) is wranglers.SegmentPackageWrangler:
             self._session._is_navigating_to_score_segments = False
+        elif type(self) is wranglers.StylesheetWrangler:
+            self._session._is_navigating_to_score_stylesheets = False
         while True:
             self._session._push_breadcrumb(self._breadcrumb)
             if self._session.is_navigating_to_next_material:

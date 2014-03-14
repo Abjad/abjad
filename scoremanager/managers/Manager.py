@@ -310,6 +310,9 @@ class Manager(Controller):
             elif self._session.is_navigating_to_score_setup and \
                 type(self) is managers.ScorePackageManager:
                 result = 'p'
+            elif self._session.is_navigating_to_score_stylesheets and \
+                type(self) is managers.ScorePackageManager:
+                result = 'y'
             else:
                 menu = self._make_main_menu()
                 result = menu._run(clear=clear)
