@@ -35,9 +35,6 @@
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-14. Make the (p) and (y) commands work from anywhere within a score.
-    Leave the commands lowercase.
-
 14. There also needs to be a single command to just view the global stylesheet
     for the entire score. Something like (Y) or equivalent.
 
