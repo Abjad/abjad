@@ -28,10 +28,13 @@ def rotate_sequence(sequence, n):
 
     Returns newly created `sequence` object.
     '''
-
-    result = []
-    if len(sequence):
-        n = n % len(sequence)
-        for element in sequence[-n:len(sequence)] + sequence[:-n]:
-            result.append(copy.deepcopy(element))
+    from abjad.tools import sequencetools
+    result = sequencetools.Sequence(*sequence)
+    result = result.rotate(n)
     return type(sequence)(result)
+    #result = []
+    #if len(sequence):
+    #    n = n % len(sequence)
+    #    for element in sequence[-n:len(sequence)] + sequence[:-n]:
+    #        result.append(copy.deepcopy(element))
+    #return type(sequence)(result)
