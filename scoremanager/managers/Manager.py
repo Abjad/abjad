@@ -292,6 +292,8 @@ class Manager(Controller):
         self._session._cache_breadcrumbs(cache=cache)
         if type(self) is managers.BuildDirectoryManager:
             self._session._is_navigating_to_build_directory = False
+        if type(self) is managers.DistributionDirectoryManager:
+            self._session._is_navigating_to_distribution_directory = False
         if isinstance(self, managers.MaterialManager):
             self._session._is_navigating_to_next_material = False
             self._session._is_navigating_to_previous_material = False
@@ -301,6 +303,9 @@ class Manager(Controller):
             if self._session.is_navigating_to_build_directory and \
                 type(self) is managers.ScorePackageManager:
                 result = 'u'
+            elif self._session.is_navigating_to_distribution_directory and \
+                type(self) is managers.ScorePackageManager:
+                result = 'd'
             elif self._session.is_navigating_to_score_materials and \
                 type(self) is managers.ScorePackageManager:
                 result = 'm'

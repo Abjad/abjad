@@ -246,6 +246,7 @@ class Menu(ScoreManagerObject):
             is_hidden=True,
             )
         section.append(('score - build', 'u'))
+        section.append(('score - distribution', 'd'))
         section.append(('score - materials', 'm'))
         section.append(('score - segments', 'g'))
         section.append(('score - setup', 'p'))

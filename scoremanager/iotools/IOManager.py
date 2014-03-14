@@ -84,12 +84,18 @@ class IOManager(IOManager):
         if key in ('b', 'back'):
             self._session._is_backtracking_locally = True
             self._session._hide_hidden_commands = True
-        elif key == 'g':
+        elif key == 'd' and \
+            not self._session.is_in_editor:
+            self._session._is_navigating_to_distribution_directory = True
+            return 'd'
+        elif key == 'g' and \
+            not self._session.is_in_editor:
             self._session._is_navigating_to_score_segments = True
             return 'g'
         elif key == 'lvl':
             self.view_last_log()
-        elif key == 'm':
+        elif key == 'm' and \
+            not self._session.is_in_editor:
             self._session._is_navigating_to_score_materials = True
             return 'm'
         elif key == 'mtn':
@@ -104,7 +110,8 @@ class IOManager(IOManager):
             self._session.toggle_hidden_commands()
         elif key == 'o':
             self._session.display_variables()
-        elif key == 'p':
+        elif key == 'p' and \
+            not self._session.is_in_editor:
             self._session._is_navigating_to_score_setup = True
             return 'p'
         elif key == 'pyd':
@@ -136,13 +143,16 @@ class IOManager(IOManager):
             self._session._is_navigating_to_previous_score = True
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
-        elif key == 'u':
+        elif key == 'u' and \
+            not self._session.is_in_editor:
             self._session._is_navigating_to_build_directory = True
             return 'u'
         elif self._is_score_string(key) and self._session.is_in_score:
             self._session._is_backtracking_to_score = True
             self._session._hide_hidden_commands = True
-        elif key == 'y' and not self._session.is_in_confirmation_environment:
+        elif key == 'y' and \
+            not self._session.is_in_confirmation_environment and \
+            not self._session.is_in_editor:
             self._session._is_navigating_to_score_stylesheets = True
             return 'y'
         elif key == 'Y':

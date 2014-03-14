@@ -235,6 +235,7 @@ class Editor(Controller):
         is_autostarting=False, 
         pending_user_input=None,
         ):
+        self._session._is_in_editor = True
         self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
         self._session._push_breadcrumb(self._breadcrumb)
@@ -295,6 +296,7 @@ class Editor(Controller):
         self._session._pop_breadcrumb()
         self._session._restore_breadcrumbs(cache=cache)
         self._clean_up_attributes_in_memory()
+        self._session._is_in_editor = False
 
     def _set_target_attribute(self, attribute_name, attribute_value):
         if self.target is not None:

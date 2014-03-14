@@ -53,7 +53,9 @@ class Session(abctools.AbjadObject):
         '_is_backtracking_to_score',
         '_is_backtracking_to_score_manager',
         '_is_in_confirmation_environment',
+        '_is_in_editor',
         '_is_navigating_to_build_directory',
+        '_is_navigating_to_distribution_directory',
         '_is_navigating_to_next_material',
         '_is_navigating_to_next_score',
         '_is_navigating_to_previous_material',
@@ -99,6 +101,7 @@ class Session(abctools.AbjadObject):
         'hide_hidden_commands',
         'is_autonavigating',
         'is_displayable',
+        'is_in_editor',
         'is_in_score',
         'last_line',
         'last_material_path',
@@ -138,7 +141,9 @@ class Session(abctools.AbjadObject):
         self._is_backtracking_to_score = False
         self._is_backtracking_to_score_manager = False
         self._is_in_confirmation_environment = False
+        self._is_in_editor = False
         self._is_navigating_to_build_directory = False
+        self._is_navigating_to_distribution_directory = False
         self._is_navigating_to_next_material = False
         self._is_navigating_to_next_score = False
         self._is_navigating_to_previous_material = False
@@ -215,6 +220,9 @@ class Session(abctools.AbjadObject):
             self._is_backtracking_locally = False
             return True
         elif self.is_navigating_to_build_directory and \
+            not source in ('score', 'home'):
+            return True
+        elif self.is_navigating_to_distribution_directory and \
             not source in ('score', 'home'):
             return True
         elif self.is_navigating_to_score_materials and \
@@ -749,6 +757,8 @@ class Session(abctools.AbjadObject):
         '''
         if self.is_navigating_to_build_directory:
             return True
+        elif self.is_navigating_to_distribution_directory:
+            return True
         elif self.is_navigating_to_next_material:
             return True
         elif self.is_navigating_to_next_score:
@@ -863,6 +873,21 @@ class Session(abctools.AbjadObject):
         return self._is_in_confirmation_environment
 
     @property
+    def is_in_editor(self):
+        r'''Is true when session is in editor. Otherwise false:
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_in_editor
+                False
+
+        Returns boolean.
+        '''
+        return self._is_in_editor
+
+    @property
     def is_in_score(self):
         r'''Is true when session is in score. Otherwise false:
 
@@ -892,6 +917,22 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_navigating_to_build_directory
+
+    @property
+    def is_navigating_to_distribution_directory(self):
+        r'''Is true when session is navigating to distribution directory.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_distribution_directory
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_distribution_directory
 
     @property
     def is_navigating_to_next_material(self):
