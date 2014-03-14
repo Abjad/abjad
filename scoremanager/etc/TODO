@@ -79,3 +79,10 @@
 
 23. Change user/score_manager_library/material_packages/
     to user/score_manager_library/materials/.
+
+24. Search for
+        pending_user_input='...'
+    ... and replace with ...
+        input_ = '...'
+        pending_user_input=input_
+    ... instead.
