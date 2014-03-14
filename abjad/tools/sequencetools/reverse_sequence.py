@@ -11,5 +11,6 @@ def reverse_sequence(sequence):
 
     Returns new `sequence` object.
     '''
-
-    return type(sequence)(reversed(sequence))
+    from abjad.tools import sequencetools
+    result = sequencetools.Sequence(*sequence).reverse()
+    return type(sequence)(result)
