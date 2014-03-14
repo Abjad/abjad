@@ -104,6 +104,9 @@ class IOManager(IOManager):
             self._session.toggle_hidden_commands()
         elif key == 'o':
             self._session.display_variables()
+        elif key == 'p':
+            self._session._is_navigating_to_score_setup = True
+            return 'p'
         elif key == 'pyd':
             message = 'running doctest ...'
             self.display([message, ''])

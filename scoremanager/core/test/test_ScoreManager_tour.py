@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_ScoreManager_score_navigation_01():
+def test_ScoreManager_tour_01():
     r'''stn score.
     '''
 
@@ -18,7 +18,7 @@ def test_ScoreManager_score_navigation_01():
     assert score_manager._transcript.titles == titles
 
 
-def test_ScoreManager_score_navigation_02():
+def test_ScoreManager_tour_02():
     r'''Previous score.
     '''
 

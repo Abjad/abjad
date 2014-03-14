@@ -4,7 +4,7 @@ import scoremanager
 
 
 def test_ScoreManager___init___01():
-    r'''Shared _session.
+    r'''Shared session.
     '''
 
     score_manager = scoremanager.core.ScoreManager()

@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialPackageWrangler_material_navigation_01():
+def test_MaterialPackageWrangler_tour_01():
     r'''Next material.
     '''
 
@@ -22,7 +22,7 @@ def test_MaterialPackageWrangler_material_navigation_01():
     assert score_manager._transcript.titles == titles      
 
 
-def test_MaterialPackageWrangler_material_navigation_02():
+def test_MaterialPackageWrangler_tour_02():
     r'''Previous material.
     '''
 

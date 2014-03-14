@@ -59,6 +59,7 @@ class Session(abctools.AbjadObject):
         '_is_navigating_to_previous_score',
         '_is_navigating_to_score_materials',
         '_is_navigating_to_score_segments',
+        '_is_navigating_to_score_setup',
         '_is_quitting',
         '_is_test',
         '_last_line',
@@ -94,14 +95,16 @@ class Session(abctools.AbjadObject):
         'write_transcript',
         'hide_next_redraw',
         'hide_hidden_commands',
+        'is_autonavigating',
         'is_displayable',
         'is_in_score',
-        'is_navigating_to_build_directory',
-        'is_navigating_to_next_material',
-        'is_navigating_to_previous_material',
-        'is_navigating_to_score_materials',
-        'is_navigating_to_score_segments',
-        'is_navigating_to_sibling_score',
+#        'is_navigating_to_build_directory',
+#        'is_navigating_to_next_material',
+#        'is_navigating_to_previous_material',
+#        'is_navigating_to_score_materials',
+#        'is_navigating_to_score_segments',
+#        'is_navigating_to_score_setup',
+#        'is_navigating_to_sibling_score',
         'last_line',
         'last_material_path',
         'nonnumbered_menu_sections_are_hidden',
@@ -146,6 +149,7 @@ class Session(abctools.AbjadObject):
         self._is_navigating_to_previous_score = False
         self._is_navigating_to_score_materials = False
         self._is_navigating_to_score_segments = False
+        self._is_navigating_to_score_setup = False
         self._is_quitting = False
         self._is_test = False
         self._last_line = ''
@@ -220,6 +224,9 @@ class Session(abctools.AbjadObject):
             not source in ('score', 'home'):
             return True
         elif self.is_navigating_to_score_segments and \
+            not source in ('score', 'home'):
+            return True
+        elif self.is_navigating_to_score_setup and \
             not source in ('score', 'home'):
             return True
 
@@ -754,7 +761,7 @@ class Session(abctools.AbjadObject):
             return True
         elif self.is_navigating_to_score_segments:
             return True
-        elif self.is_navigating_to_sibling_score:
+        elif self.is_navigating_to_score_setup:
             return True
         else:
             return False
@@ -962,6 +969,22 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_navigating_to_score_segments
+
+    @property
+    def is_navigating_to_score_setup(self):
+        r'''Is true when session is navigating to score setup.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_score_setup
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_score_setup
 
     @property
     def is_navigating_to_sibling_score(self):

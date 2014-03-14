@@ -389,6 +389,7 @@ class ScorePackageManager(PackageManager):
         return result
 
     def _manage_setup(self, clear=True, cache=True):
+        self._session._is_navigating_to_score_setup = False
         self._session._cache_breadcrumbs(cache=cache)
         while True:
             annotated_title = self._get_annotated_title()
