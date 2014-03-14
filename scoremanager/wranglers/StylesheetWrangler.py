@@ -54,9 +54,6 @@ class StylesheetWrangler(Wrangler):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'hse': self.edit_header_stylesheet,
-            'lse': self.edit_layout_stylesheet,
-            'pse': self.edit_paper_stylesheet,
             'new': self.make_asset,
             })
         return result
@@ -81,36 +78,6 @@ class StylesheetWrangler(Wrangler):
             parts = (self._session.current_score_directory_path,)
             parts += self._score_storehouse_path_infix_parts
             return os.path.join(*parts)
-    
-    def _get_header_stylesheet_file_path(self):
-        for directory_entry in sorted(os.listdir(
-            self._get_current_directory())):
-            if directory_entry.endswith('header.ily'):
-                file_path = os.path.join(
-                    self._get_current_directory(),
-                    directory_entry,
-                    )
-                return file_path
-    
-    def _get_layout_stylesheet_file_path(self):
-        for directory_entry in sorted(os.listdir(
-            self._get_current_directory())):
-            if directory_entry.endswith('layout.ily'):
-                file_path = os.path.join(
-                    self._get_current_directory(),
-                    directory_entry,
-                    )
-                return file_path
-    
-    def _get_paper_stylesheet_file_path(self):
-        for directory_entry in sorted(os.listdir(
-            self._get_current_directory())):
-            if directory_entry.endswith('paper.ily'):
-                file_path = os.path.join(
-                    self._get_current_directory(),
-                    directory_entry,
-                    )
-                return file_path
     
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
@@ -147,7 +114,6 @@ class StylesheetWrangler(Wrangler):
         menu = self._io_manager.make_menu(where=self._where)
         self._main_menu = menu
         self._make_asset_menu_section(menu)
-        self._make_stylesheet_selection_menu(menu)
         self._make_stylesheets_menu_section(menu)
         return menu
 
@@ -159,52 +125,7 @@ class StylesheetWrangler(Wrangler):
         section.append(('stylesheets - remove', 'rm'))
         return section
 
-    def _make_stylesheet_selection_menu(self, menu):
-        if not self._session.current_score_directory_path:
-            return
-        section = menu.make_command_section(name='stylesheet selection')
-        if self._get_header_stylesheet_file_path():
-            section.append(('header stylesheet - edit', 'hse'))
-        if self._get_layout_stylesheet_file_path():
-            section.append(('layout stylesheet - edit', 'lse'))
-        if self._get_paper_stylesheet_file_path():
-            section.append(('paper stylesheet - edit', 'pse'))
-        return section
-
     ### PUBLIC METHODS ###
-
-    def edit_header_stylesheet(
-        self,
-        pending_user_input=None,
-        ):
-        r'''Edits header stylesheet.
-
-        Returns none.
-        '''
-        file_path = self._get_header_stylesheet_file_path()
-        self._edit_stylesheet(file_path)
-
-    def edit_layout_stylesheet(
-        self,
-        pending_user_input=None,
-        ):
-        r'''Edits layout stylesheet.
-
-        Returns none.
-        '''
-        file_path = self._get_layout_stylesheet_file_path()
-        self._edit_stylesheet(file_path)
-
-    def edit_paper_stylesheet(
-        self,
-        pending_user_input=None,
-        ):
-        r'''Edits paper stylesheet.
-
-        Returns none.
-        '''
-        file_path = self._get_paper_stylesheet_file_path()
-        self._edit_stylesheet(file_path)
 
     def make_asset(
         self,
