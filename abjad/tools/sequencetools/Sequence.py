@@ -587,6 +587,18 @@ class Sequence(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def reverse(self):
+        '''Reverses this sequence.
+
+        ::
+
+            >>> sequencetools.Sequence(1, 2, 3, 4, 5).reverse()
+            Sequence(5, 4, 3, 2, 1)
+
+        Emits new sequence.
+        '''
+        return type(self)(*reversed(self))
+
     def rotate(self, n):
         '''Rotates this sequence.
 
@@ -611,7 +623,7 @@ class Sequence(AbjadObject):
             >>> sequencetools.Sequence(*range(10)).rotate(0)
             Sequence(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 
-        Returns newly created `sequence` object.
+        Emits new sequence.
         '''
 
         result = []
