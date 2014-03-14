@@ -35,10 +35,7 @@
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-14. There also needs to be a single command to just view the global stylesheet
-    for the entire score. Something like (Y) or equivalent.
-
-15. Find a way to get rid of the ...
+14. Find a way to get rid of the ...
 
     if __name__ == '__main__':
         segment = Segment()
@@ -54,25 +51,25 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-16. Remove MarkupInventoryMaterialManager.illustration_builder().
+15. Remove MarkupInventoryMaterialManager.illustration_builder().
     Use MarkupInventory.__ilustrate__() instead.
 
-17. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+16. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-18. Note that ArticulationHandlerMaterialManager implementation is limited
+17. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
 
-19. Change 'output material - interact (omi)' to 
+18. Change 'output material - interact (omi)' to 
     'output material - edit (ome)'.
 
-20. Implement 'segments - tour next' and 'segment - tour previous' commands.
+19. Implement 'segments - tour next' and 'segment - tour previous' commands.
 
-21. Implement an 'all whatever - edit' command.
+20. Implement an 'all whatever - edit' command.
 
-22. Write view tests. Start with segment wrangler.
+21. Write view tests. Start with segment wrangler.
