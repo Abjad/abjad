@@ -97,6 +97,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             self.user_library_editors_directory_path,
             self.user_library_material_managers_directory_path,
             self.user_library_material_packages_directory_path,
+            self.user_library_makers_directory_path,
             )
         for directory_path in directory_paths:
             if not os.path.exists(directory_path):
@@ -458,6 +459,25 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         path = os.path.join(
             self.user_library_directory_path,
             'editors',
+            )
+        return path
+
+    @property
+    def user_library_makers_directory_path(self):
+        r'''Gets user library makers path.
+
+        ..  container:: example
+
+            ::
+
+                >>> configuration.user_library_makers_directory_path
+                '.../makers'
+
+        Returns string.
+        '''
+        path = os.path.join(
+            self.user_library_directory_path,
+            'makers',
             )
         return path
 

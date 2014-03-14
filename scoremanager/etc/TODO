@@ -73,3 +73,9 @@
 20. Implement an 'all whatever - edit' command.
 
 21. Write view tests. Start with segment wrangler.
+
+22. Remove user/score_manager_library/material_package_managers/ in 
+    favor of user/score_manager_library/material_managers/
+
+23. Change user/score_manager_library/material_packages/
+    to user/score_manager_library/materials/.

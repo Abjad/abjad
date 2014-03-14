@@ -66,9 +66,6 @@ class ScorePackageWrangler(PackageWrangler):
 
     ### PRIVATE METHODS ###
 
-    def _handle_main_menu_result(self):
-        self._io_manager.print_not_yet_implemented()
-
     def _list_visible_asset_paths(
         self,
         abjad_library=True, 

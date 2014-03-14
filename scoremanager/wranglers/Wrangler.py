@@ -135,10 +135,6 @@ class Wrangler(Controller):
             assert '.' not in directory_path, repr(directory_path)
             return directory_path
 
-    @abc.abstractmethod
-    def _handle_main_menu_result(self, result):
-        pass
-
     def _initialize_asset_manager(self, path):
         assert os.path.sep in path, repr(path)
         return self._asset_manager_class(

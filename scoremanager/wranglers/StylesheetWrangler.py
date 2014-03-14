@@ -75,6 +75,7 @@ class StylesheetWrangler(Wrangler):
             )
         manager.edit()
 
+    # TODO: hoist to Wrangler?
     def _get_current_directory(self):
         if self._session.current_score_directory_path:
             parts = (self._session.current_score_directory_path,)
@@ -208,6 +209,7 @@ class StylesheetWrangler(Wrangler):
         from scoremanager import managers
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
+            # TODO: extend to allow creation in current score
             storehouse_path = self._select_storehouse_path(
                 abjad_library=False,
                 user_library=True,
@@ -218,20 +220,15 @@ class StylesheetWrangler(Wrangler):
             return
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('stylesheet name')
-        stylesheet_file_path = getter._run()
+        file_path = getter._run()
         if self._session._backtrack():
             return
-        stylesheet_file_path = \
-            stringtools.string_to_accent_free_snake_case(
-            stylesheet_file_path)
-        if not stylesheet_file_path.endswith('.ily'):
-            stylesheet_file_path = stylesheet_file_path + '.ily'
-        stylesheet_file_path = os.path.join(
-            storehouse_path,
-            stylesheet_file_path,
-            )
+        file_path = stringtools.string_to_accent_free_snake_case(file_path)
+        if not file_path.endswith('.ily'):
+            file_path = file_path + '.ily'
+        file_path = os.path.join(storehouse_path, file_path)
         manager = managers.FileManager(
-            stylesheet_file_path, 
+            file_path, 
             session=self._session,
             )
         if self._session.is_test:
