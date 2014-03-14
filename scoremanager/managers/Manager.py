@@ -306,6 +306,9 @@ class Manager(Controller):
             elif self._session.is_navigating_to_distribution_directory and \
                 type(self) is managers.ScorePackageManager:
                 result = 'd'
+            elif self._session.is_navigating_to_score_makers and \
+                type(self) is managers.ScorePackageManager:
+                result = 'k'
             elif self._session.is_navigating_to_score_materials and \
                 type(self) is managers.ScorePackageManager:
                 result = 'm'

@@ -316,7 +316,9 @@ class Wrangler(Controller):
         self._io_manager._assign_user_input(pending_user_input)
         breadcrumb = self._session._pop_breadcrumb(rollback=rollback)
         self._session._cache_breadcrumbs(cache=cache)
-        if type(self) is wranglers.MaterialPackageWrangler:
+        if type(self) is wranglers.MakerModuleWrangler:
+            self._session._is_navigating_to_score_makers = False
+        elif type(self) is wranglers.MaterialPackageWrangler:
             self._session._is_navigating_to_score_materials = False
         elif type(self) is wranglers.SegmentPackageWrangler:
             self._session._is_navigating_to_score_segments = False

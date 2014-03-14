@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import pytest
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager()
@@ -38,7 +37,6 @@ def test_Session_is_navigating_to_score_stylesheets_02():
 def test_Session_is_navigating_to_score_stylesheets_03():
     r'''From makers directory to stylesheets directory.
     '''
-    pytest.skip('active makers and then unskip.')
 
     input_ = 'red~example~score k y q'
     score_manager._run(pending_user_input=input_, is_test=True)

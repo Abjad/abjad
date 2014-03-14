@@ -1,11 +1,8 @@
 # -*- encoding: utf-8 -*-
-import os
-import pytest
 from abjad import *
 import scoremanager
 configuration = scoremanager.core.ScoreManagerConfiguration()
 score_manager = scoremanager.core.ScoreManager()
-pytest.skip('activate makers and then unskip.')
 
 
 def test_Session_is_navigating_to_makers_directory_01():

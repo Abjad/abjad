@@ -92,6 +92,10 @@ class IOManager(IOManager):
             not self._session.is_in_editor:
             self._session._is_navigating_to_score_segments = True
             return 'g'
+        elif key == 'k' and \
+            not self._session.is_in_editor:
+            self._session._is_navigating_to_score_makers = True
+            return 'k'
         elif key == 'lvl':
             self.view_last_log()
         elif key == 'm' and \

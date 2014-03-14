@@ -60,6 +60,7 @@ class Session(abctools.AbjadObject):
         '_is_navigating_to_next_score',
         '_is_navigating_to_previous_material',
         '_is_navigating_to_previous_score',
+        '_is_navigating_to_score_makers',
         '_is_navigating_to_score_materials',
         '_is_navigating_to_score_segments',
         '_is_navigating_to_score_setup',
@@ -148,6 +149,7 @@ class Session(abctools.AbjadObject):
         self._is_navigating_to_next_score = False
         self._is_navigating_to_previous_material = False
         self._is_navigating_to_previous_score = False
+        self._is_navigating_to_score_makers = False
         self._is_navigating_to_score_materials = False
         self._is_navigating_to_score_segments = False
         self._is_navigating_to_score_setup = False
@@ -223,6 +225,9 @@ class Session(abctools.AbjadObject):
             not source in ('score', 'home'):
             return True
         elif self.is_navigating_to_distribution_directory and \
+            not source in ('score', 'home'):
+            return True
+        elif self.is_navigating_to_score_makers and \
             not source in ('score', 'home'):
             return True
         elif self.is_navigating_to_score_materials and \
@@ -767,6 +772,8 @@ class Session(abctools.AbjadObject):
             return True
         elif self.is_navigating_to_previous_score:
             return True
+        elif self.is_navigating_to_score_makers:
+            return True
         elif self.is_navigating_to_score_materials:
             return True
         elif self.is_navigating_to_score_segments:
@@ -996,6 +1003,22 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_navigating_to_previous_score
+
+    @property
+    def is_navigating_to_score_makers(self):
+        r'''Is true when session is navigating to score makers.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_score_makers
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_score_makers
 
     @property
     def is_navigating_to_score_materials(self):

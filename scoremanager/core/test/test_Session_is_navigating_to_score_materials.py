@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-import os
-import pytest
 from abjad import *
 import scoremanager
 configuration = scoremanager.core.ScoreManagerConfiguration()
@@ -40,14 +38,13 @@ def test_Session_is_navigating_to_score_materials_02():
 def test_Session_is_navigating_to_score_materials_03():
     r'''From makers direcotry to materials directory.
     '''
-    pytest.skip('active makers and then unskip.')
 
     input_ = 'red~example~score k m q'
     score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
-        'Red Example Score (2013) - stylesheets',
+        'Red Example Score (2013) - makers',
         'Red Example Score (2013) - materials',
         ]
     assert score_manager._transcript.titles == titles
