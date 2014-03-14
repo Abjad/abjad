@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 from abjad.tools.mathtools.NonreducedRatio import NonreducedRatio
 
 
@@ -32,7 +33,7 @@ class Ratio(NonreducedRatio):
 
     def __new__(cls, *args):
         from abjad.tools import mathtools
-        if len(args) == 1 and isinstance(args[0], (list, tuple)):
+        if len(args) == 1 and isinstance(args[0], collections.Sequence):
             args = args[0]
         elif len(args) == 0:
             args = (1, 1)
