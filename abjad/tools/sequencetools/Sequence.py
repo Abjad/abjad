@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 import copy
 from abjad.tools.abctools import AbjadObject
 
@@ -619,3 +620,6 @@ class Sequence(AbjadObject):
             for element in self[-n:len(self)] + self[:-n]:
                 result.append(copy.deepcopy(element))
         return type(self)(*result)
+
+
+collections.Sequence.register(Sequence)
