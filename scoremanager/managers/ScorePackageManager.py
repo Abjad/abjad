@@ -69,12 +69,12 @@ class ScorePackageManager(PackageManager):
         return self._cached_instrumentation_module_manager
 
     @property
-    def _maker_wrangler(self):
+    def _maker_module_wrangler(self):
         from scoremanager import wranglers
         if self._path is None:
             return
         if not hasattr(self, '_cached_maker_wrangler'):
-            wrangler = wranglers.MakerWrangler(session=self._session)
+            wrangler = wranglers.MakerModuleWrangler(session=self._session)
             self._cached_maker_wrangler = wrangler
         return self._cached_maker_wrangler
 
@@ -228,7 +228,7 @@ class ScorePackageManager(PackageManager):
             'g': self._segment_package_wrangler._run,
             'fix': self.fix,
             'instrumentation': self._instrumentation_module_manager.edit,
-            'k': self._maker_wrangler._run,
+            'k': self._maker_module_wrangler._run,
             'm': self._material_package_wrangler._run,
             'p': self._manage_setup,
             'pdfv': self.view_score_pdf,
