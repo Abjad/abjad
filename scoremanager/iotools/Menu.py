@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad.tools import mathtools
+from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
 from scoremanager.core.ScoreManagerObject import ScoreManagerObject
@@ -143,10 +144,6 @@ class Menu(ScoreManagerObject):
     def _display_all_commands(self):
         self._session._push_breadcrumb('commands')
         menu_lines = []
-        title = self._session.menu_header
-        title = stringtools.capitalize_string_start(title)
-        menu_lines.append(title)
-        menu_lines.append('')
         for menu_section in self.menu_sections:
             if not menu_section.is_command_section:
                 continue
@@ -157,6 +154,11 @@ class Menu(ScoreManagerObject):
                 menu_line += '{} ({})'.format(display_string, key)
                 menu_lines.append(menu_line)
             menu_lines.append('')
+        menu_lines = self._make_bicolumnar(menu_lines)
+        title = self._session.menu_header
+        title = stringtools.capitalize_string_start(title)
+        menu_lines[0:0] = [title, '']
+        menu_lines.append('')
         self._io_manager.display(
             menu_lines, 
             capitalize_first_character=False,
@@ -165,6 +167,38 @@ class Menu(ScoreManagerObject):
         self._session._pop_breadcrumb()
         self._session._hide_hidden_commands = True
         self._session._hide_next_redraw = True
+
+    @staticmethod
+    def _make_bicolumnar(lines):
+        terminal_height = 45
+        column_width = 55
+        if len(lines) < terminal_height:
+            return lines
+        if 2 * terminal_height < len(lines):
+            message = 'too many lines to lay out in two columns: {!r}.'
+            message = message.format(len(lines))
+            raise ValueError(message)
+        left_column_lines = lines[:terminal_height]
+        right_column_lines = lines[terminal_height:]
+        pair = (left_column_lines, right_column_lines)
+        generator = sequencetools.zip_sequences(pair, truncate=False)
+        massaged_lines = []
+        for element in generator:
+            if len(element) == 2:
+                left_line, right_line = element
+                left_line = left_line.rstrip()
+                assert len(left_line) <= column_width, repr(left_line)
+                extra_count = column_width - len(left_line)
+                extra_space = extra_count * ' '
+                left_line = left_line + extra_space
+                right_line = right_line.strip()
+            else:
+                assert len(element) == 1
+                left_line = element[0]
+                right_line = ''
+            massaged_line = left_line + right_line
+            massaged_lines.append(massaged_line)
+        return massaged_lines
 
     def _enclose_in_list(self, expr):
         if self._has_ranged_section():
