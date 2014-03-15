@@ -158,12 +158,12 @@ class MaterialManager(PackageManager):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'ibe': self.edit_illustration_builder_module,
-            'ibei': self.edit_and_interpret_illustration_builder_module,
+            'ime': self.edit_illustration_builder_module,
+            'imei': self.edit_and_interpret_illustration_builder_module,
             'ibm': self.write_illustration_builder_module_stub,
-            'ibrm': self.remove_illustration_builder_module,
-            'ibs': self.write_illustration_builder_module_stub,
-            'ibi': self.interpret_illustration_builder_module,
+            'imrm': self.remove_illustration_builder_module,
+            'ims': self.write_illustration_builder_module_stub,
+            'imi': self.interpret_illustration_builder_module,
             'lym': self.write_illustration_ly,
             'lyrm': self.remove_illustration_ly,
             'lyv': self.view_illustration_ly,
@@ -173,7 +173,7 @@ class MaterialManager(PackageManager):
             'dms': self.write_definition_module_stub,
             'dmi': self.interpret_definition_module,
             'ombp': self.write_output_module_boilerplate,
-            'omm': self.write_output_material,
+            'omw': self.write_output_material,
             'me': self.edit_output_material,
             'omrm': self.remove_output_module,
             'omv': self.view_output_module,
@@ -366,15 +366,15 @@ class MaterialManager(PackageManager):
         if os.path.isfile(self._output_module_path):
             if os.path.isfile(self._illustration_builder_module_path):
                 string = 'illustrate module - edit'
-                section.append((string, 'ibe'))
+                section.append((string, 'ime'))
                 string = 'illustrate module - edit & interpret'
-                section.append((string, 'ibei'))
+                section.append((string, 'imei'))
                 string = 'illustrate module - interpret'
-                section.append((string, 'ibi'))
+                section.append((string, 'imi'))
                 string = 'illustrate module - remove'
-                section.append((string, 'ibrm'))
+                section.append((string, 'imrm'))
                 string = 'illustrate module - stub'
-                section.append((string, 'ibs'))
+                section.append((string, 'ims'))
             else:
                 string = 'illustrate module - make'
                 section.append((string, 'ibm'))
@@ -531,11 +531,11 @@ class MaterialManager(PackageManager):
         string = 'output module - boilerplate'
         section.append((string, 'ombp'))
         if self._should_have_output_material_section():
-            if self._can_make_output_material():
-                section.append(('output module - make', 'omm'))
             if os.path.isfile(self._output_module_path):
                 section.append(('output module - remove', 'omrm'))
                 section.append(('output module - view', 'omv'))
+            if self._can_make_output_material():
+                section.append(('output module - write', 'omw'))
 
     def _make_stylesheet_menu_section(self, menu):
         if os.path.isfile(self._output_module_path):
@@ -1096,7 +1096,7 @@ class MaterialManager(PackageManager):
         if hasattr(self, '_generic_output_name'):
             generic_output_name = self._generic_output_name
             self._add_metadatum('generic_output_name', generic_output_name)
-        message = 'output material written to disk.'
+        message = 'output module written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
 
     def write_output_module_boilerplate(self):

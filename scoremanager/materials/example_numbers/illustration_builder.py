@@ -1,5 +1,6 @@
 from abjad import *
-from scoremanager.materials.example_numbers.output_material import example_numbers
+from scoremanager.materials.example_numbers.output_material \
+    import example_numbers
 
 
 notes = scoretools.make_notes(example_numbers, [Duration(1, 8)])
