@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 import shutil
+import traceback
 from abjad.tools import stringtools
 from abjad.tools import systemtools
 from scoremanager.managers.Manager import Manager
@@ -50,6 +51,7 @@ class FileManager(Manager):
         try:
             exec(file_contents_string)
         except Exception:
+            traceback.print_exc()
             return
         result = []
         for name in return_attribute_names:

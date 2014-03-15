@@ -269,17 +269,14 @@ class MaterialManager(PackageManager):
         self._write_user_input_wrapper(wrapper)
 
     def _execute_output_material_module(self):
-        output_material = None
-        try:
-            result = self._output_material_module_manager._execute(
-                return_attribute_names=(self._material_package_name,),
-                )
-        except:
-            traceback.print_exc()
+        return_attribute_name = (self._material_package_name,)
+        result = self._output_material_module_manager._execute(
+            return_attribute_names=return_attribute_names,
+            )
         if result:
             assert len(result) == 1
             output_material = result[0]
-        return output_material
+            return output_material
 
     @staticmethod
     def _get_output_material_editor(target=None, session=None):
