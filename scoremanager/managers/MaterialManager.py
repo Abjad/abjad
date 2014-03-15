@@ -863,9 +863,7 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        self.remove_illustration_builder_module(prompt=False)
-        if os.path.isfile(self._output_material_module_path):
-            self._output_material_module_manager._remove()
+        self._output_material_module_manager.remove(prompt=prompt)
 
     def remove_user_input_module(self, prompt=True):
         r'''Removes user input module.

@@ -2,4 +2,25 @@
 from abjad import *
 
 
-example_notes = [Note("d'16"), Note("e'8"), Note("f'16"), Note("d'8"), Note("e'16"), Note("f'8"), Note("d'16"), Note("e'8"), Note("f'16"), Note("d'8"), Note("e'16"), Note("f'8"), Note("d'16"), Note("e'8"), Note("f'16"), Note("d'8"), Note("e'16"), Note("f'8"), Rest('r4')]
+example_notes = selectiontools.Selection(
+    (
+        scoretools.Note("d'16"),
+        scoretools.Note("e'8"),
+        scoretools.Note("f'16"),
+        scoretools.Note("d'8"),
+        scoretools.Note("e'16"),
+        scoretools.Note("f'8"),
+        scoretools.Note("d'16"),
+        scoretools.Note("e'8"),
+        scoretools.Note("f'16"),
+        scoretools.Note("d'8"),
+        scoretools.Note("e'16"),
+        scoretools.Note("f'8"),
+        scoretools.Note("d'16"),
+        scoretools.Note("e'8"),
+        scoretools.Note("f'16"),
+        scoretools.Note("d'8"),
+        scoretools.Note("e'16"),
+        scoretools.Note("f'8"),
+        )
+    )

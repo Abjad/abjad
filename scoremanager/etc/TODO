@@ -88,3 +88,10 @@
         input_ = '...'
         pending_user_input=input_
     ... instead.
+
+25. Remove 'whatever - make' commands. Reimplement as 'source - interpret'.
+
+26. Add command to type arbitrary shell command to current working directory.
+    Maybe 'directory - run (run)'.
+
+27. Add confirmation message to (radd).
