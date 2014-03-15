@@ -753,6 +753,19 @@ class MaterialManager(PackageManager):
         Returns none.
         '''
         self._io_manager.print_not_yet_implemented()
+        # ZZZ
+        result = self._retrieve_import_statements_and_output_material()
+        import_statements, output_material = result
+        illustrate_function = self._retrieve_illustrate_function()
+
+    def _retrieve_illustrate_function(self):
+        attribute_names = ('__illustrate__',)
+        result = self._definition_module_manager._execute(
+            attribute_names=attribute_names,
+            )
+        if result:
+            assert len(result) == 1
+            return result[0]
 
     def interpret_illustration_builder_module(self):
         r'''Runs Python on illustrate module module.
