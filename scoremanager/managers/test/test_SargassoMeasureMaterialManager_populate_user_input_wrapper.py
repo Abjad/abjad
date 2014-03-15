@@ -357,7 +357,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_08():
     for measure in measures:
         measure.implicit_scaling = True
     input_ = 'lmm nmm sargasso testsargasso default'
-    input_ += ' testsargasso uil ommm default q'
+    input_ += ' testsargasso uil omm default q'
 
     assert not os.path.exists(path)
     try:

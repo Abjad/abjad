@@ -173,7 +173,7 @@ class MaterialManager(PackageManager):
             'dms': self.write_definition_module_stub,
             'dmi': self.interpret_definition_module,
             'ombp': self.write_output_module_boilerplate,
-            'ommm': self.write_output_material,
+            'omm': self.write_output_material,
             'me': self.edit_output_material,
             'omrm': self.remove_output_module,
             'omv': self.view_output_module,
@@ -532,7 +532,7 @@ class MaterialManager(PackageManager):
         section.append((string, 'ombp'))
         if self._should_have_output_material_section():
             if self._can_make_output_material():
-                section.append(('output module - make', 'ommm'))
+                section.append(('output module - make', 'omm'))
             if os.path.isfile(self._output_module_path):
                 section.append(('output module - remove', 'omrm'))
                 section.append(('output module - view', 'omv'))
