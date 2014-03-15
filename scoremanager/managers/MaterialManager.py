@@ -268,18 +268,15 @@ class MaterialManager(PackageManager):
     def _get_output_material_editor(target=None, session=None):
         return
 
-    def _get_output_module_import_statements_and_output_module_body_lines(
-        self):
+    def _get_output_module_import_statements_and_body_lines(self):
         if os.path.isfile(self._definition_module_path):
-            result = self._retrieve_import_statements_and_material()
+            result = self._retrieve_import_statements_and_output_material()
             output_module_import_statements, output_material = result
-        elif self._read_material_manager_class_name():
+        else:
             output_module_import_statements = \
                 self.output_module_import_statements
             output_material = \
                 self._make_output_material_from_user_input_wrapper_in_memory()
-        else:
-            raise ValueError
         if self._should_have_user_input_module:
             output_module_body_lines = \
                 self._make_output_module_body_lines(output_material)
@@ -596,7 +593,7 @@ class MaterialManager(PackageManager):
         with file(file_path, 'w') as file_pointer:
             file_pointer.write(''.join(new_file_lines))
 
-    def _retrieve_import_statements_and_material(self):
+    def _retrieve_import_statements_and_output_material(self):
         attribute_names = (
             'output_module_import_statements',
             self._material_package_name,
@@ -1092,8 +1089,7 @@ class MaterialManager(PackageManager):
         lines.append('# -*- encoding: utf-8 -*-\n')
         if output_module_import_statements is None or \
             output_module_body_lines is None:
-            pair = \
-                self._get_output_module_import_statements_and_output_module_body_lines()
+            pair = self._get_output_module_import_statements_and_body_lines()
             output_module_import_statements = pair[0]
             output_module_body_lines = pair[1]
         if output_module_import_statements is None:
