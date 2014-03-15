@@ -563,6 +563,32 @@ class Menu(ScoreManagerObject):
             )
         return section
 
+
+    def make_navigation_section(
+        self,
+        is_hidden=False,
+        match_on_display_string=True,
+        menu_entries=None,
+        name=None,
+        ):
+        r'''Makes navigation section.
+
+        Menu section with these attributes:
+
+            * not hidden
+            * match on display string
+            * return value attribute equal to ``'key'``
+
+        Returns menu section.
+        '''
+        section = self._make_section(
+            is_hidden=is_hidden,
+            match_on_display_string=match_on_display_string,
+            name=name,
+            return_value_attribute='key',
+            )
+        return section
+
     def make_numbered_list_section(
         self, 
         menu_entries=None, 
@@ -608,30 +634,5 @@ class Menu(ScoreManagerObject):
             is_asset_section=True,
             is_numbered=True,
             return_value_attribute='number',
-            )
-        return section
-
-    def make_navigation_section(
-        self,
-        is_hidden=False,
-        match_on_display_string=True,
-        menu_entries=None,
-        name=None,
-        ):
-        r'''Makes navigation section.
-
-        Menu section with these attributes:
-
-            * not hidden
-            * match on display string
-            * return value attribute equal to ``'key'``
-
-        Returns menu section.
-        '''
-        section = self._make_section(
-            is_hidden=is_hidden,
-            match_on_display_string=match_on_display_string,
-            name=name,
-            return_value_attribute='key',
             )
         return section

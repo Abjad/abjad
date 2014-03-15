@@ -121,25 +121,6 @@ class SegmentPackageManager(PackageManager):
             section.append(('current pdf - view', 'pdfv'))
         return section
 
-    def _make_versioned_pdfs_menu_section(self, menu):
-        section = menu.make_command_section(name='versioned pdfs')
-        versions_directory_path = self._versions_directory_path
-        if self._is_populated_directory(versions_directory_path):
-            section.append(('versioned pdfs - view', 'vv'))
-        return section
-
-    def _make_versions_directory_menu_section(self, menu):
-        section = menu.make_command_section(
-            is_hidden=True,
-            name='versions directory',
-            )
-        section.append(('versioned output ly - view', 'lyver'))
-        section.append(('versioned output pdf - view', 'pdfv'))
-        string = 'versioned segment definition module - view'
-        section.append((string, 'pyver'))
-        section.append(('versions directory - list', 'vrl'))
-        return section
-
     def _make_main_menu(self):
         superclass = super(SegmentPackageManager, self)
         where = self._where
@@ -158,6 +139,25 @@ class SegmentPackageManager(PackageManager):
         section.append(('segment definition module - edit at top', 'E'))
         # ZZZ
         section.append(('segment definition module - interpret', 'sdmi'))
+        return section
+
+    def _make_versioned_pdfs_menu_section(self, menu):
+        section = menu.make_command_section(name='versioned pdfs')
+        versions_directory_path = self._versions_directory_path
+        if self._is_populated_directory(versions_directory_path):
+            section.append(('versioned pdfs - view', 'vv'))
+        return section
+
+    def _make_versions_directory_menu_section(self, menu):
+        section = menu.make_command_section(
+            is_hidden=True,
+            name='versions directory',
+            )
+        section.append(('versioned output ly - view', 'lyver'))
+        section.append(('versioned output pdf - view', 'pdfv'))
+        string = 'versioned segment definition module - view'
+        section.append((string, 'pyver'))
+        section.append(('versions directory - list', 'vrl'))
         return section
 
     def _view_versioned_file(self, extension):
@@ -221,29 +221,6 @@ class SegmentPackageManager(PackageManager):
             return
         manager.edit(line_number=1)
 
-    def list_versions_directory(self):
-        r'''Lists versions directory.
-
-        Returns none.
-        '''
-        versions_directory_path = self._versions_directory_path
-        if not os.path.exists(versions_directory_path):
-            line = 'no versions found.'
-            self._io_manager.display([line, ''])
-            self._io_manager.proceed()
-            return
-        file_names = []
-        for directory_entry in os.listdir(versions_directory_path):
-            if directory_entry[0].isdigit():
-                file_names.append(directory_entry)
-        lines = []
-        for x in itertools.groupby(file_names, key=lambda x: x[:4]):
-            key, file_names = x
-            line = ' '.join(file_names)
-            lines.append(line)
-        self._io_manager.display(lines)
-        self._io_manager.proceed('')
-
     def interpret_segment_definition_module(
         self,
         view_asset_pdf=True,
@@ -267,6 +244,29 @@ class SegmentPackageManager(PackageManager):
             new_modification_time = os.path.getmtime(output_pdf_file_path)
         if modification_time < new_modification_time and view_asset_pdf:
             self.view_output_pdf()
+
+    def list_versions_directory(self):
+        r'''Lists versions directory.
+
+        Returns none.
+        '''
+        versions_directory_path = self._versions_directory_path
+        if not os.path.exists(versions_directory_path):
+            line = 'no versions found.'
+            self._io_manager.display([line, ''])
+            self._io_manager.proceed()
+            return
+        file_names = []
+        for directory_entry in os.listdir(versions_directory_path):
+            if directory_entry[0].isdigit():
+                file_names.append(directory_entry)
+        lines = []
+        for x in itertools.groupby(file_names, key=lambda x: x[:4]):
+            key, file_names = x
+            line = ' '.join(file_names)
+            lines.append(line)
+        self._io_manager.display(lines)
+        self._io_manager.proceed('')
 
     def make_versions_directory(self):
         r'''Makes versions directory.

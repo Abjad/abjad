@@ -118,6 +118,31 @@ class ScorePackageManager(PackageManager):
             self._cached_stylesheet_wrangler = wrangler
         return self._cached_stylesheet_wrangler
 
+    @property
+    def _user_input_to_action(self):
+        superclass = super(ScorePackageManager, self)
+        result = superclass._user_input_to_action
+        result = result.copy()
+        result.update({
+            'd': self._distribution_directory_manager._run,
+            'g': self._segment_package_wrangler._run,
+            'fix': self.fix,
+            'instrumentation': self._instrumentation_module_manager.edit,
+            'k': self._maker_module_wrangler._run,
+            'm': self._material_package_wrangler._run,
+            'p': self._manage_setup,
+            'pdfv': self.view_score_pdf,
+            'radd': self.add,
+            'rci': self.commit,
+            'removescore': self.remove,
+            'rst': self.status,
+            'rup': self.update,
+            'u': self._build_directory_manager._run,
+            'y': self._stylesheet_wrangler._run,
+            'Y': self._io_manager.edit_score_stylesheet,
+            })
+        return result
+
     ### PRIVATE METHODS ###
 
     def _get_annotated_title(self):
@@ -218,31 +243,6 @@ class ScorePackageManager(PackageManager):
             message = message.format(result)
             raise ValueError(message)
 
-    @property
-    def _user_input_to_action(self):
-        superclass = super(ScorePackageManager, self)
-        result = superclass._user_input_to_action
-        result = result.copy()
-        result.update({
-            'd': self._distribution_directory_manager._run,
-            'g': self._segment_package_wrangler._run,
-            'fix': self.fix,
-            'instrumentation': self._instrumentation_module_manager.edit,
-            'k': self._maker_module_wrangler._run,
-            'm': self._material_package_wrangler._run,
-            'p': self._manage_setup,
-            'pdfv': self.view_score_pdf,
-            'radd': self.add,
-            'rci': self.commit,
-            'removescore': self.remove,
-            'rst': self.status,
-            'rup': self.update,
-            'u': self._build_directory_manager._run,
-            'y': self._stylesheet_wrangler._run,
-            'Y': self._io_manager.edit_score_stylesheet,
-            })
-        return result
-
     def _handle_setup_menu_result(self, result):
         assert isinstance(result, str)
         if result == 'catalog number':
@@ -298,6 +298,19 @@ class ScorePackageManager(PackageManager):
                 return metadata
         return False
 
+    def _make_instrumentation_menu_section(self, menu):
+        section = menu.make_command_section(name='instrumentation')
+        section.append(('instrumentation', 'instr'))
+        return section
+
+    def _make_instrumentation_module_menu_section(self, menu):
+        section = menu.make_command_section(
+            name='instrumentation',
+            is_hidden=True,
+            )
+        section.append(('instrumentation module - view', 'instrumentation'))
+        return section
+
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
         self._make_main_menu_section(menu)
@@ -311,19 +324,6 @@ class ScorePackageManager(PackageManager):
         self._make_score_menu_section(menu)
         self._make_shortcuts_menu_section(menu)
         return menu
-
-    def _make_instrumentation_menu_section(self, menu):
-        section = menu.make_command_section(name='instrumentation')
-        section.append(('instrumentation', 'instr'))
-        return section
-
-    def _make_instrumentation_module_menu_section(self, menu):
-        section = menu.make_command_section(
-            name='instrumentation',
-            is_hidden=True,
-            )
-        section.append(('instrumentation module - view', 'instrumentation'))
-        return section
 
     def _make_main_menu_section(self, menu):
         section = menu.make_navigation_section(name='main')
@@ -367,13 +367,6 @@ class ScorePackageManager(PackageManager):
         self._make_instrumentation_menu_section(menu)
         return menu
 
-    def _make_setup_menu_section(self, menu):
-        section = menu.make_attribute_section(name='setup')
-        menu_entries = self._make_setup_menu_entries()
-        for menu_entry in menu_entries:
-            section.append(menu_entry)
-        return section
-
     def _make_setup_menu_entries(self):
         result = []
         return_value = 'title'
@@ -399,6 +392,13 @@ class ScorePackageManager(PackageManager):
             prepopulated_value = catalog_number
         result.append((return_value, None, prepopulated_value, return_value))
         return result
+
+    def _make_setup_menu_section(self, menu):
+        section = menu.make_attribute_section(name='setup')
+        menu_entries = self._make_setup_menu_entries()
+        for menu_entry in menu_entries:
+            section.append(menu_entry)
+        return section
 
     def _make_shortcuts_menu_section(self, menu):
         section = menu.make_command_section(

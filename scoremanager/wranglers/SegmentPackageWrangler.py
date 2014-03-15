@@ -107,11 +107,6 @@ class SegmentPackageWrangler(PackageWrangler):
         section.append(('all segments - current pdf - view', 'pdfv'))
         return section
 
-    def _make_segments_menu_section(self, menu):
-        section = menu.make_command_section(name='segments')
-        section.append(('segments - new', 'new'))
-        return section
-
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
         self._make_asset_menu_section(menu)
@@ -126,6 +121,11 @@ class SegmentPackageWrangler(PackageWrangler):
         self._make_views_menu_section(menu)
         self._make_views_module_menu_section(menu)
         return menu
+
+    def _make_segments_menu_section(self, menu):
+        section = menu.make_command_section(name='segments')
+        section.append(('segments - new', 'new'))
+        return section
 
     ### PUBLIC METHODS ###
 

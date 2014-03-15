@@ -61,13 +61,6 @@ class MenuEntry(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __repr__(self):
-        r'''Gets interpreter representation of menu entry.
-
-        Returns string.
-        '''
-        return '<{}: {!r}>'.format(type(self).__name__, self.display_string)
-
     def __lt__(self, expr):
         r'''Is true when `expr` is a menu entry with a display string greater
         than that of this menu entry. Otherwise false.
@@ -79,6 +72,13 @@ class MenuEntry(AbjadObject):
         if not isinstance(expr, type(self)):
             raise TypeError(expr)
         return self.display_string < expr.display_string
+
+    def __repr__(self):
+        r'''Gets interpreter representation of menu entry.
+
+        Returns string.
+        '''
+        return '<{}: {!r}>'.format(type(self).__name__, self.display_string)
 
     ### PUBLIC PROPERTIES ###
 

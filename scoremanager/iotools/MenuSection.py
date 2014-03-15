@@ -225,19 +225,6 @@ class MenuSection(AbjadObject):
         Returns nonnegative integer or none.
         '''
         return self._default_index
-#        def fset(self, default_index):
-#            assert isinstance(default_index, (int, type(None)))
-#            if isinstance(default_index, int):
-#                count = len(self.menu_entries)
-#                if default_index < 0:
-#                    message = 'default index must be positive integer.'
-#                    raise ValueError(message)
-#                if count <= default_index:
-#                    message = 'only {} menu entries in menu section.'
-#                    message = message.format(count)
-#                    raise ValueError(message)
-#            self._default_index = default_index
-#        return property(**locals())
 
     @property
     def display_prepopulated_values(self):
@@ -291,6 +278,20 @@ class MenuSection(AbjadObject):
         return self._is_command_section
 
     @property
+    def is_hidden(self):
+        r'''Is true when menu section is hidden. 
+        Otherwise false:
+
+        ::
+
+            >>> section.is_hidden
+            False
+
+        Returns boolean.
+        '''
+        return self._is_hidden
+
+    @property
     def is_numbered(self):
         r'''Is true when menu section is numbered. 
         Otherwise false:
@@ -319,20 +320,6 @@ class MenuSection(AbjadObject):
         return self._is_ranged
 
     @property
-    def is_hidden(self):
-        r'''Is true when menu section is hidden. 
-        Otherwise false:
-
-        ::
-
-            >>> section.is_hidden
-            False
-
-        Returns boolean.
-        '''
-        return self._is_hidden
-
-    @property
     def menu_entries(self):
         r'''Menu section menu entries.
 
@@ -347,16 +334,6 @@ class MenuSection(AbjadObject):
         Returns list.
         '''
         return self._menu_entries
-#        def fset(self, menu_entries):
-#            if menu_entries is None:
-#                self._menu_entries = []
-#            elif isinstance(menu_entries, list):
-#                self._menu_entries = []
-#                for menu_entry in menu_entries:
-#                    self.append(menu_entry)
-#            else:
-#                raise TypeError(menu_entries)
-#        return property(**locals())
 
     @property
     def name(self):

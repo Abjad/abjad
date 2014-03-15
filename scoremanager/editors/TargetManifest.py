@@ -67,18 +67,18 @@ class TargetManifest(AbjadObject):
         if attribute_detail:
             return attribute_detail._space_delimited_lowercase_name
 
-    def _to_retrievable_attribute_name(
-        self, initializer_argument_name):
-        for attribute_detail in self.attribute_details:
-            if attribute_detail.name == initializer_argument_name:
-                return attribute_detail.retrievable_name
-        raise ValueError
-
     def _to_initializer_argument_names(
         self, retrievable_attribute_name):
         for attribute_detail in self.attribute_details:
             if attribute_detail.retrievable_name == retrievable_attribute_name:
                 return attribute_detail.name
+        raise ValueError
+
+    def _to_retrievable_attribute_name(
+        self, initializer_argument_name):
+        for attribute_detail in self.attribute_details:
+            if attribute_detail.name == initializer_argument_name:
+                return attribute_detail.retrievable_name
         raise ValueError
 
     ### PUBLIC PROPERTIES ###

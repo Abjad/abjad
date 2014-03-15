@@ -516,22 +516,6 @@ class MaterialManager(PackageManager):
             output_material), repr(output_material)
         return output_material
 
-    def _make_output_material_module_menu_section(
-        self,
-        menu,
-        ):
-        if not os.path.isfile(self._initializer_file_path):
-            return
-        section = menu.make_command_section(name='output material module')
-        string = 'output material module - boilerplate'
-        section.append((string, 'ommbp'))
-        if self._should_have_output_material_section():
-            if self._can_make_output_material():
-                section.append(('output material module - make', 'ommm'))
-            if os.path.isfile(self._output_material_module_path):
-                section.append(('output material module - remove', 'ommmrm'))
-                section.append(('output material module - view', 'ommv'))
-
     def _make_output_material_menu_section(self, menu):
         section = menu.make_command_section(name='output material')
         if self._should_have_output_material_section():
@@ -561,6 +545,22 @@ class MaterialManager(PackageManager):
         lines[0] = '{} = {}'.format(self._material_package_name, lines[0])
         lines = [line + '\n' for line in lines]
         return lines
+
+    def _make_output_material_module_menu_section(
+        self,
+        menu,
+        ):
+        if not os.path.isfile(self._initializer_file_path):
+            return
+        section = menu.make_command_section(name='output material module')
+        string = 'output material module - boilerplate'
+        section.append((string, 'ommbp'))
+        if self._should_have_output_material_section():
+            if self._can_make_output_material():
+                section.append(('output material module - make', 'ommm'))
+            if os.path.isfile(self._output_material_module_path):
+                section.append(('output material module - remove', 'ommmrm'))
+                section.append(('output material module - view', 'ommv'))
 
     def _make_stylesheet_menu_section(
         self,
