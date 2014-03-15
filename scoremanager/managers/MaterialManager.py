@@ -45,7 +45,7 @@ class MaterialManager(PackageManager):
             )
         self._generic_output_name = None
         self._generic_class_name = 'material manager'
-        self._output_material_module_import_statements = []
+        self.output_material_module_import_statements = []
         self._should_have_user_input_module = False
         self._stylesheet_file_path_in_memory = None
         self._user_input_wrapper_in_memory = None
@@ -127,7 +127,7 @@ class MaterialManager(PackageManager):
         if not self._should_have_material_definition_module:
             return
         return_attribute_name = [
-            '_output_material_module_import_statements',
+            'output_material_module_import_statements',
             self._material_package_name,
             ]
         result = self._material_definition_module_manager._execute(
@@ -141,10 +141,10 @@ class MaterialManager(PackageManager):
         if self._should_have_material_definition_module:
             pair = \
                 self._output_material_module_import_statements_and_material_definition
-            _output_material_module_import_statements, output_material = pair
+            output_material_module_import_statements, output_material = pair
         elif self._read_material_manager_class_name():
-            _output_material_module_import_statements = \
-                self._output_material_module_import_statements
+            output_material_module_import_statements = \
+                self.output_material_module_import_statements
             output_material = \
                 self._make_output_material_from_user_input_wrapper_in_memory()
         else:
@@ -162,7 +162,7 @@ class MaterialManager(PackageManager):
                 )
             output_material_module_body_lines = [line]
         return (
-            _output_material_module_import_statements,
+            output_material_module_import_statements,
             output_material_module_body_lines,
             )
 
@@ -736,8 +736,8 @@ class MaterialManager(PackageManager):
         output_material_handler._run()
         if self._session._backtrack():
             return
-        _output_material_module_import_statements = \
-            self._output_material_module_import_statements
+        output_material_module_import_statements = \
+            self.output_material_module_import_statements
         if hasattr(self, '_make_output_material_module_body_lines'):
             output_material_module_body_lines = \
                 self._make_output_material_module_body_lines(
@@ -752,8 +752,8 @@ class MaterialManager(PackageManager):
                 )
             output_material_module_body_lines = [line]
         self.write_output_material(
-            _output_material_module_import_statements=\
-                _output_material_module_import_statements,
+            output_material_module_import_statements=\
+                output_material_module_import_statements,
             output_material_module_body_lines=\
                 output_material_module_body_lines,
             )
@@ -1069,7 +1069,7 @@ class MaterialManager(PackageManager):
         lines = []
         lines.append('# -*- encoding: utf-8 -*-\n')
         lines.append('from abjad import *\n')
-        lines.append('_output_material_module_import_statements = []')
+        lines.append('output_material_module_import_statements = []')
         lines.append('\n\n\n')
         line = '{} = None'.format(self._material_package_name)
         lines.append(line)
@@ -1080,7 +1080,7 @@ class MaterialManager(PackageManager):
 
     def write_output_material(
         self,
-        _output_material_module_import_statements=None,
+        output_material_module_import_statements=None,
         output_material_module_body_lines=None,
         prompt=True,
         ):
@@ -1095,18 +1095,18 @@ class MaterialManager(PackageManager):
             return
         lines = []
         lines.append('# -*- encoding: utf-8 -*-\n')
-        if _output_material_module_import_statements is None or \
+        if output_material_module_import_statements is None or \
             output_material_module_body_lines is None:
             pair = self._output_material_module_import_statements_and_output_material_module_body_lines
-            _output_material_module_import_statements = pair[0]
+            output_material_module_import_statements = pair[0]
             output_material_module_body_lines = pair[1]
-        if _output_material_module_import_statements is None:
-            _output_material_module_import_statements = []
-        _output_material_module_import_statements = [
+        if output_material_module_import_statements is None:
+            output_material_module_import_statements = []
+        output_material_module_import_statements = [
             x + '\n'
-            for x in _output_material_module_import_statements
+            for x in output_material_module_import_statements
             ]
-        lines.extend(_output_material_module_import_statements)
+        lines.extend(output_material_module_import_statements)
         lines.extend(['\n', '\n'])
         lines.extend(output_material_module_body_lines)
         lines = ''.join(lines)
