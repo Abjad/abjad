@@ -524,10 +524,7 @@ class MaterialManager(PackageManager):
         lines = [line + '\n' for line in lines]
         return lines
 
-    def _make_output_module_menu_section(
-        self,
-        menu,
-        ):
+    def _make_output_module_menu_section(self, menu):
         if not os.path.isfile(self._initializer_file_path):
             return
         section = menu.make_command_section(name='output module')
@@ -540,21 +537,13 @@ class MaterialManager(PackageManager):
                 section.append(('output module - remove', 'omrm'))
                 section.append(('output module - view', 'omv'))
 
-    def _make_stylesheet_menu_section(
-        self,
-        menu,
-        ):
-        name = 'stylesheets'
-        section = menu.make_command_section(name=name)
+    def _make_stylesheet_menu_section(self, menu):
         if os.path.isfile(self._output_module_path):
-            section = menu.make_command_section(name=name)
+            section = menu.make_command_section(name='stylesheets')
             section.append(('stylesheet - edit', 'sse'))
             section.append(('stylesheet - select', 'sss'))
 
-    def _make_user_input_module_menu_section(
-        self,
-        menu, 
-        ):
+    def _make_user_input_module_menu_section(self, menu):
         menu_entries = self._user_input_wrapper_in_memory.editable_lines
         numbered_section = menu.make_numbered_section(name='material summary')
         for menu_entry in menu_entries:
