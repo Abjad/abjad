@@ -732,10 +732,8 @@ class MaterialManager(PackageManager):
                 )
             output_module_body_lines = [line]
         self.write_output_material(
-            output_module_import_statements=\
-                output_module_import_statements,
-            output_module_body_lines=\
-                output_module_body_lines,
+            import_statements=output_module_import_statements,
+            body_lines=output_module_body_lines,
             )
 
     def edit_stylesheet(self, prompt=True):
@@ -1060,8 +1058,8 @@ class MaterialManager(PackageManager):
 
     def write_output_material(
         self,
-        output_module_import_statements=None,
-        output_module_body_lines=None,
+        import_statements=None,
+        body_lines=None,
         prompt=True,
         ):
         r'''Writes output material.
@@ -1075,20 +1073,16 @@ class MaterialManager(PackageManager):
             return
         lines = []
         lines.append('# -*- encoding: utf-8 -*-\n')
-        if output_module_import_statements is None or \
-            output_module_body_lines is None:
+        if import_statements is None or body_lines is None:
             pair = self._make_output_module_import_statements_and_body_string()
-            output_module_import_statements = pair[0]
+            import_statements = pair[0]
             output_module_body_string = pair[1]
-            output_module_body_lines = [output_module_body_string]
-        output_module_import_statements = output_module_import_statements or []
-        output_module_import_statements = [
-            x + '\n'
-            for x in output_module_import_statements
-            ]
-        lines.extend(output_module_import_statements)
+            body_lines = [output_module_body_string]
+        import_statements = import_statements or []
+        import_statements = [x + '\n' for x in import_statements]
+        lines.extend(import_statements)
         lines.extend(['\n', '\n'])
-        lines.extend(output_module_body_lines)
+        lines.extend(body_lines)
         lines = ''.join(lines)
         manager = self._output_module_manager
         with file(manager._path, 'w') as file_pointer:
