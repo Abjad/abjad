@@ -300,7 +300,7 @@ class Wrangler(Controller):
         if self._views_module_path is None:
             return
         result = self._views_module_manager._execute(
-            return_attribute_names=('view_inventory',),
+            attribute_names=('view_inventory',),
             )
         assert len(result) == 1
         view_inventory = result[0]

@@ -40,8 +40,8 @@ class FileManager(Manager):
 
     ### PRIVATE METHODS ###
 
-    def _execute(self, path=None, return_attribute_names=None):
-        assert isinstance(return_attribute_names, tuple)
+    def _execute(self, path=None, attribute_names=None):
+        assert isinstance(attribute_names, tuple)
         path = path or self._path
         if not os.path.isfile(path):
             return
@@ -54,7 +54,7 @@ class FileManager(Manager):
             traceback.print_exc()
             return
         result = []
-        for name in return_attribute_names:
+        for name in attribute_names:
             if name in locals():
                 result.append(locals()[name])
             else:

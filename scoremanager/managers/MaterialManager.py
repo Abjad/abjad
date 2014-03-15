@@ -255,9 +255,9 @@ class MaterialManager(PackageManager):
         self._write_user_input_wrapper(wrapper)
 
     def _execute_output_material_module(self):
-        return_attribute_names = (self._material_package_name,)
+        attribute_names = (self._material_package_name,)
         result = self._output_material_module_manager._execute(
-            return_attribute_names=return_attribute_names,
+            attribute_names=attribute_names,
             )
         if result:
             assert len(result) == 1
@@ -268,22 +268,11 @@ class MaterialManager(PackageManager):
     def _get_output_material_editor(target=None, session=None):
         return
 
-    def _get_output_material_module_import_statements_and_material_definition(
-        self):
-        return_attribute_names = (
-            'output_material_module_import_statements',
-            self._material_package_name,
-            )
-        result = self._definition_module_manager._execute(
-            return_attribute_names=return_attribute_names,
-            )
-        return result
-
     def _get_output_material_module_import_statements_and_output_material_module_body_lines(
         self):
         if os.path.isfile(self._definition_module_path):
             pair = \
-                self._get_output_material_module_import_statements_and_material_definition()
+                self._retrieve_import_statements_and_material()
             output_material_module_import_statements, output_material = pair
         elif self._read_material_manager_class_name():
             output_material_module_import_statements = \
@@ -377,7 +366,7 @@ class MaterialManager(PackageManager):
         if not os.path.isfile(self._definition_module_path):
             return
         result = self._definition_module_manager._execute(
-            return_attribute_names=(self._material_package_name,),
+            attribute_names=(self._material_package_name,),
             )
         if result:
             assert len(result) == 1
@@ -592,7 +581,7 @@ class MaterialManager(PackageManager):
     def _read_user_input_wrapper_from_disk(self):
         result = self._user_input_module_manager._execute(
             path=self._user_input_module_path,
-            return_attribute_names=('user_input_wrapper',),
+            attribute_names=('user_input_wrapper',),
             )
         assert len(result) == 1
         result = result[0]
@@ -607,6 +596,16 @@ class MaterialManager(PackageManager):
                 new_file_lines.append(line)
         with file(file_path, 'w') as file_pointer:
             file_pointer.write(''.join(new_file_lines))
+
+    def _retrieve_import_statements_and_material(self):
+        attribute_names = (
+            'output_material_module_import_statements',
+            self._material_package_name,
+            )
+        result = self._definition_module_manager._execute(
+            attribute_names=attribute_names,
+            )
+        return result
 
     def _run_first_time(self):
         self._run(pending_user_input='omi')

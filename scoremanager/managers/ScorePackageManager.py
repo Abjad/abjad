@@ -271,7 +271,7 @@ class ScorePackageManager(PackageManager):
             session=self._session,
             )
         result = manager._execute(
-            return_attribute_names=('instrumentation',),
+            attribute_names=('instrumentation',),
             )
         assert len(result) == 1
         instrumentation = result[0]
