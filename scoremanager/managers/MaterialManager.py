@@ -266,28 +266,6 @@ class MaterialManager(PackageManager):
     def _get_output_material_editor(target=None, session=None):
         return
 
-    def _get_output_module_import_statements_and_body_lines(self):
-        if os.path.isfile(self._definition_module_path):
-            result = self._retrieve_import_statements_and_output_material()
-            output_module_import_statements, output_material = result
-        else:
-            output_module_import_statements = \
-                self._output_module_import_statements
-            output_material = \
-                self._make_output_material_from_user_input_wrapper_in_memory()
-        line = '{} = {}'
-        output_material_storage_format = \
-            self._get_storage_format(output_material)
-        line = line.format(
-            self._material_package_name,
-            output_material_storage_format,
-            )
-        body_lines = [line]
-        return (
-            output_module_import_statements,
-            body_lines,
-            )
-
     def _get_storage_format(self, expr):
         if hasattr(expr, '_make_storage_format_with_overrides'):
             return expr._make_storage_format_with_overrides()
@@ -360,6 +338,24 @@ class MaterialManager(PackageManager):
             assert len(result) == 1
             result = result[0]
             return result
+
+    def _make_output_module_import_statements_and_body_string(self):
+        if os.path.isfile(self._definition_module_path):
+            result = self._retrieve_import_statements_and_output_material()
+            import_statements, output_material = result
+        else:
+            assert self._user_input_wrapper_in_memory
+            import_statements = self._output_module_import_statements
+            output_material = \
+                self._make_output_material_from_user_input_wrapper_in_memory()
+        body_string = '{} = {}'
+        output_material_name = self._material_package_name
+        output_material = self._get_storage_format(output_material)
+        body_string = body_string.format(
+            output_material_name,
+            output_material,
+            )
+        return (import_statements, body_string)
 
     def _make_illustration_builder_menu_section(
         self,
@@ -1081,11 +1077,11 @@ class MaterialManager(PackageManager):
         lines.append('# -*- encoding: utf-8 -*-\n')
         if output_module_import_statements is None or \
             output_module_body_lines is None:
-            pair = self._get_output_module_import_statements_and_body_lines()
+            pair = self._make_output_module_import_statements_and_body_string()
             output_module_import_statements = pair[0]
-            output_module_body_lines = pair[1]
-        if output_module_import_statements is None:
-            output_module_import_statements = []
+            output_module_body_string = pair[1]
+            output_module_body_lines = [output_module_body_string]
+        output_module_import_statements = output_module_import_statements or []
         output_module_import_statements = [
             x + '\n'
             for x in output_module_import_statements
