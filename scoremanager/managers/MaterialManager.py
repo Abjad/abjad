@@ -124,7 +124,7 @@ class MaterialManager(PackageManager):
     @property
     def _output_material_module_import_statements_and_material_definition(
         self):
-        if not self._should_have_definition_module:
+        if not os.path.isfile(self._definition_module_path):
             return
         return_attribute_name = [
             'output_material_module_import_statements',
@@ -146,10 +146,6 @@ class MaterialManager(PackageManager):
     @property
     def _output_material_module_path(self):
         return os.path.join(self._path, 'output_material.py')
-
-    @property
-    def _should_have_definition_module(self):
-        return self._read_material_manager_class_name() is None
 
     @property
     def _stylesheet_manager(self):
@@ -288,7 +284,7 @@ class MaterialManager(PackageManager):
 
     def _get_output_material_module_import_statements_and_output_material_module_body_lines(
         self):
-        if self._should_have_definition_module:
+        if os.path.isfile(self._definition_module_path):
             pair = \
                 self._output_material_module_import_statements_and_material_definition
             output_material_module_import_statements, output_material = pair
