@@ -423,7 +423,8 @@ class MaterialManager(PackageManager):
         self._make_metadata_menu_section(menu)
         self._make_metadata_module_menu_section(menu)
         self._make_illustration_ly_menu_section(menu)
-        self._make_output_material_menu_section(menu)
+        self._make_material_menu_section(menu)
+        self._make_material_summary_menu_section(menu)
         self._make_output_module_menu_section(menu)
         self._make_illustration_pdf_menu_section(menu)
         self._make_directory_menu_section(menu)
@@ -445,7 +446,7 @@ class MaterialManager(PackageManager):
         editor = self._get_output_material_editor(session=self._session)
         if not editor:
             self._make_user_input_module_menu_section(menu)
-        self._make_output_material_menu_section(menu)
+        self._make_material_menu_section(menu)
 
     def _make_material_definition_menu_section(
         self,
@@ -481,25 +482,37 @@ class MaterialManager(PackageManager):
             output_material), repr(output_material)
         return output_material
 
-    def _make_output_material_menu_section(self, menu):
+    def _make_material_menu_section(self, menu):
+        if not self._should_have_output_material_section():
+            return
+        editor = self._get_output_material_editor(session=self._session)
+        if not editor:
+            return
         section = menu.make_command_section(name='material')
-        if self._should_have_output_material_section():
-            editor = self._get_output_material_editor(session=self._session)
-            if editor:
-                section.append(('material - edit', 'me'))
-                # TODO: encapsulate the following in an independent section
-                if os.path.isfile(self._output_module_path):
-                    output_material = self._execute_output_module()
-                    editor = self._get_output_material_editor(
-                        target=output_material,
-                        session=self._session,
-                        )
-                    _target_summary_lines = editor._target_summary_lines
-                    if _target_summary_lines:
-                        contents_section = menu.make_attribute_section(
-                            name='material summary',
-                            title=_target_summary_lines,
-                            )
+        section.append(('material - edit', 'me'))
+        return section
+
+    def _make_material_summary_menu_section(self, menu):
+        if not self._should_have_output_material_section():
+            return
+        editor = self._get_output_material_editor(session=self._session)
+        if not editor:
+            return
+        if not os.path.isfile(self._output_module_path):
+            return
+        output_material = self._execute_output_module()
+        editor = self._get_output_material_editor(
+            target=output_material,
+            session=self._session,
+            )
+        target_summary_lines = editor._target_summary_lines
+        if not target_summary_lines:
+            return
+        section = menu.make_attribute_section(
+            name='material summary',
+            title=target_summary_lines,
+            )
+        return section
 
     def _make_output_module_body_lines(self, output_material):
         if hasattr(output_material, '_storage_format_specification'):
