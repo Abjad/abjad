@@ -271,11 +271,14 @@ class MaterialManager(PackageManager):
     def _execute_output_material_module(self):
         output_material = None
         try:
-            output_material = self._output_material_module_manager._execute(
-                return_attribute_names=self._material_package_name,
+            result = self._output_material_module_manager._execute(
+                return_attribute_names=(self._material_package_name,),
                 )
         except:
             traceback.print_exc()
+        if result:
+            assert len(result) == 1
+            output_material = result[0]
         return output_material
 
     @staticmethod
@@ -380,9 +383,12 @@ class MaterialManager(PackageManager):
         if not os.path.isfile(self._definition_module_path):
             return
         result = self._definition_module_manager._execute(
-            return_attribute_names=self._material_package_name,
+            return_attribute_names=(self._material_package_name,),
             )
-        return result
+        if result:
+            assert len(result) == 1
+            result = result[0]
+            return result
 
     def _make_illustration_builder_menu_section(
         self,
@@ -592,8 +598,10 @@ class MaterialManager(PackageManager):
     def _read_user_input_wrapper_from_disk(self):
         result = self._user_input_module_manager._execute(
             file_path=self._user_input_module_path,
-            return_attribute_names='user_input_wrapper',
+            return_attribute_names=('user_input_wrapper',),
             )
+        assert len(result) == 1
+        result = result[0]
         return result
 
     @staticmethod

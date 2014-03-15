@@ -40,27 +40,25 @@ class FileManager(Manager):
     ### PRIVATE METHODS ###
 
     def _execute(self, file_path=None, return_attribute_names=None):
+        assert isinstance(return_attribute_names, tuple)
         file_path = file_path or self._path
-        if os.path.isfile(file_path):
-            file_pointer = open(file_path, 'r')
-            file_contents_string = file_pointer.read()
-            file_pointer.close()
-            try:
-                exec(file_contents_string)
-            except Exception:
-                return
-            if isinstance(return_attribute_names, str):
-                if return_attribute_names in locals():
-                    return locals()[return_attribute_names]
-            elif isinstance(return_attribute_names, (list, tuple)):
-                result = []
-                for name in return_attribute_names:
-                    if name in locals():
-                        result.append(locals()[name])
-                    else:
-                        result.append(None)
-                result = tuple(result)
-                return result
+        if not os.path.isfile(file_path):
+            return
+        file_pointer = open(file_path, 'r')
+        file_contents_string = file_pointer.read()
+        file_pointer.close()
+        try:
+            exec(file_contents_string)
+        except Exception:
+            return
+        result = []
+        for name in return_attribute_names:
+            if name in locals():
+                result.append(locals()[name])
+            else:
+                result.append(None)
+        result = tuple(result)
+        return result
 
     def _get_space_delimited_lowercase_name(self):
         if self._path:
