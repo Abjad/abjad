@@ -483,8 +483,6 @@ class MaterialManager(PackageManager):
         return output_material
 
     def _make_material_menu_section(self, menu):
-        if not self._should_have_output_material_section():
-            return
         editor = self._get_output_material_editor(session=self._session)
         if not editor:
             return
