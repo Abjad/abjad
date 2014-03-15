@@ -158,6 +158,11 @@ class MaterialManager(PackageManager):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
+            'dmbp': self.write_definition_module_boilerplate,
+            'dme': self.edit_definition_module,
+            'dmrm': self.remove_definition_module,
+            'dms': self.write_definition_module_stub,
+            'dmi': self.interpret_definition_module,
             'ime': self.edit_illustration_builder_module,
             'imei': self.edit_and_interpret_illustration_builder_module,
             'ibm': self.write_illustration_builder_module_stub,
@@ -167,14 +172,10 @@ class MaterialManager(PackageManager):
             'lym': self.write_illustration_ly,
             'lyrm': self.remove_illustration_ly,
             'lyv': self.view_illustration_ly,
-            'dmbp': self.write_definition_module_boilerplate,
-            'dme': self.edit_definition_module,
-            'dmrm': self.remove_definition_module,
-            'dms': self.write_definition_module_stub,
-            'dmi': self.interpret_definition_module,
+            'mi': self.illustrate_material,
+            'me': self.edit_output_material,
             'ombp': self.write_output_module_boilerplate,
             'omw': self.write_output_material,
-            'me': self.edit_output_material,
             'omrm': self.remove_output_module,
             'omv': self.view_output_module,
             'pdfm': self.write_illustration_ly_and_pdf,
@@ -483,11 +484,11 @@ class MaterialManager(PackageManager):
         return output_material
 
     def _make_material_menu_section(self, menu):
-        editor = self._get_output_material_editor(session=self._session)
-        if not editor:
-            return
         section = menu.make_command_section(name='material')
-        section.append(('material - edit', 'me'))
+        editor = self._get_output_material_editor(session=self._session)
+        if editor:
+            section.append(('material - edit', 'me'))
+        section.append(('material - illustrate', 'mi'))
         return section
 
     def _make_material_summary_menu_section(self, menu):
@@ -743,6 +744,15 @@ class MaterialManager(PackageManager):
         elif prompt:
             message = 'select stylesheet first.'
             self._io_manager.proceed(message)
+
+    def illustrate_material(self, prompt=True):
+        r'''Illustrates material.
+
+        Creates illustration.pdf and illustration.ly files.
+
+        Returns none.
+        '''
+        self._io_manager.print_not_yet_implemented()
 
     def interpret_illustration_builder_module(self):
         r'''Runs Python on illustrate module module.
