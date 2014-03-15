@@ -434,7 +434,7 @@ class ScorePackageManager(PackageManager):
     def _write_instrumentation(self, instrumentation):
         assert instrumentation is not None
         lines = []
-        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append(self._unicode_directive + '\n')
         lines.append('from abjad import *\n')
         lines.append('\n\n')
         line = 'instrumentation={}'
@@ -543,7 +543,7 @@ class ScorePackageManager(PackageManager):
             prompt = 'create {}? '.format(self._metadata_module_path)
             if not prompt or self._io_manager.confirm(prompt):
                 metadata_module = file(self._metadata_module_path, 'w')
-                metadata_module.write('# -*- encoding: utf-8 -*-\n')
+                metadata_module.write(self._unicode_directive + '\n')
                 metadata_module.write('from abjad import *\n')
                 metadata_module.write('import collections\n')
                 metadata_module.write('\n')

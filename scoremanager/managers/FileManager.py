@@ -147,7 +147,7 @@ class FileManager(Manager):
             return True
 
     def _write_stub(self):
-        self._write('# -*- encoding: utf-8 -*-')
+        self._write(self._unicode_directive)
 
     ### PUBLIC METHODS ###
 

@@ -620,7 +620,7 @@ class MaterialManager(PackageManager):
 
     def _write_user_input_wrapper(self, wrapper):
         lines = []
-        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append(self._unicode_directive + '\n')
         lines.append('from abjad import *\n')
         import_statements = wrapper.user_input_module_import_statements[:]
         import_statements = \
@@ -1045,7 +1045,7 @@ class MaterialManager(PackageManager):
         Returns none.
         '''
         lines = []
-        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append(self._unicode_directive + '\n')
         lines.append('from abjad import *\n')
         lines.append('output_module_import_statements = []')
         lines.append('\n\n\n')
@@ -1080,7 +1080,7 @@ class MaterialManager(PackageManager):
             shutil.copy(source_path, target_path)
             return
         lines = []
-        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append(self._unicode_directive + '\n')
         if body_lines is None:
             pair = self._make_output_module_import_statements_and_body_string()
             import_statements = pair[0]

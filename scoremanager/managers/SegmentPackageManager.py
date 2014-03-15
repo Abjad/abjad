@@ -470,7 +470,7 @@ class SegmentPackageManager(PackageManager):
         '''
         if not os.path.exists(self.segment_definition_module_path):
             file_pointer = file(self.segment_definition_module_path, 'w')
-            file_pointer.write('# -*- encoding: utf-8 -*-\n')
+            file_pointer.write(self._unicode_directive + '\n')
             file_pointer.write('from abjad import *\n')
             file_pointer.write('\n\n')
             file_pointer.close()

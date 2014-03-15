@@ -170,7 +170,7 @@ class PackageManager(DirectoryManager):
 
     def _write_metadata(self, metadata):
         lines = []
-        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append(self._unicode_directive + '\n')
         lines.append('import collections\n')
         lines.append('\n\n')
         metadata_lines = self._make_metadata_lines(metadata) 

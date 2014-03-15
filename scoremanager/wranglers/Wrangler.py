@@ -731,7 +731,7 @@ class Wrangler(Controller):
                 )
         view_inventory[view_name] = new_view
         lines = []
-        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append(self._unicode_directive + '\n')
         lines.append('from abjad import *\n')
         line = 'from scoremanager import iotools\n'
         lines.append(line)
