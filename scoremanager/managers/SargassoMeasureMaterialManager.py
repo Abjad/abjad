@@ -19,7 +19,6 @@ class SargassoMeasureMaterialManager(MaterialManager):
         self.output_module_import_statements = [
             'from abjad import *',
             ]
-        self._should_have_user_input_module = True
         wrapper = self._initialize_user_input_wrapper_in_memory()
 
     ### SPECIAL METHODS ###

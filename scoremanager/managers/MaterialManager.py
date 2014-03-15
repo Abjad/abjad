@@ -46,7 +46,6 @@ class MaterialManager(PackageManager):
         self._generic_output_name = None
         self._generic_class_name = 'material manager'
         self.output_module_import_statements = []
-        self._should_have_user_input_module = False
         self._stylesheet_file_path_in_memory = None
         self._user_input_wrapper_in_memory = None
 
@@ -151,8 +150,7 @@ class MaterialManager(PackageManager):
 
     @property
     def _user_input_module_path(self):
-        if self._should_have_user_input_module:
-            return os.path.join(self._path, 'user_input.py')
+        return os.path.join(self._path, 'user_input.py')
 
     @property
     def _user_input_to_action(self):
@@ -277,7 +275,7 @@ class MaterialManager(PackageManager):
                 self.output_module_import_statements
             output_material = \
                 self._make_output_material_from_user_input_wrapper_in_memory()
-        if self._should_have_user_input_module:
+        if self._user_input_wrapper_in_memory:
             output_module_body_lines = \
                 self._make_output_module_body_lines(output_material)
         else:
@@ -346,8 +344,6 @@ class MaterialManager(PackageManager):
 
     def _initialize_user_input_wrapper_in_memory(self):
         from scoremanager import managers
-        if not self._should_have_user_input_module:
-            return
         user_input_module_path = self._user_input_module_path
         if os.path.exists(self._user_input_module_path):
             user_input_wrapper = self._read_user_input_wrapper_from_disk()
@@ -443,7 +439,7 @@ class MaterialManager(PackageManager):
         self._make_illustration_pdf_menu_section(menu)
         self._make_directory_menu_section(menu)
         self._make_stylesheet_menu_section(menu)
-        if self._should_have_user_input_module:
+        if self._user_input_wrapper_in_memory:
             editor = self._get_output_material_editor(session=self._session)
             if not editor:
                 self._make_user_input_module_menu_section(menu)

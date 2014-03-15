@@ -234,17 +234,15 @@ class MaterialPackageWrangler(PackageWrangler):
         string = 'material_manager_class_name'
         material_manager_class_name = metadata.get(string)
         pair = (material_manager_class_name, path)
-        material_manager = self._get_appropriate_material_manager(
-            *pair)
+        material_manager = self._get_appropriate_material_manager(*pair)
         material_manager._initializer_file_manager._write_stub()
         material_manager.rewrite_metadata_module(
             metadata, 
             prompt=False,
             )
         if not material_manager._read_material_manager_class_name():
-            material_manager._write_definition_module_stub(
-                prompt=False)
-        if material_manager._should_have_user_input_module:
+            material_manager._write_definition_module_stub(prompt=False)
+        if material_manager._user_input_wrapper_in_memory:
             material_manager._write_user_input_module_stub()
         message = 'material package created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
