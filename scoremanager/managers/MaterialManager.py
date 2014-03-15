@@ -172,11 +172,11 @@ class MaterialManager(PackageManager):
             'dmrm': self.remove_definition_module,
             'dms': self.write_definition_module_stub,
             'dmi': self.interpret_definition_module,
-            'ommbp': self.write_output_module_boilerplate,
+            'ombp': self.write_output_module_boilerplate,
             'ommm': self.write_output_material,
             'me': self.edit_output_material,
-            'ommmrm': self.remove_output_module,
-            'ommv': self.view_output_module,
+            'omrm': self.remove_output_module,
+            'omv': self.view_output_module,
             'pdfm': self.write_illustration_ly_and_pdf,
             'pdfrm': self.remove_illustration_pdf,
             'pdfv': self.view_illustration_pdf,
@@ -382,19 +382,16 @@ class MaterialManager(PackageManager):
     def _make_illustration_ly_menu_section(self, menu):
         if os.path.isfile(self._output_module_path) or \
             os.path.isfile(self._illustration_ly_file_path):
-            section = menu.make_command_section(name='output ly')
+            section = menu.make_command_section(name='illustration ly')
         if os.path.isfile(self._output_module_path):
             if os.path.isfile(self._illustration_builder_module_path) or \
                 self._read_material_manager_class_name():
-                section.append(('output ly - make', 'lym'))
+                section.append(('illustration ly - make', 'lym'))
         if os.path.isfile(self._illustration_ly_file_path):
-            section.append(('output ly - remove', 'lyrm'))
-            section.append(('output ly - view', 'lyv'))
+            section.append(('illustration ly - remove', 'lyrm'))
+            section.append(('illustration ly - view', 'lyv'))
 
-    def _make_illustration_pdf_menu_section(
-        self,
-        menu,
-        ):
+    def _make_illustration_pdf_menu_section(self, menu):
         name = 'illustration pdf'
         has_illustration_pdf_section = False
         if os.path.isfile(self._output_module_path) or \
@@ -404,13 +401,13 @@ class MaterialManager(PackageManager):
             if os.path.isfile(self._illustration_builder_module_path) or \
                 (self._read_material_manager_class_name() and
                 getattr(self, '__illustrate__', None)):
-                section.append(('output pdf - make', 'pdfm'))
+                section.append(('illustration pdf - make', 'pdfm'))
                 has_illustration_pdf_section = True
         if os.path.isfile(self._illustration_pdf_file_path):
             if not has_illustration_pdf_section:
                 section = menu.make_command_section(name=name)
-            section.append(('output pdf - remove', 'pdfrm'))
-            section.append(('output pdf - view', 'pdfv'))
+            section.append(('illustration pdf - remove', 'pdfrm'))
+            section.append(('illustration pdf - view', 'pdfv'))
 
     def _make_main_menu(self):
         superclass = super(MaterialManager, self)
@@ -485,7 +482,7 @@ class MaterialManager(PackageManager):
         return output_material
 
     def _make_output_material_menu_section(self, menu):
-        section = menu.make_command_section(name='output material')
+        section = menu.make_command_section(name='material')
         if self._should_have_output_material_section():
             editor = self._get_output_material_editor(session=self._session)
             if editor:
@@ -520,15 +517,15 @@ class MaterialManager(PackageManager):
         ):
         if not os.path.isfile(self._initializer_file_path):
             return
-        section = menu.make_command_section(name='output material module')
-        string = 'output material module - boilerplate'
-        section.append((string, 'ommbp'))
+        section = menu.make_command_section(name='output module')
+        string = 'output module - boilerplate'
+        section.append((string, 'ombp'))
         if self._should_have_output_material_section():
             if self._can_make_output_material():
-                section.append(('output material module - make', 'ommm'))
+                section.append(('output module - make', 'ommm'))
             if os.path.isfile(self._output_module_path):
-                section.append(('output material module - remove', 'ommmrm'))
-                section.append(('output material module - view', 'ommv'))
+                section.append(('output module - remove', 'omrm'))
+                section.append(('output module - view', 'omv'))
 
     def _make_stylesheet_menu_section(
         self,
@@ -837,7 +834,7 @@ class MaterialManager(PackageManager):
         self._definition_module_manager.remove(prompt=prompt)
 
     def remove_output_module(self, prompt=True):
-        r'''Removes output material module.
+        r'''Removes output module.
 
         Returns none.
         '''
@@ -956,7 +953,7 @@ class MaterialManager(PackageManager):
         self._illustration_pdf_file_manager.view()
 
     def view_output_module(self):
-        r'''Views output material module.
+        r'''Views output module.
 
         Returns none.
         '''
@@ -1101,7 +1098,7 @@ class MaterialManager(PackageManager):
         self._io_manager.proceed(message, prompt=prompt)
 
     def write_output_module_boilerplate(self):
-        r'''Writes output material module boilerplate.
+        r'''Writes output module boilerplate.
 
         Returns none.
         '''

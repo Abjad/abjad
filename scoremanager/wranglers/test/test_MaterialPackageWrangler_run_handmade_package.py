@@ -240,7 +240,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
         ]
     input_ = 'lmm nmh testnotes'
     input_ += ' testnotes dmbp boilerplate_testnotes_material_definition.py'
-    input_ += ' default ommm default ommmrm remove q' 
+    input_ += ' default ommm default omrm remove q' 
 
     assert not os.path.exists(path)
     try:
@@ -318,7 +318,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
         ]
     input_ = 'lmm nmh testnotes default default testnotes dmbp'
     input_ += ' boilerplate_testnotes_material_definition.py default '
-    input_ += 'ommm default ommbp boilerplate_exception.py default q'
+    input_ += 'ommm default ombp boilerplate_exception.py default q'
 
     assert not os.path.exists(path)
     try:
