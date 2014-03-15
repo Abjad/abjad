@@ -218,11 +218,11 @@ class MaterialManager(PackageManager):
             'lym': self.write_illustration_ly,
             'lyrm': self.remove_illustration_ly,
             'lyv': self.view_illustration_ly,
-            'mdbp': self.write_material_definition_module_boilerplate,
-            'mde': self.edit_material_definition_module,
-            'mdrm': self.remove_material_definition_module,
-            'mds': self.write_material_definition_module_stub,
-            'mdi': self.interpret_material_definition_module,
+            'dmbp': self.write_material_definition_module_boilerplate,
+            'dme': self.edit_material_definition_module,
+            'dmrm': self.remove_material_definition_module,
+            'dms': self.write_material_definition_module_stub,
+            'dmi': self.interpret_material_definition_module,
             'ommbp': self.write_output_material_module_boilerplate,
             'ommm': self.write_output_material,
             'omi': self.edit_output_material,
@@ -495,15 +495,15 @@ class MaterialManager(PackageManager):
                 default_index=1
                 )
             string = 'definition module - boilerplate'
-            section.append((string, 'mdbp'))
-            section.append(('definition module - edit', 'mde'))
-            section.append(('definition module - interpret', 'mdi'))
+            section.append((string, 'dmbp'))
+            section.append(('definition module - edit', 'dme'))
+            section.append(('definition module - interpret', 'dmi'))
             string = 'definition module - remove'
-            section.append((string, 'mdrm'))
-            section.append(('definition module - stub', 'mds'))
+            section.append((string, 'dmrm'))
+            section.append(('definition module - stub', 'dms'))
         elif self._read_material_manager_class_name() is None:
             section = menu.make_command_section(name=name)
-            section.append(('definition module - stub', 'mds'))
+            section.append(('definition module - stub', 'dms'))
 
     @staticmethod
     def _make_output_material():
