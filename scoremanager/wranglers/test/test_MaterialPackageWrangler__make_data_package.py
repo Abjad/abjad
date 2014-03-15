@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler__make_data_package_01():
         manager = scoremanager.managers.MaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-        assert manager._interpret_material_definition_module() is None
+        assert manager._interpret_definition_module() is None
         output_material = manager._execute_output_material_module()
         assert output_material is None
         manager._remove()

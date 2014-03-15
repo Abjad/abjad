@@ -102,15 +102,15 @@ class MaterialManager(PackageManager):
             )
 
     @property
-    def _material_definition_module_manager(self):
+    def _definition_module_manager(self):
         from scoremanager import managers
         return managers.FileManager(
-            self._material_definition_module_path,
+            self._definition_module_path,
             session=self._session,
             )
 
     @property
-    def _material_definition_module_path(self):
+    def _definition_module_path(self):
         path = os.path.join(
             self._path, 
             'material_definition.py',
@@ -124,47 +124,16 @@ class MaterialManager(PackageManager):
     @property
     def _output_material_module_import_statements_and_material_definition(
         self):
-        if not self._should_have_material_definition_module:
+        if not self._should_have_definition_module:
             return
         return_attribute_name = [
             'output_material_module_import_statements',
             self._material_package_name,
             ]
-        result = self._material_definition_module_manager._execute(
+        result = self._definition_module_manager._execute(
             return_attribute_name=return_attribute_name,
             )
         return result
-
-    @property
-    def _output_material_module_import_statements_and_output_material_module_body_lines(
-        self):
-        if self._should_have_material_definition_module:
-            pair = \
-                self._output_material_module_import_statements_and_material_definition
-            output_material_module_import_statements, output_material = pair
-        elif self._read_material_manager_class_name():
-            output_material_module_import_statements = \
-                self.output_material_module_import_statements
-            output_material = \
-                self._make_output_material_from_user_input_wrapper_in_memory()
-        else:
-            raise ValueError
-        if self._should_have_user_input_module:
-            output_material_module_body_lines = \
-                self._make_output_material_module_body_lines(output_material)
-        else:
-            line = '{} = {}'
-            output_material_storage_format = \
-                self._get_storage_format(output_material)
-            line = line.format(
-                self._material_package_name,
-                output_material_storage_format,
-                )
-            output_material_module_body_lines = [line]
-        return (
-            output_material_module_import_statements,
-            output_material_module_body_lines,
-            )
 
     @property
     def _output_material_module_manager(self):
@@ -179,7 +148,7 @@ class MaterialManager(PackageManager):
         return os.path.join(self._path, 'output_material.py')
 
     @property
-    def _should_have_material_definition_module(self):
+    def _should_have_definition_module(self):
         return self._read_material_manager_class_name() is None
 
     @property
@@ -218,11 +187,11 @@ class MaterialManager(PackageManager):
             'lym': self.write_illustration_ly,
             'lyrm': self.remove_illustration_ly,
             'lyv': self.view_illustration_ly,
-            'dmbp': self.write_material_definition_module_boilerplate,
-            'dme': self.edit_material_definition_module,
-            'dmrm': self.remove_material_definition_module,
-            'dms': self.write_material_definition_module_stub,
-            'dmi': self.interpret_material_definition_module,
+            'dmbp': self.write_definition_module_boilerplate,
+            'dme': self.edit_definition_module,
+            'dmrm': self.remove_definition_module,
+            'dms': self.write_definition_module_stub,
+            'dmi': self.interpret_definition_module,
             'ommbp': self.write_output_material_module_boilerplate,
             'ommm': self.write_output_material,
             'omi': self.edit_output_material,
@@ -247,7 +216,7 @@ class MaterialManager(PackageManager):
     ### PRIVATE METHODS ###
 
     def _can_make_output_material(self):
-        if os.path.isfile(self._material_definition_module_path):
+        if os.path.isfile(self._definition_module_path):
             return True
         if bool(self._user_input_wrapper_in_memory) and \
             self._user_input_wrapper_in_memory.is_complete:
@@ -317,6 +286,36 @@ class MaterialManager(PackageManager):
     def _get_output_material_editor(target=None, session=None):
         return
 
+    def _get_output_material_module_import_statements_and_output_material_module_body_lines(
+        self):
+        if self._should_have_definition_module:
+            pair = \
+                self._output_material_module_import_statements_and_material_definition
+            output_material_module_import_statements, output_material = pair
+        elif self._read_material_manager_class_name():
+            output_material_module_import_statements = \
+                self.output_material_module_import_statements
+            output_material = \
+                self._make_output_material_from_user_input_wrapper_in_memory()
+        else:
+            raise ValueError
+        if self._should_have_user_input_module:
+            output_material_module_body_lines = \
+                self._make_output_material_module_body_lines(output_material)
+        else:
+            line = '{} = {}'
+            output_material_storage_format = \
+                self._get_storage_format(output_material)
+            line = line.format(
+                self._material_package_name,
+                output_material_storage_format,
+                )
+            output_material_module_body_lines = [line]
+        return (
+            output_material_module_import_statements,
+            output_material_module_body_lines,
+            )
+
     def _get_storage_format(self, expr):
         if hasattr(expr, '_make_storage_format_with_overrides'):
             return expr._make_storage_format_with_overrides()
@@ -381,10 +380,10 @@ class MaterialManager(PackageManager):
             user_input_wrapper = self._initialize_empty_user_input_wrapper()
         self._user_input_wrapper_in_memory = user_input_wrapper
 
-    def _interpret_material_definition_module(self):
-        if not os.path.isfile(self._material_definition_module_path):
+    def _interpret_definition_module(self):
+        if not os.path.isfile(self._definition_module_path):
             return
-        result = self._material_definition_module_manager._execute(
+        result = self._definition_module_manager._execute(
             return_attribute_name=self._material_package_name,
             )
         return result
@@ -489,7 +488,7 @@ class MaterialManager(PackageManager):
         name = 'definition module'
         if not os.path.isfile(self._initializer_file_path):
             return
-        if os.path.isfile(self._material_definition_module_path):
+        if os.path.isfile(self._definition_module_path):
             section = menu.make_command_section(
                 name=name,
                 default_index=1
@@ -615,7 +614,7 @@ class MaterialManager(PackageManager):
         self._run(pending_user_input='omi')
 
     def _should_have_output_material_section(self):
-        if os.path.isfile(self._material_definition_module_path):
+        if os.path.isfile(self._definition_module_path):
             return True
         if bool(self._user_input_wrapper_in_memory) and \
             self._user_input_wrapper_in_memory.is_complete:
@@ -625,8 +624,8 @@ class MaterialManager(PackageManager):
             return True
         return False
 
-    def _write_material_definition_module_stub(self, prompt=True):
-        self.write_material_definition_module_stub()
+    def _write_definition_module_stub(self, prompt=True):
+        self.write_definition_module_stub()
         message = 'stub material definition written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
 
@@ -700,12 +699,12 @@ class MaterialManager(PackageManager):
         '''
         self._illustration_builder_module_manager.edit()
 
-    def edit_material_definition_module(self):
+    def edit_definition_module(self):
         r'''Edits material definition module.
 
         Returns none.
         '''
-        file_path = self._material_definition_module_path
+        file_path = self._definition_module_path
         self._io_manager.edit(file_path)
 
     def edit_output_material(self):
@@ -776,12 +775,12 @@ class MaterialManager(PackageManager):
         '''
         self._illustration_builder_module_manager._interpret(prompt=True)
 
-    def interpret_material_definition_module(self):
+    def interpret_definition_module(self):
         r'''Runs Python on material definition module.
 
         Returns none.
         '''
-        self._material_definition_module_manager._interpret()
+        self._definition_module_manager._interpret()
 
     def load_user_input_wrapper_demo_values(self, prompt=False):
         r'''Loads user input wrapper demo values.
@@ -851,12 +850,12 @@ class MaterialManager(PackageManager):
         '''
         self._illustration_pdf_file_manager.remove(prompt=prompt)
 
-    def remove_material_definition_module(self, prompt=True):
+    def remove_definition_module(self, prompt=True):
         r'''Removes material definition module.
 
         Returns none.
         '''
-        self._material_definition_module_manager.remove(prompt=prompt)
+        self._definition_module_manager.remove(prompt=prompt)
 
     def remove_output_material_module(self, prompt=True):
         r'''Removes output material module.
@@ -1054,14 +1053,14 @@ class MaterialManager(PackageManager):
             prompt=prompt,
             )
 
-    def write_material_definition_module_boilerplate(self):
+    def write_definition_module_boilerplate(self):
         r'''Writes material definition module boilerplate.
 
         Returns none.
         '''
-        self._material_definition_module_manager.write_boilerplate()
+        self._definition_module_manager.write_boilerplate()
 
-    def write_material_definition_module_stub(self):
+    def write_definition_module_stub(self):
         r'''Writes stub material definition module.
 
         Returns none.
@@ -1074,7 +1073,7 @@ class MaterialManager(PackageManager):
         line = '{} = None'.format(self._material_package_name)
         lines.append(line)
         lines = ''.join(lines)
-        file_pointer = file(self._material_definition_module_path, 'w')
+        file_pointer = file(self._definition_module_path, 'w')
         file_pointer.write(lines)
         file_pointer.close()
 
@@ -1089,7 +1088,7 @@ class MaterialManager(PackageManager):
         Returns none.
         '''
         if self._get_metadatum('is_static'):
-            source_path = self._material_definition_module_path
+            source_path = self._definition_module_path
             target_path = self._output_material_module_path
             shutil.copy(source_path, target_path)
             return
@@ -1097,7 +1096,8 @@ class MaterialManager(PackageManager):
         lines.append('# -*- encoding: utf-8 -*-\n')
         if output_material_module_import_statements is None or \
             output_material_module_body_lines is None:
-            pair = self._output_material_module_import_statements_and_output_material_module_body_lines
+            pair = \
+                self._get_output_material_module_import_statements_and_output_material_module_body_lines()
             output_material_module_import_statements = pair[0]
             output_material_module_body_lines = pair[1]
         if output_material_module_import_statements is None:

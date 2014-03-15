@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_MaterialManager_edit_material_definition_module_01():
+def test_MaterialManager_edit_definition_module_01():
 
     score_manager = scoremanager.core.ScoreManager()
     input_ = 'lmm example~numbers dme q'

@@ -47,7 +47,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_02():
         configuration.user_library_material_packages_directory_path,
         'testnotes',
         )
-    material_definition_module_path = os.path.join(
+    definition_module_path = os.path.join(
         path,
         'material_definition.py',
         )
@@ -66,7 +66,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_02():
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
-        file_pointer = file(material_definition_module_path, 'r')
+        file_pointer = file(definition_module_path, 'r')
         file_lines = file_pointer.readlines()
         file_pointer.close()
         file_contents = ''.join(file_lines)
