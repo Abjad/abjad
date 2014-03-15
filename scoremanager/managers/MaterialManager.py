@@ -486,7 +486,7 @@ class MaterialManager(PackageManager):
         self,
         menu, 
         ):
-        name = 'material definition'
+        name = 'definition module'
         if not os.path.isfile(self._initializer_file_path):
             return
         if os.path.isfile(self._material_definition_module_path):
@@ -494,16 +494,16 @@ class MaterialManager(PackageManager):
                 name=name,
                 default_index=1
                 )
-            string = 'material definition - boilerplate'
+            string = 'definition module - boilerplate'
             section.append((string, 'mdbp'))
-            section.append(('material definition - edit', 'mde'))
-            section.append(('material definition - interpret', 'mdi'))
-            string = 'material definition - remove'
+            section.append(('definition module - edit', 'mde'))
+            section.append(('definition module - interpret', 'mdi'))
+            string = 'definition module - remove'
             section.append((string, 'mdrm'))
-            section.append(('material definition - stub', 'mds'))
+            section.append(('definition module - stub', 'mds'))
         elif self._read_material_manager_class_name() is None:
             section = menu.make_command_section(name=name)
-            section.append(('material definition - stub', 'mds'))
+            section.append(('definition module - stub', 'mds'))
 
     @staticmethod
     def _make_output_material():
