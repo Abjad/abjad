@@ -223,11 +223,11 @@ class MaterialManager(PackageManager):
             'mdrm': self.remove_material_definition_module,
             'mds': self.write_material_definition_module_stub,
             'mdi': self.interpret_material_definition_module,
-            'ombp': self.write_output_material_module_boilerplate,
-            'omm': self.write_output_material,
+            'ommbp': self.write_output_material_module_boilerplate,
+            'ommm': self.write_output_material,
             'omi': self.edit_output_material,
-            'omrm': self.remove_output_material_module,
-            'omv': self.view_output_material_module,
+            'ommmrm': self.remove_output_material_module,
+            'ommv': self.view_output_material_module,
             'pdfm': self.write_illustration_ly_and_pdf,
             'pdfrm': self.remove_illustration_pdf,
             'pdfv': self.view_illustration_pdf,
@@ -524,13 +524,13 @@ class MaterialManager(PackageManager):
             return
         section = menu.make_command_section(name='output material module')
         string = 'output material module - boilerplate'
-        section.append((string, 'ombp'))
+        section.append((string, 'ommbp'))
         if self._should_have_output_material_section():
             if self._can_make_output_material():
-                section.append(('output material module - make', 'omm'))
+                section.append(('output material module - make', 'ommm'))
             if os.path.isfile(self._output_material_module_path):
-                section.append(('output material module - remove', 'omrm'))
-                section.append(('output material module - view', 'omv'))
+                section.append(('output material module - remove', 'ommmrm'))
+                section.append(('output material module - view', 'ommv'))
 
     def _make_output_material_menu_section(self, menu):
         section = menu.make_command_section(name='output material')

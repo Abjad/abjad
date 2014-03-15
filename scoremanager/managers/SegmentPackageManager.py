@@ -65,7 +65,6 @@ class SegmentPackageManager(PackageManager):
             'lyv': self.view_current_output_ly,
             'lyver': self.view_versioned_output_ly,
             'pdfv': self.view_output_pdf,
-            #'pdfm': self.interpret_segment_definition_module,
             'vv': self.view_all_versioned_pdfs,
             'pdfver': self.view_versioned_output_pdf,
             'pyver': self.view_versioned_segment_definition_module,
