@@ -40,12 +40,12 @@ class FileManager(Manager):
 
     ### PRIVATE METHODS ###
 
-    def _execute(self, file_path=None, return_attribute_names=None):
+    def _execute(self, path=None, return_attribute_names=None):
         assert isinstance(return_attribute_names, tuple)
-        file_path = file_path or self._path
-        if not os.path.isfile(file_path):
+        path = path or self._path
+        if not os.path.isfile(path):
             return
-        file_pointer = open(file_path, 'r')
+        file_pointer = open(path, 'r')
         file_contents_string = file_pointer.read()
         file_pointer.close()
         try:
