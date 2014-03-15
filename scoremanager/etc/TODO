@@ -95,3 +95,5 @@
     Maybe 'directory - run (run)'.
 
 27. Add confirmation message to (radd).
+
+28. Remove boilerplate commands. Replace with shutil calls in tests.
