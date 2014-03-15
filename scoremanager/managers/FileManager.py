@@ -129,6 +129,10 @@ class FileManager(Manager):
                 file_pointer.close()
         return result
 
+    def _write(self, string):
+        with file(self._path, 'w') as file_pointer:
+            file_pointer.write(string)
+
     def _write_boilerplate(self, boilerplate_file_abjad_asset_name):
         if not os.path.exists(boilerplate_file_abjad_asset_name):
             boilerplate_file_abjad_asset_name = os.path.join(
@@ -143,9 +147,7 @@ class FileManager(Manager):
             return True
 
     def _write_stub(self):
-        file_pointer = open(self._path, 'w')
-        file_pointer.write('# -*- encoding: utf-8 -*-')
-        file_pointer.close()
+        self._write('# -*- encoding: utf-8 -*-')
 
     ### PUBLIC METHODS ###
 

@@ -1081,7 +1081,7 @@ class MaterialManager(PackageManager):
             return
         lines = []
         lines.append('# -*- encoding: utf-8 -*-\n')
-        if import_statements is None or body_lines is None:
+        if body_lines is None:
             pair = self._make_output_module_import_statements_and_body_string()
             import_statements = pair[0]
             output_module_body_string = pair[1]
@@ -1091,10 +1091,8 @@ class MaterialManager(PackageManager):
         lines.extend(import_statements)
         lines.extend(['\n', '\n'])
         lines.extend(body_lines)
-        lines = ''.join(lines)
-        manager = self._output_module_manager
-        with file(manager._path, 'w') as file_pointer:
-            file_pointer.write(lines)
+        string = ''.join(lines)
+        self._output_module_manager._write(string)
         self._add_metadatum('is_material_package', True)
         if hasattr(self, '_generic_output_name'):
             generic_output_name = self._generic_output_name
