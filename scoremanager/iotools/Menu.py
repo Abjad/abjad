@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+import textwrap
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
@@ -178,7 +179,26 @@ class Menu(ScoreManagerObject):
             message = 'too many lines to lay out in two columns: {!r}.'
             message = message.format(len(lines))
             raise ValueError(message)
+        split_lines = []
+        for line in lines:
+            line = line.strip()
+            if column_width < len(line):
+                width = column_width - 6
+                new_lines = textwrap.wrap(line, width=width)
+                split_lines.append(4 * ' ' + new_lines[0])
+                for new_line in new_lines[1:]:
+                    split_lines.append(5 * ' ' + new_line)
+            elif line == '':
+                split_lines.append(line)
+            else:
+                split_lines.append(4 * ' ' + line)
+        lines = split_lines
         left_column_lines = lines[:terminal_height]
+        for i, line in enumerate(reversed(left_column_lines)):
+            if line == '':
+                break
+        terminal_height -= i
+        left_column_lines = lines[:terminal_height-1]
         right_column_lines = lines[terminal_height:]
         pair = (left_column_lines, right_column_lines)
         generator = sequencetools.zip_sequences(pair, truncate=False)
@@ -187,7 +207,6 @@ class Menu(ScoreManagerObject):
             if len(element) == 2:
                 left_line, right_line = element
                 left_line = left_line.rstrip()
-                assert len(left_line) <= column_width, repr(left_line)
                 extra_count = column_width - len(left_line)
                 extra_space = extra_count * ' '
                 left_line = left_line + extra_space

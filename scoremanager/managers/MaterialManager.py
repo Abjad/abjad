@@ -361,22 +361,22 @@ class MaterialManager(PackageManager):
         self,
         menu,
         ):
-        name = 'illustration builder'
+        name = 'illustrate module'
         section = menu.make_command_section(name=name)
         if os.path.isfile(self._output_module_path):
             if os.path.isfile(self._illustration_builder_module_path):
-                string = 'illustration builder - edit'
+                string = 'illustrate module - edit'
                 section.append((string, 'ibe'))
-                string = 'illustration builder - edit & interpret'
+                string = 'illustrate module - edit & interpret'
                 section.append((string, 'ibei'))
-                string = 'illustration builder - interpret'
+                string = 'illustrate module - interpret'
                 section.append((string, 'ibi'))
-                string = 'illustration builder - remove'
+                string = 'illustrate module - remove'
                 section.append((string, 'ibrm'))
-                string = 'illustration builder - stub'
+                string = 'illustrate module - stub'
                 section.append((string, 'ibs'))
             else:
-                string = 'illustration builder - make'
+                string = 'illustrate module - make'
                 section.append((string, 'ibm'))
 
     def _make_illustration_ly_menu_section(self, menu):
@@ -665,7 +665,7 @@ class MaterialManager(PackageManager):
         self._io_manager.proceed(prompt=prompt)
 
     def edit_and_interpret_illustration_builder_module(self):
-        r'''Edits and then interprets illustration builder module.
+        r'''Edits and then interprets illustrate module module.
 
         Returns none.
         '''
@@ -673,7 +673,7 @@ class MaterialManager(PackageManager):
         self.interpret_illustration_builder_module()
 
     def edit_illustration_builder_module(self):
-        r'''Edits illustration builder module.
+        r'''Edits illustrate module module.
 
         Returns none.
         '''
@@ -747,7 +747,7 @@ class MaterialManager(PackageManager):
             self._io_manager.proceed(message)
 
     def interpret_illustration_builder_module(self):
-        r'''Runs Python on illustration builder module.
+        r'''Runs Python on illustrate module module.
 
         Returns none.
         '''
@@ -808,7 +808,7 @@ class MaterialManager(PackageManager):
                 break
 
     def remove_illustration_builder_module(self, prompt=True):
-        r'''Removes illustration builder module.
+        r'''Removes illustrate module module.
 
         Returns none.
         '''
@@ -974,7 +974,7 @@ class MaterialManager(PackageManager):
         self._io_manager.view(file_path)
 
     def write_illustration_builder_module_stub(self, prompt=True):
-        r'''Writes stub illustration builder module.
+        r'''Writes stub illustrate module module.
 
         Returns none.
         '''
@@ -1000,7 +1000,7 @@ class MaterialManager(PackageManager):
             )
         with file(file_path, 'w') as file_pointer:
             file_pointer.write(''.join(lines))
-        message = 'stub illustration builder written to disk.'
+        message = 'stub illustrate module written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
 
     def write_illustration_ly(self, prompt=True):
