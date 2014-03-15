@@ -30,7 +30,7 @@ def test_RhythmMakerMaterialManager_edit_output_material_01():
         split_divisions_by_counts=(6,),
         )
     input_ = 'lmm nmm rhythm testrhythmmaker default'
-    input_ += ' testrhythmmaker omi talearhythmmaker'
+    input_ += ' testrhythmmaker me talearhythmmaker'
     input_ += ' (-1, 2, -3, 4) 16 (2, 3) (6,) b default q'
 
     assert not os.path.exists(path)

@@ -66,7 +66,7 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_edit_output_material
         mapping_2
         ])
     input_ = 'lmm nmm octave testoctavetrans'
-    input_ += ' testoctavetrans omi add add source [A0, C4) target 15 done'
+    input_ += ' testoctavetrans me add add source [A0, C4) target 15 done'
     input_ += ' add source [C4, C8) target 27 done done'
     input_ += ' add add source [A0, C8] target -18 done done done default q'
 

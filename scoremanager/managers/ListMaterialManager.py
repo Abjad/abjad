@@ -32,5 +32,5 @@ class ListMaterialManager(MaterialManager):
 
     def _run_first_time(self):
         self._session._is_autoadding = True
-        self._run(pending_user_input='omi')
+        self._run(pending_user_input='me')
         self._session._is_autoadding = False

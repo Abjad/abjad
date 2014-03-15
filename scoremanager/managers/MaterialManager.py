@@ -174,7 +174,7 @@ class MaterialManager(PackageManager):
             'dmi': self.interpret_definition_module,
             'ommbp': self.write_output_module_boilerplate,
             'ommm': self.write_output_material,
-            'omi': self.edit_output_material,
+            'me': self.edit_output_material,
             'ommmrm': self.remove_output_module,
             'ommv': self.view_output_module,
             'pdfm': self.write_illustration_ly_and_pdf,
@@ -489,7 +489,7 @@ class MaterialManager(PackageManager):
         if self._should_have_output_material_section():
             editor = self._get_output_material_editor(session=self._session)
             if editor:
-                section.append(('output material - interact', 'omi'))
+                section.append(('material - edit', 'me'))
                 # TODO: encapsulate the following in an independent section
                 if os.path.isfile(self._output_module_path):
                     output_material = self._execute_output_module()
@@ -592,7 +592,7 @@ class MaterialManager(PackageManager):
         return result
 
     def _run_first_time(self):
-        self._run(pending_user_input='omi')
+        self._run(pending_user_input='me')
 
     def _should_have_output_material_section(self):
         if os.path.isfile(self._definition_module_path):

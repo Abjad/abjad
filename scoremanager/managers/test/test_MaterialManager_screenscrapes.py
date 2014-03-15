@@ -21,7 +21,7 @@ def test_MaterialManager_screenscrapes_01():
         '     Tempo(Duration(1, 8), 90)', 
         '     Tempo(Duration(1, 8), 135)', 
         '', 
-        '     output material - interact (omi)', 
+        '     material - edit (me)', 
         '     output material - view (ommv)', 
         '', 
         '     illustration builder - edit (ibe)', 

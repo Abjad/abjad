@@ -118,7 +118,7 @@ def test_MaterialPackageWrangler_run_managermade_package_04():
         'testsargassomeasures',
         )
     input_ = 'lmm nmm sargasso testsargassomeasures'
-    input_ += ' omi inbp boilerplate_exception.py default'
+    input_ += ' me inbp boilerplate_exception.py default'
     input_ += ' ins default q'
     directory_entries = [
         '__init__.py', 

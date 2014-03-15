@@ -22,7 +22,7 @@ def test_TempoInventoryMaterialManager_edit_output_material_01():
         ((1, 4), 60), 
         ((1, 4), 90),
         ])
-    input_ = 'lmm nmm tempo testtempoinventory default testtempoinventory omi'
+    input_ = 'lmm nmm tempo testtempoinventory default testtempoinventory me'
     input_ += ' add ((1, 4), 60) add ((1, 4), 90) b default q'
 
     assert not os.path.exists(path)

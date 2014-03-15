@@ -28,7 +28,7 @@ def test_MarkupInventoryMaterialManager_edit_output_material_01():
         '__metadata__.py',
         'output_material.py',
         ]
-    input_ = "lmm nmm markup testmarkupinventory omi"
+    input_ = "lmm nmm markup testmarkupinventory me"
     input_ += " add arg r'\\italic~{~serenamente~}' done"
     input_ += " add arg r'\\italic~{~presto~}' done done default q"
 

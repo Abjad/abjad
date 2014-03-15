@@ -8,7 +8,7 @@ def test_MaterialManager_edit_output_material_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    input_ = 'lmm example~markup~inventory omi q'
+    input_ = 'lmm example~markup~inventory me q'
     score_manager._run(pending_user_input=input_, is_test=True)
     transcript = score_manager._transcript
 

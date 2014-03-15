@@ -65,7 +65,7 @@
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
 
-18. Change 'output material - interact (omi)' to 
+18. Change 'material - edit (me)' to 
     'output material - edit (ome)'.
 
 19. Implement 'segments - tour next' and 'segment - tour previous' commands.
