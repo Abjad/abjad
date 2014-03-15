@@ -807,7 +807,11 @@ class MaterialManager(PackageManager):
         total_elements = len(self._user_input_wrapper_in_memory)
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_integer_in_range(
-            'start at element number', 1, total_elements, default_value=1)
+            'start at element number', 
+            1, 
+            total_elements, 
+            default_value=1,
+            )
         with self._backtracking:
             start_element_number = getter._run()
         if self._session._backtrack():
@@ -831,32 +835,28 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        if os.path.isfile(self._illustration_builder_module_path):
-            self._illustration_builder_module_manager.remove(prompt=prompt)
+        self._illustration_builder_module_manager.remove(prompt=prompt)
 
     def remove_illustration_ly(self, prompt=True):
         r'''Removes illustration ly.
 
         Returns none.
         '''
-        if os.path.isfile(self._illustration_ly_file_path):
-            self._illustration_ly_file_manager.remove(prompt=prompt)
+        self._illustration_ly_file_manager.remove(prompt=prompt)
 
     def remove_illustration_pdf(self, prompt=True):
         r'''Removes illustration PDF.
 
         Returns none.
         '''
-        if os.path.isfile(self._illustration_pdf_file_path):
-            self._illustration_pdf_file_manager.remove(prompt=prompt)
+        self._illustration_pdf_file_manager.remove(prompt=prompt)
 
     def remove_material_definition_module(self, prompt=True):
         r'''Removes material definition module.
 
         Returns none.
         '''
-        if os.path.isfile(self._material_definition_module_path):
-            self._material_definition_module_manager.remove(prompt=prompt)
+        self._material_definition_module_manager.remove(prompt=prompt)
 
     def remove_output_material_module(self, prompt=True):
         r'''Removes output material module.
@@ -870,9 +870,7 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        if os.path.isfile(self._user_input_module_path):
-            manager._user_input_module_manager
-            manager._remove()
+        self._user_input_module_manager.remove(prompt=prompt)
 
     def rename(self):
         r'''Renames material package.
