@@ -1066,6 +1066,14 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
+        if import_statements is None:
+            assert body_lines is None
+        else:
+            assert isinstance(import_statements, list), repr(import_statements)
+        if body_lines is None:
+            assert import_statements is None
+        else:
+            assert isinstance(body_lines, list), repr(body_lines)
         if self._get_metadatum('is_static'):
             source_path = self._definition_module_path
             target_path = self._output_module_path
