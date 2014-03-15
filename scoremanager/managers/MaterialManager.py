@@ -275,21 +275,17 @@ class MaterialManager(PackageManager):
                 self.output_module_import_statements
             output_material = \
                 self._make_output_material_from_user_input_wrapper_in_memory()
-        if self._user_input_wrapper_in_memory:
-            output_module_body_lines = \
-                self._make_output_module_body_lines(output_material)
-        else:
-            line = '{} = {}'
-            output_material_storage_format = \
-                self._get_storage_format(output_material)
-            line = line.format(
-                self._material_package_name,
-                output_material_storage_format,
-                )
-            output_module_body_lines = [line]
+        line = '{} = {}'
+        output_material_storage_format = \
+            self._get_storage_format(output_material)
+        line = line.format(
+            self._material_package_name,
+            output_material_storage_format,
+            )
+        body_lines = [line]
         return (
             output_module_import_statements,
-            output_module_body_lines,
+            body_lines,
             )
 
     def _get_storage_format(self, expr):
