@@ -12,7 +12,7 @@ class DynamicHandlerMaterialManager(MaterialManager):
         superclass = super(DynamicHandlerMaterialManager, self)
         superclass.__init__(path=path, session=session)
         self._generic_output_name = 'dynamic handler'
-        self.output_module_import_statements = [
+        self._output_module_import_statements = [
             'from abjad import *',
             'from experimental.tools import handlertools',
             ]

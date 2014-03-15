@@ -13,7 +13,7 @@ class MarkupInventoryMaterialManager(MaterialManager):
         superclass = super(MarkupInventoryMaterialManager, self)
         superclass.__init__(path=path, session=session)
         self._generic_output_name = 'markup inventory'
-        self.output_module_import_statements = [
+        self._output_module_import_statements = [
             'from abjad import *',
             ]
 

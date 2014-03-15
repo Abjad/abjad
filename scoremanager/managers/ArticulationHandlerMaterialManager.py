@@ -12,7 +12,7 @@ class ArticulationHandlerMaterialManager(MaterialManager):
         superclass = super(ArticulationHandlerMaterialManager, self)
         superclass.__init__(path=path, session=session)
         self._generic_output_name = 'articulation handler'
-        self.output_module_import_statements = [
+        self._output_module_import_statements = [
             'from abjad import *',
             'from experimental.tools import handlertools',
             ]

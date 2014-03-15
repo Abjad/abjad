@@ -45,7 +45,7 @@ class MaterialManager(PackageManager):
             )
         self._generic_output_name = None
         self._generic_class_name = 'material manager'
-        self.output_module_import_statements = []
+        self._output_module_import_statements = []
         self._stylesheet_file_path_in_memory = None
         self._user_input_wrapper_in_memory = None
 
@@ -272,7 +272,7 @@ class MaterialManager(PackageManager):
             output_module_import_statements, output_material = result
         else:
             output_module_import_statements = \
-                self.output_module_import_statements
+                self._output_module_import_statements
             output_material = \
                 self._make_output_material_from_user_input_wrapper_in_memory()
         line = '{} = {}'
@@ -721,7 +721,7 @@ class MaterialManager(PackageManager):
         if self._session._backtrack():
             return
         output_module_import_statements = \
-            self.output_module_import_statements
+            self._output_module_import_statements
         if hasattr(self, '_make_output_module_body_lines'):
             output_module_body_lines = \
                 self._make_output_module_body_lines(
