@@ -126,12 +126,12 @@ class MaterialManager(PackageManager):
         self):
         if not os.path.isfile(self._definition_module_path):
             return
-        return_attribute_name = [
+        return_attribute_names = (
             'output_material_module_import_statements',
             self._material_package_name,
-            ]
+            )
         result = self._definition_module_manager._execute(
-            return_attribute_name=return_attribute_name,
+            return_attribute_names=return_attribute_names,
             )
         return result
 
@@ -272,7 +272,7 @@ class MaterialManager(PackageManager):
         output_material = None
         try:
             output_material = self._output_material_module_manager._execute(
-                return_attribute_name=self._material_package_name,
+                return_attribute_names=self._material_package_name,
                 )
         except:
             traceback.print_exc()
@@ -380,7 +380,7 @@ class MaterialManager(PackageManager):
         if not os.path.isfile(self._definition_module_path):
             return
         result = self._definition_module_manager._execute(
-            return_attribute_name=self._material_package_name,
+            return_attribute_names=self._material_package_name,
             )
         return result
 
@@ -592,7 +592,7 @@ class MaterialManager(PackageManager):
     def _read_user_input_wrapper_from_disk(self):
         result = self._user_input_module_manager._execute(
             file_path=self._user_input_module_path,
-            return_attribute_name='user_input_wrapper',
+            return_attribute_names='user_input_wrapper',
             )
         return result
 

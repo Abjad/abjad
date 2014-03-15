@@ -270,9 +270,11 @@ class ScorePackageManager(PackageManager):
             file_path,
             session=self._session,
             )
-        instrumentation = manager._execute(
-            return_attribute_name='instrumentation',
+        result = manager._execute(
+            return_attribute_names=('instrumentation',),
             )
+        assert len(result) == 1
+        instrumentation = result[0]
         return instrumentation
 
     def _is_visible(self):

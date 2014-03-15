@@ -299,9 +299,11 @@ class Wrangler(Controller):
     def _read_view_inventory_from_disk(self):
         if self._views_module_path is None:
             return
-        view_inventory = self._views_module_manager._execute(
-            return_attribute_name='view_inventory',
+        result = self._views_module_manager._execute(
+            return_attribute_names=('view_inventory',),
             )
+        assert len(result) == 1
+        view_inventory = result[0]
         return view_inventory
 
     def _run(

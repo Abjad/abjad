@@ -39,7 +39,7 @@ class FileManager(Manager):
 
     ### PRIVATE METHODS ###
 
-    def _execute(self, file_path=None, return_attribute_name=None):
+    def _execute(self, file_path=None, return_attribute_names=None):
         file_path = file_path or self._path
         if os.path.isfile(file_path):
             file_pointer = open(file_path, 'r')
@@ -49,12 +49,12 @@ class FileManager(Manager):
                 exec(file_contents_string)
             except Exception:
                 return
-            if isinstance(return_attribute_name, str):
-                if return_attribute_name in locals():
-                    return locals()[return_attribute_name]
-            elif isinstance(return_attribute_name, (list, tuple)):
+            if isinstance(return_attribute_names, str):
+                if return_attribute_names in locals():
+                    return locals()[return_attribute_names]
+            elif isinstance(return_attribute_names, (list, tuple)):
                 result = []
-                for name in return_attribute_name:
+                for name in return_attribute_names:
                     if name in locals():
                         result.append(locals()[name])
                     else:
