@@ -98,7 +98,7 @@ def test_MaterialPackageWrangler_run_managermade_package_03():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_definition_module() is None
-        assert manager._execute_output_material_module() is None
+        assert manager._execute_output_module() is None
         input_ = 'lmm testsargassomeasures rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
@@ -135,7 +135,7 @@ def test_MaterialPackageWrangler_run_managermade_package_04():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_definition_module() is None
-        assert manager._execute_output_material_module() is None
+        assert manager._execute_output_module() is None
         input_ = 'lmm testsargassomeasures rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:

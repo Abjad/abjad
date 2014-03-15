@@ -56,7 +56,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_02():
     lines = []
     lines.append('# -*- encoding: utf-8 -*-')
     lines.append('from abjad import *')
-    lines.append('output_material_module_import_statements = []')
+    lines.append('output_module_import_statements = []')
     lines.append('')
     lines.append('')
     lines.append('testnotes = None')

@@ -29,7 +29,7 @@ def test_MaterialPackageWrangler__make_handmade_material_package_01():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_definition_module() is None
-        output_material = manager._execute_output_material_module()
+        output_material = manager._execute_output_module()
         assert output_material is None
         manager._remove()
     finally:

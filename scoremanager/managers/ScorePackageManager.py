@@ -205,7 +205,7 @@ class ScorePackageManager(PackageManager):
             string = 'material_manager_class_name'
             class_name = manager._get_metadatum(string)
             if class_name == 'TempoInventoryMaterialManager':
-                output_material = manager._execute_output_material_module()
+                output_material = manager._execute_output_module()
                 return output_material
 
     def _get_title(self):

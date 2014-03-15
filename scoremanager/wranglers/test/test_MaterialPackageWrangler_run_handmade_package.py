@@ -32,7 +32,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_definition_module() is None
-        assert manager._execute_output_material_module() is None
+        assert manager._execute_output_module() is None
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
@@ -105,7 +105,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_definition_module() is None
-        assert manager._execute_output_material_module() is None
+        assert manager._execute_output_module() is None
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
@@ -145,7 +145,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
         material_definition = manager._interpret_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
-        output_material = manager._execute_output_material_module()
+        output_material = manager._execute_output_module()
         assert output_material
         assert all(isinstance(x, Note) for x in output_material)
         input_ = 'lmm testnotes rm remove q'
@@ -214,7 +214,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_definition_module() is None
-        assert manager._execute_output_material_module() is None
+        assert manager._execute_output_module() is None
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
@@ -253,7 +253,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
         material_definition = manager._interpret_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
-        output_material = manager._execute_output_material_module()
+        output_material = manager._execute_output_module()
         assert output_material is None
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
@@ -290,7 +290,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._interpret_definition_module() is None
-        assert manager._execute_output_material_module() is None
+        assert manager._execute_output_module() is None
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
     finally:
@@ -331,7 +331,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
         material_definition = manager._interpret_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
-        output_material = manager._execute_output_material_module()
+        output_material = manager._execute_output_module()
         assert output_material is None
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)
@@ -373,7 +373,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
         material_definition = manager._interpret_definition_module()
         assert material_definition
         assert all(isinstance(x, Note) for x in material_definition)
-        output_material = manager._execute_output_material_module()
+        output_material = manager._execute_output_module()
         assert output_material
         assert all(isinstance(x, Note) for x in output_material)
         input_ = 'lmm testnotes rm remove q'

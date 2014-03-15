@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-output_material_module_import_statements = []
+output_module_import_statements = []
 
 
 magic_numbers = [

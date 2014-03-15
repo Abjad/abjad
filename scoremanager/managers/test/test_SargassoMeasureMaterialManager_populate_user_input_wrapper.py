@@ -368,7 +368,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_08():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert format(Staff(measures))
-        output_material = manager._execute_output_material_module()
+        output_material = manager._execute_output_module()
         for measure in output_material:
             assert measure.implicit_scaling
         assert format(Staff(output_material))

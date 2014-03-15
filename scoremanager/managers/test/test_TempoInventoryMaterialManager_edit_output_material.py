@@ -33,7 +33,7 @@ def test_TempoInventoryMaterialManager_edit_output_material_01():
         manager = scoremanager.managers.TempoInventoryMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
-        output_material = manager._execute_output_material_module()
+        output_material = manager._execute_output_module()
         assert output_material == inventory
         input_ = 'lmm testtempoinventory rm remove q'
         score_manager._run(pending_user_input=input_, is_test=True)

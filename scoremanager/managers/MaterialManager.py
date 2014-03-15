@@ -45,7 +45,7 @@ class MaterialManager(PackageManager):
             )
         self._generic_output_name = None
         self._generic_class_name = 'material manager'
-        self.output_material_module_import_statements = []
+        self.output_module_import_statements = []
         self._should_have_user_input_module = False
         self._stylesheet_file_path_in_memory = None
         self._user_input_wrapper_in_memory = None
@@ -122,15 +122,15 @@ class MaterialManager(PackageManager):
         return os.path.basename(self._path)
 
     @property
-    def _output_material_module_manager(self):
+    def _output_module_manager(self):
         from scoremanager import managers
         return managers.FileManager(
-            self._output_material_module_path,
+            self._output_module_path,
             session=self._session,
             )
 
     @property
-    def _output_material_module_path(self):
+    def _output_module_path(self):
         return os.path.join(self._path, 'output_material.py')
 
     @property
@@ -174,11 +174,11 @@ class MaterialManager(PackageManager):
             'dmrm': self.remove_definition_module,
             'dms': self.write_definition_module_stub,
             'dmi': self.interpret_definition_module,
-            'ommbp': self.write_output_material_module_boilerplate,
+            'ommbp': self.write_output_module_boilerplate,
             'ommm': self.write_output_material,
             'omi': self.edit_output_material,
-            'ommmrm': self.remove_output_material_module,
-            'ommv': self.view_output_material_module,
+            'ommmrm': self.remove_output_module,
+            'ommv': self.view_output_module,
             'pdfm': self.write_illustration_ly_and_pdf,
             'pdfrm': self.remove_illustration_pdf,
             'pdfv': self.view_illustration_pdf,
@@ -254,9 +254,9 @@ class MaterialManager(PackageManager):
         wrapper = self._user_input_wrapper_in_memory
         self._write_user_input_wrapper(wrapper)
 
-    def _execute_output_material_module(self):
+    def _execute_output_module(self):
         attribute_names = (self._material_package_name,)
-        result = self._output_material_module_manager._execute(
+        result = self._output_module_manager._execute(
             attribute_names=attribute_names,
             )
         if result:
@@ -268,22 +268,21 @@ class MaterialManager(PackageManager):
     def _get_output_material_editor(target=None, session=None):
         return
 
-    def _get_output_material_module_import_statements_and_output_material_module_body_lines(
+    def _get_output_module_import_statements_and_output_module_body_lines(
         self):
         if os.path.isfile(self._definition_module_path):
-            pair = \
-                self._retrieve_import_statements_and_material()
-            output_material_module_import_statements, output_material = pair
+            result = self._retrieve_import_statements_and_material()
+            output_module_import_statements, output_material = result
         elif self._read_material_manager_class_name():
-            output_material_module_import_statements = \
-                self.output_material_module_import_statements
+            output_module_import_statements = \
+                self.output_module_import_statements
             output_material = \
                 self._make_output_material_from_user_input_wrapper_in_memory()
         else:
             raise ValueError
         if self._should_have_user_input_module:
-            output_material_module_body_lines = \
-                self._make_output_material_module_body_lines(output_material)
+            output_module_body_lines = \
+                self._make_output_module_body_lines(output_material)
         else:
             line = '{} = {}'
             output_material_storage_format = \
@@ -292,10 +291,10 @@ class MaterialManager(PackageManager):
                 self._material_package_name,
                 output_material_storage_format,
                 )
-            output_material_module_body_lines = [line]
+            output_module_body_lines = [line]
         return (
-            output_material_module_import_statements,
-            output_material_module_body_lines,
+            output_module_import_statements,
+            output_module_body_lines,
             )
 
     def _get_storage_format(self, expr):
@@ -325,7 +324,7 @@ class MaterialManager(PackageManager):
     def _illustrate(self):
         # TODO: replace old and dangerous import_output_material_safely()
         output_material = \
-            self._output_material_module_manager.import_output_material_safely()
+            self._output_module_manager.import_output_material_safely()
         kwargs = {}
         kwargs['title'] = self._space_delimited_lowercase_name
         if self._session.is_in_score:
@@ -379,7 +378,7 @@ class MaterialManager(PackageManager):
         ):
         name = 'illustration builder'
         section = menu.make_command_section(name=name)
-        if os.path.isfile(self._output_material_module_path):
+        if os.path.isfile(self._output_module_path):
             if os.path.isfile(self._illustration_builder_module_path):
                 string = 'illustration builder - edit'
                 section.append((string, 'ibe'))
@@ -396,10 +395,10 @@ class MaterialManager(PackageManager):
                 section.append((string, 'ibm'))
 
     def _make_illustration_ly_menu_section(self, menu):
-        if os.path.isfile(self._output_material_module_path) or \
+        if os.path.isfile(self._output_module_path) or \
             os.path.isfile(self._illustration_ly_file_path):
             section = menu.make_command_section(name='output ly')
-        if os.path.isfile(self._output_material_module_path):
+        if os.path.isfile(self._output_module_path):
             if os.path.isfile(self._illustration_builder_module_path) or \
                 self._read_material_manager_class_name():
                 section.append(('output ly - make', 'lym'))
@@ -413,10 +412,10 @@ class MaterialManager(PackageManager):
         ):
         name = 'illustration pdf'
         has_illustration_pdf_section = False
-        if os.path.isfile(self._output_material_module_path) or \
+        if os.path.isfile(self._output_module_path) or \
             os.path.isfile(self._illustration_pdf_file_path):
             section = menu.make_command_section(name=name)
-        if os.path.isfile(self._output_material_module_path):
+        if os.path.isfile(self._output_module_path):
             if os.path.isfile(self._illustration_builder_module_path) or \
                 (self._read_material_manager_class_name() and
                 getattr(self, '__illustrate__', None)):
@@ -443,7 +442,7 @@ class MaterialManager(PackageManager):
         self._make_metadata_module_menu_section(menu)
         self._make_illustration_ly_menu_section(menu)
         self._make_output_material_menu_section(menu)
-        self._make_output_material_module_menu_section(menu)
+        self._make_output_module_menu_section(menu)
         self._make_illustration_pdf_menu_section(menu)
         self._make_directory_menu_section(menu)
         self._make_stylesheet_menu_section(menu)
@@ -507,8 +506,8 @@ class MaterialManager(PackageManager):
             if editor:
                 section.append(('output material - interact', 'omi'))
                 # TODO: encapsulate the following in an independent section
-                if os.path.isfile(self._output_material_module_path):
-                    output_material = self._execute_output_material_module()
+                if os.path.isfile(self._output_module_path):
+                    output_material = self._execute_output_module()
                     editor = self._get_output_material_editor(
                         target=output_material,
                         session=self._session,
@@ -520,7 +519,7 @@ class MaterialManager(PackageManager):
                             title=_target_summary_lines,
                             )
 
-    def _make_output_material_module_body_lines(self, output_material):
+    def _make_output_module_body_lines(self, output_material):
         if hasattr(output_material, '_storage_format_specification'):
             lines = format(output_material, 'storage').splitlines()
         else:
@@ -530,7 +529,7 @@ class MaterialManager(PackageManager):
         lines = [line + '\n' for line in lines]
         return lines
 
-    def _make_output_material_module_menu_section(
+    def _make_output_module_menu_section(
         self,
         menu,
         ):
@@ -542,7 +541,7 @@ class MaterialManager(PackageManager):
         if self._should_have_output_material_section():
             if self._can_make_output_material():
                 section.append(('output material module - make', 'ommm'))
-            if os.path.isfile(self._output_material_module_path):
+            if os.path.isfile(self._output_module_path):
                 section.append(('output material module - remove', 'ommmrm'))
                 section.append(('output material module - view', 'ommv'))
 
@@ -552,7 +551,7 @@ class MaterialManager(PackageManager):
         ):
         name = 'stylesheets'
         section = menu.make_command_section(name=name)
-        if os.path.isfile(self._output_material_module_path):
+        if os.path.isfile(self._output_module_path):
             section = menu.make_command_section(name=name)
             section.append(('stylesheet - edit', 'sse'))
             section.append(('stylesheet - select', 'sss'))
@@ -599,7 +598,7 @@ class MaterialManager(PackageManager):
 
     def _retrieve_import_statements_and_material(self):
         attribute_names = (
-            'output_material_module_import_statements',
+            'output_module_import_statements',
             self._material_package_name,
             )
         result = self._definition_module_manager._execute(
@@ -712,7 +711,7 @@ class MaterialManager(PackageManager):
         editor = self._get_output_material_editor(session=self._session)
         if not editor:
             return
-        output_material = self._execute_output_material_module()
+        output_material = self._execute_output_module()
         if not hasattr(self, '_make_output_material'):
             output_material_handler = self._get_output_material_editor(
                 target=output_material,
@@ -732,11 +731,11 @@ class MaterialManager(PackageManager):
         output_material_handler._run()
         if self._session._backtrack():
             return
-        output_material_module_import_statements = \
-            self.output_material_module_import_statements
-        if hasattr(self, '_make_output_material_module_body_lines'):
-            output_material_module_body_lines = \
-                self._make_output_material_module_body_lines(
+        output_module_import_statements = \
+            self.output_module_import_statements
+        if hasattr(self, '_make_output_module_body_lines'):
+            output_module_body_lines = \
+                self._make_output_module_body_lines(
                     output_material_handler.target)
         else:
             line = '{} = {}'
@@ -746,12 +745,12 @@ class MaterialManager(PackageManager):
                 self._material_package_name,
                 target_repr,
                 )
-            output_material_module_body_lines = [line]
+            output_module_body_lines = [line]
         self.write_output_material(
-            output_material_module_import_statements=\
-                output_material_module_import_statements,
-            output_material_module_body_lines=\
-                output_material_module_body_lines,
+            output_module_import_statements=\
+                output_module_import_statements,
+            output_module_body_lines=\
+                output_module_body_lines,
             )
 
     def edit_stylesheet(self, prompt=True):
@@ -854,12 +853,12 @@ class MaterialManager(PackageManager):
         '''
         self._definition_module_manager.remove(prompt=prompt)
 
-    def remove_output_material_module(self, prompt=True):
+    def remove_output_module(self, prompt=True):
         r'''Removes output material module.
 
         Returns none.
         '''
-        self._output_material_module_manager.remove(prompt=prompt)
+        self._output_module_manager.remove(prompt=prompt)
 
     def remove_user_input_module(self, prompt=True):
         r'''Removes user input module.
@@ -973,12 +972,12 @@ class MaterialManager(PackageManager):
         '''
         self._illustration_pdf_file_manager.view()
 
-    def view_output_material_module(self):
+    def view_output_module(self):
         r'''Views output material module.
 
         Returns none.
         '''
-        self._output_material_module_manager.view()
+        self._output_module_manager.view()
 
     def view_user_input_module(
         self,
@@ -1065,7 +1064,7 @@ class MaterialManager(PackageManager):
         lines = []
         lines.append('# -*- encoding: utf-8 -*-\n')
         lines.append('from abjad import *\n')
-        lines.append('output_material_module_import_statements = []')
+        lines.append('output_module_import_statements = []')
         lines.append('\n\n\n')
         line = '{} = None'.format(self._material_package_name)
         lines.append(line)
@@ -1076,8 +1075,8 @@ class MaterialManager(PackageManager):
 
     def write_output_material(
         self,
-        output_material_module_import_statements=None,
-        output_material_module_body_lines=None,
+        output_module_import_statements=None,
+        output_module_body_lines=None,
         prompt=True,
         ):
         r'''Writes output material.
@@ -1086,28 +1085,28 @@ class MaterialManager(PackageManager):
         '''
         if self._get_metadatum('is_static'):
             source_path = self._definition_module_path
-            target_path = self._output_material_module_path
+            target_path = self._output_module_path
             shutil.copy(source_path, target_path)
             return
         lines = []
         lines.append('# -*- encoding: utf-8 -*-\n')
-        if output_material_module_import_statements is None or \
-            output_material_module_body_lines is None:
+        if output_module_import_statements is None or \
+            output_module_body_lines is None:
             pair = \
-                self._get_output_material_module_import_statements_and_output_material_module_body_lines()
-            output_material_module_import_statements = pair[0]
-            output_material_module_body_lines = pair[1]
-        if output_material_module_import_statements is None:
-            output_material_module_import_statements = []
-        output_material_module_import_statements = [
+                self._get_output_module_import_statements_and_output_module_body_lines()
+            output_module_import_statements = pair[0]
+            output_module_body_lines = pair[1]
+        if output_module_import_statements is None:
+            output_module_import_statements = []
+        output_module_import_statements = [
             x + '\n'
-            for x in output_material_module_import_statements
+            for x in output_module_import_statements
             ]
-        lines.extend(output_material_module_import_statements)
+        lines.extend(output_module_import_statements)
         lines.extend(['\n', '\n'])
-        lines.extend(output_material_module_body_lines)
+        lines.extend(output_module_body_lines)
         lines = ''.join(lines)
-        manager = self._output_material_module_manager
+        manager = self._output_module_manager
         with file(manager._path, 'w') as file_pointer:
             file_pointer.write(lines)
         self._add_metadatum('is_material_package', True)
@@ -1117,9 +1116,9 @@ class MaterialManager(PackageManager):
         message = 'output material written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
 
-    def write_output_material_module_boilerplate(self):
+    def write_output_module_boilerplate(self):
         r'''Writes output material module boilerplate.
 
         Returns none.
         '''
-        self._output_material_module_manager.write_boilerplate()
+        self._output_module_manager.write_boilerplate()
