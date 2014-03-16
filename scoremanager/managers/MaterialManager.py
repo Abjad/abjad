@@ -290,7 +290,7 @@ class MaterialManager(PackageManager):
 
     # TODO: change property to method
     # TODO: make illustration work the same way as for segment PDF rendering;
-    #       use something like _interpret_in_external_process()
+    #       use something like self_interpret()
     def _illustrate(self):
         # TODO: replace old and dangerous import_output_material_safely()
         output_material = \

@@ -236,7 +236,7 @@ class SegmentPackageManager(PackageManager):
         manager = self._segment_definition_module_manager
         if not manager:
             return
-        manager._interpret_in_external_process()
+        manager._interpret(prompt=True)
         if not view_asset_pdf:
             return
         new_modification_time = 0

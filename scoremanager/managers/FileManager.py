@@ -77,16 +77,13 @@ class FileManager(Manager):
 
     def _interpret(self, prompt=True):
         command = 'python {}'.format(self._path)
-        self._io_manager.spawn_subprocess(command)
-        message = 'file interpreted.'
-        self._io_manager.proceed(message, prompt=prompt)
-
-    def _interpret_in_external_process(self):
-        command = 'python {}'.format(self._path)
         result = self._io_manager.spawn_subprocess(command)
         if result != 0:
             self._io_manager.display('')
             self._io_manager.proceed()
+        elif prompt:
+            message = 'file interpreted.'
+            self._io_manager.proceed(message)
 
     def _is_editable(self):
         if self._path.endswith(('.tex', '.py')):
