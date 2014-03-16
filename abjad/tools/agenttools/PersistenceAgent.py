@@ -62,10 +62,8 @@ class PersistenceAgent(abctools.AbjadObject):
         '''
         from abjad import abjad_configuration
         from abjad.tools import systemtools
-        # get the illustration
         assert '__illustrate__' in dir(self._client)
         illustration = self._client.__illustrate__(**kwargs)
-        # validate the output path
         if ly_file_path is None:
             ly_file_name = systemtools.IOManager.get_next_output_file_name()
             ly_file_path = os.path.join(
@@ -75,12 +73,10 @@ class PersistenceAgent(abctools.AbjadObject):
         else:
             ly_file_path = os.path.expanduser(ly_file_path)
         assert ly_file_path.endswith('.ly'), ly_file_path
-        # format the illustration
         timer = systemtools.Timer()
         with timer:
             lilypond_format = format(illustration, 'lilypond')
         abjad_formatting_time = timer.elapsed_time
-        # write the formatted illustration to disk
         directory_path = os.path.dirname(ly_file_path)
         systemtools.IOManager._ensure_directory_existence(directory_path)
         with open(ly_file_path, 'w') as file_handle:
@@ -199,19 +195,16 @@ class PersistenceAgent(abctools.AbjadObject):
         '''
         from abjad.tools import systemtools
         assert '__illustrate__' in dir(self._client)
-        # validate the output path
         if pdf_file_path is not None:
             pdf_file_path = os.path.expanduser(pdf_file_path)
             without_extension = os.path.splitext(pdf_file_path)[0]
             ly_file_path = '{}.ly'.format(without_extension)
         else:
             ly_file_path = None
-        # format and write the lilypond file
-        ly_file_path, abjad_formatting_time = self.as_ly(
-            ly_file_path, **kwargs)
+        result = self.as_ly(ly_file_path, **kwargs)
+        ly_file_path, abjad_formatting_time = result
         without_extension = os.path.splitext(ly_file_path)[0]
         pdf_file_path = '{}.pdf'.format(without_extension)
-        # render the pdf
         timer = systemtools.Timer()
         with timer:
             success = systemtools.IOManager.run_lilypond(ly_file_path)
