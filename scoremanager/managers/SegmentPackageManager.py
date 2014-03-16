@@ -37,20 +37,20 @@ class SegmentPackageManager(PackageManager):
         return os.path.join(self._path, 'output.pdf')
 
     @property
-    def _segment_definition_module_manager(self):
+    def _definition_module_manager(self):
         from scoremanager import managers
-        if not os.path.exists(self._segment_definition_module_path):
+        if not os.path.exists(self._definition_module_path):
             message = 'no definition.py module found.'
             self._io_manager.confirm(message)
             return
         manager = managers.FileManager(
-            self._segment_definition_module_path,
+            self._definition_module_path,
             session=self._session,
             )
         return manager
 
     @property
-    def _segment_definition_module_path(self):
+    def _definition_module_path(self):
         return os.path.join(self._path, 'definition.py')
 
     @property
@@ -59,17 +59,17 @@ class SegmentPackageManager(PackageManager):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'E': self.edit_segment_definition_module_from_top,
-            'e': self.edit_segment_definition_module,
+            'E': self.edit_definition_module_from_top,
+            'e': self.edit_definition_module,
             'lyri': self.reinterpret_current_lilypond_file,
             'lyv': self.view_current_output_ly,
             'lyver': self.view_versioned_output_ly,
             'pdfv': self.view_output_pdf,
             'vv': self.view_all_versioned_pdfs,
             'pdfver': self.view_versioned_output_pdf,
-            'pyver': self.view_versioned_segment_definition_module,
+            'pyver': self.view_versioned_definition_module,
             'pdfs': self.save_to_versions_directory,
-            'sdmi': self.interpret_segment_definition_module,
+            'dmi': self.interpret_definition_module,
             'vrl': self.list_versions_directory,
             })
         return result
@@ -98,7 +98,7 @@ class SegmentPackageManager(PackageManager):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
         elif result == 'user entered lone return':
-            self.edit_segment_definition_module()
+            self.edit_definition_module()
 
     def _make_current_lilypond_file_menu_section(self, menu):
         if os.path.isfile(self._output_lilypond_file_path):
@@ -114,7 +114,6 @@ class SegmentPackageManager(PackageManager):
 
     def _make_current_pdf_menu_section(self, menu):
         section = menu.make_command_section(name='current pdf')
-        #section.append(('current pdf - make', 'pdfm'))
         if os.path.isfile(self._output_pdf_file_path):
             section.append(('current pdf - version', 'pdfs'))
         if os.path.isfile(self._output_pdf_file_path):
@@ -126,19 +125,18 @@ class SegmentPackageManager(PackageManager):
         where = self._where
         menu = superclass._make_main_menu(where=where)
         self._make_directory_menu_section(menu)
-        self._make_segment_definition_module_menu_section(menu)
+        self._make_definition_module_menu_section(menu)
         self._make_current_pdf_menu_section(menu)
         self._make_versioned_pdfs_menu_section(menu)
         self._make_current_lilypond_file_menu_section(menu)
         self._make_versions_directory_menu_section(menu)
         return menu
 
-    def _make_segment_definition_module_menu_section(self, menu):
-        section = menu.make_command_section(name='segment definition module')
-        section.append(('segment definition module - edit', 'e'))
-        section.append(('segment definition module - edit at top', 'E'))
-        # ZZZ
-        section.append(('segment definition module - interpret', 'sdmi'))
+    def _make_definition_module_menu_section(self, menu):
+        section = menu.make_command_section(name='definition module')
+        section.append(('definition module - edit', 'e'))
+        section.append(('definition module - edit at top', 'E'))
+        section.append(('definition module - interpret', 'dmi'))
         return section
 
     def _make_versioned_pdfs_menu_section(self, menu):
@@ -155,7 +153,7 @@ class SegmentPackageManager(PackageManager):
             )
         section.append(('versioned output ly - view', 'lyver'))
         section.append(('versioned output pdf - view', 'pdfv'))
-        string = 'versioned segment definition module - view'
+        string = 'versioned definition module - view'
         section.append((string, 'pyver'))
         section.append(('versions directory - list', 'vrl'))
         return section
@@ -193,7 +191,7 @@ class SegmentPackageManager(PackageManager):
         
     ### PUBLIC METHODS ###
 
-    def edit_segment_definition_module(
+    def edit_definition_module(
         self,
         pending_user_input=None,
         ):
@@ -202,12 +200,12 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
-        manager = self._segment_definition_module_manager
+        manager = self._definition_module_manager
         if not manager:
             return
         manager.edit()
 
-    def edit_segment_definition_module_from_top(
+    def edit_definition_module_from_top(
         self,
         pending_user_input=None,
         ):
@@ -216,12 +214,12 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
-        manager = self._segment_definition_module_manager
+        manager = self._definition_module_manager
         if not manager:
             return
         manager.edit(line_number=1)
 
-    def interpret_segment_definition_module(
+    def interpret_definition_module(
         self,
         view_asset_pdf=True,
         ):
@@ -233,7 +231,7 @@ class SegmentPackageManager(PackageManager):
         modification_time = 0
         if os.path.isfile(output_pdf_file_path):
             modification_time = os.path.getmtime(output_pdf_file_path)
-        manager = self._segment_definition_module_manager
+        manager = self._definition_module_manager
         if not manager:
             return
         manager._interpret(prompt=True)
@@ -322,9 +320,9 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         paths = {}
-        segment_definition_module_path = \
-            self._get_segment_definition_module_path()
-        if not os.path.isfile(segment_definition_module_path):
+        definition_module_path = \
+            self._get_definition_module_path()
+        if not os.path.isfile(definition_module_path):
             message = 'can not find asset definition module.'
             self._io_manager.proceed(
                 message,
@@ -358,7 +356,7 @@ class SegmentPackageManager(PackageManager):
             target_file_name,
             )
         command = 'cp {} {}'.format(
-            segment_definition_module_path,
+            definition_module_path,
             target_file_path,
             )
         self._io_manager.spawn_subprocess(command)
@@ -446,8 +444,8 @@ class SegmentPackageManager(PackageManager):
         '''
         self._view_versioned_file('.pdf')
 
-    def view_versioned_segment_definition_module(self):
-        r'''Views versioned segment definition module.
+    def view_versioned_definition_module(self):
+        r'''Views versioned definition module.
 
         Returns none.
         '''
@@ -463,13 +461,13 @@ class SegmentPackageManager(PackageManager):
             file_pointer.write('')
             file_pointer.close()
 
-    def write_segment_definition_module(self):
-        r'''Write segment definition module to disk.
+    def write_definition_module(self):
+        r'''Write definition module to disk.
 
         Returns none.
         '''
-        if not os.path.exists(self.segment_definition_module_path):
-            file_pointer = file(self.segment_definition_module_path, 'w')
+        if not os.path.exists(self.definition_module_path):
+            file_pointer = file(self.definition_module_path, 'w')
             file_pointer.write(self._unicode_directive + '\n')
             file_pointer.write('from abjad import *\n')
             file_pointer.write('\n\n')
