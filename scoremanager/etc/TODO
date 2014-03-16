@@ -89,8 +89,10 @@
 24. Remove 'whatever - make' commands. Reimplement as 'source - interpret'.
 
 25. Add command to type arbitrary shell command to current working directory.
-    Maybe 'directory - run (run)'.
+    Maybe 'directory - run (run)' of follow Vim with !ls, !pwd and so on.
 
 26. Add confirmation message to (radd).
 
 27. Remove boilerplate commands. Replace with shutil calls in tests.
+
+28. Change 'illustration_builder_module' to 'illustrate_module'.

@@ -44,7 +44,7 @@ class PersistenceAgent(abctools.AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def as_ly(self, ly_file_path=None, **kwargs):
+    def as_ly(self, ly_file_path=None, illustrate_function=None, **kwargs):
         r'''Persists client as LilyPond file.
 
         Autogenerates file path when `ly_file_path` is none.
@@ -62,8 +62,11 @@ class PersistenceAgent(abctools.AbjadObject):
         '''
         from abjad import abjad_configuration
         from abjad.tools import systemtools
-        assert '__illustrate__' in dir(self._client)
-        illustration = self._client.__illustrate__(**kwargs)
+        if illustrate_function is None:
+            assert '__illustrate__' in dir(self._client)
+            illustrate_function = self._client.__illustrate__
+        #illustration = self._client.__illustrate__(**kwargs)
+        illustration = illustrate_function(**kwargs)
         if ly_file_path is None:
             ly_file_name = systemtools.IOManager.get_next_output_file_name()
             ly_file_path = os.path.join(
@@ -177,7 +180,13 @@ class PersistenceAgent(abctools.AbjadObject):
         with open(module_file_path, 'w') as f:
             f.write(result)
 
-    def as_pdf(self, pdf_file_path=None, remove_ly=False, **kwargs):
+    def as_pdf(
+        self, 
+        pdf_file_path=None, 
+        remove_ly=False, 
+        illustrate_function=None,
+        **kwargs
+        ):
         r'''Persists client as PDF.
 
         Autogenerates file path when `pdf_file_path` is none.
@@ -194,14 +203,19 @@ class PersistenceAgent(abctools.AbjadObject):
         time.
         '''
         from abjad.tools import systemtools
-        assert '__illustrate__' in dir(self._client)
+        if illustrate_function is None:
+            assert '__illustrate__' in dir(self._client)
         if pdf_file_path is not None:
             pdf_file_path = os.path.expanduser(pdf_file_path)
             without_extension = os.path.splitext(pdf_file_path)[0]
             ly_file_path = '{}.ly'.format(without_extension)
         else:
             ly_file_path = None
-        result = self.as_ly(ly_file_path, **kwargs)
+        result = self.as_ly(
+            ly_file_path, 
+            illustrate_function=illustrate_function,
+            **kwargs
+            )
         ly_file_path, abjad_formatting_time = result
         without_extension = os.path.splitext(ly_file_path)[0]
         pdf_file_path = '{}.pdf'.format(without_extension)

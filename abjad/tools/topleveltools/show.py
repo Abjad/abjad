@@ -7,23 +7,12 @@ def show(expr, return_timing=False, **kwargs):
 
     ..  container:: example
 
-        **Example 1.** Shows a note:
+        Shows a note:
 
         ::
 
             >>> note = Note("c'4")
             >>> show(note) # doctest: +SKIP
-
-    ..  container:: example
-
-        **Example 2.** Shows a note and returns Abjad and LilyPond processing
-        times in seconds.
-
-        ::
-
-            >>> note = Note("c'4")
-            >>> show(note, return_timing=True) # doctest: +SKIP
-            (0.0017380714416503906, 0.6541821956634521)
 
     Abjad writes LilyPond input files to the ``~/.abjad/output/``
     directory by default.

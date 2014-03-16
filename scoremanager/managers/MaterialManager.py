@@ -288,7 +288,6 @@ class MaterialManager(PackageManager):
         else:
             raise ValueError(result)
 
-    # TODO: change property to method
     # TODO: make illustration work the same way as for segment PDF rendering;
     #       use something like self_interpret()
     def _illustrate(self):
@@ -752,27 +751,43 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        self._io_manager.print_not_yet_implemented()
         # ZZZ
         result = self._retrieve_import_statements_and_output_material()
         import_statements, output_material = result
         illustrate_function = self._retrieve_illustrate_function()
+        #kwargs = {}
+        #kwargs['title'] = self._space_delimited_lowercase_name
+        #if self._session.is_in_score:
+        #    title = self._session.current_score_package_manager.title
+        #    string = '({})'.format(title)
+        #    kwargs['subtitle'] = string
+        lilypond_score = illustrate_function(output_material)
+        #if illustration and self._stylesheet_file_path_in_memory:
+        #    path = self._stylesheet_file_path_in_memory
+        #    illustration.file_initial_user_includes.append(path)
+        topleveltools.persist(lilypond_score).as_pdf(
+            self._illustration_pdf_file_path,
+            )
+        self._io_manager.proceed(
+            'PDF and LilyPond file written to disk.',
+            prompt=prompt,
+            )
 
     def _retrieve_illustrate_function(self):
         attribute_names = ('__illustrate__',)
-        result = self._definition_module_manager._execute(
+        result = self._illustration_builder_module_manager._execute(
             attribute_names=attribute_names,
             )
         if result:
             assert len(result) == 1
             return result[0]
 
-    def interpret_illustration_builder_module(self):
+    def interpret_illustration_builder_module(self, prompt=True):
         r'''Runs Python on illustrate module module.
 
         Returns none.
         '''
-        self._illustration_builder_module_manager._interpret(prompt=True)
+        self._illustration_builder_module_manager._interpret(prompt=prompt)
 
     def interpret_definition_module(self):
         r'''Runs Python on material definition module.
