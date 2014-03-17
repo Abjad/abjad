@@ -20,7 +20,7 @@ def test_ScorePackageManager_remove_score_package_01():
     try:
         score_manager._run(pending_user_input=input_, is_test=True)
         assert os.path.exists(path)
-        input_ = 'ssl Untitled~(test_score) removescore clobberscore q'
+        input_ = 'ssl Untitled~(test_score) rm clobber q'
         score_manager._run(pending_user_input=input_, is_test=True)
         assert not os.path.exists(path)
     finally:

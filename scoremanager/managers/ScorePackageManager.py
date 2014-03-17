@@ -134,7 +134,7 @@ class ScorePackageManager(PackageManager):
             'pdfv': self.view_score_pdf,
             'radd': self.add,
             'rci': self.commit,
-            'removescore': self.remove_score_package,
+            'rm': self.remove_score_package,
             'rst': self.status,
             'rup': self.update,
             'u': self._build_directory_manager._run,
@@ -322,7 +322,6 @@ class ScorePackageManager(PackageManager):
         self._make_score_pdf_menu_section(menu)
         self._make_metadata_module_menu_section(menu)
         self._make_metadata_menu_section(menu)
-        self._make_package_fix_menu_section(menu)
         self._make_score_menu_section(menu)
         self._make_shortcuts_menu_section(menu)
         return menu
@@ -338,20 +337,13 @@ class ScorePackageManager(PackageManager):
         section.append(('stylesheets', 'y'))
         return section
 
-    def _make_package_fix_menu_section(self, menu):
-        section = menu.make_command_section(
-            name='package',
-            is_hidden=True,
-            )
-        section.append(('package - fix', 'fix'))
-        return section
-
     def _make_score_menu_section(self, menu):
         section = menu.make_command_section(
             name='score',
             is_hidden=True,
             )
-        section.append(('score - remove', 'removescore'))
+        section.append(('score package - fix', 'fix'))
+        section.append(('score package - remove', 'rm'))
         return section
 
     def _make_score_pdf_menu_section(self, menu):
@@ -566,12 +558,12 @@ class ScorePackageManager(PackageManager):
         line = line.format(self._package_path)
         self._io_manager.display([line, ''])
         getter = self._io_manager.make_getter(where=self._where)
-        getter.append_string("type 'clobberscore' to proceed")
+        getter.append_string("type 'clobber' to proceed")
         with self._backtracking:
             should_clobber = getter._run()
         if self._session._backtrack():
             return
-        if should_clobber == 'clobberscore':
+        if should_clobber == 'clobber':
             with self._backtracking:
                 self._remove()
             if self._session._backtrack():
