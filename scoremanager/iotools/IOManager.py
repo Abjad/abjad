@@ -110,7 +110,9 @@ class IOManager(IOManager):
             self._session._is_navigating_to_score_materials = True
             self._session._is_navigating_to_previous_material = True
             self._session._hide_hidden_commands = True
-        elif directive in ('n', '?'):
+        elif directive in ('n', '?') and \
+            not self._session.is_in_confirmation_environment and \
+            not self._session.is_in_editor:
             self._session.toggle_hidden_commands()
         elif key == 'o':
             self._session.display_variables()

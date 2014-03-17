@@ -88,6 +88,7 @@ class PackageWrangler(Wrangler):
         self, 
         pending_user_input=None,
         storehouse_path=None,
+        prompt_string=None,
         ):
         r'''Gets available path in `storehouse_path`.
 
@@ -99,8 +100,9 @@ class PackageWrangler(Wrangler):
         self._io_manager._assign_user_input(pending_user_input)
         storehouse_path = storehouse_path or self._current_storehouse_path
         while True:
+            prompt_string = prompt_string or 'package name'
             getter = self._io_manager.make_getter(where=self._where)
-            getter.append_space_delimited_lowercase_string('name')
+            getter.append_space_delimited_lowercase_string(prompt_string)
             with self._backtracking:
                 name = getter._run()
             if self._session._backtrack():

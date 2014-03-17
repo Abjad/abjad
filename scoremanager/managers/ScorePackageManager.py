@@ -99,6 +99,16 @@ class ScorePackageManager(PackageManager):
         return self._cached_material_package_wrangler
 
     @property
+    def _score_package_wrangler(self):
+        from scoremanager import wranglers
+        if self._path is None:
+            return
+        if not hasattr(self, '_cached_score_package_wrangler'):
+            wrangler = wranglers.ScorePackageWrangler(session=self._session)
+            self._cached_score_package_wrangler = wrangler
+        return self._cached_score_package_wrangler
+
+    @property
     def _segment_package_wrangler(self):
         from scoremanager import wranglers
         if self._path is None:
@@ -134,6 +144,7 @@ class ScorePackageManager(PackageManager):
             'pdfv': self.view_score_pdf,
             'radd': self.add,
             'rci': self.commit,
+            'ren': self.rename_score_package,
             'rm': self.remove_score_package,
             'rst': self.status,
             'rup': self.update,
@@ -344,6 +355,7 @@ class ScorePackageManager(PackageManager):
             )
         section.append(('score package - fix', 'fix'))
         section.append(('score package - remove', 'rm'))
+        section.append(('score package - rename', 'ren'))
         return section
 
     def _make_score_pdf_menu_section(self, menu):
@@ -569,6 +581,33 @@ class ScorePackageManager(PackageManager):
             if self._session._backtrack():
                 return
             self._session._is_backtracking_locally = True
+
+    # ZZZ
+    def rename_score_package(self):
+        r'''Renames score package.
+
+        Returns none.
+        '''
+        pass
+        with self._backtracking:
+            prompt_string = 'new package name'
+            path = self._score_package_wrangler.get_available_path(
+                prompt_string=prompt_string)
+        if self._session._backtrack():
+            return
+        lines = ['']
+        line = 'current path: {!r}.'.format(self._path)
+        lines.append(line)
+        line = 'new path: {!r}.'.format(path)
+        lines.append(line)
+        lines.append('')
+        self._io_manager.display(lines)
+        with self._backtracking:
+            confirm = self._io_manager.confirm()
+        if self._session._backtrack():
+            return
+        if confirm:
+            print 'RENAMING!'
 
     def view_score_pdf(self):
         r'''Views score PDF.
