@@ -442,7 +442,6 @@ class IOManager(IOManager):
                 user_input = self._pop_from_pending_user_input()
                 if user_input == 'default':
                     found_default_token = True
-                    #user_input = ''
             if self._session.transcribe_next_command:
                 if found_default_token:
                     self._session.command_history.append('')

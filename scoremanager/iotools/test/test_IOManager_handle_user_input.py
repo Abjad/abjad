@@ -3,7 +3,9 @@ from abjad import *
 import scoremanager
 
 
-def test_Session_command_repetition_01():
+def test_IOManager_handle_user_input_01():
+    r'''Command repetition works.
+    '''
 
     score_manager = scoremanager.core.ScoreManager()
     score_manager._run(pending_user_input='stn . . . q', is_test=True)
