@@ -505,7 +505,7 @@ class ScorePackageManager(PackageManager):
         if self._session._backtrack():
             return
         self._add_metadatum('title', result)
-        self._io_manager.write_cache()
+        self._io_manager.write_cache(prompt=False)
 
     def edit_year_of_completion(self):
         r'''Edits year of completion of score.
@@ -582,7 +582,6 @@ class ScorePackageManager(PackageManager):
                 return
             self._session._is_backtracking_locally = True
 
-    # ZZZ
     def rename_score_package(self):
         r'''Renames score package.
 
@@ -591,14 +590,14 @@ class ScorePackageManager(PackageManager):
         pass
         with self._backtracking:
             prompt_string = 'new package name'
-            path = self._score_package_wrangler.get_available_path(
+            new_path = self._score_package_wrangler.get_available_path(
                 prompt_string=prompt_string)
         if self._session._backtrack():
             return
         lines = ['']
         line = 'current path: {!r}.'.format(self._path)
         lines.append(line)
-        line = 'new path: {!r}.'.format(path)
+        line = 'new path: {!r}.'.format(new_path)
         lines.append(line)
         lines.append('')
         self._io_manager.display(lines)
@@ -606,8 +605,10 @@ class ScorePackageManager(PackageManager):
             confirm = self._io_manager.confirm()
         if self._session._backtrack():
             return
-        if confirm:
-            print 'RENAMING!'
+        if not confirm:
+            return
+        self._rename(new_path)
+        self._io_manager.proceed()
 
     def view_score_pdf(self):
         r'''Views score PDF.
