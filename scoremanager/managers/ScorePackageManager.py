@@ -134,7 +134,7 @@ class ScorePackageManager(PackageManager):
             'pdfv': self.view_score_pdf,
             'radd': self.add,
             'rci': self.commit,
-            'removescore': self.remove,
+            'removescore': self.remove_score_package,
             'rst': self.status,
             'rup': self.update,
             'u': self._build_directory_manager._run,
@@ -557,7 +557,7 @@ class ScorePackageManager(PackageManager):
         self._io_manager.proceed(message, prompt=prompt)
         return result
 
-    def remove(self):
+    def remove_score_package(self):
         r'''Removes score package.
 
         Returns none.
