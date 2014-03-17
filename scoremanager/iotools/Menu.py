@@ -96,11 +96,14 @@ class Menu(ScoreManagerObject):
             return '?'
         elif 3 <= len(user_input) and 'score'.startswith(user_input):
             return 'score'
-        else:
-            for menu_section in self.menu_sections:
-                for menu_entry in menu_section.menu_entries:
-                    if menu_entry.matches(user_input):
-                        return self._enclose_in_list(menu_entry.return_value)
+        for menu_section in self.menu_sections:
+            for menu_entry in menu_section.menu_entries:
+                if menu_entry.matches(user_input):
+                    return self._enclose_in_list(menu_entry.return_value)
+        for menu_section in self.menu_sections:
+            for menu_entry in menu_section.menu_entries:
+                if menu_entry.matches(user_input.lower()):
+                    return self._enclose_in_list(menu_entry.return_value)
         if self._user_enters_argument_range(user_input):
             return self._handle_argument_range_user_input(user_input)
 
