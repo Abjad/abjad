@@ -1,21 +1,18 @@
 # -*- encoding: utf-8 -*-
-import pytest
 from abjad import *
 import scoremanager
+score_manager = scoremanager.core.ScoreManager()
 
 
 def test_Menu_allow_ascii_access_to_unicode_key_01():
-    pytest.skip('fix eventually with new score name or something.')
-
-    score_manager = scoremanager.core.ScoreManager()
-    score_manager._run(pending_user_input='Étude q', is_test=True)
-    assert score_manager._transcript.signature == (4,)
 
     score_manager._run(pending_user_input='étude q', is_test=True)
-    assert score_manager._transcript.signature == (4,)
+    string = 'Étude Example Score (2013)'
+    assert score_manager._transcript.last_title == string
 
-    score_manager._run(pending_user_input='Etude q', is_test=True)
-    assert score_manager._transcript.signature == (4,)
+
+def test_Menu_allow_ascii_access_to_unicode_key_02():
 
     score_manager._run(pending_user_input='etude q', is_test=True)
-    assert score_manager._transcript.signature == (4,)
+    string = 'Étude Example Score (2013)'
+    assert score_manager._transcript.last_title == string
