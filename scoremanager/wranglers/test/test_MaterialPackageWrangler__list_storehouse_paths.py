@@ -34,7 +34,7 @@ def test_MaterialPackageWrangler__list_storehouse_paths_02():
     
     score_package_names = [
         'blue_example_score',
-        'green_example_score',
+        'etude_example_score',
         'red_example_score',
         ]
 

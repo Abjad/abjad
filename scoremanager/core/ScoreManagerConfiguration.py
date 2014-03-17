@@ -198,14 +198,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 >>> for x in configuration.abjad_score_package_names:
                 ...     x
                 'blue_example_score'
-                'green_example_score'
+                'etude_example_score'
                 'red_example_score'
 
         Returns tuple of strings.
         '''
         return (
             'blue_example_score',
-            'green_example_score',
+            'etude_example_score',
             'red_example_score',
             )
 
@@ -578,7 +578,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                 ...     ):
                 ...     x
                 '.../scoremanager/scores/blue_example_score'
-                '.../scoremanager/scores/green_example_score'
+                '.../scoremanager/scores/etude_example_score'
                 '.../scoremanager/scores/red_example_score'
 
         Returns list.

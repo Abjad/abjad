@@ -13,7 +13,7 @@ def test_ScorePackageWrangler__list_asset_paths_01():
 
     package_names = [
         'blue_example_score',
-        'green_example_score',
+        'etude_example_score',
         'red_example_score',
         ]
 
