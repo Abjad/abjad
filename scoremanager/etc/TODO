@@ -96,3 +96,9 @@
 27. Remove boilerplate commands. Replace with shutil calls in tests.
 
 28. Change 'illustration_builder_module' to 'illustrate_module'.
+
+29. Search for 'whatever_section = menu.make_*_section()' and
+    change to 'section = menu.make_*_section()' everywhere.
+
+30. Write test for making new score.
+    Score will be made in user score directory.

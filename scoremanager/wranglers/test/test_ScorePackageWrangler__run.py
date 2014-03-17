@@ -16,7 +16,7 @@ def test_ScorePackageWrangler__run_01():
         score_manager._configuration.abjad_score_packages_directory_path,
         'testscore',
         )
-    input_ = 'new Test~score testscore 2012 q'
+    input_ = 'new test~score testscore 2012 q'
 
     assert not os.path.exists(path)
     try:

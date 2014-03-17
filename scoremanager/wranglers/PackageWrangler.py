@@ -74,12 +74,12 @@ class PackageWrangler(Wrangler):
                 return True
         return False
 
-    def _make_asset(self, asset_name):
-        assert stringtools.is_snake_case_package_name(asset_name)
-        asset_path = os.path.join(
-            self._current_storehouse_path, asset_name)
-        os.mkdir(asset_path)
-        package_manager = self._initialize_asset_manager(asset_name)
+    def _make_asset(self, path):
+        assert os.path.sep in path
+        package_name = os.path.basename(path)
+        assert stringtools.is_snake_case_package_name(package_name)
+        os.mkdir(path)
+        package_manager = self._initialize_asset_manager(path)
         package_manager.fix(prompt=False)
 
     ### PUBLIC METHODS ###
@@ -125,6 +125,7 @@ class PackageWrangler(Wrangler):
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
             path = self.get_available_path()
+            #raise Exception(path)
         if self._session._backtrack():
             return
         self._make_asset(path)

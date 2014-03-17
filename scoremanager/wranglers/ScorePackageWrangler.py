@@ -82,6 +82,6 @@ class ScorePackageWrangler(PackageWrangler):
             )
         for path in paths:
             manager = self._initialize_asset_manager(path)
-            if manager._is_visible():
+            if manager._is_visible() != False:
                 visible_paths.append(path)
         return visible_paths

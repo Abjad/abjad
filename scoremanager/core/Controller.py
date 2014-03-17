@@ -174,12 +174,17 @@ class Controller(ScoreManagerObject):
                 session=self._session,
                 )
             metadata = manager._get_metadata()
-            year_of_completion = metadata.get('year_of_completion')
-            title = metadata.get('title')
-            if year and year_of_completion:
-                annotation = '{} ({})'.format(title, year_of_completion)
+            if metadata:
+                year_of_completion = metadata.get('year_of_completion')
+                title = metadata.get('title')
+                if year and year_of_completion:
+                    annotation = '{} ({})'.format(title, year_of_completion)
+                else:
+                    annotation = str(title)
             else:
-                annotation = str(title)
+                package_name = os.path.basename(path)
+                annotation = 'Untitled ({})'
+                annotation = annotation.format(package_name)
         elif path.startswith(self._abjad_storehouse_path):
             annotation = 'Abjad'
         elif path.startswith(self._user_storehouse_path):

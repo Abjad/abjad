@@ -142,11 +142,12 @@ class ScoreManager(Controller):
             menu_entries = self._io_manager._read_cache()
         menu = self._io_manager.make_menu(
             where=self._where,
+            # TODO: should the following keyword be true?
             include_default_hidden_sections=False,
             )
-        asset_section = menu.make_asset_section()
+        section = menu.make_asset_section()
         for menu_entry in menu_entries:
-            asset_section.append(menu_entry)
+            section.append(menu_entry)
         return menu
 
     def _make_scores_menu_section(self, menu):
@@ -298,16 +299,16 @@ class ScoreManager(Controller):
 
         Returns none.
         '''
-        self._score_package_wrangler.make_asset(rollback=True)
+        #self._score_package_wrangler.make_asset(rollback=True)
+        # TODO: rename to self._score_package_wrangler.make_new_score()
+        self._score_package_wrangler.make_asset()
 
     def manage_material_library(self):
         r'''Manages material library.
 
         Returns none.
         '''
-        self._material_package_wrangler._run(
-            rollback=True, 
-            )
+        self._material_package_wrangler._run(rollback=True)
 
     def manage_score(self, path):
         r'''Manages score.
@@ -328,9 +329,7 @@ class ScoreManager(Controller):
 
         Returns none.
         '''
-        self._stylesheet_wrangler._run(
-            rollback=True, 
-            )
+        self._stylesheet_wrangler._run(rollback=True)
 
     def pytest(self, prompt=True):
         r'''Runs py.test.
@@ -338,8 +337,13 @@ class ScoreManager(Controller):
         Returns none.
         '''
         path = self._configuration.user_score_packages_directory_path
-        command = 'py.test -rf {}'.format(path)
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        command = 'py.test -rf {}'
+        command = command.format(path)
+        process = subprocess.Popen(
+            command, 
+            shell=True, 
+            stdout=subprocess.PIPE,
+            )
         lines = [line.strip() for line in process.stdout.readlines()]
         if lines:
             lines.append('')
