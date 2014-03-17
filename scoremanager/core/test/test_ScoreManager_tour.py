@@ -13,7 +13,7 @@ def test_ScoreManager_tour_01():
     titles = [
         'Score manager - example scores',
         'Blue Example Score (2013)',
-        'Green Example Score (2013)',
+        'Étude Example Score (2013)',
         ]
     assert score_manager._transcript.titles == titles
 
@@ -28,6 +28,6 @@ def test_ScoreManager_tour_02():
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
-        'Green Example Score (2013)',
+        'Étude Example Score (2013)',
         ]
     assert score_manager._transcript.titles == titles

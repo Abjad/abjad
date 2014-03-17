@@ -309,14 +309,13 @@ class ScoreManager(Controller):
             rollback=True, 
             )
 
-    def manage_score(self, score_package_path):
+    def manage_score(self, path):
         r'''Manages score.
 
         Returns none.
         '''
-        manager = self._score_package_wrangler._initialize_asset_manager(
-            score_package_path)
-        score_package_name = score_package_path.split('.')[-1]
+        manager = self._score_package_wrangler._initialize_asset_manager(path)
+        score_package_name = path.split('.')[-1]
         manager._session._current_score_snake_case_name = score_package_name
         manager._run(cache=True)
         if manager._session.is_autonavigating:

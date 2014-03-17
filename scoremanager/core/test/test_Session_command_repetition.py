@@ -10,7 +10,7 @@ def test_Session_command_repetition_01():
     titles = [ 
         'Score manager - example scores',
         'Blue Example Score (2013)',
-        'Green Example Score (2013)',
+        'Étude Example Score (2013)',
         'Red Example Score (2013)',
         'Blue Example Score (2013)',
         ]

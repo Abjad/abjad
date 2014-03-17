@@ -496,7 +496,7 @@ class ScorePackageManager(PackageManager):
         if self._session._backtrack():
             return
         self._add_metadatum('title', result)
-        self._io_manager._write_cache()
+        self._io_manager.write_cache()
 
     def edit_year_of_completion(self):
         r'''Edits year of completion of score.
