@@ -315,8 +315,8 @@ class ScoreManager(Controller):
         Returns none.
         '''
         manager = self._score_package_wrangler._initialize_asset_manager(path)
-        score_package_name = path.split('.')[-1]
-        manager._session._current_score_snake_case_name = score_package_name
+        package_name = os.path.basename(path)
+        manager._session._current_score_snake_case_name = package_name
         manager._run(cache=True)
         if manager._session.is_autonavigating:
             pass
