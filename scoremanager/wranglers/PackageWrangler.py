@@ -125,7 +125,6 @@ class PackageWrangler(Wrangler):
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtracking:
             path = self.get_available_path()
-            #raise Exception(path)
         if self._session._backtrack():
             return
         self._make_asset(path)

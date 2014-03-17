@@ -85,3 +85,14 @@ class ScorePackageWrangler(PackageWrangler):
             if manager._is_visible() != False:
                 visible_paths.append(path)
         return visible_paths
+
+    ### PUBLIC METHODS ###
+
+    def make_new_score(self, prompt=True):
+        r'''Makes new score.
+
+        Returns none.
+        '''
+        superclass = super(ScorePackageWrangler, self)
+        superclass.make_asset()
+        self._io_manager.write_cache(prompt=False)

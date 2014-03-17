@@ -102,3 +102,5 @@
 
 30. Write test for making new score.
     Score will be made in user score directory.
+
+31. Extend Manager._remove() to use 'trash' if command is found.

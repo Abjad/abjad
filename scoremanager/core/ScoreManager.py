@@ -299,9 +299,7 @@ class ScoreManager(Controller):
 
         Returns none.
         '''
-        #self._score_package_wrangler.make_asset(rollback=True)
-        # TODO: rename to self._score_package_wrangler.make_new_score()
-        self._score_package_wrangler.make_asset()
+        self._score_package_wrangler.make_new_score()
 
     def manage_material_library(self):
         r'''Manages material library.

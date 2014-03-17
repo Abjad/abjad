@@ -431,6 +431,11 @@ class ScorePackageManager(PackageManager):
         self._session._pop_breadcrumb()
         self._session._restore_breadcrumbs(cache=cache)
 
+    def _remove(self):
+        superclass = super(ScorePackageManager, self)
+        superclass._remove()
+        self._io_manager.write_cache(prompt=False)
+
     def _write_instrumentation(self, instrumentation):
         assert instrumentation is not None
         lines = []
@@ -523,48 +528,31 @@ class ScorePackageManager(PackageManager):
         for path in self._get_top_level_directory_paths():
             if not os.path.exists(path):
                 result = False
-                prompt = 'create {!r}? '.format(path)
-                if not prompt or self._io_manager.confirm(prompt):
+                message = 'create {!r}?'.format(path)
+                if not prompt or self._io_manager.confirm(message):
                     os.mkdir(path)
                     gitignore_path = os.path.join(path, '.gitignore')
-                    file_pointer = file(gitignore_path, 'w')
-                    file_pointer.write('')
-                    file_pointer.close()
+                    with file(gitignore_path, 'w') as file_pointer:
+                        file_pointer.write('')
         if not os.path.exists(self._initializer_file_path):
             result = False
-            prompt = 'create {}? '.format(self._initializer_file_path)
-            if not prompt or self._io_manager.confirm(prompt):
-                initializer = file(self._initializer_file_path, 'w')
-                initializer.write('')
-                initializer.close()
+            message = 'create {}?'.format(self._initializer_file_path)
+            if not prompt or self._io_manager.confirm(message):
+                with file(self._initializer_file_path, 'w') as initializer:
+                    initializer.write('')
         lines = []
         if not os.path.exists(self._metadata_module_path):
             result = False
-            prompt = 'create {}? '.format(self._metadata_module_path)
-            if not prompt or self._io_manager.confirm(prompt):
-                metadata_module = file(self._metadata_module_path, 'w')
-                metadata_module.write(self._unicode_directive + '\n')
-                metadata_module.write('from abjad import *\n')
-                metadata_module.write('import collections\n')
-                metadata_module.write('\n')
-                metadata_module.write('\n')
-                metadata_module.write('metadata = collections.OrderedDict([])\n')
-                metadata_module.close()
-        if not os.path.exists(self._get_materials_directory_path()):
-            result = False
-            prompt = 'create {}'.format(self._get_materials_directory_path())
-            if not prompt or self._io_manager.confirm(prompt):
-                os.mkdir(self._get_materials_directory_path())
-        if not os.path.exists(self._get_segments_directory_path()):
-            result = False
-            prompt = 'create {}'.format(self._get_segments_directory_path())
-            if not prompt or self._io_manager.confirm(prompt):
-                os.mkdir(self._get_segments_directory_path())
-        if not os.path.exists(self._get_stylesheets_directory_path()):
-            result = False
-            prompt = 'create {}'.format(self._get_stylesheets_directory_path())
-            if not prompt or self._io_manager.confirm(prompt):
-                os.mkdir(self._get_stylesheets_directory_path())
+            message = 'create {}?'.format(self._metadata_module_path)
+            if not prompt or self._io_manager.confirm(message):
+                with file(self._metadata_module_path, 'w') as metadata_module:
+                    metadata_module.write(self._unicode_directive + '\n')
+                    metadata_module.write('from abjad import *\n')
+                    metadata_module.write('import collections\n')
+                    metadata_module.write('\n')
+                    metadata_module.write('\n')
+                    string = 'metadata = collections.OrderedDict([])\n'
+                    metadata_module.write(string)
         message = 'packaged structure fixed.'
         self._io_manager.proceed(message, prompt=prompt)
         return result
