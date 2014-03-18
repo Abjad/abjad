@@ -24,9 +24,8 @@ class ScoreManager(Controller):
         from scoremanager import wranglers
         if session is None:
             session = core.Session()
+        session._is_test = is_test
         Controller.__init__(self, session=session)
-        #assert is_test
-        self._session._is_test = is_test
         self._session._score_manager = self
         wrangler = wranglers.SegmentPackageWrangler(session=self._session)
         self._segment_package_wrangler = wrangler
