@@ -65,7 +65,7 @@ class Manager(Controller):
         if self._is_in_git_repository(path=self._path):
             return 'git status {}'.format(self._path)
         elif self._is_svn_versioned(path=self._path):
-            return 'svn st -u {}'.format(self._path)
+            return 'svn st {}'.format(self._path)
         else:
             raise ValueError(self)
 
@@ -216,7 +216,7 @@ class Manager(Controller):
                 break
         if not is_in_svn_versioned_tree:
             return False
-        command = 'svn st -u {}'
+        command = 'svn st {}'
         command = command.format(path)
         process = subprocess.Popen(
             command,
