@@ -244,6 +244,24 @@ class Manager(Controller):
         else:
             return True
 
+    def _is_up_to_date(self):
+        if self._is_git_versioned():
+            command = 'git st {}'
+            pass
+        elif self._is_svn_versioned():
+            command = 'svn st {}'
+        else:
+            raise ValueError(self)
+        command = command.format(self._path)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+        first_line = process.stdout.readline()
+        return first_line == ''
+
     def _list(self, public_entries_only=False):
         result = []
         if not os.path.exists(self._path):
