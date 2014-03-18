@@ -5,7 +5,8 @@ import scoremanager
 
 def test_InstrumentEditor_make_target_01():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.InstrumentEditor(session=session)
-    editor._run(pending_user_input='cel q')
+    input_ = 'cel q'
+    editor._run(pending_user_input=input_)
     assert editor.target == instrumenttools.Cello()

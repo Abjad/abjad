@@ -7,9 +7,10 @@ def test_TempoInventoryEditor__run_01():
     r'''Quitting makes an empty tempo inventory.
     '''
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.TempoInventoryEditor(session=session)
-    editor._run(pending_user_input='q')
+    input_ = 'q'
+    editor._run(pending_user_input=input_)
     inventory = indicatortools.TempoInventory([])
     assert editor.target == inventory
 
@@ -18,14 +19,12 @@ def test_TempoInventoryEditor__run_02():
     r'''Works with duration pairs.
     '''
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.TempoInventoryEditor(session=session)
-    editor._run(pending_user_input=
-        'add ((1, 4), 60) '
-        'add ((1, 4), 72) '
-        'add ((1, 4), 84) '
-        'q'
-        )
+    input_ = 'add ((1, 4), 60)'
+    input_ +=  ' add ((1, 4), 72)'
+    input_ += ' add ((1, 4), 84) q'
+    editor._run(pending_user_input=input_)
     inventory = indicatortools.TempoInventory([
         Tempo(Duration(1, 4), 60), 
         Tempo(Duration(1, 4), 72), 
@@ -38,14 +37,12 @@ def test_TempoInventoryEditor__run_03():
     r'''Works with durations.
     '''
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.TempoInventoryEditor(session=session)
-    editor._run(pending_user_input=
-        'add (Duration(1, 4), 60) '
-        'add (Duration(1, 4), 72) '
-        'add (Duration(1, 4), 84) '
-        'q'
-        )
+    input_ = 'add (Duration(1, 4), 60)'
+    input_ += ' add (Duration(1, 4), 72)'
+    input_ += ' add (Duration(1, 4), 84) q'
+    editor._run(pending_user_input=input_)
     inventory = indicatortools.TempoInventory([
         Tempo(Duration(1, 4), 60), 
         Tempo(Duration(1, 4), 72), 

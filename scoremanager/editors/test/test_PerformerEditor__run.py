@@ -8,18 +8,18 @@ def test_PerformerEditor__run_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score setup instrumentation hornist q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup instrumentation hornist q'
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (10,)
 
-    string = 'red~example~score setup instrumentation hornist b q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup instrumentation hornist b q'
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (12, (6, 10))
 
-    string = 'red~example~score setup instrumentation hornist h q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup instrumentation hornist h q'
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (12, (0, 10))
 
-    string = 'red~example~score setup instrumentation hornist foo q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup instrumentation hornist foo q'
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (12, (8, 10))

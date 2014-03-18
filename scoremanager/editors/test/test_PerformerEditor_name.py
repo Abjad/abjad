@@ -8,27 +8,27 @@ def test_PerformerEditor_name_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score setup instrumentation hornist name q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup instrumentation hornist name q'
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (11,)
 
-    string = 'red~example~score setup instrumentation hornist name b q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup instrumentation hornist name b q'
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (13, (8, 11))
 
-    string = 'red~example~score setup instrumentation'
-    string += ' hornist name h q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup instrumentation'
+    input_ += ' hornist name h q'
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (13, (0, 11))
 
 
 def test_PerformerEditor_name_02():
-    r'''String input only.
+    r'''input_ input only.
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score setup instrumentation hornist name -99 q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup instrumentation hornist name -99 q'
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (13,)
 
 
@@ -36,7 +36,8 @@ def test_PerformerEditor_name_03():
     r'''Create, name and rename performer.
     '''
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.PerformerEditor(session=session)
-    editor._run(pending_user_input='name foo name bar q')
+    input_ = 'name foo name bar q'
+    editor._run(pending_user_input=input_)
     assert editor.target == instrumenttools.Performer(name='bar')

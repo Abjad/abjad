@@ -7,26 +7,30 @@ def test_OctaveTranspositionMappingInventoryEditor__run_01():
     r'''Empty inventories.
     '''
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.OctaveTranspositionMappingInventoryEditor
     editor = editor(session=session)
-    editor._run(pending_user_input='done')
+    input_ = 'done'
+    editor._run(pending_user_input=input_)
     assert editor.target == pitchtools.OctaveTranspositionMappingInventory()
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.OctaveTranspositionMappingInventoryEditor
     editor = editor(session=session)
-    editor._run(pending_user_input='q')
+    input_ = 'q'
+    editor._run(pending_user_input=input_)
     assert editor.target == pitchtools.OctaveTranspositionMappingInventory()
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.OctaveTranspositionMappingInventoryEditor
     editor = editor(session=session)
-    editor._run(pending_user_input='b')
+    input_ = 'b'
+    editor._run(pending_user_input=input_)
     assert editor.target == pitchtools.OctaveTranspositionMappingInventory()
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.OctaveTranspositionMappingInventoryEditor
     editor = editor(session=session)
-    editor._run(pending_user_input='h')
+    input_ = 'h'
+    editor._run(pending_user_input=input_)
     assert editor.target == pitchtools.OctaveTranspositionMappingInventory()

@@ -8,29 +8,27 @@ def test_InstrumentEditor_short_instrument_name_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score setup instrumentation hornist horn sn q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup instrumentation hornist horn sn q'
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (13,)
 
-    string = 'red~example~score setup instrumentation'
-    string += ' hornist horn sn b q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup instrumentation'
+    input_ += ' hornist horn sn b q'
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (15, (10, 13))
 
-    string = 'red~example~score setup instrumentation'
-    string += ' hornist horn sn h q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup instrumentation'
+    input_ += ' hornist horn sn h q'
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (15, (0, 13))
 
 
 def test_InstrumentEditor_short_instrument_name_02():
-    r'''String only.
-    '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score setup instrumentation'
-    string += ' hornist horn sn -99 q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup instrumentation'
+    input_ += ' hornist horn sn -99 q'
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (15,)
 
 
@@ -39,15 +37,17 @@ def test_InstrumentEditor_short_instrument_name_03():
     Unless short instrument name markup is set explicitly.
     '''
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.InstrumentEditor(session=session)
-    editor._run(pending_user_input="accordion sn 'foo' q")
+    input_ = "accordion sn 'foo' q"
+    editor._run(pending_user_input=input_)
     instrument = editor.target
     assert instrument.short_instrument_name == 'foo'
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.InstrumentEditor(session=session)
-    editor._run(pending_user_input="accordion sm 'bar' sn 'foo' q")
+    input_ = "accordion sm 'bar' sn 'foo' q"
+    editor._run(pending_user_input=input_)
     instrument = editor.target
     assert instrument.short_instrument_name == 'foo'
     assert instrument.short_instrument_name_markup == markuptools.Markup('bar')

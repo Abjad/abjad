@@ -5,9 +5,10 @@ import scoremanager
 
 def test_ClefInventoryEditor__run_01():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.ClefInventoryEditor(session=session)
-    editor._run(pending_user_input='add treble add bass done')
+    input_ = 'add treble add bass done'
+    editor._run(pending_user_input=input_)
 
     inventory = indicatortools.ClefInventory(['treble', 'bass'])
     assert editor.target == inventory

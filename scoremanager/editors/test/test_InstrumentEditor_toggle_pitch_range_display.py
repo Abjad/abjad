@@ -5,17 +5,20 @@ import scoremanager
 
 def test_InstrumentEditor_toggle_pitch_range_display_01():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.InstrumentEditor(session=session)
-    editor._run(pending_user_input='marimba q')
+    input_ = 'marimba q'
+    editor._run(pending_user_input=input_)
     assert not editor._session.display_pitch_ranges_with_numbered_pitches
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.InstrumentEditor(session=session)
-    editor._run(pending_user_input='marimba tprd q')
+    input_ = 'marimba tprd q'
+    editor._run(pending_user_input=input_)
     assert editor._session.display_pitch_ranges_with_numbered_pitches
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.InstrumentEditor(session=session)
-    editor._run(pending_user_input='marimba tprd tprd q')
+    input_ = 'marimba tprd tprd q'
+    editor._run(pending_user_input=input_)
     assert not editor._session.display_pitch_ranges_with_numbered_pitches

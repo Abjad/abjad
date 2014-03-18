@@ -6,11 +6,11 @@ import scoremanager
 
 def test_PatternedArticulationsHandlerEditor__run_01():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.PatternedArticulationsHandlerEditor
     editor = editor(session=session)
-    string = "1 [['.', '^'], ['.']] (1, 16) (1, 8) cs'' c''' done"
-    editor._run(pending_user_input=string, is_autoadvancing=True)
+    input_ = "1 [['.', '^'], ['.']] (1, 16) (1, 8) cs'' c''' done"
+    editor._run(pending_user_input=input_, is_autoadvancing=True)
 
 
     handler = handlertools.PatternedArticulationsHandler(

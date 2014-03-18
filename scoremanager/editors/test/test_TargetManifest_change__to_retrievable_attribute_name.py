@@ -6,7 +6,7 @@ import scoremanager
 
 def test_TargetManifest_change__to_retrievable_attribute_name_01():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.MarkupEditor(session=session)
 
     assert editor._target_manifest._to_retrievable_attribute_name('arg') == \
@@ -18,7 +18,7 @@ def test_TargetManifest_change__to_retrievable_attribute_name_01():
 
 def test_TargetManifest_change__to_retrievable_attribute_name_02():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.MarkupEditor(session=session)
 
     statement = "editor._target_manifest.change_initializer_argument_name"

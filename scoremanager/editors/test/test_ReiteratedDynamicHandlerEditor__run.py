@@ -6,13 +6,11 @@ import scoremanager
 
 def test_ReiteratedDynamicHandlerEditor__run_01():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.ReiteratedDynamicHandlerEditor
     editor = editor(session=session)
-    editor._run(
-        pending_user_input="1 f Duration(1, 8) q", 
-        is_autoadvancing=True,
-        )
+    input_ = '1 f Duration(1, 8) q'
+    editor._run(pending_user_input=input_, is_autoadvancing=True)
 
     handler = handlertools.ReiteratedDynamicHandler(
         dynamic_name='f',

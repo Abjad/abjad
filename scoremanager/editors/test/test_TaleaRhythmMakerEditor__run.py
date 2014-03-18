@@ -7,12 +7,10 @@ pytest.skip('unskip once it is possible to edit composite objects.')
 
 def test_TaleaRhythmMakerEditor__run_01():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.TaleaRhythmMakerEditor(session=session)
-    editor._run(
-        pending_user_input='2 16 (2, 3) (6,) (-1, 2, -3, 4) q', 
-        is_autoadvancing=True,
-        )
+    input_ = '2 16 (2, 3) (6,) (-1, 2, -3, 4) q' 
+    editor._run(pending_user_input=input_, is_autoadvancing=True)
 
     talea = rhythmmakertools.Talea(
         counts=(-1, 2, -3, 4), 

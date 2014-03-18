@@ -5,10 +5,10 @@ import scoremanager
 
 def test_MarkupInventoryEditor__run_01():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.MarkupInventoryEditor(session=session)
-    string = "add arg r'\\italic~{~serenamente~possibile~}' done done"
-    editor._run(pending_user_input=string)
+    input_ = "add arg r'\\italic~{~serenamente~possibile~}' done done"
+    editor._run(pending_user_input=input_)
 
     inventory = markuptools.MarkupInventory([
         markuptools.Markup(
@@ -21,13 +21,13 @@ def test_MarkupInventoryEditor__run_01():
 
 def test_MarkupInventoryEditor__run_02():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.MarkupInventoryEditor(session=session)
-    string = "add"
-    string += " arg r'\\italic~{~serenamente~possibile~}'"
-    string += " direction up done"
-    string += " add arg r'\\italic~{~presto~}' done done"
-    editor._run(pending_user_input=string)
+    input_ = "add"
+    input_ += " arg r'\\italic~{~serenamente~possibile~}'"
+    input_ += " direction up done"
+    input_ += " add arg r'\\italic~{~presto~}' done done"
+    editor._run(pending_user_input=input_)
 
     inventory = markuptools.MarkupInventory([
         markuptools.Markup(
