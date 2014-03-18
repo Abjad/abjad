@@ -175,7 +175,6 @@ class ScoreManager(Controller):
         pending_user_input=None, 
         clear=True, 
         cache=False, 
-        is_test=False, 
         display_active_scores=False,
         write_transcript=False,
         ):
@@ -186,9 +185,6 @@ class ScoreManager(Controller):
             )
         self._session._cache_breadcrumbs(cache=cache)
         self._session._push_breadcrumb(self._breadcrumb)
-        if is_test:
-            self._session._is_test = True
-        #assert self._session.is_test
         self._session._write_transcript = write_transcript
         if display_active_scores:
             self._session.display_active_scores()
