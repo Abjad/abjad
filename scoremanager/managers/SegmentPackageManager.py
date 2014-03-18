@@ -110,7 +110,7 @@ class SegmentPackageManager(PackageManager):
             section.append((string, 'lyri'))
             string = 'current lilypond file - view'
             section.append((string, 'lyv'))
-        return section
+            return section
 
     def _make_current_pdf_menu_section(self, menu):
         section = menu.make_command_section(name='current pdf')
