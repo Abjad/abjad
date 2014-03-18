@@ -133,6 +133,7 @@ class Session(abctools.AbjadObject):
         self._current_score_snake_case_name = None
         self._display_pitch_ranges_with_numbered_pitches = False
         self._enable_where = False
+        #self._enable_where = True
         self._hide_hidden_commands = True
         self._hide_next_redraw = False
         self._initial_user_input = pending_user_input
@@ -1494,6 +1495,7 @@ class Session(abctools.AbjadObject):
 
         Returns none.
         '''
+
         if self.enable_where:
             self._enable_where = False
             message = 'source code tracking off.'
@@ -1503,6 +1505,8 @@ class Session(abctools.AbjadObject):
         if prompt:
             self.io_manager.display([message, ''])
         self._hide_next_redraw = True
+
+        #self._enable_where = True
 
     def toggle_user_input_values_default_status(self):
         r'''Toggles `use_current_user_input_values_as_default`.

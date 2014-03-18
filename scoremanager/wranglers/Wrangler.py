@@ -252,7 +252,7 @@ class Wrangler(Controller):
                 infinitival_phrase,
                 )
         elif is_storehouse:
-            return 'select {} storehouse:'.format(human_readable_target_name)
+            return 'select storehouse'
         else:
             return 'select {}:'.format(human_readable_target_name)
 

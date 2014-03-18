@@ -196,3 +196,58 @@ Also these:
 CONCLUSION: quick-and-dirty caching saves about 20% of pytest run time for 
 scoremanager. So a reasonable path forward is to leave caching on *during
 development* and then turn it off before shipping public releases.
+
+
+### 2014-03-17 ###
+
+Here are data for running the py.test battery with where-tracking turned off
+versus running with where-tracking turned on:
+
+With where-tracking turned off:
+
+    446 passed, 12 skipped in 53.16 seconds
+    446 passed, 12 skipped in 52.37 seconds
+    446 passed, 12 skipped in 52.20 seconds
+    average time: 52.58 seconds
+
+With where-tracking turned on:
+
+    446 passed, 12 skipped in 56.89 seconds
+    446 passed, 12 skipped in 55.81 seconds
+    446 passed, 12 skipped in 55.69 seconds
+    average time: 56.13 seconds
+
+Here are function counts for the same thing:
+
+With where-tracking turned off:
+
+    >>> score_manager = scoremanager.core.ScoreManager()
+    >>> statement = 'score_manager._make_main_menu()'
+    >>> print score_manager._session.io_manager.count_function_calls(
+        statement,
+        global_context=globals(),
+        local_context=locals(),
+        )
+    2741
+
+With where-tracking turned on:
+
+    >>> score_manager = scoremanager.core.ScoreManager()
+    >>> statement = 'score_manager._make_main_menu()'
+    >>> print score_manager._session.io_manager.count_function_calls(
+        statement,
+        global_context=globals(),
+        local_context=locals(),
+        )
+    19690
+
+RESULTS: there's about a 6.7% runtime cost to turning where-tracking on.
+
+RESULTS: main menu production goes from ~3000 to ~20,000 function calls with
+where-tracking turned on.
+
+CONCLUSION: the extra function calls required to keep where-tracking turned on
+result in a runtime overhead of only between 5 - 10%. It actually makes sense
+to keep where-tracking turned on all the time. An even smarter approach will
+keep where-tracking turned for all nontest sessions and leave where-tracking
+turned off for all test sessions.

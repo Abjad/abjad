@@ -109,3 +109,9 @@
     Apply to ScorePackageManager._maker_module_wrangler,
     ScorePackageManager._material_manager_wrangler, etc.
     Maybe the 'lru' decorator works for this already.
+
+33. Make ScorePackageManager create missing top-level directories
+    during initialization. Run tests before and after change to check
+    for any noticeable slowdown.
+
+34. Make (ls) work in stylesheets menu. So (score > y > ls).
