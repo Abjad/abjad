@@ -25,7 +25,8 @@ def test_FileManager_rename_01():
     try:
         manager._make_empty_asset()
         assert os.path.exists(path)
-        manager.rename(pending_user_input='new-test-file.txt y q')
+        input_ = 'new-test-file.txt y q'
+        manager.rename(pending_user_input=input_)
         assert manager._path == new_path
         assert not os.path.exists(path)
         assert os.path.exists(new_path)

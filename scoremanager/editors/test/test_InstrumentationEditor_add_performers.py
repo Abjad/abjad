@@ -59,7 +59,8 @@ def test_InstrumentationEditor_add_performers_03():
 
     session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.InstrumentationEditor(session=session)
-    editor._run(pending_user_input='add 1-3 default default default q')
+    input_ = 'add 1-3 default default default q'
+    editor._run(pending_user_input=input_)
     assert editor.target == instrumenttools.InstrumentationSpecifier([
         instrumenttools.Performer(
             name='accordionist', 

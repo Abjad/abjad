@@ -6,19 +6,23 @@ import scoremanager
 def test_PerformerCreationWizard__run_01():
 
     wizard = scoremanager.wizards.PerformerCreationWizard()
-    assert wizard._run(pending_user_input='q') is None
+    input_ = 'q'
+    assert wizard._run(pending_user_input=input_) is None
 
     wizard = scoremanager.wizards.PerformerCreationWizard()
-    assert wizard._run(pending_user_input='b') is None
+    input_ = 'b'
+    assert wizard._run(pending_user_input=input_) is None
 
     wizard = scoremanager.wizards.PerformerCreationWizard()
-    assert wizard._run(pending_user_input='h') is None
+    input_ = 'h'
+    assert wizard._run(pending_user_input=input_) is None
 
 
 def test_PerformerCreationWizard__run_02():
 
     wizard = scoremanager.wizards.PerformerCreationWizard()
-    assert wizard._run(pending_user_input='vn default') == \
+    input_ = 'vn default'
+    assert wizard._run(pending_user_input=input_) == \
         instrumenttools.Performer(
             name='violinist', 
             instruments=[instrumenttools.Violin()],
@@ -79,7 +83,8 @@ def test_PerformerCreationWizard__run_06():
         instrument_name='caxixi', 
         short_instrument_name='caxixi',
         )
-    wizard._run(pending_user_input='vn more untuned cax')
+    input_ = 'vn more untuned cax'
+    wizard._run(pending_user_input=input_)
     assert wizard.target == [
         instrumenttools.Performer(
             name='violinist', 

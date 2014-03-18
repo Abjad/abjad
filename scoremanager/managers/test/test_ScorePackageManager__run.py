@@ -19,7 +19,8 @@ def test_ScorePackageManager__run_01():
         path=path,
         session=session,
         )
-    red_example_score._run(pending_user_input='q')
+    input_ = 'q'
+    red_example_score._run(pending_user_input=input_)
 
     lines = [
         'Red Example Score (2013)',
@@ -68,7 +69,8 @@ def test_ScorePackageManager__run_03():
         path=path,
         session=session,
         )
-    red_example_score._run(pending_user_input='h')
+    input_ = 'h'
+    red_example_score._run(pending_user_input=input_)
 
     assert red_example_score._transcript.signature == (2,)
     string = "Red Example Score (2013)"

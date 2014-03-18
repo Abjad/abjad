@@ -10,8 +10,9 @@ def test_MaterialPackageWrangler_get_available_path_01():
     session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     storehouse = configuration.user_library_material_packages_directory_path
+    input_ = 'foo'
     result = wrangler.get_available_path(
-        pending_user_input='foo',
+        pending_user_input=input_,
         storehouse_path=storehouse,
         )
     path = os.path.join(
@@ -20,7 +21,8 @@ def test_MaterialPackageWrangler_get_available_path_01():
         )
     assert result == path
 
-    result = wrangler.get_available_path(pending_user_input='example~notes q')
+    input_ = 'example~notes q'
+    result = wrangler.get_available_path(pending_user_input=input_)
     assert result is None
 
 
@@ -29,7 +31,8 @@ def test_MaterialPackageWrangler_get_available_path_02():
     session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     wrangler._session._current_score_snake_case_name = 'red_example_score'
-    result = wrangler.get_available_path(pending_user_input='foo')
+    input_ = 'foo'
+    result = wrangler.get_available_path(pending_user_input=input_)
     path = os.path.join(
         configuration.abjad_score_packages_directory_path,
         'red_example_score',
@@ -45,11 +48,14 @@ def test_MaterialPackageWrangler_get_available_path_03():
     session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
 
-    result = wrangler.get_available_path(pending_user_input='q')
+    input_ = 'q'
+    result = wrangler.get_available_path(pending_user_input=input_)
     assert result is None
 
-    result = wrangler.get_available_path(pending_user_input='b')
+    input_ = 'b'
+    result = wrangler.get_available_path(pending_user_input=input_)
     assert result is None
 
-    result = wrangler.get_available_path(pending_user_input='h')
+    input_ = 'h'
+    result = wrangler.get_available_path(pending_user_input=input_)
     assert result is None
