@@ -119,7 +119,7 @@ class Session(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, pending_user_input=None):
+    def __init__(self, pending_user_input=None, is_test=False):
         from scoremanager import core
         from scoremanager import iotools
         self._attempted_to_open_file = False
@@ -156,7 +156,7 @@ class Session(abctools.AbjadObject):
         self._is_navigating_to_score_setup = False
         self._is_navigating_to_score_stylesheets = False
         self._is_quitting = False
-        self._is_test = False
+        self._is_test = is_test
         self._last_line = ''
         self._last_command_was_composite = False
         self._last_material_path = None
@@ -323,7 +323,7 @@ class Session(abctools.AbjadObject):
         self._hide_hidden_commands = True
 
     def _reinitialize(self):
-        type(self).__init__(self)
+        type(self).__init__(self, is_test=self.is_test)
 
     def _restore_breadcrumbs(self, cache=False):
         if cache:
