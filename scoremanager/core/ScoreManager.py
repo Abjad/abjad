@@ -19,11 +19,12 @@ class ScoreManager(Controller):
 
     ### INITIALIZER ###
 
-    def __init__(self, session=None):
+    def __init__(self, session=None, is_test=False):
         from scoremanager import core
         from scoremanager import wranglers
         if session is None:
             session = core.Session()
+        session._is_test = is_test
         Controller.__init__(self, session=session)
         self._session._score_manager = self
         wrangler = wranglers.SegmentPackageWrangler(session=self._session)
