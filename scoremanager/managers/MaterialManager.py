@@ -67,7 +67,7 @@ class MaterialManager(PackageManager):
     def _illustration_builder_module_path(self):
         return os.path.join(
             self._path, 
-            'illustration_builder.py',
+            '__illustrate__.py',
             )
 
     @property
@@ -1050,7 +1050,7 @@ class MaterialManager(PackageManager):
         lines.append(line)
         file_path = os.path.join(
             self._path,
-            'illustration_builder.py',
+            '__illustrate__.py',
             )
         with file(file_path, 'w') as file_pointer:
             file_pointer.write(''.join(lines))
