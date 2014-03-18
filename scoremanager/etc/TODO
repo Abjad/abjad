@@ -120,6 +120,3 @@
         assert len(result) == 1
     TypeError: boject of type 'NoneType' has no len()
     Use (tra > g) to induce bug.
-
-36. Make is_test=False a ScoreManager initializer keyword.
-    Hoist up from ScoreManager._run().
