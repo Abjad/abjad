@@ -9,7 +9,7 @@ def test_RhythmMakerCreationWizard__run_01():
 
     wizard = scoremanager.wizards.RhythmMakerCreationWizard()
     input_ = 'talearhythmmaker (-1, 2, -3, 4) 16 (2, 3) (6,) b'
-    wizard._run(pending_user_input=input_, is_test=True)
+    wizard._run(pending_user_input=input_)
 
     talea = rhythmmakertools.Talea(
         counts=(-1, 2, -3, 4),

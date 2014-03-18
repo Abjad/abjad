@@ -8,7 +8,7 @@ def test_ArticulationHandlerCreationWizard__run_01():
 
     wizard = scoremanager.wizards.ArticulationHandlerCreationWizard()
     input_ = "reit ['^', '.'] (1, 64) (1, 4) c c'''' done"
-    wizard._run(pending_user_input=input_, is_test=True)
+    wizard._run(pending_user_input=input_)
 
     handler = handlertools.ReiteratedArticulationHandler(
         articulation_list=['^', '.'],

@@ -9,10 +9,10 @@ def test_InstrumentSelectionWizard__run_01():
     wizard._session._current_score_snake_case_name = 'red_example_score'
 
     input_ = 'hor'
-    assert wizard._run(pending_user_input=input_, is_test=True) == \
+    assert wizard._run(pending_user_input=input_) == \
         instrumenttools.FrenchHorn()
     input_ = 'other xyl'
-    assert wizard._run(pending_user_input=input_, is_test=True) == \
+    assert wizard._run(pending_user_input=input_) == \
         instrumenttools.Xylophone()
 
 
@@ -25,5 +25,5 @@ def test_InstrumentSelectionWizard__run_02():
         short_instrument_name='whistle',
         )
     input_ = 'other untuned whis'
-    wizard._run(pending_user_input=input_, is_test=True)
+    wizard._run(pending_user_input=input_)
     assert wizard.target == whistle
