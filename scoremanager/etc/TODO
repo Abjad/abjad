@@ -79,44 +79,37 @@
 22. Change user/score_manager_library/material_packages/
     to user/score_manager_library/materials/.
 
-23. Search for
-        pending_user_input='...'
-    ... and replace with ...
-        input_ = '...'
-        pending_user_input=input_
-    ... instead.
+23. Remove 'whatever - make' commands. Reimplement as 'source - interpret'.
 
-24. Remove 'whatever - make' commands. Reimplement as 'source - interpret'.
-
-25. Add command to type arbitrary shell command to current working directory.
+24. Add command to type arbitrary shell command to current working directory.
     Maybe 'directory - run (run)' of follow Vim with !ls, !pwd and so on.
 
-26. Add confirmation message to (radd).
+25. Add confirmation message to (radd).
 
-27. Remove boilerplate commands. Replace with shutil calls in tests.
+26. Remove boilerplate commands. Replace with shutil calls in tests.
 
-28. Change 'illustration_builder_module' to 'illustrate_module'.
+27. Change 'illustration_builder_module' to 'illustrate_module'.
 
-29. Search for 'whatever_section = menu.make_*_section()' and
+28. Search for 'whatever_section = menu.make_*_section()' and
     change to 'section = menu.make_*_section()' everywhere.
 
-30. Write test for making new score.
+29. Write test for making new score.
     Score will be made in user score directory.
 
-31. Extend Manager._remove() to use 'trash' if command is found.
+30. Extend Manager._remove() to use 'trash' if command is found.
 
-32. Implement NaiveCache decorator in systemtools.
+31. Implement NaiveCache decorator in systemtools.
     Apply to ScorePackageManager._maker_module_wrangler,
     ScorePackageManager._material_manager_wrangler, etc.
     Maybe the 'lru' decorator works for this already.
 
-33. Make ScorePackageManager create missing top-level directories
+32. Make ScorePackageManager create missing top-level directories
     during initialization. Run tests before and after change to check
     for any noticeable slowdown.
 
-34. Make (ls) work in stylesheets menu. So (score > y > ls).
+33. Make (ls) work in stylesheets menu. So (score > y > ls).
 
-35. Fix Wrangler._read_view_inventory_from_disk() line 305:
+34. Fix Wrangler._read_view_inventory_from_disk() line 305:
         assert len(result) == 1
     TypeError: boject of type 'NoneType' has no len()
     Use (tra > g) to induce bug.
