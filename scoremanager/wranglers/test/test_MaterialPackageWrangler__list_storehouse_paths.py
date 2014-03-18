@@ -8,7 +8,7 @@ def test_MaterialPackageWrangler__list_storehouse_paths_01():
     r'''Abjad library materials directory.
     '''
     
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     
     paths = [
@@ -29,7 +29,7 @@ def test_MaterialPackageWrangler__list_storehouse_paths_02():
     r'''Abjad score package material directories.
     '''
     
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     
     score_package_names = [

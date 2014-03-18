@@ -5,7 +5,7 @@ import scoremanager
 
 def test_MaterialManagerWrangler__list_storehouse_paths_01():
     
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialManagerWrangler(session=session)
     
     paths = [

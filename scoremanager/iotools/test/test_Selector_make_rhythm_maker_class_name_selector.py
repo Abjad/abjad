@@ -5,7 +5,7 @@ import scoremanager
 
 def test_Selector_make_rhythm_maker_class_name_selector_01():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     selector = scoremanager.iotools.Selector
     selector = selector.make_rhythm_maker_class_name_selector(session=session)
 

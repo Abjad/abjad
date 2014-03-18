@@ -37,7 +37,7 @@ def test_RhythmMakerMaterialManager_edit_output_material_01():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.RhythmMakerMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries

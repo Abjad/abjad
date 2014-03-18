@@ -6,7 +6,7 @@ import scoremanager
 
 def test_ScorePackageWrangler___repr___01():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.ScorePackageWrangler(session=session)
 
     assert repr(wrangler) == 'ScorePackageWrangler()'

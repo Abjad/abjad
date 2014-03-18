@@ -36,7 +36,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_01():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -80,7 +80,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_02():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -124,7 +124,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_03():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -168,7 +168,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_04():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -214,7 +214,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_05():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -260,7 +260,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_06():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -305,7 +305,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_07():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -363,7 +363,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_08():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries

@@ -8,7 +8,7 @@ import scoremanager
 
 def test_MaterialPackageWrangler__make_handmade_material_package_01():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     path = os.path.join(
         wrangler._configuration.user_library_material_packages_directory_path,
@@ -24,7 +24,7 @@ def test_MaterialPackageWrangler__make_handmade_material_package_01():
     try:
         wrangler._make_handmade_material_package(path)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -42,7 +42,7 @@ def test_MaterialPackageWrangler__make_handmade_material_package_02():
     r'''With custom metadata.
     '''
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     path = os.path.join(
         wrangler._configuration.user_library_material_packages_directory_path,
@@ -57,7 +57,7 @@ def test_MaterialPackageWrangler__make_handmade_material_package_02():
             metadata=metadata,
             )
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialManager
         manager = manager(path=path, session=session)
         assert manager._get_metadatum('color') == 'red'

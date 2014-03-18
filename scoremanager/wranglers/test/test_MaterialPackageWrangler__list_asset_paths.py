@@ -8,7 +8,7 @@ def test_MaterialPackageWrangler__list_asset_paths_01():
     r'''Abjad library material pcakages.
     '''
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
 
     package_names = [
@@ -43,7 +43,7 @@ def test_MaterialPackageWrangler__list_asset_paths_02():
     r'''Red Example Score material library.
     '''
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
 
     package_names = [

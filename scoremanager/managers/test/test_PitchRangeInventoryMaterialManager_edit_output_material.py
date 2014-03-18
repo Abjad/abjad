@@ -25,7 +25,7 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_01():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.PitchRangeInventoryMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -66,7 +66,7 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_02():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.PitchRangeInventoryMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries

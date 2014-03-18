@@ -12,7 +12,7 @@ def test_ScorePackageManager_tempo_inventory_01():
         'red_example_score',
         )
         
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     score_package_manager = scoremanager.managers.ScorePackageManager(
         path=path,
         session=session,

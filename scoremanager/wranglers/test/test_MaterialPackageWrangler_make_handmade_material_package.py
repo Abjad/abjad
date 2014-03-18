@@ -11,7 +11,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_01():
     r'''Package is created and directory contents are correct.
     '''
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_01():
     try:
         wrangler.make_handmade_material_package(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries

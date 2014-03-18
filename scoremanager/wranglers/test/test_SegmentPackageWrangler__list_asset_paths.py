@@ -9,7 +9,7 @@ def test_SegmentPackageWrangler__list_asset_paths_01():
     r'''Lists all segment packages resident in Abjad score packages.
     '''
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.SegmentPackageWrangler(session=session)
 
     blue_segment_names = [

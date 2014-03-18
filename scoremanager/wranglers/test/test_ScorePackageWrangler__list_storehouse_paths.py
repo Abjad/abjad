@@ -8,7 +8,7 @@ def test_ScorePackageWrangler__list_storehouse_paths_01():
     r'''Abjad score packages directory.
     '''
     
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.ScorePackageWrangler(session=session)
     
     paths = [

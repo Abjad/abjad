@@ -9,7 +9,7 @@ import scoremanager
 
 def test_MaterialPackageWrangler__make_managermade_material_package_01():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     path = os.path.join(
         wrangler._configuration.user_library_material_packages_directory_path,
@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler__make_managermade_material_package_01():
             'SargassoMeasureMaterialManager',
             )
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -41,7 +41,7 @@ def test_MaterialPackageWrangler__make_managermade_material_package_01():
 
 def test_MaterialPackageWrangler__make_managermade_material_package_02():
 
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     path = os.path.join(
         wrangler._configuration.user_library_material_packages_directory_path,
@@ -62,7 +62,7 @@ def test_MaterialPackageWrangler__make_managermade_material_package_02():
             metadata=metadata,
             )
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries

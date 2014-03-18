@@ -15,7 +15,7 @@ def test_FileManager_copy_01():
         configuration.score_manager_directory_path, 
         'new-temporary-file.txt',
         )
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     file_manager = scoremanager.managers.FileManager(
         path=path,
         session=session,

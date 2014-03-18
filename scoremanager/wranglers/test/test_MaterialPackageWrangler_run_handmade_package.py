@@ -27,7 +27,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
         input_ = 'lmm nmh testnotes default default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -63,7 +63,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -100,7 +100,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -138,7 +138,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -176,7 +176,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -209,7 +209,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -246,7 +246,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -285,7 +285,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -324,7 +324,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
@@ -366,7 +366,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        session = scoremanager.core.Session()
+        session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries

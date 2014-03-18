@@ -17,7 +17,7 @@ def test_FileManager_rename_01():
         configuration.score_manager_directory_path, 
         'new-test-file.txt',
         )
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     manager = scoremanager.managers.FileManager(path=path, session=session)
 
     assert not os.path.exists(path)
@@ -51,7 +51,7 @@ def test_FileManager_rename_02():
         configuration.score_manager_directory_path, 
         'new-test-file.txt',
         )
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     manager = scoremanager.managers.FileManager(path=path, session=session)
     input_ = 'new-test-file.txt y q'
 

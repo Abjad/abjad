@@ -318,8 +318,8 @@ class IOManager(IOManager):
             lines.append('')
             self.display(lines, capitalize_first_character=False)
             self._session._hide_next_redraw = True
-        else:
-            self._session._enable_where = True
+        #else:
+        #    self._session._enable_where = True
 
     def edit(self, file_path, line_number=None):
         r'''Edits `file_path`.

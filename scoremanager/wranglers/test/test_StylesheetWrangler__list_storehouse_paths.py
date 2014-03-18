@@ -8,7 +8,7 @@ def test_StylesheetWrangler__list_storehouse_paths_01():
     r'''Lists Abjad stylesheet library path.
     '''
     
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.StylesheetWrangler(session=session)
     
     paths = [
@@ -29,7 +29,7 @@ def test_StylesheetWrangler__list_storehouse_paths_02():
     r'''Lists paths of Abjad score package stylesheet directories.
     '''
     
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     wrangler = scoremanager.wranglers.StylesheetWrangler(session=session)
     
     score_names = [

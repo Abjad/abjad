@@ -11,7 +11,7 @@ def test_FileManager__write_boilerplate_01():
         configuration.score_manager_directory_path, 
         'temporary_file.txt',
         )
-    session = scoremanager.core.Session()
+    session = scoremanager.core.Session(is_test=True)
     manager = scoremanager.managers.FileManager(path=path, session=session)
     file_name = 'boilerplate_testnumbers_material_definition.py'
 
