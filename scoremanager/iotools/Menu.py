@@ -385,7 +385,6 @@ class Menu(ScoreManagerObject):
             )
         section.append(('source code - edit', 'sce'))
         section.append(('source code - location', 'scl'))
-        section.append(('source code - track', 'sct'))
         return section
 
     def _make_system_menu_section(self):

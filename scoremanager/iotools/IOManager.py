@@ -139,9 +139,6 @@ class IOManager(IOManager):
             self.edit_calling_code()
         elif key == 'scl':
             self.display_calling_code_line_number()
-        elif key == 'sct':
-            #self._session.toggle_source_code_tracking()
-            pass
         elif key == 'stn':
             self._session._is_navigating_to_next_score = True
             self._session._is_backtracking_to_score_manager = True
@@ -318,8 +315,9 @@ class IOManager(IOManager):
             lines.append('')
             self.display(lines, capitalize_first_character=False)
             self._session._hide_next_redraw = True
-        #else:
-        #    self._session._enable_where = True
+        else:
+            message = 'source code tracking is not turned on.'
+            self.display([message, ''])
 
     def edit(self, file_path, line_number=None):
         r'''Edits `file_path`.
@@ -351,12 +349,7 @@ class IOManager(IOManager):
                 line_number=line_number,
                 )
         else:
-            lines = []
-            message = 'where-tracking not enabled.'
-            message += " Use 'sct' for source code tracking."
-            lines.append(message)
-            lines.append('')
-            self.display(lines)
+            self.display([message, ''])
             self._session._hide_next_redraw = True
 
     def edit_score_stylesheet(self):

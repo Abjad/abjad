@@ -43,7 +43,7 @@ class Session(abctools.AbjadObject):
         '_controllers_visited',
         '_current_score_snake_case_name',
         '_display_pitch_ranges_with_numbered_pitches',
-        '_enable_where',
+        '_is_tracking_source_code',
         '_hide_hidden_commands',
         '_hide_next_redraw',
         '_initial_user_input',
@@ -132,8 +132,7 @@ class Session(abctools.AbjadObject):
         self._controllers_visited = []
         self._current_score_snake_case_name = None
         self._display_pitch_ranges_with_numbered_pitches = False
-        #self._enable_where = False
-        self._enable_where = None
+        self._is_tracking_source_code = None
         self._hide_hidden_commands = True
         self._hide_next_redraw = False
         self._initial_user_input = pending_user_input
@@ -637,7 +636,7 @@ class Session(abctools.AbjadObject):
         return self._display_pitch_ranges_with_numbered_pitches
 
     @property
-    def enable_where(self):
+    def is_tracking_source_code(self):
         r'''Is true when session should enable source code tracking. Otherwise
         false.
 
@@ -645,14 +644,13 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.enable_where
+                >>> session.is_tracking_source_code
                 True
 
         Returns boolean.
         '''
-        #return self._enable_where
-        if self._enable_where is not None:
-            return self._enable_where
+        if self._is_tracking_source_code is not None:
+            return self._is_tracking_source_code
         if self.is_test:
             return False
         else:
@@ -1495,22 +1493,6 @@ class Session(abctools.AbjadObject):
             self._hide_hidden_commands = False
         else:
             self._hide_hidden_commands = True
-
-#    def toggle_source_code_tracking(self, prompt=True):
-#        r'''Toggles source code tracking.
-#
-#        Returns none.
-#        '''
-#
-#        if self.enable_where:
-#            self._enable_where = False
-#            message = 'source code tracking off.'
-#        else:
-#            self._enable_where = True
-#            message = 'source code tracking on.'
-#        if prompt:
-#            self.io_manager.display([message, ''])
-#        self._hide_next_redraw = True
 
     def toggle_user_input_values_default_status(self):
         r'''Toggles `use_current_user_input_values_as_default`.

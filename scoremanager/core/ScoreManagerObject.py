@@ -67,5 +67,5 @@ class ScoreManagerObject(object):
 
     @property
     def _where(self):
-        if self._session.enable_where:
+        if self._session.is_tracking_source_code:
             return inspect.stack()[1]
