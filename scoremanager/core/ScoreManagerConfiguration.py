@@ -71,14 +71,14 @@ class ScoreManagerConfiguration(AbjadConfiguration):
                     '',
                     'Set to full name of composer.',
                 ],
-                'spec': 'string',
+                'spec': "string(default='Full Name')",
             },
             'composer_last_name': {
                 'comment': [
                     '',
                     'Set to last name of composer.',
                 ],
-                'spec': 'string',
+                'spec': "string(default='Name')",
             },
         }
         return options
