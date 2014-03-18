@@ -140,7 +140,8 @@ class IOManager(IOManager):
         elif key == 'scl':
             self.display_calling_code_line_number()
         elif key == 'sct':
-            self._session.toggle_source_code_tracking()
+            #self._session.toggle_source_code_tracking()
+            pass
         elif key == 'stn':
             self._session._is_navigating_to_next_score = True
             self._session._is_backtracking_to_score_manager = True

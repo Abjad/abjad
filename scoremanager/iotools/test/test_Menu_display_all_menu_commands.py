@@ -165,11 +165,11 @@ def test_Menu_display_all_menu_commands_12():
 
 
 def test_Menu_display_all_menu_commands_13():
-    r'''Hidden menu persists after turning on source code tracking.
+    r'''Hidden menu persists after showing source code location.
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score n sct redraw q'
+    string = 'red~example~score n scl redraw q'
     score_manager._run(pending_user_input=string, is_test=True)
 
     string = 'Red Example Score (2013)'
@@ -178,25 +178,14 @@ def test_Menu_display_all_menu_commands_13():
 
 
 def test_Menu_display_all_menu_commands_14():
-    r'''Hidden menu persists after showing source code location.
-    '''
-
-    score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score n sct scl redraw q'
-    score_manager._run(pending_user_input=string, is_test=True)
-
-    string = 'Red Example Score (2013)'
-    transcript = score_manager._transcript
-    assert transcript.last_title == string
-
-
-def test_Menu_display_all_menu_commands_15():
     r'''Hidden menu persists after editing source code.
+
+    Sets is_test=False to turn on source code tracking.
     '''
 
     score_manager = scoremanager.core.ScoreManager()
-    string = 'red~example~score n sct sce q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    string = 'red~example~score n sce q'
+    score_manager._run(pending_user_input=string, is_test=False)
 
     string = 'Red Example Score (2013)'
     transcript = score_manager._transcript

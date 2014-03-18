@@ -132,8 +132,8 @@ class Session(abctools.AbjadObject):
         self._controllers_visited = []
         self._current_score_snake_case_name = None
         self._display_pitch_ranges_with_numbered_pitches = False
-        self._enable_where = False
-        #self._enable_where = True
+        #self._enable_where = False
+        self._enable_where = None
         self._hide_hidden_commands = True
         self._hide_next_redraw = False
         self._initial_user_input = pending_user_input
@@ -646,11 +646,17 @@ class Session(abctools.AbjadObject):
             ::
 
                 >>> session.enable_where
-                False
+                True
 
         Returns boolean.
         '''
-        return self._enable_where
+        #return self._enable_where
+        if self._enable_where is not None:
+            return self._enable_where
+        if self.is_test:
+            return False
+        else:
+            return True
 
     @property
     def explicit_command_history(self):
@@ -1490,23 +1496,21 @@ class Session(abctools.AbjadObject):
         else:
             self._hide_hidden_commands = True
 
-    def toggle_source_code_tracking(self, prompt=True):
-        r'''Toggles source code tracking.
-
-        Returns none.
-        '''
-
-        if self.enable_where:
-            self._enable_where = False
-            message = 'source code tracking off.'
-        else:
-            self._enable_where = True
-            message = 'source code tracking on.'
-        if prompt:
-            self.io_manager.display([message, ''])
-        self._hide_next_redraw = True
-
-        #self._enable_where = True
+#    def toggle_source_code_tracking(self, prompt=True):
+#        r'''Toggles source code tracking.
+#
+#        Returns none.
+#        '''
+#
+#        if self.enable_where:
+#            self._enable_where = False
+#            message = 'source code tracking off.'
+#        else:
+#            self._enable_where = True
+#            message = 'source code tracking on.'
+#        if prompt:
+#            self.io_manager.display([message, ''])
+#        self._hide_next_redraw = True
 
     def toggle_user_input_values_default_status(self):
         r'''Toggles `use_current_user_input_values_as_default`.

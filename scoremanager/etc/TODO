@@ -115,3 +115,8 @@
     for any noticeable slowdown.
 
 34. Make (ls) work in stylesheets menu. So (score > y > ls).
+
+35. Fix Wrangler._read_view_inventory_from_disk() line 305:
+        assert len(result) == 1
+    TypeError: boject of type 'NoneType' has no len()
+    Use (tra > g) to induce bug.
