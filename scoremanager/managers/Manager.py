@@ -474,7 +474,7 @@ class Manager(Controller):
 
     ### PUBLIC METHODS ###
 
-    def add(self, prompt=False):
+    def add(self, prompt=True):
         r'''Adds unversioned assets to repository.
 
         Returns none.

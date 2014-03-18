@@ -31,7 +31,7 @@ def test_StylesheetWrangler_remove_01():
         path=path,
         session=score_manager._session,
         )
-    manager.add()
+    manager.add(prompt=False)
 
     assert os.path.exists(path)
     assert not os.path.exists(backup_path)

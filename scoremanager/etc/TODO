@@ -119,4 +119,10 @@
     that (lyrm) will (try to) act on the repository where (lytr) will
     only ever work on the filesystem.
 
-36. Make 'radd' work for a single Svn-managed score.
+36. Add 'repository - unadd (runadd)' to repository menu.
+
+37. Changed temporary_file.txt to temporary-file.txt.
+
+38. Change Manager.add(), Manager.commit(), Manager.update()
+    to Manager.add_to_repository(), Manager.commit_to_repository(),
+    Manager.update_from_repository().

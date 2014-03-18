@@ -58,7 +58,7 @@ def test_FileManager__rename_02():
     try:
         manager._make_empty_asset()
         assert os.path.exists(path)
-        manager.add()
+        manager.add(prompt=False)
         assert manager._is_in_git_repository()
         assert manager._is_git_added()
         manager._rename(new_path)

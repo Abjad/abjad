@@ -45,7 +45,7 @@ def test_ScorePackageManager_add_01():
     assert not manager._is_up_to_date()
     assert manager._get_unadded_asset_paths() == [path_1, path_2]
     assert manager._get_added_asset_paths() == []
-    manager.add()
+    manager.add(prompt=False)
     assert manager._get_unadded_asset_paths() == []
     assert manager._get_added_asset_paths() == [path_1, path_2]
     manager._unadd_added_assets(prompt=False)
@@ -99,7 +99,7 @@ def test_ScorePackageManager_add_02():
     assert not manager._is_up_to_date()
     assert manager._get_unadded_asset_paths() == [path_1, path_2]
     assert manager._get_added_asset_paths() == []
-    manager.add()
+    manager.add(prompt=False)
     assert manager._get_unadded_asset_paths() == []
     assert manager._get_added_asset_paths() == [path_1, path_2]
     manager._unadd_added_assets(prompt=False)
