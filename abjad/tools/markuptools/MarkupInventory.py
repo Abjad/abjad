@@ -23,6 +23,29 @@ class MarkupInventory(TypedList):
     __slots__ = (
         )
 
+    ### SPECIAL METHODS ###
+
+    # TODO: add verifiable code in doctest
+    def __illustrate__(self):
+        r'''Illustrates markup inventory.
+
+        ..  container:: example
+
+            ::
+
+                >>> inventory = markuptools.MarkupInventory(['foo', 'bar'])
+                >>> show(inventory) # doctest: +SKIP
+
+        Returns LilyPond file.
+        '''
+        from abjad.tools import lilypondfiletools
+        from abjad.tools import markuptools
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        for item in self:
+            lilypond_file.items.append(item)
+        return lilypond_file
+
     ### PRIVATE PROPERTIES ###
 
     @property
