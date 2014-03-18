@@ -168,7 +168,7 @@ class MaterialManager(PackageManager):
             'imrm': self.remove_illustration_builder_module,
             'ims': self.write_illustration_builder_module_stub,
             'imi': self.interpret_illustration_builder_module,
-            'lym': self.write_illustration_ly,
+            'lyi': self.interpret_illustration_ly,
             'lyrm': self.remove_illustration_ly,
             'lyv': self.view_illustration_ly,
             'mi': self.illustrate_material,
@@ -382,11 +382,8 @@ class MaterialManager(PackageManager):
         if os.path.isfile(self._output_module_path) or \
             os.path.isfile(self._illustration_ly_file_path):
             section = menu.make_command_section(name='illustration ly')
-        if os.path.isfile(self._output_module_path):
-            if os.path.isfile(self._illustration_builder_module_path) or \
-                self._read_material_manager_class_name():
-                section.append(('illustration ly - make', 'lym'))
         if os.path.isfile(self._illustration_ly_file_path):
+            section.append(('illustration ly - interpret', 'lyi'))
             section.append(('illustration ly - remove', 'lyrm'))
             section.append(('illustration ly - view', 'lyv'))
 
@@ -548,10 +545,14 @@ class MaterialManager(PackageManager):
         line = 'from output_material import {}'
         line = line.format(self._material_package_name)
         lines.append(line)
-        lines.append('from illustration_builder import __illustrate__')
+        if os.path.isfile(self._illustration_builder_module_path):
+            lines.append('from illustration_builder import __illustrate__')
         lines.append('')
         lines.append('')
-        line = 'lilypond_file = __illustrate__({})'
+        if os.path.isfile(self._illustration_builder_module_path):
+            line = 'lilypond_file = __illustrate__({})'
+        else:
+            line = 'lilypond_file = {}.__illustrate__()'
         line = line.format(self._material_package_name)
         lines.append(line)
         lines.append('file_path = os.path.abspath(__file__)')
@@ -791,6 +792,20 @@ class MaterialManager(PackageManager):
         Returns none.
         '''
         self._illustration_builder_module_manager._interpret(prompt=prompt)
+
+    def interpret_illustration_ly(self, prompt=True):
+        r'''Calls LilyPond on illustration.ly file.
+
+        Returns none.
+        '''
+        from scoremanager import managers
+        path = self._illustration_ly_file_path
+        if os.path.isfile(path):
+            manager = managers.FileManager(path=path, session=self._session)
+            manager.call_lilypond(prompt=prompt)
+        else:
+            message = 'illustration.ly file does not exist.'
+            self._io_manager.proceed(message)
 
     def interpret_definition_module(self):
         r'''Runs Python on material definition module.
@@ -1041,20 +1056,6 @@ class MaterialManager(PackageManager):
             file_pointer.write(''.join(lines))
         message = 'stub illustrate module written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
-
-    def write_illustration_ly(self, prompt=True):
-        r'''Writes illustration LilyPond file.
-
-        Returns none.
-        '''
-        illustration = self.illustration
-        topleveltools.persist(illustration).as_pdf(
-            self._illustration_ly_file_path,
-            )
-        self._io_manager.proceed(
-            'LilyPond file written to disk.',
-            prompt=prompt,
-            )
 
     def write_illustration_ly_and_pdf(self, prompt=True):
         r'''Writes illustration LilyPond file and PDF.

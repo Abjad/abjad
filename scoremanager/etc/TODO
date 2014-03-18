@@ -113,3 +113,8 @@
         assert len(result) == 1
     TypeError: boject of type 'NoneType' has no len()
     Use (tra > g) to induce bug.
+
+35. Add (lytr) for 'lilypond ly - trash'. This will work together
+    with (lyrm) for 'lilypond ly - remove'. The difference will be
+    that (lyrm) will (try to) act on the repository where (lytr) will
+    only ever work on the filesystem.
