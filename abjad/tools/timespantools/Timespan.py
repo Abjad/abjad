@@ -495,14 +495,14 @@ class Timespan(BoundedObject):
         elif expr.trisects_timespan(self):
             new_start_offset = self.start_offset
             new_stop_offset = expr.start_offset
-            timespan = type(self)(
+            timespan = new(self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
                 )
             inventory.append(timespan)
             new_start_offset = expr.stop_offset
             new_stop_offset = self.stop_offset
-            timespan = type(self)(
+            timespan = new(self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
                 )
@@ -512,7 +512,7 @@ class Timespan(BoundedObject):
         elif expr.overlaps_only_start_of_timespan(self):
             new_start_offset = expr.stop_offset
             new_stop_offset = self.stop_offset
-            timespan = type(self)(
+            timespan = new(self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
                 )
@@ -520,7 +520,7 @@ class Timespan(BoundedObject):
         elif expr.overlaps_only_stop_of_timespan(self):
             new_start_offset = self.start_offset
             new_stop_offset = expr.start_offset
-            timespan = type(self)(
+            timespan = new(self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
                 )
@@ -529,7 +529,7 @@ class Timespan(BoundedObject):
             expr.stops_before_timespan_stops(self):
             new_start_offset = expr.stop_offset
             new_stop_offset = self.stop_offset
-            timespan = type(self)(
+            timespan = new(self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
                 )
@@ -538,7 +538,7 @@ class Timespan(BoundedObject):
             expr.starts_after_timespan_starts(self):
             new_start_offset = self.start_offset
             new_stop_offset = expr.start_offset
-            timespan = type(self)(
+            timespan = new(self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
                 )
@@ -673,11 +673,11 @@ class Timespan(BoundedObject):
         stop_offsets = [self.stop_offset, expr.stop_offset]
         start_offsets.sort()
         stop_offsets.sort()
-        timespan_1 = type(self)(
+        timespan_1 = new(self,
             start_offset=start_offsets[0],
             stop_offset=start_offsets[1],
             )
-        timespan_2 = type(self)(
+        timespan_2 = new(self,
             start_offset=stop_offsets[0],
             stop_offset=stop_offsets[1],
             )
@@ -706,7 +706,7 @@ class Timespan(BoundedObject):
             start_offset, stop_offset = expr.get_timespan().offsets
         else:
             start_offset, stop_offset = expr.timespan.offsets
-        return type(self)(
+        return new(self,
             start_offset=start_offset,
             stop_offset=stop_offset,
             )
@@ -1582,6 +1582,46 @@ class Timespan(BoundedObject):
             return left, right
         else:
             return new(self)
+
+    def split_at_offsets(self, offsets):
+        r'''Split into one or more parts when `offsets` happens during
+        timespan:
+
+        ::
+
+            >>> timespan = timespantools.Timespan(0, 10)
+
+        ::
+
+            >>> shards = timespan.split_at_offsets((1, 3, 7))
+            >>> for shard in shards:
+            ...     shard
+            ...
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(1, 1))
+            Timespan(start_offset=Offset(1, 1), stop_offset=Offset(3, 1))
+            Timespan(start_offset=Offset(3, 1), stop_offset=Offset(7, 1))
+            Timespan(start_offset=Offset(7, 1), stop_offset=Offset(10, 1))
+
+        Otherwise return a tuple containing a copy of timespan:
+
+        ::
+
+            >>> timespan.split_at_offsets((-100,))
+            (Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1)),)
+
+        Returns one or more newly constructed timespans.
+        '''
+        offsets = [durationtools.Offset(offset) for offset in offsets]
+        offsets = [offset for offset in offsets
+            if self.start_offset < offset < self.stop_offset]
+        offsets = sorted(set(offsets))
+        results = []
+        right = new(self)
+        for offset in offsets:
+            left, right = right.split_at_offset(offset)
+            results.append(left)
+        results.append(right)
+        return tuple(results)
 
     def starts_after_offset(self, offset):
         r'''Is true when timespan overlaps start of `timespan`. Otherwise false:
