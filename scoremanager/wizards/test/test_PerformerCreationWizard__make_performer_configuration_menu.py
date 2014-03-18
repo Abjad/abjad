@@ -8,8 +8,8 @@ def test_PerformerCreationWizard__make_performer_configuration_menu_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score setup instrumentation add clarinetist q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score setup instrumentation add clarinetist q'
+    score_manager._run(pending_user_input=input_, is_test=True)
     last_menu_lines = score_manager._transcript.last_menu_lines
 
     end = 'clarinet in B-flat (default)'
