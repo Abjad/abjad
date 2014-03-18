@@ -47,7 +47,7 @@ def test_BuildDirectoryManager_copy_segment_lilypond_files_01():
 
     # call (lycp)
     string = 'red~example~score u lycp default q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    score_manager._run(pending_user_input=string)
 
     # make sure new segment files are currently in build directory
     for file_path in file_paths:

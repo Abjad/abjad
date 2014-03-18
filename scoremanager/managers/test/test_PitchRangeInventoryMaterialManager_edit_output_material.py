@@ -23,7 +23,7 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_01():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.PitchRangeInventoryMaterialManager
@@ -32,7 +32,7 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_01():
         output_material = manager._execute_output_module()
         assert output_material is None
         input_ = 'lmm testpir rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -64,7 +64,7 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_02():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.PitchRangeInventoryMaterialManager
@@ -73,7 +73,7 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_02():
         output_material = manager._execute_output_module()
         assert output_material == inventory
         input_ = 'lmm testpir rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)

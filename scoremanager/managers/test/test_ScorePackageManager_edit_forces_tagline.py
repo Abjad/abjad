@@ -11,19 +11,19 @@ def test_ScorePackageManager_edit_forces_tagline_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score setup tagline q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (7,)
 
     input_ = 'red~example~score setup tagline b q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (9, (4, 7))
 
     input_ = 'red~example~score setup tagline s q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (9, (2, 7))
 
     input_ = 'red~example~score setup tagline h q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (9, (0, 7))
 
 
@@ -37,14 +37,14 @@ def test_ScorePackageManager_edit_forces_tagline_02():
     try:
         score_manager = scoremanager.core.ScoreManager(is_test=True)
         input_ = 'red~example~score setup tagline for~foo~bar q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.ScorePackageManager
         manager = manager(path=path, session=session)
         assert manager._get_metadatum('forces_tagline') == 'for foo bar'
     finally:
         input_ = 'red~example~score setup tagline for~six~players q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.ScorePackageManager
         manager = manager(path=path, session=session)

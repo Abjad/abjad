@@ -183,9 +183,9 @@ def test_Menu_display_all_menu_commands_14():
     Sets is_test=False to turn on source code tracking.
     '''
 
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score n sce q'
-    score_manager._run(pending_user_input=string, is_test=False)
+    score_manager = scoremanager.core.ScoreManager(is_test=False)
+    input_ = 'red~example~score n sce q'
+    score_manager._run(pending_user_input=input_)
 
     string = 'Red Example Score (2013)'
     transcript = score_manager._transcript

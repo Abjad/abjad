@@ -23,10 +23,10 @@ def test_ScorePackageManager_rename_score_package_01():
     assert not os.path.exists(path)
     assert not os.path.exists(new_path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         input_ = 'ssl Untitled~(test_score) ren new~test~score y default q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert not os.path.exists(path)
         assert os.path.exists(new_path)
     finally:

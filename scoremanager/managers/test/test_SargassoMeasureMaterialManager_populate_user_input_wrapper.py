@@ -34,7 +34,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_01():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.SargassoMeasureMaterialManager
@@ -42,7 +42,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_01():
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
         input_ = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             os.path.rmdir(path)
@@ -78,7 +78,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_02():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.SargassoMeasureMaterialManager
@@ -86,7 +86,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_02():
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
         input_ = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -122,7 +122,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_03():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.SargassoMeasureMaterialManager
@@ -130,7 +130,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_03():
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
         input_ = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -166,7 +166,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_04():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.SargassoMeasureMaterialManager
@@ -174,7 +174,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_04():
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
         input_ = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -212,7 +212,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_05():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.SargassoMeasureMaterialManager
@@ -220,7 +220,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_05():
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
         input_ = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -258,7 +258,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_06():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.SargassoMeasureMaterialManager
@@ -266,7 +266,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_06():
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
         input_ = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -303,7 +303,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_07():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.SargassoMeasureMaterialManager
@@ -311,7 +311,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_07():
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
         input_ = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -361,7 +361,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_08():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.SargassoMeasureMaterialManager
@@ -374,7 +374,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_08():
         assert format(Staff(output_material))
         assert format(Staff(output_material)) == format(Staff(measures))
         input_ = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)

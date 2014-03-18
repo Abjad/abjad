@@ -9,7 +9,7 @@ def test_MaterialManager_edit_output_material_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'lmm example~markup~inventory me q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     transcript = score_manager._transcript
 
     string = 'Score manager - material library -'

@@ -35,7 +35,7 @@ def test_RhythmMakerMaterialManager_edit_output_material_01():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.RhythmMakerMaterialManager
@@ -44,7 +44,7 @@ def test_RhythmMakerMaterialManager_edit_output_material_01():
         output_material = manager._execute_output_module()
         assert output_material == maker
         input_ = 'lmm testrhythmmaker rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)

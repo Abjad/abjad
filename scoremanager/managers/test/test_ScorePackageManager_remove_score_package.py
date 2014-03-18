@@ -18,10 +18,10 @@ def test_ScorePackageManager_remove_score_package_01():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         input_ = 'ssl Untitled~(test_score) rm clobber q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert not os.path.exists(path)
     finally:
         if os.path.exists(path):

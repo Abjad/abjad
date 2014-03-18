@@ -10,7 +10,7 @@ def test_BuildDirectoryManager__run_01():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
 
     string = 'red~example~score u g q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    score_manager._run(pending_user_input=string)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -20,7 +20,7 @@ def test_BuildDirectoryManager__run_01():
     assert score_manager._transcript.titles == titles
 
     string = 'red~example~score u m q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    score_manager._run(pending_user_input=string)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
