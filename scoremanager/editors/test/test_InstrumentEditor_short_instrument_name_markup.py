@@ -7,7 +7,7 @@ def test_InstrumentEditor_short_instrument_name_markup_01():
     r'''Quit, back & home all work.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     string = 'red~example~score setup instrumentation hornist horn sm q'
     score_manager._run(pending_user_input=string, is_test=True)
     assert score_manager._transcript.signature == (13,)

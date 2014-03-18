@@ -7,7 +7,7 @@ def test_PerformerEditor__run_01():
     r'''Quit, back, home and junk all work.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     string = 'red~example~score setup instrumentation hornist q'
     score_manager._run(pending_user_input=string, is_test=True)
     assert score_manager._transcript.signature == (10,)

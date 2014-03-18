@@ -9,7 +9,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_01():
     r'''Empty wrapper.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
@@ -53,7 +53,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_02():
     r'''Load demo values.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
@@ -97,7 +97,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_03():
     r'''Load demo values and then clear all.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
@@ -141,7 +141,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_04():
     r'''Edit one value.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
@@ -185,7 +185,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_05():
     r'''Populate wrapper.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
@@ -231,7 +231,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_06():
     r'''Partial population.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
@@ -277,7 +277,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_07():
     r'''Set some values to none.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
@@ -322,7 +322,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_08():
     r'''Make output from demo values.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,

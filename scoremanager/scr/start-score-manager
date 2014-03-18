@@ -3,7 +3,7 @@ import sys
 import scoremanager
 
 
-score_manager = scoremanager.core.ScoreManager()
+score_manager = scoremanager.core.ScoreManager(is_test=True)
 score_manager._run(
     write_transcript=True,
     pending_user_input=' '.join(sys.argv[1:]), 

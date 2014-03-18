@@ -7,7 +7,7 @@ def test_IOManager_handle_user_input_01():
     r'''Command repetition works.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     score_manager._run(pending_user_input='stn . . . q', is_test=True)
     titles = [ 
         'Score manager - example scores',

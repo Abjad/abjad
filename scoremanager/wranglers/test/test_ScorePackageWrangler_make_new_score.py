@@ -9,7 +9,7 @@ def test_ScorePackageWrangler_make_new_score_01():
     r'''Create score package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         score_manager._configuration.user_score_packages_directory_path,
         'test_score',

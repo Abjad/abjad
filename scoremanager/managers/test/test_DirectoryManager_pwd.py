@@ -6,7 +6,7 @@ import scoremanager
 
 def test_DirectoryManager_pwd_01():
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'lmm example~numbers pwd q'
     score_manager._run(pending_user_input=input_, is_test=True)
     path = os.path.join(

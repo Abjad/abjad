@@ -9,7 +9,7 @@ def test_ScorePackageManager_edit_forces_tagline_01():
     r'''Quit, back, score & home all work.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score setup tagline q'
     score_manager._run(pending_user_input=input_, is_test=True)
     assert score_manager._transcript.signature == (7,)
@@ -35,7 +35,7 @@ def test_ScorePackageManager_edit_forces_tagline_02():
         )
 
     try:
-        score_manager = scoremanager.core.ScoreManager()
+        score_manager = scoremanager.core.ScoreManager(is_test=True)
         input_ = 'red~example~score setup tagline for~foo~bar q'
         score_manager._run(pending_user_input=input_, is_test=True)
         session = scoremanager.core.Session()

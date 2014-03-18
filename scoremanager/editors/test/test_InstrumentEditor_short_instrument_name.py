@@ -7,7 +7,7 @@ def test_InstrumentEditor_short_instrument_name_01():
     r'''Quit, back & home all work.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     string = 'red~example~score setup instrumentation hornist horn sn q'
     score_manager._run(pending_user_input=string, is_test=True)
     assert score_manager._transcript.signature == (13,)
@@ -27,7 +27,7 @@ def test_InstrumentEditor_short_instrument_name_02():
     r'''String only.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     string = 'red~example~score setup instrumentation'
     string += ' hornist horn sn -99 q'
     score_manager._run(pending_user_input=string, is_test=True)

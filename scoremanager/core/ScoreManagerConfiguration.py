@@ -10,7 +10,7 @@ class ScoreManagerConfiguration(AbjadConfiguration):
 
         ::
 
-            >>> score_manager = scoremanager.core.ScoreManager()
+            >>> score_manager = scoremanager.core.ScoreManager(is_test=True)
             >>> configuration = score_manager._configuration
             >>> configuration
             ScoreManagerConfiguration()

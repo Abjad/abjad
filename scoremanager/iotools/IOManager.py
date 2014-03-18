@@ -14,7 +14,7 @@ class IOManager(IOManager):
 
         ::
 
-            >>> score_manager = scoremanager.core.ScoreManager()
+            >>> score_manager = scoremanager.core.ScoreManager(is_test=True)
             >>> io_manager = score_manager._session.io_manager
 
     '''

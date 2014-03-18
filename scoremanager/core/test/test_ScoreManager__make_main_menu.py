@@ -8,7 +8,7 @@ def test_ScoreManager__make_main_menu_01():
     turned off.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     score_manager._session._is_test = True
     statement = 'score_manager._make_main_menu()'
     count = score_manager._session.io_manager.count_function_calls(

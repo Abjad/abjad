@@ -9,7 +9,7 @@ def test_ScorePackageManager_rename_score_package_01():
     r'''Creates score package. Renames score package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         score_manager._configuration.user_score_packages_directory_path,
         'test_score',

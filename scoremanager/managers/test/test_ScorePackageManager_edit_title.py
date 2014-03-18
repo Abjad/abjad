@@ -5,7 +5,7 @@ import scoremanager
 
 def test_ScorePackageManager_edit_title_01():
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'étude~example~score setup title Foo q'
     score_manager._run(pending_user_input=input_, is_test=True)
     string = 'Étude Example Score (2013) - setup'

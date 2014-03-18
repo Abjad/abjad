@@ -7,7 +7,7 @@ def test_BuildDirectoryManager__run_01():
     r'''Segment and material navigation work.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
 
     string = 'red~example~score u g q'
     score_manager._run(pending_user_input=string, is_test=True)

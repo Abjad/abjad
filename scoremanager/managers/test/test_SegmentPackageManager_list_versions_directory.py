@@ -8,7 +8,7 @@ def test_SegmentPackageManager_list_versions_directory_01():
     directory exists and raises no exceptions.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score g 1 vrl default q'
     score_manager._run(pending_user_input=input_, is_test=True)
 

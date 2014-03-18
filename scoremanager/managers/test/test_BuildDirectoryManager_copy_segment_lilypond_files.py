@@ -9,7 +9,7 @@ import scoremanager
 def test_BuildDirectoryManager_copy_segment_lilypond_files_01():
 
     # set up score manager and diretories
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     build_directory = os.path.join(
         score_manager._configuration.abjad_score_packages_directory_path,
         'red_example_score',

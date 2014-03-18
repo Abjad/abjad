@@ -9,7 +9,7 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
     r'''Make managermade package. Delete package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         score_manager._configuration.user_library_material_packages_directory_path,
         'testsargasso',
@@ -41,7 +41,7 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
     r'''Make score-resident managermade package. Delete package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         score_manager._configuration.abjad_score_packages_directory_path,
         'red_example_score',
@@ -76,7 +76,7 @@ def test_MaterialPackageWrangler_run_managermade_package_03():
     Verify invalid initializer. Remove package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         score_manager._configuration.user_library_material_packages_directory_path,
         'testsargassomeasures',
@@ -112,7 +112,7 @@ def test_MaterialPackageWrangler_run_managermade_package_04():
     Verify initializer. Remove package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         score_manager._configuration.user_library_material_packages_directory_path,
         'testsargassomeasures',

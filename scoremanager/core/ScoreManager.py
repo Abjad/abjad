@@ -11,7 +11,7 @@ class ScoreManager(Controller):
 
         ::
 
-            >>> score_manager = scoremanager.core.ScoreManager()
+            >>> score_manager = scoremanager.core.ScoreManager(is_test=True)
             >>> score_manager
             ScoreManager()
 

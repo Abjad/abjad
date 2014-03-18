@@ -9,7 +9,7 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_edit_output_material
     r'''Stub material package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
@@ -43,7 +43,7 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_edit_output_material
     r'''Populate output material module.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,

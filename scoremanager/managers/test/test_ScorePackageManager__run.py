@@ -40,7 +40,7 @@ def test_ScorePackageManager__run_02():
     r'''User 'home' input results in return home.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score h q'
     score_manager._run(pending_user_input=input_, is_test=True)
 
@@ -80,7 +80,7 @@ def test_ScorePackageManager__run_04():
     r'''User 'b' input returns home.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score b q'
     score_manager._run(pending_user_input=input_, is_test=True)
 

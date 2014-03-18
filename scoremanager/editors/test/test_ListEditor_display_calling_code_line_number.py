@@ -5,7 +5,7 @@ import scoremanager
 
 def test_ListEditor_display_calling_code_line_number_01():
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     string = 'red~example~score setup instrumentation scl q'
     score_manager._run(pending_user_input=string, is_test=False)
     string = '       file: ListEditor.py'

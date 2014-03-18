@@ -7,7 +7,7 @@ def test_PerformerEditor_move_instrument_01():
     r'''Quit, back, home, score & junk all work.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     string = 'étude~example~score setup instrumentation flutist mv q'
     score_manager._run(pending_user_input=string, is_test=True)
     assert score_manager._transcript.signature == (11,)

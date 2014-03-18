@@ -5,7 +5,7 @@ import scoremanager
 
 def test_MaterialManager_add_metadatum_01():
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
 
     # make sure no flavor_type metadatum found
     input_ = 'lmm example~numbers mmg flavor_type default q'

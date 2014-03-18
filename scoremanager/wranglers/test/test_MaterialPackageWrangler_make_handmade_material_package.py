@@ -42,7 +42,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_02():
     r'''Empty material definition module is correct.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
         'testnotes',

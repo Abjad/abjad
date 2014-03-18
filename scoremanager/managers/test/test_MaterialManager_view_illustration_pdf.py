@@ -5,7 +5,7 @@ import scoremanager
 
 def test_MaterialManager_view_illustration_pdf_01():
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'lmm example~notes pdfv q'
     score_manager._run(pending_user_input=input_, is_test=True)
     titles = [

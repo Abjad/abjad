@@ -11,7 +11,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
     r'''Make handmade package. Delete package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
         'testnotes',
@@ -46,7 +46,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
     Verify invalid initializer. Remove package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
         'testnotes',
@@ -82,7 +82,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
     Verify initializer. Remove package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
         'testnotes',
@@ -119,7 +119,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
     Delete package."
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
         'testnotes',
@@ -161,7 +161,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
     Remove package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
         'testnotes',
@@ -193,7 +193,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
     Delete package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
         'testnotes',
@@ -228,7 +228,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
     Make output material. Remove output material. Remove package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
         'testnotes',
@@ -268,7 +268,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
     Examine package state. Remove package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
         'testnotes',
@@ -305,7 +305,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
     module. Remove package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
         'testnotes',
@@ -347,7 +347,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
     '''
     pytest.skip('make PDF generation work again.')
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
         'testnotes',

@@ -5,7 +5,7 @@ import scoremanager
 
 def test_IOManager_exec_statement_01():
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     score_manager._run(pending_user_input='pyi 2**30 q', is_test=True)
 
     assert score_manager._transcript[1].lines == ['> pyi', '']
@@ -18,7 +18,7 @@ def test_IOManager_exec_statement_02():
     r'''Protects against senseless input.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     score_manager._run(pending_user_input='pyi foo q', is_test=True)
 
     assert score_manager._transcript[1].lines == ['> pyi', '']

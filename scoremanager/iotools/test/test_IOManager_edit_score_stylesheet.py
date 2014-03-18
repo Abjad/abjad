@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager()
+score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
 def test_IOManager_edit_score_stylesheet_01():

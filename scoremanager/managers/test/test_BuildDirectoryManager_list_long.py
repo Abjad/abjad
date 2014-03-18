@@ -6,7 +6,7 @@ import scoremanager
 
 def test_BuildDirectoryManager_list_long_01():
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score u ll q'
     score_manager._run(pending_user_input=input_, is_test=True)
     transcript = score_manager._transcript

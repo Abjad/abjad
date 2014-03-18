@@ -39,7 +39,7 @@ def test_MaterialPackageWrangler_make_managermade_material_package_02():
     r'''Menu title is correct.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     score_manager._run(pending_user_input='lmm nmm q', is_test=True)
 
     transcript = score_manager._transcript

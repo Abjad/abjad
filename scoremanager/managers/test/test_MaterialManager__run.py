@@ -8,7 +8,7 @@ def test_MaterialManager__run_01():
     r'''Global materials: quit, back, home, score & junk all work.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'lmm example~sargasso~measures q'
     score_manager._run(pending_user_input=input_, is_test=True)
     assert score_manager._transcript.signature == (6,)
@@ -34,7 +34,7 @@ def test_MaterialManager__run_02():
     r'''Global materials: breadcrumbs work.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'lmm example~sargasso~measures q'
     score_manager._run(pending_user_input=input_, is_test=True)
     string = 'Score manager - material library - example sargasso measures'
@@ -45,7 +45,7 @@ def test_MaterialManager__run_03():
     r'''Score materials: quit, back, home, score & junk all work.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score m tempo~inventory q'
     score_manager._run(pending_user_input=input_, is_test=True)
     assert score_manager._transcript.signature == (8,)
@@ -71,7 +71,7 @@ def test_MaterialManager__run_04():
     r'''Score materials: breadcrumbs work.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score m tempo~inventory q'
     score_manager._run(pending_user_input=input_, is_test=True)
     string = 'Red Example Score (2013) - materials - tempo inventory'
@@ -82,7 +82,7 @@ def test_MaterialManager__run_05():
     r'''Segment navigation works.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score m g q'
     score_manager._run(pending_user_input=input_, is_test=True)
     titles = [
@@ -97,7 +97,7 @@ def test_MaterialManager__run_05():
 def test_MaterialManager__run_06():
     pytest.skip('unskip after finalizing material management menu.')
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     string = 'red~example~score m tempo~inventory q'
     score_manager._run(pending_user_input=string, is_test=True)
 

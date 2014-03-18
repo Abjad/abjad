@@ -1,7 +1,7 @@
 Note that as of r9,872 it takes only 181 function calls to initialize 
 the score manager ...
 
-    >>> expr = 'score_manager = scoremanager.core.ScoreManager()'
+    >>> expr = 'score_manager = scoremanager.core.ScoreManager(is_test=True)'
     >>> systemtools.IOManager.profile_expr(expr)
     181 function calls in 0.000 seconds
 
@@ -51,7 +51,7 @@ because stack inspection is expensive.
 
 As of r10,249 it takes 6,658 function calls to initialize the score manager ...
 
-    >>> expr = 'score_manager = scoremanager.core.ScoreManager()'
+    >>> expr = 'score_manager = scoremanager.core.ScoreManager(is_test=True)'
     >>> systemtools.IOManager.profile_expr(expr)
     6658 function calls (6646 primitive calls) in 0.008 seconds
 
@@ -100,7 +100,7 @@ task of starting the score manager and then immediately quitting.
 Turning on the quick-and-dirty caching code included in r10,250 gives the 
 following results:
 
-    >>> expr = 'score_manager = scoremanager.core.ScoreManager()'
+    >>> expr = 'score_manager = scoremanager.core.ScoreManager(is_test=True)'
     >>> systemtools.IOManager.profile_expr(expr)
     6658 function calls (6646 primitive calls) in 0.008 seconds
 
@@ -151,7 +151,7 @@ every time a ScoreManagerConfiguration object is istantiated.
 RESULTS: correcting the inefficiency produces the following results.
 Note that all of these results are with caching turned off:
 
-    >>> expr = 'score_manager = scoremanager.core.ScoreManager()'
+    >>> expr = 'score_manager = scoremanager.core.ScoreManager(is_test=True)'
     >>> systemtools.IOManager.profile_expr(expr)
     760 function calls in 0.001 seconds
 
@@ -180,7 +180,7 @@ Revision r10,252 turns caching back on.
 RESULTS: pytest battery time decreases from 46 seconds to 37 seconds. 
 Also these:
 
-    >>> expr = 'score_manager = scoremanager.core.ScoreManager()'
+    >>> expr = 'score_manager = scoremanager.core.ScoreManager(is_test=True)'
     >>> systemtools.IOManager.profile_expr(expr)
     760 function calls in 0.001 seconds
 
@@ -221,7 +221,7 @@ Here are function counts for the same thing:
 
 With where-tracking turned off:
 
-    >>> score_manager = scoremanager.core.ScoreManager()
+    >>> score_manager = scoremanager.core.ScoreManager(is_test=True)
     >>> statement = 'score_manager._make_main_menu()'
     >>> print score_manager._session.io_manager.count_function_calls(
         statement,
@@ -232,7 +232,7 @@ With where-tracking turned off:
 
 With where-tracking turned on:
 
-    >>> score_manager = scoremanager.core.ScoreManager()
+    >>> score_manager = scoremanager.core.ScoreManager(is_test=True)
     >>> statement = 'score_manager._make_main_menu()'
     >>> print score_manager._session.io_manager.count_function_calls(
         statement,

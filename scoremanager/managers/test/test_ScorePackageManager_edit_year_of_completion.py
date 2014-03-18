@@ -6,7 +6,7 @@ import scoremanager
 def test_ScorePackageManager_edit_year_of_completion_01():
 
     try:
-        score_manager = scoremanager.core.ScoreManager()
+        score_manager = scoremanager.core.ScoreManager(is_test=True)
         input_ = 'red~example~score setup year 2001 q'
         score_manager._run(pending_user_input=input_, is_test=True)
         transcript = score_manager._transcript

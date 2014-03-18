@@ -7,7 +7,7 @@ import scoremanager
 
 def test_TempoInventoryMaterialManager_edit_output_material_01():
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,

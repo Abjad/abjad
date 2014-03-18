@@ -9,7 +9,7 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_01():
     r'''Stub material package.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,
@@ -43,7 +43,7 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_02():
     r'''Populate output material module.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
     path = os.path.join(
         configuration.user_library_material_packages_directory_path,

@@ -5,7 +5,7 @@ import scoremanager
 
 def test_MaterialPackageWrangler_status_01():
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     string = 'lmm rst default q'
     score_manager._run(pending_user_input=string, is_test=True)
     title = '# On branch master'

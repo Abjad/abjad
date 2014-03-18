@@ -7,7 +7,7 @@ configuration = scoremanager.core.ScoreManagerConfiguration()
 
 def test_StylesheetWrangler_rename_01():
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     path = os.path.join(
         configuration.abjad_stylesheets_directory_path,
         'clean-letter-14.ily',
