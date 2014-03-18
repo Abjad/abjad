@@ -52,8 +52,22 @@ class Manager(Controller):
         if self._is_in_git_repository(path=self._path):
             command = 'git add {}'.format(self._path)
         elif self._is_svn_versioned(path=self._path):
-            command = 'cd {} && svn add --force * && cd -'
+            command = 'svn st {}'
             command = command.format(self._path)
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                )
+            commands = []
+            for line in process.stdout.readlines():
+                if line.startswith('?'):
+                    file_path = line.strip('?')
+                    file_path = file_path.strip()
+                    command = 'svn add {}'.format(file_path)
+                    commands.append(command)
+            command = ' && '.join(commands)
         else:
             raise ValueError(self)
         return command
