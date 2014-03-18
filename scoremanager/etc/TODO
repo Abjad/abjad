@@ -119,3 +119,4 @@
     that (lyrm) will (try to) act on the repository where (lytr) will
     only ever work on the filesystem.
 
+36. Make 'radd' work for a single Svn-managed score.

@@ -50,11 +50,13 @@ class Manager(Controller):
         if not self._path:
             return
         if self._is_in_git_repository(path=self._path):
-            return 'git add {}'.format(self._path)
+            command = 'git add {}'.format(self._path)
         elif self._is_svn_versioned(path=self._path):
-            return 'svn add {}'.format(self._path)
+            command = 'cd {} && svn add --force * && cd -'
+            command = command.format(self._path)
         else:
             raise ValueError(self)
+        return command
 
     @property
     def _repository_status_command(self):
@@ -353,7 +355,8 @@ class Manager(Controller):
         line = self._get_score_package_directory_name()
         line = line + ' ...'
         self._io_manager.display(line, capitalize_first_character=False)
-        command = self._repository_add_command,
+        command = self._repository_add_command
+        assert isinstance(command, str)
         process = subprocess.Popen(
             command,
             shell=True,
