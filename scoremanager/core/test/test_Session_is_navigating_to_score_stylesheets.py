@@ -9,7 +9,7 @@ def test_Session_is_navigating_to_score_stylesheets_01():
     '''
 
     input_ = 'red~example~score u y q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -24,7 +24,7 @@ def test_Session_is_navigating_to_score_stylesheets_02():
     '''
 
     input_ = 'red~example~score d y q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -39,7 +39,7 @@ def test_Session_is_navigating_to_score_stylesheets_03():
     '''
 
     input_ = 'red~example~score k y q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -54,7 +54,7 @@ def test_Session_is_navigating_to_score_stylesheets_04():
     '''
 
     input_ = 'red~example~score m y q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -69,7 +69,7 @@ def test_Session_is_navigating_to_score_stylesheets_05():
     '''
 
     input_ = 'red~example~score g y q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -84,7 +84,7 @@ def test_Session_is_navigating_to_score_stylesheets_06():
     '''
 
     input_ = 'red~example~score p y q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -99,7 +99,7 @@ def test_Session_is_navigating_to_score_stylesheets_07():
     '''
 
     input_ = 'red~example~score y y q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',

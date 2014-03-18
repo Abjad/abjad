@@ -9,7 +9,7 @@ def test_Session_is_navigating_to_build_directory_01():
     '''
 
     input_ = 'red~example~score u u q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -24,7 +24,7 @@ def test_Session_is_navigating_to_build_directory_02():
     '''
 
     input_ = 'red~example~score d u q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -39,7 +39,7 @@ def test_Session_is_navigating_to_build_directory_03():
     '''
 
     input_ = 'red~example~score k u q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -54,7 +54,7 @@ def test_Session_is_navigating_to_build_directory_04():
     '''
 
     input_ = 'red~example~score m u q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -69,7 +69,7 @@ def test_Session_is_navigating_to_build_directory_05():
     '''
 
     input_ = 'red~example~score g u q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -84,7 +84,7 @@ def test_Session_is_navigating_to_build_directory_06():
     '''
 
     input_ = 'red~example~score p u q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -99,7 +99,7 @@ def test_Session_is_navigating_to_build_directory_07():
     '''
 
     input_ = 'red~example~score y u q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',

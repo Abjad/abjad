@@ -10,7 +10,7 @@ def test_Session_is_navigating_to_score_materials_01():
     '''
 
     input_ = 'red~example~score u m q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -25,7 +25,7 @@ def test_Session_is_navigating_to_score_materials_02():
     '''
 
     input_ = 'red~example~score d m q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -40,7 +40,7 @@ def test_Session_is_navigating_to_score_materials_03():
     '''
 
     input_ = 'red~example~score k m q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -55,7 +55,7 @@ def test_Session_is_navigating_to_score_materials_04():
     '''
 
     input_ = 'red~example~score m m q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -70,7 +70,7 @@ def test_Session_is_navigating_to_score_materials_05():
     '''
 
     input_ = 'red~example~score g m q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -85,7 +85,7 @@ def test_Session_is_navigating_to_score_materials_06():
     '''
 
     input_ = 'red~example~score p m q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -100,7 +100,7 @@ def test_Session_is_navigating_to_score_materials_07():
     '''
 
     input_ = 'red~example~score y m q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',

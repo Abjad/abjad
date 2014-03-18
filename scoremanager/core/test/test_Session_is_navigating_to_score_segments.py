@@ -9,7 +9,7 @@ def test_Session_is_navigating_to_score_segments_01():
     '''
 
     input_ = 'red~example~score u g q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -24,7 +24,7 @@ def test_Session_is_navigating_to_score_segments_02():
     '''
 
     input_ = 'red~example~score d g q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -39,7 +39,7 @@ def test_Session_is_navigating_to_score_segments_03():
     '''
 
     input_ = 'red~example~score k g q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -54,7 +54,7 @@ def test_Session_is_navigating_to_score_segments_04():
     '''
 
     input_ = 'red~example~score m g q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -69,7 +69,7 @@ def test_Session_is_navigating_to_score_segments_05():
     '''
 
     input_ = 'red~example~score g g q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -84,7 +84,7 @@ def test_Session_is_navigating_to_score_segments_06():
     '''
 
     input_ = 'red~example~score p g q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
@@ -99,7 +99,7 @@ def test_Session_is_navigating_to_score_segments_07():
     '''
 
     input_ = 'red~example~score y g q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
         'Red Example Score (2013)',
