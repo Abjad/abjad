@@ -8,19 +8,19 @@ def test_MaterialPackageWrangler__run_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    score_manager._run(pending_user_input='lmm q', is_test=True)
+    score_manager._run(pending_user_input='lmm q')
     assert score_manager._transcript.signature == (4,)
 
-    score_manager._run(pending_user_input='lmm b q', is_test=True)
+    score_manager._run(pending_user_input='lmm b q')
     assert score_manager._transcript.signature == (6, (0, 4))
 
-    score_manager._run(pending_user_input='lmm h q', is_test=True)
+    score_manager._run(pending_user_input='lmm h q')
     assert score_manager._transcript.signature == (6, (0, 4))
 
-    score_manager._run(pending_user_input='lmm s q', is_test=True)
+    score_manager._run(pending_user_input='lmm s q')
     assert score_manager._transcript.signature == (6, (2, 4))
 
-    score_manager._run(pending_user_input='lmm asdf q', is_test=True)
+    score_manager._run(pending_user_input='lmm asdf q')
     assert score_manager._transcript.signature == (6, (2, 4))
 
 
@@ -29,7 +29,7 @@ def test_MaterialPackageWrangler__run_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    score_manager._run(pending_user_input='lmm q', is_test=True)
+    score_manager._run(pending_user_input='lmm q')
     title_line = 'Score manager - material library'
     assert score_manager._transcript.last_title == title_line
 
@@ -39,7 +39,7 @@ def test_MaterialPackageWrangler__run_03():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    score_manager._run(pending_user_input='lmm q', is_test=True)
+    score_manager._run(pending_user_input='lmm q')
     menu_lines = score_manager._transcript.last_menu_lines
     string = 'example sargasso measures (Abjad)'
     assert any(x.endswith(string) for x in menu_lines)
@@ -51,7 +51,7 @@ def test_MaterialPackageWrangler__run_04():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     string = 'red~example~score h lmm q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    score_manager._run(pending_user_input=string)
 
     found_example_articulation_handler = False
     for line in score_manager._transcript.last_menu_lines:
@@ -67,7 +67,7 @@ def test_MaterialPackageWrangler__run_05():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     string = 'red~example~score b lmm q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    score_manager._run(pending_user_input=string)
     
     string = 'Score manager - material library'
     assert score_manager._transcript.entries[-2].title == string

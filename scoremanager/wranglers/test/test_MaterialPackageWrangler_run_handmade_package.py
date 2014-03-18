@@ -25,7 +25,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
     assert not os.path.exists(path)
     try:
         input_ = 'lmm nmh testnotes default default q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.MaterialManager
@@ -34,7 +34,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
         assert manager._interpret_definition_module() is None
         assert manager._execute_output_module() is None
         input_ = 'lmm testnotes rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -61,7 +61,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.MaterialManager
@@ -70,7 +70,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
         output_material = manager._interpret_definition_module()
         assert output_material is None
         input_ = 'lmm testnotes rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -98,7 +98,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.MaterialManager
@@ -107,7 +107,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
         assert manager._interpret_definition_module() is None
         assert manager._execute_output_module() is None
         input_ = 'lmm testnotes rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -136,7 +136,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.MaterialManager
@@ -149,7 +149,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
         assert output_material
         assert all(isinstance(x, Note) for x in output_material)
         input_ = 'lmm testnotes rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -174,14 +174,14 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.MaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         input_ = 'lmm testnotes rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -207,7 +207,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.MaterialManager
@@ -216,7 +216,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
         assert manager._interpret_definition_module() is None
         assert manager._execute_output_module() is None
         input_ = 'lmm testnotes rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -244,7 +244,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.MaterialManager
@@ -256,7 +256,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
         output_material = manager._execute_output_module()
         assert output_material is None
         input_ = 'lmm testnotes rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -283,7 +283,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.MaterialManager
@@ -292,7 +292,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
         assert manager._interpret_definition_module() is None
         assert manager._execute_output_module() is None
         input_ = 'lmm testnotes rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -322,7 +322,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.MaterialManager
@@ -334,7 +334,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
         output_material = manager._execute_output_module()
         assert output_material is None
         input_ = 'lmm testnotes rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -364,7 +364,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.MaterialManager
@@ -377,7 +377,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
         assert output_material
         assert all(isinstance(x, Note) for x in output_material)
         input_ = 'lmm testnotes rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)

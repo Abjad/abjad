@@ -20,11 +20,11 @@ def test_StylesheetWrangler_rename_01():
     assert os.path.exists(path)
     
     input_ = 'lmy ren clean-letter-14.ily very-clean-letter-14.ily y q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     assert not os.path.exists(path)
     assert os.path.exists(new_path)
 
     input_ = 'lmy ren very-clean-letter-14.ily clean-letter-14.ily y q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     assert not os.path.exists(new_path)
     assert os.path.exists(path)

@@ -64,7 +64,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_02():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         file_pointer = file(definition_module_path, 'r')
         file_lines = file_pointer.readlines()

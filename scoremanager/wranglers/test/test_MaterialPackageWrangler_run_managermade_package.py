@@ -23,14 +23,14 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.SargassoMeasureMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         input_ = 'lmm testsargasso rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -57,14 +57,14 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.SargassoMeasureMaterialManager
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         input_ = 'red~example~score m testsargasso rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -91,7 +91,7 @@ def test_MaterialPackageWrangler_run_managermade_package_03():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.SargassoMeasureMaterialManager
@@ -100,7 +100,7 @@ def test_MaterialPackageWrangler_run_managermade_package_03():
         assert manager._interpret_definition_module() is None
         assert manager._execute_output_module() is None
         input_ = 'lmm testsargassomeasures rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)
@@ -128,7 +128,7 @@ def test_MaterialPackageWrangler_run_managermade_package_04():
 
     assert not os.path.exists(path)
     try:
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         session = scoremanager.core.Session()
         manager = scoremanager.managers.SargassoMeasureMaterialManager
@@ -137,7 +137,7 @@ def test_MaterialPackageWrangler_run_managermade_package_04():
         assert manager._interpret_definition_module() is None
         assert manager._execute_output_module() is None
         input_ = 'lmm testsargassomeasures rm remove q'
-        score_manager._run(pending_user_input=input_, is_test=True)
+        score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
             shutil.rmtree(path)

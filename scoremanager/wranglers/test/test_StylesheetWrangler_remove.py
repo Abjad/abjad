@@ -23,7 +23,7 @@ def test_StylesheetWrangler_remove_01():
     assert os.path.exists(backup_path)
 
     input_ = 'lmy rm clean-letter-14.ily remove q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     assert not os.path.exists(path)
     assert os.path.exists(backup_path)
     shutil.move(backup_path, path)

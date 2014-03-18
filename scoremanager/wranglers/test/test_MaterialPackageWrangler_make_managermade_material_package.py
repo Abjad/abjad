@@ -40,7 +40,7 @@ def test_MaterialPackageWrangler_make_managermade_material_package_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    score_manager._run(pending_user_input='lmm nmm q', is_test=True)
+    score_manager._run(pending_user_input='lmm nmm q')
 
     transcript = score_manager._transcript
     string = 'Select material manager:'
