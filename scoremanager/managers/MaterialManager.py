@@ -165,7 +165,6 @@ class MaterialManager(PackageManager):
             'dmi': self.interpret_definition_module,
             'ime': self.edit_illustration_builder_module,
             'imei': self.edit_and_interpret_illustration_builder_module,
-            'ibm': self.write_illustration_builder_module_stub,
             'imrm': self.remove_illustration_builder_module,
             'ims': self.write_illustration_builder_module_stub,
             'imi': self.interpret_illustration_builder_module,
@@ -376,8 +375,8 @@ class MaterialManager(PackageManager):
                 string = 'illustrate module - stub'
                 section.append((string, 'ims'))
             else:
-                string = 'illustrate module - make'
-                section.append((string, 'ibm'))
+                string = 'illustrate module - stub'
+                section.append((string, 'ims'))
 
     def _make_illustration_ly_menu_section(self, menu):
         if os.path.isfile(self._output_module_path) or \
