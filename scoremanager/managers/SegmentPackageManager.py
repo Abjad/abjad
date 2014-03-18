@@ -466,8 +466,8 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        if not os.path.exists(self.definition_module_path):
-            file_pointer = file(self.definition_module_path, 'w')
+        if not os.path.exists(self._definition_module_path):
+            file_pointer = file(self._definition_module_path, 'w')
             file_pointer.write(self._unicode_directive + '\n')
             file_pointer.write('from abjad import *\n')
             file_pointer.write('\n\n')
