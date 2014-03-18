@@ -42,6 +42,9 @@ class MarkupInventory(TypedList):
         from abjad.tools import markuptools
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
         lilypond_file.header_block.tagline = markuptools.Markup('""')
+        for item in lilypond_file.items[:]:
+            if item.name in ('header', 'layout', 'paper', 'score'):
+                lilypond_file.items.remove(item)
         for item in self:
             lilypond_file.items.append(item)
         return lilypond_file
