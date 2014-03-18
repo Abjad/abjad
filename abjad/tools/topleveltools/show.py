@@ -17,7 +17,7 @@ def show(expr, return_timing=False, **kwargs):
     Abjad writes LilyPond input files to the ``~/.abjad/output/``
     directory by default.
 
-    You may change this by setting the ``abjad_output`` variable in
+    You may change this by setting the ``abjad_output_directory_path`` variable in
     the Abjad ``config.py`` file.
 
     Returns none when `return_timing` is false.

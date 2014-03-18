@@ -17,7 +17,7 @@ def test_systemtools_AbjadConfiguration___init___01():
         'lilypond_includes',
         'lilypond_path',
         'midi_player',
-        'abjad_output',
+        'abjad_output_directory_path',
         'accidental_spelling',
         'lilypond_language',
     ]

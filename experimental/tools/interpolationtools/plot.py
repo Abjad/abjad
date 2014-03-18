@@ -16,13 +16,13 @@ def plot(expr, image_format='png', width=640, height=320):
     message = 'Cannot find `gnuplot` command-line tool.'
     assert systemtools.IOManager.find_executable('gnuplot'), message
     gnuplot_format = expr.gnuplot_format
-    abjad_output = abjad_configuration['abjad_output']
-    systemtools.IOManager._ensure_directory_existence(abjad_output)
+    abjad_output_directory_path = abjad_configuration['abjad_output_directory_path']
+    systemtools.IOManager._ensure_directory_existence(abjad_output_directory_path)
     txt_path = os.path.join(
-        abjad_output, systemtools.IOManager.get_next_output_file_name(
+        abjad_output_directory_path, systemtools.IOManager.get_next_output_file_name(
             file_extension='txt'))
     img_path = os.path.join(
-        abjad_output,
+        abjad_output_directory_path,
         txt_path.replace('txt', image_format),
         )
     if image_format == 'png':
@@ -38,5 +38,5 @@ def plot(expr, image_format='png', width=640, height=320):
     command = 'gnuplot {}'.format(txt_path)
     systemtools.IOManager.spawn_subprocess(command)
     pdf_viewer = abjad_configuration['pdf_viewer']
-    abjad_output = abjad_configuration['abjad_output']
+    abjad_output_directory_path = abjad_configuration['abjad_output_directory_path']
     systemtools.IOManager.open_file(img_path, pdf_viewer)

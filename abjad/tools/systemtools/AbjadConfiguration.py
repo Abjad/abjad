@@ -433,7 +433,7 @@ class AbjadConfiguration(Configuration):
 
         Returns string.
         '''
-        return self._settings['abjad_output']
+        return self._settings['abjad_output_directory_path']
 
     @property
     def abjad_root_directory_path(self):

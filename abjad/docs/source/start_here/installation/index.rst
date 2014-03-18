@@ -126,7 +126,7 @@ this:
     # Set to the directory where all Abjad-generated files
     # (such as PDFs and LilyPond files) should be saved.
     # Defaults to $HOME.abjad/output/
-    abjad_output = /Users/josiah/.abjad/output
+    abjad_output_directory_path = /Users/josiah/.abjad/output
 
     # Default accidental spelling (mixed|sharps|flats).
     accidental_spelling = mixed

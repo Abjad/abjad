@@ -41,7 +41,7 @@ def graph(expr, image_format='pdf', layout='dot'):
         graphviz_format = expr.graphviz_format
 
     current_directory = os.path.abspath('.')
-    ABJADOUTPUT = abjad_configuration['abjad_output']
+    ABJADOUTPUT = abjad_configuration['abjad_output_directory_path']
     systemtools.IOManager._ensure_directory_existence(ABJADOUTPUT)
     dot_path = os.path.join(
         ABJADOUTPUT,
@@ -57,5 +57,5 @@ def graph(expr, image_format='pdf', layout='dot'):
     subprocess.call(command, shell=True)
 
     pdf_viewer = abjad_configuration['pdf_viewer']
-    ABJADOUTPUT = abjad_configuration['abjad_output']
+    ABJADOUTPUT = abjad_configuration['abjad_output_directory_path']
     systemtools.IOManager.open_file(img_path, pdf_viewer)
