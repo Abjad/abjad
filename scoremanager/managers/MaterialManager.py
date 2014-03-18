@@ -541,6 +541,27 @@ class MaterialManager(PackageManager):
             section.append(('stylesheet - edit', 'sse'))
             section.append(('stylesheet - select', 'sss'))
 
+    def _make_temporary_illustrate_module_lines(self):
+        lines = []
+        lines.append(self._unicode_directive)
+        lines.append('import os')
+        lines.append('from abjad import *')
+        line = 'from output_material import {}'
+        line = line.format(self._material_package_name)
+        lines.append(line)
+        lines.append('from illustration_builder import __illustrate__')
+        lines.append('')
+        lines.append('')
+        line = 'lilypond_file = __illustrate__({})'
+        line = line.format(self._material_package_name)
+        lines.append(line)
+        lines.append('file_path = os.path.abspath(__file__)')
+        lines.append('directory_path = os.path.dirname(file_path)')
+        line = "file_path = os.path.join(directory_path, 'illustration.pdf')"
+        lines.append(line)
+        lines.append("persist(lilypond_file).as_pdf(file_path)")
+        return lines
+
     def _make_user_input_module_menu_section(self, menu):
         menu_entries = self._user_input_wrapper_in_memory.editable_lines
         numbered_section = menu.make_numbered_section(name='material summary')
@@ -751,36 +772,18 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        # ZZZ
-        result = self._retrieve_import_statements_and_output_material()
-        import_statements, output_material = result
-        illustrate_function = self._retrieve_illustrate_function()
-        #kwargs = {}
-        #kwargs['title'] = self._space_delimited_lowercase_name
-        #if self._session.is_in_score:
-        #    title = self._session.current_score_package_manager.title
-        #    string = '({})'.format(title)
-        #    kwargs['subtitle'] = string
-        lilypond_score = illustrate_function(output_material)
-        #if illustration and self._stylesheet_file_path_in_memory:
-        #    path = self._stylesheet_file_path_in_memory
-        #    illustration.file_initial_user_includes.append(path)
-        topleveltools.persist(lilypond_score).as_pdf(
-            self._illustration_pdf_file_path,
-            )
-        self._io_manager.proceed(
-            'PDF and LilyPond file written to disk.',
-            prompt=prompt,
-            )
-
-    def _retrieve_illustrate_function(self):
-        attribute_names = ('__illustrate__',)
-        result = self._illustration_builder_module_manager._execute(
-            attribute_names=attribute_names,
-            )
-        if result:
-            assert len(result) == 1
-            return result[0]
+        from scoremanager import managers
+        lines = self._make_temporary_illustrate_module_lines()
+        contents = '\n'.join(lines)
+        file_name = 'temporary_illustration_builder.py'
+        path = os.path.join(self._path, file_name)
+        manager = managers.FileManager(path=path, session=self._session)
+        # TODO: probably a way to combine these three methods
+        manager._write(contents)
+        manager._interpret(prompt=False)
+        manager._remove()
+        message = 'creatd illustration.pdf and illustration.ly.'
+        self._io_manager.proceed(message)
 
     def interpret_illustration_builder_module(self, prompt=True):
         r'''Runs Python on illustrate module module.

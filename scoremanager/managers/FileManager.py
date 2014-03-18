@@ -75,6 +75,7 @@ class FileManager(Manager):
         elif result == 'user entered lone return':
             self.edit()
 
+    # TODO: make public; add command alias
     def _interpret(self, prompt=True):
         command = 'python {}'.format(self._path)
         result = self._io_manager.spawn_subprocess(command)
