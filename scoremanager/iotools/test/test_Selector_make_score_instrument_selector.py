@@ -10,5 +10,8 @@ def test_Selector_make_score_instrument_selector_01():
     selector = scoremanager.iotools.Selector
     selector = selector.make_score_instrument_selector(session=session)
 
-    assert selector._run(pending_user_input='vio') == instrumenttools.Violin()
-    assert selector._run(pending_user_input='oth') == 'other'
+    input_ = 'vio'
+    assert selector._run(pending_user_input=input_) == instrumenttools.Violin()
+
+    input_ = 'oth'
+    assert selector._run(pending_user_input=input_) == 'other'

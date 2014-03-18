@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_Session_command_history_input__01():
+def test_Session_command_history_string_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'foo bar blah q'
@@ -11,7 +11,7 @@ def test_Session_command_history_input__01():
     assert score_manager._session.command_history_string == input_
 
 
-def test_Session_command_history_input__02():
+def test_Session_command_history_string_02():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score instrumentation q'

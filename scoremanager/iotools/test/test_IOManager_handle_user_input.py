@@ -8,7 +8,8 @@ def test_IOManager_handle_user_input_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    score_manager._run(pending_user_input='stn . . . q', is_test=True)
+    input_ = 'stn . . . q'
+    score_manager._run(pending_user_input=input_)
     titles = [ 
         'Score manager - example scores',
         'Blue Example Score (2013)',

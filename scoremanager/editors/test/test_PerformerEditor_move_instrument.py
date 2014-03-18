@@ -26,7 +26,7 @@ def test_PerformerEditor_move_instrument_01():
 
     input_ = 'étude~example~score setup instrumentation'
     input_ += ' flutist mv foo q'
-    score_manager._run(pending_user_input=input_, is_test=True)
+    score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (13,)
 
 

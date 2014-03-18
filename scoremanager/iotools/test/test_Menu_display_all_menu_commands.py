@@ -7,10 +7,11 @@ import scoremanager
 def test_Menu_display_all_menu_commands_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    score_manager._run(pending_user_input='n q', is_test=True)
+    input_ = 'n q'
+    score_manager._run(pending_user_input=input_)
 
-    string = 'Score manager - example scores - commands'
-    assert score_manager._transcript.last_title == string
+    input_ = 'Score manager - example scores - commands'
+    assert score_manager._transcript.last_title == input_
 
 
 def test_Menu_display_all_menu_commands_02():
@@ -18,14 +19,15 @@ def test_Menu_display_all_menu_commands_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    score_manager._run(pending_user_input='n asdf q', is_test=True)
+    input_ = 'n asdf q'
+    score_manager._run(pending_user_input=input_)
 
-    string_1 = 'Score manager - example scores - commands'
-    string_2 = 'Score manager - example scores'
+    input__1 = 'Score manager - example scores - commands'
+    input__2 = 'Score manager - example scores'
     transcript = score_manager._transcript
 
-    assert transcript.system_display_entries[-1].title == string_2
-    assert transcript.system_display_entries[-2].title == string_1
+    assert transcript.system_display_entries[-1].title == input__2
+    assert transcript.system_display_entries[-2].title == input__1
 
 
 def test_Menu_display_all_menu_commands_03():
@@ -33,14 +35,15 @@ def test_Menu_display_all_menu_commands_03():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    score_manager._run(pending_user_input='n lvl q', is_test=True)
+    input_ = 'n lvl q'
+    score_manager._run(pending_user_input=input_)
 
-    string_2 = 'Score manager - example scores - commands'
-    string_1 = 'Score manager - example scores'
+    input__2 = 'Score manager - example scores - commands'
+    input__1 = 'Score manager - example scores'
     transcript = score_manager._transcript
 
-    assert transcript.system_display_entries[-2].title == string_2
-    assert transcript.system_display_entries[-1].title == string_1
+    assert transcript.system_display_entries[-2].title == input__2
+    assert transcript.system_display_entries[-1].title == input__1
 
 
 def test_Menu_display_all_menu_commands_04():
@@ -48,12 +51,12 @@ def test_Menu_display_all_menu_commands_04():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score n q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score n q'
+    score_manager._run(pending_user_input=input_)
 
-    string = 'Red Example Score (2013) - commands'
+    input_ = 'Red Example Score (2013) - commands'
     transcript = score_manager._transcript
-    assert transcript.system_display_entries[-1].title == string
+    assert transcript.system_display_entries[-1].title == input_
 
 
 def test_Menu_display_all_menu_commands_05():
@@ -61,12 +64,12 @@ def test_Menu_display_all_menu_commands_05():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score n pyd default q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score n pyd default q'
+    score_manager._run(pending_user_input=input_)
 
-    string = 'Red Example Score (2013)'
+    input_ = 'Red Example Score (2013)'
     transcript = score_manager._transcript
-    assert transcript.last_title == string
+    assert transcript.last_title == input_
 
 
 def test_Menu_display_all_menu_commands_06():
@@ -74,12 +77,12 @@ def test_Menu_display_all_menu_commands_06():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score n pyt default q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score n pyt default q'
+    score_manager._run(pending_user_input=input_)
 
-    string = 'Red Example Score (2013)'
+    input_ = 'Red Example Score (2013)'
     transcript = score_manager._transcript
-    assert transcript.last_title == string
+    assert transcript.last_title == input_
 
 
 def test_Menu_display_all_menu_commands_07():
@@ -87,12 +90,12 @@ def test_Menu_display_all_menu_commands_07():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score n pyi 2**38 redraw q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score n pyi 2**38 redraw q'
+    score_manager._run(pending_user_input=input_)
 
-    string = 'Red Example Score (2013)'
+    input_ = 'Red Example Score (2013)'
     transcript = score_manager._transcript
-    assert transcript.last_title == string
+    assert transcript.last_title == input_
 
 
 def test_Menu_display_all_menu_commands_08():
@@ -101,12 +104,12 @@ def test_Menu_display_all_menu_commands_08():
     pytest.skip('make me testable')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score n radd q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score n radd q'
+    score_manager._run(pending_user_input=input_)
 
-    string = 'Red Example Score (2013) - commands'
+    input_ = 'Red Example Score (2013) - commands'
     transcript = score_manager._transcript
-    assert transcript.last_title == string
+    assert transcript.last_title == input_
 
 
 def test_Menu_display_all_menu_commands_09():
@@ -115,12 +118,12 @@ def test_Menu_display_all_menu_commands_09():
     pytest.skip('make me testable')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score n rci q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score n rci q'
+    score_manager._run(pending_user_input=input_)
 
-    string = 'Red Example Score (2013) - commands'
+    input_ = 'Red Example Score (2013) - commands'
     transcript = score_manager._transcript
-    assert transcript.last_title == string
+    assert transcript.last_title == input_
 
 
 def test_Menu_display_all_menu_commands_10():
@@ -129,12 +132,12 @@ def test_Menu_display_all_menu_commands_10():
     pytest.skip('make me work')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score n rst q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score n rst q'
+    score_manager._run(pending_user_input=input_)
 
-    string = 'Red Example Score (2013) - commands'
+    input_ = 'Red Example Score (2013) - commands'
     transcript = score_manager._transcript
-    assert transcript.last_title == string
+    assert transcript.last_title == input_
 
 
 def test_Menu_display_all_menu_commands_11():
@@ -143,12 +146,12 @@ def test_Menu_display_all_menu_commands_11():
     pytest.skip('make me testable')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score n rup q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score n rup q'
+    score_manager._run(pending_user_input=input_)
 
-    string = 'Red Example Score (2013) - commands'
+    input_ = 'Red Example Score (2013) - commands'
     transcript = score_manager._transcript
-    assert transcript.last_title == string
+    assert transcript.last_title == input_
 
 
 def test_Menu_display_all_menu_commands_12():
@@ -156,12 +159,12 @@ def test_Menu_display_all_menu_commands_12():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score n o default q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score n o default q'
+    score_manager._run(pending_user_input=input_)
 
-    string = 'Red Example Score (2013)'
+    input_ = 'Red Example Score (2013)'
     transcript = score_manager._transcript
-    assert transcript.last_title == string
+    assert transcript.last_title == input_
 
 
 def test_Menu_display_all_menu_commands_13():
@@ -169,12 +172,12 @@ def test_Menu_display_all_menu_commands_13():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score n scl redraw q'
-    score_manager._run(pending_user_input=string, is_test=True)
+    input_ = 'red~example~score n scl redraw q'
+    score_manager._run(pending_user_input=input_)
 
-    string = 'Red Example Score (2013)'
+    input_ = 'Red Example Score (2013)'
     transcript = score_manager._transcript
-    assert transcript.last_title == string
+    assert transcript.last_title == input_
 
 
 def test_Menu_display_all_menu_commands_14():
@@ -187,7 +190,7 @@ def test_Menu_display_all_menu_commands_14():
     input_ = 'red~example~score n sce q'
     score_manager._run(pending_user_input=input_)
 
-    string = 'Red Example Score (2013)'
+    input_ = 'Red Example Score (2013)'
     transcript = score_manager._transcript
-    assert transcript.last_title == string
+    assert transcript.last_title == input_
     assert score_manager._session.attempted_to_open_file

@@ -7,11 +7,13 @@ def test_UserInputGetter_append_values_01():
 
     getter = scoremanager.iotools.UserInputGetter()
     getter.append_integer('attribute')
-    assert getter._run(pending_user_input='foo -99') == -99
+    input_ = 'foo -99'
+    assert getter._run(pending_user_input=input_) == -99
 
     getter = scoremanager.iotools.UserInputGetter()
     getter.append_integer_in_range('attribute', 1, 10)
-    assert getter._run(pending_user_input='foo -99 99 7') == 7
+    input_ = 'foo -99 99 7'
+    assert getter._run(pending_user_input=input_) == 7
 
     getter = scoremanager.iotools.UserInputGetter()
     menu_section = scoremanager.iotools.MenuSection(
@@ -23,20 +25,25 @@ def test_UserInputGetter_append_values_01():
         menu_section.append(menu_entry)
     getter.append_menu_section_range('attribute', menu_section)
     result = [6, 5, 4, 1, 3]
-    assert getter._run(pending_user_input='fen-dur, app, che') == result
+    input_ = 'fen-dur, app, che'
+    assert getter._run(pending_user_input=input_) == result
 
     getter = scoremanager.iotools.UserInputGetter()
     getter.append_markup('attribute')
-    assert getter._run(pending_user_input='foo') == markuptools.Markup('foo')
+    input_ = 'foo'
+    assert getter._run(pending_user_input=input_) == markuptools.Markup('foo')
 
     getter = scoremanager.iotools.UserInputGetter()
     getter.append_named_pitch('attribute')
-    assert getter._run(pending_user_input="cs'") == NamedPitch("cs'")
+    input_ = "cs'"
+    assert getter._run(pending_user_input=input_) == NamedPitch("cs'")
 
     getter = scoremanager.iotools.UserInputGetter()
     getter.append_string('attribute')
-    assert getter._run(pending_user_input='None -99 99 1-4 foo') == 'foo'
+    input_ = 'None -99 99 1-4 foo'
+    assert getter._run(pending_user_input=input_) == 'foo'
 
     getter = scoremanager.iotools.UserInputGetter()
     getter.append_string_or_none('attribute')
-    assert getter._run(pending_user_input='-99 99 1-4 None') is None
+    input_ = '-99 99 1-4 None'
+    assert getter._run(pending_user_input=input_) is None

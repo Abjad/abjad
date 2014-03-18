@@ -6,7 +6,8 @@ import scoremanager
 def test_IOManager_exec_statement_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    score_manager._run(pending_user_input='pyi 2**30 q', is_test=True)
+    input_ = 'pyi 2**30 q'
+    score_manager._run(pending_user_input=input_)
 
     assert score_manager._transcript[1].lines == ['> pyi', '']
     assert score_manager._transcript[2].lines == ['>>> 2**30']
@@ -19,7 +20,8 @@ def test_IOManager_exec_statement_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    score_manager._run(pending_user_input='pyi foo q', is_test=True)
+    input_ = 'pyi foo q'
+    score_manager._run(pending_user_input=input_)
 
     assert score_manager._transcript[1].lines == ['> pyi', '']
     assert score_manager._transcript[2].lines == ['>>> foo']
