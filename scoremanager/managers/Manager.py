@@ -50,23 +50,13 @@ class Manager(Controller):
         if not self._path:
             return
         if self._is_in_git_repository(path=self._path):
-            command = 'git add {}'.format(self._path)
+            command = 'git add -A {}'.format(self._path)
         elif self._is_svn_versioned(path=self._path):
-            command = 'svn st {}'
-            command = command.format(self._path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                )
+            paths = self._get_unadded_asset_paths()
             commands = []
-            for line in process.stdout.readlines():
-                if line.startswith('?'):
-                    file_path = line.strip('?')
-                    file_path = file_path.strip()
-                    command = 'svn add {}'.format(file_path)
-                    commands.append(command)
+            for path in paths:
+                command = 'svn add {}'.format(path)
+                commands.append(command)
             command = ' && '.join(commands)
         else:
             raise ValueError(self)
@@ -108,18 +98,60 @@ class Manager(Controller):
 
     ### PRIVATE METHODS ###
 
+    def _get_added_asset_paths(self):
+        pass
+        if self._is_git_versioned():
+            self._io_manager.print_not_yet_implemented()
+        elif self._is_svn_versioned():
+            command = 'svn st {}'
+            command = command.format(self._path)
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                )
+            paths = []
+            for line in process.stdout.readlines():
+                if line.startswith('A'):
+                    path = line.strip('A')
+                    path = path.strip()
+                    paths.append(path)
+            return paths
+        else:
+            raise ValueError(self)
+
     def _get_score_package_directory_name(self):
         line = self._path
-        line = line.replace(
-            self._configuration.abjad_score_packages_directory_path,
-            '',
-            )
-        line = line.replace(
-            self._configuration.user_score_packages_directory_path,
-            '',
-            )
+        path = self._configuration.abjad_score_packages_directory_path
+        line = line.replace(path, '')
+        path = self._configuration.user_score_packages_directory_path
+        line = line.replace(path, '')
         line = line.lstrip(os.path.sep)
         return line
+
+    def _get_unadded_asset_paths(self):
+        pass
+        if self._is_git_versioned():
+            self._io_manager.print_not_yet_implemented()
+        elif self._is_svn_versioned():
+            command = 'svn st {}'
+            command = command.format(self._path)
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                )
+            paths = []
+            for line in process.stdout.readlines():
+                if line.startswith('?'):
+                    path = line.strip('?')
+                    path = path.strip()
+                    paths.append(path)
+            return paths
+        else:
+            raise ValueError(self)
 
     def _initialize_file_name_getter(self):
         getter = self._io_manager.make_getter()
@@ -376,6 +408,25 @@ class Manager(Controller):
         space_delimited_lowercase_name = space_delimited_lowercase_name.lower()
         asset_name = space_delimited_lowercase_name.replace(' ', '_')
         return asset_name
+
+    def _unadd_added_assets(self, prompt=True):
+        paths = self._get_added_asset_paths()
+        commands = []
+        if self._is_git_versioned():
+            for path in paths:
+                command = 'git checkout {}'.format(path)
+                commands.append(command)
+        elif self._is_svn_versioned():
+            for path in paths:
+                command = 'svn revert {}'.format(path)
+                commands.append(command)
+        else:
+            raise ValueError(self)
+        command = ' && '.join(commands)
+        self._io_manager.spawn_subprocess(command)
+        message = 'added assets are now unadded.'
+        self._io_manager.proceed(message, prompt=prompt)
+
 
     ### PUBLIC METHODS ###
 
