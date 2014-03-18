@@ -99,9 +99,23 @@ class Manager(Controller):
     ### PRIVATE METHODS ###
 
     def _get_added_asset_paths(self):
-        pass
         if self._is_git_versioned():
-            self._io_manager.print_not_yet_implemented()
+            command = 'git status --porcelain {}'
+            command = command.format(self._path)
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                )
+            paths = []
+            for line in process.stdout.readlines():
+                if line.startswith('A'):
+                    path = line.strip('A')
+                    path = path.strip()
+                    root_directory = self._get_repository_root_directory()
+                    path = os.path.join(root_directory, path)
+                    paths.append(path)
         elif self._is_svn_versioned():
             command = 'svn st {}'
             command = command.format(self._path)
@@ -117,9 +131,9 @@ class Manager(Controller):
                     path = line.strip('A')
                     path = path.strip()
                     paths.append(path)
-            return paths
         else:
             raise ValueError(self)
+        return paths
 
     def _get_score_package_directory_name(self):
         line = self._path
@@ -131,9 +145,23 @@ class Manager(Controller):
         return line
 
     def _get_unadded_asset_paths(self):
-        pass
         if self._is_git_versioned():
-            self._io_manager.print_not_yet_implemented()
+            command = 'git status --porcelain {}'
+            command = command.format(self._path)
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                )
+            paths = []
+            for line in process.stdout.readlines():
+                if line.startswith('?'):
+                    path = line.strip('?')
+                    path = path.strip()
+                    root_directory = self._get_repository_root_directory()
+                    path = os.path.join(root_directory, path)
+                    paths.append(path)
         elif self._is_svn_versioned():
             command = 'svn st {}'
             command = command.format(self._path)
@@ -149,7 +177,24 @@ class Manager(Controller):
                     path = line.strip('?')
                     path = path.strip()
                     paths.append(path)
-            return paths
+        else:
+            raise ValueError(self)
+        return paths
+
+    def _get_repository_root_directory(self):
+        if self._is_git_versioned():
+            command = 'git rev-parse --show-toplevel'
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                )
+            line = process.stdout.readline()
+            line = line.strip()
+            return line
+        elif self._is_svn_versioned():
+            pass
         else:
             raise ValueError(self)
 
@@ -278,8 +323,7 @@ class Manager(Controller):
 
     def _is_up_to_date(self):
         if self._is_git_versioned():
-            command = 'git st {}'
-            pass
+            command = 'git status --porcelain {}'
         elif self._is_svn_versioned():
             command = 'svn st {}'
         else:
@@ -414,7 +458,7 @@ class Manager(Controller):
         commands = []
         if self._is_git_versioned():
             for path in paths:
-                command = 'git checkout {}'.format(path)
+                command = 'git reset -- {}'.format(path)
                 commands.append(command)
         elif self._is_svn_versioned():
             for path in paths:
