@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
-import os
 from abjad import *
-from output_material import example_numbers
 
 
 def __illustrate__(example_numbers):
@@ -10,11 +8,3 @@ def __illustrate__(example_numbers):
     score, treble_staff, bass_staff = result
     lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
     return lilypond_file
-
-
-if __name__ == '__main__':
-    lilypond_file = __illustrate__(example_numbers)
-    file_path = os.path.abspath(__file__)
-    directory_path = os.path.dirname(file_path)
-    file_path = os.path.join(directory_path, 'illustration.pdf')
-    persist(lilypond_file).as_pdf(file_path) 

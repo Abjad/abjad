@@ -780,9 +780,10 @@ class MaterialManager(PackageManager):
         manager = managers.FileManager(path=path, session=self._session)
         # TODO: probably a way to combine these three methods
         manager._write(contents)
+        # TODO: test success and message accordingly
         manager._interpret(prompt=False)
         manager._remove()
-        message = 'creatd illustration.pdf and illustration.ly.'
+        message = 'created illustration.pdf and illustration.ly.'
         self._io_manager.proceed(message)
 
     def interpret_illustration_builder_module(self, prompt=True):
