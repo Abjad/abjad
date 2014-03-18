@@ -101,7 +101,7 @@ def test_Menu_display_all_menu_commands_07():
 def test_Menu_display_all_menu_commands_08():
     r'''Hidden menu persists after adding assets to repository.
     '''
-    pytest.skip('make me testable')
+    pytest.skip('make me testable.')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score n radd q'
@@ -115,7 +115,7 @@ def test_Menu_display_all_menu_commands_08():
 def test_Menu_display_all_menu_commands_09():
     r'''Hidden menu persists after commiting assets to repository.
     '''
-    pytest.skip('make me testable')
+    pytest.skip('make me testable.')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score n rci q'
@@ -143,7 +143,7 @@ def test_Menu_display_all_menu_commands_10():
 def test_Menu_display_all_menu_commands_11():
     r'''Hidden menu persists after updating from repository.
     '''
-    pytest.skip('make me testable')
+    pytest.skip('make me testable.')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score n rup q'
@@ -185,6 +185,7 @@ def test_Menu_display_all_menu_commands_14():
 
     Sets is_test=False to turn on source code tracking.
     '''
+    pytest.skip('I work but add 2 seconds to total py.test runtime.')
 
     score_manager = scoremanager.core.ScoreManager(is_test=False)
     input_ = 'red~example~score n sce q'

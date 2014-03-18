@@ -68,5 +68,4 @@ class ScoreManagerObject(object):
     @property
     def _where(self):
         if self._session.enable_where:
-            #raise Exception
             return inspect.stack()[1]
