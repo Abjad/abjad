@@ -7,6 +7,7 @@ def test_Selector_make_dynamic_handler_class_name_selector_01():
 
     selector = scoremanager.iotools.Selector
     selector = selector.make_dynamic_handler_class_name_selector()
+    selector._session._is_test = True
     input_ = 'q'
     selector._run(pending_user_input=input_)
     transcript = selector._transcript
@@ -24,6 +25,7 @@ def test_Selector_make_dynamic_handler_class_name_selector_02():
 
     selector = scoremanager.iotools.Selector
     selector = selector.make_dynamic_handler_class_name_selector()
+    selector._session._is_test = True
 
     input_ = 'terraced'
     result = selector._run(pending_user_input=input_)

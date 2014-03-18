@@ -9,6 +9,7 @@ def test_Selector__run_01():
     selector = scoremanager.iotools.Selector(
         items=items,
         )
+    selector._session._is_test = True
 
     assert selector._run(pending_user_input='apple') == 'apple'
     assert selector._run(pending_user_input='banana') == 'banana'
@@ -21,5 +22,6 @@ def test_Selector__run_02():
     selector = scoremanager.iotools.Selector(
         items=items,
         )
+    selector._session._is_test = True
 
     assert selector._run(pending_user_input='cax') == 'caxixi'
