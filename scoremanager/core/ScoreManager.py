@@ -54,6 +54,7 @@ class ScoreManager(Controller):
             'cv': self.view_cache,
             'cw': self.write_cache,
             'lmm': self.manage_material_library,
+            'mdmls': self.list_metadata_modules,
             'mdmrw': self.rewrite_metadata_modules,
             'new': self.make_new_score,
             'rad': self.add,
@@ -109,6 +110,8 @@ class ScoreManager(Controller):
             name='all directories',
             is_hidden=True,
             )
+        string = 'all directories - metadata module - list'
+        section.append((string, 'mdmls'))
         string = 'all directories - metadata module - rewrite'
         section.append((string, 'mdmrw'))
         return section
@@ -359,14 +362,7 @@ class ScoreManager(Controller):
                 )
         self._io_manager.proceed(prompt=prompt)
 
-    def rewrite_metadata_modules(self, prompt=True):
-        r'''Rewrites all metadata modules everywhere.
-
-        Ignores view.
-
-        Returns none.
-        '''
-        from scoremanager import managers
+    def _list_all_directories_with_metadata_modules(self):
         storehouses = (
             self._configuration.abjad_material_packages_directory_path,
             self._configuration.abjad_score_packages_directory_path,
@@ -377,13 +373,44 @@ class ScoreManager(Controller):
         for storehouse in storehouses:
             result = self._list_directories_with_metadata_modules(storehouse)
             directories.extend(result)
+        return directories
+
+    def list_metadata_modules(self, prompt=True):
+        r'''Lists all metadata modules everywhere.
+
+        Ignores view.
+
+        Returns none.
+        '''
+        from scoremanager import managers
+        directories = self._list_all_directories_with_metadata_modules()
+        paths = [os.path.join(_, '__metadata__.py') for _ in directories]
+        lines = paths[:]
+        lines.append('')
+        if prompt:
+            self._io_manager.display(lines)
+        message = '{} metadata modules found.'
+        message = message.format(len(paths))
+        self._io_manager.proceed(message, prompt=prompt)
+
+    def rewrite_metadata_modules(self, prompt=True):
+        r'''Rewrites all metadata modules everywhere.
+
+        Ignores view.
+
+        Returns none.
+        '''
+        from scoremanager import managers
+        directories = self._list_all_directories_with_metadata_modules()
         for directory in directories:
             manager = managers.PackageManager(
                 path=directory, 
                 session=self._session,
                 )
             manager.rewrite_metadata_module(prompt=False)
-        self._io_manager.proceed(prompt=prompt)
+        message = '{} metadata modules found.'
+        message = message.format(len(directories))
+        self._io_manager.proceed(message, prompt=prompt)
 
     def status(self, prompt=True):
         r'''Displays status of repository assets.
