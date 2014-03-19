@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import collections
 import os
+import traceback
 from abjad.tools import stringtools
 from scoremanager import predicates
 from scoremanager.wranglers.PackageWrangler import PackageWrangler
@@ -158,14 +159,10 @@ class MaterialPackageWrangler(PackageWrangler):
 
     def _make_data_package(self, path, metadata=None):
         metadata = metadata or {}
-        metadata['material_manager_class_name'] = None
-        metadata['should_have_user_input_module'] = False
         self._make_material_package(path, metadata=metadata)
 
     def _make_handmade_material_package(self, path, metadata=None):
         metadata = metadata or {}
-        metadata['material_manager_class_name'] = None
-        metadata['should_have_user_input_module'] = False
         self._make_material_package(path, metadata=metadata)
 
     def _make_main_menu(self):
@@ -201,16 +198,13 @@ class MaterialPackageWrangler(PackageWrangler):
                 package_path,
                 material_manager_class_name,
                 )
-            exec(command)
-        should_have_user_input_module = getattr(
-            material_manager_class, 
-            'should_have_user_input_module', 
-            True,
-            )
-        metadata['material_manager_class_name'] = \
-            material_manager_class_name
-        metadata['should_have_user_input_module'] = \
-            should_have_user_input_module
+            try:
+                exec(command)
+            except:
+                traceback.print_exc()
+        if material_manager_class_name is not None:
+            metadata['material_manager_class_name'] = \
+                material_manager_class_name
         self._make_material_package(path, metadata=metadata)
 
     def _make_material_package(

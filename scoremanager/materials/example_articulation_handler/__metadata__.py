@@ -5,5 +5,4 @@ import collections
 metadata = collections.OrderedDict([
     ('generic_output_name', 'articulation handler'),
     ('material_manager_class_name', 'ArticulationHandlerMaterialManager'),
-    ('should_have_user_input_module', False),
     ])

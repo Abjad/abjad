@@ -2,6 +2,4 @@
 import collections
 
 
-metadata = collections.OrderedDict([
-    ('should_have_user_input_module', False),
-    ])
+metadata = collections.OrderedDict([])
