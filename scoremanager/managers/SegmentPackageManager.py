@@ -221,6 +221,7 @@ class SegmentPackageManager(PackageManager):
 
     def interpret_definition_module(
         self,
+        prompt=True,
         view_asset_pdf=True,
         ):
         r'''Makes asset PDF.
@@ -234,7 +235,7 @@ class SegmentPackageManager(PackageManager):
         manager = self._definition_module_manager
         if not manager:
             return
-        manager._interpret(prompt=True)
+        manager._interpret(prompt=prompt)
         if not view_asset_pdf:
             return
         new_modification_time = 0

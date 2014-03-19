@@ -154,6 +154,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 session=self._session,
                 )
             manager.interpret_definition_module(
+                prompt=False,
                 view_asset_pdf=False,
                 )
             output_pdf_file_path = manager._output_pdf_file_path
