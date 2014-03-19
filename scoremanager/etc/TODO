@@ -135,3 +135,9 @@
     But note that (ssv > rst) works fine.
 
 39. Make (pyt) run py.test instead of doctest.
+
+40. Remove the following from all __metadata__.py modules:
+        ('generic_output_name', None)
+        ('is_material_package', *)
+        ('material_manager_class_name', None)
+        ('should_have_illustration', *)
