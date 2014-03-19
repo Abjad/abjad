@@ -168,7 +168,7 @@ class MenuSection(AbjadObject):
         menu_lines = []
         menu_lines.extend(self._make_title_lines())
         for i, menu_entry in enumerate(self.menu_entries):
-            menu_line = self._make_tab(self.indent_level) + ' '
+            menu_line = self._make_tab(self.indent_level)
             display_string = menu_entry.display_string
             key = menu_entry.key
             prepopulated_value = menu_entry.prepopulated_value
@@ -202,8 +202,8 @@ class MenuSection(AbjadObject):
             title_lines = []
         for title_line in title_lines:
             if self.indent_level:
-                line = '{} {}'.format(
-                    self._make_tab(self.indent_level), title_line)
+                tab_string = self._make_tab(self.indent_level)
+                line = '{}{}'.format(tab_string, title_line)
                 menu_lines.append(line)
             else:
                 menu_lines.append(title_line)

@@ -89,22 +89,22 @@ class SegmentPackageWrangler(PackageWrangler):
         return section
 
     def _make_current_definition_modules_menu_section(self, menu):
-        name = 'current definition modules'
+        name = 'definition modules'
         section = menu.make_command_section(name=name)
-        string = 'all segments - current definition module - interpret'
+        string = 'all segments - definition module - interpret'
         section.append((string, 'dmi'))
         return section
 
     def _make_current_lilypond_files_menu_section(self, menu):
-        section = menu.make_command_section(name='current lilypond files')
-        string = 'all segments - current lilypond file - interpret'
+        section = menu.make_command_section(name='lilypond files')
+        string = 'all segments - lilypond file - interpret'
         section.append((string, 'lyi'))
         return section
 
     def _make_current_pdfs_menu_section(self, menu):
-        section = menu.make_command_section(name='current pdfs')
-        section.append(('all segments - current pdf - version', 'pdfs'))
-        section.append(('all segments - current pdf - view', 'pdfv'))
+        section = menu.make_command_section(name='pdfs')
+        section.append(('all segments - pdf - version', 'pdfs'))
+        section.append(('all segments - pdf - view', 'pdfv'))
         return section
 
     def _make_main_menu(self):

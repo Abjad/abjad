@@ -154,7 +154,8 @@ class Menu(ScoreManagerObject):
             for menu_entry in menu_section.menu_entries:
                 key = menu_entry.key
                 display_string = menu_entry.display_string
-                menu_line = self._make_tab(1) + ' '
+                #menu_line = self._make_tab(1) + ' '
+                menu_line = self._make_tab(1)
                 menu_line += '{} ({})'.format(display_string, key)
                 menu_lines.append(menu_line)
             menu_lines.append('')
@@ -172,8 +173,7 @@ class Menu(ScoreManagerObject):
         self._session._hide_hidden_commands = True
         self._session._hide_next_redraw = True
 
-    @staticmethod
-    def _make_bicolumnar(lines):
+    def _make_bicolumnar(self, lines):
         terminal_height = 45
         column_width = 55
         if len(lines) < terminal_height:
@@ -188,13 +188,15 @@ class Menu(ScoreManagerObject):
             if column_width < len(line):
                 width = column_width - 6
                 new_lines = textwrap.wrap(line, width=width)
-                split_lines.append(4 * ' ' + new_lines[0])
+                tab_string = self._make_tab(1)
+                split_lines.append(tab_string + new_lines[0])
                 for new_line in new_lines[1:]:
                     split_lines.append(5 * ' ' + new_line)
             elif line == '':
                 split_lines.append(line)
             else:
-                split_lines.append(4 * ' ' + line)
+                tab_string = self._make_tab(1)
+                split_lines.append(tab_string + line)
         lines = split_lines
         left_column_lines = lines[:terminal_height]
         for i, line in enumerate(reversed(left_column_lines)):

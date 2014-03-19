@@ -18,11 +18,11 @@ def test_Menu__run_01():
     assert menu._transcript.last_menu_lines == \
     ['Location',
       '',
-      '     Section',
+      '    Section',
       '',
-      '     apple',
-      '     banana',
-      '     cherry',
+      '    apple',
+      '    banana',
+      '    cherry',
       '']
     assert result is None
 
@@ -105,11 +105,11 @@ def test_Menu__run_03():
     assert menu._transcript.last_menu_lines == \
     ['Location',
       '',
-      '     Section',
+      '    Section',
       '',
-      '     1: apple',
-      '     2: banana',
-      '     3: cherry',
+      '    1: apple',
+      '    2: banana',
+      '    3: cherry',
       '']
     assert result is None
 
@@ -152,11 +152,11 @@ def test_Menu__run_04():
     assert menu._transcript.last_menu_lines == \
     ['Location',
       '',
-      '     Section',
+      '    Section',
       '',
-      '     apple',
-      '     banana',
-      '     cherry',
+      '    apple',
+      '    banana',
+      '    cherry',
       '']
     assert result is None
 
@@ -201,11 +201,11 @@ def test_Menu__run_05():
     assert menu._transcript.last_menu_lines == \
     ['Location',
       '',
-      '     Section',
+      '    Section',
       '',
-      '     first command (add)',
-      '     second command (rm)',
-      '     third command (mod)',
+      '    first command (add)',
+      '    second command (rm)',
+      '    third command (mod)',
       '']
     assert result is None
 
@@ -416,11 +416,11 @@ def test_Menu__run_09():
     assert menu._transcript.last_menu_lines == \
     ['Location',
       '',
-      '     Section',
+      '    Section',
       '',
-      '     1: first command (add)',
-      '     2: second command (rm)',
-      '     3: third command (mod)',
+      '    1: first command (add)',
+      '    2: second command (rm)',
+      '    3: third command (mod)',
       '']
     assert result is None
 
@@ -476,11 +476,11 @@ def test_Menu__run_10():
     assert menu._transcript.last_menu_lines == \
     ['Location',
       '',
-      '     Section',
+      '    Section',
       '',
-      '     first command (add)',
-      '     second command (rm)',
-      '     third command (mod)',
+      '    first command (add)',
+      '    second command (rm)',
+      '    third command (mod)',
       '']
     assert result is None
 

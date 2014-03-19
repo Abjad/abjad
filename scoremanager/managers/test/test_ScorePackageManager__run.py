@@ -25,13 +25,13 @@ def test_ScorePackageManager__run_01():
     lines = [
         'Red Example Score (2013)',
         '',
-        '     build (u)',
-        '     distribution (d)',
-        '     makers (k)',
-        '     materials (m)',
-        '     segments (g)',
-        '     setup (p)',
-        '     stylesheets (y)',
+        '    build (u)',
+        '    distribution (d)',
+        '    makers (k)',
+        '    materials (m)',
+        '    segments (g)',
+        '    setup (p)',
+        '    stylesheets (y)',
         '',
         ]
     assert red_example_score._transcript.last_menu_lines == lines

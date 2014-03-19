@@ -103,21 +103,21 @@ class SegmentPackageManager(PackageManager):
     def _make_current_lilypond_file_menu_section(self, menu):
         if os.path.isfile(self._output_lilypond_file_path):
             section = menu.make_command_section(
-                name='current lilypond file',
+                name='lilypond file',
                 is_hidden=True,
                 )
-            string = 'current lilypond file - interpret'
+            string = 'lilypond file - interpret'
             section.append((string, 'lyi'))
-            string = 'current lilypond file - view'
+            string = 'lilypond file - view'
             section.append((string, 'lyv'))
             return section
 
     def _make_current_pdf_menu_section(self, menu):
-        section = menu.make_command_section(name='current pdf')
+        section = menu.make_command_section(name='pdf')
         if os.path.isfile(self._output_pdf_file_path):
-            section.append(('current pdf - version', 'pdfs'))
+            section.append(('pdf - version', 'pdfs'))
         if os.path.isfile(self._output_pdf_file_path):
-            section.append(('current pdf - view', 'pdfv'))
+            section.append(('pdf - view', 'pdfv'))
         return section
 
     def _make_main_menu(self):
