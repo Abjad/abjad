@@ -1101,10 +1101,10 @@ class MaterialManager(PackageManager):
         lines.extend(body_lines)
         string = ''.join(lines)
         self._output_module_manager._write(string)
-        self._add_metadatum('is_material_package', True)
         if hasattr(self, '_generic_output_name'):
             generic_output_name = self._generic_output_name
-            self._add_metadatum('generic_output_name', generic_output_name)
+            if generic_output_name is not None:
+                self._add_metadatum('generic_output_name', generic_output_name)
         message = 'output module written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
 

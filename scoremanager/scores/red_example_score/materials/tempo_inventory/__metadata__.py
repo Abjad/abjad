@@ -4,8 +4,6 @@ import collections
 
 metadata = collections.OrderedDict([
     ('generic_output_name', 'tempo inventory'),
-    ('is_material_package', True),
     ('material_manager_class_name', 'TempoInventoryMaterialManager'),
-    ('should_have_illustration', True),
     ('should_have_user_input_module', False),
     ])

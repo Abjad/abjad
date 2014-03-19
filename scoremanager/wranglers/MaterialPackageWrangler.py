@@ -159,14 +159,12 @@ class MaterialPackageWrangler(PackageWrangler):
     def _make_data_package(self, path, metadata=None):
         metadata = metadata or {}
         metadata['material_manager_class_name'] = None
-        metadata['should_have_illustration'] = False
         metadata['should_have_user_input_module'] = False
         self._make_material_package(path, metadata=metadata)
 
     def _make_handmade_material_package(self, path, metadata=None):
         metadata = metadata or {}
         metadata['material_manager_class_name'] = None
-        metadata['should_have_illustration'] = True
         metadata['should_have_user_input_module'] = False
         self._make_material_package(path, metadata=metadata)
 
@@ -209,13 +207,8 @@ class MaterialPackageWrangler(PackageWrangler):
             'should_have_user_input_module', 
             True,
             )
-        should_have_illustration = hasattr(
-            material_manager_class, 
-            'illustration_builder',
-            )
         metadata['material_manager_class_name'] = \
             material_manager_class_name
-        metadata['should_have_illustration'] = should_have_illustration
         metadata['should_have_user_input_module'] = \
             should_have_user_input_module
         self._make_material_package(path, metadata=metadata)
@@ -228,7 +221,6 @@ class MaterialPackageWrangler(PackageWrangler):
         ):
         assert os.path.sep in path
         metadata = collections.OrderedDict(metadata or {})
-        metadata['is_material_package'] = True
         assert not os.path.exists(path)
         os.mkdir(path)
         string = 'material_manager_class_name'
