@@ -19,7 +19,8 @@ autocmd BufWinEnter *.py silent set foldmethod=indent
 autocmd BufWinEnter *.py silent set foldminlines=0
 autocmd BufWinEnter *.py silent set foldnestmax=2
 autocmd BufWinEnter *.py silent set nofoldenable
-
+au BufWritePre * :set binary | set noeol
+au BufWritePost * :set nobinary | set eol
 
 " 2. settings (alphabetical)
 " ==========================
