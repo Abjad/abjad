@@ -187,34 +187,32 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_07():
-    r'''Make handmade package. Copy canned material definition. 
-    Make output material. Remove output material. Remove package.
+    r'''Makes handmade package. Copies canned material definition. 
+    Makes output module. Removes output material. Removes package.
     '''
-
-    directory_entries = [
-        '__init__.py', 
-        '__metadata__.py',
-        'definition.py', 
-        ]
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmh testnotes'
-        input_ += ' testnotes dmbp boilerplate_testnotes_definition.py'
-        input_ += ' default omw default omrm remove q' 
+        input_ = 'lmm nmh testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
-        session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialManager
-        manager = manager(path=package_path, session=session)
-        assert manager._list() == directory_entries
-        material_definition = manager._interpret_definition_module()
-        assert material_definition
-        assert all(isinstance(x, Note) for x in material_definition)
-        output_material = manager._execute_output_module()
-        assert output_material is None
+        assert os.path.exists(definition_module_path)
+        assert not os.path.exists(output_module_path)
+        shutil.copyfile(
+            boilerplate_definition_module_path, 
+            definition_module_path,
+            )
+        input_ = 'lmm testnotes omw default q'
+        score_manager._run(pending_user_input=input_)
+        assert os.path.exists(definition_module_path)
+        assert os.path.exists(output_module_path)
+        input_ = 'lmm testnotes omrm remove q'
+        score_manager._run(pending_user_input=input_)
+        assert os.path.exists(definition_module_path)
+        assert not os.path.exists(output_module_path)
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_)
+        assert not os.path.exists(package_path)
     finally:
         if os.path.exists(package_path):
             shutil.rmtree(package_path)
@@ -222,30 +220,21 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_08():
-    r'''Make handmade package. Copy canned material definition with exception.
-    Examine package state. Remove package.
+    r'''Makes handmade package. Corrupts definition module. Makes sure
+    score manager starts when definition module is corrupt. Removes package.
     '''
-
-    directory_entries = [
-        '__init__.py', 
-        '__metadata__.py',
-        'definition.py', 
-        ]
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmh testnotes default default'
-        input_ += ' testnotes dmbp boilerplate_exception.py default q'
+        input_ = 'lmm nmh testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
-        session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialManager
-        manager = manager(path=package_path, session=session)
-        assert manager._list() == directory_entries
-        assert manager._interpret_definition_module() is None
-        assert manager._execute_output_module() is None
+        assert os.path.exists(definition_module_path)
+        shutil.copyfile(exception_file_path, definition_module_path)
+        assert filecmp.cmp(definition_module_path, exception_file_path)
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_)
+        assert not os.path.exists(package_path)
     finally:
         if os.path.exists(package_path):
             shutil.rmtree(package_path)
@@ -294,32 +283,27 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
     '''
     pytest.skip('make PDF generation work again.')
 
-    directory_entries = [
-        '__init__.py', 
-        '__metadata__.py',
-        'illustration.ly', 
-        'illustration.pdf',
-        ]
-
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmh testnotes testnotes dmbp'
-        input_ += ' boilerplate_testnotes_definition.py default'
-        input_ += ' omw default pdfm default q' 
+        input_ = 'lmm nmh testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
-        session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialManager
-        manager = manager(path=package_path, session=session)
-        assert manager._list() == directory_entries
-        material_definition = manager._interpret_definition_module()
-        assert material_definition
-        assert all(isinstance(x, Note) for x in material_definition)
-        output_material = manager._execute_output_module()
-        assert output_material
-        assert all(isinstance(x, Note) for x in output_material)
+        assert os.path.exists(definition_module_path)
+        shutil.copyfile(
+            boilerplate_definition_module_path,
+            definition_module_path,
+            )
+        input_ = 'lmm testnotes omw q'
+        score_manager._run(pending_user_input=input_)
+        assert os.path.exists(output_module_path)
+        input_ = 'lmm testnotes pdfm default q'
+        pdf_file_path = os.path.join(package_path, 'illustration.pdf')
+        ly_file_path = os.path.join(package_path, 'illustration.ly')
+        assert os.path.exists(pdf_file_path)
+        assert os.path.exists(ly_file_path)
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_)
+        assert not os.path.exists(package_path)
     finally:
         if os.path.exists(package_path):
             shutil.rmtree(package_path)

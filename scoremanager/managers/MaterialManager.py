@@ -158,7 +158,6 @@ class MaterialManager(PackageManager):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'dmbp': self.write_definition_module_boilerplate,
             'dme': self.edit_definition_module,
             'dmrm': self.remove_definition_module,
             'dms': self.write_definition_module_stub,
@@ -450,10 +449,8 @@ class MaterialManager(PackageManager):
         if os.path.isfile(self._definition_module_path):
             section = menu.make_command_section(
                 name=name,
-                default_index=1
+                default_index=0
                 )
-            string = 'definition module - boilerplate'
-            section.append((string, 'dmbp'))
             section.append(('definition module - edit', 'dme'))
             section.append(('definition module - interpret', 'dmi'))
             string = 'definition module - remove'
