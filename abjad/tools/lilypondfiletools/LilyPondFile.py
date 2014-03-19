@@ -102,6 +102,23 @@ class LilyPondFile(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
+    def __getitem__(self, name):
+        r'''Gets LilyPondFile item with `name`.
+
+        ..  container:: example
+
+            ::
+
+                >>> lilypond_file['header']
+                <Block(name='header')>
+
+        Raises key error when no item with `name` is found.
+        '''
+        for item in self.items:
+            if getattr(item, 'name', None) == name:
+                return item
+        raise KeyError
+
     def __illustrate__(self):
         r'''Illustrates LilyPond file.
 
