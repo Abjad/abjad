@@ -20,7 +20,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_01():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'material_definition.py', 
+        'definition.py', 
         ]
     input_ = 'testnotes q'
 
@@ -49,7 +49,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_02():
         )
     definition_module_path = os.path.join(
         path,
-        'material_definition.py',
+        'definition.py',
         )
     input_ = 'lmm nmh testnotes q'
 

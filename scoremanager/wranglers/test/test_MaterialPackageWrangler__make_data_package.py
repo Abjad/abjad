@@ -17,7 +17,7 @@ def test_MaterialPackageWrangler__make_data_package_01():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'material_definition.py', 
+        'definition.py', 
         ]
 
     assert not os.path.exists(path)

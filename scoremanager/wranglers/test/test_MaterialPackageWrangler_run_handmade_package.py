@@ -19,7 +19,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'material_definition.py', 
+        'definition.py', 
         ]
 
     assert not os.path.exists(path)
@@ -54,7 +54,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'material_definition.py', 
+        'definition.py', 
         ]
     input_ = 'lmm nmh testnotes'
     input_ += ' testnotes inbp boilerplate_exception.py default q'
@@ -90,7 +90,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'material_definition.py', 
+        'definition.py', 
         ]
     input_ = 'lmm nmh testnotes'
     input_ += ' testnotes inbp boilerplate_exception.py default'
@@ -127,11 +127,11 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
-        'material_definition.py', 
+        'definition.py', 
         'output_material.py', 
         ]
     input_ = 'lmm nmh testnotes default default testnotes dmbp'
-    input_ += ' boilerplate_testnotes_material_definition.py default'
+    input_ += ' boilerplate_testnotes_definition.py default'
     input_ += ' omw default q'
 
     assert not os.path.exists(path)
@@ -201,7 +201,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'material_definition.py', 
+        'definition.py', 
         ]
     input_ = 'lmm nmh testnotes default testnotes dms default q'
 
@@ -236,10 +236,10 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'material_definition.py', 
+        'definition.py', 
         ]
     input_ = 'lmm nmh testnotes'
-    input_ += ' testnotes dmbp boilerplate_testnotes_material_definition.py'
+    input_ += ' testnotes dmbp boilerplate_testnotes_definition.py'
     input_ += ' default omw default omrm remove q' 
 
     assert not os.path.exists(path)
@@ -276,7 +276,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'material_definition.py', 
+        'definition.py', 
         ]
     input_ = 'lmm nmh testnotes default default'
     input_ += ' testnotes dmbp boilerplate_exception.py default q'
@@ -313,11 +313,11 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
     directory_entries = [
         '__init__.py',
         '__metadata__.py',
-        'material_definition.py', 
+        'definition.py', 
         'output_material.py', 
         ]
     input_ = 'lmm nmh testnotes default default testnotes dmbp'
-    input_ += ' boilerplate_testnotes_material_definition.py default '
+    input_ += ' boilerplate_testnotes_definition.py default '
     input_ += 'omw default ombp boilerplate_exception.py default q'
 
     assert not os.path.exists(path)
@@ -359,7 +359,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
         'illustration.pdf',
         ]
     input_ = 'lmm nmh testnotes testnotes dmbp'
-    input_ += ' boilerplate_testnotes_material_definition.py default'
+    input_ += ' boilerplate_testnotes_definition.py default'
     input_ += ' omw default pdfm default q' 
 
     assert not os.path.exists(path)

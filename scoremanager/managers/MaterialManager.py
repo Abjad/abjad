@@ -112,7 +112,7 @@ class MaterialManager(PackageManager):
     def _definition_module_path(self):
         path = os.path.join(
             self._path, 
-            'material_definition.py',
+            'definition.py',
             )
         return path
 

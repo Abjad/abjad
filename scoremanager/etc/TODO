@@ -130,3 +130,8 @@
         Manager._is_up_to_date()
 
 37. Change (lmm) and (lmy) to just (m) and (y).
+
+38. Make (ssl > rst) work. Right now it induces a bug.
+    But note that (ssv > rst) works fine.
+
+39. Make (pyt) run py.test instead of doctest.
