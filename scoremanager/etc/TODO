@@ -135,3 +135,6 @@
     But note that (ssv > rst) works fine.
 
 39. Make (pyt) run py.test instead of doctest.
+
+40. Hoist metadata-related commands from PackageManager up to
+    DirectoryManager.

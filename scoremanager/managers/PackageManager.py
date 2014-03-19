@@ -195,6 +195,15 @@ class PackageManager(DirectoryManager):
             metadatum_name, metadatum_value = result
             self._add_metadatum(metadatum_name, metadatum_value)
 
+    def edit_metadata_module(self):
+        r'''Edits metadata module.
+
+        Returns none.
+        '''
+        file_path = self._metadata_module_path
+        if os.path.isfile(file_path):
+            self._io_manager.edit(file_path)
+
     def get_metadatum(self):
         r'''Gets metadatum from metadata module.
 

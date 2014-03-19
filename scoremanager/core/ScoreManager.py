@@ -54,6 +54,7 @@ class ScoreManager(Controller):
             'cv': self.view_cache,
             'cw': self.write_cache,
             'lmm': self.manage_material_library,
+            'mdme': self.edit_metadata_modules,
             'mdmls': self.list_metadata_modules,
             'mdmrw': self.rewrite_metadata_modules,
             'new': self.make_new_score,
@@ -110,6 +111,8 @@ class ScoreManager(Controller):
             name='all directories',
             is_hidden=True,
             )
+        string = 'all directories - metadata module - edit'
+        section.append((string, 'mdme'))
         string = 'all directories - metadata module - list'
         section.append((string, 'mdmls'))
         string = 'all directories - metadata module - rewrite'
@@ -374,6 +377,18 @@ class ScoreManager(Controller):
             result = self._list_directories_with_metadata_modules(storehouse)
             directories.extend(result)
         return directories
+
+    def edit_metadata_modules(self):
+        r'''Edits all metadata modules everywhere.
+
+        Ignores view.
+
+        Returns none.
+        '''
+        from scoremanager import managers
+        directories = self._list_all_directories_with_metadata_modules()
+        paths = [os.path.join(_, '__metadata__.py') for _ in directories]
+        self._io_manager.view(paths)
 
     def list_metadata_modules(self, prompt=True):
         r'''Lists all metadata modules everywhere.

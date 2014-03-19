@@ -587,6 +587,10 @@ class IOManager(IOManager):
             file_paths = file_path
             file_paths = ' '.join(file_paths)
             command = 'open {}'.format(file_paths)
+        elif isinstance(file_path, list):
+            file_paths = file_path
+            file_paths = ' '.join(file_paths)
+            command = 'vim {}'.format(file_paths)
         elif file_path.endswith('.pdf'):
             command = 'open {}'.format(file_path)
         else:
