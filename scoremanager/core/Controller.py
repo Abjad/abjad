@@ -32,6 +32,34 @@ class Controller(ScoreManagerObject):
     def _get_view_from_disk(self):
         pass
 
+    @staticmethod
+    def _is_directory_with_metadata_module(path):
+        if os.path.isdir(path):
+            for directory_entry in os.listdir(path):
+                if directory_entry == '__metadata__.py':
+                    return True
+        return False
+
+    @staticmethod
+    def _is_package_path(path):
+        if os.path.isdir(path):
+            for directory_entry in os.listdir(path):
+                if directory_entry == '__init__.py':
+                    return True
+        return False
+
+    def _list_directories_with_metadata_modules(self, path=None):
+        path = path or self._path
+        paths = []
+        for directory_path, subdirectory_names, file_names in os.walk(path):
+            if self._is_directory_with_metadata_module(directory_path):
+                paths.append(directory_path)
+            for subdirectory_name in subdirectory_names:
+                path = os.path.join(directory_path, subdirectory_name)
+                if self._is_directory_with_metadata_module(path):
+                    paths.append(path)
+        return paths
+
     def _make_asset_menu_entries(
         self, 
         include_annotation=True,

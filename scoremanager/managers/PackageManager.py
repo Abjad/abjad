@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import collections
 import os
+import traceback
 from abjad.tools import stringtools
 from abjad.tools import systemtools
 from scoremanager.managers.DirectoryManager import DirectoryManager
@@ -94,7 +95,12 @@ class PackageManager(DirectoryManager):
             file_pointer = open(self._metadata_module_path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
-            exec(file_contents_string)
+            try:
+                exec(file_contents_string)
+            except:
+                message = 'Can not interpret metadata module: {!r}.'
+                message = message.format(self)
+                print message
             metadata = locals().get('metadata')
         metadata = metadata or collections.OrderedDict()
         return metadata

@@ -54,6 +54,7 @@ class ScoreManager(Controller):
             'cv': self.view_cache,
             'cw': self.write_cache,
             'lmm': self.manage_material_library,
+            'mdmrw': self.rewrite_metadata_modules,
             'new': self.make_new_score,
             'rad': self.add,
             'rci': self.commit,
@@ -103,6 +104,15 @@ class ScoreManager(Controller):
             if result in score_package_paths:
                 self.manage_score(result)
 
+    def _make_all_directories_menu_section(self, menu):
+        section = menu.make_command_section(
+            name='all directories',
+            is_hidden=True,
+            )
+        string = 'all directories - metadata module - rewrite'
+        section.append((string, 'mdmrw'))
+        return section
+
     def _make_cache_menu_section(self, menu):
         section = menu.make_command_section(
             name='cache',
@@ -123,6 +133,7 @@ class ScoreManager(Controller):
 
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
+        self._make_all_directories_menu_section(menu)
         self._make_library_menu_section(menu)
         self._make_scores_menu_section(menu)
         self._make_scores_show_menu_section(menu)
@@ -346,6 +357,32 @@ class ScoreManager(Controller):
                 lines, 
                 capitalize_first_character=False,
                 )
+        self._io_manager.proceed(prompt=prompt)
+
+    def rewrite_metadata_modules(self, prompt=True):
+        r'''Rewrites all metadata modules everywhere.
+
+        Ignores view.
+
+        Returns none.
+        '''
+        from scoremanager import managers
+        storehouses = (
+            self._configuration.abjad_material_packages_directory_path,
+            self._configuration.abjad_score_packages_directory_path,
+            self._configuration.user_library_directory_path,
+            self._configuration.user_score_packages_directory_path,
+            )
+        directories = []
+        for storehouse in storehouses:
+            result = self._list_directories_with_metadata_modules(storehouse)
+            directories.extend(result)
+        for directory in directories:
+            manager = managers.PackageManager(
+                path=directory, 
+                session=self._session,
+                )
+            manager.rewrite_metadata_module(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
     def status(self, prompt=True):
