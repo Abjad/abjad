@@ -53,11 +53,13 @@ class Controller(ScoreManagerObject):
         paths = []
         for directory_path, subdirectory_names, file_names in os.walk(path):
             if self._is_directory_with_metadata_module(directory_path):
-                paths.append(directory_path)
+                if directory_path not in paths:
+                    paths.append(directory_path)
             for subdirectory_name in subdirectory_names:
                 path = os.path.join(directory_path, subdirectory_name)
                 if self._is_directory_with_metadata_module(path):
-                    paths.append(path)
+                    if path not in paths:
+                        paths.append(path)
         return paths
 
     def _make_asset_menu_entries(
@@ -165,7 +167,7 @@ class Controller(ScoreManagerObject):
             )
         section.append(('metadata module - remove', 'mdmrm'))
         section.append(('metadata module - rewrite', 'mdmrw'))
-        section.append(('metadata module - view', 'mmmv'))
+        section.append(('metadata module - view', 'mdmv'))
         return section
 
     def _make_views_menu_section(self, menu):

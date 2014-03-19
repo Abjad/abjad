@@ -68,7 +68,7 @@ class PackageManager(DirectoryManager):
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
             'mdrm': self.remove_metadatum,
-            'mmmv': self.view_metadata_module,
+            'mdmv': self.view_metadata_module,
             'mdmrm': self.remove_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
             'ren': self.rename,

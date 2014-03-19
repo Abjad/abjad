@@ -82,7 +82,7 @@ class Wrangler(Controller):
             'mdrm': self.remove_metadatum,
             'mdmrm': self.remove_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
-            'mmmv': self.view_metadata_module,
+            'mdmv': self.view_metadata_module,
             'pwd': self.pwd,
             'rad': self.add,
             'rci': self.commit,
