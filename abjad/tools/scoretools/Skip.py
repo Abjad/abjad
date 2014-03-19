@@ -34,8 +34,8 @@ class Skip(Leaf):
         input_leaf = None
         written_duration = None
         if len(args) == 1 and isinstance(args[0], str):
-            input = '{{ {} }}'.format(args[0])
-            parsed = lilypondparsertools.LilyPondParser()(input)
+            string = '{{ {} }}'.format(args[0])
+            parsed = lilypondparsertools.LilyPondParser()(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             input_leaf = parsed[0]
             written_duration = input_leaf.written_duration

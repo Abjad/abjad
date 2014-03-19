@@ -4,7 +4,8 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 def test_lilypondparsertools_LilyPondParser__lilypondfile__LilyPondFile_01():
-    input = '{ c } { c } { c } { c }'
+
+    string = '{ c } { c } { c } { c }'
     parser = LilyPondParser()
-    result = parser(input)
+    result = parser(string)
     assert isinstance(result, lilypondfiletools.LilyPondFile)

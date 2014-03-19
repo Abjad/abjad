@@ -51,9 +51,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_02():
         '''
         )
 
-    input = r'''\relative c' { c [ c c ] c ] [ }'''
+    string = r'''\relative c' { c [ c c ] c ] [ }'''
     parser = LilyPondParser()
-    result = parser(input)
+    result = parser(string)
     assert format(target) == format(result) and target is not result
 
 

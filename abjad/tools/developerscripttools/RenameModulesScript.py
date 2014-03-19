@@ -116,13 +116,13 @@ class RenameModulesScript(DeveloperScript):
         print '    [{}] {}.{}()'.format(
             new_codebase, new_tools_package_name, new_module_name)
         print ''
-        input = raw_input('... correct [yes, no, abort]? ').lower()
+        string = raw_input('... correct [yes, no, abort]? ').lower()
         print ''
-        if input in ('y', 'yes'):
+        if string in ('y', 'yes'):
             return True
-        elif input in ('a', 'abort', 'q', 'quit'):
+        elif string in ('a', 'abort', 'q', 'quit'):
             raise SystemExit
-        elif input in ('n', 'no'):
+        elif string in ('n', 'no'):
             return False
 
     def _get_object_names(self, kind, codebase, tools_package_name):
