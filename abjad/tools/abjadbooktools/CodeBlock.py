@@ -118,7 +118,7 @@ class CodeBlock(AbjadObject):
                 file_path = file_name + '.ly'
                 if directory:
                     file_path = os.path.join(directory, file_path)
-                command = '__result__ = persist({}).as_ly({!r})'.format(
+                command = '__result__ = persist(documentationtools.make_reference_manual_lilypond_file({})).as_ly({!r})'.format(
                     object_name, file_path)
                 pipe.write(command)
                 grouped_results.append(result)
