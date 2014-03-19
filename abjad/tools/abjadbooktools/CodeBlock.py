@@ -12,11 +12,12 @@ class CodeBlock(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_ending_line_number',
         '_hide',
         '_lines',
         '_processed_results',
+        '_scale',
         '_starting_line_number',
+        '_stopping_line_number',
         '_strip_prompt',
         '_wrap_width',
         )
@@ -25,21 +26,23 @@ class CodeBlock(AbjadObject):
 
     def __init__(
         self,
-        lines=None,
-        starting_line_number=0,
-        ending_line_number=1,
         hide=False,
+        lines=None,
+        scale=None,
+        starting_line_number=0,
+        stopping_line_number=1,
         strip_prompt=False,
         wrap_width=None
         ):
         lines = lines or []
-        assert starting_line_number <= ending_line_number
-        self._lines = tuple(lines)
-        self._starting_line_number = starting_line_number
-        self._ending_line_number = ending_line_number
+        assert starting_line_number <= stopping_line_number
         self._hide = bool(hide)
-        self._strip_prompt = bool(strip_prompt)
+        self._lines = tuple(lines)
         self._processed_results = None
+        self._scale = scale
+        self._starting_line_number = starting_line_number
+        self._stopping_line_number = stopping_line_number
+        self._strip_prompt = bool(strip_prompt)
         self._wrap_width = wrap_width
 
     ### SPECIAL METHODS ###
@@ -63,7 +66,7 @@ class CodeBlock(AbjadObject):
         if verbose:
             print '\nCODEBLOCK: {}:{}'.format(
                 self.starting_line_number,
-                self.ending_line_number
+                self.stopping_line_number
                 )
 
         grouped_results = []
@@ -124,6 +127,7 @@ class CodeBlock(AbjadObject):
                     'image_count': image_count,
                     'image_prefix': image_prefix,
                     'page_range': page_range,
+                    'scale': self.scale,
                     }
                 grouped_results.append(image_dict)
                 result = []
@@ -175,16 +179,16 @@ class CodeBlock(AbjadObject):
         return image_count
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a code block with lines, starting line number,
-        ending line number, hide and strip prompt boolean equal to those of
-        this code block. Otherwise false.
+        r'''Is true when `expr` is a code block with lines, starting line
+        number, ending line number, hide and strip prompt boolean equal to
+        those of this code block. Otherwise false.
 
         Returns boolean.
         '''
         if type(self) == type(expr) and \
             self.lines == expr.lines and \
             self.starting_line_number == expr.starting_line_number and \
-            self.ending_line_number == expr.ending_line_number and \
+            self.stopping_line_number == expr.stopping_line_number and \
             self.hide == expr.hide and \
             self.strip_prompt == expr.strip_prompt:
             return True
@@ -193,10 +197,10 @@ class CodeBlock(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def ending_line_number(self):
+    def stopping_line_number(self):
         r'''Ending line number of code block.
         '''
-        return self._ending_line_number
+        return self._stopping_line_number
 
     @property
     def hide(self):
@@ -215,6 +219,12 @@ class CodeBlock(AbjadObject):
         r'''Processed results of code block.
         '''
         return self._processed_results
+
+    @property
+    def scale(self):
+        r'''Image scaling factor.
+        '''
+        return self._scale
 
     @property
     def starting_line_number(self):

@@ -188,6 +188,13 @@ class AbjadBookProcessor(AbjadObject):
                 if in_block:
                     in_block = False
                     hide = 'hide=true' in block[0]
+                    scale = None
+                    if 'scale=' in block[0]:
+                        pattern = re.compile('scale=([0-9]*\.[0-9]+|[0-9]+)')
+                        match = pattern.search(block[0])
+                        if match is not None:
+                            group = match.groups()[0]
+                            scale = float(group)
                     strip_prompt = 'strip_prompt=true' in block[0]
                     wrap_width = None
                     wrap_width_match = self._wrap_width_pattern.search(
@@ -196,10 +203,11 @@ class AbjadBookProcessor(AbjadObject):
                         wrap_width = int(wrap_width_match.groups()[0])
                     stopping_line_number = i
                     code_block = abjadbooktools.CodeBlock(
-                        block[1:],
-                        starting_line_number,
-                        stopping_line_number,
                         hide=hide,
+                        lines=block[1:],
+                        scale=scale,
+                        starting_line_number=starting_line_number,
+                        stopping_line_number=stopping_line_number,
                         strip_prompt=strip_prompt,
                         wrap_width=wrap_width,
                         )
@@ -216,6 +224,13 @@ class AbjadBookProcessor(AbjadObject):
                 block = []
                 starting_line_number = stopping_line_number = i
                 hide = 'hide=true' in line
+                scale = None
+                if 'scale=' in block[0]:
+                    pattern = re.compile('scale=([0-9]*\.[0-9]+|[0-9]+)')
+                    match = pattern.search(block[0])
+                    if match is not None:
+                        group = match.groups()[0]
+                        scale = float(group)
                 strip_prompt = 'strip_prompt=true' in line
                 code_address = line.partition(
                     '<abjadextract ')[-1].partition(' \>')[0]
@@ -224,10 +239,11 @@ class AbjadBookProcessor(AbjadObject):
                 attr = getattr(module, attr_name)
                 code_lines = inspect.getsource(attr).splitlines()
                 code_block = abjadbooktools.CodeBlock(
-                    code_lines,
-                    starting_line_number,
-                    stopping_line_number,
                     hide=hide,
+                    lines=code_lines,
+                    scale=scale,
+                    starting_line_number=starting_line_number,
+                    stopping_line_number=stopping_line_number,
                     strip_prompt=strip_prompt
                     )
                 blocks.append(code_block)
@@ -280,12 +296,12 @@ class AbjadBookProcessor(AbjadObject):
             first_block, second_block = pair
             interleaved.extend(output_format(first_block, image_dict))
             interleaved.append('\n'.join(lines[
-                first_block.ending_line_number+1:
+                first_block.stopping_line_number+1:
                 second_block.starting_line_number]))
 
         interleaved.extend(output_format(code_blocks[-1], image_dict))
         interleaved.append('\n'.join(
-            lines[code_blocks[-1].ending_line_number+1:]))
+            lines[code_blocks[-1].stopping_line_number+1:]))
         return '\n'.join(interleaved)
 
     def _process_code_blocks(

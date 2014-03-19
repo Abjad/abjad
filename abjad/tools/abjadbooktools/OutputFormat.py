@@ -59,6 +59,9 @@ class OutputFormat(abctools.AbjadObject):
                 image_count = result['image_count']
                 image_prefix = result['image_prefix']
                 page_range = result['page_range']
+                scale = result['scale']
+                if scale is None:
+                    scale = 1.0
 
                 if page_range is None:
                     try:
@@ -66,8 +69,11 @@ class OutputFormat(abctools.AbjadObject):
                             image_dict[image_count].items())]
                         for image_file_name in image_file_names:
                             image_file_name = image_file_name.rpartition('.')[0]
-                            reformatted.append(
-                                self.image_block.format(image_file_name))
+                            image_block = self.image_block.format(
+                                image_file_name=image_file_name,
+                                scale=scale,
+                                )
+                            reformatted.append(image_block)
                     except KeyError:
                         print '\nAbjadBookError:\n\n{}'.format(
                             '\n'.join(reformatted))
@@ -79,8 +85,11 @@ class OutputFormat(abctools.AbjadObject):
                             if page_number in page_range:
                                 image_file_name = \
                                     image_file_name.rpartition('.')[0]
-                                reformatted.append(
-                                    self.image_block.format(image_file_name))
+                                image_block = self.image_block.format(
+                                    image_file_name=image_file_name,
+                                    scale=scale,
+                                    )
+                                reformatted.append(image_block)
                             else:
                                 os.remove(image_file_name)
                     except KeyError:
