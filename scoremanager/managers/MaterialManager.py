@@ -56,15 +56,15 @@ class MaterialManager(PackageManager):
         return self._space_delimited_lowercase_name
 
     @property
-    def _illustration_builder_module_manager(self):
+    def _illustrate_module_manager(self):
         from scoremanager import managers
         return managers.FileManager(
-            self._illustration_builder_module_path,
+            self._illustrate_module_path,
             session=self._session,
             )
 
     @property
-    def _illustration_builder_module_path(self):
+    def _illustrate_module_path(self):
         return os.path.join(
             self._path, 
             '__illustrate__.py',
@@ -162,11 +162,11 @@ class MaterialManager(PackageManager):
             'dmrm': self.remove_definition_module,
             'dms': self.write_definition_module_stub,
             'dmi': self.interpret_definition_module,
-            'ime': self.edit_illustration_builder_module,
-            'imei': self.edit_and_interpret_illustration_builder_module,
-            'imrm': self.remove_illustration_builder_module,
-            'ims': self.write_illustration_builder_module_stub,
-            'imi': self.interpret_illustration_builder_module,
+            'ime': self.edit_illustrate_module,
+            'imei': self.edit_and_interpret_illustrate_module,
+            'imrm': self.remove_illustrate_module,
+            'ims': self.write_illustrate_module_stub,
+            'imi': self.interpret_illustrate_module,
             'lyi': self.interpret_illustration_ly,
             'lyrm': self.remove_illustration_ly,
             'lyv': self.view_illustration_ly,
@@ -295,7 +295,7 @@ class MaterialManager(PackageManager):
             title = self._session.current_score_package_manager.title
             string = '({})'.format(title)
             kwargs['subtitle'] = string
-        illustration = self.illustration_builder(output_material, **kwargs)
+        illustration = self.illustrate(output_material, **kwargs)
         if illustration and self._stylesheet_file_path_in_memory:
             path = self._stylesheet_file_path_in_memory
             illustration.file_initial_user_includes.append(path)
@@ -352,14 +352,14 @@ class MaterialManager(PackageManager):
             )
         return (import_statements, body_string)
 
-    def _make_illustration_builder_menu_section(
+    def _make_illustrate_menu_section(
         self,
         menu,
         ):
         name = 'illustrate module'
         section = menu.make_command_section(name=name)
         if os.path.isfile(self._output_module_path):
-            if os.path.isfile(self._illustration_builder_module_path):
+            if os.path.isfile(self._illustrate_module_path):
                 string = 'illustrate module - edit'
                 section.append((string, 'ime'))
                 string = 'illustrate module - edit & interpret'
@@ -390,7 +390,7 @@ class MaterialManager(PackageManager):
             os.path.isfile(self._illustration_pdf_file_path):
             section = menu.make_command_section(name=name)
         if os.path.isfile(self._output_module_path):
-            if os.path.isfile(self._illustration_builder_module_path) or \
+            if os.path.isfile(self._illustrate_module_path) or \
                 (self._read_material_manager_class_name() and
                 getattr(self, '__illustrate__', None)):
                 section.append(('illustration pdf - make', 'pdfm'))
@@ -405,7 +405,7 @@ class MaterialManager(PackageManager):
         superclass = super(MaterialManager, self)
         where = self._where
         menu = superclass._make_main_menu(where=where)
-        self._make_illustration_builder_menu_section(menu)
+        self._make_illustrate_menu_section(menu)
         has_initializer = os.path.isfile(self._initializer_file_path)
         self._make_initializer_menu_section(
             menu, 
@@ -530,11 +530,11 @@ class MaterialManager(PackageManager):
         line = 'from output import {}'
         line = line.format(self._material_package_name)
         lines.append(line)
-        if os.path.isfile(self._illustration_builder_module_path):
-            lines.append('from illustration_builder import __illustrate__')
+        if os.path.isfile(self._illustrate_module_path):
+            lines.append('from illustrate import __illustrate__')
         lines.append('')
         lines.append('')
-        if os.path.isfile(self._illustration_builder_module_path):
+        if os.path.isfile(self._illustrate_module_path):
             line = 'lilypond_file = __illustrate__({})'
         else:
             line = 'lilypond_file = {}.__illustrate__()'
@@ -668,20 +668,20 @@ class MaterialManager(PackageManager):
         self._io_manager.display(lines)
         self._io_manager.proceed(prompt=prompt)
 
-    def edit_and_interpret_illustration_builder_module(self):
+    def edit_and_interpret_illustrate_module(self):
         r'''Edits and then interprets illustrate module module.
 
         Returns none.
         '''
-        self.edit_illustration_builder_module()
-        self.interpret_illustration_builder_module()
+        self.edit_illustrate_module()
+        self.interpret_illustrate_module()
 
-    def edit_illustration_builder_module(self):
+    def edit_illustrate_module(self):
         r'''Edits illustrate module module.
 
         Returns none.
         '''
-        self._illustration_builder_module_manager.edit()
+        self._illustrate_module_manager.edit()
 
     def edit_definition_module(self):
         r'''Edits material definition module.
@@ -749,7 +749,7 @@ class MaterialManager(PackageManager):
         from scoremanager import managers
         lines = self._make_temporary_illustrate_module_lines()
         contents = '\n'.join(lines)
-        file_name = 'temporary_illustration_builder.py'
+        file_name = 'temporary_illustrate.py'
         path = os.path.join(self._path, file_name)
         manager = managers.FileManager(path=path, session=self._session)
         # TODO: probably a way to combine these three methods
@@ -760,12 +760,12 @@ class MaterialManager(PackageManager):
         message = 'created illustration.pdf and illustration.ly.'
         self._io_manager.proceed(message)
 
-    def interpret_illustration_builder_module(self, prompt=True):
+    def interpret_illustrate_module(self, prompt=True):
         r'''Runs Python on illustrate module module.
 
         Returns none.
         '''
-        self._illustration_builder_module_manager._interpret(prompt=prompt)
+        self._illustrate_module_manager._interpret(prompt=prompt)
 
     def interpret_illustration_ly(self, prompt=True):
         r'''Calls LilyPond on illustration.ly file.
@@ -835,12 +835,12 @@ class MaterialManager(PackageManager):
             if current_element_number == start_element_number:
                 break
 
-    def remove_illustration_builder_module(self, prompt=True):
+    def remove_illustrate_module(self, prompt=True):
         r'''Removes illustrate module module.
 
         Returns none.
         '''
-        self._illustration_builder_module_manager.remove(prompt=prompt)
+        self._illustrate_module_manager.remove(prompt=prompt)
         self._session._is_backtracking_locally = False
 
     def remove_illustration_ly(self, prompt=True):
@@ -990,7 +990,7 @@ class MaterialManager(PackageManager):
         file_path = self._user_input_module_path
         self._io_manager.view(file_path)
 
-    def write_illustration_builder_module_stub(self, prompt=True):
+    def write_illustrate_module_stub(self, prompt=True):
         r'''Writes stub illustrate module module.
 
         Returns none.

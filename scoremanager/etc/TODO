@@ -51,7 +51,7 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-15. Remove MarkupInventoryMaterialManager.illustration_builder().
+15. Remove MarkupInventoryMaterialManager.illustrate().
     Use MarkupInventory.__ilustrate__() instead.
 
 16. Make sure that editing instrumentation doesn't change FrenchHorn to merely
@@ -84,42 +84,40 @@
 24. Add command to type arbitrary shell command to current working directory.
     Maybe 'directory - run (run)' of follow Vim with !ls, !pwd and so on.
 
-25. Change 'illustration_builder_module' to 'illustrate_module'.
-
-26. Search for 'whatever_section = menu.make_*_section()' and
+25. Search for 'whatever_section = menu.make_*_section()' and
     change to 'section = menu.make_*_section()' everywhere.
 
-27. Extend Manager._remove() to use 'trash' if command is found.
+26. Extend Manager._remove() to use 'trash' if command is found.
 
-28. Implement NaiveCache decorator in systemtools.
+27. Implement NaiveCache decorator in systemtools.
     Apply to ScorePackageManager._maker_module_wrangler,
     ScorePackageManager._material_manager_wrangler, etc.
     Maybe the 'lru' decorator works for this already.
 
-29. Make ScorePackageManager create missing top-level directories
+28. Make ScorePackageManager create missing top-level directories
     during initialization. Run tests before and after change to check
     for any noticeable slowdown.
 
-30. Make (ls) work in stylesheets menu. So (score > y > ls).
+29. Make (ls) work in stylesheets menu. So (score > y > ls).
 
-31. Fix Wrangler._read_view_inventory_from_disk() line 305:
+30. Fix Wrangler._read_view_inventory_from_disk() line 305:
         assert len(result) == 1
     TypeError: boject of type 'NoneType' has no len()
     Use (tra > g) to induce bug.
 
-32. Add (lytr) for 'lilypond ly - trash'. This will work together
+31. Add (lytr) for 'lilypond ly - trash'. This will work together
     with (lyrm) for 'lilypond ly - remove'. The difference will be
     that (lyrm) will (try to) act on the repository where (lytr) will
     only ever work on the filesystem.
 
-33. Change Manager.add(), Manager.commit(), Manager.update()
+32. Change Manager.add(), Manager.commit(), Manager.update()
     to Manager.add_to_repository(), Manager.commit_to_repository(),
     Manager.update_from_repository().
 
-34. Write Manager.revert_from_repository() test.
+33. Write Manager.revert_from_repository() test.
     One for Git. One for Subversion.
 
-35. Write py.test tests for the following properties and methods:
+34. Write py.test tests for the following properties and methods:
         Manager._repository_add_command
         Manager._repository_status_command
         Manager._get_added_asset_paths()
@@ -127,12 +125,12 @@
         Manager._get_repository_root_directory()
         Manager._is_up_to_date()
 
-36. Change (lmm) and (lmy) to just (m) and (y).
+35. Change (lmm) and (lmy) to just (m) and (y).
 
-37. Make (ssl > rst) work. Right now it induces a bug.
+36. Make (ssl > rst) work. Right now it induces a bug.
     But note that (ssv > rst) works fine.
 
-38. Make (pyt) run py.test instead of doctest.
+37. Make (pyt) run py.test instead of doctest.
 
-39. Hoist metadata-related commands from PackageManager up to
+38. Hoist metadata-related commands from PackageManager up to
     DirectoryManager.
