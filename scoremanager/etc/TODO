@@ -138,7 +138,3 @@
 
 40. Hoist metadata-related commands from PackageManager up to
     DirectoryManager.
-
-41. Remove ...
-        ('material_package_maker_class_name, None)
-    ... from all metadata modules.
