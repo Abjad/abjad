@@ -318,7 +318,7 @@ class Menu(ScoreManagerObject):
             is_hidden=True,
             )
         section.append(('scores - tour next', 'stn'))
-        section.append(('scores - tour prev', 'stp'))
+        section.append(('scores - tour previous', 'stp'))
         return section
 
     def _make_section(
