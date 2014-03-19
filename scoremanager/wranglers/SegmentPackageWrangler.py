@@ -40,7 +40,7 @@ class SegmentPackageWrangler(PackageWrangler):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'lyri': self.reinterpret_current_lilypond_files,
+            'lyi': self.interpret_current_lilypond_files,
             'pdfs': self.version_segment_packages,
             'pdfv': self.view_segment_pdfs,
             'dmi': self.interpret_definition_modules,
@@ -97,8 +97,8 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def _make_current_lilypond_files_menu_section(self, menu):
         section = menu.make_command_section(name='current lilypond files')
-        string = 'all segments - current lilypond file - reinterpret'
-        section.append((string, 'lyri'))
+        string = 'all segments - current lilypond file - interpret'
+        section.append((string, 'lyi'))
         return section
 
     def _make_current_pdfs_menu_section(self, menu):
@@ -164,7 +164,7 @@ class SegmentPackageWrangler(PackageWrangler):
         self._io_manager.display('')
         self._io_manager.proceed()
 
-    def reinterpret_current_lilypond_files(
+    def interpret_current_lilypond_files(
         self,
         pending_user_input=None,
         prompt=True,
@@ -193,7 +193,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 segment_package_path,
                 session=self._session,
                 )
-            manager.reinterpret_current_lilypond_file(
+            manager.interpret_current_lilypond_file(
                 prompt=False,
                 view_output_pdf=False,
                 )

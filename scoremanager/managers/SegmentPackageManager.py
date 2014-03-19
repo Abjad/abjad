@@ -61,7 +61,7 @@ class SegmentPackageManager(PackageManager):
         result.update({
             'E': self.edit_definition_module_from_top,
             'e': self.edit_definition_module,
-            'lyri': self.reinterpret_current_lilypond_file,
+            'lyi': self.interpret_current_lilypond_file,
             'lyv': self.view_current_output_ly,
             'lyver': self.view_versioned_output_ly,
             'pdfv': self.view_output_pdf,
@@ -106,8 +106,8 @@ class SegmentPackageManager(PackageManager):
                 name='current lilypond file',
                 is_hidden=True,
                 )
-            string = 'current lilypond file - reinterpret'
-            section.append((string, 'lyri'))
+            string = 'current lilypond file - interpret'
+            section.append((string, 'lyi'))
             string = 'current lilypond file - view'
             section.append((string, 'lyv'))
             return section
@@ -274,7 +274,7 @@ class SegmentPackageManager(PackageManager):
         if not os.path.exists(self._versions_directory_path):
             os.mkdir(self._versions_directory_path)
 
-    def reinterpret_current_lilypond_file(
+    def interpret_current_lilypond_file(
         self, 
         view_output_pdf=True,
         prompt=True,
@@ -293,7 +293,7 @@ class SegmentPackageManager(PackageManager):
             return
         lines = []
         lilypond_file_path = self._output_lilypond_file_path
-        message = 'reinterpreted {!r}.'
+        message = 'interpreted {!r}.'
         message = message.format(lilypond_file_path)
         lines.append(message)
         pdf_file_path = self._output_pdf_file_path
