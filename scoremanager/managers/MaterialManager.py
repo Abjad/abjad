@@ -867,6 +867,7 @@ class MaterialManager(PackageManager):
         Returns none.
         '''
         self._illustration_builder_module_manager.remove(prompt=prompt)
+        self._session._is_backtracking_locally = False
 
     def remove_illustration_ly(self, prompt=True):
         r'''Removes illustration ly.
@@ -874,6 +875,7 @@ class MaterialManager(PackageManager):
         Returns none.
         '''
         self._illustration_ly_file_manager.remove(prompt=prompt)
+        self._session._is_backtracking_locally = False
 
     def remove_illustration_pdf(self, prompt=True):
         r'''Removes illustration PDF.
@@ -881,6 +883,7 @@ class MaterialManager(PackageManager):
         Returns none.
         '''
         self._illustration_pdf_file_manager.remove(prompt=prompt)
+        self._session._is_backtracking_locally = False
 
     def remove_definition_module(self, prompt=True):
         r'''Removes material definition module.
@@ -888,6 +891,7 @@ class MaterialManager(PackageManager):
         Returns none.
         '''
         self._definition_module_manager.remove(prompt=prompt)
+        self._session._is_backtracking_locally = False
 
     def remove_output_module(self, prompt=True):
         r'''Removes output module.
@@ -895,6 +899,7 @@ class MaterialManager(PackageManager):
         Returns none.
         '''
         self._output_module_manager.remove(prompt=prompt)
+        self._session._is_backtracking_locally = False
 
     def remove_user_input_module(self, prompt=True):
         r'''Removes user input module.
@@ -902,6 +907,7 @@ class MaterialManager(PackageManager):
         Returns none.
         '''
         self._user_input_module_manager.remove(prompt=prompt)
+        self._session._is_backtracking_locally = False
 
     def rename(self):
         r'''Renames material package.
