@@ -26,6 +26,10 @@ empty_unicode_file_path = os.path.join(
     configuration.boilerplate_directory_path,
     'empty_unicode_file.py',
     )
+boilerplate_definition_module_path = os.path.join(
+    configuration.boilerplate_directory_path,
+    'boilerplate_testnotes_definition.py',
+    )
 
 
 def test_MaterialPackageWrangler_run_handmade_package_01():
@@ -104,10 +108,6 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
     Creates output material. Removes package.
     '''
 
-    boilerplate_definition_module_path = os.path.join(
-        configuration.boilerplate_directory_path,
-        'boilerplate_testnotes_definition.py',
-        )
 
     assert not os.path.exists(package_path)
     try:
@@ -191,10 +191,6 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
     Make output material. Remove output material. Remove package.
     '''
 
-    package_path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
-        'testnotes',
-        )
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -230,10 +226,6 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
     Examine package state. Remove package.
     '''
 
-    package_path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
-        'testnotes',
-        )
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -261,40 +253,35 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_09():
-    r'''Make handmade package. Copy canned material definition module. 
-    Make output data. Corrupt output data. Verify invalid output material 
-    module. Remove package.
+    r'''Makes handmade package. Copies canned material definition module. 
+    Makes output module. Corrupts output module. Makes sure score manager 
+    starts when output module is corrupt. Removes package.
     '''
-
-    package_path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
-        'testnotes',
-        )
-    directory_entries = [
-        '__init__.py',
-        '__metadata__.py',
-        'definition.py', 
-        'output.py', 
-        ]
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmh testnotes default default testnotes dmbp'
-        input_ += ' boilerplate_testnotes_definition.py default '
-        input_ += 'omw default ombp boilerplate_exception.py default q'
+        input_ = 'lmm nmh testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
-        session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.MaterialManager
-        manager = manager(path=package_path, session=session)
-        assert manager._list() == directory_entries
-        material_definition = manager._interpret_definition_module()
-        assert material_definition
-        assert all(isinstance(x, Note) for x in material_definition)
-        output_material = manager._execute_output_module()
-        assert output_material is None
+        assert os.path.exists(definition_module_path)
+        assert not os.path.exists(output_module_path)
+        shutil.copyfile(
+            boilerplate_definition_module_path, 
+            definition_module_path,
+            )
+        assert filecmp.cmp(
+            definition_module_path,
+            boilerplate_definition_module_path,
+            )
+        input_ = 'lmm testnotes omw default q'
+        score_manager._run(pending_user_input=input_)
+        assert os.path.exists(output_module_path)
+        assert not filecmp.cmp(output_module_path, exception_file_path)
+        shutil.copyfile(exception_file_path, output_module_path)
+        assert filecmp.cmp(output_module_path, exception_file_path)
         input_ = 'lmm testnotes rm remove q'
         score_manager._run(pending_user_input=input_)
+        assert not os.path.exists(package_path)
     finally:
         if os.path.exists(package_path):
             shutil.rmtree(package_path)
@@ -302,15 +289,11 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_10():
-    r'''Make handmade package. Copy canned material definition module.
-    Make output data. Make PDF. Remove package.
+    r'''Makes handmade package. Copies canned material definition module.
+    Makes output data. Makes PDF. Removes package.
     '''
     pytest.skip('make PDF generation work again.')
 
-    package_path = os.path.join(
-        configuration.user_library_material_packages_directory_path,
-        'testnotes',
-        )
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',

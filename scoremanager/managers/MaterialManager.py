@@ -173,7 +173,6 @@ class MaterialManager(PackageManager):
             'lyv': self.view_illustration_ly,
             'mi': self.illustrate_material,
             'me': self.edit_output_material,
-            'ombp': self.write_output_module_boilerplate,
             'omw': self.write_output_material,
             'omrm': self.remove_output_module,
             'omv': self.view_output_module,
@@ -519,8 +518,6 @@ class MaterialManager(PackageManager):
         if not os.path.isfile(self._initializer_file_path):
             return
         section = menu.make_command_section(name='output module')
-        string = 'output module - boilerplate'
-        section.append((string, 'ombp'))
         if self._should_have_output_material_section():
             if os.path.isfile(self._output_module_path):
                 section.append(('output module - remove', 'omrm'))
