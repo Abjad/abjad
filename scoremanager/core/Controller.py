@@ -124,9 +124,9 @@ class Controller(ScoreManagerObject):
             match_on_display_string=False,
             name='metadatum',
             )
-        section.append(('metadatum - add', 'mma'))
-        section.append(('metadatum - get', 'mmg'))
-        section.append(('metadatum - remove', 'mmrm'))
+        section.append(('metadatum - add', 'mda'))
+        section.append(('metadatum - get', 'mdg'))
+        section.append(('metadatum - remove', 'mdrm'))
         return section
 
     def _make_metadata_module_menu_section(self, menu):
@@ -135,8 +135,8 @@ class Controller(ScoreManagerObject):
             match_on_display_string=False,
             name='metadata module',
             )
-        section.append(('metadata module - remove', 'mmmrm'))
-        section.append(('metadata module - rewrite', 'mmmrw'))
+        section.append(('metadata module - remove', 'mdmrm'))
+        section.append(('metadata module - rewrite', 'mdmrw'))
         section.append(('metadata module - view', 'mmmv'))
         return section
 
