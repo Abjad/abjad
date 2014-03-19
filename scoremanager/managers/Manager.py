@@ -601,7 +601,7 @@ class Manager(Controller):
 
         Returns none.
         '''
-        command = 'ls -l {}'
+        command = 'ls -l {} | grep -v .pyc'
         command = command.format(self._path)
         lines = []
         process = subprocess.Popen(
