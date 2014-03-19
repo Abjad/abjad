@@ -9,6 +9,46 @@ class MeterManager(abctools.AbjadObject):
     ### PUBLIC METHODS ###
 
     @staticmethod
+    def is_acceptable_logical_tie(
+        logical_tie_duration=None,
+        logical_tie_starts_in_offsets=None,
+        logical_tie_stops_in_offsets=None,
+        maximum_dot_count=None,
+        ):
+        r'''Is true if logical tie is acceptable.
+        '''
+        #print '\tTESTING ACCEPTABILITY'
+        if not logical_tie_duration.is_assignable:
+            return False
+        if maximum_dot_count is not None and \
+            maximum_dot_count < logical_tie_duration.dot_count:
+            return False
+        if not logical_tie_starts_in_offsets and \
+            not logical_tie_stops_in_offsets:
+            return False
+        return True
+
+    @staticmethod
+    def is_boundary_crossing_logical_tie(
+        boundary_depth=None,
+        boundary_offsets=None,
+        logical_tie_start_offset=None,
+        logical_tie_stop_offset=None,
+        ):
+        r'''Is true if logical tie crosses meter boundaries.
+        '''
+        #print '\tTESTING BOUNDARY CROSSINGS'
+        if boundary_depth is None:
+            return False
+        if not any(logical_tie_start_offset < x < logical_tie_stop_offset
+            for x in boundary_offsets):
+            return False
+        if logical_tie_start_offset in boundary_offsets and \
+            logical_tie_stop_offset in boundary_offsets:
+            return False
+        return True
+
+    @staticmethod
     def iterate_rewrite_inputs(expr):
         r'''Iterate topmost masked logical ties, rest groups and containers in
         `expr`, masked by `expr`:

@@ -43,34 +43,12 @@ def _rewrite_meter(
             offset_inventory.append(tuple(new_offsets))
         return offset_inventory[depth]
 
-    def is_acceptable_logical_tie(logical_tie_duration,
-        logical_tie_starts_in_offsets,
-        logical_tie_stops_in_offsets):
-        #print '\tTESTING ACCEPTABILITY'
-        if not logical_tie_duration.is_assignable:
-            return False
-        if maximum_dot_count is not None and \
-            maximum_dot_count < logical_tie_duration.dot_count:
-            return False
-        if not logical_tie_starts_in_offsets and \
-            not logical_tie_stops_in_offsets:
-            return False
-        return True
-
-    def is_boundary_crossing_logical_tie(
-        logical_tie_start_offset, logical_tie_stop_offset):
-        #print '\tTESTING BOUNDARY CROSSINGS'
-        if boundary_depth is None:
-            return False
-        if not any(logical_tie_start_offset < x < logical_tie_stop_offset
-            for x in boundary_offsets):
-            return False
-        if logical_tie_start_offset in boundary_offsets and \
-            logical_tie_stop_offset in boundary_offsets:
-            return False
-        return True
-
-    def recurse(logical_tie, depth=0):
+    def recurse(
+        boundary_depth=None,
+        boundary_offsets=None,
+        depth=0,
+        logical_tie=None,
+        ):
         offsets = get_offsets_at_depth(depth)
         #print 'DEPTH:', depth
 
@@ -81,10 +59,11 @@ def _rewrite_meter(
         logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
         logical_tie_stops_in_offsets = logical_tie_stop_offset in offsets
 
-        if not is_acceptable_logical_tie(
-            logical_tie_duration,
-            logical_tie_starts_in_offsets,
-            logical_tie_stops_in_offsets,
+        if not metertools.MeterManager.is_acceptable_logical_tie(
+            logical_tie_duration=logical_tie_duration,
+            logical_tie_starts_in_offsets=logical_tie_starts_in_offsets,
+            logical_tie_stops_in_offsets=logical_tie_stops_in_offsets,
+            maximum_dot_count=maximum_dot_count,
             ):
 
             #print 'UNACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset
@@ -110,14 +89,27 @@ def _rewrite_meter(
                 logical_ties = \
                     [selectiontools.LogicalTie(shard) for shard in shards]
                 for logical_tie in logical_ties:
-                    recurse(logical_tie, depth=depth)
+                    recurse(
+                        boundary_depth=boundary_depth,
+                        boundary_offsets=boundary_offsets,
+                        depth=depth,
+                        logical_tie=logical_tie,
+                        )
             else:
                 #print ''
-                recurse(logical_tie, depth=depth + 1)
+                recurse(
+                    boundary_depth=boundary_depth,
+                    boundary_offsets=boundary_offsets,
+                    depth=depth + 1,
+                    logical_tie=logical_tie,
+                    )
 
-        elif is_boundary_crossing_logical_tie(
-            logical_tie_start_offset,
-            logical_tie_stop_offset):
+        elif metertools.MeterManager.is_boundary_crossing_logical_tie(
+            boundary_depth=boundary_depth,
+            boundary_offsets=boundary_offsets,
+            logical_tie_start_offset=logical_tie_start_offset,
+            logical_tie_stop_offset=logical_tie_stop_offset,
+            ):
 
             #print 'BOUNDARY CROSSING', logical_tie, logical_tie_start_offset, logical_tie_stop_offset
             offsets = boundary_offsets
@@ -137,7 +129,12 @@ def _rewrite_meter(
             logical_ties = \
                 [selectiontools.LogicalTie(shard) for shard in shards]
             for logical_tie in logical_ties:
-                recurse(logical_tie, depth=depth)
+                recurse(
+                    boundary_depth=boundary_depth,
+                    boundary_offsets=boundary_offsets,
+                    depth=depth,
+                    logical_tie=logical_tie,
+                    )
 
         else:
             #print 'ACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset
@@ -182,6 +179,8 @@ def _rewrite_meter(
     # Build boundary offset inventory, if applicable.
     if boundary_depth is not None:
         boundary_offsets = offset_inventory[boundary_depth]
+    else:
+        boundary_offsets = None
 
     # Cache results of iterator, as we'll be mutating the underlying collection
     iterator = metertools.MeterManager.iterate_rewrite_inputs(components)
@@ -189,7 +188,12 @@ def _rewrite_meter(
     for item in items:
         if isinstance(item, selectiontools.LogicalTie):
             #print 'RECURSING:', item
-            recurse(item, depth=0)
+            recurse(
+                boundary_depth=boundary_depth,
+                boundary_offsets=boundary_offsets,
+                depth=0,
+                logical_tie=item,
+                )
         else:
             #print 'DESCENDING:', item
             preprolated_duration = sum([x._preprolated_duration for x in item])
