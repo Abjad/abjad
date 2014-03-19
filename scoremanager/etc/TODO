@@ -84,7 +84,7 @@
 24. Add command to type arbitrary shell command to current working directory.
     Maybe 'directory - run (run)' of follow Vim with !ls, !pwd and so on.
 
-25. Add confirmation message to (radd).
+25. Add confirmation message to (rad).
 
 26. Remove boilerplate commands. Replace with shutil calls in tests.
 
@@ -119,10 +119,11 @@
     that (lyrm) will (try to) act on the repository where (lytr) will
     only ever work on the filesystem.
 
-36. Add 'repository - unadd (runadd)' to repository menu.
+36. Changed temporary_file.txt to temporary-file.txt.
 
-37. Changed temporary_file.txt to temporary-file.txt.
-
-38. Change Manager.add(), Manager.commit(), Manager.update()
+37. Change Manager.add(), Manager.commit(), Manager.update()
     to Manager.add_to_repository(), Manager.commit_to_repository(),
     Manager.update_from_repository().
+
+38. Write Manager.revert_from_repository() test.
+    One for Git. One for Subversion.

@@ -84,10 +84,11 @@ class Wrangler(Controller):
             'mmmrw': self.rewrite_metadata_module,
             'mmmv': self.view_metadata_module,
             'pwd': self.pwd,
-            'radd': self.add,
+            'rad': self.add,
             'rci': self.commit,
             'ren': self.rename,
             'rm': self.remove,
+            'rrv': self.revert_from_repository,
             'rst': self.status,
             'rup': self.update,
             'vwl': self.list_views,
@@ -655,6 +656,22 @@ class Wrangler(Controller):
         if self._session._backtrack():
             return
         self._current_package_manager._add_metadatum('view_name', view_name)
+
+    def revert_from_repository(self, prompt=True):
+        r'''Reverts assets from repository.
+
+        Returns none.
+        '''
+        from scoremanager import managers
+        paths = self._list_visible_asset_paths()
+        paths = self._extract_common_parent_directories(paths)
+        for path in paths:
+            manager = managers.DirectoryManager(
+                path=path,
+                session=self._session,
+                )
+            manager.revert_from_repository(prompt=False)
+        self._io_manager.proceed(prompt=prompt)
 
     def status(self, prompt=True):
         r'''Display asset status in repository.

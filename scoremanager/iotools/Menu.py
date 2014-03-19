@@ -290,8 +290,9 @@ class Menu(ScoreManagerObject):
 
     def _make_repository_menu_section(self):
         section = self.make_command_section(name='repository', is_hidden=True)
-        section.append(('repository - add', 'radd'))
+        section.append(('repository - add', 'rad'))
         section.append(('repository - commit', 'rci'))
+        section.append(('repository - revert', 'rrv'))
         section.append(('repository - status', 'rst'))
         section.append(('repository - update', 'rup'))
         return section

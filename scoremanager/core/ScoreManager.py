@@ -55,7 +55,7 @@ class ScoreManager(Controller):
             'cw': self.write_cache,
             'lmm': self.manage_material_library,
             'new': self.make_new_score,
-            'radd': self.add,
+            'rad': self.add,
             'rci': self.commit,
             'rst': self.status,
             'rup': self.update,

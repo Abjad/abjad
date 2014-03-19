@@ -88,11 +88,12 @@ class Manager(Controller):
             'ls': self.list,
             'll': self.list_long,
             'rm': self.remove,
-            'radd': self.add,
+            'rad': self.add,
             'rci': self.commit,
             'ren': self.rename,
-            'rup': self.update,
             'rst': self.status,
+            'rrv': self.revert_from_repository,
+            'rup': self.update,
             })
         return result
 
@@ -453,7 +454,7 @@ class Manager(Controller):
         asset_name = space_delimited_lowercase_name.replace(' ', '_')
         return asset_name
 
-    def _unadd_added_assets(self, prompt=True):
+    def _unadd_added_assets(self):
         paths = self._get_added_asset_paths()
         commands = []
         if self._is_git_versioned():
@@ -468,9 +469,7 @@ class Manager(Controller):
             raise ValueError(self)
         command = ' && '.join(commands)
         self._io_manager.spawn_subprocess(command)
-        message = 'added assets are now unadded.'
-        self._io_manager.proceed(message, prompt=prompt)
-
+        self._io_manager.display('')
 
     ### PUBLIC METHODS ###
 
@@ -687,6 +686,14 @@ class Manager(Controller):
             return
         if self._rename(new_path):
             self._io_manager.proceed('asset renamed.')
+
+    def revert_from_repository(self, prompt=True):
+        r'''Reverts assets from repository.
+
+        Returns none.
+        '''
+        self._unadd_added_assets()
+        self._io_manager.proceed(prompt=prompt)
 
     def status(self, prompt=True):
         r'''Displays repository status of assets.

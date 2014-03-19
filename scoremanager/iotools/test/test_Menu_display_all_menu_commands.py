@@ -104,7 +104,7 @@ def test_Menu_display_all_menu_commands_08():
     pytest.skip('make me testable.')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score n radd q'
+    input_ = 'red~example~score n rad q'
     score_manager._run(pending_user_input=input_)
 
     input_ = 'Red Example Score (2013) - commands'

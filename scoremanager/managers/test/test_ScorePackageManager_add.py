@@ -48,7 +48,7 @@ def test_ScorePackageManager_add_01():
     manager.add(prompt=False)
     assert manager._get_unadded_asset_paths() == []
     assert manager._get_added_asset_paths() == [path_1, path_2]
-    manager._unadd_added_assets(prompt=False)
+    manager.revert_from_repository(prompt=False)
     assert manager._get_unadded_asset_paths() == [path_1, path_2]
     assert manager._get_added_asset_paths() == []
     os.remove(path_1)
@@ -102,7 +102,7 @@ def test_ScorePackageManager_add_02():
     manager.add(prompt=False)
     assert manager._get_unadded_asset_paths() == []
     assert manager._get_added_asset_paths() == [path_1, path_2]
-    manager._unadd_added_assets(prompt=False)
+    manager.revert_from_repository(prompt=False)
     assert manager._get_unadded_asset_paths() == [path_1, path_2]
     assert manager._get_added_asset_paths() == []
     os.remove(path_1)
