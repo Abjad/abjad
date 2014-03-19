@@ -1,4 +1,4 @@
-% 2014-03-19 08:43
+% 2014-03-19 09:04
 
 \version "2.19.3"
 \language "english"
@@ -6,10 +6,6 @@
 \header {
 	tagline = \markup {}
 }
-
-\layout {}
-
-\paper {}
 
 \score {
 	\new Score \with {

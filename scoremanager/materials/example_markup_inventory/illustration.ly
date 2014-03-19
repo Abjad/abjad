@@ -1,7 +1,11 @@
-% 2014-03-18 08:47
+% 2014-03-19 09:04
 
 \version "2.19.3"
 \language "english"
+
+\header {
+	tagline = \markup {}
+}
 
 \markup {
 	\bold

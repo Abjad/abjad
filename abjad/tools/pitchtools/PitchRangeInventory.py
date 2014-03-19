@@ -102,6 +102,8 @@ class PitchRangeInventory(TypedList):
         override(score).glissando.thickness = 2
         override(score).time_signature.stencil = False
         lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+        lilypond_file.items.remove(lilypond_file['layout'])
+        lilypond_file.items.remove(lilypond_file['paper'])
         lilypond_file.header_block.tagline = markuptools.Markup('""')
         return lilypond_file
 
