@@ -16,7 +16,7 @@ def test_TempoInventoryMaterialManager_edit_output_material_01():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'output_material.py', 
+        'output.py', 
         ]
     inventory = indicatortools.TempoInventory([
         ((1, 4), 60), 

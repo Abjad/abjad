@@ -130,7 +130,7 @@ class MaterialManager(PackageManager):
 
     @property
     def _output_module_path(self):
-        return os.path.join(self._path, 'output_material.py')
+        return os.path.join(self._path, 'output.py')
 
     @property
     def _stylesheet_manager(self):
@@ -542,7 +542,7 @@ class MaterialManager(PackageManager):
         lines.append(self._unicode_directive)
         lines.append('import os')
         lines.append('from abjad import *')
-        line = 'from output_material import {}'
+        line = 'from output import {}'
         line = line.format(self._material_package_name)
         lines.append(line)
         if os.path.isfile(self._illustration_builder_module_path):
@@ -1036,7 +1036,7 @@ class MaterialManager(PackageManager):
         material_package_name = material_package_path.split('.')[-1]
         lines = []
         lines.append('from abjad import *\n')
-        line = 'from {}.output_material import {}\n'
+        line = 'from {}.output import {}\n'
         line = line.format(material_package_path, material_package_name)
         lines.append(line)
         lines.append('\n')

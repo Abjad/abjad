@@ -26,7 +26,7 @@ def test_MarkupInventoryMaterialManager_edit_output_material_01():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'output_material.py',
+        'output.py',
         ]
     input_ = "lmm nmm markup testmarkupinventory me"
     input_ += " add arg r'\\italic~{~serenamente~}' done"

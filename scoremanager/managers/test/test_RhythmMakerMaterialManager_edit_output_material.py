@@ -18,7 +18,7 @@ def test_RhythmMakerMaterialManager_edit_output_material_01():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'output_material.py',
+        'output.py',
         ]
     talea = rhythmmakertools.Talea(
         counts=(-1, 2, -3, 4),

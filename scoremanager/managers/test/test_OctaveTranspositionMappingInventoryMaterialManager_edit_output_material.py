@@ -52,7 +52,7 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_edit_output_material
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'output_material.py',
+        'output.py',
         ]
     mapping_1 = pitchtools.OctaveTranspositionMapping([
         ('[A0, C4)', 15), 

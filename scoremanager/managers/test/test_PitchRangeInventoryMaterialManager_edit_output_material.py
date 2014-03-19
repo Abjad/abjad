@@ -52,7 +52,7 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_02():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'output_material.py',
+        'output.py',
         ]
     inventory = pitchtools.PitchRangeInventory([
         pitchtools.PitchRange('[C2, G5]'), 

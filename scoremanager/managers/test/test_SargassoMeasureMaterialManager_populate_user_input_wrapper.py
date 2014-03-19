@@ -331,7 +331,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_08():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'output_material.py', 
+        'output.py', 
         'user_input.py',
         ]
     measures = [

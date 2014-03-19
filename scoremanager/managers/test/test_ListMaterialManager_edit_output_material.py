@@ -16,7 +16,7 @@ def test_ListMaterialManager_edit_output_material_01():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'output_material.py',
+        'output.py',
         ]
     input_ = 'lmm nmm list testlist 17 foo done b default q'
 

@@ -17,7 +17,7 @@ def test_ArticulationHandlerMaterialManager_edit_output_material_01():
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
-        'output_material.py', 
+        'output.py', 
         ]
     handler = handlertools.ReiteratedArticulationHandler(
         articulation_list=['^', '.'],

@@ -128,7 +128,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
         '__init__.py',
         '__metadata__.py',
         'definition.py', 
-        'output_material.py', 
+        'output.py', 
         ]
     input_ = 'lmm nmh testnotes default default testnotes dmbp'
     input_ += ' boilerplate_testnotes_definition.py default'
@@ -314,7 +314,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
         '__init__.py',
         '__metadata__.py',
         'definition.py', 
-        'output_material.py', 
+        'output.py', 
         ]
     input_ = 'lmm nmh testnotes default default testnotes dmbp'
     input_ += ' boilerplate_testnotes_definition.py default '
