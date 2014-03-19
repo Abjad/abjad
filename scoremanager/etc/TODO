@@ -51,73 +51,70 @@
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
 
-15. Remove MarkupInventoryMaterialManager.illustrate().
-    Use MarkupInventory.__ilustrate__() instead.
-
-16. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+15. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-17. Note that ArticulationHandlerMaterialManager implementation is limited
+16. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
 
-18. Implement 'segments - tour next' and 'segment - tour previous' commands.
+17. Implement 'segments - tour next' and 'segment - tour previous' commands.
     Maybe generalied 'material - tour' and 'segments - tour' to
     just 'asset - tour'.
 
-19. Implement an 'all whatever - edit' command.
+18. Implement an 'all whatever - edit' command.
 
-20. Write view tests. Start with segment wrangler.
+19. Write view tests. Start with segment wrangler.
 
-21. Remove user/score_manager_library/material_package_managers/ in 
+20. Remove user/score_manager_library/material_package_managers/ in 
     favor of user/score_manager_library/material_managers/
 
-22. Change user/score_manager_library/material_packages/
+21. Change user/score_manager_library/material_packages/
     to user/score_manager_library/materials/.
 
-23. Remove 'whatever - make' commands. Reimplement as 'source - interpret'.
+22. Remove 'whatever - make' commands. Reimplement as 'source - interpret'.
 
-24. Add command to type arbitrary shell command to current working directory.
+23. Add command to type arbitrary shell command to current working directory.
     Maybe 'directory - run (run)' of follow Vim with !ls, !pwd and so on.
 
-25. Search for 'whatever_section = menu.make_*_section()' and
+24. Search for 'whatever_section = menu.make_*_section()' and
     change to 'section = menu.make_*_section()' everywhere.
 
-26. Extend Manager._remove() to use 'trash' if command is found.
+25. Extend Manager._remove() to use 'trash' if command is found.
 
-27. Implement NaiveCache decorator in systemtools.
+26. Implement NaiveCache decorator in systemtools.
     Apply to ScorePackageManager._maker_module_wrangler,
     ScorePackageManager._material_manager_wrangler, etc.
     Maybe the 'lru' decorator works for this already.
 
-28. Make ScorePackageManager create missing top-level directories
+27. Make ScorePackageManager create missing top-level directories
     during initialization. Run tests before and after change to check
     for any noticeable slowdown.
 
-29. Make (ls) work in stylesheets menu. So (score > y > ls).
+28. Make (ls) work in stylesheets menu. So (score > y > ls).
 
-30. Fix Wrangler._read_view_inventory_from_disk() line 305:
+29. Fix Wrangler._read_view_inventory_from_disk() line 305:
         assert len(result) == 1
     TypeError: boject of type 'NoneType' has no len()
     Use (tra > g) to induce bug.
 
-31. Add (lytr) for 'lilypond ly - trash'. This will work together
+30. Add (lytr) for 'lilypond ly - trash'. This will work together
     with (lyrm) for 'lilypond ly - remove'. The difference will be
     that (lyrm) will (try to) act on the repository where (lytr) will
     only ever work on the filesystem.
 
-32. Change Manager.add(), Manager.commit(), Manager.update()
+31. Change Manager.add(), Manager.commit(), Manager.update()
     to Manager.add_to_repository(), Manager.commit_to_repository(),
     Manager.update_from_repository().
 
-33. Write Manager.revert_from_repository() test.
+32. Write Manager.revert_from_repository() test.
     One for Git. One for Subversion.
 
-34. Write py.test tests for the following properties and methods:
+33. Write py.test tests for the following properties and methods:
         Manager._repository_add_command
         Manager._repository_status_command
         Manager._get_added_asset_paths()
@@ -125,12 +122,12 @@
         Manager._get_repository_root_directory()
         Manager._is_up_to_date()
 
-35. Change (lmm) and (lmy) to just (m) and (y).
+34. Change (lmm) and (lmy) to just (m) and (y).
 
-36. Make (ssl > rst) work. Right now it induces a bug.
+35. Make (ssl > rst) work. Right now it induces a bug.
     But note that (ssv > rst) works fine.
 
-37. Make (pyt) run py.test instead of doctest.
+36. Make (pyt) run py.test instead of doctest.
 
-38. Hoist metadata-related commands from PackageManager up to
+37. Hoist metadata-related commands from PackageManager up to
     DirectoryManager.
