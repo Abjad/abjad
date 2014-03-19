@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 import os
 from scoremanager.core.ScoreManagerObject import ScoreManagerObject
 
@@ -58,8 +59,11 @@ class Selector(ScoreManagerObject):
             metadata_module = open(metadata_module_path, 'r')
             metadata_module_string = metadata_module.read()
             metadata_module.close()
-            exec(metadata_module_string)
-            result = locals().get('metadata') or OrderedDict([])
+            try:
+                exec(metadata_module_string)
+            except:
+                pass
+            result = locals().get('metadata') or collections.OrderedDict([])
             return result.get(metadatum_name)
 
     def _list_items(self):
