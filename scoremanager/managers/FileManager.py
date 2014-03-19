@@ -13,7 +13,7 @@ class FileManager(Manager):
 
     ### CLASS VARIABLES ###
 
-    _temporary_asset_name = 'temporary_file.txt'
+    _temporary_asset_name = 'temporary-file.txt'
 
     extension = ''
 

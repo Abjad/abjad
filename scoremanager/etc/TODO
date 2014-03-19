@@ -119,16 +119,14 @@
     that (lyrm) will (try to) act on the repository where (lytr) will
     only ever work on the filesystem.
 
-36. Changed temporary_file.txt to temporary-file.txt.
-
-37. Change Manager.add(), Manager.commit(), Manager.update()
+36. Change Manager.add(), Manager.commit(), Manager.update()
     to Manager.add_to_repository(), Manager.commit_to_repository(),
     Manager.update_from_repository().
 
-38. Write Manager.revert_from_repository() test.
+37. Write Manager.revert_from_repository() test.
     One for Git. One for Subversion.
 
-39. Write py.test tests for the following properties and methods:
+38. Write py.test tests for the following properties and methods:
         Manager._repository_add_command
         Manager._repository_status_command
         Manager._get_added_asset_paths()

@@ -9,7 +9,7 @@ def test_FileManager__write_boilerplate_01():
     configuration = scoremanager.core.ScoreManagerConfiguration()
     path = os.path.join(
         configuration.score_manager_directory_path, 
-        'temporary_file.txt',
+        'temporary-file.txt',
         )
     session = scoremanager.core.Session(is_test=True)
     manager = scoremanager.managers.FileManager(path=path, session=session)

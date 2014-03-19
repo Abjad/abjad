@@ -11,7 +11,7 @@ def test_FileManager__rename_01():
 
     path = os.path.join(
         configuration.score_manager_directory_path, 
-        'temporary_file.txt',
+        'temporary-file.txt',
         )
     new_path = os.path.join(
         configuration.score_manager_directory_path, 
@@ -44,7 +44,7 @@ def test_FileManager__rename_02():
 
     path = os.path.join(
         configuration.score_manager_directory_path, 
-        'temporary_file.txt',
+        'temporary-file.txt',
         )
     new_path = os.path.join(
         configuration.score_manager_directory_path, 
