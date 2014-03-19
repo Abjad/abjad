@@ -14,11 +14,11 @@ initializer_file_path = os.path.join(package_path, '__init__.py')
 
 exception_file_path = os.path.join(
     configuration.boilerplate_directory_path,
-    'boilerplate_exception.py',
+    'exception.py',
     )
 empty_unicode_file_path = os.path.join(
     configuration.boilerplate_directory_path,
-    'empty_unicode_file.py',
+    'empty_unicode.py',
     )
 
 

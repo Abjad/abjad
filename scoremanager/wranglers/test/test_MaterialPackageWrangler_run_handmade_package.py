@@ -20,15 +20,15 @@ output_module_path = os.path.join(package_path, 'output.py')
 
 exception_file_path = os.path.join(
     configuration.boilerplate_directory_path,
-    'boilerplate_exception.py',
+    'exception.py',
     )
 empty_unicode_file_path = os.path.join(
     configuration.boilerplate_directory_path,
-    'empty_unicode_file.py',
+    'empty_unicode.py',
     )
 boilerplate_definition_module_path = os.path.join(
     configuration.boilerplate_directory_path,
-    'boilerplate_testnotes_definition.py',
+    'notes_definition.py',
     )
 
 

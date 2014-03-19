@@ -13,7 +13,7 @@ def test_FileManager__write_boilerplate_01():
         )
     session = scoremanager.core.Session(is_test=True)
     manager = scoremanager.managers.FileManager(path=path, session=session)
-    file_name = 'boilerplate_testnumbers_definition.py'
+    file_name = 'numbers_definition.py'
 
     assert not os.path.exists(path)
     try:
