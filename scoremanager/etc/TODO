@@ -127,3 +127,11 @@
 
 38. Write Manager.revert_from_repository() test.
     One for Git. One for Subversion.
+
+39. Write py.test tests for the following properties and methods:
+        Manager._repository_add_command
+        Manager._repository_status_command
+        Manager._get_added_asset_paths()
+        Manager._get_unadded_asset_paths()
+        Manager._get_repository_root_directory()
+        Manager._is_up_to_date()

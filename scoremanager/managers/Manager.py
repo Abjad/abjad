@@ -454,7 +454,7 @@ class Manager(Controller):
         asset_name = space_delimited_lowercase_name.replace(' ', '_')
         return asset_name
 
-    def _unadd_added_assets(self):
+    def _revert_from_repository(self):
         paths = self._get_added_asset_paths()
         commands = []
         if self._is_git_versioned():
@@ -692,7 +692,7 @@ class Manager(Controller):
 
         Returns none.
         '''
-        self._unadd_added_assets()
+        self._revert_from_repository()
         self._io_manager.proceed(prompt=prompt)
 
     def status(self, prompt=True):
