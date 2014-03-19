@@ -133,7 +133,6 @@ class Controller(ScoreManagerObject):
             match_on_display_string=False,
             name='initializer',
             )
-        section.append(('initializer - boilerplate', 'inbp'))
         section.append(('initializer - remove', 'inrm'))
         section.append(('initializer - stub', 'ins'))
         section.append(('initializer - view', 'inv'))

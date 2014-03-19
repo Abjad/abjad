@@ -71,7 +71,6 @@ class Wrangler(Controller):
         result = superclass._user_input_to_action
         result = copy.deepcopy(result)
         result.update({
-            'inbp': self.write_initializer_boilerplate,
             'inrm': self.remove_initializer,
             'ins': self.write_initializer_stub,
             'inv': self.view_initializer,

@@ -73,9 +73,8 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_03():
-    r'''Makes handmade package. Corrupts initializer. Makes sure score
-    manager starts and initializer is restorable when initializer is corrupt.
-    Restores initializer.
+    r'''Makes handmade package. Corrupts initializer. Restores initializer.
+    Removes package.
     '''
 
     assert not os.path.exists(package_path)
