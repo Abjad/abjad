@@ -181,8 +181,6 @@ class MaterialManager(PackageManager):
             'pdfrm': self.remove_illustration_pdf,
             'pdfv': self.view_illustration_pdf,
             'ren': self.rename,
-            'sse': self.edit_stylesheet,
-            'sss': self.select_stylesheet,
             'uid': self.remove_user_input_module,
             'uic': self.clear_user_input_wrapper,
             'uil': self.load_user_input_wrapper_demo_values,
@@ -424,7 +422,6 @@ class MaterialManager(PackageManager):
         self._make_output_module_menu_section(menu)
         self._make_illustration_pdf_menu_section(menu)
         self._make_directory_menu_section(menu)
-        self._make_stylesheet_menu_section(menu)
         if self._user_input_wrapper_in_memory:
             editor = self._get_output_material_editor(session=self._session)
             if not editor:
@@ -530,12 +527,6 @@ class MaterialManager(PackageManager):
                 section.append(('output module - view', 'omv'))
             if self._can_make_output_material():
                 section.append(('output module - write', 'omw'))
-
-    def _make_stylesheet_menu_section(self, menu):
-        if os.path.isfile(self._output_module_path):
-            section = menu.make_command_section(name='stylesheets')
-            section.append(('stylesheet - edit', 'sse'))
-            section.append(('stylesheet - select', 'sss'))
 
     def _make_temporary_illustrate_module_lines(self):
         lines = []
@@ -754,17 +745,6 @@ class MaterialManager(PackageManager):
             body_lines=output_module_body_lines,
             )
 
-    def edit_stylesheet(self, prompt=True):
-        r'''Edits stylesheet.
-
-        Returns none.
-        '''
-        if self._stylesheet_file_path_in_memory:
-            self._stylesheet_manager.edit()
-        elif prompt:
-            message = 'select stylesheet first.'
-            self._io_manager.proceed(message)
-
     def illustrate_material(self, prompt=True):
         r'''Illustrates material.
 
@@ -975,23 +955,6 @@ class MaterialManager(PackageManager):
             command = command.format(commit_message, parent_directory_path)
             self._io_manager.spawn_subprocess(command)
         self._session._is_backtracking_locally = True
-
-    def select_stylesheet(self, prompt=True):
-        r'''Selects stylesheet.
-
-        Returns none.
-        '''
-        from scoremanager import wranglers
-        wrangler = wranglers.StylesheetWrangler(session=self._session)
-        with self._backtracking:
-            stylesheet_file_path = wrangler.select_asset_path()
-        if self._session._backtrack():
-            return
-        self._stylesheet_file_path_in_memory = stylesheet_file_path
-        self._io_manager.proceed(
-            'stylesheet selected.', 
-            prompt=prompt,
-            )
 
     def toggle_user_input_values_default_status(self):
         r'''Toggles user input values default status.
