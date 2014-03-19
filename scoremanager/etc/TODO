@@ -136,5 +136,3 @@
 
 39. Hoist metadata-related commands from PackageManager up to
     DirectoryManager.
-
-40. Rename boilerplate files with 'boilerplate' in file names.
