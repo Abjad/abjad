@@ -15,7 +15,8 @@ class Editor(Controller):
             assert isinstance(target, self._target_class)
         self.target = target
         self._initialize_attributes_in_memory()
-        if not hasattr(self, '_target_manifest'):
+        target_manifest = self._target_manifest
+        if not target_manifest:
             message = 'can not find target manifest for {!r}.'
             message = message.format(self)
             raise Exception(message)

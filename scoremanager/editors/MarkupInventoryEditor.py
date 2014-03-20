@@ -24,7 +24,7 @@ class MarkupInventoryEditor(ObjectInventoryEditor):
 
     @property
     def _target_manifest(self):
-        from editors import TargetManifest
+        from scoremanager.editors import TargetManifest
         return TargetManifest(
             markuptools.MarkupInventory,
             target_name_attribute='inventory name',

@@ -12,7 +12,7 @@ class NoteAndChordHairpinsHandlerEditor(Editor):
 
     @property
     def _target_manifest(self):
-        from editors import TargetManifest
+        from scoremanager.editors import TargetManifest
         return TargetManifest(
             handlertools.NoteAndChordHairpinsHandler,
             ('hairpin_tokens', None, 'ht', getters.get_hairpin_tokens, True),

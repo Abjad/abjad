@@ -12,7 +12,7 @@ class TerracedDynamicsHandlerEditor(Editor):
 
     @property
     def _target_manifest(self):
-        from editors import TargetManifest
+        from scoremanager.editors import TargetManifest
         return TargetManifest(
             handlertools.TerracedDynamicsHandler,
             ('dynamics', None, 'dy', getters.get_dynamics, True),

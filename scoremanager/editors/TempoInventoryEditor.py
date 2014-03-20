@@ -25,7 +25,7 @@ class TempoInventoryEditor(ObjectInventoryEditor):
 
     @property
     def _target_manifest(self):
-        from editors import TargetManifest
+        from scoremanager.editors import TargetManifest
         return TargetManifest(
             indicatortools.TempoInventory,
             target_name_attribute='inventory name',

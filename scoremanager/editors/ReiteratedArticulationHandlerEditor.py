@@ -12,7 +12,7 @@ class ReiteratedArticulationHandlerEditor(Editor):
 
     @property
     def _target_manifest(self):
-        from editors import TargetManifest
+        from scoremanager.editors import TargetManifest
         return TargetManifest(
             handlertools.ReiteratedArticulationHandler,
             ('articulation_list', None, 'al', getters.get_articulations, False),

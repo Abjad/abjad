@@ -12,7 +12,7 @@ class ReiteratedDynamicHandlerEditor(Editor):
 
     @property
     def _target_manifest(self):
-        from editors import TargetManifest
+        from scoremanager.editors import TargetManifest
         return TargetManifest(
             handlertools.ReiteratedDynamicHandler,
             ('dynamic_name', None, 'dy', getters.get_dynamic, True),

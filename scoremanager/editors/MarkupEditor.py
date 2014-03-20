@@ -12,7 +12,7 @@ class MarkupEditor(Editor):
 
     @property
     def _target_manifest(self):
-        from editors import TargetManifest
+        from scoremanager.editors import TargetManifest
         return TargetManifest(
             markuptools.Markup,
             ('arg', 'contents_string', 'arg', 'ag', getters.get_string, True),

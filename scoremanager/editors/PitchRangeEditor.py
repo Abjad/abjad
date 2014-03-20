@@ -12,7 +12,7 @@ class PitchRangeEditor(Editor):
 
     @property
     def _target_manifest(self):
-        from editors import TargetManifest
+        from scoremanager.editors import TargetManifest
         return TargetManifest(
             pitchtools.PitchRange,
             ('one_line_named_pitch_repr', 'rp', 

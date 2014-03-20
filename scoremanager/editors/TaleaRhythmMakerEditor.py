@@ -12,7 +12,7 @@ class TaleaRhythmMakerEditor(RhythmMakerEditor):
 
     @property
     def _target_manifest(self):
-        from editors import TargetManifest
+        from scoremanager.editors import TargetManifest
         return TargetManifest(
             rhythmmakertools.TaleaRhythmMaker,
             ('talea', None, 'ta', getters.get_nonzero_integers, True),
