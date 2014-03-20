@@ -257,7 +257,10 @@ class Wrangler(Controller):
             return 'select {}:'.format(human_readable_target_name)
 
     def _make_asset_selection_menu(self, packages_instead_of_paths=False):
-        menu = self._io_manager.make_menu(where=self._where)
+        menu = self._io_manager.make_menu(
+            where=self._where,
+            name='asset selection',
+            )
         asset_section = menu.make_asset_section()
         include_extensions = getattr(self, '_include_extensions', False)
         asset_menu_entries = self._make_asset_menu_entries(
@@ -388,7 +391,10 @@ class Wrangler(Controller):
         ):
         self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
-        menu = self._io_manager.make_menu(where=self._where)
+        menu = self._io_manager.make_menu(
+            where=self._where,
+            name='storehouse selection',
+            )
         asset_section = menu.make_asset_section()
         menu_entries = self._make_storehouse_menu_entries(
             abjad_library=False,

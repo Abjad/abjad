@@ -162,6 +162,7 @@ class ScoreManager(Controller):
             where=self._where,
             # TODO: should the following keyword be true?
             include_default_hidden_sections=False,
+            name='score manager main menu',
             )
         section = menu.make_asset_section()
         for menu_entry in menu_entries:

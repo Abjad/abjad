@@ -325,8 +325,11 @@ class ScorePackageManager(PackageManager):
         section.append(('instrumentation module - view', 'instrumentation'))
         return section
 
-    def _make_main_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
+    def _make_main_menu(self, name='score package manager'):
+        menu = self._io_manager.make_menu(
+            where=self._where,
+            name=name,
+            )
         self._make_main_menu_section(menu)
         self._make_directory_menu_section(menu, is_permanent=True)
         self._make_initializer_menu_section(menu)
@@ -369,7 +372,10 @@ class ScorePackageManager(PackageManager):
             section.append(('score pdf - view', 'pdfv'))
 
     def _make_setup_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
+        menu = self._io_manager.make_menu(
+            where=self._where,
+            name='setup',
+            )
         self._make_setup_menu_section(menu)
         self._make_instrumentation_menu_section(menu)
         return menu

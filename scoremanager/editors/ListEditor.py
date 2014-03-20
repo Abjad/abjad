@@ -92,14 +92,17 @@ class ListEditor(Editor):
         else:
             self.target = self._target_class([])
 
-    def _make_main_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
+    # TODO: encapsulate section-making code into separate methods
+    def _make_main_menu(self, name='list editor'):
+        menu = self._io_manager.make_menu(
+            where=self._where,
+            name=name,
+            )
         menu_entries = self._make_target_attribute_tokens()
         if menu_entries:
             keyed_attribute_section = menu.make_keyed_attribute_section(
                 name='keyed attribute section',
                 )
-            #menu_entries = self._make_target_attribute_tokens()
             for menu_entry in menu_entries:
                 keyed_attribute_section.append(menu_entry)
         menu_entries = self._target_summary_lines
@@ -107,7 +110,6 @@ class ListEditor(Editor):
             numbered_section = menu.make_numbered_section(
                 name='numbered section',
                 )
-            #menu_entries = self._target_summary_lines
             for menu_entry in menu_entries:
                 numbered_section.append(menu_entry)
             self._numbered_section = numbered_section

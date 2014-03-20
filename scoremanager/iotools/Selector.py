@@ -86,8 +86,11 @@ class Selector(ScoreManagerObject):
             section.append(menu_entry)
         return section
 
-    def _make_main_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
+    def _make_main_menu(self, name='selector'):
+        menu = self._io_manager.make_menu(
+            where=self._where,
+            name=name,
+            )
         self._make_asset_menu_section(menu)
         return menu
 

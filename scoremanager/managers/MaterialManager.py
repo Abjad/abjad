@@ -405,10 +405,13 @@ class MaterialManager(PackageManager):
             section.append(('illustration pdf - remove', 'pdfrm'))
             section.append(('illustration pdf - view', 'pdfv'))
 
-    def _make_main_menu(self):
+    def _make_main_menu(self, name='material manager'):
         superclass = super(MaterialManager, self)
         where = self._where
-        menu = superclass._make_main_menu(where=where)
+        menu = superclass._make_main_menu(
+            where=where,
+            name=name,
+            )
         self._make_illustrate_menu_section(menu)
         has_initializer = os.path.isfile(self._initializer_file_path)
         self._make_initializer_menu_section(

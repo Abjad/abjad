@@ -126,10 +126,13 @@ class SegmentPackageManager(PackageManager):
             section.append(('pdf - view', 'pdfv'))
         return section
 
-    def _make_main_menu(self):
+    def _make_main_menu(self, name='segment package manager'):
         superclass = super(SegmentPackageManager, self)
         where = self._where
-        menu = superclass._make_main_menu(where=where)
+        menu = superclass._make_main_menu(
+            where=where,
+            name=name,
+            )
         self._make_current_lilypond_file_menu_section(menu)
         self._make_current_pdf_menu_section(menu)
         self._make_definition_module_menu_section(menu)

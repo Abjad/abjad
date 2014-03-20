@@ -77,8 +77,11 @@ class DirectoryManager(Manager):
                 file_pointer.close()
         self._io_manager.proceed(prompt=prompt)
 
-    def _make_main_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
+    def _make_main_menu(self, name='directory manager'):
+        menu = self._io_manager.make_menu(
+            where=self._where,
+            name=name,
+            )
         self._main_menu = menu
         self._make_asset_menu_section(menu)
         return menu

@@ -65,13 +65,16 @@ class PerformerCreationWizard(Wizard):
                     performer.instruments.append(instrument)
                 break
             else:
-                raise ValueError("how'd we get here?")
+                raise Exception("how'd we get here?")
             self._session._pop_breadcrumb()
         self._session._pop_breadcrumb()
         self._session._restore_breadcrumbs(cache=cache)
 
     def _make_performer_configuration_menu(self, performer):
-        menu = self._io_manager.make_menu(where=self._where)
+        menu = self._io_manager.make_menu(
+            where=self._where,
+            name='performer configuration',
+            )
         section = menu.make_command_section(name='instrument commands')
         likely_instruments = \
             performer.likely_instruments_based_on_performer_name

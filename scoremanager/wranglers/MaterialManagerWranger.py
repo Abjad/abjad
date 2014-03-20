@@ -112,8 +112,11 @@ class MaterialManagerWrangler(PackageWrangler):
                 return True
         return False
 
-    def _make_main_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
+    def _make_main_menu(self, name='material manager wrangler'):
+        menu = self._io_manager.make_menu(
+            where=self._where,
+            name=name,
+            )
         asset_section = menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries()
         for menu_entry in asset_menu_entries:

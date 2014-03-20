@@ -81,8 +81,9 @@ class InstrumentEditor(Editor):
         else:
             super(InstrumentEditor, self)._handle_main_menu_result(result)
 
-    def _make_main_menu(self):
-        menu = super(InstrumentEditor, self)._make_main_menu()
+    def _make_main_menu(self, name='instrument editor'):
+        superclass = super(InstrumentEditor, self)
+        menu = superclass._make_main_menu(name=name)
         self._make_pitch_range_menu_section(menu)
         return menu
 

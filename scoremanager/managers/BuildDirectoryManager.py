@@ -102,10 +102,14 @@ class BuildDirectoryManager(DirectoryManager):
         section.append(('front cover pdf - view', 'fcv'))
         return section
 
-    def _make_main_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
+    def _make_main_menu(self, name='build directory manager'):
+        menu = self._io_manager.make_menu(
+            where=self._where,
+            name=name,
+            )
         self._make_back_cover_menu_section(menu)
-        self._make_directory_menu_section(menu, is_permanent=True)
+        self._make_directory_menu_section(menu, 
+        is_permanent=True)
         self._make_front_cover_menu_section(menu)
         self._make_preface_menu_section(menu)
         self._make_score_menu_sections(menu)

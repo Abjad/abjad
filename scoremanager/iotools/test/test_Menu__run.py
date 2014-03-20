@@ -7,7 +7,7 @@ def test_Menu__run_01():
     r'''String menu_entry defaults.
     '''
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(name='test')
     menu._session._push_breadcrumb('location')
     section = menu._make_section(name='test', title='section')
     section.append('apple')
@@ -50,7 +50,7 @@ def test_Menu__run_02():
     r'''Hidden menu section.
     '''
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(name='test')
     menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
@@ -90,7 +90,7 @@ def test_Menu__run_03():
     r'''Numbered menu section.
     '''
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(name='test')
     menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
@@ -137,7 +137,7 @@ def test_Menu__run_04():
     r'''Menu section with range selection turned on.
     '''
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(name='test')
     menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
@@ -185,7 +185,7 @@ def test_Menu__run_05():
     r'''Keyed menu section with key returned.
     '''
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(name='test')
     menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test',
@@ -245,7 +245,7 @@ def test_Menu__run_06():
     r'''Keyed menu section with display string returned.
     '''
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(name='test')
     menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test',
@@ -295,7 +295,7 @@ def test_Menu__run_07():
     r'''Hidden keyed menu section with key returned.
     '''
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(name='test')
     menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test',
@@ -349,7 +349,7 @@ def test_Menu__run_08():
     r'''Hidden keyed menu section with display string returned.
     '''
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(name='test')
     menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
@@ -400,7 +400,7 @@ def test_Menu__run_09():
     r'''Numbered keyed menu section with key returned.
     '''
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(name='test')
     menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test',
@@ -460,7 +460,7 @@ def test_Menu__run_10():
     r'''Ranged keyed menu section with with key returned.
     '''
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(name='test')
     menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test',
@@ -520,7 +520,7 @@ def test_Menu__run_11():
     r'''RK menu section with display string returned.
     '''
 
-    menu = scoremanager.iotools.Menu()
+    menu = scoremanager.iotools.Menu(name='test')
     menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 

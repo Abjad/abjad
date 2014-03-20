@@ -22,7 +22,10 @@ class DistributionDirectoryManager(DirectoryManager):
 
     ### PRIVATE METHODS ###
 
-    def _make_main_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
+    def _make_main_menu(self, name='distribution directory manager'):
+        menu = self._io_manager.make_menu(
+            where=self._where,
+            name=name,
+            )
         self._make_directory_menu_section(menu, is_permanent=True)
         return menu

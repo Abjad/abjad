@@ -287,6 +287,10 @@ class Menu(ScoreManagerObject):
 
     def _make_menu_lines(self):
         result = []
+        if not self.name:
+            message = '{!r} has no name.'
+            message = message.format(self)
+            raise Exception(message)
         result.extend(self._make_title_lines())
         result.extend(self._make_section_lines())
         return result

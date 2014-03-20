@@ -179,8 +179,11 @@ class Editor(Controller):
         except:
             pass
 
-    def _make_main_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
+    def _make_main_menu(self, name='editor'):
+        menu = self._io_manager.make_menu(
+            where=self._where,
+            name=name,
+            )
         menu_entries = self._make_target_attribute_tokens()
         if menu_entries:
             keyed_attribute_section = menu.make_keyed_attribute_section(

@@ -109,9 +109,12 @@ class PackageManager(DirectoryManager):
         metadatum = metadata.get(metadatum_name, None)
         return metadatum
 
-    def _make_main_menu(self, where=None):
+    def _make_main_menu(self, where=None, name='package manager'):
         where = where or self._where
-        menu = self._io_manager.make_menu(where=where)
+        menu = self._io_manager.make_menu(
+            where=where,
+            name=name,
+            )
         return menu
 
     @staticmethod
