@@ -23,11 +23,3 @@ segment_maker = segmentmakertools.PianoStaffSegmentMaker(
     time_signatures=time_signatures,
     divisions=divisions,
     )
-
-if __name__ == '__main__':
-    lilypond_file = segment_maker()
-    current_directory_path = os.path.dirname(__file__)
-    ly_file_path = os.path.join(current_directory_path, 'output.ly')
-    persist(lilypond_file).as_ly(ly_file_path)
-    pdf_file_path = os.path.join(current_directory_path, 'output.pdf')
-    persist(lilypond_file).as_pdf(pdf_file_path)

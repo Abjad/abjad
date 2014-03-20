@@ -156,10 +156,11 @@ class SegmentPackageManager(PackageManager):
         return section
 
     def _make_versioned_pdfs_menu_section(self, menu):
-        section = menu.make_command_section(name='versioned pdfs')
         versions_directory_path = self._versions_directory_path
-        if self._is_populated_directory(versions_directory_path):
-            section.append(('versioned pdfs - view', 'vv'))
+        if not self._is_populated_directory(versions_directory_path):
+            return
+        section = menu.make_command_section(name='versioned pdfs')
+        section.append(('versioned pdfs - view', 'vv'))
         return section
 
     def _make_versions_directory_menu_section(self, menu):

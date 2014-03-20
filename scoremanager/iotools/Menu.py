@@ -149,12 +149,12 @@ class Menu(ScoreManagerObject):
         self._session._push_breadcrumb('commands')
         menu_lines = []
         for menu_section in self.menu_sections:
+            #print repr(menu_section), 'SECTION'
             if not menu_section.is_command_section:
                 continue
             for menu_entry in menu_section.menu_entries:
                 key = menu_entry.key
                 display_string = menu_entry.display_string
-                #menu_line = self._make_tab(1) + ' '
                 menu_line = self._make_tab(1)
                 menu_line += '{} ({})'.format(display_string, key)
                 menu_lines.append(menu_line)
