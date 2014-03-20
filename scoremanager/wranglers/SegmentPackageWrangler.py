@@ -43,7 +43,7 @@ class SegmentPackageWrangler(PackageWrangler):
             'lyi': self.interpret_current_lilypond_files,
             'pdfs': self.version_segment_packages,
             'pdfv': self.view_segment_pdfs,
-            'dmi': self.interpret_definition_modules,
+            'mmi': self.interpret_make_modules,
             })
         return result
 
@@ -89,10 +89,10 @@ class SegmentPackageWrangler(PackageWrangler):
         return section
 
     def _make_current_definition_modules_menu_section(self, menu):
-        name = 'definition modules'
+        name = 'make modules'
         section = menu.make_command_section(name=name)
-        string = 'all segments - definition module - interpret'
-        section.append((string, 'dmi'))
+        string = 'all segments - make module - interpret'
+        section.append((string, 'mmi'))
         return section
 
     def _make_current_lilypond_files_menu_section(self, menu):
@@ -129,7 +129,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def interpret_definition_modules(
+    def interpret_make_modules(
         self,
         pending_user_input=None,
         ):
@@ -153,9 +153,8 @@ class SegmentPackageWrangler(PackageWrangler):
                 path=segment_package_directory_path,
                 session=self._session,
                 )
-            manager.interpret_definition_module(
+            manager.interpret_make_module(
                 prompt=False,
-                view_asset_pdf=False,
                 )
             output_pdf_file_path = manager._output_pdf_file_path
             if os.path.isfile(output_pdf_file_path):
