@@ -555,10 +555,6 @@ class ScorePackageManager(PackageManager):
                     metadata_module.write('\n')
                     string = 'metadata = collections.OrderedDict([])\n'
                     metadata_module.write(string)
-        if package_needed_to_be_fixed and prompt:
-            self._io_manager.display('')
-            message = 'packaged structure fixed.'
-            self._io_manager.proceed(message, prompt=prompt)
         return package_needed_to_be_fixed
 
     def remove_score_package(self):

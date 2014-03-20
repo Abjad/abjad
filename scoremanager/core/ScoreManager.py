@@ -53,6 +53,7 @@ class ScoreManager(Controller):
         result = {
             'cro': self.view_cache,
             'cw': self.write_cache,
+            'fix': self.fix_score_packages,
             'lmm': self.manage_material_library,
             'mdme': self.edit_metadata_modules,
             'mdmls': self.list_metadata_modules,
@@ -119,6 +120,15 @@ class ScoreManager(Controller):
         section.append((string, 'mdmrw'))
         return section
 
+    def _make_all_score_packages_menu_section(self, menu):
+        section = menu.make_command_section(
+            name='all score packages',
+            is_hidden=True,
+            )
+        string = 'all score packages - fix'
+        section.append((string, 'fix'))
+        return section
+
     def _make_cache_menu_section(self, menu):
         section = menu.make_command_section(
             name='cache',
@@ -140,6 +150,7 @@ class ScoreManager(Controller):
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
         self._make_all_directories_menu_section(menu)
+        self._make_all_score_packages_menu_section(menu)
         self._make_library_menu_section(menu)
         self._make_scores_menu_section(menu)
         self._make_scores_show_menu_section(menu)
@@ -307,6 +318,30 @@ class ScoreManager(Controller):
                 lines, 
                 capitalize_first_character=False,
                 )
+        self._io_manager.proceed(prompt=prompt)
+
+    def fix_score_packages(self, prompt=True):
+        r'''Fixes score packages.
+
+        Returns none.
+        '''
+        from scoremanager import managers
+        wrangler = self._score_package_wrangler
+        paths = wrangler._list_visible_asset_paths()
+        for path in paths:
+            manager = managers.ScorePackageManager(
+                path=path,
+                session=self._session,
+                )
+            needed_to_be_fixed = manager.fix(prompt=prompt)
+            if not needed_to_be_fixed:
+                title = manager._get_title()
+                message = '{} OK.'
+                message = message.format(title)
+                self._io_manager.display(message)
+        message = '{} score packages checked.'
+        message = message.format(len(paths))
+        self._io_manager.display(['', message, ''])
         self._io_manager.proceed(prompt=prompt)
 
     def make_new_score(self):
