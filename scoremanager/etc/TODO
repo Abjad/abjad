@@ -165,3 +165,31 @@
 41. Hide the one-element illustrate menu ...
         'illustrate module - stub (ims)' 
     ... unless an __illustrate__.py module already exists in material package.
+
+42. Change this material menu ...
+
+    Red Example Score (2013) - materials - tempo inventory
+
+        Tempo(Duration(1, 8), 72)
+        Tempo(Duration(1, 8), 108)
+        Tempo(Duration(1, 8), 90)
+        Tempo(Duration(1, 8), 135)
+
+        illustration ly - interpret (lyi)
+        illustration ly - remove (lyrm)
+        illustration ly - view (lyv)
+
+    ... to ...
+
+    Red Example Score (2013) - materials - tempo inventory
+
+      * Tempo(Duration(1, 8), 72)
+      * Tempo(Duration(1, 8), 108)
+      * Tempo(Duration(1, 8), 90)
+      * Tempo(Duration(1, 8), 135)
+
+        illustration ly - interpret (lyi)
+        illustration ly - remove (lyrm)
+        illustration ly - view (lyv)
+
+    ... with asterisks to mark entries in the material summary menu section.
