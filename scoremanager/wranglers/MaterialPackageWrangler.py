@@ -165,15 +165,17 @@ class MaterialPackageWrangler(PackageWrangler):
         metadata = metadata or {}
         self._make_material_package(path, metadata=metadata)
 
+    # TODO: encapsulate in separate methods
     def _make_main_menu(self, name='material package wrangler'):
         menu = self._io_manager.make_menu(
             where=self._where,
             name=name,
             )
-        section = menu.make_asset_section(name='assets')
         asset_menu_entries = self._make_asset_menu_entries()
-        for menu_entry in asset_menu_entries:
-            section.append(menu_entry)
+        if asset_menu_entries:
+            section = menu.make_asset_section(name='assets')
+            for menu_entry in asset_menu_entries:
+                section.append(menu_entry)
         section = menu.make_command_section(name='material')
         section.append(('material - new by hand', 'nmh'))
         section.append(('material - new with manager', 'nmm'))
