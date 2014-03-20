@@ -65,8 +65,8 @@ class MaterialPackageWrangler(PackageWrangler):
         result = result.copy()
         result.update({
             'd': self.make_data_package,
-            'mtn': self._navigate_to_next_material,
-            'mtp': self._navigate_to_previous_material,
+            '>>': self._navigate_to_next_material,
+            '<<': self._navigate_to_previous_material,
             'nmh': self.make_handmade_material_package,
             'nmm': self.make_managermade_material_package,
             })

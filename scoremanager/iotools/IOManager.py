@@ -102,11 +102,11 @@ class IOManager(IOManager):
             not self._session.is_in_editor:
             self._session._is_navigating_to_score_materials = True
             return 'm'
-        elif key == 'mtn':
+        elif key == '>>':
             self._session._is_navigating_to_score_materials = True
             self._session._is_navigating_to_next_material = True
             self._session._hide_hidden_commands = True
-        elif key == 'mtp':
+        elif key == '<<':
             self._session._is_navigating_to_score_materials = True
             self._session._is_navigating_to_previous_material = True
             self._session._hide_hidden_commands = True
@@ -139,11 +139,11 @@ class IOManager(IOManager):
             self.edit_calling_code()
         elif key == 'scl':
             self.display_calling_code_line_number()
-        elif key == 'stn':
+        elif key == '>':
             self._session._is_navigating_to_next_score = True
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
-        elif key == 'stp':
+        elif key == '<':
             self._session._is_navigating_to_previous_score = True
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True

@@ -190,11 +190,6 @@
     Also make sure the pattern is lines first and only one
     file_pointer.write() call at the end, preceded by '\n'.join(lines).
 
-43. Change 'scores - tour next (stn)' and 'score - tour previous (stp)'
-    to single-key aliases. The principle should be that navigation commands
-    are generally single-key. Same with 'materials - tour next (mtn)'
-    and 'materials - tour previous (mtp)'.
-
-44. Write something to check for all top-level score directories 
+43. Write something to check for all top-level score directories 
     on score manager initialization. Prompt user to create each of the
     directories. To fix score package structure.

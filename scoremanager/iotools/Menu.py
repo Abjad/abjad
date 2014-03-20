@@ -355,11 +355,11 @@ class Menu(ScoreManagerObject):
 
     def _make_scores_tour_menu_section(self):
         section = self.make_command_section(
-            name='scores - tour',
+            name='go - scores',
             is_hidden=True,
             )
-        section.append(('scores - tour next', 'stn'))
-        section.append(('scores - tour previous', 'stp'))
+        section.append(('go - next score', '>'))
+        section.append(('go - previous score', '<'))
         return section
 
     def _make_section(
