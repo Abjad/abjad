@@ -15,11 +15,7 @@
     tabsize=4, 
     }
 
-
 \frenchspacing
-%\usepackage{xcolor}
-%\usepackage{xltxtra}
-%\usepackage{xunicode}
 \usepackage[quiet]{fontspec}
 
 \parskip=1em
@@ -67,9 +63,6 @@
 }
 \makeatother
 
-
-
-
 \begin{document}
 
 
@@ -112,10 +105,14 @@
 \frametitle{
     Abjad's object model: spanners
 }
+Spanners can attach to containers:
 <abjad>
 staff = Staff("abj: | 1/4 c'4 || 2/4 d'8 e' f' g' || 1/4 a'4 |")
 slur = Slur()
 attach(slur, staff[1])  # This is the 2/4 measure.
+show(staff)
+</abjad>
+<abjad>
 staff[1].append(Note("cqs''"))
 show(staff)
 </abjad>
@@ -126,6 +123,7 @@ show(staff)
 \frametitle{
     Abjad's object model: spanners
 }
+Spanners can also attach directly to leaves:
 <abjad>
 staff = Staff("abj: | 1/4 c'4 || 2/4 d'8 e' f' g' || 1/4 a'4 |")
 slur = Slur()
@@ -137,7 +135,6 @@ staff[1].append(Note("cqs''"))
 show(staff)
 </abjad>
 \end{frame}
-
 
 
 \begin{frame}[fragile]
@@ -192,7 +189,6 @@ for leaf in staff.select_leaves():
     print leaf, inspect_(leaf).get_duration()
 </abjad>
 \end{frame}
-
 
 
 \begin{frame}[fragile]
