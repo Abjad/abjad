@@ -388,10 +388,11 @@ class Menu(ScoreManagerObject):
     def _make_section_lines(self):
         result = []
         for menu_section in self.menu_sections:
-#            if not len(menu_section):
-#                message = '{!r} contains {!r}.'
-#                message = message.format(self, menu_section)
-#                raise Exception(message)
+            if not len(menu_section) and \
+                not menu_section.name == 'material summary':
+                message = '{!r} contains {!r}.'
+                message = message.format(self, menu_section)
+                raise Exception(message)
             if not menu_section.name:
                 message = '{!r} contains {!r}.'
                 message = message.format(self, menu_section)
@@ -659,7 +660,6 @@ class Menu(ScoreManagerObject):
             return_value_attribute='key',
             )
         return section
-
 
     def make_navigation_section(
         self,

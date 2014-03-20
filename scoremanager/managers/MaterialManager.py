@@ -360,9 +360,9 @@ class MaterialManager(PackageManager):
         self,
         menu,
         ):
-        name = 'illustrate module'
-        section = menu.make_command_section(name=name)
-        if os.path.isfile(self._output_module_path):
+        #if os.path.isfile(self._output_module_path):
+        if True:
+            section = menu.make_command_section(name='illustrate module')
             if os.path.isfile(self._illustrate_module_path):
                 string = 'illustrate module - edit'
                 section.append((string, 'ime'))
@@ -379,31 +379,30 @@ class MaterialManager(PackageManager):
                 section.append((string, 'ims'))
 
     def _make_illustration_ly_menu_section(self, menu):
-        if os.path.isfile(self._output_module_path) or \
-            os.path.isfile(self._illustration_ly_file_path):
-            section = menu.make_command_section(name='illustration ly')
         if os.path.isfile(self._illustration_ly_file_path):
+            section = menu.make_command_section(name='illustration ly')
             section.append(('illustration ly - interpret', 'lyi'))
             section.append(('illustration ly - remove', 'lyrm'))
             section.append(('illustration ly - view', 'lyv'))
 
     def _make_illustration_pdf_menu_section(self, menu):
-        name = 'illustration pdf'
-        has_illustration_pdf_section = False
-        if os.path.isfile(self._output_module_path) or \
-            os.path.isfile(self._illustration_pdf_file_path):
-            section = menu.make_command_section(name=name)
+        commands = []
         if os.path.isfile(self._output_module_path):
             if os.path.isfile(self._illustrate_module_path) or \
                 (self._read_material_manager_class_name() and
                 getattr(self, '__illustrate__', None)):
-                section.append(('illustration pdf - make', 'pdfm'))
+                commands.append(('illustration pdf - make', 'pdfm'))
                 has_illustration_pdf_section = True
         if os.path.isfile(self._illustration_pdf_file_path):
             if not has_illustration_pdf_section:
                 section = menu.make_command_section(name=name)
-            section.append(('illustration pdf - remove', 'pdfrm'))
-            section.append(('illustration pdf - view', 'pdfv'))
+            commands.append(('illustration pdf - remove', 'pdfrm'))
+            commands.append(('illustration pdf - view', 'pdfv'))
+        if commands:
+            section = menu.make_command_section(name='illustration pdf')
+            for command in commands:
+                section.append(command)
+            return section
 
     def _make_main_menu(self, name='material manager'):
         superclass = super(MaterialManager, self)
@@ -521,13 +520,17 @@ class MaterialManager(PackageManager):
     def _make_output_module_menu_section(self, menu):
         if not os.path.isfile(self._initializer_file_path):
             return
-        section = menu.make_command_section(name='output module')
+        commands = []
         if self._should_have_output_material_section():
             if os.path.isfile(self._output_module_path):
-                section.append(('output module - remove', 'omrm'))
-                section.append(('output module - view', 'omv'))
+                commands.append(('output module - remove', 'omrm'))
+                commands.append(('output module - view', 'omv'))
             if self._can_make_output_material():
-                section.append(('output module - write', 'omw'))
+                commands.append(('output module - write', 'omw'))
+        if commands:
+            section = menu.make_command_section(name='output module')
+            for command in commands:
+                section.append(command)
 
     def _make_temporary_illustrate_module_lines(self):
         lines = []
@@ -554,11 +557,15 @@ class MaterialManager(PackageManager):
         lines.append("persist(lilypond_file).as_pdf(file_path)")
         return lines
 
+    # TODO: break into three methods
     def _make_user_input_module_menu_section(self, menu):
         menu_entries = self._user_input_wrapper_in_memory.editable_lines
-        numbered_section = menu.make_numbered_section(name='material summary')
-        for menu_entry in menu_entries:
-            numbered_section.append(menu_entry)
+        if menu_entries:
+            numbered_section = menu.make_numbered_section(
+                name='material summary',
+                )
+            for menu_entry in menu_entries:
+                numbered_section.append(menu_entry)
         section = menu.make_command_section(name='user input')
         section.append(('user input - clear', 'uic'))
         section.append(('user input - load demo values', 'uil'))

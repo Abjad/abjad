@@ -211,7 +211,8 @@
     are generally single-key. Same with 'materials - tour next (mtn)'
     and 'materials - tour previous (mtp)'.
 
-45. Write code in Menu to make sure there are no zero-length menu sections.
-    At display time or render time or at some other time.
+45. Change (**v) view commands to (**ro) read-only commands.
 
-46. Change (**v) view commands to (**ro) read-only commands.
+46. Add Menu.make_material_summary() section.
+    These can be empty of entries. Or maybe the stuff that's currently
+    in title lines can be in entries instead.
