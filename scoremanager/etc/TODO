@@ -127,18 +127,16 @@
 35. Make (ssl > rst) work. Right now it induces a bug.
     But note that (ssv > rst) works fine.
 
-36. Make (pyt) run py.test instead of doctest.
-
-37. Hoist metadata-related commands from PackageManager up to
+36. Hoist metadata-related commands from PackageManager up to
     DirectoryManager.
 
-38. Change this menu title ...
+37. Change this menu title ...
         Score manager - material library - tempo inventory
     ... to this ...
         Score manager - material library - tempo inventory (Red Example Score)
     ... with the annotated score title.
 
-39. Change this segments menu ...
+38. Change this segments menu ...
 
         Red Example Score (2013) - segments
 
@@ -156,17 +154,17 @@
 
     ... without the annotated score title.
 
-40. Change this message ...
+39. Change this message ...
         Created illustration.pdf and illustration.ly. 
     ... to ...
         Created illustration.pdf and illustration.ly files.
     ... instead.
 
-41. Hide the one-element illustrate menu ...
+40. Hide the one-element illustrate menu ...
         'illustrate module - stub (ims)' 
     ... unless an __illustrate__.py module already exists in material package.
 
-42. Change this material menu ...
+41. Change this material menu ...
 
     Red Example Score (2013) - materials - tempo inventory
 
@@ -194,7 +192,7 @@
 
     ... with asterisks to mark entries in the material summary menu section.
 
-43. Add 'output module - check (omc)' command.
+42. Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
