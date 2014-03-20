@@ -338,7 +338,6 @@ class ScorePackageManager(PackageManager):
         self._make_metadata_module_menu_section(menu)
         self._make_metadata_menu_section(menu)
         self._make_score_menu_section(menu)
-        self._make_shortcuts_menu_section(menu)
         return menu
 
     def _make_main_menu_section(self, menu):
@@ -411,14 +410,6 @@ class ScorePackageManager(PackageManager):
         menu_entries = self._make_setup_menu_entries()
         for menu_entry in menu_entries:
             section.append(menu_entry)
-        return section
-
-    def _make_shortcuts_menu_section(self, menu):
-        section = menu.make_command_section(
-            name='edit', 
-            is_hidden=True,
-            )
-        section.append(('edit - stylesheet', 'Y'))
         return section
 
     def _manage_setup(self, clear=True, cache=True):

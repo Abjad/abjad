@@ -100,7 +100,7 @@ class Menu(ScoreManagerObject):
                 return self._enclose_in_list(default_value)
         elif user_input == 'r':
             return 'r'
-        elif user_input == '?':
+        elif user_input in ('?', 'n'):
             return '?'
         elif 3 <= len(user_input) and 'score'.startswith(user_input):
             return 'score'
@@ -186,7 +186,7 @@ class Menu(ScoreManagerObject):
         self._session._hide_next_redraw = True
 
     def _make_bicolumnar(self, lines):
-        terminal_height = 45
+        terminal_height = 50
         column_width = 55
         if len(lines) < terminal_height:
             return lines
@@ -274,15 +274,27 @@ class Menu(ScoreManagerObject):
 
     def _make_default_hidden_sections(self):
         sections = []
+        sections.append(self._make_commands_menu_section())
+        if self._session.is_in_score:
+            sections.append(self._make_edit_menu_section())
+        sections.append(self._make_go_menu_section())
         sections.append(self._make_lilypond_menu_section())
         sections.append(self._make_python_menu_section())
         sections.append(self._make_repository_menu_section())
         if self._session.is_in_score:
             sections.append(self._make_score_navigation_menu_section())
         sections.append(self._make_scores_tour_menu_section())
+        sections.append(self._make_session_menu_section())
         sections.append(self._make_source_code_menu_section())
         sections.append(self._make_system_menu_section())
         return sections
+
+    def _make_go_menu_section(self):
+        section = self.make_navigation_section(name='go', is_hidden=True)
+        section.append(('go - back', 'b'))
+        section.append(('go - home', 'h'))
+        section.append(('go - score', 's'))
+        return section
 
     def _make_lilypond_menu_section(self):
         section = self.make_command_section(name='lilypond', is_hidden=True)
@@ -331,7 +343,14 @@ class Menu(ScoreManagerObject):
         section.append(('score - segments', 'g'))
         section.append(('score - setup', 'p'))
         section.append(('score - stylesheets', 'y'))
-        section.append(('score - current stylesheet', 'Y'))
+        return section
+
+    def _make_edit_menu_section(self):
+        section = self.make_command_section(
+            name='edit',
+            is_hidden=True,
+            )
+        section.append(('edit - current stylesheet', 'Y'))
         return section
 
     def _make_scores_tour_menu_section(self):
@@ -395,6 +414,7 @@ class Menu(ScoreManagerObject):
 
     def _make_section_lines(self):
         result = []
+        section_names = []
         for menu_section in self.menu_sections:
             if not len(menu_section):
                 message = '{!r} contains {!r}.'
@@ -404,6 +424,12 @@ class Menu(ScoreManagerObject):
                 message = '{!r} contains {!r}.'
                 message = message.format(self, menu_section)
                 raise Exception(message)
+            if menu_section.name in section_names:
+                message = '{!r} with duplicate section: {!r}.'
+                message = message.format(self, menu_section)
+                raise Exception(message)
+            else:
+                section_names.append(menu_section.name)
             hide = self._session.hide_hidden_commands
             if hide and menu_section.is_hidden:
                 continue
@@ -422,14 +448,17 @@ class Menu(ScoreManagerObject):
         section.append(('source code - location', 'scl'))
         return section
 
+    def _make_commands_menu_section(self):
+        section = self.make_command_section(name='commands', is_hidden=True)
+        section.append(('commands - all', '?'))
+
+    def _make_session_menu_section(self):
+        section = self.make_command_section(name='session', is_hidden=True)
+        section.append(('session - display variables', 'sdv'))
+
     def _make_system_menu_section(self):
         section = self.make_navigation_section(name='system', is_hidden=True)
-        section.append(('system - back', 'b'))
-        section.append(('system - all', 'n'))
-        section.append(('system - home', 'h'))
         section.append(('system - quit', 'q'))
-        section.append(('system - score', 's'))
-        section.append(('system - session', 'o'))
         return section
 
     def _make_tab(self, n):

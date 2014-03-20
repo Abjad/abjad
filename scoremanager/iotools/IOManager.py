@@ -114,7 +114,7 @@ class IOManager(IOManager):
             not self._session.is_in_confirmation_environment and \
             not self._session.is_in_editor:
             self._session.toggle_hidden_commands()
-        elif key == 'o':
+        elif key == 'sdv':
             self._session.display_variables()
         elif key == 'p' and \
             not self._session.is_in_editor:

@@ -86,23 +86,14 @@ class SegmentPackageWrangler(PackageWrangler):
             section.append(entry)
         return section
 
-    def _make_current_definition_modules_menu_section(self, menu):
-        name = 'make modules'
-        section = menu.make_command_section(name=name)
+    def _make_all_segments_menu_section(self, menu):
+        section = menu.make_command_section(name='all segments')
         string = 'all segments - make module - interpret'
         section.append((string, 'mmi'))
-        return section
-
-    def _make_current_lilypond_files_menu_section(self, menu):
-        section = menu.make_command_section(name='lilypond files')
         string = 'all segments - lilypond file - interpret'
         section.append((string, 'lyi'))
-        return section
-
-    def _make_current_pdfs_menu_section(self, menu):
-        section = menu.make_command_section(name='pdfs')
         section.append(('all segments - pdf - version', 'pdfs'))
-        section.append(('all segments - pdf - read only', 'pdfo'))
+        section.append(('all segments - pdf - open', 'pdfo'))
         return section
 
     def _make_main_menu(self, name='segment wrangler'):
@@ -111,9 +102,7 @@ class SegmentPackageWrangler(PackageWrangler):
             name=name,
             )
         self._make_asset_menu_section(menu)
-        self._make_current_definition_modules_menu_section(menu)
-        self._make_current_lilypond_files_menu_section(menu)
-        self._make_current_pdfs_menu_section(menu)
+        self._make_all_segments_menu_section(menu)
         self._make_segments_menu_section(menu)
         self._make_directory_menu_section(menu, is_permanent=True)
         self._make_initializer_menu_section(menu, has_initializer=True)
