@@ -92,7 +92,7 @@ class InstrumentEditor(Editor):
             is_hidden=True,
             name='pitch range',
             )
-        section.append(('toggle pitch range display', 'tprd'))
+        section.append(('pitch range - toggle display', 'tprd'))
         return section
         
     ### PUBLIC PROPERTIES ###
