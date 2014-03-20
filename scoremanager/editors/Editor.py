@@ -181,13 +181,15 @@ class Editor(Controller):
 
     def _make_main_menu(self):
         menu = self._io_manager.make_menu(where=self._where)
-        keyed_attribute_section = menu.make_keyed_attribute_section(
-            name='keyed attributes',
-            is_numbered=True,
-            ) 
         menu_entries = self._make_target_attribute_tokens()
-        for menu_entry in menu_entries:
-            keyed_attribute_section.append(menu_entry)
+        if menu_entries:
+            keyed_attribute_section = menu.make_keyed_attribute_section(
+                name='keyed attributes',
+                is_numbered=True,
+                ) 
+            #menu_entries = self._make_target_attribute_tokens()
+            for menu_entry in menu_entries:
+                keyed_attribute_section.append(menu_entry)
         self._make_done_menu_section(menu)
         return menu
 

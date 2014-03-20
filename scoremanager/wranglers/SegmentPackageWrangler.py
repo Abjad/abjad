@@ -78,14 +78,12 @@ class SegmentPackageWrangler(PackageWrangler):
         self._io_manager.proceed(message=message, prompt=prompt)
 
     def _make_asset_menu_section(self, menu):
+        entries = self._make_asset_menu_entries()
+        if not entries:
+            return
         section = menu.make_asset_section()
-        asset_menu_entries = self._make_asset_menu_entries()
-        for menu_entry in asset_menu_entries:
-            section.append(menu_entry)
-        section = menu.make_command_section(
-            name='assets',
-            match_on_display_string=False,
-            )
+        for entry in entries:
+            section.append(entry)
         return section
 
     def _make_current_definition_modules_menu_section(self, menu):
@@ -108,7 +106,10 @@ class SegmentPackageWrangler(PackageWrangler):
         return section
 
     def _make_main_menu(self):
-        menu = self._io_manager.make_menu(where=self._where)
+        menu = self._io_manager.make_menu(
+            where=self._where, 
+            name='segment wrangler',
+            )
         self._make_asset_menu_section(menu)
         self._make_current_definition_modules_menu_section(menu)
         self._make_current_lilypond_files_menu_section(menu)

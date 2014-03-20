@@ -37,6 +37,7 @@ class Menu(ScoreManagerObject):
         session=None, 
         where=None,
         include_default_hidden_sections=False,
+        name=None,
         should_clear_terminal=False,
         title=None,
         ):
@@ -44,6 +45,7 @@ class Menu(ScoreManagerObject):
         self._menu_sections = []
         if include_default_hidden_sections:
             self._make_default_hidden_sections()
+        self._name = name
         self._should_clear_terminal = should_clear_terminal
         self._title = title
         self.where = where
@@ -76,7 +78,13 @@ class Menu(ScoreManagerObject):
 
         Returns string.
         '''
-        return '<{} ({})>'.format(type(self).__name__, len(self))
+        if self.name:
+            string = '<{} {!r} ({})>'
+            string = string.format(type(self).__name__, self.name, len(self))
+        else:
+            string = '<{} ({})>'
+            string = string.format(type(self).__name__, len(self))
+        return string
 
     ### PRIVATE METHODS ###
 
@@ -376,6 +384,14 @@ class Menu(ScoreManagerObject):
     def _make_section_lines(self):
         result = []
         for menu_section in self.menu_sections:
+#            if not len(menu_section):
+#                message = '{!r} contains {!r}.'
+#                message = message.format(self, menu_section)
+#                raise Exception(message)
+#            if not menu_section.name:
+#                message = '{!r} contains {!r}.'
+#                message = message.format(self, menu_section)
+#                raise Exception(message)
             hide = self._session.hide_hidden_commands
             if hide and menu_section.is_hidden:
                 continue
@@ -501,6 +517,21 @@ class Menu(ScoreManagerObject):
         return self._menu_sections
 
     @property
+    def name(self):
+        r'''Gets menu name.
+
+        ..  container:: example
+
+            ::
+
+                >>> menu.name is None
+                True
+
+        Returns list.
+        '''
+        return self._name
+
+    @property
     def should_clear_terminal(self):
         r'''Is true when menu should clear terminal. Otherwise false.
 
@@ -532,7 +563,7 @@ class Menu(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def make_asset_section(self, menu_entries=None, name=None):
+    def make_asset_section(self, menu_entries=None, name='assets'):
         r'''Makes asset section.
 
         With these attributes:
@@ -543,7 +574,6 @@ class Menu(ScoreManagerObject):
 
         Returns menu section.
         '''
-        name = name or 'assets'
         section = self._make_section(
             is_asset_section=True,
             is_numbered=True,
