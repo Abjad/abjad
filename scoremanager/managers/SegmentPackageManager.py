@@ -29,6 +29,10 @@ class SegmentPackageManager(PackageManager):
         return self._space_delimited_lowercase_name
 
     @property
+    def _make_module_path(self):
+        return os.path.join(self._path, '__make__.py')
+
+    @property
     def _output_lilypond_file_path(self):
         return os.path.join(self._path, 'output.ly')
         
@@ -59,17 +63,20 @@ class SegmentPackageManager(PackageManager):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
+            'dmi': self.interpret_definition_module,
             'E': self.edit_definition_module_from_top,
             'e': self.edit_definition_module,
             'lyi': self.interpret_current_lilypond_file,
             'lyv': self.view_current_output_ly,
             'lyver': self.view_versioned_output_ly,
+            'mmi': self.interpret_make_module,
+            'mms': self.write_make_module_stub,
+            'mmv': self.view_make_module,
             'pdfv': self.view_output_pdf,
             'vv': self.view_all_versioned_pdfs,
             'pdfver': self.view_versioned_output_pdf,
             'pyver': self.view_versioned_definition_module,
             'pdfs': self.save_to_versions_directory,
-            'dmi': self.interpret_definition_module,
             'vrl': self.list_versions_directory,
             })
         return result
@@ -124,11 +131,12 @@ class SegmentPackageManager(PackageManager):
         superclass = super(SegmentPackageManager, self)
         where = self._where
         menu = superclass._make_main_menu(where=where)
-        self._make_directory_menu_section(menu)
-        self._make_definition_module_menu_section(menu)
-        self._make_current_pdf_menu_section(menu)
-        self._make_versioned_pdfs_menu_section(menu)
         self._make_current_lilypond_file_menu_section(menu)
+        self._make_current_pdf_menu_section(menu)
+        self._make_definition_module_menu_section(menu)
+        self._make_directory_menu_section(menu)
+        self._make_make_module_menu_section(menu)
+        self._make_versioned_pdfs_menu_section(menu)
         self._make_versions_directory_menu_section(menu)
         return menu
 
@@ -137,6 +145,14 @@ class SegmentPackageManager(PackageManager):
         section.append(('definition module - edit', 'e'))
         section.append(('definition module - edit at top', 'E'))
         section.append(('definition module - interpret', 'dmi'))
+        return section
+
+    def _make_make_module_menu_section(self, menu):
+        section = menu.make_command_section(name='make module')
+        if os.path.isfile(self._make_module_path):
+            section.append(('make module - interpret', 'mmi'))
+            section.append(('make module - view', 'mmv'))
+        section.append(('make module - stub', 'mms'))
         return section
 
     def _make_versioned_pdfs_menu_section(self, menu):
@@ -243,6 +259,26 @@ class SegmentPackageManager(PackageManager):
             new_modification_time = os.path.getmtime(output_pdf_file_path)
         if modification_time < new_modification_time and view_asset_pdf:
             self.view_output_pdf()
+
+    def interpret_make_module(self, prompt=True):
+        r'''Interprets __make__ module.
+
+        Creates output.pdf and output.ly files.
+
+        Returns none.
+        '''
+        from scoremanager import managers
+        if not os.path.isfile(self._make_module_path):
+            message = 'no __make__ module found.'
+            self._io_manager.proceed(message, prompt=prompt)
+            return
+        manager = managers.FileManager(
+            path=self._make_module_path,
+            session=self._session,
+            )
+        manager._interpret(prompt=False)
+        message = 'created output.pdf and output.ly files.'
+        self._io_manager.proceed(message, prompt=prompt)
 
     def list_versions_directory(self):
         r'''Lists versions directory.
@@ -422,6 +458,13 @@ class SegmentPackageManager(PackageManager):
         if os.path.isfile(file_path):
             self._io_manager.view(file_path)
 
+    def view_make_module(self):
+        r'''Views __make__ module.
+
+        Returns none.
+        '''
+        self._io_manager.view(self._make_module_path)
+
     def view_output_pdf(self):
         r'''Views output PDF.
 
@@ -452,24 +495,46 @@ class SegmentPackageManager(PackageManager):
         '''
         self._view_versioned_file('.py')
 
-    def write_initializer(self):
-        r'''Writes initializer to disk.
-
-        Returns none.
-        '''
-        if not os.path.exists(self._initializer_file_path):
-            file_pointer = file(self._initializer_file_path, 'w')
-            file_pointer.write('')
-            file_pointer.close()
-
     def write_definition_module(self):
         r'''Write definition module to disk.
 
         Returns none.
         '''
         if not os.path.exists(self._definition_module_path):
-            file_pointer = file(self._definition_module_path, 'w')
-            file_pointer.write(self._unicode_directive + '\n')
-            file_pointer.write('from abjad import *\n')
-            file_pointer.write('\n\n')
-            file_pointer.close()
+            with file(self._definition_module_path, 'w') as file_pointer:
+                file_pointer.write(self._unicode_directive + '\n')
+                file_pointer.write('from abjad import *\n')
+                file_pointer.write('\n\n')
+
+    def write_initializer(self):
+        r'''Writes initializer to disk.
+
+        Returns none.
+        '''
+        if not os.path.exists(self._initializer_file_path):
+            with file(self._initializer_file_path, 'w') as file_pointer:
+                file_pointer.write('')
+
+    def write_make_module_stub(self):
+        r'''Writes __make__ module stub to disk.
+
+        Returns none.
+        '''
+        lines = []
+        lines.append(self._unicode_directive)
+        lines.append('import os')
+        lines.append(self._abjad_import_statement)
+        lines.append('from definition import segment_maker')
+        lines.append('')
+        lines.append('')
+        lines.append('lilypond_file = segment_maker()')
+        lines.append('current_directory = os.path.dirname(__file__)')
+        line = "ly_file_path = os.path.join(current_directory, 'output.ly')"
+        lines.append(line)
+        lines.append('persist(lilypond_file).as_ly(ly_file_path)')
+        line = "pdf_file_path = os.path.join(current_directory, 'output.pdf')"
+        lines.append(line)
+        lines.append('persist(lilypond_file).as_pdf(pdf_file_path)')
+        contents = '\n'.join(lines)
+        with file(self._make_module_path, 'w') as file_pointer:
+            file_pointer.write(contents)

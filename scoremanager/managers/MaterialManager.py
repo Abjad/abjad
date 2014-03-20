@@ -757,8 +757,8 @@ class MaterialManager(PackageManager):
         # TODO: test success and message accordingly
         manager._interpret(prompt=False)
         manager._remove()
-        message = 'created illustration.pdf and illustration.ly.'
-        self._io_manager.proceed(message)
+        message = 'created illustration.pdf and illustration.ly files.'
+        self._io_manager.proceed(message, prompt=prompt)
 
     def interpret_illustrate_module(self, prompt=True):
         r'''Runs Python on illustrate module module.

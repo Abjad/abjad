@@ -18,6 +18,10 @@ class Controller(ScoreManagerObject):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _abjad_import_statement(self):
+        return 'from abjad import *'
+
+    @property
     def _unicode_directive(self):
         return '# -*- encoding: utf-8 -*-'
 

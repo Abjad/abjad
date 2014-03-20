@@ -201,3 +201,9 @@
     It might make sense to have an 'illustration ly - check (lyc)' command.
     And in general verify commands for every system artifact that can
     be interpreted.
+
+43. Audit all file() statements and write with 'with'.
+    Also make sure the pattern is lines first and only one
+    file_pointer.write() call at the end, preceded by '\n'.join(lines).
+
+44. Replace 'from abjad import *' with self._abjad_import_statement.
