@@ -196,7 +196,3 @@
     and 'materials - tour previous (mtp)'.
 
 44. Change (**v) view commands to (**ro) read-only commands.
-
-45. Add Menu.make_material_summary() section.
-    These can be empty of entries. Or maybe the stuff that's currently
-    in title lines can be in entries instead.

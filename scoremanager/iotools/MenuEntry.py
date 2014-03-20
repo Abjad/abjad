@@ -50,7 +50,7 @@ class MenuEntry(AbjadObject):
             'test',
             'zzz - done',
             )
-        if not menu_section.is_asset_section:
+        if menu_section.is_command_section:
             if not menu_section.name in prototype_names:
                 assert '-' in display_string, repr(menu_section)
         self._menu_section = menu_section

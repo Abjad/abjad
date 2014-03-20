@@ -388,8 +388,7 @@ class Menu(ScoreManagerObject):
     def _make_section_lines(self):
         result = []
         for menu_section in self.menu_sections:
-            if not len(menu_section) and \
-                not menu_section.name == 'material summary':
+            if not len(menu_section):
                 message = '{!r} contains {!r}.'
                 message = message.format(self, menu_section)
                 raise Exception(message)
@@ -568,7 +567,11 @@ class Menu(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def make_asset_section(self, menu_entries=None, name='assets'):
+    def make_asset_section(
+        self, 
+        menu_entries=None, 
+        name='assets',
+        ):
         r'''Makes asset section.
 
         With these attributes:
@@ -613,7 +616,6 @@ class Menu(ScoreManagerObject):
         self,
         is_hidden=False,
         default_index=None,
-        #match_on_display_string=True,
         match_on_display_string=False,
         menu_entries=None,
         name=None,
@@ -658,6 +660,27 @@ class Menu(ScoreManagerObject):
             is_numbered=is_numbered,
             name=name,
             return_value_attribute='key',
+            )
+        return section
+
+    def make_material_summary_section(
+        self, 
+        menu_entries=None, 
+        name='material summary',
+        ):
+        r'''Makes asset section.
+
+        With these attributes:
+
+            * is not numbered
+            * return value set to explicit
+
+        Returns menu section.
+        '''
+        section = self._make_section(
+            is_numbered=False,
+            name=name,
+            return_value_attribute='explicit',
             )
         return section
 

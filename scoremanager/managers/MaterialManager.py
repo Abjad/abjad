@@ -501,10 +501,9 @@ class MaterialManager(PackageManager):
         target_summary_lines = editor._target_summary_lines
         if not target_summary_lines:
             return
-        section = menu.make_attribute_section(
-            name='material summary',
-            title=target_summary_lines,
-            )
+        section = menu.make_material_summary_section()
+        for line in target_summary_lines:
+            section.append(line)
         return section
 
     def _make_output_module_body_lines(self, output_material):
