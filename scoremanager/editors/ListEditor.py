@@ -148,7 +148,7 @@ class ListEditor(Editor):
                 return
             if self.item_class:
                 if isinstance(item_initialization_token, str):
-                    exec('from abjad import *')
+                    exec(self._abjad_import_statement)
                     try:
                         expression = eval(item_initialization_token)
                     except (NameError, SyntaxError):

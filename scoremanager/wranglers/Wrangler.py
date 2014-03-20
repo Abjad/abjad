@@ -748,7 +748,7 @@ class Wrangler(Controller):
         view_inventory[view_name] = new_view
         lines = []
         lines.append(self._unicode_directive + '\n')
-        lines.append('from abjad import *\n')
+        lines.append(self._abjad_import_statement + '\n')
         line = 'from scoremanager import iotools\n'
         lines.append(line)
         lines.append('\n\n')

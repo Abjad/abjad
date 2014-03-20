@@ -234,11 +234,15 @@ class MaterialManager(PackageManager):
             )
         spaced_attribute_name = key.replace('_', ' ')
         message = "value for '{}' must satisfy " + test.__name__ + '().'
+        setup_statements =(
+            self._abjad_import_statement, 
+            setup_statement,
+            )
         getter._make_prompt(
             spaced_attribute_name,
             help_template=message,
             validation_function=test,
-            setup_statements=['from abjad import *', setup_statement],
+            setup_statements=setup_statements,
             default_value=default_value,
             )
         new_value = getter._run()
@@ -526,7 +530,7 @@ class MaterialManager(PackageManager):
         lines = []
         lines.append(self._unicode_directive)
         lines.append('import os')
-        lines.append('from abjad import *')
+        lines.append(self._abjad_import_statement)
         line = 'from output import {}'
         line = line.format(self._material_package_name)
         lines.append(line)
@@ -624,7 +628,7 @@ class MaterialManager(PackageManager):
     def _write_user_input_wrapper(self, wrapper):
         lines = []
         lines.append(self._unicode_directive + '\n')
-        lines.append('from abjad import *\n')
+        lines.append(self._abjad_import_statement + '\n')
         import_statements = wrapper.user_input_module_import_statements[:]
         import_statements = \
             stringtools.add_terminal_newlines(import_statements)
@@ -998,7 +1002,7 @@ class MaterialManager(PackageManager):
         material_package_path = self._package_path
         material_package_name = material_package_path.split('.')[-1]
         lines = []
-        lines.append('from abjad import *\n')
+        lines.append(self._abjad_import_statement + '\n')
         line = 'from {}.output import {}\n'
         line = line.format(material_package_path, material_package_name)
         lines.append(line)
@@ -1048,7 +1052,7 @@ class MaterialManager(PackageManager):
         '''
         lines = []
         lines.append(self._unicode_directive + '\n')
-        lines.append('from abjad import *\n')
+        lines.append(self._abjad_import_statement + '\n')
         lines.append('output_module_import_statements = []')
         lines.append('\n\n\n')
         line = '{} = None'.format(self._material_package_name)

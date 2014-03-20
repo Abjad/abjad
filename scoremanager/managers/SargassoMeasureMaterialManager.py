@@ -17,7 +17,7 @@ class SargassoMeasureMaterialManager(MaterialManager):
         superclass.__init__(path=path, session=session)
         self._generic_output_name = 'sargasso measures'
         self._output_module_import_statements = [
-            'from abjad import *',
+            self._abjad_import_statement,
             ]
         wrapper = self._initialize_user_input_wrapper_in_memory()
 
@@ -274,7 +274,7 @@ class SargassoMeasureMaterialManager(MaterialManager):
 
         Returns list of strings.
         '''
-        return ['from abjad import *']
+        return [self._abjad_import_statement]
 
     @property
     def user_input_tests(self):

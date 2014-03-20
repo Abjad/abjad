@@ -14,7 +14,7 @@ class PitchRangeInventoryMaterialManager(MaterialManager):
         superclass.__init__(path=path, session=session)
         self._generic_output_name = 'pitch range inventory'
         self._output_module_import_statements = [
-            'from abjad import *',
+            self._abjad_import_statement,
             ]
 
     ### SPECIAL METHODS ###

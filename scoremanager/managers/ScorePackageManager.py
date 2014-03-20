@@ -445,7 +445,7 @@ class ScorePackageManager(PackageManager):
         assert instrumentation is not None
         lines = []
         lines.append(self._unicode_directive + '\n')
-        lines.append('from abjad import *\n')
+        lines.append(self._abjad_import_statement + '\n')
         lines.append('\n\n')
         line = 'instrumentation={}'
         line = line.format(format(instrumentation))
@@ -552,7 +552,7 @@ class ScorePackageManager(PackageManager):
             if not prompt or self._io_manager.confirm(message):
                 with file(self._metadata_module_path, 'w') as metadata_module:
                     metadata_module.write(self._unicode_directive + '\n')
-                    metadata_module.write('from abjad import *\n')
+                    metadata_module.write(self._abjad_import_statement + '\n')
                     metadata_module.write('import collections\n')
                     metadata_module.write('\n')
                     metadata_module.write('\n')
