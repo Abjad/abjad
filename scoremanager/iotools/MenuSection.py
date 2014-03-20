@@ -42,6 +42,7 @@ class MenuSection(AbjadObject):
         return_value_attribute='display_string',
         default_index=None,
         indent_level=1,
+        is_alphabetized=True,
         is_asset_section=False,
         is_attribute_section=False,
         is_command_section=False,
@@ -62,6 +63,7 @@ class MenuSection(AbjadObject):
         assert return_value_attribute in self.return_value_attributes
         self._return_value_attribute = return_value_attribute
         self._indent_level = indent_level
+        self._is_alphabetized = is_alphabetized
         self._is_asset_section = is_asset_section
         self._is_attribute_section = is_attribute_section
         self._is_command_section = is_command_section
@@ -256,6 +258,14 @@ class MenuSection(AbjadObject):
         Returns nonnegative integer.
         '''
         return self._indent_level
+
+    @property
+    def is_alphabetized(self):
+        r'''Is true when menu section alphabetizes entries. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._is_alphabetized
 
     @property
     def is_asset_section(self):
@@ -454,5 +464,6 @@ class MenuSection(AbjadObject):
         menu_entry = iotools.MenuEntry(**kwargs)
         self.menu_entries.append(menu_entry)
         if self.is_command_section:
-            self.menu_entries.sort()
+            if self.is_alphabetized:
+                self.menu_entries.sort()
         return menu_entry

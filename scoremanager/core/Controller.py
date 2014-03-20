@@ -144,11 +144,11 @@ class Controller(ScoreManagerObject):
         return section
 
     def _make_material_tour_menu_section(self, menu):
-        section = menu.make_command_section(
-            is_hidden=True,
-            name='go - materials',
-            )
+        section = menu['go - scores']
+        section.menu_entries[:] = []
+        section.append(('go - next score', '>'))
         section.append(('go - next material', '>>'))
+        section.append(('go - previous score', '<'))
         section.append(('go - previous material', '<<'))
         return section
 

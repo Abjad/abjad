@@ -356,6 +356,7 @@ class Menu(ScoreManagerObject):
     def _make_scores_tour_menu_section(self):
         section = self.make_command_section(
             name='go - scores',
+            is_alphabetized=False,
             is_hidden=True,
             )
         section.append(('go - next score', '>'))
@@ -364,6 +365,7 @@ class Menu(ScoreManagerObject):
 
     def _make_section(
         self, 
+        is_alphabetized=False,
         is_asset_section=False,
         is_attribute_section=False,
         is_command_section=False,
@@ -384,6 +386,7 @@ class Menu(ScoreManagerObject):
         assert not (is_numbered and self._has_numbered_section())
         assert not (is_ranged and self._has_ranged_section())
         menu_section = iotools.MenuSection(
+            is_alphabetized=is_alphabetized,
             is_asset_section=is_asset_section,
             is_attribute_section=is_attribute_section,
             is_command_section=is_command_section,
@@ -651,6 +654,7 @@ class Menu(ScoreManagerObject):
 
     def make_command_section(
         self,
+        is_alphabetized=True,
         is_hidden=False,
         default_index=None,
         match_on_display_string=False,
@@ -662,13 +666,15 @@ class Menu(ScoreManagerObject):
         Menu section with these attributes:
 
             * is command section
-            * not hidden
+            * is alphabetized
+            * is not hidden
             * does NOT match on display string
             * return value attribute equal to ``'key'``
 
         Returns menu section.
         '''
         section = self._make_section(
+            is_alphabetized=is_alphabetized,
             is_command_section=True,
             is_hidden=is_hidden,
             default_index=default_index,
