@@ -313,7 +313,8 @@ class ScorePackageManager(PackageManager):
         return False
 
     def _make_instrumentation_menu_section(self, menu):
-        section = menu.make_command_section(name='instrumentation')
+        #section = menu.make_command_section(name='instrumentation')
+        section = menu.make_navigation_section(name='instrumentation')
         section.append(('instrumentation', 'instr'))
         return section
 

@@ -284,7 +284,11 @@ class Menu(ScoreManagerObject):
         return result
 
     def _make_python_menu_section(self):
-        section = self.make_command_section(name='python', is_hidden=True)
+        section = self.make_command_section(
+            name='python', 
+            is_hidden=True,
+            match_on_display_string=False,
+            )
         section.append(('Python - doctest', 'pyd'))
         section.append(('Python - interact', 'pyi'))
         section.append(('Python - test', 'pyt'))
@@ -574,7 +578,8 @@ class Menu(ScoreManagerObject):
         self,
         is_hidden=False,
         default_index=None,
-        match_on_display_string=True,
+        #match_on_display_string=True,
+        match_on_display_string=False,
         menu_entries=None,
         name=None,
         ):
@@ -584,7 +589,7 @@ class Menu(ScoreManagerObject):
 
             * is command section
             * not hidden
-            * match on display string
+            * does NOT match on display string
             * return value attribute equal to ``'key'``
 
         Returns menu section.
