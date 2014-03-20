@@ -66,9 +66,8 @@ def test_MaterialPackageWrangler_make_handmade_material_package_02():
     try:
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
-        file_pointer = file(definition_module_path, 'r')
-        file_lines = file_pointer.readlines()
-        file_pointer.close()
+        with file(definition_module_path, 'r') as file_pointer:
+            file_lines = file_pointer.readlines()
         file_contents = ''.join(file_lines)
         assert file_contents == contents
     finally:

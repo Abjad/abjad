@@ -93,9 +93,8 @@ class FileManager(Manager):
 
     def _make_empty_asset(self, prompt=False):
         if not os.path.exists(self._path):
-            file_reference = file(self._path, 'w')
-            file_reference.write('')
-            file_reference.close()
+            with file(self._path, 'w') as file_pointer:
+                file_pointer.write('')
         self._io_manager.proceed(prompt=prompt)
 
     def _make_file_menu_section(self, menu):
@@ -125,9 +124,8 @@ class FileManager(Manager):
         result = []
         if self._path:
             if os.path.exists(self._path):
-                file_pointer = file(self._path)
-                result.extend(file_pointer.readlines())
-                file_pointer.close()
+                with file(self._path) as file_pointer:
+                    result.extend(file_pointer.readlines())
         return result
 
     def _write(self, string):

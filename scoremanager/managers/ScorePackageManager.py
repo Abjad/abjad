@@ -448,9 +448,9 @@ class ScorePackageManager(PackageManager):
         line = line.format(format(instrumentation))
         lines.append(line)
         file_path = self._get_instrumentation_module_path()
-        file_pointer = file(file_path, 'w')
-        file_pointer.write(''.join(lines))
-        file_pointer.close()
+        contents = ''.join(lines)
+        with file(file_path, 'w') as file_pointer:
+            file_pointer.write(contents)
 
     ### PUBLIC METHODS ###
 
@@ -547,14 +547,14 @@ class ScorePackageManager(PackageManager):
             package_needed_to_be_fixed = True
             message = 'create {}?'.format(self._metadata_module_path)
             if not prompt or self._io_manager.confirm(message):
-                with file(self._metadata_module_path, 'w') as metadata_module:
-                    metadata_module.write(self._unicode_directive + '\n')
-                    metadata_module.write(self._abjad_import_statement + '\n')
-                    metadata_module.write('import collections\n')
-                    metadata_module.write('\n')
-                    metadata_module.write('\n')
+                with file(self._metadata_module_path, 'w') as file_pointer:
+                    file_pointer.write(self._unicode_directive + '\n')
+                    file_pointer.write(self._abjad_import_statement + '\n')
+                    file_pointer.write('import collections\n')
+                    file_pointer.write('\n')
+                    file_pointer.write('\n')
                     string = 'metadata = collections.OrderedDict([])\n'
-                    metadata_module.write(string)
+                    file_pointer.write(string)
         return package_needed_to_be_fixed
 
     def remove_score_package(self):

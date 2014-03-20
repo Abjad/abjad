@@ -762,8 +762,7 @@ class Wrangler(Controller):
         lines.append(line)
         lines = ''.join(lines)
         view_file_path = self._views_module_path
-        file_pointer = file(view_file_path, 'w')
-        file_pointer.write(lines)
-        file_pointer.close()
+        with file(view_file_path, 'w') as file_pointer:
+            file_pointer.write(lines)
         message = 'view written to disk.'
         self._io_manager.proceed(message, prompt=prompt)

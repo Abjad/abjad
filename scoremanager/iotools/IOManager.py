@@ -54,6 +54,10 @@ class IOManager(IOManager):
             self.__score_package_wrangler = wrangler
         return self.__score_package_wrangler
 
+    @property
+    def _unicode_directive(self):
+        return '# -*- encoding: utf-8 -*-'
+
     ### PRIVATE METHODS ###
 
     def _assign_user_input(self, pending_user_input=None):
@@ -221,7 +225,8 @@ class IOManager(IOManager):
     def _read_cache(self):
         start_menu_entries = []
         if os.path.exists(self._configuration.cache_file_path):
-            with file(self._configuration.cache_file_path, 'r') as file_pointer:
+            path = self._configuration.cache_file_path
+            with file(path, 'r') as file_pointer:
                 cache_lines = file_pointer.read()
             try:
                 exec(cache_lines)
@@ -623,7 +628,7 @@ class IOManager(IOManager):
         Returns none.
         '''
         lines = []
-        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append(self._unicode_directive + '\n')
         lines.append('\n\n')
         lines.append('start_menu_entries = [\n')
         wrangler = self._score_package_wrangler
@@ -636,10 +641,9 @@ class IOManager(IOManager):
             lines.append('{},\n'.format(menu_entry))
         lines.append(']\n')
         cache_file_path = self._configuration.cache_file_path
-        cache_file_pointer = file(cache_file_path, 'w')
-        lines = ''.join(lines)
-        cache_file_pointer.write(lines)
-        cache_file_pointer.close()
+        with file(cache_file_path, 'w') as cache_file_pointer:
+            lines = ''.join(lines)
+            cache_file_pointer.write(lines)
         if prompt:
             message = 'cache written.'
             self.proceed(message)

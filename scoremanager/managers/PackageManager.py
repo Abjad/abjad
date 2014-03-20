@@ -176,9 +176,8 @@ class PackageManager(DirectoryManager):
         metadata_lines = self._make_metadata_lines(metadata) 
         lines.extend(metadata_lines)
         lines = ''.join(lines)
-        file_pointer = file(self._metadata_module_path, 'w')
-        file_pointer.write(lines)
-        file_pointer.close()
+        with file(self._metadata_module_path, 'w') as file_pointer:
+            file_pointer.write(lines)
 
     ### PUBLIC METHODS ###
 

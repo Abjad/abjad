@@ -72,9 +72,8 @@ class DirectoryManager(Manager):
             os.makedirs(self._path)
             if self._is_in_git_repository(self._path):
                 file_path = os.path.join(self._path, '.gitignore')
-                file_pointer = file(file_path, 'w')
-                file_pointer.write('')
-                file_pointer.close()
+                with file(file_path, 'w') as file_pointer:
+                    file_pointer.write('')
         self._io_manager.proceed(prompt=prompt)
 
     def _make_main_menu(self, name='directory manager'):

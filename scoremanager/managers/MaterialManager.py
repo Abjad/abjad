@@ -647,9 +647,8 @@ class MaterialManager(PackageManager):
         formatted_lines = stringtools.add_terminal_newlines(formatted_lines)
         lines.extend(formatted_lines)
         lines = ''.join(lines)
-        file_pointer = file(self._user_input_module_path, 'w')
-        file_pointer.write(lines)
-        file_pointer.close()
+        with file(self._user_input_module_path, 'w') as file_pointer:
+            file_pointer.write(lines)
 
     ### PUBLIC METHODS ###
 
@@ -1067,9 +1066,8 @@ class MaterialManager(PackageManager):
         line = '{} = None'.format(self._material_package_name)
         lines.append(line)
         lines = ''.join(lines)
-        file_pointer = file(self._definition_module_path, 'w')
-        file_pointer.write(lines)
-        file_pointer.close()
+        with file(self._definition_module_path, 'w') as file_pointer:
+            file_pointer.write(lines)
 
     def write_output_material(
         self,
