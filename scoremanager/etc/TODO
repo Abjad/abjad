@@ -35,86 +35,70 @@
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-14. Find a way to get rid of the ...
-
-    if __name__ == '__main__':
-        segment = Segment()
-        lilypond_file = segment()
-        current_directory_path = os.path.dirname(__file__)
-        systemtools.log_render_lilypond_input(
-            lilypond_file,
-            output_directory_path=current_directory_path,
-            output_file_name_root='output',
-            )
-
-    ... at the bottom of each segment definition file.
-    There should be a way to call a prebuilt external script
-    that does exactly the same thing.
-
-15. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+14. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-16. Note that ArticulationHandlerMaterialManager implementation is limited
+15. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
 
-17. Implement 'segments - tour next' and 'segment - tour previous' commands.
+16. Implement 'segments - tour next' and 'segment - tour previous' commands.
     Maybe generalied 'material - tour' and 'segments - tour' to
     just 'asset - tour'.
 
-18. Implement an 'all whatever - edit' command.
+17. Implement an 'all whatever - edit' command.
 
-19. Write view tests. Start with segment wrangler.
+18. Write view tests. Start with segment wrangler.
 
-20. Remove user/score_manager_library/material_package_managers/ in 
+19. Remove user/score_manager_library/material_package_managers/ in 
     favor of user/score_manager_library/material_managers/
 
-21. Change user/score_manager_library/material_packages/
+20. Change user/score_manager_library/material_packages/
     to user/score_manager_library/materials/.
 
-22. Remove 'whatever - make' commands. Reimplement as 'source - interpret'.
+21. Remove 'whatever - make' commands. Reimplement as 'source - interpret'.
 
-23. Add command to type arbitrary shell command to current working directory.
+22. Add command to type arbitrary shell command to current working directory.
     Maybe 'directory - run (run)' of follow Vim with !ls, !pwd and so on.
 
-24. Search for 'whatever_section = menu.make_*_section()' and
+23. Search for 'whatever_section = menu.make_*_section()' and
     change to 'section = menu.make_*_section()' everywhere.
 
-25. Extend Manager._remove() to use 'trash' if command is found.
+24. Extend Manager._remove() to use 'trash' if command is found.
 
-26. Implement NaiveCache decorator in systemtools.
+25. Implement NaiveCache decorator in systemtools.
     Apply to ScorePackageManager._maker_module_wrangler,
     ScorePackageManager._material_manager_wrangler, etc.
     Maybe the 'lru' decorator works for this already.
 
-27. Make ScorePackageManager create missing top-level directories
+26. Make ScorePackageManager create missing top-level directories
     during initialization. Run tests before and after change to check
     for any noticeable slowdown.
 
-28. Make (ls) work in stylesheets menu. So (score > y > ls).
+27. Make (ls) work in stylesheets menu. So (score > y > ls).
 
-29. Fix Wrangler._read_view_inventory_from_disk() line 305:
+28. Fix Wrangler._read_view_inventory_from_disk() line 305:
         assert len(result) == 1
     TypeError: boject of type 'NoneType' has no len()
     Use (tra > g) to induce bug.
 
-30. Add (lytr) for 'lilypond ly - trash'. This will work together
+29. Add (lytr) for 'lilypond ly - trash'. This will work together
     with (lyrm) for 'lilypond ly - remove'. The difference will be
     that (lyrm) will (try to) act on the repository where (lytr) will
     only ever work on the filesystem.
 
-31. Change Manager.add(), Manager.commit(), Manager.update()
+30. Change Manager.add(), Manager.commit(), Manager.update()
     to Manager.add_to_repository(), Manager.commit_to_repository(),
     Manager.update_from_repository().
 
-32. Write Manager.revert_from_repository() test.
+31. Write Manager.revert_from_repository() test.
     One for Git. One for Subversion.
 
-33. Write py.test tests for the following properties and methods:
+32. Write py.test tests for the following properties and methods:
         Manager._repository_add_command
         Manager._repository_status_command
         Manager._get_added_asset_paths()
@@ -122,21 +106,21 @@
         Manager._get_repository_root_directory()
         Manager._is_up_to_date()
 
-34. Change (lmm) and (lmy) to just (m) and (y).
+33. Change (lmm) and (lmy) to just (m) and (y).
 
-35. Make (ssl > rst) work. Right now it induces a bug.
+34. Make (ssl > rst) work. Right now it induces a bug.
     But note that (ssv > rst) works fine.
 
-36. Hoist metadata-related commands from PackageManager up to
+35. Hoist metadata-related commands from PackageManager up to
     DirectoryManager.
 
-37. Change this menu title ...
+36. Change this menu title ...
         Score manager - material library - tempo inventory
     ... to this ...
         Score manager - material library - tempo inventory (Red Example Score)
     ... with the annotated score title.
 
-38. Change this segments menu ...
+37. Change this segments menu ...
 
         Red Example Score (2013) - segments
 
@@ -154,17 +138,17 @@
 
     ... without the annotated score title.
 
-39. Change this message ...
+38. Change this message ...
         Created illustration.pdf and illustration.ly. 
     ... to ...
         Created illustration.pdf and illustration.ly files.
     ... instead.
 
-40. Hide the one-element illustrate menu ...
+39. Hide the one-element illustrate menu ...
         'illustrate module - stub (ims)' 
     ... unless an __illustrate__.py module already exists in material package.
 
-41. Change this material menu ...
+40. Change this material menu ...
 
     Red Example Score (2013) - materials - tempo inventory
 
@@ -192,7 +176,7 @@
 
     ... with asterisks to mark entries in the material summary menu section.
 
-42. Add 'output module - check (omc)' command.
+41. Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
@@ -202,17 +186,17 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-43. Audit all file() statements and write with 'with'.
+42. Audit all file() statements and write with 'with'.
     Also make sure the pattern is lines first and only one
     file_pointer.write() call at the end, preceded by '\n'.join(lines).
 
-44. Change 'scores - tour next (stn)' and 'score - tour previous (stp)'
+43. Change 'scores - tour next (stn)' and 'score - tour previous (stp)'
     to single-key aliases. The principle should be that navigation commands
     are generally single-key. Same with 'materials - tour next (mtn)'
     and 'materials - tour previous (mtp)'.
 
-45. Change (**v) view commands to (**ro) read-only commands.
+44. Change (**v) view commands to (**ro) read-only commands.
 
-46. Add Menu.make_material_summary() section.
+45. Add Menu.make_material_summary() section.
     These can be empty of entries. Or maybe the stuff that's currently
     in title lines can be in entries instead.
