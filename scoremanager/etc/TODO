@@ -207,3 +207,11 @@
     file_pointer.write() call at the end, preceded by '\n'.join(lines).
 
 44. Replace 'from abjad import *' with self._abjad_import_statement.
+
+45. Change 'scores - tour next (stn)' and 'score - tour previous (stp)'
+    to single-key aliases. The principle should be that navigation commands
+    are generally single-key. Same with 'materials - tour next (mtn)'
+    and 'materials - tour previous (mtp)'.
+
+46. Write code in Menu to make sure there are no zero-length menu sections.
+    At display time or render time or at some other time.
