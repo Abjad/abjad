@@ -345,6 +345,7 @@ class Menu(ScoreManagerObject):
         is_attribute_section=False,
         is_command_section=False,
         is_hidden=False, 
+        is_navigation=False,
         is_numbered=False, 
         is_ranged=False, 
         display_prepopulated_values=False,
@@ -363,6 +364,7 @@ class Menu(ScoreManagerObject):
             is_attribute_section=is_attribute_section,
             is_command_section=is_command_section,
             is_hidden=is_hidden,
+            is_navigation=is_navigation,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
             display_prepopulated_values=display_prepopulated_values,
@@ -377,7 +379,7 @@ class Menu(ScoreManagerObject):
         self.menu_sections.sort(key=lambda x: x.name)
         noncommand_sections = [
             x for x in self.menu_sections
-            if not x.is_command_section
+            if (not x.is_command_section and not x.is_navigation_section)
             ]
         for noncommand_section in noncommand_sections:
             self.menu_sections.remove(noncommand_section)
@@ -695,6 +697,7 @@ class Menu(ScoreManagerObject):
 
         Menu section with these attributes:
 
+            * is navigation section
             * not hidden
             * match on display string
             * return value attribute equal to ``'key'``
@@ -703,6 +706,7 @@ class Menu(ScoreManagerObject):
         '''
         section = self._make_section(
             is_hidden=is_hidden,
+            is_navigation=True,
             match_on_display_string=match_on_display_string,
             name=name,
             return_value_attribute='key',

@@ -39,16 +39,11 @@ class MenuEntry(AbjadObject):
         explicit_return_value=None,
         ):
         prototype_names = (
-            'done',
-            'keyed attributes',
-            'keyed attribute section',
-            'instrumentation',
             'main',
             'numbered section',
             'pitch range',
             'setup',
             'test',
-            'zzz - done',
             )
         if menu_section.is_command_section:
             if not menu_section.name in prototype_names:
