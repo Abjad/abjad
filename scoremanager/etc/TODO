@@ -131,3 +131,37 @@
 
 37. Hoist metadata-related commands from PackageManager up to
     DirectoryManager.
+
+38. Change this menu title ...
+        Score manager - material library - tempo inventory
+    ... to this ...
+        Score manager - material library - tempo inventory (Red Example Score)
+    ... with the annotated score title.
+
+39. Change this segments menu ...
+
+        Red Example Score (2013) - segments
+
+            1: segment 01 (Red Example Score)
+            2: segment 02 (Red Example Score)
+            3: segment 03 (Red Example Score)
+
+    ... to this ...
+
+        Red Example Score (2013) - segments
+
+            1: segment 01
+            2: segment 02
+            3: segment 03
+
+    ... without the annotated score title.
+
+40. Change this message ...
+        Created illustration.pdf and illustration.ly. 
+    ... to ...
+        Created illustration.pdf and illustration.ly files.
+    ... instead.
+
+41. Hide the one-element illustrate menu ...
+        'illustrate module - stub (ims)' 
+    ... unless an __illustrate__.py module already exists in material package.
