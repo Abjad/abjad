@@ -193,3 +193,15 @@
         illustration ly - view (lyv)
 
     ... with asterisks to mark entries in the material summary menu section.
+
+43. Add 'output module - interpret (omi)' command.
+    The command will simply call Python on output.py and print
+    anything returned by traceback.print_exc(). Should probably
+    also return true on success and false on failure so the command
+    can be mapped to many material packages at once and so that
+    aggregated reporting can be given afterwards.
+
+44. Write check to ensure that command sections never match on display string.
+
+45. Write test to make sure that 'pyt' actually does what it should
+    in some directory small enough to test on.
