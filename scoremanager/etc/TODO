@@ -201,7 +201,5 @@
     can be mapped to many material packages at once and so that
     aggregated reporting can be given afterwards.
 
-44. Write check to ensure that command sections never match on display string.
-
-45. Write test to make sure that 'pyt' actually does what it should
+44. Write test to make sure that 'pyt' actually does what it should
     in some directory small enough to test on.
