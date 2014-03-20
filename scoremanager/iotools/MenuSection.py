@@ -46,7 +46,8 @@ class MenuSection(AbjadObject):
         is_attribute_section=False,
         is_command_section=False,
         is_hidden=False,
-        is_navigation=False,
+        is_material_summary_section=False,
+        is_navigation_section=False,
         is_numbered=False,
         is_ranged=False,
         display_prepopulated_values=False,
@@ -65,7 +66,8 @@ class MenuSection(AbjadObject):
         self._is_attribute_section = is_attribute_section
         self._is_command_section = is_command_section
         self._is_hidden = is_hidden
-        self._is_navigation = is_navigation
+        self._is_material_summary_section = is_material_summary_section
+        self._is_navigation_section = is_navigation_section
         self._is_numbered = is_numbered
         self._is_ranged = is_ranged
         self._display_prepopulated_values = display_prepopulated_values
@@ -294,6 +296,20 @@ class MenuSection(AbjadObject):
         return self._is_hidden
 
     @property
+    def is_material_summary_section(self):
+        r'''Is true when menu section is material summary section. 
+        Otherwise false:
+
+        ::
+
+            >>> section.is_material_summary_section
+            False
+
+        Returns boolean.
+        '''
+        return self._is_material_summary_section
+
+    @property
     def is_navigation_section(self):
         r'''Is true when menu section is navigation section. 
         Otherwise false:
@@ -305,7 +321,7 @@ class MenuSection(AbjadObject):
 
         Returns boolean.
         '''
-        return self._is_navigation
+        return self._is_navigation_section
 
     @property
     def is_numbered(self):

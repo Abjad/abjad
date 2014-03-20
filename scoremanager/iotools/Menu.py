@@ -158,7 +158,11 @@ class Menu(ScoreManagerObject):
         menu_lines = []
         for menu_section in self.menu_sections:
             #print repr(menu_section), 'SECTION'
-            if not menu_section.is_command_section:
+            #if not menu_section.is_command_section:
+            #    continue
+            if menu_section.is_asset_section:
+                continue
+            if menu_section.is_material_summary_section:
                 continue
             for menu_entry in menu_section.menu_entries:
                 key = menu_entry.key
@@ -345,7 +349,8 @@ class Menu(ScoreManagerObject):
         is_attribute_section=False,
         is_command_section=False,
         is_hidden=False, 
-        is_navigation=False,
+        is_material_summary_section=False,
+        is_navigation_section=False,
         is_numbered=False, 
         is_ranged=False, 
         display_prepopulated_values=False,
@@ -364,7 +369,8 @@ class Menu(ScoreManagerObject):
             is_attribute_section=is_attribute_section,
             is_command_section=is_command_section,
             is_hidden=is_hidden,
-            is_navigation=is_navigation,
+            is_material_summary_section=is_material_summary_section,
+            is_navigation_section=is_navigation_section,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
             display_prepopulated_values=display_prepopulated_values,
@@ -674,12 +680,14 @@ class Menu(ScoreManagerObject):
 
         With these attributes:
 
+            * is material summary section
             * is not numbered
             * return value set to explicit
 
         Returns menu section.
         '''
         section = self._make_section(
+            is_material_summary_section=True,
             is_numbered=False,
             name=name,
             return_value_attribute='explicit',
@@ -706,7 +714,7 @@ class Menu(ScoreManagerObject):
         '''
         section = self._make_section(
             is_hidden=is_hidden,
-            is_navigation=True,
+            is_navigation_section=True,
             match_on_display_string=match_on_display_string,
             name=name,
             return_value_attribute='key',
