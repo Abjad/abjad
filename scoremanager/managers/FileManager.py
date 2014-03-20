@@ -50,7 +50,7 @@ class FileManager(Manager):
         file_pointer.close()
         try:
             exec(file_contents_string)
-        except Exception:
+        except:
             traceback.print_exc()
             return
         result = []

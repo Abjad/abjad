@@ -16,6 +16,7 @@ class ObjectInventoryEditor(ListEditor):
     @property
     def _target_summary_lines(self):
         result = []
-        for item in self.target:
-            result.append(repr(item))
+        if self.target is not None:
+            for item in self.target:
+                result.append(repr(item))
         return result
