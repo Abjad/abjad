@@ -388,10 +388,10 @@ class Menu(ScoreManagerObject):
 #                message = '{!r} contains {!r}.'
 #                message = message.format(self, menu_section)
 #                raise Exception(message)
-#            if not menu_section.name:
-#                message = '{!r} contains {!r}.'
-#                message = message.format(self, menu_section)
-#                raise Exception(message)
+            if not menu_section.name:
+                message = '{!r} contains {!r}.'
+                message = message.format(self, menu_section)
+                raise Exception(message)
             hide = self._session.hide_hidden_commands
             if hide and menu_section.is_hidden:
                 continue
