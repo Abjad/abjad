@@ -63,7 +63,6 @@ class SegmentPackageManager(PackageManager):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'dmi': self.interpret_definition_module,
             'E': self.edit_definition_module_from_top,
             'e': self.edit_definition_module,
             'lyi': self.interpret_current_lilypond_file,
@@ -144,7 +143,6 @@ class SegmentPackageManager(PackageManager):
         section = menu.make_command_section(name='definition module')
         section.append(('definition module - edit', 'e'))
         section.append(('definition module - edit at top', 'E'))
-        section.append(('definition module - interpret', 'dmi'))
         return section
 
     def _make_make_module_menu_section(self, menu):
@@ -235,31 +233,6 @@ class SegmentPackageManager(PackageManager):
         if not manager:
             return
         manager.edit(line_number=1)
-
-    def interpret_definition_module(
-        self,
-        prompt=True,
-        view_asset_pdf=True,
-        ):
-        r'''Makes asset PDF.
-
-        Returns none.
-        '''
-        output_pdf_file_path = self._output_pdf_file_path
-        modification_time = 0
-        if os.path.isfile(output_pdf_file_path):
-            modification_time = os.path.getmtime(output_pdf_file_path)
-        manager = self._definition_module_manager
-        if not manager:
-            return
-        manager._interpret(prompt=prompt)
-        if not view_asset_pdf:
-            return
-        new_modification_time = 0
-        if os.path.isfile(output_pdf_file_path):
-            new_modification_time = os.path.getmtime(output_pdf_file_path)
-        if modification_time < new_modification_time and view_asset_pdf:
-            self.view_output_pdf()
 
     def interpret_make_module(self, prompt=True):
         r'''Interprets __make__ module.
