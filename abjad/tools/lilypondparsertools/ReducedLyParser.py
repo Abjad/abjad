@@ -348,7 +348,9 @@ class ReducedLyParser(abctools.Parser):
     def p_measure__PIPE__FRACTION__component_list__PIPE(self, p):
         r'''measure : PIPE FRACTION component_list PIPE
         '''
-        p[0] = scoretools.Measure(p[2].pair)
+        measure = scoretools.Measure(p[2].pair)
+        measure.automatically_adjust_time_signature = True
+        p[0] = measure
         for x in p[3]:
             p[0].append(x)
 
