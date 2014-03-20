@@ -140,7 +140,7 @@ class Controller(ScoreManagerObject):
             )
         section.append(('initializer - remove', 'inrm'))
         section.append(('initializer - stub', 'ins'))
-        section.append(('initializer - view', 'inv'))
+        section.append(('initializer - read only', 'inro'))
         return section
 
     def _make_material_tour_menu_section(self, menu):
@@ -171,7 +171,7 @@ class Controller(ScoreManagerObject):
             )
         section.append(('metadata module - remove', 'mdmrm'))
         section.append(('metadata module - rewrite', 'mdmrw'))
-        section.append(('metadata module - view', 'mdmv'))
+        section.append(('metadata module - read only', 'mdmro'))
         return section
 
     def _make_views_menu_section(self, menu):
@@ -192,7 +192,7 @@ class Controller(ScoreManagerObject):
             name='views module',
             )
         section.append(('views module - remove', 'vwmrm'))
-        section.append(('views module - view', 'vwmv'))
+        section.append(('views module - read only', 'vwmro'))
         return section
         
     def _path_to_annotation(self, path, year=False):

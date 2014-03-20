@@ -109,7 +109,7 @@ class FileManager(Manager):
         if self._path.endswith('.tex'):
             section.append(('file - typeset', 'ts'))
         if self._path.endswith('.pdf'):
-            section.append(('file - view', 'v'))
+            section.append(('file - read only', 'v'))
         return section
 
     def _make_main_menu(self, name='file manager'):

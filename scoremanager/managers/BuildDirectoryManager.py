@@ -37,24 +37,24 @@ class BuildDirectoryManager(DirectoryManager):
             'bce': self.edit_back_cover_latex,
             'bcg': self.generate_back_cover_latex,
             'bct': self.typeset_back_cover_latex,
-            'bcv': self.view_back_cover_pdf,
+            'bco': self.view_back_cover_pdf,
             'fce': self.edit_front_cover_latex,
             'fcg': self.generate_front_cover_latex,
             'fct': self.typeset_front_cover_latex,
-            'fcv': self.view_front_cover_pdf,
+            'fco': self.view_front_cover_pdf,
             'pfe': self.edit_preface_latex,
             'pfg': self.generate_preface_latex,
             'pft': self.typeset_preface_latex,
-            'pfv': self.view_preface_pdf,
+            'pfo': self.view_preface_pdf,
             'se': self.edit_score_latex,
             'sg': self.generate_score_latex,
             'st': self.typeset_score_latex,
-            'sv': self.view_score_pdf,
+            'so': self.view_score_pdf,
             'lycp': self.copy_segment_lilypond_files,
             'pdfcp': self.copy_segment_pdfs,
             'sege': self.edit_segment_assembly_lilypond_file,
             'segly': self.interpret_segment_assembly_lilypond_file,
-            'segv': self.view_segment_assembly_pdf,
+            'sego': self.view_segment_assembly_pdf,
             })
         return result
 
@@ -91,7 +91,7 @@ class BuildDirectoryManager(DirectoryManager):
         section.append(('back cover latex - edit', 'bce'))
         section.append(('back cover latex - generate', 'bcg'))
         section.append(('back cover latex - typeset', 'bct'))
-        section.append(('back cover pdf - view', 'bcv'))
+        section.append(('back cover pdf - open', 'bco'))
         return menu
 
     def _make_front_cover_menu_section(self, menu):
@@ -99,7 +99,7 @@ class BuildDirectoryManager(DirectoryManager):
         section.append(('front cover latex - edit', 'fce'))
         section.append(('front cover latex - generate', 'fcg'))
         section.append(('front cover latex - typeset', 'fct'))
-        section.append(('front cover pdf - view', 'fcv'))
+        section.append(('front cover pdf - open', 'fco'))
         return section
 
     def _make_main_menu(self, name='build directory manager'):
@@ -120,7 +120,7 @@ class BuildDirectoryManager(DirectoryManager):
         section.append(('preface latex - edit', 'pfe'))
         section.append(('preface latex - generate', 'pfg'))
         section.append(('preface latex - typeset', 'pft'))
-        section.append(('preface pdf - view', 'pfv'))
+        section.append(('preface pdf - open', 'pfo'))
         return menu
 
     def _make_score_menu_sections(self, menu):
@@ -130,12 +130,12 @@ class BuildDirectoryManager(DirectoryManager):
         section = menu.make_command_section(name='segment assembly?')
         section.append(('segment assembly ly - edit', 'sege'))
         section.append(('segment assembly ly - lilypond', 'segly'))
-        section.append(('segment assembly pdf - view', 'segv'))
+        section.append(('segment assembly pdf - open', 'sego'))
         section = menu.make_command_section(name='score')
         section.append(('score latex - edit', 'se'))
         section.append(('score latex - generate', 'sg'))
         section.append(('score latex - typeset', 'st'))
-        section.append(('score pdf - view', 'sv'))
+        section.append(('score pdf - open', 'so'))
         return menu
 
     def _open_file_ending_with(self, string):

@@ -63,11 +63,11 @@ class PackageManager(DirectoryManager):
         result.update({
             'inrm': self.remove_initializer,
             'ins': self.write_initializer_stub,
-            'inv': self.view_initializer,
+            'inro': self.view_initializer,
             'mda': self.add_metadatum,
             'mdg': self.get_metadatum,
             'mdrm': self.remove_metadatum,
-            'mdmv': self.view_metadata_module,
+            'mdmro': self.view_metadata_module,
             'mdmrm': self.remove_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
             'ren': self.rename,

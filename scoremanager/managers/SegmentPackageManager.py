@@ -66,12 +66,12 @@ class SegmentPackageManager(PackageManager):
             'E': self.edit_definition_module_from_top,
             'e': self.edit_definition_module,
             'lyi': self.interpret_current_lilypond_file,
-            'lyv': self.view_current_output_ly,
+            'lyro': self.view_current_output_ly,
             'lyver': self.view_versioned_output_ly,
             'mmi': self.interpret_make_module,
             'mms': self.write_make_module_stub,
-            'mmv': self.view_make_module,
-            'pdfv': self.view_output_pdf,
+            'mmro': self.view_make_module,
+            'pdfo': self.view_output_pdf,
             'vv': self.view_all_versioned_pdfs,
             'pdfver': self.view_versioned_output_pdf,
             'pyver': self.view_versioned_definition_module,
@@ -114,8 +114,8 @@ class SegmentPackageManager(PackageManager):
                 )
             string = 'lilypond file - interpret'
             section.append((string, 'lyi'))
-            string = 'lilypond file - view'
-            section.append((string, 'lyv'))
+            string = 'lilypond file - read only'
+            section.append((string, 'lyro'))
             return section
 
     def _make_current_pdf_menu_section(self, menu):
@@ -123,7 +123,7 @@ class SegmentPackageManager(PackageManager):
         if os.path.isfile(self._output_pdf_file_path):
             section.append(('pdf - version', 'pdfs'))
         if os.path.isfile(self._output_pdf_file_path):
-            section.append(('pdf - view', 'pdfv'))
+            section.append(('pdf - open', 'pdfo'))
         return section
 
     def _make_main_menu(self, name='segment package manager'):
@@ -152,7 +152,7 @@ class SegmentPackageManager(PackageManager):
         section = menu.make_command_section(name='make module')
         if os.path.isfile(self._make_module_path):
             section.append(('make module - interpret', 'mmi'))
-            section.append(('make module - view', 'mmv'))
+            section.append(('make module - read only', 'mmro'))
         section.append(('make module - stub', 'mms'))
         return section
 
@@ -161,7 +161,7 @@ class SegmentPackageManager(PackageManager):
         if not self._is_populated_directory(versions_directory_path):
             return
         section = menu.make_command_section(name='versioned pdfs')
-        section.append(('versioned pdfs - view', 'vv'))
+        section.append(('versioned pdfs - read only', 'vv'))
         return section
 
     def _make_versions_directory_menu_section(self, menu):
@@ -169,9 +169,9 @@ class SegmentPackageManager(PackageManager):
             is_hidden=True,
             name='versions directory',
             )
-        section.append(('versioned output ly - view', 'lyver'))
-        section.append(('versioned output pdf - view', 'pdfv'))
-        string = 'versioned definition module - view'
+        section.append(('versioned output ly - read only', 'lyver'))
+        section.append(('versioned output pdf - open', 'pdfo'))
+        string = 'versioned definition module - read only'
         section.append((string, 'pyver'))
         section.append(('versions directory - list', 'vrl'))
         return section

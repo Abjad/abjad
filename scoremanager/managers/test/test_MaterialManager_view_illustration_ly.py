@@ -6,7 +6,7 @@ import scoremanager
 def test_MaterialManager_view_illustration_ly_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'lmm example~notes lyv q'
+    input_ = 'lmm example~notes lyro q'
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores', 

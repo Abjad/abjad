@@ -73,7 +73,7 @@ class Wrangler(Controller):
         result.update({
             'inrm': self.remove_initializer,
             'ins': self.write_initializer_stub,
-            'inv': self.view_initializer,
+            'inro': self.view_initializer,
             'ls': self.list,
             'll': self.list_long,
             'mda': self.add_metadatum,
@@ -81,7 +81,7 @@ class Wrangler(Controller):
             'mdrm': self.remove_metadatum,
             'mdmrm': self.remove_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
-            'mdmv': self.view_metadata_module,
+            'mdmro': self.view_metadata_module,
             'pwd': self.pwd,
             'rad': self.add,
             'rci': self.commit,
@@ -94,7 +94,7 @@ class Wrangler(Controller):
             'vwn': self.make_view,
             'vws': self.select_view,
             'vwmrm': self.remove_views_module,
-            'vwmv': self.view_views_module,
+            'vwmro': self.view_views_module,
             })
         return result
 
@@ -654,7 +654,7 @@ class Wrangler(Controller):
             where=self._where,
             items=view_names,
             )
-        # TODO: make attribute read-only and not assignable after init
+        # TODO: make attribute read only and not assignable after init
         selector.explicit_breadcrumb = 'select view'
         with self._backtracking:
             view_name = selector._run()

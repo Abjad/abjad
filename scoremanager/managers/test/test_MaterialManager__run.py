@@ -110,7 +110,7 @@ def test_MaterialManager__run_06():
         '     Tempo(Duration(1, 8), 135)', 
         '', 
         '     material - edit (me)', 
-        '     output material - view (omv)', 
+        '     output material - view (omro)', 
         '', 
         '     illustrate module - edit (ime)', 
         '     illustrate module - interpret (imi)', 

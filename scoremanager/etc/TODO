@@ -159,7 +159,7 @@
 
         illustration ly - interpret (lyi)
         illustration ly - remove (lyrm)
-        illustration ly - view (lyv)
+        illustration ly - view (lyro)
 
     ... to ...
 
@@ -172,7 +172,7 @@
 
         illustration ly - interpret (lyi)
         illustration ly - remove (lyrm)
-        illustration ly - view (lyv)
+        illustration ly - view (lyro)
 
     ... with asterisks to mark entries in the material summary menu section.
 
@@ -194,5 +194,3 @@
     to single-key aliases. The principle should be that navigation commands
     are generally single-key. Same with 'materials - tour next (mtn)'
     and 'materials - tour previous (mtp)'.
-
-44. Change (**v) view commands to (**ro) read-only commands.

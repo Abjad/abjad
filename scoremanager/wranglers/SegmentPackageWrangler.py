@@ -42,7 +42,7 @@ class SegmentPackageWrangler(PackageWrangler):
         result.update({
             'lyi': self.interpret_current_lilypond_files,
             'pdfs': self.version_segment_packages,
-            'pdfv': self.view_segment_pdfs,
+            'pdfo': self.view_segment_pdfs,
             'mmi': self.interpret_make_modules,
             })
         return result
@@ -102,7 +102,7 @@ class SegmentPackageWrangler(PackageWrangler):
     def _make_current_pdfs_menu_section(self, menu):
         section = menu.make_command_section(name='pdfs')
         section.append(('all segments - pdf - version', 'pdfs'))
-        section.append(('all segments - pdf - view', 'pdfv'))
+        section.append(('all segments - pdf - read only', 'pdfo'))
         return section
 
     def _make_main_menu(self, name='segment wrangler'):

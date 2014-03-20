@@ -169,15 +169,15 @@ class MaterialManager(PackageManager):
             'imi': self.interpret_illustrate_module,
             'lyi': self.interpret_illustration_ly,
             'lyrm': self.remove_illustration_ly,
-            'lyv': self.view_illustration_ly,
+            'lyro': self.view_illustration_ly,
             'mi': self.illustrate_material,
             'me': self.edit_output_material,
             'omw': self.write_output_material,
             'omrm': self.remove_output_module,
-            'omv': self.view_output_module,
+            'omro': self.view_output_module,
             'pdfm': self.write_illustration_ly_and_pdf,
             'pdfrm': self.remove_illustration_pdf,
-            'pdfv': self.view_illustration_pdf,
+            'pdfo': self.view_illustration_pdf,
             'ren': self.rename,
             'uid': self.remove_user_input_module,
             'uic': self.clear_user_input_wrapper,
@@ -185,7 +185,7 @@ class MaterialManager(PackageManager):
             'uip': self.populate_user_input_wrapper,
             'uis': self.display_user_input_demo_values,
             'uit': self.toggle_user_input_values_default_status,
-            'uimv': self.view_user_input_module,
+            'uimro': self.view_user_input_module,
             })
         return result
 
@@ -383,7 +383,7 @@ class MaterialManager(PackageManager):
             section = menu.make_command_section(name='illustration ly')
             section.append(('illustration ly - interpret', 'lyi'))
             section.append(('illustration ly - remove', 'lyrm'))
-            section.append(('illustration ly - view', 'lyv'))
+            section.append(('illustration ly - read only', 'lyro'))
 
     def _make_illustration_pdf_menu_section(self, menu):
         commands = []
@@ -397,7 +397,7 @@ class MaterialManager(PackageManager):
             if not has_illustration_pdf_section:
                 section = menu.make_command_section(name=name)
             commands.append(('illustration pdf - remove', 'pdfrm'))
-            commands.append(('illustration pdf - view', 'pdfv'))
+            commands.append(('illustration pdf - open', 'pdfo'))
         if commands:
             section = menu.make_command_section(name='illustration pdf')
             for command in commands:
@@ -523,7 +523,7 @@ class MaterialManager(PackageManager):
         if self._should_have_output_material_section():
             if os.path.isfile(self._output_module_path):
                 commands.append(('output module - remove', 'omrm'))
-                commands.append(('output module - view', 'omv'))
+                commands.append(('output module - read only', 'omro'))
             if self._can_make_output_material():
                 commands.append(('output module - write', 'omw'))
         if commands:
@@ -573,7 +573,7 @@ class MaterialManager(PackageManager):
         section.append(('user input - toggle default mode', 'uit'))
         section = menu.make_command_section(name='user input module')
         section.append(('user input module - remove', 'uimrm'))
-        section.append(('user input module - view', 'uimv'))
+        section.append(('user input module - read only', 'uimro'))
 
     def _read_material_manager_class_name(self):
         return self._get_metadatum('material_manager_class_name')

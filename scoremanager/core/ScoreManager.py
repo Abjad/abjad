@@ -51,7 +51,7 @@ class ScoreManager(Controller):
     @property
     def _user_input_to_action(self):
         result = {
-            'cv': self.view_cache,
+            'cro': self.view_cache,
             'cw': self.write_cache,
             'lmm': self.manage_material_library,
             'mdme': self.edit_metadata_modules,
@@ -124,7 +124,7 @@ class ScoreManager(Controller):
             name='cache',
             is_hidden=True,
             )
-        section.append(('cache - view', 'cv'))
+        section.append(('cache - read only', 'cro'))
         section.append(('cache - write', 'cw'))
         return menu
 

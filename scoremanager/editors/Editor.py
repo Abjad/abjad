@@ -312,7 +312,7 @@ class Editor(Controller):
                 # if the attribute is read / write
                 try:
                     setattr(self.target, attribute_name, attribute_value)
-                # elif the attribute is read-only
+                # elif the attribute is read only
                 except AttributeError:
                     self._copy_target_attributes_to_memory()
                     self._attributes_in_memory[attribute_name] = attribute_value

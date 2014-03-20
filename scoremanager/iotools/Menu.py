@@ -282,7 +282,7 @@ class Menu(ScoreManagerObject):
 
     def _make_lilypond_menu_section(self):
         section = self.make_command_section(name='lilypond', is_hidden=True)
-        section.append(('LilyPond - view log', 'lvl'))
+        section.append(('LilyPond log - read only', 'llro'))
         return section
 
     def _make_menu_lines(self):
@@ -302,7 +302,7 @@ class Menu(ScoreManagerObject):
             match_on_display_string=False,
             )
         section.append(('Python - doctest', 'pyd'))
-        section.append(('Python - interact', 'pyi'))
+        section.append(('Python - invoke', 'pyi'))
         section.append(('Python - test', 'pyt'))
         return section
 

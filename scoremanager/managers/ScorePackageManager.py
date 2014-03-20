@@ -137,11 +137,11 @@ class ScorePackageManager(PackageManager):
             'd': self._distribution_directory_manager._run,
             'g': self._segment_package_wrangler._run,
             'fix': self.fix,
-            'instrumentation': self._instrumentation_module_manager.edit,
+            'imro': self._instrumentation_module_manager.view,
             'k': self._maker_module_wrangler._run,
             'm': self._material_package_wrangler._run,
             'p': self._manage_setup,
-            'pdfv': self.view_score_pdf,
+            'pdfo': self.view_score_pdf,
             'rad': self.add,
             'rci': self.commit,
             'ren': self.rename_score_package,
@@ -322,7 +322,7 @@ class ScorePackageManager(PackageManager):
             name='instrumentation',
             is_hidden=True,
             )
-        section.append(('instrumentation module - view', 'instrumentation'))
+        section.append(('instrumentation module - read only', 'imro'))
         return section
 
     def _make_main_menu(self, name='score package manager'):
@@ -369,7 +369,7 @@ class ScorePackageManager(PackageManager):
                 name='score pdf',
                 default_index=0,
                 )
-            section.append(('score pdf - view', 'pdfv'))
+            section.append(('score pdf - open', 'pdfo'))
 
     def _make_setup_menu(self):
         menu = self._io_manager.make_menu(

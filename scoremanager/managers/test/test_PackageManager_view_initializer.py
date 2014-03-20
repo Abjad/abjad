@@ -6,7 +6,7 @@ import scoremanager
 def test_PackageManager_view_initializer_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'lmm example~numbers inv q'
+    input_ = 'lmm example~numbers inro q'
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores', 
