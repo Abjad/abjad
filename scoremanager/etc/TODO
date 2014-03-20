@@ -189,7 +189,3 @@
 42. Audit all file() statements and write with 'with'.
     Also make sure the pattern is lines first and only one
     file_pointer.write() call at the end, preceded by '\n'.join(lines).
-
-43. Write something to check for all top-level score directories 
-    on score manager initialization. Prompt user to create each of the
-    directories. To fix score package structure.

@@ -331,6 +331,7 @@ class ScoreManager(Controller):
         manager = self._score_package_wrangler._initialize_asset_manager(path)
         package_name = os.path.basename(path)
         manager._session._current_score_snake_case_name = package_name
+        manager.fix(prompt=True)
         manager._run(cache=True)
         if manager._session.is_autonavigating:
             pass

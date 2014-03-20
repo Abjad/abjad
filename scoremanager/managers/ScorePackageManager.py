@@ -526,10 +526,10 @@ class ScorePackageManager(PackageManager):
 
         Returns none.
         '''
-        result = True
+        package_needed_to_be_fixed = False
         for path in self._get_top_level_directory_paths():
             if not os.path.exists(path):
-                result = False
+                package_needed_to_be_fixed = True
                 message = 'create {!r}?'.format(path)
                 if not prompt or self._io_manager.confirm(message):
                     os.mkdir(path)
@@ -537,14 +537,14 @@ class ScorePackageManager(PackageManager):
                     with file(gitignore_path, 'w') as file_pointer:
                         file_pointer.write('')
         if not os.path.exists(self._initializer_file_path):
-            result = False
+            package_needed_to_be_fixed = True
             message = 'create {}?'.format(self._initializer_file_path)
             if not prompt or self._io_manager.confirm(message):
                 with file(self._initializer_file_path, 'w') as initializer:
                     initializer.write('')
         lines = []
         if not os.path.exists(self._metadata_module_path):
-            result = False
+            package_needed_to_be_fixed = True
             message = 'create {}?'.format(self._metadata_module_path)
             if not prompt or self._io_manager.confirm(message):
                 with file(self._metadata_module_path, 'w') as metadata_module:
@@ -555,9 +555,11 @@ class ScorePackageManager(PackageManager):
                     metadata_module.write('\n')
                     string = 'metadata = collections.OrderedDict([])\n'
                     metadata_module.write(string)
-        message = 'packaged structure fixed.'
-        self._io_manager.proceed(message, prompt=prompt)
-        return result
+        if package_needed_to_be_fixed and prompt:
+            self._io_manager.display('')
+            message = 'packaged structure fixed.'
+            self._io_manager.proceed(message, prompt=prompt)
+        return package_needed_to_be_fixed
 
     def remove_score_package(self):
         r'''Removes score package.
