@@ -213,3 +213,8 @@
 
 45. Write code in Menu to make sure there are no zero-length menu sections.
     At display time or render time or at some other time.
+
+46. Change (**v) view commands to (**ro) read-only commands.
+
+47. Write code to make sure that every menu has a name.
+    Code already exists to make sure that every section has a name.
