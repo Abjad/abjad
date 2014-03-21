@@ -124,6 +124,10 @@ class MenuSection(AbjadObject):
         return self.default_index is not None
 
     @property
+    def _material_summary_bullet(self):
+        return '*'
+
+    @property
     def _menu_entry_display_strings(self):
         return [menu_entry.display_string for menu_entry in self.menu_entries]
 
@@ -196,7 +200,12 @@ class MenuSection(AbjadObject):
         return menu_lines
 
     def _make_tab(self, n):
-        return 4 * n * ' '
+        tab_string = 4 * n * ' '
+        if self.is_material_summary_section:
+            characters = list(tab_string)
+            characters[-2] = self._material_summary_bullet
+            tab_string = ''.join(characters)
+        return tab_string
 
     def _make_title_lines(self):
         menu_lines = []
