@@ -33,6 +33,7 @@ class Session(abctools.AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_attempted_to_add_to_repository',
         '_attempted_to_open_file',
         '_backtracking_stack',
         '_breadcrumb_cache_stack',
@@ -121,6 +122,7 @@ class Session(abctools.AbjadObject):
     def __init__(self, pending_user_input=None, is_test=False):
         from scoremanager import core
         from scoremanager import iotools
+        self._attempted_to_add_to_repository = False
         self._attempted_to_open_file = False
         self._backtracking_stack = []
         self._breadcrumb_cache_stack = []
