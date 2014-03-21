@@ -3,6 +3,7 @@ import os
 from abjad import *
 import scoremanager
 configuration = scoremanager.core.ScoreManagerConfiguration()
+score_manager = scoremanager.core.ScoreManager()
 
 
 def test_ScorePackageManager_add_to_repository_01():
@@ -11,23 +12,11 @@ def test_ScorePackageManager_add_to_repository_01():
     Then unadd the files and leave the score package as found.
     '''
 
-    path = configuration.abjad_score_packages_directory_path
-    found_git_versioned_score_package = False
-    for directory_entry in os.listdir(path):
-        directory_path = os.path.join(path, directory_entry)
-        if not os.path.isdir(directory_path):
-            continue
-        session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.ScorePackageManager(
-            path=directory_path,
-            session=session,
-            )
-        if manager._is_git_versioned() and manager._is_up_to_date():
-            found_git_versioned_score_package = True
-            break
-
-    if not found_git_versioned_score_package:
-        return
+    manager = score_manager._find_up_to_date_versioned_manager(
+        scoremanager.managers.ScorePackageManager,
+        configuration.abjad_score_packages_directory_path,
+        repository='git',
+        )
 
     assert manager._is_up_to_date()
     path_1 = os.path.join(manager._path, 'tmp_1.py')
@@ -65,22 +54,13 @@ def test_ScorePackageManager_add_to_repository_02():
     Then unadd the file and leave the score package as found.
     '''
 
-    path = configuration.user_score_packages_directory_path
-    found_svn_versioned_score_package = False
-    for directory_entry in os.listdir(path):
-        directory_path = os.path.join(path, directory_entry)
-        if not os.path.isdir(directory_path):
-            continue
-        session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.ScorePackageManager(
-            path=directory_path,
-            session=session,
-            )
-        if manager._is_svn_versioned() and manager._is_up_to_date():
-            found_svn_versioned_score_package = True
-            break
+    manager = score_manager._find_up_to_date_versioned_manager(
+        scoremanager.managers.ScorePackageManager,
+        configuration.user_score_packages_directory_path,
+        repository='svn',
+        )
 
-    if not found_svn_versioned_score_package:
+    if not manager:
         return
 
     assert manager._is_up_to_date()

@@ -74,6 +74,37 @@ class ScoreManager(Controller):
 
     ### PRIVATE METHODS ###
 
+    def _find_up_to_date_versioned_manager(
+        self, 
+        manager_class,
+        storehouse_path,
+        infix=None,
+        repository='git',
+        ):
+        import scoremanager
+        infix = infix or ()
+        if isinstance(infix, str):
+            infix = (infix,)
+        assert isinstance(infix, tuple)
+        for directory_entry in os.listdir(storehouse_path):
+            directory_path = os.path.join(
+                storehouse_path, 
+                directory_entry, 
+                *infix
+                )
+            if not os.path.isdir(directory_path):
+                continue
+            session = scoremanager.core.Session(is_test=True)
+            manager = manager_class(path=directory_path, session=session)
+            if repository == 'git' and \
+                manager._is_git_versioned() and \
+                manager._is_up_to_date():
+                return manager
+            elif repository == 'svn' and \
+                manager._is_svn_versioned() and \
+                manager._is_up_to_date():
+                return manager
+
     def _get_next_score_directory_path(self):
         wrangler = self._score_package_wrangler
         paths = wrangler._list_visible_asset_paths()
