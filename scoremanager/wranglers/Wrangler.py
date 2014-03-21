@@ -83,13 +83,13 @@ class Wrangler(Controller):
             'mdmrw': self.rewrite_metadata_module,
             'mdmro': self.view_metadata_module,
             'pwd': self.pwd,
-            'rad': self.add,
-            'rci': self.commit,
+            'rad': self.add_to_repository,
+            'rci': self.commit_to_repository,
             'ren': self.rename,
             'rm': self.remove,
             'rrv': self.revert_from_repository,
-            'rst': self.status,
-            'rup': self.update,
+            'rst': self.repository_status,
+            'rup': self.update_from_repository,
             'vwl': self.list_views,
             'vwn': self.make_view,
             'vws': self.select_view,
@@ -421,7 +421,7 @@ class Wrangler(Controller):
 
     ### PUBLIC METHODS ###
 
-    def add(self, prompt=True):
+    def add_to_repository(self, prompt=True):
         r'''Adds assets to repository.
 
         Returns none.
@@ -429,7 +429,7 @@ class Wrangler(Controller):
         paths = self._list_visible_asset_paths()
         for path in paths:
             manager = self._initialize_asset_manager(path)
-            manager.add(prompt=False)
+            manager.add_to_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
     def add_metadatum(self):
@@ -439,7 +439,7 @@ class Wrangler(Controller):
         '''
         self._current_package_manager.add_metadatum()
 
-    def commit(self, prompt=True):
+    def commit_to_repository(self, prompt=True):
         r'''Commits assets to repository.
 
         Returns none.
@@ -456,7 +456,7 @@ class Wrangler(Controller):
         paths = self._list_visible_asset_paths()
         for path in paths:
             manager = self._initialize_asset_manager(path)
-            manager.commit(
+            manager.commit_to_repository(
                 commit_message=commit_message, 
                 prompt=False,
                 )
@@ -678,7 +678,7 @@ class Wrangler(Controller):
             return
         self._current_package_manager._add_metadatum('view_name', view_name)
 
-    def status(self, prompt=True):
+    def repository_status(self, prompt=True):
         r'''Display asset status in repository.
 
         Returns none.
@@ -691,10 +691,10 @@ class Wrangler(Controller):
                 path=path,
                 session=self._session,
                 )
-            manager.status(prompt=False)
+            manager.repository_status(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
-    def update(self, prompt=True):
+    def update_from_repository(self, prompt=True):
         r'''Updates assets from repository.
 
         Returns none.

@@ -5,7 +5,7 @@ import scoremanager
 configuration = scoremanager.core.ScoreManagerConfiguration()
 
 
-def test_ScorePackageManager_add_01():
+def test_ScorePackageManager_add_to_repository_01():
     r'''Add two files to Git-managed score package.
     Make sure Git recognizes the files as added.
     Then unadd the files and leave the score package as found.
@@ -45,7 +45,7 @@ def test_ScorePackageManager_add_01():
     assert not manager._is_up_to_date()
     assert manager._get_unadded_asset_paths() == [path_1, path_2]
     assert manager._get_added_asset_paths() == []
-    manager.add(prompt=False)
+    manager.add_to_repository(prompt=False)
     assert manager._get_unadded_asset_paths() == []
     assert manager._get_added_asset_paths() == [path_1, path_2]
     manager.revert_from_repository(prompt=False)
@@ -59,7 +59,7 @@ def test_ScorePackageManager_add_01():
     assert manager._is_up_to_date()
 
 
-def test_ScorePackageManager_add_02():
+def test_ScorePackageManager_add_to_repository_02():
     r'''Add two files to Subversioned-managed score package.
     Make sure Subversion recognizes the files as added.
     Then unadd the file and leave the score package as found.
@@ -99,7 +99,7 @@ def test_ScorePackageManager_add_02():
     assert not manager._is_up_to_date()
     assert manager._get_unadded_asset_paths() == [path_1, path_2]
     assert manager._get_added_asset_paths() == []
-    manager.add(prompt=False)
+    manager.add_to_repository(prompt=False)
     assert manager._get_unadded_asset_paths() == []
     assert manager._get_added_asset_paths() == [path_1, path_2]
     manager.revert_from_repository(prompt=False)

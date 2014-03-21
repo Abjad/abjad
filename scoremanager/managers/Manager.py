@@ -88,12 +88,12 @@ class Manager(Controller):
             'ls': self.list,
             'll': self.list_long,
             'rm': self.remove,
-            'rad': self.add,
-            'rci': self.commit,
+            'rad': self.add_to_repository,
+            'rci': self.commit_to_repository,
             'ren': self.rename,
-            'rst': self.status,
+            'rst': self.repository_status,
             'rrv': self.revert_from_repository,
-            'rup': self.update,
+            'rup': self.update_from_repository,
             })
         return result
 
@@ -473,7 +473,7 @@ class Manager(Controller):
 
     ### PUBLIC METHODS ###
 
-    def add(self, prompt=True):
+    def add_to_repository(self, prompt=True):
         r'''Adds unversioned assets to repository.
 
         Returns none.
@@ -494,7 +494,7 @@ class Manager(Controller):
         self._io_manager.display(lines)
         self._io_manager.proceed(prompt=prompt)
 
-    def commit(self, commit_message=None, prompt=True):
+    def commit_to_repository(self, commit_message=None, prompt=True):
         r'''Commits unversioned assets to repository.
 
         Returns none.
@@ -695,7 +695,7 @@ class Manager(Controller):
         self._revert_from_repository()
         self._io_manager.proceed(prompt=prompt)
 
-    def status(self, prompt=True):
+    def repository_status(self, prompt=True):
         r'''Displays repository status of assets.
     
         Returns none.
@@ -724,7 +724,7 @@ class Manager(Controller):
             )
         self._io_manager.proceed(prompt=prompt)
 
-    def update(self, prompt=True):
+    def update_from_repository(self, prompt=True):
         r'''Updates versioned assets.
 
         Returns none.

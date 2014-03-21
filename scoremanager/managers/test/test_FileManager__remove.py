@@ -43,7 +43,7 @@ def test_FileManager__remove_02():
     try:
         manager._make_empty_asset()
         assert os.path.exists(path)
-        manager.add(prompt=False)
+        manager.add_to_repository(prompt=False)
         assert manager._is_in_git_repository()
         assert manager._is_git_added()
         manager._remove()

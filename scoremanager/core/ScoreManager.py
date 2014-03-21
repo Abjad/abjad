@@ -59,10 +59,10 @@ class ScoreManager(Controller):
             'mdmls': self.list_metadata_modules,
             'mdmrw': self.rewrite_metadata_modules,
             'new': self.make_new_score,
-            'rad': self.add,
-            'rci': self.commit,
-            'rst': self.status,
-            'rup': self.update,
+            'rad': self.add_to_repository,
+            'rci': self.commit_to_repository,
+            'rst': self.repository_status,
+            'rup': self.update_from_repository,
             'ssl': self.display_all_scores,
             'ssv': self.display_active_scores,
             'ssmb': self.display_mothballed_scores,
@@ -267,19 +267,19 @@ class ScoreManager(Controller):
 
     ### PUBLIC METHODS ###
 
-    def add(self, prompt=True):
+    def add_to_repository(self, prompt=True):
         r'''Adds assets to repository.
 
         Returns none.
         '''
         self._score_package_wrangler.add(prompt=prompt)
 
-    def commit(self, prompt=True):
+    def commit_to_repository(self, prompt=True):
         r'''Commits assets to repository.
 
         Returns none.
         '''
-        self._score_package_wrangler.commit()
+        self._score_package_wrangler.commit_to_repository()
 
     def display_active_scores(self):
         r'''Displays active scores.
@@ -464,19 +464,19 @@ class ScoreManager(Controller):
         message = message.format(len(directories))
         self._io_manager.proceed(message, prompt=prompt)
 
-    def status(self, prompt=True):
+    def repository_status(self, prompt=True):
         r'''Displays status of repository assets.
         
         Returns none.
         '''
-        self._score_package_wrangler.status()
+        self._score_package_wrangler.repository_status()
 
-    def update(self, prompt=True):
+    def update_from_repository(self, prompt=True):
         r'''Updates repository assets.
 
         Returns none.
         '''
-        self._score_package_wrangler.update()
+        self._score_package_wrangler.update_from_repository()
 
     def view_cache(self):
         r'''Views cache.
