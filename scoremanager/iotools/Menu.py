@@ -171,6 +171,8 @@ class Menu(ScoreManagerObject):
                 menu_line += '{} ({})'.format(display_string, key)
                 menu_lines.append(menu_line)
             menu_lines.append('')
+        if menu_lines:
+            menu_lines.pop()
         menu_lines = self._make_bicolumnar(menu_lines)
         title = self._session.menu_header
         title = stringtools.capitalize_string_start(title)
