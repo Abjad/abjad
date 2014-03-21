@@ -44,11 +44,11 @@ class Session(abctools.AbjadObject):
         '_controllers_visited',
         '_current_score_snake_case_name',
         '_display_pitch_ranges_with_numbered_pitches',
-        '_is_tracking_source_code',
         '_hide_hidden_commands',
         '_hide_next_redraw',
         '_initial_user_input',
         '_io_manager',
+        '_is_add_to_repository_test',
         '_is_autoadding',
         '_is_backtracking_locally',
         '_is_backtracking_to_score',
@@ -68,6 +68,7 @@ class Session(abctools.AbjadObject):
         '_is_navigating_to_score_stylesheets',
         '_is_quitting',
         '_is_test',
+        '_is_tracking_source_code',
         '_last_line',
         '_last_command_was_composite',
         '_last_material_path',
@@ -138,6 +139,7 @@ class Session(abctools.AbjadObject):
         self._hide_next_redraw = False
         self._initial_user_input = pending_user_input
         self._io_manager = iotools.IOManager(self)
+        self._is_add_to_repository_test = False
         self._is_autoadding = False
         self._is_backtracking_locally = False
         self._is_backtracking_to_score = False
@@ -323,7 +325,11 @@ class Session(abctools.AbjadObject):
         self._hide_hidden_commands = True
 
     def _reinitialize(self):
-        type(self).__init__(self, is_test=self.is_test)
+        is_test = self._is_test
+        is_add_to_repository_test = self._is_add_to_repository_test
+        type(self).__init__(self)
+        self._is_test = is_test
+        self._is_add_to_repository_test = is_add_to_repository_test
 
     def _restore_breadcrumbs(self, cache=False):
         if cache:
