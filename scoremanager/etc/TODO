@@ -107,11 +107,7 @@
 33. Hoist metadata-related commands from PackageManager up to
     DirectoryManager.
 
-34. Hide the one-element illustrate menu ...
-        'illustrate module - stub (ims)' 
-    ... unless an __illustrate__.py module already exists in material package.
-
-35. Add 'output module - check (omc)' command.
+34. Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command

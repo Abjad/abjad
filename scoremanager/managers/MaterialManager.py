@@ -314,12 +314,14 @@ class MaterialManager(PackageManager):
             result = result[0]
             return result
 
-    def _make_illustrate_menu_section(
+    def _make_illustrate_module_menu_section(
         self,
         menu,
         ):
-        section = menu.make_command_section(name='illustrate module')
         if os.path.isfile(self._illustrate_module_path):
+            section = menu.make_command_section(
+                name='illustrate module',
+                )
             string = 'illustrate module - edit'
             section.append((string, 'ime'))
             string = 'illustrate module - edit & interpret'
@@ -331,6 +333,10 @@ class MaterialManager(PackageManager):
             string = 'illustrate module - stub'
             section.append((string, 'ims'))
         else:
+            section = menu.make_command_section(
+                name='illustrate module',
+                is_hidden=True,
+                )
             string = 'illustrate module - stub'
             section.append((string, 'ims'))
 
@@ -367,7 +373,7 @@ class MaterialManager(PackageManager):
             where=where,
             name=name,
             )
-        self._make_illustrate_menu_section(menu)
+        self._make_illustrate_module_menu_section(menu)
         has_initializer = os.path.isfile(self._initializer_file_path)
         self._make_initializer_menu_section(
             menu, 
