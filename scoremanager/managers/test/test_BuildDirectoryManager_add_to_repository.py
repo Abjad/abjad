@@ -5,28 +5,28 @@ import scoremanager
 configuration = scoremanager.core.ScoreManagerConfiguration()
 
 
-def test_ScorePackageManager_add_to_repository_01():
-    r'''Add two files to Git-managed score package.
+def test_BuildDirectoryManager_add_to_repository_01():
+    r'''Add two files to Git-managed build directory.
     Make sure Git recognizes the files as added.
-    Then unadd the files and leave the score package as found.
+    Then unadd the files and leave the build directory as found.
     '''
 
     path = configuration.abjad_score_packages_directory_path
-    found_git_versioned_score_package = False
+    found_git_versioned_build_directory = False
     for directory_entry in os.listdir(path):
-        directory_path = os.path.join(path, directory_entry)
+        directory_path = os.path.join(path, directory_entry, 'build')
         if not os.path.isdir(directory_path):
             continue
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.ScorePackageManager(
+        manager = scoremanager.managers.BuildDirectoryManager(
             path=directory_path,
             session=session,
             )
         if manager._is_git_versioned() and manager._is_up_to_date():
-            found_git_versioned_score_package = True
+            found_git_versioned_build_directory = True
             break
 
-    if not found_git_versioned_score_package:
+    if not found_git_versioned_build_directory:
         return
 
     assert manager._is_up_to_date()
@@ -59,28 +59,28 @@ def test_ScorePackageManager_add_to_repository_01():
     assert manager._is_up_to_date()
 
 
-def test_ScorePackageManager_add_to_repository_02():
+def test_BuildDirectoryManager_add_to_repository_02():
     r'''Add two files to Subversioned-managed score package.
     Make sure Subversion recognizes the files as added.
     Then unadd the file and leave the score package as found.
     '''
 
     path = configuration.user_score_packages_directory_path
-    found_svn_versioned_score_package = False
+    found_svn_versioned_build_directory = False
     for directory_entry in os.listdir(path):
-        directory_path = os.path.join(path, directory_entry)
+        directory_path = os.path.join(path, directory_entry, 'build')
         if not os.path.isdir(directory_path):
             continue
         session = scoremanager.core.Session(is_test=True)
-        manager = scoremanager.managers.ScorePackageManager(
+        manager = scoremanager.managers.BuildDirectoryManager(
             path=directory_path,
             session=session,
             )
         if manager._is_svn_versioned() and manager._is_up_to_date():
-            found_svn_versioned_score_package = True
+            found_svn_versioned_build_directory = True
             break
 
-    if not found_svn_versioned_score_package:
+    if not found_svn_versioned_build_directory:
         return
 
     assert manager._is_up_to_date()
