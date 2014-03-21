@@ -360,23 +360,21 @@ class MaterialManager(PackageManager):
         self,
         menu,
         ):
-        #if os.path.isfile(self._output_module_path):
-        if True:
-            section = menu.make_command_section(name='illustrate module')
-            if os.path.isfile(self._illustrate_module_path):
-                string = 'illustrate module - edit'
-                section.append((string, 'ime'))
-                string = 'illustrate module - edit & interpret'
-                section.append((string, 'imei'))
-                string = 'illustrate module - interpret'
-                section.append((string, 'imi'))
-                string = 'illustrate module - remove'
-                section.append((string, 'imrm'))
-                string = 'illustrate module - stub'
-                section.append((string, 'ims'))
-            else:
-                string = 'illustrate module - stub'
-                section.append((string, 'ims'))
+        section = menu.make_command_section(name='illustrate module')
+        if os.path.isfile(self._illustrate_module_path):
+            string = 'illustrate module - edit'
+            section.append((string, 'ime'))
+            string = 'illustrate module - edit & interpret'
+            section.append((string, 'imei'))
+            string = 'illustrate module - interpret'
+            section.append((string, 'imi'))
+            string = 'illustrate module - remove'
+            section.append((string, 'imrm'))
+            string = 'illustrate module - stub'
+            section.append((string, 'ims'))
+        else:
+            string = 'illustrate module - stub'
+            section.append((string, 'ims'))
 
     def _make_illustration_ly_menu_section(self, menu):
         if os.path.isfile(self._illustration_ly_file_path):

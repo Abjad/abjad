@@ -120,29 +120,11 @@
         Score manager - material library - tempo inventory (Red Example Score)
     ... with the annotated score title.
 
-37. Change this segments menu ...
-
-        Red Example Score (2013) - segments
-
-            1: segment 01 (Red Example Score)
-            2: segment 02 (Red Example Score)
-            3: segment 03 (Red Example Score)
-
-    ... to this ...
-
-        Red Example Score (2013) - segments
-
-            1: segment 01
-            2: segment 02
-            3: segment 03
-
-    ... without the annotated score title.
-
-38. Hide the one-element illustrate menu ...
+37. Hide the one-element illustrate menu ...
         'illustrate module - stub (ims)' 
     ... unless an __illustrate__.py module already exists in material package.
 
-39. Change this material menu ...
+38. Change this material menu ...
 
     Red Example Score (2013) - materials - tempo inventory
 
@@ -170,7 +152,7 @@
 
     ... with asterisks to mark entries in the material summary menu section.
 
-40. Add 'output module - check (omc)' command.
+39. Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
