@@ -426,6 +426,9 @@ class Wrangler(Controller):
 
         Returns none.
         '''
+        self._session._attempted_to_add_to_repository = True
+        if self._session._is_add_to_repository_test:
+            return
         paths = self._list_visible_asset_paths()
         for path in paths:
             manager = self._initialize_asset_manager(path)
