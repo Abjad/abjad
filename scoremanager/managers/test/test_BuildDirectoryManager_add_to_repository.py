@@ -14,9 +14,9 @@ def test_BuildDirectoryManager_add_to_repository_01():
 
     manager = score_manager._find_up_to_date_versioned_manager(
         scoremanager.managers.BuildDirectoryManager,
-        configuration.abjad_score_packages_directory_path,
-        infix='build',
         repository='git',
+        suffix='build',
+        system=True,
         )
 
     assert manager._test_add_to_repository()
@@ -30,9 +30,9 @@ def test_BuildDirectoryManager_add_to_repository_02():
 
     manager = score_manager._find_up_to_date_versioned_manager(
         scoremanager.managers.BuildDirectoryManager,
-        configuration.user_score_packages_directory_path,
-        infix='build',
         repository='svn',
+        suffix='build',
+        system=False,
         )
             
     if not manager:

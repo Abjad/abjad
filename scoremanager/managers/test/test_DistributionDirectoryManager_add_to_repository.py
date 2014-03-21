@@ -14,9 +14,9 @@ def test_DistributionDirectoryManager_add_to_repository_01():
 
     manager = score_manager._find_up_to_date_versioned_manager(
         scoremanager.managers.DistributionDirectoryManager,
-        configuration.abjad_score_packages_directory_path,
-        infix='distribution',
         repository='git',
+        suffix='distribution',
+        system=True,
         )
 
     assert manager._test_add_to_repository()
@@ -30,9 +30,9 @@ def test_DistributionDirectoryManager_add_to_repository_02():
 
     manager = score_manager._find_up_to_date_versioned_manager(
         scoremanager.managers.DistributionDirectoryManager,
-        configuration.user_score_packages_directory_path,
-        infix='distribution',
         repository='svn',
+        suffix='distribution',
+        system=False,
         )
             
     if not manager:

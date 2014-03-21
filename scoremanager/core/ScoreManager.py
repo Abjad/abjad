@@ -77,30 +77,31 @@ class ScoreManager(Controller):
     def _find_up_to_date_versioned_manager(
         self, 
         manager_class,
-        scores_directory,
-        infix=None,
         repository='git',
+        suffix=None,
+        system=True,
         ):
         import scoremanager
-        infix = infix or ()
-        if isinstance(infix, str):
-            infix = (infix,)
-        assert isinstance(infix, tuple)
-        session = scoremanager.core.Session(is_test=True)
-        manager = manager_class(path=None, session=session)
+        suffix = suffix or ()
+        if isinstance(suffix, str):
+            suffix = (suffix,)
+        assert isinstance(suffix, tuple)
+        if system:
+            scores_directory = \
+                self._configuration.abjad_score_packages_directory_path
+        else:
+            scores_directory = \
+                self._configuration.user_score_packages_directory_path
         for score_package_name in os.listdir(scores_directory):
-            top_level_directory = os.path.join(
+            path = os.path.join(
                 scores_directory, 
                 score_package_name, 
-                *infix
+                *suffix
                 )
-            if not os.path.isdir(top_level_directory):
+            if not os.path.isdir(path):
                 continue
             session = scoremanager.core.Session(is_test=True)
-            manager = manager_class(
-                path=top_level_directory, 
-                session=session,
-                )
+            manager = manager_class(path=path, session=session)
             if repository == 'git' and \
                 manager._is_git_versioned() and \
                 manager._is_up_to_date():
