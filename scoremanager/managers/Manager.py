@@ -471,6 +471,34 @@ class Manager(Controller):
         asset_name = space_delimited_lowercase_name.replace(' ', '_')
         return asset_name
 
+    def _test_add_to_repository(self):
+        assert self._is_up_to_date()
+        path_1 = os.path.join(self._path, 'tmp_1.py')
+        path_2 = os.path.join(self._path, 'tmp_2.py')
+        assert not os.path.exists(path_1)
+        assert not os.path.exists(path_2)
+        with file(path_1, 'w') as file_pointer:
+            file_pointer.write('')
+        with file(path_2, 'w') as file_pointer:
+            file_pointer.write('')
+        assert os.path.exists(path_1)
+        assert os.path.exists(path_2)
+        assert not self._is_up_to_date()
+        assert self._get_unadded_asset_paths() == [path_1, path_2]
+        assert self._get_added_asset_paths() == []
+        self.add_to_repository(prompt=False)
+        assert self._get_unadded_asset_paths() == []
+        assert self._get_added_asset_paths() == [path_1, path_2]
+        self.revert_from_repository(prompt=False)
+        assert self._get_unadded_asset_paths() == [path_1, path_2]
+        assert self._get_added_asset_paths() == []
+        os.remove(path_1)
+        os.remove(path_2)
+        assert not os.path.exists(path_1)
+        assert not os.path.exists(path_2)
+        assert self._is_up_to_date()
+        return True
+    
     ### PUBLIC METHODS ###
 
     def add_to_repository(self, prompt=True):

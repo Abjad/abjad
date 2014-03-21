@@ -34,6 +34,7 @@ class StylesheetWrangler(Wrangler):
             self._configuration.user_library_stylesheets_directory_path
         self._score_storehouse_path_infix_parts = ('stylesheets',)
         self._include_extensions = True
+        self._manages_top_level_directory = True
 
     ### PRIVATE PROPERTIES ###
 

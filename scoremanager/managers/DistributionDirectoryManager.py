@@ -17,8 +17,6 @@ class DistributionDirectoryManager(DirectoryManager):
             path=path,
             session=session,
             )
-        if not os.path.exists(path):
-            self._make_empty_asset()
 
     ### PRIVATE METHODS ###
 

@@ -46,6 +46,41 @@ class PackageWrangler(Wrangler):
 
     ### PRIVATE METHODS ###
 
+    def _find_up_to_date_versioned_manager(
+        self, 
+        system=True,
+        repository='git',
+        ):
+        import scoremanager
+        session = scoremanager.core.Session()
+        if system:
+            asset_paths = self._list_asset_paths(
+                abjad_library=True,
+                abjad_score_packages=True,
+                user_library=False,
+                user_score_packages=False,
+                )
+        else:
+            asset_paths = self._list_asset_paths(
+                abjad_library=False,
+                abjad_score_packages=False,
+                user_library=True,
+                user_score_packages=True,
+                )
+        for asset_path in asset_paths:
+            manager = self._asset_manager_class(
+                path=asset_path,
+                session=session,
+                )
+            if repository == 'git' and \
+                manager._is_git_versioned() and \
+                manager._is_up_to_date():
+                return manager
+            elif repository == 'svn' and \
+                manager._is_svn_versioned() and \
+                manager._is_up_to_date():
+                return manager
+
     def _get_view_from_disk(self):
         package_manager = self._current_package_manager
         if not package_manager:

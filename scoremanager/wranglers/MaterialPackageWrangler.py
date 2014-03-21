@@ -38,6 +38,7 @@ class MaterialPackageWrangler(PackageWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
+        from scoremanager import managers
         from scoremanager import wranglers
         superclass = super(MaterialPackageWrangler, self)
         superclass.__init__(session=session)
@@ -48,6 +49,7 @@ class MaterialPackageWrangler(PackageWrangler):
         path = self._configuration.user_library_material_packages_directory_path
         self._user_storehouse_path = path
         self._score_storehouse_path_infix_parts = ('materials',)
+        self._asset_manager_class = managers.MaterialManager
 
     ### PRIVATE PROPERTIES ###
 

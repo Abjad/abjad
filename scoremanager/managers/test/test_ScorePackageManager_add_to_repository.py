@@ -18,34 +18,7 @@ def test_ScorePackageManager_add_to_repository_01():
         repository='git',
         )
 
-    assert manager._is_up_to_date()
-    path_1 = os.path.join(manager._path, 'tmp_1.py')
-    path_2 = os.path.join(manager._path, 'tmp_2.py')
-
-    assert not os.path.exists(path_1)
-    assert not os.path.exists(path_2)
-
-    with file(path_1, 'w') as file_pointer:
-        file_pointer.write('')
-    with file(path_2, 'w') as file_pointer:
-        file_pointer.write('')
-    assert os.path.exists(path_1)
-    assert os.path.exists(path_2)
-    assert not manager._is_up_to_date()
-    assert manager._get_unadded_asset_paths() == [path_1, path_2]
-    assert manager._get_added_asset_paths() == []
-    manager.add_to_repository(prompt=False)
-    assert manager._get_unadded_asset_paths() == []
-    assert manager._get_added_asset_paths() == [path_1, path_2]
-    manager.revert_from_repository(prompt=False)
-    assert manager._get_unadded_asset_paths() == [path_1, path_2]
-    assert manager._get_added_asset_paths() == []
-    os.remove(path_1)
-    os.remove(path_2)
-
-    assert not os.path.exists(path_1)
-    assert not os.path.exists(path_2)
-    assert manager._is_up_to_date()
+    assert manager._test_add_to_repository()
 
 
 def test_ScorePackageManager_add_to_repository_02():
@@ -63,31 +36,4 @@ def test_ScorePackageManager_add_to_repository_02():
     if not manager:
         return
 
-    assert manager._is_up_to_date()
-    path_1 = os.path.join(manager._path, 'tmp_1.py')
-    path_2 = os.path.join(manager._path, 'tmp_2.py')
-
-    assert not os.path.exists(path_1)
-    assert not os.path.exists(path_2)
-    
-    with file(path_1, 'w') as file_pointer:
-        file_pointer.write('')
-    with file(path_2, 'w') as file_pointer:
-        file_pointer.write('')
-    assert os.path.exists(path_1)
-    assert os.path.exists(path_2)
-    assert not manager._is_up_to_date()
-    assert manager._get_unadded_asset_paths() == [path_1, path_2]
-    assert manager._get_added_asset_paths() == []
-    manager.add_to_repository(prompt=False)
-    assert manager._get_unadded_asset_paths() == []
-    assert manager._get_added_asset_paths() == [path_1, path_2]
-    manager.revert_from_repository(prompt=False)
-    assert manager._get_unadded_asset_paths() == [path_1, path_2]
-    assert manager._get_added_asset_paths() == []
-    os.remove(path_1)
-    os.remove(path_2)
-
-    assert not os.path.exists(path_1)
-    assert not os.path.exists(path_2)
-    assert manager._is_up_to_date()
+    assert manager._test_add_to_repository()

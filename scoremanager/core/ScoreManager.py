@@ -77,7 +77,7 @@ class ScoreManager(Controller):
     def _find_up_to_date_versioned_manager(
         self, 
         manager_class,
-        storehouse_path,
+        scores_directory,
         infix=None,
         repository='git',
         ):
@@ -86,16 +86,21 @@ class ScoreManager(Controller):
         if isinstance(infix, str):
             infix = (infix,)
         assert isinstance(infix, tuple)
-        for directory_entry in os.listdir(storehouse_path):
-            directory_path = os.path.join(
-                storehouse_path, 
-                directory_entry, 
+        session = scoremanager.core.Session(is_test=True)
+        manager = manager_class(path=None, session=session)
+        for score_package_name in os.listdir(scores_directory):
+            top_level_directory = os.path.join(
+                scores_directory, 
+                score_package_name, 
                 *infix
                 )
-            if not os.path.isdir(directory_path):
+            if not os.path.isdir(top_level_directory):
                 continue
             session = scoremanager.core.Session(is_test=True)
-            manager = manager_class(path=directory_path, session=session)
+            manager = manager_class(
+                path=top_level_directory, 
+                session=session,
+                )
             if repository == 'git' and \
                 manager._is_git_versioned() and \
                 manager._is_up_to_date():
