@@ -36,16 +36,19 @@ class ScorePackageWrangler(PackageWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from scoremanager import managers
         superclass = super(ScorePackageWrangler, self)
         superclass.__init__(session=session)
-        self._asset_manager_class = managers.ScorePackageManager
         path = self._configuration.abjad_score_packages_directory_path
         self._abjad_storehouse_path = path
         path = self._configuration.user_score_packages_directory_path
         self._user_storehouse_path = path
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _asset_manager_class(self):
+        from scoremanager import managers
+        return managers.ScorePackageManager
 
     @property
     def _breadcrumb(self):

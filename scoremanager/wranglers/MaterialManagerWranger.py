@@ -39,6 +39,11 @@ class MaterialManagerWrangler(PackageWrangler):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _asset_manager_class(self):
+        from scoremanager import managers
+        return managers.MaterialManagerWrangler
+
+    @property
     def _breadcrumb(self):
         return 'material managers'
 

@@ -27,7 +27,6 @@ class MakerModuleWrangler(Wrangler):
         from scoremanager import managers
         superclass = super(MakerModuleWrangler, self)
         superclass.__init__(session=session)
-        self._asset_manager_class = managers.FileManager
         self._abjad_storehouse_path = None
         self._user_storehouse_path = \
             self._configuration.user_library_makers_directory_path
@@ -35,6 +34,11 @@ class MakerModuleWrangler(Wrangler):
         self._include_extensions = True
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _asset_manager_class(self):
+        from scoremanager import managers
+        return manager.FileManager
 
     @property
     def _breadcrumb(self):

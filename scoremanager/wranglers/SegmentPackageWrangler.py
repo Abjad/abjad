@@ -22,13 +22,16 @@ class SegmentPackageWrangler(PackageWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from scoremanager import managers
         superclass = super(SegmentPackageWrangler, self)
         superclass.__init__(session=session)
-        self._asset_manager_class = managers.SegmentPackageManager
         self._score_storehouse_path_infix_parts = ('segments',)
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _asset_manager_class(self):
+        from scoremanager import managers
+        return managers.SegmentPackageManager
 
     @property
     def _breadcrumb(self):

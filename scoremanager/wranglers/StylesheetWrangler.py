@@ -24,10 +24,8 @@ class StylesheetWrangler(Wrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from scoremanager import managers
         superclass = super(StylesheetWrangler, self)
         superclass.__init__(session=session)
-        self._asset_manager_class = managers.FileManager
         self._abjad_storehouse_path = \
             self._configuration.abjad_stylesheets_directory_path
         self._user_storehouse_path = \
@@ -37,6 +35,11 @@ class StylesheetWrangler(Wrangler):
         self._manages_top_level_directory = True
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _asset_manager_class(self):
+        from scoremanager import managers
+        return managers.FileManager
 
     @property
     def _breadcrumb(self):

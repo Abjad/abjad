@@ -12,9 +12,7 @@ class PackageWrangler(Wrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from scoremanager import managers
         Wrangler.__init__(self, session=session)
-        self._asset_manager_class = managers.PackageManager
 
     ### PRIVATE PROPERTIES ###
 

@@ -29,6 +29,10 @@ class Wrangler(Controller):
 
     ### PRIVATE PROPERTIES ###
 
+    @abc.abstractproperty
+    def _asset_manager_class(self):
+        pass
+
     @property
     def _current_package_manager(self):
         from scoremanager import managers
@@ -54,10 +58,6 @@ class Wrangler(Controller):
     def _temporary_asset_manager(self):
         return self._initialize_asset_manager(
             self._temporary_asset_path)
-
-    @abc.abstractproperty
-    def _temporary_asset_name(self):
-        pass
 
     @property
     def _temporary_asset_path(self):
