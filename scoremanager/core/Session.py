@@ -85,7 +85,6 @@ class Session(abctools.AbjadObject):
         )
 
     _variables_to_display = (
-        'attempted_to_open_file',
         'breadcrumb_stack',
         'command_history',
         'controller_stack',
@@ -329,22 +328,6 @@ class Session(abctools.AbjadObject):
             self._breadcrumb_stack[:] = self._breadcrumb_cache_stack.pop()
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def attempted_to_open_file(self):
-        r'''Is true when call to ``IOManager.open_file()`` has been made
-        during session. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.attempted_to_open_file
-                False
-
-        Returns boolean.
-        '''
-        return self._attempted_to_open_file
 
     @property
     def breadcrumb_stack(self):

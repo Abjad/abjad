@@ -15,4 +15,4 @@ def test_PackageManager_view_initializer_01():
         'Score manager - material library - example numbers (Abjad)',
         ]
     assert score_manager._transcript.titles == titles
-    assert score_manager._session.attempted_to_open_file
+    assert score_manager._session._attempted_to_open_file

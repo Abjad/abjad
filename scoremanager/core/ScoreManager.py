@@ -272,7 +272,7 @@ class ScoreManager(Controller):
 
         Returns none.
         '''
-        self._score_package_wrangler.add(prompt=prompt)
+        self._score_package_wrangler.add_to_repository(prompt=prompt)
 
     def commit_to_repository(self, prompt=True):
         r'''Commits assets to repository.

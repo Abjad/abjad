@@ -15,5 +15,5 @@ def test_MaterialManager_view_illustration_pdf_01():
         'Score manager - material library - example notes (Abjad)',
         ]
 
-    assert score_manager._session.attempted_to_open_file
+    assert score_manager._session._attempted_to_open_file
     assert score_manager._transcript.titles == titles

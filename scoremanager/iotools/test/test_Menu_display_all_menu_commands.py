@@ -194,4 +194,4 @@ def test_Menu_display_all_menu_commands_14():
     input_ = 'Red Example Score (2013)'
     transcript = score_manager._transcript
     assert transcript.last_title == input_
-    assert score_manager._session.attempted_to_open_file
+    assert score_manager._session._attempted_to_open_file

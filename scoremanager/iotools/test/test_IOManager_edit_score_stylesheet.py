@@ -10,7 +10,7 @@ def test_IOManager_edit_score_stylesheet_01():
 
     input_ = 'red~example~score Y q'
     score_manager._run(pending_user_input=input_)
-    assert score_manager._session.attempted_to_open_file
+    assert score_manager._session._attempted_to_open_file
 
 
 def test_IOManager_edit_score_stylesheet_02():
@@ -19,7 +19,7 @@ def test_IOManager_edit_score_stylesheet_02():
 
     input_ = 'red~example~score g Y q'
     score_manager._run(pending_user_input=input_)
-    assert score_manager._session.attempted_to_open_file
+    assert score_manager._session._attempted_to_open_file
 
 
 def test_IOManager_edit_score_stylesheet_03():
@@ -28,4 +28,4 @@ def test_IOManager_edit_score_stylesheet_03():
 
     input_ = 'red~example~score g 1 Y q'
     score_manager._run(pending_user_input=input_)
-    assert score_manager._session.attempted_to_open_file
+    assert score_manager._session._attempted_to_open_file

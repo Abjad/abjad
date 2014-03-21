@@ -9,4 +9,4 @@ def test_ScoreManager_view_cache_01():
     input_ = 'cro q'
     score_manager._run(pending_user_input=input_)
 
-    assert score_manager._session.attempted_to_open_file
+    assert score_manager._session._attempted_to_open_file
