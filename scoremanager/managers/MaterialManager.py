@@ -54,6 +54,14 @@ class MaterialManager(PackageManager):
     @property
     def _breadcrumb(self):
         return self._space_delimited_lowercase_name
+#        if self._session.is_in_score:
+#            return self._space_delimited_lowercase_name
+#        name = self._space_delimited_lowercase_name
+#        configuration = self._configuration
+#        annotation = configuration._path_to_storehouse_annotation(self._path)
+#        string = '{} ({})'
+#        string = string.format(name, annotation)
+#        return string
 
     @property
     def _illustrate_module_manager(self):
@@ -131,6 +139,15 @@ class MaterialManager(PackageManager):
     @property
     def _output_module_path(self):
         return os.path.join(self._path, 'output.py')
+
+    @property
+    def _score_package_manager(self):
+        from scoremanager import managers
+        score_path = self._configuration._path_to_score_path(self._path)
+        return managers.ScorePackageManager(
+            path=score_path,
+            session=self._session,
+            )
 
     @property
     def _stylesheet_manager(self):

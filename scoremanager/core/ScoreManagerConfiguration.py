@@ -120,14 +120,32 @@ class ScoreManagerConfiguration(AbjadConfiguration):
         elif path.startswith(self.abjad_score_packages_directory_path):
             prefix_length = len(self.abjad_score_packages_directory_path)
         else:
-            message = 'path not found in score: {!r}.'
-            message = message.format(path)
-            raise ValueError(message)
+            return
         path_prefix = path[:prefix_length]
         path_suffix = path[prefix_length+1:]
         score_name = path_suffix.split(os.path.sep)[0]
         score_path = os.path.join(path_prefix, score_name)
         return score_path
+
+    def _path_to_storehouse_annotation(self, path):
+        import scoremanager
+        score_path = self._path_to_score_path(path)
+        if score_path:
+            session = scoremanager.core.Session
+            manager = scoremanager.managers.ScorePackageManager(
+                path=score_path,
+                session=session,
+                )
+            title = manager._get_title()
+            return title
+        elif path.startswith(self.user_library_directory_path):
+            return self.composer_last_name
+        elif path.startswith(self.abjad_root_directory_path):
+            return 'Abjad'
+        else:
+            message = 'path in unknown storehouse: {!r}.'
+            message = message.format(path)
+            raise ValueError(path)
 
     ### PUBLIC PROPERTIES ###
 
