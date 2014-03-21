@@ -12,7 +12,6 @@ def test_ScoreManager__find_up_to_date_versioned_manager_01():
 
     manager = score_manager._find_up_to_date_versioned_manager(
         scoremanager.managers.BuildDirectoryManager,
-        suffix='build',
         system=True,
         repository='git',
         )
@@ -29,7 +28,6 @@ def test_ScoreManager__find_up_to_date_versioned_manager_02():
 
     manager = score_manager._find_up_to_date_versioned_manager(
         scoremanager.managers.BuildDirectoryManager,
-        suffix='build',
         system=False,
         repository='svn',
         )
@@ -49,7 +47,6 @@ def test_ScoreManager__find_up_to_date_versioned_manager_03():
 
     manager = score_manager._find_up_to_date_versioned_manager(
         scoremanager.managers.DistributionDirectoryManager,
-        suffix='distribution',
         system=True,
         repository='git',
         )
@@ -69,7 +66,6 @@ def test_ScoreManager__find_up_to_date_versioned_manager_04():
 
     manager = score_manager._find_up_to_date_versioned_manager(
         scoremanager.managers.DistributionDirectoryManager,
-        suffix='distribution',
         system=False,
         repository='svn',
         )

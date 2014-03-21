@@ -15,7 +15,6 @@ def test_DistributionDirectoryManager_add_to_repository_01():
     manager = score_manager._find_up_to_date_versioned_manager(
         scoremanager.managers.DistributionDirectoryManager,
         repository='git',
-        suffix='distribution',
         system=True,
         )
 
@@ -31,7 +30,6 @@ def test_DistributionDirectoryManager_add_to_repository_02():
     manager = score_manager._find_up_to_date_versioned_manager(
         scoremanager.managers.DistributionDirectoryManager,
         repository='svn',
-        suffix='distribution',
         system=False,
         )
             

@@ -78,10 +78,12 @@ class ScoreManager(Controller):
         self, 
         manager_class,
         repository='git',
-        suffix=None,
         system=True,
         ):
         import scoremanager
+        session = scoremanager.core.Session()
+        manager = manager_class(session=session)
+        suffix = getattr(manager, '_score_directory_suffix', None)
         suffix = suffix or ()
         if isinstance(suffix, str):
             suffix = (suffix,)

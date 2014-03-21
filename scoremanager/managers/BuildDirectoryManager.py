@@ -14,8 +14,9 @@ class BuildDirectoryManager(DirectoryManager):
     ### INITIALIZER ###
 
     def __init__(self, path=None, session=None):
+        self._score_directory_suffix = 'build'
         if path is not None:
-            assert path.endswith('build')
+            assert path.endswith(self._score_directory_suffix)
         DirectoryManager.__init__(
             self,
             path=path,

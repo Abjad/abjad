@@ -10,8 +10,9 @@ class DistributionDirectoryManager(DirectoryManager):
     ### INITIALIZER ###
 
     def __init__(self, path=None, session=None):
+        self._score_directory_suffix = 'distribution'
         if path is not None:
-            assert path.endswith('distribution')
+            assert path.endswith(self._score_directory_suffix)
         DirectoryManager.__init__(
             self,
             path=path,

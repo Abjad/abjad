@@ -15,7 +15,6 @@ def test_BuildDirectoryManager_add_to_repository_01():
     manager = score_manager._find_up_to_date_versioned_manager(
         scoremanager.managers.BuildDirectoryManager,
         repository='git',
-        suffix='build',
         system=True,
         )
 
@@ -31,7 +30,6 @@ def test_BuildDirectoryManager_add_to_repository_02():
     manager = score_manager._find_up_to_date_versioned_manager(
         scoremanager.managers.BuildDirectoryManager,
         repository='svn',
-        suffix='build',
         system=False,
         )
             
