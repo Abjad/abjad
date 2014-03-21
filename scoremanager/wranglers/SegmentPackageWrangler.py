@@ -58,6 +58,16 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_manager = self._initialize_asset_manager(result)
             segment_package_manager._run()
 
+    def _make_all_segments_menu_section(self, menu):
+        section = menu.make_command_section(name='all segments')
+        string = 'all segments - make module - interpret'
+        section.append((string, 'mmi'))
+        string = 'all segments - lilypond file - interpret'
+        section.append((string, 'lyi'))
+        section.append(('all segments - pdf - version', 'pdfs'))
+        section.append(('all segments - pdf - open', 'pdfo'))
+        return section
+
     def _make_asset(
         self, 
         path, 
@@ -86,16 +96,6 @@ class SegmentPackageWrangler(PackageWrangler):
             section.append(entry)
         return section
 
-    def _make_all_segments_menu_section(self, menu):
-        section = menu.make_command_section(name='all segments')
-        string = 'all segments - make module - interpret'
-        section.append((string, 'mmi'))
-        string = 'all segments - lilypond file - interpret'
-        section.append((string, 'lyi'))
-        section.append(('all segments - pdf - version', 'pdfs'))
-        section.append(('all segments - pdf - open', 'pdfo'))
-        return section
-
     def _make_main_menu(self, name='segment wrangler'):
         menu = self._io_manager.make_menu(
             where=self._where, 
@@ -118,41 +118,6 @@ class SegmentPackageWrangler(PackageWrangler):
         return section
 
     ### PUBLIC METHODS ###
-
-    def interpret_make_modules(
-        self,
-        pending_user_input=None,
-        ):
-        r'''Makes asset PDFs.
-
-        Returns none.
-        '''
-        self._io_manager._assign_user_input(pending_user_input)
-        parts = (self._session.current_score_directory_path,)
-        parts += self._score_storehouse_path_infix_parts
-        segments_directory_path = os.path.join(*parts)
-        for directory_entry in sorted(os.listdir(segments_directory_path)):
-            if not directory_entry[0].isalpha():
-                continue
-            segment_package_name = directory_entry
-            segment_package_directory_path = os.path.join(
-                segments_directory_path,
-                segment_package_name,
-                )
-            manager = self._asset_manager_class(
-                path=segment_package_directory_path,
-                session=self._session,
-                )
-            manager.interpret_make_module(
-                prompt=False,
-                )
-            output_pdf_file_path = manager._output_pdf_file_path
-            if os.path.isfile(output_pdf_file_path):
-                message = 'segment {} PDF created.'
-                message = message.format(segment_package_name)
-                self._io_manager.display(message)
-        self._io_manager.display('')
-        self._io_manager.proceed()
 
     def interpret_current_lilypond_files(
         self,
@@ -191,6 +156,41 @@ class SegmentPackageWrangler(PackageWrangler):
         self._io_manager.proceed(message=message, prompt=prompt)
         if view_output_pdfs:
             self.view_segment_pdfs()
+
+    def interpret_make_modules(
+        self,
+        pending_user_input=None,
+        ):
+        r'''Makes asset PDFs.
+
+        Returns none.
+        '''
+        self._io_manager._assign_user_input(pending_user_input)
+        parts = (self._session.current_score_directory_path,)
+        parts += self._score_storehouse_path_infix_parts
+        segments_directory_path = os.path.join(*parts)
+        for directory_entry in sorted(os.listdir(segments_directory_path)):
+            if not directory_entry[0].isalpha():
+                continue
+            segment_package_name = directory_entry
+            segment_package_directory_path = os.path.join(
+                segments_directory_path,
+                segment_package_name,
+                )
+            manager = self._asset_manager_class(
+                path=segment_package_directory_path,
+                session=self._session,
+                )
+            manager.interpret_make_module(
+                prompt=False,
+                )
+            output_pdf_file_path = manager._output_pdf_file_path
+            if os.path.isfile(output_pdf_file_path):
+                message = 'segment {} PDF created.'
+                message = message.format(segment_package_name)
+                self._io_manager.display(message)
+        self._io_manager.display('')
+        self._io_manager.proceed()
 
     def version_segment_packages(
         self,

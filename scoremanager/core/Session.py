@@ -636,27 +636,6 @@ class Session(abctools.AbjadObject):
         return self._display_pitch_ranges_with_numbered_pitches
 
     @property
-    def is_tracking_source_code(self):
-        r'''Is true when session should enable source code tracking. Otherwise
-        false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_tracking_source_code
-                True
-
-        Returns boolean.
-        '''
-        if self._is_tracking_source_code is not None:
-            return self._is_tracking_source_code
-        if self.is_test:
-            return False
-        else:
-            return True
-
-    @property
     def explicit_command_history(self):
         r'''Gets session explicit command history.
 
@@ -1138,6 +1117,27 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_test
+
+    @property
+    def is_tracking_source_code(self):
+        r'''Is true when session should enable source code tracking. Otherwise
+        false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_tracking_source_code
+                True
+
+        Returns boolean.
+        '''
+        if self._is_tracking_source_code is not None:
+            return self._is_tracking_source_code
+        if self.is_test:
+            return False
+        else:
+            return True
 
     @property
     def last_command_was_composite(self):

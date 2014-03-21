@@ -185,6 +185,42 @@ class Menu(ScoreManagerObject):
         self._session._hide_hidden_commands = True
         self._session._hide_next_redraw = True
 
+    def _enclose_in_list(self, expr):
+        if self._has_ranged_section():
+            return [expr]
+        else:
+            return expr
+
+    def _get_first_nonhidden_return_value_in_menu(self):
+        for menu_section in self.menu_sections:
+            if menu_section.is_hidden:
+                continue
+            if menu_section._menu_entry_return_values:
+                return menu_section._menu_entry_return_values[0]
+
+    def _handle_argument_range_user_input(self, user_input):
+        if not self._has_ranged_section():
+            return
+        for menu_section in self.menu_sections:
+            if menu_section.is_ranged:
+                ranged_section = menu_section
+        entry_numbers = ranged_section._argument_range_string_to_numbers(
+            user_input)
+        if not entry_numbers:
+            return
+        entry_indices = [entry_number - 1 for entry_number in entry_numbers]
+        result = []
+        for i in entry_indices:
+            entry = ranged_section._menu_entry_return_values[i]
+            result.append(entry)
+        return result
+
+    def _has_numbered_section(self):
+        return any(x.is_numbered for x in self.menu_sections)
+
+    def _has_ranged_section(self):
+        return any(x.is_ranged for x in self.menu_sections)
+
     def _make_bicolumnar(self, lines):
         terminal_height = 50
         column_width = 55
@@ -236,41 +272,9 @@ class Menu(ScoreManagerObject):
             massaged_lines.append(massaged_line)
         return massaged_lines
 
-    def _enclose_in_list(self, expr):
-        if self._has_ranged_section():
-            return [expr]
-        else:
-            return expr
-
-    def _get_first_nonhidden_return_value_in_menu(self):
-        for menu_section in self.menu_sections:
-            if menu_section.is_hidden:
-                continue
-            if menu_section._menu_entry_return_values:
-                return menu_section._menu_entry_return_values[0]
-
-    def _handle_argument_range_user_input(self, user_input):
-        if not self._has_ranged_section():
-            return
-        for menu_section in self.menu_sections:
-            if menu_section.is_ranged:
-                ranged_section = menu_section
-        entry_numbers = ranged_section._argument_range_string_to_numbers(
-            user_input)
-        if not entry_numbers:
-            return
-        entry_indices = [entry_number - 1 for entry_number in entry_numbers]
-        result = []
-        for i in entry_indices:
-            entry = ranged_section._menu_entry_return_values[i]
-            result.append(entry)
-        return result
-
-    def _has_numbered_section(self):
-        return any(x.is_numbered for x in self.menu_sections)
-
-    def _has_ranged_section(self):
-        return any(x.is_ranged for x in self.menu_sections)
+    def _make_commands_menu_section(self):
+        section = self.make_command_section(name='commands', is_hidden=True)
+        section.append(('commands - all', '?'))
 
     def _make_default_hidden_sections(self):
         sections = []
@@ -288,6 +292,14 @@ class Menu(ScoreManagerObject):
         sections.append(self._make_source_code_menu_section())
         sections.append(self._make_system_menu_section())
         return sections
+
+    def _make_edit_menu_section(self):
+        section = self.make_command_section(
+            name='edit',
+            is_hidden=True,
+            )
+        section.append(('edit - current stylesheet', 'Y'))
+        return section
 
     def _make_go_menu_section(self):
         section = self.make_navigation_section(name='go', is_hidden=True)
@@ -343,14 +355,6 @@ class Menu(ScoreManagerObject):
         section.append(('score - segments', 'g'))
         section.append(('score - setup', 'p'))
         section.append(('score - stylesheets', 'y'))
-        return section
-
-    def _make_edit_menu_section(self):
-        section = self.make_command_section(
-            name='edit',
-            is_hidden=True,
-            )
-        section.append(('edit - current stylesheet', 'Y'))
         return section
 
     def _make_scores_tour_menu_section(self):
@@ -442,6 +446,10 @@ class Menu(ScoreManagerObject):
             result = []
         return result
 
+    def _make_session_menu_section(self):
+        section = self.make_command_section(name='session', is_hidden=True)
+        section.append(('session - display variables', 'sdv'))
+
     def _make_source_code_menu_section(self):
         section = self.make_command_section(
             name='source code',
@@ -450,14 +458,6 @@ class Menu(ScoreManagerObject):
         section.append(('source code - edit', 'sce'))
         section.append(('source code - location', 'scl'))
         return section
-
-    def _make_commands_menu_section(self):
-        section = self.make_command_section(name='commands', is_hidden=True)
-        section.append(('commands - all', '?'))
-
-    def _make_session_menu_section(self):
-        section = self.make_command_section(name='session', is_hidden=True)
-        section.append(('session - display variables', 'sdv'))
 
     def _make_system_menu_section(self):
         section = self.make_navigation_section(name='system', is_hidden=True)

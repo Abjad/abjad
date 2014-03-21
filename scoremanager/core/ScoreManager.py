@@ -107,6 +107,19 @@ class ScoreManager(Controller):
             if result in score_package_paths:
                 self.manage_score(result)
 
+    def _list_all_directories_with_metadata_modules(self):
+        storehouses = (
+            self._configuration.abjad_material_packages_directory_path,
+            self._configuration.abjad_score_packages_directory_path,
+            self._configuration.user_library_directory_path,
+            self._configuration.user_score_packages_directory_path,
+            )
+        directories = []
+        for storehouse in storehouses:
+            result = self._list_directories_with_metadata_modules(storehouse)
+            directories.extend(result)
+        return directories
+
     def _make_all_directories_menu_section(self, menu):
         section = menu.make_command_section(
             name='all directories',
@@ -320,6 +333,18 @@ class ScoreManager(Controller):
                 )
         self._io_manager.proceed(prompt=prompt)
 
+    def edit_metadata_modules(self):
+        r'''Edits all metadata modules everywhere.
+
+        Ignores view.
+
+        Returns none.
+        '''
+        from scoremanager import managers
+        directories = self._list_all_directories_with_metadata_modules()
+        paths = [os.path.join(_, '__metadata__.py') for _ in directories]
+        self._io_manager.view(paths)
+
     def fix_score_packages(self, prompt=True):
         r'''Fixes score packages.
 
@@ -343,6 +368,24 @@ class ScoreManager(Controller):
         message = message.format(len(paths))
         self._io_manager.display(['', message, ''])
         self._io_manager.proceed(prompt=prompt)
+
+    def list_metadata_modules(self, prompt=True):
+        r'''Lists all metadata modules everywhere.
+
+        Ignores view.
+
+        Returns none.
+        '''
+        from scoremanager import managers
+        directories = self._list_all_directories_with_metadata_modules()
+        paths = [os.path.join(_, '__metadata__.py') for _ in directories]
+        lines = paths[:]
+        lines.append('')
+        if prompt:
+            self._io_manager.display(lines)
+        message = '{} metadata modules found.'
+        message = message.format(len(paths))
+        self._io_manager.proceed(message, prompt=prompt)
 
     def make_new_score(self):
         r'''Makes new score.
@@ -401,49 +444,6 @@ class ScoreManager(Controller):
                 capitalize_first_character=False,
                 )
         self._io_manager.proceed(prompt=prompt)
-
-    def _list_all_directories_with_metadata_modules(self):
-        storehouses = (
-            self._configuration.abjad_material_packages_directory_path,
-            self._configuration.abjad_score_packages_directory_path,
-            self._configuration.user_library_directory_path,
-            self._configuration.user_score_packages_directory_path,
-            )
-        directories = []
-        for storehouse in storehouses:
-            result = self._list_directories_with_metadata_modules(storehouse)
-            directories.extend(result)
-        return directories
-
-    def edit_metadata_modules(self):
-        r'''Edits all metadata modules everywhere.
-
-        Ignores view.
-
-        Returns none.
-        '''
-        from scoremanager import managers
-        directories = self._list_all_directories_with_metadata_modules()
-        paths = [os.path.join(_, '__metadata__.py') for _ in directories]
-        self._io_manager.view(paths)
-
-    def list_metadata_modules(self, prompt=True):
-        r'''Lists all metadata modules everywhere.
-
-        Ignores view.
-
-        Returns none.
-        '''
-        from scoremanager import managers
-        directories = self._list_all_directories_with_metadata_modules()
-        paths = [os.path.join(_, '__metadata__.py') for _ in directories]
-        lines = paths[:]
-        lines.append('')
-        if prompt:
-            self._io_manager.display(lines)
-        message = '{} metadata modules found.'
-        message = message.format(len(paths))
-        self._io_manager.proceed(message, prompt=prompt)
 
     def rewrite_metadata_modules(self, prompt=True):
         r'''Rewrites all metadata modules everywhere.

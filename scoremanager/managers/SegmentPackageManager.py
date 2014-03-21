@@ -29,18 +29,6 @@ class SegmentPackageManager(PackageManager):
         return self._space_delimited_lowercase_name
 
     @property
-    def _make_module_path(self):
-        return os.path.join(self._path, '__make__.py')
-
-    @property
-    def _output_lilypond_file_path(self):
-        return os.path.join(self._path, 'output.ly')
-        
-    @property
-    def _output_pdf_file_path(self):
-        return os.path.join(self._path, 'output.pdf')
-
-    @property
     def _definition_module_manager(self):
         from scoremanager import managers
         if not os.path.exists(self._definition_module_path):
@@ -56,6 +44,18 @@ class SegmentPackageManager(PackageManager):
     @property
     def _definition_module_path(self):
         return os.path.join(self._path, 'definition.py')
+
+    @property
+    def _make_module_path(self):
+        return os.path.join(self._path, '__make__.py')
+
+    @property
+    def _output_lilypond_file_path(self):
+        return os.path.join(self._path, 'output.ly')
+        
+    @property
+    def _output_pdf_file_path(self):
+        return os.path.join(self._path, 'output.pdf')
 
     @property
     def _user_input_to_action(self):
@@ -126,6 +126,12 @@ class SegmentPackageManager(PackageManager):
             section.append(('pdf - open', 'pdfo'))
         return section
 
+    def _make_definition_module_menu_section(self, menu):
+        section = menu.make_command_section(name='definition module')
+        section.append(('definition module - edit', 'e'))
+        section.append(('definition module - edit at top', 'E'))
+        return section
+
     def _make_main_menu(self, name='segment package manager'):
         superclass = super(SegmentPackageManager, self)
         where = self._where
@@ -141,12 +147,6 @@ class SegmentPackageManager(PackageManager):
         self._make_versioned_pdfs_menu_section(menu)
         self._make_versions_directory_menu_section(menu)
         return menu
-
-    def _make_definition_module_menu_section(self, menu):
-        section = menu.make_command_section(name='definition module')
-        section.append(('definition module - edit', 'e'))
-        section.append(('definition module - edit at top', 'E'))
-        return section
 
     def _make_make_module_menu_section(self, menu):
         section = menu.make_command_section(name='make module')
@@ -237,6 +237,42 @@ class SegmentPackageManager(PackageManager):
             return
         manager.edit(line_number=1)
 
+    def interpret_current_lilypond_file(
+        self, 
+        view_output_pdf=True,
+        prompt=True,
+        ):
+        r'''Reinterprets current LilyPond file.
+
+        Opens resulting PDF when `view_output_pdf` is true.
+
+        Returns none.
+        '''
+        file_path = self._output_lilypond_file_path
+        if not os.path.isfile(file_path):
+            return
+        result = self._io_manager.run_lilypond(file_path)
+        if not result:
+            return
+        lines = []
+        lilypond_file_path = self._output_lilypond_file_path
+        message = 'interpreted {!r}.'
+        message = message.format(lilypond_file_path)
+        lines.append(message)
+        pdf_file_path = self._output_pdf_file_path
+        message = 'wrote {!r}.'
+        message = message.format(pdf_file_path)
+        lines.append(message)
+        lines.append('')
+        self._io_manager.display(lines)
+        lines = []
+        message = None
+        if view_output_pdf:
+            message = 'press return to view PDF.'
+        self._io_manager.proceed(message=message, prompt=prompt)
+        if view_output_pdf:
+            self.view_output_pdf()
+
     def interpret_make_module(self, prompt=True):
         r'''Interprets __make__ module.
 
@@ -287,42 +323,6 @@ class SegmentPackageManager(PackageManager):
         '''
         if not os.path.exists(self._versions_directory_path):
             os.mkdir(self._versions_directory_path)
-
-    def interpret_current_lilypond_file(
-        self, 
-        view_output_pdf=True,
-        prompt=True,
-        ):
-        r'''Reinterprets current LilyPond file.
-
-        Opens resulting PDF when `view_output_pdf` is true.
-
-        Returns none.
-        '''
-        file_path = self._output_lilypond_file_path
-        if not os.path.isfile(file_path):
-            return
-        result = self._io_manager.run_lilypond(file_path)
-        if not result:
-            return
-        lines = []
-        lilypond_file_path = self._output_lilypond_file_path
-        message = 'interpreted {!r}.'
-        message = message.format(lilypond_file_path)
-        lines.append(message)
-        pdf_file_path = self._output_pdf_file_path
-        message = 'wrote {!r}.'
-        message = message.format(pdf_file_path)
-        lines.append(message)
-        lines.append('')
-        self._io_manager.display(lines)
-        lines = []
-        message = None
-        if view_output_pdf:
-            message = 'press return to view PDF.'
-        self._io_manager.proceed(message=message, prompt=prompt)
-        if view_output_pdf:
-            self.view_output_pdf()
 
     def save_to_versions_directory(
         self,
@@ -451,6 +451,13 @@ class SegmentPackageManager(PackageManager):
         if os.path.isfile(file_path):
             self._io_manager.view(file_path)
 
+    def view_versioned_definition_module(self):
+        r'''Views versioned definition module.
+
+        Returns none.
+        '''
+        self._view_versioned_file('.py')
+
     def view_versioned_output_ly(self):
         r'''Views output LilyPond file.
 
@@ -464,13 +471,6 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         self._view_versioned_file('.pdf')
-
-    def view_versioned_definition_module(self):
-        r'''Views versioned definition module.
-
-        Returns none.
-        '''
-        self._view_versioned_file('.py')
 
     def write_definition_module(self):
         r'''Write definition module to disk.

@@ -625,6 +625,22 @@ class Wrangler(Controller):
         asset_manager = self._initialize_asset_manager(asset_path)
         asset_manager.rename()
 
+    def revert_from_repository(self, prompt=True):
+        r'''Reverts assets from repository.
+
+        Returns none.
+        '''
+        from scoremanager import managers
+        paths = self._list_visible_asset_paths()
+        paths = self._extract_common_parent_directories(paths)
+        for path in paths:
+            manager = managers.DirectoryManager(
+                path=path,
+                session=self._session,
+                )
+            manager.revert_from_repository(prompt=False)
+        self._io_manager.proceed(prompt=prompt)
+
     def rewrite_metadata_module(self, prompt=True):
         r'''Rewrites metadata module.
 
@@ -661,22 +677,6 @@ class Wrangler(Controller):
         if self._session._backtrack():
             return
         self._current_package_manager._add_metadatum('view_name', view_name)
-
-    def revert_from_repository(self, prompt=True):
-        r'''Reverts assets from repository.
-
-        Returns none.
-        '''
-        from scoremanager import managers
-        paths = self._list_visible_asset_paths()
-        paths = self._extract_common_parent_directories(paths)
-        for path in paths:
-            manager = managers.DirectoryManager(
-                path=path,
-                session=self._session,
-                )
-            manager.revert_from_repository(prompt=False)
-        self._io_manager.proceed(prompt=prompt)
 
     def status(self, prompt=True):
         r'''Display asset status in repository.

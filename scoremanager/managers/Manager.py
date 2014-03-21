@@ -136,6 +136,23 @@ class Manager(Controller):
             raise ValueError(self)
         return paths
 
+    def _get_repository_root_directory(self):
+        if self._is_git_versioned():
+            command = 'git rev-parse --show-toplevel'
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                )
+            line = process.stdout.readline()
+            line = line.strip()
+            return line
+        elif self._is_svn_versioned():
+            pass
+        else:
+            raise ValueError(self)
+
     def _get_score_package_directory_name(self):
         line = self._path
         path = self._configuration.abjad_score_packages_directory_path
@@ -181,23 +198,6 @@ class Manager(Controller):
         else:
             raise ValueError(self)
         return paths
-
-    def _get_repository_root_directory(self):
-        if self._is_git_versioned():
-            command = 'git rev-parse --show-toplevel'
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                )
-            line = process.stdout.readline()
-            line = line.strip()
-            return line
-        elif self._is_svn_versioned():
-            pass
-        else:
-            raise ValueError(self)
 
     def _initialize_file_name_getter(self):
         getter = self._io_manager.make_getter()
@@ -396,6 +396,23 @@ class Manager(Controller):
         process.stdout.readline()
         self._path = new_path
 
+    def _revert_from_repository(self):
+        paths = self._get_added_asset_paths()
+        commands = []
+        if self._is_git_versioned():
+            for path in paths:
+                command = 'git reset -- {}'.format(path)
+                commands.append(command)
+        elif self._is_svn_versioned():
+            for path in paths:
+                command = 'svn revert {}'.format(path)
+                commands.append(command)
+        else:
+            raise ValueError(self)
+        command = ' && '.join(commands)
+        self._io_manager.spawn_subprocess(command)
+        self._io_manager.display('')
+
     def _run(self, cache=False, clear=True, pending_user_input=None):
         from scoremanager import managers
         self._session._push_controller(self)
@@ -453,23 +470,6 @@ class Manager(Controller):
         space_delimited_lowercase_name = space_delimited_lowercase_name.lower()
         asset_name = space_delimited_lowercase_name.replace(' ', '_')
         return asset_name
-
-    def _revert_from_repository(self):
-        paths = self._get_added_asset_paths()
-        commands = []
-        if self._is_git_versioned():
-            for path in paths:
-                command = 'git reset -- {}'.format(path)
-                commands.append(command)
-        elif self._is_svn_versioned():
-            for path in paths:
-                command = 'svn revert {}'.format(path)
-                commands.append(command)
-        else:
-            raise ValueError(self)
-        command = ' && '.join(commands)
-        self._io_manager.spawn_subprocess(command)
-        self._io_manager.display('')
 
     ### PUBLIC METHODS ###
 
