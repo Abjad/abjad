@@ -158,12 +158,14 @@ class Menu(ScoreManagerObject):
         menu_lines = []
         for menu_section in self.menu_sections:
             #print repr(menu_section), 'SECTION'
-            #if not menu_section.is_command_section:
-            #    continue
-            if menu_section.is_asset_section:
+            if not menu_section.is_command_section:
                 continue
-            if menu_section.is_material_summary_section:
-                continue
+#            if menu_section.is_asset_section:
+#                continue
+#            if menu_section.is_material_summary_section:
+#                continue
+#            if menu_section.is_navigation_section:
+#                continue
             for menu_entry in menu_section.menu_entries:
                 key = menu_entry.key
                 display_string = menu_entry.display_string
@@ -288,8 +290,8 @@ class Menu(ScoreManagerObject):
         sections.append(self._make_python_menu_section())
         sections.append(self._make_repository_menu_section())
         if self._session.is_in_score:
-            sections.append(self._make_score_navigation_menu_section())
-        sections.append(self._make_scores_tour_menu_section())
+            sections.append(self._make_go_score_menu_section())
+        sections.append(self._make_go_scores_menu_section())
         sections.append(self._make_session_menu_section())
         sections.append(self._make_source_code_menu_section())
         sections.append(self._make_system_menu_section())
@@ -304,10 +306,37 @@ class Menu(ScoreManagerObject):
         return section
 
     def _make_go_menu_section(self):
-        section = self.make_navigation_section(name='go', is_hidden=True)
+        section = self.make_command_section(
+            name='go', 
+            is_hidden=True,
+            )
         section.append(('go - back', 'b'))
         section.append(('go - home', 'h'))
         section.append(('go - score', 's'))
+        return section
+
+    def _make_go_score_menu_section(self):
+        section = self.make_command_section(
+            name='go - score',
+            is_hidden=True,
+            )
+        section.append(('go - build', 'u'))
+        section.append(('go - distribution', 'd'))
+        section.append(('go - makers', 'k'))
+        section.append(('go - materials', 'm'))
+        section.append(('go - segments', 'g'))
+        section.append(('go - setup', 'p'))
+        section.append(('go - stylesheets', 'y'))
+        return section
+
+    def _make_go_scores_menu_section(self):
+        section = self.make_command_section(
+            name='go - scores',
+            is_alphabetized=False,
+            is_hidden=True,
+            )
+        section.append(('go - next score', '>'))
+        section.append(('go - previous score', '<'))
         return section
 
     def _make_lilypond_menu_section(self):
@@ -337,36 +366,15 @@ class Menu(ScoreManagerObject):
         return section
 
     def _make_repository_menu_section(self):
-        section = self.make_command_section(name='repository', is_hidden=True)
+        section = self.make_command_section(
+            name='repository', 
+            is_hidden=True,
+            )
         section.append(('repository - add', 'rad'))
         section.append(('repository - commit', 'rci'))
         section.append(('repository - revert', 'rrv'))
         section.append(('repository - status', 'rst'))
         section.append(('repository - update', 'rup'))
-        return section
-
-    def _make_score_navigation_menu_section(self):
-        section = self.make_command_section(
-            name='score navigation',
-            is_hidden=True,
-            )
-        section.append(('score - build', 'u'))
-        section.append(('score - distribution', 'd'))
-        section.append(('score - makers', 'k'))
-        section.append(('score - materials', 'm'))
-        section.append(('score - segments', 'g'))
-        section.append(('score - setup', 'p'))
-        section.append(('score - stylesheets', 'y'))
-        return section
-
-    def _make_scores_tour_menu_section(self):
-        section = self.make_command_section(
-            name='go - scores',
-            is_alphabetized=False,
-            is_hidden=True,
-            )
-        section.append(('go - next score', '>'))
-        section.append(('go - previous score', '<'))
         return section
 
     def _make_section(

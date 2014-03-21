@@ -120,21 +120,3 @@
     It might make sense to have an 'illustration ly - check (lyc)' command.
     And in general verify commands for every system artifact that can
     be interpreted.
-
-36. Change ...
-        score - build (u)
-        score - distribution (d)
-        score - makers (k)
-        score - materials (m)
-        score - segments (g)
-        score - setup (p)
-        score - stylesheets (y)
-    ... to ...
-        go - build (u)
-        go - distribution (d)
-        go - makers (k)
-        go - materials (m)
-        go - segments (g)
-        go - setup (p)
-        go - stylesheets (y)
-    ... instead.
