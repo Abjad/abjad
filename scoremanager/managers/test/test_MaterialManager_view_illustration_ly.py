@@ -11,8 +11,8 @@ def test_MaterialManager_view_illustration_ly_01():
     titles = [
         'Score manager - example scores', 
         'Score manager - material library', 
-        'Score manager - material library - example notes', 
-        'Score manager - material library - example notes',
+        'Score manager - material library - example notes (Abjad)', 
+        'Score manager - material library - example notes (Abjad)',
         ]
 
     assert score_manager._transcript.titles == titles

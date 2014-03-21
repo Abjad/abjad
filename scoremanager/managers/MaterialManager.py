@@ -53,15 +53,14 @@ class MaterialManager(PackageManager):
 
     @property
     def _breadcrumb(self):
-        return self._space_delimited_lowercase_name
-#        if self._session.is_in_score:
-#            return self._space_delimited_lowercase_name
-#        name = self._space_delimited_lowercase_name
-#        configuration = self._configuration
-#        annotation = configuration._path_to_storehouse_annotation(self._path)
-#        string = '{} ({})'
-#        string = string.format(name, annotation)
-#        return string
+        if self._session.is_in_score:
+            return self._space_delimited_lowercase_name
+        name = self._space_delimited_lowercase_name
+        configuration = self._configuration
+        annotation = configuration._path_to_storehouse_annotation(self._path)
+        string = '{} ({})'
+        string = string.format(name, annotation)
+        return string
 
     @property
     def _illustrate_module_manager(self):

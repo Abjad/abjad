@@ -11,8 +11,8 @@ def test_PackageManager_view_initializer_01():
     titles = [
         'Score manager - example scores', 
         'Score manager - material library',
-        'Score manager - material library - example numbers', 
-        'Score manager - material library - example numbers',
+        'Score manager - material library - example numbers (Abjad)', 
+        'Score manager - material library - example numbers (Abjad)',
         ]
     assert score_manager._transcript.titles == titles
     assert score_manager._session.attempted_to_open_file

@@ -37,7 +37,8 @@ def test_MaterialManager__run_02():
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'lmm example~sargasso~measures q'
     score_manager._run(pending_user_input=input_)
-    string = 'Score manager - material library - example sargasso measures'
+    string = 'Score manager - material library'
+    string += ' - example sargasso measures (Abjad)'
     assert score_manager._transcript.last_title == string
 
 

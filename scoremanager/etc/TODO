@@ -114,17 +114,11 @@
 35. Hoist metadata-related commands from PackageManager up to
     DirectoryManager.
 
-36. Change this menu title ...
-        Score manager - material library - tempo inventory
-    ... to this ...
-        Score manager - material library - tempo inventory (Red Example Score)
-    ... with the annotated score title.
-
-37. Hide the one-element illustrate menu ...
+36. Hide the one-element illustrate menu ...
         'illustrate module - stub (ims)' 
     ... unless an __illustrate__.py module already exists in material package.
 
-38. Change this material menu ...
+37. Change this material menu ...
 
     Red Example Score (2013) - materials - tempo inventory
 
@@ -152,7 +146,7 @@
 
     ... with asterisks to mark entries in the material summary menu section.
 
-39. Add 'output module - check (omc)' command.
+38. Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
