@@ -138,10 +138,19 @@ class SegmentPackageManager(PackageManager):
             return section
 
     def _make_definition_module_menu_section(self, menu):
-        section = menu.make_command_section(name='definition module')
-        section.append(('definition module - edit', 'dme'))
-        section.append(('definition module - edit at top', 'dmE'))
-        return section
+        if os.path.isfile(self._definition_module_path):
+            section = menu.make_command_section(name='definition module')
+            section.append(('definition module - edit', 'dme'))
+            section.append(('definition module - edit at top', 'dmE'))
+            return section
+        else:
+            section = menu.make_informational_section()
+            message = 'No definition.py module found;'
+            message += ' use (dms) to create a stub.'
+            section.append(message)
+            section = menu.make_command_section(name='definition module')
+            section.append(('definition module - stub', 'dms'))
+            return section
 
     def _make_main_menu(self, name='segment package manager'):
         superclass = super(SegmentPackageManager, self)

@@ -386,6 +386,7 @@ class Menu(ScoreManagerObject):
         is_attribute_section=False,
         is_command_section=False,
         is_hidden=False, 
+        is_informational_section=False,
         is_material_summary_section=False,
         is_navigation_section=False,
         is_numbered=False, 
@@ -407,6 +408,7 @@ class Menu(ScoreManagerObject):
             is_attribute_section=is_attribute_section,
             is_command_section=is_command_section,
             is_hidden=is_hidden,
+            is_informational_section=is_informational_section,
             is_material_summary_section=is_material_summary_section,
             is_navigation_section=is_navigation_section,
             is_numbered=is_numbered,
@@ -692,6 +694,30 @@ class Menu(ScoreManagerObject):
             is_hidden=is_hidden,
             default_index=default_index,
             match_on_display_string=match_on_display_string,
+            name=name,
+            return_value_attribute='key',
+            )
+        return section
+
+    def make_informational_section(
+        self,
+        menu_entries=None,
+        name='information',
+        ):
+        r'''Makes informational section.
+
+        Menu section with these attributes:
+
+            * is informational section
+            * not hidden
+            * does not match on display string
+            * return value attribute equal to ``'key'``
+
+        Returns menu section.
+        '''
+        section = self._make_section(
+            is_hidden=False,
+            is_informational_section=True,
             name=name,
             return_value_attribute='key',
             )
