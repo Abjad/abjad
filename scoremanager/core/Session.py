@@ -34,6 +34,7 @@ class Session(abctools.AbjadObject):
 
     __slots__ = (
         '_attempted_to_add_to_repository',
+        '_attempted_to_commit_to_repository',
         '_attempted_to_open_file',
         '_backtracking_stack',
         '_breadcrumb_cache_stack',
@@ -48,7 +49,6 @@ class Session(abctools.AbjadObject):
         '_hide_next_redraw',
         '_initial_user_input',
         '_io_manager',
-        '_is_add_to_repository_test',
         '_is_autoadding',
         '_is_backtracking_locally',
         '_is_backtracking_to_score',
@@ -67,6 +67,7 @@ class Session(abctools.AbjadObject):
         '_is_navigating_to_score_setup',
         '_is_navigating_to_score_stylesheets',
         '_is_quitting',
+        '_is_repository_test',
         '_is_test',
         '_is_tracking_source_code',
         '_last_line',
@@ -124,6 +125,7 @@ class Session(abctools.AbjadObject):
         from scoremanager import core
         from scoremanager import iotools
         self._attempted_to_add_to_repository = False
+        self._attempted_to_commit_to_repository = False
         self._attempted_to_open_file = False
         self._backtracking_stack = []
         self._breadcrumb_cache_stack = []
@@ -139,7 +141,7 @@ class Session(abctools.AbjadObject):
         self._hide_next_redraw = False
         self._initial_user_input = pending_user_input
         self._io_manager = iotools.IOManager(self)
-        self._is_add_to_repository_test = False
+        self._is_repository_test = False
         self._is_autoadding = False
         self._is_backtracking_locally = False
         self._is_backtracking_to_score = False
@@ -326,10 +328,10 @@ class Session(abctools.AbjadObject):
 
     def _reinitialize(self):
         is_test = self._is_test
-        is_add_to_repository_test = self._is_add_to_repository_test
+        is_add_to_repository_test = self._is_repository_test
         type(self).__init__(self)
         self._is_test = is_test
-        self._is_add_to_repository_test = is_add_to_repository_test
+        self._is_repository_test = is_add_to_repository_test
 
     def _restore_breadcrumbs(self, cache=False):
         if cache:

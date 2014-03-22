@@ -427,7 +427,7 @@ class Wrangler(Controller):
         Returns none.
         '''
         self._session._attempted_to_add_to_repository = True
-        if self._session._is_add_to_repository_test:
+        if self._session._is_repository_test:
             return
         paths = self._list_visible_asset_paths()
         for path in paths:
@@ -447,6 +447,9 @@ class Wrangler(Controller):
 
         Returns none.
         '''
+        self._session._attempted_to_commit_to_repository = True
+        if self._session._is_repository_test:
+            return
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('commit message')
         commit_message = getter._run(clear_terminal=False)

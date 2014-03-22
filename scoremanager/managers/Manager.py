@@ -527,6 +527,9 @@ class Manager(Controller):
 
         Returns none.
         '''
+        self._session._attempted_to_commit_to_repository = True
+        if self._session._is_repository_test:
+            return
         if commit_message is None:
             getter = self._io_manager.make_getter(where=self._where)
             getter.append_string('commit message')
