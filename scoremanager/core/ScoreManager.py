@@ -63,6 +63,7 @@ class ScoreManager(Controller):
             'new': self.make_new_score,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
+            'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
             'ssl': self.display_all_scores,
@@ -532,7 +533,14 @@ class ScoreManager(Controller):
         
         Returns none.
         '''
-        self._score_package_wrangler.repository_status()
+        self._score_package_wrangler.repository_status(prompt=prompt)
+
+    def revert_to_repository(self, prompt=True):
+        r'''Reverts modified assets and unadds added assets.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.revert_to_repository(prompt=prompt)
 
     def update_from_repository(self, prompt=True):
         r'''Updates repository assets.

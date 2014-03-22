@@ -813,6 +813,9 @@ class Manager(Controller):
 
         Returns none.
         '''
+        message = 'reverting {} ...'
+        message = message.format(self._path)
+        self._io_manager.display(message)
         self._revert_from_repository()
         self._io_manager.proceed(prompt=prompt)
 

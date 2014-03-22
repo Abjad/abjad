@@ -3,23 +3,23 @@ from abjad import *
 import scoremanager
 
 
-def test_StylesheetWrangler_add_to_repository_01():
-    r'''Flow control reaches method in score.
+def test_MaterialPackageWrangler_revert_to_repository_01():
+    r'''Works in score.
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     score_manager._session._is_repository_test = True
-    input_ = 'red~example~score y rad default q'
+    input_ = 'red~example~score m rrv default q'
     score_manager._run(pending_user_input=input_)
-    assert score_manager._session._attempted_to_add_to_repository
+    assert score_manager._session._attempted_to_revert_to_repository
 
 
-def test_StylesheetWrangler_add_to_repository_02():
-    r'''Flow control reaches method in library.
+def test_MaterialPackageWrangler_revert_to_repository_02():
+    r'''Works in library.
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     score_manager._session._is_repository_test = True
-    input_ = 'y rad default q'
+    input_ = 'm rrv default q'
     score_manager._run(pending_user_input=input_)
-    assert score_manager._session._attempted_to_add_to_repository
+    assert score_manager._session._attempted_to_revert_to_repository

@@ -673,6 +673,9 @@ class Wrangler(Controller):
         Returns none.
         '''
         from scoremanager import managers
+        self._session._attempted_to_revert_to_repository = True
+        if self._session._is_repository_test:
+            return
         paths = self._list_visible_asset_paths()
         paths = self._extract_common_parent_directories(paths)
         for path in paths:
