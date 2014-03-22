@@ -29,7 +29,7 @@ def test_RhythmMakerMaterialManager_edit_output_material_01():
         extra_counts_per_division=(2, 3),
         split_divisions_by_counts=(6,),
         )
-    input_ = 'lmm nmm rhythm testrhythmmaker default'
+    input_ = 'm nmm rhythm testrhythmmaker default'
     input_ += ' testrhythmmaker me talearhythmmaker'
     input_ += ' (-1, 2, -3, 4) 16 (2, 3) (6,) b default q'
 
@@ -43,7 +43,7 @@ def test_RhythmMakerMaterialManager_edit_output_material_01():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == maker
-        input_ = 'lmm testrhythmmaker rm remove q'
+        input_ = 'm testrhythmmaker rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):

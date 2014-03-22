@@ -34,14 +34,14 @@ def test_MaterialPackageWrangler_run_managermade_package_01():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmm sargasso testsargasso default q'
+        input_ = 'm nmm sargasso testsargasso default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager
         manager = manager(path=package_path, session=session)
         assert manager._list() == directory_entries
-        input_ = 'lmm testsargasso rm remove q'
+        input_ = 'm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
     finally:
@@ -62,14 +62,14 @@ def test_MaterialPackageWrangler_run_managermade_package_02():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmm sargasso testsargasso q'
+        input_ = 'm nmm sargasso testsargasso q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(initializer_file_path)
         assert filecmp.cmp(initializer_file_path, empty_unicode_file_path)
         shutil.copyfile(exception_file_path, initializer_file_path)
         assert filecmp.cmp(initializer_file_path, exception_file_path)
-        input_ = 'lmm testsargasso rm remove q'
+        input_ = 'm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
     finally:
@@ -85,17 +85,17 @@ def test_MaterialPackageWrangler_run_managermade_package_03():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmm sargasso testsargasso q'
+        input_ = 'm nmm sargasso testsargasso q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(initializer_file_path)
         assert filecmp.cmp(initializer_file_path, empty_unicode_file_path)
         shutil.copyfile(exception_file_path, initializer_file_path)
         assert filecmp.cmp(initializer_file_path, exception_file_path)
-        input_ = 'lmm testsargasso ins default q'
+        input_ = 'm testsargasso ins default q'
         score_manager._run(pending_user_input=input_)
         assert filecmp.cmp(initializer_file_path, empty_unicode_file_path)
-        input_ = 'lmm testsargasso rm remove q'
+        input_ = 'm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
     finally:

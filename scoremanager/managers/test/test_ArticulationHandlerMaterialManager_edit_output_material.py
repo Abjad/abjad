@@ -26,7 +26,7 @@ def test_ArticulationHandlerMaterialManager_edit_output_material_01():
         minimum_written_pitch=NamedPitch('c'),
         maximum_written_pitch=NamedPitch("c''''"),
         )
-    input_ = 'lmm nmm articulation testarticulationhandler default'
+    input_ = 'm nmm articulation testarticulationhandler default'
     input_ += ' reiterated'
     input_ += " ['^', '.'] (1, 64) (1, 4) c c'''' done default"
     input_ += ' q'
@@ -41,7 +41,7 @@ def test_ArticulationHandlerMaterialManager_edit_output_material_01():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == handler
-        input_ = 'lmm testarticulationhandler rm remove q'
+        input_ = 'm testarticulationhandler rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):

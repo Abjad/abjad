@@ -55,7 +55,7 @@ class ScoreManager(Controller):
             'cro': self.view_cache,
             'cw': self.write_cache,
             'fix': self.fix_score_packages,
-            'lmm': self.manage_material_library,
+            'm': self.manage_material_library,
             'mdme': self.edit_metadata_modules,
             'mdmls': self.list_metadata_modules,
             'mdmrw': self.rewrite_metadata_modules,
@@ -208,8 +208,8 @@ class ScoreManager(Controller):
             name='library',
             is_hidden=True,
             )
-        section.append(('library - manage materials', 'lmm'))
-        section.append(('library - manage stylesheets', 'y'))
+        section.append(('library - materials', 'm'))
+        section.append(('library - stylesheets', 'y'))
         return section
 
     def _make_main_menu(self):

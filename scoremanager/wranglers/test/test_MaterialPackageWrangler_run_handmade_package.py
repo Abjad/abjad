@@ -39,7 +39,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmh testnotes q'
+        input_ = 'm nmh testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(initializer_file_path)
@@ -60,14 +60,14 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmh testnotes q'
+        input_ = 'm nmh testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(initializer_file_path)
         assert filecmp.cmp(initializer_file_path, empty_unicode_file_path)
         shutil.copyfile(exception_file_path, initializer_file_path)
         assert filecmp.cmp(initializer_file_path, exception_file_path)
-        input_ = 'lmm testnotes rm remove q'
+        input_ = 'm testnotes rm remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
     finally:
@@ -83,17 +83,17 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmh testnotes q'
+        input_ = 'm nmh testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(initializer_file_path)
         assert filecmp.cmp(initializer_file_path, empty_unicode_file_path)
         shutil.copyfile(exception_file_path, initializer_file_path)
         assert filecmp.cmp(initializer_file_path, exception_file_path)
-        input_ = 'lmm testnotes ins default q'
+        input_ = 'm testnotes ins default q'
         score_manager._run(pending_user_input=input_)
         assert filecmp.cmp(initializer_file_path, empty_unicode_file_path)
-        input_ = 'lmm testnotes rm remove q'
+        input_ = 'm testnotes rm remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
         assert not os.path.exists(initializer_file_path)
@@ -111,7 +111,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmh testnotes q'
+        input_ = 'm nmh testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_module_path)
@@ -120,10 +120,10 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
             boilerplate_definition_module_path,
             definition_module_path,
             )
-        input_ = 'lmm testnotes omw default q'
+        input_ = 'm testnotes omw default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(output_module_path)
-        input_ = 'lmm testnotes rm remove q'
+        input_ = 'm testnotes rm remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
     finally:
@@ -138,15 +138,15 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmh testnotes q'
+        input_ = 'm nmh testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_module_path)
-        input_ = 'lmm testnotes dmrm remove q'
+        input_ = 'm testnotes dmrm remove q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert not os.path.exists(definition_module_path)
-        input_ = 'lmm testnotes rm remove q'
+        input_ = 'm testnotes rm remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
         assert not os.path.exists(definition_module_path)
@@ -169,7 +169,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmh testnotes default testnotes dms default q'
+        input_ = 'm nmh testnotes default testnotes dms default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         session = scoremanager.core.Session(is_test=True)
@@ -178,7 +178,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
         assert manager._list() == directory_entries
         assert manager._interpret_definition_module() is None
         assert manager._execute_output_module() is None
-        input_ = 'lmm testnotes rm remove q'
+        input_ = 'm testnotes rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(package_path):
@@ -193,7 +193,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmh testnotes q'
+        input_ = 'm nmh testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_module_path)
@@ -202,15 +202,15 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
             boilerplate_definition_module_path, 
             definition_module_path,
             )
-        input_ = 'lmm testnotes omw default q'
+        input_ = 'm testnotes omw default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(definition_module_path)
         assert os.path.exists(output_module_path)
-        input_ = 'lmm testnotes omrm remove q'
+        input_ = 'm testnotes omrm remove q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(definition_module_path)
         assert not os.path.exists(output_module_path)
-        input_ = 'lmm testnotes rm remove q'
+        input_ = 'm testnotes rm remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
     finally:
@@ -226,13 +226,13 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmh testnotes q'
+        input_ = 'm nmh testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_module_path)
         shutil.copyfile(exception_file_path, definition_module_path)
         assert filecmp.cmp(definition_module_path, exception_file_path)
-        input_ = 'lmm testnotes rm remove q'
+        input_ = 'm testnotes rm remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
     finally:
@@ -249,7 +249,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmh testnotes q'
+        input_ = 'm nmh testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_module_path)
@@ -262,13 +262,13 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
             definition_module_path,
             boilerplate_definition_module_path,
             )
-        input_ = 'lmm testnotes omw default q'
+        input_ = 'm testnotes omw default q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(output_module_path)
         assert not filecmp.cmp(output_module_path, exception_file_path)
         shutil.copyfile(exception_file_path, output_module_path)
         assert filecmp.cmp(output_module_path, exception_file_path)
-        input_ = 'lmm testnotes rm remove q'
+        input_ = 'm testnotes rm remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
     finally:
@@ -285,7 +285,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
 
     assert not os.path.exists(package_path)
     try:
-        input_ = 'lmm nmh testnotes q'
+        input_ = 'm nmh testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(package_path)
         assert os.path.exists(definition_module_path)
@@ -293,15 +293,15 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
             boilerplate_definition_module_path,
             definition_module_path,
             )
-        input_ = 'lmm testnotes omw q'
+        input_ = 'm testnotes omw q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(output_module_path)
-        input_ = 'lmm testnotes pdfm default q'
+        input_ = 'm testnotes pdfm default q'
         pdf_file_path = os.path.join(package_path, 'illustration.pdf')
         ly_file_path = os.path.join(package_path, 'illustration.ly')
         assert os.path.exists(pdf_file_path)
         assert os.path.exists(ly_file_path)
-        input_ = 'lmm testnotes rm remove q'
+        input_ = 'm testnotes rm remove q'
         score_manager._run(pending_user_input=input_)
         assert not os.path.exists(package_path)
     finally:

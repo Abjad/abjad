@@ -18,7 +18,7 @@ def test_ListMaterialManager_edit_output_material_01():
         '__metadata__.py',
         'output.py',
         ]
-    input_ = 'lmm nmm list testlist 17 foo done b default q'
+    input_ = 'm nmm list testlist 17 foo done b default q'
 
     assert not os.path.exists(path)
     try:
@@ -30,7 +30,7 @@ def test_ListMaterialManager_edit_output_material_01():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == [17, 'foo']
-        input_ = 'lmm testlist rm remove q'
+        input_ = 'm testlist rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):

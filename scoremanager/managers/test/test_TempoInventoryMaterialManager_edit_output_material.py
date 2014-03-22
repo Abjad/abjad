@@ -22,7 +22,7 @@ def test_TempoInventoryMaterialManager_edit_output_material_01():
         ((1, 4), 60), 
         ((1, 4), 90),
         ])
-    input_ = 'lmm nmm tempo testtempoinventory default testtempoinventory me'
+    input_ = 'm nmm tempo testtempoinventory default testtempoinventory me'
     input_ += ' add ((1, 4), 60) add ((1, 4), 90) b default q'
 
     assert not os.path.exists(path)
@@ -35,7 +35,7 @@ def test_TempoInventoryMaterialManager_edit_output_material_01():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == inventory
-        input_ = 'lmm testtempoinventory rm remove q'
+        input_ = 'm testtempoinventory rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):

@@ -9,23 +9,23 @@ def test_MaterialManager__run_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'lmm example~sargasso~measures q'
+    input_ = 'm example~sargasso~measures q'
     score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (6,)
 
-    input_ = 'lmm example~sargasso~measures b q'
+    input_ = 'm example~sargasso~measures b q'
     score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (8, (2, 6))
 
-    input_ = 'lmm example~sargasso~measures h q'
+    input_ = 'm example~sargasso~measures h q'
     score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (8, (0, 6))
 
-    input_ = 'lmm example~sargasso~measures s q'
+    input_ = 'm example~sargasso~measures s q'
     score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (8, (4, 6))
 
-    input_ = 'lmm example~sargasso~measures foo q'
+    input_ = 'm example~sargasso~measures foo q'
     score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (8, (4, 6))
 
@@ -35,7 +35,7 @@ def test_MaterialManager__run_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'lmm example~sargasso~measures q'
+    input_ = 'm example~sargasso~measures q'
     score_manager._run(pending_user_input=input_)
     string = 'Score manager - material library'
     string += ' - example sargasso measures (Abjad)'

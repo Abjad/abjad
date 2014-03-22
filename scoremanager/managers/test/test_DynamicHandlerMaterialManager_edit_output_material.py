@@ -24,7 +24,7 @@ def test_DynamicHandlerMaterialManager_edit_output_material_01():
         dynamic_name='f',
         minimum_duration=Duration(1, 16),
         )
-    input_ = 'lmm nmm dynamic testdynamichandler default'
+    input_ = 'm nmm dynamic testdynamichandler default'
     input_ += ' reiterateddynamic f (1, 16) done default q'
 
     try:
@@ -36,7 +36,7 @@ def test_DynamicHandlerMaterialManager_edit_output_material_01():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == handler
-        input_ = 'lmm testdynamichandler rm remove q'
+        input_ = 'm testdynamichandler rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):

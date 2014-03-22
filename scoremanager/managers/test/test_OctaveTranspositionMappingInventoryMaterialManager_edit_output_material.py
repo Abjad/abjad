@@ -19,7 +19,7 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_edit_output_material
         '__init__.py', 
         '__metadata__.py',
         ]
-    input_ = 'lmm nmm octave testoctavetrans default q'
+    input_ = 'm nmm octave testoctavetrans default q'
 
     assert not os.path.exists(path)
     try:
@@ -31,7 +31,7 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_edit_output_material
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material is None
-        input_ = 'lmm testoctavetrans rm remove q'
+        input_ = 'm testoctavetrans rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -65,7 +65,7 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_edit_output_material
         mapping_1, 
         mapping_2
         ])
-    input_ = 'lmm nmm octave testoctavetrans'
+    input_ = 'm nmm octave testoctavetrans'
     input_ += ' testoctavetrans me add add source [A0, C4) target 15 done'
     input_ += ' add source [C4, C8) target 27 done done'
     input_ += ' add add source [A0, C8] target -18 done done done default q'
@@ -80,7 +80,7 @@ def test_OctaveTranspositionMappingInventoryMaterialManager_edit_output_material
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == inventory
-        input_ = 'lmm testoctavetrans rm remove q'
+        input_ = 'm testoctavetrans rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):

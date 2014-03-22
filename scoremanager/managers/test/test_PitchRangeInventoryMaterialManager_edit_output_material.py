@@ -19,7 +19,7 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_01():
         '__init__.py', 
         '__metadata__.py',
         ]
-    input_ = 'lmm nmm pitch testpir default q'
+    input_ = 'm nmm pitch testpir default q'
 
     assert not os.path.exists(path)
     try:
@@ -31,7 +31,7 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_01():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material is None
-        input_ = 'lmm testpir rm remove q'
+        input_ = 'm testpir rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -58,7 +58,7 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_02():
         pitchtools.PitchRange('[C2, G5]'), 
         pitchtools.PitchRange('[C2, F#5]'),
         ])
-    input_ = 'lmm nmm pitch testpir default'
+    input_ = 'm nmm pitch testpir default'
     input_ += ' testpir me add [A0, C8] add [C2, F#5] add [C2, G5]'
     input_ += ' rm 1 mv 1 2 b default q'
 
@@ -72,7 +72,7 @@ def test_PitchRangeInventoryMaterialManager_edit_output_material_02():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == inventory
-        input_ = 'lmm testpir rm remove q'
+        input_ = 'm testpir rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):

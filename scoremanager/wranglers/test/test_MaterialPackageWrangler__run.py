@@ -8,23 +8,23 @@ def test_MaterialPackageWrangler__run_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'lmm q'
+    input_ = 'm q'
     score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (4,)
 
-    input_ = 'lmm b q'
+    input_ = 'm b q'
     score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (6, (0, 4))
 
-    input_ = 'lmm h q'
+    input_ = 'm h q'
     score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (6, (0, 4))
 
-    input_ = 'lmm s q'
+    input_ = 'm s q'
     score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (6, (2, 4))
 
-    input_ = 'lmm asdf q'
+    input_ = 'm asdf q'
     score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.signature == (6, (2, 4))
 
@@ -34,7 +34,7 @@ def test_MaterialPackageWrangler__run_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'lmm q'
+    input_ = 'm q'
     score_manager._run(pending_user_input=input_)
     title_line = 'Score manager - material library'
     assert score_manager._transcript.last_title == title_line
@@ -45,7 +45,7 @@ def test_MaterialPackageWrangler__run_03():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'lmm q'
+    input_ = 'm q'
     score_manager._run(pending_user_input=input_)
     menu_lines = score_manager._transcript.last_menu_lines
     input_ = 'example sargasso measures (Abjad)'
@@ -57,7 +57,7 @@ def test_MaterialPackageWrangler__run_04():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score h lmm q'
+    input_ = 'red~example~score h m q'
     score_manager._run(pending_user_input=input_)
 
     found_example_articulation_handler = False
@@ -73,7 +73,7 @@ def test_MaterialPackageWrangler__run_05():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score b lmm q'
+    input_ = 'red~example~score b m q'
     score_manager._run(pending_user_input=input_)
     
     input_ = 'Score manager - material library'

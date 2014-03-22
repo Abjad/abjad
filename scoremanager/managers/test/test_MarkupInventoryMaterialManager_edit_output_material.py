@@ -28,7 +28,7 @@ def test_MarkupInventoryMaterialManager_edit_output_material_01():
         '__metadata__.py',
         'output.py',
         ]
-    input_ = "lmm nmm markup testmarkupinventory me"
+    input_ = "m nmm markup testmarkupinventory me"
     input_ += " add arg r'\\italic~{~serenamente~}' done"
     input_ += " add arg r'\\italic~{~presto~}' done done default q"
 
@@ -42,7 +42,7 @@ def test_MarkupInventoryMaterialManager_edit_output_material_01():
         assert manager._list() == directory_entries
         output_material = manager._execute_output_module()
         assert output_material == inventory
-        input_ = 'lmm testmarkupinventory rm remove q'
+        input_ = 'm testmarkupinventory rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):

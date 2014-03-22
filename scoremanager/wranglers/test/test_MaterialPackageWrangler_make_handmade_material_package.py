@@ -51,7 +51,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_02():
         path,
         'definition.py',
         )
-    input_ = 'lmm nmh testnotes q'
+    input_ = 'm nmh testnotes q'
 
     lines = []
     lines.append('# -*- encoding: utf-8 -*-')

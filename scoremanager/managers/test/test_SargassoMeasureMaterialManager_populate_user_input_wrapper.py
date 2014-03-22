@@ -15,7 +15,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_01():
         configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
-    input_ = 'lmm nmm sargasso testsargasso default q'
+    input_ = 'm nmm sargasso testsargasso default q'
     user_input_wrapper = scoremanager.editors.UserInputWrapper([
         ('measure_denominator', None),
         ('measure_numerator_talea', None),
@@ -41,7 +41,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_01():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
-        input_ = 'lmm testsargasso rm remove q'
+        input_ = 'm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -59,7 +59,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_02():
         configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
-    input_ = 'lmm nmm sargasso testsargasso default testsargasso uil q'
+    input_ = 'm nmm sargasso testsargasso default testsargasso uil q'
     directory_entries = [
         '__init__.py', 
         '__metadata__.py',
@@ -85,7 +85,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_02():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
-        input_ = 'lmm testsargasso rm remove q'
+        input_ = 'm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -103,7 +103,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_03():
         configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
-    input_ = 'lmm nmm sargasso testsargasso default testsargasso uil uic q'
+    input_ = 'm nmm sargasso testsargasso default testsargasso uil uic q'
     directory_entries = [
             '__init__.py', 
         '__metadata__.py',
@@ -129,7 +129,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_03():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
-        input_ = 'lmm testsargasso rm remove q'
+        input_ = 'm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -147,7 +147,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_04():
         configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
-    input_ = 'lmm nmm sargasso testsargasso default testsargasso 3 16 q'
+    input_ = 'm nmm sargasso testsargasso default testsargasso 3 16 q'
     directory_entries = [
             '__init__.py', 
         '__metadata__.py',
@@ -173,7 +173,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_04():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
-        input_ = 'lmm testsargasso rm remove q'
+        input_ = 'm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -191,7 +191,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_05():
         configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
-    input_ = 'lmm nmm sargasso testsargasso default'
+    input_ = 'm nmm sargasso testsargasso default'
     input_ += ' testsargasso uip 5 Duration(11, 2) False True True'
     input_ += ' 4 [2, 2, 2, 2, 1, 1, 4, 4] 16 [1, 1, 2, 3, 4] q'
     directory_entries = [
@@ -219,7 +219,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_05():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
-        input_ = 'lmm testsargasso rm remove q'
+        input_ = 'm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -237,7 +237,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_06():
         configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
-    input_ = 'lmm nmm sargasso testsargasso default'
+    input_ = 'm nmm sargasso testsargasso default'
     input_ += ' testsargasso uip 1'
     input_ += ' 4 [2, 2, 3, 3] 16 [1, 1, 1, 1, 6, 6] b q'
     directory_entries = [
@@ -265,7 +265,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_06():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
-        input_ = 'lmm testsargasso rm remove q'
+        input_ = 'm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -283,7 +283,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_07():
         configuration.user_library_material_packages_directory_path,
         'testsargasso',
         )
-    input_ = 'lmm nmm sargasso testsargasso default'
+    input_ = 'm nmm sargasso testsargasso default'
     input_ += ' testsargasso uil 6 None 7 None 8 None q'
     directory_entries = [
         '__init__.py', 
@@ -310,7 +310,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_07():
         manager = manager(path=path, session=session)
         assert manager._list() == directory_entries
         assert manager._user_input_wrapper_in_memory == user_input_wrapper
-        input_ = 'lmm testsargasso rm remove q'
+        input_ = 'm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):
@@ -356,7 +356,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_08():
         scoretools.Measure((9, 19), "c'16 c'4 c'16 c'16 c'8")]
     for measure in measures:
         measure.implicit_scaling = True
-    input_ = 'lmm nmm sargasso testsargasso default'
+    input_ = 'm nmm sargasso testsargasso default'
     input_ += ' testsargasso uil omw default q'
 
     assert not os.path.exists(path)
@@ -373,7 +373,7 @@ def test_SargassoMeasureMaterialManager_populate_user_input_wrapper_08():
             assert measure.implicit_scaling
         assert format(Staff(output_material))
         assert format(Staff(output_material)) == format(Staff(measures))
-        input_ = 'lmm testsargasso rm remove q'
+        input_ = 'm testsargasso rm remove q'
         score_manager._run(pending_user_input=input_)
     finally:
         if os.path.exists(path):

@@ -20,6 +20,6 @@ def test_MaterialPakcageWrangler_commit_to_repository_02():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     score_manager._session._is_repository_test = True
-    input_ = 'lmm rci q'
+    input_ = 'm rci q'
     score_manager._run(pending_user_input=input_)
     assert score_manager._session._attempted_to_commit_to_repository
