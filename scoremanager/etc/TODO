@@ -119,3 +119,5 @@
 
 35. Make Wrangler.forbidden_directory_entries public attribute into
     Wrangler._forbidden_directory_entries private attribute.
+
+36. Maybe chagne PackageManager._package_path to PackageManager._package_name.

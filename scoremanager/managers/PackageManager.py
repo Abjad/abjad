@@ -45,10 +45,6 @@ class PackageManager(DirectoryManager):
         return file_path
 
     @property
-    def _package_root_name(self):
-        return self._package_path.split('.')[0]
-
-    @property
     def _space_delimited_lowercase_name(self):
         if self._path:
             base_name = os.path.basename(self._path)
