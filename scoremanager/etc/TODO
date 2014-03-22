@@ -53,40 +53,37 @@
 18. Change user/score_manager_library/material_packages/
     to user/score_manager_library/materials/.
 
-19. Add command to type arbitrary shell command to current working directory.
-    Maybe 'directory - run (run)' of follow Vim with !ls, !pwd and so on.
-
-20. Search for 'whatever_section = menu.make_*_section()' and
+19. Search for 'whatever_section = menu.make_*_section()' and
     change to 'section = menu.make_*_section()' everywhere.
 
-21. Extend Manager._remove() to use 'trash' if command is found.
+20. Extend Manager._remove() to use 'trash' if command is found.
 
-22. Implement NaiveCache decorator in systemtools.
+21. Implement NaiveCache decorator in systemtools.
     Apply to ScorePackageManager._maker_module_wrangler,
     ScorePackageManager._material_manager_wrangler, etc.
     Maybe the 'lru' decorator works for this already.
 
-23. Make ScorePackageManager create missing top-level directories
+22. Make ScorePackageManager create missing top-level directories
     during initialization. Run tests before and after change to check
     for any noticeable slowdown.
 
-24. Make (ls) work in stylesheets menu. So (score > y > ls).
+23. Make (ls) work in stylesheets menu. So (score > y > ls).
 
-25. Fix Wrangler._read_view_inventory_from_disk() line 305:
+24. Fix Wrangler._read_view_inventory_from_disk() line 305:
         assert len(result) == 1
     TypeError: boject of type 'NoneType' has no len()
     Use (tra > g) to induce bug.
 
-26. Add (lytr) for 'lilypond ly - trash'. This will work together
+25. Add (lytr) for 'lilypond ly - trash'. This will work together
     with (lyrm) for 'lilypond ly - remove'. The difference will be
     that (lyrm) will (try to) act on the repository where (lytr) will
     only ever work on the filesystem.
 
-27. Write Manager.revert_from_repository() test.
+26. Write Manager.revert_from_repository() test.
     One for Git. One for Subversion.
     Currently not working for Subversion.
 
-28. Write py.test tests for the following properties and methods:
+27. Write py.test tests for the following properties and methods:
         Manager._repository_add_command
         Manager._repository_status_command
         Manager._get_added_asset_paths()
@@ -94,7 +91,7 @@
         Manager._get_repository_root_directory()
         Manager._is_up_to_date()
 
-28. Add 'output module - check (omc)' command.
+27. Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
@@ -104,21 +101,21 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-29. Make 'vmro' provide a message when no __views__ module is found.
+28. Make 'vmro' provide a message when no __views__ module is found.
 
-30. Implement a 'views module - rewrite' (vmrw) command.
+29. Implement a 'views module - rewrite' (vmrw) command.
 
-31. Implement DirectoryManager.check_contents().
+30. Implement DirectoryManager.check_contents().
     With corresponding 'check - contents' (cc) command.
     The method will list the contents of a directory, compare
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-32. In segment menu, hide 'make module - stub' (mms) if a make module
+31. In segment menu, hide 'make module - stub' (mms) if a make module
     already exists. Show 'make module - stub' (mms) is a make module
     is not found in the segment package.
 
-33. Clean up possibly all current_* session variables by implementing
+32. Clean up possibly all current_* session variables by implementing
     as derived properties:
         current_build_directory_path
         current_controller (already derived)
