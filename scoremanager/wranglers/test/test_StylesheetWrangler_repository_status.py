@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import pytest
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -30,7 +29,6 @@ def test_StylesheetWrangler_repository_status_02():
 def test_StylesheetWrangler_repository_status_03():
     r'''Works with Subversion-managed score.
     '''
-    pytest.skip()
 
     score_name = score_manager._find_svn_score_name()
     if not score_name:
