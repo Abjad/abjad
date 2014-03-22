@@ -563,7 +563,7 @@ class ScorePackageManager(PackageManager):
         Returns none.
         '''
         line = 'WARNING! Score package {!r} will be completely removed.'
-        line = line.format(self._package_path)
+        line = line.format(self._package_name)
         self._io_manager.display([line, ''])
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string("type 'clobber' to proceed")

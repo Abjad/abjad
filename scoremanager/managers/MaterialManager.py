@@ -1010,8 +1010,7 @@ class MaterialManager(PackageManager):
 
         Returns none.
         '''
-        material_package_path = self._package_path
-        material_package_name = material_package_path.split('.')[-1]
+        material_package_name = self._package_name
         lines = []
         lines.append(self._abjad_import_statement + '\n')
         line = 'from {}.output import {}\n'

@@ -30,7 +30,7 @@ def test_ScorePackageManager_repository_status_02():
         return
 
     manager.repository_status(prompt=False)
-    line = '{} ...'.format(manager._package_path)
+    line = '{} ...'.format(manager._package_name)
     titles = [
         line,
         '',

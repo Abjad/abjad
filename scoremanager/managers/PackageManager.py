@@ -21,8 +21,9 @@ class PackageManager(DirectoryManager):
             path=path,
             session=session,
             )
-        package_path = self._configuration.path_to_package_path(path)
-        self._package_path = package_path
+        package_name = None
+        if path is not None:
+            self._package_name = os.path.basename(self._path)
 
     ### PRIVATE PROPERTIES ###
 
