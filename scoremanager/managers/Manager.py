@@ -116,7 +116,8 @@ class Manager(Controller):
     def _find_first_file_name(self):
         for directory_entry in os.listdir(self._path):
             if not directory_entry.startswith('.'):
-                if os.path.isfile(directory_entry):
+                path = os.path.join(self._path, directory_entry)
+                if os.path.isfile(path):
                     return directory_entry
 
     def _get_added_asset_paths(self):

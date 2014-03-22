@@ -1,13 +1,11 @@
 # -*- encoding: utf-8 -*-
 import os
-import pytest
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
 def test_SegmentPackageManager_revert_to_repository_01():
-    pytest.skip()
 
     wrangler = score_manager._segment_package_wrangler
     manager = wrangler._find_git_manager(must_have_file=True)
