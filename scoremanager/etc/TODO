@@ -114,3 +114,6 @@
     It might make sense to have an 'illustration ly - check (lyc)' command.
     And in general verify commands for every system artifact that can
     be interpreted.
+
+34. Remove PackageManager.write_initializer_boilerplate().
+    Remove any other 'def.*boilerplate' methods.
