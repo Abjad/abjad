@@ -58,9 +58,9 @@ class Session(abctools.AbjadObject):
         '_is_in_editor',
         '_is_navigating_to_build_directory',
         '_is_navigating_to_distribution_directory',
-        '_is_navigating_to_next_material',
+        '_is_navigating_to_next_asset',
         '_is_navigating_to_next_score',
-        '_is_navigating_to_previous_material',
+        '_is_navigating_to_previous_asset',
         '_is_navigating_to_previous_score',
         '_is_navigating_to_score_makers',
         '_is_navigating_to_score_materials',
@@ -152,9 +152,9 @@ class Session(abctools.AbjadObject):
         self._is_in_editor = False
         self._is_navigating_to_build_directory = False
         self._is_navigating_to_distribution_directory = False
-        self._is_navigating_to_next_material = False
+        self._is_navigating_to_next_asset = False
         self._is_navigating_to_next_score = False
-        self._is_navigating_to_previous_material = False
+        self._is_navigating_to_previous_asset = False
         self._is_navigating_to_previous_score = False
         self._is_navigating_to_score_makers = False
         self._is_navigating_to_score_materials = False
@@ -934,7 +934,7 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self._is_navigating_to_next_material
+        return self._is_navigating_to_next_asset
 
     @property
     def is_navigating_to_next_score(self):
@@ -965,7 +965,7 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self._is_navigating_to_previous_material
+        return self._is_navigating_to_previous_asset
 
     @property
     def is_navigating_to_previous_score(self):

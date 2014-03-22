@@ -437,8 +437,8 @@ class Manager(Controller):
             if type(self) is managers.DistributionDirectoryManager:
                 self._session._is_navigating_to_distribution_directory = False
             if isinstance(self, managers.MaterialManager):
-                self._session._is_navigating_to_next_material = False
-                self._session._is_navigating_to_previous_material = False
+                self._session._is_navigating_to_next_asset = False
+                self._session._is_navigating_to_previous_asset = False
                 self._session._last_material_path = self._path
             while True:
                 self._session._push_breadcrumb(self._breadcrumb)

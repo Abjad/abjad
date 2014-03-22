@@ -110,11 +110,11 @@ class IOManager(IOManager):
             return 'm'
         elif key == '>>':
             self._session._is_navigating_to_score_materials = True
-            self._session._is_navigating_to_next_material = True
+            self._session._is_navigating_to_next_asset = True
             self._session._hide_hidden_commands = True
         elif key == '<<':
             self._session._is_navigating_to_score_materials = True
-            self._session._is_navigating_to_previous_material = True
+            self._session._is_navigating_to_previous_asset = True
             self._session._hide_hidden_commands = True
         elif directive in ('n', '?') and \
             not self._session.is_in_confirmation_environment and \
