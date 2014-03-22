@@ -349,10 +349,9 @@ class ReducedLyParser(abctools.Parser):
         r'''measure : PIPE FRACTION component_list PIPE
         '''
         measure = scoretools.Measure(p[2].pair)
-        measure.automatically_adjust_time_signature = True
-        p[0] = measure
         for x in p[3]:
-            p[0].append(x)
+            measure.append(x)
+        p[0] = measure
 
     def p_negative_leaf_duration__INTEGER_N__dots(self, p):
         r'''negative_leaf_duration : INTEGER_N dots
