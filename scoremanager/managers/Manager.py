@@ -74,6 +74,18 @@ class Manager(Controller):
             raise ValueError(self)
 
     @property
+    def _repository_update_command(self):
+        if not self._path:
+            return
+        if self._is_in_git_repository(path=self._path):
+            root_directory = self._get_repository_root_directory()
+            return 'git pull {}'.format(root_directory)
+        elif self._is_svn_versioned(path=self._path):
+            return 'svn update {}'.format(self._path)
+        else:
+            raise ValueError(self)
+
+    @property
     def _space_delimited_lowercase_name(self):
         if self._path:
             return os.path.basename(self._path)
@@ -760,10 +772,18 @@ class Manager(Controller):
 
         Returns none.
         '''
+        self._session._attempted_to_update_from_repository = True
+        if self._session._is_repository_test:
+            return
         line = self._get_score_package_directory_name()
         line = line + ' ...'
         self._io_manager.display(line, capitalize_first_character=False)
-        command = 'svn up {}'.format(self._path)
+        # TODO: generalize this to self._repository_update_command
+        #command = 'svn up {}'.format(self._path)
+        command = self._repository_update_command
+        #print repr(command), 'CMD'
+        #os.system('whoami')
+        #os.system('pwd')
         process = subprocess.Popen(
             command,
             shell=True,

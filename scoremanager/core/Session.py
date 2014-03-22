@@ -36,6 +36,7 @@ class Session(abctools.AbjadObject):
         '_attempted_to_add_to_repository',
         '_attempted_to_commit_to_repository',
         '_attempted_to_open_file',
+        '_attempted_to_update_from_repository',
         '_backtracking_stack',
         '_breadcrumb_cache_stack',
         '_breadcrumb_stack',
@@ -127,6 +128,7 @@ class Session(abctools.AbjadObject):
         self._attempted_to_add_to_repository = False
         self._attempted_to_commit_to_repository = False
         self._attempted_to_open_file = False
+        self._attempted_to_update_from_repository = False
         self._backtracking_stack = []
         self._breadcrumb_cache_stack = []
         self._breadcrumb_stack = []
