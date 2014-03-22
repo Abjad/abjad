@@ -2,8 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.ScoreManagerConfiguration()
-score_manager = scoremanager.core.ScoreManager()
+score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
 def test_ScorePackageManager_add_to_repository_01():

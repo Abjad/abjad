@@ -2,8 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-session = scoremanager.core.Session()
-wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
+score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
 def test_MaterialManager_add_to_repository_01():
@@ -12,6 +11,7 @@ def test_MaterialManager_add_to_repository_01():
     Then unadd the files and leave the material package as found.
     '''
 
+    wrangler = score_manager._material_package_wrangler
     manager = wrangler._find_up_to_date_manager(
         repository='git',
         system=True,
@@ -26,6 +26,7 @@ def test_MaterialManager_add_to_repository_02():
     Then unadd the file and leave the score package as found.
     '''
 
+    wrangler = score_manager._material_package_wrangler
     manager = wrangler._find_up_to_date_manager(
         repository='svn',
         system=False,

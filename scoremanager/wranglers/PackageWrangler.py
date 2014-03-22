@@ -44,6 +44,14 @@ class PackageWrangler(Wrangler):
 
     ### PRIVATE METHODS ###
 
+    def _find_git_manager(self, inside_score=True):
+        manager = self._find_up_to_date_manager(
+            inside_score=inside_score,
+            system=True,
+            repository='git',
+            )
+        return manager
+
     def _find_svn_manager(self, inside_score=True):
         manager = self._find_up_to_date_manager(
             inside_score=inside_score,

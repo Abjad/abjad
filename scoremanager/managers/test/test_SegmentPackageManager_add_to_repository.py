@@ -2,9 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.ScoreManagerConfiguration()
-session = scoremanager.core.Session
-wrangler = scoremanager.wranglers.SegmentPackageWrangler(session=session)
+score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
 def test_SegmentPackageManager_add_to_repository_01():
@@ -13,10 +11,8 @@ def test_SegmentPackageManager_add_to_repository_01():
     Then unadd the files and leave the segment package as found.
     '''
 
-    manager = wrangler._find_up_to_date_manager(
-        system=True,
-        repository='git',
-        )
+    wrangler = score_manager._segment_package_wrangler
+    manager = wrangler._find_git_manager()
 
     assert manager._test_add_to_repository()
     
@@ -27,10 +23,8 @@ def test_SegmentPackageManager_add_to_repository_02():
     Then unadd the file and leave the score package as found.
     '''
 
-    manager = wrangler._find_up_to_date_manager(
-        system=False,
-        repository='svn',
-        )
+    wrangler = score_manager._segment_package_wrangler
+    manager = wrangler._find_svn_manager()
             
     if not manager:
         return
