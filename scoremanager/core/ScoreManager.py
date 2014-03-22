@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 import subprocess
+from abjad.tools import stringtools
 from scoremanager.core.Controller import Controller
 
 
@@ -73,6 +74,18 @@ class ScoreManager(Controller):
         return result
 
     ### PRIVATE METHODS ###
+
+    def _find_svn_score_name(self):
+        from scoremanager import managers
+        manager = self._find_up_to_date_versioned_manager(
+            managers.ScorePackageManager,
+            repository='svn',
+            system=False,
+            )
+        if manager:
+            title = manager._get_title()
+            title = stringtools.string_to_accent_free_snake_case(title)
+            return title
 
     def _find_up_to_date_versioned_manager(
         self, 
