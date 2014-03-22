@@ -4,6 +4,7 @@ import os
 import shutil
 import subprocess
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from scoremanager.core.Controller import Controller
 
 
@@ -430,49 +431,51 @@ class Manager(Controller):
         self._session._push_controller(self)
         self._io_manager._assign_user_input(pending_user_input)
         self._session._cache_breadcrumbs(cache=cache)
-        if type(self) is managers.BuildDirectoryManager:
-            self._session._is_navigating_to_build_directory = False
-        if type(self) is managers.DistributionDirectoryManager:
-            self._session._is_navigating_to_distribution_directory = False
-        if isinstance(self, managers.MaterialManager):
-            self._session._is_navigating_to_next_material = False
-            self._session._is_navigating_to_previous_material = False
-            self._session._last_material_path = self._path
-        while True:
-            self._session._push_breadcrumb(self._breadcrumb)
-            if self._session.is_navigating_to_build_directory and \
-                type(self) is managers.ScorePackageManager:
-                result = 'u'
-            elif self._session.is_navigating_to_distribution_directory and \
-                type(self) is managers.ScorePackageManager:
-                result = 'd'
-            elif self._session.is_navigating_to_score_makers and \
-                type(self) is managers.ScorePackageManager:
-                result = 'k'
-            elif self._session.is_navigating_to_score_materials and \
-                type(self) is managers.ScorePackageManager:
-                result = 'm'
-            elif self._session.is_navigating_to_score_segments and \
-                type(self) is managers.ScorePackageManager:
-                result = 'g'
-            elif self._session.is_navigating_to_score_setup and \
-                type(self) is managers.ScorePackageManager:
-                result = 'p'
-            elif self._session.is_navigating_to_score_stylesheets and \
-                type(self) is managers.ScorePackageManager:
-                result = 'y'
-            else:
-                menu = self._make_main_menu()
-                result = menu._run(clear=clear)
-            if self._session._backtrack(source=self._backtracking_source):
-                break
-            elif not result:
+        with systemtools.TemporaryDirectoryChange(self._path):
+            if type(self) is managers.BuildDirectoryManager:
+                self._session._is_navigating_to_build_directory = False
+            if type(self) is managers.DistributionDirectoryManager:
+                self._session._is_navigating_to_distribution_directory = False
+            if isinstance(self, managers.MaterialManager):
+                self._session._is_navigating_to_next_material = False
+                self._session._is_navigating_to_previous_material = False
+                self._session._last_material_path = self._path
+            while True:
+                self._session._push_breadcrumb(self._breadcrumb)
+                # TODO: encapsulate the if ... else in a separate method
+                if self._session.is_navigating_to_build_directory and \
+                    type(self) is managers.ScorePackageManager:
+                    result = 'u'
+                elif self._session.is_navigating_to_distribution_directory and \
+                    type(self) is managers.ScorePackageManager:
+                    result = 'd'
+                elif self._session.is_navigating_to_score_makers and \
+                    type(self) is managers.ScorePackageManager:
+                    result = 'k'
+                elif self._session.is_navigating_to_score_materials and \
+                    type(self) is managers.ScorePackageManager:
+                    result = 'm'
+                elif self._session.is_navigating_to_score_segments and \
+                    type(self) is managers.ScorePackageManager:
+                    result = 'g'
+                elif self._session.is_navigating_to_score_setup and \
+                    type(self) is managers.ScorePackageManager:
+                    result = 'p'
+                elif self._session.is_navigating_to_score_stylesheets and \
+                    type(self) is managers.ScorePackageManager:
+                    result = 'y'
+                else:
+                    menu = self._make_main_menu()
+                    result = menu._run(clear=clear)
+                if self._session._backtrack(source=self._backtracking_source):
+                    break
+                elif not result:
+                    self._session._pop_breadcrumb()
+                    continue
+                self._handle_main_menu_result(result)
+                if self._session._backtrack(source=self._backtracking_source):
+                    break
                 self._session._pop_breadcrumb()
-                continue
-            self._handle_main_menu_result(result)
-            if self._session._backtrack(source=self._backtracking_source):
-                break
-            self._session._pop_breadcrumb()
         self._session._pop_controller()
         self._session._pop_breadcrumb()
         self._session._restore_breadcrumbs(cache=cache)
