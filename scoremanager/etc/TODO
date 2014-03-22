@@ -74,11 +74,7 @@
     that (lyrm) will (try to) act on the repository where (lytr) will
     only ever work on the filesystem.
 
-25. Write Manager.revert_to_repository() test.
-    One for Git. One for Subversion.
-    Currently not working for Subversion.
-
-26. Write py.test tests for the following properties and methods:
+25. Write py.test tests for the following properties and methods:
         Manager._repository_add_command
         Manager._repository_status_command
         Manager._get_added_asset_paths()
@@ -86,7 +82,7 @@
         Manager._get_repository_root_directory()
         Manager._is_up_to_date()
 
-26. Add 'output module - check (omc)' command.
+25. Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
@@ -96,21 +92,21 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-27. Make 'vmro' provide a message when no __views__ module is found.
+26. Make 'vmro' provide a message when no __views__ module is found.
 
-28. Implement a 'views module - rewrite' (vmrw) command.
+27. Implement a 'views module - rewrite' (vmrw) command.
 
-29. Implement DirectoryManager.check_contents().
+28. Implement DirectoryManager.check_contents().
     With corresponding 'check - contents' (cc) command.
     The method will list the contents of a directory, compare
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-30. In segment menu, hide 'make module - stub' (mms) if a make module
+29. In segment menu, hide 'make module - stub' (mms) if a make module
     already exists. Show 'make module - stub' (mms) is a make module
     is not found in the segment package.
 
-31. Clean up possibly all current_* session variables by implementing
+30. Clean up possibly all current_* session variables by implementing
     as derived properties:
         current_build_directory_path
         current_controller (already derived)
