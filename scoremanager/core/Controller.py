@@ -115,14 +115,12 @@ class Controller(ScoreManagerObject):
             )
         section.append(('directory - list', 'ls'))
         section.append(('directory - list long', 'll'))
-        section.append(('directory - pwd', 'pwd'))
         if not is_permanent:
             section.append(('directory - remove', 'rm'))
             section.append(('directory - rename', 'ren'))
         return section
 
     def _make_done_menu_section(self, menu):
-        #section = menu.make_command_section(
         section = menu.make_navigation_section(
             name='zzz - done',
             )

@@ -42,7 +42,6 @@ class DirectoryManager(Manager):
             'mdmro': self.view_metadata_module,
             'mdmrm': self.remove_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
-            'pwd': self.pwd,
             })
         return result
 
@@ -237,17 +236,6 @@ class DirectoryManager(Manager):
         metadatum = self._get_metadatum(result)
         message = '{!r}'.format(metadatum)
         self._io_manager.proceed(message=message)
-
-    def pwd(self):
-        '''Displays path of current working directory.
-
-        Returns none.
-        '''
-        lines = []
-        lines.append(self._path)
-        lines.append('')
-        self._io_manager.display(lines)
-        self._session._hide_next_redraw = True
 
     def remove_metadata_module(self, prompt=True):
         r'''Removes metadata module.

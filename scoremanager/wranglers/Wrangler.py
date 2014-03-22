@@ -82,7 +82,6 @@ class Wrangler(Controller):
             'mdmrm': self.remove_metadata_module,
             'mdmrw': self.rewrite_metadata_module,
             'mdmro': self.view_metadata_module,
-            'pwd': self.pwd,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'ren': self.rename,
@@ -568,13 +567,6 @@ class Wrangler(Controller):
             tokens, 
             )
         self.write_view(view_name, view)
-
-    def pwd(self):
-        r'''Displays current working directory of current package manager.
-        
-        Returns none.
-        '''
-        self._current_package_manager.pwd()
 
     def pytest(self, prompt=True):
         r'''Runs py.test.
