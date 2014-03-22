@@ -102,10 +102,7 @@
         Manager._get_repository_root_directory()
         Manager._is_up_to_date()
 
-32. Hoist metadata-related commands from PackageManager up to
-    DirectoryManager.
-
-33. Add 'output module - check (omc)' command.
+31. Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
@@ -115,5 +112,8 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-34. Remove PackageManager.write_initializer_boilerplate().
-    Remove any other 'def.*boilerplate' methods.
+32. Make 'vwmro' provide a message when no __views__ module is found.
+
+33. Implement a 'views module - rewrite' (vwmrw) command.
+
+34. Change all vw* and vwm* commands to just v* and vm* instead.
