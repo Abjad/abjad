@@ -8,7 +8,7 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_SegmentPackageWrangler_repository_status_01():
     r'''Works with library.
     '''
-    pytest.skip('eventually implement segment library.')
+    pytest.skip('eventually add library.')
 
     input_ = 'g rst default q'
     score_manager._run(pending_user_input=input_)

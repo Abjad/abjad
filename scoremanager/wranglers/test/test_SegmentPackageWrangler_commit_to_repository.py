@@ -18,7 +18,7 @@ def test_SegmentPackageWrangler_commit_to_repository_01():
 def test_SegmentPackageWrangler_commit_to_repository_02():
     r'''Works in library.
     '''
-    pytest.skip('eventually add segment library.')
+    pytest.skip('eventually add library.')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     score_manager._session._is_repository_test = True

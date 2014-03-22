@@ -35,7 +35,10 @@ class SegmentPackageWrangler(PackageWrangler):
 
     @property
     def _breadcrumb(self):
-        return 'segments'
+        if self._session.is_in_score:
+            return 'segments'
+        else:
+            return 'segment library'
 
     @property
     def _user_input_to_action(self):
@@ -91,7 +94,10 @@ class SegmentPackageWrangler(PackageWrangler):
         self._io_manager.proceed(message=message, prompt=prompt)
 
     def _make_asset_menu_section(self, menu):
-        entries = self._make_asset_menu_entries(include_annotation=False)
+        include_annotation = not self._session.is_in_score
+        entries = self._make_asset_menu_entries(
+            include_annotation=include_annotation,
+            )
         if not entries:
             return
         section = menu.make_asset_section()

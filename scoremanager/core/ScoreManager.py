@@ -55,6 +55,7 @@ class ScoreManager(Controller):
             'cro': self.view_cache,
             'cw': self.write_cache,
             'fix': self.fix_score_packages,
+            'g': self.manage_segment_library,
             'm': self.manage_material_library,
             'mdme': self.edit_metadata_modules,
             'mdmls': self.list_metadata_modules,
@@ -208,6 +209,7 @@ class ScoreManager(Controller):
             name='library',
             is_hidden=True,
             )
+        section.append(('library - segments', 'g'))
         section.append(('library - materials', 'm'))
         section.append(('library - stylesheets', 'y'))
         return section
@@ -447,11 +449,19 @@ class ScoreManager(Controller):
         '''
         self._score_package_wrangler.make_new_score()
 
+    def manage_segment_library(self):
+        r'''Manages segment library.
+
+        Returns none.
+        '''
+        self._segment_package_wrangler._run(rollback=True)
+
     def manage_material_library(self):
         r'''Manages material library.
 
         Returns none.
         '''
+        # TODO: remove rollback?
         self._material_package_wrangler._run(rollback=True)
 
     def manage_score(self, path):
