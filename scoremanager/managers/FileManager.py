@@ -51,8 +51,9 @@ class FileManager(Manager):
         try:
             exec(file_contents_string)
         except:
+            # TODO: find a way to capture this output and log to transcript
             traceback.print_exc()
-            return
+            return 'corrupt'
         result = []
         for name in attribute_names:
             if name in locals():

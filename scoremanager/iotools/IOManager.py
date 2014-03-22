@@ -529,14 +529,14 @@ class IOManager(IOManager):
             )
         return selector
 
-    def make_view(self, tokens):
+    def make_view(self, items):
         r'''Makes view.
 
         Returns view.
         '''
         from scoremanager import iotools
         view = iotools.View(
-            tokens=tokens,
+            items=items,
             )
         return view
 

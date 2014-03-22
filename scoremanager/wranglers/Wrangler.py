@@ -305,6 +305,12 @@ class Wrangler(Controller):
         result = self._views_module_manager._execute(
             attribute_names=('view_inventory',),
             )
+        if result == 'corrupt':
+            message = 'views module is corrupt.'
+            self._io_manager.display([message, ''])
+            return
+        if not result:
+            return
         assert len(result) == 1
         view_inventory = result[0]
         return view_inventory
@@ -708,7 +714,7 @@ class Wrangler(Controller):
         paths = self._list_visible_asset_paths()
         for path in paths:
             manager = self._initialize_asset_manager(path)
-            manager.update(prompt=False)
+            manager.update_from_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
     def view_initializer(self):
