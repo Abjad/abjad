@@ -46,55 +46,51 @@
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
 
-16. Implement 'segments - tour next' and 'segment - tour previous' commands.
-    Maybe generalied 'material - tour' and 'segments - tour' to
-    just 'asset - tour'.
+16. Implement an 'all whatever - edit' command.
 
-17. Implement an 'all whatever - edit' command.
+17. Write view tests. Start with segment wrangler.
 
-18. Write view tests. Start with segment wrangler.
-
-19. Remove user/score_manager_library/material_package_managers/ in 
+18. Remove user/score_manager_library/material_package_managers/ in 
     favor of user/score_manager_library/material_managers/
 
-20. Change user/score_manager_library/material_packages/
+19. Change user/score_manager_library/material_packages/
     to user/score_manager_library/materials/.
 
-21. Remove 'whatever - make' commands. Reimplement as 'source - interpret'.
+20. Remove 'whatever - make' commands. Reimplement as 'source - interpret'.
 
-22. Add command to type arbitrary shell command to current working directory.
+21. Add command to type arbitrary shell command to current working directory.
     Maybe 'directory - run (run)' of follow Vim with !ls, !pwd and so on.
 
-23. Search for 'whatever_section = menu.make_*_section()' and
+22. Search for 'whatever_section = menu.make_*_section()' and
     change to 'section = menu.make_*_section()' everywhere.
 
-24. Extend Manager._remove() to use 'trash' if command is found.
+23. Extend Manager._remove() to use 'trash' if command is found.
 
-25. Implement NaiveCache decorator in systemtools.
+24. Implement NaiveCache decorator in systemtools.
     Apply to ScorePackageManager._maker_module_wrangler,
     ScorePackageManager._material_manager_wrangler, etc.
     Maybe the 'lru' decorator works for this already.
 
-26. Make ScorePackageManager create missing top-level directories
+25. Make ScorePackageManager create missing top-level directories
     during initialization. Run tests before and after change to check
     for any noticeable slowdown.
 
-27. Make (ls) work in stylesheets menu. So (score > y > ls).
+26. Make (ls) work in stylesheets menu. So (score > y > ls).
 
-28. Fix Wrangler._read_view_inventory_from_disk() line 305:
+27. Fix Wrangler._read_view_inventory_from_disk() line 305:
         assert len(result) == 1
     TypeError: boject of type 'NoneType' has no len()
     Use (tra > g) to induce bug.
 
-29. Add (lytr) for 'lilypond ly - trash'. This will work together
+28. Add (lytr) for 'lilypond ly - trash'. This will work together
     with (lyrm) for 'lilypond ly - remove'. The difference will be
     that (lyrm) will (try to) act on the repository where (lytr) will
     only ever work on the filesystem.
 
-30. Write Manager.revert_from_repository() test.
+29. Write Manager.revert_from_repository() test.
     One for Git. One for Subversion.
 
-31. Write py.test tests for the following properties and methods:
+30. Write py.test tests for the following properties and methods:
         Manager._repository_add_command
         Manager._repository_status_command
         Manager._get_added_asset_paths()
@@ -102,7 +98,7 @@
         Manager._get_repository_root_directory()
         Manager._is_up_to_date()
 
-31. Add 'output module - check (omc)' command.
+30. Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
@@ -112,21 +108,21 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-32. Make 'vmro' provide a message when no __views__ module is found.
+31. Make 'vmro' provide a message when no __views__ module is found.
 
-33. Implement a 'views module - rewrite' (vwmrw) command.
+32. Implement a 'views module - rewrite' (vmrw) command.
 
-34. Implement DirectoryManager.check_contents().
+33. Implement DirectoryManager.check_contents().
     With corresponding 'check - contents' (cc) command.
     The method will list the contents of a directory, compare
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-35. In segment menu, hide 'make module - stub' (mms) if a make module
+34. In segment menu, hide 'make module - stub' (mms) if a make module
     already exists. Show 'make module - stub' (mms) is a make module
     is not found in the segment package.
 
-36. Clean up possibly all current_* session variables by implementing
+35. Clean up possibly all current_* session variables by implementing
     as derived properties:
         current_build_directory_path
         current_controller (already derived)
