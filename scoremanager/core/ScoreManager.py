@@ -69,7 +69,7 @@ class ScoreManager(Controller):
             'ssmb': self.display_mothballed_scores,
             'ssx': self.display_example_scores,
             'ssu': self.display_user_scores,
-            'lmy': self.manage_stylesheet_library,
+            'y': self.manage_stylesheet_library,
             }
         return result
 
@@ -209,7 +209,7 @@ class ScoreManager(Controller):
             is_hidden=True,
             )
         section.append(('library - manage materials', 'lmm'))
-        section.append(('library - manage stylesheets', 'lmy'))
+        section.append(('library - manage stylesheets', 'y'))
         return section
 
     def _make_main_menu(self):

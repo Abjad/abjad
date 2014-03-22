@@ -15,7 +15,7 @@ def test_StylesheetWrangler_make_asset_01():
 
     assert not os.path.exists(path)
     try:
-        input_ = 'lmy new 1 test-stylesheet q'
+        input_ = 'y new 1 test-stylesheet q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
     finally:

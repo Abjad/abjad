@@ -8,7 +8,7 @@ def test_StylesheetWrangler_repository_status_01():
     r'''Works with stylesheet library.
     '''
 
-    input_ = 'lmy rst default q'
+    input_ = 'y rst default q'
     score_manager._run(pending_user_input=input_)
     title = '# On branch master'
 
