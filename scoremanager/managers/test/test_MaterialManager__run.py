@@ -99,8 +99,8 @@ def test_MaterialManager__run_06():
     pytest.skip('unskip after finalizing material management menu.')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    string = 'red~example~score m tempo~inventory q'
-    score_manager._run(pending_user_input=string)
+    input_ = 'red~example~score m tempo~inventory q'
+    score_manager._run(pending_user_input=input_)
 
     assert score_manager._transcript.last_menu_lines == [
         'Red Example Score (2013) - materials - tempo inventory', 

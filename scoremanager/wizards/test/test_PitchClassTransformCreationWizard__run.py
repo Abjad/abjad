@@ -59,6 +59,6 @@ def test_PitchClassTransformCreationWizard__run_03():
         [('transpose', (1,)), ('multiply', (5,))]
 
     wizard = scoremanager.wizards.PitchClassTransformCreationWizard()
-    string = 'transpose 1 invert multiply 5 q'
-    assert wizard._run(pending_user_input=string) == \
+    input_ = 'transpose 1 invert multiply 5 q'
+    assert wizard._run(pending_user_input=input_) == \
         [('transpose', (1,)), ('invert', ()), ('multiply', (5,))]
