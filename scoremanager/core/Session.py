@@ -1064,6 +1064,26 @@ class Session(abctools.AbjadObject):
         return self._is_navigating_to_score_stylesheets
 
     @property
+    def is_navigating_to_sibling_asset(self):
+        r'''Is true when session is navigating to sibling asset.
+        Otherwise false:
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_sibling_asset
+                False
+
+        Returns boolean.
+        '''
+        if self.is_navigating_to_next_asset:
+            return True
+        if self.is_navigating_to_previous_asset:
+            return True
+        return False
+
+    @property
     def is_navigating_to_sibling_score(self):
         r'''Is true when session is navigating to sibling score.
         Otherwise false:

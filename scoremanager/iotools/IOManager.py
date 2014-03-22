@@ -83,6 +83,7 @@ class IOManager(IOManager):
 
     # the ifs can be replaced with a _user_input_to_to_action dictionary
     def _handle_io_manager_directive(self, directive):
+        from scoremanager import managers
         if isinstance(directive, list) and len(directive) == 1:
             key = directive[0]
         else:
@@ -109,11 +110,21 @@ class IOManager(IOManager):
             self._session._is_navigating_to_score_materials = True
             return 'm'
         elif key == '>>':
-            self._session._is_navigating_to_score_materials = True
+            #self._session._is_navigating_to_score_materials = True
+            controller = self._session.current_controller
+            if isinstance(controller, managers.MaterialManager):
+                self._session._is_navigating_to_score_materials = True
+            elif isinstance(controller, managers.SegmentPackageManager):
+                self._session._is_navigating_to_score_segments = True
             self._session._is_navigating_to_next_asset = True
             self._session._hide_hidden_commands = True
         elif key == '<<':
-            self._session._is_navigating_to_score_materials = True
+            #self._session._is_navigating_to_score_materials = True
+            controller = self._session.current_controller
+            if isinstance(controller, managers.MaterialManager):
+                self._session._is_navigating_to_score_materials = True
+            elif isinstance(controller, managers.SegmentPackageManager):
+                self._session._is_navigating_to_score_segments = True
             self._session._is_navigating_to_previous_asset = True
             self._session._hide_hidden_commands = True
         elif directive in ('n', '?') and \
