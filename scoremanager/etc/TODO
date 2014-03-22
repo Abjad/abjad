@@ -122,3 +122,5 @@
     Seems like all of these should be derivable simply by looking
     at the controller stack. This means that all of these variables
     can stop being maintained by other parts of the system.
+
+32. Change Manager.revert_from_repository() to Manager.revert_to_repository().

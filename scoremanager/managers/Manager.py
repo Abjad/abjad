@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
+import filecmp
 import os
 import shutil
 import subprocess
@@ -151,7 +152,6 @@ class Manager(Controller):
 
     def _get_modified_asset_paths(self):
         if self._is_git_versioned():
-            # TODO: is this the correct command?
             command = 'git status --porcelain {}'
             command = command.format(self._path)
             process = subprocess.Popen(
@@ -162,8 +162,8 @@ class Manager(Controller):
                 )
             paths = []
             for line in process.stdout.readlines():
-                if line.startswith('A'):
-                    path = line.strip('A')
+                if line.startswith(('M', ' M')):
+                    path = line.strip('M ')
                     path = path.strip()
                     root_directory = self._get_repository_root_directory()
                     path = os.path.join(root_directory, path)
@@ -555,6 +555,36 @@ class Manager(Controller):
         os.remove(path_2)
         assert not os.path.exists(path_1)
         assert not os.path.exists(path_2)
+        assert self._is_up_to_date()
+        return True
+
+    def _find_first_file_name(self):
+        for directory_entry in os.listdir(self._path):
+            if not directory_entry.startswith('.'):
+                if os.path.isfile(directory_entry):
+                    return directory_entry
+
+    def _test_revert_to_repository(self):
+        assert self._is_up_to_date()
+        assert self._get_modified_asset_paths() == []
+        file_name = self._find_first_file_name()
+        if not file_name:
+            return
+        file_path = os.path.join(self._path, file_name)
+        home_directory = self._configuration.home_directory_path
+        backup_copy = os.path.join(home_directory, file_name + '.back')
+        shutil.copyfile(file_path, backup_copy)
+        assert filecmp.cmp(file_path, backup_copy)
+        try:
+            with file(file_path, 'a') as file_pointer:
+                string = '# extra text appended during testing'
+                file_pointer.write(string)
+            assert not self._is_up_to_date()
+            assert self._get_modified_asset_paths() == [file_path]
+            self.revert_from_repository(prompt=False)
+        finally:
+            shutil.copyfile(backup_copy, file_path)
+        assert self._get_modified_asset_paths() == []
         assert self._is_up_to_date()
         return True
     
