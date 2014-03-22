@@ -32,7 +32,7 @@ class FileManager(Manager):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'e': self.edit,
+            'dme': self.edit,
             'ts': self.typeset_tex_file,
             'v': self.view,
             })
@@ -101,7 +101,7 @@ class FileManager(Manager):
     def _make_file_menu_section(self, menu):
         section = menu.make_command_section(default_index=0)
         if self._is_editable():
-            section.append(('file - edit', 'e'))
+            section.append(('file - edit', 'dme'))
         section.append(('file - rename', 'ren'))
         section.append(('file - remove', 'rm'))
         if self._path.endswith('.py'):

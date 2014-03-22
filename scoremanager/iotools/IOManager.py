@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
 import os
+import subprocess
 import readline
 import types
 from abjad.tools import stringtools
@@ -80,6 +81,7 @@ class IOManager(IOManager):
         else:
             return repr(expr)
 
+    # the ifs can be replaced with a _user_input_to_to_action dictionary
     def _handle_io_manager_directive(self, directive):
         if isinstance(directive, list) and len(directive) == 1:
             key = directive[0]
@@ -135,7 +137,7 @@ class IOManager(IOManager):
             controller = self._session.current_controller
             controller.pytest()
         elif key == 'pyi':
-            self.exec_statement()
+            self.invoke_python()
         elif key in ('q', 'quit'):
             self._session._is_quitting = True
             self._session._hide_hidden_commands = True
@@ -165,6 +167,9 @@ class IOManager(IOManager):
             return 'y'
         elif key == 'Y':
             self.edit_score_stylesheet()
+        elif isinstance(key, str) and key.startswith('!'):
+            statement = key.replace('!', '')
+            self.invoke_shell(statement=statement)
         elif self._is_score_string(key) and not self._session.is_in_score:
             directive = None
         elif self._is_home_string(key):
@@ -378,8 +383,8 @@ class IOManager(IOManager):
             message = 'no file ending in *stylesheet.ily found.'
             self.proceed(message)
 
-    def exec_statement(self, statement=None):
-        r'''Executes `statement`.
+    def invoke_python(self, statement=None):
+        r'''Invokes Python on `statement`.
 
         Hides next redraw.
 
@@ -403,6 +408,39 @@ class IOManager(IOManager):
         lines.append('')
         if prompt:
             self.display(lines)
+        self._session._hide_next_redraw = True
+
+    def invoke_shell(self, statement=None):
+        r'''Invokes shell on `statement`.
+
+        Hides next redraw.
+
+        Returns none.
+        '''
+        lines = []
+        prompt = True
+        if statement is None:
+            statement = self.handle_user_input(
+                '$', 
+                include_chevron=False,
+                include_newline=False,
+                )
+        statement = statement.strip()
+        process = subprocess.Popen(
+            statement,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+        try:
+            lines = process.stdout.readlines()
+        except:
+            lines.append('expression not executable.')
+        lines = lines or []
+        lines = [_.strip() for _ in lines]
+        lines.append('')
+        if prompt:
+            self.display(lines, capitalize_first_character=False)
         self._session._hide_next_redraw = True
 
     def handle_user_input(

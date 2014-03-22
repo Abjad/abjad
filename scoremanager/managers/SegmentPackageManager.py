@@ -70,8 +70,8 @@ class SegmentPackageManager(PackageManager):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'E': self.edit_definition_module_from_top,
-            'e': self.edit_definition_module,
+            'dmE': self.edit_definition_module_from_top,
+            'dme': self.edit_definition_module,
             'lyi': self.interpret_current_lilypond_file,
             'lyro': self.view_current_output_ly,
             'lyver': self.view_versioned_output_ly,
@@ -139,8 +139,8 @@ class SegmentPackageManager(PackageManager):
 
     def _make_definition_module_menu_section(self, menu):
         section = menu.make_command_section(name='definition module')
-        section.append(('definition module - edit', 'e'))
-        section.append(('definition module - edit at top', 'E'))
+        section.append(('definition module - edit', 'dme'))
+        section.append(('definition module - edit at top', 'dmE'))
         return section
 
     def _make_main_menu(self, name='segment package manager'):

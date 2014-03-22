@@ -102,6 +102,8 @@ class Menu(ScoreManagerObject):
             return 'r'
         elif user_input in ('?', 'n'):
             return '?'
+        elif user_input.startswith('!'):
+            return user_input
         elif 3 <= len(user_input) and 'score'.startswith(user_input):
             return 'score'
         for menu_section in self.menu_sections:
@@ -470,8 +472,9 @@ class Menu(ScoreManagerObject):
         return section
 
     def _make_system_menu_section(self):
-        section = self.make_navigation_section(name='system', is_hidden=True)
+        section = self.make_command_section(name='system', is_hidden=True)
         section.append(('system - quit', 'q'))
+        section.append(('system - shell', '!'))
         return section
 
     def _make_tab(self, n):
