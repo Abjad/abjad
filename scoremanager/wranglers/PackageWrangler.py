@@ -44,17 +44,19 @@ class PackageWrangler(Wrangler):
 
     ### PRIVATE METHODS ###
 
-    def _find_git_manager(self, inside_score=True):
+    def _find_git_manager(self, inside_score=True, must_have_file=False):
         manager = self._find_up_to_date_manager(
             inside_score=inside_score,
+            must_have_file=must_have_file,
             system=True,
             repository='git',
             )
         return manager
 
-    def _find_svn_manager(self, inside_score=True):
+    def _find_svn_manager(self, inside_score=True, must_have_file=False):
         manager = self._find_up_to_date_manager(
             inside_score=inside_score,
+            must_have_file=must_have_file,
             system=False,
             repository='svn',
             )
@@ -63,6 +65,7 @@ class PackageWrangler(Wrangler):
     def _find_up_to_date_manager(
         self, 
         inside_score=True,
+        must_have_file=False,
         system=True,
         repository='git',
         ):
@@ -93,13 +96,15 @@ class PackageWrangler(Wrangler):
                 path=asset_path,
                 session=session,
                 )
-            if repository == 'git' and \
-                manager._is_git_versioned() and \
-                manager._is_up_to_date():
+            if (repository == 'git' and
+                manager._is_git_versioned() and 
+                manager._is_up_to_date() and
+                (not must_have_file or manager._find_first_file_name())):
                 return manager
-            elif repository == 'svn' and \
-                manager._is_svn_versioned() and \
-                manager._is_up_to_date():
+            elif (repository == 'svn' and
+                manager._is_svn_versioned() and
+                manager._is_up_to_date() and
+                (not must_have_file or manager._find_first_file_name())):
                 return manager
 
     def _get_view_from_disk(self):

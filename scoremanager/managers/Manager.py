@@ -113,6 +113,12 @@ class Manager(Controller):
 
     ### PRIVATE METHODS ###
 
+    def _find_first_file_name(self):
+        for directory_entry in os.listdir(self._path):
+            if not directory_entry.startswith('.'):
+                if os.path.isfile(directory_entry):
+                    return directory_entry
+
     def _get_added_asset_paths(self):
         if self._is_git_versioned():
             command = 'git status --porcelain {}'
@@ -557,12 +563,6 @@ class Manager(Controller):
         assert not os.path.exists(path_2)
         assert self._is_up_to_date()
         return True
-
-    def _find_first_file_name(self):
-        for directory_entry in os.listdir(self._path):
-            if not directory_entry.startswith('.'):
-                if os.path.isfile(directory_entry):
-                    return directory_entry
 
     def _test_revert_to_repository(self):
         assert self._is_up_to_date()
