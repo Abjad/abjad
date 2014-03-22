@@ -126,12 +126,16 @@ class SegmentPackageManager(PackageManager):
             return section
 
     def _make_current_pdf_menu_section(self, menu):
-        section = menu.make_command_section(name='pdf')
+        commands = []
         if os.path.isfile(self._output_pdf_file_path):
-            section.append(('pdf - version', 'pdfs'))
+            commands.append(('pdf - version', 'pdfs'))
         if os.path.isfile(self._output_pdf_file_path):
-            section.append(('pdf - open', 'pdfo'))
-        return section
+            commands.append(('pdf - open', 'pdfo'))
+        if commands:
+            section = menu.make_command_section(name='pdf')
+            for command in commands:
+                section.append(command)
+            return section
 
     def _make_definition_module_menu_section(self, menu):
         section = menu.make_command_section(name='definition module')

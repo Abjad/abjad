@@ -115,8 +115,3 @@
 32. Make 'vmro' provide a message when no __views__ module is found.
 
 33. Implement a 'views module - rewrite' (vwmrw) command.
-
-34. Protect against ...
-        Exception: <Menu 'segment package manager' (14)> 
-        contains <MenuSection 'pdf' (0)>.
-    ... in segment package manager.
