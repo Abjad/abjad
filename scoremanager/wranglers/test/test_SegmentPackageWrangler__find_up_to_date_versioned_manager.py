@@ -4,16 +4,18 @@ from abjad import *
 import scoremanager
 configuration = scoremanager.core.ScoreManagerConfiguration()
 session = scoremanager.core.Session()
-wrangler = scoremanager.wranglers.SegmentPackageWrangler(session=session)
+score_manager = scoremanager.core.ScoreManager(is_test=True)
+#wrangler = scoremanager.wranglers.SegmentPackageWrangler(session=session)
 
 
 def test_SegmentPackageWrangler__find_up_to_date_versioned_manager_01():
     r'''Works with Git.
     '''
 
+    wrangler = score_manager._segment_package_wrangler
     manager = wrangler._find_up_to_date_versioned_manager(
-        system=True,
         repository='git',
+        system=True,
         )
 
     assert isinstance(manager, scoremanager.managers.SegmentPackageManager)
@@ -27,6 +29,7 @@ def test_SegmentPackageWrangler__find_up_to_date_versioned_manager_02():
     r'''Works with Subversion.
     '''
 
+    wrangler = score_manager._segment_package_wrangler
     manager = wrangler._find_up_to_date_versioned_manager(
         system=False,
         repository='svn',

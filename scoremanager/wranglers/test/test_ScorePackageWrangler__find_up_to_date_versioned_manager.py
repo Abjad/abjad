@@ -4,14 +4,16 @@ from abjad import *
 import scoremanager
 configuration = scoremanager.core.ScoreManagerConfiguration()
 session = scoremanager.core.Session()
-wrangler = scoremanager.wranglers.ScorePackageWrangler(session=session)
+score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
 def test_ScorePackageWrangler__find_up_to_date_versioned_manager_01():
     r'''Works with Git.
     '''
 
+    wrangler = score_manager._score_package_wrangler
     manager = wrangler._find_up_to_date_versioned_manager(
+        inside_score=False,
         system=True,
         repository='git',
         )
@@ -29,7 +31,9 @@ def test_ScorePackageWrangler__find_up_to_date_versioned_manager_02():
     r'''Works with Subversion.
     '''
 
+    wrangler = score_manager._score_package_wrangler
     manager = wrangler._find_up_to_date_versioned_manager(
+        inside_score=False,
         system=False,
         repository='svn',
         )

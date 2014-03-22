@@ -44,8 +44,9 @@ class PackageWrangler(Wrangler):
 
     ### PRIVATE METHODS ###
 
-    def _find_svn_manager(self):
+    def _find_svn_manager(self, inside_score=True):
         manager = self._find_up_to_date_versioned_manager(
+            inside_score=inside_score,
             system=False,
             repository='svn',
             )
@@ -53,25 +54,32 @@ class PackageWrangler(Wrangler):
 
     def _find_up_to_date_versioned_manager(
         self, 
+        inside_score=True,
         system=True,
         repository='git',
         ):
         import scoremanager
-        session = scoremanager.core.Session()
-        if system:
-            asset_paths = self._list_asset_paths(
-                abjad_library=True,
-                abjad_score_packages=True,
-                user_library=False,
-                user_score_packages=False,
-                )
+        abjad_library = False
+        abjad_score_packages = False
+        user_library = False
+        user_score_packages = False
+        if system and inside_score:
+            abjad_score_packages = True
+        elif system and not inside_score:
+            abjad_library = True
+        elif not system and inside_score:
+            user_score_packages = True
+        elif not system and not inside_score:
+            user_library = True
         else:
-            asset_paths = self._list_asset_paths(
-                abjad_library=False,
-                abjad_score_packages=False,
-                user_library=True,
-                user_score_packages=True,
-                )
+            Exception
+        asset_paths = self._list_asset_paths(
+            abjad_library=abjad_library,
+            abjad_score_packages=abjad_score_packages,
+            user_library=user_library,
+            user_score_packages=user_score_packages,
+            )
+        session = scoremanager.core.Session()
         for asset_path in asset_paths:
             manager = self._asset_manager_class(
                 path=asset_path,
