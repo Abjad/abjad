@@ -31,7 +31,7 @@ class MaterialManagerWrangler(PackageWrangler):
         self._user_storehouse_path = \
             self._configuration.user_library_material_managers_directory_path
         self._human_readable_target_name = 'material manager'
-        self.forbidden_directory_entries = (
+        self._forbidden_directory_entries = (
             'InventoryMaterialManager.py',
             'MaterialManager.py',
             )
@@ -108,7 +108,7 @@ class MaterialManagerWrangler(PackageWrangler):
             return False
         if directory_entry.endswith('.pyc'):
             return False
-        if directory_entry in self.forbidden_directory_entries:
+        if directory_entry in self._forbidden_directory_entries:
             return False
         if not directory_entry.endswith('MaterialManager.py'):
             return False

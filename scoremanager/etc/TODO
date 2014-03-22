@@ -116,6 +116,3 @@
     It might make sense to have an 'illustration ly - check (lyc)' command.
     And in general verify commands for every system artifact that can
     be interpreted.
-
-35. Make Wrangler.forbidden_directory_entries public attribute into
-    Wrangler._forbidden_directory_entries private attribute.

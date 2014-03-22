@@ -25,7 +25,7 @@ class Wrangler(Controller):
         self._abjad_storehouse_path = None
         self._user_storehouse_path = None
         self._score_storehouse_path_infix_parts = ()
-        self.forbidden_directory_entries = ()
+        self._forbidden_directory_entries = ()
 
     ### PRIVATE PROPERTIES ###
 
@@ -143,7 +143,7 @@ class Wrangler(Controller):
             )
 
     def _is_valid_directory_entry(self, directory_entry):
-        if directory_entry not in self.forbidden_directory_entries:
+        if directory_entry not in self._forbidden_directory_entries:
             if directory_entry[0].isalpha():
                 return True
         return False
