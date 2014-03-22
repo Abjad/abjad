@@ -102,11 +102,7 @@
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-29. In segment menu, hide 'make module - stub' (mms) if a make module
-    already exists. Show 'make module - stub' (mms) is a make module
-    is not found in the segment package.
-
-30. Clean up possibly all current_* session variables by implementing
+29. Clean up possibly all current_* session variables by implementing
     as derived properties:
         current_build_directory_path
         current_controller (already derived)

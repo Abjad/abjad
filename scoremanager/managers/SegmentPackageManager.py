@@ -174,7 +174,8 @@ class SegmentPackageManager(PackageManager):
         if os.path.isfile(self._make_module_path):
             section.append(('make module - interpret', 'mmi'))
             section.append(('make module - read only', 'mmro'))
-        section.append(('make module - stub', 'mms'))
+        else:
+            section.append(('make module - stub', 'mms'))
         return section
 
     def _make_versioned_pdfs_menu_section(self, menu):
