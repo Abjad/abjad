@@ -116,8 +116,3 @@
     It might make sense to have an 'illustration ly - check (lyc)' command.
     And in general verify commands for every system artifact that can
     be interpreted.
-
-35. Fix ...
-        Exception: <Menu 'stylesheet wrangler' (13)> 
-            contains <MenuSection 'assets' (0)>.
-    ... in StylesheetWrangler main menu.

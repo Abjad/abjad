@@ -89,13 +89,15 @@ class MakerModuleWrangler(Wrangler):
             self._edit_maker_module(result)
 
     def _make_asset_menu_section(self, menu):
-        section = menu.make_asset_section()
-        menu._asset_section = section
         menu_entries = self._make_asset_menu_entries(
             human_readable=False,
             include_annotation=False,
             include_extensions=True,
             )
+        if not menu_entries:
+            return
+        section = menu.make_asset_section()
+        menu._asset_section = section
         for menu_entry in menu_entries:
             section.append(menu_entry)
         return section

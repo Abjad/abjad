@@ -6,7 +6,7 @@ configuration = scoremanager.core.ScoreManagerConfiguration()
 score_manager = scoremanager.core.ScoreManager()
 
 
-def test_ScoreManager__find_up_to_date_manager_01():
+def test_ScoreManager__find_up_to_date_versioned_manager_01():
     r'''Works for Git-managed build directory.
     '''
 
@@ -22,7 +22,7 @@ def test_ScoreManager__find_up_to_date_manager_01():
     assert os.path.basename(manager._path) == 'build'
 
 
-def test_ScoreManager__find_up_to_date_manager_02():
+def test_ScoreManager__find_up_to_date_versioned_manager_02():
     r'''Works for Subversion-managed build directory.
     '''
 
@@ -41,7 +41,7 @@ def test_ScoreManager__find_up_to_date_manager_02():
     assert os.path.basename(manager._path) == 'build'
 
 
-def test_ScoreManager__find_up_to_date_manager_03():
+def test_ScoreManager__find_up_to_date_versioned_manager_03():
     r'''Works for Git-managed distribution directory.
     '''
 
@@ -60,7 +60,7 @@ def test_ScoreManager__find_up_to_date_manager_03():
     assert os.path.basename(manager._path) == 'distribution'
 
 
-def test_ScoreManager__find_up_to_date_manager_04():
+def test_ScoreManager__find_up_to_date_versioned_manager_04():
     r'''Works for Subversion-managed build directory.
     '''
 

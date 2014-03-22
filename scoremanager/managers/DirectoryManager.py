@@ -60,9 +60,11 @@ class DirectoryManager(Manager):
         return file_paths
 
     def _make_asset_menu_section(self, menu):
+        menu_entries = self._make_asset_menu_entries()
+        if not menu_entries:
+            return
         asset_section = menu.make_asset_section()
         menu._asset_section = asset_section
-        menu_entries = self._make_asset_menu_entries()
         for menu_entry in menu_entries:
             asset_section.append(menu_entry)
         return menu
