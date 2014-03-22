@@ -106,7 +106,7 @@ class Manager(Controller):
             'rci': self.commit_to_repository,
             'ren': self.rename,
             'rst': self.repository_status,
-            'rrv': self.revert_from_repository,
+            'rrv': self.revert_to_repository,
             'rup': self.update_from_repository,
             })
         return result
@@ -548,7 +548,7 @@ class Manager(Controller):
         self.add_to_repository(prompt=False)
         assert self._get_unadded_asset_paths() == []
         assert self._get_added_asset_paths() == [path_1, path_2]
-        self.revert_from_repository(prompt=False)
+        self.revert_to_repository(prompt=False)
         assert self._get_unadded_asset_paths() == [path_1, path_2]
         assert self._get_added_asset_paths() == []
         os.remove(path_1)
@@ -581,7 +581,7 @@ class Manager(Controller):
                 file_pointer.write(string)
             assert not self._is_up_to_date()
             assert self._get_modified_asset_paths() == [file_path]
-            self.revert_from_repository(prompt=False)
+            self.revert_to_repository(prompt=False)
         finally:
             shutil.copyfile(backup_copy, file_path)
         assert self._get_modified_asset_paths() == []
@@ -807,7 +807,7 @@ class Manager(Controller):
         if self._rename(new_path):
             self._io_manager.proceed('asset renamed.')
 
-    def revert_from_repository(self, prompt=True):
+    def revert_to_repository(self, prompt=True):
         r'''Reverts assets from repository.
 
         Returns none.

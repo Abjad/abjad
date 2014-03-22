@@ -146,7 +146,7 @@ class ScorePackageManager(PackageManager):
             'rci': self.commit_to_repository,
             'ren': self.rename_score_package,
             'rm': self.remove_score_package,
-            'rrv': self.revert_from_repository,
+            'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
             'u': self._build_directory_manager._run,

@@ -86,7 +86,7 @@ class Wrangler(Controller):
             'rci': self.commit_to_repository,
             'ren': self.rename,
             'rm': self.remove,
-            'rrv': self.revert_from_repository,
+            'rrv': self.revert_to_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
             'vl': self.list_views,
@@ -667,7 +667,7 @@ class Wrangler(Controller):
         asset_manager = self._initialize_asset_manager(asset_path)
         asset_manager.rename()
 
-    def revert_from_repository(self, prompt=True):
+    def revert_to_repository(self, prompt=True):
         r'''Reverts assets from repository.
 
         Returns none.
@@ -680,7 +680,7 @@ class Wrangler(Controller):
                 path=path,
                 session=self._session,
                 )
-            manager.revert_from_repository(prompt=False)
+            manager.revert_to_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
 
     def rewrite_metadata_module(self, prompt=True):
