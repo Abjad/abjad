@@ -38,7 +38,7 @@ class MakerModuleWrangler(Wrangler):
     @property
     def _asset_manager_class(self):
         from scoremanager import managers
-        return manager.FileManager
+        return managers.FileManager
 
     @property
     def _breadcrumb(self):

@@ -778,12 +778,7 @@ class Manager(Controller):
         line = self._get_score_package_directory_name()
         line = line + ' ...'
         self._io_manager.display(line, capitalize_first_character=False)
-        # TODO: generalize this to self._repository_update_command
-        #command = 'svn up {}'.format(self._path)
         command = self._repository_update_command
-        #print repr(command), 'CMD'
-        #os.system('whoami')
-        #os.system('pwd')
         process = subprocess.Popen(
             command,
             shell=True,
