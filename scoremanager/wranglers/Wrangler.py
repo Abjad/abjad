@@ -143,7 +143,8 @@ class Wrangler(Controller):
             paths = [x for x in paths if x.startswith(score_directory)]
         if last_path is None:
             return paths[0]
-        assert last_path in paths
+        if last_path not in paths:
+            return paths[0]
         index = paths.index(last_path)
         next_index = (index + 1) % len(paths)
         next_path = paths[next_index]
@@ -158,7 +159,8 @@ class Wrangler(Controller):
             paths = [x for x in paths if x.startswith(score_directory)]
         if last_path is None:
             return paths[-1]
-        assert last_path in paths
+        if last_path not in paths:
+            return paths[-1]
         index = paths.index(last_path)
         previous_index = (index - 1) % len(paths)
         previous_path = paths[previous_index]
