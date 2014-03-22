@@ -100,11 +100,11 @@ class Block(AbjadObject):
             elif isinstance(item, str):
                 string = '\t{}'.format(item)
                 result.append(string)
-            elif hasattr(item, '_get_format_pieces'):
+            elif '_get_format_pieces' in dir(item):
                 pieces = item._get_format_pieces()
                 pieces = ['\t' + item for item in pieces]
                 result.extend(pieces)
-            elif hasattr(item, '_format_pieces'):
+            elif '_format_pieces' in dir(item):
                 pieces = item._format_pieces
                 pieces = ['\t' + item for item in pieces]
                 result.extend(pieces)
