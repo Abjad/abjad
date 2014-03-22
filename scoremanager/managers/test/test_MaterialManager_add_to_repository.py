@@ -12,7 +12,7 @@ def test_MaterialManager_add_to_repository_01():
     Then unadd the files and leave the material package as found.
     '''
 
-    manager = wrangler._find_up_to_date_versioned_manager(
+    manager = wrangler._find_up_to_date_manager(
         repository='git',
         system=True,
         )
@@ -26,7 +26,7 @@ def test_MaterialManager_add_to_repository_02():
     Then unadd the file and leave the score package as found.
     '''
 
-    manager = wrangler._find_up_to_date_versioned_manager(
+    manager = wrangler._find_up_to_date_manager(
         repository='svn',
         system=False,
         )

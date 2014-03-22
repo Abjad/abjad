@@ -8,11 +8,11 @@ session = scoremanager.core.Session()
 wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
 
 
-def test_MaterialPackageWrangler__find_up_to_date_versioned_manager_01():
+def test_MaterialPackageWrangler__find_up_to_date_manager_01():
     r'''Works with Git.
     '''
 
-    manager = wrangler._find_up_to_date_versioned_manager(
+    manager = wrangler._find_up_to_date_manager(
         system=True,
         repository='git',
         )
@@ -23,11 +23,11 @@ def test_MaterialPackageWrangler__find_up_to_date_versioned_manager_01():
     assert os.path.dirname(manager._path) == 'materials'
 
 
-def test_MaterialPackageWrangler__find_up_to_date_versioned_manager_02():
+def test_MaterialPackageWrangler__find_up_to_date_manager_02():
     r'''Works with Subversion.
     '''
 
-    manager = wrangler._find_up_to_date_versioned_manager(
+    manager = wrangler._find_up_to_date_manager(
         system=False,
         repository='svn',
         )

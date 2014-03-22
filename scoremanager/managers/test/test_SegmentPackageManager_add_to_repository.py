@@ -13,7 +13,7 @@ def test_SegmentPackageManager_add_to_repository_01():
     Then unadd the files and leave the segment package as found.
     '''
 
-    manager = wrangler._find_up_to_date_versioned_manager(
+    manager = wrangler._find_up_to_date_manager(
         system=True,
         repository='git',
         )
@@ -27,7 +27,7 @@ def test_SegmentPackageManager_add_to_repository_02():
     Then unadd the file and leave the score package as found.
     '''
 
-    manager = wrangler._find_up_to_date_versioned_manager(
+    manager = wrangler._find_up_to_date_manager(
         system=False,
         repository='svn',
         )

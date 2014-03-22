@@ -77,7 +77,7 @@ class ScoreManager(Controller):
 
     def _find_svn_score_name(self):
         from scoremanager import managers
-        manager = self._find_up_to_date_versioned_manager(
+        manager = self._find_up_to_date_manager(
             managers.ScorePackageManager,
             repository='svn',
             system=False,
@@ -87,7 +87,7 @@ class ScoreManager(Controller):
             title = stringtools.string_to_accent_free_snake_case(title)
             return title
 
-    def _find_up_to_date_versioned_manager(
+    def _find_up_to_date_manager(
         self, 
         manager_class,
         repository='git',

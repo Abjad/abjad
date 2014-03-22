@@ -12,7 +12,7 @@ def test_BuildDirectoryManager_add_to_repository_01():
     Then unadd the files and leave the build directory as found.
     '''
 
-    manager = score_manager._find_up_to_date_versioned_manager(
+    manager = score_manager._find_up_to_date_manager(
         scoremanager.managers.BuildDirectoryManager,
         repository='git',
         system=True,
@@ -27,7 +27,7 @@ def test_BuildDirectoryManager_add_to_repository_02():
     Then unadd the file and leave the score package as found.
     '''
 
-    manager = score_manager._find_up_to_date_versioned_manager(
+    manager = score_manager._find_up_to_date_manager(
         scoremanager.managers.BuildDirectoryManager,
         repository='svn',
         system=False,

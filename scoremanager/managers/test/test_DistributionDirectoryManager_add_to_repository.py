@@ -12,7 +12,7 @@ def test_DistributionDirectoryManager_add_to_repository_01():
     Then unadd the files and leave the distribution directory as found.
     '''
 
-    manager = score_manager._find_up_to_date_versioned_manager(
+    manager = score_manager._find_up_to_date_manager(
         scoremanager.managers.DistributionDirectoryManager,
         repository='git',
         system=True,
@@ -27,7 +27,7 @@ def test_DistributionDirectoryManager_add_to_repository_02():
     Then unadd the file and leave the score package as found.
     '''
 
-    manager = score_manager._find_up_to_date_versioned_manager(
+    manager = score_manager._find_up_to_date_manager(
         scoremanager.managers.DistributionDirectoryManager,
         repository='svn',
         system=False,

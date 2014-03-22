@@ -45,14 +45,14 @@ class PackageWrangler(Wrangler):
     ### PRIVATE METHODS ###
 
     def _find_svn_manager(self, inside_score=True):
-        manager = self._find_up_to_date_versioned_manager(
+        manager = self._find_up_to_date_manager(
             inside_score=inside_score,
             system=False,
             repository='svn',
             )
         return manager
 
-    def _find_up_to_date_versioned_manager(
+    def _find_up_to_date_manager(
         self, 
         inside_score=True,
         system=True,

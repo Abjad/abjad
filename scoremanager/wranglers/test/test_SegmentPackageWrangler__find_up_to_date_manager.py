@@ -8,12 +8,12 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 #wrangler = scoremanager.wranglers.SegmentPackageWrangler(session=session)
 
 
-def test_SegmentPackageWrangler__find_up_to_date_versioned_manager_01():
+def test_SegmentPackageWrangler__find_up_to_date_manager_01():
     r'''Works with Git.
     '''
 
     wrangler = score_manager._segment_package_wrangler
-    manager = wrangler._find_up_to_date_versioned_manager(
+    manager = wrangler._find_up_to_date_manager(
         repository='git',
         system=True,
         )
@@ -25,12 +25,12 @@ def test_SegmentPackageWrangler__find_up_to_date_versioned_manager_01():
     assert not os.path.basename(manager._path) == 'segments'
 
 
-def test_SegmentPackageWrangler__find_up_to_date_versioned_manager_02():
+def test_SegmentPackageWrangler__find_up_to_date_manager_02():
     r'''Works with Subversion.
     '''
 
     wrangler = score_manager._segment_package_wrangler
-    manager = wrangler._find_up_to_date_versioned_manager(
+    manager = wrangler._find_up_to_date_manager(
         system=False,
         repository='svn',
         )
