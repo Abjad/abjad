@@ -28,12 +28,14 @@ class ScoreManager(Controller):
             session._is_test = is_test
         Controller.__init__(self, session=session)
         self._session._score_manager = self
-        wrangler = wranglers.SegmentPackageWrangler(session=self._session)
-        self._segment_package_wrangler = wrangler
+        wrangler = wranglers.MakerModuleWrangler(session=self._session)
+        self._maker_module_wrangler = wrangler
         wrangler = wranglers.MaterialManagerWrangler(session=self._session)
         self._material_manager_wrangler = wrangler
         wrangler = wranglers.MaterialPackageWrangler(session=self._session)
         self._material_package_wrangler = wrangler
+        wrangler = wranglers.SegmentPackageWrangler(session=self._session)
+        self._segment_package_wrangler = wrangler
         wrangler = wranglers.ScorePackageWrangler(session=self._session)
         self._score_package_wrangler = wrangler
         wrangler = wranglers.StylesheetWrangler(session=self._session)
@@ -56,6 +58,7 @@ class ScoreManager(Controller):
             'cw': self.write_cache,
             'fix': self.fix_score_packages,
             'g': self.manage_segment_library,
+            'k': self.manage_maker_library,
             'm': self.manage_material_library,
             'mdme': self.edit_metadata_modules,
             'mdmls': self.list_metadata_modules,
@@ -210,8 +213,9 @@ class ScoreManager(Controller):
             name='library',
             is_hidden=True,
             )
-        section.append(('library - segments', 'g'))
+        section.append(('library - makers', 'k'))
         section.append(('library - materials', 'm'))
+        section.append(('library - segments', 'g'))
         section.append(('library - stylesheets', 'y'))
         return section
 
@@ -450,12 +454,12 @@ class ScoreManager(Controller):
         '''
         self._score_package_wrangler.make_new_score()
 
-    def manage_segment_library(self):
-        r'''Manages segment library.
+    def manage_maker_library(self):
+        r'''Manages maker library.
 
         Returns none.
         '''
-        self._segment_package_wrangler._run(rollback=True)
+        self._maker_module_wrangler._run(rollback=True)
 
     def manage_material_library(self):
         r'''Manages material library.
@@ -464,6 +468,13 @@ class ScoreManager(Controller):
         '''
         # TODO: remove rollback?
         self._material_package_wrangler._run(rollback=True)
+
+    def manage_segment_library(self):
+        r'''Manages segment library.
+
+        Returns none.
+        '''
+        self._segment_package_wrangler._run(rollback=True)
 
     def manage_score(self, path):
         r'''Manages score.

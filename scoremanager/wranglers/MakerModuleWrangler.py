@@ -89,9 +89,10 @@ class MakerModuleWrangler(Wrangler):
             self._edit_maker_module(result)
 
     def _make_asset_menu_section(self, menu):
+        include_annotation = not self._session.is_in_score
         menu_entries = self._make_asset_menu_entries(
             human_readable=False,
-            include_annotation=False,
+            include_annotation=include_annotation,
             include_extensions=True,
             )
         if not menu_entries:
