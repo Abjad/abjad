@@ -121,6 +121,7 @@ class SegmentPackageWrangler(PackageWrangler):
         self._make_metadata_module_menu_section(menu)
         self._make_views_menu_section(menu)
         self._make_views_module_menu_section(menu)
+        self._make_sibling_asset_tour_menu_section(menu)
         return menu
 
     def _make_segments_menu_section(self, menu):

@@ -167,9 +167,9 @@ class Controller(ScoreManagerObject):
         section = menu['go - scores']
         section.menu_entries[:] = []
         section.append(('go - next score', '>'))
-        section.append(('go - next material', '>>'))
+        section.append(('go - next asset', '>>'))
         section.append(('go - previous score', '<'))
-        section.append(('go - previous material', '<<'))
+        section.append(('go - previous asset', '<<'))
         return section
 
     def _make_views_menu_section(self, menu):
