@@ -180,9 +180,9 @@ class Controller(ScoreManagerObject):
             match_on_display_string=False,
             name='views',
             )
-        section.append(('views - list', 'vwl'))
-        section.append(('views - new', 'vwn'))
-        section.append(('views - select', 'vws'))
+        section.append(('views - list', 'vl'))
+        section.append(('views - new', 'vn'))
+        section.append(('views - select', 'vs'))
         return section
 
     def _make_views_module_menu_section(self, menu):
@@ -191,8 +191,8 @@ class Controller(ScoreManagerObject):
             match_on_display_string=False,
             name='views module',
             )
-        section.append(('views module - remove', 'vwmrm'))
-        section.append(('views module - read only', 'vwmro'))
+        section.append(('views module - remove', 'vmrm'))
+        section.append(('views module - read only', 'vmro'))
         return section
         
     def _path_to_annotation(self, path, year=False):

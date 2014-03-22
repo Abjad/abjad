@@ -24,7 +24,7 @@ def test_Wrangler__read_view_inventory_from_disk_01():
 
     assert filecmp.cmp(views_module_path, exception_path)
 
-    input_ = 'blue~example~score g vwl default q'
+    input_ = 'blue~example~score g vl default q'
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',

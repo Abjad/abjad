@@ -90,11 +90,11 @@ class Wrangler(Controller):
             'rrv': self.revert_from_repository,
             'rst': self.repository_status,
             'rup': self.update_from_repository,
-            'vwl': self.list_views,
-            'vwn': self.make_view,
-            'vws': self.select_view,
-            'vwmrm': self.remove_views_module,
-            'vwmro': self.view_views_module,
+            'vl': self.list_views,
+            'vn': self.make_view,
+            'vs': self.select_view,
+            'vmrm': self.remove_views_module,
+            'vmro': self.view_views_module,
             })
         return result
 
