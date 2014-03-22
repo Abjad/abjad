@@ -69,9 +69,9 @@ class MaterialPackageWrangler(PackageWrangler):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            'd': self.make_data_package,
             '>>': self._navigate_to_next_asset,
             '<<': self._navigate_to_previous_asset,
+            'd': self.make_data_package,
             'nmh': self.make_handmade_material_package,
             'nmm': self.make_managermade_material_package,
             })
@@ -117,36 +117,6 @@ class MaterialPackageWrangler(PackageWrangler):
                     )
         return manager
 
-    def _get_next_asset_path(self):
-        last_path = self._session.last_material_path
-        menu_entries = self._make_asset_menu_entries()
-        paths = [x[-1] for x in menu_entries]
-        if self._session.is_in_score:
-            score_directory = self._session.current_score_directory_path
-            paths = [x for x in paths if x.startswith(score_directory)]
-        if last_path is None:
-            return paths[0]
-        assert last_path in paths
-        index = paths.index(last_path)
-        next_index = (index + 1) % len(paths)
-        next_path = paths[next_index]
-        return next_path
-        
-    def _get_previous_asset_path(self):
-        last_path = self._session.last_material_path
-        menu_entries = self._make_asset_menu_entries()
-        paths = [x[-1] for x in menu_entries]
-        if self._session.is_in_score:
-            score_directory = self._session.current_score_directory_path
-            paths = [x for x in paths if x.startswith(score_directory)]
-        if last_path is None:
-            return paths[-1]
-        assert last_path in paths
-        index = paths.index(last_path)
-        previous_index = (index - 1) % len(paths)
-        previous_path = paths[previous_index]
-        return previous_path
-
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
@@ -185,7 +155,7 @@ class MaterialPackageWrangler(PackageWrangler):
         section.append(('material - new by hand', 'nmh'))
         section.append(('material - new with manager', 'nmm'))
         lilypond_section = menu['lilypond']
-        self._make_material_tour_menu_section(menu)
+        self._make_sibling_asset_tour_menu_section(menu)
         return menu
 
     def _make_managermade_material_package(
@@ -242,12 +212,6 @@ class MaterialPackageWrangler(PackageWrangler):
             manager._write_user_input_module_stub()
         message = 'material package created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
-
-    def _navigate_to_next_asset(self):
-        pass
-
-    def _navigate_to_previous_asset(self):
-        pass
 
     ### PUBLIC METHODS ###
 

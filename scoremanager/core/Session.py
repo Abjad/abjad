@@ -73,7 +73,7 @@ class Session(abctools.AbjadObject):
         '_is_tracking_source_code',
         '_last_line',
         '_last_command_was_composite',
-        '_last_material_path',
+        '_last_asset_path',
         '_menu_header_width',
         '_nonnumbered_menu_sections_are_hidden',
         '_pending_user_input',
@@ -108,7 +108,7 @@ class Session(abctools.AbjadObject):
         'is_in_editor',
         'is_in_score',
         'last_line',
-        'last_material_path',
+        'last_asset_path',
         'nonnumbered_menu_sections_are_hidden',
         'rewrite_cache',
         'score_manager',
@@ -165,7 +165,7 @@ class Session(abctools.AbjadObject):
         self._is_test = is_test
         self._last_line = ''
         self._last_command_was_composite = False
-        self._last_material_path = None
+        self._last_asset_path = None
         self._menu_header_width = 160
         self._nonnumbered_menu_sections_are_hidden = False
         self._pending_user_input = pending_user_input
@@ -1167,19 +1167,19 @@ class Session(abctools.AbjadObject):
         return self._last_line
 
     @property
-    def last_material_path(self):
+    def last_asset_path(self):
         r'''Gets last material package path.
 
         ..  container:: example
 
             ::
 
-                >>> session.last_material_path is None
+                >>> session.last_asset_path is None
                 True
 
         Returns string or none.
         '''
-        return self._last_material_path
+        return self._last_asset_path
 
     @property
     def last_semantic_command(self):

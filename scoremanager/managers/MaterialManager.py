@@ -398,7 +398,7 @@ class MaterialManager(PackageManager):
             menu.menu_sections.insert(0, material_summary_section)
         except KeyError:
             pass
-        self._make_material_tour_menu_section(menu)
+        self._make_sibling_asset_tour_menu_section(menu)
         return menu
 
     def _make_main_menu_sections_with_user_input_wrapper(self, menu):

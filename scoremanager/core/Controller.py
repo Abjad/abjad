@@ -141,15 +141,6 @@ class Controller(ScoreManagerObject):
         section.append(('initializer - read only', 'inro'))
         return section
 
-    def _make_material_tour_menu_section(self, menu):
-        section = menu['go - scores']
-        section.menu_entries[:] = []
-        section.append(('go - next score', '>'))
-        section.append(('go - next material', '>>'))
-        section.append(('go - previous score', '<'))
-        section.append(('go - previous material', '<<'))
-        return section
-
     def _make_metadata_menu_section(self, menu):
         section = menu.make_command_section(
             is_hidden=True,
@@ -170,6 +161,15 @@ class Controller(ScoreManagerObject):
         section.append(('metadata module - remove', 'mdmrm'))
         section.append(('metadata module - rewrite', 'mdmrw'))
         section.append(('metadata module - read only', 'mdmro'))
+        return section
+
+    def _make_sibling_asset_tour_menu_section(self, menu):
+        section = menu['go - scores']
+        section.menu_entries[:] = []
+        section.append(('go - next score', '>'))
+        section.append(('go - next material', '>>'))
+        section.append(('go - previous score', '<'))
+        section.append(('go - previous material', '<<'))
         return section
 
     def _make_views_menu_section(self, menu):

@@ -443,7 +443,7 @@ class Manager(Controller):
             if isinstance(self, prototype):
                 self._session._is_navigating_to_next_asset = False
                 self._session._is_navigating_to_previous_asset = False
-                self._session._last_material_path = self._path
+                self._session._last_asset_path = self._path
             while True:
                 self._session._push_breadcrumb(self._breadcrumb)
                 # TODO: encapsulate the if ... else in a separate method
