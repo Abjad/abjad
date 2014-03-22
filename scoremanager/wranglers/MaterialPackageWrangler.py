@@ -70,8 +70,8 @@ class MaterialPackageWrangler(PackageWrangler):
         result = result.copy()
         result.update({
             'd': self.make_data_package,
-            '>>': self._navigate_to_next_material,
-            '<<': self._navigate_to_previous_material,
+            '>>': self._navigate_to_next_asset,
+            '<<': self._navigate_to_previous_asset,
             'nmh': self.make_handmade_material_package,
             'nmm': self.make_managermade_material_package,
             })
@@ -117,7 +117,7 @@ class MaterialPackageWrangler(PackageWrangler):
                     )
         return manager
 
-    def _get_next_material_path(self):
+    def _get_next_asset_path(self):
         last_path = self._session.last_material_path
         menu_entries = self._make_asset_menu_entries()
         paths = [x[-1] for x in menu_entries]
@@ -132,7 +132,7 @@ class MaterialPackageWrangler(PackageWrangler):
         next_path = paths[next_index]
         return next_path
         
-    def _get_previous_material_path(self):
+    def _get_previous_asset_path(self):
         last_path = self._session.last_material_path
         menu_entries = self._make_asset_menu_entries()
         paths = [x[-1] for x in menu_entries]
@@ -243,10 +243,10 @@ class MaterialPackageWrangler(PackageWrangler):
         message = 'material package created: {!r}.'.format(path)
         self._io_manager.proceed(message=message, prompt=prompt)
 
-    def _navigate_to_next_material(self):
+    def _navigate_to_next_asset(self):
         pass
 
-    def _navigate_to_previous_material(self):
+    def _navigate_to_previous_asset(self):
         pass
 
     ### PUBLIC METHODS ###

@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_Session_is_navigating_to_previous_material_01():
+def test_MaterialPackageWrangler__navigate_to_previous_asset_01():
     r'''Previous material.
     '''
 

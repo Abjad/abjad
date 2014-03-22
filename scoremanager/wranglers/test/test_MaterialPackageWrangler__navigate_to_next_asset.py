@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_Session_is_navigating_to_next_material_01():
+def test_MaterialPackageWrangler__navigate_to_next_asset_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score m >> >> >> >> q'

@@ -336,10 +336,10 @@ class Wrangler(Controller):
             self._session._is_navigating_to_score_stylesheets = False
         while True:
             self._session._push_breadcrumb(self._breadcrumb)
-            if self._session.is_navigating_to_next_material:
-                result = self._get_next_material_path()
-            elif self._session.is_navigating_to_previous_material:
-                result = self._get_previous_material_path()
+            if self._session.is_navigating_to_next_asset:
+                result = self._get_next_asset_path()
+            elif self._session.is_navigating_to_previous_asset:
+                result = self._get_previous_asset_path()
             else:
                 menu = self._make_main_menu()
                 result = menu._run(clear=clear)

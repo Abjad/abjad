@@ -743,11 +743,11 @@ class Session(abctools.AbjadObject):
             return True
         elif self.is_navigating_to_distribution_directory:
             return True
-        elif self.is_navigating_to_next_material:
+        elif self.is_navigating_to_next_asset:
             return True
         elif self.is_navigating_to_next_score:
             return True
-        elif self.is_navigating_to_previous_material:
+        elif self.is_navigating_to_previous_asset:
             return True
         elif self.is_navigating_to_previous_score:
             return True
@@ -921,7 +921,7 @@ class Session(abctools.AbjadObject):
         return self._is_navigating_to_distribution_directory
 
     @property
-    def is_navigating_to_next_material(self):
+    def is_navigating_to_next_asset(self):
         r'''Is true when session is navigating to next material. 
         Otherwise false.
 
@@ -929,7 +929,7 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.is_navigating_to_next_material
+                >>> session.is_navigating_to_next_asset
                 False
 
         Returns boolean.
@@ -952,7 +952,7 @@ class Session(abctools.AbjadObject):
         return self._is_navigating_to_next_score
 
     @property
-    def is_navigating_to_previous_material(self):
+    def is_navigating_to_previous_asset(self):
         r'''Is true when session is navigating to previous material. 
         Otherwise false.
 
@@ -960,7 +960,7 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.is_navigating_to_previous_material
+                >>> session.is_navigating_to_previous_asset
                 False
 
         Returns boolean.
