@@ -42,6 +42,7 @@ set history=700
 set ignorecase
 set incsearch
 set nobackup
+set nojoinspaces
 set noswapfile
 set nowrap
 set nowritebackup
