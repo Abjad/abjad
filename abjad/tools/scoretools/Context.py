@@ -108,9 +108,9 @@ class Context(Container):
         new = Container._copy_with_indicators_but_without_children_or_spanners(self)
         new._consists_commands = copy.copy(self.consists_commands)
         new._remove_commands = copy.copy(self.remove_commands)
+        new.context_name = copy.copy(self.context_name)
         new.name = copy.copy(self.name)
         new.is_nonsemantic = copy.copy(self.is_nonsemantic)
-        return new
         return new
 
     def _format_closing_slot(context, bundle):
