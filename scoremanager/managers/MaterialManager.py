@@ -982,12 +982,12 @@ class MaterialManager(PackageManager):
         file_path = self._user_input_module_path
         self._io_manager.view(file_path)
 
-    def write_definition_module_boilerplate(self):
-        r'''Writes material definition module boilerplate.
-
-        Returns none.
-        '''
-        self._definition_module_manager.write_boilerplate()
+#    def write_definition_module_boilerplate(self):
+#        r'''Writes material definition module boilerplate.
+#
+#        Returns none.
+#        '''
+#        self._definition_module_manager.write_boilerplate()
 
     def write_definition_module_stub(self):
         r'''Writes stub material definition module.
@@ -1092,9 +1092,9 @@ class MaterialManager(PackageManager):
         message = 'output module written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
 
-    def write_output_module_boilerplate(self):
-        r'''Writes output module boilerplate.
-
-        Returns none.
-        '''
-        self._output_module_manager.write_boilerplate()
+#    def write_output_module_boilerplate(self):
+#        r'''Writes output module boilerplate.
+#
+#        Returns none.
+#        '''
+#        self._output_module_manager.write_boilerplate()

@@ -132,18 +132,18 @@ class FileManager(Manager):
         with file(self._path, 'w') as file_pointer:
             file_pointer.write(string)
 
-    def _write_boilerplate(self, boilerplate_file_abjad_asset_name):
-        if not os.path.exists(boilerplate_file_abjad_asset_name):
-            boilerplate_file_abjad_asset_name = os.path.join(
-                self._configuration.boilerplate_directory_path,
-                boilerplate_file_abjad_asset_name,
-                )
-        if os.path.exists(boilerplate_file_abjad_asset_name):
-            shutil.copyfile(
-                boilerplate_file_abjad_asset_name,
-                self._path,
-                )
-            return True
+#    def _write_boilerplate(self, boilerplate_file_abjad_asset_name):
+#        if not os.path.exists(boilerplate_file_abjad_asset_name):
+#            boilerplate_file_abjad_asset_name = os.path.join(
+#                self._configuration.boilerplate_directory_path,
+#                boilerplate_file_abjad_asset_name,
+#                )
+#        if os.path.exists(boilerplate_file_abjad_asset_name):
+#            shutil.copyfile(
+#                boilerplate_file_abjad_asset_name,
+#                self._path,
+#                )
+#            return True
 
     def _write_stub(self):
         self._write(self._unicode_directive)
@@ -219,25 +219,25 @@ class FileManager(Manager):
         '''
         self._io_manager.view(self._path)
 
-    def write_boilerplate(
-        self, 
-        pending_user_input=None,
-        prompt=True,
-        ):
-        r'''Writes asset boilerplate.
-
-        Returns none.
-        '''
-        self._io_manager._assign_user_input(pending_user_input)
-        getter = self._io_manager.make_getter(where=self._where)
-        getter.append_snake_case_file_name('name of boilerplate asset')
-        with self._backtracking:
-            boilerplate_file_abjad_asset_name = getter._run()
-        if self._session._backtrack():
-            return
-        if self._write_boilerplate(boilerplate_file_abjad_asset_name):
-            self._io_manager.proceed('boilerplate asset copied.')
-        else:
-            message = 'boilerplate asset {!r} does not exist.'
-            message = message.format(boilerplate_file_abjad_asset_name)
-            self._io_manager.proceed(message)
+#    def write_boilerplate(
+#        self, 
+#        pending_user_input=None,
+#        prompt=True,
+#        ):
+#        r'''Writes asset boilerplate.
+#
+#        Returns none.
+#        '''
+#        self._io_manager._assign_user_input(pending_user_input)
+#        getter = self._io_manager.make_getter(where=self._where)
+#        getter.append_snake_case_file_name('name of boilerplate asset')
+#        with self._backtracking:
+#            boilerplate_file_abjad_asset_name = getter._run()
+#        if self._session._backtrack():
+#            return
+#        if self._write_boilerplate(boilerplate_file_abjad_asset_name):
+#            self._io_manager.proceed('boilerplate asset copied.')
+#        else:
+#            message = 'boilerplate asset {!r} does not exist.'
+#            message = message.format(boilerplate_file_abjad_asset_name)
+#            self._io_manager.proceed(message)

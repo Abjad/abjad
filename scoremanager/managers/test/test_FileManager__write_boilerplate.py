@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
+import pytest
+pytest.skip('remove file')
 from abjad import *
 import scoremanager
 
