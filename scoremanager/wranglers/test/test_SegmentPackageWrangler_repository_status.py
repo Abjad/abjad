@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import pytest
 from abjad import *
 import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
@@ -8,7 +7,6 @@ score_manager = scoremanager.core.ScoreManager(is_test=True)
 def test_SegmentPackageWrangler_repository_status_01():
     r'''Works with library.
     '''
-    pytest.skip('eventually add library.')
 
     input_ = 'g rst default q'
     score_manager._run(pending_user_input=input_)
