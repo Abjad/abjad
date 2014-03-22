@@ -275,36 +275,3 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
         if os.path.exists(package_path):
             shutil.rmtree(package_path)
     assert not os.path.exists(package_path)
-
-
-def test_MaterialPackageWrangler_run_handmade_package_10():
-    r'''Makes handmade package. Copies canned material definition module.
-    Makes output data. Makes PDF. Removes package.
-    '''
-    pytest.skip('make PDF generation work again.')
-
-    assert not os.path.exists(package_path)
-    try:
-        input_ = 'm nmh testnotes q'
-        score_manager._run(pending_user_input=input_)
-        assert os.path.exists(package_path)
-        assert os.path.exists(definition_module_path)
-        shutil.copyfile(
-            boilerplate_definition_module_path,
-            definition_module_path,
-            )
-        input_ = 'm testnotes omw q'
-        score_manager._run(pending_user_input=input_)
-        assert os.path.exists(output_module_path)
-        input_ = 'm testnotes pdfm default q'
-        pdf_file_path = os.path.join(package_path, 'illustration.pdf')
-        ly_file_path = os.path.join(package_path, 'illustration.ly')
-        assert os.path.exists(pdf_file_path)
-        assert os.path.exists(ly_file_path)
-        input_ = 'm testnotes rm remove q'
-        score_manager._run(pending_user_input=input_)
-        assert not os.path.exists(package_path)
-    finally:
-        if os.path.exists(package_path):
-            shutil.rmtree(package_path)
-    assert not os.path.exists(package_path)

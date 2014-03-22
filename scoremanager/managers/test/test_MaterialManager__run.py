@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import pytest
 from abjad import *
 import scoremanager
 
@@ -93,30 +92,3 @@ def test_MaterialManager__run_05():
         'Red Example Score (2013) - segments',
         ]
     assert score_manager._transcript.titles == titles
-
-
-def test_MaterialManager__run_06():
-    pytest.skip('unskip after finalizing material management menu.')
-
-    score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score m tempo~inventory q'
-    score_manager._run(pending_user_input=input_)
-
-    assert score_manager._transcript.last_menu_lines == [
-        'Red Example Score (2013) - materials - tempo inventory', 
-        '', 
-        '     Tempo(Duration(1, 8), 72)', 
-        '     Tempo(Duration(1, 8), 108)', 
-        '     Tempo(Duration(1, 8), 90)', 
-        '     Tempo(Duration(1, 8), 135)', 
-        '', 
-        '     material - edit (me)', 
-        '     output material - view (omro)', 
-        '', 
-        '     illustrate module - edit (ime)', 
-        '     illustrate module - interpret (imi)', 
-        '     score stylesheet - select (sss)', 
-        '', 
-        '     output pdf - make (pdfm)', 
-        '',
-        ]

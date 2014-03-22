@@ -169,7 +169,6 @@ class MaterialManager(PackageManager):
             'omw': self.write_output_material,
             'omrm': self.remove_output_module,
             'omro': self.view_output_module,
-            'pdfm': self.write_illustration_ly_and_pdf,
             'pdfrm': self.remove_illustration_pdf,
             'pdfo': self.view_illustration_pdf,
             'ren': self.rename,
@@ -349,15 +348,7 @@ class MaterialManager(PackageManager):
 
     def _make_illustration_pdf_menu_section(self, menu):
         commands = []
-        if os.path.isfile(self._output_module_path):
-            if os.path.isfile(self._illustrate_module_path) or \
-                (self._read_material_manager_class_name() and
-                getattr(self, '__illustrate__', None)):
-                commands.append(('illustration pdf - make', 'pdfm'))
-                has_illustration_pdf_section = True
         if os.path.isfile(self._illustration_pdf_file_path):
-            if not has_illustration_pdf_section:
-                section = menu.make_command_section(name=name)
             commands.append(('illustration pdf - remove', 'pdfrm'))
             commands.append(('illustration pdf - open', 'pdfo'))
         if commands:
@@ -1033,20 +1024,6 @@ class MaterialManager(PackageManager):
             file_pointer.write(''.join(lines))
         message = 'stub illustrate module written to disk.'
         self._io_manager.proceed(message, prompt=prompt)
-
-    def write_illustration_ly_and_pdf(self, prompt=True):
-        r'''Writes illustration LilyPond file and PDF.
-
-        Returns none.
-        '''
-        illustration = self._illustrate()
-        topleveltools.persist(illustration).as_pdf(
-            self._illustration_pdf_file_path,
-            )
-        self._io_manager.proceed(
-            'PDF and LilyPond file written to disk.',
-            prompt=prompt,
-            )
 
     def write_output_material(
         self,

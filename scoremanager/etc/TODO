@@ -89,6 +89,7 @@
 
 29. Write Manager.revert_from_repository() test.
     One for Git. One for Subversion.
+    Currently not working for Subversion.
 
 30. Write py.test tests for the following properties and methods:
         Manager._repository_add_command
