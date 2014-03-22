@@ -4,18 +4,18 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_ScorePackageManager_repository_status_01():
+def test_DistributionDirectoryManager_repository_status_01():
     r'''Works with Git.
     '''
 
-    input_ = 'red~example~score rst default q'
+    input_ = 'red~example~score d rst default q'
     score_manager._run(pending_user_input=input_)
     string = '# On branch master'
 
     assert string in score_manager._transcript.titles
 
 
-def test_ScorePackageManager_repository_status_02():
+def test_DistributionDirectoryManager_repository_status_02():
     r'''Works with Subversion.
     '''
 
@@ -23,7 +23,7 @@ def test_ScorePackageManager_repository_status_02():
     if not name:
         return
 
-    input_ = 'ssl {} rst default q'.format(name)
+    input_ = 'ssl {} d rst default q'.format(name)
     score_manager._run(pending_user_input=input_)
     string = 'Press return to continue.'
 

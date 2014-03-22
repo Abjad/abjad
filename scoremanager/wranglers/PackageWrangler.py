@@ -44,6 +44,13 @@ class PackageWrangler(Wrangler):
 
     ### PRIVATE METHODS ###
 
+    def _find_svn_manager(self):
+        manager = self._find_up_to_date_versioned_manager(
+            system=False,
+            repository='svn',
+            )
+        return manager
+
     def _find_up_to_date_versioned_manager(
         self, 
         system=True,
