@@ -6,16 +6,16 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_output_01():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
         burnish_output=True,
-        lefts=(0,), 
-        middles=(-1,), 
-        rights=(0,), 
-        left_lengths=(1,), 
+        lefts=(0,),
+        middles=(-1,),
+        rights=(0,),
+        left_lengths=(1,),
         right_lengths=(1,),
         )
 
     talea = rhythmmakertools.Talea(
-        counts=(1,), 
-        denominator=16, 
+        counts=(1,),
+        denominator=16,
         )
 
     maker = rhythmmakertools.TaleaRhythmMaker(
@@ -63,23 +63,23 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_output_01():
             }
         }
         '''
-        )
+        ), format(staff)
 
 
 def test_rhythmmakertools_BurnishSpecifier_burnish_output_02():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
         burnish_output=True,
-        lefts=(-1,), 
-        middles=(0,), 
-        rights=(-1,), 
-        left_lengths=(1,), 
+        lefts=(-1,),
+        middles=(0,),
+        rights=(-1,),
+        left_lengths=(1,),
         right_lengths=(1,),
         )
 
     talea = rhythmmakertools.Talea(
-        counts=(1,), 
-        denominator=4, 
+        counts=(1,),
+        denominator=4,
         )
 
     maker = rhythmmakertools.TaleaRhythmMaker(
@@ -119,23 +119,23 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_output_02():
             }
         }
         '''
-        )
+        ), format(staff)
 
 
 def test_rhythmmakertools_BurnishSpecifier_burnish_output_03():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
         burnish_output=True,
-        lefts=(-1,), 
-        middles=(0,), 
-        rights=(-1,), 
-        left_lengths=(1,), 
-        right_lengths=(1,), 
+        lefts=(-1,),
+        middles=(0,),
+        rights=(-1,),
+        left_lengths=(1,),
+        right_lengths=(1,),
         )
 
     talea = rhythmmakertools.Talea(
-        counts=(1, 2, 3), 
-        denominator=16, 
+        counts=(1, 2, 3),
+        denominator=16,
         )
 
     maker = rhythmmakertools.TaleaRhythmMaker(
@@ -182,23 +182,23 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_output_03():
             }
         }
         '''
-        )
+        ), format(staff)
 
 
 def test_rhythmmakertools_BurnishSpecifier_burnish_output_04():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
         burnish_output=True,
-        lefts=(-1,), 
-        middles=(0,), 
+        lefts=(-1,),
+        middles=(0,),
         rights=(-1,),
-        left_lengths=(1,), 
+        left_lengths=(1,),
         right_lengths=(2,),
         )
 
     talea = rhythmmakertools.Talea(
-        counts=(1,), 
-        denominator=8, 
+        counts=(1,),
+        denominator=8,
         )
 
     maker = rhythmmakertools.TaleaRhythmMaker(
@@ -232,4 +232,4 @@ def test_rhythmmakertools_BurnishSpecifier_burnish_output_04():
             }
         }
         '''
-        )
+        ), format(staff)

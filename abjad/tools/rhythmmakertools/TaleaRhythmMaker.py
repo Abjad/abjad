@@ -42,7 +42,7 @@ class TaleaRhythmMaker(RhythmMaker):
             >>> show(lilypond_file) # doctest: +SKIP
 
         ..  doctest::
-            
+
             >>> staff = maker._get_rhythmic_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
@@ -202,7 +202,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     denominator=16,
                 ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=talea, 
+                ...     talea=talea,
                 ...     )
 
             ::
@@ -241,7 +241,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     denominator=16,
                 ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=talea, 
+                ...     talea=talea,
                 ...     )
 
             ::
@@ -271,7 +271,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     denominator=16,
                 ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=talea, 
+                ...     talea=talea,
                 ...     )
                 >>> show(maker) # doctest: +SKIP
 
@@ -324,7 +324,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     denominator=16,
                 ...     )
                 >>> rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=talea, 
+                ...     talea=talea,
                 ...     )
                 TaleaRhythmMaker(talea=Talea(counts=(1, 2, 3, 4), denominator=16))
 
@@ -334,19 +334,22 @@ class TaleaRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _add_ties(self, result):
+    def _add_ties(self, result, talea):
         leaves = list(iterate(result).by_class(scoretools.Leaf))
         written_durations = [leaf.written_duration for leaf in leaves]
         weights = []
-        for numerator in self.talea.counts:
+        for numerator in talea:
             duration = durationtools.Duration(
-                numerator, self.talea.denominator)
+                numerator,
+                self.talea.denominator,
+                )
             weight = abs(duration)
             weights.append(weight)
         parts = sequencetools.partition_sequence_by_weights(
-            written_durations, 
-            weights=weights, 
-            cyclic=True, 
+            written_durations,
+            weights=weights,
+            allow_part_weights=More,
+            cyclic=True,
             overhang=True,
             )
         counts = [len(part) for part in parts]
@@ -526,6 +529,7 @@ class TaleaRhythmMaker(RhythmMaker):
         from abjad.tools import rhythmmakertools
         octuplet = self._prepare_input(seeds)
         talea, extra_counts_per_division = octuplet[:2]
+        unscaled_talea = tuple(talea)
         split_divisions_by_counts = octuplet[-1]
         taleas = (talea, extra_counts_per_division, split_divisions_by_counts)
         result = self._scale_taleas(
@@ -572,7 +576,7 @@ class TaleaRhythmMaker(RhythmMaker):
         if tie_specifier is None:
             tie_specifier = rhythmmakertools.TieSpecifier()
         if tie_specifier.tie_split_notes:
-            self._add_ties(result)
+            self._add_ties(result, unscaled_talea)
         result = [selectiontools.Selection(x) for x in result]
         return result
 
@@ -727,7 +731,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
-                
+
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -805,7 +809,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
-                
+
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -937,7 +941,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
-                
+
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -1018,7 +1022,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     right_lengths=(2,),
                 ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=talea, 
+                ...     talea=talea,
                 ...     burnish_specifier=burnish_specifier,
                 ...     )
 
@@ -1033,7 +1037,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
-                
+
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -1089,7 +1093,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     right_lengths=(0,),
                 ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=talea, 
+                ...     talea=talea,
                 ...     burnish_specifier=burnish_specifier,
                 ...     )
 
@@ -1104,7 +1108,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
-                
+
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -1176,7 +1180,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
-                
+
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -1234,7 +1238,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
-                
+
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -1289,7 +1293,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
-                
+
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -1342,7 +1346,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
-                
+
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -1405,7 +1409,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
-                
+
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -1461,7 +1465,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
-                
+
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -1525,7 +1529,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
-                
+
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -1588,7 +1592,7 @@ class TaleaRhythmMaker(RhythmMaker):
         Secondary divisions impose a cyclic split operation on divisions.
 
         ..  container:: example
-            
+
             Here's a talea equal to two thirty-second repeating indefinitely.
             The maker makes four divisions equal to 12 thirty-second notes
             each:
@@ -1682,7 +1686,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
-                
+
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -1726,7 +1730,7 @@ class TaleaRhythmMaker(RhythmMaker):
             `split_divisions_by_counts` are subject to `extra_counts_per_division` just like
             other divisions.
 
-            This example adds one extra thirty-second note to every other 
+            This example adds one extra thirty-second note to every other
             division. The durations of the divisions remain the same as in the
             previous example. But now every other division is tupletted:
 
@@ -1753,7 +1757,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
-                
+
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
