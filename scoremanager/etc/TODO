@@ -26,72 +26,69 @@
     Maybe easiest to do this by creating an
     InstrumentationSpecifierMaterialManager.
 
-12. Make material package illustration work again.
-    (score > materials > tempo inventory > pdfm) is the command sequence.
-
-13. These four classes can all be collapsed into one:
+12. These four classes can all be collapsed into one:
         wizards.HandlerCreationWizard
         wizards.ArticulationHandlerCreationWizard
         wizards.DynamicHandlerCreationWizard
         wizards.RhythmMakerCreationWizard
 
-14. Make sure that editing instrumentation doesn't change FrenchHorn to merely
+13. Make sure that editing instrumentation doesn't change FrenchHorn to merely
     Instrument. Make sure that editing instrumentation doesn't reset
     sounding_pitch_of_written_middle_c to C4.
 
-15. Note that ArticulationHandlerMaterialManager implementation is limited
+14. Note that ArticulationHandlerMaterialManager implementation is limited
     to just a handful of class variables. See if the class can be eliminated
     by moving the variables to ArticulationHandler and by teaching
     MaterialManager how to inspect ArticulationHandler class variables. The
     will then be true for DynamicHandlerMaterialManager and a couple of other
     material manager classes.
 
-16. Implement an 'all whatever - edit' command.
+15. Implement an 'all whatever - edit' command.
 
-17. Write view tests. Start with segment wrangler.
+16. Write view tests. Start with segment wrangler.
 
-18. Remove user/score_manager_library/material_package_managers/ in 
+17. Remove user/score_manager_library/material_package_managers/ in 
     favor of user/score_manager_library/material_managers/
 
-19. Change user/score_manager_library/material_packages/
+18. Change user/score_manager_library/material_packages/
     to user/score_manager_library/materials/.
 
-20. Remove 'whatever - make' commands. Reimplement as 'source - interpret'.
+19. Remove 'whatever - make' commands. Reimplement as 'source - interpret'.
 
-21. Add command to type arbitrary shell command to current working directory.
+20. Add command to type arbitrary shell command to current working directory.
     Maybe 'directory - run (run)' of follow Vim with !ls, !pwd and so on.
 
-22. Search for 'whatever_section = menu.make_*_section()' and
+21. Search for 'whatever_section = menu.make_*_section()' and
     change to 'section = menu.make_*_section()' everywhere.
 
-23. Extend Manager._remove() to use 'trash' if command is found.
+22. Extend Manager._remove() to use 'trash' if command is found.
 
-24. Implement NaiveCache decorator in systemtools.
+23. Implement NaiveCache decorator in systemtools.
     Apply to ScorePackageManager._maker_module_wrangler,
     ScorePackageManager._material_manager_wrangler, etc.
     Maybe the 'lru' decorator works for this already.
 
-25. Make ScorePackageManager create missing top-level directories
+24. Make ScorePackageManager create missing top-level directories
     during initialization. Run tests before and after change to check
     for any noticeable slowdown.
 
-26. Make (ls) work in stylesheets menu. So (score > y > ls).
+25. Make (ls) work in stylesheets menu. So (score > y > ls).
 
-27. Fix Wrangler._read_view_inventory_from_disk() line 305:
+26. Fix Wrangler._read_view_inventory_from_disk() line 305:
         assert len(result) == 1
     TypeError: boject of type 'NoneType' has no len()
     Use (tra > g) to induce bug.
 
-28. Add (lytr) for 'lilypond ly - trash'. This will work together
+27. Add (lytr) for 'lilypond ly - trash'. This will work together
     with (lyrm) for 'lilypond ly - remove'. The difference will be
     that (lyrm) will (try to) act on the repository where (lytr) will
     only ever work on the filesystem.
 
-29. Write Manager.revert_from_repository() test.
+28. Write Manager.revert_from_repository() test.
     One for Git. One for Subversion.
     Currently not working for Subversion.
 
-30. Write py.test tests for the following properties and methods:
+29. Write py.test tests for the following properties and methods:
         Manager._repository_add_command
         Manager._repository_status_command
         Manager._get_added_asset_paths()
@@ -99,7 +96,7 @@
         Manager._get_repository_root_directory()
         Manager._is_up_to_date()
 
-30. Add 'output module - check (omc)' command.
+29. Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
@@ -109,21 +106,21 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-31. Make 'vmro' provide a message when no __views__ module is found.
+30. Make 'vmro' provide a message when no __views__ module is found.
 
-32. Implement a 'views module - rewrite' (vmrw) command.
+31. Implement a 'views module - rewrite' (vmrw) command.
 
-33. Implement DirectoryManager.check_contents().
+32. Implement DirectoryManager.check_contents().
     With corresponding 'check - contents' (cc) command.
     The method will list the contents of a directory, compare
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-34. In segment menu, hide 'make module - stub' (mms) if a make module
+33. In segment menu, hide 'make module - stub' (mms) if a make module
     already exists. Show 'make module - stub' (mms) is a make module
     is not found in the segment package.
 
-35. Clean up possibly all current_* session variables by implementing
+34. Clean up possibly all current_* session variables by implementing
     as derived properties:
         current_build_directory_path
         current_controller (already derived)
