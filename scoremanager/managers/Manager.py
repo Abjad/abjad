@@ -149,6 +149,44 @@ class Manager(Controller):
             raise ValueError(self)
         return paths
 
+    def _get_modified_asset_paths(self):
+        if self._is_git_versioned():
+            # TODO: is this the correct command?
+            command = 'git status --porcelain {}'
+            command = command.format(self._path)
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                )
+            paths = []
+            for line in process.stdout.readlines():
+                if line.startswith('A'):
+                    path = line.strip('A')
+                    path = path.strip()
+                    root_directory = self._get_repository_root_directory()
+                    path = os.path.join(root_directory, path)
+                    paths.append(path)
+        elif self._is_svn_versioned():
+            command = 'svn st {}'
+            command = command.format(self._path)
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                )
+            paths = []
+            for line in process.stdout.readlines():
+                if line.startswith('M'):
+                    path = line.strip('M')
+                    path = path.strip()
+                    paths.append(path)
+        else:
+            raise ValueError(self)
+        return paths
+
     def _get_repository_root_directory(self):
         if self._is_git_versioned():
             command = 'git rev-parse --show-toplevel'
@@ -410,7 +448,9 @@ class Manager(Controller):
         self._path = new_path
 
     def _revert_from_repository(self):
-        paths = self._get_added_asset_paths()
+        paths = []
+        paths.extend(self._get_added_asset_paths())
+        paths.extend(self._get_modified_asset_paths())
         commands = []
         if self._is_git_versioned():
             for path in paths:
