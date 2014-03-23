@@ -30,6 +30,8 @@ class ScoreManager(Controller):
         self._session._score_manager = self
         wrangler = wranglers.BuildWrangler(session=self._session)
         self._build_wrangler = wrangler
+        wrangler = wranglers.DistributionWrangler(session=self._session)
+        self._distribution_wrangler = wrangler
         wrangler = wranglers.MakerModuleWrangler(session=self._session)
         self._maker_module_wrangler = wrangler
         wrangler = wranglers.MaterialManagerWrangler(session=self._session)
@@ -58,6 +60,7 @@ class ScoreManager(Controller):
         result = {
             'cro': self.view_cache,
             'cw': self.write_cache,
+            'd': self.manage_distribution_artifact_library,
             'fix': self.fix_score_packages,
             'g': self.manage_segment_library,
             'k': self.manage_maker_library,
@@ -217,6 +220,7 @@ class ScoreManager(Controller):
             is_hidden=True,
             )
         section.append(('library - build files', 'u'))
+        section.append(('library - distribution artifacts', 'd'))
         section.append(('library - makers', 'k'))
         section.append(('library - materials', 'm'))
         section.append(('library - segments', 'g'))
@@ -459,12 +463,20 @@ class ScoreManager(Controller):
         self._score_package_wrangler.make_new_score()
 
     def manage_build_file_library(self):
-        r'''Manage build file library.
+        r'''Manages build file library.
 
         Returns none.
         '''
         # TODO: remove rollback?
         self._build_wrangler._run(rollback=True)
+
+    def manage_distribution_artifact_library(self):
+        r'''Manages distribution artifact library.
+
+        Returns none.
+        '''
+        # TODO: remove rollback?
+        self._distribution_wrangler._run(rollback=True)
 
     def manage_maker_library(self):
         r'''Manages maker library.
