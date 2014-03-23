@@ -58,23 +58,18 @@
 
 20. Extend Manager._remove() to use 'trash' if command is found.
 
-21. Implement NaiveCache decorator in systemtools.
-    Apply to ScorePackageManager._maker_module_wrangler,
-    ScorePackageManager._material_manager_wrangler, etc.
-    Maybe the 'lru' decorator works for this already.
-
-22. Make ScorePackageManager create missing top-level directories
+21. Make ScorePackageManager create missing top-level directories
     during initialization. Run tests before and after change to check
     for any noticeable slowdown.
 
-23. Make (ls) work in stylesheets menu. So (score > y > ls).
+22. Make (ls) work in stylesheets menu. So (score > y > ls).
 
-24. Add (lytr) for 'lilypond ly - trash'. This will work together
+23. Add (lytr) for 'lilypond ly - trash'. This will work together
     with (lyrm) for 'lilypond ly - remove'. The difference will be
     that (lyrm) will (try to) act on the repository where (lytr) will
     only ever work on the filesystem.
 
-25. Write py.test tests for the following properties and methods:
+24. Write py.test tests for the following properties and methods:
         Manager._repository_add_command
         Manager._repository_status_command
         Manager._get_added_asset_paths()
@@ -82,7 +77,7 @@
         Manager._get_repository_root_directory()
         Manager._is_up_to_date()
 
-25. Add 'output module - check (omc)' command.
+24. Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
@@ -92,17 +87,17 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-26. Make 'vmro' provide a message when no __views__ module is found.
+25. Make 'vmro' provide a message when no __views__ module is found.
 
-27. Implement a 'views module - rewrite' (vmrw) command.
+26. Implement a 'views module - rewrite' (vmrw) command.
 
-28. Implement DirectoryManager.check_contents().
+27. Implement DirectoryManager.check_contents().
     With corresponding 'check - contents' (cc) command.
     The method will list the contents of a directory, compare
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-29. Clean up possibly all current_* session variables by implementing
+28. Clean up possibly all current_* session variables by implementing
     as derived properties:
         current_build_directory_path
         current_controller (already derived)
