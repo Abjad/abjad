@@ -122,3 +122,10 @@
             stderr=subprocess.STDOUT,
             )
     ... in an IOManager method.
+
+32. Do something to put an empty .gitignore file in every directory everywhere.
+    Provide a user interface.
+    
+33. Eventually implement a Score Manager start-up behavior that will
+    run and check the filesystem layout of all assets everywhere and
+    prompt the composer to fix as required before composition begins.
