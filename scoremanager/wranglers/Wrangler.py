@@ -55,17 +55,6 @@ class Wrangler(Controller):
             return self._abjad_storehouse_path
 
     @property
-    def _temporary_asset_manager(self):
-        return self._initialize_asset_manager(
-            self._temporary_asset_path)
-
-    @property
-    def _temporary_asset_path(self):
-        return os.path.join(
-            self._current_storehouse_path, 
-            self._temporary_asset_name)
-
-    @property
     def _user_input_to_action(self):
         superclass = super(Wrangler, self)
         result = superclass._user_input_to_action

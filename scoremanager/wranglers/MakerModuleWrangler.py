@@ -48,10 +48,6 @@ class MakerModuleWrangler(Wrangler):
             return 'maker library'
 
     @property
-    def _temporary_asset_name(self):
-        return '__temporary_maker.py'
-
-    @property
     def _user_input_to_action(self):
         superclass = super(MakerModuleWrangler, self)
         result = superclass._user_input_to_action
@@ -74,12 +70,6 @@ class MakerModuleWrangler(Wrangler):
             )
         manager.edit()
 
-    def _get_current_directory(self):
-        if self._session.current_score_directory_path:
-            parts = (self._session.current_score_directory_path,)
-            parts += self._score_storehouse_path_infix_parts
-            return os.path.join(*parts)
-    
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()

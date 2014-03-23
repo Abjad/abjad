@@ -15,7 +15,7 @@ def test_FileManager__rename_01():
         )
     new_path = os.path.join(
         configuration.score_manager_directory_path, 
-        'new_temporary_file.txt',
+        'new-temporary-file.txt',
         )
     session = scoremanager.core.Session(is_test=True)
     manager = scoremanager.managers.FileManager(path=path, session=session)
@@ -48,7 +48,7 @@ def test_FileManager__rename_02():
         )
     new_path = os.path.join(
         configuration.score_manager_directory_path, 
-        'new_temporary_file.txt',
+        'new-temporary-file.txt',
         )
     session = scoremanager.core.Session(is_test=True)
     manager = scoremanager.managers.FileManager(path=path, session=session)

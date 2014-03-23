@@ -17,21 +17,6 @@ class PackageWrangler(Wrangler):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _temporary_asset_manager(self):
-        return self._initialize_asset_manager(
-            self._temporary_asset_package_path)
-
-    @property
-    def _temporary_asset_name(self):
-        return '__temporary_package'
-
-    @property
-    def _temporary_asset_package_path(self):
-        path = self._temporary_asset_path
-        package = self._configuration.path_to_package_path(path)
-        return package
-
-    @property
     def _user_input_to_action(self):
         superclass = super(PackageWrangler, self)
         result = superclass._user_input_to_action

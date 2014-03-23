@@ -32,7 +32,6 @@ class StylesheetWrangler(Wrangler):
             self._configuration.user_library_stylesheets_directory_path
         self._score_storehouse_path_infix_parts = ('stylesheets',)
         self._include_extensions = True
-        self._manages_top_level_directory = True
 
     ### PRIVATE PROPERTIES ###
 
@@ -47,10 +46,6 @@ class StylesheetWrangler(Wrangler):
             return 'stylesheets'
         else:
             return 'stylesheet library'
-
-    @property
-    def _temporary_asset_name(self):
-        return '__temporary_stylesheet.ily'
 
     @property
     def _user_input_to_action(self):
@@ -76,13 +71,6 @@ class StylesheetWrangler(Wrangler):
             )
         manager.edit()
 
-    # TODO: hoist to Wrangler?
-    def _get_current_directory(self):
-        if self._session.current_score_directory_path:
-            parts = (self._session.current_score_directory_path,)
-            parts += self._score_storehouse_path_infix_parts
-            return os.path.join(*parts)
-    
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
@@ -99,10 +87,7 @@ class StylesheetWrangler(Wrangler):
         return False
 
     def _make_asset_menu_section(self, menu):
-        if self._session.is_in_score:
-            include_annotation = False
-        else:
-            include_annotation = True
+        include_annotation = not self._session.is_in_score
         menu_entries = self._make_asset_menu_entries(
             human_readable=False,
             include_annotation=include_annotation,
