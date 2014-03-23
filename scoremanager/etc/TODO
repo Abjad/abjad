@@ -113,3 +113,12 @@
 29. Implement slots on wranglers.
 
 30. Factor out rollback=True into a simpler construct?
+
+31. Encapsulate ...
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+    ... in an IOManager method.
