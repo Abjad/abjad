@@ -109,3 +109,7 @@
     Seems like all of these should be derivable simply by looking
     at the controller stack. This means that all of these variables
     can stop being maintained by other parts of the system.
+
+29. Implement slots on wranglers.
+
+30. Factor out rollback=True into a simpler construct?
