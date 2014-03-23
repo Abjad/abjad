@@ -141,6 +141,7 @@ class ScorePackageManager(PackageManager):
             'rm': self.remove_score_package,
             'rrv': self.revert_to_repository,
             'rst': self.repository_status,
+            'rua': self.remove_unadded_assets,
             'rup': self.update_from_repository,
             'u': self._build_directory_manager._run,
             'y': self._stylesheet_wrangler._run,
@@ -351,6 +352,7 @@ class ScorePackageManager(PackageManager):
             )
         section.append(('score package - fix', 'fix'))
         section.append(('score package - remove', 'rm'))
+        section.append(('score package - remove unadded assets', 'rua'))
         section.append(('score package - rename', 'ren'))
         return section
 

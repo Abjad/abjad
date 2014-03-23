@@ -3,7 +3,7 @@ from abjad import *
 import scoremanager
 
 
-def test_ScoreManager_manage_stylesheet_library_01():
+def test_ScoreManager_manage_maker_library_01():
     
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'k q'

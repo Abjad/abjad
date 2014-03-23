@@ -69,6 +69,22 @@ class ScorePackageWrangler(PackageWrangler):
 
     ### PRIVATE METHODS ###
 
+    def _find_git_manager(self, must_have_file=False):
+        superclass = super(ScorePackageWrangler, self)
+        manager = superclass._find_git_manager(
+            inside_score=False,
+            must_have_file=must_have_file,
+            )
+        return manager
+
+    def _find_svn_manager(self, must_have_file=False):
+        superclass = super(ScorePackageWrangler, self)
+        manager = superclass._find_svn_manager(
+            inside_score=False,
+            must_have_file=must_have_file,
+            )
+        return manager
+
     def _list_visible_asset_paths(
         self,
         abjad_library=True, 

@@ -40,11 +40,6 @@ class PackageManager(DirectoryManager):
         if self._path is not None:
             return os.path.join(self._path, '__init__.py')
 
-#    @property
-#    def _metadata_module_path(self):
-#        file_path = os.path.join(self._path, '__metadata__.py')
-#        return file_path
-
     @property
     def _space_delimited_lowercase_name(self):
         if self._path:

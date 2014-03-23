@@ -88,6 +88,13 @@ class Manager(Controller):
             raise ValueError(self)
 
     @property
+    def _shell_remove_command(self):
+        paths = self._io_manager.find_executable('trash')
+        if paths:
+            return 'trash'
+        return 'rm'
+
+    @property
     def _space_delimited_lowercase_name(self):
         if self._path:
             return os.path.basename(self._path)
@@ -107,6 +114,7 @@ class Manager(Controller):
             'ren': self.rename,
             'rst': self.repository_status,
             'rrv': self.revert_to_repository,
+            'rua': self.remove_unadded_assets,
             'rup': self.update_from_repository,
             })
         return result
@@ -565,6 +573,32 @@ class Manager(Controller):
         assert self._is_up_to_date()
         return True
 
+    def _test_remove_unadded_assets(self):
+        assert self._is_up_to_date()
+        path_3 = os.path.join(self._path, 'tmp_3.py')
+        path_4 = os.path.join(self._path, 'tmp_4.py')
+        assert not os.path.exists(path_3)
+        assert not os.path.exists(path_4)
+        with file(path_3, 'w') as file_pointer:
+            file_pointer.write('')
+        with file(path_4, 'w') as file_pointer:
+            file_pointer.write('')
+        assert os.path.exists(path_3)
+        assert os.path.exists(path_4)
+        assert not self._is_up_to_date()
+        assert self._get_unadded_asset_paths() == [path_3, path_4]
+        try:
+            self.remove_unadded_assets(prompt=False)
+        finally:
+            if os.path.exists(path_3):
+                os.remove(path_3)
+            if os.path.exists(path_4):
+                os.remove(path_4)
+        assert not os.path.exists(path_3)
+        assert not os.path.exists(path_4)
+        assert self._is_up_to_date()
+        return True
+
     def _test_revert_to_repository(self):
         assert self._is_up_to_date()
         assert self._get_modified_asset_paths() == []
@@ -784,6 +818,35 @@ class Manager(Controller):
             return
         self._remove()
         self._session._is_backtracking_locally = True
+
+    def remove_unadded_assets(self, prompt=True):
+        r'''Removes assets not yet added to repository.
+
+        Returns none.
+        '''
+        paths = self._get_unadded_asset_paths()
+        if not paths:
+            return
+        remove_command = self._shell_remove_command
+        paths = ' '.join(paths)
+        command = '{} {}'
+        command = command.format(remove_command, paths)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+        clean_lines = []
+        for line in process.stdout.readlines():
+            clean_line = line.strip()
+            clean_lines.append(clean_line)
+        clean_lines.append('')
+        self._io_manager.display(
+            clean_lines, 
+            capitalize_first_character=False,
+            )
+        self._io_manager.proceed(prompt=prompt)
 
     def rename(
         self, 
