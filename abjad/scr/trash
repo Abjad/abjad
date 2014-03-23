@@ -1,0 +1,35 @@
+# Name: trash
+# Source: internet
+# Description: move $1 to OS X trash
+# Usage: safe alternative to Unix rm
+# Availability: Unix, OS X
+
+
+while [ -n "$1" ]; do
+    if [ ! -e "$1" ]; then
+        echo "'$1' not found; exiting"
+        return
+    fi  
+
+    file=`basename -- "$1"`
+
+    # Chop trailing '/' if there
+    file=${file%/}
+
+    destination=''
+
+    if [ -e "$HOME/.Trash/$file" ]; then
+        # Extract file and extension
+        ext=`expr "$file" : ".*\(\.[^\.]*\)$"`
+        base=${file%$ext}
+
+        # Add a space between base and timestamp
+        test -n "$base" && base="$base "
+
+        destination="/$base`date +%H-%M-%S`_$RANDOM$ext"
+    fi  
+
+    echo "Moving '$1' to '$HOME/.Trash$destination'"
+    \mv -i -- "$1" "$HOME/.Trash$destination"
+    shift
+done
