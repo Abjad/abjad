@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
+import functools
 import os
+from abjad.tools import systemtools
 from scoremanager.managers.PackageManager import PackageManager
 
 
@@ -27,106 +29,97 @@ class ScorePackageManager(PackageManager):
         return self._get_annotated_title()
 
     @property
+    @systemtools.Memoize
     def _build_directory_manager(self):
         from scoremanager import managers
         if self._path is None:
             return
-        if not hasattr(self, '_cached_build_directory_manager'):
-            path = os.path.join(self._path, 'build')
-            manager = managers.BuildDirectoryManager(
-                path=path,
-                session=self._session,
-                )
-            self._cached_build_directory_manager = manager
-        return self._cached_build_directory_manager
+        path = os.path.join(self._path, 'build')
+        manager = managers.BuildDirectoryManager(
+            path=path,
+            session=self._session,
+            )
+        return manager
 
     @property
+    @systemtools.Memoize
     def _distribution_directory_manager(self):
         from scoremanager import managers
         if self._path is None:
             return
-        if not hasattr(self, '_cached_distribution_directory_manager'):
-            path = os.path.join(self._path, 'distribution')
-            manager = managers.DistributionDirectoryManager(
-                path=path,
-                session=self._session,
-                )
-            self._cached_distribution_directory_manager = manager
-        return self._cached_distribution_directory_manager
+        path = os.path.join(self._path, 'distribution')
+        manager = managers.DistributionDirectoryManager(
+            path=path,
+            session=self._session,
+            )
+        return manager
 
     @property
+    @systemtools.Memoize
     def _instrumentation_module_manager(self):
         from scoremanager import managers
         if self._path is None:
             return
-        if not hasattr(self, '_cached_instrumentation_module_manager'):
-            path = os.path.join(self._path, 'instrumentation.py')
-            manager = managers.FileManager(
-                path,
-                session=self._session,
-                )
-            self._cached_instrumentation_module_manager = manager
-        return self._cached_instrumentation_module_manager
+        path = os.path.join(self._path, 'instrumentation.py')
+        manager = managers.FileManager(
+            path,
+            session=self._session,
+            )
+        return manager
 
     @property
+    @systemtools.Memoize
     def _maker_module_wrangler(self):
         from scoremanager import wranglers
         if self._path is None:
             return
-        if not hasattr(self, '_cached_maker_wrangler'):
-            wrangler = wranglers.MakerModuleWrangler(session=self._session)
-            self._cached_maker_wrangler = wrangler
-        return self._cached_maker_wrangler
+        wrangler = wranglers.MakerModuleWrangler(session=self._session)
+        return wrangler
 
     @property
+    @systemtools.Memoize
     def _material_manager_wrangler(self):
         from scoremanager import wranglers
         if self._path is None:
             return
-        if not hasattr(self, '_cached_material_manager_wrangler'):
-            wrangler = wranglers.MaterialManagerWrangler(session=self._session)
-            self._cached_material_manager_wrangler = wrangler
-        return self._cached_material_manager_wrangler
+        wrangler = wranglers.MaterialManagerWrangler(session=self._session)
+        return wrangler
 
     @property
+    @systemtools.Memoize
     def _material_package_wrangler(self):
         from scoremanager import wranglers
         if self._path is None:
             return
-        if not hasattr(self, '_cached_material_package_wrangler'):
-            wrangler = wranglers.MaterialPackageWrangler(session=self._session)
-            self._cached_material_package_wrangler = wrangler
-        return self._cached_material_package_wrangler
+        wrangler = wranglers.MaterialPackageWrangler(session=self._session)
+        return wrangler
 
     @property
+    @systemtools.Memoize
     def _score_package_wrangler(self):
         from scoremanager import wranglers
         if self._path is None:
             return
-        if not hasattr(self, '_cached_score_package_wrangler'):
-            wrangler = wranglers.ScorePackageWrangler(session=self._session)
-            self._cached_score_package_wrangler = wrangler
-        return self._cached_score_package_wrangler
+        wrangler = wranglers.ScorePackageWrangler(session=self._session)
+        return wrangler
 
     @property
+    @systemtools.Memoize
     def _segment_package_wrangler(self):
         from scoremanager import wranglers
         if self._path is None:
             return
-        if not hasattr(self, '_cached_segment_package_wrangler'):
-            wrangler = wranglers.SegmentPackageWrangler(session=self._session)
-            self._cached_segment_package_wrangler = wrangler
-        return self._cached_segment_package_wrangler
+        wrangler = wranglers.SegmentPackageWrangler(session=self._session)
+        return wrangler
 
     @property
+    @systemtools.Memoize
     def _stylesheet_wrangler(self):
         from scoremanager import wranglers
         if self._path is None:
             return
-        if not hasattr(self, '_cached_stylesheet_wrangler'):
-            wrangler = wranglers.StylesheetWrangler(session=self._session)
-            self._cached_stylesheet_wrangler = wrangler
-        return self._cached_stylesheet_wrangler
+        wrangler = wranglers.StylesheetWrangler(session=self._session)
+        return wrangler
 
     @property
     def _user_input_to_action(self):
