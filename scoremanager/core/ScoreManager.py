@@ -28,6 +28,8 @@ class ScoreManager(Controller):
             session._is_test = is_test
         Controller.__init__(self, session=session)
         self._session._score_manager = self
+        wrangler = wranglers.BuildWrangler(session=self._session)
+        self._build_wrangler = wrangler
         wrangler = wranglers.MakerModuleWrangler(session=self._session)
         self._maker_module_wrangler = wrangler
         wrangler = wranglers.MaterialManagerWrangler(session=self._session)
@@ -74,6 +76,7 @@ class ScoreManager(Controller):
             'ssmb': self.display_mothballed_scores,
             'ssx': self.display_example_scores,
             'ssu': self.display_user_scores,
+            'u': self.manage_build_file_library,
             'y': self.manage_stylesheet_library,
             }
         return result
@@ -213,6 +216,7 @@ class ScoreManager(Controller):
             name='library',
             is_hidden=True,
             )
+        section.append(('library - build files', 'u'))
         section.append(('library - makers', 'k'))
         section.append(('library - materials', 'm'))
         section.append(('library - segments', 'g'))
@@ -454,11 +458,20 @@ class ScoreManager(Controller):
         '''
         self._score_package_wrangler.make_new_score()
 
+    def manage_build_file_library(self):
+        r'''Manage build file library.
+
+        Returns none.
+        '''
+        # TODO: remove rollback?
+        self._build_wrangler._run(rollback=True)
+
     def manage_maker_library(self):
         r'''Manages maker library.
 
         Returns none.
         '''
+        # TODO: remove rollback?
         self._maker_module_wrangler._run(rollback=True)
 
     def manage_material_library(self):
@@ -474,6 +487,7 @@ class ScoreManager(Controller):
 
         Returns none.
         '''
+        # TODO: remove rollback?
         self._segment_package_wrangler._run(rollback=True)
 
     def manage_score(self, path):
