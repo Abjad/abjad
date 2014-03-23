@@ -553,7 +553,10 @@ class TaleaRhythmMaker(RhythmMaker):
         if beam_specifier.beam_divisions_together:
             durations = []
             for x in result:
-                duration = x.get_duration()
+                if isinstance(x, selectiontools.Selection):
+                    duration = x.get_duration()
+                else:
+                    duration = x._get_duration()
                 durations.append(duration)
             beam = spannertools.DuratedComplexBeam(
                 durations=durations,

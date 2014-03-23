@@ -58,6 +58,7 @@ class Tie(Spanner):
         from abjad.tools import scoretools
         result = []
         prototype = (
+            scoretools.Container,
             scoretools.Rest,
             scoretools.Skip,
             scoretools.MultimeasureRest,
