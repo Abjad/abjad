@@ -353,7 +353,7 @@ class Wrangler(Controller):
         self._session._push_controller(self)
         self._io_manager._assign_user_input(pending_user_input)
         breadcrumb = self._session._pop_breadcrumb(rollback=rollback)
-        self._session._cache_breadcrumbs(cache=cache)
+        #self._session._cache_breadcrumbs(cache=cache)
         if type(self) is wranglers.BuildFileWrangler:
             self._session._is_navigating_to_score_build_files = False
         elif type(self) is wranglers.DistributionFileWrangler:
@@ -390,7 +390,7 @@ class Wrangler(Controller):
             breadcrumb=breadcrumb, 
             rollback=rollback,
             )
-        self._session._restore_breadcrumbs(cache=cache)
+        #self._session._restore_breadcrumbs(cache=cache)
 
     def _select_asset_path(
         self, 
@@ -399,7 +399,7 @@ class Wrangler(Controller):
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
-        self._session._cache_breadcrumbs(cache=cache)
+        #self._session._cache_breadcrumbs(cache=cache)
         menu = self._make_asset_selection_menu()
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb()
@@ -413,7 +413,7 @@ class Wrangler(Controller):
             else:
                 break
         self._session._pop_breadcrumb()
-        self._session._restore_breadcrumbs(cache=cache)
+        #self._session._restore_breadcrumbs(cache=cache)
         return result
 
     def _select_storehouse_path(
@@ -427,7 +427,7 @@ class Wrangler(Controller):
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
-        self._session._cache_breadcrumbs(cache=cache)
+        #self._session._cache_breadcrumbs(cache=cache)
         menu = self._io_manager.make_menu(
             where=self._where,
             name='storehouse selection',
@@ -453,7 +453,7 @@ class Wrangler(Controller):
             else:
                 break
         self._session._pop_breadcrumb()
-        self._session._restore_breadcrumbs(cache=cache)
+        #self._session._restore_breadcrumbs(cache=cache)
         return result
 
     ### PUBLIC METHODS ###

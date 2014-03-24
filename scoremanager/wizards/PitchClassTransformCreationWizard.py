@@ -52,7 +52,7 @@ class PitchClassTransformCreationWizard(Wizard):
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
-        self._session._cache_breadcrumbs(cache=cache)
+        #self._session._cache_breadcrumbs(cache=cache)
         function_application_pairs = []
         while True:
             breadcrumb = self._function_application_pairs_to_breadcrumb(
@@ -85,6 +85,6 @@ class PitchClassTransformCreationWizard(Wizard):
                 (function_name, function_arguments))
             self._session._pop_breadcrumb()
         self._session._pop_breadcrumb()
-        self._session._restore_breadcrumbs(cache=cache)
+        #self._session._restore_breadcrumbs(cache=cache)
         self.target = function_application_pairs
         return self.target

@@ -300,7 +300,7 @@ class ScoreManager(Controller):
         self._io_manager._assign_user_input(
             pending_user_input=pending_user_input,
             )
-        self._session._cache_breadcrumbs(cache=cache)
+#        self._session._cache_breadcrumbs(cache=cache)
         self._session._push_breadcrumb(self._breadcrumb)
         self._session._write_transcript = write_transcript
         if display_active_scores:
@@ -338,7 +338,7 @@ class ScoreManager(Controller):
             self._session._pop_breadcrumb()
         self._session._pop_controller()
         self._session._pop_breadcrumb()
-        self._session._restore_breadcrumbs(cache=cache)
+        #self._session._restore_breadcrumbs(cache=cache)
 
     ### PUBLIC METHODS ###
 

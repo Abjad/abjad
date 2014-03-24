@@ -38,7 +38,7 @@ class PerformerCreationWizard(Wizard):
             result = menu._run(clear=clear)
             if self._session._backtrack():
                 self._session._pop_breadcrumb()
-                self._session._restore_breadcrumbs(cache=cache)
+                #self._session._restore_breadcrumbs(cache=cache)
                 return
             elif not result:
                 self._session._pop_breadcrumb()
@@ -68,7 +68,7 @@ class PerformerCreationWizard(Wizard):
                 raise Exception("how'd we get here?")
             self._session._pop_breadcrumb()
         self._session._pop_breadcrumb()
-        self._session._restore_breadcrumbs(cache=cache)
+        #self._session._restore_breadcrumbs(cache=cache)
 
     def _make_performer_configuration_menu(self, performer):
         menu = self._io_manager.make_menu(
@@ -120,7 +120,7 @@ class PerformerCreationWizard(Wizard):
         ):
         from scoremanager.iotools import Selector
         self._io_manager._assign_user_input(pending_user_input)
-        self._session._cache_breadcrumbs(cache=cache)
+        #self._session._cache_breadcrumbs(cache=cache)
         try_again = False
         performers = []
         while True:
@@ -170,6 +170,6 @@ class PerformerCreationWizard(Wizard):
         else:
             raise ValueError
         self._session._pop_breadcrumb()
-        self._session._restore_breadcrumbs(cache=cache)
+        #self._session._restore_breadcrumbs(cache=cache)
         self.target = final_result
         return self.target

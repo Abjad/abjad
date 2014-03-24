@@ -252,10 +252,10 @@ class Session(abctools.AbjadObject):
         else:
             return False
 
-    def _cache_breadcrumbs(self, cache=False):
-        if cache:
-            self._breadcrumb_cache_stack.append(self._breadcrumb_stack[:])
-            self._breadcrumb_stack[:] = []
+#    def _cache_breadcrumbs(self, cache=False):
+#        if cache:
+#            self._breadcrumb_cache_stack.append(self._breadcrumb_stack[:])
+#            self._breadcrumb_stack[:] = []
 
     def _clean_up(self):
         if self.write_transcript:
@@ -360,9 +360,9 @@ class Session(abctools.AbjadObject):
         type(self).__init__(self, is_test=self.is_test)
         self._is_repository_test = is_add_to_repository_test
 
-    def _restore_breadcrumbs(self, cache=False):
-        if cache:
-            self._breadcrumb_stack[:] = self._breadcrumb_cache_stack.pop()
+#    def _restore_breadcrumbs(self, cache=False):
+#        if cache:
+#            self._breadcrumb_stack[:] = self._breadcrumb_cache_stack.pop()
 
     def _set_test_score(self, score_package_name):
         from scoremanager import managers
