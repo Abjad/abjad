@@ -56,6 +56,8 @@ class CyclicTuple(AbjadObject, tuple):
         '''
         if not self:
             raise IndexError
+        if type(i) == slice:
+            return self.__getslice(self, i.start, i.stop)
         i = i % len(self)
         return tuple.__getitem__(self, i)
 
