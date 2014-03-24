@@ -143,6 +143,14 @@ class InstrumentationSpecifier(AbjadObject):
                 return True
         return False
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(InstrumentationSpecifier, self).__hash__()
+
     def __format__(self, format_specification=''):
         r'''Formats instrumentation specifier.
 
@@ -212,7 +220,7 @@ class InstrumentationSpecifier(AbjadObject):
         Returns string.
         '''
         if self.performers:
-            return ', '.join([performer.name 
+            return ', '.join([performer.name
                 for performer in self.performers])
         else:
             return ''
@@ -326,11 +334,11 @@ class InstrumentationSpecifier(AbjadObject):
     @performers.setter
     def performers(self, performers):
         from abjad.tools import instrumenttools
-        assert isinstance(performers, 
+        assert isinstance(performers,
             (list, datastructuretools.TypedList, type(None)))
         if performers is None:
             self._performers[:] = []
         else:
-            assert all(isinstance(x, instrumenttools.Performer) 
+            assert all(isinstance(x, instrumenttools.Performer)
                 for x in performers)
             self._performers[:] = list(performers[:])

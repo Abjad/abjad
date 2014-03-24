@@ -51,6 +51,14 @@ class NonreducedRatio(AbjadObject, tuple):
         expr = type(self)(expr)
         return tuple(self) == tuple(expr)
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(NonreducedRatio, self).__hash__()
+
     def __format__(self, format_specification=''):
         r'''Formats duration.
 

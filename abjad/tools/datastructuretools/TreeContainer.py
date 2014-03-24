@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 class TreeContainer(TreeNode):
     r'''A tree container.
-    
+
     Inner node in a generalized tree data structure.
 
     ::
@@ -117,7 +117,7 @@ class TreeContainer(TreeNode):
         self._mark_entire_tree_for_later_update()
 
     def __eq__(self, expr):
-        r'''True if `expr` is a tree container with type, duration and 
+        r'''True if `expr` is a tree container with type, duration and
         children equal to this tree container. Otherwise false.
 
         Returns boolean.
@@ -126,6 +126,14 @@ class TreeContainer(TreeNode):
             if self.children == expr.children:
                 return True
         return False
+
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(TreeContainer, self).__hash__()
 
     def __getitem__(self, i):
         r'''Gets node `i` in tree container.
@@ -202,7 +210,7 @@ class TreeContainer(TreeNode):
 
     def __iter__(self):
         r'''Iterates tree container.
-        
+
         Yields children of tree container.
         '''
         for child in self._children:
@@ -214,9 +222,9 @@ class TreeContainer(TreeNode):
         return len(self._children)
 
     def __setitem__(self, i, expr):
-        r'''Sets `expr` in self at nonnegative integer index `i`, or set `expr` 
+        r'''Sets `expr` in self at nonnegative integer index `i`, or set `expr`
         in self at slice i. Replace contents of `self[i]` with `expr`.
-        Attach parentage to contents of `expr`, and detach parentage 
+        Attach parentage to contents of `expr`, and detach parentage
         of any replaced nodes:
 
         ::

@@ -205,6 +205,14 @@ class Accidental(AbjadObject):
                 return True
         return False
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(Accidental, self).__hash__()
+
     def __ge__(self, arg):
         r'''Is true when `arg` is an accidental with semitones less than or equal
         to those of this accidental. Otherwise false.
@@ -221,7 +229,7 @@ class Accidental(AbjadObject):
         return (self.abbreviation,)
 
     def __gt__(self, arg):
-        r'''Is true when `arg` is an accidental with semitones less than 
+        r'''Is true when `arg` is an accidental with semitones less than
         those of this accidental. Otherwise false.
 
         Returns boolean.
