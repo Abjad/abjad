@@ -83,7 +83,7 @@ class IOManager(IOManager):
 
     # the ifs can be replaced with a _user_input_to_to_action dictionary
     def _handle_io_manager_directive(self, directive):
-        print repr(directive), 'ddd'
+        #print repr(directive), 'ddd'
         from scoremanager import managers
         if isinstance(directive, list) and len(directive) == 1:
             key = directive[0]
@@ -92,6 +92,7 @@ class IOManager(IOManager):
         if key in ('b', 'back'):
             self._session._is_backtracking_locally = True
             self._session._hide_hidden_commands = True
+            return 'b'
         elif key == 'd' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_distribution_files = True
             return 'd'
