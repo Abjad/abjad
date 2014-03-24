@@ -24,7 +24,6 @@ class InstrumentSelectionWizard(Wizard):
         ):
         from scoremanager import wizards
         self._io_manager._assign_user_input(pending_user_input)
-        #self._session._cache_breadcrumbs(cache=cache)
         self._session._push_breadcrumb(self._breadcrumb)
         if self._session.is_in_score:
             selector = iotools.Selector.make_score_instrument_selector(
@@ -34,11 +33,9 @@ class InstrumentSelectionWizard(Wizard):
                 result = selector._run(clear=clear)
             if self._session._backtrack():
                 self._session._pop_breadcrumb()
-                #self._session._restore_breadcrumbs(cache=cache)
                 return
             if isinstance(result, instrumenttools.Instrument):
                 self._session._pop_breadcrumb()
-                #self._session._restore_breadcrumbs(cache=cache)
                 self.target = result
                 return self.target
             elif not result == 'other':
@@ -48,9 +45,7 @@ class InstrumentSelectionWizard(Wizard):
             result = wizard._run()
         if self._session._backtrack():
             self._session._pop_breadcrumb()
-            #self._session._restore_breadcrumbs(cache=cache)
             return
         self._session._pop_breadcrumb()
-        #self._session._restore_breadcrumbs(cache=cache)
         self.target = result
         return self.target

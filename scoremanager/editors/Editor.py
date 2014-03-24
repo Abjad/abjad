@@ -245,13 +245,11 @@ class Editor(Controller):
         ):
         self._session._is_in_editor = True
         self._io_manager._assign_user_input(pending_user_input)
-        #self._session._cache_breadcrumbs(cache=cache)
         self._session._push_breadcrumb(self._breadcrumb)
         with self._backtracking:
             self._initialize_target()
         self._session._pop_breadcrumb()
         if self._session._backtrack():
-            #self._session._restore_breadcrumbs(cache=cache)
             return
         result = None
         entry_point = None
@@ -302,7 +300,6 @@ class Editor(Controller):
             self._session._pop_breadcrumb()
         self._session._is_autoadding = False
         self._session._pop_breadcrumb()
-        #self._session._restore_breadcrumbs(cache=cache)
         self._clean_up_attributes_in_memory()
         self._session._is_in_editor = False
 

@@ -485,7 +485,6 @@ class Manager(Controller):
         from scoremanager import managers
         self._session._push_controller(self)
         self._io_manager._assign_user_input(pending_user_input)
-        #self._session._cache_breadcrumbs(cache=cache)
         with systemtools.TemporaryDirectoryChange(self._path):
             if type(self) is managers.BuildDirectoryManager:
                 self._session._is_navigating_to_score_build_files = False
@@ -537,7 +536,6 @@ class Manager(Controller):
                 self._session._pop_breadcrumb()
         self._session._pop_controller()
         self._session._pop_breadcrumb()
-        #self._session._restore_breadcrumbs(cache=cache)
 
     def _space_delimited_lowercase_name_to_asset_name(
         self, space_delimited_lowercase_name):

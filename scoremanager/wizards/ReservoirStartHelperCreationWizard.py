@@ -33,7 +33,6 @@ class ReservoirStartHelperCreationWizard(Wizard):
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
-        #self._session._cache_breadcrumbs(cache=cache)
         while True:
             function_application_pairs = []
             self._session._push_breadcrumb(self._breadcrumb)
@@ -62,6 +61,5 @@ class ReservoirStartHelperCreationWizard(Wizard):
                 (function_name, function_arguments))
             break
         self._session._pop_breadcrumb()
-        #self._session._restore_breadcrumbs(cache=cache)
         self.target = function_application_pairs
         return self.target

@@ -113,7 +113,6 @@ class Selector(ScoreManagerObject):
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
-        #self._session._cache_breadcrumbs(cache=cache)
         while True:
             self._session._push_breadcrumb(self._breadcrumb)
             menu = self._make_main_menu()
@@ -127,7 +126,6 @@ class Selector(ScoreManagerObject):
             else:
                 break
         self._session._pop_breadcrumb()
-        #self._session._restore_breadcrumbs(cache=cache)
         return result
 
     ### PUBLIC PROPERTIES ###

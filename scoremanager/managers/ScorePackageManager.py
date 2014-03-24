@@ -413,7 +413,6 @@ class ScorePackageManager(PackageManager):
 
     def _manage_setup(self, clear=True, cache=True):
         self._session._is_navigating_to_score_setup = False
-        #self._session._cache_breadcrumbs(cache=cache)
         self._session._is_in_score_setup_menu = True
         while True:
             annotated_title = self._get_annotated_title()
@@ -432,7 +431,6 @@ class ScorePackageManager(PackageManager):
             self._session._pop_breadcrumb()
         self._session._is_in_score_setup_menu = False
         self._session._pop_breadcrumb()
-        #self._session._restore_breadcrumbs(cache=cache)
 
     def _remove(self):
         superclass = super(ScorePackageManager, self)

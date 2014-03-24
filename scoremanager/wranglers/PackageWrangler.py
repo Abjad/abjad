@@ -204,7 +204,6 @@ class PackageWrangler(Wrangler):
         Returns string.
         '''
         self._io_manager._assign_user_input(pending_user_input)
-        #self._session._cache_breadcrumbs(cache=cache)
         while True:
             name = '_human_readable_target_name'
             human_readable_target_name = getattr(self, name, None)
@@ -225,5 +224,4 @@ class PackageWrangler(Wrangler):
             else:
                 break
         self._session._pop_breadcrumb()
-        #self._session._restore_breadcrumbs(cache=cache)
         return result
