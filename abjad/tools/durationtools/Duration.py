@@ -224,6 +224,14 @@ class Duration(AbjadObject, fractions.Fraction):
         residue = type(self)(residue)
         return truncated, residue
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(Duration, self).__hash__()
+
     def __eq__(self, arg):
         r'''Is true when duration equals `arg`.
         Otherwise false.
