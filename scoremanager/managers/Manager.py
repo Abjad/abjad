@@ -488,9 +488,9 @@ class Manager(Controller):
         self._session._cache_breadcrumbs(cache=cache)
         with systemtools.TemporaryDirectoryChange(self._path):
             if type(self) is managers.BuildDirectoryManager:
-                self._session._is_navigating_to_build_directory = False
+                self._session._is_navigating_to_score_build_files = False
             if type(self) is managers.DistributionDirectoryManager:
-                self._session._is_navigating_to_distribution_directory = False
+                self._session._is_navigating_to_score_distribution_assets = False
             prototype = (
                 managers.MaterialManager,
                 managers.SegmentPackageManager,
@@ -502,10 +502,10 @@ class Manager(Controller):
             while True:
                 self._session._push_breadcrumb(self._breadcrumb)
                 # TODO: encapsulate the if ... else in a separate method
-                if self._session.is_navigating_to_build_directory and \
+                if self._session.is_navigating_to_score_build_files and \
                     type(self) is managers.ScorePackageManager:
                     result = 'u'
-                elif self._session.is_navigating_to_distribution_directory and \
+                elif self._session.is_navigating_to_score_distribution_assets and \
                     type(self) is managers.ScorePackageManager:
                     result = 'd'
                 elif self._session.is_navigating_to_score_makers and \

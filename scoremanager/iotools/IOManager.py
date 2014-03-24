@@ -91,50 +91,25 @@ class IOManager(IOManager):
         if key in ('b', 'back'):
             self._session._is_backtracking_locally = True
             self._session._hide_hidden_commands = True
-        elif key == 'd' and \
-            not self._session.is_in_editor:
-            self._session._is_navigating_to_distribution_directory = True
+        elif key == 'd' and not self._session.is_in_editor:
+            self._session._is_navigating_to_score_distribution_assets = True
             return 'd'
-        elif key == 'g' and \
-            not self._session.is_in_editor:
+        elif key == 'g' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_segments = True
             return 'g'
-        elif key == 'k' and \
-            not self._session.is_in_editor:
+        elif key == 'k' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_makers = True
             return 'k'
         elif key == 'llro':
             self.view_last_log()
-        elif key == 'm' and \
-            not self._session.is_in_editor:
+        elif key == 'm' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_materials = True
             return 'm'
-        elif key == '>>':
-            #self._session._is_navigating_to_score_materials = True
-            controller = self._session.current_controller
-            if isinstance(controller, managers.MaterialManager):
-                self._session._is_navigating_to_score_materials = True
-            elif isinstance(controller, managers.SegmentPackageManager):
-                self._session._is_navigating_to_score_segments = True
-            self._session._is_navigating_to_next_asset = True
-            self._session._hide_hidden_commands = True
-        elif key == '<<':
-            #self._session._is_navigating_to_score_materials = True
-            controller = self._session.current_controller
-            if isinstance(controller, managers.MaterialManager):
-                self._session._is_navigating_to_score_materials = True
-            elif isinstance(controller, managers.SegmentPackageManager):
-                self._session._is_navigating_to_score_segments = True
-            self._session._is_navigating_to_previous_asset = True
-            self._session._hide_hidden_commands = True
-        elif directive in ('n', '?') and \
-            not self._session.is_in_confirmation_environment and \
-            not self._session.is_in_editor:
+        elif (directive in ('n', '?') and
+            not self._session.is_in_confirmation_environment and
+            not self._session.is_in_editor):
             self._session.toggle_hidden_commands()
-        elif key == 'sdv':
-            self._session.display_variables()
-        elif key == 'p' and \
-            not self._session.is_in_editor:
+        elif key == 'p' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_setup = True
             return 'p'
         elif key == 'pyd':
@@ -142,13 +117,13 @@ class IOManager(IOManager):
             self.display([message, ''])
             controller = self._session.current_controller
             controller.doctest()
+        elif key == 'pyi':
+            self.invoke_python()
         elif key == 'pyt':
             message = 'running py.test ...'
             self.display([message, ''])
             controller = self._session.current_controller
             controller.pytest()
-        elif key == 'pyi':
-            self.invoke_python()
         elif key in ('q', 'quit'):
             self._session._is_quitting = True
             self._session._hide_hidden_commands = True
@@ -156,6 +131,18 @@ class IOManager(IOManager):
             self.edit_calling_code()
         elif key == 'scl':
             self.display_calling_code_line_number()
+        elif key == 'sdv':
+            self._session.display_variables()
+        elif key == 'u' and not self._session.is_in_editor:
+            self._session._is_navigating_to_score_build_files = True
+            return 'u'
+        elif (key == 'y' and
+            not self._session.is_in_confirmation_environment and
+            not self._session.is_in_editor):
+            self._session._is_navigating_to_score_stylesheets = True
+            return 'y'
+        elif key == 'Y':
+            self.edit_score_stylesheet()
         elif key == '>':
             self._session._is_navigating_to_next_score = True
             self._session._is_backtracking_to_score_manager = True
@@ -164,23 +151,28 @@ class IOManager(IOManager):
             self._session._is_navigating_to_previous_score = True
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
-        elif key == 'u' and \
-            not self._session.is_in_editor:
-            self._session._is_navigating_to_build_directory = True
-            return 'u'
-        elif self._is_score_string(key) and self._session.is_in_score:
-            self._session._is_backtracking_to_score = True
+        elif key == '>>':
+            controller = self._session.current_controller
+            if isinstance(controller, managers.MaterialManager):
+                self._session._is_navigating_to_score_materials = True
+            elif isinstance(controller, managers.SegmentPackageManager):
+                self._session._is_navigating_to_score_segments = True
+            self._session._is_navigating_to_next_asset = True
             self._session._hide_hidden_commands = True
-        elif key == 'y' and \
-            not self._session.is_in_confirmation_environment and \
-            not self._session.is_in_editor:
-            self._session._is_navigating_to_score_stylesheets = True
-            return 'y'
-        elif key == 'Y':
-            self.edit_score_stylesheet()
+        elif key == '<<':
+            controller = self._session.current_controller
+            if isinstance(controller, managers.MaterialManager):
+                self._session._is_navigating_to_score_materials = True
+            elif isinstance(controller, managers.SegmentPackageManager):
+                self._session._is_navigating_to_score_segments = True
+            self._session._is_navigating_to_previous_asset = True
+            self._session._hide_hidden_commands = True
         elif isinstance(key, str) and key.startswith('!'):
             statement = key.replace('!', '')
             self.invoke_shell(statement=statement)
+        elif self._is_score_string(key) and self._session.is_in_score:
+            self._session._is_backtracking_to_score = True
+            self._session._hide_hidden_commands = True
         elif self._is_score_string(key) and not self._session.is_in_score:
             directive = None
         elif self._is_home_string(key):

@@ -136,6 +136,7 @@ class FileManager(Manager):
 
     ### PUBLIC METHODS ###
 
+    # TODO: delegate to IOManager
     def call_lilypond(self, prompt=True):
         r'''Calls LilyPond on file.
 

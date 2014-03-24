@@ -57,8 +57,8 @@ class Session(abctools.AbjadObject):
         '_is_backtracking_to_score_manager',
         '_is_in_confirmation_environment',
         '_is_in_editor',
-        '_is_navigating_to_build_directory',
-        '_is_navigating_to_distribution_directory',
+        '_is_navigating_to_score_build_files',
+        '_is_navigating_to_score_distribution_assets',
         '_is_navigating_to_next_asset',
         '_is_navigating_to_next_score',
         '_is_navigating_to_previous_asset',
@@ -152,8 +152,8 @@ class Session(abctools.AbjadObject):
         self._is_backtracking_to_score_manager = False
         self._is_in_confirmation_environment = False
         self._is_in_editor = False
-        self._is_navigating_to_build_directory = False
-        self._is_navigating_to_distribution_directory = False
+        self._is_navigating_to_score_build_files = False
+        self._is_navigating_to_score_distribution_assets = False
         self._is_navigating_to_next_asset = False
         self._is_navigating_to_next_score = False
         self._is_navigating_to_previous_asset = False
@@ -223,34 +223,39 @@ class Session(abctools.AbjadObject):
             return False
         elif self.is_backtracking_to_score and not source in ('score', 'home'):
             return True
-        elif self.is_backtracking_locally and not source == 'home' and \
-            self._backtracking_stack:
+        elif (self.is_backtracking_locally and 
+            not source == 'home' and
+            self._backtracking_stack):
             return True
-        elif self.is_backtracking_locally and not source == 'home' and \
-            not self._backtracking_stack:
+        elif (self.is_backtracking_locally and 
+            not source == 'home' and
+            not self._backtracking_stack):
             self._is_backtracking_locally = False
             return True
-        elif self.is_navigating_to_build_directory and \
-            not source in ('score', 'home'):
+        elif (self.is_navigating_to_score_build_files and
+            not source in ('score', 'home')):
+            #print 'G'
             return True
-        elif self.is_navigating_to_distribution_directory and \
-            not source in ('score', 'home'):
+        elif (self.is_navigating_to_score_distribution_assets and
+            not source in ('score', 'home')):
             return True
-        elif self.is_navigating_to_score_makers and \
-            not source in ('score', 'home'):
+        elif (self.is_navigating_to_score_makers and
+            not source in ('score', 'home')):
             return True
-        elif self.is_navigating_to_score_materials and \
-            not source in ('score', 'home'):
+        elif (self.is_navigating_to_score_materials and
+            not source in ('score', 'home')):
             return True
-        elif self.is_navigating_to_score_segments and \
-            not source in ('score', 'home'):
+        elif (self.is_navigating_to_score_segments and
+            not source in ('score', 'home')):
             return True
-        elif self.is_navigating_to_score_setup and \
-            not source in ('score', 'home'):
+        elif (self.is_navigating_to_score_setup and
+            not source in ('score', 'home')):
             return True
-        elif self.is_navigating_to_score_stylesheets and \
-            not source in ('score', 'home'):
+        elif (self.is_navigating_to_score_stylesheets and
+            not source in ('score', 'home')):
             return True
+        else:
+            return False
 
     def _cache_breadcrumbs(self, cache=False):
         if cache:
@@ -741,9 +746,9 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        if self.is_navigating_to_build_directory:
+        if self.is_navigating_to_score_build_files:
             return True
-        elif self.is_navigating_to_distribution_directory:
+        elif self.is_navigating_to_score_distribution_assets:
             return True
         elif self.is_navigating_to_next_asset:
             return True
@@ -891,7 +896,7 @@ class Session(abctools.AbjadObject):
         return self.current_score_snake_case_name is not None
 
     @property
-    def is_navigating_to_build_directory(self):
+    def is_navigating_to_score_build_files(self):
         r'''Is true when session is navigating to build directory.
         Otherwise false.
 
@@ -899,15 +904,15 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.is_navigating_to_build_directory
+                >>> session.is_navigating_to_score_build_files
                 False
 
         Returns boolean.
         '''
-        return self._is_navigating_to_build_directory
+        return self._is_navigating_to_score_build_files
 
     @property
-    def is_navigating_to_distribution_directory(self):
+    def is_navigating_to_score_distribution_assets(self):
         r'''Is true when session is navigating to distribution directory.
         Otherwise false.
 
@@ -915,12 +920,12 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.is_navigating_to_distribution_directory
+                >>> session.is_navigating_to_score_distribution_assets
                 False
 
         Returns boolean.
         '''
-        return self._is_navigating_to_distribution_directory
+        return self._is_navigating_to_score_distribution_assets
 
     @property
     def is_navigating_to_next_asset(self):
