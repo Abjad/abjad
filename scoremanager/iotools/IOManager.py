@@ -84,78 +84,75 @@ class IOManager(IOManager):
     # the ifs can be replaced with a _user_input_to_to_action dictionary
     def _handle_io_manager_directive(self, directive):
         input_directive = directive
-        #print repr(directive), 'ddd'
         from scoremanager import managers
         if isinstance(directive, list) and len(directive) == 1:
-            key = directive[0]
-        else:
-            key = directive
-        if key in ('b', 'back'):
+            directive = directive[0]
+        if directive in ('b', 'back'):
             self._session._is_backtracking_locally = True
             self._session._hide_hidden_commands = True
             return 'b'
-        elif key == 'd' and not self._session.is_in_editor:
+        elif directive == 'd' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_distribution_files = True
             return 'd'
-        elif key == 'g' and not self._session.is_in_editor:
+        elif directive == 'g' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_segments = True
             return 'g'
-        elif key == 'k' and not self._session.is_in_editor:
+        elif directive == 'k' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_maker_modules = True
             return 'k'
-        elif key == 'llro':
+        elif directive == 'llro':
             self.view_last_log()
-        elif key == 'm' and not self._session.is_in_editor:
+        elif directive == 'm' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_materials = True
             return 'm'
-        elif (key in ('n', '?') and
+        elif (directive in ('n', '?') and
             not self._session.is_in_confirmation_environment and
             not self._session.is_in_editor):
             self._session.toggle_hidden_commands()
-        elif key == 'p' and not self._session.is_in_editor:
+        elif directive == 'p' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_setup = True
             return 'p'
-        elif key == 'pyd':
+        elif directive == 'pyd':
             message = 'running doctest ...'
             self.display([message, ''])
             controller = self._session.current_controller
             controller.doctest()
-        elif key == 'pyi':
+        elif directive == 'pyi':
             self.invoke_python()
-        elif key == 'pyt':
+        elif directive == 'pyt':
             message = 'running py.test ...'
             self.display([message, ''])
             controller = self._session.current_controller
             controller.pytest()
-        elif key in ('q', 'quit'):
+        elif directive in ('q', 'quit'):
             self._session._is_quitting = True
             self._session._hide_hidden_commands = True
             return 'q'
-        elif key == 'sce':
+        elif directive == 'sce':
             self.edit_calling_code()
-        elif key == 'scl':
+        elif directive == 'scl':
             self.display_calling_code_line_number()
-        elif key == 'sdv':
+        elif directive == 'sdv':
             self._session.display_variables()
-        elif key == 'u' and not self._session.is_in_editor:
+        elif directive == 'u' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_build_files = True
             return 'u'
-        elif (key == 'y' and
+        elif (directive == 'y' and
             not self._session.is_in_confirmation_environment and
             not self._session.is_in_editor):
             self._session._is_navigating_to_score_stylesheets = True
             return 'y'
-        elif key == 'Y':
+        elif directive == 'Y':
             self.edit_score_stylesheet()
-        elif key == '>':
+        elif directive == '>':
             self._session._is_navigating_to_next_score = True
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
-        elif key == '<':
+        elif directive == '<':
             self._session._is_navigating_to_previous_score = True
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
-        elif key == '>>':
+        elif directive == '>>':
             controller = self._session.current_controller
             if isinstance(controller, managers.MaterialManager):
                 self._session._is_navigating_to_score_materials = True
@@ -163,7 +160,7 @@ class IOManager(IOManager):
                 self._session._is_navigating_to_score_segments = True
             self._session._is_navigating_to_next_asset = True
             self._session._hide_hidden_commands = True
-        elif key == '<<':
+        elif directive == '<<':
             controller = self._session.current_controller
             if isinstance(controller, managers.MaterialManager):
                 self._session._is_navigating_to_score_materials = True
@@ -171,21 +168,20 @@ class IOManager(IOManager):
                 self._session._is_navigating_to_score_segments = True
             self._session._is_navigating_to_previous_asset = True
             self._session._hide_hidden_commands = True
-        elif isinstance(key, str) and key.startswith('!'):
-            statement = key.replace('!', '')
+        elif isinstance(directive, str) and directive.startswith('!'):
+            statement = directive.replace('!', '')
             self.invoke_shell(statement=statement)
-        elif self._is_score_string(key) and self._session.is_in_score:
+        elif self._is_score_string(directive) and self._session.is_in_score:
             self._session._is_backtracking_to_score = True
             self._session._hide_hidden_commands = True
-        elif self._is_score_string(key) and not self._session.is_in_score:
-            #directive = None
+        elif self._is_score_string(directive) and not self._session.is_in_score:
             pass
-        elif self._is_home_string(key):
+        elif self._is_home_string(directive):
             self._session._current_score_snake_case_name = None
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
         else:
-            return directive
+            return input_directive
 
     @staticmethod
     def _is_home_string(string):
