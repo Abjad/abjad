@@ -294,7 +294,7 @@ class Tuplet(Container):
         denominator = duration.denominator
         if not mathtools.is_nonnegative_integer_power_of_two(denominator):
             return r"\tweak #'edge-height #'(0.7 . 0)"
-    
+
     def _get_scale_durations_command_string(self):
         multiplier = self.multiplier
         string = r"\scaleDurations #'({} . {}) {{"
@@ -1096,7 +1096,9 @@ class Tuplet(Container):
         duration = durationtools.Duration(duration)
         ratio = mathtools.Ratio(ratio)
         # find basic duration of note in tuplet
+        print(duration, ratio)
         basic_prolated_duration = duration / mathtools.weight(ratio)
+        print(basic_prolated_duration, mathtools.weight(ratio))
         # find basic written duration of note in tuplet
         if avoid_dots:
             basic_written_duration = \

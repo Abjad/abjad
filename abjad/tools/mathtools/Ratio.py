@@ -40,7 +40,7 @@ class Ratio(NonreducedRatio):
         assert args, repr(args)
         assert all(x != 0 for x in args), repr(args)
         gcd = mathtools.greatest_common_divisor(*args)
-        args = [x / gcd for x in args]
+        args = [x // gcd for x in args]
         self = NonreducedRatio.__new__(cls, args)
         return self
 

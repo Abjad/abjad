@@ -38,7 +38,7 @@ def divisors(n):
     ::
 
         >>> systemtools.IOManager.count_function_calls(
-        ...     'mathtools.divisors(100000000)', 
+        ...     'mathtools.divisors(100000000)',
         ...     globals(),
         ...     )
         50
@@ -69,7 +69,7 @@ def divisors(n):
             divisors.append(i)
 
     # find codivisors
-    codivisors = [n / i for i in reversed(divisors)]
+    codivisors = [n // i for i in reversed(divisors)]
 
     # remove duplciate divisor if n is perfect square
     if divisors[-1] == codivisors[0]:
