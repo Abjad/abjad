@@ -6,7 +6,7 @@ import scoremanager
 def test_Selector_make_performer_selector_01():
 
     session = scoremanager.core.Session(is_test=True)
-    session._current_score_snake_case_name = 'red_example_score'
+    session._set_test_score('red_example_score')
     selector = scoremanager.iotools.Selector
     selector = selector.make_performer_selector(session=session)
     selector._session._is_test = True

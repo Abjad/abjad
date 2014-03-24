@@ -26,7 +26,7 @@ class MaterialPackageWrangler(PackageWrangler):
         ::
 
             >>> session = scoremanager.core.Session()
-            >>> session._current_score_snake_case_name = 'red_example_score'
+            >>> session._set_test_score('red_example_score')
             >>> wrangler_in_score = scoremanager.wranglers.MaterialPackageWrangler(
             ...     session=session,
             ...     )

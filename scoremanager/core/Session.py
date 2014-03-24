@@ -24,9 +24,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session_in_score = scoremanager.core.Session()
-            >>> session_in_score._current_score_snake_case_name = 'foo'
-            >>> session_in_score
-            Session()
+            >>> session_in_score._set_test_score('red_example_score')
 
     '''
 
@@ -345,6 +343,20 @@ class Session(abctools.AbjadObject):
         if cache:
             self._breadcrumb_stack[:] = self._breadcrumb_cache_stack.pop()
 
+    def _set_test_score(self, score_package_name):
+        from scoremanager import managers
+        assert not self.controller_stack
+        path = os.path.join(
+            self._configuration.abjad_score_packages_directory_path,
+            score_package_name,
+            )
+        assert os.path.exists(path)
+        manager = managers.ScorePackageManager(
+            path=path,
+            session=self,
+            )
+        self._controller_stack.append(manager)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -458,7 +470,7 @@ class Session(abctools.AbjadObject):
             ::
 
                 >>> session_in_score.current_materials_directory_path
-                '.../foo/materials'
+                '.../red_example_score/materials'
 
         (Output will vary according to configuration.)
 
@@ -488,7 +500,7 @@ class Session(abctools.AbjadObject):
             ::
 
                 >>> session_in_score.current_score_directory_path
-                '.../foo'
+                '.../red_example_score'
 
         Returns string or none.
         '''
@@ -504,6 +516,8 @@ class Session(abctools.AbjadObject):
                     self._configuration.user_score_packages_directory_path,
                     self.current_score_snake_case_name,
                     )
+        if self.current_score_package_manager:
+            return self.current_score_package_manager._path
 
     @property
     def current_score_package_manager(self):
@@ -521,18 +535,21 @@ class Session(abctools.AbjadObject):
             ::
 
                 >>> session_in_score.current_score_package_manager
-                ScorePackageManager('.../foo')
+                ScorePackageManager('.../red_example_score')
 
         (Ouput will vary according to configuration.)
 
         Returns score package manager or none.
         '''
         from scoremanager import managers
-        if self.is_in_score:
-            return managers.ScorePackageManager(
-                path=self.current_score_directory_path,
-                session=self,
-                )
+#        if self.is_in_score:
+#            return managers.ScorePackageManager(
+#                path=self.current_score_directory_path,
+#                session=self,
+#                )
+        for controller in reversed(self.controller_stack):
+            if isinstance(controller, managers.ScorePackageManager):
+                return controller
 
     @property
     def current_score_snake_case_name(self):
@@ -550,11 +567,14 @@ class Session(abctools.AbjadObject):
             ::
 
                 >>> session_in_score.current_score_snake_case_name
-                'foo'
+                'red_example_score'
 
         Returns string or none.
         '''
-        return self._current_score_snake_case_name
+        if self._current_score_snake_case_name is not None:
+            return self._current_score_snake_case_name
+        if self.current_score_package_manager is not None:
+            return self.current_score_package_manager._package_name
 
     @property
     def current_segments_directory_path(self):
@@ -567,16 +587,12 @@ class Session(abctools.AbjadObject):
                 >>> session.current_segments_directory_path is None
                 True
 
-            (Output will vary according to configuration.)
-
         ..  container:: example
 
             ::
 
                 >>> session_in_score.current_segments_directory_path
-                '.../foo/segments'
-
-            (Output will vary according to configuration.)
+                '.../red_example_score/segments'
 
         Returns string.
         '''
@@ -858,7 +874,11 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self.current_score_snake_case_name is not None
+        if self.current_score_snake_case_name is not None:
+            return True
+        if self.current_score_package_manager is not None:
+            return True
+        return False
 
     @property
     def is_navigating_to_score_build_files(self):

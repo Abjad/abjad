@@ -29,8 +29,8 @@ def test_MaterialPackageWrangler_get_available_path_01():
 def test_MaterialPackageWrangler_get_available_path_02():
 
     session = scoremanager.core.Session(is_test=True)
+    session._set_test_score('red_example_score')
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
-    wrangler._session._current_score_snake_case_name = 'red_example_score'
     input_ = 'foo'
     result = wrangler.get_available_path(pending_user_input=input_)
     path = os.path.join(
