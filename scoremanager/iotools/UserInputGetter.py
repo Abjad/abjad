@@ -136,22 +136,23 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             if user_input is None:
                 self._prompt_index += 1
                 break
-            user_input = self._io_manager._handle_io_manager_directive(
+            directive = self._io_manager._handle_io_manager_directive(
                 user_input)
             if self._session._backtrack():
                 self._current_prompt_is_done = True
                 self._all_prompts_are_done = True
-            elif user_input is None:
+            elif directive is None:
                 continue
-            elif user_input == 'help':
+            elif directive == 'help':
                 self._display_help()
-            elif user_input == 'prev':
+            # TODO: change 'prev' to 'previous'
+            elif directive == 'prev':
                 self._move_to_previous_prompt()
                 break
-            elif user_input == 'skip':
+            elif directive == 'skip':
                 break
-            elif isinstance(user_input, str):
-                self._evaluate_user_input(user_input)
+            elif isinstance(directive, str):
+                self._evaluate_user_input(directive)
             else:
                 self._io_manager.print_not_yet_implemented()
 

@@ -83,6 +83,7 @@ class IOManager(IOManager):
 
     # the ifs can be replaced with a _user_input_to_to_action dictionary
     def _handle_io_manager_directive(self, directive):
+        input_directive = directive
         #print repr(directive), 'ddd'
         from scoremanager import managers
         if isinstance(directive, list) and len(directive) == 1:
@@ -107,7 +108,7 @@ class IOManager(IOManager):
         elif key == 'm' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_materials = True
             return 'm'
-        elif (directive in ('n', '?') and
+        elif (key in ('n', '?') and
             not self._session.is_in_confirmation_environment and
             not self._session.is_in_editor):
             self._session.toggle_hidden_commands()
@@ -177,7 +178,8 @@ class IOManager(IOManager):
             self._session._is_backtracking_to_score = True
             self._session._hide_hidden_commands = True
         elif self._is_score_string(key) and not self._session.is_in_score:
-            directive = None
+            #directive = None
+            pass
         elif self._is_home_string(key):
             self._session._current_score_snake_case_name = None
             self._session._is_backtracking_to_score_manager = True
