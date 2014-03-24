@@ -16,7 +16,7 @@ def test_Menu__run_01():
 
     result = menu._run(pending_user_input='foo')
     assert menu._transcript.last_menu_lines == \
-    ['Location',
+    ['(Test)',
       '',
       '    Section',
       '',
@@ -63,7 +63,7 @@ def test_Menu__run_02():
     result = menu._run(pending_user_input='foo')
 
     assert menu._transcript.last_menu_lines == \
-    ['Location', '']
+    ['(Test)', '']
     assert result is None
 
     menu._session._reinitialize()
@@ -103,7 +103,7 @@ def test_Menu__run_03():
     result = menu._run(pending_user_input='foo')
 
     assert menu._transcript.last_menu_lines == \
-    ['Location',
+    ['(Test)',
       '',
       '    Section',
       '',
@@ -150,7 +150,7 @@ def test_Menu__run_04():
     result = menu._run(pending_user_input='foo')
 
     assert menu._transcript.last_menu_lines == \
-    ['Location',
+    ['(Test)',
       '',
       '    Section',
       '',
@@ -199,7 +199,7 @@ def test_Menu__run_05():
     result = menu._run(pending_user_input='foo')
 
     assert menu._transcript.last_menu_lines == \
-    ['Location',
+    ['(Test)',
       '',
       '    Section',
       '',
@@ -309,7 +309,7 @@ def test_Menu__run_07():
     result = menu._run(pending_user_input='foo')
 
     assert menu._transcript.last_menu_lines == \
-    ['Location', '']
+    ['(Test)', '']
 
     assert result is None
 
@@ -414,7 +414,7 @@ def test_Menu__run_09():
     result = menu._run(pending_user_input='foo')
 
     assert menu._transcript.last_menu_lines == \
-    ['Location',
+    ['(Test)',
       '',
       '    Section',
       '',
@@ -474,7 +474,7 @@ def test_Menu__run_10():
     result = menu._run(pending_user_input='foo')
 
     assert menu._transcript.last_menu_lines == \
-    ['Location',
+    ['(Test)',
       '',
       '    Section',
       '',

@@ -49,7 +49,14 @@ class ScoreManager(Controller):
 
     @property
     def _breadcrumb(self):
-        return 'score manager'
+        if self._session.controller_stack == [self]:
+            result = 'score manager - {}'
+            result = result.format(self._score_status_string)
+            return result
+        elif self._session.is_in_score:
+            return
+        else:
+            return 'score manager'
 
     @property
     def _score_status_string(self):
@@ -306,7 +313,6 @@ class ScoreManager(Controller):
                 result = menu._run(clear=clear)
             else:
                 run_main_menu = True
-            #print 'Inside ScoreManager._run():', repr(result)
             if self._session._backtrack(source='home'):
                 self._session._pop_breadcrumb()
                 self._session._clean_up()

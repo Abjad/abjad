@@ -5,7 +5,7 @@ import scoremanager
 
 def test_Menu__display_all_menu_commands_01():
     
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = '? q'
     score_manager._run(pending_user_input=input_)
     assert score_manager._transcript.last_menu_lines[-2] != ''

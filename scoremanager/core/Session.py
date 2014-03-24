@@ -55,6 +55,7 @@ class Session(abctools.AbjadObject):
         '_is_backtracking_to_score_manager',
         '_is_in_confirmation_environment',
         '_is_in_editor',
+        '_is_in_score_setup_menu',
         '_is_navigating_to_score_build_files',
         '_is_navigating_to_score_distribution_files',
         '_is_navigating_to_next_asset',
@@ -131,7 +132,6 @@ class Session(abctools.AbjadObject):
         self._controllers_visited = []
         self._current_score_snake_case_name = None
         self._display_pitch_ranges_with_numbered_pitches = False
-        self._is_tracking_source_code = None
         self._hide_hidden_commands = True
         self._hide_next_redraw = False
         self._initial_user_input = pending_user_input
@@ -143,6 +143,7 @@ class Session(abctools.AbjadObject):
         self._is_backtracking_to_score_manager = False
         self._is_in_confirmation_environment = False
         self._is_in_editor = False
+        self._is_in_score_setup_menu = False
         self._is_navigating_to_score_build_files = False
         self._is_navigating_to_score_distribution_files = False
         self._is_navigating_to_next_asset = False
@@ -156,6 +157,7 @@ class Session(abctools.AbjadObject):
         self._is_navigating_to_score_stylesheets = False
         self._is_quitting = False
         self._is_test = is_test
+        self._is_tracking_source_code = None
         self._last_command_was_composite = False
         self._last_asset_path = None
         self._menu_header_width = 160
@@ -163,7 +165,10 @@ class Session(abctools.AbjadObject):
         self._pending_user_input = pending_user_input
         self._rewrite_cache = False
         self._score_manager = None
-        self._scores_to_display = 'example'
+        if is_test:
+            self._scores_to_display = 'example'
+        else:
+            self._scores_to_display = 'active'
         self._session_once_had_user_input = False
         self._transcribe_next_command = True
         self._transcript = iotools.Transcript()
@@ -282,6 +287,30 @@ class Session(abctools.AbjadObject):
                 result_lines.append(result_line)
         return result_lines
 
+    def _format_controller_breadcrumbs(self):
+        if not self.controller_stack:
+            return ['(Test)']
+        result_lines = []
+        breadcrumb = self.controller_stack[0]._breadcrumb
+        if breadcrumb:
+            result_lines.append(breadcrumb)
+        hanging_indent_width = 5
+        for controller in self.controller_stack[1:]:
+            breadcrumb = controller._breadcrumb
+            if result_lines:
+                candidate_line = result_lines[-1] + ' - ' + breadcrumb
+            else:
+                candidate_line = breadcrumb
+            if len(candidate_line) <= self.menu_header_width:
+                if result_lines:
+                    result_lines[-1] = candidate_line
+                else:
+                    result_lines.append(candidate_line)
+            else:
+                result_line = hanging_indent_width * ' ' + breadcrumb
+                result_lines.append(result_line)
+        return result_lines
+
     def _pop_backtrack(self):
         return self._backtracking_stack.pop()
 
@@ -328,8 +357,7 @@ class Session(abctools.AbjadObject):
     def _reinitialize(self):
         is_test = self._is_test
         is_add_to_repository_test = self._is_repository_test
-        type(self).__init__(self)
-        self._is_test = is_test
+        type(self).__init__(self, is_test=self.is_test)
         self._is_repository_test = is_add_to_repository_test
 
     def _restore_breadcrumbs(self, cache=False):
@@ -365,6 +393,8 @@ class Session(abctools.AbjadObject):
 
         Returns list.
         '''
+        #assert len(self._breadcrumb_stack) == len(self.controller_stack), repr(
+        #    (self._breadcrumb_stack, self.controller_stack))
         return self._breadcrumb_stack
 
     @property
@@ -861,6 +891,21 @@ class Session(abctools.AbjadObject):
         return False
 
     @property
+    def is_in_score_setup_menu(self):
+        r'''Is true when session in score setup menu. Otherwise false:
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_in_score_setup_menu
+                False
+
+        Returns boolean.
+        '''
+        return self._is_in_score_setup_menu
+
+    @property
     def is_navigating_to_score_build_files(self):
         r'''Is true when session is navigating to build directory.
         Otherwise false.
@@ -1183,11 +1228,12 @@ class Session(abctools.AbjadObject):
             ::
 
                 >>> session.menu_header
-                ''
+                '(Test)'
 
         Returns string.
         '''
-        return '\n'.join(self._format_breadcrumb_stack())
+        #return '\n'.join(self._format_breadcrumb_stack())
+        return '\n'.join(self._format_controller_breadcrumbs())
 
     @property
     def menu_header_width(self):
@@ -1272,7 +1318,7 @@ class Session(abctools.AbjadObject):
             ::
 
                 >>> session.scores_to_display
-                'example'
+                'active'
 
         Returns string.
         '''

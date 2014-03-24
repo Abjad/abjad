@@ -3,7 +3,7 @@ import os
 from abjad import *
 import scoremanager
 configuration = scoremanager.core.ScoreManagerConfiguration()
-score_manager = scoremanager.core.ScoreManager()
+score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
 def test_ScoreManager__find_up_to_date_versioned_manager_01():

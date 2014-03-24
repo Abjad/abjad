@@ -26,7 +26,11 @@ class ScorePackageManager(PackageManager):
 
     @property
     def _breadcrumb(self):
-        return self._get_annotated_title()
+        annotated_title = self._get_annotated_title()
+        if self._session.is_in_score_setup_menu:
+            return '{} - setup'.format(annotated_title)
+        else:
+            return annotated_title
 
     @property
     @systemtools.Memoize
@@ -410,6 +414,7 @@ class ScorePackageManager(PackageManager):
     def _manage_setup(self, clear=True, cache=True):
         self._session._is_navigating_to_score_setup = False
         self._session._cache_breadcrumbs(cache=cache)
+        self._session._is_in_score_setup_menu = True
         while True:
             annotated_title = self._get_annotated_title()
             breadcrumb = '{} - setup'.format(annotated_title)
@@ -425,6 +430,7 @@ class ScorePackageManager(PackageManager):
             if self._session._backtrack():
                 break
             self._session._pop_breadcrumb()
+        self._session._is_in_score_setup_menu = False
         self._session._pop_breadcrumb()
         self._session._restore_breadcrumbs(cache=cache)
 

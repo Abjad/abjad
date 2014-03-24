@@ -5,7 +5,7 @@ import scoremanager
 
 def test_MenuSection__make_menu_lines_01():
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score m tempo~inventory q'
     score_manager._run(pending_user_input=input_)
 

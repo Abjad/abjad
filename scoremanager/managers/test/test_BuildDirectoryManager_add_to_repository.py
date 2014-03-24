@@ -2,7 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-score_manager = scoremanager.core.ScoreManager()
+score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
 def test_BuildDirectoryManager_add_to_repository_01():

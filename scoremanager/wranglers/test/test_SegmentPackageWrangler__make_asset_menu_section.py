@@ -7,7 +7,7 @@ def test_SegmentPackageWrangler__make_asset_menu_section_01():
     r'''Omits score annotation when listing segments in score.
     '''
 
-    score_manager = scoremanager.core.ScoreManager()
+    score_manager = scoremanager.core.ScoreManager(is_test=True)
     input_ = 'red~example~score g q'
     score_manager._run(pending_user_input=input_)
 
