@@ -526,6 +526,7 @@ class Manager(Controller):
                 else:
                     menu = self._make_main_menu()
                     result = menu._run(clear=clear)
+                    print 'Inside {}._run: {!r}'.format(self, result)
                 if self._session._backtrack(source=self._backtracking_source):
                     break
                 elif not result:

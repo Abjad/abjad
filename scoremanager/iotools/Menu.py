@@ -142,13 +142,10 @@ class Menu(ScoreManagerObject):
         user_input = self._io_manager.handle_user_input('')
         if user_input == '':
             user_entered_lone_return = True
-        #print repr(user_input), 'UIP'
         directive = self._change_user_input_to_directive(user_input)
-        #print repr(directive), 'DIR'
         directive = self._strip_default_notice_from_strings(directive)
         self._session._hide_next_redraw = False
         directive = self._io_manager._handle_io_manager_directive(directive)
-        #print repr(directive), 'MOD DIR'
         if directive is None and user_entered_lone_return:
             result = 'user entered lone return'
         elif directive is None and not user_entered_lone_return:
@@ -156,6 +153,7 @@ class Menu(ScoreManagerObject):
         else:
             result = directive
         self._session._where = None
+        #print 'Return value of Menu._display():', repr(result)
         return result
 
     def _display_all_commands(self):
@@ -524,6 +522,7 @@ class Menu(ScoreManagerObject):
                 clear, hide_current_run = True, False
             else:
                 break
+        #print 'Result of Menu._run():', repr(result)
         return result
 
     # TODO: apply default notice at display time 

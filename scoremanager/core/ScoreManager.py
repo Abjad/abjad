@@ -306,6 +306,7 @@ class ScoreManager(Controller):
                 result = menu._run(clear=clear)
             else:
                 run_main_menu = True
+            #print 'Inside ScoreManager._run():', repr(result)
             if self._session._backtrack(source='home'):
                 self._session._pop_breadcrumb()
                 self._session._clean_up()
