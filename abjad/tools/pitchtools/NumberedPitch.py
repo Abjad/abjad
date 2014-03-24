@@ -52,6 +52,14 @@ class NumberedPitch(Pitch):
         semitones = self.pitch_number + arg.pitch_number
         return type(self)(semitones)
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(NumberedPitch, self).__hash__()
+
     def __eq__(self, arg):
         r'''Is true when `arg` is a numbered pitch with pitch number equal to that
         of this numbered pitch. Otherwise false.
@@ -174,11 +182,11 @@ class NumberedPitch(Pitch):
         Not yet implemented.
         '''
         raise NotImplementedError
-    
+
     def multiply(self, n=1):
         r'''Multiplies pitch-class of numbered pitch by `n` and maintains
         octave.
-        
+
         ::
 
             >>> pitchtools.NumberedPitch(14).multiply(3)
