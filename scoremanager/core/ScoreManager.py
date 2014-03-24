@@ -28,10 +28,10 @@ class ScoreManager(Controller):
             session._is_test = is_test
         Controller.__init__(self, session=session)
         self._session._score_manager = self
-        wrangler = wranglers.BuildWrangler(session=self._session)
-        self._build_wrangler = wrangler
-        wrangler = wranglers.DistributionWrangler(session=self._session)
-        self._distribution_wrangler = wrangler
+        wrangler = wranglers.BuildFileWrangler(session=self._session)
+        self._build_file_wrangler = wrangler
+        wrangler = wranglers.DistributionFileWrangler(session=self._session)
+        self._distribution_file_wrangler = wrangler
         wrangler = wranglers.MakerModuleWrangler(session=self._session)
         self._maker_module_wrangler = wrangler
         wrangler = wranglers.MaterialManagerWrangler(session=self._session)
@@ -468,7 +468,7 @@ class ScoreManager(Controller):
         Returns none.
         '''
         # TODO: remove rollback?
-        self._build_wrangler._run(rollback=True)
+        self._build_file_wrangler._run(rollback=True)
 
     def manage_distribution_artifact_library(self):
         r'''Manages distribution artifact library.
@@ -476,7 +476,7 @@ class ScoreManager(Controller):
         Returns none.
         '''
         # TODO: remove rollback?
-        self._distribution_wrangler._run(rollback=True)
+        self._distribution_file_wrangler._run(rollback=True)
 
     def manage_maker_library(self):
         r'''Manages maker library.

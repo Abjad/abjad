@@ -490,7 +490,7 @@ class Manager(Controller):
             if type(self) is managers.BuildDirectoryManager:
                 self._session._is_navigating_to_score_build_files = False
             if type(self) is managers.DistributionDirectoryManager:
-                self._session._is_navigating_to_score_distribution_assets = False
+                self._session._is_navigating_to_score_distribution_files = False
             prototype = (
                 managers.MaterialManager,
                 managers.SegmentPackageManager,
@@ -505,7 +505,7 @@ class Manager(Controller):
                 if (self._session.is_navigating_to_score_build_files and
                     type(self) is managers.ScorePackageManager):
                     result = 'u'
-                elif (self._session.is_navigating_to_score_distribution_assets 
+                elif (self._session.is_navigating_to_score_distribution_files 
                     and type(self) is managers.ScorePackageManager):
                     result = 'd'
                 elif (self._session.is_navigating_to_score_makers and

@@ -4,7 +4,7 @@ import scoremanager
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_Session_is_navigating_to_score_distribution_assets_01():
+def test_Session_is_navigating_to_score_distribution_files_01():
     r'''From build directory to distribution directory.
     '''
 
@@ -19,7 +19,7 @@ def test_Session_is_navigating_to_score_distribution_assets_01():
     assert score_manager._transcript.titles == titles
 
 
-def test_Session_is_navigating_to_score_distribution_assets_02():
+def test_Session_is_navigating_to_score_distribution_files_02():
     r'''From distribution directory to distribution directory.
     '''
 
@@ -34,7 +34,7 @@ def test_Session_is_navigating_to_score_distribution_assets_02():
     assert score_manager._transcript.titles == titles
 
 
-def test_Session_is_navigating_to_score_distribution_assets_03():
+def test_Session_is_navigating_to_score_distribution_files_03():
     r'''From makers directory to distribution directory.
     '''
 
@@ -49,7 +49,7 @@ def test_Session_is_navigating_to_score_distribution_assets_03():
     assert score_manager._transcript.titles == titles
 
 
-def test_Session_is_navigating_to_score_distribution_assets_04():
+def test_Session_is_navigating_to_score_distribution_files_04():
     r'''From materials directory to distribution directory.
     '''
 
@@ -64,7 +64,7 @@ def test_Session_is_navigating_to_score_distribution_assets_04():
     assert score_manager._transcript.titles == titles
 
 
-def test_Session_is_navigating_to_score_distribution_assets_05():
+def test_Session_is_navigating_to_score_distribution_files_05():
     r'''From segments directory to distribution directory.
     '''
 
@@ -79,7 +79,7 @@ def test_Session_is_navigating_to_score_distribution_assets_05():
     assert score_manager._transcript.titles == titles
 
 
-def test_Session_is_navigating_to_score_distribution_assets_06():
+def test_Session_is_navigating_to_score_distribution_files_06():
     r'''From setup menu to distribution directory.
     '''
 
@@ -94,7 +94,7 @@ def test_Session_is_navigating_to_score_distribution_assets_06():
     assert score_manager._transcript.titles == titles
 
 
-def test_Session_is_navigating_to_score_distribution_assets_07():
+def test_Session_is_navigating_to_score_distribution_files_07():
     r'''From stylesheets directory to distribution directory.
     '''
 

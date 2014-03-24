@@ -5,7 +5,7 @@ from abjad.tools import stringtools
 from scoremanager.wranglers.Wrangler import Wrangler
 
 
-class DistributionWrangler(Wrangler):
+class DistributionFileWrangler(Wrangler):
     r'''Distribution wrangler.
 
     ..  container:: example
@@ -13,18 +13,18 @@ class DistributionWrangler(Wrangler):
         ::
 
             >>> session = scoremanager.core.Session()
-            >>> wrangler = scoremanager.wranglers.DistributionWrangler(
+            >>> wrangler = scoremanager.wranglers.DistributionFileWrangler(
             ...     session=session,
             ...     )
             >>> wrangler
-            DistributionWrangler()
+            DistributionFileWrangler()
 
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        superclass = super(DistributionWrangler, self)
+        superclass = super(DistributionFileWrangler, self)
         superclass.__init__(session=session)
         self._abjad_storehouse_path = None
         self._user_storehouse_path = None
@@ -47,7 +47,7 @@ class DistributionWrangler(Wrangler):
 
     @property
     def _user_input_to_action(self):
-        superclass = super(DistributionWrangler, self)
+        superclass = super(DistributionFileWrangler, self)
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({

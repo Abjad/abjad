@@ -92,7 +92,7 @@ class IOManager(IOManager):
             self._session._is_backtracking_locally = True
             self._session._hide_hidden_commands = True
         elif key == 'd' and not self._session.is_in_editor:
-            self._session._is_navigating_to_score_distribution_assets = True
+            self._session._is_navigating_to_score_distribution_files = True
             return 'd'
         elif key == 'g' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_segments = True

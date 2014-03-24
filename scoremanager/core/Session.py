@@ -58,7 +58,7 @@ class Session(abctools.AbjadObject):
         '_is_in_confirmation_environment',
         '_is_in_editor',
         '_is_navigating_to_score_build_files',
-        '_is_navigating_to_score_distribution_assets',
+        '_is_navigating_to_score_distribution_files',
         '_is_navigating_to_next_asset',
         '_is_navigating_to_next_score',
         '_is_navigating_to_previous_asset',
@@ -153,7 +153,7 @@ class Session(abctools.AbjadObject):
         self._is_in_confirmation_environment = False
         self._is_in_editor = False
         self._is_navigating_to_score_build_files = False
-        self._is_navigating_to_score_distribution_assets = False
+        self._is_navigating_to_score_distribution_files = False
         self._is_navigating_to_next_asset = False
         self._is_navigating_to_next_score = False
         self._is_navigating_to_previous_asset = False
@@ -236,7 +236,7 @@ class Session(abctools.AbjadObject):
             not source in ('score', 'home')):
             #print 'G'
             return True
-        elif (self.is_navigating_to_score_distribution_assets and
+        elif (self.is_navigating_to_score_distribution_files and
             not source in ('score', 'home')):
             return True
         elif (self.is_navigating_to_score_makers and
@@ -748,7 +748,7 @@ class Session(abctools.AbjadObject):
         '''
         if self.is_navigating_to_score_build_files:
             return True
-        elif self.is_navigating_to_score_distribution_assets:
+        elif self.is_navigating_to_score_distribution_files:
             return True
         elif self.is_navigating_to_next_asset:
             return True
@@ -912,7 +912,7 @@ class Session(abctools.AbjadObject):
         return self._is_navigating_to_score_build_files
 
     @property
-    def is_navigating_to_score_distribution_assets(self):
+    def is_navigating_to_score_distribution_files(self):
         r'''Is true when session is navigating to distribution directory.
         Otherwise false.
 
@@ -920,12 +920,12 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.is_navigating_to_score_distribution_assets
+                >>> session.is_navigating_to_score_distribution_files
                 False
 
         Returns boolean.
         '''
-        return self._is_navigating_to_score_distribution_assets
+        return self._is_navigating_to_score_distribution_files
 
     @property
     def is_navigating_to_next_asset(self):

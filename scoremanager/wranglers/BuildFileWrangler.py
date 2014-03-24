@@ -5,7 +5,7 @@ from abjad.tools import stringtools
 from scoremanager.wranglers.Wrangler import Wrangler
 
 
-class BuildWrangler(Wrangler):
+class BuildFileWrangler(Wrangler):
     r'''Build wrangler.
 
     ..  container:: example
@@ -13,18 +13,18 @@ class BuildWrangler(Wrangler):
         ::
 
             >>> session = scoremanager.core.Session()
-            >>> wrangler = scoremanager.wranglers.BuildWrangler(
+            >>> wrangler = scoremanager.wranglers.BuildFileWrangler(
             ...     session=session,
             ...     )
             >>> wrangler
-            BuildWrangler()
+            BuildFileWrangler()
 
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        superclass = super(BuildWrangler, self)
+        superclass = super(BuildFileWrangler, self)
         superclass.__init__(session=session)
         self._abjad_storehouse_path = None
         self._user_storehouse_path = None
@@ -47,7 +47,7 @@ class BuildWrangler(Wrangler):
 
     @property
     def _user_input_to_action(self):
-        superclass = super(BuildWrangler, self)
+        superclass = super(BuildFileWrangler, self)
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
