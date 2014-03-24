@@ -502,26 +502,26 @@ class Manager(Controller):
             while True:
                 self._session._push_breadcrumb(self._breadcrumb)
                 # TODO: encapsulate the if ... else in a separate method
-                if self._session.is_navigating_to_score_build_files and \
-                    type(self) is managers.ScorePackageManager:
+                if (self._session.is_navigating_to_score_build_files and
+                    type(self) is managers.ScorePackageManager):
                     result = 'u'
-                elif self._session.is_navigating_to_score_distribution_assets and \
-                    type(self) is managers.ScorePackageManager:
+                elif (self._session.is_navigating_to_score_distribution_assets 
+                    and type(self) is managers.ScorePackageManager):
                     result = 'd'
-                elif self._session.is_navigating_to_score_makers and \
-                    type(self) is managers.ScorePackageManager:
+                elif (self._session.is_navigating_to_score_makers and
+                    type(self) is managers.ScorePackageManager):
                     result = 'k'
-                elif self._session.is_navigating_to_score_materials and \
-                    type(self) is managers.ScorePackageManager:
+                elif (self._session.is_navigating_to_score_materials and
+                    type(self) is managers.ScorePackageManager):
                     result = 'm'
-                elif self._session.is_navigating_to_score_segments and \
-                    type(self) is managers.ScorePackageManager:
+                elif (self._session.is_navigating_to_score_segments and
+                    type(self) is managers.ScorePackageManager):
                     result = 'g'
-                elif self._session.is_navigating_to_score_setup and \
-                    type(self) is managers.ScorePackageManager:
+                elif (self._session.is_navigating_to_score_setup and
+                    type(self) is managers.ScorePackageManager):
                     result = 'p'
-                elif self._session.is_navigating_to_score_stylesheets and \
-                    type(self) is managers.ScorePackageManager:
+                elif (self._session.is_navigating_to_score_stylesheets and
+                    type(self) is managers.ScorePackageManager):
                     result = 'y'
                 else:
                     menu = self._make_main_menu()

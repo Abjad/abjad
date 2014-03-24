@@ -353,7 +353,11 @@ class Wrangler(Controller):
         self._io_manager._assign_user_input(pending_user_input)
         breadcrumb = self._session._pop_breadcrumb(rollback=rollback)
         self._session._cache_breadcrumbs(cache=cache)
-        if type(self) is wranglers.MakerModuleWrangler:
+        if type(self) is wranglers.BuildWrangler:
+            self._session._is_navigating_to_score_build_files = False
+        elif type(self) is wranglers.DistributionWrangler:
+            self._session._is_navigating_to_score_distribution_assets = False
+        elif type(self) is wranglers.MakerModuleWrangler:
             self._session._is_navigating_to_score_makers = False
         elif type(self) is wranglers.MaterialPackageWrangler:
             self._session._is_navigating_to_score_materials = False
