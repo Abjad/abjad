@@ -70,7 +70,6 @@ class Session(abctools.AbjadObject):
         '_is_repository_test',
         '_is_test',
         '_is_tracking_source_code',
-        '_last_line',
         '_last_command_was_composite',
         '_last_asset_path',
         '_menu_header_width',
@@ -105,7 +104,6 @@ class Session(abctools.AbjadObject):
         'is_displayable',
         'is_in_editor',
         'is_in_score',
-        'last_line',
         'last_asset_path',
         'nonnumbered_menu_sections_are_hidden',
         'rewrite_cache',
@@ -162,7 +160,6 @@ class Session(abctools.AbjadObject):
         self._is_navigating_to_score_stylesheets = False
         self._is_quitting = False
         self._is_test = is_test
-        self._last_line = ''
         self._last_command_was_composite = False
         self._last_asset_path = None
         self._menu_header_width = 160
@@ -472,15 +469,10 @@ class Session(abctools.AbjadObject):
                 >>> session_in_score.current_materials_directory_path
                 '.../red_example_score/materials'
 
-        (Output will vary according to configuration.)
-
         Returns string.
         '''
-        if self.is_in_score:
-            manager = self.current_score_package_manager
-            wrangler = manager._material_package_wrangler
-            path = wrangler._get_current_directory_path_of_interest()
-            return path
+        if self.current_score_directory_path:
+            return os.path.join(self.current_score_directory_path, 'materials')
         else:
             return self._configuration.abjad_material_packages_directory_path
 
@@ -542,11 +534,6 @@ class Session(abctools.AbjadObject):
         Returns score package manager or none.
         '''
         from scoremanager import managers
-#        if self.is_in_score:
-#            return managers.ScorePackageManager(
-#                path=self.current_score_directory_path,
-#                session=self,
-#                )
         for controller in reversed(self.controller_stack):
             if isinstance(controller, managers.ScorePackageManager):
                 return controller
@@ -596,11 +583,8 @@ class Session(abctools.AbjadObject):
 
         Returns string.
         '''
-        if self.is_in_score:
-            manager = self.current_score_package_manager
-            wrangler = manager._segment_package_wrangler
-            path = wrangler._get_current_directory_path_of_interest()
-            return path
+        if self.current_score_directory_path:
+            return os.path.join(self.current_score_directory_path, 'segments')
 
     @property
     def display_pitch_ranges_with_numbered_pitches(self):
@@ -1161,23 +1145,7 @@ class Session(abctools.AbjadObject):
         '''
         return self._last_command_was_composite
 
-    @property
-    def last_line(self):
-        r'''Gets last line of session.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.last_line
-                ''
-
-        Useful for autopsy work after session ends.
-
-        Returns string.
-        '''
-        return self._last_line
-
+    # TODO: derive from self.controller_stack
     @property
     def last_asset_path(self):
         r'''Gets last material package path.
