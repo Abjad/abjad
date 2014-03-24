@@ -16,6 +16,14 @@ class AbjadObject(object):
 
     ### SPECIAL METHODS ###
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(AbjadObject, self).__hash__()
+
     def __eq__(self, expr):
         r'''Is true when ID of `expr` equals ID of Abjad object.
         Otherwise false.

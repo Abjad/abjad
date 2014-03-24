@@ -98,7 +98,7 @@ class IOManager(object):
         fixed_point=True,
         ):
         '''Counts function calls required to execute `expr`.
-        
+
         ..  container:: example
 
             Counts function calls required to initialize note from string:
@@ -260,14 +260,14 @@ class IOManager(object):
     @staticmethod
     def open_file(file_path, application=None, line_number=None):
         r'''Opens `file_path`.
-        
+
         Uses `application` when `application` is not none.
 
         Uses Abjad configuration file `text_editor` when
         `application` is none.
 
         Takes best guess at operating system-specific file opener when both
-        `application` and Abjad configuration file `text_editor` are none. 
+        `application` and Abjad configuration file `text_editor` are none.
 
         Respects `line_number` when `file_path` can be opened with text editor.
 
@@ -277,15 +277,15 @@ class IOManager(object):
         if os.name == 'nt':
             os.startfile(file_path)
             return
-        if sys.platform.lower() == 'linux2':
+        if sys.platform.lower().startswith('linux'):
             viewer = application or 'xdg-open'
-        elif file_path.endswith('.pdf'): 
+        elif file_path.endswith('.pdf'):
             viewer = application or abjad_configuration['pdf_viewer']
         elif file_path.endswith('.py'):
             viewer = application or abjad_configuration['text_editor']
         elif file_path.endswith('.txt'):
             viewer = application or abjad_configuration['text_editor']
-        viewer = viewer or 'open' 
+        viewer = viewer or 'open'
         if line_number:
             command = '{} +{} {}'.format(viewer, line_number, file_path)
         else:
