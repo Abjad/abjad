@@ -52,7 +52,7 @@ class ClassCrawler(abctools.AbjadObject):
             obj = getattr(module, name)
             if isinstance(obj, types.TypeType):
                 objects.append(obj)
-        return tuple(sorted(objects))
+        return tuple(sorted(objects, key=lambda x: x.__name__))
 
     ### PUBLIC PROPERTIES ###
 
