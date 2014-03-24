@@ -157,7 +157,6 @@ class Menu(ScoreManagerObject):
         return result
 
     def _display_all_commands(self):
-        self._session._push_breadcrumb('commands')
         menu_lines = []
         for menu_section in self.menu_sections:
             #print repr(menu_section), 'SECTION'
@@ -182,7 +181,6 @@ class Menu(ScoreManagerObject):
             capitalize_first_character=False,
             clear_terminal=True,
             )
-        self._session._pop_breadcrumb()
         self._session._hide_hidden_commands = True
         self._session._hide_next_redraw = True
 

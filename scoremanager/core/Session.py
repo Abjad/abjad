@@ -37,8 +37,6 @@ class Session(abctools.AbjadObject):
         '_attempted_to_revert_to_repository',
         '_attempted_to_update_from_repository',
         '_backtracking_stack',
-        '_breadcrumb_cache_stack',
-        '_breadcrumb_stack',
         '_command_history',
         '_configuration',
         '_controller_stack',
@@ -88,7 +86,6 @@ class Session(abctools.AbjadObject):
         )
 
     _variables_to_display = (
-        'breadcrumb_stack',
         'command_history',
         'controller_stack',
         'controllers_visited',
@@ -124,8 +121,6 @@ class Session(abctools.AbjadObject):
         self._attempted_to_revert_to_repository = False
         self._attempted_to_update_from_repository = False
         self._backtracking_stack = []
-        self._breadcrumb_cache_stack = []
-        self._breadcrumb_stack = []
         self._command_history = []
         self._configuration = core.ScoreManagerConfiguration()
         self._controller_stack = []
@@ -252,11 +247,6 @@ class Session(abctools.AbjadObject):
         else:
             return False
 
-#    def _cache_breadcrumbs(self, cache=False):
-#        if cache:
-#            self._breadcrumb_cache_stack.append(self._breadcrumb_stack[:])
-#            self._breadcrumb_stack[:] = []
-
     def _clean_up(self):
         if self.write_transcript:
             transcripts_directory = \
@@ -272,20 +262,6 @@ class Session(abctools.AbjadObject):
                 messages.append(message)
                 self.io_manager.display(messages)
             self.transcript._write()
-
-    def _format_breadcrumb_stack(self):
-        if not self._breadcrumb_stack:
-            return ''
-        result_lines = [self._breadcrumb_stack[0]]
-        hanging_indent_width = 5
-        for breadcrumb in self._breadcrumb_stack[1:]:
-            candidate_line = result_lines[-1] + ' - ' + breadcrumb
-            if len(candidate_line) <= self.menu_header_width:
-                result_lines[-1] = candidate_line
-            else:
-                result_line = hanging_indent_width * ' ' + breadcrumb
-                result_lines.append(result_line)
-        return result_lines
 
     def _format_controller_breadcrumbs(self):
         if not self.controller_stack:
@@ -314,10 +290,6 @@ class Session(abctools.AbjadObject):
     def _pop_backtrack(self):
         return self._backtracking_stack.pop()
 
-    def _pop_breadcrumb(self, rollback=True):
-        if rollback:
-            return self._breadcrumb_stack.pop()
-
     def _pop_controller(self):
         controller = self.controller_stack.pop()
         self._hide_hidden_commands = True
@@ -344,10 +316,6 @@ class Session(abctools.AbjadObject):
         else:
             self._backtracking_stack.append(0)
 
-    def _push_breadcrumb(self, breadcrumb, rollback=True):
-        if rollback:
-            self._breadcrumb_stack.append(breadcrumb)
-
     def _push_controller(self, controller):
         self.controller_stack.append(controller)
         if controller not in self._controllers_visited:
@@ -359,10 +327,6 @@ class Session(abctools.AbjadObject):
         is_add_to_repository_test = self._is_repository_test
         type(self).__init__(self, is_test=self.is_test)
         self._is_repository_test = is_add_to_repository_test
-
-#    def _restore_breadcrumbs(self, cache=False):
-#        if cache:
-#            self._breadcrumb_stack[:] = self._breadcrumb_cache_stack.pop()
 
     def _set_test_score(self, score_package_name):
         from scoremanager import managers
@@ -379,23 +343,6 @@ class Session(abctools.AbjadObject):
         self._controller_stack.append(manager)
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def breadcrumb_stack(self):
-        r'''Gets session breadcrumb stack.
-
-        ..  container:: example
-
-            ::
-
-                >>> session._breadcrumb_stack
-                []
-
-        Returns list.
-        '''
-        #assert len(self._breadcrumb_stack) == len(self.controller_stack), repr(
-        #    (self._breadcrumb_stack, self.controller_stack))
-        return self._breadcrumb_stack
 
     @property
     def command_history(self):
@@ -1232,7 +1179,6 @@ class Session(abctools.AbjadObject):
 
         Returns string.
         '''
-        #return '\n'.join(self._format_breadcrumb_stack())
         return '\n'.join(self._format_controller_breadcrumbs())
 
     @property

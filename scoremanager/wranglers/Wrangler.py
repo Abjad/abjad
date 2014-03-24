@@ -352,7 +352,6 @@ class Wrangler(Controller):
         from scoremanager import wranglers
         self._session._push_controller(self)
         self._io_manager._assign_user_input(pending_user_input)
-        breadcrumb = self._session._pop_breadcrumb(rollback=rollback)
         if type(self) is wranglers.BuildFileWrangler:
             self._session._is_navigating_to_score_build_files = False
         elif type(self) is wranglers.DistributionFileWrangler:
@@ -366,7 +365,6 @@ class Wrangler(Controller):
         elif type(self) is wranglers.StylesheetWrangler:
             self._session._is_navigating_to_score_stylesheets = False
         while True:
-            self._session._push_breadcrumb(self._breadcrumb)
             if self._session.is_navigating_to_next_asset:
                 result = self._get_next_asset_path()
             elif self._session.is_navigating_to_previous_asset:
@@ -377,18 +375,11 @@ class Wrangler(Controller):
             if self._session._backtrack():
                 break
             elif not result:
-                self._session._pop_breadcrumb()
                 continue
             self._handle_main_menu_result(result)
             if self._session._backtrack():
                 break
-            self._session._pop_breadcrumb()
         self._session._pop_controller()
-        self._session._pop_breadcrumb()
-        self._session._push_breadcrumb(
-            breadcrumb=breadcrumb, 
-            rollback=rollback,
-            )
 
     def _select_asset_path(
         self, 
@@ -400,16 +391,13 @@ class Wrangler(Controller):
         menu = self._make_asset_selection_menu()
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb()
-            self._session._push_breadcrumb(breadcrumb)
             result = menu._run(clear=clear)
             if self._session._backtrack():
                 break
             elif not result:
-                self._session._pop_breadcrumb()
                 continue
             else:
                 break
-        self._session._pop_breadcrumb()
         return result
 
     def _select_storehouse_path(
@@ -438,16 +426,13 @@ class Wrangler(Controller):
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb(
                 is_storehouse=True)
-            self._session._push_breadcrumb(breadcrumb)
             result = menu._run(clear=clear)
             if self._session._backtrack():
                 break
             elif not result:
-                self._session._pop_breadcrumb()
                 continue
             else:
                 break
-        self._session._pop_breadcrumb()
         return result
 
     ### PUBLIC METHODS ###

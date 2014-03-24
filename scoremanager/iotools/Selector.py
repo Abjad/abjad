@@ -114,18 +114,15 @@ class Selector(ScoreManagerObject):
         ):
         self._io_manager._assign_user_input(pending_user_input)
         while True:
-            self._session._push_breadcrumb(self._breadcrumb)
             menu = self._make_main_menu()
             result = menu._run(clear=clear)
             if self._session._backtrack():
                 result = None
                 break
             elif not result:
-                self._session._pop_breadcrumb()
                 continue
             else:
                 break
-        self._session._pop_breadcrumb()
         return result
 
     ### PUBLIC PROPERTIES ###

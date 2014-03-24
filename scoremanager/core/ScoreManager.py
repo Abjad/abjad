@@ -300,20 +300,17 @@ class ScoreManager(Controller):
         self._io_manager._assign_user_input(
             pending_user_input=pending_user_input,
             )
-        self._session._push_breadcrumb(self._breadcrumb)
         self._session._write_transcript = write_transcript
         if display_active_scores:
             self._session.display_active_scores()
         run_main_menu = True
         while True:
-            self._session._push_breadcrumb(self._score_status_string)
             if run_main_menu:
                 menu = self._make_main_menu()
                 result = menu._run(clear=clear)
             else:
                 run_main_menu = True
             if self._session._backtrack(source='home'):
-                self._session._pop_breadcrumb()
                 self._session._clean_up()
                 break
             elif self._session.is_navigating_to_next_score:
@@ -325,18 +322,14 @@ class ScoreManager(Controller):
                 self._session._is_backtracking_to_score_manager = False
                 result = self._get_previous_score_directory_path()
             elif not result:
-                self._session._pop_breadcrumb()
                 continue
             self._handle_main_menu_result(result)
             if self._session._backtrack(source='home'):
-                self._session._pop_breadcrumb()
                 self._session._clean_up()
                 break
             elif self._session.is_navigating_to_sibling_score:
                 run_main_menu = False
-            self._session._pop_breadcrumb()
         self._session._pop_controller()
-        self._session._pop_breadcrumb()
 
     ### PUBLIC METHODS ###
 

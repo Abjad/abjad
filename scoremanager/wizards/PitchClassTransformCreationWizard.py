@@ -56,7 +56,6 @@ class PitchClassTransformCreationWizard(Wizard):
         while True:
             breadcrumb = self._function_application_pairs_to_breadcrumb(
                 function_application_pairs)
-            self._session._push_breadcrumb(breadcrumb=breadcrumb)
             items = []
             items.append('transpose')
             items.append('invert')
@@ -72,17 +71,13 @@ class PitchClassTransformCreationWizard(Wizard):
             if self._session._backtrack():
                 break
             elif not function_name:
-                self._session._pop_breadcrumb()
                 continue
             function_arguments = self._get_function_arguments(function_name)
             if self._session._backtrack():
                 break
             elif function_arguments is None:
-                self._session._pop_breadcrumb()
                 continue
             function_application_pairs.append(
                 (function_name, function_arguments))
-            self._session._pop_breadcrumb()
-        self._session._pop_breadcrumb()
         self.target = function_application_pairs
         return self.target

@@ -499,7 +499,6 @@ class Manager(Controller):
                 self._session._is_navigating_to_previous_asset = False
                 self._session._last_asset_path = self._path
             while True:
-                self._session._push_breadcrumb(self._breadcrumb)
                 # TODO: encapsulate the if ... else in a separate method
                 if (self._session.is_navigating_to_score_build_files and
                     type(self) is managers.ScorePackageManager):
@@ -528,14 +527,11 @@ class Manager(Controller):
                 if self._session._backtrack(source=self._backtracking_source):
                     break
                 elif not result:
-                    self._session._pop_breadcrumb()
                     continue
                 self._handle_main_menu_result(result)
                 if self._session._backtrack(source=self._backtracking_source):
                     break
-                self._session._pop_breadcrumb()
         self._session._pop_controller()
-        self._session._pop_breadcrumb()
 
     def _space_delimited_lowercase_name_to_asset_name(
         self, space_delimited_lowercase_name):

@@ -6,7 +6,6 @@ import scoremanager
 def test_MenuSection__menu_entry_return_values_01():
 
     menu = scoremanager.iotools.Menu()
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
         is_numbered=True, 
@@ -22,7 +21,6 @@ def test_MenuSection__menu_entry_return_values_01():
         section._menu_entry_display_strings
 
     menu = scoremanager.iotools.Menu()
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(name='test', title='section')
     section.append('apple')
     section.append('banana')
@@ -34,7 +32,6 @@ def test_MenuSection__menu_entry_return_values_01():
         section._menu_entry_display_strings
 
     menu = scoremanager.iotools.Menu()
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
         title='section',
@@ -51,7 +48,6 @@ def test_MenuSection__menu_entry_return_values_01():
         section._menu_entry_display_strings
 
     menu = scoremanager.iotools.Menu()
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(name='test', title='section')
     section.append('apple')
     section.append('banana')
@@ -72,7 +68,6 @@ def test_MenuSection__menu_entry_return_values_02():
     '''
 
     menu = scoremanager.iotools.Menu()
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
         title='section',
@@ -88,7 +83,6 @@ def test_MenuSection__menu_entry_return_values_02():
         section._menu_entry_keys
 
     menu = scoremanager.iotools.Menu()
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
         title='section',
@@ -104,7 +98,6 @@ def test_MenuSection__menu_entry_return_values_02():
         section._menu_entry_keys
 
     menu = scoremanager.iotools.Menu()
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
         is_numbered=True, 
@@ -120,7 +113,6 @@ def test_MenuSection__menu_entry_return_values_02():
         section._menu_entry_display_strings
 
     menu = scoremanager.iotools.Menu()
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(name='test', title='section')
     section.append(('something - add', 'add'))
     section.append(('something - delete', 'rm'))
@@ -138,7 +130,6 @@ def test_MenuSection__menu_entry_return_values_03():
     '''
 
     menu = scoremanager.iotools.Menu()
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
         title='section',

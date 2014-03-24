@@ -35,7 +35,6 @@ class ReservoirStartHelperCreationWizard(Wizard):
         self._io_manager._assign_user_input(pending_user_input)
         while True:
             function_application_pairs = []
-            self._session._push_breadcrumb(self._breadcrumb)
             items = []
             items.append('start at index 0')
             items.append('start at index n')
@@ -49,17 +48,14 @@ class ReservoirStartHelperCreationWizard(Wizard):
             if self._session._backtrack():
                 break
             elif not function_name:
-                self._session._pop_breadcrumb()
                 continue
             function_arguments = self._get_function_arguments(function_name)
             if self._session._backtrack():
                 break
             elif function_arguments is None:
-                self._session._pop_breadcrumb()
                 continue
             function_application_pairs.append(
                 (function_name, function_arguments))
             break
-        self._session._pop_breadcrumb()
         self.target = function_application_pairs
         return self.target

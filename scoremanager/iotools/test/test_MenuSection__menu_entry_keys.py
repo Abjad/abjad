@@ -9,7 +9,6 @@ def test_MenuSection__menu_entry_keys_01():
     '''
 
     menu = scoremanager.iotools.Menu()
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(name='test', title='section')
     section.append('apple')
     section.append('banana')
@@ -18,7 +17,6 @@ def test_MenuSection__menu_entry_keys_01():
     assert section._menu_entry_keys == [None, None, None]
 
     menu = scoremanager.iotools.Menu()
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
         is_numbered=True, 
@@ -38,7 +36,6 @@ def test_MenuSection__menu_entry_keys_02():
     '''
 
     menu = scoremanager.iotools.Menu()
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(name='test', title='section title')
     section.append(('something - add', 'add'))
     section.append(('something - delete', 'rm'))
@@ -50,7 +47,6 @@ def test_MenuSection__menu_entry_keys_02():
         [x.key for x in section.menu_entries]
 
     menu = scoremanager.iotools.Menu()
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
         is_numbered=True, 

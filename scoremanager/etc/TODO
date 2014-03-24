@@ -99,7 +99,6 @@
 
 28. Clean up possibly all current_* session variables by implementing
     as derived properties:
-        breadcrumb_stack
         current_score_directory_path
         current_score_package_manager
         current_score_snake_case_name

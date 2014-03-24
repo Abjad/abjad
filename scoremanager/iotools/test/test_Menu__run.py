@@ -8,7 +8,6 @@ def test_Menu__run_01():
     '''
 
     menu = scoremanager.iotools.Menu(name='test')
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(name='test', title='section')
     section.append('apple')
     section.append('banana')
@@ -51,7 +50,6 @@ def test_Menu__run_02():
     '''
 
     menu = scoremanager.iotools.Menu(name='test')
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
         is_hidden=True,
@@ -91,7 +89,6 @@ def test_Menu__run_03():
     '''
 
     menu = scoremanager.iotools.Menu(name='test')
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
         is_numbered=True,
@@ -138,7 +135,6 @@ def test_Menu__run_04():
     '''
 
     menu = scoremanager.iotools.Menu(name='test')
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
         is_ranged=True,
@@ -186,7 +182,6 @@ def test_Menu__run_05():
     '''
 
     menu = scoremanager.iotools.Menu(name='test')
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test',
         title='section',
@@ -246,7 +241,6 @@ def test_Menu__run_06():
     '''
 
     menu = scoremanager.iotools.Menu(name='test')
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test',
         )
@@ -296,7 +290,6 @@ def test_Menu__run_07():
     '''
 
     menu = scoremanager.iotools.Menu(name='test')
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test',
         return_value_attribute='key',
@@ -350,7 +343,6 @@ def test_Menu__run_08():
     '''
 
     menu = scoremanager.iotools.Menu(name='test')
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
         is_hidden=True,
@@ -401,7 +393,6 @@ def test_Menu__run_09():
     '''
 
     menu = scoremanager.iotools.Menu(name='test')
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test',
         return_value_attribute='key',
@@ -461,7 +452,6 @@ def test_Menu__run_10():
     '''
 
     menu = scoremanager.iotools.Menu(name='test')
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test',
         return_value_attribute='key',
@@ -521,7 +511,6 @@ def test_Menu__run_11():
     '''
 
     menu = scoremanager.iotools.Menu(name='test')
-    menu._session._push_breadcrumb('location')
     section = menu._make_section(
         name='test', 
         is_ranged=True,

@@ -211,7 +211,6 @@ class PackageWrangler(Wrangler):
                 human_readable_target_name=human_readable_target_name,
                 infinitival_phrase=infinitival_phrase,
                 )
-            self._session._push_breadcrumb(breadcrumb)
             menu = self._make_asset_selection_menu(
                 packages_instead_of_paths=True,
                 )
@@ -219,9 +218,7 @@ class PackageWrangler(Wrangler):
             if self._session._backtrack():
                 break
             elif not result:
-                self._session._pop_breadcrumb()
                 continue
             else:
                 break
-        self._session._pop_breadcrumb()
         return result

@@ -70,7 +70,6 @@ class InstrumentCreationWizard(Wizard):
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
-        self._session._push_breadcrumb(self._breadcrumb)
         items = instrumenttools.Instrument._list_instrument_names()
         selector = iotools.Selector(
             session=self._session,
@@ -80,7 +79,6 @@ class InstrumentCreationWizard(Wizard):
         with self._backtracking:
             result = selector._run()
         if self._session._backtrack():
-            self._session._pop_breadcrumb()
             return
         if isinstance(result, list):
             instrument_names = result
@@ -96,6 +94,5 @@ class InstrumentCreationWizard(Wizard):
             result = instruments[:]
         else:
             result = instruments[0]
-        self._session._pop_breadcrumb()
         self.target = result
         return self.target

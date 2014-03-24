@@ -47,7 +47,6 @@ class Wizard(ScoreManagerObject):
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
-        self._session._push_breadcrumb(self._breadcrumb)
         if hasattr(self, 'selector'):
             selector = self.selector
         else:
@@ -57,4 +56,3 @@ class Wizard(ScoreManagerObject):
             handler_editor = self._get_target_editor(handler_class_name)
             handler_editor._run(is_autoadvancing=True, is_autostarting=True)
             self.target = handler_editor.target
-        self._session._pop_breadcrumb()

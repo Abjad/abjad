@@ -245,10 +245,8 @@ class Editor(Controller):
         ):
         self._session._is_in_editor = True
         self._io_manager._assign_user_input(pending_user_input)
-        self._session._push_breadcrumb(self._breadcrumb)
         with self._backtracking:
             self._initialize_target()
-        self._session._pop_breadcrumb()
         if self._session._backtrack():
             return
         result = None
@@ -259,7 +257,6 @@ class Editor(Controller):
             self._session._is_autoadding = True
         while True:
             breadcrumb = breadcrumb or self._breadcrumb
-            self._session._push_breadcrumb(breadcrumb=breadcrumb)
             if self._session.is_autoadding:
                 menu = self._make_main_menu()
                 result = 'add'
@@ -282,7 +279,6 @@ class Editor(Controller):
                     result)
                 if result == entry_point:
                     self.is_autoadvancing = False
-                    self._session._pop_breadcrumb()
                     continue
             else:
                 menu = self._make_main_menu()
@@ -290,16 +286,13 @@ class Editor(Controller):
                 if self._session._backtrack():
                     break
                 elif not result:
-                    self._session._pop_breadcrumb()
                     continue
             if result == 'done':
                 break
             self._handle_main_menu_result(result)
             if self._session._backtrack():
                 break
-            self._session._pop_breadcrumb()
         self._session._is_autoadding = False
-        self._session._pop_breadcrumb()
         self._clean_up_attributes_in_memory()
         self._session._is_in_editor = False
 

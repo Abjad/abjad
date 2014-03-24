@@ -416,21 +416,16 @@ class ScorePackageManager(PackageManager):
         self._session._is_in_score_setup_menu = True
         while True:
             annotated_title = self._get_annotated_title()
-            breadcrumb = '{} - setup'.format(annotated_title)
-            self._session._push_breadcrumb(breadcrumb)
             menu = self._make_setup_menu()
             result = menu._run(clear=clear)
             if self._session._backtrack():
                 break
             elif not result:
-                self._session._pop_breadcrumb()
                 continue
             self._handle_setup_menu_result(result)
             if self._session._backtrack():
                 break
-            self._session._pop_breadcrumb()
         self._session._is_in_score_setup_menu = False
-        self._session._pop_breadcrumb()
 
     def _remove(self):
         superclass = super(ScorePackageManager, self)
