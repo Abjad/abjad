@@ -142,10 +142,13 @@ class Menu(ScoreManagerObject):
         user_input = self._io_manager.handle_user_input('')
         if user_input == '':
             user_entered_lone_return = True
+        #print repr(user_input), 'UIP'
         directive = self._change_user_input_to_directive(user_input)
+        #print repr(directive), 'DIR'
         directive = self._strip_default_notice_from_strings(directive)
         self._session._hide_next_redraw = False
         directive = self._io_manager._handle_io_manager_directive(directive)
+        #print repr(directive), 'MOD DIR'
         if directive is None and user_entered_lone_return:
             result = 'user entered lone return'
         elif directive is None and not user_entered_lone_return:
@@ -162,12 +165,6 @@ class Menu(ScoreManagerObject):
             #print repr(menu_section), 'SECTION'
             if not menu_section.is_command_section:
                 continue
-#            if menu_section.is_asset_section:
-#                continue
-#            if menu_section.is_material_summary_section:
-#                continue
-#            if menu_section.is_navigation_section:
-#                continue
             for menu_entry in menu_section.menu_entries:
                 key = menu_entry.key
                 display_string = menu_entry.display_string

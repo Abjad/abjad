@@ -119,6 +119,7 @@ class Selector(ScoreManagerObject):
             menu = self._make_main_menu()
             result = menu._run(clear=clear)
             if self._session._backtrack():
+                result = None
                 break
             elif not result:
                 self._session._pop_breadcrumb()

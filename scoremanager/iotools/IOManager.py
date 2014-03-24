@@ -83,6 +83,7 @@ class IOManager(IOManager):
 
     # the ifs can be replaced with a _user_input_to_to_action dictionary
     def _handle_io_manager_directive(self, directive):
+        print repr(directive), 'ddd'
         from scoremanager import managers
         if isinstance(directive, list) and len(directive) == 1:
             key = directive[0]
@@ -127,6 +128,7 @@ class IOManager(IOManager):
         elif key in ('q', 'quit'):
             self._session._is_quitting = True
             self._session._hide_hidden_commands = True
+            return 'q'
         elif key == 'sce':
             self.edit_calling_code()
         elif key == 'scl':
