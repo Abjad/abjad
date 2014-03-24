@@ -2,10 +2,10 @@
 import os
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from scoremanager.wranglers.Wrangler import Wrangler
+from scoremanager.wranglers.FileWrangler import FileWrangler
 
 
-class BuildFileWrangler(Wrangler):
+class BuildFileWrangler(FileWrangler):
     r'''Build wrangler.
 
     ..  container:: example
