@@ -99,13 +99,13 @@
 
 28. Clean up possibly all current_* session variables by implementing
     as derived properties:
-        current_build_directory_path
-        current_controller (already derived)
-        current_materials_directory_path
+        current_build_directory_path (maybe remove altogether)
+        current_materials_directory_path (maybe remove altogether)
         current_score_directory_path
         current_score_package_manager
         current_score_snake_case_name
-        current_segments_directory_path
+        current_segments_directory_path (maybe remove altogether)
+        last_asset_path
     Seems like all of these should be derivable simply by looking
     at the controller stack. This means that all of these variables
     can stop being maintained by other parts of the system.
