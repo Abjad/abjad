@@ -81,7 +81,8 @@ class IOManager(IOManager):
         else:
             return repr(expr)
 
-    # the ifs can be replaced with a _user_input_to_to_action dictionary
+    # TODO: clean up return value;
+    #       returning none should mean nothing more for calling code to do
     def _handle_io_manager_directive(self, directive):
         input_directive = directive
         from scoremanager import managers
@@ -148,10 +149,12 @@ class IOManager(IOManager):
             self._session._is_navigating_to_next_score = True
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
+            return '>'
         elif directive == '<':
             self._session._is_navigating_to_previous_score = True
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
+            return '<'
         elif directive == '>>':
             controller = self._session.current_controller
             if isinstance(controller, managers.MaterialManager):
@@ -160,6 +163,7 @@ class IOManager(IOManager):
                 self._session._is_navigating_to_score_segments = True
             self._session._is_navigating_to_next_asset = True
             self._session._hide_hidden_commands = True
+            return '>>'
         elif directive == '<<':
             controller = self._session.current_controller
             if isinstance(controller, managers.MaterialManager):
@@ -168,14 +172,16 @@ class IOManager(IOManager):
                 self._session._is_navigating_to_score_segments = True
             self._session._is_navigating_to_previous_asset = True
             self._session._hide_hidden_commands = True
+            return '<<'
         elif isinstance(directive, str) and directive.startswith('!'):
             statement = directive.replace('!', '')
             self.invoke_shell(statement=statement)
         elif self._is_score_string(directive) and self._session.is_in_score:
             self._session._is_backtracking_to_score = True
             self._session._hide_hidden_commands = True
-        elif self._is_score_string(directive) and not self._session.is_in_score:
-            pass
+        elif (self._is_score_string(directive) and 
+            not self._session.is_in_score):
+            return
         elif self._is_home_string(directive):
             self._session._current_score_snake_case_name = None
             self._session._is_backtracking_to_score_manager = True
