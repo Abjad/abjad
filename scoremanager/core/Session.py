@@ -92,11 +92,9 @@ class Session(abctools.AbjadObject):
         'controller_stack',
         'controllers_visited',
         'current_controller',
-        'current_materials_directory_path',
         'current_score_directory_path',
         'current_score_package_manager',
         'current_score_snake_case_name',
-        'current_segments_directory_path',
         'write_transcript',
         'hide_next_redraw',
         'hide_hidden_commands',
@@ -107,13 +105,11 @@ class Session(abctools.AbjadObject):
         'last_asset_path',
         'nonnumbered_menu_sections_are_hidden',
         'rewrite_cache',
-        'score_manager',
         'scores_to_display',
         'session_once_had_user_input',
         'transcribe_next_command',
         'use_current_user_input_values_as_default',
         'user_input_is_consumed',
-        'where',
         )
 
     ### INITIALIZER ###
