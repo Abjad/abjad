@@ -1096,9 +1096,7 @@ class Tuplet(Container):
         duration = durationtools.Duration(duration)
         ratio = mathtools.Ratio(ratio)
         # find basic duration of note in tuplet
-        print(duration, ratio)
         basic_prolated_duration = duration / mathtools.weight(ratio)
-        print(basic_prolated_duration, mathtools.weight(ratio))
         # find basic written duration of note in tuplet
         if avoid_dots:
             basic_written_duration = \
