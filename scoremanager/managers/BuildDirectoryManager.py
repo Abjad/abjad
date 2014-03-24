@@ -30,6 +30,14 @@ class BuildDirectoryManager(DirectoryManager):
         return 'build manager'
 
     @property
+    def _current_build_directory_path(self):
+        if self._session.is_in_score:
+            return os.path.join(
+                self._session.current_score_directory_path,
+                'build',
+                )
+
+    @property
     def _user_input_to_action(self):
         superclass = super(BuildDirectoryManager, self)
         result = superclass._user_input_to_action
@@ -193,7 +201,6 @@ class BuildDirectoryManager(DirectoryManager):
         '''
         self._io_manager._assign_user_input(pending_user_input)
         segments_directory_path = self._session.current_segments_directory_path
-        build_directory_path = self._session.current_build_directory_path
         for directory_entry in sorted(os.listdir(segments_directory_path)):
             segment_directory_path = os.path.join(
                 segments_directory_path,
@@ -221,8 +228,8 @@ class BuildDirectoryManager(DirectoryManager):
                 self._path,
                 target_file_name,
                 )
-            if not os.path.exists(build_directory_path):
-                os.mkdir(build_directory_path)
+            if not os.path.exists(self._current_build_directory_path):
+                os.mkdir(self._current_build_directory_path)
             shutil.copyfile(source_file_path, target_file_path)
             self._trim_lilypond_file(target_file_path)
             message = 'segment {} LilyPond file copied & trimmed.'
@@ -251,11 +258,11 @@ class BuildDirectoryManager(DirectoryManager):
                 )
             if not os.path.isfile(source_file_path):
                 continue
-            score_package_path = self._session.current_score_package_path
+            score_package_name = self._session.current_score_snake_case_name
             directory_entry = directory_entry.replace('_', '-')
             target_file_name = '{}-segment-{}.pdf'
             target_file_name = target_file_name.format(
-                score_package_path,
+                score_package_name,
                 directory_entry,
                 )
             target_file_path = os.path.join(
@@ -263,7 +270,7 @@ class BuildDirectoryManager(DirectoryManager):
                 target_file_name,
                 )
             shutil.copyfile(source_file_path, target_file_path)
-            message = 'Segment {} PDF copied.'
+            message = 'segment {} PDF copied.'
             message = message.format(directory_entry)
             self._io_manager.display(message)
         self._io_manager.proceed('')
