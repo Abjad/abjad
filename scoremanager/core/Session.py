@@ -63,7 +63,7 @@ class Session(abctools.AbjadObject):
         '_is_navigating_to_next_score',
         '_is_navigating_to_previous_asset',
         '_is_navigating_to_previous_score',
-        '_is_navigating_to_score_makers',
+        '_is_navigating_to_score_maker_modules',
         '_is_navigating_to_score_materials',
         '_is_navigating_to_score_segments',
         '_is_navigating_to_score_setup',
@@ -158,7 +158,7 @@ class Session(abctools.AbjadObject):
         self._is_navigating_to_next_score = False
         self._is_navigating_to_previous_asset = False
         self._is_navigating_to_previous_score = False
-        self._is_navigating_to_score_makers = False
+        self._is_navigating_to_score_maker_modules = False
         self._is_navigating_to_score_materials = False
         self._is_navigating_to_score_segments = False
         self._is_navigating_to_score_setup = False
@@ -239,7 +239,7 @@ class Session(abctools.AbjadObject):
         elif (self.is_navigating_to_score_distribution_files and
             not source in ('score', 'home')):
             return True
-        elif (self.is_navigating_to_score_makers and
+        elif (self.is_navigating_to_score_maker_modules and
             not source in ('score', 'home')):
             return True
         elif (self.is_navigating_to_score_materials and
@@ -758,7 +758,7 @@ class Session(abctools.AbjadObject):
             return True
         elif self.is_navigating_to_previous_score:
             return True
-        elif self.is_navigating_to_score_makers:
+        elif self.is_navigating_to_score_maker_modules:
             return True
         elif self.is_navigating_to_score_materials:
             return True
@@ -991,7 +991,7 @@ class Session(abctools.AbjadObject):
         return self._is_navigating_to_previous_score
 
     @property
-    def is_navigating_to_score_makers(self):
+    def is_navigating_to_score_maker_modules(self):
         r'''Is true when session is navigating to score makers.
         Otherwise false.
 
@@ -999,12 +999,12 @@ class Session(abctools.AbjadObject):
 
             ::
 
-                >>> session.is_navigating_to_score_makers
+                >>> session.is_navigating_to_score_maker_modules
                 False
 
         Returns boolean.
         '''
-        return self._is_navigating_to_score_makers
+        return self._is_navigating_to_score_maker_modules
 
     @property
     def is_navigating_to_score_materials(self):

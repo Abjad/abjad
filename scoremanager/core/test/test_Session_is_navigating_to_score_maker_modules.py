@@ -5,7 +5,7 @@ configuration = scoremanager.core.ScoreManagerConfiguration()
 score_manager = scoremanager.core.ScoreManager(is_test=True)
 
 
-def test_Session_is_navigating_to_score_makers_01():
+def test_Session_is_navigating_to_score_maker_modules_01():
     r'''From build directory to makers directory.
     '''
 
@@ -20,7 +20,7 @@ def test_Session_is_navigating_to_score_makers_01():
     assert score_manager._transcript.titles == titles
 
 
-def test_Session_is_navigating_to_score_makers_02():
+def test_Session_is_navigating_to_score_maker_modules_02():
     r'''From distribution directory to makers directory.
     '''
 
@@ -35,7 +35,7 @@ def test_Session_is_navigating_to_score_makers_02():
     assert score_manager._transcript.titles == titles
 
 
-def test_Session_is_navigating_to_score_makers_03():
+def test_Session_is_navigating_to_score_maker_modules_03():
     r'''From makers directory to makers directory.
     '''
 
@@ -50,7 +50,7 @@ def test_Session_is_navigating_to_score_makers_03():
     assert score_manager._transcript.titles == titles
 
 
-def test_Session_is_navigating_to_score_makers_04():
+def test_Session_is_navigating_to_score_maker_modules_04():
     r'''From materials directory to makers directory.
     '''
 
@@ -65,7 +65,7 @@ def test_Session_is_navigating_to_score_makers_04():
     assert score_manager._transcript.titles == titles
 
 
-def test_Session_is_navigating_to_score_makers_05():
+def test_Session_is_navigating_to_score_maker_modules_05():
     r'''From segments directory to makers directory.
     '''
 
@@ -80,7 +80,7 @@ def test_Session_is_navigating_to_score_makers_05():
     assert score_manager._transcript.titles == titles
 
 
-def test_Session_is_navigating_to_score_makers_06():
+def test_Session_is_navigating_to_score_maker_modules_06():
     r'''From setup menu to makers directory.
     '''
 
@@ -95,7 +95,7 @@ def test_Session_is_navigating_to_score_makers_06():
     assert score_manager._transcript.titles == titles
 
 
-def test_Session_is_navigating_to_score_makers_07():
+def test_Session_is_navigating_to_score_maker_modules_07():
     r'''From stylesheets menu to makers directory.
     '''
 

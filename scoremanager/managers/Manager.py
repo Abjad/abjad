@@ -508,7 +508,7 @@ class Manager(Controller):
                 elif (self._session.is_navigating_to_score_distribution_files 
                     and type(self) is managers.ScorePackageManager):
                     result = 'd'
-                elif (self._session.is_navigating_to_score_makers and
+                elif (self._session.is_navigating_to_score_maker_modules and
                     type(self) is managers.ScorePackageManager):
                     result = 'k'
                 elif (self._session.is_navigating_to_score_materials and

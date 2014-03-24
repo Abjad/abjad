@@ -98,7 +98,7 @@ class IOManager(IOManager):
             self._session._is_navigating_to_score_segments = True
             return 'g'
         elif key == 'k' and not self._session.is_in_editor:
-            self._session._is_navigating_to_score_makers = True
+            self._session._is_navigating_to_score_maker_modules = True
             return 'k'
         elif key == 'llro':
             self.view_last_log()

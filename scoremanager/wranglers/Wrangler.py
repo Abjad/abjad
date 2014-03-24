@@ -359,7 +359,7 @@ class Wrangler(Controller):
         elif type(self) is wranglers.DistributionFileWrangler:
             self._session._is_navigating_to_score_distribution_files = False
         elif type(self) is wranglers.MakerModuleWrangler:
-            self._session._is_navigating_to_score_makers = False
+            self._session._is_navigating_to_score_maker_modules = False
         elif type(self) is wranglers.MaterialPackageWrangler:
             self._session._is_navigating_to_score_materials = False
         elif type(self) is wranglers.SegmentPackageWrangler:
