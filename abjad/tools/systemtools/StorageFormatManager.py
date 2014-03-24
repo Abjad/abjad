@@ -340,13 +340,14 @@ class StorageFormatManager(object):
         if hasattr(subject.__init__, '__func__'):
             initializer = subject.__init__.__func__
             defaults = initializer.func_defaults
+            initializer_code = initializer.func_code
         elif hasattr(subject.__init__, '__defaults__'):
             defaults = subject.__init__.__defaults__
+            initializer_code = subject.__init__.__code__
         else:
             return ()
         if defaults:
-            keyword_argument_count = len(initializer.func_defaults)
-            initializer_code = initializer.func_code
+            keyword_argument_count = len(defaults)
             positional_argument_count = (
                 initializer_code.co_argcount - keyword_argument_count - 1)
             start_index = 1 + positional_argument_count
