@@ -509,13 +509,13 @@ class ScoreManagerConfiguration(AbjadConfiguration):
             ::
 
                 >>> configuration.user_library_material_managers_directory_path
-                '.../material_managers'
+                '.../managers'
 
         Returns string.
         '''
         path = os.path.join(
             self.user_library_directory_path,
-            'material_managers',
+            'managers',
             )
         return path
 
