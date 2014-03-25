@@ -524,12 +524,12 @@ class Manager(Controller):
                 else:
                     menu = self._make_main_menu()
                     result = menu._run(clear=clear)
-                if self._session._backtrack(source=self):
+                if self._session._break_io_loop(source=self):
                     break
                 elif not result:
                     continue
                 self._handle_main_menu_result(result)
-                if self._session._backtrack(source=self):
+                if self._session._break_io_loop(source=self):
                     break
         self._session._pop_controller()
 
@@ -652,7 +652,7 @@ class Manager(Controller):
             getter = self._io_manager.make_getter(where=self._where)
             getter.append_string('commit message')
             commit_message = getter._run(clear_terminal=False)
-            if self._session._backtrack():
+            if self._session._break_io_loop():
                 return
             line = 'commit message will be: "{}"\n'.format(commit_message)
             self._io_manager.display(line)
@@ -689,7 +689,7 @@ class Manager(Controller):
         self._io_manager._assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
         result = getter._run()
-        if self._session._backtrack():
+        if self._session._break_io_loop():
             return
         new_asset_name = \
             self._space_delimited_lowercase_name_to_asset_name(result)
@@ -806,7 +806,7 @@ class Manager(Controller):
             result = getter._run()
         else:
             result = True
-        if self._session._backtrack():
+        if self._session._break_io_loop():
             return
         if not result == 'remove':
             return
@@ -853,7 +853,7 @@ class Manager(Controller):
         self._io_manager._assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
         result = getter._run()
-        if self._session._backtrack():
+        if self._session._break_io_loop():
             return
         parent_directory_path = os.path.dirname(self._path)
         new_path = os.path.join(parent_directory_path, result)

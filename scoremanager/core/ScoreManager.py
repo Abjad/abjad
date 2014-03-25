@@ -300,8 +300,8 @@ class ScoreManager(Controller):
                 result = menu._run(clear=clear)
             else:
                 run_main_menu = True
-            #if self._session._backtrack(source='home'):
-            if self._session._backtrack(source=self):
+            #if self._session._break_io_loop(source='home'):
+            if self._session._break_io_loop(source=self):
                 self._session._clean_up()
                 break
             elif self._session.is_navigating_to_next_score:
@@ -315,8 +315,8 @@ class ScoreManager(Controller):
             elif not result:
                 continue
             self._handle_main_menu_result(result)
-            #if self._session._backtrack(source='home'):
-            if self._session._backtrack(source=self):
+            #if self._session._break_io_loop(source='home'):
+            if self._session._break_io_loop(source=self):
                 self._session._clean_up()
                 break
             elif self._session.is_navigating_to_sibling_score:

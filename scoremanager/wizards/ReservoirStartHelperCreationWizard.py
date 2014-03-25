@@ -21,7 +21,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
             getter = self._io_manager.make_getter(where=self._where)
             getter.append_integer('index')
             result = getter._run()
-            if self._session._backtrack():
+            if self._session._break_io_loop():
                 return
             arguments.append(result)
         return tuple(arguments)
@@ -44,12 +44,12 @@ class ReservoirStartHelperCreationWizard(Wizard):
                 )
             with self._backtrack:
                 function_name = selector._run(clear=clear)
-            if self._session._backtrack():
+            if self._session._break_io_loop():
                 break
             elif not function_name:
                 continue
             function_arguments = self._get_function_arguments(function_name)
-            if self._session._backtrack():
+            if self._session._break_io_loop():
                 break
             elif function_arguments is None:
                 continue

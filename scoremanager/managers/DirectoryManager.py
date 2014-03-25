@@ -208,7 +208,7 @@ class DirectoryManager(Manager):
         getter.append_snake_case_string('metadatum name', allow_empty=False)
         getter.append_expr('metadatum value')
         result = getter._run()
-        if self._session._backtrack():
+        if self._session._break_io_loop():
             return
         if result:
             metadatum_name, metadatum_value = result
@@ -231,7 +231,7 @@ class DirectoryManager(Manager):
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
         result = getter._run()
-        if self._session._backtrack():
+        if self._session._break_io_loop():
             return
         metadatum = self._get_metadatum(result)
         message = '{!r}'.format(metadatum)
@@ -262,7 +262,7 @@ class DirectoryManager(Manager):
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
         result = getter._run()
-        if self._session._backtrack():
+        if self._session._break_io_loop():
             return
         if result:
             metadatum_name = result

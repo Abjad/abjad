@@ -370,12 +370,12 @@ class Wrangler(Controller):
             else:
                 menu = self._make_main_menu()
                 result = menu._run(clear=clear)
-            if self._session._backtrack():
+            if self._session._break_io_loop():
                 break
             elif not result:
                 continue
             self._handle_main_menu_result(result)
-            if self._session._backtrack():
+            if self._session._break_io_loop():
                 break
         self._session._pop_controller()
 
@@ -389,7 +389,7 @@ class Wrangler(Controller):
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb()
             result = menu._run(clear=clear)
-            if self._session._backtrack():
+            if self._session._break_io_loop():
                 break
             elif not result:
                 continue
@@ -423,7 +423,7 @@ class Wrangler(Controller):
             breadcrumb = self._make_asset_selection_breadcrumb(
                 is_storehouse=True)
             result = menu._run(clear=clear)
-            if self._session._backtrack():
+            if self._session._break_io_loop():
                 break
             elif not result:
                 continue
@@ -465,7 +465,7 @@ class Wrangler(Controller):
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('commit message')
         commit_message = getter._run(clear_terminal=False)
-        if self._session._backtrack():
+        if self._session._break_io_loop():
             return
         line = 'commit message will be: "{}"\n'.format(commit_message)
         self._io_manager.display(line)
@@ -553,7 +553,7 @@ class Wrangler(Controller):
         getter.append_string('view name')
         with self._backtrack:
             view_name = getter._run()
-        if self._session._backtrack():
+        if self._session._break_io_loop():
             return
         menu_entries = self._make_asset_menu_entries()
         display_strings = [x[0] for x in menu_entries]
@@ -566,7 +566,7 @@ class Wrangler(Controller):
         editor.explicit_breadcrumb = breadcrumb
         with self._backtrack:
             editor._run()
-        if self._session._backtrack():
+        if self._session._break_io_loop():
             return
         tokens = editor.target
         self._io_manager.display('')
@@ -590,7 +590,7 @@ class Wrangler(Controller):
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtrack:
             asset_path = self._select_asset_path()
-        if self._session._backtrack():
+        if self._session._break_io_loop():
             return
         asset_manager = self._initialize_asset_manager(asset_path)
         asset_manager.remove()
@@ -631,7 +631,7 @@ class Wrangler(Controller):
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtrack:
             asset_path = self._select_asset_path()
-        if self._session._backtrack():
+        if self._session._break_io_loop():
             return
         asset_manager = self._initialize_asset_manager(asset_path)
         asset_manager.rename()
@@ -688,7 +688,7 @@ class Wrangler(Controller):
         selector.explicit_breadcrumb = 'select view'
         with self._backtrack:
             view_name = selector._run()
-        if self._session._backtrack():
+        if self._session._break_io_loop():
             return
         self._current_package_manager._add_metadatum('view_name', view_name)
 

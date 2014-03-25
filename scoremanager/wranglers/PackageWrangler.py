@@ -151,7 +151,7 @@ class PackageWrangler(Wrangler):
             getter.append_space_delimited_lowercase_string(prompt_string)
             with self._backtrack:
                 name = getter._run()
-            if self._session._backtrack():
+            if self._session._break_io_loop():
                 return
             name = stringtools.string_to_accent_free_snake_case(name)
             path = os.path.join(storehouse_path, name)
@@ -173,7 +173,7 @@ class PackageWrangler(Wrangler):
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtrack:
             path = self.get_available_path()
-        if self._session._backtrack():
+        if self._session._break_io_loop():
             return
         self._make_asset(path)
 
@@ -187,7 +187,7 @@ class PackageWrangler(Wrangler):
             asset_package_path = self.select_asset_package_path(
                 infinitival_phrase='to rename',
                 )
-        if self._session._backtrack():
+        if self._session._break_io_loop():
             return
         asset_manager = self._initialize_asset_manager(asset_package_path)
         asset_manager.rename()
@@ -214,7 +214,7 @@ class PackageWrangler(Wrangler):
                 packages_instead_of_paths=True,
                 )
             result = menu._run(clear=clear)
-            if self._session._backtrack():
+            if self._session._break_io_loop():
                 break
             elif not result:
                 continue

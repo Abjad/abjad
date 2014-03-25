@@ -197,8 +197,7 @@ class Session(abctools.AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    # return true to break out of current io loop
-    def _backtrack(self, source=None):
+    def _break_io_loop(self, source=None):
         from scoremanager import core
         from scoremanager import managers
         if isinstance(source, core.ScoreManager):
