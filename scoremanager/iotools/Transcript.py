@@ -29,11 +29,11 @@ class Transcript(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _append_entry(self, lines, clear_terminal=None):
+    def _append_entry(self, lines, terminal_was_cleared=None):
         from scoremanager import iotools
         entry = iotools.TranscriptEntry(
             lines,
-            terminal_was_cleared=clear_terminal,
+            terminal_was_cleared=terminal_was_cleared,
             )
         self.entries.append(entry)
 

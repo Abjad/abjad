@@ -26,14 +26,14 @@ class PerformerCreationWizard(Wizard):
     def _initialize_performer(
         self, 
         performer, 
-        clear=True,
+        clear_terminal=True,
         pending_user_input=None,
         ):
         from scoremanager import wizards
         self._io_manager._assign_user_input(pending_user_input)
         menu = self._make_performer_configuration_menu(performer)
         while True:
-            result = menu._run(clear=clear)
+            result = menu._run(clear_terminal=clear_terminal)
             if self._exit_io_method():
                 return
             elif not result:
@@ -106,7 +106,7 @@ class PerformerCreationWizard(Wizard):
 
     def _run(
         self, 
-        clear=True, 
+        clear_terminal=True, 
         pending_user_input=None,
         ):
         from scoremanager.iotools import Selector

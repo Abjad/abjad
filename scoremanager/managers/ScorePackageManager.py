@@ -424,13 +424,13 @@ class ScorePackageManager(PackageManager):
             section.append(menu_entry)
         return section
 
-    def _manage_setup(self, clear=True):
+    def _manage_setup(self, clear_terminal=True):
         self._session._is_navigating_to_score_setup = False
         self._session._is_in_score_setup_menu = True
         while True:
             annotated_title = self._get_annotated_title()
             menu = self._make_setup_menu()
-            result = menu._run(clear=clear)
+            result = menu._run(clear_terminal=clear_terminal)
             if self._exit_io_method():
                 break
             elif not result:

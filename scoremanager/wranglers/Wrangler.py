@@ -344,7 +344,7 @@ class Wrangler(Controller):
 
     def _run(
         self, 
-        clear=True, 
+        clear_terminal=True, 
         pending_user_input=None,
         ):
         from scoremanager import wranglers
@@ -369,7 +369,7 @@ class Wrangler(Controller):
                 result = self._get_previous_asset_path()
             else:
                 menu = self._make_main_menu()
-                result = menu._run(clear=clear)
+                result = menu._run(clear_terminal=clear_terminal)
             if self._exit_io_method():
                 break
             elif not result:
@@ -381,14 +381,14 @@ class Wrangler(Controller):
 
     def _select_asset_path(
         self, 
-        clear=True, 
+        clear_terminal=True, 
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
         menu = self._make_asset_selection_menu()
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb()
-            result = menu._run(clear=clear)
+            result = menu._run(clear_terminal=clear_terminal)
             if self._exit_io_method():
                 break
             elif not result:
@@ -399,7 +399,7 @@ class Wrangler(Controller):
 
     def _select_storehouse_path(
         self,
-        clear=True, 
+        clear_terminal=True, 
         abjad_library=True,
         user_library=True,
         abjad_score_packages=True,
@@ -422,7 +422,7 @@ class Wrangler(Controller):
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb(
                 is_storehouse=True)
-            result = menu._run(clear=clear)
+            result = menu._run(clear_terminal=clear_terminal)
             if self._exit_io_method():
                 break
             elif not result:

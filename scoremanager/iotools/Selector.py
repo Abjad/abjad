@@ -108,13 +108,13 @@ class Selector(ScoreManagerObject):
 
     def _run(
         self, 
-        clear=True,
+        clear_terminal=True,
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
         while True:
             menu = self._make_main_menu()
-            result = menu._run(clear=clear)
+            result = menu._run(clear_terminal=clear_terminal)
             if self._exit_io_method():
                 result = None
                 break

@@ -236,7 +236,7 @@ class Editor(Controller):
     def _run(
         self, 
         breadcrumb=None, 
-        clear=True, 
+        clear_terminal=True, 
         is_autoadding=False,
         is_autoadvancing=False, 
         is_autostarting=False, 
@@ -260,7 +260,7 @@ class Editor(Controller):
                 menu = self._make_main_menu()
                 result = 'add'
                 menu._run(
-                    clear=clear, 
+                    clear_terminal=clear_terminal, 
                     predetermined_user_input=result,
                     )
                 is_first_pass = False
@@ -268,7 +268,7 @@ class Editor(Controller):
                 menu = self._make_main_menu()
                 result = menu._get_first_nonhidden_return_value_in_menu()
                 menu._run(
-                    clear=clear, 
+                    clear_terminal=clear_terminal, 
                     predetermined_user_input=result,
                     )
                 is_first_pass = False
@@ -281,7 +281,7 @@ class Editor(Controller):
                     continue
             else:
                 menu = self._make_main_menu()
-                result = menu._run(clear=clear)
+                result = menu._run(clear_terminal=clear_terminal)
                 if self._exit_io_method():
                     break
                 elif not result:

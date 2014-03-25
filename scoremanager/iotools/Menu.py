@@ -30,6 +30,14 @@ class Menu(ScoreManagerObject):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_name',
+        '_should_clear_terminal',
+        '_title',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -38,7 +46,6 @@ class Menu(ScoreManagerObject):
         where=None,
         include_default_hidden_sections=False,
         name=None,
-        should_clear_terminal=False,
         title=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
@@ -46,7 +53,7 @@ class Menu(ScoreManagerObject):
         if include_default_hidden_sections:
             self._make_default_hidden_sections()
         self._name = name
-        self._should_clear_terminal = should_clear_terminal
+        self._should_clear_terminal = False
         self._title = title
         self.where = where
 
@@ -118,7 +125,7 @@ class Menu(ScoreManagerObject):
             return self._handle_argument_range_user_input(user_input)
 
     def _clear_terminal(self):
-        if self.should_clear_terminal:
+        if self._should_clear_terminal:
             self._io_manager.clear_terminal()
 
     def _display(
@@ -501,23 +508,23 @@ class Menu(ScoreManagerObject):
 
     def _run(
         self, 
-        clear=True, 
+        clear_terminal=True, 
         predetermined_user_input=None, 
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
-        clear, hide_current_run = clear, False
+        clear_terminal, hide_current_run = clear_terminal, False
         while True:
-            self._should_clear_terminal = clear
+            self._should_clear_terminal = clear_terminal
             self.hide_current_run = hide_current_run
-            clear, hide_current_run = False, True
+            clear_terminal, hide_current_run = False, True
             result = self._display(
                 predetermined_user_input=predetermined_user_input,
                 )
             if self._session.is_complete:
                 break
             elif result == 'r':
-                clear, hide_current_run = True, False
+                clear_terminal, hide_current_run = True, False
             else:
                 break
         #print 'Result of Menu._run():', repr(result)
@@ -583,21 +590,6 @@ class Menu(ScoreManagerObject):
         Returns list.
         '''
         return self._name
-
-    @property
-    def should_clear_terminal(self):
-        r'''Is true when menu should clear terminal. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> menu.should_clear_terminal
-                False
-
-        Returns boolean.
-        '''
-        return self._should_clear_terminal
 
     @property
     def title(self):

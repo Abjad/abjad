@@ -286,7 +286,7 @@ class ScoreManager(Controller):
         section.append(('scores - show user', 'ssu'))
         return section
 
-    def _run(self, clear=True, pending_user_input=None):
+    def _run(self, clear_terminal=True, pending_user_input=None):
         self._session._reinitialize()
         type(self).__init__(self, session=self._session)
         self._session._push_controller(self)
@@ -297,7 +297,7 @@ class ScoreManager(Controller):
         while True:
             if run_main_menu:
                 menu = self._make_main_menu()
-                result = menu._run(clear=clear)
+                result = menu._run(clear_terminal=clear_terminal)
             else:
                 run_main_menu = True
             if self._session.is_backtracking_to_score_manager:

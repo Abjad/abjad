@@ -28,7 +28,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
 
     def _run(
         self,
-        clear=True,
+        clear_terminal=True,
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
@@ -43,7 +43,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
                 items=items,
                 )
             with self._backtrack:
-                function_name = selector._run(clear=clear)
+                function_name = selector._run(clear_terminal=clear_terminal)
             if self._exit_io_method():
                 break
             elif not function_name:

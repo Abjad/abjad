@@ -119,10 +119,4 @@
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
-32. See if maybe clear=True keywords can be removed.
-
-33. Add a single-key command like (@) to abort any current UserInputGetter.
-    This will be a good way of avoiding the ambiguity of what should happen
-    when the composer enters (b) when interacting with a UserInputGetter.
-
-34. Change clear_terminal=False to clear=False.
+32. See if maybe clear_terminal=True keywords can be removed.
