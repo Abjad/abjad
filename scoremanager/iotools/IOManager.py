@@ -277,7 +277,6 @@ class IOManager(IOManager):
     def confirm(
         self, 
         prompt_string='ok?', 
-        clear_terminal=False,
         include_chevron=False,
         ):
         r'''Prompts user to confirm.
@@ -290,7 +289,6 @@ class IOManager(IOManager):
             )
         getter.append_yes_no_string(prompt_string)
         result = getter._run(
-            clear_terminal=clear_terminal,
             include_chevron=include_chevron,
             )
         if isinstance(result, str):
@@ -301,7 +299,6 @@ class IOManager(IOManager):
         self, 
         lines, 
         capitalize_first_character=True,
-        clear_terminal=False,
         ):
         r'''Displays `lines`.
 
@@ -322,8 +319,6 @@ class IOManager(IOManager):
         if lines and self._session.transcribe_next_command:
             self._session.transcript._append_entry(lines)
         if self._session.is_displayable:
-            if clear_terminal:
-                self.clear_terminal()
             for line in lines:
                 print line
 

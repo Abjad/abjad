@@ -183,10 +183,10 @@ class Menu(ScoreManagerObject):
         title = stringtools.capitalize_string_start(title)
         menu_lines[0:0] = [title, '']
         menu_lines.append('')
+        self._clear_terminal()
         self._io_manager.display(
             menu_lines, 
             capitalize_first_character=False,
-            clear_terminal=True,
             )
         self._session._hide_hidden_commands = True
         self._session._hide_next_redraw = True
@@ -508,12 +508,11 @@ class Menu(ScoreManagerObject):
 
     def _run(
         self, 
-        clear_terminal=True, 
         predetermined_user_input=None, 
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
-        clear_terminal, hide_current_run = clear_terminal, False
+        clear_terminal, hide_current_run = True, False
         while True:
             self._should_clear_terminal = clear_terminal
             self.hide_current_run = hide_current_run

@@ -236,7 +236,6 @@ class Editor(Controller):
     def _run(
         self, 
         breadcrumb=None, 
-        clear_terminal=True, 
         is_autoadding=False,
         is_autoadvancing=False, 
         is_autostarting=False, 
@@ -259,18 +258,12 @@ class Editor(Controller):
             if self._session.is_autoadding:
                 menu = self._make_main_menu()
                 result = 'add'
-                menu._run(
-                    clear_terminal=clear_terminal, 
-                    predetermined_user_input=result,
-                    )
+                menu._run(predetermined_user_input=result)
                 is_first_pass = False
             elif is_first_pass and is_autostarting:
                 menu = self._make_main_menu()
                 result = menu._get_first_nonhidden_return_value_in_menu()
-                menu._run(
-                    clear_terminal=clear_terminal, 
-                    predetermined_user_input=result,
-                    )
+                menu._run(predetermined_user_input=result)
                 is_first_pass = False
             elif result and self.is_autoadvancing:
                 entry_point = entry_point or result
@@ -281,7 +274,7 @@ class Editor(Controller):
                     continue
             else:
                 menu = self._make_main_menu()
-                result = menu._run(clear_terminal=clear_terminal)
+                result = menu._run()
                 if self._exit_io_method():
                     break
                 elif not result:

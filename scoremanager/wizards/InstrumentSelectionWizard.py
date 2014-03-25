@@ -18,7 +18,6 @@ class InstrumentSelectionWizard(Wizard):
 
     def _run(
         self,
-        clear_terminal=True,
         pending_user_input=None,
         ):
         from scoremanager import wizards
@@ -28,7 +27,7 @@ class InstrumentSelectionWizard(Wizard):
                 session=self._session,
                 )
             with self._backtrack:
-                result = selector._run(clear_terminal=clear_terminal)
+                result = selector._run()
             if self._exit_io_method():
                 return
             if isinstance(result, instrumenttools.Instrument):

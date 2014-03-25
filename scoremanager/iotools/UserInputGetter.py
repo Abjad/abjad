@@ -158,11 +158,8 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
 
     def _present_prompts_and_evaluate_user_input(
         self, 
-        clear_terminal=True,
         include_chevron=True,
         ):
-        if clear_terminal:
-            self._io_manager.clear_terminal()
         self._prompt_index = 0
         self._prompt_strings = []
         self._evaluated_user_input = []
@@ -175,16 +172,13 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
     def _run(
         self, 
         pending_user_input=None, 
-        clear_terminal=False,
         include_chevron=True,
         ):
-        assert not clear_terminal
         self._session._where = self.where
         self._session._is_in_confirmation_environment = True
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtrack:
             self._present_prompts_and_evaluate_user_input(
-                clear_terminal=clear_terminal,
                 include_chevron=include_chevron,
                 )
         if len(self._evaluated_user_input) == 1:

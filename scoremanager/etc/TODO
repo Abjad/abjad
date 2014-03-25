@@ -118,5 +118,3 @@
 31. Eventually implement a Score Manager start-up behavior that will
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
-
-32. See if maybe clear_terminal=True keywords can be removed.

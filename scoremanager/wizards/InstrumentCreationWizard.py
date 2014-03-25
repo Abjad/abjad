@@ -65,7 +65,6 @@ class InstrumentCreationWizard(Wizard):
 
     def _run(
         self,
-        clear_terminal=True,
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
