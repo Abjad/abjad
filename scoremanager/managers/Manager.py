@@ -524,12 +524,12 @@ class Manager(Controller):
                 else:
                     menu = self._make_main_menu()
                     result = menu._run(clear=clear)
-                if self._session._backtrack(source=self._backtrack_source):
+                if self._session._backtrack(source=self):
                     break
                 elif not result:
                     continue
                 self._handle_main_menu_result(result)
-                if self._session._backtrack(source=self._backtrack_source):
+                if self._session._backtrack(source=self):
                     break
         self._session._pop_controller()
 

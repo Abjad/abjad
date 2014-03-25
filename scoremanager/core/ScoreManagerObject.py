@@ -52,10 +52,6 @@ class ScoreManagerObject(object):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _backtrack_source(self):
-        return
-
-    @property
     def _space_delimited_lowercase_class_name(self):
         return stringtools.string_to_space_delimited_lowercase(
             type(self).__name__)

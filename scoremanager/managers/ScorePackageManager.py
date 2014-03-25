@@ -21,10 +21,6 @@ class ScorePackageManager(PackageManager):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _backtrack_source(self):
-        return 'score'
-
-    @property
     def _breadcrumb(self):
         annotated_title = self._get_annotated_title()
         if self._session.is_in_score_setup_menu:

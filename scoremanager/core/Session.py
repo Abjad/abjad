@@ -199,6 +199,15 @@ class Session(abctools.AbjadObject):
 
     # return true to break out of current io loop
     def _backtrack(self, source=None):
+        from scoremanager import core
+        from scoremanager import managers
+        if isinstance(source, core.ScoreManager):
+            source = 'home'
+        elif isinstance(source, managers.ScorePackageManager):
+            source = 'score'
+        else:
+            source = None
+        assert source in ('home', 'score', None), repr(source)
         if self.is_complete:
             return True
         elif self.is_backtracking_to_score_manager and source == 'home':
