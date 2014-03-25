@@ -79,38 +79,35 @@ class ScoreManagerObject(object):
             result = True
         elif self._session.is_backtracking_to_score_manager:
             result = True
-        elif (self._session.is_backtracking_to_score and 
-            not source in ('score', 'home')):
+        elif self._session.is_backtracking_to_score and source != 'score':
             result = True
         elif (self._session.is_backtracking_locally and 
-            not source == 'home' and
             self._session.backtrack_stack):
             result = True
         elif (self._session.is_backtracking_locally and 
-            not source == 'home' and
             not self._session.backtrack_stack):
             self._session._is_backtracking_locally = False
             result = True
         elif (self._session.is_navigating_to_score_build_files and
-            not source in ('score', 'home')):
+            source !='score'):
             result = True
         elif (self._session.is_navigating_to_score_distribution_files and
-            not source in ('score', 'home')):
+            source != 'score'):
             result = True
         elif (self._session.is_navigating_to_score_maker_modules and
-            not source in ('score', 'home')):
+            source != 'score'):
             result = True
         elif (self._session.is_navigating_to_score_materials and
-            not source in ('score', 'home')):
+            source != 'score'):
             result = True
         elif (self._session.is_navigating_to_score_segments and
-            not source in ('score', 'home')):
+            source != 'score'):
             result = True
         elif (self._session.is_navigating_to_score_setup and
-            not source in ('score', 'home')):
+            source != 'score'):
             result = True
         elif (self._session.is_navigating_to_score_stylesheets and
-            not source in ('score', 'home')):
+            source != 'score'):
             result = True
         else:
             result = False
