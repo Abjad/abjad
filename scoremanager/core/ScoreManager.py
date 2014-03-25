@@ -286,20 +286,13 @@ class ScoreManager(Controller):
         section.append(('scores - show user', 'ssu'))
         return section
 
-    def _run(
-        self, 
-        pending_user_input=None, 
-        clear=True, 
-        display_active_scores=False,
-        ):
+    def _run(self, clear=True, pending_user_input=None):
         self._session._reinitialize()
         type(self).__init__(self, session=self._session)
         self._session._push_controller(self)
         self._io_manager._assign_user_input(
             pending_user_input=pending_user_input,
             )
-        if display_active_scores:
-            self._session.display_active_scores()
         run_main_menu = True
         while True:
             if run_main_menu:
