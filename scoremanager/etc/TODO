@@ -130,3 +130,5 @@
 34. Add a single-key command like (@) to abort any current UserInputGetter.
     This will be a good way of avoiding the ambiguity of what should happen
     when the composer enters (b) when interacting with a UserInputGetter.
+
+35. Change clear_terminal=False to clear=False.
