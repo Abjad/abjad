@@ -464,40 +464,35 @@ class ScoreManager(Controller):
 
         Returns none.
         '''
-        # TODO: remove rollback?
-        self._build_file_wrangler._run(rollback=True)
+        self._build_file_wrangler._run()
 
     def manage_distribution_artifact_library(self):
         r'''Manages distribution artifact library.
 
         Returns none.
         '''
-        # TODO: remove rollback?
-        self._distribution_file_wrangler._run(rollback=True)
+        self._distribution_file_wrangler._run()
 
     def manage_maker_library(self):
         r'''Manages maker library.
 
         Returns none.
         '''
-        # TODO: remove rollback?
-        self._maker_module_wrangler._run(rollback=True)
+        self._maker_module_wrangler._run()
 
     def manage_material_library(self):
         r'''Manages material library.
 
         Returns none.
         '''
-        # TODO: remove rollback?
-        self._material_package_wrangler._run(rollback=True)
+        self._material_package_wrangler._run()
 
     def manage_segment_library(self):
         r'''Manages segment library.
 
         Returns none.
         '''
-        # TODO: remove rollback?
-        self._segment_package_wrangler._run(rollback=True)
+        self._segment_package_wrangler._run()
 
     def manage_score(self, path):
         r'''Manages score.
@@ -519,7 +514,7 @@ class ScoreManager(Controller):
 
         Returns none.
         '''
-        self._stylesheet_wrangler._run(rollback=True)
+        self._stylesheet_wrangler._run()
 
     def pytest(self, prompt=True):
         r'''Runs py.test.

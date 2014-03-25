@@ -345,7 +345,6 @@ class Wrangler(Controller):
     def _run(
         self, 
         clear=True, 
-        rollback=None, 
         pending_user_input=None,
         ):
         from scoremanager import wranglers
