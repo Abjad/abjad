@@ -210,7 +210,7 @@ class SegmentPackageManager(PackageManager):
         prompt = prompt.format(last_version_number)
         getter.append_integer(prompt)
         with self._backtrack:
-            version_number = getter._run(clear_terminal=False)
+            version_number = getter._run()
             if self._exit_io_method_inside():
                 return
         if last_version_number < version_number or \

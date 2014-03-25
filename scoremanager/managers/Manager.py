@@ -481,7 +481,7 @@ class Manager(Controller):
         self._io_manager.spawn_subprocess(command)
         self._io_manager.display('')
 
-    def _run(self, clear_terminal=True, pending_user_input=None):
+    def _run(self, pending_user_input=None):
         from scoremanager import managers
         self._session._push_controller(self)
         self._io_manager._assign_user_input(pending_user_input)
@@ -502,7 +502,7 @@ class Manager(Controller):
                 result = self._get_inside_score_navigation_directive()
                 if not result:
                     menu = self._make_main_menu()
-                    result = menu._run(clear_terminal=clear_terminal)
+                    result = menu._run()
                 if (self._session.is_backtracking_to_score and 
                     isinstance(self, managers.ScorePackageManager)):
                     self._session._is_backtracking_to_score = False
@@ -640,7 +640,7 @@ class Manager(Controller):
             getter = self._io_manager.make_getter(where=self._where)
             getter.append_string('commit message')
             with self._backtrack:
-                commit_message = getter._run(clear_terminal=False)
+                commit_message = getter._run()
                 if self._exit_io_method_inside():
                     return
             line = 'commit message will be: "{}"\n'.format(commit_message)

@@ -178,6 +178,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         clear_terminal=False,
         include_chevron=True,
         ):
+        assert not clear_terminal
         self._session._where = self.where
         self._session._is_in_confirmation_environment = True
         self._io_manager._assign_user_input(pending_user_input)

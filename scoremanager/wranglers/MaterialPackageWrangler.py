@@ -265,7 +265,7 @@ class MaterialPackageWrangler(PackageWrangler):
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtrack:
             wrangler = self._material_manager_wrangler
-            result = wrangler.select_asset_package_path(clear_terminal=False)
+            result = wrangler.select_asset_package_path()
         if self._exit_io_method():
             return
         material_manager_package_path = result

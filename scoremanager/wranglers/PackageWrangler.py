@@ -194,7 +194,6 @@ class PackageWrangler(Wrangler):
 
     def select_asset_package_path(
         self,
-        clear_terminal=True,
         infinitival_phrase=None,
         pending_user_input=None,
         ):
@@ -213,7 +212,7 @@ class PackageWrangler(Wrangler):
             menu = self._make_asset_selection_menu(
                 packages_instead_of_paths=True,
                 )
-            result = menu._run(clear_terminal=clear_terminal)
+            result = menu._run()
             if self._exit_io_method():
                 break
             elif not result:
