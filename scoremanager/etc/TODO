@@ -47,29 +47,23 @@
 
 16. Write view tests. Start with segment wrangler.
 
-17. Remove user/score_manager_library/material_package_managers/ in 
-    favor of user/score_manager_library/material_managers/
-
-18. Change user/score_manager_library/material_packages/
-    to user/score_manager_library/materials/.
-
-19. Search for 'whatever_section = menu.make_*_section()' and
+17. Search for 'whatever_section = menu.make_*_section()' and
     change to 'section = menu.make_*_section()' everywhere.
 
-20. Extend Manager._remove() to use 'trash' if command is found.
+18. Extend Manager._remove() to use 'trash' if command is found.
 
-21. Make ScorePackageManager create missing top-level directories
+19. Make ScorePackageManager create missing top-level directories
     during initialization. Run tests before and after change to check
     for any noticeable slowdown.
 
-22. Make (ls) work in stylesheets menu. So (score > y > ls).
+20. Make (ls) work in stylesheets menu. So (score > y > ls).
 
-23. Add (lytr) for 'lilypond ly - trash'. This will work together
+21. Add (lytr) for 'lilypond ly - trash'. This will work together
     with (lyrm) for 'lilypond ly - remove'. The difference will be
     that (lyrm) will (try to) act on the repository where (lytr) will
     only ever work on the filesystem.
 
-24. Write py.test tests for the following properties and methods:
+22. Write py.test tests for the following properties and methods:
         Manager._repository_add_command
         Manager._repository_status_command
         Manager._get_added_asset_paths()
@@ -77,7 +71,7 @@
         Manager._get_repository_root_directory()
         Manager._is_up_to_date()
 
-24. Add 'output module - check (omc)' command.
+23. Add 'output module - check (omc)' command.
     The command will simply call Python on output.py and print
     anything returned by traceback.print_exc(). Should probably
     also return true on success and false on failure so the command
@@ -87,17 +81,17 @@
     And in general verify commands for every system artifact that can
     be interpreted.
 
-25. Make 'vmro' provide a message when no __views__ module is found.
+24. Make 'vmro' provide a message when no __views__ module is found.
 
-26. Implement a 'views module - rewrite' (vmrw) command.
+25. Implement a 'views module - rewrite' (vmrw) command.
 
-27. Implement DirectoryManager.check_contents().
+26. Implement DirectoryManager.check_contents().
     With corresponding 'check - contents' (cc) command.
     The method will list the contents of a directory, compare
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-28. Clean up possibly all current_* session variables by implementing
+27. Clean up possibly all current_* session variables by implementing
     as derived properties:
         current_score_directory_path
         current_score_package_manager
@@ -107,9 +101,9 @@
     at the controller stack. This means that all of these variables
     can stop being maintained by other parts of the system.
 
-29. Implement slots on wranglers.
+28. Implement slots on wranglers.
 
-30. Encapsulate ...
+29. Encapsulate ...
         process = subprocess.Popen(
             command,
             shell=True,
@@ -118,17 +112,17 @@
             )
     ... in an IOManager method.
 
-31. Do something to put an empty .gitignore file in every directory everywhere.
+30. Do something to put an empty .gitignore file in every directory everywhere.
     Provide a user interface.
     
-32. Eventually implement a Score Manager start-up behavior that will
+31. Eventually implement a Score Manager start-up behavior that will
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
-33. See if maybe clear=True keywords can be removed.
+32. See if maybe clear=True keywords can be removed.
 
-34. Add a single-key command like (@) to abort any current UserInputGetter.
+33. Add a single-key command like (@) to abort any current UserInputGetter.
     This will be a good way of avoiding the ambiguity of what should happen
     when the composer enters (b) when interacting with a UserInputGetter.
 
-35. Change clear_terminal=False to clear=False.
+34. Change clear_terminal=False to clear=False.
