@@ -414,12 +414,12 @@ class ScorePackageManager(PackageManager):
             annotated_title = self._get_annotated_title()
             menu = self._make_setup_menu()
             result = menu._run(clear=clear)
-            if self._break_io_loop():
+            if self._exit_io_method():
                 break
             elif not result:
                 continue
             self._handle_setup_menu_result(result)
-            if self._break_io_loop():
+            if self._exit_io_method():
                 break
         self._session._is_in_score_setup_menu = False
 
@@ -452,7 +452,7 @@ class ScorePackageManager(PackageManager):
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('catalog number')
         result = getter._run()
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         self._add_metadatum('catalog_number', result)
 
@@ -465,7 +465,7 @@ class ScorePackageManager(PackageManager):
         getter.append_string('Forces tagline')
         assert getter._session is self._session
         result = getter._run()
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         self._add_metadatum('forces_tagline', result)
 
@@ -491,7 +491,7 @@ class ScorePackageManager(PackageManager):
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('new title')
         result = getter._run()
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         self._add_metadatum('title', result)
         self._io_manager.write_cache(prompt=False)
@@ -508,7 +508,7 @@ class ScorePackageManager(PackageManager):
             allow_none=True,
             )
         result = getter._run()
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         self._add_metadatum('year_of_completion', result)
 
@@ -560,12 +560,12 @@ class ScorePackageManager(PackageManager):
         getter.append_string("type 'clobber' to proceed")
         with self._backtrack:
             should_clobber = getter._run()
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         if should_clobber == 'clobber':
             with self._backtrack:
                 self._remove()
-            if self._break_io_loop():
+            if self._exit_io_method():
                 return
             self._session._is_backtracking_locally = True
 
@@ -579,7 +579,7 @@ class ScorePackageManager(PackageManager):
             prompt_string = 'new package name'
             new_path = self._score_package_wrangler.get_available_path(
                 prompt_string=prompt_string)
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         lines = ['']
         line = 'current path: {!r}.'.format(self._path)
@@ -590,7 +590,7 @@ class ScorePackageManager(PackageManager):
         self._io_manager.display(lines)
         with self._backtrack:
             confirm = self._io_manager.confirm()
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         if not confirm:
             return

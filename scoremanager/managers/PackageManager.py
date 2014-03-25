@@ -122,7 +122,7 @@ class PackageManager(DirectoryManager):
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('new name')
         new_package_name = getter._run()
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         lines = []
         line = 'current name: {}'.format(base_name)

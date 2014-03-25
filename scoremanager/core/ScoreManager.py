@@ -304,7 +304,7 @@ class ScoreManager(Controller):
                 self._session._is_backtracking_to_score_manager = False
             if self._session.is_backtracking_to_score:
                 self._session._is_backtracking_to_score = False
-            if self._break_io_loop(source=self):
+            if self._exit_io_method(source=self):
                 self._session._clean_up()
                 break
             elif self._session.is_navigating_to_next_score:
@@ -322,7 +322,7 @@ class ScoreManager(Controller):
                 self._session._is_backtracking_to_score_manager = False
             if self._session.is_backtracking_to_score:
                 self._session._is_backtracking_to_score = False
-            if self._break_io_loop(source=self):
+            if self._exit_io_method(source=self):
                 self._session._clean_up()
                 break
             elif self._session.is_navigating_to_sibling_score:

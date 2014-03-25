@@ -527,7 +527,7 @@ class Manager(Controller):
                 if (self._session.is_backtracking_to_score and 
                     isinstance(self, managers.ScorePackageManager)):
                     self._session._is_backtracking_to_score = False
-                if self._break_io_loop(source=self):
+                if self._exit_io_method(source=self):
                     break
                 elif not result:
                     continue
@@ -535,7 +535,7 @@ class Manager(Controller):
                 if (self._session.is_backtracking_to_score and 
                     isinstance(self, managers.ScorePackageManager)):
                     self._session._is_backtracking_to_score = False
-                if self._break_io_loop(source=self):
+                if self._exit_io_method(source=self):
                     break
         self._session._pop_controller()
 
@@ -658,7 +658,7 @@ class Manager(Controller):
             getter = self._io_manager.make_getter(where=self._where)
             getter.append_string('commit message')
             commit_message = getter._run(clear_terminal=False)
-            if self._break_io_loop():
+            if self._exit_io_method():
                 return
             line = 'commit message will be: "{}"\n'.format(commit_message)
             self._io_manager.display(line)
@@ -695,7 +695,7 @@ class Manager(Controller):
         self._io_manager._assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
         result = getter._run()
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         new_asset_name = \
             self._space_delimited_lowercase_name_to_asset_name(result)
@@ -812,7 +812,7 @@ class Manager(Controller):
             result = getter._run()
         else:
             result = True
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         if not result == 'remove':
             return
@@ -859,7 +859,7 @@ class Manager(Controller):
         self._io_manager._assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
         result = getter._run()
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         parent_directory_path = os.path.dirname(self._path)
         new_path = os.path.join(parent_directory_path, result)

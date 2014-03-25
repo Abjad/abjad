@@ -29,7 +29,7 @@ class InstrumentSelectionWizard(Wizard):
                 )
             with self._backtrack:
                 result = selector._run(clear=clear)
-            if self._break_io_loop():
+            if self._exit_io_method():
                 return
             if isinstance(result, instrumenttools.Instrument):
                 self.target = result
@@ -39,7 +39,7 @@ class InstrumentSelectionWizard(Wizard):
         wizard = wizards.InstrumentCreationWizard(session=self._session)
         with self._backtrack:
             result = wizard._run()
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         self.target = result
         return self.target

@@ -239,7 +239,7 @@ class MaterialManager(PackageManager):
             default_value=default_value,
             )
         new_value = getter._run()
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         self._user_input_wrapper_in_memory[key] = new_value
         wrapper = self._user_input_wrapper_in_memory
@@ -700,7 +700,7 @@ class MaterialManager(PackageManager):
                 session=self._session,
                 )
         output_material_handler._run()
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         output_module_import_statements = \
             self._output_module_import_statements
@@ -802,7 +802,7 @@ class MaterialManager(PackageManager):
             )
         with self._backtrack:
             start_element_number = getter._run()
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         current_element_number = start_element_number
         current_element_index = current_element_number - 1
@@ -810,7 +810,7 @@ class MaterialManager(PackageManager):
             with self._backtrack:
                 self._edit_user_input_wrapper_at_number(
                     current_element_number, include_newline=False)
-            if self._break_io_loop():
+            if self._exit_io_method():
                 return
             current_element_index += 1
             current_element_index %= total_elements
@@ -877,7 +877,7 @@ class MaterialManager(PackageManager):
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('new name')
         new_package_name = getter._run()
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         lines = []
         lines.append('current name: {}'.format(base_name))

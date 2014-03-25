@@ -115,7 +115,7 @@ class Selector(ScoreManagerObject):
         while True:
             menu = self._make_main_menu()
             result = menu._run(clear=clear)
-            if self._break_io_loop():
+            if self._exit_io_method():
                 result = None
                 break
             elif not result:

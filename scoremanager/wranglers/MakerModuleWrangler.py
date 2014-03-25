@@ -131,12 +131,12 @@ class MakerModuleWrangler(FileWrangler):
                 abjad_score_packages=False,
                 user_score_packages=False,
                 )
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('maker name')
         file_path = getter._run()
-        if self._break_io_loop():
+        if self._exit_io_method():
             return
         file_path = stringtools.string_to_accent_free_snake_case(file_path)
         if not file_path.endswith('.py'):

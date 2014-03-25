@@ -68,7 +68,7 @@ class ScoreManagerObject(object):
 
     ### PRIVATE METHODS ###
 
-    def _break_io_loop(self, source=None):
+    def _exit_io_method(self, source=None):
         from scoremanager import core
         from scoremanager import managers
         if isinstance(source, core.ScoreManager):
