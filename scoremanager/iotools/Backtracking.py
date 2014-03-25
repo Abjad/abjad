@@ -18,11 +18,11 @@ class Backtracking(ContextManager):
 
         Returns none.
         '''
-        self.client._session._push_backtrack()
+        self.client._session._backtracking_stack.append(self)
 
     def __exit__(self, exg_type, exc_value, trackeback):
         r'''Exits backtracking context manager.
 
         Returns none.
         '''
-        self.client._session._pop_backtrack()
+        self.client._session._backtracking_stack.pop()

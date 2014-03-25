@@ -109,7 +109,8 @@ class InstrumentEditor(Editor):
             with self._backtracking:
                 wizard = wizards.InstrumentCreationWizard(
                     is_ranged=True, 
-                    session=self._session)
+                    session=self._session,
+                    )
                 instruments = wizard._run()
             if self._session._backtrack():
                 return

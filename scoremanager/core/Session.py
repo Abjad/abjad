@@ -85,6 +85,7 @@ class Session(abctools.AbjadObject):
         )
 
     _variables_to_display = (
+        'backtracking_stack',
         'command_history',
         'controller_stack',
         'controllers_visited',
@@ -212,7 +213,7 @@ class Session(abctools.AbjadObject):
             return True
         elif (self.is_backtracking_locally and 
             not source == 'home' and
-            self._backtracking_stack):
+            self.backtracking_stack):
             return True
         elif (self.is_backtracking_locally and 
             not source == 'home' and
@@ -284,9 +285,6 @@ class Session(abctools.AbjadObject):
                 result_lines.append(result_line)
         return result_lines
 
-    def _pop_backtrack(self):
-        return self._backtracking_stack.pop()
-
     def _pop_controller(self):
         controller = self.controller_stack.pop()
         self._hide_hidden_commands = True
@@ -305,13 +303,6 @@ class Session(abctools.AbjadObject):
     def _print_transcript_titles(self):
         for title in self.transcript.titles:
             print repr(title)
-
-    def _push_backtrack(self):
-        if self._backtracking_stack:
-            last_number = self._backtracking_stack[-1]
-            self._backtracking_stack.append(last_number + 1)
-        else:
-            self._backtracking_stack.append(0)
 
     def _push_controller(self, controller):
         self.controller_stack.append(controller)
@@ -340,6 +331,21 @@ class Session(abctools.AbjadObject):
         self._controller_stack.append(manager)
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def backtracking_stack(self):
+        r'''Gets session backtracking stack.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.backtracking_stack
+                []
+
+        Returns list.
+        '''
+        return self._backtracking_stack
 
     @property
     def command_history(self):
