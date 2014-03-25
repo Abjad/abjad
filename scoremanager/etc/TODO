@@ -126,3 +126,7 @@
     prompt the composer to fix as required before composition begins.
 
 33. See if maybe clear=True keywords can be removed.
+
+34. Add a single-key command like (@) to abort any current UserInputGetter.
+    This will be a good way of avoiding the ambiguity of what should happen
+    when the composer enters (b) when interacting with a UserInputGetter.
