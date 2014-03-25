@@ -238,9 +238,10 @@ class MaterialManager(PackageManager):
             setup_statements=setup_statements,
             default_value=default_value,
             )
-        new_value = getter._run()
-        if self._exit_io_method():
-            return
+        with self._backtrack:
+            new_value = getter._run()
+            if self._exit_io_method_inside():
+                return
         self._user_input_wrapper_in_memory[key] = new_value
         wrapper = self._user_input_wrapper_in_memory
         self._write_user_input_wrapper(wrapper)
@@ -876,9 +877,10 @@ class MaterialManager(PackageManager):
         self._io_manager.display(line)
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('new name')
-        new_package_name = getter._run()
-        if self._exit_io_method():
-            return
+        with self._backtrack:
+            new_package_name = getter._run()
+            if self._exit_io_method_inside():
+                return
         lines = []
         lines.append('current name: {}'.format(base_name))
         lines.append('new name:     {}'.format(new_package_name))

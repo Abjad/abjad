@@ -209,9 +209,10 @@ class SegmentPackageManager(PackageManager):
         prompt = 'version number (0-{})'
         prompt = prompt.format(last_version_number)
         getter.append_integer(prompt)
-        version_number = getter._run(clear_terminal=False)
-        if self._exit_io_method():
-            return
+        with self._backtrack:
+            version_number = getter._run(clear_terminal=False)
+            if self._exit_io_method_inside():
+                return
         if last_version_number < version_number or \
             (version_number < 0 and last_version_number < abs(version_number)):
             message = "version {} doesn't exist yet."

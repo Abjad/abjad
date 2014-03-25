@@ -88,3 +88,14 @@ class ScoreManagerObject(object):
             elif self._session.is_autonavigating_within_score:
                 result = True
         return result
+
+    def _exit_io_method_inside(self):
+        if self._session.is_complete:
+            return True
+        elif self._session.is_backtracking_to_score_manager:
+            return True
+        elif self._session.is_backtracking_locally:
+            self._session._is_backtracking_locally = False
+            return True
+        else:
+            return False
