@@ -499,29 +499,8 @@ class Manager(Controller):
                 self._session._is_navigating_to_previous_asset = False
                 self._session._last_asset_path = self._path
             while True:
-                # TODO: encapsulate the if ... else in a separate method
-                if (self._session.is_navigating_to_score_build_files and
-                    type(self) is managers.ScorePackageManager):
-                    result = 'u'
-                elif (self._session.is_navigating_to_score_distribution_files 
-                    and type(self) is managers.ScorePackageManager):
-                    result = 'd'
-                elif (self._session.is_navigating_to_score_maker_modules and
-                    type(self) is managers.ScorePackageManager):
-                    result = 'k'
-                elif (self._session.is_navigating_to_score_materials and
-                    type(self) is managers.ScorePackageManager):
-                    result = 'm'
-                elif (self._session.is_navigating_to_score_segments and
-                    type(self) is managers.ScorePackageManager):
-                    result = 'g'
-                elif (self._session.is_navigating_to_score_setup and
-                    type(self) is managers.ScorePackageManager):
-                    result = 'p'
-                elif (self._session.is_navigating_to_score_stylesheets and
-                    type(self) is managers.ScorePackageManager):
-                    result = 'y'
-                else:
+                result = self._get_inside_score_navigation_directive()
+                if not result:
                     menu = self._make_main_menu()
                     result = menu._run(clear=clear)
                 if (self._session.is_backtracking_to_score and 
@@ -538,6 +517,9 @@ class Manager(Controller):
                 if self._exit_io_method(source=self):
                     break
         self._session._pop_controller()
+
+    def _get_inside_score_navigation_directive(self):
+        pass
 
     def _space_delimited_lowercase_name_to_asset_name(
         self, space_delimited_lowercase_name):
