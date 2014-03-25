@@ -217,6 +217,7 @@ class ScorePackageManager(PackageManager):
     def _get_title(self):
         return self._get_metadatum('title') or '(untitled score)'
 
+    # TODO: merge into with self._get_title()
     def _get_title_with_year(self):
         if self._get_metadatum('year_of_completion'):
             result = '{} ({})'

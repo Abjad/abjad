@@ -69,19 +69,15 @@ class ScoreManagerObject(object):
     ### PRIVATE METHODS ###
 
     def _exit_io_method(self, source=None):
-        from scoremanager import core
         from scoremanager import managers
-        if isinstance(source, core.ScoreManager):
-            source = 'home'
-        elif isinstance(source, managers.ScorePackageManager):
+        if isinstance(source, managers.ScorePackageManager):
             source = 'score'
         else:
             source = None
-        assert source in ('home', 'score', None), repr(source)
+        assert source in ('score', None), repr(source)
         if self._session.is_complete:
             result = True
-        elif (self._session.is_backtracking_to_score_manager 
-            and not source == 'home'):
+        elif self._session.is_backtracking_to_score_manager:
             result = True
         elif (self._session.is_backtracking_to_score and 
             not source in ('score', 'home')):

@@ -93,6 +93,12 @@ class ScoreManager(Controller):
 
     ### PRIVATE METHODS ###
 
+    def _exit_io_method(self, source=None):
+        if self._session.is_complete:
+            return True
+        else:
+            return False
+
     def _find_svn_score_name(self):
         from scoremanager import managers
         manager = self._find_up_to_date_manager(
@@ -304,7 +310,7 @@ class ScoreManager(Controller):
                 self._session._is_backtracking_to_score_manager = False
             if self._session.is_backtracking_to_score:
                 self._session._is_backtracking_to_score = False
-            if self._exit_io_method(source=self):
+            if self._exit_io_method():
                 self._session._clean_up()
                 break
             elif self._session.is_navigating_to_next_score:
@@ -322,7 +328,7 @@ class ScoreManager(Controller):
                 self._session._is_backtracking_to_score_manager = False
             if self._session.is_backtracking_to_score:
                 self._session._is_backtracking_to_score = False
-            if self._exit_io_method(source=self):
+            if self._exit_io_method():
                 self._session._clean_up()
                 break
             elif self._session.is_navigating_to_sibling_score:
