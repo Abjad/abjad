@@ -26,7 +26,6 @@ class PerformerCreationWizard(Wizard):
     def _initialize_performer(
         self, 
         performer, 
-        cache=False, 
         clear=True,
         pending_user_input=None,
         ):
@@ -107,7 +106,6 @@ class PerformerCreationWizard(Wizard):
 
     def _run(
         self, 
-        cache=False, 
         clear=True, 
         pending_user_input=None,
         ):

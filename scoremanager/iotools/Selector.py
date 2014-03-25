@@ -108,7 +108,6 @@ class Selector(ScoreManagerObject):
 
     def _run(
         self, 
-        cache=False,
         clear=True,
         pending_user_input=None,
         ):

@@ -290,7 +290,6 @@ class ScoreManager(Controller):
         self, 
         pending_user_input=None, 
         clear=True, 
-        cache=False, 
         display_active_scores=False,
         write_transcript=False,
         ):
@@ -509,7 +508,7 @@ class ScoreManager(Controller):
         package_name = os.path.basename(path)
         manager._session._current_score_snake_case_name = package_name
         manager.fix(prompt=True)
-        manager._run(cache=True)
+        manager._run()
         if manager._session.is_autonavigating:
             pass
         else:

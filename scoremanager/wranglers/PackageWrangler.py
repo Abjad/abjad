@@ -195,7 +195,6 @@ class PackageWrangler(Wrangler):
     def select_asset_package_path(
         self,
         clear=True,
-        cache=False,
         infinitival_phrase=None,
         pending_user_input=None,
         ):

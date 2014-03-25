@@ -344,7 +344,6 @@ class Wrangler(Controller):
 
     def _run(
         self, 
-        cache=False, 
         clear=True, 
         rollback=None, 
         pending_user_input=None,
@@ -384,7 +383,6 @@ class Wrangler(Controller):
     def _select_asset_path(
         self, 
         clear=True, 
-        cache=False,
         pending_user_input=None,
         ):
         self._io_manager._assign_user_input(pending_user_input)
@@ -403,7 +401,6 @@ class Wrangler(Controller):
     def _select_storehouse_path(
         self,
         clear=True, 
-        cache=False,
         abjad_library=True,
         user_library=True,
         abjad_score_packages=True,

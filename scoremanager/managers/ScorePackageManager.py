@@ -411,7 +411,7 @@ class ScorePackageManager(PackageManager):
             section.append(menu_entry)
         return section
 
-    def _manage_setup(self, clear=True, cache=True):
+    def _manage_setup(self, clear=True):
         self._session._is_navigating_to_score_setup = False
         self._session._is_in_score_setup_menu = True
         while True:

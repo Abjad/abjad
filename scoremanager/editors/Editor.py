@@ -236,7 +236,6 @@ class Editor(Controller):
     def _run(
         self, 
         breadcrumb=None, 
-        cache=False, 
         clear=True, 
         is_autoadding=False,
         is_autoadvancing=False, 

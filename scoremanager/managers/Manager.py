@@ -481,7 +481,7 @@ class Manager(Controller):
         self._io_manager.spawn_subprocess(command)
         self._io_manager.display('')
 
-    def _run(self, cache=False, clear=True, pending_user_input=None):
+    def _run(self, clear=True, pending_user_input=None):
         from scoremanager import managers
         self._session._push_controller(self)
         self._io_manager._assign_user_input(pending_user_input)
