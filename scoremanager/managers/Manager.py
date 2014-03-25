@@ -524,11 +524,17 @@ class Manager(Controller):
                 else:
                     menu = self._make_main_menu()
                     result = menu._run(clear=clear)
+                if (self._session.is_backtracking_to_score and 
+                    isinstance(self, managers.ScorePackageManager)):
+                    self._session._is_backtracking_to_score = False
                 if self._session._break_io_loop(source=self):
                     break
                 elif not result:
                     continue
                 self._handle_main_menu_result(result)
+                if (self._session.is_backtracking_to_score and 
+                    isinstance(self, managers.ScorePackageManager)):
+                    self._session._is_backtracking_to_score = False
                 if self._session._break_io_loop(source=self):
                     break
         self._session._pop_controller()

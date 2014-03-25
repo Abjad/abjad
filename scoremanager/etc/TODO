@@ -124,3 +124,5 @@
 32. Eventually implement a Score Manager start-up behavior that will
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
+
+33. See if maybe clear=True keywords can be removed.

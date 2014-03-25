@@ -93,6 +93,49 @@ class ScoreManager(Controller):
 
     ### PRIVATE METHODS ###
 
+#    def _break_io_loop(self):
+#        if self._session.is_complete:
+#            return True
+#        elif self._session.is_backtracking_to_score_manager:
+#            self._is_backtracking_to_score_manager = False
+#            return False
+#        elif self._session.is_backtracking_to_score:
+#            self._is_backtracking_to_score = False
+#            return False
+#        elif (self.is_backtracking_locally and 
+#            not source == 'home' and
+#            self.backtrack_stack):
+#            return True
+#        elif (self.is_backtracking_locally and 
+#            not source == 'home' and
+#            not self._backtrack_stack):
+#            self._is_backtracking_locally = False
+#            return True
+#        elif (self.is_navigating_to_score_build_files and
+#            not source in ('score', 'home')):
+#            #print 'G'
+#            return True
+#        elif (self.is_navigating_to_score_distribution_files and
+#            not source in ('score', 'home')):
+#            return True
+#        elif (self.is_navigating_to_score_maker_modules and
+#            not source in ('score', 'home')):
+#            return True
+#        elif (self.is_navigating_to_score_materials and
+#            not source in ('score', 'home')):
+#            return True
+#        elif (self.is_navigating_to_score_segments and
+#            not source in ('score', 'home')):
+#            return True
+#        elif (self.is_navigating_to_score_setup and
+#            not source in ('score', 'home')):
+#            return True
+#        elif (self.is_navigating_to_score_stylesheets and
+#            not source in ('score', 'home')):
+#            return True
+#        else:
+#            return False
+
     def _find_svn_score_name(self):
         from scoremanager import managers
         manager = self._find_up_to_date_manager(
@@ -300,7 +343,10 @@ class ScoreManager(Controller):
                 result = menu._run(clear=clear)
             else:
                 run_main_menu = True
-            #if self._session._break_io_loop(source='home'):
+            if self._session.is_backtracking_to_score_manager:
+                self._session._is_backtracking_to_score_manager = False
+            if self._session.is_backtracking_to_score:
+                self._session._is_backtracking_to_score = False
             if self._session._break_io_loop(source=self):
                 self._session._clean_up()
                 break
@@ -315,7 +361,10 @@ class ScoreManager(Controller):
             elif not result:
                 continue
             self._handle_main_menu_result(result)
-            #if self._session._break_io_loop(source='home'):
+            if self._session.is_backtracking_to_score_manager:
+                self._session._is_backtracking_to_score_manager = False
+            if self._session.is_backtracking_to_score:
+                self._session._is_backtracking_to_score = False
             if self._session._break_io_loop(source=self):
                 self._session._clean_up()
                 break

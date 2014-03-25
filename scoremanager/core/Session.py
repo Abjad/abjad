@@ -209,14 +209,8 @@ class Session(abctools.AbjadObject):
         assert source in ('home', 'score', None), repr(source)
         if self.is_complete:
             return True
-        elif self.is_backtracking_to_score_manager and source == 'home':
-            self._is_backtracking_to_score_manager = False
-            return False
         elif self.is_backtracking_to_score_manager and not source == 'home':
             return True
-        elif self.is_backtracking_to_score and source in ('score', 'home'):
-            self._is_backtracking_to_score = False
-            return False
         elif self.is_backtracking_to_score and not source in ('score', 'home'):
             return True
         elif (self.is_backtracking_locally and 
@@ -230,7 +224,6 @@ class Session(abctools.AbjadObject):
             return True
         elif (self.is_navigating_to_score_build_files and
             not source in ('score', 'home')):
-            #print 'G'
             return True
         elif (self.is_navigating_to_score_distribution_files and
             not source in ('score', 'home')):
