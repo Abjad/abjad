@@ -197,55 +197,6 @@ class Session(abctools.AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _break_io_loop(self, source=None):
-        from scoremanager import core
-        from scoremanager import managers
-        if isinstance(source, core.ScoreManager):
-            source = 'home'
-        elif isinstance(source, managers.ScorePackageManager):
-            source = 'score'
-        else:
-            source = None
-        assert source in ('home', 'score', None), repr(source)
-        if self.is_complete:
-            return True
-        elif self.is_backtracking_to_score_manager and not source == 'home':
-            return True
-        elif self.is_backtracking_to_score and not source in ('score', 'home'):
-            return True
-        elif (self.is_backtracking_locally and 
-            not source == 'home' and
-            self.backtrack_stack):
-            return True
-        elif (self.is_backtracking_locally and 
-            not source == 'home' and
-            not self._backtrack_stack):
-            self._is_backtracking_locally = False
-            return True
-        elif (self.is_navigating_to_score_build_files and
-            not source in ('score', 'home')):
-            return True
-        elif (self.is_navigating_to_score_distribution_files and
-            not source in ('score', 'home')):
-            return True
-        elif (self.is_navigating_to_score_maker_modules and
-            not source in ('score', 'home')):
-            return True
-        elif (self.is_navigating_to_score_materials and
-            not source in ('score', 'home')):
-            return True
-        elif (self.is_navigating_to_score_segments and
-            not source in ('score', 'home')):
-            return True
-        elif (self.is_navigating_to_score_setup and
-            not source in ('score', 'home')):
-            return True
-        elif (self.is_navigating_to_score_stylesheets and
-            not source in ('score', 'home')):
-            return True
-        else:
-            return False
-
     def _clean_up(self):
         if self.is_test:
             return

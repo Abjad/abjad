@@ -293,9 +293,9 @@ class IOManager(IOManager):
             clear_terminal=clear_terminal,
             include_chevron=include_chevron,
             )
-        if self._session._break_io_loop():
-            return
-        return 'yes'.startswith(result.lower())
+        if isinstance(result, str):
+            if 'yes'.startswith(result.lower()):
+                return True
 
     def display(
         self, 

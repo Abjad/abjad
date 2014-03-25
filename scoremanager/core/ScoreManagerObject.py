@@ -65,3 +65,57 @@ class ScoreManagerObject(object):
     def _where(self):
         if self._session.is_tracking_source_code:
             return inspect.stack()[1]
+
+    ### PRIVATE METHODS ###
+
+    def _break_io_loop(self, source=None):
+        from scoremanager import core
+        from scoremanager import managers
+        if isinstance(source, core.ScoreManager):
+            source = 'home'
+        elif isinstance(source, managers.ScorePackageManager):
+            source = 'score'
+        else:
+            source = None
+        assert source in ('home', 'score', None), repr(source)
+        if self._session.is_complete:
+            result = True
+        elif (self._session.is_backtracking_to_score_manager 
+            and not source == 'home'):
+            result = True
+        elif (self._session.is_backtracking_to_score and 
+            not source in ('score', 'home')):
+            result = True
+        elif (self._session.is_backtracking_locally and 
+            not source == 'home' and
+            self._session.backtrack_stack):
+            result = True
+        elif (self._session.is_backtracking_locally and 
+            not source == 'home' and
+            not self._session.backtrack_stack):
+            self._session._is_backtracking_locally = False
+            result = True
+        elif (self._session.is_navigating_to_score_build_files and
+            not source in ('score', 'home')):
+            result = True
+        elif (self._session.is_navigating_to_score_distribution_files and
+            not source in ('score', 'home')):
+            result = True
+        elif (self._session.is_navigating_to_score_maker_modules and
+            not source in ('score', 'home')):
+            result = True
+        elif (self._session.is_navigating_to_score_materials and
+            not source in ('score', 'home')):
+            result = True
+        elif (self._session.is_navigating_to_score_segments and
+            not source in ('score', 'home')):
+            result = True
+        elif (self._session.is_navigating_to_score_setup and
+            not source in ('score', 'home')):
+            result = True
+        elif (self._session.is_navigating_to_score_stylesheets and
+            not source in ('score', 'home')):
+            result = True
+        else:
+            result = False
+        return result

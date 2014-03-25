@@ -137,7 +137,7 @@ class Editor(Controller):
             )
         if editor is not None:
             result = editor._run()
-            if self._session._break_io_loop():
+            if self._break_io_loop():
                 self.is_autoadvancing = False
                 return
             if hasattr(editor, 'target'):
@@ -246,7 +246,7 @@ class Editor(Controller):
         self._io_manager._assign_user_input(pending_user_input)
         with self._backtrack:
             self._initialize_target()
-        if self._session._break_io_loop():
+        if self._break_io_loop():
             return
         result = None
         entry_point = None
@@ -282,14 +282,14 @@ class Editor(Controller):
             else:
                 menu = self._make_main_menu()
                 result = menu._run(clear=clear)
-                if self._session._break_io_loop():
+                if self._break_io_loop():
                     break
                 elif not result:
                     continue
             if result == 'done':
                 break
             self._handle_main_menu_result(result)
-            if self._session._break_io_loop():
+            if self._break_io_loop():
                 break
         self._session._is_autoadding = False
         self._clean_up_attributes_in_memory()
