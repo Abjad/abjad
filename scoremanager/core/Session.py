@@ -665,6 +665,36 @@ class Session(abctools.AbjadObject):
             return False
 
     @property
+    def is_autonavigating_within_score(self):
+        r'''Is true when session is autonavigating. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_autonavigating_within_score
+                False
+
+        Returns boolean.
+        '''
+        if self.is_navigating_to_score_build_files:
+            return True
+        elif self.is_navigating_to_score_distribution_files:
+            return True
+        elif self.is_navigating_to_score_maker_modules:
+            return True
+        elif self.is_navigating_to_score_materials:
+            return True
+        elif self.is_navigating_to_score_segments:
+            return True
+        elif self.is_navigating_to_score_setup:
+            return True
+        elif self.is_navigating_to_score_stylesheets:
+            return True
+        else:
+            return False
+
+    @property
     def is_backtracking_locally(self):
         r'''Is true when session is backtracking locally. 
         Otherwise false.

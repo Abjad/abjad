@@ -70,16 +70,10 @@ class ScoreManagerObject(object):
 
     def _exit_io_method(self, source=None):
         from scoremanager import managers
-        if isinstance(source, managers.ScorePackageManager):
-            source = 'score'
-        else:
-            source = None
-        assert source in ('score', None), repr(source)
+        result = False
         if self._session.is_complete:
             result = True
         elif self._session.is_backtracking_to_score_manager:
-            result = True
-        elif self._session.is_backtracking_to_score and source != 'score':
             result = True
         elif (self._session.is_backtracking_locally and 
             self._session.backtrack_stack):
@@ -88,27 +82,9 @@ class ScoreManagerObject(object):
             not self._session.backtrack_stack):
             self._session._is_backtracking_locally = False
             result = True
-        elif (self._session.is_navigating_to_score_build_files and
-            source !='score'):
-            result = True
-        elif (self._session.is_navigating_to_score_distribution_files and
-            source != 'score'):
-            result = True
-        elif (self._session.is_navigating_to_score_maker_modules and
-            source != 'score'):
-            result = True
-        elif (self._session.is_navigating_to_score_materials and
-            source != 'score'):
-            result = True
-        elif (self._session.is_navigating_to_score_segments and
-            source != 'score'):
-            result = True
-        elif (self._session.is_navigating_to_score_setup and
-            source != 'score'):
-            result = True
-        elif (self._session.is_navigating_to_score_stylesheets and
-            source != 'score'):
-            result = True
-        else:
-            result = False
+        elif not isinstance(source, managers.ScorePackageManager):
+            if self._session.is_backtracking_to_score:
+                result = True
+            elif self._session.is_autonavigating_within_score:
+                result = True
         return result
