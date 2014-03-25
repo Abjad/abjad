@@ -291,7 +291,6 @@ class ScoreManager(Controller):
         pending_user_input=None, 
         clear=True, 
         display_active_scores=False,
-        write_transcript=False,
         ):
         self._session._reinitialize()
         type(self).__init__(self, session=self._session)
@@ -299,7 +298,6 @@ class ScoreManager(Controller):
         self._io_manager._assign_user_input(
             pending_user_input=pending_user_input,
             )
-        self._session._write_transcript = write_transcript
         if display_active_scores:
             self._session.display_active_scores()
         run_main_menu = True

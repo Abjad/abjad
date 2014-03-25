@@ -125,7 +125,5 @@
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
-33. Maybe get rid of ScoreManager._run(write_transcript=False) keyword.
-    Use Session.is_test property instead.
-    Maybe also get rid of ScoreManager._run(display_active_scores=False)
-    keyword, too.
+33. Maybe also get rid of ScoreManager._run(display_active_scores=False)
+    keyword.

@@ -82,7 +82,6 @@ class Session(abctools.AbjadObject):
         '_transcript',
         '_use_current_user_input_values_as_default',
         '_where',
-        '_write_transcript',
         )
 
     _variables_to_display = (
@@ -93,7 +92,6 @@ class Session(abctools.AbjadObject):
         'current_score_directory_path',
         'current_score_package_manager',
         'current_score_snake_case_name',
-        'write_transcript',
         'hide_next_redraw',
         'hide_hidden_commands',
         'is_autonavigating',
@@ -169,7 +167,6 @@ class Session(abctools.AbjadObject):
         self._transcript = iotools.Transcript()
         self._use_current_user_input_values_as_default = False
         self._where = None
-        self._write_transcript = False
 
     ### SPECIAL METHODS ###
 
@@ -248,20 +245,20 @@ class Session(abctools.AbjadObject):
             return False
 
     def _clean_up(self):
-        if self.write_transcript:
-            transcripts_directory = \
-                self._configuration.transcripts_directory_path
-            transcripts = os.listdir(transcripts_directory)
-            count = len(transcripts)
-            if 9000 <= count:
-                messages = []
-                message = 'transcripts directory contains {} transcripts.'
-                message = message.format(count)
-                messages.append(message)
-                message = 'prune directory soon.'
-                messages.append(message)
-                self.io_manager.display(messages)
-            self.transcript._write()
+        if self.is_test:
+            return
+        transcripts_directory = self._configuration.transcripts_directory_path
+        transcripts = os.listdir(transcripts_directory)
+        count = len(transcripts)
+        if 9000 <= count:
+            messages = []
+            message = 'transcripts directory contains {} transcripts.'
+            message = message.format(count)
+            messages.append(message)
+            message = 'prune directory soon.'
+            messages.append(message)
+            self.io_manager.display(messages)
+        self.transcript._write()
 
     def _format_controller_breadcrumbs(self):
         if not self.controller_stack:
@@ -1374,21 +1371,6 @@ class Session(abctools.AbjadObject):
         r'''Gets source code location of current menu.
         '''
         return self._where
-
-    @property
-    def write_transcript(self):
-        r'''Gets and sets flag to dump transcript at end of session.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.write_transcript
-                False
-
-        Returns boolean.
-        '''
-        return self._write_transcript
 
     ### PUBLIC METHODS ###
 
