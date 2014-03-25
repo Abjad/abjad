@@ -2,8 +2,8 @@
 from abjad.tools.abctools.ContextManager import ContextManager
 
 
-class Backtracking(ContextManager):
-    r'''Backtracking context manager.
+class Backtrack(ContextManager):
+    r'''Backtrack context manager.
     '''
 
     ### INITIALIZER ###
@@ -14,15 +14,15 @@ class Backtracking(ContextManager):
     ### SPECIAL METHODS ###
 
     def __enter__(self):
-        r'''Enters backtracking context manager.
+        r'''Enters backtrack context manager.
 
         Returns none.
         '''
-        self.client._session._backtracking_stack.append(self)
+        self.client._session._backtrack_stack.append(self)
 
     def __exit__(self, exg_type, exc_value, trackeback):
-        r'''Exits backtracking context manager.
+        r'''Exits backtrack context manager.
 
         Returns none.
         '''
-        self.client._session._backtracking_stack.pop()
+        self.client._session._backtrack_stack.pop()

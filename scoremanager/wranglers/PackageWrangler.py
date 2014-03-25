@@ -149,7 +149,7 @@ class PackageWrangler(Wrangler):
             prompt_string = prompt_string or 'package name'
             getter = self._io_manager.make_getter(where=self._where)
             getter.append_space_delimited_lowercase_string(prompt_string)
-            with self._backtracking:
+            with self._backtrack:
                 name = getter._run()
             if self._session._backtrack():
                 return
@@ -171,7 +171,7 @@ class PackageWrangler(Wrangler):
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
-        with self._backtracking:
+        with self._backtrack:
             path = self.get_available_path()
         if self._session._backtrack():
             return
@@ -183,7 +183,7 @@ class PackageWrangler(Wrangler):
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
-        with self._backtracking:
+        with self._backtrack:
             asset_package_path = self.select_asset_package_path(
                 infinitival_phrase='to rename',
                 )

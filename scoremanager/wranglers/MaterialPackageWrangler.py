@@ -229,7 +229,7 @@ class MaterialPackageWrangler(PackageWrangler):
             storehouse_path = self._current_storehouse_path
         else:
             storehouse_path = self._user_storehouse_path
-        with self._backtracking:
+        with self._backtrack:
             path = self.get_available_path(storehouse_path=storehouse_path)
         if self._session._backtrack():
             return
@@ -248,7 +248,7 @@ class MaterialPackageWrangler(PackageWrangler):
             storehouse_path = self._current_storehouse_path
         else:
             storehouse_path = self._user_storehouse_path
-        with self._backtracking:
+        with self._backtrack:
             path = self.get_available_path(storehouse_path=storehouse_path)
         if self._session._backtrack():
             return
@@ -263,7 +263,7 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
-        with self._backtracking:
+        with self._backtrack:
             wrangler = self._material_manager_wrangler
             result = wrangler.select_asset_package_path(clear=False)
         if self._session._backtrack():
@@ -275,7 +275,7 @@ class MaterialPackageWrangler(PackageWrangler):
             storehouse_path = self._current_storehouse_path
         else:
             storehouse_path = self._user_storehouse_path
-        with self._backtracking:
+        with self._backtrack:
             path = self.get_available_path(storehouse_path=storehouse_path)
         if self._session._backtrack():
             return

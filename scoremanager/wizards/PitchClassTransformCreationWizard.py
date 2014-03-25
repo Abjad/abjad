@@ -65,7 +65,7 @@ class PitchClassTransformCreationWizard(Wizard):
                 )
             selector.explicit_breadcrumb = self._get_explicit_breadcrumb(
                 function_application_pairs)
-            with self._backtracking:
+            with self._backtrack:
                 function_name = selector._run(clear=clear)
             if self._session._backtrack():
                 break

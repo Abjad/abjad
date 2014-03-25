@@ -41,7 +41,7 @@ class PerformerCreationWizard(Wizard):
             if result in ('skip', ['skip']):
                 break
             elif result in ('more', ['more']):
-                with self._backtracking:
+                with self._backtrack:
                     wizard = wizards.InstrumentCreationWizard(
                         session=self._session, is_ranged=True)
                     instruments = wizard._run()
@@ -118,7 +118,7 @@ class PerformerCreationWizard(Wizard):
                 session=self._session,
                 )
             selector.is_ranged=self.is_ranged
-            with self._backtracking:
+            with self._backtrack:
                 result = selector._run()
             if self._session._backtrack():
                 break
@@ -128,7 +128,7 @@ class PerformerCreationWizard(Wizard):
                 performer_names = [result]
             performers = []
             for performer_name in performer_names:
-                with self._backtracking:
+                with self._backtrack:
                     performer = instrumenttools.Performer(performer_name)
                     self._initialize_performer(performer)
                 was_backtracking_locally = \

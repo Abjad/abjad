@@ -134,7 +134,7 @@ class ListEditor(Editor):
                 session=self._session, 
                 **self.item_creator_class_kwargs
                 )
-            with self._backtracking:
+            with self._backtrack:
                 result = item_creator._run()
             if self._session._backtrack():
                 return
@@ -145,7 +145,7 @@ class ListEditor(Editor):
         elif self.item_getter_configuration_method:
             getter = self._io_manager.make_getter(where=self._where)
             self.item_getter_configuration_method(getter, self.item_identifier)
-            with self._backtracking:
+            with self._backtrack:
                 item_initialization_token = getter._run()
             if self._session._backtrack():
                 return

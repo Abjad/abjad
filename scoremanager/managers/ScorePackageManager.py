@@ -21,7 +21,7 @@ class ScorePackageManager(PackageManager):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _backtracking_source(self):
+    def _backtrack_source(self):
         return 'score'
 
     @property
@@ -561,12 +561,12 @@ class ScorePackageManager(PackageManager):
         self._io_manager.display([line, ''])
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string("type 'clobber' to proceed")
-        with self._backtracking:
+        with self._backtrack:
             should_clobber = getter._run()
         if self._session._backtrack():
             return
         if should_clobber == 'clobber':
-            with self._backtracking:
+            with self._backtrack:
                 self._remove()
             if self._session._backtrack():
                 return
@@ -578,7 +578,7 @@ class ScorePackageManager(PackageManager):
         Returns none.
         '''
         pass
-        with self._backtracking:
+        with self._backtrack:
             prompt_string = 'new package name'
             new_path = self._score_package_wrangler.get_available_path(
                 prompt_string=prompt_string)
@@ -591,7 +591,7 @@ class ScorePackageManager(PackageManager):
         lines.append(line)
         lines.append('')
         self._io_manager.display(lines)
-        with self._backtracking:
+        with self._backtrack:
             confirm = self._io_manager.confirm()
         if self._session._backtrack():
             return

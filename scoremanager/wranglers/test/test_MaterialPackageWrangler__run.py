@@ -69,7 +69,7 @@ def test_MaterialPackageWrangler__run_04():
 
 
 def test_MaterialPackageWrangler__run_05():
-    r'''Current score is reset on backtracking from score to home.
+    r'''Current score is reset on backtrack from score to home.
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)

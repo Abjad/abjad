@@ -123,7 +123,7 @@ class MakerModuleWrangler(FileWrangler):
         '''
         from scoremanager import managers
         self._io_manager._assign_user_input(pending_user_input)
-        with self._backtracking:
+        with self._backtrack:
             # TODO: extend to allow creation in current score
             storehouse_path = self._select_storehouse_path(
                 abjad_library=False,

@@ -36,7 +36,7 @@ class Session(abctools.AbjadObject):
         '_attempted_to_open_file',
         '_attempted_to_revert_to_repository',
         '_attempted_to_update_from_repository',
-        '_backtracking_stack',
+        '_backtrack_stack',
         '_command_history',
         '_configuration',
         '_controller_stack',
@@ -85,7 +85,7 @@ class Session(abctools.AbjadObject):
         )
 
     _variables_to_display = (
-        'backtracking_stack',
+        'backtrack_stack',
         'command_history',
         'controller_stack',
         'controllers_visited',
@@ -119,7 +119,7 @@ class Session(abctools.AbjadObject):
         self._attempted_to_open_file = False
         self._attempted_to_revert_to_repository = False
         self._attempted_to_update_from_repository = False
-        self._backtracking_stack = []
+        self._backtrack_stack = []
         self._command_history = []
         self._configuration = core.ScoreManagerConfiguration()
         self._controller_stack = []
@@ -213,11 +213,11 @@ class Session(abctools.AbjadObject):
             return True
         elif (self.is_backtracking_locally and 
             not source == 'home' and
-            self.backtracking_stack):
+            self.backtrack_stack):
             return True
         elif (self.is_backtracking_locally and 
             not source == 'home' and
-            not self._backtracking_stack):
+            not self._backtrack_stack):
             self._is_backtracking_locally = False
             return True
         elif (self.is_navigating_to_score_build_files and
@@ -333,19 +333,19 @@ class Session(abctools.AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def backtracking_stack(self):
+    def backtrack_stack(self):
         r'''Gets session backtracking stack.
 
         ..  container:: example
 
             ::
 
-                >>> session.backtracking_stack
+                >>> session.backtrack_stack
                 []
 
         Returns list.
         '''
-        return self._backtracking_stack
+        return self._backtrack_stack
 
     @property
     def command_history(self):

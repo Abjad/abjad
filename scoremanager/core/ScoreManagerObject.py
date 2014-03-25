@@ -20,7 +20,7 @@ class ScoreManagerObject(object):
     def __init__(self, session=None):
         from scoremanager import core
         from scoremanager import iotools
-        self._backtracking = iotools.Backtracking(self)
+        self._backtrack = iotools.Backtrack(self)
         self._configuration = core.ScoreManagerConfiguration()
         self._session = session or core.Session()
         self._io_manager = iotools.IOManager(self._session)
@@ -52,7 +52,7 @@ class ScoreManagerObject(object):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _backtracking_source(self):
+    def _backtrack_source(self):
         return
 
     @property

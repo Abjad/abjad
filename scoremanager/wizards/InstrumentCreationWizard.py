@@ -52,7 +52,7 @@ class InstrumentCreationWizard(Wizard):
                 session=self._session,
                 items=items,
                 )
-            with self._backtracking:
+            with self._backtrack:
                 instrument_name = selector._run()
             if self._session._backtrack():
                 return
@@ -75,7 +75,7 @@ class InstrumentCreationWizard(Wizard):
             items=items,
             )
         selector.is_ranged = self.is_ranged
-        with self._backtracking:
+        with self._backtrack:
             result = selector._run()
         if self._session._backtrack():
             return

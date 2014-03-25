@@ -42,7 +42,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
                 session=self._session,
                 items=items,
                 )
-            with self._backtracking:
+            with self._backtrack:
                 function_name = selector._run(clear=clear)
             if self._session._backtrack():
                 break

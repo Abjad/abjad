@@ -800,14 +800,14 @@ class MaterialManager(PackageManager):
             total_elements, 
             default_value=1,
             )
-        with self._backtracking:
+        with self._backtrack:
             start_element_number = getter._run()
         if self._session._backtrack():
             return
         current_element_number = start_element_number
         current_element_index = current_element_number - 1
         while True:
-            with self._backtracking:
+            with self._backtrack:
                 self._edit_user_input_wrapper_at_number(
                     current_element_number, include_newline=False)
             if self._session._backtrack():

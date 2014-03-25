@@ -551,7 +551,7 @@ class Wrangler(Controller):
         from scoremanager import editors
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('view name')
-        with self._backtracking:
+        with self._backtrack:
             view_name = getter._run()
         if self._session._backtrack():
             return
@@ -564,7 +564,7 @@ class Wrangler(Controller):
         breadcrumb = 'edit {} view'
         breadcrumb = breadcrumb.format(view_name)
         editor.explicit_breadcrumb = breadcrumb
-        with self._backtracking:
+        with self._backtrack:
             editor._run()
         if self._session._backtrack():
             return
@@ -588,7 +588,7 @@ class Wrangler(Controller):
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
-        with self._backtracking:
+        with self._backtrack:
             asset_path = self._select_asset_path()
         if self._session._backtrack():
             return
@@ -629,7 +629,7 @@ class Wrangler(Controller):
         Returns none.
         '''
         self._io_manager._assign_user_input(pending_user_input)
-        with self._backtracking:
+        with self._backtrack:
             asset_path = self._select_asset_path()
         if self._session._backtrack():
             return
@@ -686,7 +686,7 @@ class Wrangler(Controller):
             )
         # TODO: make attribute read only and not assignable after init
         selector.explicit_breadcrumb = 'select view'
-        with self._backtracking:
+        with self._backtrack:
             view_name = selector._run()
         if self._session._backtrack():
             return

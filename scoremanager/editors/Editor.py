@@ -244,7 +244,7 @@ class Editor(Controller):
         ):
         self._session._is_in_editor = True
         self._io_manager._assign_user_input(pending_user_input)
-        with self._backtracking:
+        with self._backtrack:
             self._initialize_target()
         if self._session._backtrack():
             return
