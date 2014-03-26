@@ -343,36 +343,38 @@ class Wrangler(Controller):
         return view_inventory
 
     def _run(self):
+        from scoremanager import iotools
         from scoremanager import wranglers
-        self._session._push_controller(self)
-        if type(self) is wranglers.BuildFileWrangler:
-            self._session._is_navigating_to_score_build_files = False
-        elif type(self) is wranglers.DistributionFileWrangler:
-            self._session._is_navigating_to_score_distribution_files = False
-        elif type(self) is wranglers.MakerModuleWrangler:
-            self._session._is_navigating_to_score_maker_modules = False
-        elif type(self) is wranglers.MaterialPackageWrangler:
-            self._session._is_navigating_to_score_materials = False
-        elif type(self) is wranglers.SegmentPackageWrangler:
-            self._session._is_navigating_to_score_segments = False
-        elif type(self) is wranglers.StylesheetWrangler:
-            self._session._is_navigating_to_score_stylesheets = False
-        while True:
-            if self._session.is_navigating_to_next_asset:
-                result = self._get_next_asset_path()
-            elif self._session.is_navigating_to_previous_asset:
-                result = self._get_previous_asset_path()
-            else:
-                menu = self._make_main_menu()
-                result = menu._run()
-            if self._exit_io_method():
-                break
-            elif not result:
-                continue
-            self._handle_main_menu_result(result)
-            if self._exit_io_method():
-                break
-        self._session._pop_controller()
+        with iotools.ControllerStack(self):
+            # TODO: get rid of the branching with self._enter_run() methods
+            if type(self) is wranglers.BuildFileWrangler:
+                self._session._is_navigating_to_score_build_files = False
+            elif type(self) is wranglers.DistributionFileWrangler:
+                self._session._is_navigating_to_score_distribution_files = \
+                    False
+            elif type(self) is wranglers.MakerModuleWrangler:
+                self._session._is_navigating_to_score_maker_modules = False
+            elif type(self) is wranglers.MaterialPackageWrangler:
+                self._session._is_navigating_to_score_materials = False
+            elif type(self) is wranglers.SegmentPackageWrangler:
+                self._session._is_navigating_to_score_segments = False
+            elif type(self) is wranglers.StylesheetWrangler:
+                self._session._is_navigating_to_score_stylesheets = False
+            while True:
+                if self._session.is_navigating_to_next_asset:
+                    result = self._get_next_asset_path()
+                elif self._session.is_navigating_to_previous_asset:
+                    result = self._get_previous_asset_path()
+                else:
+                    menu = self._make_main_menu()
+                    result = menu._run()
+                if self._exit_io_method():
+                    break
+                elif not result:
+                    continue
+                self._handle_main_menu_result(result)
+                if self._exit_io_method():
+                    break
 
     def _select_asset_path(self):
         menu = self._make_asset_selection_menu()

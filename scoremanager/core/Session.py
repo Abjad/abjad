@@ -237,10 +237,6 @@ class Session(abctools.AbjadObject):
                 result_lines.append(result_line)
         return result_lines
 
-    def _pop_controller(self):
-        controller = self.controller_stack.pop()
-        self._hide_hidden_commands = True
-
     def _print_transcript(
         self, 
         include_user_input=True, 
@@ -255,12 +251,6 @@ class Session(abctools.AbjadObject):
     def _print_transcript_titles(self):
         for title in self.transcript.titles:
             print repr(title)
-
-    def _push_controller(self, controller):
-        self.controller_stack.append(controller)
-        if controller not in self._controllers_visited:
-            self._controllers_visited.append(controller)
-        self._hide_hidden_commands = True
 
     def _reinitialize(self):
         is_test = self._is_test

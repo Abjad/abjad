@@ -483,24 +483,25 @@ class Manager(Controller):
 
     def _run(self, pending_user_input=None):
         from scoremanager import managers
-        self._session._push_controller(self)
+        from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        with systemtools.TemporaryDirectoryChange(self._path):
-            self._enter_run()
-            while True:
-                result = self._get_inside_score_navigation_directive()
-                if not result:
-                    menu = self._make_main_menu()
-                    result = menu._run()
-                if self._exit_run():
-                    break
-                elif not result:
-                    continue
-                self._handle_main_menu_result(result)
-                if self._exit_run():
-                    break
-        self._session._pop_controller()
+        # TODO: possibly compose ControllerStack and TemporaryDirectoryChange?
+        with iotools.ControllerStack(self):
+            with systemtools.TemporaryDirectoryChange(self._path):
+                self._enter_run()
+                while True:
+                    result = self._get_inside_score_navigation_directive()
+                    if not result:
+                        menu = self._make_main_menu()
+                        result = menu._run()
+                    if self._exit_run():
+                        break
+                    elif not result:
+                        continue
+                    self._handle_main_menu_result(result)
+                    if self._exit_run():
+                        break
 
     def _enter_run(self):
         pass

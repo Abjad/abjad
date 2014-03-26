@@ -10,6 +10,7 @@ class ControllerStack(ContextManager):
 
     def __init__(self, controller):
         self.controller = controller
+        self._session = self.controller._session
 
     ### SPECIAL METHODS ###
 
@@ -18,14 +19,18 @@ class ControllerStack(ContextManager):
 
         Returns none.
         '''
-        self.controller._session._push_controller(self.controller)
+        self._session._controller_stack.append(self.controller)
+        if self.controller not in self._session.controllers_visited:
+            self._session._controllers_visited.append(self.controller)
+        self._session._hide_hidden_commands = True
 
     def __exit__(self, exg_type, exc_value, trackeback):
         r'''Exits controller stack context manager.
 
         Returns none.
         '''
-        self.controller._session._pop_controller()
+        self._session._controller_stack.pop()
+        self._session._hide_hidden_commands = True
 
     def __repr__(self):
         r'''Gets interpreter representation of context manager.
