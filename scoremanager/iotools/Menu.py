@@ -140,35 +140,35 @@ class Menu(ScoreManagerObject):
             self._io_manager.clear_terminal()
 
     def _display(self, predetermined_user_input=None):
-        # TODO: maybe implement a WhereTracking context manager
-        self._session._where = self.where
-        self._clear_terminal()
-        if not self._session.hide_hidden_commands:
-            self._display_all_commands()
-        menu_lines = self._make_menu_lines()
-        self._io_manager.display(
-            menu_lines,
-            capitalize_first_character=False,
-            )
-        if predetermined_user_input is not None:
-            self._session._where = None
-            return predetermined_user_input
-        user_entered_lone_return = False
-        user_input = self._io_manager.handle_user_input('')
-        if user_input == '':
-            user_entered_lone_return = True
-        directive = self._change_user_input_to_directive(user_input)
-        directive = self._strip_default_notice_from_strings(directive)
-        self._session._hide_next_redraw = False
-        directive = self._io_manager._handle_io_manager_directive(directive)
-        if directive is None and user_entered_lone_return:
-            result = 'user entered lone return'
-        elif directive is None and not user_entered_lone_return:
-            result = None
-        else:
-            result = directive
-        self._session._where = None
-        return result
+        from scoremanager import iotools
+        context = iotools.SourceCodeContext(self)
+        with context:
+            self._clear_terminal()
+            if not self._session.hide_hidden_commands:
+                self._display_all_commands()
+            menu_lines = self._make_menu_lines()
+            self._io_manager.display(
+                menu_lines,
+                capitalize_first_character=False,
+                )
+            if predetermined_user_input is not None:
+                return predetermined_user_input
+            user_entered_lone_return = False
+            user_input = self._io_manager.handle_user_input('')
+            if user_input == '':
+                user_entered_lone_return = True
+            directive = self._change_user_input_to_directive(user_input)
+            directive = self._strip_default_notice_from_strings(directive)
+            self._session._hide_next_redraw = False
+            directive = self._io_manager._handle_io_manager_directive(
+                directive)
+            if directive is None and user_entered_lone_return:
+                result = 'user entered lone return'
+            elif directive is None and not user_entered_lone_return:
+                result = None
+            else:
+                result = directive
+            return result
 
     def _display_all_commands(self):
         menu_lines = []
