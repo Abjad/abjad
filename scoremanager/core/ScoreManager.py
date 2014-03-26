@@ -153,23 +153,25 @@ class ScoreManager(Controller):
                 manager._is_up_to_date():
                 return manager
 
+    # TODO: combine paired methods
     def _get_next_score_directory_path(self):
         wrangler = self._score_package_wrangler
         paths = wrangler._list_visible_asset_paths()
-        if self._session.current_score_directory_path is None:
+        if self._session.last_asset_path is None:
             return paths[0]
-        score_path = self._session.current_score_directory_path
+        score_path = self._session.last_asset_path
         index = paths.index(score_path)
         next_index = (index + 1) % len(paths)
         next_path = paths[next_index]
         return next_path
 
+    # TODO: combine paired methods
     def _get_previous_score_directory_path(self):
         wrangler = self._score_package_wrangler
         paths = wrangler._list_visible_asset_paths()
-        if self._session.current_score_directory_path is None:
+        if self._session.last_asset_path is None:
             return paths[-1]
-        path = self._session.current_score_directory_path
+        path = self._session.last_asset_path
         index = paths.index(path)
         previous_index = (index - 1) % len(paths)
         previous_path = paths[previous_index]
@@ -506,13 +508,8 @@ class ScoreManager(Controller):
         '''
         manager = self._score_package_wrangler._initialize_asset_manager(path)
         package_name = os.path.basename(path)
-        manager._session._current_score_snake_case_name = package_name
         manager.fix(prompt=True)
         manager._run()
-        if manager._session.is_autonavigating:
-            pass
-        else:
-            manager._session._current_score_snake_case_name = None
 
     def manage_stylesheet_library(self):
         r'''Manages stylesheet library.

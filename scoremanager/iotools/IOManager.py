@@ -186,7 +186,6 @@ class IOManager(IOManager):
             not self._session.is_in_score):
             result = None
         elif self._is_home_string(directive):
-            self._session._current_score_snake_case_name = None
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
             result = None

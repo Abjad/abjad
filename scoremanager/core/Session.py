@@ -391,18 +391,6 @@ class Session(abctools.AbjadObject):
 
         Returns string or none.
         '''
-        if self.current_score_snake_case_name:
-            if self.current_score_snake_case_name in \
-                self._configuration.abjad_score_package_names:
-                return os.path.join(
-                    self._configuration.abjad_score_packages_directory_path,
-                    self.current_score_snake_case_name,
-                    )
-            else:
-                return os.path.join(
-                    self._configuration.user_score_packages_directory_path,
-                    self.current_score_snake_case_name,
-                    )
         if self.current_score_package_manager:
             return self.current_score_package_manager._path
 
@@ -453,8 +441,6 @@ class Session(abctools.AbjadObject):
 
         Returns string or none.
         '''
-        if self._current_score_snake_case_name is not None:
-            return self._current_score_snake_case_name
         if self.current_score_package_manager is not None:
             return self.current_score_package_manager._package_name
 
@@ -791,8 +777,6 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        if self.current_score_snake_case_name is not None:
-            return True
         if self.current_score_package_manager is not None:
             return True
         return False
