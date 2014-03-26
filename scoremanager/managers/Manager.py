@@ -485,9 +485,9 @@ class Manager(Controller):
         from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        # TODO: possibly compose ControllerContext and TemporaryDirectoryChange?
-        with iotools.ControllerContext(self):
-            with systemtools.TemporaryDirectoryChange(self._path):
+        context = iotools.ControllerContext(self)
+        directory_change = systemtools.TemporaryDirectoryChange(self._path)
+        with context, directory_change:
                 self._enter_run()
                 while True:
                     result = self._get_inside_score_navigation_directive()
