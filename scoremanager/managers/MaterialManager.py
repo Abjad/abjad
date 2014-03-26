@@ -700,7 +700,7 @@ class MaterialManager(PackageManager):
                 session=self._session,
                 )
         output_material_handler._run()
-        if self._exit_io_method():
+        if self._should_exit_io_method():
             return
         output_module_import_statements = \
             self._output_module_import_statements
@@ -802,7 +802,7 @@ class MaterialManager(PackageManager):
             )
         with self._backtrack:
             start_element_number = getter._run()
-        if self._exit_io_method():
+        if self._should_exit_io_method():
             return
         current_element_number = start_element_number
         current_element_index = current_element_number - 1
@@ -810,7 +810,7 @@ class MaterialManager(PackageManager):
             with self._backtrack:
                 self._edit_user_input_wrapper_at_number(
                     current_element_number, include_newline=False)
-            if self._exit_io_method():
+            if self._should_exit_io_method():
                 return
             current_element_index += 1
             current_element_index %= total_elements

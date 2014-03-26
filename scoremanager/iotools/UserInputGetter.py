@@ -140,7 +140,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
                 break
             directive = self._io_manager._handle_io_manager_directive(
                 user_input)
-            if self._exit_io_method():
+            if self._should_exit_io_method():
                 self._current_prompt_is_done = True
                 self._all_prompts_are_done = True
             elif directive is None:

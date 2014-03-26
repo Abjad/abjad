@@ -155,7 +155,7 @@ class Editor(Controller):
             )
         if editor is not None:
             result = editor._run()
-            if self._exit_io_method():
+            if self._should_exit_io_method():
                 self.is_autoadvancing = False
                 return
             if hasattr(editor, 'target'):
@@ -261,7 +261,7 @@ class Editor(Controller):
         with context:
             with self._backtrack:
                 self._initialize_target()
-                if self._exit_io_method():
+                if self._should_exit_io_method():
                     return
             result = None
             entry_point = None
@@ -291,14 +291,14 @@ class Editor(Controller):
                 else:
                     menu = self._make_main_menu()
                     result = menu._run()
-                    if self._exit_io_method():
+                    if self._should_exit_io_method():
                         return
                     elif not result:
                         continue
                 if result == 'done':
                     break
                 self._handle_main_menu_result(result)
-                if self._exit_io_method():
+                if self._should_exit_io_method():
                     return
 
     def _set_target_attribute(self, attribute_name, attribute_value):

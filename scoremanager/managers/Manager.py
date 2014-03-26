@@ -125,7 +125,7 @@ class Manager(Controller):
         pass
 
     def _exit_run(self):
-        return self._exit_io_method()
+        return self._should_exit_io_method()
 
     def _find_first_file_name(self):
         for directory_entry in os.listdir(self._path):

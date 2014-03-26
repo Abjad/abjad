@@ -27,9 +27,8 @@ class InstrumentSelectionWizard(Wizard):
                 selector = iotools.Selector.make_score_instrument_selector(
                     session=self._session,
                     )
-                with self._backtrack:
-                    result = selector._run()
-                if self._exit_io_method():
+                result = selector._run()
+                if self._should_backtrack():
                     return
                 if isinstance(result, instrumenttools.Instrument):
                     self.target = result
@@ -37,9 +36,8 @@ class InstrumentSelectionWizard(Wizard):
                 elif not result == 'other':
                     raise ValueError
             wizard = wizards.InstrumentCreationWizard(session=self._session)
-            with self._backtrack:
-                result = wizard._run()
-            if self._exit_io_method():
+            result = wizard._run()
+            if self._should_backtrack():
                 return
             self.target = result
             return self.target

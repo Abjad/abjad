@@ -138,7 +138,7 @@ class StylesheetWrangler(FileWrangler):
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('stylesheet name')
         file_path = getter._run()
-        if self._exit_io_method():
+        if self._should_exit_io_method():
             return
         file_path = stringtools.string_to_accent_free_snake_case(file_path)
         if not file_path.endswith('.ily'):

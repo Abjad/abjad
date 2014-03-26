@@ -52,7 +52,7 @@ class Wizard(ScoreManagerObject):
                 selector = self.handler_class_name_selector(
                     session=self._session)
             handler_class_name = selector._run()
-            if self._exit_io_method():
+            if self._should_exit_io_method():
                 return
             handler_editor = self._get_target_editor(handler_class_name)
             handler_editor._is_autoadvancing = True

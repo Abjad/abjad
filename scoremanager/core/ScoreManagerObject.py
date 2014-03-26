@@ -78,7 +78,7 @@ class ScoreManagerObject(object):
 
     ### PRIVATE METHODS ###
 
-    def _exit_io_method(self, source=None):
+    def _should_exit_io_method(self, source=None):
         if self._session.is_complete:
             return True
         elif self._session.is_backtracking_to_score_manager:
