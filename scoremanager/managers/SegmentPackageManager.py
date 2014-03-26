@@ -232,29 +232,21 @@ class SegmentPackageManager(PackageManager):
         
     ### PUBLIC METHODS ###
 
-    def edit_definition_module(
-        self,
-        pending_user_input=None,
-        ):
+    def edit_definition_module(self):
         r'''Edits asset definition module.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         manager = self._definition_module_manager
         if not manager:
             return
         manager.edit()
 
-    def edit_definition_module_from_top(
-        self,
-        pending_user_input=None,
-        ):
+    def edit_definition_module_from_top(self):
         r'''Edits asset definition module.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         manager = self._definition_module_manager
         if not manager:
             return

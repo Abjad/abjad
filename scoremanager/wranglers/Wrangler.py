@@ -342,13 +342,9 @@ class Wrangler(Controller):
         view_inventory = result[0]
         return view_inventory
 
-    def _run(
-        self, 
-        pending_user_input=None,
-        ):
+    def _run(self):
         from scoremanager import wranglers
         self._session._push_controller(self)
-        self._io_manager._assign_user_input(pending_user_input)
         if type(self) is wranglers.BuildFileWrangler:
             self._session._is_navigating_to_score_build_files = False
         elif type(self) is wranglers.DistributionFileWrangler:
@@ -378,11 +374,7 @@ class Wrangler(Controller):
                 break
         self._session._pop_controller()
 
-    def _select_asset_path(
-        self, 
-        pending_user_input=None,
-        ):
-        self._io_manager._assign_user_input(pending_user_input)
+    def _select_asset_path(self):
         menu = self._make_asset_selection_menu()
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb()
@@ -401,9 +393,7 @@ class Wrangler(Controller):
         user_library=True,
         abjad_score_packages=True,
         user_score_packages=True,
-        pending_user_input=None,
         ):
-        self._io_manager._assign_user_input(pending_user_input)
         menu = self._io_manager.make_menu(
             where=self._where,
             name='storehouse selection',
@@ -505,15 +495,11 @@ class Wrangler(Controller):
         '''
         self._current_package_manager.list_long()
 
-    def list_views(
-        self,
-        pending_user_input=None,
-        ):
+    def list_views(self):
         r'''List views in views module.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         view_inventory = self._read_view_inventory_from_disk()
         if view_inventory is None:
             message = 'no views found.'
@@ -579,12 +565,11 @@ class Wrangler(Controller):
         '''
         self._current_package_manager.pytest(prompt=prompt)
 
-    def remove(self, pending_user_input=None):
+    def remove(self):
         r'''Removes asset.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         with self._backtrack:
             asset_path = self._select_asset_path()
         if self._exit_io_method():
@@ -620,12 +605,11 @@ class Wrangler(Controller):
         '''
         self._current_package_manager.remove_views_module()
 
-    def rename(self, pending_user_input=None):
+    def rename(self):
         r'''Renames asset.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         with self._backtrack:
             asset_path = self._select_asset_path()
         if self._exit_io_method():
@@ -659,17 +643,13 @@ class Wrangler(Controller):
         '''
         self._current_package_manager.rewrite_metadata_module(prompt=prompt)
 
-    def select_view(
-        self,
-        pending_user_input=None,
-        ):
+    def select_view(self):
         r'''Selects view.
 
         Writes view name to metadata module.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         view_inventory = self._read_view_inventory_from_disk()
         if view_inventory is None:
             message = 'no views found.'

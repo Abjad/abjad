@@ -196,13 +196,7 @@ class MaterialManager(PackageManager):
     def _check_output_material(material):
         return True
 
-    def _edit_user_input_wrapper_at_number(
-        self,
-        number,
-        include_newline=True,
-        pending_user_input=None,
-        ):
-        self._io_manager._assign_user_input(pending_user_input)
+    def _edit_user_input_wrapper_at_number(self, number, include_newline=True):
         number = int(number)
         if self._user_input_wrapper_in_memory is None:
             return
@@ -968,24 +962,13 @@ class MaterialManager(PackageManager):
         '''
         self._output_module_manager.view()
 
-    def view_user_input_module(
-        self,
-        pending_user_input=None,
-        ):
+    def view_user_input_module(self):
         r'''Views user input module.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         file_path = self._user_input_module_path
         self._io_manager.view(file_path)
-
-#    def write_definition_module_boilerplate(self):
-#        r'''Writes material definition module boilerplate.
-#
-#        Returns none.
-#        '''
-#        self._definition_module_manager.write_boilerplate()
 
     def write_definition_module_stub(self):
         r'''Writes stub material definition module.

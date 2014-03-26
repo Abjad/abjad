@@ -58,12 +58,7 @@ class MakerModuleWrangler(FileWrangler):
 
     ### PRIVATE METHODS ###
 
-    def _edit_maker_module(
-        self, 
-        path,
-        pending_user_input=None,
-        ):
-        self._io_manager._assign_user_input(pending_user_input)
+    def _edit_maker_module(self, path):
         manager = self._asset_manager_class(
             path=path, 
             session=self._session,
@@ -113,16 +108,12 @@ class MakerModuleWrangler(FileWrangler):
 
     ### PUBLIC METHODS ###
 
-    def make_asset(
-        self,
-        pending_user_input=None,
-        ):
+    def make_asset(self):
         r'''Makes asset.
 
         Returns none.
         '''
         from scoremanager import managers
-        self._io_manager._assign_user_input(pending_user_input)
         with self._backtrack:
             # TODO: extend to allow creation in current score
             storehouse_path = self._select_storehouse_path(

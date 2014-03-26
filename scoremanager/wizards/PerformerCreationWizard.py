@@ -23,13 +23,8 @@ class PerformerCreationWizard(Wizard):
 
     ### PRIVATE METHODS ###
 
-    def _initialize_performer(
-        self, 
-        performer, 
-        pending_user_input=None,
-        ):
+    def _initialize_performer(self, performer):
         from scoremanager import wizards
-        self._io_manager._assign_user_input(pending_user_input)
         menu = self._make_performer_configuration_menu(performer)
         while True:
             result = menu._run()

@@ -133,7 +133,6 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def interpret_current_lilypond_files(
         self,
-        pending_user_input=None,
         prompt=True,
         view_output_pdfs=True,
         ):
@@ -141,7 +140,6 @@ class SegmentPackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
         parts += self._score_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
@@ -169,15 +167,11 @@ class SegmentPackageWrangler(PackageWrangler):
         if view_output_pdfs:
             self.view_segment_pdfs()
 
-    def interpret_make_modules(
-        self,
-        pending_user_input=None,
-        ):
+    def interpret_make_modules(self):
         r'''Makes asset PDFs.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
         parts += self._score_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
@@ -204,15 +198,11 @@ class SegmentPackageWrangler(PackageWrangler):
         self._io_manager.display('')
         self._io_manager.proceed()
 
-    def version_segment_packages(
-        self,
-        pending_user_input=None,
-        ):
+    def version_segment_packages(self):
         r'''Versions all assets.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
         parts += self._score_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
@@ -241,15 +231,11 @@ class SegmentPackageWrangler(PackageWrangler):
         self._io_manager.display('')
         self._io_manager.proceed()
 
-    def view_segment_pdfs(
-        self,
-        pending_user_input=None,
-        ):
+    def view_segment_pdfs(self):
         r'''Views all asset PDFs.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         parts = (self._session.current_score_directory_path,)
         parts += self._score_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)

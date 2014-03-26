@@ -56,12 +56,7 @@ class BuildFileWrangler(FileWrangler):
 
     ### PRIVATE METHODS ###
 
-    def _edit_file(
-        self, 
-        path,
-        pending_user_input=None,
-        ):
-        self._io_manager._assign_user_input(pending_user_input)
+    def _edit_file(self, path):
         manager = self._asset_manager_class(
             path=path, 
             session=self._session,

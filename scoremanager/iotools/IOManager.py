@@ -61,17 +61,6 @@ class IOManager(IOManager):
 
     ### PRIVATE METHODS ###
 
-    def _assign_user_input(self, pending_user_input=None):
-        assert pending_user_input is None
-        if pending_user_input is not None:
-            assert not self._session.pending_user_input
-            if self._session.pending_user_input:
-                self._session._pending_user_input = \
-                    pending_user_input + ' ' + \
-                    self._session.pending_user_input
-            else:
-                self._session._pending_user_input = pending_user_input
-
     @staticmethod
     def _get_one_line_menu_summary(expr):
         if isinstance(expr, (types.ClassType, abc.ABCMeta, types.TypeType)):

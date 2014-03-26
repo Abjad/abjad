@@ -186,10 +186,7 @@ class BuildDirectoryManager(DirectoryManager):
 
     ### PUBLIC METHODS ###
 
-    def copy_segment_lilypond_files(
-        self,
-        pending_user_input=None,
-        ):
+    def copy_segment_lilypond_files(self):
         r'''Copies segment LilyPond files from segment
         package directories to build directory.
 
@@ -202,7 +199,6 @@ class BuildDirectoryManager(DirectoryManager):
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         segments_directory_path = self._session.current_segments_directory_path
         for directory_entry in sorted(os.listdir(segments_directory_path)):
             segment_directory_path = os.path.join(
@@ -240,13 +236,12 @@ class BuildDirectoryManager(DirectoryManager):
             self._io_manager.display(message)
         self._io_manager.proceed('')
 
-    def copy_segment_pdfs(self, pending_user_input=None):
+    def copy_segment_pdfs(self):
         r'''Copies segment PDFs from segment
         package directories to build directory.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         segments_directory_path = self._session.current_segments_directory_path
         for directory_entry in sorted(os.listdir(segments_directory_path)):
             segment_directory_path = os.path.join(
