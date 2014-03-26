@@ -52,7 +52,6 @@ class Session(abctools.AbjadObject):
         '_is_backtracking_to_score',
         '_is_backtracking_to_score_manager',
         '_is_in_confirmation_environment',
-        '_is_in_editor',
         '_is_in_score_setup_menu',
         '_is_navigating_to_score_build_files',
         '_is_navigating_to_score_distribution_files',
@@ -95,6 +94,7 @@ class Session(abctools.AbjadObject):
         'current_score_snake_case_name',
         'hide_next_redraw',
         'hide_hidden_commands',
+        'is_autoadding',
         'is_autonavigating',
         'is_displayable',
         'is_in_editor',
@@ -136,7 +136,6 @@ class Session(abctools.AbjadObject):
         self._is_backtracking_to_score = False
         self._is_backtracking_to_score_manager = False
         self._is_in_confirmation_environment = False
-        self._is_in_editor = False
         self._is_in_score_setup_menu = False
         self._is_navigating_to_score_build_files = False
         self._is_navigating_to_score_distribution_files = False
@@ -614,7 +613,11 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self._is_autoadding
+        from scoremanager import editors
+        for controller in reversed(self.controller_stack):
+            if isinstance(controller, editors.Editor):
+                return controller.is_autoadding
+        return False
 
     @property
     def is_autonavigating(self):
@@ -791,7 +794,11 @@ class Session(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self._is_in_editor
+        from scoremanager import editors
+        for controller in reversed(self.controller_stack):
+            if isinstance(controller, editors.Editor):
+                return True
+        return False
 
     @property
     def is_in_score(self):

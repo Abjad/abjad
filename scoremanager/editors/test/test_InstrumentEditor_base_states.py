@@ -13,7 +13,7 @@ def test_InstrumentEditor_base_states_01():
     editor._run(pending_user_input=input_)
     assert editor._transcript.signature == (4,)
     assert editor._transcript.last_menu_lines == \
-    ['(Test)',
+    ['Accordion',
       '',
       "    1: instrument name (in): accordion",
       "    2: instrument name markup (im): \markup { Accordion }",

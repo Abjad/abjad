@@ -482,7 +482,6 @@ class Manager(Controller):
         self._io_manager.display('')
 
     def _run(self, pending_user_input=None):
-        from scoremanager import managers
         from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input

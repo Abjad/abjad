@@ -190,7 +190,6 @@ class Editor(Controller):
                 name='keyed attributes',
                 is_numbered=True,
                 ) 
-            #menu_entries = self._make_target_attribute_tokens()
             for menu_entry in menu_entries:
                 keyed_attribute_section.append(menu_entry)
         self._make_done_menu_section(menu)
@@ -233,6 +232,7 @@ class Editor(Controller):
             self._target_manifest._menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
 
+    # TODO: change input keywords to initializer values that don't change
     def _run(
         self, 
         breadcrumb=None, 
@@ -241,53 +241,55 @@ class Editor(Controller):
         is_autostarting=False, 
         pending_user_input=None,
         ):
-        self._session._is_in_editor = True
+        from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        with self._backtrack:
-            self._initialize_target()
-        if self._exit_io_method():
-            return
-        result = None
-        entry_point = None
-        self.is_autoadvancing = is_autoadvancing
-        is_first_pass = True
-        if is_autoadding:
-            self._session._is_autoadding = True
-        while True:
-            breadcrumb = breadcrumb or self._breadcrumb
-            if self._session.is_autoadding:
-                menu = self._make_main_menu()
-                result = 'add'
-                menu._run(predetermined_user_input=result)
-                is_first_pass = False
-            elif is_first_pass and is_autostarting:
-                menu = self._make_main_menu()
-                result = menu._get_first_nonhidden_return_value_in_menu()
-                menu._run(predetermined_user_input=result)
-                is_first_pass = False
-            elif result and self.is_autoadvancing:
-                entry_point = entry_point or result
-                result = menu._return_value_to_next_return_value_in_section(
-                    result)
-                if result == entry_point:
-                    self.is_autoadvancing = False
-                    continue
-            else:
-                menu = self._make_main_menu()
-                result = menu._run()
+        context = iotools.ControllerContext(
+            controller=self,
+            on_exit_callbacks=(self._clean_up_attributes_in_memory,),
+            )
+        with context:
+            with self._backtrack:
+                self._initialize_target()
                 if self._exit_io_method():
+                    return
+            self.is_autoadvancing = is_autoadvancing
+            self.is_autoadding = is_autoadding
+            result = None
+            entry_point = None
+            is_first_pass = True
+            while True:
+                breadcrumb = breadcrumb or self._breadcrumb
+                if self.is_autoadding:
+                    menu = self._make_main_menu()
+                    result = 'add'
+                    menu._run(predetermined_user_input=result)
+                    is_first_pass = False
+                elif is_first_pass and is_autostarting:
+                    menu = self._make_main_menu()
+                    result = menu._get_first_nonhidden_return_value_in_menu()
+                    menu._run(predetermined_user_input=result)
+                    is_first_pass = False
+                elif result and self.is_autoadvancing:
+                    entry_point = entry_point or result
+                    result = \
+                        menu._return_value_to_next_return_value_in_section(
+                            result)
+                    if result == entry_point:
+                        self.is_autoadvancing = False
+                        continue
+                else:
+                    menu = self._make_main_menu()
+                    result = menu._run()
+                    if self._exit_io_method():
+                        return
+                    elif not result:
+                        continue
+                if result == 'done':
                     break
-                elif not result:
-                    continue
-            if result == 'done':
-                break
-            self._handle_main_menu_result(result)
-            if self._exit_io_method():
-                break
-        self._session._is_autoadding = False
-        self._clean_up_attributes_in_memory()
-        self._session._is_in_editor = False
+                self._handle_main_menu_result(result)
+                if self._exit_io_method():
+                    return
 
     def _set_target_attribute(self, attribute_name, attribute_value):
         if self.target is not None:

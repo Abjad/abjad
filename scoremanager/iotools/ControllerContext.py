@@ -12,10 +12,12 @@ class ControllerContext(ContextManager):
         self, 
         controller=None,
         is_in_confirmation_environment=False,
+        on_exit_callbacks=None,
         where=None,
         ):
         self.controller = controller
         self.is_in_confirmation_environment = is_in_confirmation_environment
+        self.on_exit_callbacks = on_exit_callbacks or ()
         self.where = where
         self._session = self.controller._session
 
@@ -43,6 +45,8 @@ class ControllerContext(ContextManager):
         self._session._is_in_confirmation_environment = False
         self._session._where = None
         self._session._hide_hidden_commands = True
+        for on_exit_callback in self.on_exit_callbacks:
+            on_exit_callback()
 
     def __repr__(self):
         r'''Gets interpreter representation of context manager.
