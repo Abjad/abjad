@@ -42,6 +42,7 @@ class ClassDocumenter(Documenter):
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__call__
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__eq__
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__format__
+            ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__hash__
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__ne__
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__repr__
         <BLANKLINE>
@@ -109,6 +110,9 @@ class ClassDocumenter(Documenter):
         :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__format__
+        :noindex:
+        <BLANKLINE>
+        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__hash__
         :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__ne__
