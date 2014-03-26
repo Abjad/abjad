@@ -18,7 +18,6 @@ class Backtrack(ContextManager):
 
         Returns none.
         '''
-        #print 'ENTER'
         self.client._session._backtrack_stack.append(self.client)
 
     def __exit__(self, exg_type, exc_value, trackeback):
@@ -26,7 +25,6 @@ class Backtrack(ContextManager):
 
         Returns none.
         '''
-        #print 'EXIT'
         self.client._session._backtrack_stack.pop()
 
     def __repr__(self):

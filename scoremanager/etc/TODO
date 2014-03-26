@@ -118,3 +118,8 @@
 31. Eventually implement a Score Manager start-up behavior that will
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
+
+32: Bug:
+    File "/Users/trevorbaca/Documents/abjad/scoremanager/wranglers/Wrangler.py", line 137, in _get_next_asset_path
+        return paths[0]
+    IndexError: list index out of range

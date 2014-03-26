@@ -8,7 +8,8 @@ def test_StylesheetWrangler__select_asset_path_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     wrangler = score_manager._stylesheet_wrangler
-    wrangler._session._pending_user_input = 'clean'
+    input_ = 'clean'
+    wrangler._session._pending_user_input = input_
     path = wrangler._select_asset_path()
 
     assert path == os.path.join(

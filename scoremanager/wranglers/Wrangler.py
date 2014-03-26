@@ -523,10 +523,7 @@ class Wrangler(Controller):
         self._io_manager.display(lines)
         self._io_manager.proceed()
 
-    def make_view(
-        self,
-        pending_user_input=None,
-        ):
+    def make_view(self):
         r'''Makes view.
 
         Returns none.
