@@ -28,18 +28,17 @@ class PerformerCreationWizard(Wizard):
         menu = self._make_performer_configuration_menu(performer)
         while True:
             result = menu._run()
-            if self._exit_io_method():
+            if self._should_backtrack():
                 return
             elif not result:
                 continue
             if result in ('skip', ['skip']):
                 break
             elif result in ('more', ['more']):
-                with self._backtrack:
-                    wizard = wizards.InstrumentCreationWizard(
-                        session=self._session, is_ranged=True)
-                    instruments = wizard._run()
-                if self._exit_io_method():
+                wizard = wizards.InstrumentCreationWizard(
+                    session=self._session, is_ranged=True)
+                instruments = wizard._run()
+                if self._should_backtrack():
                     break
                 if instruments is not None:
                     for instrument in instruments:
@@ -112,9 +111,8 @@ class PerformerCreationWizard(Wizard):
                     session=self._session,
                     )
                 selector.is_ranged=self.is_ranged
-                with self._backtrack:
-                    result = selector._run()
-                if self._exit_io_method():
+                result = selector._run()
+                if self._should_backtrack():
                     break
                 if isinstance(result, list):
                     performer_names = result
@@ -122,12 +120,11 @@ class PerformerCreationWizard(Wizard):
                     performer_names = [result]
                 performers = []
                 for performer_name in performer_names:
-                    with self._backtrack:
-                        performer = instrumenttools.Performer(performer_name)
-                        self._initialize_performer(performer)
+                    performer = instrumenttools.Performer(performer_name)
+                    self._initialize_performer(performer)
                     was_backtracking_locally = \
                         self._session.is_backtracking_locally
-                    if self._exit_io_method():
+                    if self._should_backtrack():
                         if was_backtracking_locally:
                             try_again = True
                         else:

@@ -52,9 +52,8 @@ class InstrumentCreationWizard(Wizard):
                 session=self._session,
                 items=items,
                 )
-            with self._backtrack:
-                instrument_name = selector._run()
-            if self._exit_io_method():
+            instrument_name = selector._run()
+            if self._should_backtrack():
                 return
             instrument = new(
                 instrument,
@@ -75,9 +74,8 @@ class InstrumentCreationWizard(Wizard):
                 items=items,
                 )
             selector.is_ranged = self.is_ranged
-            with self._backtrack:
-                result = selector._run()
-            if self._exit_io_method():
+            result = selector._run()
+            if self._should_backtrack():
                 return
             if isinstance(result, list):
                 instrument_names = result

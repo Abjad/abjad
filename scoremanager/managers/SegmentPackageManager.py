@@ -209,10 +209,9 @@ class SegmentPackageManager(PackageManager):
         prompt = 'version number (0-{})'
         prompt = prompt.format(last_version_number)
         getter.append_integer(prompt)
-        with self._backtrack:
-            version_number = getter._run()
-            if self._should_exit_controller_context():
-                return
+        version_number = getter._run()
+        if self._should_backtrack():
+            return
         if last_version_number < version_number or \
             (version_number < 0 and last_version_number < abs(version_number)):
             message = "version {} doesn't exist yet."

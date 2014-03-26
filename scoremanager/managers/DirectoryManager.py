@@ -207,10 +207,9 @@ class DirectoryManager(Manager):
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_snake_case_string('metadatum name', allow_empty=False)
         getter.append_expr('metadatum value')
-        with self._backtrack:
-            result = getter._run()
-            if self._should_exit_controller_context():
-                return
+        result = getter._run()
+        if self._should_backtrack():
+            return
         if result:
             metadatum_name, metadatum_value = result
             self._add_metadatum(metadatum_name, metadatum_value)
@@ -231,10 +230,9 @@ class DirectoryManager(Manager):
         '''
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
-        with self._backtrack:
-            result = getter._run()
-            if self._should_exit_controller_context():
-                return
+        result = getter._run()
+        if self._should_backtrack():
+            return
         metadatum = self._get_metadatum(result)
         message = '{!r}'.format(metadatum)
         self._io_manager.proceed(message=message)
@@ -263,10 +261,9 @@ class DirectoryManager(Manager):
         '''
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('metadatum name')
-        with self._backtrack:
-            result = getter._run()
-            if self._should_exit_controller_context():
-                return
+        result = getter._run()
+        if self._should_backtrack():
+            return
         if result:
             metadatum_name = result
             self._remove_metadatum(metadatum_name)

@@ -523,9 +523,9 @@ class Menu(ScoreManagerObject):
         from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
+        clear_terminal, hide_current_run = True, False
         context = iotools.ControllerContext(self)
         with context:
-            clear_terminal, hide_current_run = True, False
             while True:
                 self._should_clear_terminal = clear_terminal
                 self._hide_current_run = hide_current_run
@@ -533,14 +533,12 @@ class Menu(ScoreManagerObject):
                 result = self._predetermined_user_input
                 if not result:
                     result = self._display()
-                #print repr(result), 'RES'
                 if self._session.is_complete:
-                    break
+                    return result
                 if result == 'r':
                     clear_terminal, hide_current_run = True, False
                 else:
-                    break
-            return result
+                    return result
 
     # TODO: apply default notice at display time 
     #       so this can be completely removed

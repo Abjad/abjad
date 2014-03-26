@@ -52,10 +52,25 @@ class Wizard(ScoreManagerObject):
                 selector = self.handler_class_name_selector(
                     session=self._session)
             handler_class_name = selector._run()
-            if self._exit_io_method():
+            if self._should_backtrack():
                 return
             handler_editor = self._get_target_editor(handler_class_name)
             handler_editor._is_autoadvancing = True
             handler_editor._is_autostarting = True
             handler_editor._run()
             self.target = handler_editor.target
+
+    def _should_backtrack(self):
+        if self._session.is_complete:
+            return True
+        elif self._session.is_backtracking_to_score_manager:
+            return True
+        # keep on backtracking ... do not consume this backtrack
+        elif self._session.is_backtracking_locally:
+            return True
+        elif self._session.is_backtracking_to_score:
+            return True
+        elif self._session.is_autonavigating_within_score:
+            return True
+        else:
+            return False

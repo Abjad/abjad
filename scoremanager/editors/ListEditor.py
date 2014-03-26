@@ -134,9 +134,8 @@ class ListEditor(Editor):
                 session=self._session, 
                 **self.item_creator_class_kwargs
                 )
-            with self._backtrack:
-                result = item_creator._run()
-            if self._exit_io_method():
+            result = item_creator._run()
+            if self._should_backtrack():
                 return
             if result == 'done':
                 self._session._is_autoadding = False
@@ -145,9 +144,8 @@ class ListEditor(Editor):
         elif self.item_getter_configuration_method:
             getter = self._io_manager.make_getter(where=self._where)
             self.item_getter_configuration_method(getter, self.item_identifier)
-            with self._backtrack:
-                item_initialization_token = getter._run()
-            if self._exit_io_method():
+            item_initialization_token = getter._run()
+            if self._should_backtrack():
                 return
             if item_initialization_token == 'done':
                 self._session._is_autoadding = False
@@ -199,7 +197,7 @@ class ListEditor(Editor):
         getter.append_integer_in_range('old number', 1, len(self._items))
         getter.append_integer_in_range('new number', 1, len(self._items))
         result = getter._run()
-        if self._exit_io_method():
+        if self._should_exit_io_method():
             return
         old_number, new_number = result
         old_index, new_index = old_number - 1, new_number - 1
@@ -217,7 +215,7 @@ class ListEditor(Editor):
         getter.append_menu_section_range(
             items_identifier, self._numbered_section)
         argument_range = getter._run()
-        if self._exit_io_method():
+        if self._should_exit_io_method():
             return
         indices = [argument_number - 1 for argument_number in argument_range]
         indices = list(reversed(sorted(set(indices))))

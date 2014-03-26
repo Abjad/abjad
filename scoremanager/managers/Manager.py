@@ -125,7 +125,7 @@ class Manager(Controller):
         pass
 
     def _exit_run(self):
-        return self._exit_io_method()
+        return self._should_exit_io_method()
 
     def _find_first_file_name(self):
         for directory_entry in os.listdir(self._path):
@@ -629,10 +629,9 @@ class Manager(Controller):
         if commit_message is None:
             getter = self._io_manager.make_getter(where=self._where)
             getter.append_string('commit message')
-            with self._backtrack:
-                commit_message = getter._run()
-                if self._should_exit_controller_context():
-                    return
+            commit_message = getter._run()
+            if self._should_backtrack():
+                return
             line = 'commit message will be: "{}"\n'.format(commit_message)
             self._io_manager.display(line)
             if not self._io_manager.confirm():
@@ -663,10 +662,9 @@ class Manager(Controller):
         Returns none.
         '''
         getter = self._initialize_file_name_getter()
-        with self._backtrack:
-            result = getter._run()
-            if self._should_exit_controller_context():
-                return
+        result = getter._run()
+        if self._should_backtrack():
+            return
         new_asset_name = \
             self._space_delimited_lowercase_name_to_asset_name(result)
         parent_directory_path = os.path.dirname(self._path)
@@ -774,10 +772,9 @@ class Manager(Controller):
             self._io_manager.display([message, ''])
             getter = self._io_manager.make_getter(where=self._where)
             getter.append_string("type 'remove' to proceed")
-            with self._backtrack:
-                result = getter._run()
-                if self._should_exit_controller_context():
-                    return
+            result = getter._run()
+            if self._should_backtrack():
+                return
         # TODO: remove this branch?
         else:
             result = True
@@ -821,10 +818,9 @@ class Manager(Controller):
         Returns none.
         '''
         getter = self._initialize_file_name_getter()
-        with self._backtrack:
-            result = getter._run()
-            if self._should_exit_controller_context():
-                return
+        result = getter._run()
+        if self._should_backtrack():
+            return
         parent_directory_path = os.path.dirname(self._path)
         new_path = os.path.join(parent_directory_path, result)
         message = 'new path name will be: {!r}.'

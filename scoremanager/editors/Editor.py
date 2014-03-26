@@ -155,7 +155,8 @@ class Editor(Controller):
             )
         if editor is not None:
             result = editor._run()
-            if self._exit_io_method():
+            if self._should_backtrack():
+                # TODO: maybe this should be in a context manager
                 self.is_autoadvancing = False
                 return
             if hasattr(editor, 'target'):
@@ -259,10 +260,9 @@ class Editor(Controller):
             on_exit_callbacks=(self._clean_up_attributes_in_memory,),
             )
         with context:
-            with self._backtrack:
-                self._initialize_target()
-                if self._exit_io_method():
-                    return
+            self._initialize_target()
+            if self._should_backtrack():
+                return
             result = None
             entry_point = None
             is_first_pass = True
@@ -291,14 +291,14 @@ class Editor(Controller):
                 else:
                     menu = self._make_main_menu()
                     result = menu._run()
-                    if self._exit_io_method():
+                    if self._should_exit_io_method():
                         return
                     elif not result:
                         continue
                 if result == 'done':
                     break
                 self._handle_main_menu_result(result)
-                if self._exit_io_method():
+                if self._should_exit_io_method():
                     return
 
     def _set_target_attribute(self, attribute_name, attribute_value):

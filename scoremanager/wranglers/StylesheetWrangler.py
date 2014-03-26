@@ -133,12 +133,12 @@ class StylesheetWrangler(FileWrangler):
                 abjad_score_packages=False,
                 user_score_packages=False,
                 )
-            if self._should_exit_controller_context():
+            if self._should_backtrack():
                 return
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('stylesheet name')
         file_path = getter._run()
-        if self._exit_io_method():
+        if self._should_exit_io_method():
             return
         file_path = stringtools.string_to_accent_free_snake_case(file_path)
         if not file_path.endswith('.ily'):
