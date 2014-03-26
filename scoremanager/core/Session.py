@@ -1417,6 +1417,24 @@ class Session(abctools.AbjadObject):
         self.io_manager.display(lines, capitalize_first_character=False)
         self.io_manager.proceed()
 
+    def get_controller_with(self, ui=None):
+        r'''Gets most recent controller with `ui` in `_user_input_to_action`
+        dictionary.
+
+        Returns controller.
+        '''
+        for controller in reversed(self.controller_stack):
+            if not ui:
+                return controller
+            user_input_to_action = getattr(
+                controller, 
+                '_user_input_to_action',
+                None,
+                )
+            if user_input_to_action:
+                if ui in user_input_to_action:
+                    return controller
+
     def toggle_hidden_commands(self):
         r'''Toggles `hide_hidden_commands`.
 

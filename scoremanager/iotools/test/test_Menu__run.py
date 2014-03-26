@@ -7,7 +7,10 @@ def test_Menu__run_01():
     r'''String menu_entry defaults.
     '''
 
-    menu = scoremanager.iotools.Menu(name='test')
+    menu = scoremanager.iotools.Menu(
+        name='test',
+        breadcrumb_callback='name',
+        )
     section = menu._make_section(name='test', title='section')
     section.append('apple')
     section.append('banana')
@@ -15,7 +18,7 @@ def test_Menu__run_01():
 
     result = menu._run(pending_user_input='foo')
     assert menu._transcript.last_menu_lines == \
-    ['(Test)',
+    ['Test',
       '',
       '    Section',
       '',
@@ -49,7 +52,10 @@ def test_Menu__run_02():
     r'''Hidden menu section.
     '''
 
-    menu = scoremanager.iotools.Menu(name='test')
+    menu = scoremanager.iotools.Menu(
+        name='test',
+        breadcrumb_callback='name',
+        )
     section = menu._make_section(
         name='test', 
         is_hidden=True,
@@ -60,8 +66,8 @@ def test_Menu__run_02():
     section.append('cherry')
     result = menu._run(pending_user_input='foo')
 
-    assert menu._transcript.last_menu_lines == \
-    ['(Test)', '']
+    strings = ['Test', '']
+    assert menu._transcript.last_menu_lines == strings
     assert result is None
 
     menu._session._reinitialize()
@@ -88,10 +94,13 @@ def test_Menu__run_03():
     r'''Numbered menu section.
     '''
 
-    menu = scoremanager.iotools.Menu(name='test')
+    menu = scoremanager.iotools.Menu(
+        breadcrumb_callback='name',
+        name='test',
+        )
     section = menu._make_section(
-        name='test', 
         is_numbered=True,
+        name='test', 
         title='section',
         )
     section.append('apple')
@@ -99,15 +108,17 @@ def test_Menu__run_03():
     section.append('cherry')
     result = menu._run(pending_user_input='foo')
 
-    assert menu._transcript.last_menu_lines == \
-    ['(Test)',
-      '',
-      '    Section',
-      '',
-      '    1: apple',
-      '    2: banana',
-      '    3: cherry',
-      '']
+    strings = [
+        'Test',
+        '',
+        '    Section',
+        '',
+        '    1: apple',
+        '    2: banana',
+        '    3: cherry',
+        '',
+        ]
+    assert menu._transcript.last_menu_lines == strings
     assert result is None
 
     menu._session._reinitialize()
@@ -134,10 +145,13 @@ def test_Menu__run_04():
     r'''Menu section with range selection turned on.
     '''
 
-    menu = scoremanager.iotools.Menu(name='test')
+    menu = scoremanager.iotools.Menu(
+        breadcrumb_callback='name',
+        name='test',
+        )
     section = menu._make_section(
-        name='test', 
         is_ranged=True,
+        name='test', 
         title='section',
         )
     section.append('apple')
@@ -145,15 +159,17 @@ def test_Menu__run_04():
     section.append('cherry')
     result = menu._run(pending_user_input='foo')
 
-    assert menu._transcript.last_menu_lines == \
-    ['(Test)',
-      '',
-      '    Section',
-      '',
-      '    apple',
-      '    banana',
-      '    cherry',
-      '']
+    strings = [
+        'Test',
+        '',
+        '    Section',
+        '',
+        '    apple',
+        '    banana',
+        '    cherry',
+        '',
+        ]
+    assert menu._transcript.last_menu_lines == strings
     assert result is None
 
     menu._session._reinitialize()
@@ -181,11 +197,14 @@ def test_Menu__run_05():
     r'''Keyed menu section with key returned.
     '''
 
-    menu = scoremanager.iotools.Menu(name='test')
+    menu = scoremanager.iotools.Menu(
+        breadcrumb_callback='name',
+        name='test',
+        )
     section = menu._make_section(
         name='test',
-        title='section',
         return_value_attribute='key',
+        title='section',
         )
     section.append(('first command', 'add'))
     section.append(('second command', 'rm'))
@@ -193,15 +212,17 @@ def test_Menu__run_05():
 
     result = menu._run(pending_user_input='foo')
 
-    assert menu._transcript.last_menu_lines == \
-    ['(Test)',
-      '',
-      '    Section',
-      '',
-      '    first command (add)',
-      '    second command (rm)',
-      '    third command (mod)',
-      '']
+    strings = [
+        'Test',
+        '',
+        '    Section',
+        '',
+        '    first command (add)',
+        '    second command (rm)',
+        '    third command (mod)',
+        '',
+        ]
+    assert menu._transcript.last_menu_lines == strings
     assert result is None
 
     menu._session._reinitialize()
@@ -240,7 +261,10 @@ def test_Menu__run_06():
     r'''Keyed menu section with display string returned.
     '''
 
-    menu = scoremanager.iotools.Menu(name='test')
+    menu = scoremanager.iotools.Menu(
+        breadcrumb_callback='name',
+        name='test',
+        )
     section = menu._make_section(
         name='test',
         )
@@ -289,11 +313,14 @@ def test_Menu__run_07():
     r'''Hidden keyed menu section with key returned.
     '''
 
-    menu = scoremanager.iotools.Menu(name='test')
+    menu = scoremanager.iotools.Menu(
+        breadcrumb_callback='name',
+        name='test',
+        )
     section = menu._make_section(
+        is_hidden=True,
         name='test',
         return_value_attribute='key',
-        is_hidden=True,
         title='section',
         )
     section.append(('first command', 'add'))
@@ -301,8 +328,8 @@ def test_Menu__run_07():
     section.append(('third command', 'mod'))
     result = menu._run(pending_user_input='foo')
 
-    assert menu._transcript.last_menu_lines == \
-    ['(Test)', '']
+    strings = ['Test', '']
+    assert menu._transcript.last_menu_lines == strings
 
     assert result is None
 
@@ -342,10 +369,13 @@ def test_Menu__run_08():
     r'''Hidden keyed menu section with display string returned.
     '''
 
-    menu = scoremanager.iotools.Menu(name='test')
+    menu = scoremanager.iotools.Menu(
+        breadcrumb_callback='name',
+        name='test',
+        )
     section = menu._make_section(
-        name='test', 
         is_hidden=True,
+        name='test', 
         title='section',
         )
     section.append(('first command', 'add'))
@@ -392,11 +422,14 @@ def test_Menu__run_09():
     r'''Numbered keyed menu section with key returned.
     '''
 
-    menu = scoremanager.iotools.Menu(name='test')
+    menu = scoremanager.iotools.Menu(
+        breadcrumb_callback='name',
+        name='test',
+        )
     section = menu._make_section(
+        is_numbered=True,
         name='test',
         return_value_attribute='key',
-        is_numbered=True,
         title='section',
         )
     section.append(('first command', 'add'))
@@ -404,15 +437,17 @@ def test_Menu__run_09():
     section.append(('third command', 'mod'))
     result = menu._run(pending_user_input='foo')
 
-    assert menu._transcript.last_menu_lines == \
-    ['(Test)',
-      '',
-      '    Section',
-      '',
-      '    1: first command (add)',
-      '    2: second command (rm)',
-      '    3: third command (mod)',
-      '']
+    strings = [
+        'Test',
+        '',
+        '    Section',
+        '',
+        '    1: first command (add)',
+        '    2: second command (rm)',
+        '    3: third command (mod)',
+        '',
+        ]
+    assert menu._transcript.last_menu_lines == strings
     assert result is None
 
     menu._session._reinitialize()
@@ -451,11 +486,14 @@ def test_Menu__run_10():
     r'''Ranged keyed menu section with with key returned.
     '''
 
-    menu = scoremanager.iotools.Menu(name='test')
+    menu = scoremanager.iotools.Menu(
+        breadcrumb_callback='name',
+        name='test',
+        )
     section = menu._make_section(
+        is_ranged=True,
         name='test',
         return_value_attribute='key',
-        is_ranged=True,
         title='section',
         )
     section.append(('first command', 'add'))
@@ -463,15 +501,17 @@ def test_Menu__run_10():
     section.append(('third command', 'mod'))
     result = menu._run(pending_user_input='foo')
 
-    assert menu._transcript.last_menu_lines == \
-    ['(Test)',
-      '',
-      '    Section',
-      '',
-      '    first command (add)',
-      '    second command (rm)',
-      '    third command (mod)',
-      '']
+    strings = [
+        'Test',
+        '',
+        '    Section',
+        '',
+        '    first command (add)',
+        '    second command (rm)',
+        '    third command (mod)',
+        '',
+        ]
+    assert menu._transcript.last_menu_lines == strings
     assert result is None
 
     menu._session._reinitialize()
@@ -510,10 +550,13 @@ def test_Menu__run_11():
     r'''RK menu section with display string returned.
     '''
 
-    menu = scoremanager.iotools.Menu(name='test')
+    menu = scoremanager.iotools.Menu(
+        breadcrumb_callback='name',
+        name='test',
+        )
     section = menu._make_section(
-        name='test', 
         is_ranged=True,
+        name='test', 
         title='section',
         )
     section.append(('first command', 'add'))

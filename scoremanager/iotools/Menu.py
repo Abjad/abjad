@@ -44,13 +44,13 @@ class Menu(ScoreManagerObject):
         self, 
         session=None, 
         where=None,
-        breadcrumb=None,
+        breadcrumb_callback=None,
         include_default_hidden_sections=False,
         name=None,
         title=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
-        self._breadcrumb_string = breadcrumb
+        self._breadcrumb_callback = breadcrumb_callback
         self._menu_sections = []
         if include_default_hidden_sections:
             self._make_default_hidden_sections()
@@ -99,7 +99,10 @@ class Menu(ScoreManagerObject):
 
     @property
     def _breadcrumb(self):
-        return self._breadcrumb_string
+        if self._breadcrumb_callback == 'name':
+            return self.name
+        elif self._breadcrumb_callback:
+            return self._breadcrumb_callback()
 
     ### PRIVATE METHODS ###
 
@@ -155,12 +158,15 @@ class Menu(ScoreManagerObject):
             return predetermined_user_input
         user_entered_lone_return = False
         user_input = self._io_manager.handle_user_input('')
+        #print repr(user_input), 'UI'
         if user_input == '':
             user_entered_lone_return = True
         directive = self._change_user_input_to_directive(user_input)
+        #print repr(directive), 'DIR'
         directive = self._strip_default_notice_from_strings(directive)
         self._session._hide_next_redraw = False
         directive = self._io_manager._handle_io_manager_directive(directive)
+        #print repr(directive), 'DIR(2)'
         if directive is None and user_entered_lone_return:
             result = 'user entered lone return'
         elif directive is None and not user_entered_lone_return:
@@ -523,8 +529,8 @@ class Menu(ScoreManagerObject):
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
         context = iotools.ControllerContext(self)
-        #with context:
-        if True:
+        with context:
+        #if True:
             clear_terminal, hide_current_run = True, False
             while True:
                 self._should_clear_terminal = clear_terminal
@@ -533,6 +539,7 @@ class Menu(ScoreManagerObject):
                 result = self._display(
                     predetermined_user_input=predetermined_user_input,
                     )
+                #print repr(result), 'RES'
                 if self._session.is_complete:
                     break
                 if result == 'r':

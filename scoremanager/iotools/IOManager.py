@@ -74,7 +74,7 @@ class IOManager(IOManager):
 
     def _handle_io_manager_directive(self, directive):
         input_directive = directive
-        from scoremanager import managers
+        from scoremanager import wranglers
         if isinstance(directive, list) and len(directive) == 1:
             directive = directive[0]
         if directive in ('b', 'back'):
@@ -107,7 +107,7 @@ class IOManager(IOManager):
         elif directive == 'pyd':
             message = 'running doctest ...'
             self.display([message, ''])
-            controller = self._session.current_controller
+            controller = self._session.get_controller_with(ui=directive)
             controller.doctest()
             result = None
         elif directive == 'pyi':
@@ -116,7 +116,7 @@ class IOManager(IOManager):
         elif directive == 'pyt':
             message = 'running py.test ...'
             self.display([message, ''])
-            controller = self._session.current_controller
+            controller = self._session.get_controller_with(ui=directive)
             controller.pytest()
             result = None
         elif directive in ('q', 'quit'):
@@ -154,19 +154,21 @@ class IOManager(IOManager):
             self._session._hide_hidden_commands = True
             result = '<'
         elif directive == '>>':
-            controller = self._session.current_controller
-            if isinstance(controller, managers.MaterialManager):
+            controller = self._session.get_controller_with(ui=directive)
+            # TODO: encapsulate tests in subclass methods
+            if isinstance(controller, wranglers.MaterialPackageWrangler):
                 self._session._is_navigating_to_score_materials = True
-            elif isinstance(controller, managers.SegmentPackageManager):
+            elif isinstance(controller, wranglers.SegmentPackageWrangler):
                 self._session._is_navigating_to_score_segments = True
             self._session._is_navigating_to_next_asset = True
             self._session._hide_hidden_commands = True
             result = '>>'
         elif directive == '<<':
-            controller = self._session.current_controller
-            if isinstance(controller, managers.MaterialManager):
+            controller = self._session.get_controller_with(ui=directive)
+            # TODO: encapsulate tests in subclass methods
+            if isinstance(controller, wranglers.MaterialPackageWrangler):
                 self._session._is_navigating_to_score_materials = True
-            elif isinstance(controller, managers.SegmentPackageManager):
+            elif isinstance(controller, wranglers.SegmentPackageWrangler):
                 self._session._is_navigating_to_score_segments = True
             self._session._is_navigating_to_previous_asset = True
             self._session._hide_hidden_commands = True
@@ -542,6 +544,7 @@ class IOManager(IOManager):
     def make_menu(
         self, 
         where=None, 
+        breadcrumb_callback=None,
         name=None,
         include_default_hidden_sections=True,
         ):
@@ -553,6 +556,7 @@ class IOManager(IOManager):
         menu = iotools.Menu(
             where=where, 
             session=self._session,
+            breadcrumb_callback=breadcrumb_callback,
             name=name,
             include_default_hidden_sections=include_default_hidden_sections,
             )

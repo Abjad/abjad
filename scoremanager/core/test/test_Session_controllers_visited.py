@@ -15,6 +15,7 @@ def test_Session_controllers_visited_01():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.iotools.Menu(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
 
@@ -30,6 +31,7 @@ def test_Session_controllers_visited_02():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(session=session),
         ]
     assert score_manager._session.controllers_visited == controllers
@@ -46,6 +48,7 @@ def test_Session_controllers_visited_03():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(session=session),
         scoremanager.managers.BuildDirectoryManager(session=session),
         ]
@@ -63,6 +66,7 @@ def test_Session_controllers_visited_04():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(session=session),
         scoremanager.wranglers.MaterialPackageWrangler(session=session),
         ]
@@ -80,6 +84,7 @@ def test_Session_controllers_visited_05():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(session=session),
         scoremanager.wranglers.MaterialPackageWrangler(session=session),
         scoremanager.managers.TempoInventoryMaterialManager(session=session),
@@ -98,6 +103,7 @@ def test_Session_controllers_visited_06():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(session=session),
         scoremanager.wranglers.SegmentPackageWrangler(session=session),
         ]
@@ -115,6 +121,7 @@ def test_Session_controllers_visited_07():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(session=session),
         scoremanager.wranglers.SegmentPackageWrangler(session=session),
         scoremanager.managers.SegmentPackageManager(session=session),
@@ -133,6 +140,7 @@ def test_Session_controllers_visited_08():
     session = scoremanager.core.Session(is_test=True)
     controllers = [
         scoremanager.core.ScoreManager(session=session, is_test=True),
+        scoremanager.iotools.Menu(session=session),
         scoremanager.managers.ScorePackageManager(session=session),
         scoremanager.wranglers.StylesheetWrangler(session=session),
         ]

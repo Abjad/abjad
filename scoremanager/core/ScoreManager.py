@@ -76,6 +76,8 @@ class ScoreManager(Controller):
             'mdmls': self.list_metadata_modules,
             'mdmrw': self.rewrite_metadata_modules,
             'new': self.make_new_score,
+            'pyd': self.doctest,
+            'pyt': self.pytest,
             'rad': self.add_to_repository,
             'rci': self.commit_to_repository,
             'rrv': self.revert_to_repository,
@@ -165,6 +167,9 @@ class ScoreManager(Controller):
         previous_index = (index - 1) % len(paths)
         previous_path = paths[previous_index]
         return previous_path
+
+    def _get_scores_to_display_string(self):
+        return '{} scores'.format(self._session.scores_to_display)
 
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
@@ -257,7 +262,8 @@ class ScoreManager(Controller):
             menu_entries = self._io_manager._read_cache()
         menu = self._io_manager.make_menu(
             where=self._where,
-            name='score manager main menu',
+            name='main',
+            breadcrumb_callback=self._get_scores_to_display_string,
             )
         section = menu.make_asset_section()
         for menu_entry in menu_entries:
