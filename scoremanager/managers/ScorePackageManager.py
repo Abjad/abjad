@@ -151,6 +151,15 @@ class ScorePackageManager(PackageManager):
 
     ### PRIVATE METHODS ###
 
+    def _exit_run(self):
+        superclass = super(ScorePackageManager, self)
+        result = superclass._exit_run()
+        if self._session.is_backtracking_to_score:
+            result = False
+        elif self._session.is_autonavigating_within_score:
+            result = False
+        return result
+
     def _get_annotated_title(self):
         if isinstance(self._get_metadatum('year_of_completion'), int):
             return self._get_title_with_year()

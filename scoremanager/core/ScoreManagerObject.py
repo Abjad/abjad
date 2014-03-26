@@ -69,7 +69,6 @@ class ScoreManagerObject(object):
     ### PRIVATE METHODS ###
 
     def _exit_io_method(self, source=None):
-        from scoremanager import managers
         result = False
         if self._session.is_complete:
             result = True
@@ -82,11 +81,10 @@ class ScoreManagerObject(object):
             not self._session.backtrack_stack):
             self._session._is_backtracking_locally = False
             result = True
-        elif not isinstance(source, managers.ScorePackageManager):
-            if self._session.is_backtracking_to_score:
-                result = True
-            elif self._session.is_autonavigating_within_score:
-                result = True
+        elif self._session.is_backtracking_to_score:
+            result = True
+        elif self._session.is_autonavigating_within_score:
+            result = True
         return result
 
     def _exit_io_method_inside(self):

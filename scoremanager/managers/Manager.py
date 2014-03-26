@@ -489,7 +489,8 @@ class Manager(Controller):
             if type(self) is managers.BuildDirectoryManager:
                 self._session._is_navigating_to_score_build_files = False
             if type(self) is managers.DistributionDirectoryManager:
-                self._session._is_navigating_to_score_distribution_files = False
+                self._session._is_navigating_to_score_distribution_files = \
+                    False
             prototype = (
                 managers.MaterialManager,
                 managers.SegmentPackageManager,
@@ -506,7 +507,7 @@ class Manager(Controller):
                 if (self._session.is_backtracking_to_score and 
                     isinstance(self, managers.ScorePackageManager)):
                     self._session._is_backtracking_to_score = False
-                if self._exit_io_method(source=self):
+                if self._exit_run():
                     break
                 elif not result:
                     continue
@@ -514,9 +515,12 @@ class Manager(Controller):
                 if (self._session.is_backtracking_to_score and 
                     isinstance(self, managers.ScorePackageManager)):
                     self._session._is_backtracking_to_score = False
-                if self._exit_io_method(source=self):
+                if self._exit_run():
                     break
         self._session._pop_controller()
+
+    def _exit_run(self):
+        return self._exit_io_method()
 
     def _get_inside_score_navigation_directive(self):
         pass
