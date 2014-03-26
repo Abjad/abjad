@@ -27,31 +27,35 @@ class ReservoirStartHelperCreationWizard(Wizard):
         return tuple(arguments)
 
     def _run(self, pending_user_input=None):
+        from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        while True:
-            function_application_pairs = []
-            items = []
-            items.append('start at index 0')
-            items.append('start at index n')
-            items.append('start at next unused index')
-            selector = iotools.Selector(
-                session=self._session,
-                items=items,
-                )
-            with self._backtrack:
-                function_name = selector._run()
-            if self._exit_io_method():
+        context = iotools.ControllerContext(self)
+        with context:
+            while True:
+                function_application_pairs = []
+                items = []
+                items.append('start at index 0')
+                items.append('start at index n')
+                items.append('start at next unused index')
+                selector = iotools.Selector(
+                    session=self._session,
+                    items=items,
+                    )
+                with self._backtrack:
+                    function_name = selector._run()
+                if self._exit_io_method():
+                    break
+                elif not function_name:
+                    continue
+                function_arguments = self._get_function_arguments(
+                    function_name)
+                if self._exit_io_method():
+                    break
+                elif function_arguments is None:
+                    continue
+                function_application_pairs.append(
+                    (function_name, function_arguments))
                 break
-            elif not function_name:
-                continue
-            function_arguments = self._get_function_arguments(function_name)
-            if self._exit_io_method():
-                break
-            elif function_arguments is None:
-                continue
-            function_application_pairs.append(
-                (function_name, function_arguments))
-            break
-        self.target = function_application_pairs
-        return self.target
+            self.target = function_application_pairs
+            return self.target

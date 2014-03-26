@@ -41,14 +41,19 @@ class Wizard(ScoreManagerObject):
         return target_editor
 
     def _run(self, pending_user_input=None):
+        from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        if hasattr(self, 'selector'):
-            selector = self.selector
-        else:
-            selector = self.handler_class_name_selector(session=self._session)
-        handler_class_name = selector._run()
-        if not self._exit_io_method():
+        context = iotools.ControllerContext(self)
+        with context:
+            if hasattr(self, 'selector'):
+                selector = self.selector
+            else:
+                selector = self.handler_class_name_selector(
+                    session=self._session)
+            handler_class_name = selector._run()
+            if self._exit_io_method():
+                return
             handler_editor = self._get_target_editor(handler_class_name)
             handler_editor._run(is_autoadvancing=True, is_autostarting=True)
             self.target = handler_editor.target

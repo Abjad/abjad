@@ -99,52 +99,55 @@ class PerformerCreationWizard(Wizard):
         return menu
 
     def _run(self, pending_user_input=None):
-        from scoremanager.iotools import Selector
+        from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
         try_again = False
         performers = []
-        while True:
-            selector = Selector.make_score_tools_performer_name_selector(
-                session=self._session,
-                )
-            selector.is_ranged=self.is_ranged
-            with self._backtrack:
-                result = selector._run()
-            if self._exit_io_method():
-                break
-            if isinstance(result, list):
-                performer_names = result
-            else:
-                performer_names = [result]
-            performers = []
-            for performer_name in performer_names:
+        context = iotools.ControllerContext(self)
+        with context:
+            while True:
+                selector = \
+                    iotools.Selector.make_score_tools_performer_name_selector(
+                    session=self._session,
+                    )
+                selector.is_ranged=self.is_ranged
                 with self._backtrack:
-                    performer = instrumenttools.Performer(performer_name)
-                    self._initialize_performer(performer)
-                was_backtracking_locally = \
-                    self._session.is_backtracking_locally
+                    result = selector._run()
                 if self._exit_io_method():
-                    if was_backtracking_locally:
-                        try_again = True
-                    else:
-                        try_again = False
-                        performers = []
                     break
-                performers.append(performer)
-            if not try_again:
-                break
+                if isinstance(result, list):
+                    performer_names = result
+                else:
+                    performer_names = [result]
+                performers = []
+                for performer_name in performer_names:
+                    with self._backtrack:
+                        performer = instrumenttools.Performer(performer_name)
+                        self._initialize_performer(performer)
+                    was_backtracking_locally = \
+                        self._session.is_backtracking_locally
+                    if self._exit_io_method():
+                        if was_backtracking_locally:
+                            try_again = True
+                        else:
+                            try_again = False
+                            performers = []
+                        break
+                    performers.append(performer)
+                if not try_again:
+                    break
+                else:
+                    try_again = False
+            if self.is_ranged and performers:
+                final_result = performers[:]
+            elif self.is_ranged and not performers:
+                final_result = []
+            elif not self.is_ranged and performers:
+                final_result = performers[0]
+            elif not self.is_ranged and not performers:
+                final_result = None
             else:
-                try_again = False
-        if self.is_ranged and performers:
-            final_result = performers[:]
-        elif self.is_ranged and not performers:
-            final_result = []
-        elif not self.is_ranged and performers:
-            final_result = performers[0]
-        elif not self.is_ranged and not performers:
-            final_result = None
-        else:
-            raise ValueError
-        self.target = final_result
-        return self.target
+                raise ValueError
+            self.target = final_result
+            return self.target

@@ -64,31 +64,34 @@ class InstrumentCreationWizard(Wizard):
         return instrument
 
     def _run(self, pending_user_input=None):
+        from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        items = instrumenttools.Instrument._list_instrument_names()
-        selector = iotools.Selector(
-            session=self._session,
-            items=items,
-            )
-        selector.is_ranged = self.is_ranged
-        with self._backtrack:
-            result = selector._run()
-        if self._exit_io_method():
-            return
-        if isinstance(result, list):
-            instrument_names = result
-        else:
-            instrument_names = [result]
-        instruments = []
-        for instrument_name in instrument_names:
-            instrument = \
-                self._change_instrument_name_to_instrument(instrument_name)
-            instrument = self._name_untuned_percussion(instrument)
-            instruments.append(instrument)
-        if self.is_ranged:
-            result = instruments[:]
-        else:
-            result = instruments[0]
-        self.target = result
-        return self.target
+        context = iotools.ControllerContext(self)
+        with context:
+            items = instrumenttools.Instrument._list_instrument_names()
+            selector = iotools.Selector(
+                session=self._session,
+                items=items,
+                )
+            selector.is_ranged = self.is_ranged
+            with self._backtrack:
+                result = selector._run()
+            if self._exit_io_method():
+                return
+            if isinstance(result, list):
+                instrument_names = result
+            else:
+                instrument_names = [result]
+            instruments = []
+            for instrument_name in instrument_names:
+                instrument = \
+                    self._change_instrument_name_to_instrument(instrument_name)
+                instrument = self._name_untuned_percussion(instrument)
+                instruments.append(instrument)
+            if self.is_ranged:
+                result = instruments[:]
+            else:
+                result = instruments[0]
+            self.target = result
+            return self.target
