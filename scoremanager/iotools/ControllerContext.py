@@ -2,8 +2,8 @@
 from abjad.tools.abctools.ContextManager import ContextManager
 
 
-class ControllerStack(ContextManager):
-    r'''ControllerStack context manager.
+class ControllerContext(ContextManager):
+    r'''Controller context manager.
     '''
 
     ### INITIALIZER ###
@@ -15,11 +15,9 @@ class ControllerStack(ContextManager):
         where=None,
         ):
         self.controller = controller
+        self.is_in_confirmation_environment = is_in_confirmation_environment
+        self.where = where
         self._session = self.controller._session
-        self._session._is_in_confirmation_environment = \
-            is_in_confirmation_environment
-        if where:
-            self._session._where = where
 
     ### SPECIAL METHODS ###
 
@@ -31,6 +29,9 @@ class ControllerStack(ContextManager):
         self._session._controller_stack.append(self.controller)
         if self.controller not in self._session.controllers_visited:
             self._session._controllers_visited.append(self.controller)
+        self._session._is_in_confirmation_environment = \
+            self.is_in_confirmation_environment
+        self._session._where = self.where
         self._session._hide_hidden_commands = True
 
     def __exit__(self, exg_type, exc_value, trackeback):
@@ -39,6 +40,8 @@ class ControllerStack(ContextManager):
         Returns none.
         '''
         self._session._controller_stack.pop()
+        self._session._is_in_confirmation_environment = False
+        self._session._where = None
         self._session._hide_hidden_commands = True
 
     def __repr__(self):

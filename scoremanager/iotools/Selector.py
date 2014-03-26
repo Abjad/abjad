@@ -110,7 +110,7 @@ class Selector(ScoreManagerObject):
         from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        with iotools.ControllerStack(self):
+        with iotools.ControllerContext(self):
             while True:
                 menu = self._make_main_menu()
                 result = menu._run()

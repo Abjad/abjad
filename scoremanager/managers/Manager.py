@@ -486,8 +486,8 @@ class Manager(Controller):
         from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        # TODO: possibly compose ControllerStack and TemporaryDirectoryChange?
-        with iotools.ControllerStack(self):
+        # TODO: possibly compose ControllerContext and TemporaryDirectoryChange?
+        with iotools.ControllerContext(self):
             with systemtools.TemporaryDirectoryChange(self._path):
                 self._enter_run()
                 while True:

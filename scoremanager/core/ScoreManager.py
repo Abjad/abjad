@@ -292,7 +292,7 @@ class ScoreManager(Controller):
         type(self).__init__(self, session=self._session)
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        with iotools.ControllerStack(self):
+        with iotools.ControllerContext(self):
             run_main_menu = True
             while True:
                 if run_main_menu:

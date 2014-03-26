@@ -175,7 +175,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        context = iotools.ControllerStack(
+        context = iotools.ControllerContext(
             controller=self,
             is_in_confirmation_environment=True,
             where=self.where,

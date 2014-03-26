@@ -345,7 +345,7 @@ class Wrangler(Controller):
     def _run(self):
         from scoremanager import iotools
         from scoremanager import wranglers
-        with iotools.ControllerStack(self):
+        with iotools.ControllerContext(self):
             # TODO: get rid of the branching with self._enter_run() methods
             if type(self) is wranglers.BuildFileWrangler:
                 self._session._is_navigating_to_score_build_files = False
