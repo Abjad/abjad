@@ -91,17 +91,9 @@
     to a known list of acceptable files and globs, and display
     any foreign contents.
 
-27. Clean up possibly all current_* session variables by implementing
-    as derived properties:
-        current_score_directory_path
-        current_score_package_manager
-    Seems like all of these should be derivable simply by looking
-    at the controller stack. This means that all of these variables
-    can stop being maintained by other parts of the system.
+27. Implement slots on wranglers.
 
-28. Implement slots on wranglers.
-
-29. Encapsulate ...
+28. Encapsulate ...
         process = subprocess.Popen(
             command,
             shell=True,
@@ -110,14 +102,15 @@
             )
     ... in an IOManager method.
 
-30. Do something to put an empty .gitignore file in every directory everywhere.
+29. Do something to put an empty .gitignore file in every directory everywhere.
     Provide a user interface.
     
-31. Eventually implement a Score Manager start-up behavior that will
+30. Eventually implement a Score Manager start-up behavior that will
     run and check the filesystem layout of all assets everywhere and
     prompt the composer to fix as required before composition begins.
 
-32: Bug:
-    File "/Users/trevorbaca/Documents/abjad/scoremanager/wranglers/Wrangler.py", line 137, in _get_next_asset_path
+31: Bug:
+    File "/Users/trevorbaca/Documents/abjad/scoremanager/wranglers/Wrangler.py", 
+    line 137, in _get_next_asset_path
         return paths[0]
     IndexError: list index out of range
