@@ -106,13 +106,12 @@ class InstrumentEditor(Editor):
 
     def _initialize_target(self):
         if self.target is None:
-            with self._backtrack:
-                wizard = wizards.InstrumentCreationWizard(
-                    is_ranged=True, 
-                    session=self._session,
-                    )
-                instruments = wizard._run()
-            if self._should_exit_io_method():
+            wizard = wizards.InstrumentCreationWizard(
+                is_ranged=True, 
+                session=self._session,
+                )
+            instruments = wizard._run()
+            if self._should_backtrack():
                 return
             if instruments:
                 self.target = instruments[0]

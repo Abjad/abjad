@@ -15,7 +15,6 @@ class ScoreManagerObject(object):
     __meta__ = abc.ABCMeta
 
     __slots__ = (
-        '_backtrack',
         '_configuration',
         '_controller_context',
         '_io_manager',
@@ -29,7 +28,6 @@ class ScoreManagerObject(object):
     def __init__(self, session=None):
         from scoremanager import core
         from scoremanager import iotools
-        self._backtrack = iotools.Backtrack(self)
         self._configuration = core.ScoreManagerConfiguration()
         self._session = session or core.Session()
         self._io_manager = iotools.IOManager(self._session)

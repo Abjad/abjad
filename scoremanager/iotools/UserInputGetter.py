@@ -140,7 +140,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
                 break
             directive = self._io_manager._handle_io_manager_directive(
                 user_input)
-            if self._should_exit_io_method():
+            if self._should_backtrack():
                 self._current_prompt_is_done = True
                 self._all_prompts_are_done = True
             elif directive is None:
@@ -181,15 +181,29 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             where=self.where,
             )
         with context:
-            with self._backtrack:
-                self._present_prompts_and_evaluate_user_input(
-                    include_chevron=self._include_chevron,
-                    )
+            self._present_prompts_and_evaluate_user_input(
+                include_chevron=self._include_chevron,
+                )
             if len(self._evaluated_user_input) == 1:
                 result = self._evaluated_user_input[0]
             else:
                 result = self._evaluated_user_input[:]
             return result
+
+    def _should_backtrack(self):
+        if self._session.is_complete:
+            return True
+        elif self._session.is_backtracking_to_score_manager:
+            return True
+        # keep on backtracking ... do not consume this backtrack
+        elif self._session.is_backtracking_locally:
+            return True
+        elif self._session.is_backtracking_to_score:
+            return True
+        elif self._session.is_autonavigating_within_score:
+            return True
+        else:
+            return False
 
     def _validate_evaluated_user_input(self, evaluated_user_input):
         if evaluated_user_input is None and self.allow_none:

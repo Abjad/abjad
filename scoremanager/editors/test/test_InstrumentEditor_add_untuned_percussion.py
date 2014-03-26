@@ -15,9 +15,9 @@ def test_InstrumentEditor_add_untuned_percussion_01():
 
     session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.InstrumentEditor(session=session)
-    input_ = 'untuned b'
+    input_ = 'untuned b q'
     editor._run(pending_user_input=input_)
-    assert editor._transcript.signature == (4,)
+    assert editor._transcript.signature == (6,)
 
     session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.InstrumentEditor(session=session)

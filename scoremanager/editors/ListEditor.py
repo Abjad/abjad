@@ -134,9 +134,8 @@ class ListEditor(Editor):
                 session=self._session, 
                 **self.item_creator_class_kwargs
                 )
-            with self._backtrack:
-                result = item_creator._run()
-            if self._should_exit_io_method():
+            result = item_creator._run()
+            if self._should_backtrack():
                 return
             if result == 'done':
                 self._session._is_autoadding = False
@@ -145,9 +144,8 @@ class ListEditor(Editor):
         elif self.item_getter_configuration_method:
             getter = self._io_manager.make_getter(where=self._where)
             self.item_getter_configuration_method(getter, self.item_identifier)
-            with self._backtrack:
-                item_initialization_token = getter._run()
-            if self._should_exit_io_method():
+            item_initialization_token = getter._run()
+            if self._should_backtrack():
                 return
             if item_initialization_token == 'done':
                 self._session._is_autoadding = False
