@@ -33,7 +33,13 @@ class Menu(ScoreManagerObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_asset_section',
+        '_breadcrumb_callback',
+        '_client_source_code_location',
+        '_hide_current_run',
+        '_menu_sections',
         '_name',
+        '_predetermined_user_input',
         '_should_clear_terminal',
         '_title',
         )
@@ -45,12 +51,14 @@ class Menu(ScoreManagerObject):
         session=None, 
         where=None,
         breadcrumb_callback=None,
+        # TODO: maybe remove include_default_hidden_sections?
         include_default_hidden_sections=False,
         name=None,
         title=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
         self._breadcrumb_callback = breadcrumb_callback
+        self._client_source_code_location = where
         self._menu_sections = []
         if include_default_hidden_sections:
             self._make_default_hidden_sections()
@@ -58,7 +66,6 @@ class Menu(ScoreManagerObject):
         self._predetermined_user_input = None
         self._should_clear_terminal = False
         self._title = title
-        self.where = where
 
     ### SPECIAL METHODS ###
 
@@ -462,7 +469,7 @@ class Menu(ScoreManagerObject):
                 continue
             section_menu_lines = menu_section._make_menu_lines()
             result.extend(section_menu_lines)
-        if self.hide_current_run:
+        if self._hide_current_run:
             result = []
         return result
 
@@ -490,7 +497,7 @@ class Menu(ScoreManagerObject):
 
     def _make_title_lines(self):
         result = []
-        if not self.hide_current_run:
+        if not self._hide_current_run:
             if self.title is not None:
                 title = self.title
             else:
@@ -521,7 +528,7 @@ class Menu(ScoreManagerObject):
             clear_terminal, hide_current_run = True, False
             while True:
                 self._should_clear_terminal = clear_terminal
-                self.hide_current_run = hide_current_run
+                self._hide_current_run = hide_current_run
                 clear_terminal, hide_current_run = False, True
                 result = self._predetermined_user_input
                 if not result:

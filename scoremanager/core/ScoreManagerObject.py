@@ -14,6 +14,14 @@ class ScoreManagerObject(object):
 
     __meta__ = abc.ABCMeta
 
+    __slots__ = (
+        '_backtrack',
+        '_configuration',
+        '_io_manager',
+        '_session',
+        '_transcript',
+        )
+
     ### INITIALIZER ###
 
     @abc.abstractmethod

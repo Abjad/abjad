@@ -8,9 +8,9 @@ class SourceCodeContext(ContextManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, client):
-        self.client = client
-        self._session = self.client._session
+    def __init__(self, menu):
+        self.menu = menu
+        self._session = self.menu._session
 
     ### SPECIAL METHODS ###
 
@@ -19,7 +19,7 @@ class SourceCodeContext(ContextManager):
 
         Returns none.
         '''
-        self._session._where = self.client.where
+        self._session._where = self.menu._client_source_code_location
 
     def __exit__(self, exg_type, exc_value, trackeback):
         r'''Exits source code context manager.

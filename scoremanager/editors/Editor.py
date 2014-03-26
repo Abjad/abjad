@@ -7,9 +7,24 @@ class Editor(Controller):
     r'''Editor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_is_autoadding',
+        '_is_autoadvancing',
+        '_is_autostarting',
+        )
+
     ### INITIALIZER ###
 
-    def __init__(self, session=None, target=None):
+    def __init__(
+        self, 
+        session=None, 
+        target=None,
+        is_autoadding=False,
+        is_autoadvancing=False,
+        is_autostarting=False,
+        ):
         Controller.__init__(self, session=session)
         if target is not None:
             assert isinstance(target, self._target_class)
@@ -21,6 +36,9 @@ class Editor(Controller):
             message = message.format(self)
             raise Exception(message)
         self.explicit_breadcrumb = None
+        self._is_autoadding = is_autoadding
+        self._is_autoadvancing = is_autoadvancing
+        self._is_autostarting = is_autostarting
 
     ### SPECIAL METHODS ###
 
@@ -235,7 +253,6 @@ class Editor(Controller):
     # TODO: change input keywords to initializer values that don't change
     def _run(
         self, 
-        breadcrumb=None, 
         is_autoadding=False,
         is_autoadvancing=False, 
         is_autostarting=False, 
@@ -259,7 +276,7 @@ class Editor(Controller):
             entry_point = None
             is_first_pass = True
             while True:
-                breadcrumb = breadcrumb or self._breadcrumb
+                breadcrumb = self._breadcrumb
                 if self.is_autoadding:
                     menu = self._make_main_menu()
                     result = 'add'
