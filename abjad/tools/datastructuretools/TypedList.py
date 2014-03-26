@@ -5,7 +5,7 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 class TypedList(TypedCollection):
     r'''A typed list.
-    
+
     Ordered collection of objects, which optionally coerces its contents
     to the same type:
 
@@ -376,7 +376,33 @@ class TypedList(TypedCollection):
     def sort(self, cmp=None, key=None, reverse=False):
         r'''Aliases list.sort().
         '''
-        self._collection.sort(cmp=cmp, key=key, reverse=reverse)
+        if cmp is not None:
+            def cmp_to_key(mycmp):
+                'Convert a cmp= function into a key= function'
+                class K(object):
+                    def __init__(self, obj, *args):
+                        self.obj = obj
+
+                    def __lt__(self, other):
+                        return mycmp(self.obj, other.obj) < 0
+
+                    def __gt__(self, other):
+                        return mycmp(self.obj, other.obj) > 0
+
+                    def __eq__(self, other):
+                        return mycmp(self.obj, other.obj) == 0
+
+                    def __le__(self, other):
+                        return mycmp(self.obj, other.obj) <= 0
+
+                    def __ge__(self, other):
+                        return mycmp(self.obj, other.obj) >= 0
+
+                    def __ne__(self, other):
+                        return mycmp(self.obj, other.obj) != 0
+                return K
+            key = cmp_to_key(cmp)
+        self._collection.sort(key=key, reverse=reverse)
 
     ### PUBLIC PROPERTIES ###
 

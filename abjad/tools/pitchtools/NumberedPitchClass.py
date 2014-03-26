@@ -104,6 +104,14 @@ class NumberedPitchClass(PitchClass):
         '''
         return type(self)(self)
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(NumberedPitchClass, self).__hash__()
+
     def __eq__(self, arg):
         r'''Is true when `arg` is a numbered pitch-class with pitch-class number
         equal to that of this numbered pitch-class.
@@ -177,7 +185,7 @@ class NumberedPitchClass(PitchClass):
 
     def __sub__(self, expr):
         r'''Subtracts `expr` from numbered pitch-class.
-        
+
         Subtraction defined against both numbered intervals
         and against other pitch-classes.
 
@@ -186,7 +194,7 @@ class NumberedPitchClass(PitchClass):
         from abjad.tools import pitchtools
         if isinstance(expr, type(self)):
             interval_class_number = abs(
-                self.pitch_class_number - 
+                self.pitch_class_number -
                 expr.pitch_class_number
                 )
             if 6 < interval_class_number:

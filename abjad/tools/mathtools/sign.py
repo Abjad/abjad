@@ -26,4 +26,4 @@ def sign(n):
     Returns ``-1``, ``0`` or ``1``.
     '''
 
-    return cmp(n, 0)
+    return (n > 0) - (n < 0)

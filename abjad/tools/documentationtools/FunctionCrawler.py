@@ -52,7 +52,7 @@ class FunctionCrawler(abctools.AbjadObject):
             obj = getattr(module, name)
             if isinstance(obj, types.FunctionType):
                 objects.append(obj)
-        return tuple(sorted(objects))
+        return tuple(sorted(objects, key=lambda x: x.__name__))
 
     ### PUBLIC PROPERTIES ###
 

@@ -114,8 +114,16 @@ class NamedPitchClass(PitchClass):
         '''
         return type(self)(self)
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(NamedPitchClass, self).__hash__()
+
     def __eq__(self, expr):
-        r'''Is true when `expr` can be coerced to a named pitch-class with 
+        r'''Is true when `expr` can be coerced to a named pitch-class with
         pitch-class name equal to that of this named pitch-class.
 
         ::

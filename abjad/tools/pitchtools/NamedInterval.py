@@ -211,7 +211,7 @@ class NamedInterval(Interval):
     def __lt__(self, arg):
         r'''Is true when `arg` is a named interval with a number greater than that
         of this named interval.
-        
+
         ::
 
             >>> interval < pitchtools.NamedInterval('+M10')
@@ -572,7 +572,7 @@ class NamedInterval(Interval):
         interval_class_number = abs(
             pitchtools.NamedIntervalClass(self).number)
         result += interval_class_number_to_semitones[interval_class_number]
-        result += (abs(self.number) - 1) / 7 * 12
+        result += (abs(self.number) - 1) // 7 * 12
         quality_string_to_semitones = {
             'perfect': 0,
             'major': 1,

@@ -339,17 +339,22 @@ class StorageFormatManager(object):
         '''
         if hasattr(subject.__init__, '__func__'):
             initializer = subject.__init__.__func__
-            if initializer.func_defaults:
-                keyword_argument_count = len(initializer.func_defaults)
-                initializer_code = initializer.func_code
-                positional_argument_count = (
-                    initializer_code.co_argcount - keyword_argument_count - 1)
-                start_index = 1 + positional_argument_count
-                stop_index = start_index + keyword_argument_count
-                return initializer_code.co_varnames[start_index:stop_index]
-            else:
-                return ()
-        return ()
+            defaults = initializer.func_defaults
+            initializer_code = initializer.func_code
+        elif hasattr(subject.__init__, '__defaults__'):
+            defaults = subject.__init__.__defaults__
+            initializer_code = subject.__init__.__code__
+        else:
+            return ()
+        if defaults:
+            keyword_argument_count = len(defaults)
+            positional_argument_count = (
+                initializer_code.co_argcount - keyword_argument_count - 1)
+            start_index = 1 + positional_argument_count
+            stop_index = start_index + keyword_argument_count
+            return initializer_code.co_varnames[start_index:stop_index]
+        else:
+            return ()
 
     @staticmethod
     def get_signature_positional_argument_names(subject):

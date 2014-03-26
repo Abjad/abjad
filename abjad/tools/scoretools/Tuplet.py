@@ -294,7 +294,7 @@ class Tuplet(Container):
         denominator = duration.denominator
         if not mathtools.is_nonnegative_integer_power_of_two(denominator):
             return r"\tweak #'edge-height #'(0.7 . 0)"
-    
+
     def _get_scale_durations_command_string(self):
         multiplier = self.multiplier
         string = r"\scaleDurations #'({} . {}) {{"

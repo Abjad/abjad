@@ -23,7 +23,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         elif len(args) == 1 and isinstance(args[0], str):
             self._initialize_by_string(args[0])
         elif len(args) == 1 and isinstance(args[0],
-            pitchtools.NamedIntervalClass): 
+            pitchtools.NamedIntervalClass):
             self._initialize_by_string(str(args[0]))
         elif len(args) == 1 and isinstance(args[0],
             pitchtools.NamedInterval):
@@ -54,6 +54,14 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
                 if self.number == arg.number:
                     return True
         return False
+
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(NamedInversionEquivalentIntervalClass, self).__hash__()
 
     def __ne__(self, arg):
         r'''Is true when named inversion-equivalent interval-class does not equal
@@ -107,10 +115,10 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     def _invert_quality_string(self, quality_string):
         inversions = {
-            'major': 'minor', 
-            'minor': 'major', 
+            'major': 'minor',
+            'minor': 'major',
             'perfect': 'perfect',
-            'augmented': 'diminished', 
+            'augmented': 'diminished',
             'diminished': 'augmented',
             }
         return inversions[quality_string]
@@ -125,7 +133,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     @classmethod
     def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
-        '''Makes named inversion-equivalent interval-class from 
+        '''Makes named inversion-equivalent interval-class from
         `pitch_carrier_1` and `pitch_carrier_2`.
 
         ::
