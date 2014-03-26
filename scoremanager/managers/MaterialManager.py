@@ -580,7 +580,12 @@ class MaterialManager(PackageManager):
         return result
 
     def _run_first_time(self):
-        self._run(pending_user_input='me')
+        if self._session.pending_user_input:
+            pending_user_input = 'me ' + self._session.pending_user_input
+            self._session._pending_user_input = pending_user_input
+        else:
+            self._session._pending_user_input = 'me'
+        self._run()
 
     def _should_have_output_material_section(self):
         if os.path.isfile(self._definition_module_path):

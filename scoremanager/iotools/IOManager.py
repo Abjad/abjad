@@ -63,6 +63,7 @@ class IOManager(IOManager):
 
     def _assign_user_input(self, pending_user_input=None):
         if pending_user_input is not None:
+            assert not self._session.pending_user_input
             if self._session.pending_user_input:
                 self._session._pending_user_input = \
                     pending_user_input + ' ' + \
