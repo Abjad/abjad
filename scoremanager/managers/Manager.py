@@ -631,7 +631,7 @@ class Manager(Controller):
             getter.append_string('commit message')
             with self._backtrack:
                 commit_message = getter._run()
-                if self._should_exit_controller_context():
+                if self._should_backtrack():
                     return
             line = 'commit message will be: "{}"\n'.format(commit_message)
             self._io_manager.display(line)
@@ -665,7 +665,7 @@ class Manager(Controller):
         getter = self._initialize_file_name_getter()
         with self._backtrack:
             result = getter._run()
-            if self._should_exit_controller_context():
+            if self._should_backtrack():
                 return
         new_asset_name = \
             self._space_delimited_lowercase_name_to_asset_name(result)
@@ -776,7 +776,7 @@ class Manager(Controller):
             getter.append_string("type 'remove' to proceed")
             with self._backtrack:
                 result = getter._run()
-                if self._should_exit_controller_context():
+                if self._should_backtrack():
                     return
         # TODO: remove this branch?
         else:
@@ -823,7 +823,7 @@ class Manager(Controller):
         getter = self._initialize_file_name_getter()
         with self._backtrack:
             result = getter._run()
-            if self._should_exit_controller_context():
+            if self._should_backtrack():
                 return
         parent_directory_path = os.path.dirname(self._path)
         new_path = os.path.join(parent_directory_path, result)

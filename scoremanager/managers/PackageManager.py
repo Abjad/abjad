@@ -128,7 +128,7 @@ class PackageManager(DirectoryManager):
         getter.append_snake_case_package_name('new name')
         with self._backtrack:
             new_package_name = getter._run()
-            if self._should_exit_controller_context():
+            if self._should_backtrack():
                 return
         lines = []
         line = 'current name: {}'.format(base_name)

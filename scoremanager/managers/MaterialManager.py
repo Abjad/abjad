@@ -234,7 +234,7 @@ class MaterialManager(PackageManager):
             )
         with self._backtrack:
             new_value = getter._run()
-            if self._should_exit_controller_context():
+            if self._should_backtrack():
                 return
         self._user_input_wrapper_in_memory[key] = new_value
         wrapper = self._user_input_wrapper_in_memory
@@ -878,7 +878,7 @@ class MaterialManager(PackageManager):
         getter.append_snake_case_package_name('new name')
         with self._backtrack:
             new_package_name = getter._run()
-            if self._should_exit_controller_context():
+            if self._should_backtrack():
                 return
         lines = []
         lines.append('current name: {}'.format(base_name))

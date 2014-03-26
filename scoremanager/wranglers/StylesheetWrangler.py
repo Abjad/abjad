@@ -133,7 +133,7 @@ class StylesheetWrangler(FileWrangler):
                 abjad_score_packages=False,
                 user_score_packages=False,
                 )
-            if self._should_exit_controller_context():
+            if self._should_backtrack():
                 return
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('stylesheet name')
