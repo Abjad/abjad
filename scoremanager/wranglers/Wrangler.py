@@ -128,6 +128,7 @@ class Wrangler(Controller):
             return directory_path
 
     def _get_next_asset_path(self):
+        print self._session.controller_path, 'ST'
         last_path = self._session.last_asset_path
         menu_entries = self._make_asset_menu_entries()
         paths = [x[-1] for x in menu_entries]

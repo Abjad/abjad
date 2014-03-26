@@ -1112,10 +1112,12 @@ class Session(abctools.AbjadObject):
         '''
         return self._last_command_was_composite
 
-    # TODO: derive from self.controller_stack
     @property
     def last_asset_path(self):
         r'''Gets last material package path.
+
+        Set on package manager entry and persists
+        after package manager exit.
 
         ..  container:: example
 

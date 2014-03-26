@@ -96,7 +96,6 @@
         current_score_directory_path
         current_score_package_manager
         current_score_snake_case_name
-        last_asset_path
     Seems like all of these should be derivable simply by looking
     at the controller stack. This means that all of these variables
     can stop being maintained by other parts of the system.
