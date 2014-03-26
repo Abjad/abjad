@@ -106,23 +106,18 @@ class Selector(ScoreManagerObject):
     def _make_menu_entries(self):
         return [self._change_expr_to_menu_entry(item) for item in self.items]
 
-    def _run(
-        self, 
-        pending_user_input=None,
-        ):
+    def _run(self, pending_user_input=None):
+        from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        while True:
-            menu = self._make_main_menu()
-            result = menu._run()
-            if self._exit_io_method():
-                result = None
-                break
-            elif not result:
-                continue
-            else:
-                break
-        return result
+        with iotools.ControllerStack(self):
+            while True:
+                menu = self._make_main_menu()
+                result = menu._run()
+                if self._exit_io_method():
+                    return
+                if result:
+                    return result
 
     ### PUBLIC PROPERTIES ###
 
