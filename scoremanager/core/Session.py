@@ -36,7 +36,6 @@ class Session(abctools.AbjadObject):
         '_attempted_to_open_file',
         '_attempted_to_revert_to_repository',
         '_attempted_to_update_from_repository',
-        '_backtrack_stack',
         '_command_history',
         '_configuration',
         '_controller_stack',
@@ -83,11 +82,9 @@ class Session(abctools.AbjadObject):
         )
 
     _variables_to_display = (
-        'backtrack_stack',
         'command_history',
         'controller_stack',
         'current_score_directory_path',
-        'current_score_package_manager',
         'current_score_snake_case_name',
         'hide_next_redraw',
         'hide_hidden_commands',
@@ -114,7 +111,6 @@ class Session(abctools.AbjadObject):
         self._attempted_to_open_file = False
         self._attempted_to_revert_to_repository = False
         self._attempted_to_update_from_repository = False
-        self._backtrack_stack = []
         self._command_history = []
         self._configuration = core.ScoreManagerConfiguration()
         self._controller_stack = []
@@ -269,21 +265,6 @@ class Session(abctools.AbjadObject):
         self._controller_stack.append(manager)
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def backtrack_stack(self):
-        r'''Gets session backtracking stack.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.backtrack_stack
-                []
-
-        Returns list.
-        '''
-        return self._backtrack_stack
 
     @property
     def command_history(self):
