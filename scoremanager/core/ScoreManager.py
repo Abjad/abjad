@@ -96,6 +96,7 @@ class ScoreManager(Controller):
     ### PRIVATE METHODS ###
 
     def _exit_io_method_inside(self):
+        self._update_session_variables()
         if self._session.is_complete:
             return True
         else:
@@ -315,21 +316,17 @@ class ScoreManager(Controller):
         with context:
             run_main_menu = True
             while True:
-                if run_main_menu:
+                result = self._get_sibling_score_path()
+                if not result and run_main_menu:
                     menu = self._make_main_menu()
                     result = menu._run()
-                    self._update_session_variables()
                     if self._exit_io_method_inside():
                         self._session._clean_up()
                         return
                 else:
                     run_main_menu = True
-                path = self._get_sibling_score_path()
-                if path:
-                    result = path
                 if result:
                     self._handle_main_menu_result(result)
-                    self._update_session_variables()
                     if self._exit_io_method_inside():
                         self._session._clean_up()
                         return
