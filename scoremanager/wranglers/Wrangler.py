@@ -529,9 +529,8 @@ class Wrangler(Controller):
         from scoremanager import editors
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('view name')
-        with self._backtrack:
-            view_name = getter._run()
-        if self._exit_io_method():
+        view_name = getter._run()
+        if self._should_backtrack():
             return
         menu_entries = self._make_asset_menu_entries()
         display_strings = [x[0] for x in menu_entries]
@@ -542,9 +541,8 @@ class Wrangler(Controller):
         breadcrumb = 'edit {} view'
         breadcrumb = breadcrumb.format(view_name)
         editor.explicit_breadcrumb = breadcrumb
-        with self._backtrack:
-            editor._run()
-        if self._exit_io_method():
+        editor._run()
+        if self._should_backtrack():
             return
         tokens = editor.target
         self._io_manager.display('')
@@ -565,9 +563,8 @@ class Wrangler(Controller):
 
         Returns none.
         '''
-        with self._backtrack:
-            asset_path = self._select_asset_path()
-        if self._exit_io_method():
+        asset_path = self._select_asset_path()
+        if self._should_backtrack():
             return
         asset_manager = self._initialize_asset_manager(asset_path)
         asset_manager.remove()
@@ -605,9 +602,8 @@ class Wrangler(Controller):
 
         Returns none.
         '''
-        with self._backtrack:
-            asset_path = self._select_asset_path()
-        if self._exit_io_method():
+        asset_path = self._select_asset_path()
+        if self._should_backtrack():
             return
         asset_manager = self._initialize_asset_manager(asset_path)
         asset_manager.rename()
@@ -658,9 +654,8 @@ class Wrangler(Controller):
             )
         # TODO: make attribute read only and not assignable after init
         selector.explicit_breadcrumb = 'select view'
-        with self._backtrack:
-            view_name = selector._run()
-        if self._exit_io_method():
+        view_name = selector._run()
+        if self._should_backtrack():
             return
         self._current_package_manager._add_metadatum('view_name', view_name)
 
