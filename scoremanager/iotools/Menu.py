@@ -139,7 +139,7 @@ class Menu(ScoreManagerObject):
         if self._should_clear_terminal:
             self._io_manager.clear_terminal()
 
-    def _display(self, predetermined_user_input=None):
+    def _display(self):
         from scoremanager import iotools
         context = iotools.SourceCodeContext(self)
         with context:
@@ -151,8 +151,6 @@ class Menu(ScoreManagerObject):
                 menu_lines,
                 capitalize_first_character=False,
                 )
-            if predetermined_user_input is not None:
-                return predetermined_user_input
             user_entered_lone_return = False
             user_input = self._io_manager.handle_user_input('')
             if user_input == '':
@@ -523,15 +521,14 @@ class Menu(ScoreManagerObject):
             self._session._pending_user_input = pending_user_input
         context = iotools.ControllerContext(self)
         with context:
-        #if True:
             clear_terminal, hide_current_run = True, False
             while True:
                 self._should_clear_terminal = clear_terminal
                 self.hide_current_run = hide_current_run
                 clear_terminal, hide_current_run = False, True
-                result = self._display(
-                    predetermined_user_input=predetermined_user_input,
-                    )
+                result = predetermined_user_input
+                if not result:
+                    result = self._display()
                 #print repr(result), 'RES'
                 if self._session.is_complete:
                     break
