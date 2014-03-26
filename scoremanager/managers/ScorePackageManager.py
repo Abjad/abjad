@@ -585,14 +585,12 @@ class ScorePackageManager(PackageManager):
         self._io_manager.display([line, ''])
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string("type 'clobber' to proceed")
-        with self._backtrack:
-            should_clobber = getter._run()
-        if self._should_exit_io_method():
+        should_clobber = getter._run()
+        if self._should_backtrack():
             return
         if should_clobber == 'clobber':
-            with self._backtrack:
-                self._remove()
-            if self._should_exit_io_method():
+            self._remove()
+            if self._should_backtrack():
                 return
             self._session._is_backtracking_locally = True
 
@@ -602,11 +600,10 @@ class ScorePackageManager(PackageManager):
         Returns none.
         '''
         pass
-        with self._backtrack:
-            prompt_string = 'new package name'
-            new_path = self._score_package_wrangler.get_available_path(
-                prompt_string=prompt_string)
-        if self._should_exit_io_method():
+        prompt_string = 'new package name'
+        new_path = self._score_package_wrangler.get_available_path(
+            prompt_string=prompt_string)
+        if self._should_backtrack():
             return
         lines = ['']
         line = 'current path: {!r}.'.format(self._path)
@@ -615,9 +612,8 @@ class ScorePackageManager(PackageManager):
         lines.append(line)
         lines.append('')
         self._io_manager.display(lines)
-        with self._backtrack:
-            confirm = self._io_manager.confirm()
-        if self._should_exit_io_method():
+        confirm = self._io_manager.confirm()
+        if self._should_backtrack():
             return
         if not confirm:
             return

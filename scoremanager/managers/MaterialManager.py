@@ -232,10 +232,9 @@ class MaterialManager(PackageManager):
             setup_statements=setup_statements,
             default_value=default_value,
             )
-        with self._backtrack:
-            new_value = getter._run()
-            if self._should_backtrack():
-                return
+        new_value = getter._run()
+        if self._should_backtrack():
+            return
         self._user_input_wrapper_in_memory[key] = new_value
         wrapper = self._user_input_wrapper_in_memory
         self._write_user_input_wrapper(wrapper)
@@ -800,17 +799,17 @@ class MaterialManager(PackageManager):
             total_elements, 
             default_value=1,
             )
-        with self._backtrack:
-            start_element_number = getter._run()
-        if self._should_exit_io_method():
+        start_element_number = getter._run()
+        if self._should_backtrack():
             return
         current_element_number = start_element_number
         current_element_index = current_element_number - 1
         while True:
-            with self._backtrack:
-                self._edit_user_input_wrapper_at_number(
-                    current_element_number, include_newline=False)
-            if self._should_exit_io_method():
+            self._edit_user_input_wrapper_at_number(
+                current_element_number, 
+                include_newline=False,
+                )
+            if self._should_backtrack():
                 return
             current_element_index += 1
             current_element_index %= total_elements
@@ -876,10 +875,9 @@ class MaterialManager(PackageManager):
         self._io_manager.display(line)
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('new name')
-        with self._backtrack:
-            new_package_name = getter._run()
-            if self._should_backtrack():
-                return
+        new_package_name = getter._run()
+        if self._should_backtrack():
+            return
         lines = []
         lines.append('current name: {}'.format(base_name))
         lines.append('new name:     {}'.format(new_package_name))
