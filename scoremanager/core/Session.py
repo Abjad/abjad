@@ -76,7 +76,6 @@ class Session(abctools.AbjadObject):
         '_rewrite_cache',
         '_score_manager',
         '_scores_to_display',
-        '_session_once_had_user_input',
         '_transcribe_next_command',
         '_transcript',
         '_use_current_user_input_values_as_default',
@@ -87,8 +86,6 @@ class Session(abctools.AbjadObject):
         'backtrack_stack',
         'command_history',
         'controller_stack',
-        'controllers_visited',
-        'current_controller',
         'current_score_directory_path',
         'current_score_package_manager',
         'current_score_snake_case_name',
@@ -103,10 +100,8 @@ class Session(abctools.AbjadObject):
         'nonnumbered_menu_sections_are_hidden',
         'rewrite_cache',
         'scores_to_display',
-        'session_once_had_user_input',
         'transcribe_next_command',
         'use_current_user_input_values_as_default',
-        'user_input_is_consumed',
         )
 
     ### INITIALIZER ###
@@ -162,7 +157,6 @@ class Session(abctools.AbjadObject):
             self._scores_to_display = 'example'
         else:
             self._scores_to_display = 'active'
-        self._session_once_had_user_input = False
         self._transcribe_next_command = True
         self._transcript = iotools.Transcript()
         self._use_current_user_input_values_as_default = False
@@ -1256,21 +1250,6 @@ class Session(abctools.AbjadObject):
         return self._scores_to_display
 
     @property
-    def session_once_had_user_input(self):
-        r'''Is true when session once had user input. Otherwise false:
-
-        ..  container:: example
-
-            ::
-
-                >>> session.session_once_had_user_input
-                False
-
-        Returns boolean.
-        '''
-        return self._session_once_had_user_input
-
-    @property
     def testable_command_history_string(self):
         r'''Gets session testable command history string.
 
@@ -1334,25 +1313,6 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._use_current_user_input_values_as_default
-
-    @property
-    def user_input_is_consumed(self):
-        r'''Is true when session user input is consumed.
-        Otherwise false:
-
-        ..  container:: example
-
-            ::
-
-                >>> session.user_input_is_consumed
-                False
-
-        Returns boolean.
-        '''
-        if self._session_once_had_user_input:
-            if self.pending_user_input is None:
-                return True
-        return False
 
     @property
     def where(self):
