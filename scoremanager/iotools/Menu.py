@@ -44,11 +44,13 @@ class Menu(ScoreManagerObject):
         self, 
         session=None, 
         where=None,
+        breadcrumb=None,
         include_default_hidden_sections=False,
         name=None,
         title=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
+        self._breadcrumb_string = breadcrumb
         self._menu_sections = []
         if include_default_hidden_sections:
             self._make_default_hidden_sections()
@@ -92,6 +94,12 @@ class Menu(ScoreManagerObject):
             string = '<{} ({})>'
             string = string.format(type(self).__name__, len(self))
         return string
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        return self._breadcrumb_string
 
     ### PRIVATE METHODS ###
 
@@ -508,27 +516,30 @@ class Menu(ScoreManagerObject):
 
     def _run(
         self, 
-        predetermined_user_input=None, 
         pending_user_input=None,
+        predetermined_user_input=None, 
         ):
+        from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        clear_terminal, hide_current_run = True, False
-        while True:
-            self._should_clear_terminal = clear_terminal
-            self.hide_current_run = hide_current_run
-            clear_terminal, hide_current_run = False, True
-            result = self._display(
-                predetermined_user_input=predetermined_user_input,
-                )
-            if self._session.is_complete:
-                break
-            elif result == 'r':
-                clear_terminal, hide_current_run = True, False
-            else:
-                break
-        #print 'Result of Menu._run():', repr(result)
-        return result
+        context = iotools.ControllerContext(self)
+        #with context:
+        if True:
+            clear_terminal, hide_current_run = True, False
+            while True:
+                self._should_clear_terminal = clear_terminal
+                self.hide_current_run = hide_current_run
+                clear_terminal, hide_current_run = False, True
+                result = self._display(
+                    predetermined_user_input=predetermined_user_input,
+                    )
+                if self._session.is_complete:
+                    break
+                if result == 'r':
+                    clear_terminal, hide_current_run = True, False
+                else:
+                    break
+            return result
 
     # TODO: apply default notice at display time 
     #       so this can be completely removed

@@ -49,7 +49,7 @@ class ScoreManager(Controller):
 
     @property
     def _breadcrumb(self):
-        if self._session.controller_stack == [self]:
+        if self._session.current_controller is self:
             result = 'score manager - {}'
             result = result.format(self._score_status_string)
             return result
@@ -242,7 +242,6 @@ class ScoreManager(Controller):
         self._make_scores_menu_section(menu)
         self._make_scores_show_menu_section(menu)
         self._make_cache_menu_section(menu)
-        menu._make_default_hidden_sections()
         return menu
 
     def _make_score_selection_menu(self):
@@ -258,8 +257,6 @@ class ScoreManager(Controller):
             menu_entries = self._io_manager._read_cache()
         menu = self._io_manager.make_menu(
             where=self._where,
-            # TODO: should the following keyword be true?
-            include_default_hidden_sections=False,
             name='score manager main menu',
             )
         section = menu.make_asset_section()

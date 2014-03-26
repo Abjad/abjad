@@ -213,6 +213,7 @@ class Session(abctools.AbjadObject):
         self.transcript._write()
 
     def _format_controller_breadcrumbs(self):
+        #assert self.controller_stack
         if not self.controller_stack:
             return ['(Test)']
         result_lines = []
@@ -222,6 +223,8 @@ class Session(abctools.AbjadObject):
         hanging_indent_width = 5
         for controller in self.controller_stack[1:]:
             breadcrumb = controller._breadcrumb
+            if not breadcrumb:
+                continue
             if result_lines:
                 candidate_line = result_lines[-1] + ' - ' + breadcrumb
             else:
