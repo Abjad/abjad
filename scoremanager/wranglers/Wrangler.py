@@ -351,8 +351,10 @@ class Wrangler(Controller):
         view_inventory = result[0]
         return view_inventory
 
-    def _run(self):
+    def _run(self, pending_user_input=None):
         from scoremanager import iotools
+        if pending_user_input:
+            self._session._pending_user_input = pending_user_input
         context = iotools.ControllerContext(
             self,
             on_enter_callbacks=(self._enter_run,),

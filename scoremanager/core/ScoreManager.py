@@ -312,20 +312,21 @@ class ScoreManager(Controller):
         type(self).__init__(self, session=self._session)
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        context =  iotools.ControllerContext(self)
+        context =  iotools.ControllerContext(
+            self,
+            on_exit_callbacks=(self._session._clean_up,)
+            )
         with context:
             while True:
                 result = self._get_sibling_score_path()
                 if not result:
                     menu = self._make_main_menu()
                     result = menu._run()
-                    if self._exit_io_method_inside():
-                        self._session._clean_up()
-                        return
+                if self._exit_io_method_inside():
+                    return
                 if result:
                     self._handle_main_menu_result(result)
                     if self._exit_io_method_inside():
-                        self._session._clean_up()
                         return
 
     def _update_session_variables(self):
