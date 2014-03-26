@@ -40,11 +40,9 @@ class Wizard(ScoreManagerObject):
             )
         return target_editor
 
-    def _run(
-        self,
-        pending_user_input=None,
-        ):
-        self._io_manager._assign_user_input(pending_user_input)
+    def _run(self, pending_user_input=None):
+        if pending_user_input:
+            self._session._pending_user_input = pending_user_input
         if hasattr(self, 'selector'):
             selector = self.selector
         else:

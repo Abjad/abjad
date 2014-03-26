@@ -63,11 +63,9 @@ class InstrumentCreationWizard(Wizard):
                 )
         return instrument
 
-    def _run(
-        self,
-        pending_user_input=None,
-        ):
-        self._io_manager._assign_user_input(pending_user_input)
+    def _run(self, pending_user_input=None):
+        if pending_user_input:
+            self._session._pending_user_input = pending_user_input
         items = instrumenttools.Instrument._list_instrument_names()
         selector = iotools.Selector(
             session=self._session,

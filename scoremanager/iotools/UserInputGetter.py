@@ -176,7 +176,8 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         ):
         self._session._where = self.where
         self._session._is_in_confirmation_environment = True
-        self._io_manager._assign_user_input(pending_user_input)
+        if pending_user_input:
+            self._session._pending_user_input = pending_user_input
         with self._backtrack:
             self._present_prompts_and_evaluate_user_input(
                 include_chevron=include_chevron,

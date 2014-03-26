@@ -23,7 +23,8 @@ def test_MaterialPackageWrangler_make_data_package_01():
     assert not os.path.exists(path)
     try:
         input_ = 'testnumbers q'
-        wrangler.make_data_package(pending_user_input=input_)
+        wrangler._session._pending_user_input = input_
+        wrangler.make_data_package()
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialManager

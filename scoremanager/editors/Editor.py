@@ -242,7 +242,8 @@ class Editor(Controller):
         pending_user_input=None,
         ):
         self._session._is_in_editor = True
-        self._io_manager._assign_user_input(pending_user_input)
+        if pending_user_input:
+            self._session._pending_user_input = pending_user_input
         with self._backtrack:
             self._initialize_target()
         if self._exit_io_method():

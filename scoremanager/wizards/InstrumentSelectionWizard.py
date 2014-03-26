@@ -16,12 +16,10 @@ class InstrumentSelectionWizard(Wizard):
 
     ### PRIVATE METHODS ###
 
-    def _run(
-        self,
-        pending_user_input=None,
-        ):
+    def _run(self, pending_user_input=None):
         from scoremanager import wizards
-        self._io_manager._assign_user_input(pending_user_input)
+        if pending_user_input:
+            self._session._pending_user_input = pending_user_input
         if self._session.is_in_score:
             selector = iotools.Selector.make_score_instrument_selector(
                 session=self._session,

@@ -15,12 +15,12 @@ def test_ScorePackageManager__run_01():
         'red_example_score',
         )
     session = scoremanager.core.Session(is_test=True)
-    red_example_score = scoremanager.managers.ScorePackageManager(
+    manager = scoremanager.managers.ScorePackageManager(
         path=path,
         session=session,
         )
     input_ = 'q'
-    red_example_score._run(pending_user_input=input_)
+    manager._run(pending_user_input=input_)
 
     lines = [
         'Red Example Score (2013)',
@@ -34,7 +34,7 @@ def test_ScorePackageManager__run_01():
         '    stylesheets (y)',
         '',
         ]
-    assert red_example_score._transcript.last_menu_lines == lines
+    assert manager._transcript.last_menu_lines == lines
 
 
 def test_ScorePackageManager__run_02():
@@ -65,17 +65,17 @@ def test_ScorePackageManager__run_03():
         'red_example_score',
         )
     session = scoremanager.core.Session(is_test=True)
-    red_example_score = scoremanager.managers.ScorePackageManager(
+    manager = scoremanager.managers.ScorePackageManager(
         path=path,
         session=session,
         )
     input_ = 'h'
-    red_example_score._run(pending_user_input=input_)
+    manager._run(pending_user_input=input_)
 
-    assert red_example_score._transcript.signature == (2,)
+    assert manager._transcript.signature == (2,)
     string = "Red Example Score (2013)"
-    assert red_example_score._transcript[0].title == string
-    assert red_example_score._transcript[1].title == '> h'
+    assert manager._transcript[0].title == string
+    assert manager._transcript[1].title == '> h'
 
 
 def test_ScorePackageManager__run_04():

@@ -103,12 +103,10 @@ class PerformerCreationWizard(Wizard):
         section.append(('instruments - skip', 'skip'))
         return menu
 
-    def _run(
-        self, 
-        pending_user_input=None,
-        ):
+    def _run(self, pending_user_input=None):
         from scoremanager.iotools import Selector
-        self._io_manager._assign_user_input(pending_user_input)
+        if pending_user_input:
+            self._session._pending_user_input = pending_user_input
         try_again = False
         performers = []
         while True:

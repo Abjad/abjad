@@ -26,11 +26,9 @@ class ReservoirStartHelperCreationWizard(Wizard):
             arguments.append(result)
         return tuple(arguments)
 
-    def _run(
-        self,
-        pending_user_input=None,
-        ):
-        self._io_manager._assign_user_input(pending_user_input)
+    def _run(self, pending_user_input=None):
+        if pending_user_input:
+            self._session._pending_user_input = pending_user_input
         while True:
             function_application_pairs = []
             items = []

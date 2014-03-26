@@ -23,7 +23,8 @@ def test_MaterialPackageWrangler_make_managermade_material_package_01():
     assert not os.path.exists(path)
     try:
         input_ = 'sargasso testsargasso q'
-        wrangler.make_managermade_material_package(pending_user_input=input_)
+        wrangler._session._pending_user_input = input_
+        wrangler.make_managermade_material_package()
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.SargassoMeasureMaterialManager

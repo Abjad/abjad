@@ -22,11 +22,12 @@ def test_MaterialPackageWrangler_make_handmade_material_package_01():
         '__metadata__.py',
         'definition.py', 
         ]
-    input_ = 'testnotes q'
 
     assert not os.path.exists(path)
     try:
-        wrangler.make_handmade_material_package(pending_user_input=input_)
+        input_ = 'testnotes q'
+        wrangler._session._pending_user_input = input_
+        wrangler.make_handmade_material_package()
         assert os.path.exists(path)
         session = scoremanager.core.Session(is_test=True)
         manager = scoremanager.managers.MaterialManager
@@ -51,7 +52,6 @@ def test_MaterialPackageWrangler_make_handmade_material_package_02():
         path,
         'definition.py',
         )
-    input_ = 'm nmh testnotes q'
 
     lines = []
     lines.append('# -*- encoding: utf-8 -*-')
@@ -64,6 +64,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_02():
 
     assert not os.path.exists(path)
     try:
+        input_ = 'm nmh testnotes q'
         score_manager._run(pending_user_input=input_)
         assert os.path.exists(path)
         with file(definition_module_path, 'r') as file_pointer:

@@ -132,7 +132,6 @@ class PackageWrangler(Wrangler):
 
     def get_available_path(
         self, 
-        pending_user_input=None,
         storehouse_path=None,
         prompt_string=None,
         ):
@@ -143,7 +142,6 @@ class PackageWrangler(Wrangler):
 
         Returns string.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         storehouse_path = storehouse_path or self._current_storehouse_path
         while True:
             prompt_string = prompt_string or 'package name'
@@ -162,27 +160,22 @@ class PackageWrangler(Wrangler):
             else:
                 return path
 
-    def make_asset(
-        self,
-        pending_user_input=None,
-        ):
+    def make_asset(self):
         r'''Makes asset.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         with self._backtrack:
             path = self.get_available_path()
         if self._exit_io_method():
             return
         self._make_asset(path)
 
-    def rename(self, pending_user_input=None):
+    def rename(self):
         r'''Renames asset.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         with self._backtrack:
             asset_package_path = self.select_asset_package_path(
                 infinitival_phrase='to rename',
@@ -192,16 +185,11 @@ class PackageWrangler(Wrangler):
         asset_manager = self._initialize_asset_manager(asset_package_path)
         asset_manager.rename()
 
-    def select_asset_package_path(
-        self,
-        infinitival_phrase=None,
-        pending_user_input=None,
-        ):
+    def select_asset_package_path(self, infinitival_phrase=None):
         '''Selects asset package path.
 
         Returns string.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         while True:
             name = '_human_readable_target_name'
             human_readable_target_name = getattr(self, name, None)

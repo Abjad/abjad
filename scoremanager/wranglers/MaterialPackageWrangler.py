@@ -215,16 +215,11 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def make_data_package(
-        self, 
-        metadata=None, 
-        pending_user_input=None,
-        ):
+    def make_data_package(self, metadata=None):
         r'''Makes data package.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         if self._session.is_in_score:
             storehouse_path = self._current_storehouse_path
         else:
@@ -235,15 +230,11 @@ class MaterialPackageWrangler(PackageWrangler):
             return
         self._make_data_package(path, metadata=metadata)
 
-    def make_handmade_material_package(
-        self, 
-        pending_user_input=None,
-        ):
+    def make_handmade_material_package(self):
         r'''Makes handmade material package.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         if self._session.is_in_score:
             storehouse_path = self._current_storehouse_path
         else:
@@ -254,15 +245,11 @@ class MaterialPackageWrangler(PackageWrangler):
             return
         self._make_handmade_material_package(path)
 
-    def make_managermade_material_package(
-        self, 
-        pending_user_input=None,
-        ):
+    def make_managermade_material_package(self):
         r'''Makes managermade material package.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         with self._backtrack:
             wrangler = self._material_manager_wrangler
             result = wrangler.select_asset_package_path()

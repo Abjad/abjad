@@ -484,7 +484,8 @@ class Manager(Controller):
     def _run(self, pending_user_input=None):
         from scoremanager import managers
         self._session._push_controller(self)
-        self._io_manager._assign_user_input(pending_user_input)
+        if pending_user_input:
+            self._session._pending_user_input = pending_user_input
         with systemtools.TemporaryDirectoryChange(self._path):
             self._enter_run()
             while True:
@@ -656,15 +657,11 @@ class Manager(Controller):
             )
         self._io_manager.proceed(prompt=prompt)
 
-    def copy(
-        self, 
-        pending_user_input=None,
-        ):
+    def copy(self):
         r'''Copies asset.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
         with self._backtrack:
             result = getter._run()
@@ -764,18 +761,13 @@ class Manager(Controller):
             self._io_manager.display(lines)
         self._io_manager.proceed(prompt=prompt)
 
-    def remove(
-        self, 
-        pending_user_input=None,
-        prompt=True,
-        ):
+    def remove(self, prompt=True):
         r'''Removes asset.
 
         Backtracks up one level from previous location of asset.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         message = '{} will be removed.'
         message = message.format(self._path)
         if prompt:
@@ -823,15 +815,11 @@ class Manager(Controller):
             )
         self._io_manager.proceed(prompt=prompt)
 
-    def rename(
-        self, 
-        pending_user_input=None,
-        ):
+    def rename(self):
         r'''Renames asset.
 
         Returns none.
         '''
-        self._io_manager._assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
         with self._backtrack:
             result = getter._run()

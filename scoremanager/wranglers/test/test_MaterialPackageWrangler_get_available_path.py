@@ -11,8 +11,8 @@ def test_MaterialPackageWrangler_get_available_path_01():
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     storehouse = configuration.user_library_material_packages_directory_path
     input_ = 'foo'
+    wrangler._session._pending_user_input = input_
     result = wrangler.get_available_path(
-        pending_user_input=input_,
         storehouse_path=storehouse,
         )
     path = os.path.join(
@@ -22,7 +22,8 @@ def test_MaterialPackageWrangler_get_available_path_01():
     assert result == path
 
     input_ = 'example~notes q'
-    result = wrangler.get_available_path(pending_user_input=input_)
+    wrangler._session._pending_user_input = input_
+    result = wrangler.get_available_path()
     assert result is None
 
 
@@ -32,7 +33,8 @@ def test_MaterialPackageWrangler_get_available_path_02():
     session._set_test_score('red_example_score')
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
     input_ = 'foo'
-    result = wrangler.get_available_path(pending_user_input=input_)
+    wrangler._session._pending_user_input = input_
+    result = wrangler.get_available_path()
     path = os.path.join(
         configuration.abjad_score_packages_directory_path,
         'red_example_score',
@@ -49,13 +51,16 @@ def test_MaterialPackageWrangler_get_available_path_03():
     wrangler = scoremanager.wranglers.MaterialPackageWrangler(session=session)
 
     input_ = 'q'
-    result = wrangler.get_available_path(pending_user_input=input_)
+    wrangler._session._pending_user_input = input_
+    result = wrangler.get_available_path()
     assert result is None
 
     input_ = 'b'
-    result = wrangler.get_available_path(pending_user_input=input_)
+    wrangler._session._pending_user_input = input_
+    result = wrangler.get_available_path()
     assert result is None
 
     input_ = 'h'
-    result = wrangler.get_available_path(pending_user_input=input_)
+    wrangler._session._pending_user_input = input_
+    result = wrangler.get_available_path()
     assert result is None

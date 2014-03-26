@@ -110,7 +110,8 @@ class Selector(ScoreManagerObject):
         self, 
         pending_user_input=None,
         ):
-        self._io_manager._assign_user_input(pending_user_input)
+        if pending_user_input:
+            self._session._pending_user_input = pending_user_input
         while True:
             menu = self._make_main_menu()
             result = menu._run()

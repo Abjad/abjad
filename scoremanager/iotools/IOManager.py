@@ -62,6 +62,7 @@ class IOManager(IOManager):
     ### PRIVATE METHODS ###
 
     def _assign_user_input(self, pending_user_input=None):
+        assert pending_user_input is None
         if pending_user_input is not None:
             assert not self._session.pending_user_input
             if self._session.pending_user_input:

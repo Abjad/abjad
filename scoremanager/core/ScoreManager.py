@@ -290,9 +290,8 @@ class ScoreManager(Controller):
         self._session._reinitialize()
         type(self).__init__(self, session=self._session)
         self._session._push_controller(self)
-        self._io_manager._assign_user_input(
-            pending_user_input=pending_user_input,
-            )
+        if pending_user_input:
+            self._session._pending_user_input = pending_user_input
         run_main_menu = True
         while True:
             if run_main_menu:
