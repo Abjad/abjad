@@ -298,25 +298,29 @@ class ScoreManager(Controller):
                 if run_main_menu:
                     menu = self._make_main_menu()
                     result = menu._run()
+                    self._update_session_variables()
+                    if self._exit_io_method_inside():
+                        self._session._clean_up()
+                        return
                 else:
                     run_main_menu = True
-                self._update_session_variables()
-                if self._session.is_complete:
-                    self._session._clean_up()
-                    return
                 path = self._get_sibling_score_path()
                 if path:
                     result = path
-                if not result:
-                    continue
                 if result:
                     self._handle_main_menu_result(result)
                     self._update_session_variables()
-                    if self._session.is_complete:
+                    if self._exit_io_method_inside():
                         self._session._clean_up()
                         return
-                    elif self._session.is_navigating_to_sibling_score:
+                    if self._session.is_navigating_to_sibling_score:
                         run_main_menu = False
+
+    def _exit_io_method_inside(self):
+        if self._session.is_complete:
+            return True
+        else:
+            return False
 
     def _get_sibling_score_path(self):
         if self._session.is_navigating_to_next_score:
