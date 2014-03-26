@@ -28,7 +28,7 @@ class PerformerCreationWizard(Wizard):
         menu = self._make_performer_configuration_menu(performer)
         while True:
             result = menu._run()
-            if self._should_exit_io_method():
+            if self._should_backtrack():
                 return
             elif not result:
                 continue
@@ -111,9 +111,8 @@ class PerformerCreationWizard(Wizard):
                     session=self._session,
                     )
                 selector.is_ranged=self.is_ranged
-                with self._backtrack:
-                    result = selector._run()
-                if self._should_exit_io_method():
+                result = selector._run()
+                if self._should_backtrack():
                     break
                 if isinstance(result, list):
                     performer_names = result

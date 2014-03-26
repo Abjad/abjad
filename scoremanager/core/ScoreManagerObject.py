@@ -112,12 +112,14 @@ class ScoreManagerObject(object):
             self._session._is_backtracking_locally = False
             return True
         elif self._session.is_backtracking_to_score:
-            result = True
+            return True
         elif self._session.is_autonavigating_within_score:
-            result = True
+            return True
         else:
             return False
 
+    # TODO: replace all _should_exit_controller_context()
+    #       with _should_backtrack()?
     def _should_exit_controller_context(self):
         if self._session.is_complete:
             return True
@@ -127,8 +129,8 @@ class ScoreManagerObject(object):
             self._session._is_backtracking_locally = False
             return True
         elif self._session.is_backtracking_to_score:
-            result = True
+            return True
         elif self._session.is_autonavigating_within_score:
-            result = True
+            return True
         else:
             return False

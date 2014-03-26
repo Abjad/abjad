@@ -40,7 +40,7 @@ class PitchClassTransformCreationWizard(Wizard):
             getter = self._io_manager.make_getter(where=self._where)
             getter.append_integer_in_range('index', start=0, stop=11)
             result = getter._run()
-            if self._should_exit_io_method():
+            if self._should_backtrack():
                 return
             arguments.append(result)
         return tuple(arguments)
@@ -65,15 +65,14 @@ class PitchClassTransformCreationWizard(Wizard):
                     )
                 selector.explicit_breadcrumb = self._get_explicit_breadcrumb(
                     function_application_pairs)
-                with self._backtrack:
-                    function_name = selector._run()
-                if self._should_exit_io_method():
+                function_name = selector._run()
+                if self._should_backtrack():
                     break
                 elif not function_name:
                     continue
                 function_arguments = self._get_function_arguments(
                     function_name)
-                if self._should_exit_io_method():
+                if self._should_backtrack():
                     break
                 elif function_arguments is None:
                     continue

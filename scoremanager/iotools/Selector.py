@@ -114,10 +114,26 @@ class Selector(ScoreManagerObject):
             while True:
                 menu = self._make_main_menu()
                 result = menu._run()
-                if self._should_exit_io_method():
+                #if self._should_exit_io_method():
+                if self._should_backtrack():
                     return
                 if result:
                     return result
+
+    def _should_backtrack(self):
+        if self._session.is_complete:
+            return True
+        elif self._session.is_backtracking_to_score_manager:
+            return True
+        # keep on backtracking ... do not consume this backtrack
+        elif self._session.is_backtracking_locally:
+            return True
+        elif self._session.is_backtracking_to_score:
+            return True
+        elif self._session.is_autonavigating_within_score:
+            return True
+        else:
+            return False
 
     ### PUBLIC PROPERTIES ###
 
