@@ -40,7 +40,6 @@ class Session(abctools.AbjadObject):
         '_configuration',
         '_controller_stack',
         '_controllers_visited',
-        '_current_score_snake_case_name',
         '_display_pitch_ranges_with_numbered_pitches',
         '_hide_hidden_commands',
         '_hide_next_redraw',
@@ -85,7 +84,6 @@ class Session(abctools.AbjadObject):
         'command_history',
         'controller_stack',
         'current_score_directory_path',
-        'current_score_snake_case_name',
         'hide_next_redraw',
         'hide_hidden_commands',
         'is_autoadding',
@@ -115,7 +113,6 @@ class Session(abctools.AbjadObject):
         self._configuration = core.ScoreManagerConfiguration()
         self._controller_stack = []
         self._controllers_visited = []
-        self._current_score_snake_case_name = None
         self._display_pitch_ranges_with_numbered_pitches = False
         self._hide_hidden_commands = True
         self._hide_next_redraw = False
@@ -420,29 +417,6 @@ class Session(abctools.AbjadObject):
         for controller in reversed(self.controller_stack):
             if isinstance(controller, managers.ScorePackageManager):
                 return controller
-
-    @property
-    def current_score_snake_case_name(self):
-        r'''Gets and sets snake-case current score name of session.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.current_score_snake_case_name is None
-                True
-
-        ..  container:: example
-
-            ::
-
-                >>> session_in_score.current_score_snake_case_name
-                'red_example_score'
-
-        Returns string or none.
-        '''
-        if self.current_score_package_manager is not None:
-            return self.current_score_package_manager._package_name
 
     @property
     def current_segments_directory_path(self):

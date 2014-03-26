@@ -256,11 +256,12 @@ class BuildDirectoryManager(DirectoryManager):
                 )
             if not os.path.isfile(source_file_path):
                 continue
-            score_package_name = self._session.current_score_snake_case_name
+            manager = self._session.current_score_package_manager
+            score_name = manager._package_name
             directory_entry = directory_entry.replace('_', '-')
             target_file_name = '{}-segment-{}.pdf'
             target_file_name = target_file_name.format(
-                score_package_name,
+                score_name,
                 directory_entry,
                 )
             target_file_path = os.path.join(

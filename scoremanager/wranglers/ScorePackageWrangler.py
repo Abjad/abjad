@@ -59,8 +59,9 @@ class ScorePackageWrangler(PackageWrangler):
         if self._session.is_in_score:
             path = self._configuration.abjad_score_packages_directory_path
             directory_entries = sorted(os.listdir(path))
-            current_score = self._session.current_score_snake_case_name
-            if current_score in directory_entries:
+            manager = self._session.current_score_package_manager
+            score_name = manager._package_name
+            if score_name in directory_entries:
                 return path
             else:
                 return self._configuration.user_score_packages_directory_path
