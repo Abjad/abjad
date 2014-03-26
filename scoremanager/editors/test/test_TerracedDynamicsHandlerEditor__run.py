@@ -8,9 +8,9 @@ def test_TerracedDynamicsHandlerEditor__run_01():
 
     session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.TerracedDynamicsHandlerEditor
-    editor = editor(session=session)
+    editor = editor(session=session, is_autoadvancing=True)
     input_ = "1 ['p', 'f', 'f'] Duration(1, 8) q"
-    editor._run(pending_user_input=input_, is_autoadvancing=True)
+    editor._run(pending_user_input=input_)
 
     handler = handlertools.TerracedDynamicsHandler(
         dynamics=['p', 'f', 'f'],

@@ -250,14 +250,7 @@ class Editor(Controller):
             self._target_manifest._menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
 
-    # TODO: change input keywords to initializer values that don't change
-    def _run(
-        self, 
-        is_autoadding=False,
-        is_autoadvancing=False, 
-        is_autostarting=False, 
-        pending_user_input=None,
-        ):
+    def _run(self, pending_user_input=None):
         from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
@@ -270,32 +263,30 @@ class Editor(Controller):
                 self._initialize_target()
                 if self._exit_io_method():
                     return
-            self.is_autoadvancing = is_autoadvancing
-            self.is_autoadding = is_autoadding
             result = None
             entry_point = None
             is_first_pass = True
             while True:
                 breadcrumb = self._breadcrumb
-                if self.is_autoadding:
+                if self._is_autoadding:
                     menu = self._make_main_menu()
                     result = 'add'
                     menu._predetermined_user_input = result
                     menu._run()
                     is_first_pass = False
-                elif is_first_pass and is_autostarting:
+                elif is_first_pass and self._is_autostarting:
                     menu = self._make_main_menu()
                     result = menu._get_first_nonhidden_return_value_in_menu()
                     menu._predetermined_user_input = result
                     menu._run()
                     is_first_pass = False
-                elif result and self.is_autoadvancing:
+                elif result and self._is_autoadvancing:
                     entry_point = entry_point or result
                     result = \
                         menu._return_value_to_next_return_value_in_section(
                             result)
                     if result == entry_point:
-                        self.is_autoadvancing = False
+                        self._is_autoadvancing = False
                         continue
                 else:
                     menu = self._make_main_menu()
