@@ -276,12 +276,11 @@ class IOManager(IOManager):
         '''
         getter = self.make_getter(
             where=None, 
+            include_chevron=include_chevron,
             include_newlines=False,
             )
         getter.append_yes_no_string(prompt_string)
-        result = getter._run(
-            include_chevron=include_chevron,
-            )
+        result = getter._run()
         if isinstance(result, str):
             if 'yes'.startswith(result.lower()):
                 return True
@@ -523,6 +522,7 @@ class IOManager(IOManager):
         self, 
         where=None, 
         allow_none=False,
+        include_chevron=True,
         include_newlines=False,
         ):
         r'''Makes getter.
@@ -534,6 +534,7 @@ class IOManager(IOManager):
             where=where, 
             session=self._session,
             allow_none=allow_none,
+            include_chevron=include_chevron,
             include_newlines=include_newlines,
             )
         return getter

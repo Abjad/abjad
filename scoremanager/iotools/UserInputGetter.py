@@ -18,6 +18,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         where=None,
         allow_none=False,
         capitalize_prompts=True,
+        include_chevron=True,
         include_newlines=False,
         number_prompts=False,
         prompt_character='>',
@@ -27,6 +28,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         self._prompts = []
         self._allow_none = allow_none
         self._capitalize_prompts = capitalize_prompts
+        self._include_chevron = include_chevron
         self._include_newlines = include_newlines
         self._number_prompts = number_prompts
         self._prompt_character = prompt_character
@@ -169,26 +171,25 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             self._present_prompt_and_evaluate_user_input(
                 include_chevron=include_chevron)
 
-    def _run(
-        self, 
-        pending_user_input=None, 
-        include_chevron=True,
-        ):
-        self._session._where = self.where
-        self._session._is_in_confirmation_environment = True
+    def _run(self, pending_user_input=None):
+        from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        with self._backtrack:
-            self._present_prompts_and_evaluate_user_input(
-                include_chevron=include_chevron,
-                )
-        if len(self._evaluated_user_input) == 1:
-            result = self._evaluated_user_input[0]
-        else:
-            result = self._evaluated_user_input[:]
-        self._session._is_in_confirmation_environment = False
-        self._session._where = None
-        return result
+        context = iotools.ControllerStack(
+            controller=self,
+            is_in_confirmation_environment=True,
+            where=self.where,
+            )
+        with context:
+            with self._backtrack:
+                self._present_prompts_and_evaluate_user_input(
+                    include_chevron=self._include_chevron,
+                    )
+            if len(self._evaluated_user_input) == 1:
+                result = self._evaluated_user_input[0]
+            else:
+                result = self._evaluated_user_input[:]
+            return result
 
     def _validate_evaluated_user_input(self, evaluated_user_input):
         if evaluated_user_input is None and self.allow_none:

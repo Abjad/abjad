@@ -8,9 +8,18 @@ class ControllerStack(ContextManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, controller):
+    def __init__(
+        self, 
+        controller=None,
+        is_in_confirmation_environment=False,
+        where=None,
+        ):
         self.controller = controller
         self._session = self.controller._session
+        self._session._is_in_confirmation_environment = \
+            is_in_confirmation_environment
+        if where:
+            self._session._where = where
 
     ### SPECIAL METHODS ###
 
