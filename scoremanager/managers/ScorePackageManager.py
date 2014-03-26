@@ -155,6 +155,7 @@ class ScorePackageManager(PackageManager):
         superclass = super(ScorePackageManager, self)
         result = superclass._exit_run()
         if self._session.is_backtracking_to_score:
+            self._session._is_backtracking_to_score = False
             result = False
         elif self._session.is_autonavigating_within_score:
             result = False
