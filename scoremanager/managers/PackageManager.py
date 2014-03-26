@@ -68,6 +68,11 @@ class PackageManager(DirectoryManager):
 
     ### PRIVATE METHODS ###
 
+    def _enter_run(self):
+        self._session._is_navigating_to_next_asset = False
+        self._session._is_navigating_to_previous_asset = False
+        self._session._last_asset_path = self._path
+
     def _make_main_menu(self, where=None, name='package manager'):
         where = where or self._where
         menu = self._io_manager.make_menu(

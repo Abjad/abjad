@@ -21,6 +21,9 @@ class DistributionDirectoryManager(DirectoryManager):
 
     ### PRIVATE METHODS ###
 
+    def _enter_run(self):
+        self._session._is_navigating_to_score_distribution_files = False
+
     def _make_main_menu(self, name='distribution directory manager'):
         menu = self._io_manager.make_menu(
             where=self._where,

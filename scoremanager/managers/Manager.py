@@ -486,19 +486,7 @@ class Manager(Controller):
         self._session._push_controller(self)
         self._io_manager._assign_user_input(pending_user_input)
         with systemtools.TemporaryDirectoryChange(self._path):
-            if type(self) is managers.BuildDirectoryManager:
-                self._session._is_navigating_to_score_build_files = False
-            if type(self) is managers.DistributionDirectoryManager:
-                self._session._is_navigating_to_score_distribution_files = \
-                    False
-            prototype = (
-                managers.MaterialManager,
-                managers.SegmentPackageManager,
-                )
-            if isinstance(self, prototype):
-                self._session._is_navigating_to_next_asset = False
-                self._session._is_navigating_to_previous_asset = False
-                self._session._last_asset_path = self._path
+            self._enter_run()
             while True:
                 result = self._get_inside_score_navigation_directive()
                 if not result:
@@ -512,6 +500,9 @@ class Manager(Controller):
                 if self._exit_run():
                     break
         self._session._pop_controller()
+
+    def _enter_run(self):
+        pass
 
     def _exit_run(self):
         return self._exit_io_method()

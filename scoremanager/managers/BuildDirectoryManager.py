@@ -89,6 +89,9 @@ class BuildDirectoryManager(DirectoryManager):
             message = message.format(string)
             self._io_manager.proceed(message)
 
+    def _enter_run(self):
+        self._session._is_navigating_to_score_build_files = False
+        
     def _get_file_path_ending_with(self, string):
         for file_name in self._list():
             if file_name.endswith(string):
