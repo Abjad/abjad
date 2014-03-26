@@ -199,7 +199,7 @@ class PackageWrangler(Wrangler):
                     packages_instead_of_paths=True,
                     )
                 result = menu._run()
-                if self._should_exit_io_method():
+                if self._should_backtrack():
                     break
                 elif not result:
                     continue

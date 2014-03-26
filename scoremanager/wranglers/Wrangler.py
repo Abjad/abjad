@@ -365,11 +365,11 @@ class Wrangler(Controller):
                 if not result:
                     menu = self._make_main_menu()
                     result = menu._run()
-                if self._should_exit_io_method():
+                if self._should_backtrack():
                     return
                 if result:
                     self._handle_main_menu_result(result)
-                    if self._should_exit_io_method():
+                    if self._should_backtrack():
                         return
 
     def _select_asset_path(self):
@@ -377,7 +377,7 @@ class Wrangler(Controller):
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb()
             result = menu._run()
-            if self._should_exit_io_method():
+            if self._should_backtrack():
                 break
             elif not result:
                 continue
@@ -408,7 +408,7 @@ class Wrangler(Controller):
             breadcrumb = self._make_asset_selection_breadcrumb(
                 is_storehouse=True)
             result = menu._run()
-            if self._should_exit_io_method():
+            if self._should_backtrack():
                 break
             elif not result:
                 continue
@@ -450,7 +450,7 @@ class Wrangler(Controller):
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('commit message')
         commit_message = getter._run()
-        if self._should_exit_io_method():
+        if self._should_backtrack():
             return
         line = 'commit message will be: "{}"\n'.format(commit_message)
         self._io_manager.display(line)

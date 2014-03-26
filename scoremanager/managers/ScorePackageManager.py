@@ -441,12 +441,12 @@ class ScorePackageManager(PackageManager):
             annotated_title = self._get_annotated_title()
             menu = self._make_setup_menu()
             result = menu._run()
-            if self._should_exit_io_method():
+            if self._should_backtrack():
                 break
             elif not result:
                 continue
             self._handle_setup_menu_result(result)
-            if self._should_exit_io_method():
+            if self._should_backtrack():
                 break
         self._session._is_in_score_setup_menu = False
 
@@ -479,7 +479,7 @@ class ScorePackageManager(PackageManager):
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('catalog number')
         result = getter._run()
-        if self._should_exit_io_method():
+        if self._should_backtrack():
             return
         self._add_metadatum('catalog_number', result)
 
@@ -492,7 +492,7 @@ class ScorePackageManager(PackageManager):
         getter.append_string('Forces tagline')
         assert getter._session is self._session
         result = getter._run()
-        if self._should_exit_io_method():
+        if self._should_backtrack():
             return
         self._add_metadatum('forces_tagline', result)
 
@@ -518,7 +518,7 @@ class ScorePackageManager(PackageManager):
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('new title')
         result = getter._run()
-        if self._should_exit_io_method():
+        if self._should_backtrack():
             return
         self._add_metadatum('title', result)
         self._io_manager.write_cache(prompt=False)
@@ -535,7 +535,7 @@ class ScorePackageManager(PackageManager):
             allow_none=True,
             )
         result = getter._run()
-        if self._should_exit_io_method():
+        if self._should_backtrack():
             return
         self._add_metadatum('year_of_completion', result)
 

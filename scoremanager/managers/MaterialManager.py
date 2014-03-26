@@ -699,7 +699,7 @@ class MaterialManager(PackageManager):
                 session=self._session,
                 )
         output_material_handler._run()
-        if self._should_exit_io_method():
+        if self._should_backtrack():
             return
         output_module_import_statements = \
             self._output_module_import_statements
