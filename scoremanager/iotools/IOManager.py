@@ -490,9 +490,7 @@ class IOManager(IOManager):
                 if user_input == 'default':
                     found_default_token = True
             if self._session.transcribe_next_command:
-                if found_default_token:
-                    self._session.command_history.append('')
-                else:
+                if not found_default_token:
                     self._session.command_history.append(user_input)
             if user_input == '.':
                 last_semantic_command = self._session.last_semantic_command
