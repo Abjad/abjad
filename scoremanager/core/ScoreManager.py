@@ -292,41 +292,47 @@ class ScoreManager(Controller):
         type(self).__init__(self, session=self._session)
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        run_main_menu = True
         with iotools.ControllerStack(self):
+            run_main_menu = True
             while True:
                 if run_main_menu:
                     menu = self._make_main_menu()
                     result = menu._run()
                 else:
                     run_main_menu = True
-                if self._session.is_backtracking_to_score_manager:
-                    self._session._is_backtracking_to_score_manager = False
-                if self._session.is_backtracking_to_score:
-                    self._session._is_backtracking_to_score = False
+                self._update_session_variables()
                 if self._session.is_complete:
                     self._session._clean_up()
-                    break
-                elif self._session.is_navigating_to_next_score:
-                    self._session._is_navigating_to_next_score = False
-                    self._session._is_backtracking_to_score_manager = False
-                    result = self._get_next_score_directory_path()
-                elif self._session.is_navigating_to_previous_score:
-                    self._session._is_navigating_to_previous_score = False
-                    self._session._is_backtracking_to_score_manager = False
-                    result = self._get_previous_score_directory_path()
-                elif not result:
+                    return
+                path = self._get_sibling_score_path()
+                if path:
+                    result = path
+                if not result:
                     continue
-                self._handle_main_menu_result(result)
-                if self._session.is_backtracking_to_score_manager:
-                    self._session._is_backtracking_to_score_manager = False
-                if self._session.is_backtracking_to_score:
-                    self._session._is_backtracking_to_score = False
-                if self._session.is_complete:
-                    self._session._clean_up()
-                    break
-                elif self._session.is_navigating_to_sibling_score:
-                    run_main_menu = False
+                if result:
+                    self._handle_main_menu_result(result)
+                    self._update_session_variables()
+                    if self._session.is_complete:
+                        self._session._clean_up()
+                        return
+                    elif self._session.is_navigating_to_sibling_score:
+                        run_main_menu = False
+
+    def _get_sibling_score_path(self):
+        if self._session.is_navigating_to_next_score:
+            self._session._is_navigating_to_next_score = False
+            self._session._is_backtracking_to_score_manager = False
+            return self._get_next_score_directory_path()
+        if self._session.is_navigating_to_previous_score:
+            self._session._is_navigating_to_previous_score = False
+            self._session._is_backtracking_to_score_manager = False
+            return self._get_previous_score_directory_path()
+
+    def _update_session_variables(self):
+        if self._session.is_backtracking_to_score_manager:
+            self._session._is_backtracking_to_score_manager = False
+        if self._session.is_backtracking_to_score:
+            self._session._is_backtracking_to_score = False
 
     ### PUBLIC METHODS ###
 
