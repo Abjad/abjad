@@ -263,12 +263,14 @@ class Editor(Controller):
                 if self.is_autoadding:
                     menu = self._make_main_menu()
                     result = 'add'
-                    menu._run(predetermined_user_input=result)
+                    menu._predetermined_user_input = result
+                    menu._run()
                     is_first_pass = False
                 elif is_first_pass and is_autostarting:
                     menu = self._make_main_menu()
                     result = menu._get_first_nonhidden_return_value_in_menu()
-                    menu._run(predetermined_user_input=result)
+                    menu._predetermined_user_input = result
+                    menu._run()
                     is_first_pass = False
                 elif result and self.is_autoadvancing:
                     entry_point = entry_point or result

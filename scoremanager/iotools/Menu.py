@@ -55,6 +55,7 @@ class Menu(ScoreManagerObject):
         if include_default_hidden_sections:
             self._make_default_hidden_sections()
         self._name = name
+        self._predetermined_user_input = None
         self._should_clear_terminal = False
         self._title = title
         self.where = where
@@ -511,11 +512,7 @@ class Menu(ScoreManagerObject):
         entry_index = (entry_index + 1) % len(menu_section)
         return menu_section._menu_entry_return_values[entry_index]
 
-    def _run(
-        self, 
-        pending_user_input=None,
-        predetermined_user_input=None, 
-        ):
+    def _run(self, pending_user_input=None):
         from scoremanager import iotools
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
@@ -526,7 +523,7 @@ class Menu(ScoreManagerObject):
                 self._should_clear_terminal = clear_terminal
                 self.hide_current_run = hide_current_run
                 clear_terminal, hide_current_run = False, True
-                result = predetermined_user_input
+                result = self._predetermined_user_input
                 if not result:
                     result = self._display()
                 #print repr(result), 'RES'
