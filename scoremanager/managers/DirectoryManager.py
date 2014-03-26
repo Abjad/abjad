@@ -209,7 +209,7 @@ class DirectoryManager(Manager):
         getter.append_expr('metadatum value')
         with self._backtrack:
             result = getter._run()
-            if self._exit_io_method_inside():
+            if self._should_exit_controller_context():
                 return
         if result:
             metadatum_name, metadatum_value = result
@@ -233,7 +233,7 @@ class DirectoryManager(Manager):
         getter.append_string('metadatum name')
         with self._backtrack:
             result = getter._run()
-            if self._exit_io_method_inside():
+            if self._should_exit_controller_context():
                 return
         metadatum = self._get_metadatum(result)
         message = '{!r}'.format(metadatum)
@@ -265,7 +265,7 @@ class DirectoryManager(Manager):
         getter.append_string('metadatum name')
         with self._backtrack:
             result = getter._run()
-            if self._exit_io_method_inside():
+            if self._should_exit_controller_context():
                 return
         if result:
             metadatum_name = result

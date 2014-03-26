@@ -17,6 +17,7 @@ class ScoreManagerObject(object):
     __slots__ = (
         '_backtrack',
         '_configuration',
+        '_controller_context',
         '_io_manager',
         '_session',
         '_transcript',
@@ -33,6 +34,7 @@ class ScoreManagerObject(object):
         self._session = session or core.Session()
         self._io_manager = iotools.IOManager(self._session)
         self._transcript = self._session.transcript
+        self._controller_context = iotools.ControllerContext(self)
 
     ### SPECIAL METHODS ###
 
@@ -81,6 +83,7 @@ class ScoreManagerObject(object):
             return True
         elif self._session.is_backtracking_to_score_manager:
             return True
+
         elif (self._session.is_backtracking_locally and 
             self._session.backtrack_stack):
             return True
@@ -88,6 +91,11 @@ class ScoreManagerObject(object):
             not self._session.backtrack_stack):
             self._session._is_backtracking_locally = False
             return True
+
+#        elif self._session.is_backtracking_locally:
+#            self._session._is_backtracking_locally = False
+#            return True
+
         elif self._session.is_backtracking_to_score:
             return True
         elif self._session.is_autonavigating_within_score:
@@ -95,7 +103,22 @@ class ScoreManagerObject(object):
         else:
             return False
 
-    def _exit_io_method_inside(self):
+    def _should_backtrack(self):
+        if self._session.is_complete:
+            return True
+        elif self._session.is_backtracking_to_score_manager:
+            return True
+        elif self._session.is_backtracking_locally:
+            self._session._is_backtracking_locally = False
+            return True
+        elif self._session.is_backtracking_to_score:
+            result = True
+        elif self._session.is_autonavigating_within_score:
+            result = True
+        else:
+            return False
+
+    def _should_exit_controller_context(self):
         if self._session.is_complete:
             return True
         elif self._session.is_backtracking_to_score_manager:

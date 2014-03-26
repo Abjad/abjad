@@ -227,9 +227,8 @@ class MaterialPackageWrangler(PackageWrangler):
             storehouse_path = self._current_storehouse_path
         else:
             storehouse_path = self._user_storehouse_path
-        with self._backtrack:
-            path = self.get_available_path(storehouse_path=storehouse_path)
-        if self._exit_io_method():
+        path = self.get_available_path(storehouse_path=storehouse_path)
+        if self._should_backtrack():
             return
         self._make_data_package(path, metadata=metadata)
 
@@ -242,9 +241,8 @@ class MaterialPackageWrangler(PackageWrangler):
             storehouse_path = self._current_storehouse_path
         else:
             storehouse_path = self._user_storehouse_path
-        with self._backtrack:
-            path = self.get_available_path(storehouse_path=storehouse_path)
-        if self._exit_io_method():
+        path = self.get_available_path(storehouse_path=storehouse_path)
+        if self._should_backtrack():
             return
         self._make_handmade_material_package(path)
 
@@ -253,10 +251,9 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        with self._backtrack:
-            wrangler = self._material_manager_wrangler
-            result = wrangler.select_asset_package_path()
-        if self._exit_io_method():
+        wrangler = self._material_manager_wrangler
+        result = wrangler.select_asset_package_path()
+        if self._should_backtrack():
             return
         material_manager_package_path = result
         material_manager_class_name = \
@@ -265,9 +262,8 @@ class MaterialPackageWrangler(PackageWrangler):
             storehouse_path = self._current_storehouse_path
         else:
             storehouse_path = self._user_storehouse_path
-        with self._backtrack:
-            path = self.get_available_path(storehouse_path=storehouse_path)
-        if self._exit_io_method():
+        path = self.get_available_path(storehouse_path=storehouse_path)
+        if self._should_backtrack():
             return
         self._make_managermade_material_package(
             path, 

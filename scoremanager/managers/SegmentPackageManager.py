@@ -211,7 +211,7 @@ class SegmentPackageManager(PackageManager):
         getter.append_integer(prompt)
         with self._backtrack:
             version_number = getter._run()
-            if self._exit_io_method_inside():
+            if self._should_exit_controller_context():
                 return
         if last_version_number < version_number or \
             (version_number < 0 and last_version_number < abs(version_number)):

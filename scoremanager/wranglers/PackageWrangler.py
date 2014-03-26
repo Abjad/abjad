@@ -190,21 +190,22 @@ class PackageWrangler(Wrangler):
 
         Returns string.
         '''
-        while True:
-            name = '_human_readable_target_name'
-            human_readable_target_name = getattr(self, name, None)
-            breadcrumb = self._make_asset_selection_breadcrumb(
-                human_readable_target_name=human_readable_target_name,
-                infinitival_phrase=infinitival_phrase,
-                )
-            menu = self._make_asset_selection_menu(
-                packages_instead_of_paths=True,
-                )
-            result = menu._run()
-            if self._exit_io_method():
-                break
-            elif not result:
-                continue
-            else:
-                break
-        return result
+        with self._controller_context:
+            while True:
+                name = '_human_readable_target_name'
+                human_readable_target_name = getattr(self, name, None)
+                breadcrumb = self._make_asset_selection_breadcrumb(
+                    human_readable_target_name=human_readable_target_name,
+                    infinitival_phrase=infinitival_phrase,
+                    )
+                menu = self._make_asset_selection_menu(
+                    packages_instead_of_paths=True,
+                    )
+                result = menu._run()
+                if self._exit_io_method():
+                    break
+                elif not result:
+                    continue
+                else:
+                    break
+            return result

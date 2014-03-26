@@ -117,7 +117,7 @@ class MakerModuleWrangler(FileWrangler):
         Returns none.
         '''
         from scoremanager import managers
-        with self._backtrack:
+        with self._controller_context:
             # TODO: extend to allow creation in current score
             storehouse_path = self._select_storehouse_path(
                 abjad_library=False,
@@ -125,8 +125,8 @@ class MakerModuleWrangler(FileWrangler):
                 abjad_score_packages=False,
                 user_score_packages=False,
                 )
-        if self._exit_io_method():
-            return
+            if self._should_exit_controller_context():
+                return
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('maker name')
         file_path = getter._run()
