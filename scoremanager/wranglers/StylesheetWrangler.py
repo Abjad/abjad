@@ -66,6 +66,9 @@ class StylesheetWrangler(FileWrangler):
             )
         manager.edit()
 
+    def _enter_run(self):
+        self._session._is_navigating_to_score_stylesheets = False
+
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()

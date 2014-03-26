@@ -57,6 +57,9 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### PRIVATE METHODS ###
 
+    def _enter_run(self):
+        self._session._is_navigating_to_score_segments = False
+
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()

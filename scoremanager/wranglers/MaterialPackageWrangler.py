@@ -79,6 +79,9 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### PRIVATE METHODS ###
 
+    def _enter_run(self):
+        self._session._is_navigating_to_score_materials = False
+
     def _get_appropriate_material_manager(
         self,
         material_manager_class_name, 
