@@ -103,6 +103,9 @@ class Wrangler(Controller):
 
     ### PRIVATE METHODS ###
 
+    def _enter_run(self):
+        pass
+
     def _extract_common_parent_directories(self, paths):
         parent_directories = []
         user_score_packages_directory_path = \
@@ -155,6 +158,12 @@ class Wrangler(Controller):
         previous_index = (index - 1) % len(paths)
         previous_path = paths[previous_index]
         return previous_path
+
+    def _get_sibling_asset_path(self):
+        if self._session.is_navigating_to_next_asset:
+            return self._get_next_asset_path()
+        if self._session.is_navigating_to_previous_asset:
+            return self._get_previous_asset_path()
 
     def _initialize_asset_manager(self, path):
         assert os.path.sep in path, repr(path)
@@ -344,26 +353,22 @@ class Wrangler(Controller):
 
     def _run(self):
         from scoremanager import iotools
-        with iotools.ControllerContext(self):
-            self._enter_run()
+        context = iotools.ControllerContext(
+            self,
+            on_enter_callbacks=(self._enter_run,),
+            )
+        with context:
             while True:
-                if self._session.is_navigating_to_next_asset:
-                    result = self._get_next_asset_path()
-                elif self._session.is_navigating_to_previous_asset:
-                    result = self._get_previous_asset_path()
-                else:
+                result = self._get_sibling_asset_path()
+                if not result:
                     menu = self._make_main_menu()
                     result = menu._run()
                 if self._exit_io_method():
-                    break
-                elif not result:
-                    continue
-                self._handle_main_menu_result(result)
-                if self._exit_io_method():
-                    break
-
-    def _enter_run(self):
-        pass
+                    return
+                if result:
+                    self._handle_main_menu_result(result)
+                    if self._exit_io_method():
+                        return
 
     def _select_asset_path(self):
         menu = self._make_asset_selection_menu()

@@ -12,11 +12,13 @@ class ControllerContext(ContextManager):
         self, 
         controller=None,
         is_in_confirmation_environment=False,
+        on_enter_callbacks=None,
         on_exit_callbacks=None,
         where=None,
         ):
         self.controller = controller
         self.is_in_confirmation_environment = is_in_confirmation_environment
+        self.on_enter_callbacks = on_enter_callbacks or ()
         self.on_exit_callbacks = on_exit_callbacks or ()
         self.where = where
         self._session = self.controller._session
@@ -35,6 +37,8 @@ class ControllerContext(ContextManager):
             self.is_in_confirmation_environment
         self._session._where = self.where
         self._session._hide_hidden_commands = True
+        for on_enter_callback in self.on_enter_callbacks:
+            on_enter_callback()
 
     def __exit__(self, exg_type, exc_value, trackeback):
         r'''Exits controller stack context manager.

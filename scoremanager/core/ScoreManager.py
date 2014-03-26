@@ -95,6 +95,12 @@ class ScoreManager(Controller):
 
     ### PRIVATE METHODS ###
 
+    def _exit_io_method_inside(self):
+        if self._session.is_complete:
+            return True
+        else:
+            return False
+
     def _find_svn_score_name(self):
         from scoremanager import managers
         manager = self._find_up_to_date_manager(
@@ -170,6 +176,16 @@ class ScoreManager(Controller):
 
     def _get_scores_to_display_string(self):
         return '{} scores'.format(self._session.scores_to_display)
+
+    def _get_sibling_score_path(self):
+        if self._session.is_navigating_to_next_score:
+            self._session._is_navigating_to_next_score = False
+            self._session._is_backtracking_to_score_manager = False
+            return self._get_next_score_directory_path()
+        if self._session.is_navigating_to_previous_score:
+            self._session._is_navigating_to_previous_score = False
+            self._session._is_backtracking_to_score_manager = False
+            return self._get_previous_score_directory_path()
 
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
@@ -295,7 +311,8 @@ class ScoreManager(Controller):
         type(self).__init__(self, session=self._session)
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
-        with iotools.ControllerContext(self):
+        context =  iotools.ControllerContext(self)
+        with context:
             run_main_menu = True
             while True:
                 if run_main_menu:
@@ -318,22 +335,6 @@ class ScoreManager(Controller):
                         return
                     if self._session.is_navigating_to_sibling_score:
                         run_main_menu = False
-
-    def _exit_io_method_inside(self):
-        if self._session.is_complete:
-            return True
-        else:
-            return False
-
-    def _get_sibling_score_path(self):
-        if self._session.is_navigating_to_next_score:
-            self._session._is_navigating_to_next_score = False
-            self._session._is_backtracking_to_score_manager = False
-            return self._get_next_score_directory_path()
-        if self._session.is_navigating_to_previous_score:
-            self._session._is_navigating_to_previous_score = False
-            self._session._is_backtracking_to_score_manager = False
-            return self._get_previous_score_directory_path()
 
     def _update_session_variables(self):
         if self._session.is_backtracking_to_score_manager:

@@ -121,6 +121,12 @@ class Manager(Controller):
 
     ### PRIVATE METHODS ###
 
+    def _enter_run(self):
+        pass
+
+    def _exit_run(self):
+        return self._exit_io_method()
+
     def _find_first_file_name(self):
         for directory_entry in os.listdir(self._path):
             if not directory_entry.startswith('.'):
@@ -164,6 +170,9 @@ class Manager(Controller):
         else:
             raise ValueError(self)
         return paths
+
+    def _get_inside_score_navigation_directive(self):
+        pass
 
     def _get_modified_asset_paths(self):
         if self._is_git_versioned():
@@ -501,15 +510,6 @@ class Manager(Controller):
                     self._handle_main_menu_result(result)
                     if self._exit_run():
                         break
-
-    def _enter_run(self):
-        pass
-
-    def _exit_run(self):
-        return self._exit_io_method()
-
-    def _get_inside_score_navigation_directive(self):
-        pass
 
     def _space_delimited_lowercase_name_to_asset_name(
         self, space_delimited_lowercase_name):
