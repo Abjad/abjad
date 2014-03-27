@@ -21,11 +21,21 @@ class IOManager(IOManager):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    _wrangler_navigation_alias_to_attribute = {
+        'd': '_is_navigating_to_score_distribution_files',
+        'g': '_is_navigating_to_score_segments',
+        'k': '_is_navigating_to_score_maker_modules',
+        'm': '_is_navigating_to_score_materials',
+        'u': '_is_navigating_to_score_build_files',
+        'y': '_is_navigating_to_score_stylesheets',
+        }
+
     ### INITIALIZER ###
 
     def __init__(self, session=None):
         from scoremanager import core
-        from scoremanager import wranglers
         self._session = session
         self._configuration = core.ScoreManagerConfiguration()
 
@@ -66,20 +76,6 @@ class IOManager(IOManager):
             }
         return result
 
-    # TODO: make class variable
-    @property
-    @systemtools.Memoize
-    def _wrangler_navigation_alias_to_attribute(self):
-        result = {
-            'd': '_is_navigating_to_score_distribution_files',
-            'g': '_is_navigating_to_score_segments',
-            'k': '_is_navigating_to_score_maker_modules',
-            'm': '_is_navigating_to_score_materials',
-            'u': '_is_navigating_to_score_build_files',
-            'y': '_is_navigating_to_score_stylesheets',
-            }
-        return result
-
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -95,12 +91,11 @@ class IOManager(IOManager):
 
     def _handle_io_manager_directive(self, directive):
         input_directive = directive
-        from scoremanager import wranglers
         if isinstance(directive, list) and len(directive) == 1:
             directive = directive[0]
         if not isinstance(directive, str):
-            result = directive
-        elif directive == 'b':
+            return directive
+        if directive == 'b':
             self._session._is_backtracking_locally = True
             self._session._hide_hidden_commands = True
             result = None
@@ -166,24 +161,6 @@ class IOManager(IOManager):
         else:
             result = input_directive
         return result
-
-#    @staticmethod
-#    def _is_home_string(string):
-#        if isinstance(string, str):
-#            if 3 <= len(string) and 'home'.startswith(string):
-#                return True
-#            elif string == 'h':
-#                return True
-#        return False
-
-#    @staticmethod
-#    def _is_score_string(string):
-#        if isinstance(string, str):
-#            if 3 <= len(string) and 'score'.startswith(string):
-#                return True
-#            elif string == 's':
-#                return True
-#        return False
 
     def _make_tab(self, n):
         return 4 * n * ' '
