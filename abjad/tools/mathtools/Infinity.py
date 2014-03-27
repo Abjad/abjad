@@ -31,7 +31,7 @@ class Infinity(AbjadObject):
         >>> NegativeInfinity < Infinity
         True
 
-    Infinity is initialized at start-up and is available in the 
+    Infinity is initialized at start-up and is available in the
     global Abjad namespace.
     '''
 
@@ -41,6 +41,14 @@ class Infinity(AbjadObject):
         self._value = float('infinity')
 
     ### SPECIAL METHODS ###
+
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(Infinity, self).__hash__()
 
     def __eq__(self, expr):
         r'''Is true when `expr` is also infinity. Otherwise false.
