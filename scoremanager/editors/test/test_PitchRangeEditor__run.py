@@ -33,7 +33,7 @@ def test_PitchRangeEditor__run_02():
 
     session = scoremanager.core.Session(is_test=True)
     editor = scoremanager.editors.PitchRangeEditor(session=session)
-    input_ = 'sco q'
+    input_ = 's q'
     editor._run(pending_user_input=input_)
     assert editor._transcript.signature == (4, (0, 2))
 

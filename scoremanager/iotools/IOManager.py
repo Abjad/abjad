@@ -98,7 +98,7 @@ class IOManager(IOManager):
         from scoremanager import wranglers
         if isinstance(directive, list) and len(directive) == 1:
             directive = directive[0]
-        if isinstance(directive, list):
+        if not isinstance(directive, str):
             result = directive
         elif directive == 'b':
             self._session._is_backtracking_locally = True
@@ -149,18 +149,17 @@ class IOManager(IOManager):
             self._session._is_navigating_to_previous_asset = True
             self._session._hide_hidden_commands = True
             result = directive
-        elif isinstance(directive, str) and directive.startswith('!'):
+        elif directive.startswith('!'):
             statement = directive.replace('!', '')
             self.invoke_shell(statement=statement)
             result = None
-        elif self._is_score_string(directive) and self._session.is_in_score:
+        elif directive == 's' and self._session.is_in_score:
             self._session._is_backtracking_to_score = True
             self._session._hide_hidden_commands = True
             result = None
-        elif (self._is_score_string(directive) and 
-            not self._session.is_in_score):
+        elif directive == 's' and not self._session.is_in_score:
             result = None
-        elif self._is_home_string(directive):
+        elif directive == 'h':
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
             result = None
@@ -168,23 +167,23 @@ class IOManager(IOManager):
             result = input_directive
         return result
 
-    @staticmethod
-    def _is_home_string(string):
-        if isinstance(string, str):
-            if 3 <= len(string) and 'home'.startswith(string):
-                return True
-            elif string == 'h':
-                return True
-        return False
+#    @staticmethod
+#    def _is_home_string(string):
+#        if isinstance(string, str):
+#            if 3 <= len(string) and 'home'.startswith(string):
+#                return True
+#            elif string == 'h':
+#                return True
+#        return False
 
-    @staticmethod
-    def _is_score_string(string):
-        if isinstance(string, str):
-            if 3 <= len(string) and 'score'.startswith(string):
-                return True
-            elif string == 's':
-                return True
-        return False
+#    @staticmethod
+#    def _is_score_string(string):
+#        if isinstance(string, str):
+#            if 3 <= len(string) and 'score'.startswith(string):
+#                return True
+#            elif string == 's':
+#                return True
+#        return False
 
     def _make_tab(self, n):
         return 4 * n * ' '
