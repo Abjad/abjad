@@ -2,6 +2,7 @@
 import os
 import subprocess
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from scoremanager.core.Controller import Controller
 
 
@@ -22,28 +23,11 @@ class ScoreManager(Controller):
 
     def __init__(self, session=None, is_test=False):
         from scoremanager import core
-        from scoremanager import wranglers
         if session is None:
             session = core.Session()
             session._is_test = is_test
         Controller.__init__(self, session=session)
         self._session._score_manager = self
-        wrangler = wranglers.BuildFileWrangler(session=self._session)
-        self._build_file_wrangler = wrangler
-        wrangler = wranglers.DistributionFileWrangler(session=self._session)
-        self._distribution_file_wrangler = wrangler
-        wrangler = wranglers.MakerModuleWrangler(session=self._session)
-        self._maker_module_wrangler = wrangler
-        wrangler = wranglers.MaterialManagerWrangler(session=self._session)
-        self._material_manager_wrangler = wrangler
-        wrangler = wranglers.MaterialPackageWrangler(session=self._session)
-        self._material_package_wrangler = wrangler
-        wrangler = wranglers.SegmentPackageWrangler(session=self._session)
-        self._segment_package_wrangler = wrangler
-        wrangler = wranglers.ScorePackageWrangler(session=self._session)
-        self._score_package_wrangler = wrangler
-        wrangler = wranglers.StylesheetWrangler(session=self._session)
-        self._stylesheet_wrangler = wrangler
 
     ### PRIVATE PROPERTIES ###
 
@@ -57,6 +41,54 @@ class ScoreManager(Controller):
             return
         else:
             return 'score manager'
+
+    @property
+    @systemtools.Memoize
+    def _build_file_wrangler(self):
+        from scoremanager import wranglers
+        return wranglers.BuildFileWrangler(session=self._session)
+
+    @property
+    @systemtools.Memoize
+    def _distribution_file_wrangler(self):
+        from scoremanager import wranglers
+        return wranglers.DistributionFileWrangler(session=self._session)
+
+    @property
+    @systemtools.Memoize
+    def _maker_module_wrangler(self):
+        from scoremanager import wranglers
+        return wranglers.MakerModuleWrangler(session=self._session)
+
+    @property
+    @systemtools.Memoize
+    def _material_manager_wrangler(self):
+        from scoremanager import wranglers
+        return wranglers.MaterialManagerWrangler(session=self._session)
+
+    @property
+    @systemtools.Memoize
+    def _material_package_wrangler(self):
+        from scoremanager import wranglers
+        return wranglers.MaterialPackageWrangler(session=self._session)
+
+    @property
+    @systemtools.Memoize
+    def _segment_package_wrangler(self):
+        from scoremanager import wranglers
+        return wranglers.SegmentPackageWrangler(session=self._session)
+
+    @property
+    @systemtools.Memoize
+    def _score_package_wrangler(self):
+        from scoremanager import wranglers
+        return wranglers.ScorePackageWrangler(session=self._session)
+
+    @property
+    @systemtools.Memoize
+    def _stylesheet_wrangler(self):
+        from scoremanager import wranglers
+        return wranglers.StylesheetWrangler(session=self._session)
 
     @property
     def _score_status_string(self):
