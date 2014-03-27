@@ -100,10 +100,10 @@ class IOManager(IOManager):
             directive = directive[0]
         if isinstance(directive, list):
             result = directive
-        elif directive in ('b', 'back'):
+        elif directive == 'b':
             self._session._is_backtracking_locally = True
             self._session._hide_hidden_commands = True
-            result = 'b'
+            result = None
         elif (
             directive in self._wrangler_navigation_alias_to_attribute and
             not self._session.is_in_confirmation_environment and
@@ -123,10 +123,10 @@ class IOManager(IOManager):
         elif directive == 'p' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_setup = True
             result = directive
-        elif directive in ('q', 'quit'):
+        elif directive == 'q':
             self._session._is_quitting = True
             self._session._hide_hidden_commands = True
-            result = 'q'
+            result = None
         elif directive == '>>':
             self._session._is_navigating_to_next_score = True
             self._session._is_backtracking_to_score_manager = True
