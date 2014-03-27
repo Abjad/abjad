@@ -55,6 +55,14 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(OctaveTranspositionMappingComponent, self).__hash__()
+
     def __eq__(self, expr):
         r'''Is true when `expr` is a an octave transposition mapping component
         with source pitch range and target octave start pitch equal to those of
@@ -82,7 +90,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         return str(self)
 
     def __ne__(self, expr):
-        r'''Is true when octave transposition mapping component does not equal 
+        r'''Is true when octave transposition mapping component does not equal
         `expr`. Otherwise false.
 
         Returns boolean.

@@ -33,6 +33,14 @@ class LaissezVibrer(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(LaissezVibrer, self).__hash__()
+
     def __eq__(self, expr):
         r'''Is true when `expr` is a *laissez vibrer* indication. Otherwise
         false.

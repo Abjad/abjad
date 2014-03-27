@@ -56,6 +56,14 @@ class BarLine(AbjadObject):
         '''
         return type(self)(self.abbreviation)
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(BarLine, self).__hash__()
+
     def __eq__(self, arg):
         r'''Is true when `arg` is a bar line with an abbreviation equal
         to that of this bar line. Otherwise false.

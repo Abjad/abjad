@@ -78,6 +78,14 @@ class PitchArrayRow(AbjadObject):
             new_cells.append(new_cell)
         return PitchArrayRow(new_cells)
 
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(PitchArrayRow, self).__hash__()
+
     def __eq__(self, arg):
         r'''Is true when `arg` is a pitch array row with contents equal to that of
         this pitch array row. Otherwise false.
@@ -407,7 +415,7 @@ class PitchArrayRow(AbjadObject):
             self.append(cell_token)
 
     def has_spanning_cell_over_index(self, i):
-        r'''Is true when pitch array row has one or more cells spanning over 
+        r'''Is true when pitch array row has one or more cells spanning over
         index `i`. Otherwise false.
 
         Returns boolean.
