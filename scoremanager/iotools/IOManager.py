@@ -136,7 +136,8 @@ class IOManager(IOManager):
         self._session._hide_hidden_commands = True
 
     def _handle_directive(self, directive):
-        assert isinstance(directive, str), repr(directive)
+        if not isinstance(directive, str):
+            return directive
         if (
             directive in self._wrangler_navigation_alias_to_attribute and
             not self._session.is_in_confirmation_environment and
