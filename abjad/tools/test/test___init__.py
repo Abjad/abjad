@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import functools
 import inspect
 import pytest
 import abjad
@@ -42,7 +43,10 @@ def test___init___02(obj):
             continue
         elif attr.kind != 'method':
             continue
-        argument_specification = inspect.getargspec(attr.object)
+        obj = attr.object
+        if isinstance(obj, functools.partial):
+            obj = obj.function
+        argument_specification = inspect.getargspec(obj)
         keyword_argument_names = argument_specification.args[1:]
         keyword_argument_values = argument_specification.defaults
         if keyword_argument_values is None:
@@ -59,7 +63,8 @@ functions = documentationtools.list_all_abjad_functions()
 def test___init___03(obj):
     r'''Make sure function keyword argument values are immutable.
     '''
-
+    if isinstance(obj, functools.partial):
+        obj = obj.function
     argument_specification = inspect.getargspec(obj)
     keyword_argument_names = argument_specification.args[1:]
     keyword_argument_values = argument_specification.defaults
