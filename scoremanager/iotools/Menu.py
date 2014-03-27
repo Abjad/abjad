@@ -524,7 +524,10 @@ class Menu(ScoreManagerObject):
         if pending_user_input:
             self._session._pending_user_input = pending_user_input
         clear_terminal, hide_current_run = True, False
-        context = iotools.ControllerContext(self)
+        context = iotools.ControllerContext(
+            self,
+            reset_hide_hidden_commands=False,
+            )
         with context:
             while True:
                 self._should_clear_terminal = clear_terminal

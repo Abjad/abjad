@@ -1341,10 +1341,8 @@ class Session(abctools.AbjadObject):
 
         Returns none.
         '''
-        if self._hide_hidden_commands:
-            self._hide_hidden_commands = False
-        else:
-            self._hide_hidden_commands = True
+        current = self.hide_hidden_commands
+        self._hide_hidden_commands = not current
 
     def toggle_user_input_values_default_status(self):
         r'''Toggles `use_current_user_input_values_as_default`.

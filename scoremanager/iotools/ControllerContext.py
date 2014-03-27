@@ -14,12 +14,14 @@ class ControllerContext(ContextManager):
         is_in_confirmation_environment=False,
         on_enter_callbacks=None,
         on_exit_callbacks=None,
+        reset_hide_hidden_commands=True,
         where=None,
         ):
         self.controller = controller
         self.is_in_confirmation_environment = is_in_confirmation_environment
         self.on_enter_callbacks = on_enter_callbacks or ()
         self.on_exit_callbacks = on_exit_callbacks or ()
+        self.reset_hide_hidden_commands = reset_hide_hidden_commands
         self.where = where
         self._session = self.controller._session
 
@@ -36,7 +38,8 @@ class ControllerContext(ContextManager):
         self._session._is_in_confirmation_environment = \
             self.is_in_confirmation_environment
         self._session._where = self.where
-        self._session._hide_hidden_commands = True
+        if self.reset_hide_hidden_commands:
+            self._session._hide_hidden_commands = True
         for on_enter_callback in self.on_enter_callbacks:
             on_enter_callback()
 
@@ -48,7 +51,8 @@ class ControllerContext(ContextManager):
         self._session._controller_stack.pop()
         self._session._is_in_confirmation_environment = False
         self._session._where = None
-        self._session._hide_hidden_commands = True
+        if self.reset_hide_hidden_commands:
+            self._session._hide_hidden_commands = True
         for on_exit_callback in self.on_exit_callbacks:
             on_exit_callback()
 

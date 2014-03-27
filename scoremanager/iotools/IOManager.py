@@ -180,8 +180,7 @@ class IOManager(IOManager):
         elif self._is_score_string(directive) and self._session.is_in_score:
             self._session._is_backtracking_to_score = True
             self._session._hide_hidden_commands = True
-            #result = None
-            result = 's'
+            result = None
         elif (self._is_score_string(directive) and 
             not self._session.is_in_score):
             result = None
