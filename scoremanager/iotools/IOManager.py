@@ -137,11 +137,6 @@ class IOManager(IOManager):
 
     def _handle_directive(self, directive):
         assert isinstance(directive, str), repr(directive)
-        input_directive = directive
-        if isinstance(directive, list) and len(directive) == 1:
-            directive = directive[0]
-        if not isinstance(directive, str):
-            return directive
         if (
             directive in self._wrangler_navigation_alias_to_attribute and
             not self._session.is_in_confirmation_environment and
@@ -158,7 +153,7 @@ class IOManager(IOManager):
             self.invoke_shell(statement=statement)
             result = None
         else:
-            result = input_directive
+            result = directive
         return result
 
     def _handle_home_navigation_directive(self):

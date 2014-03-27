@@ -174,18 +174,11 @@ class Menu(ScoreManagerObject):
             self._session._hide_next_redraw = False
             if isinstance(directive, str):
                 directive = self._io_manager._handle_directive(directive)
-            elif directive is None:
-                pass
             elif isinstance(directive, list) and len(directive) == 1:
                 x = self._io_manager._handle_directive(directive[0])
                 if x:
+                    assert directive == [x]
                     directive = [x]
-            elif isinstance(directive, list):
-                pass
-            elif isinstance(directive, abctools.AbjadObject):
-                pass
-            else:
-                raise ValueError(directive)
             if directive is None and user_entered_lone_return:
                 result = 'user entered lone return'
             elif directive is None and not user_entered_lone_return:
