@@ -424,7 +424,7 @@ class Wrangler(Controller):
         Returns none.
         '''
         self._session._attempted_to_add_to_repository = True
-        if self._session._is_repository_test:
+        if self._session.is_repository_test:
             return
         paths = self._list_visible_asset_paths()
         for path in paths:
@@ -445,7 +445,7 @@ class Wrangler(Controller):
         Returns none.
         '''
         self._session._attempted_to_commit_to_repository = True
-        if self._session._is_repository_test:
+        if self._session.is_repository_test:
             return
         getter = self._io_manager.make_getter(where=self._where)
         getter.append_string('commit message')
@@ -615,7 +615,7 @@ class Wrangler(Controller):
         '''
         from scoremanager import managers
         self._session._attempted_to_revert_to_repository = True
-        if self._session._is_repository_test:
+        if self._session.is_repository_test:
             return
         paths = self._list_visible_asset_paths()
         paths = self._extract_common_parent_directories(paths)

@@ -333,7 +333,7 @@ class IOManager(IOManager):
             self.display(lines, capitalize_first_character=False)
             self._session._hide_next_redraw = True
         else:
-            message = 'source code tracking is not turned on.'
+            message = 'source code tracking is not on.'
             self.display([message, ''])
 
     def edit(self, file_path, line_number=None):
@@ -366,6 +366,7 @@ class IOManager(IOManager):
                 line_number=line_number,
                 )
         else:
+            message = 'source code tracking is not on.'
             self.display([message, ''])
             self._session._hide_next_redraw = True
 

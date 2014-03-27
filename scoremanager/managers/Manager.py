@@ -602,6 +602,9 @@ class Manager(Controller):
 
         Returns none.
         '''
+        self._session._attempted_to_add_to_repository = True
+        if self._session.is_repository_test:
+            return
         line = self._get_score_package_directory_name()
         line = line + ' ...'
         self._io_manager.display(line, capitalize_first_character=False)
@@ -624,7 +627,7 @@ class Manager(Controller):
         Returns none.
         '''
         self._session._attempted_to_commit_to_repository = True
-        if self._session._is_repository_test:
+        if self._session.is_repository_test:
             return
         if commit_message is None:
             getter = self._io_manager.make_getter(where=self._where)
@@ -682,6 +685,8 @@ class Manager(Controller):
 
         Returns none.
         '''
+        if self._session.is_test:
+            return
         command = 'ajv doctest {}'.format(self._path)
         process = subprocess.Popen(
             command, 
@@ -746,6 +751,8 @@ class Manager(Controller):
 
         Returns none.
         '''
+        if self._session.is_test:
+            return
         command = 'py.test -rf {}'.format(self._path)
         process = subprocess.Popen(
             command, 
@@ -877,7 +884,7 @@ class Manager(Controller):
         Returns none.
         '''
         self._session._attempted_to_update_from_repository = True
-        if self._session._is_repository_test:
+        if self._session.is_repository_test:
             return
         line = self._get_score_package_directory_name()
         line = line + ' ...'

@@ -393,6 +393,8 @@ class ScoreManager(Controller):
 
         Returns none.
         '''
+        if self._session.is_test:
+            return
         path = self._configuration.user_score_packages_directory_path
         command = 'ajv doctest {}'.format(path)
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
@@ -523,6 +525,8 @@ class ScoreManager(Controller):
 
         Returns none.
         '''
+        if self._session.is_test:
+            return
         path = self._configuration.user_score_packages_directory_path
         command = 'py.test -rf {}'
         command = command.format(path)

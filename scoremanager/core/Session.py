@@ -1001,6 +1001,21 @@ class Session(abctools.AbjadObject):
         return self._is_quitting
 
     @property
+    def is_repository_test(self):
+        r'''Is true when session is repository test. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_repository_test
+                False
+
+        Returns boolean.
+        '''
+        return self._is_repository_test
+
+    @property
     def is_test(self):
         r'''Is true when session is test. Otherwise false.
 

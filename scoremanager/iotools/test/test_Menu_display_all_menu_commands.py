@@ -101,9 +101,9 @@ def test_Menu_display_all_menu_commands_07():
 def test_Menu_display_all_menu_commands_08():
     r'''Hidden menu persists after adding assets to repository.
     '''
-    pytest.skip('make me testable.')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager._session._is_repository_test = True
     input_ = 'red~example~score n rad q'
     score_manager._run(pending_user_input=input_)
 
@@ -115,9 +115,9 @@ def test_Menu_display_all_menu_commands_08():
 def test_Menu_display_all_menu_commands_09():
     r'''Hidden menu persists after commiting assets to repository.
     '''
-    pytest.skip('make me testable.')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager._session._is_repository_test = True
     input_ = 'red~example~score n rci q'
     score_manager._run(pending_user_input=input_)
 
@@ -129,10 +129,9 @@ def test_Menu_display_all_menu_commands_09():
 def test_Menu_display_all_menu_commands_10():
     r'''Hidden menu persists after displaying repository status.
     '''
-    pytest.skip('make me work')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score n rst q'
+    input_ = 'red~example~score n rst default q'
     score_manager._run(pending_user_input=input_)
 
     input_ = 'Red Example Score (2013)'
@@ -143,9 +142,9 @@ def test_Menu_display_all_menu_commands_10():
 def test_Menu_display_all_menu_commands_11():
     r'''Hidden menu persists after updating from repository.
     '''
-    pytest.skip('make me testable.')
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
+    score_manager._session._is_repository_test = True
     input_ = 'red~example~score n rup q'
     score_manager._run(pending_user_input=input_)
 
@@ -178,20 +177,3 @@ def test_Menu_display_all_menu_commands_13():
     input_ = 'Red Example Score (2013)'
     transcript = score_manager._transcript
     assert transcript.last_title == input_
-
-
-def test_Menu_display_all_menu_commands_14():
-    r'''Hidden menu persists after editing source code.
-
-    Sets is_test=False to turn on source code tracking.
-    '''
-    pytest.skip('I work but add 2 seconds to total py.test runtime.')
-
-    score_manager = scoremanager.core.ScoreManager(is_test=False)
-    input_ = 'red~example~score n sce q'
-    score_manager._run(pending_user_input=input_)
-
-    input_ = 'Red Example Score (2013)'
-    transcript = score_manager._transcript
-    assert transcript.last_title == input_
-    assert score_manager._session._attempted_to_open_file

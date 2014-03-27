@@ -5,7 +5,7 @@ from abjad import *
 import scoremanager
 
 
-def test_TempoInventoryMaterialManager_edit_output_material_01():
+def test_MaterialManager_edit_output_01():
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
     configuration = score_manager._configuration
