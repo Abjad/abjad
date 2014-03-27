@@ -5,6 +5,7 @@ import subprocess
 import readline
 import types
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from abjad.tools.systemtools.IOManager import IOManager
 
 
@@ -23,11 +24,10 @@ class IOManager(IOManager):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from scoremanager import wranglers
         from scoremanager import core
+        from scoremanager import wranglers
         self._session = session
         self._configuration = core.ScoreManagerConfiguration()
-        self.__score_package_wrangler = None
 
     ### SPECIAL METHODS ###
 
@@ -48,18 +48,11 @@ class IOManager(IOManager):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _score_package_wrangler(self):
-        from scoremanager import wranglers
-        if self.__score_package_wrangler is None:
-            wrangler = wranglers.ScorePackageWrangler(session=self._session)
-            self.__score_package_wrangler = wrangler
-        return self.__score_package_wrangler
-
-    @property
     def _unicode_directive(self):
         return '# -*- encoding: utf-8 -*-'
 
     @property
+    @systemtools.Memoize
     def _wrangler_navigation_alias_to_attribute(self):
         result = {
             'd': '_is_navigating_to_score_distribution_files',
@@ -673,7 +666,7 @@ class IOManager(IOManager):
         lines.append(self._unicode_directive + '\n')
         lines.append('\n\n')
         lines.append('start_menu_entries = [\n')
-        wrangler = self._score_package_wrangler
+        wrangler = self._session.score_manager._score_package_wrangler
         menu_entries = wrangler._make_asset_menu_entries(
             include_asset_name=False,
             include_year=True,
