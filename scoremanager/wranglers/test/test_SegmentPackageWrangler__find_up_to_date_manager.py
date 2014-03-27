@@ -2,10 +2,7 @@
 import os
 from abjad import *
 import scoremanager
-configuration = scoremanager.core.ScoreManagerConfiguration()
-session = scoremanager.core.Session()
 score_manager = scoremanager.core.ScoreManager(is_test=True)
-#wrangler = scoremanager.wranglers.SegmentPackageWrangler(session=session)
 
 
 def test_SegmentPackageWrangler__find_up_to_date_manager_01():
