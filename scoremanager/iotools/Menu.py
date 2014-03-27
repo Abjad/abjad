@@ -166,8 +166,7 @@ class Menu(ScoreManagerObject):
             directive = self._change_user_input_to_directive(user_input)
             directive = self._strip_default_notice_from_strings(directive)
             self._session._hide_next_redraw = False
-            directive = self._io_manager._handle_io_manager_directive(
-                directive)
+            directive = self._io_manager._handle_directive(directive)
             if directive is None and user_entered_lone_return:
                 result = 'user entered lone return'
             elif directive is None and not user_entered_lone_return:

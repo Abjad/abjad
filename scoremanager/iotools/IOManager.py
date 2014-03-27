@@ -135,7 +135,7 @@ class IOManager(IOManager):
         self._session._is_backtracking_locally = True
         self._session._hide_hidden_commands = True
 
-    def _handle_io_manager_directive(self, directive):
+    def _handle_directive(self, directive):
         input_directive = directive
         if isinstance(directive, list) and len(directive) == 1:
             directive = directive[0]
