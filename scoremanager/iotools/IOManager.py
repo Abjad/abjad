@@ -28,6 +28,7 @@ class IOManager(IOManager):
         'g': '_is_navigating_to_score_segments',
         'k': '_is_navigating_to_score_maker_modules',
         'm': '_is_navigating_to_score_materials',
+        'p': '_is_navigating_to_score_setup',
         'u': '_is_navigating_to_score_build_files',
         'y': '_is_navigating_to_score_stylesheets',
         }
@@ -65,6 +66,12 @@ class IOManager(IOManager):
     @systemtools.Memoize
     def _user_input_to_action(self):
         result = {
+            'b': self._handle_backtrack_navigation_directive,
+            'h': self._handle_home_navigation_directive,
+            'q': self._handle_quit_directive,
+            's': self._handle_score_navigation_directive,
+            '?': self._handle_display_all_commands_directive,
+            'n': self._handle_display_all_commands_directive,
             'llro': self.view_last_log,
             'pyd': self.doctest,
             'pyi': self.invoke_python,
@@ -89,16 +96,59 @@ class IOManager(IOManager):
         else:
             return repr(expr)
 
+    def _handle_display_all_commands_directive(self):
+        if (not self._session.is_in_confirmation_environment and
+            not self._session.is_in_editor):
+            self._session.toggle_hidden_commands()
+
+    def _handle_quit_directive(self):
+        self._session._is_quitting = True
+        self._session._hide_hidden_commands = True
+
+    def _handle_next_score_directive(self):
+        self._session._is_navigating_to_next_score = True
+        self._session._is_backtracking_to_score_manager = True
+        self._session._hide_hidden_commands = True
+
+    def _handle_previous_score_directive(self):
+        self._session._is_navigating_to_previous_score = True
+        self._session._is_backtracking_to_score_manager = True
+        self._session._hide_hidden_commands = True
+
+    def _handle_next_sibling_asset_directive(self):
+        controller = self._session.get_controller_with(ui='<')
+        controller._set_is_navigating_to_sibling_asset()
+        self._session._is_navigating_to_next_asset = True
+        self._session._hide_hidden_commands = True
+
+    def _handle_previous_sibling_asset_directive(self):
+        controller = self._session.get_controller_with(ui='>')
+        controller._set_is_navigating_to_sibling_asset()
+        self._session._is_navigating_to_previous_asset = True
+        self._session._hide_hidden_commands = True
+
+    def _handle_backtrack_navigation_directive(self):
+        self._session._is_backtracking_locally = True
+        self._session._hide_hidden_commands = True
+
     def _handle_io_manager_directive(self, directive):
         input_directive = directive
         if isinstance(directive, list) and len(directive) == 1:
             directive = directive[0]
         if not isinstance(directive, str):
             return directive
-        if directive == 'b':
-            self._session._is_backtracking_locally = True
-            self._session._hide_hidden_commands = True
-            result = None
+        if directive == '>>':
+            self._handle_next_score_directive()
+            result = directive
+        elif directive == '<<':
+            self._handle_previous_score_directive()
+            result = directive
+        elif directive == '>':
+            self._handle_next_sibling_asset_directive()
+            result = directive
+        elif directive == '<':
+            self._handle_previous_sibling_asset_directive()
+            result = directive
         elif (
             directive in self._wrangler_navigation_alias_to_attribute and
             not self._session.is_in_confirmation_environment and
@@ -110,57 +160,22 @@ class IOManager(IOManager):
         elif directive in self._user_input_to_action:
             self._user_input_to_action[directive]()
             result = None
-        elif (directive in ('n', '?') and
-            not self._session.is_in_confirmation_environment and
-            not self._session.is_in_editor):
-            self._session.toggle_hidden_commands()
-            result = None
-        elif directive == 'p' and not self._session.is_in_editor:
-            self._session._is_navigating_to_score_setup = True
-            result = directive
-        elif directive == 'q':
-            self._session._is_quitting = True
-            self._session._hide_hidden_commands = True
-            result = None
-        elif directive == '>>':
-            self._session._is_navigating_to_next_score = True
-            self._session._is_backtracking_to_score_manager = True
-            self._session._hide_hidden_commands = True
-            result = directive
-        elif directive == '<<':
-            self._session._is_navigating_to_previous_score = True
-            self._session._is_backtracking_to_score_manager = True
-            self._session._hide_hidden_commands = True
-            result = directive
-        elif directive == '>':
-            controller = self._session.get_controller_with(ui=directive)
-            controller._set_is_navigating_to_sibling_asset()
-            self._session._is_navigating_to_next_asset = True
-            self._session._hide_hidden_commands = True
-            result = directive
-        elif directive == '<':
-            controller = self._session.get_controller_with(ui=directive)
-            controller._set_is_navigating_to_sibling_asset()
-            self._session._is_navigating_to_previous_asset = True
-            self._session._hide_hidden_commands = True
-            result = directive
         elif directive.startswith('!'):
             statement = directive.replace('!', '')
             self.invoke_shell(statement=statement)
             result = None
-        elif directive == 's' and self._session.is_in_score:
-            self._session._is_backtracking_to_score = True
-            self._session._hide_hidden_commands = True
-            result = None
-        elif directive == 's' and not self._session.is_in_score:
-            result = None
-        elif directive == 'h':
-            self._session._is_backtracking_to_score_manager = True
-            self._session._hide_hidden_commands = True
-            result = None
         else:
             result = input_directive
         return result
+
+    def _handle_home_navigation_directive(self):
+        self._session._is_backtracking_to_score_manager = True
+        self._session._hide_hidden_commands = True
+        
+    def _handle_score_navigation_directive(self):
+        if self._session.is_in_score:
+            self._session._is_backtracking_to_score = True
+            self._session._hide_hidden_commands = True
 
     def _make_tab(self, n):
         return 4 * n * ' '
