@@ -247,7 +247,7 @@ class IOManager(IOManager):
         Returns none.
         '''
         if not self._session.hide_next_redraw:
-            if self._session.is_displayable:
+            if not self._session.pending_user_input:
                 superclass = super(IOManager, self)
                 superclass.clear_terminal()
 
@@ -292,9 +292,9 @@ class IOManager(IOManager):
                 stringtools.capitalize_string_start(line) 
                 for line in lines
                 ]
-        if lines and self._session.transcribe_next_command:
+        if lines:
             self._session.transcript._append_entry(lines)
-        if self._session.is_displayable:
+        if not self._session.pending_user_input:
             for line in lines:
                 print line
 
@@ -476,7 +476,7 @@ class IOManager(IOManager):
                 prompt_string = prompt_string + prompt_character + ' '
             else:
                 prompt_string = prompt_string + ' '
-            if self._session.is_displayable:
+            if not self._session.pending_user_input:
                 user_input = raw_input(prompt_string)
                 if include_newline:
                     if not user_input == 'help':
@@ -485,31 +485,29 @@ class IOManager(IOManager):
                 user_input = self._pop_from_pending_user_input()
                 if user_input == 'default':
                     found_default_token = True
-            if self._session.transcribe_next_command:
-                if not found_default_token:
-                    self._session.command_history.append(user_input)
+            if not found_default_token:
+                self._session.command_history.append(user_input)
             if user_input == '.':
                 last_semantic_command = self._session.last_semantic_command
                 user_input = last_semantic_command
-            if self._session.transcribe_next_command:
-                if found_default_token:
-                    menu_chunk = [prompt_string.strip()]
-                    if include_newline:
-                        if not user_input == 'help':
-                            menu_chunk.append('')
-                    self._session.transcript._append_entry(menu_chunk)
-                    menu_chunk = ['> ']
-                    if include_newline:
-                        if not user_input == 'help':
-                            menu_chunk.append('')
-                    self._session.transcript._append_entry(menu_chunk)
-                else:
-                    menu_chunk = []
-                    menu_chunk.append('{}{}'.format(prompt_string, user_input))
-                    if include_newline:
-                        if not user_input == 'help':
-                            menu_chunk.append('')
-                    self._session.transcript._append_entry(menu_chunk)
+            if found_default_token:
+                menu_chunk = [prompt_string.strip()]
+                if include_newline:
+                    if not user_input == 'help':
+                        menu_chunk.append('')
+                self._session.transcript._append_entry(menu_chunk)
+                menu_chunk = ['> ']
+                if include_newline:
+                    if not user_input == 'help':
+                        menu_chunk.append('')
+                self._session.transcript._append_entry(menu_chunk)
+            else:
+                menu_chunk = []
+                menu_chunk.append('{}{}'.format(prompt_string, user_input))
+                if include_newline:
+                    if not user_input == 'help':
+                        menu_chunk.append('')
+                self._session.transcript._append_entry(menu_chunk)
             return user_input
         finally:
             readline.set_startup_hook()

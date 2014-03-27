@@ -69,12 +69,10 @@ class Session(abctools.AbjadObject):
         '_last_command_was_composite',
         '_last_asset_path',
         '_menu_header_width',
-        '_nonnumbered_menu_sections_are_hidden',
         '_pending_user_input',
         '_rewrite_cache',
         '_score_manager',
         '_scores_to_display',
-        '_transcribe_next_command',
         '_transcript',
         '_use_current_user_input_values_as_default',
         '_where',
@@ -83,20 +81,14 @@ class Session(abctools.AbjadObject):
     _variables_to_display = (
         'command_history',
         'controller_stack',
-        'current_score_directory_path',
+        'current_score_package_manager',
         'hide_next_redraw',
         'hide_hidden_commands',
         'is_autoadding',
         'is_autonavigating',
-        'is_displayable',
         'is_in_editor',
-        'is_in_score',
         'last_asset_path',
-        'nonnumbered_menu_sections_are_hidden',
-        'rewrite_cache',
         'scores_to_display',
-        'transcribe_next_command',
-        'use_current_user_input_values_as_default',
         )
 
     ### INITIALIZER ###
@@ -142,7 +134,6 @@ class Session(abctools.AbjadObject):
         self._last_command_was_composite = False
         self._last_asset_path = None
         self._menu_header_width = 160
-        self._nonnumbered_menu_sections_are_hidden = False
         self._pending_user_input = pending_user_input
         self._rewrite_cache = False
         self._score_manager = None
@@ -150,7 +141,6 @@ class Session(abctools.AbjadObject):
             self._scores_to_display = 'example'
         else:
             self._scores_to_display = 'active'
-        self._transcribe_next_command = True
         self._transcript = iotools.Transcript()
         self._use_current_user_input_values_as_default = False
         self._where = None
@@ -689,21 +679,6 @@ class Session(abctools.AbjadObject):
         return self.is_quitting
 
     @property
-    def is_displayable(self):
-        r'''Is true when session is displayable. Otherwise false:
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_displayable
-                True
-
-        Returns boolean.
-        '''
-        return not self.pending_user_input
-
-    @property
     def is_in_confirmation_environment(self):
         r'''Is true when session is in confirmation environment. 
         Otherwise false:
@@ -1132,21 +1107,6 @@ class Session(abctools.AbjadObject):
         return self._menu_header_width
 
     @property
-    def nonnumbered_menu_sections_are_hidden(self):
-        r'''Gets and sets flag that nonnumbered menu sections are hidden.
-
-        ..  container:: example:
-
-            ::
-
-                >>> session.nonnumbered_menu_sections_are_hidden
-                False
-
-        Returns boolean.
-        '''
-        return self._nonnumbered_menu_sections_are_hidden
-
-    @property
     def pending_user_input(self):
         r'''Gets and sets pending user input.
 
@@ -1224,21 +1184,6 @@ class Session(abctools.AbjadObject):
                 part = part.replace(' ', '~')
             result.append(part)
         return ' '.join(result)
-
-    @property
-    def transcribe_next_command(self):
-        r'''Gets and sets flag to transcribe next command.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.transcribe_next_command
-                True
-
-        Returns boolean.
-        '''
-        return self._transcribe_next_command
 
     @property
     def transcript(self):
