@@ -350,8 +350,8 @@ class Menu(ScoreManagerObject):
             is_alphabetized=False,
             is_hidden=True,
             )
-        section.append(('go - next score', '>'))
-        section.append(('go - previous score', '<'))
+        section.append(('go - next score', '>>'))
+        section.append(('go - previous score', '<<'))
         return section
 
     def _make_lilypond_menu_section(self):

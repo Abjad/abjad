@@ -46,8 +46,8 @@ class SegmentPackageWrangler(PackageWrangler):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            '>>': self._navigate_to_next_asset,
-            '<<': self._navigate_to_previous_asset,
+            '>': self._navigate_to_next_asset,
+            '<': self._navigate_to_previous_asset,
             'lyi': self.interpret_current_lilypond_files,
             'pdfs': self.version_segment_packages,
             'pdfo': self.view_segment_pdfs,

@@ -171,10 +171,10 @@ class Controller(ScoreManagerObject):
     def _make_sibling_asset_tour_menu_section(self, menu):
         section = menu['go - scores']
         section.menu_entries[:] = []
-        section.append(('go - next score', '>'))
-        section.append(('go - next asset', '>>'))
-        section.append(('go - previous score', '<'))
-        section.append(('go - previous asset', '<<'))
+        section.append(('go - next score', '>>'))
+        section.append(('go - next asset', '>'))
+        section.append(('go - previous score', '<<'))
+        section.append(('go - previous asset', '<'))
         return section
 
     def _make_views_menu_section(self, menu):

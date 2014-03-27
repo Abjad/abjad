@@ -143,17 +143,17 @@ class IOManager(IOManager):
         elif directive == 'Y':
             self.edit_score_stylesheet()
             result = None
-        elif directive == '>':
+        elif directive == '>>':
             self._session._is_navigating_to_next_score = True
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
-            result = '>'
-        elif directive == '<':
+            result = '>>'
+        elif directive == '<<':
             self._session._is_navigating_to_previous_score = True
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
-            result = '<'
-        elif directive == '>>':
+            result = '<<'
+        elif directive == '>':
             controller = self._session.get_controller_with(ui=directive)
             # TODO: encapsulate tests in subclass methods
             if isinstance(controller, wranglers.MaterialPackageWrangler):
@@ -162,8 +162,8 @@ class IOManager(IOManager):
                 self._session._is_navigating_to_score_segments = True
             self._session._is_navigating_to_next_asset = True
             self._session._hide_hidden_commands = True
-            result = '>>'
-        elif directive == '<<':
+            result = '>'
+        elif directive == '<':
             controller = self._session.get_controller_with(ui=directive)
             # TODO: encapsulate tests in subclass methods
             if isinstance(controller, wranglers.MaterialPackageWrangler):
@@ -172,7 +172,7 @@ class IOManager(IOManager):
                 self._session._is_navigating_to_score_segments = True
             self._session._is_navigating_to_previous_asset = True
             self._session._hide_hidden_commands = True
-            result = '<<'
+            result = '<'
         elif isinstance(directive, str) and directive.startswith('!'):
             statement = directive.replace('!', '')
             self.invoke_shell(statement=statement)

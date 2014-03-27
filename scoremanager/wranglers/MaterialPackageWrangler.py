@@ -69,8 +69,8 @@ class MaterialPackageWrangler(PackageWrangler):
         result = superclass._user_input_to_action
         result = result.copy()
         result.update({
-            '>>': self._navigate_to_next_asset,
-            '<<': self._navigate_to_previous_asset,
+            '>': self._navigate_to_next_asset,
+            '<': self._navigate_to_previous_asset,
             'd': self.make_data_package,
             'nmh': self.make_handmade_material_package,
             'nmm': self.make_managermade_material_package,

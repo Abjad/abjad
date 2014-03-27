@@ -8,7 +8,7 @@ def test_MaterialPackageWrangler__navigate_to_previous_asset_01():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score m << << << << q'
+    input_ = 'red~example~score m < < < < q'
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
@@ -28,7 +28,7 @@ def test_MaterialPackageWrangler__navigate_to_previous_asset_02():
     '''
 
     score_manager = scoremanager.core.ScoreManager(is_test=True)
-    input_ = 'red~example~score m << << g << << q'
+    input_ = 'red~example~score m < < g < < q'
     score_manager._run(pending_user_input=input_)
     titles = [
         'Score manager - example scores',
