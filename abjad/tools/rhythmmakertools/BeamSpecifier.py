@@ -26,7 +26,7 @@ class BeamSpecifier(AbjadObject):
             ...     beam_each_division=True,
             ...     beam_divisions_together=True
             ...     )
-            
+
     ..  container:: example
 
         Beam nothing:
@@ -61,6 +61,14 @@ class BeamSpecifier(AbjadObject):
         self._beam_divisions_together = beam_divisions_together
 
     ### SPECIAL METHODS ###
+
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(BeamSpecifier, self).__hash__()
 
     def __eq__(self, arg):
         r'''Is true when `arg` is a beam specifier with `beam_each_division`

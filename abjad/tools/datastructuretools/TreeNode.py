@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 class TreeNode(AbjadObject):
     r'''A node.
-    
+
     Node in a generalized tree.
     '''
 
@@ -29,6 +29,14 @@ class TreeNode(AbjadObject):
 
     # TODO: remove? we shouldn't alias deepcopy anywhere
     __deepcopy__ = __copy__
+
+    def __hash__(self):
+        r'''Required to be explicitely re-defined on Python 3 if
+        __eq__ changes
+
+        Returns integer.
+        '''
+        return super(TreeNode, self).__hash__()
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a tree node. Otherwise false.
@@ -228,7 +236,7 @@ class TreeNode(AbjadObject):
     @property
     def graph_order(self):
         r'''Graph order of tree node.
-        
+
         Returns tuple.
         '''
         from abjad.tools import sequencetools
@@ -386,7 +394,7 @@ class TreeNode(AbjadObject):
     @property
     def name(self):
         r'''Named of tree node.
-        
+
         Returns string.
         '''
         return self._name
