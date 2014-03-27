@@ -248,14 +248,14 @@ class ScoreManager(Controller):
 
     def _make_all_directories_menu_section(self, menu):
         section = menu.make_command_section(
-            name='all directories',
+            name='all dirs',
             is_hidden=True,
             )
-        string = 'all directories - metadata module - edit'
+        string = 'all dirs - metadata module - edit'
         section.append((string, 'mdme'))
-        string = 'all directories - metadata module - list'
+        string = 'all dirs - metadata module - list'
         section.append((string, 'mdmls'))
-        string = 'all directories - metadata module - rewrite'
+        string = 'all dirs - metadata module - rewrite'
         section.append((string, 'mdmrw'))
         return section
 

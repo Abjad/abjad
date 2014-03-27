@@ -299,8 +299,7 @@ class Menu(ScoreManagerObject):
         sections.append(self._make_lilypond_menu_section())
         sections.append(self._make_python_menu_section())
         sections.append(self._make_repository_menu_section())
-        if self._session.is_in_score:
-            sections.append(self._make_go_score_menu_section())
+        sections.append(self._make_go_wranglers_menu_section())
         sections.append(self._make_go_scores_menu_section())
         sections.append(self._make_session_menu_section())
         sections.append(self._make_source_code_menu_section())
@@ -325,9 +324,19 @@ class Menu(ScoreManagerObject):
         section.append(('go - score', 's'))
         return section
 
-    def _make_go_score_menu_section(self):
+    def _make_go_scores_menu_section(self):
         section = self.make_command_section(
-            name='go - score',
+            name='go - scores',
+            is_alphabetized=False,
+            is_hidden=True,
+            )
+        section.append(('go - next score', '>>'))
+        section.append(('go - previous score', '<<'))
+        return section
+
+    def _make_go_wranglers_menu_section(self):
+        section = self.make_command_section(
+            name='go - wranglers',
             is_hidden=True,
             )
         section.append(('go - build', 'u'))
@@ -337,16 +346,6 @@ class Menu(ScoreManagerObject):
         section.append(('go - segments', 'g'))
         section.append(('go - setup', 'p'))
         section.append(('go - stylesheets', 'y'))
-        return section
-
-    def _make_go_scores_menu_section(self):
-        section = self.make_command_section(
-            name='go - scores',
-            is_alphabetized=False,
-            is_hidden=True,
-            )
-        section.append(('go - next score', '>>'))
-        section.append(('go - previous score', '<<'))
         return section
 
     def _make_lilypond_menu_section(self):
