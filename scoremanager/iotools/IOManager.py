@@ -59,6 +59,18 @@ class IOManager(IOManager):
     def _unicode_directive(self):
         return '# -*- encoding: utf-8 -*-'
 
+    @property
+    def _wrangler_navigation_alias_to_attribute(self):
+        result = {
+            'd': '_is_navigating_to_score_distribution_files',
+            'g': '_is_navigating_to_score_segments',
+            'k': '_is_navigating_to_score_maker_modules',
+            'm': '_is_navigating_to_score_materials',
+            'u': '_is_navigating_to_score_build_files',
+            'y': '_is_navigating_to_score_stylesheets',
+            }
+        return result
+
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -77,25 +89,23 @@ class IOManager(IOManager):
         from scoremanager import wranglers
         if isinstance(directive, list) and len(directive) == 1:
             directive = directive[0]
-        if directive in ('b', 'back'):
+        if isinstance(directive, list):
+            result = directive
+        elif directive in ('b', 'back'):
             self._session._is_backtracking_locally = True
             self._session._hide_hidden_commands = True
             result = 'b'
-        elif directive == 'd' and not self._session.is_in_editor:
-            self._session._is_navigating_to_score_distribution_files = True
-            result = directive
-        elif directive == 'g' and not self._session.is_in_editor:
-            self._session._is_navigating_to_score_segments = True
-            result = directive
-        elif directive == 'k' and not self._session.is_in_editor:
-            self._session._is_navigating_to_score_maker_modules = True
+        elif (
+            directive in self._wrangler_navigation_alias_to_attribute and
+            not self._session.is_in_confirmation_environment and
+            not self._session.is_in_editor
+            ):
+            attribute = self._wrangler_navigation_alias_to_attribute[directive]
+            setattr(self._session, attribute, True)
             result = directive
         elif directive == 'llro':
             self.view_last_log()
             result = None
-        elif directive == 'm' and not self._session.is_in_editor:
-            self._session._is_navigating_to_score_materials = True
-            result = directive
         elif (directive in ('n', '?') and
             not self._session.is_in_confirmation_environment and
             not self._session.is_in_editor):
@@ -132,14 +142,6 @@ class IOManager(IOManager):
         elif directive == 'sdv':
             self._session.display_variables()
             result = None
-        elif directive == 'u' and not self._session.is_in_editor:
-            self._session._is_navigating_to_score_build_files = True
-            result = directive
-        elif (directive == 'y' and
-            not self._session.is_in_confirmation_environment and
-            not self._session.is_in_editor):
-            self._session._is_navigating_to_score_stylesheets = True
-            result = directive
         elif directive == 'Y':
             self.edit_score_stylesheet()
             result = None
