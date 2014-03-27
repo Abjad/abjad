@@ -80,6 +80,10 @@ class IOManager(IOManager):
             'scl': self.display_calling_code_line_number,
             'sdv': self._session.display_variables,
             'Y': self.edit_score_stylesheet,
+            '>>': self._handle_next_score_directive,
+            '<<': self._handle_previous_score_directive,
+            '>': self._handle_next_sibling_asset_directive,
+            '<': self._handle_previous_sibling_asset_directive,
             }
         return result
 
@@ -137,19 +141,7 @@ class IOManager(IOManager):
             directive = directive[0]
         if not isinstance(directive, str):
             return directive
-        if directive == '>>':
-            self._handle_next_score_directive()
-            result = directive
-        elif directive == '<<':
-            self._handle_previous_score_directive()
-            result = directive
-        elif directive == '>':
-            self._handle_next_sibling_asset_directive()
-            result = directive
-        elif directive == '<':
-            self._handle_previous_sibling_asset_directive()
-            result = directive
-        elif (
+        if (
             directive in self._wrangler_navigation_alias_to_attribute and
             not self._session.is_in_confirmation_environment and
             not self._session.is_in_editor
