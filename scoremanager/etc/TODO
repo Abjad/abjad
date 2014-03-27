@@ -114,3 +114,11 @@
     line 137, in _get_next_asset_path
         return paths[0]
     IndexError: list index out of range
+
+32. Bug:
+    File "/Users/trevorbaca/Documents/abjad/scoremanager/core/ScoreManager.py", line 212,
+        in _get_next_score_directory_path
+        index = paths.index(score_path)
+    ValueError: '/Users/trevorbaca/Documents/scores/betoerung/materials/reiterated_forte' is not in list
+    Command history: (bet m reit >>).
+    Score navigation from within material packge triggers bug.
