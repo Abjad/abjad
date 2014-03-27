@@ -53,6 +53,22 @@ class IOManager(IOManager):
 
     @property
     @systemtools.Memoize
+    def _user_input_to_action(self):
+        result = {
+            'llro': self.view_last_log,
+            'pyd': self.doctest,
+            'pyi': self.invoke_python,
+            'pyt': self.pytest,
+            'sce': self.edit_calling_code,
+            'scl': self.display_calling_code_line_number,
+            'sdv': self._session.display_variables,
+            'Y': self.edit_score_stylesheet,
+            }
+        return result
+
+    # TODO: make class variable
+    @property
+    @systemtools.Memoize
     def _wrangler_navigation_alias_to_attribute(self):
         result = {
             'd': '_is_navigating_to_score_distribution_files',
@@ -96,8 +112,8 @@ class IOManager(IOManager):
             attribute = self._wrangler_navigation_alias_to_attribute[directive]
             setattr(self._session, attribute, True)
             result = directive
-        elif directive == 'llro':
-            self.view_last_log()
+        elif directive in self._user_input_to_action:
+            self._user_input_to_action[directive]()
             result = None
         elif (directive in ('n', '?') and
             not self._session.is_in_confirmation_environment and
@@ -107,37 +123,10 @@ class IOManager(IOManager):
         elif directive == 'p' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_setup = True
             result = directive
-        elif directive == 'pyd':
-            message = 'running doctest ...'
-            self.display([message, ''])
-            controller = self._session.get_controller_with(ui=directive)
-            controller.doctest()
-            result = None
-        elif directive == 'pyi':
-            self.invoke_python()
-            result = None
-        elif directive == 'pyt':
-            message = 'running py.test ...'
-            self.display([message, ''])
-            controller = self._session.get_controller_with(ui=directive)
-            controller.pytest()
-            result = None
         elif directive in ('q', 'quit'):
             self._session._is_quitting = True
             self._session._hide_hidden_commands = True
             result = 'q'
-        elif directive == 'sce':
-            self.edit_calling_code()
-            result = None
-        elif directive == 'scl':
-            self.display_calling_code_line_number()
-            result = None
-        elif directive == 'sdv':
-            self._session.display_variables()
-            result = None
-        elif directive == 'Y':
-            self.edit_score_stylesheet()
-            result = None
         elif directive == '>>':
             self._session._is_navigating_to_next_score = True
             self._session._is_backtracking_to_score_manager = True
@@ -323,6 +312,17 @@ class IOManager(IOManager):
             message = 'source code tracking is not on.'
             self.display([message, ''])
 
+    def doctest(self):
+        r'''Runs doctest on most recent doctestable controller in controller
+        stack.
+
+        Returns none.
+        '''
+        message = 'running doctest ...'
+        self.display([message, ''])
+        controller = self._session.get_controller_with(ui='pyd')
+        controller.doctest()
+        
     def edit(self, file_path, line_number=None):
         r'''Edits `file_path`.
 
@@ -618,6 +618,17 @@ class IOManager(IOManager):
             include_chevron=False,
             )
         self.clear_terminal()
+
+    def pytest(self):
+        r'''Runs Pytest on most recent pytestable controller in controller
+        stack.
+
+        Returns none.
+        '''
+        message = 'running py.test ...'
+        self.display([message, ''])
+        controller = self._session.get_controller_with(ui='pyt')
+        controller.pytest()
 
     def view(self, file_path):
         r'''Views `file_path`.
