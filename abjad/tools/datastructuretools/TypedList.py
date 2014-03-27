@@ -377,30 +377,34 @@ class TypedList(TypedCollection):
         r'''Aliases list.sort().
         '''
         if cmp is not None:
-            def cmp_to_key(mycmp):
-                'Convert a cmp= function into a key= function'
-                class K(object):
-                    def __init__(self, obj, *args):
-                        self.obj = obj
+            def cmp_to_key(comparator):
+                r'''Convert a `cmp` function into a `key` function for use
+                with `sort()`.
+                '''
+                class CmpToKey(object):
+
+                    def __init__(self, object_):
+                        self.object_ = object_
 
                     def __lt__(self, other):
-                        return mycmp(self.obj, other.obj) < 0
+                        return comparator(self.object_, other.object_) < 0
 
                     def __gt__(self, other):
-                        return mycmp(self.obj, other.obj) > 0
+                        return comparator(self.object_, other.object_) > 0
 
                     def __eq__(self, other):
-                        return mycmp(self.obj, other.obj) == 0
+                        return comparator(self.object_, other.object_) == 0
 
                     def __le__(self, other):
-                        return mycmp(self.obj, other.obj) <= 0
+                        return comparator(self.object_, other.object_) <= 0
 
                     def __ge__(self, other):
-                        return mycmp(self.obj, other.obj) >= 0
+                        return comparator(self.object_, other.object_) >= 0
 
                     def __ne__(self, other):
-                        return mycmp(self.obj, other.obj) != 0
-                return K
+                        return comparator(self.object_, other.object_) != 0
+
+                return CmpToKey
             key = cmp_to_key(cmp)
         self._collection.sort(key=key, reverse=reverse)
 
