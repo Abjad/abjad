@@ -416,6 +416,10 @@ class Wrangler(Controller):
                 break
         return result
 
+    def _set_is_navigating_to_sibling_asset(self):
+        message = 'implement on concrete wrangler classes.'
+        raise Exception(message)
+
     ### PUBLIC METHODS ###
 
     def add_to_repository(self, prompt=True):

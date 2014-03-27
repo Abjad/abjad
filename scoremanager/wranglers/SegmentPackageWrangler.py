@@ -132,6 +132,9 @@ class SegmentPackageWrangler(PackageWrangler):
         section.append(('segments - new', 'new'))
         return section
 
+    def _set_is_navigating_to_sibling_asset(self):
+        self._session._is_navigating_to_score_segments = True
+
     ### PUBLIC METHODS ###
 
     def interpret_current_lilypond_files(

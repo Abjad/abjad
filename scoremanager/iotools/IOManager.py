@@ -83,19 +83,19 @@ class IOManager(IOManager):
             result = 'b'
         elif directive == 'd' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_distribution_files = True
-            result = 'd'
+            result = directive
         elif directive == 'g' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_segments = True
-            result = 'g'
+            result = directive
         elif directive == 'k' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_maker_modules = True
-            result = 'k'
+            result = directive
         elif directive == 'llro':
             self.view_last_log()
             result = None
         elif directive == 'm' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_materials = True
-            result = 'm'
+            result = directive
         elif (directive in ('n', '?') and
             not self._session.is_in_confirmation_environment and
             not self._session.is_in_editor):
@@ -103,7 +103,7 @@ class IOManager(IOManager):
             result = None
         elif directive == 'p' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_setup = True
-            result = 'p'
+            result = directive
         elif directive == 'pyd':
             message = 'running doctest ...'
             self.display([message, ''])
@@ -134,12 +134,12 @@ class IOManager(IOManager):
             result = None
         elif directive == 'u' and not self._session.is_in_editor:
             self._session._is_navigating_to_score_build_files = True
-            result = 'u'
+            result = directive
         elif (directive == 'y' and
             not self._session.is_in_confirmation_environment and
             not self._session.is_in_editor):
             self._session._is_navigating_to_score_stylesheets = True
-            result = 'y'
+            result = directive
         elif directive == 'Y':
             self.edit_score_stylesheet()
             result = None
@@ -147,32 +147,24 @@ class IOManager(IOManager):
             self._session._is_navigating_to_next_score = True
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
-            result = '>>'
+            result = directive
         elif directive == '<<':
             self._session._is_navigating_to_previous_score = True
             self._session._is_backtracking_to_score_manager = True
             self._session._hide_hidden_commands = True
-            result = '<<'
+            result = directive
         elif directive == '>':
             controller = self._session.get_controller_with(ui=directive)
-            # TODO: encapsulate tests in subclass methods
-            if isinstance(controller, wranglers.MaterialPackageWrangler):
-                self._session._is_navigating_to_score_materials = True
-            elif isinstance(controller, wranglers.SegmentPackageWrangler):
-                self._session._is_navigating_to_score_segments = True
+            controller._set_is_navigating_to_sibling_asset()
             self._session._is_navigating_to_next_asset = True
             self._session._hide_hidden_commands = True
-            result = '>'
+            result = directive
         elif directive == '<':
             controller = self._session.get_controller_with(ui=directive)
-            # TODO: encapsulate tests in subclass methods
-            if isinstance(controller, wranglers.MaterialPackageWrangler):
-                self._session._is_navigating_to_score_materials = True
-            elif isinstance(controller, wranglers.SegmentPackageWrangler):
-                self._session._is_navigating_to_score_segments = True
+            controller._set_is_navigating_to_sibling_asset()
             self._session._is_navigating_to_previous_asset = True
             self._session._hide_hidden_commands = True
-            result = '<'
+            result = directive
         elif isinstance(directive, str) and directive.startswith('!'):
             statement = directive.replace('!', '')
             self.invoke_shell(statement=statement)
