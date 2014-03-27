@@ -85,7 +85,6 @@ class Session(abctools.AbjadObject):
         'hide_next_redraw',
         'hide_hidden_commands',
         'is_autoadding',
-        'is_autonavigating',
         'is_in_editor',
         'last_asset_path',
         'scores_to_display',
@@ -546,44 +545,6 @@ class Session(abctools.AbjadObject):
             if isinstance(controller, editors.Editor):
                 return controller.is_autoadding
         return False
-
-    @property
-    def is_autonavigating(self):
-        r'''Is true when session is autonavigating. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_autonavigating
-                False
-
-        Returns boolean.
-        '''
-        if self.is_navigating_to_score_build_files:
-            return True
-        elif self.is_navigating_to_score_distribution_files:
-            return True
-        elif self.is_navigating_to_next_asset:
-            return True
-        elif self.is_navigating_to_next_score:
-            return True
-        elif self.is_navigating_to_previous_asset:
-            return True
-        elif self.is_navigating_to_previous_score:
-            return True
-        elif self.is_navigating_to_score_maker_modules:
-            return True
-        elif self.is_navigating_to_score_materials:
-            return True
-        elif self.is_navigating_to_score_segments:
-            return True
-        elif self.is_navigating_to_score_setup:
-            return True
-        elif self.is_navigating_to_score_stylesheets:
-            return True
-        else:
-            return False
 
     @property
     def is_autonavigating_within_score(self):
