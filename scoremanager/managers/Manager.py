@@ -171,7 +171,7 @@ class Manager(Controller):
             raise ValueError(self)
         return paths
 
-    def _get_inside_score_navigation_directive(self):
+    def _get_wrangler_navigation_directive(self):
         pass
 
     def _get_modified_asset_paths(self):
@@ -499,7 +499,7 @@ class Manager(Controller):
         with context, directory_change:
                 self._enter_run()
                 while True:
-                    result = self._get_inside_score_navigation_directive()
+                    result = self._get_wrangler_navigation_directive()
                     if not result:
                         menu = self._make_main_menu()
                         result = menu._run()

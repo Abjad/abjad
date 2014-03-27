@@ -344,7 +344,8 @@ class Menu(ScoreManagerObject):
         section.append(('go - makers', 'k'))
         section.append(('go - materials', 'm'))
         section.append(('go - segments', 'g'))
-        section.append(('go - setup', 'p'))
+        if self._session.is_in_score:
+            section.append(('go - setup', 'p'))
         section.append(('go - stylesheets', 'y'))
         return section
 

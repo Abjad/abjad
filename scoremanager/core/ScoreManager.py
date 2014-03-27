@@ -222,6 +222,20 @@ class ScoreManager(Controller):
             self._session._is_backtracking_to_score_manager = False
             return self._get_previous_score_directory_path()
 
+    def _get_wrangler_navigation_directive(self):
+        if self._session.is_navigating_to_score_build_files:
+            return 'u'
+        elif self._session.is_navigating_to_score_distribution_files:
+            return 'd'
+        elif self._session.is_navigating_to_score_maker_modules:
+            return 'k'
+        elif self._session.is_navigating_to_score_materials:
+            return 'm'
+        elif self._session.is_navigating_to_score_segments:
+            return 'g'
+        elif self._session.is_navigating_to_score_stylesheets:
+            return 'y'
+
     def _handle_main_menu_result(self, result):
         if result in self._user_input_to_action:
             self._user_input_to_action[result]()
@@ -353,6 +367,8 @@ class ScoreManager(Controller):
         with context:
             while True:
                 result = self._get_sibling_score_path()
+                if not result:
+                    result = self._get_wrangler_navigation_directive()
                 if not result:
                     menu = self._make_main_menu()
                     result = menu._run()

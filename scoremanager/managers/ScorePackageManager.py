@@ -179,22 +179,6 @@ class ScorePackageManager(PackageManager):
             'distribution',
             )
 
-    def _get_inside_score_navigation_directive(self):
-        if self._session.is_navigating_to_score_build_files:
-            return 'u'
-        elif self._session.is_navigating_to_score_distribution_files:
-            return 'd'
-        elif self._session.is_navigating_to_score_maker_modules:
-            return 'k'
-        elif self._session.is_navigating_to_score_materials:
-            return 'm'
-        elif self._session.is_navigating_to_score_segments:
-            return 'g'
-        elif self._session.is_navigating_to_score_setup:
-            return 'p'
-        elif self._session.is_navigating_to_score_stylesheets:
-            return 'y'
-
     def _get_instrumentation(self):
         return self._import_instrumentation_from_instrumentation_module()
 
@@ -264,6 +248,22 @@ class ScorePackageManager(PackageManager):
             self._get_segments_directory_path(),
             self._get_stylesheets_directory_path(),
             )
+
+    def _get_wrangler_navigation_directive(self):
+        if self._session.is_navigating_to_score_build_files:
+            return 'u'
+        elif self._session.is_navigating_to_score_distribution_files:
+            return 'd'
+        elif self._session.is_navigating_to_score_maker_modules:
+            return 'k'
+        elif self._session.is_navigating_to_score_materials:
+            return 'm'
+        elif self._session.is_navigating_to_score_segments:
+            return 'g'
+        elif self._session.is_navigating_to_score_setup:
+            return 'p'
+        elif self._session.is_navigating_to_score_stylesheets:
+            return 'y'
 
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
