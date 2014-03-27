@@ -104,14 +104,6 @@ class NumberedPitchClass(PitchClass):
         '''
         return type(self)(self)
 
-    def __hash__(self):
-        r'''Required to be explicitely re-defined on Python 3 if
-        __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(NumberedPitchClass, self).__hash__()
-
     def __eq__(self, arg):
         r'''Is true when `arg` is a numbered pitch-class with pitch-class number
         equal to that of this numbered pitch-class.
@@ -149,6 +141,15 @@ class NumberedPitchClass(PitchClass):
         Returns float.
         '''
         return float(self._pitch_class_number)
+
+    def __hash__(self):
+        r'''Hashes numbered pitch-class.
+        
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(NumberedPitchClass, self).__hash__()
 
     def __int__(self):
         r'''Changes numbered pitch-class to integer.

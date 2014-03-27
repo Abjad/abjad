@@ -331,12 +331,6 @@ class Spanner(AbjadObject):
         spanner._block_all_components()
         return [(self, spanner, result)]
 
-    def _get_duration(self, in_seconds=False):
-        return sum(
-            component._get_duration(in_seconds=in_seconds)
-            for component in self
-            )
-
     def _get_basic_lilypond_format_bundle(self, leaf):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
@@ -353,15 +347,11 @@ class Spanner(AbjadObject):
             lilypond_format_bundle.grob_reverts.extend(contributions)
         return lilypond_format_bundle
 
-    def _get_lilypond_format_bundle(self, leaf):
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-        lilypond_format_bundle.get('before').spanners.extend(
-            self._format_before_leaf(leaf))
-        lilypond_format_bundle.get('right').spanners.extend(
-            self._format_right_of_leaf(leaf))
-        lilypond_format_bundle.get('after').spanners.extend(
-            self._format_after_leaf(leaf))
-        return lilypond_format_bundle
+    def _get_duration(self, in_seconds=False):
+        return sum(
+            component._get_duration(in_seconds=in_seconds)
+            for component in self
+            )
 
     def _get_indicators(self, prototype=None, unwrap=True):
         from abjad.tools import indicatortools
@@ -391,6 +381,16 @@ class Spanner(AbjadObject):
             matching_indicators = [x.indicator for x in matching_indicators]
         matching_indicators = tuple(matching_indicators)
         return matching_indicators
+
+    def _get_lilypond_format_bundle(self, leaf):
+        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        lilypond_format_bundle.get('before').spanners.extend(
+            self._format_before_leaf(leaf))
+        lilypond_format_bundle.get('right').spanners.extend(
+            self._format_right_of_leaf(leaf))
+        lilypond_format_bundle.get('after').spanners.extend(
+            self._format_after_leaf(leaf))
+        return lilypond_format_bundle
 
     def _get_my_first_leaf(self):
         for leaf in iterate(self).by_class(scoretools.Leaf):

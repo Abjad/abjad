@@ -51,14 +51,6 @@ class NonreducedRatio(AbjadObject, tuple):
         expr = type(self)(expr)
         return tuple(self) == tuple(expr)
 
-    def __hash__(self):
-        r'''Required to be explicitely re-defined on Python 3 if
-        __eq__ changes
-
-        Returns integer.
-        '''
-        return super(NonreducedRatio, self).__hash__()
-
     def __format__(self, format_specification=''):
         r'''Formats duration.
 
@@ -71,6 +63,15 @@ class NonreducedRatio(AbjadObject, tuple):
         if format_specification in ('', 'storage'):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
+
+    def __hash__(self):
+        r'''Hashes non-reduced ratio.
+        
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(NonreducedRatio, self).__hash__()
 
     ### PRIVATE PROPERTIES ###
 

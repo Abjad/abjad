@@ -215,13 +215,13 @@ class ReducedLyParser(abctools.Parser):
         t.value = pitchtools.NamedPitchClass(t.value)
         return t
 
-    def t_newline(self, t):
-        r'\n+'
-        t.lexer.lineno += t.value.count('\n')
-
     def t_error(self, t):
         print("Illegal character '%s'" % t.value[0])
         t.lexer.skip(1)
+
+    def t_newline(self, t):
+        r'\n+'
+        t.lexer.lineno += t.value.count('\n')
 
     ### YACC METHODS ###
 
@@ -307,15 +307,21 @@ class ReducedLyParser(abctools.Parser):
         for component in p[2]:
             p[0].append(component)
 
+    def p_dots__EMPTY(self, p):
+        r'''dots : 
+        '''
+        p[0] = 0
+
     def p_dots__dots__DOT(self, p):
         r'''dots : dots DOT
         '''
         p[0] = p[1] + 1
 
-    def p_dots__EMPTY(self, p):
-        r'''dots : 
-        '''
-        p[0] = 0
+    def p_error(self, p):
+        if p:
+            print("Syntax error at '%s'" % p.value)
+        else:
+            print("Syntax error at EOF")
 
     def p_fixed_duration_container__BRACE_L__FRACTION__BRACE_R(self, p):
         r'''fixed_duration_container : BRACE_L FRACTION BRACE_R
@@ -443,11 +449,6 @@ class ReducedLyParser(abctools.Parser):
             p[1][kind] = [direction]
         p[0] = p[1]
 
-    def p_rest_body__negative_leaf_duration(self, p):
-        r'''rest_body : negative_leaf_duration
-        '''
-        p[0] = scoretools.Rest(p[1])
-
     def p_rest_body__RESTNAME(self, p):
         r'''rest_body : RESTNAME
         '''
@@ -457,6 +458,11 @@ class ReducedLyParser(abctools.Parser):
         r'''rest_body : RESTNAME positive_leaf_duration
         '''
         p[0] = scoretools.Rest(p[2])
+
+    def p_rest_body__negative_leaf_duration(self, p):
+        r'''rest_body : negative_leaf_duration
+        '''
+        p[0] = scoretools.Rest(p[1])
 
     def p_slur__PAREN_L(self, p):
         r'''slur : PAREN_L
@@ -495,12 +501,6 @@ class ReducedLyParser(abctools.Parser):
         r'''tuplet : FRACTION container
         '''
         p[0] = scoretools.Tuplet(p[1], p[2][:])
-
-    def p_error(self, p):
-        if p:
-            print("Syntax error at '%s'" % p.value)
-        else:
-            print("Syntax error at EOF")
 
     ### PUBLIC PROPERTIES ###
 

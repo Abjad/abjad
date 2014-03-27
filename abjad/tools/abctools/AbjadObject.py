@@ -16,14 +16,6 @@ class AbjadObject(object):
 
     ### SPECIAL METHODS ###
 
-    def __hash__(self):
-        r'''Required to be explicitely re-defined on Python 3 if
-        __eq__ changes
-
-        Returns integer.
-        '''
-        return super(AbjadObject, self).__hash__()
-
     def __eq__(self, expr):
         r'''Is true when ID of `expr` equals ID of Abjad object.
         Otherwise false.
@@ -57,6 +49,15 @@ class AbjadObject(object):
             for slot in getattr(class_, '__slots__', ()):
                 state[slot] = getattr(self, slot, None)
         return state
+
+    def __hash__(self):
+        r'''Hashes Abjad object.
+
+        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(AbjadObject, self).__hash__()
 
     def __ne__(self, expr):
         r'''Is true when Abjad object does not equal `expr`.

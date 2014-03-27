@@ -197,12 +197,6 @@ class CodeBlock(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def stopping_line_number(self):
-        r'''Ending line number of code block.
-        '''
-        return self._stopping_line_number
-
-    @property
     def hide(self):
         r'''Is true when code block should hide.
         '''
@@ -231,6 +225,12 @@ class CodeBlock(AbjadObject):
         r'''Starting line number of code block.
         '''
         return self._starting_line_number
+
+    @property
+    def stopping_line_number(self):
+        r'''Ending line number of code block.
+        '''
+        return self._stopping_line_number
 
     @property
     def strip_prompt(self):

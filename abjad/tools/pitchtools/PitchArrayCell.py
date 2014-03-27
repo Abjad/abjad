@@ -285,6 +285,36 @@ class PitchArrayCell(AbjadObject):
         return False
 
     @property
+    def item(self):
+        r'''Token of pitch array cell.
+        '''
+        if not self.pitches:
+            return self.width
+        elif len(self.pitches) == 1:
+            if self.width == 1:
+                return (
+                    str(self.pitches[0].named_pitch_class), 
+                    self.pitches[0].octave_number,
+                    )
+            else:
+                return (
+                    str(self.pitches[0].named_pitch_class), 
+                    self.pitches[0].octave_number,
+                    self.width,
+                    )
+        else:
+            if self.width == 1:
+                return [(str(pitch.named_pitch_class), 
+                    pitch.octave_number) 
+                    for pitch in self.pitches]
+            else:
+                return (
+                    [(str(pitch.named_pitch_class), 
+                    pitch.octave_number) for pitch in self.pitches],
+                    self.width
+                    )
+
+    @property
     def next(self):
         r'''Gets next pitch array cell in row after this pitch array cell.
 
@@ -371,36 +401,6 @@ class PitchArrayCell(AbjadObject):
         if parent_row is not None:
             return parent_row.row_index
         return None
-
-    @property
-    def item(self):
-        r'''Token of pitch array cell.
-        '''
-        if not self.pitches:
-            return self.width
-        elif len(self.pitches) == 1:
-            if self.width == 1:
-                return (
-                    str(self.pitches[0].named_pitch_class), 
-                    self.pitches[0].octave_number,
-                    )
-            else:
-                return (
-                    str(self.pitches[0].named_pitch_class), 
-                    self.pitches[0].octave_number,
-                    self.width,
-                    )
-        else:
-            if self.width == 1:
-                return [(str(pitch.named_pitch_class), 
-                    pitch.octave_number) 
-                    for pitch in self.pitches]
-            else:
-                return (
-                    [(str(pitch.named_pitch_class), 
-                    pitch.octave_number) for pitch in self.pitches],
-                    self.width
-                    )
 
     @property
     def weight(self):

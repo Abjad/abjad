@@ -64,13 +64,6 @@ class TypedOrderedDict(TypedCollection):
         '''
         del(self._collection[i])
 
-    def __getitem__(self, i):
-        r'''Aliases OrderedDict.__getitem__().
-
-        Returns item.
-        '''
-        return self._collection[i]
-
     def __ge__(self, expr):
         r'''Is true when typed ordered dictionary is greater than or equal 
         to `expr`. Otherwise false.
@@ -79,6 +72,13 @@ class TypedOrderedDict(TypedCollection):
         '''
         expr = type(self)(expr)
         return self._collection.__ge__(expr._collection)
+
+    def __getitem__(self, i):
+        r'''Aliases OrderedDict.__getitem__().
+
+        Returns item.
+        '''
+        return self._collection[i]
 
     def __gt__(self, expr):
         r'''Is true when typed ordered dictionary is greater than `expr`. 
