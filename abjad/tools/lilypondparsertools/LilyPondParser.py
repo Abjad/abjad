@@ -2,21 +2,15 @@
 import itertools
 import ply
 from abjad.tools import abctools
-from abjad.tools import scoretools
-from abjad.tools import scoretools
-from abjad.tools import scoretools
-from abjad.tools import indicatortools
 from abjad.tools import durationtools
-from abjad.tools import scoretools
-from abjad.tools import lilypondfiletools
 from abjad.tools import indicatortools
+from abjad.tools import lilypondfiletools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
-from abjad.tools import scoretools
-from abjad.tools import scoretools
+from abjad.tools import systemtools
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
 from abjad.tools.topleveltools import attach
@@ -92,7 +86,7 @@ class LilyPondParser(abctools.Parser):
         - ``\transpose``
         - ``\voiceOne``, ``\voiceTwo``, ``\voiceThree``, ``\voiceFour``
 
-    LilyPondParser currently **DOES NOT** understand many other aspects 
+    LilyPondParser currently **DOES NOT** understand many other aspects
     of LilyPond syntax:
 
     - ``\markup``
@@ -182,10 +176,10 @@ class LilyPondParser(abctools.Parser):
                         self._apply_spanners(y)
         return result
 
-
     ### PUBLIC PROPERTIES ###
 
     @property
+    @systemtools.Memoize
     def available_languages(self):
         r'''Tuple of pitch-name languages supported by LilyPondParser.
 
@@ -273,7 +267,7 @@ class LilyPondParser(abctools.Parser):
             self._span_event_name_to_spanner_class
 
         # dictionary of spanner classes and instances
-        all_spanners = { }
+        all_spanners = {}
 
         # traverse all leaves
         leaves = music.select_leaves(allow_discontiguous_leaves=True)
@@ -304,7 +298,7 @@ class LilyPondParser(abctools.Parser):
                 # so long as we are not wrapping yet
                 elif next_leaf is not first_leaf:
                     previous_spanners = [
-                        x for x in leaf._get_spanners() 
+                        x for x in leaf._get_spanners()
                         if isinstance(x, spanner_class)
                         ]
                     if previous_spanners:
@@ -380,7 +374,7 @@ class LilyPondParser(abctools.Parser):
                             shape = '>'
                         if hasattr(event, 'direction'):
                             spanner = spanner_class(
-                                descriptor=shape, 
+                                descriptor=shape,
                                 direction=event.direction,
                                 )
                             all_spanners[spanner_class].append(spanner)
@@ -392,9 +386,9 @@ class LilyPondParser(abctools.Parser):
                         raise Exception(message)
 
                 elif spanner_class in [
-                    spannertools.Slur, 
+                    spannertools.Slur,
                     spannertools.PhrasingSlur,
-                    spannertools.TextSpanner, 
+                    spannertools.TextSpanner,
                     spannertools.TrillSpanner,
                     ]:
                     # these engravers process stop events before start events,
@@ -483,10 +477,10 @@ class LilyPondParser(abctools.Parser):
             self._push_extra_token(token)
 
     def _construct_context_specced_music(
-        self, 
-        context, 
-        optional_id, 
-        optional_context_mod, 
+        self,
+        context,
+        optional_id,
+        optional_context_mod,
         music,
         ):
         known_contexts = {
@@ -497,7 +491,7 @@ class LilyPondParser(abctools.Parser):
             'Staff': scoretools.Staff,
             'StaffGroup': scoretools.StaffGroup,
             'Voice': scoretools.Voice,
-        }
+            }
         context_name = context
         if context in known_contexts:
             context = known_contexts[context]([])
@@ -505,30 +499,23 @@ class LilyPondParser(abctools.Parser):
             message = 'context type {!r} not supported.'
             message = message.format(context)
             raise Exception(message)
-
         if context_name in ('GrandStaff', 'PianoStaff'):
             context.context_name = context_name
-
         if optional_id is not None:
             context.name = optional_id
-
         if optional_context_mod is not None:
             for x in optional_context_mod:
                 print x
             # TODO: impelement context mods on contexts
             pass
-
         context.is_simultaneous = music.is_simultaneous
-
         # add children
         while len(music):
             component = music.pop(0)
             context.append(component)
-
         indicators = music._indicator_expressions
         for indicator in indicators:
             attach(indicator, context)
-
         return context
 
     def _construct_sequential_music(self, music):
@@ -564,7 +551,7 @@ class LilyPondParser(abctools.Parser):
                         apply_backward.append(x)
                 else:
                     apply_forward.append(x)
-        # attach remaining events to last leaf 
+        # attach remaining events to last leaf
         # or to the container itself if there were no leaves
         if previous_leaf:
             for indicator in apply_forward:
@@ -579,22 +566,19 @@ class LilyPondParser(abctools.Parser):
         return container
 
     def _construct_simultaneous_music(self, music):
-        from abjad.tools import lilypondparsertools
         def is_separator(x):
             if isinstance(x, lilypondparsertools.LilyPondEvent):
                 if x.name == 'VoiceSeparator':
                     return True
             return False
-
+        from abjad.tools import lilypondparsertools
         container = scoretools.Container()
         container.is_simultaneous = True
-
         # check for voice separators
         groups = []
         for value, group in itertools.groupby(music, is_separator):
             if not value:
                 groups.append(list(group))
-
         # without voice separators
         if 1 == len(groups):
             assert all(isinstance(x, scoretools.Context) for x in groups[0])
@@ -603,44 +587,49 @@ class LilyPondParser(abctools.Parser):
         else:
             for group in groups:
                 container.append(
-                    Voice(self._construct_sequential_music(group)[:]))
-
+                    scoretools.Voice(
+                        self._construct_sequential_music(group)[:]))
         return container
 
     @classmethod
+    @systemtools.Memoize
     def _get_scheme_predicates(cls):
+        from abjad.tools import lilypondparsertools
         return {
-            'boolean?':           lambda x: isinstance(x, bool),
-            'cheap-list?':        lambda x: isinstance(x, (list, tuple)),
-            'cheap-markup?':      lambda x: isinstance(x, markuptools.MarkupCommand),
-            'fraction?':          lambda x: isinstance(x, lilypondparsertools.LilyPondFraction),
-            'integer?':           lambda x: isinstance(x, int),
-            'list?':              lambda x: isinstance(x, (list, tuple)),
-            'ly:duration?':       lambda x: isinstance(x, lilypondparsertools.LilyPondDuration),
-            'ly:music?':          lambda x: isinstance(x, scoretools.Component),
-            'ly:pitch?':          lambda x: isinstance(x, pitchtools.NamedPitch),
-            'markup?':            lambda x: isinstance(x, markuptools.MarkupCommand),
-            'number-list?':       lambda x: isinstance(x, (list, tuple)) and \
-                                            all(isinstance(y, (int, float)) for y in x),
-            'number?':            lambda x: isinstance(x, (int, float)),
-            'real?':              lambda x: isinstance(x, (int, float)),
-            'string?':            lambda x: isinstance(x, (str, unicode)),
-            'void?':              lambda x: isinstance(x, type(None)),
+            'boolean?': lambda x: isinstance(x, bool),
+            'cheap-list?': lambda x: isinstance(x, (list, tuple)),
+            'cheap-markup?': lambda x: isinstance(x,
+                markuptools.MarkupCommand),
+            'fraction?': lambda x: isinstance(x,
+                lilypondparsertools.LilyPondFraction),
+            'integer?': lambda x: isinstance(x, int),
+            'list?': lambda x: isinstance(x, (list, tuple)),
+            'ly:duration?': lambda x: isinstance(x,
+                lilypondparsertools.LilyPondDuration),
+            'ly:music?': lambda x: isinstance(x, scoretools.Component),
+            'ly:pitch?': lambda x: isinstance(x, pitchtools.NamedPitch),
+            'markup?': lambda x: isinstance(x, markuptools.MarkupCommand),
+            'number-list?': lambda x: isinstance(x, (list, tuple)) and
+                all(isinstance(y, (int, float)) for y in x),
+            'number?': lambda x: isinstance(x, (int, float)),
+            'real?': lambda x: isinstance(x, (int, float)),
+            'string?': lambda x: isinstance(x, (str, unicode)),
+            'void?': lambda x: isinstance(x, type(None)),
             # the following predicates have not yet been implemented in Abjad
-            'hash-table?':        lambda x: True,
-            'list-or-symbol?':    lambda x: True,
-            'ly:dir?':            lambda x: True,
-            'ly:moment?':         lambda x: True,
-            'number-or-string?':  lambda x: True,
-            'number-pair?':       lambda x: True,
-            'optional?':          lambda x: True,
-            'pair?':              lambda x: True,
-            'procedure?':         lambda x: True,
-            'scheme?':            lambda x: True,
-            'string-or-pair?':    lambda x: True,
+            'hash-table?': lambda x: True,
+            'list-or-symbol?': lambda x: True,
+            'ly:dir?': lambda x: True,
+            'ly:moment?': lambda x: True,
+            'number-or-string?': lambda x: True,
+            'number-pair?': lambda x: True,
+            'optional?': lambda x: True,
+            'pair?': lambda x: True,
+            'procedure?': lambda x: True,
+            'scheme?': lambda x: True,
+            'string-or-pair?': lambda x: True,
             'symbol-or-boolean?': lambda x: True,
-            'symbol?':            lambda x: True,
-        }
+            'symbol?': lambda x: True,
+            }
 
     def _get_span_events(self, leaf):
         annotations = leaf._get_indicators(indicatortools.Annotation)
@@ -765,6 +754,7 @@ class LilyPondParser(abctools.Parser):
                 return scope[identifier]
         return None
 
+    @systemtools.Memoize
     def _span_event_name_to_spanner_class(self, name):
         spanners = {
             'BeamEvent': spannertools.Beam,
@@ -777,15 +767,15 @@ class LilyPondParser(abctools.Parser):
             'TextSpanEvent': spannertools.TextSpanner,
             'TieEvent': spannertools.Tie,
             'TrillSpanEvent': spannertools.TrillSpanner,
-        }
+            }
         if name in spanners:
             return spanners[name]
         message = 'can not associate a spanner class with {}.'
         message = message.format(name)
         raise Exception(message)
 
+    @systemtools.Memoize
     def _test_scheme_predicate(self, predicate, value):
-        from abjad.tools import lilypondparsertools
         predicates = self._get_scheme_predicates()
         if predicate in predicates:
             return predicates[predicate](value)
@@ -793,20 +783,13 @@ class LilyPondParser(abctools.Parser):
 
     @staticmethod
     def _transpose_enharmonically(pitch_a, pitch_b, pitch_c):
-        r'''Transpose `pitch_c` by the distance between `pitch_b` 
+        r'''Transpose `pitch_c` by the distance between `pitch_b`
         and `pitch_a`.
 
         This function was reverse-engineered from LilyPond's source code.
 
         Returns named pitch.
         '''
-        if not isinstance(pitch_a, pitchtools.NamedPitch):
-            pitch_a = pitchtools.NamedPitch(pitch_a)
-        if not isinstance(pitch_b, pitchtools.NamedPitch):
-            pitch_b = pitchtools.NamedPitch(pitch_b)
-        if not isinstance(pitch_c, pitchtools.NamedPitch):
-            pitch_c = pitchtools.NamedPitch(pitch_c)
-        scale = [0., 2., 4., 5., 7., 9., 11.]
         def normalize_alteration(step, alteration):
             while 2. < alteration:
                 alteration -= step_size(step)
@@ -815,15 +798,25 @@ class LilyPondParser(abctools.Parser):
                 step -= 1.
                 alteration += step_size(step)
             return step, alteration
+
         def normalize_octave(octave, step):
             normalized_step = step % len(scale)
             octave += (step - normalized_step) / len(scale)
             return octave, normalized_step
+
         def step_size(step):
             normalized_step = step % len(scale)
             if normalized_step == 6:
-                return 1. # b to c
+                return 1.  # b to c
             return scale[normalized_step + 1] - scale[normalized_step]
+
+        if not isinstance(pitch_a, pitchtools.NamedPitch):
+            pitch_a = pitchtools.NamedPitch(pitch_a)
+        if not isinstance(pitch_b, pitchtools.NamedPitch):
+            pitch_b = pitchtools.NamedPitch(pitch_b)
+        if not isinstance(pitch_c, pitchtools.NamedPitch):
+            pitch_c = pitchtools.NamedPitch(pitch_c)
+        scale = [0., 2., 4., 5., 7., 9., 11.]
         a_oct, a_step, a_alt = pitch_a.octave_number, \
             pitch_a.diatonic_pitch_class_number, pitch_a.accidental.semitones
         b_oct, b_step, b_alt = pitch_b.octave_number, \
@@ -869,6 +862,7 @@ class LilyPondParser(abctools.Parser):
     ### PUBLIC METHODS ###
 
     @staticmethod
+    @systemtools.Memoize
     def list_known_contexts():
         r'''Lists all LilyPond contexts recognized by LilyPond parser.
 
@@ -913,8 +907,9 @@ class LilyPondParser(abctools.Parser):
         '''
         from abjad.ly import contexts
         return sorted(contexts.keys())
-        
+
     @staticmethod
+    @systemtools.Memoize
     def list_known_dynamics():
         r'''Lists all dynamics recognized by LilyPond parser.
 
@@ -959,6 +954,7 @@ class LilyPondParser(abctools.Parser):
         return result
 
     @staticmethod
+    @systemtools.Memoize
     def list_known_grobs():
         r'''Lists all LilyPond grobs recognized by LilyPond parser.
 
@@ -1113,6 +1109,7 @@ class LilyPondParser(abctools.Parser):
         return sorted(grob_interfaces.keys())
 
     @staticmethod
+    @systemtools.Memoize
     def list_known_languages():
         r'''Lists all note-input languages recognized by LilyPond parser.
 
