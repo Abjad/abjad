@@ -21,18 +21,6 @@ class IOManager(IOManager):
 
     '''
 
-    ### CLASS VARIABLES ###
-
-    _wrangler_navigation_alias_to_attribute = {
-        'd': '_is_navigating_to_score_distribution_files',
-        'g': '_is_navigating_to_score_segments',
-        'k': '_is_navigating_to_score_maker_modules',
-        'm': '_is_navigating_to_score_materials',
-        'p': '_is_navigating_to_score_setup',
-        'u': '_is_navigating_to_score_build_files',
-        'y': '_is_navigating_to_score_stylesheets',
-        }
-
     ### INITIALIZER ###
 
     def __init__(self, session=None):
@@ -87,6 +75,20 @@ class IOManager(IOManager):
             }
         return result
 
+    @property
+    @systemtools.Memoize
+    def _wrangler_navigation_alias_to_action(self):
+        result = {
+            'd': self._handle_to_distribution_file_wrangler_directive,
+            'g': self._handle_to_segment_package_wrangler_directive,
+            'k': self._handle_to_maker_module_wrangler_directive,
+            'm': self._handle_to_material_package_wrangler_directive,
+            'p': self._handle_to_score_setup_directive,
+            'u': self._handle_to_build_file_wrangler_directive,
+            'y': self._handle_to_stylesheet_wrangler_directive,
+        }
+        return result
+
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -100,22 +102,35 @@ class IOManager(IOManager):
         else:
             return repr(expr)
 
+    def _handle_backtrack_navigation_directive(self):
+        self._session._is_backtracking_locally = True
+        self._session._hide_hidden_commands = True
+
+    def _handle_directive(self, directive):
+        if not isinstance(directive, str):
+            pass
+        elif directive in self._wrangler_navigation_alias_to_action:
+            self._wrangler_navigation_alias_to_action[directive]()
+        elif directive in self._user_input_to_action:
+            self._user_input_to_action[directive]()
+            directive = None
+        elif directive.startswith('!'):
+            statement = directive.replace('!', '')
+            self.invoke_shell(statement=statement)
+            directive = None
+        return directive
+
     def _handle_display_all_commands_directive(self):
         if (not self._session.is_in_confirmation_environment and
             not self._session.is_in_editor):
             self._session.toggle_hidden_commands()
 
-    def _handle_quit_directive(self):
-        self._session._is_quitting = True
-        self._session._hide_hidden_commands = True
-
-    def _handle_next_score_directive(self):
-        self._session._is_navigating_to_next_score = True
+    def _handle_home_navigation_directive(self):
         self._session._is_backtracking_to_score_manager = True
         self._session._hide_hidden_commands = True
-
-    def _handle_previous_score_directive(self):
-        self._session._is_navigating_to_previous_score = True
+        
+    def _handle_next_score_directive(self):
+        self._session._is_navigating_to_next_score = True
         self._session._is_backtracking_to_score_manager = True
         self._session._hide_hidden_commands = True
 
@@ -125,46 +140,60 @@ class IOManager(IOManager):
         self._session._is_navigating_to_next_asset = True
         self._session._hide_hidden_commands = True
 
+    def _handle_previous_score_directive(self):
+        self._session._is_navigating_to_previous_score = True
+        self._session._is_backtracking_to_score_manager = True
+        self._session._hide_hidden_commands = True
+
     def _handle_previous_sibling_asset_directive(self):
         controller = self._session.get_controller_with(ui='>')
         controller._set_is_navigating_to_sibling_asset()
         self._session._is_navigating_to_previous_asset = True
         self._session._hide_hidden_commands = True
 
-    def _handle_backtrack_navigation_directive(self):
-        self._session._is_backtracking_locally = True
+    def _handle_quit_directive(self):
+        self._session._is_quitting = True
         self._session._hide_hidden_commands = True
 
-    def _handle_directive(self, directive):
-        if not isinstance(directive, str):
-            return directive
-        if (
-            directive in self._wrangler_navigation_alias_to_attribute and
-            not self._session.is_in_confirmation_environment and
-            not self._session.is_in_editor
-            ):
-            attribute = self._wrangler_navigation_alias_to_attribute[directive]
-            setattr(self._session, attribute, True)
-            result = directive
-        elif directive in self._user_input_to_action:
-            self._user_input_to_action[directive]()
-            result = None
-        elif directive.startswith('!'):
-            statement = directive.replace('!', '')
-            self.invoke_shell(statement=statement)
-            result = None
-        else:
-            result = directive
-        return result
-
-    def _handle_home_navigation_directive(self):
-        self._session._is_backtracking_to_score_manager = True
-        self._session._hide_hidden_commands = True
-        
     def _handle_score_navigation_directive(self):
         if self._session.is_in_score:
             self._session._is_backtracking_to_score = True
             self._session._hide_hidden_commands = True
+
+    def _handle_to_distribution_file_wrangler_directive(self):
+        if self._is_in_open_environment():
+            self._session._is_navigating_to_score_distribution_files = True
+
+    def _handle_to_segment_package_wrangler_directive(self):
+        if self._is_in_open_environment():
+            self._session._is_navigating_to_score_segments = True
+
+    def _handle_to_maker_module_wrangler_directive(self):
+        if self._is_in_open_environment():
+            self._session._is_navigating_to_score_maker_modules = True
+
+    def _handle_to_material_package_wrangler_directive(self):
+        if self._is_in_open_environment():
+            self._session._is_navigating_to_score_materials = True
+
+    def _handle_to_score_setup_directive(self):
+        if self._is_in_open_environment():
+            self._session._is_navigating_to_score_setup = True
+
+    def _handle_to_build_file_wrangler_directive(self):
+        if self._is_in_open_environment():
+            self._session._is_navigating_to_score_build_files = True
+
+    def _handle_to_stylesheet_wrangler_directive(self):
+        if self._is_in_open_environment():
+            self._session._is_navigating_to_score_stylesheets = True
+
+    def _is_in_open_environment(self):
+        if self._session.is_in_confirmation_environment:
+            return False
+        if self._session.is_in_editor:
+            return False
+        return True
 
     def _make_tab(self, n):
         return 4 * n * ' '
