@@ -53,6 +53,17 @@ class Transcript(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def contents(self):
+        r'''Gets all transcript contents joined together as a single string.
+
+        Returns string.
+        '''
+        lines = []
+        for entry in self:
+            lines.extend(entry.lines)
+        return '\n'.join(lines)
+
+    @property
     def entries(self):
         r'''Gets transcript entries.
 
