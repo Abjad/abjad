@@ -114,7 +114,6 @@ class Selector(ScoreManagerObject):
             while True:
                 menu = self._make_main_menu()
                 result = menu._run()
-                #if self._should_backtrack():
                 if self._should_backtrack():
                     return
                 if result:

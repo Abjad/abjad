@@ -136,6 +136,7 @@ class IOManager(IOManager):
         self._session._hide_hidden_commands = True
 
     def _handle_directive(self, directive):
+        assert isinstance(directive, str), repr(directive)
         input_directive = directive
         if isinstance(directive, list) and len(directive) == 1:
             directive = directive[0]

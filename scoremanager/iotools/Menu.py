@@ -124,12 +124,17 @@ class Menu(ScoreManagerObject):
                     default_value = menu_section._default_value
             if default_value is not None:
                 return self._enclose_in_list(default_value)
+        # TODO: get rid of this branch?
         elif user_input == 'r':
             return 'r'
+        # TODO: get rid of this branch?
         elif user_input in ('?', 'n'):
             return '?'
+        elif user_input in ('s', 'h'):
+            return user_input
         elif user_input.startswith('!'):
             return user_input
+        # TODO: get rid of this branch?
         elif 3 <= len(user_input) and 'score'.startswith(user_input):
             return 'score'
         for menu_section in self.menu_sections:
@@ -148,6 +153,7 @@ class Menu(ScoreManagerObject):
             self._io_manager.clear_terminal()
 
     def _display(self):
+        from abjad.tools import abctools
         from scoremanager import iotools
         context = iotools.SourceCodeContext(self)
         with context:
@@ -166,7 +172,20 @@ class Menu(ScoreManagerObject):
             directive = self._change_user_input_to_directive(user_input)
             directive = self._strip_default_notice_from_strings(directive)
             self._session._hide_next_redraw = False
-            directive = self._io_manager._handle_directive(directive)
+            if isinstance(directive, str):
+                directive = self._io_manager._handle_directive(directive)
+            elif directive is None:
+                pass
+            elif isinstance(directive, list) and len(directive) == 1:
+                x = self._io_manager._handle_directive(directive[0])
+                if x:
+                    directive = [x]
+            elif isinstance(directive, list):
+                pass
+            elif isinstance(directive, abctools.AbjadObject):
+                pass
+            else:
+                raise ValueError(directive)
             if directive is None and user_entered_lone_return:
                 result = 'user entered lone return'
             elif directive is None and not user_entered_lone_return:
