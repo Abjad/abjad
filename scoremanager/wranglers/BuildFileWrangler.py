@@ -43,7 +43,7 @@ class BuildFileWrangler(FileWrangler):
         if self._session.is_in_score:
             return 'build directory'
         else:
-            return 'build library'
+            return 'build file library'
 
     @property
     def _user_input_to_action(self):

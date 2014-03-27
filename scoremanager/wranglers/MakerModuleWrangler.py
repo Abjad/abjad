@@ -45,7 +45,7 @@ class MakerModuleWrangler(FileWrangler):
         if self._session.is_in_score:
             return 'makers'
         else:
-            return 'maker library'
+            return 'maker module library'
 
     @property
     def _user_input_to_action(self):
