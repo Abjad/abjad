@@ -70,3 +70,38 @@ class Tuning(AbjadObject):
         Return pitch segment.
         '''
         return self._pitches
+
+    @property
+    def pitch_ranges(self):
+        r'''Gets two-octave pitch-ranges for each pitch in this tuning.
+
+        ::
+
+            >>> pitch_ranges = indicator.pitch_ranges
+            >>> print format(pitch_ranges)
+            pitchtools.PitchRangeInventory(
+                [
+                    pitchtools.PitchRange(
+                        '[G3, G5]'
+                        ),
+                    pitchtools.PitchRange(
+                        '[D4, D6]'
+                        ),
+                    pitchtools.PitchRange(
+                        '[A4, A6]'
+                        ),
+                    pitchtools.PitchRange(
+                        '[E5, E7]'
+                        ),
+                    ]
+                )
+
+        Returns pitch-range inventory.
+        '''
+        from abjad.tools import pitchtools
+        result = []
+        for pitch in self.pitches:
+            pitch_range = pitchtools.PitchRange(pitch, pitch + 24)
+            result.append(pitch_range)
+        result = pitchtools.PitchRangeInventory(result)
+        return result
