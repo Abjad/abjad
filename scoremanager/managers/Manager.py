@@ -171,9 +171,6 @@ class Manager(Controller):
             raise ValueError(self)
         return paths
 
-    def _get_wrangler_navigation_directive(self):
-        pass
-
     def _get_modified_asset_paths(self):
         if self._is_git_versioned():
             command = 'git status --porcelain {}'
@@ -273,6 +270,9 @@ class Manager(Controller):
         else:
             raise ValueError(self)
         return paths
+
+    def _get_wrangler_navigation_directive(self):
+        pass
 
     def _initialize_file_name_getter(self):
         getter = self._io_manager.make_getter()
@@ -838,17 +838,6 @@ class Manager(Controller):
         if self._rename(new_path):
             self._io_manager.proceed('asset renamed.')
 
-    def revert_to_repository(self, prompt=True):
-        r'''Reverts assets from repository.
-
-        Returns none.
-        '''
-        message = 'reverting {} ...'
-        message = message.format(self._path)
-        self._io_manager.display(message)
-        self._revert_from_repository()
-        self._io_manager.proceed(prompt=prompt)
-
     def repository_status(self, prompt=True):
         r'''Displays repository status of assets.
     
@@ -876,6 +865,17 @@ class Manager(Controller):
             clean_lines, 
             capitalize_first_character=False,
             )
+        self._io_manager.proceed(prompt=prompt)
+
+    def revert_to_repository(self, prompt=True):
+        r'''Reverts assets from repository.
+
+        Returns none.
+        '''
+        message = 'reverting {} ...'
+        message = message.format(self._path)
+        self._io_manager.display(message)
+        self._revert_from_repository()
         self._io_manager.proceed(prompt=prompt)
 
     def update_from_repository(self, prompt=True):

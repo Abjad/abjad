@@ -707,38 +707,6 @@ class Session(abctools.AbjadObject):
         return self._is_in_score_setup_menu
 
     @property
-    def is_navigating_to_score_build_files(self):
-        r'''Is true when session is navigating to build directory.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_navigating_to_score_build_files
-                False
-
-        Returns boolean.
-        '''
-        return self._is_navigating_to_score_build_files
-
-    @property
-    def is_navigating_to_score_distribution_files(self):
-        r'''Is true when session is navigating to distribution directory.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.is_navigating_to_score_distribution_files
-                False
-
-        Returns boolean.
-        '''
-        return self._is_navigating_to_score_distribution_files
-
-    @property
     def is_navigating_to_next_asset(self):
         r'''Is true when session is navigating to next material. 
         Otherwise false.
@@ -800,6 +768,38 @@ class Session(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._is_navigating_to_previous_score
+
+    @property
+    def is_navigating_to_score_build_files(self):
+        r'''Is true when session is navigating to build directory.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_score_build_files
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_score_build_files
+
+    @property
+    def is_navigating_to_score_distribution_files(self):
+        r'''Is true when session is navigating to distribution directory.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.is_navigating_to_score_distribution_files
+                False
+
+        Returns boolean.
+        '''
+        return self._is_navigating_to_score_distribution_files
 
     @property
     def is_navigating_to_score_maker_modules(self):
@@ -988,21 +988,6 @@ class Session(abctools.AbjadObject):
             return True
 
     @property
-    def last_command_was_composite(self):
-        r'''Is true when last command was composite. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> session.last_command_was_composite
-                False
-
-        Returns boolean.
-        '''
-        return self._last_command_was_composite
-
-    @property
     def last_asset_path(self):
         r'''Gets last material package path.
 
@@ -1019,6 +1004,21 @@ class Session(abctools.AbjadObject):
         Returns string or none.
         '''
         return self._last_asset_path
+
+    @property
+    def last_command_was_composite(self):
+        r'''Is true when last command was composite. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> session.last_command_was_composite
+                False
+
+        Returns boolean.
+        '''
+        return self._last_command_was_composite
 
     @property
     def last_semantic_command(self):

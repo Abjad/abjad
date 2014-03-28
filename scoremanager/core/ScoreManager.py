@@ -74,25 +74,25 @@ class ScoreManager(Controller):
 
     @property
     @systemtools.Memoize
+    def _score_package_wrangler(self):
+        from scoremanager import wranglers
+        return wranglers.ScorePackageWrangler(session=self._session)
+
+    @property
+    def _score_status_string(self):
+        return '{} scores'.format(self._session.scores_to_display)
+
+    @property
+    @systemtools.Memoize
     def _segment_package_wrangler(self):
         from scoremanager import wranglers
         return wranglers.SegmentPackageWrangler(session=self._session)
 
     @property
     @systemtools.Memoize
-    def _score_package_wrangler(self):
-        from scoremanager import wranglers
-        return wranglers.ScorePackageWrangler(session=self._session)
-
-    @property
-    @systemtools.Memoize
     def _stylesheet_wrangler(self):
         from scoremanager import wranglers
         return wranglers.StylesheetWrangler(session=self._session)
-
-    @property
-    def _score_status_string(self):
-        return '{} scores'.format(self._session.scores_to_display)
 
     @property
     def _user_input_to_action(self):
@@ -126,13 +126,6 @@ class ScoreManager(Controller):
         return result
 
     ### PRIVATE METHODS ###
-
-    def _should_backtrack(self):
-        self._update_session_variables()
-        if self._session.is_complete:
-            return True
-        else:
-            return False
 
     def _find_svn_score_name(self):
         from scoremanager import managers
@@ -379,6 +372,13 @@ class ScoreManager(Controller):
                     if self._should_backtrack():
                         return
 
+    def _should_backtrack(self):
+        self._update_session_variables()
+        if self._session.is_complete:
+            return True
+        else:
+            return False
+
     def _update_session_variables(self):
         if self._session.is_backtracking_to_score_manager:
             self._session._is_backtracking_to_score_manager = False
@@ -544,13 +544,6 @@ class ScoreManager(Controller):
         '''
         self._material_package_wrangler._run()
 
-    def manage_segment_library(self):
-        r'''Manages segment library.
-
-        Returns none.
-        '''
-        self._segment_package_wrangler._run()
-
     def manage_score(self, path):
         r'''Manages score.
 
@@ -560,6 +553,13 @@ class ScoreManager(Controller):
         package_name = os.path.basename(path)
         manager.fix(prompt=True)
         manager._run()
+
+    def manage_segment_library(self):
+        r'''Manages segment library.
+
+        Returns none.
+        '''
+        self._segment_package_wrangler._run()
 
     def manage_stylesheet_library(self):
         r'''Manages stylesheet library.
@@ -592,6 +592,20 @@ class ScoreManager(Controller):
                 )
         self._io_manager.proceed(prompt=prompt)
 
+    def repository_status(self, prompt=True):
+        r'''Displays status of repository assets.
+        
+        Returns none.
+        '''
+        self._score_package_wrangler.repository_status(prompt=prompt)
+
+    def revert_to_repository(self, prompt=True):
+        r'''Reverts modified assets and unadds added assets.
+
+        Returns none.
+        '''
+        self._score_package_wrangler.revert_to_repository(prompt=prompt)
+
     def rewrite_metadata_modules(self, prompt=True):
         r'''Rewrites all metadata modules everywhere.
 
@@ -610,20 +624,6 @@ class ScoreManager(Controller):
         message = '{} metadata modules found.'
         message = message.format(len(directories))
         self._io_manager.proceed(message, prompt=prompt)
-
-    def repository_status(self, prompt=True):
-        r'''Displays status of repository assets.
-        
-        Returns none.
-        '''
-        self._score_package_wrangler.repository_status(prompt=prompt)
-
-    def revert_to_repository(self, prompt=True):
-        r'''Reverts modified assets and unadds added assets.
-
-        Returns none.
-        '''
-        self._score_package_wrangler.revert_to_repository(prompt=prompt)
 
     def update_from_repository(self, prompt=True):
         r'''Updates repository assets.

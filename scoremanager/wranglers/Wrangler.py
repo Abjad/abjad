@@ -422,6 +422,13 @@ class Wrangler(Controller):
 
     ### PUBLIC METHODS ###
 
+    def add_metadatum(self):
+        r'''Adds metadatum to metadata module.
+
+        Returns none.
+        '''
+        self._current_package_manager.add_metadatum()
+
     def add_to_repository(self, prompt=True):
         r'''Adds assets to repository.
 
@@ -435,13 +442,6 @@ class Wrangler(Controller):
             manager = self._initialize_asset_manager(path)
             manager.add_to_repository(prompt=False)
         self._io_manager.proceed(prompt=prompt)
-
-    def add_metadatum(self):
-        r'''Adds metadatum to metadata module.
-
-        Returns none.
-        '''
-        self._current_package_manager.add_metadatum()
 
     def commit_to_repository(self, prompt=True):
         r'''Commits assets to repository.
@@ -612,6 +612,22 @@ class Wrangler(Controller):
         asset_manager = self._initialize_asset_manager(asset_path)
         asset_manager.rename()
 
+    def repository_status(self, prompt=True):
+        r'''Display asset status in repository.
+
+        Returns none.
+        '''
+        from scoremanager import managers
+        paths = self._list_visible_asset_paths()
+        paths = self._extract_common_parent_directories(paths)
+        for path in paths:
+            manager = managers.DirectoryManager(
+                path=path,
+                session=self._session,
+                )
+            manager.repository_status(prompt=False)
+        self._io_manager.proceed(prompt=prompt)
+
     def revert_to_repository(self, prompt=True):
         r'''Reverts assets from repository.
 
@@ -662,22 +678,6 @@ class Wrangler(Controller):
         if self._should_backtrack():
             return
         self._current_package_manager._add_metadatum('view_name', view_name)
-
-    def repository_status(self, prompt=True):
-        r'''Display asset status in repository.
-
-        Returns none.
-        '''
-        from scoremanager import managers
-        paths = self._list_visible_asset_paths()
-        paths = self._extract_common_parent_directories(paths)
-        for path in paths:
-            manager = managers.DirectoryManager(
-                path=path,
-                session=self._session,
-                )
-            manager.repository_status(prompt=False)
-        self._io_manager.proceed(prompt=prompt)
 
     def update_from_repository(self, prompt=True):
         r'''Updates assets from repository.

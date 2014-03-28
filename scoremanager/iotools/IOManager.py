@@ -160,13 +160,13 @@ class IOManager(IOManager):
             self._session._is_backtracking_to_score = True
             self._session._hide_hidden_commands = True
 
+    def _handle_to_build_file_wrangler_directive(self):
+        if self._is_in_open_environment():
+            self._session._is_navigating_to_score_build_files = True
+
     def _handle_to_distribution_file_wrangler_directive(self):
         if self._is_in_open_environment():
             self._session._is_navigating_to_score_distribution_files = True
-
-    def _handle_to_segment_package_wrangler_directive(self):
-        if self._is_in_open_environment():
-            self._session._is_navigating_to_score_segments = True
 
     def _handle_to_maker_module_wrangler_directive(self):
         if self._is_in_open_environment():
@@ -180,9 +180,9 @@ class IOManager(IOManager):
         if self._is_in_open_environment():
             self._session._is_navigating_to_score_setup = True
 
-    def _handle_to_build_file_wrangler_directive(self):
+    def _handle_to_segment_package_wrangler_directive(self):
         if self._is_in_open_environment():
-            self._session._is_navigating_to_score_build_files = True
+            self._session._is_navigating_to_score_segments = True
 
     def _handle_to_stylesheet_wrangler_directive(self):
         if self._is_in_open_environment():
@@ -387,66 +387,6 @@ class IOManager(IOManager):
             message = 'no file ending in *stylesheet.ily found.'
             self.proceed(message)
 
-    def invoke_python(self, statement=None):
-        r'''Invokes Python on `statement`.
-
-        Hides next redraw.
-
-        Returns none.
-        '''
-        lines = []
-        prompt = True
-        if statement is None:
-            statement = self.handle_user_input('>>', include_newline=False)
-        else:
-            prompt = False
-        command = 'from abjad import *'
-        exec(command)
-        try:
-            result = None
-            command = 'result = {}'.format(statement)
-            exec(command)
-            lines.append('{!r}'.format(result))
-        except:
-            lines.append('expression not executable.')
-        lines.append('')
-        if prompt:
-            self.display(lines)
-        self._session._hide_next_redraw = True
-
-    def invoke_shell(self, statement=None):
-        r'''Invokes shell on `statement`.
-
-        Hides next redraw.
-
-        Returns none.
-        '''
-        lines = []
-        prompt = True
-        if statement is None:
-            statement = self.handle_user_input(
-                '$', 
-                include_chevron=False,
-                include_newline=False,
-                )
-        statement = statement.strip()
-        process = subprocess.Popen(
-            statement,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
-        try:
-            lines = process.stdout.readlines()
-        except:
-            lines.append('expression not executable.')
-        lines = lines or []
-        lines = [_.strip() for _ in lines]
-        lines.append('')
-        if prompt:
-            self.display(lines, capitalize_first_character=False)
-        self._session._hide_next_redraw = True
-
     def handle_user_input(
         self, 
         prompt_string, 
@@ -511,6 +451,66 @@ class IOManager(IOManager):
             return user_input
         finally:
             readline.set_startup_hook()
+
+    def invoke_python(self, statement=None):
+        r'''Invokes Python on `statement`.
+
+        Hides next redraw.
+
+        Returns none.
+        '''
+        lines = []
+        prompt = True
+        if statement is None:
+            statement = self.handle_user_input('>>', include_newline=False)
+        else:
+            prompt = False
+        command = 'from abjad import *'
+        exec(command)
+        try:
+            result = None
+            command = 'result = {}'.format(statement)
+            exec(command)
+            lines.append('{!r}'.format(result))
+        except:
+            lines.append('expression not executable.')
+        lines.append('')
+        if prompt:
+            self.display(lines)
+        self._session._hide_next_redraw = True
+
+    def invoke_shell(self, statement=None):
+        r'''Invokes shell on `statement`.
+
+        Hides next redraw.
+
+        Returns none.
+        '''
+        lines = []
+        prompt = True
+        if statement is None:
+            statement = self.handle_user_input(
+                '$', 
+                include_chevron=False,
+                include_newline=False,
+                )
+        statement = statement.strip()
+        process = subprocess.Popen(
+            statement,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+        try:
+            lines = process.stdout.readlines()
+        except:
+            lines.append('expression not executable.')
+        lines = lines or []
+        lines = [_.strip() for _ in lines]
+        lines.append('')
+        if prompt:
+            self.display(lines, capitalize_first_character=False)
+        self._session._hide_next_redraw = True
 
     def make_getter(
         self, 
