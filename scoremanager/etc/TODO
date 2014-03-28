@@ -122,3 +122,6 @@
     ValueError: '/Users/trevorbaca/Documents/scores/betoerung/materials/reiterated_forte' is not in list
     Command history: (bet m reit >>).
     Score navigation from within material packge triggers bug.
+
+33. Remove FileWrangler; no real code.
+    Maybe remove PackageWrangler and hoist all code into Wrangler.
