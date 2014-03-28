@@ -15,11 +15,11 @@ class PitchRangeInventoryEditor(ObjectInventoryEditor):
         from scoremanager import iotools
         superclass = super(PitchRangeInventoryEditor, self)
         superclass.__init__(session=session, target=target)
-        self.item_getter_configuration_method = \
+        self._item_getter_configuration_method = \
             iotools.UserInputGetter.append_symbolic_pitch_range_string
-        self.item_class = pitchtools.PitchRange
-        self.item_editor_class = editors.PitchRangeEditor
-        self.item_identifier = 'pitch range'
+        self._item_class = pitchtools.PitchRange
+        self._item_editor_class = editors.PitchRangeEditor
+        self._item_identifier = 'pitch range'
 
 
     ### PUBLIC PROPERTIES ###

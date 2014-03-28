@@ -15,11 +15,11 @@ class TempoInventoryEditor(ObjectInventoryEditor):
         from scoremanager import iotools
         superclass = super(TempoInventoryEditor, self)
         superclass.__init__(session=session, target=target)
-        self.item_class = indicatortools.Tempo
-        self.item_editor_class = editors.TempoEditor
-        self.item_getter_configuration_method = \
+        self._item_class = indicatortools.Tempo
+        self._item_editor_class = editors.TempoEditor
+        self._item_getter_configuration_method = \
             iotools.UserInputGetter.append_tempo
-        self.item_identifier = 'tempo'
+        self._item_identifier = 'tempo'
 
     ### PUBLIC PROPERTIES ###
 

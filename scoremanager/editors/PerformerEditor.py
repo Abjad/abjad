@@ -16,11 +16,11 @@ class PerformerEditor(ListEditor):
         from scoremanager import editors
         superclass = super(PerformerEditor, self)
         superclass.__init__(session=session, target=target)
-        self.item_class = instrumenttools.Instrument
-        self.item_creator_class = wizards.InstrumentCreationWizard
-        self.item_creator_class_kwargs = {'is_ranged': True}
-        self.item_editor_class = editors.InstrumentEditor
-        self.item_identifier = 'instrument'
+        self._item_class = instrumenttools.Instrument
+        self._item_creator_class = wizards.InstrumentCreationWizard
+        self._item_creator_class_kwargs = {'is_ranged': True}
+        self._item_editor_class = editors.InstrumentEditor
+        self._item_identifier = 'instrument'
 
 
     ### PUBLIC PROPERTIES ###
@@ -44,4 +44,4 @@ class PerformerEditor(ListEditor):
         if self.target is not None:
             return
         else:
-            self.target = self._target_class()
+            self._target = self._target_class()

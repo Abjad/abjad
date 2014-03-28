@@ -13,7 +13,7 @@ class ListEditor(Editor):
 
         >>> session = scoremanager.core.Session()
         >>> editor = scoremanager.editors.ListEditor(session=session)
-        >>> editor.target = ['first', 'second', 'third']
+        >>> editor._target = ['first', 'second', 'third']
         >>> editor
         ListEditor(target=['first', 'second', 'third'])
 
@@ -28,18 +28,30 @@ class ListEditor(Editor):
 
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = (
+        '_item_class',
+        '_item_creator_class',
+        '_item_creator_class_kwargs',
+        '_item_editor_class',
+        '_item_getter_configuration_method',
+        '_item_identifier',
+        '_numbered_section',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
         superclass = super(ListEditor, self)
         superclass.__init__(session=session, target=target)
-        self.item_class = None
-        self.item_creator_class = None
-        self.item_creator_class_kwargs = {}
-        self.item_editor_class = None
-        self.item_getter_configuration_method = \
+        self._item_class = None
+        self._item_creator_class = None
+        self._item_creator_class_kwargs = {}
+        self._item_editor_class = None
+        self._item_getter_configuration_method = \
             iotools.UserInputGetter.append_expr
-        self.item_identifier = 'element'
+        self._item_identifier = 'element'
 
     ### PRIVATE PROPERTIES ###
 
@@ -90,7 +102,7 @@ class ListEditor(Editor):
         if self.target is not None:
             return
         else:
-            self.target = self._target_class([])
+            self._target = self._target_class([])
 
     # TODO: encapsulate section-making code into separate methods
     def _make_main_menu(self, name='list editor'):
@@ -129,10 +141,10 @@ class ListEditor(Editor):
 
         Returns none.
         '''
-        if self.item_creator_class:
-            item_creator = self.item_creator_class(
+        if self._item_creator_class:
+            item_creator = self._item_creator_class(
                 session=self._session, 
-                **self.item_creator_class_kwargs
+                **self._item_creator_class_kwargs
                 )
             result = item_creator._run()
             if self._should_backtrack():
@@ -141,16 +153,16 @@ class ListEditor(Editor):
                 self._session._is_autoadding = False
                 return
             result = result or item_creator.target
-        elif self.item_getter_configuration_method:
+        elif self._item_getter_configuration_method:
             getter = self._io_manager.make_getter(where=self._where)
-            self.item_getter_configuration_method(getter, self.item_identifier)
+            self._item_getter_configuration_method(getter, self._item_identifier)
             item_initialization_token = getter._run()
             if self._should_backtrack():
                 return
             if item_initialization_token == 'done':
                 self._session._is_autoadding = False
                 return
-            if self.item_class:
+            if self._item_class:
                 if isinstance(item_initialization_token, str):
                     exec(self._abjad_import_statement)
                     try:
@@ -159,11 +171,11 @@ class ListEditor(Editor):
                         expression = item_initialization_token
                 else:
                     expression = item_initialization_token
-                result = self.item_class(expression)
+                result = self._item_class(expression)
             else:
                 result = item_initialization_token
         else:
-            result = self.item_class()
+            result = self._item_class()
         if result is None:
             result = []
         if type(result) is list:
@@ -179,8 +191,8 @@ class ListEditor(Editor):
         '''
         item = self._get_item_from_item_number(item_number)
         if item is not None:
-            if self.item_editor_class is not None:
-                item_editor = self.item_editor_class(
+            if self._item_editor_class is not None:
+                item_editor = self._item_editor_class(
                     session=self._session, 
                     target=item,
                     )
@@ -211,7 +223,7 @@ class ListEditor(Editor):
         Returns none.
         '''
         getter = self._io_manager.make_getter(where=self._where)
-        items_identifier = stringtools.pluralize_string(self.item_identifier)
+        items_identifier = stringtools.pluralize_string(self._item_identifier)
         getter.append_menu_section_range(
             items_identifier, self._numbered_section)
         argument_range = getter._run()

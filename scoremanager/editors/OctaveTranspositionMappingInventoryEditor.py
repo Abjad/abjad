@@ -14,10 +14,10 @@ class OctaveTranspositionMappingInventoryEditor(ObjectInventoryEditor):
         from scoremanager import editors
         superclass = super(OctaveTranspositionMappingInventoryEditor, self)
         superclass.__init__(session=session, target=target)
-        self.item_class = pitchtools.OctaveTranspositionMapping
-        self.item_creator_class = editors.OctaveTranspositionMappingEditor
-        self.item_editor_class = editors.OctaveTranspositionMappingEditor
-        self.item_identifier = 'octave transposition mapping'
+        self._item_class = pitchtools.OctaveTranspositionMapping
+        self._item_creator_class = editors.OctaveTranspositionMappingEditor
+        self._item_editor_class = editors.OctaveTranspositionMappingEditor
+        self._item_identifier = 'octave transposition mapping'
 
     ### PUBLIC PROPERTIES ###
 
