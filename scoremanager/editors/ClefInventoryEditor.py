@@ -14,11 +14,11 @@ class ClefInventoryEditor(ObjectInventoryEditor):
         from scoremanager import editors
         superclass = super(ClefInventoryEditor, self)
         superclass.__init__(session=session, target=target)
-        self.item_class = indicatortools.Clef
-        self.item_editor_class = editors.ClefEditor
-        self.item_getter_configuration_method = \
+        self._item_class = indicatortools.Clef
+        self._item_editor_class = editors.ClefEditor
+        self._item_getter_configuration_method = \
             iotools.UserInputGetter.append_clef
-        self.item_identifier = 'clef'
+        self._item_identifier = 'clef'
 
     ### PUBLIC PROPERTIES ###
 

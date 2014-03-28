@@ -15,10 +15,10 @@ class MarkupInventoryEditor(ObjectInventoryEditor):
         from scoremanager import editors
         superclass = super(MarkupInventoryEditor, self)
         superclass.__init__(session=session, target=target)
-        self.item_class = markuptools.Markup
-        self.item_creator_class = editors.MarkupEditor
-        self.item_editor_class = editors.MarkupEditor
-        self.item_identifier = 'markup'
+        self._item_class = markuptools.Markup
+        self._item_creator_class = editors.MarkupEditor
+        self._item_editor_class = editors.MarkupEditor
+        self._item_identifier = 'markup'
 
     ### PUBLIC PROPERTIES ###
 

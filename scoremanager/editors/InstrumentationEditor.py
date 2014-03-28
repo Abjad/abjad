@@ -15,11 +15,11 @@ class InstrumentationEditor(ListEditor):
         from scoremanager import editors
         superclass = super(InstrumentationEditor, self)
         superclass.__init__(session=session, target=target)
-        self.item_class = instrumenttools.Performer
-        self.item_creator_class = wizards.PerformerCreationWizard
-        self.item_creator_class_kwargs = {'is_ranged': True}
-        self.item_editor_class = editors.PerformerEditor
-        self.item_identifier = 'performer'
+        self._item_class = instrumenttools.Performer
+        self._item_creator_class = wizards.PerformerCreationWizard
+        self._item_creator_class_kwargs = {'is_ranged': True}
+        self._item_editor_class = editors.PerformerEditor
+        self._item_identifier = 'performer'
 
     ### PRIVATE PROPERTIES ###
 

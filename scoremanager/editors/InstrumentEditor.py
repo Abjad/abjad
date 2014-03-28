@@ -114,9 +114,9 @@ class InstrumentEditor(Editor):
             if self._should_backtrack():
                 return
             if instruments:
-                self.target = instruments[0]
+                self._target = instruments[0]
             else:
-                self.target = None
+                self._target = None
 
     def toggle_pitch_range_display(self):
         r'''Toggle pitch range display.

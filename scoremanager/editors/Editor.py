@@ -10,9 +10,12 @@ class Editor(Controller):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_attributes_in_memory',
+        '_explicit_breadcrumb',
         '_is_autoadding',
         '_is_autoadvancing',
         '_is_autostarting',
+        '_target',
         )
 
     ### INITIALIZER ###
@@ -21,6 +24,7 @@ class Editor(Controller):
         self, 
         session=None, 
         target=None,
+        explicit_breadcrumb=None,
         is_autoadding=False,
         is_autoadvancing=False,
         is_autostarting=False,
@@ -28,14 +32,14 @@ class Editor(Controller):
         Controller.__init__(self, session=session)
         if target is not None:
             assert isinstance(target, self._target_class)
-        self.target = target
+        self._target = target
         self._initialize_attributes_in_memory()
         target_manifest = self._target_manifest
         if not target_manifest:
             message = 'can not find target manifest for {!r}.'
             message = message.format(self)
             raise Exception(message)
-        self.explicit_breadcrumb = None
+        self._explicit_breadcrumb = None
         self._is_autoadding = is_autoadding
         self._is_autoadvancing = is_autoadvancing
         self._is_autostarting = is_autostarting
@@ -137,7 +141,7 @@ class Editor(Controller):
             attribute_value = getattr(self.target, attribute_name, None)
             if attribute_value is not None:
                 self._attributes_in_memory[attribute_name] = attribute_value
-        self.target = None
+        self._target = None
 
     def _handle_main_menu_result(self, result):
         if result == 'user entered lone return':
@@ -172,7 +176,8 @@ class Editor(Controller):
         if self.target is not None:
             return
         try:
-            self.target = self._target_class()
+            self._target = self._target_class()
+        # TODO: remove bald except; this hid an important exception once
         except:
             pass
 
@@ -194,7 +199,8 @@ class Editor(Controller):
                 kwargs[attribute_name] = \
                     self._attributes_in_memory.get(attribute_name)
         try:
-            self.target = self._target_class(*args, **kwargs)
+            self._target = self._target_class(*args, **kwargs)
+        # TODO: remove bald except; this hid an important exception once
         except:
             pass
 
@@ -331,3 +337,21 @@ class Editor(Controller):
                 getattr(target, kwarg))
             result.append('{}: {}'.format(name, value))
         return result
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def explicit_breadcrumb(self):
+        r'''Gets editor explicit breadcrumb.
+
+        Returns string or none.
+        '''
+        return self._explicit_breadcrumb
+
+    @property
+    def target(self):
+        r'''Gets editor target.
+
+        Returns object or none.
+        '''
+        return self._target
