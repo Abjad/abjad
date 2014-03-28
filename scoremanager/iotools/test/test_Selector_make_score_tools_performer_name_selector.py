@@ -36,9 +36,9 @@ def test_Selector_make_score_tools_performer_name_selector_02():
 def test_Selector_make_score_tools_performer_name_selector_03():
 
     selector = scoremanager.iotools.Selector
-    selector = selector.make_score_tools_performer_name_selector()
+    selector = selector.make_score_tools_performer_name_selector(
+        is_ranged=True)
     selector._session._is_test = True
-    selector.is_ranged = True
     result = ['violinist', 'violist']
     input_ = 'vn, va'
     assert selector._run(pending_user_input=input_) == result

@@ -117,8 +117,8 @@ class PerformerCreationWizard(Wizard):
                 selector = \
                     iotools.Selector.make_score_tools_performer_name_selector(
                     session=self._session,
+                    is_ranged=self._is_ranged,
                     )
-                selector.is_ranged=self._is_ranged
                 result = selector._run()
                 if self._should_backtrack():
                     break

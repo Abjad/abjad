@@ -678,9 +678,8 @@ class Wrangler(Controller):
         selector = self._io_manager.make_selector(
             where=self._where,
             items=view_names,
+            explicit_breadcrumb='select view',
             )
-        # TODO: make attribute read only and not assignable after init
-        selector.explicit_breadcrumb = 'select view'
         view_name = selector._run()
         if self._should_backtrack():
             return

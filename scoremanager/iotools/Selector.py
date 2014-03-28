@@ -8,10 +8,24 @@ class Selector(ScoreManagerObject):
     r'''Selector.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_items',
+
+        '_explicit_breadcrumb',
+        '_is_numbered',
+        '_is_ranged',
+        '_menu_entries',
+        '_return_value_attribute',
+        '_my_where',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
         self, 
+        explicit_breadcrumb=None,
         is_numbered=True,
         is_ranged=False, 
         items=None, 
@@ -20,18 +34,19 @@ class Selector(ScoreManagerObject):
         where=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
-        self.is_numbered = is_numbered
-        self.is_ranged = is_ranged
+        self._explicit_breadcrumb = explicit_breadcrumb
+        self._is_numbered = is_numbered
+        self._is_ranged = is_ranged
         self._items = items or []
-        self.return_value_attribute = return_value_attribute
-        self.where = where
+        self._return_value_attribute = return_value_attribute
+        self._my_where = where
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
-        if getattr(self, 'explicit_breadcrumb', None):
-            return self.explicit_breadcrumb
+        if getattr(self, '_explicit_breadcrumb', None):
+            return self._explicit_breadcrumb
         elif hasattr(self, 'space_delimited_lowercase_target_name'):
             string = 'select {}:'
             string = string.format(self.space_delimited_lowercase_target_name)
@@ -137,12 +152,60 @@ class Selector(ScoreManagerObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def explicit_breadcrumb(self):
+        r'''Gets explicit breadcrumb of selector.
+
+        Returns string or none.
+        '''
+        return self._explicit_breadcrumb
+
+    @property
+    def is_numbered(self):
+        r'''Is true when selector is numbered. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._is_numbered
+
+    @property
+    def is_ranged(self):
+        r'''Is true when selector is ranged. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._is_ranged
+
+    @property
     def items(self):
         r'''Gets selector items.
 
         Returns list.
         '''
         return self._items
+
+    @property
+    def menu_entries(self):
+        r'''Gets menu entries of selector.
+
+        Returns list.
+        '''
+        return self._menu_entries
+
+    @property
+    def return_value_attribute(self):
+        r'''Gets return value attribute of selector.
+
+        Returns string.
+        '''
+        return self._return_value_attribute
+
+    @property
+    def where(self):
+        r'''Gets where of selector.
+
+        Returns stack or none.
+        '''
+        return self._my_where
 
     ### PUBLIC METHODS ###
 
@@ -429,6 +492,7 @@ class Selector(ScoreManagerObject):
     @staticmethod
     def make_score_tools_performer_name_selector(
         session=None,
+        is_ranged=False,
         ):
         r'''Makes scoretools performer name selector.
 
@@ -445,9 +509,12 @@ class Selector(ScoreManagerObject):
             performer_abbreviation = performer_abbreviation.split()[-1]
             performer_abbreviation = performer_abbreviation.strip('.')
             menu_entries.append((performer_name, performer_abbreviation)) 
-        selector = Selector(session=session)
-        selector.return_value_attribute = 'display_string'
-        selector.menu_entries = menu_entries
+        selector = Selector(
+            session=session,
+            is_ranged=is_ranged,
+            return_value_attribute='display_string',
+            )
+        selector._menu_entries = menu_entries
         return selector
 
     @staticmethod

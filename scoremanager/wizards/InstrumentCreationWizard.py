@@ -78,8 +78,8 @@ class InstrumentCreationWizard(Wizard):
             selector = iotools.Selector(
                 session=self._session,
                 items=items,
+                is_ranged=self._is_ranged,
                 )
-            selector.is_ranged = self._is_ranged
             result = selector._run()
             if self._should_backtrack():
                 return

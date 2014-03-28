@@ -64,12 +64,13 @@ class PitchClassTransformCreationWizard(Wizard):
                 items.append('transpose')
                 items.append('invert')
                 items.append('multiply')
+                explicit_breadcrumb = self._get_explicit_breadcrumb(
+                    function_application_pairs)
                 selector = iotools.Selector(
                     session=self._session,
                     items=items,
+                    explicit_breadcrumb=explicit_breadcrumb,
                     )
-                selector.explicit_breadcrumb = self._get_explicit_breadcrumb(
-                    function_application_pairs)
                 function_name = selector._run()
                 if self._should_backtrack():
                     break
