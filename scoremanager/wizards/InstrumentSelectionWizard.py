@@ -8,6 +8,11 @@ class InstrumentSelectionWizard(Wizard):
     r'''Instrument selection wizard.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -31,7 +36,7 @@ class InstrumentSelectionWizard(Wizard):
                 if self._should_backtrack():
                     return
                 if isinstance(result, instrumenttools.Instrument):
-                    self.target = result
+                    self._target = result
                     return self.target
                 elif not result == 'other':
                     raise ValueError
@@ -39,5 +44,5 @@ class InstrumentSelectionWizard(Wizard):
             result = wizard._run()
             if self._should_backtrack():
                 return
-            self.target = result
+            self._target = result
             return self.target

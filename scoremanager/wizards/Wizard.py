@@ -9,15 +9,21 @@ class Wizard(ScoreManagerObject):
 
     ### CLASS VARIABLES ###
 
-    __metaclass__ = abc.ABCMeta
+    __slots__ = (
+        '_target',
+        '_target_editor_class_name_suffix',
+        )
 
+    ### CLASS VARIABLES ###
+
+    __metaclass__ = abc.ABCMeta
 
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
         ScoreManagerObject.__init__(self, session=session)
-        self.target = target
-        self.target_editor_class_name_suffix = 'Editor'
+        self._target = target
+        self._target_editor_class_name_suffix = 'Editor'
 
     ### PRIVATE PROPERTIES ###
 
@@ -29,7 +35,7 @@ class Wizard(ScoreManagerObject):
 
     def _get_target_editor(self, target_class_name, target=None):
         target_editor_class_name = target_class_name
-        target_editor_class_name += self.target_editor_class_name_suffix
+        target_editor_class_name += self._target_editor_class_name_suffix
         command = 'from scoremanager.editors'
         command += ' import {} as target_editor_class'
         command = command.format(target_editor_class_name)
@@ -46,11 +52,7 @@ class Wizard(ScoreManagerObject):
             self._session._pending_user_input = pending_user_input
         context = iotools.ControllerContext(self)
         with context:
-            if hasattr(self, 'selector'):
-                selector = self.selector
-            else:
-                selector = self.handler_class_name_selector(
-                    session=self._session)
+            selector = self._selector
             handler_class_name = selector._run()
             if self._should_backtrack():
                 return
@@ -58,7 +60,7 @@ class Wizard(ScoreManagerObject):
             handler_editor._is_autoadvancing = True
             handler_editor._is_autostarting = True
             handler_editor._run()
-            self.target = handler_editor.target
+            self._target = handler_editor.target
 
     def _should_backtrack(self):
         if self._session.is_complete:
@@ -74,3 +76,13 @@ class Wizard(ScoreManagerObject):
             return True
         else:
             return False
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def target(self):
+        r'''Gets wizard target.
+
+        Returns object or none.
+        '''
+        return self._target

@@ -9,6 +9,12 @@ class InstrumentCreationWizard(Wizard):
     r'''Instrument creation wizard.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_is_ranged',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -18,7 +24,7 @@ class InstrumentCreationWizard(Wizard):
         target=None,
         ):
         Wizard.__init__(self, session=session, target=target)
-        self.is_ranged = is_ranged
+        self._is_ranged = is_ranged
 
     ### PRIVATE PROPERTIES ###
 
@@ -73,7 +79,7 @@ class InstrumentCreationWizard(Wizard):
                 session=self._session,
                 items=items,
                 )
-            selector.is_ranged = self.is_ranged
+            selector.is_ranged = self._is_ranged
             result = selector._run()
             if self._should_backtrack():
                 return
@@ -87,9 +93,9 @@ class InstrumentCreationWizard(Wizard):
                     self._change_instrument_name_to_instrument(instrument_name)
                 instrument = self._name_untuned_percussion(instrument)
                 instruments.append(instrument)
-            if self.is_ranged:
+            if self._is_ranged:
                 result = instruments[:]
             else:
                 result = instruments[0]
-            self.target = result
+            self._target = result
             return self.target

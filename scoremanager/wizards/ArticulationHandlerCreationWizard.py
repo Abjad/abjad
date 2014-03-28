@@ -6,6 +6,13 @@ class ArticulationHandlerCreationWizard(Wizard):
     r'''Articulation handler creation wizard.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_handler_editor_class_name_suffix',
+        '_selector',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
@@ -18,8 +25,8 @@ class ArticulationHandlerCreationWizard(Wizard):
         selector = Selector.make_articulation_handler_class_name_selector(
             session=self._session,
             )
-        self.selector = selector
-        self.handler_editor_class_name_suffix = 'Editor'
+        self._selector = selector
+        self._handler_editor_class_name_suffix = 'Editor'
 
     ### PRIVATE PROPERTIES ###
 

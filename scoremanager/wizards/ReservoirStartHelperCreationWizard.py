@@ -7,6 +7,11 @@ class ReservoirStartHelperCreationWizard(Wizard):
     r'''Reservoir start helper creation wizard.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -56,5 +61,5 @@ class ReservoirStartHelperCreationWizard(Wizard):
                 function_application_pairs.append(
                     (function_name, function_arguments))
                 break
-            self.target = function_application_pairs
+            self._target = function_application_pairs
             return self.target

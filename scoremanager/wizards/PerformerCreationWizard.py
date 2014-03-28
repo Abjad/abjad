@@ -9,11 +9,17 @@ class PerformerCreationWizard(Wizard):
     r'''Performer creation wizard.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_is_ranged',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, is_ranged=False, session=None, target=None):
         Wizard.__init__(self, session=session, target=target)
-        self.is_ranged = is_ranged
+        self._is_ranged = is_ranged
 
     ### PRIVATE PROPERTIES ###
 
@@ -36,7 +42,9 @@ class PerformerCreationWizard(Wizard):
                 break
             elif result in ('more', ['more']):
                 wizard = wizards.InstrumentCreationWizard(
-                    session=self._session, is_ranged=True)
+                    session=self._session, 
+                    is_ranged=True,
+                    )
                 instruments = wizard._run()
                 if self._should_backtrack():
                     break
@@ -110,7 +118,7 @@ class PerformerCreationWizard(Wizard):
                     iotools.Selector.make_score_tools_performer_name_selector(
                     session=self._session,
                     )
-                selector.is_ranged=self.is_ranged
+                selector.is_ranged=self._is_ranged
                 result = selector._run()
                 if self._should_backtrack():
                     break
@@ -136,15 +144,15 @@ class PerformerCreationWizard(Wizard):
                     break
                 else:
                     try_again = False
-            if self.is_ranged and performers:
+            if self._is_ranged and performers:
                 final_result = performers[:]
-            elif self.is_ranged and not performers:
+            elif self._is_ranged and not performers:
                 final_result = []
-            elif not self.is_ranged and performers:
+            elif not self._is_ranged and performers:
                 final_result = performers[0]
-            elif not self.is_ranged and not performers:
+            elif not self._is_ranged and not performers:
                 final_result = None
             else:
                 raise ValueError
-            self.target = final_result
+            self._target = final_result
             return self.target

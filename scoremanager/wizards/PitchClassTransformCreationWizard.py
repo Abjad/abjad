@@ -7,6 +7,11 @@ class PitchClassTransformCreationWizard(Wizard):
     r'''Pitch-class transform creation wizard.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -78,5 +83,5 @@ class PitchClassTransformCreationWizard(Wizard):
                     continue
                 function_application_pairs.append(
                     (function_name, function_arguments))
-            self.target = function_application_pairs
+            self._target = function_application_pairs
             return self.target

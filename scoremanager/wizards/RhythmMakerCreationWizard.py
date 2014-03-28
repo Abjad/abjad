@@ -6,6 +6,11 @@ class RhythmMakerCreationWizard(Wizard):
     r'''Rhythm-maker creation wizard.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
