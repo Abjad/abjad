@@ -11,6 +11,12 @@ class Configuration(AbjadObject):
     r'''A configuration object.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_settings',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self):

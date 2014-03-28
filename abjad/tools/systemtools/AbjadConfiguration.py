@@ -40,6 +40,11 @@ class AbjadConfiguration(Configuration):
     and can be subscripted as a dictionary.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self):
