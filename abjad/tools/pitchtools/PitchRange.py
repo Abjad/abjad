@@ -283,7 +283,7 @@ class PitchRange(AbjadObject):
         return lilypond_file
 
     def __le__(self, arg):
-        r'''Is true when stop pitch of pitch-range is less than or equal 
+        r'''Is true when stop pitch of pitch-range is less than or equal
         to `arg`. Otherwise false.
 
         Returns boolean.
@@ -298,7 +298,7 @@ class PitchRange(AbjadObject):
             return False
 
     def __lt__(self, arg):
-        r'''Is true when stop pitch of pitch-range is less than `arg`. 
+        r'''Is true when stop pitch of pitch-range is less than `arg`.
         Otherwise false.
 
         Returns boolean.
@@ -405,7 +405,7 @@ class PitchRange(AbjadObject):
                     return self.start_pitch < pitch < self.stop_pitch
 
     def _initialize_by_symbolic_pitch_range_string(
-        self, 
+        self,
         symbolic_pitch_range_string,
         ):
         from abjad.tools import pitchtools
@@ -432,7 +432,7 @@ class PitchRange(AbjadObject):
 
     @classmethod
     def is_symbolic_pitch_range_string(cls, expr):
-        '''Is true when `expr` is a symbolic pitch range string. 
+        '''Is true when `expr` is a symbolic pitch range string.
         Otherwise false:
 
         ::
@@ -450,6 +450,41 @@ class PitchRange(AbjadObject):
         if not isinstance(expr, str):
             return False
         return bool(cls._symbolic_pitch_range_string_regex.match(expr))
+
+    def voice_pitch_class(self, pitch_class):
+        r"""Voices `pitch_class` in this pitch-range.
+
+        ::
+
+            >>> a_pitch_range = pitchtools.PitchRange('[C4, C6]')
+            >>> a_pitch_range.voice_pitch_class('c')
+            (NamedPitch("c'"), NamedPitch("c''"), NamedPitch("c'''"))
+
+        ::
+
+            >>> a_pitch_range.voice_pitch_class('b')
+            (NamedPitch("b'"), NamedPitch("b''"))
+
+        ::
+
+            >>> a_pitch_range = pitchtools.PitchRange('[C4, A4)')
+            >>> a_pitch_range.voice_pitch_class('b')
+            ()
+
+        Returns tuple of zero or more named pitches.
+        """
+        from abjad.tools import pitchtools
+        named_pitch_class = pitchtools.NamedPitchClass(pitch_class)
+        named_pitch = pitchtools.NamedPitch(
+            named_pitch_class,
+            self.start_pitch.octave_number,
+            )
+        result = []
+        while named_pitch <= self.stop_pitch:
+            if named_pitch in self:
+                result.append(named_pitch)
+            named_pitch += 12
+        return tuple(result)
 
     ### PUBLIC PROPERTIES ###
 
