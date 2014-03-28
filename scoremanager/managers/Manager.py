@@ -872,6 +872,9 @@ class Manager(Controller):
 
         Returns none.
         '''
+        self._session._attempted_to_revert_to_repository = True
+        if self._session.is_repository_test:
+            return
         message = 'reverting {} ...'
         message = message.format(self._path)
         self._io_manager.display(message)
